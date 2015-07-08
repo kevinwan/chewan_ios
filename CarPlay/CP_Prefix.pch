@@ -1,0 +1,22 @@
+//
+//  CP_Prefix.pch
+//  CarPlay
+//
+//  Created by 公平价 on 15/6/28.
+//  Copyright (c) 2015年 gongpingjia. All rights reserved.
+//
+
+#ifndef CarPlay_CP_Prefix_pch
+#define CarPlay_CP_Prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+// 随机色
+#define CPRandomColor [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1]
+// 快速创建颜色
+#define CPColor(r, g, b, a) [UIColor colorWithRed:(r/255.0) green:(g/255.0) blue:(b/255.0) alpha:a]
+
+#import "UIBarButtonItem+Extension.h"
+
+#endif
