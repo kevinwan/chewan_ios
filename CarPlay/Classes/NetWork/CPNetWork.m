@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 gongpingjia. All rights reserved.
 //
 
-#import "WanCheNetWork.h"
+#import "CPNetWork.h"
 
 static WanCheNetWork * _wanCheNetWork = nil;
 

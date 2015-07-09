@@ -22,7 +22,7 @@
 		6B4EF1641B4036EE00292BD4 /* CPMyController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B4EF1581B4036EE00292BD4 /* CPMyController.storyboard */; };
 		6B4EF1681B403A5D00292BD4 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4EF1671B403A5D00292BD4 /* UIBarButtonItem+Extension.m */; };
 		6B64938C1B4D04BE00C197D2 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B64938B1B4D04BE00C197D2 /* BaseViewController.m */; };
-		6B6493901B4D04E100C197D2 /* WanCheNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B64938F1B4D04E100C197D2 /* WanCheNetWork.m */; };
+		6B6493901B4D04E100C197D2 /* CPNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B64938F1B4D04E100C197D2 /* CPNetWork.m */; };
 		6B6493941B4D04E500C197D2 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493931B4D04E500C197D2 /* Tools.m */; };
 		6B6493C71B4D0D7800C197D2 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493B31B4D0D7800C197D2 /* AFHTTPClient.m */; };
 		6B6493C81B4D0D7800C197D2 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493B51B4D0D7800C197D2 /* AFHTTPRequestOperation.m */; };
@@ -77,8 +77,8 @@
 		6B6493881B4D04AD00C197D2 /* macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macro.h; sourceTree = "<group>"; };
 		6B64938A1B4D04BE00C197D2 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		6B64938B1B4D04BE00C197D2 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
-		6B64938E1B4D04E100C197D2 /* WanCheNetWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WanCheNetWork.h; sourceTree = "<group>"; };
-		6B64938F1B4D04E100C197D2 /* WanCheNetWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WanCheNetWork.m; sourceTree = "<group>"; };
+		6B64938E1B4D04E100C197D2 /* CPNetWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNetWork.h; sourceTree = "<group>"; };
+		6B64938F1B4D04E100C197D2 /* CPNetWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNetWork.m; sourceTree = "<group>"; };
 		6B6493921B4D04E500C197D2 /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
 		6B6493931B4D04E500C197D2 /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
 		6B6493B21B4D0D7800C197D2 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
@@ -374,8 +374,8 @@
 		6B64938D1B4D04E100C197D2 /* NetWork */ = {
 			isa = PBXGroup;
 			children = (
-				6B64938E1B4D04E100C197D2 /* WanCheNetWork.h */,
-				6B64938F1B4D04E100C197D2 /* WanCheNetWork.m */,
+				6B64938E1B4D04E100C197D2 /* CPNetWork.h */,
+				6B64938F1B4D04E100C197D2 /* CPNetWork.m */,
 			);
 			path = NetWork;
 			sourceTree = "<group>";
@@ -545,7 +545,7 @@
 				6B6493D51B4D152A00C197D2 /* LoginViewController.m in Sources */,
 				6B6493D01B4D0D7800C197D2 /* UIImageView+AFNetworking.m in Sources */,
 				6B4EF15F1B4036EE00292BD4 /* AppDelegate.m in Sources */,
-				6B6493901B4D04E100C197D2 /* WanCheNetWork.m in Sources */,
+				6B6493901B4D04E100C197D2 /* CPNetWork.m in Sources */,
 				6B6493C91B4D0D7800C197D2 /* AFImageRequestOperation.m in Sources */,
 				6B6493CA1B4D0D7800C197D2 /* AFJSONRequestOperation.m in Sources */,
 				6B4EF1631B4036EE00292BD4 /* CPMyController.m in Sources */,
