@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 
 // login branch
+// login commit again
 //公共的静态方法，都写在这里，方便调用
 
 @interface Tools : NSObject
