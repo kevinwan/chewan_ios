@@ -20,4 +20,6 @@
 #import "UIBarButtonItem+Extension.h"
 #import "macro.h"
 #import "Tools.h"
+#import "CPNetworkVO.h"
+#import "MBProgressHUD.h"
 #endif

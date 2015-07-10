@@ -30,14 +30,9 @@
 {
     [super viewDidLoad];
     
-//    if(IOS7){
-//        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-//    }
-//    
-//    [self.navigationController.navigationBar setBackgroundImage:[[UIImage imageNamed:IOS7?@"top_128":@"top_88"] stretchableImageWithLeftCapWidth:10 topCapHeight:10] forBarMetrics:UIBarMetricsDefault];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
-    self.view.backgroundColor=[Tools getColor:@"ededed"];
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:WQH_TITLE_BACKGROUND_STYLE_IMAGE] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:WANCHE_NAVIGATIONBAR_BACKGROUND_IMAGE] forBarMetrics:UIBarMetricsDefault];
 
     //    点击其他地方隐藏键盘
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
@@ -62,37 +57,6 @@
 //    NSString *vcname=NSStringFromClass([self class]);
 //    [Analysis endLogPageView:vcname];
 //}
-
-- (void)setNavTitle:(NSString *)title titleColor:(UIColor*)titleColor
-{
-    //title
-    //    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(95, 6, 250, 30)];
-    //    titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18.0f];
-    //    if (titleColor){
-    //        titleLabel.textColor = titleColor;
-    //    } else {
-    //        titleLabel.textColor = [UIColor whiteColor];
-    //    }
-    //    [titleLabel setShadowOffset:CGSizeMake(1, 1)];
-    //    titleLabel.backgroundColor = [UIColor clearColor];
-    //    titleLabel.textAlignment = NSTextAlignmentCenter;
-    //    titleLabel.text = title;
-    //	float titlewidth = [title sizeWithFont:titleLabel.font].width;
-    //	titleLabel.frame = CGRectMake((320-titlewidth)/2 - 1, 8, titlewidth, 20);
-    //    [titleLabel sizeToFit];
-    //    self.navigationItem.titleView = titleLabel;
-    
-    UIFont * titleFont = [UIFont fontWithName:@"Helvetica-Bold" size:18.0f];
-    
-    CGSize sizeTitle =[title sizeWithFont:titleFont];
-    UILabel * lblTitle = [[UILabel alloc ]initWithFrame:CGRectMake((SCREEN_WIDTH-sizeTitle.width)/2, (44-sizeTitle.height)/2, sizeTitle.width, sizeTitle.height)];
-    lblTitle.text = title;
-    lblTitle.textColor = titleColor;
-    lblTitle.backgroundColor = [UIColor clearColor];
-    lblTitle.font = titleFont;
-    [lblTitle sizeToFit];
-    [self.navigationItem setTitleView:lblTitle];
-}
 
 - (void)setLeftBarWithLeftImage:(NSString *)leftImage action:(SEL)leftAction
 {
@@ -165,7 +129,7 @@
     CGSize sizeTitle =[strTitle sizeWithFont:[UIFont boldSystemFontOfSize:22]];
     UILabel * lblTitle = [[UILabel alloc ]initWithFrame:CGRectMake((SCREEN_WIDTH-sizeTitle.width)/2, (44-sizeTitle.height)/2, sizeTitle.width, sizeTitle.height)];
     lblTitle.text = strTitle;
-    lblTitle.textColor = [UIColor whiteColor];
+    lblTitle.textColor = color;
     lblTitle.backgroundColor = [UIColor clearColor];
     lblTitle.font = [UIFont systemFontOfSize:20];
     [lblTitle sizeToFit];

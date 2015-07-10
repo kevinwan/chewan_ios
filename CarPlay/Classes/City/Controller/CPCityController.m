@@ -7,6 +7,7 @@
 //
 
 #import "CPCityController.h"
+#import "LoginViewController.h"
 
 @interface CPCityController ()
 
@@ -97,4 +98,9 @@
 }
 */
 
+- (IBAction)filterBtnClick:(id)sender {
+    LoginViewController *loginVC=[[LoginViewController alloc]init];
+    [loginVC setHidesBottomBarWhenPushed:YES];
+    [self.navigationController pushViewController:loginVC animated:YES];
+}
 @end

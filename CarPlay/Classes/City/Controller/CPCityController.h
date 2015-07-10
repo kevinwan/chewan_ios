@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface CPCityController : UITableViewController
+- (IBAction)filterBtnClick:(id)sender;
 
 @end

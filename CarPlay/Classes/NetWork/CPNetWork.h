@@ -14,7 +14,7 @@ typedef void(^successfulBlock)();
 typedef void(^resultBlock)(id result);
 
 
-@interface WanCheNetWork : NSObject
+@interface CPNetWork : NSObject
 
 //登录成功后保存token
 @property(nonatomic, strong, readonly)NSString *token;

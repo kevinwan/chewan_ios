@@ -36,6 +36,10 @@
 		6B6493D01B4D0D7800C197D2 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493C61B4D0D7800C197D2 /* UIImageView+AFNetworking.m */; };
 		6B6493D51B4D152A00C197D2 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493D31B4D152A00C197D2 /* LoginViewController.m */; };
 		6B6493D61B4D152A00C197D2 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B6493D41B4D152A00C197D2 /* LoginViewController.xib */; };
+		6B6493D91B4FABC900C197D2 /* CPNetworkVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493D81B4FABC900C197D2 /* CPNetworkVO.m */; };
+		6B6493E01B4FAFFD00C197D2 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6B6493DB1B4FAFFD00C197D2 /* MBProgressHUD.bundle */; };
+		6B6493E11B4FAFFD00C197D2 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493DD1B4FAFFD00C197D2 /* MBProgressHUD.m */; };
+		6B6493E21B4FAFFD00C197D2 /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493DF1B4FAFFD00C197D2 /* MBProgressHUD+Add.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +109,13 @@
 		6B6493D21B4D152A00C197D2 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		6B6493D31B4D152A00C197D2 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		6B6493D41B4D152A00C197D2 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		6B6493D71B4FABC900C197D2 /* CPNetworkVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNetworkVO.h; sourceTree = "<group>"; };
+		6B6493D81B4FABC900C197D2 /* CPNetworkVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNetworkVO.m; sourceTree = "<group>"; };
+		6B6493DB1B4FAFFD00C197D2 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
+		6B6493DC1B4FAFFD00C197D2 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		6B6493DD1B4FAFFD00C197D2 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		6B6493DE1B4FAFFD00C197D2 /* MBProgressHUD+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Add.h"; sourceTree = "<group>"; };
+		6B6493DF1B4FAFFD00C197D2 /* MBProgressHUD+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Add.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +245,7 @@
 		6B4EF1401B4036EE00292BD4 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				6B6493DA1B4FAFEF00C197D2 /* MBProgressHUD */,
 				6B6493951B4D04FB00C197D2 /* AFNetworking */,
 			);
 			path = Libs;
@@ -374,6 +386,8 @@
 		6B64938D1B4D04E100C197D2 /* NetWork */ = {
 			isa = PBXGroup;
 			children = (
+				6B6493D71B4FABC900C197D2 /* CPNetworkVO.h */,
+				6B6493D81B4FABC900C197D2 /* CPNetworkVO.m */,
 				6B64938E1B4D04E100C197D2 /* CPNetWork.h */,
 				6B64938F1B4D04E100C197D2 /* CPNetWork.m */,
 			);
@@ -425,6 +439,18 @@
 				6B6493D41B4D152A00C197D2 /* LoginViewController.xib */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		6B6493DA1B4FAFEF00C197D2 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				6B6493DB1B4FAFFD00C197D2 /* MBProgressHUD.bundle */,
+				6B6493DC1B4FAFFD00C197D2 /* MBProgressHUD.h */,
+				6B6493DD1B4FAFFD00C197D2 /* MBProgressHUD.m */,
+				6B6493DE1B4FAFFD00C197D2 /* MBProgressHUD+Add.h */,
+				6B6493DF1B4FAFFD00C197D2 /* MBProgressHUD+Add.m */,
+			);
+			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -508,6 +534,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B4959DC1B33A23900DB63EA /* LaunchScreen.xib in Resources */,
+				6B6493E01B4FAFFD00C197D2 /* MBProgressHUD.bundle in Resources */,
 				6B4EF15C1B4036EE00292BD4 /* CPCityController.storyboard in Resources */,
 				6B4959D91B33A23900DB63EA /* Images.xcassets in Resources */,
 				6B4EF15E1B4036EE00292BD4 /* Main.storyboard in Resources */,
@@ -533,10 +560,12 @@
 			files = (
 				6B6493C81B4D0D7800C197D2 /* AFHTTPRequestOperation.m in Sources */,
 				6B4EF15D1B4036EE00292BD4 /* CPTabBarController.m in Sources */,
+				6B6493E11B4FAFFD00C197D2 /* MBProgressHUD.m in Sources */,
 				6B6493941B4D04E500C197D2 /* Tools.m in Sources */,
 				6B64938C1B4D04BE00C197D2 /* BaseViewController.m in Sources */,
 				6B6493CE1B4D0D7800C197D2 /* AFURLConnectionOperation.m in Sources */,
 				6B4EF1681B403A5D00292BD4 /* UIBarButtonItem+Extension.m in Sources */,
+				6B6493E21B4FAFFD00C197D2 /* MBProgressHUD+Add.m in Sources */,
 				6B4EF15B1B4036EE00292BD4 /* CPCityController.m in Sources */,
 				6B6493CC1B4D0D7800C197D2 /* AFNetworkReachabilityManager.m in Sources */,
 				6B6493CD1B4D0D7800C197D2 /* AFPropertyListRequestOperation.m in Sources */,
@@ -550,6 +579,7 @@
 				6B6493CA1B4D0D7800C197D2 /* AFJSONRequestOperation.m in Sources */,
 				6B4EF1631B4036EE00292BD4 /* CPMyController.m in Sources */,
 				6B6493C71B4D0D7800C197D2 /* AFHTTPClient.m in Sources */,
+				6B6493D91B4FABC900C197D2 /* CPNetworkVO.m in Sources */,
 				6B4EF1611B4036EE00292BD4 /* CPMessageController.m in Sources */,
 				6B6493CB1B4D0D7800C197D2 /* AFNetworkActivityIndicatorManager.m in Sources */,
 			);

@@ -14,7 +14,7 @@
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 
 //接口地址
-#define BASE_URL @"http://api.bbh.sunprosp.com"
+#define BASE_URL @"http://cwapi.gongpingjia.com:80"
 
 //测试接口地址
 #define TEST_URL @"http://api.bbh.sunprosp.com"
@@ -26,6 +26,8 @@
 #define IOS_VERSION [[[UIDevice currentDevice] systemVersion] floatValue]   //当前设备的系统版本
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)      //屏幕宽度
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)    //屏幕高度
+
+#define WANCHE_NAVIGATIONBAR_BACKGROUND_IMAGE @"navigationBarBg"
 
 //#define COLOR_NAV_BAR RGBACOLOR(36, 31, 37, 1)
 #define  COLOR_NAV_BAR  [Tools getColor:@"312a32"]

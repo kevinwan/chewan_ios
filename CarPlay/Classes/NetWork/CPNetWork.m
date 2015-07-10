@@ -8,9 +8,9 @@
 
 #import "CPNetWork.h"
 
-static WanCheNetWork * _wanCheNetWork = nil;
+static CPNetWork * _wanCheNetWork = nil;
 
-@implementation WanCheNetWork
+@implementation CPNetWork
 
 +(instancetype)sharedInstance
 {
@@ -160,7 +160,7 @@ static WanCheNetWork * _wanCheNetWork = nil;
 
 -(id)postRequestWithBaseUrl:(NSString*)url andPath:(NSString*)path andParameters:(NSDictionary*)parameters forSueccessful:(void(^)(id responseObject))successful forFail:(void(^)(NSError *error)) fail
 {
-    id client = [self postRequestWithBaseUrl:url andPath:path andParameters:parameters andParameterEncoding:AFFormURLParameterEncoding forSueccessful:successful forFail:fail];
+    id client = [self postRequestWithBaseUrl:url andPath:path andParameters:parameters andParameterEncoding:AFJSONParameterEncoding forSueccessful:successful forFail:fail];
     return client;
 }
 /**
@@ -200,17 +200,16 @@ static WanCheNetWork * _wanCheNetWork = nil;
         if (json) {
             if ([json isKindOfClass:[NSDictionary class]]) {
                 NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
-                NSString *state=[numberFormatter stringFromNumber:[json objectForKey:@"state"]];
-                if ([state isEqualToString:@"1"]) {
+                NSString *state=[numberFormatter stringFromNumber:[json objectForKey:@"result"]];
+                if ([state isEqualToString:@"0"]) {
                     DLog(@"POST返回的数据:%@------------------------------------", json);
                     successful(json);
                 }else{
                     DLog(@"接口返回失败:%@", json);
-                    NSString *msg = [json objectForKey:@"msg"];
+                    NSString *msg = [json objectForKey:@"errmsg"];
                     DLog(@"message:%@",msg);
-                     NSString *state=[json objectForKey:@"state"];
                     NSError *err = [self errorWithMsg:msg];
-//                   [[[UIAlertView alloc]initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                   [[[UIAlertView alloc]initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                     fail(err);
                 }
             }else{
@@ -259,7 +258,6 @@ static WanCheNetWork * _wanCheNetWork = nil;
     
     [clinet postPath:path parameters:mutParameters success:^(AFHTTPRequestOperation *operation, id responseObject){
         
-        //        NSLog(@"resStr : %@", resStr);
         NSString *resStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         NSData *data_utf8 = [resStr dataUsingEncoding:NSUTF8StringEncoding];
         NSError *error = nil;
@@ -267,13 +265,13 @@ static WanCheNetWork * _wanCheNetWork = nil;
         if (json) {
             if ([json isKindOfClass:[NSDictionary class]]) {
                 NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
-                NSString *state=[numberFormatter stringFromNumber:[json objectForKey:@"state"]];
-                if ([state isEqualToString:@"1"]) {
+                NSString *state=[numberFormatter stringFromNumber:[json objectForKey:@"result"]];
+                if ([state isEqualToString:@"0"]) {
                     DLog(@"POST返回的数据:%@------------------------------------", json);
                     successful(json);
                 }else{
                     DLog(@"接口返回失败:%@", json);
-                    NSString *msg = [json objectForKey:@"msg"];
+                    NSString *msg = [json objectForKey:@"errmsg"];
                     DLog(@"message:%@",msg);
                     NSError *err = [self errorWithMsg:msg];
                     fail(err);
