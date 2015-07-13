@@ -11,7 +11,6 @@
 #import "UIBarButtonItem+Extension.h"
 
 @interface CPNewMessageController ()
-
 @end
 
 @implementation CPNewMessageController
@@ -43,6 +42,16 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 20;
+}
+
+/**
+ *  滑动删除单元格
+ */
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+    }
 }
 
 @end

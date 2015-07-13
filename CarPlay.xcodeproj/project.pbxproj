@@ -42,6 +42,7 @@
 		6B6493E91B4FE34D00C197D2 /* CPForgetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B6493E71B4FE34D00C197D2 /* CPForgetPasswordViewController.xib */; };
 		6B6493EE1B53821F00C197D2 /* registerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493EC1B53821F00C197D2 /* registerViewController.m */; };
 		6B6493EF1B53821F00C197D2 /* registerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B6493ED1B53821F00C197D2 /* registerViewController.xib */; };
+		E35559A51B53A0CE00B200D0 /* CPSexView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35559A41B53A0CE00B200D0 /* CPSexView.m */; };
 		E3EEDFF31B53951D00595333 /* CPMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EEDFE81B53951D00595333 /* CPMessageController.m */; };
 		E3EEDFF41B53951D00595333 /* CPMessageController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3EEDFE91B53951D00595333 /* CPMessageController.storyboard */; };
 		E3EEDFF51B53951D00595333 /* CPNewMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EEDFEB1B53951D00595333 /* CPNewMessageController.m */; };
@@ -131,6 +132,8 @@
 		6B6493EB1B53821F00C197D2 /* registerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = registerViewController.h; sourceTree = "<group>"; };
 		6B6493EC1B53821F00C197D2 /* registerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = registerViewController.m; sourceTree = "<group>"; };
 		6B6493ED1B53821F00C197D2 /* registerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = registerViewController.xib; sourceTree = "<group>"; };
+		E35559A31B53A0CE00B200D0 /* CPSexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSexView.h; sourceTree = "<group>"; };
+		E35559A41B53A0CE00B200D0 /* CPSexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSexView.m; sourceTree = "<group>"; };
 		E3EEDFE71B53951D00595333 /* CPMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMessageController.h; sourceTree = "<group>"; };
 		E3EEDFE81B53951D00595333 /* CPMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMessageController.m; sourceTree = "<group>"; };
 		E3EEDFE91B53951D00595333 /* CPMessageController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMessageController.storyboard; sourceTree = "<group>"; };
@@ -512,6 +515,8 @@
 				E3EEDFF01B53951D00595333 /* CPBadgeView.m */,
 				E3EEDFF11B53951D00595333 /* CPNewMessageCell.h */,
 				E3EEDFF21B53951D00595333 /* CPNewMessageCell.m */,
+				E35559A31B53A0CE00B200D0 /* CPSexView.h */,
+				E35559A41B53A0CE00B200D0 /* CPSexView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -657,6 +662,7 @@
 				6B6493CD1B4D0D7800C197D2 /* AFPropertyListRequestOperation.m in Sources */,
 				6B4EF1601B4036EE00292BD4 /* main.m in Sources */,
 				6B6493CF1B4D0D7800C197D2 /* AFXMLRequestOperation.m in Sources */,
+				E35559A51B53A0CE00B200D0 /* CPSexView.m in Sources */,
 				6B6493D51B4D152A00C197D2 /* LoginViewController.m in Sources */,
 				6B6493D01B4D0D7800C197D2 /* UIImageView+AFNetworking.m in Sources */,
 				6B4EF15F1B4036EE00292BD4 /* AppDelegate.m in Sources */,
