@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>3FF7E955-B373-44E1-8A0C-861F7E704FB8</string>
+	<string>C2933C69-A581-432D-9A4E-E5B2B83FA60D</string>
 	<key>IDESourceControlProjectName</key>
 	<string>CarPlay</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -34,7 +34,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>695A81FD90443B77BB84EC9ED3B06AE9DD2AB2E6</string>
 			<key>IDESourceControlWCCName</key>
-			<string>chewan_ios</string>
+			<string>CarPlay</string>
 		</dict>
 	</array>
 </dict>
