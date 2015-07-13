@@ -31,9 +31,8 @@
     [super viewDidLoad];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:WANCHE_NAVIGATIONBAR_BACKGROUND_IMAGE] forBarMetrics:UIBarMetricsDefault];
-
+    [self.navigationController.navigationBar setBarTintColor:[Tools getColor:@"48d1d4"]];
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     //    点击其他地方隐藏键盘
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
     //设置成NO表示当前控件响应后会传播到其他控件上，默认为YES。
@@ -47,16 +46,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-//-(void)viewWillAppear:(BOOL)animated{
-//    NSString *vcname=NSStringFromClass([self class]);
-//    [Analysis beginLogPageView:vcname];
-//}
-//
-//-(void)viewWillDisappear:(BOOL)animated{
-//    NSString *vcname=NSStringFromClass([self class]);
-//    [Analysis endLogPageView:vcname];
-//}
 
 - (void)setLeftBarWithLeftImage:(NSString *)leftImage action:(SEL)leftAction
 {
@@ -146,7 +135,6 @@
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftButton setImage:buttonImage forState:UIControlStateNormal];
     leftButton.frame = CGRectMake(0, 0, 25, 25);
-//    leftButton.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
     [leftButton addTarget:self action:@selector(leftBarClick:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     

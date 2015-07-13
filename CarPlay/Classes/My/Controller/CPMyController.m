@@ -7,6 +7,7 @@
 //
 
 #import "CPMyController.h"
+#import "LoginViewController.h"
 
 @interface CPMyController ()
 
@@ -97,4 +98,10 @@
 }
 */
 
+- (IBAction)rightBtnClick:(id)sender {
+    LoginViewController *loginVC=[[LoginViewController alloc]init];
+    [loginVC setHidesBottomBarWhenPushed:YES];
+    //    [self.navigationController presentViewController:loginVC animated:YES completion:nil];
+    [self.navigationController pushViewController:loginVC animated:YES];
+}
 @end

@@ -80,7 +80,6 @@
 -(void) setLeftBarWithText:(NSString *)title;
 //**********
 
--(void)getMyaccountInfo;
 //隐藏UITableView多余的分割线
 -(void)setExtraCellLineHidden: (UITableView *)tableView;
 @end

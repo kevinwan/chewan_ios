@@ -13,12 +13,13 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="startPag" translatesAutoresizingMaskIntoConstraints="NO" id="mzp-cW-ZY2">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="startIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Ig2-da-8Ze">
-                    <rect key="frame" x="80" y="112" width="160" height="160"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="startIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Ig2-da-8Ze">
+                    <rect key="frame" x="78.5" y="112" width="163" height="163"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="Ig2-da-8Ze" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="112" id="2Ac-Go-LM0"/>
                 <constraint firstAttribute="centerX" secondItem="Ig2-da-8Ze" secondAttribute="centerX" id="E7W-9P-vyp"/>
                 <constraint firstItem="mzp-cW-ZY2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="EYS-M6-loF"/>
                 <constraint firstItem="Ig2-da-8Ze" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="80" id="T9K-G4-Led"/>
@@ -29,6 +30,12 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="T9K-G4-Led"/>
+                    <exclude reference="X4S-AK-HYF"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="548" y="455"/>
         </view>
     </objects>
