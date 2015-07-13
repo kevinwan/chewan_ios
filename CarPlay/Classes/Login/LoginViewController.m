@@ -17,27 +17,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.navigationBarHidden=YES;
     self.loginBtn.layer.cornerRadius=3.0;
     self.loginBtn.layer.masksToBounds=YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
 //     设置navigationBar透明的背景颜色，达到透明的效果BIGIN
-    
-    NSArray *list=self.navigationController.navigationBar.subviews;
-    for (id obj in list) {
-        if([obj isKindOfClass:[UIImageView class]]){
-            UIImageView *imageView=(UIImageView *)obj;
-            imageView.hidden=YES;
-        }
-    }
-    UIImageView *imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, -20, 320, 64)];
-    imageView.image=[UIImage imageNamed:@"TransparentBg.png"];
-    [self.navigationController.navigationBar addSubview:imageView];
-    [self.navigationController.navigationBar sendSubviewToBack:imageView];
-    
-    self.automaticallyAdjustsScrollViewInsets=NO;
+     self.navigationController.navigationBarHidden=YES;
+//    NSArray *list=self.navigationController.navigationBar.subviews;
+//    for (id obj in list) {
+//        if([obj isKindOfClass:[UIImageView class]]){
+//            UIImageView *imageView=(UIImageView *)obj;
+//            imageView.hidden=YES;
+//        }
+//    }
+//    UIImageView *imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, -20, 320, 64)];
+//    imageView.image=[UIImage imageNamed:@"TransparentBg.png"];
+//    [self.navigationController.navigationBar addSubview:imageView];
+//    [self.navigationController.navigationBar sendSubviewToBack:imageView];
+//    
+//    self.automaticallyAdjustsScrollViewInsets=NO;
     self.navigationController.navigationBar.translucent=YES;
 //       设置navigationBar透明的背景颜色，达到透明的效果END
    

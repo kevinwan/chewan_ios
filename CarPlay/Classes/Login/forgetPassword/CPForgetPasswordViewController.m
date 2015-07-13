@@ -16,44 +16,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.navigationBarHidden=NO;
     self.getIdentifyingCodeBtn.layer.cornerRadius=15.0;
     self.getIdentifyingCodeBtn.layer.masksToBounds=YES;
     self.nextBtn.layer.cornerRadius=3.0;
     self.nextBtn.layer.masksToBounds=YES;
+//    NSLog(@"%@",self.navigationItem);
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    //     设置navigationBar透明的背景颜色，达到透明的效果BIGIN
-    
-    NSArray *list=self.navigationController.navigationBar.subviews;
-    for (id obj in list) {
-        if([obj isKindOfClass:[UIImageView class]]){
-            UIImageView *imageView=(UIImageView *)obj;
-            imageView.hidden=YES;
-        }
-    }
-    UIImageView *imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, -20, 320, 64)];
-    imageView.image=[UIImage imageNamed:@"TransparentBg.png"];
-    [self.navigationController.navigationBar addSubview:imageView];
-    [self.navigationController.navigationBar sendSubviewToBack:imageView];
-    
-    self.automaticallyAdjustsScrollViewInsets=NO;
+    self.navigationController.navigationBarHidden=NO;
     self.navigationController.navigationBar.translucent=NO;
-    //       设置navigationBar透明的背景颜色，达到透明的效果END
     
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)viewWillDisappear:(BOOL)animated{
 }
-*/
 
 - (IBAction)getIdentifyingCodeBtnClick:(id)sender {
+    if ([Tools isValidateMobile:self.phoneLable.text]) {
+        
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"错误" message:@"请正确输入手机号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
 }
 @end

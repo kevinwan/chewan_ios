@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pnx-YH-JNi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pnx-YH-JNi">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -27,7 +27,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="I2Z-Gw-6uE">
                         <barButtonItem key="leftBarButtonItem" image="设置icon" id="nlS-7j-qow"/>
-                        <barButtonItem key="rightBarButtonItem" image="拍照" id="vOk-ZM-JGM"/>
+                        <barButtonItem key="rightBarButtonItem" image="拍照" id="vOk-ZM-JGM">
+                            <connections>
+                                <action selector="rightBtnClick:" destination="r3R-pX-ybV" id="Ar7-TA-lQ4"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </tableViewController>
