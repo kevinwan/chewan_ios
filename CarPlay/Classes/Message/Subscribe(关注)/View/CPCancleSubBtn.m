@@ -32,7 +32,7 @@
 - (void)setUp
 {
     self.layer.cornerRadius = 12;
-    self.titleLabel.font = [UIFont systemFontOfSize:14];
+    self.titleLabel.font = [UIFont systemFontOfSize:12];
     self.clipsToBounds = YES;
     self.selected = NO;
 }
@@ -41,11 +41,11 @@
 {
     if (selected) {
         self.backgroundColor = [Tools getColor:@"f1f1f1"];
-        [self setTitle:@"取消关注" forState:UIControlStateNormal];
+        [self setTitle:@"取消成功" forState:UIControlStateNormal];
         [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     }else{
         self.backgroundColor = [Tools getColor:@"fc6e51"];
-        [self setTitle:@"取消成功" forState:UIControlStateNormal];
+        [self setTitle:@"取消关注" forState:UIControlStateNormal];
         [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }
     [super setSelected:selected];

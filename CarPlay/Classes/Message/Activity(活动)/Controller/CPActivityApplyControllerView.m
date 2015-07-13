@@ -8,6 +8,7 @@
 
 #import "CPActivityApplyControllerView.h"
 #import "CPActivityApplyCell.h"
+#import "CPSubscribePersonController.h"
 
 @interface CPActivityApplyControllerView ()
 
@@ -35,7 +36,12 @@
     static NSString *ID = @"ActivityApplyCell";
     CPActivityApplyCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     return cell;
-    
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CPSubscribePersonController *subVc = [UIStoryboard storyboardWithName:@"CPSubscribePersonController" bundle:nil].instantiateInitialViewController;
+    [self.navigationController pushViewController:subVc animated:YES];
 }
 
 @end

@@ -53,6 +53,8 @@
 		E36C96251B53C77600D3EDBB /* CPSubscribePersonController.m in Sources */ = {isa = PBXBuildFile; fileRef = E36C96241B53C77600D3EDBB /* CPSubscribePersonController.m */; };
 		E36C96271B53C78200D3EDBB /* CPSubscribePersonController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E36C96261B53C78200D3EDBB /* CPSubscribePersonController.storyboard */; };
 		E36C962A1B53C80900D3EDBB /* CPCancleSubBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = E36C96291B53C80900D3EDBB /* CPCancleSubBtn.m */; };
+		E36C962D1B53CA2300D3EDBB /* CPSubscribeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E36C962C1B53CA2300D3EDBB /* CPSubscribeCell.m */; };
+		E36C96311B53E14100D3EDBB /* XMHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E36C96301B53E14100D3EDBB /* XMHttpTool.m */; };
 		E3EEDFF31B53951D00595333 /* CPMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EEDFE81B53951D00595333 /* CPMessageController.m */; };
 		E3EEDFF41B53951D00595333 /* CPMessageController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3EEDFE91B53951D00595333 /* CPMessageController.storyboard */; };
 		E3EEDFF51B53951D00595333 /* CPNewMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EEDFEB1B53951D00595333 /* CPNewMessageController.m */; };
@@ -162,6 +164,10 @@
 		E36C96261B53C78200D3EDBB /* CPSubscribePersonController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPSubscribePersonController.storyboard; sourceTree = "<group>"; };
 		E36C96281B53C80900D3EDBB /* CPCancleSubBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCancleSubBtn.h; sourceTree = "<group>"; };
 		E36C96291B53C80900D3EDBB /* CPCancleSubBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCancleSubBtn.m; sourceTree = "<group>"; };
+		E36C962B1B53CA2300D3EDBB /* CPSubscribeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSubscribeCell.h; sourceTree = "<group>"; };
+		E36C962C1B53CA2300D3EDBB /* CPSubscribeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSubscribeCell.m; sourceTree = "<group>"; };
+		E36C962F1B53E14100D3EDBB /* XMHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMHttpTool.h; sourceTree = "<group>"; };
+		E36C96301B53E14100D3EDBB /* XMHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMHttpTool.m; sourceTree = "<group>"; };
 		E3EEDFE71B53951D00595333 /* CPMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMessageController.h; sourceTree = "<group>"; };
 		E3EEDFE81B53951D00595333 /* CPMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMessageController.m; sourceTree = "<group>"; };
 		E3EEDFE91B53951D00595333 /* CPMessageController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMessageController.storyboard; sourceTree = "<group>"; };
@@ -582,13 +588,25 @@
 			children = (
 				E36C96281B53C80900D3EDBB /* CPCancleSubBtn.h */,
 				E36C96291B53C80900D3EDBB /* CPCancleSubBtn.m */,
+				E36C962B1B53CA2300D3EDBB /* CPSubscribeCell.h */,
+				E36C962C1B53CA2300D3EDBB /* CPSubscribeCell.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		E36C962E1B53E14100D3EDBB /* ZYTools */ = {
+			isa = PBXGroup;
+			children = (
+				E36C962F1B53E14100D3EDBB /* XMHttpTool.h */,
+				E36C96301B53E14100D3EDBB /* XMHttpTool.m */,
+			);
+			path = ZYTools;
 			sourceTree = "<group>";
 		};
 		E3EEDFE51B53951D00595333 /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				E36C962E1B53E14100D3EDBB /* ZYTools */,
 				E36C96101B53BA3200D3EDBB /* Activity(活动) */,
 				E36C96161B53BA3200D3EDBB /* Subscribe(关注) */,
 				E3EEDFE61B53951D00595333 /* Controller */,
@@ -759,6 +777,7 @@
 			files = (
 				E3EEDFF81B53951D00595333 /* CPNewMessageCell.m in Sources */,
 				6B6493C81B4D0D7800C197D2 /* AFHTTPRequestOperation.m in Sources */,
+				E36C96311B53E14100D3EDBB /* XMHttpTool.m in Sources */,
 				E36C96251B53C77600D3EDBB /* CPSubscribePersonController.m in Sources */,
 				E3EEDFF71B53951D00595333 /* CPBadgeView.m in Sources */,
 				6B6493EE1B53821F00C197D2 /* registerViewController.m in Sources */,
@@ -774,6 +793,7 @@
 				E3EEE0021B53952E00595333 /* Foundation+Log.m in Sources */,
 				6B6493E21B4FAFFD00C197D2 /* MBProgressHUD+Add.m in Sources */,
 				6B4EF15B1B4036EE00292BD4 /* CPCityController.m in Sources */,
+				E36C962D1B53CA2300D3EDBB /* CPSubscribeCell.m in Sources */,
 				E36C962A1B53C80900D3EDBB /* CPCancleSubBtn.m in Sources */,
 				6B6493CC1B4D0D7800C197D2 /* AFNetworkReachabilityManager.m in Sources */,
 				6BC82F301B53C4AF00C8E916 /* CPHomePhoto.m in Sources */,
