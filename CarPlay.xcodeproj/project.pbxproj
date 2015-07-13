@@ -43,6 +43,13 @@
 		6B6493EE1B53821F00C197D2 /* registerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493EC1B53821F00C197D2 /* registerViewController.m */; };
 		6B6493EF1B53821F00C197D2 /* registerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B6493ED1B53821F00C197D2 /* registerViewController.xib */; };
 		E35559A51B53A0CE00B200D0 /* CPSexView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35559A41B53A0CE00B200D0 /* CPSexView.m */; };
+		E36C961A1B53BA3200D3EDBB /* CPActivityApplyControllerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E36C96131B53BA3200D3EDBB /* CPActivityApplyControllerView.m */; };
+		E36C961C1B53BA6B00D3EDBB /* CPActivityApplyControllerView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E36C961B1B53BA6B00D3EDBB /* CPActivityApplyControllerView.storyboard */; };
+		E36C961F1B53BB2800D3EDBB /* CPActivityApplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E36C961E1B53BB2800D3EDBB /* CPActivityApplyCell.m */; };
+		E36C96221B53BC2800D3EDBB /* CPActivityApplyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E36C96211B53BC2800D3EDBB /* CPActivityApplyButton.m */; };
+		E36C96251B53C77600D3EDBB /* CPSubscribePersonController.m in Sources */ = {isa = PBXBuildFile; fileRef = E36C96241B53C77600D3EDBB /* CPSubscribePersonController.m */; };
+		E36C96271B53C78200D3EDBB /* CPSubscribePersonController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E36C96261B53C78200D3EDBB /* CPSubscribePersonController.storyboard */; };
+		E36C962A1B53C80900D3EDBB /* CPCancleSubBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = E36C96291B53C80900D3EDBB /* CPCancleSubBtn.m */; };
 		E3EEDFF31B53951D00595333 /* CPMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EEDFE81B53951D00595333 /* CPMessageController.m */; };
 		E3EEDFF41B53951D00595333 /* CPMessageController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3EEDFE91B53951D00595333 /* CPMessageController.storyboard */; };
 		E3EEDFF51B53951D00595333 /* CPNewMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EEDFEB1B53951D00595333 /* CPNewMessageController.m */; };
@@ -134,6 +141,18 @@
 		6B6493ED1B53821F00C197D2 /* registerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = registerViewController.xib; sourceTree = "<group>"; };
 		E35559A31B53A0CE00B200D0 /* CPSexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSexView.h; sourceTree = "<group>"; };
 		E35559A41B53A0CE00B200D0 /* CPSexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSexView.m; sourceTree = "<group>"; };
+		E36C96121B53BA3200D3EDBB /* CPActivityApplyControllerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityApplyControllerView.h; sourceTree = "<group>"; };
+		E36C96131B53BA3200D3EDBB /* CPActivityApplyControllerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityApplyControllerView.m; sourceTree = "<group>"; };
+		E36C961B1B53BA6B00D3EDBB /* CPActivityApplyControllerView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPActivityApplyControllerView.storyboard; sourceTree = "<group>"; };
+		E36C961D1B53BB2800D3EDBB /* CPActivityApplyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityApplyCell.h; sourceTree = "<group>"; };
+		E36C961E1B53BB2800D3EDBB /* CPActivityApplyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityApplyCell.m; sourceTree = "<group>"; };
+		E36C96201B53BC2800D3EDBB /* CPActivityApplyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityApplyButton.h; sourceTree = "<group>"; };
+		E36C96211B53BC2800D3EDBB /* CPActivityApplyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityApplyButton.m; sourceTree = "<group>"; };
+		E36C96231B53C77600D3EDBB /* CPSubscribePersonController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSubscribePersonController.h; sourceTree = "<group>"; };
+		E36C96241B53C77600D3EDBB /* CPSubscribePersonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSubscribePersonController.m; sourceTree = "<group>"; };
+		E36C96261B53C78200D3EDBB /* CPSubscribePersonController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPSubscribePersonController.storyboard; sourceTree = "<group>"; };
+		E36C96281B53C80900D3EDBB /* CPCancleSubBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCancleSubBtn.h; sourceTree = "<group>"; };
+		E36C96291B53C80900D3EDBB /* CPCancleSubBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCancleSubBtn.m; sourceTree = "<group>"; };
 		E3EEDFE71B53951D00595333 /* CPMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMessageController.h; sourceTree = "<group>"; };
 		E3EEDFE81B53951D00595333 /* CPMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMessageController.m; sourceTree = "<group>"; };
 		E3EEDFE91B53951D00595333 /* CPMessageController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMessageController.storyboard; sourceTree = "<group>"; };
@@ -478,9 +497,85 @@
 			path = register;
 			sourceTree = "<group>";
 		};
+		E36C96101B53BA3200D3EDBB /* Activity(活动) */ = {
+			isa = PBXGroup;
+			children = (
+				E36C96111B53BA3200D3EDBB /* Controller */,
+				E36C96141B53BA3200D3EDBB /* Model */,
+				E36C96151B53BA3200D3EDBB /* View */,
+			);
+			path = "Activity(活动)";
+			sourceTree = "<group>";
+		};
+		E36C96111B53BA3200D3EDBB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E36C96121B53BA3200D3EDBB /* CPActivityApplyControllerView.h */,
+				E36C96131B53BA3200D3EDBB /* CPActivityApplyControllerView.m */,
+				E36C961B1B53BA6B00D3EDBB /* CPActivityApplyControllerView.storyboard */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E36C96141B53BA3200D3EDBB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E36C96151B53BA3200D3EDBB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E36C961D1B53BB2800D3EDBB /* CPActivityApplyCell.h */,
+				E36C961E1B53BB2800D3EDBB /* CPActivityApplyCell.m */,
+				E36C96201B53BC2800D3EDBB /* CPActivityApplyButton.h */,
+				E36C96211B53BC2800D3EDBB /* CPActivityApplyButton.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E36C96161B53BA3200D3EDBB /* Subscribe(关注) */ = {
+			isa = PBXGroup;
+			children = (
+				E36C96171B53BA3200D3EDBB /* Controller */,
+				E36C96181B53BA3200D3EDBB /* Model */,
+				E36C96191B53BA3200D3EDBB /* View */,
+			);
+			path = "Subscribe(关注)";
+			sourceTree = "<group>";
+		};
+		E36C96171B53BA3200D3EDBB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E36C96231B53C77600D3EDBB /* CPSubscribePersonController.h */,
+				E36C96241B53C77600D3EDBB /* CPSubscribePersonController.m */,
+				E36C96261B53C78200D3EDBB /* CPSubscribePersonController.storyboard */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E36C96181B53BA3200D3EDBB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E36C96191B53BA3200D3EDBB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E36C96281B53C80900D3EDBB /* CPCancleSubBtn.h */,
+				E36C96291B53C80900D3EDBB /* CPCancleSubBtn.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		E3EEDFE51B53951D00595333 /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				E36C96101B53BA3200D3EDBB /* Activity(活动) */,
+				E36C96161B53BA3200D3EDBB /* Subscribe(关注) */,
 				E3EEDFE61B53951D00595333 /* Controller */,
 				E3EEDFED1B53951D00595333 /* Model */,
 				E3EEDFEE1B53951D00595333 /* View */,
@@ -580,6 +675,7 @@
 		6B4959C01B33A23900DB63EA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = CP;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = gongpingjia;
 				TargetAttributes = {
@@ -618,11 +714,13 @@
 			files = (
 				6B6493E91B4FE34D00C197D2 /* CPForgetPasswordViewController.xib in Resources */,
 				6B4959DC1B33A23900DB63EA /* LaunchScreen.xib in Resources */,
+				E36C96271B53C78200D3EDBB /* CPSubscribePersonController.storyboard in Resources */,
 				6B6493E01B4FAFFD00C197D2 /* MBProgressHUD.bundle in Resources */,
 				6B4EF15C1B4036EE00292BD4 /* CPCityController.storyboard in Resources */,
 				6B4959D91B33A23900DB63EA /* Images.xcassets in Resources */,
 				6B4EF15E1B4036EE00292BD4 /* Main.storyboard in Resources */,
 				6B6493EF1B53821F00C197D2 /* registerViewController.xib in Resources */,
+				E36C961C1B53BA6B00D3EDBB /* CPActivityApplyControllerView.storyboard in Resources */,
 				6B6493D61B4D152A00C197D2 /* LoginViewController.xib in Resources */,
 				6B4EF1641B4036EE00292BD4 /* CPMyController.storyboard in Resources */,
 				E3EEDFF61B53951D00595333 /* CPNewMessageController.storyboard in Resources */,
@@ -646,6 +744,7 @@
 			files = (
 				E3EEDFF81B53951D00595333 /* CPNewMessageCell.m in Sources */,
 				6B6493C81B4D0D7800C197D2 /* AFHTTPRequestOperation.m in Sources */,
+				E36C96251B53C77600D3EDBB /* CPSubscribePersonController.m in Sources */,
 				E3EEDFF71B53951D00595333 /* CPBadgeView.m in Sources */,
 				6B6493EE1B53821F00C197D2 /* registerViewController.m in Sources */,
 				6B4EF15D1B4036EE00292BD4 /* CPTabBarController.m in Sources */,
@@ -658,6 +757,7 @@
 				E3EEE0021B53952E00595333 /* Foundation+Log.m in Sources */,
 				6B6493E21B4FAFFD00C197D2 /* MBProgressHUD+Add.m in Sources */,
 				6B4EF15B1B4036EE00292BD4 /* CPCityController.m in Sources */,
+				E36C962A1B53C80900D3EDBB /* CPCancleSubBtn.m in Sources */,
 				6B6493CC1B4D0D7800C197D2 /* AFNetworkReachabilityManager.m in Sources */,
 				6B6493CD1B4D0D7800C197D2 /* AFPropertyListRequestOperation.m in Sources */,
 				6B4EF1601B4036EE00292BD4 /* main.m in Sources */,
@@ -666,8 +766,11 @@
 				6B6493D51B4D152A00C197D2 /* LoginViewController.m in Sources */,
 				6B6493D01B4D0D7800C197D2 /* UIImageView+AFNetworking.m in Sources */,
 				6B4EF15F1B4036EE00292BD4 /* AppDelegate.m in Sources */,
+				E36C961F1B53BB2800D3EDBB /* CPActivityApplyCell.m in Sources */,
 				E3EEE0031B53952E00595333 /* NSString+Extension.m in Sources */,
+				E36C96221B53BC2800D3EDBB /* CPActivityApplyButton.m in Sources */,
 				6B6493901B4D04E100C197D2 /* CPNetWork.m in Sources */,
+				E36C961A1B53BA3200D3EDBB /* CPActivityApplyControllerView.m in Sources */,
 				E3EEE0041B53952E00595333 /* UIImage+Extension.m in Sources */,
 				E3EEE0051B53952E00595333 /* UIView+Extension.m in Sources */,
 				6B6493C91B4D0D7800C197D2 /* AFImageRequestOperation.m in Sources */,
