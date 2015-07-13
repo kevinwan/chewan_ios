@@ -42,6 +42,16 @@
 		6B6493E91B4FE34D00C197D2 /* CPForgetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B6493E71B4FE34D00C197D2 /* CPForgetPasswordViewController.xib */; };
 		6B6493EE1B53821F00C197D2 /* registerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493EC1B53821F00C197D2 /* registerViewController.m */; };
 		6B6493EF1B53821F00C197D2 /* registerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B6493ED1B53821F00C197D2 /* registerViewController.xib */; };
+		E3EEDFF31B53951D00595333 /* CPMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EEDFE81B53951D00595333 /* CPMessageController.m */; };
+		E3EEDFF41B53951D00595333 /* CPMessageController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3EEDFE91B53951D00595333 /* CPMessageController.storyboard */; };
+		E3EEDFF51B53951D00595333 /* CPNewMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EEDFEB1B53951D00595333 /* CPNewMessageController.m */; };
+		E3EEDFF61B53951D00595333 /* CPNewMessageController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3EEDFEC1B53951D00595333 /* CPNewMessageController.storyboard */; };
+		E3EEDFF71B53951D00595333 /* CPBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EEDFF01B53951D00595333 /* CPBadgeView.m */; };
+		E3EEDFF81B53951D00595333 /* CPNewMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EEDFF21B53951D00595333 /* CPNewMessageCell.m */; };
+		E3EEE0021B53952E00595333 /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EEDFFA1B53952E00595333 /* Foundation+Log.m */; };
+		E3EEE0031B53952E00595333 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EEDFFC1B53952E00595333 /* NSString+Extension.m */; };
+		E3EEE0041B53952E00595333 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EEDFFF1B53952E00595333 /* UIImage+Extension.m */; };
+		E3EEE0051B53952E00595333 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EEE0011B53952E00595333 /* UIView+Extension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +131,24 @@
 		6B6493EB1B53821F00C197D2 /* registerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = registerViewController.h; sourceTree = "<group>"; };
 		6B6493EC1B53821F00C197D2 /* registerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = registerViewController.m; sourceTree = "<group>"; };
 		6B6493ED1B53821F00C197D2 /* registerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = registerViewController.xib; sourceTree = "<group>"; };
+		E3EEDFE71B53951D00595333 /* CPMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMessageController.h; sourceTree = "<group>"; };
+		E3EEDFE81B53951D00595333 /* CPMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMessageController.m; sourceTree = "<group>"; };
+		E3EEDFE91B53951D00595333 /* CPMessageController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMessageController.storyboard; sourceTree = "<group>"; };
+		E3EEDFEA1B53951D00595333 /* CPNewMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNewMessageController.h; sourceTree = "<group>"; };
+		E3EEDFEB1B53951D00595333 /* CPNewMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNewMessageController.m; sourceTree = "<group>"; };
+		E3EEDFEC1B53951D00595333 /* CPNewMessageController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPNewMessageController.storyboard; sourceTree = "<group>"; };
+		E3EEDFEF1B53951D00595333 /* CPBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPBadgeView.h; sourceTree = "<group>"; };
+		E3EEDFF01B53951D00595333 /* CPBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPBadgeView.m; sourceTree = "<group>"; };
+		E3EEDFF11B53951D00595333 /* CPNewMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNewMessageCell.h; sourceTree = "<group>"; };
+		E3EEDFF21B53951D00595333 /* CPNewMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNewMessageCell.m; sourceTree = "<group>"; };
+		E3EEDFFA1B53952E00595333 /* Foundation+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Foundation+Log.m"; sourceTree = "<group>"; };
+		E3EEDFFB1B53952E00595333 /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
+		E3EEDFFC1B53952E00595333 /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
+		E3EEDFFD1B53952E00595333 /* SingleTon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleTon.h; sourceTree = "<group>"; };
+		E3EEDFFE1B53952E00595333 /* UIImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
+		E3EEDFFF1B53952E00595333 /* UIImage+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
+		E3EEE0001B53952E00595333 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		E3EEE0011B53952E00595333 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +228,7 @@
 		6B4EF1381B4036EE00292BD4 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				E3EEDFE51B53951D00595333 /* Message */,
 				6B6493911B4D04E500C197D2 /* Utils */,
 				6B64938D1B4D04E100C197D2 /* NetWork */,
 				6B4EF1401B4036EE00292BD4 /* Libs */,
@@ -367,6 +396,7 @@
 		6B6493911B4D04E500C197D2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				E3EEDFF91B53952E00595333 /* Categarys */,
 				6B6493921B4D04E500C197D2 /* Tools.h */,
 				6B6493931B4D04E500C197D2 /* Tools.m */,
 			);
@@ -443,6 +473,62 @@
 				6B6493ED1B53821F00C197D2 /* registerViewController.xib */,
 			);
 			path = register;
+			sourceTree = "<group>";
+		};
+		E3EEDFE51B53951D00595333 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				E3EEDFE61B53951D00595333 /* Controller */,
+				E3EEDFED1B53951D00595333 /* Model */,
+				E3EEDFEE1B53951D00595333 /* View */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		E3EEDFE61B53951D00595333 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E3EEDFE71B53951D00595333 /* CPMessageController.h */,
+				E3EEDFE81B53951D00595333 /* CPMessageController.m */,
+				E3EEDFE91B53951D00595333 /* CPMessageController.storyboard */,
+				E3EEDFEA1B53951D00595333 /* CPNewMessageController.h */,
+				E3EEDFEB1B53951D00595333 /* CPNewMessageController.m */,
+				E3EEDFEC1B53951D00595333 /* CPNewMessageController.storyboard */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E3EEDFED1B53951D00595333 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E3EEDFEE1B53951D00595333 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E3EEDFEF1B53951D00595333 /* CPBadgeView.h */,
+				E3EEDFF01B53951D00595333 /* CPBadgeView.m */,
+				E3EEDFF11B53951D00595333 /* CPNewMessageCell.h */,
+				E3EEDFF21B53951D00595333 /* CPNewMessageCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E3EEDFF91B53952E00595333 /* Categarys */ = {
+			isa = PBXGroup;
+			children = (
+				E3EEDFFA1B53952E00595333 /* Foundation+Log.m */,
+				E3EEDFFB1B53952E00595333 /* NSString+Extension.h */,
+				E3EEDFFC1B53952E00595333 /* NSString+Extension.m */,
+				E3EEDFFD1B53952E00595333 /* SingleTon.h */,
+				E3EEDFFE1B53952E00595333 /* UIImage+Extension.h */,
+				E3EEDFFF1B53952E00595333 /* UIImage+Extension.m */,
+				E3EEE0001B53952E00595333 /* UIView+Extension.h */,
+				E3EEE0011B53952E00595333 /* UIView+Extension.m */,
+			);
+			path = Categarys;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -534,6 +620,8 @@
 				6B6493EF1B53821F00C197D2 /* registerViewController.xib in Resources */,
 				6B6493D61B4D152A00C197D2 /* LoginViewController.xib in Resources */,
 				6B4EF1641B4036EE00292BD4 /* CPMyController.storyboard in Resources */,
+				E3EEDFF61B53951D00595333 /* CPNewMessageController.storyboard in Resources */,
+				E3EEDFF41B53951D00595333 /* CPMessageController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,14 +639,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3EEDFF81B53951D00595333 /* CPNewMessageCell.m in Sources */,
 				6B6493C81B4D0D7800C197D2 /* AFHTTPRequestOperation.m in Sources */,
+				E3EEDFF71B53951D00595333 /* CPBadgeView.m in Sources */,
 				6B6493EE1B53821F00C197D2 /* registerViewController.m in Sources */,
 				6B4EF15D1B4036EE00292BD4 /* CPTabBarController.m in Sources */,
 				6B6493E11B4FAFFD00C197D2 /* MBProgressHUD.m in Sources */,
+				E3EEDFF51B53951D00595333 /* CPNewMessageController.m in Sources */,
 				6B6493941B4D04E500C197D2 /* Tools.m in Sources */,
 				6B64938C1B4D04BE00C197D2 /* BaseViewController.m in Sources */,
 				6B6493CE1B4D0D7800C197D2 /* AFURLConnectionOperation.m in Sources */,
 				6B4EF1681B403A5D00292BD4 /* UIBarButtonItem+Extension.m in Sources */,
+				E3EEE0021B53952E00595333 /* Foundation+Log.m in Sources */,
 				6B6493E21B4FAFFD00C197D2 /* MBProgressHUD+Add.m in Sources */,
 				6B4EF15B1B4036EE00292BD4 /* CPCityController.m in Sources */,
 				6B6493CC1B4D0D7800C197D2 /* AFNetworkReachabilityManager.m in Sources */,
@@ -568,13 +660,17 @@
 				6B6493D51B4D152A00C197D2 /* LoginViewController.m in Sources */,
 				6B6493D01B4D0D7800C197D2 /* UIImageView+AFNetworking.m in Sources */,
 				6B4EF15F1B4036EE00292BD4 /* AppDelegate.m in Sources */,
+				E3EEE0031B53952E00595333 /* NSString+Extension.m in Sources */,
 				6B6493901B4D04E100C197D2 /* CPNetWork.m in Sources */,
+				E3EEE0041B53952E00595333 /* UIImage+Extension.m in Sources */,
+				E3EEE0051B53952E00595333 /* UIView+Extension.m in Sources */,
 				6B6493C91B4D0D7800C197D2 /* AFImageRequestOperation.m in Sources */,
 				6B6493E81B4FE34D00C197D2 /* CPForgetPasswordViewController.m in Sources */,
 				6B6493CA1B4D0D7800C197D2 /* AFJSONRequestOperation.m in Sources */,
 				6B4EF1631B4036EE00292BD4 /* CPMyController.m in Sources */,
 				6B6493C71B4D0D7800C197D2 /* AFHTTPClient.m in Sources */,
 				6B6493D91B4FABC900C197D2 /* CPNetworkVO.m in Sources */,
+				E3EEDFF31B53951D00595333 /* CPMessageController.m in Sources */,
 				6B6493CB1B4D0D7800C197D2 /* AFNetworkActivityIndicatorManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
