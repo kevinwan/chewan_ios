@@ -42,6 +42,9 @@
 		6B6493E91B4FE34D00C197D2 /* CPForgetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B6493E71B4FE34D00C197D2 /* CPForgetPasswordViewController.xib */; };
 		6B6493EE1B53821F00C197D2 /* registerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493EC1B53821F00C197D2 /* registerViewController.m */; };
 		6B6493EF1B53821F00C197D2 /* registerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B6493ED1B53821F00C197D2 /* registerViewController.xib */; };
+		6BC82F301B53C4AF00C8E916 /* CPHomePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82F2B1B53C4AF00C8E916 /* CPHomePhoto.m */; };
+		6BC82F311B53C4AF00C8E916 /* CPHomeStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82F2D1B53C4AF00C8E916 /* CPHomeStatus.m */; };
+		6BC82F321B53C4AF00C8E916 /* CPHomeUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82F2F1B53C4AF00C8E916 /* CPHomeUser.m */; };
 		E35559A51B53A0CE00B200D0 /* CPSexView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35559A41B53A0CE00B200D0 /* CPSexView.m */; };
 		E36C961A1B53BA3200D3EDBB /* CPActivityApplyControllerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E36C96131B53BA3200D3EDBB /* CPActivityApplyControllerView.m */; };
 		E36C961C1B53BA6B00D3EDBB /* CPActivityApplyControllerView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E36C961B1B53BA6B00D3EDBB /* CPActivityApplyControllerView.storyboard */; };
@@ -139,6 +142,12 @@
 		6B6493EB1B53821F00C197D2 /* registerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = registerViewController.h; sourceTree = "<group>"; };
 		6B6493EC1B53821F00C197D2 /* registerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = registerViewController.m; sourceTree = "<group>"; };
 		6B6493ED1B53821F00C197D2 /* registerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = registerViewController.xib; sourceTree = "<group>"; };
+		6BC82F2A1B53C4AF00C8E916 /* CPHomePhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomePhoto.h; sourceTree = "<group>"; };
+		6BC82F2B1B53C4AF00C8E916 /* CPHomePhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomePhoto.m; sourceTree = "<group>"; };
+		6BC82F2C1B53C4AF00C8E916 /* CPHomeStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeStatus.h; sourceTree = "<group>"; };
+		6BC82F2D1B53C4AF00C8E916 /* CPHomeStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeStatus.m; sourceTree = "<group>"; };
+		6BC82F2E1B53C4AF00C8E916 /* CPHomeUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeUser.h; sourceTree = "<group>"; };
+		6BC82F2F1B53C4AF00C8E916 /* CPHomeUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeUser.m; sourceTree = "<group>"; };
 		E35559A31B53A0CE00B200D0 /* CPSexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSexView.h; sourceTree = "<group>"; };
 		E35559A41B53A0CE00B200D0 /* CPSexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSexView.m; sourceTree = "<group>"; };
 		E36C96121B53BA3200D3EDBB /* CPActivityApplyControllerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityApplyControllerView.h; sourceTree = "<group>"; };
@@ -286,6 +295,12 @@
 		6B4EF13E1B4036EE00292BD4 /* Mode */ = {
 			isa = PBXGroup;
 			children = (
+				6BC82F2A1B53C4AF00C8E916 /* CPHomePhoto.h */,
+				6BC82F2B1B53C4AF00C8E916 /* CPHomePhoto.m */,
+				6BC82F2C1B53C4AF00C8E916 /* CPHomeStatus.h */,
+				6BC82F2D1B53C4AF00C8E916 /* CPHomeStatus.m */,
+				6BC82F2E1B53C4AF00C8E916 /* CPHomeUser.h */,
+				6BC82F2F1B53C4AF00C8E916 /* CPHomeUser.m */,
 			);
 			path = Mode;
 			sourceTree = "<group>";
@@ -748,17 +763,20 @@
 				E3EEDFF71B53951D00595333 /* CPBadgeView.m in Sources */,
 				6B6493EE1B53821F00C197D2 /* registerViewController.m in Sources */,
 				6B4EF15D1B4036EE00292BD4 /* CPTabBarController.m in Sources */,
+				6BC82F311B53C4AF00C8E916 /* CPHomeStatus.m in Sources */,
 				6B6493E11B4FAFFD00C197D2 /* MBProgressHUD.m in Sources */,
 				E3EEDFF51B53951D00595333 /* CPNewMessageController.m in Sources */,
 				6B6493941B4D04E500C197D2 /* Tools.m in Sources */,
 				6B64938C1B4D04BE00C197D2 /* BaseViewController.m in Sources */,
 				6B6493CE1B4D0D7800C197D2 /* AFURLConnectionOperation.m in Sources */,
 				6B4EF1681B403A5D00292BD4 /* UIBarButtonItem+Extension.m in Sources */,
+				6BC82F321B53C4AF00C8E916 /* CPHomeUser.m in Sources */,
 				E3EEE0021B53952E00595333 /* Foundation+Log.m in Sources */,
 				6B6493E21B4FAFFD00C197D2 /* MBProgressHUD+Add.m in Sources */,
 				6B4EF15B1B4036EE00292BD4 /* CPCityController.m in Sources */,
 				E36C962A1B53C80900D3EDBB /* CPCancleSubBtn.m in Sources */,
 				6B6493CC1B4D0D7800C197D2 /* AFNetworkReachabilityManager.m in Sources */,
+				6BC82F301B53C4AF00C8E916 /* CPHomePhoto.m in Sources */,
 				6B6493CD1B4D0D7800C197D2 /* AFPropertyListRequestOperation.m in Sources */,
 				6B4EF1601B4036EE00292BD4 /* main.m in Sources */,
 				6B6493CF1B4D0D7800C197D2 /* AFXMLRequestOperation.m in Sources */,
