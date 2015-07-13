@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "CPForgetPasswordViewController.h"
 
 @interface LoginViewController ()
 
@@ -17,6 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBarHidden=YES;
+    self.loginBtn.layer.cornerRadius=3.0;
+    self.loginBtn.layer.masksToBounds=YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -37,8 +40,7 @@
     self.automaticallyAdjustsScrollViewInsets=NO;
     self.navigationController.navigationBar.translucent=YES;
 //       设置navigationBar透明的背景颜色，达到透明的效果END
-    self.loginBtn.layer.cornerRadius=3.0;
-    self.loginBtn.layer.masksToBounds=YES;
+   
 }
 
 - (void)didReceiveMemoryWarning {
@@ -73,7 +75,9 @@
 }
 
 - (IBAction)forgetPassword:(id)sender {
-    
+    CPForgetPasswordViewController *CPForgetPasswordVC=[[CPForgetPasswordViewController alloc]init];
+    CPForgetPasswordVC.title=@"找回密码";
+    [self.navigationController pushViewController:CPForgetPasswordVC animated:YES];
 }
 
 - (IBAction)registerBtnClick:(id)sender {

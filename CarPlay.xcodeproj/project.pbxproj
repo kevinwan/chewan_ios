@@ -40,6 +40,8 @@
 		6B6493E01B4FAFFD00C197D2 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6B6493DB1B4FAFFD00C197D2 /* MBProgressHUD.bundle */; };
 		6B6493E11B4FAFFD00C197D2 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493DD1B4FAFFD00C197D2 /* MBProgressHUD.m */; };
 		6B6493E21B4FAFFD00C197D2 /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493DF1B4FAFFD00C197D2 /* MBProgressHUD+Add.m */; };
+		6B6493E81B4FE34D00C197D2 /* CPForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493E61B4FE34D00C197D2 /* CPForgetPasswordViewController.m */; };
+		6B6493E91B4FE34D00C197D2 /* CPForgetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B6493E71B4FE34D00C197D2 /* CPForgetPasswordViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +118,9 @@
 		6B6493DD1B4FAFFD00C197D2 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		6B6493DE1B4FAFFD00C197D2 /* MBProgressHUD+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Add.h"; sourceTree = "<group>"; };
 		6B6493DF1B4FAFFD00C197D2 /* MBProgressHUD+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Add.m"; sourceTree = "<group>"; };
+		6B6493E51B4FE34D00C197D2 /* CPForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPForgetPasswordViewController.h; sourceTree = "<group>"; };
+		6B6493E61B4FE34D00C197D2 /* CPForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPForgetPasswordViewController.m; sourceTree = "<group>"; };
+		6B6493E71B4FE34D00C197D2 /* CPForgetPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPForgetPasswordViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -434,6 +439,7 @@
 		6B6493D11B4D150700C197D2 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				6B6493E41B4FE32700C197D2 /* forgetPassword */,
 				6B6493D21B4D152A00C197D2 /* LoginViewController.h */,
 				6B6493D31B4D152A00C197D2 /* LoginViewController.m */,
 				6B6493D41B4D152A00C197D2 /* LoginViewController.xib */,
@@ -451,6 +457,16 @@
 				6B6493DF1B4FAFFD00C197D2 /* MBProgressHUD+Add.m */,
 			);
 			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		6B6493E41B4FE32700C197D2 /* forgetPassword */ = {
+			isa = PBXGroup;
+			children = (
+				6B6493E51B4FE34D00C197D2 /* CPForgetPasswordViewController.h */,
+				6B6493E61B4FE34D00C197D2 /* CPForgetPasswordViewController.m */,
+				6B6493E71B4FE34D00C197D2 /* CPForgetPasswordViewController.xib */,
+			);
+			path = forgetPassword;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -533,6 +549,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B6493E91B4FE34D00C197D2 /* CPForgetPasswordViewController.xib in Resources */,
 				6B4959DC1B33A23900DB63EA /* LaunchScreen.xib in Resources */,
 				6B6493E01B4FAFFD00C197D2 /* MBProgressHUD.bundle in Resources */,
 				6B4EF15C1B4036EE00292BD4 /* CPCityController.storyboard in Resources */,
@@ -576,6 +593,7 @@
 				6B4EF15F1B4036EE00292BD4 /* AppDelegate.m in Sources */,
 				6B6493901B4D04E100C197D2 /* CPNetWork.m in Sources */,
 				6B6493C91B4D0D7800C197D2 /* AFImageRequestOperation.m in Sources */,
+				6B6493E81B4FE34D00C197D2 /* CPForgetPasswordViewController.m in Sources */,
 				6B6493CA1B4D0D7800C197D2 /* AFJSONRequestOperation.m in Sources */,
 				6B4EF1631B4036EE00292BD4 /* CPMyController.m in Sources */,
 				6B6493C71B4D0D7800C197D2 /* AFHTTPClient.m in Sources */,
