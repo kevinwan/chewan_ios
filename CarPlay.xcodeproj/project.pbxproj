@@ -16,8 +16,6 @@
 		6B4EF15E1B4036EE00292BD4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B4EF1461B4036EE00292BD4 /* Main.storyboard */; };
 		6B4EF15F1B4036EE00292BD4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4EF14A1B4036EE00292BD4 /* AppDelegate.m */; };
 		6B4EF1601B4036EE00292BD4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4EF14B1B4036EE00292BD4 /* main.m */; };
-		6B4EF1611B4036EE00292BD4 /* CPMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4EF1501B4036EE00292BD4 /* CPMessageController.m */; };
-		6B4EF1621B4036EE00292BD4 /* CPMessageController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B4EF1511B4036EE00292BD4 /* CPMessageController.storyboard */; };
 		6B4EF1631B4036EE00292BD4 /* CPMyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4EF1571B4036EE00292BD4 /* CPMyController.m */; };
 		6B4EF1641B4036EE00292BD4 /* CPMyController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B4EF1581B4036EE00292BD4 /* CPMyController.storyboard */; };
 		6B4EF1681B403A5D00292BD4 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4EF1671B403A5D00292BD4 /* UIBarButtonItem+Extension.m */; };
@@ -73,9 +71,6 @@
 		6B4EF1491B4036EE00292BD4 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6B4EF14A1B4036EE00292BD4 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6B4EF14B1B4036EE00292BD4 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		6B4EF14F1B4036EE00292BD4 /* CPMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMessageController.h; sourceTree = "<group>"; };
-		6B4EF1501B4036EE00292BD4 /* CPMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMessageController.m; sourceTree = "<group>"; };
-		6B4EF1511B4036EE00292BD4 /* CPMessageController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMessageController.storyboard; sourceTree = "<group>"; };
 		6B4EF1561B4036EE00292BD4 /* CPMyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyController.h; sourceTree = "<group>"; };
 		6B4EF1571B4036EE00292BD4 /* CPMyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyController.m; sourceTree = "<group>"; };
 		6B4EF1581B4036EE00292BD4 /* CPMyController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMyController.storyboard; sourceTree = "<group>"; };
@@ -211,7 +206,6 @@
 				6B6493891B4D04BE00C197D2 /* BaseViewController */,
 				6B4EF1391B4036EE00292BD4 /* City */,
 				6B4EF1411B4036EE00292BD4 /* Main */,
-				6B4EF14D1B4036EE00292BD4 /* Message */,
 				6B4EF1541B4036EE00292BD4 /* My */,
 				6B6493D11B4D150700C197D2 /* Login */,
 			);
@@ -310,40 +304,6 @@
 			sourceTree = "<group>";
 		};
 		6B4EF14C1B4036EE00292BD4 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		6B4EF14D1B4036EE00292BD4 /* Message */ = {
-			isa = PBXGroup;
-			children = (
-				6B4EF14E1B4036EE00292BD4 /* Controller */,
-				6B4EF1521B4036EE00292BD4 /* Mode */,
-				6B4EF1531B4036EE00292BD4 /* View */,
-			);
-			path = Message;
-			sourceTree = "<group>";
-		};
-		6B4EF14E1B4036EE00292BD4 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				6B4EF14F1B4036EE00292BD4 /* CPMessageController.h */,
-				6B4EF1501B4036EE00292BD4 /* CPMessageController.m */,
-				6B4EF1511B4036EE00292BD4 /* CPMessageController.storyboard */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		6B4EF1521B4036EE00292BD4 /* Mode */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Mode;
-			sourceTree = "<group>";
-		};
-		6B4EF1531B4036EE00292BD4 /* View */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -571,7 +531,6 @@
 				6B4EF15C1B4036EE00292BD4 /* CPCityController.storyboard in Resources */,
 				6B4959D91B33A23900DB63EA /* Images.xcassets in Resources */,
 				6B4EF15E1B4036EE00292BD4 /* Main.storyboard in Resources */,
-				6B4EF1621B4036EE00292BD4 /* CPMessageController.storyboard in Resources */,
 				6B6493EF1B53821F00C197D2 /* registerViewController.xib in Resources */,
 				6B6493D61B4D152A00C197D2 /* LoginViewController.xib in Resources */,
 				6B4EF1641B4036EE00292BD4 /* CPMyController.storyboard in Resources */,
@@ -616,7 +575,6 @@
 				6B4EF1631B4036EE00292BD4 /* CPMyController.m in Sources */,
 				6B6493C71B4D0D7800C197D2 /* AFHTTPClient.m in Sources */,
 				6B6493D91B4FABC900C197D2 /* CPNetworkVO.m in Sources */,
-				6B4EF1611B4036EE00292BD4 /* CPMessageController.m in Sources */,
 				6B6493CB1B4D0D7800C197D2 /* AFNetworkActivityIndicatorManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
