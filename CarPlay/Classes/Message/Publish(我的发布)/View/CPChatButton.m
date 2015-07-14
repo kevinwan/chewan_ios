@@ -1,14 +1,14 @@
 //
-//  CPCancleSubBtn.m
+//  CPChatButton.m
 //  CarPlay
 //
-//  Created by chewan on 15/7/13.
+//  Created by chewan on 15/7/14.
 //  Copyright (c) 2015年 gongpingjia. All rights reserved.
 //
 
-#import "CPCancleSubBtn.h"
+#import "CPChatButton.h"
 
-@implementation CPCancleSubBtn
+@implementation CPChatButton
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -36,20 +36,8 @@
     self.clipsToBounds = YES;
     self.selected = NO;
     
-    [self setTitle:@"取消成功" forState:UIControlStateSelected];
-    [self setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
-    
-    [self setTitle:@"取消关注" forState:UIControlStateNormal];
+    [self setTitle:@"聊天" forState:UIControlStateNormal];
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
 
-- (void)setSelected:(BOOL)selected
-{
-    if (selected) {
-        self.backgroundColor = [Tools getColor:@"f1f1f1"];
-    }else{
-        self.backgroundColor = [Tools getColor:@"fc6e51"];
-    }
-    [super setSelected:selected];
-}
 @end

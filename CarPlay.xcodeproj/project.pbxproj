@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6B4959D91B33A23900DB63EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B4959D81B33A23900DB63EA /* Images.xcassets */; };
 		6B4959DC1B33A23900DB63EA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B4959DA1B33A23900DB63EA /* LaunchScreen.xib */; };
 		6B4959E81B33A23900DB63EA /* CarPlayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4959E71B33A23900DB63EA /* CarPlayTests.m */; };
 		6B4EF15B1B4036EE00292BD4 /* CPCityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4EF13C1B4036EE00292BD4 /* CPCityController.m */; };
@@ -46,6 +45,11 @@
 		6BC82F311B53C4AF00C8E916 /* CPHomeStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82F2D1B53C4AF00C8E916 /* CPHomeStatus.m */; };
 		6BC82F321B53C4AF00C8E916 /* CPHomeUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82F2F1B53C4AF00C8E916 /* CPHomeUser.m */; };
 		E35559A51B53A0CE00B200D0 /* CPSexView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35559A41B53A0CE00B200D0 /* CPSexView.m */; };
+		E35E6FC71B54AFB8001212D6 /* CPMyPublishController.m in Sources */ = {isa = PBXBuildFile; fileRef = E35E6FC61B54AFB8001212D6 /* CPMyPublishController.m */; };
+		E35E6FCA1B54B076001212D6 /* CPMyPublishCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E35E6FC91B54B076001212D6 /* CPMyPublishCell.m */; };
+		E35E6FCD1B54B0D9001212D6 /* CPMyPublishModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E35E6FCC1B54B0D9001212D6 /* CPMyPublishModel.m */; };
+		E35E6FD01B54B0EC001212D6 /* CPMyPublishFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E35E6FCF1B54B0EC001212D6 /* CPMyPublishFrameModel.m */; };
+		E35E6FD31B54B1DE001212D6 /* CPMyPublishBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35E6FD21B54B1DE001212D6 /* CPMyPublishBottomView.m */; };
 		E36C961A1B53BA3200D3EDBB /* CPActivityApplyControllerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E36C96131B53BA3200D3EDBB /* CPActivityApplyControllerView.m */; };
 		E36C961C1B53BA6B00D3EDBB /* CPActivityApplyControllerView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E36C961B1B53BA6B00D3EDBB /* CPActivityApplyControllerView.storyboard */; };
 		E36C961F1B53BB2800D3EDBB /* CPActivityApplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E36C961E1B53BB2800D3EDBB /* CPActivityApplyCell.m */; };
@@ -54,7 +58,11 @@
 		E36C96271B53C78200D3EDBB /* CPSubscribePersonController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E36C96261B53C78200D3EDBB /* CPSubscribePersonController.storyboard */; };
 		E36C962A1B53C80900D3EDBB /* CPCancleSubBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = E36C96291B53C80900D3EDBB /* CPCancleSubBtn.m */; };
 		E36C962D1B53CA2300D3EDBB /* CPSubscribeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E36C962C1B53CA2300D3EDBB /* CPSubscribeCell.m */; };
-		E36C96311B53E14100D3EDBB /* XMHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E36C96301B53E14100D3EDBB /* XMHttpTool.m */; };
+		E3B127751B54B861005B1174 /* HWPhotosView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B127721B54B861005B1174 /* HWPhotosView.m */; };
+		E3B127761B54B861005B1174 /* HWPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B127741B54B861005B1174 /* HWPhotoView.m */; };
+		E3B127791B54D9C2005B1174 /* CPChatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B127781B54D9C2005B1174 /* CPChatButton.m */; };
+		E3B1277B1B54DECB005B1174 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3B1277A1B54DECB005B1174 /* Images.xcassets */; };
+		E3B1277E1B54E19B005B1174 /* CPIconButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B1277D1B54E19B005B1174 /* CPIconButton.m */; };
 		E3EEDFF31B53951D00595333 /* CPMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EEDFE81B53951D00595333 /* CPMessageController.m */; };
 		E3EEDFF41B53951D00595333 /* CPMessageController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3EEDFE91B53951D00595333 /* CPMessageController.storyboard */; };
 		E3EEDFF51B53951D00595333 /* CPNewMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EEDFEB1B53951D00595333 /* CPNewMessageController.m */; };
@@ -80,7 +88,6 @@
 /* Begin PBXFileReference section */
 		6B4959C81B33A23900DB63EA /* CarPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B4959CC1B33A23900DB63EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6B4959D81B33A23900DB63EA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6B4959DB1B33A23900DB63EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		6B4959E11B33A23900DB63EA /* CarPlayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarPlayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B4959E61B33A23900DB63EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -152,6 +159,16 @@
 		6BC82F2F1B53C4AF00C8E916 /* CPHomeUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeUser.m; sourceTree = "<group>"; };
 		E35559A31B53A0CE00B200D0 /* CPSexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSexView.h; sourceTree = "<group>"; };
 		E35559A41B53A0CE00B200D0 /* CPSexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSexView.m; sourceTree = "<group>"; };
+		E35E6FC51B54AFB8001212D6 /* CPMyPublishController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyPublishController.h; sourceTree = "<group>"; };
+		E35E6FC61B54AFB8001212D6 /* CPMyPublishController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyPublishController.m; sourceTree = "<group>"; };
+		E35E6FC81B54B076001212D6 /* CPMyPublishCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyPublishCell.h; sourceTree = "<group>"; };
+		E35E6FC91B54B076001212D6 /* CPMyPublishCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyPublishCell.m; sourceTree = "<group>"; };
+		E35E6FCB1B54B0D9001212D6 /* CPMyPublishModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyPublishModel.h; sourceTree = "<group>"; };
+		E35E6FCC1B54B0D9001212D6 /* CPMyPublishModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyPublishModel.m; sourceTree = "<group>"; };
+		E35E6FCE1B54B0EC001212D6 /* CPMyPublishFrameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyPublishFrameModel.h; sourceTree = "<group>"; };
+		E35E6FCF1B54B0EC001212D6 /* CPMyPublishFrameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyPublishFrameModel.m; sourceTree = "<group>"; };
+		E35E6FD11B54B1DE001212D6 /* CPMyPublishBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyPublishBottomView.h; sourceTree = "<group>"; };
+		E35E6FD21B54B1DE001212D6 /* CPMyPublishBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyPublishBottomView.m; sourceTree = "<group>"; };
 		E36C96121B53BA3200D3EDBB /* CPActivityApplyControllerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityApplyControllerView.h; sourceTree = "<group>"; };
 		E36C96131B53BA3200D3EDBB /* CPActivityApplyControllerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityApplyControllerView.m; sourceTree = "<group>"; };
 		E36C961B1B53BA6B00D3EDBB /* CPActivityApplyControllerView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPActivityApplyControllerView.storyboard; sourceTree = "<group>"; };
@@ -166,8 +183,15 @@
 		E36C96291B53C80900D3EDBB /* CPCancleSubBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCancleSubBtn.m; sourceTree = "<group>"; };
 		E36C962B1B53CA2300D3EDBB /* CPSubscribeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSubscribeCell.h; sourceTree = "<group>"; };
 		E36C962C1B53CA2300D3EDBB /* CPSubscribeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSubscribeCell.m; sourceTree = "<group>"; };
-		E36C962F1B53E14100D3EDBB /* XMHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMHttpTool.h; sourceTree = "<group>"; };
-		E36C96301B53E14100D3EDBB /* XMHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMHttpTool.m; sourceTree = "<group>"; };
+		E3B127711B54B861005B1174 /* HWPhotosView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWPhotosView.h; sourceTree = "<group>"; };
+		E3B127721B54B861005B1174 /* HWPhotosView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWPhotosView.m; sourceTree = "<group>"; };
+		E3B127731B54B861005B1174 /* HWPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWPhotoView.h; sourceTree = "<group>"; };
+		E3B127741B54B861005B1174 /* HWPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWPhotoView.m; sourceTree = "<group>"; };
+		E3B127771B54D9C2005B1174 /* CPChatButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPChatButton.h; sourceTree = "<group>"; };
+		E3B127781B54D9C2005B1174 /* CPChatButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPChatButton.m; sourceTree = "<group>"; };
+		E3B1277A1B54DECB005B1174 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E3B1277C1B54E19B005B1174 /* CPIconButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPIconButton.h; sourceTree = "<group>"; };
+		E3B1277D1B54E19B005B1174 /* CPIconButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPIconButton.m; sourceTree = "<group>"; };
 		E3EEDFE71B53951D00595333 /* CPMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMessageController.h; sourceTree = "<group>"; };
 		E3EEDFE81B53951D00595333 /* CPMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMessageController.m; sourceTree = "<group>"; };
 		E3EEDFE91B53951D00595333 /* CPMessageController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMessageController.storyboard; sourceTree = "<group>"; };
@@ -236,7 +260,7 @@
 		6B4959CB1B33A23900DB63EA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6B4959D81B33A23900DB63EA /* Images.xcassets */,
+				E3B1277A1B54DECB005B1174 /* Images.xcassets */,
 				6B4959DA1B33A23900DB63EA /* LaunchScreen.xib */,
 				6B4959CC1B33A23900DB63EA /* Info.plist */,
 				6B4EF1651B4037DB00292BD4 /* CP_Prefix.pch */,
@@ -518,6 +542,53 @@
 			path = register;
 			sourceTree = "<group>";
 		};
+		E35E6FC11B54AF96001212D6 /* Publish(我的发布) */ = {
+			isa = PBXGroup;
+			children = (
+				E35E6FC21B54AF96001212D6 /* Controller */,
+				E35E6FC31B54AF96001212D6 /* Model */,
+				E35E6FC41B54AF96001212D6 /* View */,
+			);
+			path = "Publish(我的发布)";
+			sourceTree = "<group>";
+		};
+		E35E6FC21B54AF96001212D6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E35E6FC51B54AFB8001212D6 /* CPMyPublishController.h */,
+				E35E6FC61B54AFB8001212D6 /* CPMyPublishController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E35E6FC31B54AF96001212D6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E3B127711B54B861005B1174 /* HWPhotosView.h */,
+				E3B127721B54B861005B1174 /* HWPhotosView.m */,
+				E3B127731B54B861005B1174 /* HWPhotoView.h */,
+				E3B127741B54B861005B1174 /* HWPhotoView.m */,
+				E35E6FCB1B54B0D9001212D6 /* CPMyPublishModel.h */,
+				E35E6FCC1B54B0D9001212D6 /* CPMyPublishModel.m */,
+				E35E6FCE1B54B0EC001212D6 /* CPMyPublishFrameModel.h */,
+				E35E6FCF1B54B0EC001212D6 /* CPMyPublishFrameModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E35E6FC41B54AF96001212D6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E35E6FC81B54B076001212D6 /* CPMyPublishCell.h */,
+				E35E6FC91B54B076001212D6 /* CPMyPublishCell.m */,
+				E35E6FD11B54B1DE001212D6 /* CPMyPublishBottomView.h */,
+				E35E6FD21B54B1DE001212D6 /* CPMyPublishBottomView.m */,
+				E3B127771B54D9C2005B1174 /* CPChatButton.h */,
+				E3B127781B54D9C2005B1174 /* CPChatButton.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		E36C96101B53BA3200D3EDBB /* Activity(活动) */ = {
 			isa = PBXGroup;
 			children = (
@@ -597,8 +668,6 @@
 		E36C962E1B53E14100D3EDBB /* ZYTools */ = {
 			isa = PBXGroup;
 			children = (
-				E36C962F1B53E14100D3EDBB /* XMHttpTool.h */,
-				E36C96301B53E14100D3EDBB /* XMHttpTool.m */,
 			);
 			path = ZYTools;
 			sourceTree = "<group>";
@@ -606,6 +675,7 @@
 		E3EEDFE51B53951D00595333 /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				E35E6FC11B54AF96001212D6 /* Publish(我的发布) */,
 				E36C962E1B53E14100D3EDBB /* ZYTools */,
 				E36C96101B53BA3200D3EDBB /* Activity(活动) */,
 				E36C96161B53BA3200D3EDBB /* Subscribe(关注) */,
@@ -645,6 +715,8 @@
 				E3EEDFF21B53951D00595333 /* CPNewMessageCell.m */,
 				E35559A31B53A0CE00B200D0 /* CPSexView.h */,
 				E35559A41B53A0CE00B200D0 /* CPSexView.m */,
+				E3B1277C1B54E19B005B1174 /* CPIconButton.h */,
+				E3B1277D1B54E19B005B1174 /* CPIconButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -748,9 +820,9 @@
 				6B6493E91B4FE34D00C197D2 /* CPForgetPasswordViewController.xib in Resources */,
 				6B4959DC1B33A23900DB63EA /* LaunchScreen.xib in Resources */,
 				E36C96271B53C78200D3EDBB /* CPSubscribePersonController.storyboard in Resources */,
+				E3B1277B1B54DECB005B1174 /* Images.xcassets in Resources */,
 				6B6493E01B4FAFFD00C197D2 /* MBProgressHUD.bundle in Resources */,
 				6B4EF15C1B4036EE00292BD4 /* CPCityController.storyboard in Resources */,
-				6B4959D91B33A23900DB63EA /* Images.xcassets in Resources */,
 				6B4EF15E1B4036EE00292BD4 /* Main.storyboard in Resources */,
 				6B6493EF1B53821F00C197D2 /* registerViewController.xib in Resources */,
 				E36C961C1B53BA6B00D3EDBB /* CPActivityApplyControllerView.storyboard in Resources */,
@@ -777,7 +849,6 @@
 			files = (
 				E3EEDFF81B53951D00595333 /* CPNewMessageCell.m in Sources */,
 				6B6493C81B4D0D7800C197D2 /* AFHTTPRequestOperation.m in Sources */,
-				E36C96311B53E14100D3EDBB /* XMHttpTool.m in Sources */,
 				E36C96251B53C77600D3EDBB /* CPSubscribePersonController.m in Sources */,
 				E3EEDFF71B53951D00595333 /* CPBadgeView.m in Sources */,
 				6B6493EE1B53821F00C197D2 /* registerViewController.m in Sources */,
@@ -788,13 +859,17 @@
 				6B6493941B4D04E500C197D2 /* Tools.m in Sources */,
 				6B64938C1B4D04BE00C197D2 /* BaseViewController.m in Sources */,
 				6B6493CE1B4D0D7800C197D2 /* AFURLConnectionOperation.m in Sources */,
+				E35E6FD01B54B0EC001212D6 /* CPMyPublishFrameModel.m in Sources */,
+				E35E6FCD1B54B0D9001212D6 /* CPMyPublishModel.m in Sources */,
 				6B4EF1681B403A5D00292BD4 /* UIBarButtonItem+Extension.m in Sources */,
 				6BC82F321B53C4AF00C8E916 /* CPHomeUser.m in Sources */,
 				E3EEE0021B53952E00595333 /* Foundation+Log.m in Sources */,
 				6B6493E21B4FAFFD00C197D2 /* MBProgressHUD+Add.m in Sources */,
 				6B4EF15B1B4036EE00292BD4 /* CPCityController.m in Sources */,
 				E36C962D1B53CA2300D3EDBB /* CPSubscribeCell.m in Sources */,
+				E35E6FC71B54AFB8001212D6 /* CPMyPublishController.m in Sources */,
 				E36C962A1B53C80900D3EDBB /* CPCancleSubBtn.m in Sources */,
+				E3B127761B54B861005B1174 /* HWPhotoView.m in Sources */,
 				6B6493CC1B4D0D7800C197D2 /* AFNetworkReachabilityManager.m in Sources */,
 				6BC82F301B53C4AF00C8E916 /* CPHomePhoto.m in Sources */,
 				6B6493CD1B4D0D7800C197D2 /* AFPropertyListRequestOperation.m in Sources */,
@@ -805,13 +880,18 @@
 				6B6493D01B4D0D7800C197D2 /* UIImageView+AFNetworking.m in Sources */,
 				6B4EF15F1B4036EE00292BD4 /* AppDelegate.m in Sources */,
 				E36C961F1B53BB2800D3EDBB /* CPActivityApplyCell.m in Sources */,
+				E3B1277E1B54E19B005B1174 /* CPIconButton.m in Sources */,
 				E3EEE0031B53952E00595333 /* NSString+Extension.m in Sources */,
 				E36C96221B53BC2800D3EDBB /* CPActivityApplyButton.m in Sources */,
+				E35E6FD31B54B1DE001212D6 /* CPMyPublishBottomView.m in Sources */,
 				6B6493901B4D04E100C197D2 /* CPNetWork.m in Sources */,
 				E36C961A1B53BA3200D3EDBB /* CPActivityApplyControllerView.m in Sources */,
 				E3EEE0041B53952E00595333 /* UIImage+Extension.m in Sources */,
 				E3EEE0051B53952E00595333 /* UIView+Extension.m in Sources */,
+				E3B127751B54B861005B1174 /* HWPhotosView.m in Sources */,
 				6B6493C91B4D0D7800C197D2 /* AFImageRequestOperation.m in Sources */,
+				E35E6FCA1B54B076001212D6 /* CPMyPublishCell.m in Sources */,
+				E3B127791B54D9C2005B1174 /* CPChatButton.m in Sources */,
 				6B6493E81B4FE34D00C197D2 /* CPForgetPasswordViewController.m in Sources */,
 				6B6493CA1B4D0D7800C197D2 /* AFJSONRequestOperation.m in Sources */,
 				6B4EF1631B4036EE00292BD4 /* CPMyController.m in Sources */,

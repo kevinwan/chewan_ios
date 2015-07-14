@@ -13,7 +13,9 @@
 
 - (void)setUp
 {
-    [self setBackgroundImage:[UIImage imageNamed:@"btn_on"] forState:UIControlStateNormal];
+    [self setBackgroundImage:[UIImage imageNamed:@"男-1"] forState:UIControlStateNormal];
+    self.titleEdgeInsets = UIEdgeInsetsMake(0, 12, 0, 0);
+    self.titleLabel.font = [UIFont systemFontOfSize:12];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -30,6 +32,17 @@
         [self setUp];
     }
     return self;
+}
+
+- (void)setIsMan:(BOOL)isMan
+{
+    _isMan = isMan;
+    
+    if (isMan) {
+        [self setBackgroundImage:[UIImage imageNamed:@"男-1"] forState:UIControlStateNormal];
+    }else{
+        [self setBackgroundImage:[UIImage imageNamed:@"女-1"] forState:UIControlStateNormal];
+    }
 }
 
 @end

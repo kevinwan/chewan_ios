@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CPSexView : UIButton
-
+@property (nonatomic, assign) BOOL isMan;
 @end

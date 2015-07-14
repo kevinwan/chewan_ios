@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WhN-43-p6a">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WhN-43-p6a">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -19,13 +19,13 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WCU-Of-4x1" id="qt5-W7-aDr">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRF-I7-I6u">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRF-I7-I6u" customClass="CPIconButton">
                                             <rect key="frame" x="10" y="10" width="50" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="Aqc-iS-x4J"/>
                                                 <constraint firstAttribute="width" constant="50" id="ZIr-tf-6N0"/>
                                             </constraints>
-                                            <state key="normal" title="Button">
+                                            <state key="normal" image="消息选中">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
@@ -38,10 +38,10 @@
                                             <color key="textColor" red="0.66666666666666663" green="0.69803921568627447" blue="0.85882352941176465" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XTp-Ow-wiu" customClass="CPSexView">
-                                            <rect key="frame" x="120" y="10" width="46" height="20"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XTp-Ow-wiu" customClass="CPSexView">
+                                            <rect key="frame" x="120" y="10" width="30" height="15"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="20" id="c0L-dJ-l95"/>
+                                                <constraint firstAttribute="height" constant="15" id="c0L-dJ-l95"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <state key="normal" title="20">
@@ -62,12 +62,12 @@
                                         <constraint firstAttribute="trailing" secondItem="Cww-tU-NC8" secondAttribute="trailing" constant="20" id="2b1-Wh-wWC"/>
                                         <constraint firstItem="aTM-TD-cwH" firstAttribute="top" secondItem="Cww-tU-NC8" secondAttribute="bottom" constant="10" id="5fz-zM-15T"/>
                                         <constraint firstItem="Cww-tU-NC8" firstAttribute="top" secondItem="qt5-W7-aDr" secondAttribute="top" constant="10" id="6uF-vr-Oy1"/>
-                                        <constraint firstItem="XTp-Ow-wiu" firstAttribute="top" secondItem="qt5-W7-aDr" secondAttribute="top" constant="10" id="SMK-4H-Zu0"/>
                                         <constraint firstItem="XTp-Ow-wiu" firstAttribute="leading" secondItem="Cww-tU-NC8" secondAttribute="trailing" constant="10" id="VF0-cH-lDP"/>
                                         <constraint firstAttribute="centerY" secondItem="rRF-I7-I6u" secondAttribute="centerY" id="Z1z-hw-ehj"/>
                                         <constraint firstItem="rRF-I7-I6u" firstAttribute="leading" secondItem="qt5-W7-aDr" secondAttribute="leading" constant="10" id="aPz-rZ-fWR"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="aTM-TD-cwH" secondAttribute="trailing" constant="20" id="cEa-Zj-JL5"/>
                                         <constraint firstItem="Cww-tU-NC8" firstAttribute="leading" secondItem="rRF-I7-I6u" secondAttribute="trailing" constant="10" id="h20-GQ-RDK"/>
+                                        <constraint firstItem="Cww-tU-NC8" firstAttribute="centerY" secondItem="XTp-Ow-wiu" secondAttribute="centerY" constant="2.5" id="kqd-mL-R8F"/>
                                         <constraint firstItem="aTM-TD-cwH" firstAttribute="leading" secondItem="rRF-I7-I6u" secondAttribute="trailing" constant="10" id="o48-GI-EGV"/>
                                     </constraints>
                                     <variation key="default">
@@ -96,4 +96,7 @@
             <point key="canvasLocation" x="418" y="289"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="消息选中" width="29" height="29"/>
+    </resources>
 </document>
