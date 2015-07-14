@@ -9,9 +9,9 @@
 #import "CPNewMessageController.h"
 #import "CPNewMessageCell.h"
 #import "UIBarButtonItem+Extension.h"
+#import "CPActivityApplyControllerView.h"
 
 @interface CPNewMessageController ()
-
 @end
 
 @implementation CPNewMessageController
@@ -21,7 +21,6 @@
     
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithNorImage:@"返回" higImage:nil title:nil target:self action:@selector(back)];
 }
-
 
 - (void)back
 {
@@ -43,6 +42,22 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 20;
+}
+
+/**
+ *  滑动删除单元格
+ */
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CPActivityApplyControllerView *vc = [UIStoryboard storyboardWithName:@"CPActivityApplyControllerView" bundle:nil].instantiateInitialViewController;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

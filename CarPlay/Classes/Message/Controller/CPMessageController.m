@@ -9,6 +9,11 @@
 #import "CPMessageController.h"
 #import "CPNewMessageController.h"
 
+typedef enum {
+    CPMessageOptionMsg, // 新留言消息
+    CPMessageOptionActivity // 参与活动信息
+}CPMessageOption;
+
 @interface CPMessageController ()
 
 @end

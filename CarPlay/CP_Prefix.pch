@@ -22,4 +22,15 @@
 #import "Tools.h"
 #import "CPNetworkVO.h"
 #import "MBProgressHUD.h"
+#import "UIView+Extension.h"
+// 通知中心
+#define XMNotificationCenter [NSNotificationCenter defaultCenter]
+// 偏好设置
+#define XMUserDefaults [NSUserDefaults standardUserDefaults]
+// Document的路径
+#define XMDocmentPath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]
+#define XMCachePath [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject]
+#define kStatusBarHight 20
+#define kScreenHeight [UIScreen mainScreen].bounds.size.height  //屏幕的高度
+#define kScreenWidth [UIScreen mainScreen].bounds.size.width    //屏幕的宽度
 #endif
