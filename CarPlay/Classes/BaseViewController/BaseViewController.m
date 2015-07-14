@@ -39,6 +39,7 @@
     tapGestureRecognizer.cancelsTouchesInView = NO;
     //将触摸事件添加到当前view
     [self.view addGestureRecognizer:tapGestureRecognizer];
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithNorImage:@"返回" higImage:nil title:nil target:self action:@selector(popBack)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,7 +51,7 @@
 - (void)setLeftBarWithLeftImage:(NSString *)leftImage action:(SEL)leftAction
 {
     UIButton *btn_back = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn_back.frame = CGRectMake(0, 0, 25, 25);
+    btn_back.frame = CGRectMake(0, 0, 27, 27);
     if (leftImage) {
         [btn_back setBackgroundImage:[UIImage imageNamed:leftImage] forState:UIControlStateNormal];
         //        [btn_back setBackgroundImage:[UIImage imageNamed:leftImage] forState:UIControlStateHighlighted];

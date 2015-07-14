@@ -14,6 +14,13 @@
                           sucess:(resultBlock)sucess
                             fail:(failWithErrorBlock)fail;
 
+-(instancetype)getIdentifyingCodeWithPhone:(NSString *)phone
+                                    sucess:(resultBlock)sucess
+                                      fail:(failWithErrorBlock)fail;
+-(instancetype)checkIdentifyingCodeWithPhone:(NSString *)phone
+                                        code:(NSString *)code
+                                      sucess:(resultBlock)sucess
+                                        fail:(failWithErrorBlock)fail;
 
 //-(instancetype)getRegistrationWithPhone:(NSString *)phone
 //                                 sucess:(resultBlock)sucess

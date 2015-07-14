@@ -7,6 +7,7 @@
 //
 
 #import "CPForgetPasswordViewController.h"
+#import "CPNewPassWordViewController.h"
 
 @interface CPForgetPasswordViewController ()
 
@@ -26,7 +27,6 @@
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden=NO;
     self.navigationController.navigationBar.translucent=NO;
-    
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -39,5 +39,11 @@
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"错误" message:@"请正确输入手机号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alert show];
     }
+}
+
+- (IBAction)nextBtnClick:(id)sender {
+    CPNewPassWordViewController *CPNewPassWordVC=[[CPNewPassWordViewController alloc]init];
+    CPNewPassWordVC.title=@"找回密码";
+    [self.navigationController pushViewController:CPNewPassWordVC animated:YES];
 }
 @end

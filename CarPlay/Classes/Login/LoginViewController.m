@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "CPForgetPasswordViewController.h"
+#import "registerViewController.h"
 
 @interface LoginViewController ()
 
@@ -24,19 +25,6 @@
 -(void)viewWillAppear:(BOOL)animated{
 //     设置navigationBar透明的背景颜色，达到透明的效果BIGIN
      self.navigationController.navigationBarHidden=YES;
-//    NSArray *list=self.navigationController.navigationBar.subviews;
-//    for (id obj in list) {
-//        if([obj isKindOfClass:[UIImageView class]]){
-//            UIImageView *imageView=(UIImageView *)obj;
-//            imageView.hidden=YES;
-//        }
-//    }
-//    UIImageView *imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, -20, 320, 64)];
-//    imageView.image=[UIImage imageNamed:@"TransparentBg.png"];
-//    [self.navigationController.navigationBar addSubview:imageView];
-//    [self.navigationController.navigationBar sendSubviewToBack:imageView];
-//    
-//    self.automaticallyAdjustsScrollViewInsets=NO;
     self.navigationController.navigationBar.translucent=YES;
 //       设置navigationBar透明的背景颜色，达到透明的效果END
    
@@ -80,6 +68,8 @@
 }
 
 - (IBAction)registerBtnClick:(id)sender {
-    
+    registerViewController *registerVC=[[registerViewController alloc]init];
+    registerVC.title=@"注册";
+    [self.navigationController pushViewController:registerVC animated:YES];
 }
 @end
