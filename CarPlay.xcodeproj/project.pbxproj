@@ -10,8 +10,12 @@
 		6B4959D91B33A23900DB63EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B4959D81B33A23900DB63EA /* Images.xcassets */; };
 		6B4959DC1B33A23900DB63EA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B4959DA1B33A23900DB63EA /* LaunchScreen.xib */; };
 		6B4959E81B33A23900DB63EA /* CarPlayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4959E71B33A23900DB63EA /* CarPlayTests.m */; };
-		6B4EF15B1B4036EE00292BD4 /* CPCityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4EF13C1B4036EE00292BD4 /* CPCityController.m */; };
-		6B4EF15C1B4036EE00292BD4 /* CPCityController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B4EF13D1B4036EE00292BD4 /* CPCityController.storyboard */; };
+		6B4C6C901B552E9B00217E6B /* CPCityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4C6C841B552E9B00217E6B /* CPCityController.m */; };
+		6B4C6C911B552E9B00217E6B /* CPCityController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B4C6C851B552E9B00217E6B /* CPCityController.storyboard */; };
+		6B4C6C921B552E9B00217E6B /* CPHomePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4C6C881B552E9B00217E6B /* CPHomePhoto.m */; };
+		6B4C6C931B552E9B00217E6B /* CPHomeStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4C6C8A1B552E9B00217E6B /* CPHomeStatus.m */; };
+		6B4C6C941B552E9B00217E6B /* CPHomeUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4C6C8C1B552E9B00217E6B /* CPHomeUser.m */; };
+		6B4C6C951B552E9B00217E6B /* CPHomeStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4C6C8F1B552E9B00217E6B /* CPHomeStatusCell.m */; };
 		6B4EF15D1B4036EE00292BD4 /* CPTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4EF1451B4036EE00292BD4 /* CPTabBarController.m */; };
 		6B4EF15E1B4036EE00292BD4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B4EF1461B4036EE00292BD4 /* Main.storyboard */; };
 		6B4EF15F1B4036EE00292BD4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4EF14A1B4036EE00292BD4 /* AppDelegate.m */; };
@@ -42,9 +46,6 @@
 		6B6493E91B4FE34D00C197D2 /* CPForgetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B6493E71B4FE34D00C197D2 /* CPForgetPasswordViewController.xib */; };
 		6B6493EE1B53821F00C197D2 /* registerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493EC1B53821F00C197D2 /* registerViewController.m */; };
 		6B6493EF1B53821F00C197D2 /* registerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B6493ED1B53821F00C197D2 /* registerViewController.xib */; };
-		6BC82F301B53C4AF00C8E916 /* CPHomePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82F2B1B53C4AF00C8E916 /* CPHomePhoto.m */; };
-		6BC82F311B53C4AF00C8E916 /* CPHomeStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82F2D1B53C4AF00C8E916 /* CPHomeStatus.m */; };
-		6BC82F321B53C4AF00C8E916 /* CPHomeUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82F2F1B53C4AF00C8E916 /* CPHomeUser.m */; };
 		6BCCBA291B54BB9C00BA2598 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCCBA091B54BB9C00BA2598 /* MKAnnotationView+WebCache.m */; };
 		6BCCBA2A1B54BB9C00BA2598 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCCBA0B1B54BB9C00BA2598 /* NSData+ImageContentType.m */; };
 		6BCCBA2B1B54BB9C00BA2598 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCCBA0D1B54BB9C00BA2598 /* SDImageCache.m */; };
@@ -100,9 +101,17 @@
 		6B4959E11B33A23900DB63EA /* CarPlayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarPlayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B4959E61B33A23900DB63EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B4959E71B33A23900DB63EA /* CarPlayTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarPlayTests.m; sourceTree = "<group>"; };
-		6B4EF13B1B4036EE00292BD4 /* CPCityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCityController.h; sourceTree = "<group>"; };
-		6B4EF13C1B4036EE00292BD4 /* CPCityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCityController.m; sourceTree = "<group>"; };
-		6B4EF13D1B4036EE00292BD4 /* CPCityController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPCityController.storyboard; sourceTree = "<group>"; };
+		6B4C6C831B552E9B00217E6B /* CPCityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCityController.h; sourceTree = "<group>"; };
+		6B4C6C841B552E9B00217E6B /* CPCityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCityController.m; sourceTree = "<group>"; };
+		6B4C6C851B552E9B00217E6B /* CPCityController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPCityController.storyboard; sourceTree = "<group>"; };
+		6B4C6C871B552E9B00217E6B /* CPHomePhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomePhoto.h; sourceTree = "<group>"; };
+		6B4C6C881B552E9B00217E6B /* CPHomePhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomePhoto.m; sourceTree = "<group>"; };
+		6B4C6C891B552E9B00217E6B /* CPHomeStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeStatus.h; sourceTree = "<group>"; };
+		6B4C6C8A1B552E9B00217E6B /* CPHomeStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeStatus.m; sourceTree = "<group>"; };
+		6B4C6C8B1B552E9B00217E6B /* CPHomeUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeUser.h; sourceTree = "<group>"; };
+		6B4C6C8C1B552E9B00217E6B /* CPHomeUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeUser.m; sourceTree = "<group>"; };
+		6B4C6C8E1B552E9B00217E6B /* CPHomeStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeStatusCell.h; sourceTree = "<group>"; };
+		6B4C6C8F1B552E9B00217E6B /* CPHomeStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeStatusCell.m; sourceTree = "<group>"; };
 		6B4EF1441B4036EE00292BD4 /* CPTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTabBarController.h; sourceTree = "<group>"; };
 		6B4EF1451B4036EE00292BD4 /* CPTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTabBarController.m; sourceTree = "<group>"; };
 		6B4EF1461B4036EE00292BD4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -159,12 +168,6 @@
 		6B6493EB1B53821F00C197D2 /* registerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = registerViewController.h; sourceTree = "<group>"; };
 		6B6493EC1B53821F00C197D2 /* registerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = registerViewController.m; sourceTree = "<group>"; };
 		6B6493ED1B53821F00C197D2 /* registerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = registerViewController.xib; sourceTree = "<group>"; };
-		6BC82F2A1B53C4AF00C8E916 /* CPHomePhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomePhoto.h; sourceTree = "<group>"; };
-		6BC82F2B1B53C4AF00C8E916 /* CPHomePhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomePhoto.m; sourceTree = "<group>"; };
-		6BC82F2C1B53C4AF00C8E916 /* CPHomeStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeStatus.h; sourceTree = "<group>"; };
-		6BC82F2D1B53C4AF00C8E916 /* CPHomeStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeStatus.m; sourceTree = "<group>"; };
-		6BC82F2E1B53C4AF00C8E916 /* CPHomeUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeUser.h; sourceTree = "<group>"; };
-		6BC82F2F1B53C4AF00C8E916 /* CPHomeUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeUser.m; sourceTree = "<group>"; };
 		6BCCBA081B54BB9C00BA2598 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		6BCCBA091B54BB9C00BA2598 /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		6BCCBA0A1B54BB9C00BA2598 /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -311,60 +314,62 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		6B4C6C811B552E9B00217E6B /* City */ = {
+			isa = PBXGroup;
+			children = (
+				6B4C6C821B552E9B00217E6B /* Controller */,
+				6B4C6C861B552E9B00217E6B /* Mode */,
+				6B4C6C8D1B552E9B00217E6B /* View */,
+			);
+			path = City;
+			sourceTree = "<group>";
+		};
+		6B4C6C821B552E9B00217E6B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6B4C6C831B552E9B00217E6B /* CPCityController.h */,
+				6B4C6C841B552E9B00217E6B /* CPCityController.m */,
+				6B4C6C851B552E9B00217E6B /* CPCityController.storyboard */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		6B4C6C861B552E9B00217E6B /* Mode */ = {
+			isa = PBXGroup;
+			children = (
+				6B4C6C871B552E9B00217E6B /* CPHomePhoto.h */,
+				6B4C6C881B552E9B00217E6B /* CPHomePhoto.m */,
+				6B4C6C891B552E9B00217E6B /* CPHomeStatus.h */,
+				6B4C6C8A1B552E9B00217E6B /* CPHomeStatus.m */,
+				6B4C6C8B1B552E9B00217E6B /* CPHomeUser.h */,
+				6B4C6C8C1B552E9B00217E6B /* CPHomeUser.m */,
+			);
+			path = Mode;
+			sourceTree = "<group>";
+		};
+		6B4C6C8D1B552E9B00217E6B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6B4C6C8E1B552E9B00217E6B /* CPHomeStatusCell.h */,
+				6B4C6C8F1B552E9B00217E6B /* CPHomeStatusCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		6B4EF1381B4036EE00292BD4 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				6B4C6C811B552E9B00217E6B /* City */,
 				E3EEDFE51B53951D00595333 /* Message */,
 				6B6493911B4D04E500C197D2 /* Utils */,
 				6B64938D1B4D04E100C197D2 /* NetWork */,
 				6B4EF1401B4036EE00292BD4 /* Libs */,
 				6B6493891B4D04BE00C197D2 /* BaseViewController */,
-				6B4EF1391B4036EE00292BD4 /* City */,
 				6B4EF1411B4036EE00292BD4 /* Main */,
 				6B4EF1541B4036EE00292BD4 /* My */,
 				6B6493D11B4D150700C197D2 /* Login */,
 			);
 			path = Classes;
-			sourceTree = "<group>";
-		};
-		6B4EF1391B4036EE00292BD4 /* City */ = {
-			isa = PBXGroup;
-			children = (
-				6B4EF13A1B4036EE00292BD4 /* Controller */,
-				6B4EF13E1B4036EE00292BD4 /* Mode */,
-				6B4EF13F1B4036EE00292BD4 /* View */,
-			);
-			path = City;
-			sourceTree = "<group>";
-		};
-		6B4EF13A1B4036EE00292BD4 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				6B4EF13B1B4036EE00292BD4 /* CPCityController.h */,
-				6B4EF13C1B4036EE00292BD4 /* CPCityController.m */,
-				6B4EF13D1B4036EE00292BD4 /* CPCityController.storyboard */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		6B4EF13E1B4036EE00292BD4 /* Mode */ = {
-			isa = PBXGroup;
-			children = (
-				6BC82F2A1B53C4AF00C8E916 /* CPHomePhoto.h */,
-				6BC82F2B1B53C4AF00C8E916 /* CPHomePhoto.m */,
-				6BC82F2C1B53C4AF00C8E916 /* CPHomeStatus.h */,
-				6BC82F2D1B53C4AF00C8E916 /* CPHomeStatus.m */,
-				6BC82F2E1B53C4AF00C8E916 /* CPHomeUser.h */,
-				6BC82F2F1B53C4AF00C8E916 /* CPHomeUser.m */,
-			);
-			path = Mode;
-			sourceTree = "<group>";
-		};
-		6B4EF13F1B4036EE00292BD4 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		6B4EF1401B4036EE00292BD4 /* Libs */ = {
@@ -774,12 +779,12 @@
 				6B6493E91B4FE34D00C197D2 /* CPForgetPasswordViewController.xib in Resources */,
 				6B4959DC1B33A23900DB63EA /* LaunchScreen.xib in Resources */,
 				6B6493E01B4FAFFD00C197D2 /* MBProgressHUD.bundle in Resources */,
-				6B4EF15C1B4036EE00292BD4 /* CPCityController.storyboard in Resources */,
 				6B4959D91B33A23900DB63EA /* Images.xcassets in Resources */,
 				6B4EF15E1B4036EE00292BD4 /* Main.storyboard in Resources */,
 				6B6493EF1B53821F00C197D2 /* registerViewController.xib in Resources */,
 				6B6493D61B4D152A00C197D2 /* LoginViewController.xib in Resources */,
 				6B4EF1641B4036EE00292BD4 /* CPMyController.storyboard in Resources */,
+				6B4C6C911B552E9B00217E6B /* CPCityController.storyboard in Resources */,
 				E3EEDFF61B53951D00595333 /* CPNewMessageController.storyboard in Resources */,
 				E3EEDFF41B53951D00595333 /* CPMessageController.storyboard in Resources */,
 			);
@@ -805,29 +810,27 @@
 				E3EEDFF71B53951D00595333 /* CPBadgeView.m in Sources */,
 				6B6493EE1B53821F00C197D2 /* registerViewController.m in Sources */,
 				6B4EF15D1B4036EE00292BD4 /* CPTabBarController.m in Sources */,
-				6BC82F311B53C4AF00C8E916 /* CPHomeStatus.m in Sources */,
 				6BCCBA6B1B54E42900BA2598 /* NSObject+MJProperty.m in Sources */,
 				6B6493E11B4FAFFD00C197D2 /* MBProgressHUD.m in Sources */,
 				E3EEDFF51B53951D00595333 /* CPNewMessageController.m in Sources */,
+				6B4C6C951B552E9B00217E6B /* CPHomeStatusCell.m in Sources */,
 				6B6493941B4D04E500C197D2 /* Tools.m in Sources */,
 				6B64938C1B4D04BE00C197D2 /* BaseViewController.m in Sources */,
 				6B6493CE1B4D0D7800C197D2 /* AFURLConnectionOperation.m in Sources */,
 				6B4EF1681B403A5D00292BD4 /* UIBarButtonItem+Extension.m in Sources */,
 				6BCCBA301B54BB9C00BA2598 /* SDWebImageManager.m in Sources */,
 				6BCCBA371B54BB9C00BA2598 /* UIImageView+WebCache.m in Sources */,
-				6BC82F321B53C4AF00C8E916 /* CPHomeUser.m in Sources */,
 				6BCCBA651B54E42900BA2598 /* MJConst.m in Sources */,
 				E3EEE0021B53952E00595333 /* Foundation+Log.m in Sources */,
 				6B6493E21B4FAFFD00C197D2 /* MBProgressHUD+Add.m in Sources */,
 				6BCCBA291B54BB9C00BA2598 /* MKAnnotationView+WebCache.m in Sources */,
 				6BCCBA2A1B54BB9C00BA2598 /* NSData+ImageContentType.m in Sources */,
-				6B4EF15B1B4036EE00292BD4 /* CPCityController.m in Sources */,
 				6BCCBA691B54E42900BA2598 /* NSObject+MJCoding.m in Sources */,
 				6B6493CC1B4D0D7800C197D2 /* AFNetworkReachabilityManager.m in Sources */,
 				6BCCBA661B54E42900BA2598 /* MJFoundation.m in Sources */,
-				6BC82F301B53C4AF00C8E916 /* CPHomePhoto.m in Sources */,
 				6B6493CD1B4D0D7800C197D2 /* AFPropertyListRequestOperation.m in Sources */,
 				6B4EF1601B4036EE00292BD4 /* main.m in Sources */,
+				6B4C6C921B552E9B00217E6B /* CPHomePhoto.m in Sources */,
 				6BCCBA2F1B54BB9C00BA2598 /* SDWebImageDownloaderOperation.m in Sources */,
 				6B6493CF1B4D0D7800C197D2 /* AFXMLRequestOperation.m in Sources */,
 				E35559A51B53A0CE00B200D0 /* CPSexView.m in Sources */,
@@ -836,6 +839,7 @@
 				6BCCBA2E1B54BB9C00BA2598 /* SDWebImageDownloader.m in Sources */,
 				6B6493D01B4D0D7800C197D2 /* UIImageView+AFNetworking.m in Sources */,
 				6B4EF15F1B4036EE00292BD4 /* AppDelegate.m in Sources */,
+				6B4C6C901B552E9B00217E6B /* CPCityController.m in Sources */,
 				E3EEE0031B53952E00595333 /* NSString+Extension.m in Sources */,
 				6BCCBA341B54BB9C00BA2598 /* UIImage+MultiFormat.m in Sources */,
 				6BCCBA2D1B54BB9C00BA2598 /* SDWebImageDecoder.m in Sources */,
@@ -843,6 +847,7 @@
 				E3EEE0041B53952E00595333 /* UIImage+Extension.m in Sources */,
 				E3EEE0051B53952E00595333 /* UIView+Extension.m in Sources */,
 				6B6493C91B4D0D7800C197D2 /* AFImageRequestOperation.m in Sources */,
+				6B4C6C941B552E9B00217E6B /* CPHomeUser.m in Sources */,
 				6BCCBA321B54BB9C00BA2598 /* UIButton+WebCache.m in Sources */,
 				6B6493E81B4FE34D00C197D2 /* CPForgetPasswordViewController.m in Sources */,
 				6BCCBA311B54BB9C00BA2598 /* SDWebImagePrefetcher.m in Sources */,
@@ -854,6 +859,7 @@
 				6B6493C71B4D0D7800C197D2 /* AFHTTPClient.m in Sources */,
 				6BCCBA331B54BB9C00BA2598 /* UIImage+GIF.m in Sources */,
 				6B6493D91B4FABC900C197D2 /* CPNetworkVO.m in Sources */,
+				6B4C6C931B552E9B00217E6B /* CPHomeStatus.m in Sources */,
 				6BCCBA671B54E42900BA2598 /* MJProperty.m in Sources */,
 				6BCCBA681B54E42900BA2598 /* MJType.m in Sources */,
 				E3EEDFF31B53951D00595333 /* CPMessageController.m in Sources */,
