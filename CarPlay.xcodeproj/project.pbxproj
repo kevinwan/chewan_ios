@@ -77,6 +77,9 @@
 		E30BD58A1B54EC4A00FD9030 /* CPMySubscribeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5881B54EC4A00FD9030 /* CPMySubscribeModel.m */; };
 		E30BD58F1B54ECCC00FD9030 /* CPMyPublishBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD58C1B54ECCC00FD9030 /* CPMyPublishBottomView.m */; };
 		E30BD5901B54ECCC00FD9030 /* CPMySubscribeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD58E1B54ECCC00FD9030 /* CPMySubscribeCell.m */; };
+		E30BD5941B54FCC600FD9030 /* ZYNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5931B54FCC600FD9030 /* ZYNavigationBar.m */; };
+		E30BD5971B54FD6E00FD9030 /* ZYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5961B54FD6E00FD9030 /* ZYNavigationController.m */; };
+		E30BD59A1B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5991B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.m */; };
 		E35559A51B53A0CE00B200D0 /* CPSexView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35559A41B53A0CE00B200D0 /* CPSexView.m */; };
 		E35E6FC71B54AFB8001212D6 /* CPMyPublishController.m in Sources */ = {isa = PBXBuildFile; fileRef = E35E6FC61B54AFB8001212D6 /* CPMyPublishController.m */; };
 		E35E6FCA1B54B076001212D6 /* CPMyPublishCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E35E6FC91B54B076001212D6 /* CPMyPublishCell.m */; };
@@ -226,6 +229,12 @@
 		E30BD58C1B54ECCC00FD9030 /* CPMyPublishBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyPublishBottomView.m; sourceTree = "<group>"; };
 		E30BD58D1B54ECCC00FD9030 /* CPMySubscribeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMySubscribeCell.h; sourceTree = "<group>"; };
 		E30BD58E1B54ECCC00FD9030 /* CPMySubscribeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMySubscribeCell.m; sourceTree = "<group>"; };
+		E30BD5921B54FCC600FD9030 /* ZYNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYNavigationBar.h; sourceTree = "<group>"; };
+		E30BD5931B54FCC600FD9030 /* ZYNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYNavigationBar.m; sourceTree = "<group>"; };
+		E30BD5951B54FD6E00FD9030 /* ZYNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYNavigationController.h; sourceTree = "<group>"; };
+		E30BD5961B54FD6E00FD9030 /* ZYNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYNavigationController.m; sourceTree = "<group>"; };
+		E30BD5981B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
+		E30BD5991B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
 		E35559A31B53A0CE00B200D0 /* CPSexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSexView.h; sourceTree = "<group>"; };
 		E35559A41B53A0CE00B200D0 /* CPSexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSexView.m; sourceTree = "<group>"; };
 		E35E6FC51B54AFB8001212D6 /* CPMyPublishController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyPublishController.h; sourceTree = "<group>"; };
@@ -659,6 +668,19 @@
 			path = register;
 			sourceTree = "<group>";
 		};
+		E30BD5911B54FC9400FD9030 /* ZYCustomView */ = {
+			isa = PBXGroup;
+			children = (
+				E30BD5981B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.h */,
+				E30BD5991B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.m */,
+				E30BD5921B54FCC600FD9030 /* ZYNavigationBar.h */,
+				E30BD5931B54FCC600FD9030 /* ZYNavigationBar.m */,
+				E30BD5951B54FD6E00FD9030 /* ZYNavigationController.h */,
+				E30BD5961B54FD6E00FD9030 /* ZYNavigationController.m */,
+			);
+			path = ZYCustomView;
+			sourceTree = "<group>";
+		};
 		E35E6FC11B54AF96001212D6 /* Publish(我的发布) */ = {
 			isa = PBXGroup;
 			children = (
@@ -792,13 +814,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		E36C962E1B53E14100D3EDBB /* ZYTools */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ZYTools;
-			sourceTree = "<group>";
-		};
 		E3B127CB1B54E6DB005B1174 /* MJExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -866,8 +881,8 @@
 		E3EEDFE51B53951D00595333 /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				E30BD5911B54FC9400FD9030 /* ZYCustomView */,
 				E35E6FC11B54AF96001212D6 /* Publish(我的发布) */,
-				E36C962E1B53E14100D3EDBB /* ZYTools */,
 				E36C96101B53BA3200D3EDBB /* Activity(活动) */,
 				E36C96161B53BA3200D3EDBB /* Subscribe(关注) */,
 				E3EEDFE61B53951D00595333 /* Controller */,
@@ -1090,6 +1105,7 @@
 				E35E6FCD1B54B0D9001212D6 /* CPMyPublishModel.m in Sources */,
 				6B4EF1681B403A5D00292BD4 /* UIBarButtonItem+Extension.m in Sources */,
 				6BC82F321B53C4AF00C8E916 /* CPHomeUser.m in Sources */,
+				E30BD5941B54FCC600FD9030 /* ZYNavigationBar.m in Sources */,
 				E3B128111B54E6DB005B1174 /* UIImage+GIF.m in Sources */,
 				E3B128161B54E6DB005B1174 /* UIView+WebCacheOperation.m in Sources */,
 				E3EEE0021B53952E00595333 /* Foundation+Log.m in Sources */,
@@ -1108,6 +1124,7 @@
 				E30BD58A1B54EC4A00FD9030 /* CPMySubscribeModel.m in Sources */,
 				6BC82F301B53C4AF00C8E916 /* CPHomePhoto.m in Sources */,
 				6B6493CD1B4D0D7800C197D2 /* AFPropertyListRequestOperation.m in Sources */,
+				E30BD5971B54FD6E00FD9030 /* ZYNavigationController.m in Sources */,
 				6B4EF1601B4036EE00292BD4 /* main.m in Sources */,
 				6B6493CF1B4D0D7800C197D2 /* AFXMLRequestOperation.m in Sources */,
 				E35559A51B53A0CE00B200D0 /* CPSexView.m in Sources */,
@@ -1116,6 +1133,7 @@
 				E3B1280F1B54E6DB005B1174 /* SDWebImagePrefetcher.m in Sources */,
 				E3B128081B54E6DB005B1174 /* NSData+ImageContentType.m in Sources */,
 				6B6493D01B4D0D7800C197D2 /* UIImageView+AFNetworking.m in Sources */,
+				E30BD59A1B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				6B4EF15F1B4036EE00292BD4 /* AppDelegate.m in Sources */,
 				E36C961F1B53BB2800D3EDBB /* CPActivityApplyCell.m in Sources */,
 				E3B1277E1B54E19B005B1174 /* CPIconButton.m in Sources */,

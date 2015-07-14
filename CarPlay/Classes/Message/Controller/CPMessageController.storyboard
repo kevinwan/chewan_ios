@@ -189,7 +189,7 @@
         <!--Navigation Controller-->
         <scene sceneID="QpN-q4-p6R">
             <objects>
-                <navigationController id="cLx-1Q-aDU" sceneMemberID="viewController">
+                <navigationController id="cLx-1Q-aDU" customClass="ZYNavigationController" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lIl-IT-nwb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
