@@ -14,6 +14,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *getIdentifyingCodeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *nextBtn;
 - (IBAction)getIdentifyingCodeBtnClick:(id)sender;
-@property (weak, nonatomic) IBOutlet UIButton *nextBtnClick;
+- (IBAction)nextBtnClick:(id)sender;
 
 @end

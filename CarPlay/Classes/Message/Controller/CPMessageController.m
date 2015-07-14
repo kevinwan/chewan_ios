@@ -38,6 +38,4 @@ typedef enum {
     [self.navigationController pushViewController:newMsgVc animated:YES];
 }
 
-
-
 @end

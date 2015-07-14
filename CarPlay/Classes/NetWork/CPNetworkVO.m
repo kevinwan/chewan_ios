@@ -2,7 +2,7 @@
 //  npsNetworkVO.m
 //  wqh
 //
-//  Created by 牛鹏赛 on 15-02-05.
+//  Created by 牛鹏赛 on 15-02-05
 //  Copyright (c) 2015年 dongwangyang. All rights reserved.
 //
 
@@ -22,6 +22,32 @@
     } forFail:^(NSError *error) {
         fail(error);
         }];
+    return client;
+}
+
+-(instancetype)getIdentifyingCodeWithPhone:(NSString *)phone
+                                    sucess:(resultBlock)sucess
+                                      fail:(failWithErrorBlock)fail{
+    NSDictionary *para=[NSDictionary dictionaryWithObjectsAndKeys:phone,@"phone", nil];
+    NSString *path=[[NSString alloc]initWithFormat:@"/v1/phone/%@/verification",phone];
+    id client=[self getRequestWithBaseUrl:BASE_URL andPath:path andParameters:para forSuccessful:^(id responseObject) {
+    }forFail:^(NSError *error) {
+        fail(error);
+    }];
+    return client;
+}
+
+-(instancetype)checkIdentifyingCodeWithPhone:(NSString *)phone
+                                        code:(NSString *)code
+                                      sucess:(resultBlock)sucess
+                                        fail:(failWithErrorBlock)fail{
+    NSDictionary *para=[NSDictionary dictionaryWithObjectsAndKeys:code,@"code", phone,@"phone",nil];
+    NSString *path=[[NSString alloc]initWithFormat:@"/v1/phone/%@/verification",phone];
+    id client=[self postRequestWithBaseUrl:BASE_URL  andPath:path andParameters:para forSueccessful:^(id responseObject) {
+        sucess(responseObject);
+    } forFail:^(NSError *error) {
+        fail(error);
+    }];
     return client;
 }
 //
