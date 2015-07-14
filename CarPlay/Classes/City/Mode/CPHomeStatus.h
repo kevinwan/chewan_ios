@@ -13,17 +13,17 @@
 @interface CPHomeStatus : NSObject
 
 /** 字符串型的活动ID */
-@property (nonatomic, copy) NSString *idstr;
+@property (nonatomic, copy) NSString *activityId;
 
 /** 活动信息内容 */
-@property (nonatomic, copy) NSString *text;
+@property (nonatomic, copy) NSString *introduction;
 
 /** 活动创建时间 */
 @property (nonatomic, copy) NSString *publishTime;
 
 
 /** 活动时间 */
-@property (nonatomic, copy) NSString *startTime;
+@property (nonatomic, copy) NSString *start;
 
 /** 活动地点 */
 @property (nonatomic, copy) NSString *location;
@@ -36,17 +36,19 @@
 
 
 /** 付费类型 */
-@property (nonatomic, copy) NSString *payType;
+@property (nonatomic, copy) NSString *pay;
 
 /** 活动类型 */
-@property (nonatomic, copy) NSString *activeType;
+@property (nonatomic, copy) NSString *type;
 
 
 /** 活动作者的用户信息字段 */
-@property (nonatomic, strong) CPHomeUser *user;
+@property (nonatomic, strong) CPHomeUser *organizer;
 
 
 /** 活动配图地址。多图时返回多图链接。无配图返回“[]” */
-@property (nonatomic, strong) NSArray *pic_urls;
+@property (nonatomic, strong) NSArray *cover;
+
+
 
 @end
