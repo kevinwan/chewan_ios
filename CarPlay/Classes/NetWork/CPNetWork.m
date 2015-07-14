@@ -189,7 +189,7 @@ static CPNetWork * _wanCheNetWork = nil;
     
     AFHTTPClient *clinet = [[AFHTTPClient alloc] initWithBaseURL:u];
     clinet.parameterEncoding = parameterEncoding;
-    [clinet postPath:path parameters:mutParameters success:^(AFHTTPRequestOperation *operation, id responseObject){
+    [clinet postPath:path parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject){
         
         NSString *resStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         NSData *data_utf8 = [resStr dataUsingEncoding:NSUTF8StringEncoding];

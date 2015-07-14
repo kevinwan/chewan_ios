@@ -41,6 +41,14 @@
 		6B6493E91B4FE34D00C197D2 /* CPForgetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B6493E71B4FE34D00C197D2 /* CPForgetPasswordViewController.xib */; };
 		6B6493EE1B53821F00C197D2 /* registerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493EC1B53821F00C197D2 /* registerViewController.m */; };
 		6B6493EF1B53821F00C197D2 /* registerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B6493ED1B53821F00C197D2 /* registerViewController.xib */; };
+		6B6493F31B539A6700C197D2 /* CPNewPassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493F11B539A6700C197D2 /* CPNewPassWordViewController.m */; };
+		6B6493F41B539A6700C197D2 /* CPNewPassWordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B6493F21B539A6700C197D2 /* CPNewPassWordViewController.xib */; };
+		6B6493F91B53A34900C197D2 /* CarOwnersCertificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493F71B53A34900C197D2 /* CarOwnersCertificationViewController.m */; };
+		6B6493FA1B53A34900C197D2 /* CarOwnersCertificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B6493F81B53A34900C197D2 /* CarOwnersCertificationViewController.xib */; };
+		6B6493FE1B54E61900C197D2 /* CPRegisterStep2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493FC1B54E61900C197D2 /* CPRegisterStep2ViewController.m */; };
+		6B6493FF1B54E61900C197D2 /* CPRegisterStep2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B6493FD1B54E61900C197D2 /* CPRegisterStep2ViewController.xib */; };
+		6B6494041B54E73C00C197D2 /* serviceTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6494021B54E73C00C197D2 /* serviceTermsViewController.m */; };
+		6B6494051B54E73C00C197D2 /* serviceTermsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B6494031B54E73C00C197D2 /* serviceTermsViewController.xib */; };
 		6BC82F301B53C4AF00C8E916 /* CPHomePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82F2B1B53C4AF00C8E916 /* CPHomePhoto.m */; };
 		6BC82F311B53C4AF00C8E916 /* CPHomeStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82F2D1B53C4AF00C8E916 /* CPHomeStatus.m */; };
 		6BC82F321B53C4AF00C8E916 /* CPHomeUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82F2F1B53C4AF00C8E916 /* CPHomeUser.m */; };
@@ -209,6 +217,18 @@
 		6B6493EB1B53821F00C197D2 /* registerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = registerViewController.h; sourceTree = "<group>"; };
 		6B6493EC1B53821F00C197D2 /* registerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = registerViewController.m; sourceTree = "<group>"; };
 		6B6493ED1B53821F00C197D2 /* registerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = registerViewController.xib; sourceTree = "<group>"; };
+		6B6493F01B539A6700C197D2 /* CPNewPassWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNewPassWordViewController.h; sourceTree = "<group>"; };
+		6B6493F11B539A6700C197D2 /* CPNewPassWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNewPassWordViewController.m; sourceTree = "<group>"; };
+		6B6493F21B539A6700C197D2 /* CPNewPassWordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPNewPassWordViewController.xib; sourceTree = "<group>"; };
+		6B6493F61B53A34900C197D2 /* CarOwnersCertificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarOwnersCertificationViewController.h; sourceTree = "<group>"; };
+		6B6493F71B53A34900C197D2 /* CarOwnersCertificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarOwnersCertificationViewController.m; sourceTree = "<group>"; };
+		6B6493F81B53A34900C197D2 /* CarOwnersCertificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarOwnersCertificationViewController.xib; sourceTree = "<group>"; };
+		6B6493FB1B54E61900C197D2 /* CPRegisterStep2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRegisterStep2ViewController.h; sourceTree = "<group>"; };
+		6B6493FC1B54E61900C197D2 /* CPRegisterStep2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRegisterStep2ViewController.m; sourceTree = "<group>"; };
+		6B6493FD1B54E61900C197D2 /* CPRegisterStep2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPRegisterStep2ViewController.xib; sourceTree = "<group>"; };
+		6B6494011B54E73C00C197D2 /* serviceTermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = serviceTermsViewController.h; sourceTree = "<group>"; };
+		6B6494021B54E73C00C197D2 /* serviceTermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = serviceTermsViewController.m; sourceTree = "<group>"; };
+		6B6494031B54E73C00C197D2 /* serviceTermsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = serviceTermsViewController.xib; sourceTree = "<group>"; };
 		6BC82F2A1B53C4AF00C8E916 /* CPHomePhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomePhoto.h; sourceTree = "<group>"; };
 		6BC82F2B1B53C4AF00C8E916 /* CPHomePhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomePhoto.m; sourceTree = "<group>"; };
 		6BC82F2C1B53C4AF00C8E916 /* CPHomeStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeStatus.h; sourceTree = "<group>"; };
@@ -654,6 +674,9 @@
 				6B6493E51B4FE34D00C197D2 /* CPForgetPasswordViewController.h */,
 				6B6493E61B4FE34D00C197D2 /* CPForgetPasswordViewController.m */,
 				6B6493E71B4FE34D00C197D2 /* CPForgetPasswordViewController.xib */,
+				6B6493F01B539A6700C197D2 /* CPNewPassWordViewController.h */,
+				6B6493F11B539A6700C197D2 /* CPNewPassWordViewController.m */,
+				6B6493F21B539A6700C197D2 /* CPNewPassWordViewController.xib */,
 			);
 			path = forgetPassword;
 			sourceTree = "<group>";
@@ -661,9 +684,14 @@
 		6B6493EA1B53821100C197D2 /* register */ = {
 			isa = PBXGroup;
 			children = (
+				6B6494001B54E72C00C197D2 /* serviceTerms */,
+				6B6493F51B53A34000C197D2 /* CarOwnersCertification */,
 				6B6493EB1B53821F00C197D2 /* registerViewController.h */,
 				6B6493EC1B53821F00C197D2 /* registerViewController.m */,
 				6B6493ED1B53821F00C197D2 /* registerViewController.xib */,
+				6B6493FB1B54E61900C197D2 /* CPRegisterStep2ViewController.h */,
+				6B6493FC1B54E61900C197D2 /* CPRegisterStep2ViewController.m */,
+				6B6493FD1B54E61900C197D2 /* CPRegisterStep2ViewController.xib */,
 			);
 			path = register;
 			sourceTree = "<group>";
@@ -1024,11 +1052,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B6493E91B4FE34D00C197D2 /* CPForgetPasswordViewController.xib in Resources */,
+				6B6493FF1B54E61900C197D2 /* CPRegisterStep2ViewController.xib in Resources */,
 				6B4959DC1B33A23900DB63EA /* LaunchScreen.xib in Resources */,
 				E36C96271B53C78200D3EDBB /* CPSubscribePersonController.storyboard in Resources */,
 				E3B1277B1B54DECB005B1174 /* Images.xcassets in Resources */,
 				6B6493E01B4FAFFD00C197D2 /* MBProgressHUD.bundle in Resources */,
 				6B4EF15C1B4036EE00292BD4 /* CPCityController.storyboard in Resources */,
+				6B4959D91B33A23900DB63EA /* Images.xcassets in Resources */,
+				6B6494051B54E73C00C197D2 /* serviceTermsViewController.xib in Resources */,
+				6B6493FA1B53A34900C197D2 /* CarOwnersCertificationViewController.xib in Resources */,
 				6B4EF15E1B4036EE00292BD4 /* Main.storyboard in Resources */,
 				6B6493EF1B53821F00C197D2 /* registerViewController.xib in Resources */,
 				E36C961C1B53BA6B00D3EDBB /* CPActivityApplyControllerView.storyboard in Resources */,
@@ -1036,6 +1068,7 @@
 				6B4EF1641B4036EE00292BD4 /* CPMyController.storyboard in Resources */,
 				E3EEDFF61B53951D00595333 /* CPNewMessageController.storyboard in Resources */,
 				E3EEDFF41B53951D00595333 /* CPMessageController.storyboard in Resources */,
+				6B6493F41B539A6700C197D2 /* CPNewPassWordViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1083,6 +1116,7 @@
 				E30BD56A1B54E99B00FD9030 /* NSString+MJExtension.h in Sources */,
 				E3B1280E1B54E6DB005B1174 /* SDWebImageManager.m in Sources */,
 				E3EEDFF81B53951D00595333 /* CPNewMessageCell.m in Sources */,
+				6B6493F31B539A6700C197D2 /* CPNewPassWordViewController.m in Sources */,
 				6B6493C81B4D0D7800C197D2 /* AFHTTPRequestOperation.m in Sources */,
 				E36C96251B53C77600D3EDBB /* CPSubscribePersonController.m in Sources */,
 				E3EEDFF71B53951D00595333 /* CPBadgeView.m in Sources */,
@@ -1101,6 +1135,7 @@
 				6B6493941B4D04E500C197D2 /* Tools.m in Sources */,
 				6B64938C1B4D04BE00C197D2 /* BaseViewController.m in Sources */,
 				6B6493CE1B4D0D7800C197D2 /* AFURLConnectionOperation.m in Sources */,
+				6B6493FE1B54E61900C197D2 /* CPRegisterStep2ViewController.m in Sources */,
 				E35E6FD01B54B0EC001212D6 /* CPMyPublishFrameModel.m in Sources */,
 				E35E6FCD1B54B0D9001212D6 /* CPMyPublishModel.m in Sources */,
 				6B4EF1681B403A5D00292BD4 /* UIBarButtonItem+Extension.m in Sources */,
@@ -1110,6 +1145,7 @@
 				E3B128161B54E6DB005B1174 /* UIView+WebCacheOperation.m in Sources */,
 				E3EEE0021B53952E00595333 /* Foundation+Log.m in Sources */,
 				6B6493E21B4FAFFD00C197D2 /* MBProgressHUD+Add.m in Sources */,
+				6B6494041B54E73C00C197D2 /* serviceTermsViewController.m in Sources */,
 				E30BD57E1B54EBEB00FD9030 /* CPMySubscribeController.m in Sources */,
 				E3B128091B54E6DB005B1174 /* SDImageCache.m in Sources */,
 				6B4EF15B1B4036EE00292BD4 /* CPCityController.m in Sources */,
@@ -1161,6 +1197,7 @@
 				E3B128071B54E6DB005B1174 /* MKAnnotationView+WebCache.m in Sources */,
 				6B6493D91B4FABC900C197D2 /* CPNetworkVO.m in Sources */,
 				E3EEDFF31B53951D00595333 /* CPMessageController.m in Sources */,
+				6B6493F91B53A34900C197D2 /* CarOwnersCertificationViewController.m in Sources */,
 				6B6493CB1B4D0D7800C197D2 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				E3B128011B54E6DB005B1174 /* MJProperty.m in Sources */,
 			);
