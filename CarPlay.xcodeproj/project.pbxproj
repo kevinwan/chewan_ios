@@ -283,8 +283,6 @@
 		E375E48C1B5516EB00DADF65 /* serviceTermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = serviceTermsViewController.h; sourceTree = "<group>"; };
 		E375E48D1B5516EB00DADF65 /* serviceTermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = serviceTermsViewController.m; sourceTree = "<group>"; };
 		E375E48E1B5516EB00DADF65 /* serviceTermsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = serviceTermsViewController.xib; sourceTree = "<group>"; };
-		E375E4951B55174A00DADF65 /* CarOwnersCertificationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CarOwnersCertificationViewController.xib; path = CarPlay/Classes/Login/register/CarOwnersCertification/CarOwnersCertificationViewController.xib; sourceTree = "<group>"; };
-		E375E4961B55175800DADF65 /* serviceTermsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = serviceTermsViewController.xib; path = CarPlay/Classes/Login/register/serviceTerms/serviceTermsViewController.xib; sourceTree = "<group>"; };
 		E3B127771B54D9C2005B1174 /* CPChatButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPChatButton.h; sourceTree = "<group>"; };
 		E3B127781B54D9C2005B1174 /* CPChatButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPChatButton.m; sourceTree = "<group>"; };
 		E3B1277A1B54DECB005B1174 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -381,8 +379,6 @@
 		6B4959BF1B33A23900DB63EA = {
 			isa = PBXGroup;
 			children = (
-				E375E4961B55175800DADF65 /* serviceTermsViewController.xib */,
-				E375E4951B55174A00DADF65 /* CarOwnersCertificationViewController.xib */,
 				6B4959CA1B33A23900DB63EA /* CarPlay */,
 				6B4959E41B33A23900DB63EA /* CarPlayTests */,
 				6B4959C91B33A23900DB63EA /* Products */,

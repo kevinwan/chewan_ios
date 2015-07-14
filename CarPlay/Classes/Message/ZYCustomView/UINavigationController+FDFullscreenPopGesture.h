@@ -1,5 +1,5 @@
 // The MIT License (MIT)
-//
+// 可以侧滑返回的navigationcontroller
 // Copyright (c) 2015-2016 forkingdog ( https://github.com/forkingdog )
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
