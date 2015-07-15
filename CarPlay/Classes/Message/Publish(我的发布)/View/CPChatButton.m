@@ -38,6 +38,14 @@
     
     [self setTitle:@"聊天" forState:UIControlStateNormal];
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.backgroundColor = [Tools getColor:@"fc6e51"];
+}
+
+- (void)setTitle:(NSString *)title forState:(UIControlState)state
+{
+    [super setTitle:title forState:state];
+    [self sizeToFit];
+    self.width += 10;
 }
 
 @end

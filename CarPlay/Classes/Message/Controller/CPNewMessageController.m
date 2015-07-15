@@ -10,6 +10,8 @@
 #import "CPNewMessageCell.h"
 #import "UIBarButtonItem+Extension.h"
 #import "CPActivityApplyControllerView.h"
+#import "ZYHttpTool.h"
+#import "CPNetWork.h"
 
 @interface CPNewMessageController ()
 @end
@@ -19,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationItem.title = @"新的留言";
 }
 
 - (void)didReceiveMemoryWarning {

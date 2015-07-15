@@ -10,8 +10,9 @@
 #import "CPMyPublishBottomView.h"
 #import "CPMyPublishModel.h"
 #import "CPMyPublishFrameModel.h"
-#import "HWPhotosView.h"
+#import "HMStatusPhotosView.h"
 #import "UIView+Extension.h"
+#import "HMStatusPhotoView.h"
 
 @interface CPMyPublishCell()
 
@@ -25,7 +26,7 @@
 @property (nonatomic, strong) UILabel *contentLb;
 
 // photoView
-@property (nonatomic, strong) HWPhotosView *photosView;
+@property (nonatomic, strong) HMStatusPhotoView *photosView;
 
 // 底部的View
 @property (nonatomic, strong) CPMyPublishBottomView *bottomView;
@@ -72,7 +73,7 @@
     [self.contentView addSubview:contentLb];
     self.contentLb = contentLb;
     
-    HWPhotosView *photosView = [[HWPhotosView alloc] init];
+    HMStatusPhotoView *photosView = [[HMStatusPhotoView alloc] init];
     [self.contentView addSubview:photosView];
     self.photosView = photosView;
     

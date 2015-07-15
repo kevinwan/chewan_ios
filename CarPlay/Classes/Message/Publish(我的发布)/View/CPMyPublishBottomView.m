@@ -98,8 +98,8 @@
     
     CGFloat btnW = self.width / 3;
     CGFloat btnH = topViewH;
-    
-    for (int i = 0, count = self.topView.subviews.count; i < count; i ++) {
+    NSUInteger count = self.topView.subviews.count;
+    for (int i = 0; i < count; i ++) {
         UIButton *btn = self.topView.subviews[i];
         CGFloat btnX = i * btnW;
         CGFloat btnY = 0;
@@ -117,12 +117,12 @@
     self.chatBtn.height = 20;
     self.chatBtn.y = (bottomViewH - 20) * 0.5;
     
-    
     CGFloat personBtnStartX = self.personNumLable.right + 10;
     CGFloat personBtnH = bottomViewH - 10;
     CGFloat personBtnY = (bottomViewH - personBtnH) * 0.5;
     CGFloat personBtnW = personBtnH;
-    for (int i = 0, count = self.bottomView.subviews.count, j = 0; i < count; i ++) {
+    count = self.bottomView.subviews.count;
+    for (int i = 0, j = 0; i < count; i ++) {
         UIButton *btn = self.topView.subviews[i];
         if ([btn isKindOfClass:[UIButton class]] && ![btn  isKindOfClass:[CPChatButton class]]) {
             

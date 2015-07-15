@@ -8,55 +8,109 @@
 
 #import "CPMySubscribeFrameModel.h"
 #import "CPMySubscribeModel.h"
+#import "NSString+Extension.h"
+#import "HMStatusPhotosView.h"
 
 #define KIconBtnWH 50
+#define KCellMargin 10
 @implementation CPMySubscribeFrameModel
 
 - (void)setModel:(CPMySubscribeModel *)model
 {
     _model = model;
     
-    CGFloat iconBtnX = 10;
+    CPOrganizer *organizer = model.organizer;
+    
+    CGFloat iconBtnX = KCellMargin;
     CGFloat iconBtnY = 15;
     CGFloat iconBtnW = KIconBtnWH;
     CGFloat iconBtnH = KIconBtnWH;
     self.iconBtnF = CGRectMake(iconBtnX, iconBtnY, iconBtnW,iconBtnH);
+    _cellHeight = CGRectGetMaxY(_iconBtnF);
     
-    CGFloat nameLableX = 10;
-    CGFloat nameLableY = 15;
-    CGFloat nameLableW = KIconBtnWH;
-    CGFloat nameLableH = KIconBtnWH;
+    CGFloat payBtnY = CGRectGetMaxY(_iconBtnF) + 8;
+    CGFloat payBtnW = 40;
+    CGFloat payBtnX = (iconBtnW - payBtnW) * 0.5 + KCellMargin;
+    CGFloat payBtnH = 15;
+    self.payViewF = CGRectMake(payBtnX, payBtnY, payBtnW, payBtnH);
+    _cellHeight = CGRectGetMaxY(_payViewF);
+    
+    if (model.totalSeat && model.availableSeat) {        
+        CGFloat seatViewW = 40;
+        CGFloat seatViewH = [model.seatStr sizeWithFont:SeatViewFont].height;
+        CGFloat seatViewX = (iconBtnW - seatViewW) * 0.5 + KCellMargin;
+        CGFloat seatViewY = CGRectGetMaxY(_payViewF) + 5;
+        self.seatViewF = CGRectMake(seatViewX, seatViewY, seatViewW, seatViewH);
+        _cellHeight = CGRectGetMaxY(_seatViewF);
+    }
+    
+    CGFloat nameLableX = CGRectGetMaxX(_iconBtnF) + KCellMargin;
+    CGFloat nameLableW = [organizer.nickname sizeWithFont:NickNameFont].width;
+    CGFloat nameLableH = [organizer.nickname sizeWithFont:NickNameFont].height;
+    CGFloat nameLableY = (iconBtnH - nameLableH) * 0.5;
     self.nameLabelF = CGRectMake(nameLableX, nameLableY, nameLableW,nameLableH);
     
-    CGFloat timeLableX = 10;
-    CGFloat timeLableY = 15;
-    CGFloat timeLableW = KIconBtnWH;
-    CGFloat timeLableH = KIconBtnWH;
+    
+    CGFloat sexViewX = CGRectGetMaxX(_nameLabelF) + 3;
+    CGFloat sexViewW = 30;
+    CGFloat sexViewH = 15;
+    CGFloat sexViewY = (iconBtnH - sexViewH) * 0.5;
+    self.sexViewF = CGRectMake(sexViewX, sexViewY, sexViewW,sexViewH);
+    
+    CGFloat timeLableY = sexViewY;
+    CGFloat timeLableW = [model.publishTimeStr sizeWithFont:TimeLabelFont].width;
+    CGFloat timeLableH = [model.publishTimeStr sizeWithFont:TimeLabelFont].height;
+    CGFloat timeLableX = kScreenWidth - timeLableW - KCellMargin;
     self.timeLabelF = CGRectMake(timeLableX, timeLableY, timeLableW,timeLableH);
     
-    CGFloat descLableX = 10;
-    CGFloat descLableY = 15;
-    CGFloat descLableW = KIconBtnWH;
-    CGFloat descLableH = KIconBtnWH;
+    
+    CGFloat descLableX = 0;
+    if (organizer.carBrandLogo.length) {
+        CGFloat brandX = nameLableX;
+        CGFloat brandY = CGRectGetMaxY(_nameLabelF) + KCellMargin;
+        CGFloat brandW = 15;
+        CGFloat brandH = 15;
+        self.brandF = CGRectMake(brandX, brandY, brandW, brandH);
+        descLableX = CGRectGetMaxX(_brandF) + 5;
+    }else{
+        self.brandF = CGRectZero;
+        descLableX = nameLableX;
+    }
+    
+    CGFloat descLableY = CGRectGetMaxY(_nameLabelF) + KCellMargin;
+    CGFloat descLableW = [organizer.descStr sizeWithFont:DescFont].width;
+    CGFloat descLableH = [organizer.descStr sizeWithFont:DescFont].height;
     self.descLabelF = CGRectMake(descLableX, descLableY, descLableW,descLableH);
     
-    CGFloat contentLbX = 0;
-    CGFloat contentLbY = 0;
-    CGFloat contentLbW = 0;
-    CGFloat contentLbH = 0;
+    CGFloat contentLbX = nameLableX;
+    CGFloat contentLbY = CGRectGetMaxY(_iconBtnF) + 8;
+    CGFloat maxW = kScreenWidth - nameLableX - KCellMargin;
+    CGFloat contentLbW = [model.introduction sizeWithFont:NickNameFont maxW:maxW].width;
+    CGFloat contentLbH = [model.introduction sizeWithFont:NickNameFont maxW:maxW].height;
     self.contentLableF = CGRectMake(contentLbX, contentLbY, contentLbW, contentLbH);
     
-    CGFloat photoViewX = 0;
-    CGFloat photoViewY = 0;
-    CGFloat photoViewW = 0;
-    CGFloat photoViewH = 0;
-    self.photosViewF = CGRectMake(photoViewX, photoViewY, photoViewW, photoViewH);
+    _cellHeight = CGRectGetMaxY(_contentLableF);
     
-    CGFloat bottomViewX = 0;
-    CGFloat bottomViewY = 0;
-    CGFloat bottomViewW = 0;
-    CGFloat bottomViewH = 0;
+    if (model.cover.count > 0) {
+        CGSize phontosViewSize = [HMStatusPhotosView sizeWithPhotosCount:model.cover.count];
+        
+        CGFloat photoViewX = nameLableX;
+        CGFloat photoViewY = _cellHeight + KCellMargin;
+        CGFloat photoViewW = phontosViewSize.width;
+        CGFloat photoViewH = phontosViewSize.height;
+        self.photosViewF = CGRectMake(photoViewX, photoViewY, photoViewW, photoViewH);
+        _cellHeight = CGRectGetMaxY(_photosViewF);
+        
+    }else{
+        _cellHeight = CGRectGetMaxY(_contentLableF);
+    }
+    
+    CGFloat bottomViewX = nameLableX;
+    CGFloat bottomViewY = _cellHeight + 5;
+    CGFloat bottomViewW = maxW;
+    CGFloat bottomViewH = 60;
     self.bottomViewF = CGRectMake(bottomViewX, bottomViewY, bottomViewW, bottomViewH);
+    _cellHeight = CGRectGetMaxY(_bottomViewF) + KCellMargin;
 }
 
 @end
