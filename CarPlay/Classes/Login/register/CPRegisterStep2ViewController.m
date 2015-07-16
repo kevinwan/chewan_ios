@@ -214,45 +214,46 @@
 }
 
 -(void)upLoadImageWithBase64Encodeing:(NSData *)encodedImageData{
-    NSString *url=[NSString stringWithFormat:@"%@/v1/avatar/upload",BASE_URL];
-    
-    AFHTTPClient *httpClient = [AFHTTPClient clientWithBaseURL:[NSURL URLWithString:url]];
-    NSMutableURLRequest *request=[httpClient multipartFormRequestWithMethod:@"POST" path:nil parameters:nil constructingBodyWithBlock:^(id formData) {
-        [formData appendPartWithFileData:encodedImageData name:@"photo" fileName:@"avatar.jpg" mimeType:@"image/jpeg"];
-    }];
-    AFHTTPRequestOperation *oper=[[AFHTTPRequestOperation alloc]initWithRequest:request];
-    [oper setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-
-        NSDictionary *dicData=[NSJSONSerialization  JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-        
-        NSString *resStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSData *data_utf8 = [resStr dataUsingEncoding:NSUTF8StringEncoding];
-        
-        NSError *error = nil;
-        id json = [NSJSONSerialization JSONObjectWithData:data_utf8 options:kNilOptions error:&error];
-        
-        if (json) {
-            if ([json isKindOfClass:[NSDictionary class]]) {
-                NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
-                NSString *state=[numberFormatter stringFromNumber:[json objectForKey:@"result"]];
-                if (![state isEqualToString:@"0"]) {
-                    photoId=[json objectForKey:@"photoId"];
-                    [Tools setValueForKey:[json objectForKey:@"photoUrl"] key:@"photoUrl"];
-                }else{
-                    [[[UIAlertView alloc]initWithTitle:@"提示" message:@"上传失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-                }
-            }else{
-                DLog(@"返回数据不是JSON数据:%@", [json class]);
-            }
-        }else
-        {
-            DLog(@"解析数据失败:%@", json);
-        }
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"上传失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-    }];
-    [oper start];
+//    
+//    NSString *url=[NSString stringWithFormat:@"%@/v1/avatar/upload",BASE_URL];
+//    
+//    AFHTTPClient *httpClient = [AFHTTPClient clientWithBaseURL:[NSURL URLWithString:url]];
+//    NSMutableURLRequest *request=[httpClient multipartFormRequestWithMethod:@"POST" path:nil parameters:nil constructingBodyWithBlock:^(id formData) {
+//        [formData appendPartWithFileData:encodedImageData name:@"photo" fileName:@"avatar.jpg" mimeType:@"image/jpeg"];
+//    }];
+//    AFHTTPRequestOperation *oper=[[AFHTTPRequestOperation alloc]initWithRequest:request];
+//    [oper setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//
+//        NSDictionary *dicData=[NSJSONSerialization  JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+//        
+//        NSString *resStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+//        NSData *data_utf8 = [resStr dataUsingEncoding:NSUTF8StringEncoding];
+//        
+//        NSError *error = nil;
+//        id json = [NSJSONSerialization JSONObjectWithData:data_utf8 options:kNilOptions error:&error];
+//        
+//        if (json) {
+//            if ([json isKindOfClass:[NSDictionary class]]) {
+//                NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
+//                NSString *state=[numberFormatter stringFromNumber:[json objectForKey:@"result"]];
+//                if (![state isEqualToString:@"0"]) {
+//                    photoId=[json objectForKey:@"photoId"];
+//                    [Tools setValueForKey:[json objectForKey:@"photoUrl"] key:@"photoUrl"];
+//                }else{
+//                    [[[UIAlertView alloc]initWithTitle:@"提示" message:@"上传失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+//                }
+//            }else{
+//                DLog(@"返回数据不是JSON数据:%@", [json class]);
+//            }
+//        }else
+//        {
+//            DLog(@"解析数据失败:%@", json);
+//        }
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"上传失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+//    }];
+//    [oper start];
 }
 
 @end

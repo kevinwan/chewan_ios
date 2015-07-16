@@ -15,4 +15,7 @@
 
 + (NSString *)identifier;
 
+// 返回每一行有多高
+- (CGFloat)cellHeightWithStatus:(CPHomeStatus *)status;
+
 @end
