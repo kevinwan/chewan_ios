@@ -10,7 +10,6 @@
 #import "CPNewMessageCell.h"
 #import "UIBarButtonItem+Extension.h"
 #import "CPActivityApplyControllerView.h"
-#import "ZYHttpTool.h"
 #import "CPNetWork.h"
 #import "CPMyPublishController.h"
 
