@@ -26,11 +26,15 @@
     self.tableView.tableHeaderView=self.headView;
     self.tableView.tableFooterView=self.footView;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-//    self.loginBtn.layer.cornerRadius=3.0;
-//    self.loginBtn.layer.masksToBounds=YES;
+    self.nextStep.layer.cornerRadius=3.0;
+    self.nextStep.layer.masksToBounds=YES;
     self.userIconBtn.layer.cornerRadius=38.5;
     self.userIconBtn.layer.masksToBounds=YES;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removePickview) name:@"remove" object:nil];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [self.pickview removeFromSuperview];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -149,7 +153,20 @@
 -(void)toobarDonBtnHaveClick:(ZHPickView *)pickView resultString:(NSString *)resultString{
     
     CPRegisterCellsTableViewCell3 * cell=(CPRegisterCellsTableViewCell3 *)[self.tableView cellForRowAtIndexPath:_indexPath];
-    cell.cellContent.text=resultString;
+    if (_indexPath.row==2) {
+        double age=[resultString doubleValue]/31536000;
+        cell.cellContent.text=[[NSString alloc]initWithFormat:@"%.0f岁",0-age];
+        NSDate *brithDay=[[NSDate alloc]initWithTimeIntervalSinceNow:[resultString doubleValue]];
+        NSCalendar* calendar = [NSCalendar currentCalendar];
+        NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:brithDay]; // Get necessary date components
+        NSLog(@"%ld",(long)[components year]);// gives you year
+        NSLog(@"%ld",(long)[components month]); //gives you month
+        NSLog(@"%ld",(long)[components day]); //gives you day
+        
+    }else{
+        cell.cellContent.text=resultString;
+    }
+    
     //开始动画
     [UIView beginAnimations:nil context:nil];
     //设定动画持续时间
@@ -191,7 +208,6 @@
     [self.userIconBtn setImage:editedImage forState:UIControlStateNormal];
     [picker dismissViewControllerAnimated:YES completion:^{
         NSData *data=UIImageJPEGRepresentation(editedImage, 0.4);
-//        encodedImageStr=[data base64Encoding];
         [self upLoadImageWithBase64Encodeing:data];
         
     }];

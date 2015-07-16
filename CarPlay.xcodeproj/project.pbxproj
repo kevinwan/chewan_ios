@@ -19,6 +19,9 @@
 		6B4EF1641B4036EE00292BD4 /* CPMyController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B4EF1581B4036EE00292BD4 /* CPMyController.storyboard */; };
 		6B4EF1681B403A5D00292BD4 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4EF1671B403A5D00292BD4 /* UIBarButtonItem+Extension.m */; };
 		6B5FD3481B56898800E34F66 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B5FD3471B56898800E34F66 /* area.plist */; };
+		6B5FD34B1B57A01700E34F66 /* CPHomeStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5FD34A1B57A01700E34F66 /* CPHomeStatusCell.m */; };
+		6B5FD34F1B57C33700E34F66 /* CPEditUsernameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5FD34D1B57C33700E34F66 /* CPEditUsernameViewController.m */; };
+		6B5FD3501B57C33700E34F66 /* CPEditUsernameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B5FD34E1B57C33700E34F66 /* CPEditUsernameViewController.xib */; };
 		6B64938C1B4D04BE00C197D2 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B64938B1B4D04BE00C197D2 /* BaseViewController.m */; };
 		6B6493901B4D04E100C197D2 /* CPNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B64938F1B4D04E100C197D2 /* CPNetWork.m */; };
 		6B6493941B4D04E500C197D2 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493931B4D04E500C197D2 /* Tools.m */; };
@@ -186,6 +189,11 @@
 		6B4EF1661B403A5D00292BD4 /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
 		6B4EF1671B403A5D00292BD4 /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
 		6B5FD3471B56898800E34F66 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
+		6B5FD3491B57A01700E34F66 /* CPHomeStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeStatusCell.h; sourceTree = "<group>"; };
+		6B5FD34A1B57A01700E34F66 /* CPHomeStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeStatusCell.m; sourceTree = "<group>"; };
+		6B5FD34C1B57C33700E34F66 /* CPEditUsernameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPEditUsernameViewController.h; sourceTree = "<group>"; };
+		6B5FD34D1B57C33700E34F66 /* CPEditUsernameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPEditUsernameViewController.m; sourceTree = "<group>"; };
+		6B5FD34E1B57C33700E34F66 /* CPEditUsernameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPEditUsernameViewController.xib; sourceTree = "<group>"; };
 		6B6493881B4D04AD00C197D2 /* macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macro.h; sourceTree = "<group>"; };
 		6B64938A1B4D04BE00C197D2 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		6B64938B1B4D04BE00C197D2 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
@@ -510,6 +518,8 @@
 		6B4EF13F1B4036EE00292BD4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6B5FD3491B57A01700E34F66 /* CPHomeStatusCell.h */,
+				6B5FD34A1B57A01700E34F66 /* CPHomeStatusCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -722,6 +732,9 @@
 				6B6493FB1B54E61900C197D2 /* CPRegisterStep2ViewController.h */,
 				6B6493FC1B54E61900C197D2 /* CPRegisterStep2ViewController.m */,
 				6B6493FD1B54E61900C197D2 /* CPRegisterStep2ViewController.xib */,
+				6B5FD34C1B57C33700E34F66 /* CPEditUsernameViewController.h */,
+				6B5FD34D1B57C33700E34F66 /* CPEditUsernameViewController.m */,
+				6B5FD34E1B57C33700E34F66 /* CPEditUsernameViewController.xib */,
 			);
 			path = register;
 			sourceTree = "<group>";
@@ -1141,6 +1154,7 @@
 				6B5FD3481B56898800E34F66 /* area.plist in Resources */,
 				E375E4901B5516EB00DADF65 /* CarOwnersCertificationViewController.xib in Resources */,
 				6B6493E91B4FE34D00C197D2 /* CPForgetPasswordViewController.xib in Resources */,
+				6B5FD3501B57C33700E34F66 /* CPEditUsernameViewController.xib in Resources */,
 				6B6493FF1B54E61900C197D2 /* CPRegisterStep2ViewController.xib in Resources */,
 				6B4959DC1B33A23900DB63EA /* LaunchScreen.xib in Resources */,
 				6BDFF9041B564F52007EAC2A /* CPRegisterCellsTableViewCell3.xib in Resources */,
@@ -1213,6 +1227,7 @@
 				6B6493F31B539A6700C197D2 /* CPNewPassWordViewController.m in Sources */,
 				6B6493C81B4D0D7800C197D2 /* AFHTTPRequestOperation.m in Sources */,
 				E36C96251B53C77600D3EDBB /* CPSubscribePersonController.m in Sources */,
+				6B5FD34F1B57C33700E34F66 /* CPEditUsernameViewController.m in Sources */,
 				E3EEDFF71B53951D00595333 /* CPBadgeView.m in Sources */,
 				E375E4911B5516EB00DADF65 /* serviceTermsViewController.m in Sources */,
 				6B6493EE1B53821F00C197D2 /* registerViewController.m in Sources */,
@@ -1229,6 +1244,7 @@
 				E30BD5841B54EC1000FD9030 /* HWPhotoView.m in Sources */,
 				6B6493941B4D04E500C197D2 /* Tools.m in Sources */,
 				6B64938C1B4D04BE00C197D2 /* BaseViewController.m in Sources */,
+				6B5FD34B1B57A01700E34F66 /* CPHomeStatusCell.m in Sources */,
 				6B6493CE1B4D0D7800C197D2 /* AFURLConnectionOperation.m in Sources */,
 				6B6493FE1B54E61900C197D2 /* CPRegisterStep2ViewController.m in Sources */,
 				E35E6FD01B54B0EC001212D6 /* CPMyPublishFrameModel.m in Sources */,
