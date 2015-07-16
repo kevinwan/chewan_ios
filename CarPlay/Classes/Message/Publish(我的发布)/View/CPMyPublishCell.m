@@ -12,7 +12,8 @@
 #import "CPMyPublishFrameModel.h"
 #import "HMStatusPhotosView.h"
 #import "UIView+Extension.h"
-#import "HMStatusPhotoView.h"
+#import "HMStatusPhotosView.h"
+#import "CPMySubscribeModel.h"
 
 @interface CPMyPublishCell()
 
@@ -26,7 +27,10 @@
 @property (nonatomic, strong) UILabel *contentLb;
 
 // photoView
-@property (nonatomic, strong) HMStatusPhotoView *photosView;
+@property (nonatomic, strong) HMStatusPhotosView *photosView;
+
+// cycleView
+@property (nonatomic, strong) UIView *cycleView;
 
 // 底部的View
 @property (nonatomic, strong) CPMyPublishBottomView *bottomView;
@@ -62,18 +66,32 @@
 - (void)setUpCell
 {
     UILabel *timeStampLabel = [[UILabel alloc] init];
+    timeStampLabel.font = [UIFont systemFontOfSize:16];
+    timeStampLabel.textAlignment = NSTextAlignmentCenter;
+    timeStampLabel.textColor = [Tools getColor:@"48d1d5"];
     [self.contentView addSubview:timeStampLabel];
     self.timeStampLabel = timeStampLabel;
     
     UIView *timeLine = [[UIView alloc] init];
-    timeLine.backgroundColor = [UIColor grayColor];
+    timeLine.backgroundColor = CPColor(200, 200, 200, 0.5);
+    [self.contentView addSubview:timeLine];
     self.timeLine = timeLine;
     
     UILabel *contentLb = [[UILabel alloc] init];
+    contentLb.font = ContentFont;
+    contentLb.textColor = [Tools getColor:@"434a53"];
+    contentLb.numberOfLines = 0;
     [self.contentView addSubview:contentLb];
     self.contentLb = contentLb;
     
-    HMStatusPhotoView *photosView = [[HMStatusPhotoView alloc] init];
+    UIView *cicleView = [[UIView alloc] init];
+    cicleView.backgroundColor = [Tools getColor:@"48d1d5"];
+    cicleView.layer.cornerRadius = 3;
+    cicleView.clipsToBounds = YES;
+    [self.contentView addSubview:cicleView];
+    self.cycleView = cicleView;
+    
+    HMStatusPhotosView *photosView = [[HMStatusPhotosView alloc] init];
     [self.contentView addSubview:photosView];
     self.photosView = photosView;
     
@@ -89,6 +107,10 @@
     CPMyPublishModel *model = frameModel.model;
     
     // 进行内容的设置
+    self.timeStampLabel.text = model.publishTimeStr;
+    self.contentLb.text = model.introduction;
+    self.photosView.pic_urls = model.cover;
+    self.bottomView.model = model;
     
     // 进行frame的设置
     self.timeStampLabel.frame = frameModel.timeStampF;
@@ -100,32 +122,20 @@
     self.bottomView.frame = frameModel.bottomViewF;
     
     CGFloat timeLineY = 0;
+    CGFloat timeCenterY = self.timeStampLabel.centerYInSuper;
     if (self.indexPath.row == 0) {
-        timeLineY = 10;
+        timeLineY = timeCenterY;
     }
-    self.timeLine.frame = CGRectMake(self.timeStampLabel.right , timeLineY, 1 , frameModel.cellHeight);
+    self.timeLine.x = self.timeStampLabel.right + 5;
+    self.timeLine.width = 1;
+    self.timeLine.height = frameModel.cellHeight - timeLineY;
+    self.timeLine.y = timeLineY;
     
-}
-- (void)drawRect:(CGRect)rect
-{
-    // 1. 获得上下文
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
-    // 2. 画圆
-    // x 圆心的x
-    // y 圆心的y
-    // radius 半径
-    // startAngle 开始角度
-    // endAngle 结束角度
-    // clockwise 0 顺时针 1 逆时针
-    CGFloat x = 30;
-    CGFloat y = 20;
-    CGFloat radius = 0;
-    CGContextAddArc(ctx, x, y, radius, 0, M_PI * 2, 0);
-    // 3.设置颜色
-    [[UIColor redColor] set];
-    // 3.渲染
-    //    CGContextStrokePath(ctx);
-    CGContextFillPath(ctx);
+    self.cycleView.width = 6;
+    self.cycleView.height = 6;
+    self.cycleView.centerX = self.timeLine.centerXInSuper;
+    self.cycleView.centerY = self.timeStampLabel.centerYInSuper;
+    
 }
 
 @end

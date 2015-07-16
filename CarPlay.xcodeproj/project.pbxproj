@@ -118,7 +118,6 @@
 		E375E4931B55171500DADF65 /* CarOwnersCertificationViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = E375E4881B5516EB00DADF65 /* CarOwnersCertificationViewController.h */; };
 		E375E4941B55171500DADF65 /* serviceTermsViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = E375E48C1B5516EB00DADF65 /* serviceTermsViewController.h */; };
 		E375E4991B552B3700DADF65 /* ZYHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E375E4981B552B3700DADF65 /* ZYHttpTool.m */; };
-		E3A8D78D1B55F3600002BEA9 /* CPActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A8D78C1B55F3600002BEA9 /* CPActivityModel.m */; };
 		E3B127791B54D9C2005B1174 /* CPChatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B127781B54D9C2005B1174 /* CPChatButton.m */; };
 		E3B1277B1B54DECB005B1174 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3B1277A1B54DECB005B1174 /* Images.xcassets */; };
 		E3B1277E1B54E19B005B1174 /* CPIconButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B1277D1B54E19B005B1174 /* CPIconButton.m */; };
@@ -146,6 +145,8 @@
 		E3B128141B54E6DB005B1174 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B127FA1B54E6DB005B1174 /* UIImageView+HighlightedWebCache.m */; };
 		E3B128151B54E6DB005B1174 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B127FC1B54E6DB005B1174 /* UIImageView+WebCache.m */; };
 		E3B128161B54E6DB005B1174 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B127FE1B54E6DB005B1174 /* UIView+WebCacheOperation.m */; };
+		E3D8793F1B57475400228356 /* CPActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D8793E1B57475400228356 /* CPActivityModel.m */; };
+		E3D879421B575EC200228356 /* CPTopViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D879411B575EC200228356 /* CPTopViewButton.m */; };
 		E3EEDFF31B53951D00595333 /* CPMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EEDFE81B53951D00595333 /* CPMessageController.m */; };
 		E3EEDFF41B53951D00595333 /* CPMessageController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3EEDFE91B53951D00595333 /* CPMessageController.storyboard */; };
 		E3EEDFF51B53951D00595333 /* CPNewMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EEDFEB1B53951D00595333 /* CPNewMessageController.m */; };
@@ -324,8 +325,6 @@
 		E375E48E1B5516EB00DADF65 /* serviceTermsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = serviceTermsViewController.xib; sourceTree = "<group>"; };
 		E375E4971B552B3700DADF65 /* ZYHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYHttpTool.h; sourceTree = "<group>"; };
 		E375E4981B552B3700DADF65 /* ZYHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYHttpTool.m; sourceTree = "<group>"; };
-		E3A8D78B1B55F3600002BEA9 /* CPActivityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityModel.h; sourceTree = "<group>"; };
-		E3A8D78C1B55F3600002BEA9 /* CPActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityModel.m; sourceTree = "<group>"; };
 		E3B127771B54D9C2005B1174 /* CPChatButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPChatButton.h; sourceTree = "<group>"; };
 		E3B127781B54D9C2005B1174 /* CPChatButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPChatButton.m; sourceTree = "<group>"; };
 		E3B1277A1B54DECB005B1174 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -381,6 +380,10 @@
 		E3B127FC1B54E6DB005B1174 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		E3B127FD1B54E6DB005B1174 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		E3B127FE1B54E6DB005B1174 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
+		E3D8793D1B57475400228356 /* CPActivityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityModel.h; sourceTree = "<group>"; };
+		E3D8793E1B57475400228356 /* CPActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityModel.m; sourceTree = "<group>"; };
+		E3D879401B575EC200228356 /* CPTopViewButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTopViewButton.h; sourceTree = "<group>"; };
+		E3D879411B575EC200228356 /* CPTopViewButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTopViewButton.m; sourceTree = "<group>"; };
 		E3EEDFE71B53951D00595333 /* CPMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMessageController.h; sourceTree = "<group>"; };
 		E3EEDFE81B53951D00595333 /* CPMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMessageController.m; sourceTree = "<group>"; };
 		E3EEDFE91B53951D00595333 /* CPMessageController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMessageController.storyboard; sourceTree = "<group>"; };
@@ -825,6 +828,8 @@
 				E35E6FD21B54B1DE001212D6 /* CPMyPublishBottomView.m */,
 				E3B127771B54D9C2005B1174 /* CPChatButton.h */,
 				E3B127781B54D9C2005B1174 /* CPChatButton.m */,
+				E3D879401B575EC200228356 /* CPTopViewButton.h */,
+				E3D879411B575EC200228356 /* CPTopViewButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -852,8 +857,8 @@
 		E36C96141B53BA3200D3EDBB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E3A8D78B1B55F3600002BEA9 /* CPActivityModel.h */,
-				E3A8D78C1B55F3600002BEA9 /* CPActivityModel.m */,
+				E3D8793D1B57475400228356 /* CPActivityModel.h */,
+				E3D8793E1B57475400228356 /* CPActivityModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1225,6 +1230,7 @@
 				E3EEDFF81B53951D00595333 /* CPNewMessageCell.m in Sources */,
 				6B6493F31B539A6700C197D2 /* CPNewPassWordViewController.m in Sources */,
 				6B6493C81B4D0D7800C197D2 /* AFHTTPRequestOperation.m in Sources */,
+				E3D879421B575EC200228356 /* CPTopViewButton.m in Sources */,
 				E36C96251B53C77600D3EDBB /* CPSubscribePersonController.m in Sources */,
 				E3EEDFF71B53951D00595333 /* CPBadgeView.m in Sources */,
 				E375E4911B5516EB00DADF65 /* serviceTermsViewController.m in Sources */,
@@ -1251,6 +1257,7 @@
 				E30BD5941B54FCC600FD9030 /* ZYNavigationBar.m in Sources */,
 				E3B128111B54E6DB005B1174 /* UIImage+GIF.m in Sources */,
 				E3B128161B54E6DB005B1174 /* UIView+WebCacheOperation.m in Sources */,
+				E3D8793F1B57475400228356 /* CPActivityModel.m in Sources */,
 				E3EEE0021B53952E00595333 /* Foundation+Log.m in Sources */,
 				6B6493E21B4FAFFD00C197D2 /* MBProgressHUD+Add.m in Sources */,
 				E30BD57E1B54EBEB00FD9030 /* CPMySubscribeController.m in Sources */,
@@ -1305,7 +1312,6 @@
 				E35E6FCA1B54B076001212D6 /* CPMyPublishCell.m in Sources */,
 				E3B127791B54D9C2005B1174 /* CPChatButton.m in Sources */,
 				6B6493E81B4FE34D00C197D2 /* CPForgetPasswordViewController.m in Sources */,
-				E3A8D78D1B55F3600002BEA9 /* CPActivityModel.m in Sources */,
 				E3B1280C1B54E6DB005B1174 /* SDWebImageDownloader.m in Sources */,
 				E3B128131B54E6DB005B1174 /* UIImage+WebP.m in Sources */,
 				6B6493CA1B4D0D7800C197D2 /* AFJSONRequestOperation.m in Sources */,

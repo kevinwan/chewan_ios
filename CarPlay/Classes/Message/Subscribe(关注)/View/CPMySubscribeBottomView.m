@@ -115,7 +115,7 @@
     self.chatBtn.y = (bottomViewH - self.chatBtn.height) * 0.5;
     
     CGFloat personBtnStartX = 5;
-    CGFloat personBtnH = bottomViewH - 20;
+    CGFloat personBtnH = bottomViewH - 16;
     CGFloat personBtnY = (bottomViewH - personBtnH) * 0.5;
     CGFloat personBtnW = personBtnH;
     

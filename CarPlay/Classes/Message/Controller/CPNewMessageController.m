@@ -12,6 +12,7 @@
 #import "CPActivityApplyControllerView.h"
 #import "ZYHttpTool.h"
 #import "CPNetWork.h"
+#import "CPMyPublishController.h"
 
 @interface CPNewMessageController ()
 @end
@@ -53,7 +54,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CPActivityApplyControllerView *vc = [UIStoryboard storyboardWithName:@"CPActivityApplyControllerView" bundle:nil].instantiateInitialViewController;
+    CPMyPublishController *vc = [[CPMyPublishController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

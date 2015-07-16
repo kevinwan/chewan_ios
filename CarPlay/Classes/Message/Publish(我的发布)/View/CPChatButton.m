@@ -34,7 +34,6 @@
     self.layer.cornerRadius = 12;
     self.titleLabel.font = [UIFont systemFontOfSize:12];
     self.clipsToBounds = YES;
-    self.selected = NO;
     
     [self setTitle:@"聊天" forState:UIControlStateNormal];
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
