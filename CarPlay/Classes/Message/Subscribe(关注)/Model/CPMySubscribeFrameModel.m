@@ -36,9 +36,9 @@
     _cellHeight = CGRectGetMaxY(_payViewF);
     
     if (model.totalSeat && model.availableSeat) {        
-        CGFloat seatViewW = 40;
+        CGFloat seatViewW = iconBtnW;
         CGFloat seatViewH = [model.seatStr sizeWithFont:SeatViewFont].height;
-        CGFloat seatViewX = (iconBtnW - seatViewW) * 0.5 + KCellMargin;
+        CGFloat seatViewX = iconBtnX;
         CGFloat seatViewY = CGRectGetMaxY(_payViewF) + 5;
         self.seatViewF = CGRectMake(seatViewX, seatViewY, seatViewW, seatViewH);
         _cellHeight = CGRectGetMaxY(_seatViewF);
@@ -106,7 +106,7 @@
     }
     
     CGFloat bottomViewX = nameLableX;
-    CGFloat bottomViewY = _cellHeight + 5;
+    CGFloat bottomViewY = _cellHeight + KCellMargin;
     CGFloat bottomViewW = maxW;
     CGFloat bottomViewH = 60;
     self.bottomViewF = CGRectMake(bottomViewX, bottomViewY, bottomViewW, bottomViewH);

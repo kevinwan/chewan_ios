@@ -35,14 +35,11 @@
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
 
-- (void)layoutSubviews
+- (void)setFrame:(CGRect)frame
 {
-    [super layoutSubviews];
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        self.layer.cornerRadius = self.width * 0.5;
-        self.clipsToBounds = YES;
-    });
+    [super setFrame:frame];
+    self.layer.cornerRadius = self.width * 0.5;
+    self.clipsToBounds = YES;
 }
 
 @end

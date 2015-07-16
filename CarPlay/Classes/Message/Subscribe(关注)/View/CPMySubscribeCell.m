@@ -160,12 +160,23 @@
     [self.sexView setTitle:[NSString stringWithFormat:@"%zd",organizer.age] forState:UIControlStateNormal];
     self.sexView.isMan = organizer.isMan;
     self.timeLabel.text = model.publishTimeStr;
-    [self.carBrandLogo sd_setImageWithURL:[NSURL URLWithString:organizer.carBrandLogo]];
+    
+    if (organizer.carBrandLogo.length > 0) {
+        self.carBrandLogo.hidden = NO;
+        [self.carBrandLogo sd_setImageWithURL:[NSURL URLWithString:organizer.carBrandLogo]];
+    }else{
+        self.carBrandLogo.hidden = YES;
+    }
     self.descLabel.text = organizer.descStr;
     self.payView.payOption = model.pay;
     
     // 构造
-    self.seatView.attributedText = [self seatViewTextWithModel:model];
+    if (model.totalSeat > 0) {
+        self.seatView.hidden = NO;
+        self.seatView.attributedText = [self seatViewTextWithModel:model];
+    }else{
+        self.seatView.hidden = YES;
+    }
     self.contentLable.text = model.introduction;
     self.photosView.pic_urls = model.cover;
     self.bottomView.model = model;
@@ -204,7 +215,7 @@
     
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%zd",model.availableSeat]];
     [str addAttribute:NSForegroundColorAttributeName value:[Tools getColor:@"fc6e51"] range:NSMakeRange(0, str.length)];
-    NSMutableAttributedString *totalSeat = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"/%zd",model.totalSeat] attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"aab2bd"]}];
+    NSMutableAttributedString *totalSeat = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"/%zd座",model.totalSeat] attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"aab2bd"]}];
     [str appendAttributedString:totalSeat];
     return str;
     

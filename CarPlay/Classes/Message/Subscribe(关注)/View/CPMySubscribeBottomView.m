@@ -115,16 +115,25 @@
     self.chatBtn.y = (bottomViewH - self.chatBtn.height) * 0.5;
     
     CGFloat personBtnStartX = 5;
-    CGFloat personBtnH = bottomViewH - 10;
+    CGFloat personBtnH = bottomViewH - 20;
     CGFloat personBtnY = (bottomViewH - personBtnH) * 0.5;
     CGFloat personBtnW = personBtnH;
     
     count = self.bottomView.subviews.count;
+    CGFloat maxX = 0;
+    
     for (int i = 0; i < KPersonNum; i ++) {
        UIView *btn = [self.bottomView viewWithTag:i + 1];
-        CGFloat btnX = personBtnStartX + i * personBtnW;
+        CGFloat btnX = personBtnStartX + i * (personBtnW + 5);
         btn.frame = CGRectMake(btnX, personBtnY, personBtnW, personBtnH);
+        maxX = btnX + personBtnW;
     }
+    
+    self.moreBtn.width = personBtnW;
+    self.moreBtn.height = personBtnH;
+    self.moreBtn.x = maxX + 5;
+    self.moreBtn.y = personBtnY;
+    
 }
 
 - (void)setModel:(CPMySubscribeModel *)model
@@ -160,7 +169,7 @@
     }else{
         self.moreBtn.hidden = YES;
     }
-    [self.chatBtn setTitle:@"我要要去" forState:UIControlStateNormal];
+    [self.chatBtn setTitle:@"我要去玩" forState:UIControlStateNormal];
 }
 
 @end

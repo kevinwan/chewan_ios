@@ -31,6 +31,7 @@
  */
 - (void)setUp
 {
+    self.userInteractionEnabled = NO;
     self.layer.cornerRadius = 4;
     self.clipsToBounds = YES;
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

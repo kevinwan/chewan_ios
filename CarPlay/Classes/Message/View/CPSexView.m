@@ -13,6 +13,7 @@
 
 - (void)setUp
 {
+    self.userInteractionEnabled = NO;
     [self setBackgroundImage:[UIImage imageNamed:@"男-1"] forState:UIControlStateNormal];
     self.titleEdgeInsets = UIEdgeInsetsMake(0, 12, 0, 0);
     self.titleLabel.font = [UIFont systemFontOfSize:12];
