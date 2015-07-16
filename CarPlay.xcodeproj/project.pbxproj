@@ -82,6 +82,7 @@
 		E30BD5941B54FCC600FD9030 /* ZYNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5931B54FCC600FD9030 /* ZYNavigationBar.m */; };
 		E30BD5971B54FD6E00FD9030 /* ZYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5961B54FD6E00FD9030 /* ZYNavigationController.m */; };
 		E30BD59A1B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5991B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.m */; };
+		E33CB2E21B57871F003E76B7 /* CPHomeStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E33CB2E11B57871F003E76B7 /* CPHomeStatusCell.m */; };
 		E35559A51B53A0CE00B200D0 /* CPSexView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35559A41B53A0CE00B200D0 /* CPSexView.m */; };
 		E35B04201B56076D002C6655 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E35B041F1B56076D002C6655 /* NSDate+Extension.m */; };
 		E35B04221B562F79002C6655 /* TestActivity.plist in Resources */ = {isa = PBXBuildFile; fileRef = E35B04211B562F79002C6655 /* TestActivity.plist */; };
@@ -263,6 +264,8 @@
 		E30BD5961B54FD6E00FD9030 /* ZYNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYNavigationController.m; sourceTree = "<group>"; };
 		E30BD5981B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
 		E30BD5991B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
+		E33CB2E01B57871F003E76B7 /* CPHomeStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeStatusCell.h; sourceTree = "<group>"; };
+		E33CB2E11B57871F003E76B7 /* CPHomeStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeStatusCell.m; sourceTree = "<group>"; };
 		E35559A31B53A0CE00B200D0 /* CPSexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSexView.h; sourceTree = "<group>"; };
 		E35559A41B53A0CE00B200D0 /* CPSexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSexView.m; sourceTree = "<group>"; };
 		E35B041E1B56076D002C6655 /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
@@ -531,6 +534,8 @@
 		6B4EF13F1B4036EE00292BD4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E33CB2E01B57871F003E76B7 /* CPHomeStatusCell.h */,
+				E33CB2E11B57871F003E76B7 /* CPHomeStatusCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1204,6 +1209,7 @@
 				E30BD5701B54E9AB00FD9030 /* SDWebImageDownloader.h in Sources */,
 				E30BD5711B54E9AB00FD9030 /* SDWebImageDownloaderOperation.h in Sources */,
 				E30BD5721B54E9AB00FD9030 /* SDWebImageManager.h in Sources */,
+				E33CB2E21B57871F003E76B7 /* CPHomeStatusCell.m in Sources */,
 				E30BD5731B54E9AB00FD9030 /* SDWebImageOperation.h in Sources */,
 				E30BD5741B54E9AB00FD9030 /* SDWebImagePrefetcher.h in Sources */,
 				E30BD5751B54E9AB00FD9030 /* UIButton+WebCache.h in Sources */,
