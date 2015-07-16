@@ -26,7 +26,7 @@ typedef void(^resultBlock)(id result);
 
 -(id)postRequestWithBaseUrl:(NSString*)url andPath:(NSString*)path andParameters:(NSDictionary*)parameters andHeadersParams:(NSDictionary *)headerDic forSueccessful:(void(^)(id responseObject))successful forFail:(void(^)(NSError *error)) fail;
 
--(id)postRequestWithBaseUrl:(NSString*)url andPath:(NSString*)path andParameters:(NSDictionary*)parameters andParameterEncoding:(AFHTTPClientParameterEncoding)parameterEncoding forSueccessful:(void(^)(id responseObject))successful forFail:(void(^)(NSError *error)) fail;
+//-(id)postRequestWithBaseUrl:(NSString*)url andPath:(NSString*)path andParameters:(NSDictionary*)parameters andParameterEncoding:(AFHTTPClientParameterEncoding)parameterEncoding forSueccessful:(void(^)(id responseObject))successful forFail:(void(^)(NSError *error)) fail;
 
 -(id)getRequestWithBaseUrl:(NSString*)url andPath:(NSString*)path andParameters:(NSDictionary*)parameters andHeadersParams:(NSDictionary *)headerDic forSuccessful:(void(^)(id responseObject))successful forFail:(void(^)(NSError *error))fail;
 
