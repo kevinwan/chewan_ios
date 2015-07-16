@@ -48,6 +48,8 @@
 		6BC82F301B53C4AF00C8E916 /* CPHomePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82F2B1B53C4AF00C8E916 /* CPHomePhoto.m */; };
 		6BC82F311B53C4AF00C8E916 /* CPHomeStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82F2D1B53C4AF00C8E916 /* CPHomeStatus.m */; };
 		6BC82F321B53C4AF00C8E916 /* CPHomeUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82F2F1B53C4AF00C8E916 /* CPHomeUser.m */; };
+		6BCBCB521B57AC9200923C5A /* CPHomePicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCBCB4F1B57AC9200923C5A /* CPHomePicCell.m */; };
+		6BCBCB531B57AC9200923C5A /* CPHomeStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCBCB511B57AC9200923C5A /* CPHomeStatusCell.m */; };
 		E30BD5621B54E99B00FD9030 /* MJConst.h in Sources */ = {isa = PBXBuildFile; fileRef = E3B127CC1B54E6DB005B1174 /* MJConst.h */; };
 		E30BD5631B54E99B00FD9030 /* MJExtension.h in Sources */ = {isa = PBXBuildFile; fileRef = E3B127CE1B54E6DB005B1174 /* MJExtension.h */; };
 		E30BD5641B54E99B00FD9030 /* MJFoundation.h in Sources */ = {isa = PBXBuildFile; fileRef = E3B127CF1B54E6DB005B1174 /* MJFoundation.h */; };
@@ -231,6 +233,10 @@
 		6BC82F2D1B53C4AF00C8E916 /* CPHomeStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeStatus.m; sourceTree = "<group>"; };
 		6BC82F2E1B53C4AF00C8E916 /* CPHomeUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeUser.h; sourceTree = "<group>"; };
 		6BC82F2F1B53C4AF00C8E916 /* CPHomeUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeUser.m; sourceTree = "<group>"; };
+		6BCBCB4E1B57AC9200923C5A /* CPHomePicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomePicCell.h; sourceTree = "<group>"; };
+		6BCBCB4F1B57AC9200923C5A /* CPHomePicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomePicCell.m; sourceTree = "<group>"; };
+		6BCBCB501B57AC9200923C5A /* CPHomeStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeStatusCell.h; sourceTree = "<group>"; };
+		6BCBCB511B57AC9200923C5A /* CPHomeStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeStatusCell.m; sourceTree = "<group>"; };
 		E30BD57C1B54EBEB00FD9030 /* CPMySubscribeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMySubscribeController.h; sourceTree = "<group>"; };
 		E30BD57D1B54EBEB00FD9030 /* CPMySubscribeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMySubscribeController.m; sourceTree = "<group>"; };
 		E30BD57F1B54EC1000FD9030 /* HWPhotosView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWPhotosView.h; sourceTree = "<group>"; };
@@ -484,6 +490,10 @@
 		6B4EF13F1B4036EE00292BD4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6BCBCB4E1B57AC9200923C5A /* CPHomePicCell.h */,
+				6BCBCB4F1B57AC9200923C5A /* CPHomePicCell.m */,
+				6BCBCB501B57AC9200923C5A /* CPHomeStatusCell.h */,
+				6BCBCB511B57AC9200923C5A /* CPHomeStatusCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1162,7 +1172,9 @@
 				6B6493FE1B54E61900C197D2 /* CPRegisterStep2ViewController.m in Sources */,
 				E35E6FD01B54B0EC001212D6 /* CPMyPublishFrameModel.m in Sources */,
 				E35E6FCD1B54B0D9001212D6 /* CPMyPublishModel.m in Sources */,
+				6BCBCB521B57AC9200923C5A /* CPHomePicCell.m in Sources */,
 				6B4EF1681B403A5D00292BD4 /* UIBarButtonItem+Extension.m in Sources */,
+				6BCBCB531B57AC9200923C5A /* CPHomeStatusCell.m in Sources */,
 				6BC82F321B53C4AF00C8E916 /* CPHomeUser.m in Sources */,
 				E30BD5941B54FCC600FD9030 /* ZYNavigationBar.m in Sources */,
 				E3B128111B54E6DB005B1174 /* UIImage+GIF.m in Sources */,
