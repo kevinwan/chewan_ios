@@ -40,13 +40,30 @@
 			</dict>
 		</array>
 		<key>members</key>
-		<array/>
+		<array>
+			<dict>
+				<key>drivingExperience</key>
+				<integer>3</integer>
+				<key>carModel</key>
+				<string>奥迪a6</string>
+				<key>gender</key>
+				<string>女</string>
+				<key>age</key>
+				<integer>20</integer>
+				<key>photo</key>
+				<string>http://cwapi.gongpingjia.com/asset/user/846de312-306c-4916-91c1-a5e69b158014/avatar.png</string>
+				<key>carBrandLogo</key>
+				<string>http://gongpingjia.qiniudn.com/img/logo/7206452af3747880ddd07398a95b9bdbebbc963e.jpg</string>
+				<key>nickname</key>
+				<string>孔明</string>
+			</dict>
+		</array>
 		<key>availableSeat</key>
 		<integer>4</integer>
 		<key>totalSeat</key>
 		<integer>5</integer>
 		<key>pay</key>
-		<string>请客</string>
+		<string>AA制</string>
 		<key>type</key>
 		<string>鲁行</string>
 		<key>location</key>
@@ -159,7 +176,40 @@
 		<key>cover</key>
 		<array/>
 		<key>members</key>
-		<array/>
+		<array>
+			<dict>
+				<key>drivingExperience</key>
+				<integer>3</integer>
+				<key>carModel</key>
+				<string>奥迪a6</string>
+				<key>gender</key>
+				<string>女</string>
+				<key>age</key>
+				<integer>20</integer>
+				<key>photo</key>
+				<string>http://cwapi.gongpingjia.com/asset/user/846de312-306c-4916-91c1-a5e69b158014/avatar.png</string>
+				<key>carBrandLogo</key>
+				<string>http://gongpingjia.qiniudn.com/img/logo/7206452af3747880ddd07398a95b9bdbebbc963e.jpg</string>
+				<key>nickname</key>
+				<string>孔明</string>
+			</dict>
+			<dict>
+				<key>drivingExperience</key>
+				<integer>3</integer>
+				<key>carModel</key>
+				<string>奥迪a6</string>
+				<key>gender</key>
+				<string>女</string>
+				<key>age</key>
+				<integer>20</integer>
+				<key>photo</key>
+				<string>http://cwapi.gongpingjia.com/asset/user/846de312-306c-4916-91c1-a5e69b158014/avatar.png</string>
+				<key>carBrandLogo</key>
+				<string>http://gongpingjia.qiniudn.com/img/logo/7206452af3747880ddd07398a95b9bdbebbc963e.jpg</string>
+				<key>nickname</key>
+				<string>孔明</string>
+			</dict>
+		</array>
 		<key>availableSeat</key>
 		<integer>4</integer>
 		<key>totalSeat</key>
@@ -171,9 +221,9 @@
 		<key>location</key>
 		<string>紫金山</string>
 		<key>introduction</key>
-		<string>南京紫金山一日游，早上7点在苜蓿园站集合</string>
+		<string>南京紫金山一日游，早上7点在苜蓿园站集合,集合啦离开家饭店里卡进来看大家了肯定就法律框架罚款垃圾了罚款</string>
 		<key>start</key>
-		<integer>1432857600000</integer>
+		<real>1432857600000</real>
 		<key>activityId</key>
 		<string>55838b12-7039-41e5-9150-6dd154de961b</string>
 		<key>publishTime</key>
