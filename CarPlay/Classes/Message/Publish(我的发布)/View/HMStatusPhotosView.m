@@ -15,14 +15,25 @@
 
 #define HMStatusPhotosMaxCount 9
 #define HMStatusPhotosMaxCols(photosCount) ((photosCount==4)?2:3)
-#define HMStatusPhotoW 70
-#define HMStatusPhotoH HMStatusPhotoW
 #define HMStatusPhotoMargin 10
 
 @interface HMStatusPhotosView()
 @end
 
 @implementation HMStatusPhotosView
+
+static CGFloat photoWH;
+
++ (void)load
+{
+    [super load];
+    
+    if (kScreenWidth == 320) {
+        photoWH = 60;
+    }else{
+        photoWH = 70;
+    }
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -98,10 +109,10 @@
     int maxCols = HMStatusPhotosMaxCols(count);
     for (int i = 0; i<count; i++) {
         HMStatusPhotoView *photoView = self.subviews[i];
-        photoView.width = HMStatusPhotoW;
-        photoView.height = HMStatusPhotoH;
-        photoView.x = (i % maxCols) * (HMStatusPhotoW + HMStatusPhotoMargin);
-        photoView.y = (i / maxCols) * (HMStatusPhotoH + HMStatusPhotoMargin);
+        photoView.width = photoWH;
+        photoView.height = photoWH;
+        photoView.x = (i % maxCols) * (photoWH + HMStatusPhotoMargin);
+        photoView.y = (i / maxCols) * (photoWH + HMStatusPhotoMargin);
     }
 }
 
@@ -116,8 +127,8 @@
     NSUInteger totalRows = (photosCount + maxCols - 1) / maxCols;
     
     // 计算尺寸
-    CGFloat photosW = totalCols * HMStatusPhotoW + (totalCols - 1) * HMStatusPhotoMargin;
-    CGFloat photosH = totalRows * HMStatusPhotoH + (totalRows - 1) * HMStatusPhotoMargin;
+    CGFloat photosW = totalCols * photoWH + (totalCols - 1) * HMStatusPhotoMargin;
+    CGFloat photosH = totalRows * photoWH + (totalRows - 1) * HMStatusPhotoMargin;
     
     return CGSizeMake(photosW, photosH);
 }

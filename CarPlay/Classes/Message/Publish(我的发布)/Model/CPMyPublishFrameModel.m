@@ -20,7 +20,7 @@
     
     CGFloat timeStampLabelX = 10;
     CGFloat timeStampLabelY = 15;
-    CGFloat timeStampLabelW = 50;
+    CGFloat timeStampLabelW = 40;
     CGFloat timeStampLabelH = 20;
     self.timeStampF = CGRectMake(timeStampLabelX, timeStampLabelY, timeStampLabelW, timeStampLabelH);
     _cellHeight = CGRectGetMaxY(_timeStampF);

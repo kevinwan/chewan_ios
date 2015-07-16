@@ -66,7 +66,7 @@
 - (void)setUpCell
 {
     UILabel *timeStampLabel = [[UILabel alloc] init];
-    timeStampLabel.font = [UIFont systemFontOfSize:16];
+    timeStampLabel.font = [UIFont systemFontOfSize:15];
     timeStampLabel.textAlignment = NSTextAlignmentCenter;
     timeStampLabel.textColor = [Tools getColor:@"48d1d5"];
     [self.contentView addSubview:timeStampLabel];

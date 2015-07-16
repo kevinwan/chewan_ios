@@ -111,7 +111,11 @@
 {
     CPTopViewButton *btn = [CPTopViewButton buttonWithType:UIButtonTypeCustom];
     [btn setTitle:title forState:UIControlStateNormal];
-    btn.titleLabel.font = [UIFont systemFontOfSize:11];
+    if (kScreenWidth == 320) {
+        btn.titleLabel.font = [UIFont systemFontOfSize:9];
+    }else{
+        btn.titleLabel.font = [UIFont systemFontOfSize:11];
+    }
     [btn setTitleColor:[Tools getColor:@"656d78"] forState:UIControlStateNormal];
     [btn setImage:[UIImage imageNamed:icon] forState:UIControlStateNormal];
     btn.imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -152,7 +156,7 @@
     self.chatBtn.centerY = self.bottomView.centerYInSelf;
     
     CGFloat personBtnStartX = self.personNumLable.right + 10;
-    CGFloat personBtnH = bottomViewH - 16;
+    CGFloat personBtnH = bottomViewH - 20;
     CGFloat personBtnY = (bottomViewH - personBtnH) * 0.5;
     CGFloat personBtnW = personBtnH;
     
