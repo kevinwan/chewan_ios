@@ -10,9 +10,11 @@
 #import "UIImageView+WebCache.h"
 #import "CPHomeUser.h"
 #import "CPHomeStatus.h"
+#import "CPHomePicCell.h"
+#import "CPHomePhoto.h"
 
 
-@interface CPHomeStatusCell()
+@interface CPHomeStatusCell()<UICollectionViewDataSource,UICollectionViewDelegate>
 
 
 // 头像
@@ -39,12 +41,24 @@
 // 正文
 @property (weak, nonatomic) IBOutlet UILabel *introduction;
 
+// 配图容器的高度
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *pictureViewHeight;
+
+// 配图容器的宽度
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *pictureViewWidth;
+
+// 底部头像列表
+@property (weak, nonatomic) IBOutlet UIView *bottomIconList;
+
+
 @end
 
 @implementation CPHomeStatusCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    
+    // 设置正文最大的宽度
+    self.introduction.preferredMaxLayoutWidth = [UIScreen mainScreen].bounds.size.width - 70;
 }
 
 
@@ -90,7 +104,85 @@
     self.introduction.text = _status.introduction;
     
     
+    // 计算配图宽高
+    CGSize pictureViewSize = [self caclPictureViewSize];
+    self.pictureViewHeight.constant = pictureViewSize.height;
+    self.pictureViewWidth.constant = pictureViewSize.width;
+    
 }
+
+// 计算配图宽高
+- (CGSize)caclPictureViewSize{
+    // 配图的总个数
+    NSInteger count = self.status.cover.count;
+    
+    // 处理没有配图的情况
+    if (count == 0) {
+        return CGSizeZero;
+    }
+    
+    // 计算行数列数
+    NSInteger maxcols = count == 4 ? 2 : 3;
+    NSInteger col = count > 3 ? maxcols : count;
+    NSInteger row = 1;
+    if (count % 3 == 0) {
+        row = count / 3;
+    }else{
+        row = count / 3 + 1;
+    }
+    
+    // 计算宽高
+    CGFloat pictureH = 78;
+    CGFloat pictureW = 78;
+    CGFloat pictureM = 3;  //间隙
+    // 宽度 = 列数 * 配图宽度 +（列数 - 1）* 间隙
+    CGFloat pictureViewW = col * pictureW + (col - 1) * pictureM;
+    // 高度 = 行数 * 配图高度 +（行数 - 1）* 间隙
+    CGFloat pictureViewH = row * pictureH + (row - 1) * pictureM;
+    
+    
+    return CGSizeMake(pictureViewW, pictureViewH);
+}
+
+
+#pragma mark - collectionView数据源方法
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    // 返回配图个数
+    return self.status.cover.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    // 创建cell
+    CPHomePicCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[CPHomePicCell identifier] forIndexPath:indexPath];
+    
+    // 获取对应图片模型
+    CPHomePhoto *photo = self.status.cover[indexPath.item];
+    
+    // 设置数据
+    cell.homePhoto = photo;
+    
+    // 返回cell
+    return cell;
+}
+
+#pragma mark - 外部方法
+
+//
+- (CGFloat)cellHeightWithStatus:(CPHomeStatus *)status{
+    
+    // 设置数据，便于系统内部计算尺寸
+    self.status = status;
+    
+    // 强制更新布局
+    [self layoutIfNeeded];
+    
+    // 返回cell高度，cell的高度就是底部头像列表的最大高度
+    return CGRectGetMaxY(self.bottomIconList.frame);
+    
+}
+
 
 
 @end
