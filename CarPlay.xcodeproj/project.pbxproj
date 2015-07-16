@@ -18,6 +18,7 @@
 		6B4EF1631B4036EE00292BD4 /* CPMyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4EF1571B4036EE00292BD4 /* CPMyController.m */; };
 		6B4EF1641B4036EE00292BD4 /* CPMyController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B4EF1581B4036EE00292BD4 /* CPMyController.storyboard */; };
 		6B4EF1681B403A5D00292BD4 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4EF1671B403A5D00292BD4 /* UIBarButtonItem+Extension.m */; };
+		6B5FD3481B56898800E34F66 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B5FD3471B56898800E34F66 /* area.plist */; };
 		6B64938C1B4D04BE00C197D2 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B64938B1B4D04BE00C197D2 /* BaseViewController.m */; };
 		6B6493901B4D04E100C197D2 /* CPNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B64938F1B4D04E100C197D2 /* CPNetWork.m */; };
 		6B6493941B4D04E500C197D2 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493931B4D04E500C197D2 /* Tools.m */; };
@@ -48,6 +49,15 @@
 		6BC82F301B53C4AF00C8E916 /* CPHomePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82F2B1B53C4AF00C8E916 /* CPHomePhoto.m */; };
 		6BC82F311B53C4AF00C8E916 /* CPHomeStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82F2D1B53C4AF00C8E916 /* CPHomeStatus.m */; };
 		6BC82F321B53C4AF00C8E916 /* CPHomeUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82F2F1B53C4AF00C8E916 /* CPHomeUser.m */; };
+		6BDFF8F91B55FF2D007EAC2A /* CPRegisterCellsTableViewCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDFF8F71B55FF2D007EAC2A /* CPRegisterCellsTableViewCell1.m */; };
+		6BDFF8FA1B55FF2D007EAC2A /* CPRegisterCellsTableViewCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BDFF8F81B55FF2D007EAC2A /* CPRegisterCellsTableViewCell1.xib */; };
+		6BDFF8FE1B560178007EAC2A /* CPRegisterCellsTableViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDFF8FC1B560178007EAC2A /* CPRegisterCellsTableViewCell2.m */; };
+		6BDFF8FF1B560178007EAC2A /* CPRegisterCellsTableViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BDFF8FD1B560178007EAC2A /* CPRegisterCellsTableViewCell2.xib */; };
+		6BDFF9031B564F52007EAC2A /* CPRegisterCellsTableViewCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDFF9011B564F52007EAC2A /* CPRegisterCellsTableViewCell3.m */; };
+		6BDFF9041B564F52007EAC2A /* CPRegisterCellsTableViewCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BDFF9021B564F52007EAC2A /* CPRegisterCellsTableViewCell3.xib */; };
+		6BDFF9081B5656F7007EAC2A /* ZHPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDFF9071B5656F7007EAC2A /* ZHPickView.m */; };
+		6BDFF90B1B565AA1007EAC2A /* ZHAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDFF90A1B565AA1007EAC2A /* ZHAppDelegate.m */; };
+		6BDFF90E1B565C88007EAC2A /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BDFF90D1B565C88007EAC2A /* city.plist */; };
 		E30BD5621B54E99B00FD9030 /* MJConst.h in Sources */ = {isa = PBXBuildFile; fileRef = E3B127CC1B54E6DB005B1174 /* MJConst.h */; };
 		E30BD5631B54E99B00FD9030 /* MJExtension.h in Sources */ = {isa = PBXBuildFile; fileRef = E3B127CE1B54E6DB005B1174 /* MJExtension.h */; };
 		E30BD5641B54E99B00FD9030 /* MJFoundation.h in Sources */ = {isa = PBXBuildFile; fileRef = E3B127CF1B54E6DB005B1174 /* MJFoundation.h */; };
@@ -175,6 +185,7 @@
 		6B4EF1651B4037DB00292BD4 /* CP_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CP_Prefix.pch; sourceTree = "<group>"; };
 		6B4EF1661B403A5D00292BD4 /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
 		6B4EF1671B403A5D00292BD4 /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
+		6B5FD3471B56898800E34F66 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		6B6493881B4D04AD00C197D2 /* macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macro.h; sourceTree = "<group>"; };
 		6B64938A1B4D04BE00C197D2 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		6B64938B1B4D04BE00C197D2 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
@@ -231,6 +242,20 @@
 		6BC82F2D1B53C4AF00C8E916 /* CPHomeStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeStatus.m; sourceTree = "<group>"; };
 		6BC82F2E1B53C4AF00C8E916 /* CPHomeUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeUser.h; sourceTree = "<group>"; };
 		6BC82F2F1B53C4AF00C8E916 /* CPHomeUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeUser.m; sourceTree = "<group>"; };
+		6BDFF8F61B55FF2D007EAC2A /* CPRegisterCellsTableViewCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRegisterCellsTableViewCell1.h; sourceTree = "<group>"; };
+		6BDFF8F71B55FF2D007EAC2A /* CPRegisterCellsTableViewCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRegisterCellsTableViewCell1.m; sourceTree = "<group>"; };
+		6BDFF8F81B55FF2D007EAC2A /* CPRegisterCellsTableViewCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPRegisterCellsTableViewCell1.xib; sourceTree = "<group>"; };
+		6BDFF8FB1B560178007EAC2A /* CPRegisterCellsTableViewCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRegisterCellsTableViewCell2.h; sourceTree = "<group>"; };
+		6BDFF8FC1B560178007EAC2A /* CPRegisterCellsTableViewCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRegisterCellsTableViewCell2.m; sourceTree = "<group>"; };
+		6BDFF8FD1B560178007EAC2A /* CPRegisterCellsTableViewCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPRegisterCellsTableViewCell2.xib; sourceTree = "<group>"; };
+		6BDFF9001B564F52007EAC2A /* CPRegisterCellsTableViewCell3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRegisterCellsTableViewCell3.h; sourceTree = "<group>"; };
+		6BDFF9011B564F52007EAC2A /* CPRegisterCellsTableViewCell3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRegisterCellsTableViewCell3.m; sourceTree = "<group>"; };
+		6BDFF9021B564F52007EAC2A /* CPRegisterCellsTableViewCell3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPRegisterCellsTableViewCell3.xib; sourceTree = "<group>"; };
+		6BDFF9061B5656F7007EAC2A /* ZHPickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHPickView.h; sourceTree = "<group>"; };
+		6BDFF9071B5656F7007EAC2A /* ZHPickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHPickView.m; sourceTree = "<group>"; };
+		6BDFF9091B565AA1007EAC2A /* ZHAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHAppDelegate.h; sourceTree = "<group>"; };
+		6BDFF90A1B565AA1007EAC2A /* ZHAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHAppDelegate.m; sourceTree = "<group>"; };
+		6BDFF90D1B565C88007EAC2A /* city.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
 		E30BD57C1B54EBEB00FD9030 /* CPMySubscribeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMySubscribeController.h; sourceTree = "<group>"; };
 		E30BD57D1B54EBEB00FD9030 /* CPMySubscribeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMySubscribeController.m; sourceTree = "<group>"; };
 		E30BD57F1B54EC1000FD9030 /* HWPhotosView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWPhotosView.h; sourceTree = "<group>"; };
@@ -406,6 +431,7 @@
 		6B4959CB1B33A23900DB63EA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6BDFF90C1B565C6D007EAC2A /* pilst */,
 				E3B1277A1B54DECB005B1174 /* Images.xcassets */,
 				6B4959DA1B33A23900DB63EA /* LaunchScreen.xib */,
 				6B4959CC1B33A23900DB63EA /* Info.plist */,
@@ -491,6 +517,7 @@
 		6B4EF1401B4036EE00292BD4 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				6BDFF9051B5656CD007EAC2A /* ZHpickView */,
 				E3B127CB1B54E6DB005B1174 /* MJExtension */,
 				E3B127DD1B54E6DB005B1174 /* SDWebImage */,
 				6B6493DA1B4FAFEF00C197D2 /* MBProgressHUD */,
@@ -686,6 +713,7 @@
 		6B6493EA1B53821100C197D2 /* register */ = {
 			isa = PBXGroup;
 			children = (
+				6BDFF8F51B55FF0D007EAC2A /* registerCells */,
 				E375E4871B5516EB00DADF65 /* CarOwnersCertification */,
 				E375E48B1B5516EB00DADF65 /* serviceTerms */,
 				6B6493EB1B53821F00C197D2 /* registerViewController.h */,
@@ -696,6 +724,42 @@
 				6B6493FD1B54E61900C197D2 /* CPRegisterStep2ViewController.xib */,
 			);
 			path = register;
+			sourceTree = "<group>";
+		};
+		6BDFF8F51B55FF0D007EAC2A /* registerCells */ = {
+			isa = PBXGroup;
+			children = (
+				6BDFF8F61B55FF2D007EAC2A /* CPRegisterCellsTableViewCell1.h */,
+				6BDFF8F71B55FF2D007EAC2A /* CPRegisterCellsTableViewCell1.m */,
+				6BDFF8F81B55FF2D007EAC2A /* CPRegisterCellsTableViewCell1.xib */,
+				6BDFF8FB1B560178007EAC2A /* CPRegisterCellsTableViewCell2.h */,
+				6BDFF8FC1B560178007EAC2A /* CPRegisterCellsTableViewCell2.m */,
+				6BDFF8FD1B560178007EAC2A /* CPRegisterCellsTableViewCell2.xib */,
+				6BDFF9001B564F52007EAC2A /* CPRegisterCellsTableViewCell3.h */,
+				6BDFF9011B564F52007EAC2A /* CPRegisterCellsTableViewCell3.m */,
+				6BDFF9021B564F52007EAC2A /* CPRegisterCellsTableViewCell3.xib */,
+			);
+			name = registerCells;
+			sourceTree = "<group>";
+		};
+		6BDFF9051B5656CD007EAC2A /* ZHpickView */ = {
+			isa = PBXGroup;
+			children = (
+				6BDFF9091B565AA1007EAC2A /* ZHAppDelegate.h */,
+				6BDFF90A1B565AA1007EAC2A /* ZHAppDelegate.m */,
+				6BDFF9061B5656F7007EAC2A /* ZHPickView.h */,
+				6BDFF9071B5656F7007EAC2A /* ZHPickView.m */,
+			);
+			path = ZHpickView;
+			sourceTree = "<group>";
+		};
+		6BDFF90C1B565C6D007EAC2A /* pilst */ = {
+			isa = PBXGroup;
+			children = (
+				6B5FD3471B56898800E34F66 /* area.plist */,
+				6BDFF90D1B565C88007EAC2A /* city.plist */,
+			);
+			name = pilst;
 			sourceTree = "<group>";
 		};
 		E30BD5911B54FC9400FD9030 /* ZYCustomView */ = {
@@ -1074,16 +1138,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				E375E4921B5516EB00DADF65 /* serviceTermsViewController.xib in Resources */,
+				6B5FD3481B56898800E34F66 /* area.plist in Resources */,
 				E375E4901B5516EB00DADF65 /* CarOwnersCertificationViewController.xib in Resources */,
 				6B6493E91B4FE34D00C197D2 /* CPForgetPasswordViewController.xib in Resources */,
 				6B6493FF1B54E61900C197D2 /* CPRegisterStep2ViewController.xib in Resources */,
 				6B4959DC1B33A23900DB63EA /* LaunchScreen.xib in Resources */,
+				6BDFF9041B564F52007EAC2A /* CPRegisterCellsTableViewCell3.xib in Resources */,
+				6BDFF8FA1B55FF2D007EAC2A /* CPRegisterCellsTableViewCell1.xib in Resources */,
 				E36C96271B53C78200D3EDBB /* CPSubscribePersonController.storyboard in Resources */,
 				E3B1277B1B54DECB005B1174 /* Images.xcassets in Resources */,
+				6BDFF90E1B565C88007EAC2A /* city.plist in Resources */,
 				6B6493E01B4FAFFD00C197D2 /* MBProgressHUD.bundle in Resources */,
 				6B4EF15C1B4036EE00292BD4 /* CPCityController.storyboard in Resources */,
 				6B4EF15E1B4036EE00292BD4 /* Main.storyboard in Resources */,
 				6B6493EF1B53821F00C197D2 /* registerViewController.xib in Resources */,
+				6BDFF8FF1B560178007EAC2A /* CPRegisterCellsTableViewCell2.xib in Resources */,
 				E36C961C1B53BA6B00D3EDBB /* CPActivityApplyControllerView.storyboard in Resources */,
 				6B6493D61B4D152A00C197D2 /* LoginViewController.xib in Resources */,
 				6B4EF1641B4036EE00292BD4 /* CPMyController.storyboard in Resources */,
@@ -1107,6 +1176,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BDFF8FE1B560178007EAC2A /* CPRegisterCellsTableViewCell2.m in Sources */,
 				E375E4931B55171500DADF65 /* CarOwnersCertificationViewController.h in Sources */,
 				E375E4941B55171500DADF65 /* serviceTermsViewController.h in Sources */,
 				E30BD56B1B54E9AB00FD9030 /* MKAnnotationView+WebCache.h in Sources */,
@@ -1125,6 +1195,7 @@
 				E30BD5781B54E9AB00FD9030 /* UIImage+WebP.h in Sources */,
 				E30BD5891B54EC4A00FD9030 /* CPMySubscribeFrameModel.m in Sources */,
 				E30BD5791B54E9AB00FD9030 /* UIImageView+HighlightedWebCache.h in Sources */,
+				6BDFF8F91B55FF2D007EAC2A /* CPRegisterCellsTableViewCell1.m in Sources */,
 				E30BD57A1B54E9AB00FD9030 /* UIImageView+WebCache.h in Sources */,
 				E30BD5831B54EC1000FD9030 /* HWPhotosView.m in Sources */,
 				E30BD57B1B54E9AB00FD9030 /* UIView+WebCacheOperation.h in Sources */,
@@ -1164,15 +1235,18 @@
 				E35E6FCD1B54B0D9001212D6 /* CPMyPublishModel.m in Sources */,
 				6B4EF1681B403A5D00292BD4 /* UIBarButtonItem+Extension.m in Sources */,
 				6BC82F321B53C4AF00C8E916 /* CPHomeUser.m in Sources */,
+				6BDFF9081B5656F7007EAC2A /* ZHPickView.m in Sources */,
 				E30BD5941B54FCC600FD9030 /* ZYNavigationBar.m in Sources */,
 				E3B128111B54E6DB005B1174 /* UIImage+GIF.m in Sources */,
 				E3B128161B54E6DB005B1174 /* UIView+WebCacheOperation.m in Sources */,
 				E3EEE0021B53952E00595333 /* Foundation+Log.m in Sources */,
 				6B6493E21B4FAFFD00C197D2 /* MBProgressHUD+Add.m in Sources */,
+				6BDFF9031B564F52007EAC2A /* CPRegisterCellsTableViewCell3.m in Sources */,
 				E30BD57E1B54EBEB00FD9030 /* CPMySubscribeController.m in Sources */,
 				E3B128091B54E6DB005B1174 /* SDImageCache.m in Sources */,
 				6B4EF15B1B4036EE00292BD4 /* CPCityController.m in Sources */,
 				E36C962D1B53CA2300D3EDBB /* CPSubscribeCell.m in Sources */,
+				6BDFF90B1B565AA1007EAC2A /* ZHAppDelegate.m in Sources */,
 				E3B128041B54E6DB005B1174 /* NSObject+MJKeyValue.m in Sources */,
 				E3B128031B54E6DB005B1174 /* NSObject+MJCoding.m in Sources */,
 				E3B128121B54E6DB005B1174 /* UIImage+MultiFormat.m in Sources */,
@@ -1342,6 +1416,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PREFIX_HEADER = CarPlay/CP_Prefix.pch;
 				INFOPLIST_FILE = CarPlay/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1353,6 +1428,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PREFIX_HEADER = CarPlay/CP_Prefix.pch;
 				INFOPLIST_FILE = CarPlay/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
