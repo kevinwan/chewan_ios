@@ -7,7 +7,14 @@
 //
 
 #import "CPHomeStatus.h"
+#import "MJExtension.h"
+#import "CPHomePhoto.h"
+
 
 @implementation CPHomeStatus
+
++ (NSDictionary *)objectClassInArray{
+    return @{@"cover":[CPHomePhoto class]};
+}
 
 @end
