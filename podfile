@@ -1,0 +1,6 @@
+pod 'AFNetworking'
+pod 'SDWebImage'
+pod 'MBProgressHUD'
+pod 'MJExtension'
+pod 'MJRefresh'
+pod 'SVProgressHUD'

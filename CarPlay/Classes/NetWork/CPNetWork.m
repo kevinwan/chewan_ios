@@ -158,11 +158,11 @@ static CPNetWork * _wanCheNetWork = nil;
     return ret;
 }
 
--(id)postRequestWithBaseUrl:(NSString*)url andPath:(NSString*)path andParameters:(NSDictionary*)parameters forSueccessful:(void(^)(id responseObject))successful forFail:(void(^)(NSError *error)) fail
-{
-    id client = [self postRequestWithBaseUrl:url andPath:path andParameters:parameters andParameterEncoding:AFJSONParameterEncoding forSueccessful:successful forFail:fail];
-    return client;
-}
+//-(id)postRequestWithBaseUrl:(NSString*)url andPath:(NSString*)path andParameters:(NSDictionary*)parameters forSueccessful:(void(^)(id responseObject))successful forFail:(void(^)(NSError *error)) fail
+//{
+//    id client = [self postRequestWithBaseUrl:url andPath:path andParameters:parameters andParameterEncoding:AFJSONParameterEncoding forSueccessful:successful forFail:fail];
+//    return client;
+//}
 /**
  *  post请求自定义编码类型。
  *
@@ -175,272 +175,272 @@ static CPNetWork * _wanCheNetWork = nil;
  *  @return 请求结果对象json串
  */
 
--(id)postRequestWithBaseUrl:(NSString*)url andPath:(NSString*)path andParameters:(NSDictionary*)parameters andParameterEncoding:(AFHTTPClientParameterEncoding)parameterEncoding forSueccessful:(void(^)(id responseObject))successful forFail:(void(^)(NSError *error)) fail
-{
+//-(id)postRequestWithBaseUrl:(NSString*)url andPath:(NSString*)path andParameters:(NSDictionary*)parameters andParameterEncoding:(AFHTTPClientParameterEncoding)parameterEncoding forSueccessful:(void(^)(id responseObject))successful forFail:(void(^)(NSError *error)) fail
+//{
     //为所有接口加上token
-    NSMutableDictionary *mutParameters = [NSMutableDictionary dictionaryWithDictionary:parameters];
+//    NSMutableDictionary *mutParameters = [NSMutableDictionary dictionaryWithDictionary:parameters];
 //    if (![mutParameters.allKeys containsObject:@"token"] && ![mutParameters.allKeys containsObject:@"Token"]) {
 //        [mutParameters setValue:self.token forKey:@"token"];
 //    };
     
-    DLog(@"POST请求地址:%@%@.请求的参数:%@------------------------------------", url, path, mutParameters);
-    
-    NSURL *u = [NSURL URLWithString:url];
-    
-    AFHTTPClient *clinet = [[AFHTTPClient alloc] initWithBaseURL:u];
-    clinet.parameterEncoding = parameterEncoding;
-    [clinet postPath:path parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject){
-        
-        NSString *resStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSData *data_utf8 = [resStr dataUsingEncoding:NSUTF8StringEncoding];
-        
-        NSError *error = nil;
-        id json = [NSJSONSerialization JSONObjectWithData:data_utf8 options:kNilOptions error:&error];
-       
-        if (json) {
-            if ([json isKindOfClass:[NSDictionary class]]) {
-                NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
-                NSString *state=[numberFormatter stringFromNumber:[json objectForKey:@"result"]];
-                if ([state isEqualToString:@"0"]) {
-                    DLog(@"POST返回的数据:%@------------------------------------", json);
-                    successful(json);
-                }else{
-                    DLog(@"接口返回失败:%@", json);
-                    NSString *msg = [json objectForKey:@"errmsg"];
-                    DLog(@"message:%@",msg);
-                    NSError *err = [self errorWithMsg:msg];
-                   [[[UIAlertView alloc]initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-                    fail(err);
-                }
-            }else{
-                DLog(@"返回数据不是JSON数据:%@", [json class]);
-                NSError *err = [self errorWithMsg:@"data is not json"];
-                fail(err);
-            }
-        }else
-        {
-            DLog(@"解析数据失败:%@", json);
-            fail(error);
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error){
-        DLog(@"网络访问失败%@", error);
-        fail(error);
-    }];
-    
-    return clinet;
-    
-}
+//    DLog(@"POST请求地址:%@%@.请求的参数:%@------------------------------------", url, path, mutParameters);
+//    
+//    NSURL *u = [NSURL URLWithString:url];
 
--(id)postRequestWithBaseUrl:(NSString*)url andPath:(NSString*)path andParameters:(NSDictionary*)parameters andHeadersParams:(NSDictionary *)headerDic forSueccessful:(void(^)(id responseObject))successful forFail:(void(^)(NSError *error)) fail
-{
-    //为所有接口加上token
-    NSMutableDictionary *mutParameters = [NSMutableDictionary dictionaryWithDictionary:parameters];
-    if (![mutParameters.allKeys containsObject:@"token"] && ![mutParameters.allKeys containsObject:@"Token"]) {
-        [mutParameters setValue:self.token forKey:@"token"];
-    };
-    DLog(@"POST请求地址:%@%@.请求的参数:%@------------------------------------", url, path, mutParameters);
-    
-    NSURL *u = [NSURL URLWithString:url];
-    
-    AFHTTPClient *clinet = [[AFHTTPClient alloc] initWithBaseURL:u];
-    clinet.parameterEncoding = AFFormURLParameterEncoding;
-    
-    NSArray *allKeys = [headerDic allKeys];
-    //    NSArray *allValue = [headerDic allValues];
-    for(int i = 0;i < [headerDic count];i++){
-        NSString *key = [allKeys objectAtIndex:i];
-        //NSString *obj =[allValue objectAtIndex:i];
-        NSString *obj = [headerDic objectForKey:key];
-        
-        [clinet setDefaultHeader:@"Authorization" value:obj];
-        
-    }
-    
-    [clinet postPath:path parameters:mutParameters success:^(AFHTTPRequestOperation *operation, id responseObject){
-        
-        NSString *resStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSData *data_utf8 = [resStr dataUsingEncoding:NSUTF8StringEncoding];
-        NSError *error = nil;
-        id json = [NSJSONSerialization JSONObjectWithData:data_utf8 options:kNilOptions error:&error];
-        if (json) {
-            if ([json isKindOfClass:[NSDictionary class]]) {
-                NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
-                NSString *state=[numberFormatter stringFromNumber:[json objectForKey:@"result"]];
-                if ([state isEqualToString:@"0"]) {
-                    DLog(@"POST返回的数据:%@------------------------------------", json);
-                    successful(json);
-                }else{
-                    DLog(@"接口返回失败:%@", json);
-                    NSString *msg = [json objectForKey:@"errmsg"];
-                    DLog(@"message:%@",msg);
-                    NSError *err = [self errorWithMsg:msg];
-                    fail(err);
-                }
-            }else{
-                DLog(@"返回数据不是JSON数据:%@", [json class]);
-                NSError *err = [self errorWithMsg:@"data is not json"];
-                fail(err);
-            }
-        }else
-        {
-            DLog(@"解析数据失败:%@", json);
-            fail(error);
-        }
-        
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error){
-        DLog(@"网络访问失败%@", error);
+//    AFHTTPClient *clinet = [[AFHTTPClient alloc] initWithBaseURL:u];
+//    clinet.parameterEncoding = parameterEncoding;
+//    [clinet postPath:path parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject){
+//        
+//        NSString *resStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+//        NSData *data_utf8 = [resStr dataUsingEncoding:NSUTF8StringEncoding];
+//        
+//        NSError *error = nil;
+//        id json = [NSJSONSerialization JSONObjectWithData:data_utf8 options:kNilOptions error:&error];
+//       
+//        if (json) {
+//            if ([json isKindOfClass:[NSDictionary class]]) {
+//                NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
+//                NSString *state=[numberFormatter stringFromNumber:[json objectForKey:@"result"]];
+//                if ([state isEqualToString:@"0"]) {
+//                    DLog(@"POST返回的数据:%@------------------------------------", json);
+//                    successful(json);
+//                }else{
+//                    DLog(@"接口返回失败:%@", json);
+//                    NSString *msg = [json objectForKey:@"errmsg"];
+//                    DLog(@"message:%@",msg);
+//                    NSError *err = [self errorWithMsg:msg];
+//                   [[[UIAlertView alloc]initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+//                    fail(err);
+//                }
+//            }else{
+//                DLog(@"返回数据不是JSON数据:%@", [json class]);
+//                NSError *err = [self errorWithMsg:@"data is not json"];
+//                fail(err);
+//            }
+//        }else
+//        {
+//            DLog(@"解析数据失败:%@", json);
+//            fail(error);
+//        }
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error){
+//        DLog(@"网络访问失败%@", error);
+//        fail(error);
+//    }];
+//    
+//    return clinet;
+//    
+//}
 
-        fail(error);
-    }];
-    
-    return clinet;
-}
-
-
--(id)getRequestWithBaseUrl:(NSString*)url andPath:(NSString*)path andParameters:(NSDictionary*)parameters andHeadersParams:(NSDictionary *)headerDic forSuccessful:(void(^)(id responseObject))successful forFail:(void(^)(NSError *error))fail{
-    
-    //为所有接口加上token
-    NSMutableDictionary *mutParameters = [NSMutableDictionary dictionaryWithDictionary:parameters];
-    if (![mutParameters.allKeys containsObject:@"token"] && ![mutParameters.allKeys containsObject:@"Token"]) {
-        [mutParameters setValue:self.token forKey:@"token"];
-    };
-    
-    NSLog(@"GET请求地址:%@%@.请求的参数:%@", url, path, parameters);
-    
-    NSURLRequest *request = [self makeGetRequestWithBaseUrl:url andPath:path andParameters:mutParameters];
-    NSMutableURLRequest *mutableRequest = [request mutableCopy];
-    //    [mutableRequest addValue:@"Hless" forHTTPHeaderField:@"X-user-nick"];
-    
-    NSArray *allKeys = [headerDic allKeys];
-    //    NSArray *allValue = [headerDic allValues];
-    for(int i = 0;i < [headerDic count];i++){
-        NSString *key = [allKeys objectAtIndex:i];
-        //NSString *obj =[allValue objectAtIndex:i];
-        NSString *obj = [headerDic objectForKey:key];
-        
-        [mutableRequest addValue:obj forHTTPHeaderField:key];
-        
-    }
-    
-    request = [mutableRequest copy];
-    
-    
-    [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON){
-        DLog(@"json : %@", JSON);
-        if ([JSON isKindOfClass:[NSDictionary class]]) {
-            NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
-            NSString *state=[numberFormatter stringFromNumber:[JSON objectForKey:@"state"]];
-            if ([state isEqualToString:@"1"]) {
-                successful(JSON);
-            }else{
-                NSLog(@"接口返回失败");
-                NSString *msg = [JSON objectForKey:@"msg"];
-                NSError *err = [self errorWithMsg:msg];
-                fail(err);
-            }
-        }else{
-            DLog(@"返回数据不是JSON数据");
-            NSError *err = [self errorWithMsg:@"data is not json"];
-            fail(err);
-        }
-        
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON){
-        
-        fail(error);
-        
-    }];
-    [operation start];
-    
-    return operation;
-    
-}
-
--(id)getRequestWithBaseUrl:(NSString*)url andPath:(NSString*)path andParameters:(NSDictionary*)parameters forSuccessful:(void(^)(id responseObject))successful forFail:(void(^)(NSError *error))fail
-{
-    //为所有接口加上token
-    NSMutableDictionary *mutParameters = [NSMutableDictionary dictionaryWithDictionary:parameters];
+//-(id)postRequestWithBaseUrl:(NSString*)url andPath:(NSString*)path andParameters:(NSDictionary*)parameters andHeadersParams:(NSDictionary *)headerDic forSueccessful:(void(^)(id responseObject))successful forFail:(void(^)(NSError *error)) fail
+//{
+//    //为所有接口加上token
+//    NSMutableDictionary *mutParameters = [NSMutableDictionary dictionaryWithDictionary:parameters];
 //    if (![mutParameters.allKeys containsObject:@"token"] && ![mutParameters.allKeys containsObject:@"Token"]) {
 //        [mutParameters setValue:self.token forKey:@"token"];
 //    };
-    
-    NSLog(@"GET请求地址:%@%@.请求的参数:%@", url, path, parameters);
-    
-    NSURLRequest *request = [self makeGetRequestWithBaseUrl:url andPath:path andParameters:mutParameters];
+//    DLog(@"POST请求地址:%@%@.请求的参数:%@------------------------------------", url, path, mutParameters);
+//    
+//    NSURL *u = [NSURL URLWithString:url];
+//    
+//    AFHTTPClient *clinet = [[AFHTTPClient alloc] initWithBaseURL:u];
+//    clinet.parameterEncoding = AFFormURLParameterEncoding;
+//    
+//    NSArray *allKeys = [headerDic allKeys];
+//    //    NSArray *allValue = [headerDic allValues];
+//    for(int i = 0;i < [headerDic count];i++){
+//        NSString *key = [allKeys objectAtIndex:i];
+//        //NSString *obj =[allValue objectAtIndex:i];
+//        NSString *obj = [headerDic objectForKey:key];
+//        
+//        [clinet setDefaultHeader:@"Authorization" value:obj];
+//        
+//    }
+//    
+//    [clinet postPath:path parameters:mutParameters success:^(AFHTTPRequestOperation *operation, id responseObject){
+//        
+//        NSString *resStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+//        NSData *data_utf8 = [resStr dataUsingEncoding:NSUTF8StringEncoding];
+//        NSError *error = nil;
+//        id json = [NSJSONSerialization JSONObjectWithData:data_utf8 options:kNilOptions error:&error];
+//        if (json) {
+//            if ([json isKindOfClass:[NSDictionary class]]) {
+//                NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
+//                NSString *state=[numberFormatter stringFromNumber:[json objectForKey:@"result"]];
+//                if ([state isEqualToString:@"0"]) {
+//                    DLog(@"POST返回的数据:%@------------------------------------", json);
+//                    successful(json);
+//                }else{
+//                    DLog(@"接口返回失败:%@", json);
+//                    NSString *msg = [json objectForKey:@"errmsg"];
+//                    DLog(@"message:%@",msg);
+//                    NSError *err = [self errorWithMsg:msg];
+//                    fail(err);
+//                }
+//            }else{
+//                DLog(@"返回数据不是JSON数据:%@", [json class]);
+//                NSError *err = [self errorWithMsg:@"data is not json"];
+//                fail(err);
+//            }
+//        }else
+//        {
+//            DLog(@"解析数据失败:%@", json);
+//            fail(error);
+//        }
+//        
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error){
+//        DLog(@"网络访问失败%@", error);
+//
+//        fail(error);
+//    }];
+//    
+//    return clinet;
+//}
+
+//
+//-(id)getRequestWithBaseUrl:(NSString*)url andPath:(NSString*)path andParameters:(NSDictionary*)parameters andHeadersParams:(NSDictionary *)headerDic forSuccessful:(void(^)(id responseObject))successful forFail:(void(^)(NSError *error))fail{
+//    
+//    //为所有接口加上token
+//    NSMutableDictionary *mutParameters = [NSMutableDictionary dictionaryWithDictionary:parameters];
+//    if (![mutParameters.allKeys containsObject:@"token"] && ![mutParameters.allKeys containsObject:@"Token"]) {
+//        [mutParameters setValue:self.token forKey:@"token"];
+//    };
+//    
+//    NSLog(@"GET请求地址:%@%@.请求的参数:%@", url, path, parameters);
+//    
+//    NSURLRequest *request = [self makeGetRequestWithBaseUrl:url andPath:path andParameters:mutParameters];
 //    NSMutableURLRequest *mutableRequest = [request mutableCopy];
-//    [mutableRequest addValue:@"Hless" forHTTPHeaderField:@"X-user-nick"];
+//    //    [mutableRequest addValue:@"Hless" forHTTPHeaderField:@"X-user-nick"];
+//    
+//    NSArray *allKeys = [headerDic allKeys];
+//    //    NSArray *allValue = [headerDic allValues];
+//    for(int i = 0;i < [headerDic count];i++){
+//        NSString *key = [allKeys objectAtIndex:i];
+//        //NSString *obj =[allValue objectAtIndex:i];
+//        NSString *obj = [headerDic objectForKey:key];
+//        
+//        [mutableRequest addValue:obj forHTTPHeaderField:key];
+//        
+//    }
 //    
 //    request = [mutableRequest copy];
-    
-    
-    [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON){
-        DLog(@"json : %@", JSON);
-        if ([JSON isKindOfClass:[NSDictionary class]]) {
-            NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
-            NSString *state=[numberFormatter stringFromNumber:[JSON objectForKey:@"state"]];
-            if ([state isEqualToString:@"1"]) {
-                successful(JSON);
-            }else{
-//                DLog(@"接口返回失败");
+//    
+//    
+//    [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
+//    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON){
+//        DLog(@"json : %@", JSON);
+//        if ([JSON isKindOfClass:[NSDictionary class]]) {
+//            NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
+//            NSString *state=[numberFormatter stringFromNumber:[JSON objectForKey:@"state"]];
+//            if ([state isEqualToString:@"1"]) {
+//                successful(JSON);
+//            }else{
+//                NSLog(@"接口返回失败");
 //                NSString *msg = [JSON objectForKey:@"msg"];
 //                NSError *err = [self errorWithMsg:msg];
 //                fail(err);
-            }
-        }else{
-            DLog(@"返回数据不是JSON数据");
-            NSError *err = [self errorWithMsg:@"data is not json"];
-            fail(err);
-        }
-        
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON){
-        fail(error);
-    }];
-    [operation start];
-    
-    return operation;
-}
+//            }
+//        }else{
+//            DLog(@"返回数据不是JSON数据");
+//            NSError *err = [self errorWithMsg:@"data is not json"];
+//            fail(err);
+//        }
+//        
+//    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON){
+//        
+//        fail(error);
+//        
+//    }];
+//    [operation start];
+//    
+//    return operation;
+//    
+//}
 
--(id)getRequestWithBaseUrl2:(NSString*)url andPath:(NSString*)path andParameters:(NSDictionary*)parameters forSuccessful:(void(^)(id responseObject))successful forFail:(void(^)(NSError *error))fail
-{
-    //为所有接口加上token
-    NSMutableDictionary *mutParameters = [NSMutableDictionary dictionaryWithDictionary:parameters];
-    //    if (![mutParameters.allKeys containsObject:@"token"] && ![mutParameters.allKeys containsObject:@"Token"]) {
-    //        [mutParameters setValue:self.token forKey:@"token"];
-    //    };
-    
-    NSLog(@"GET请求地址:%@%@.请求的参数:%@", url, path, parameters);
-    
-    NSURLRequest *request = [self makeGetRequestWithBaseUrl:url andPath:path andParameters:mutParameters];
-    //    NSMutableURLRequest *mutableRequest = [request mutableCopy];
-    //    [mutableRequest addValue:@"Hless" forHTTPHeaderField:@"X-user-nick"];
-    //
-    //    request = [mutableRequest copy];
-    
-    
-    [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON){
-        DLog(@"json : %@", JSON);
-        if ([JSON isKindOfClass:[NSDictionary class]]) {
-            NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
-            NSString *state=[numberFormatter stringFromNumber:[JSON objectForKey:@"state"]];
-            successful(JSON);
-            }else
-            {
-            DLog(@"返回数据不是JSON数据");
-            NSError *err = [self errorWithMsg:@"data is not json"];
-            fail(err);
-        }
-        
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON){
-        fail(error);
-    }];
-    [operation start];
-    
-    return operation;
-}
-
+//-(id)getRequestWithBaseUrl:(NSString*)url andPath:(NSString*)path andParameters:(NSDictionary*)parameters forSuccessful:(void(^)(id responseObject))successful forFail:(void(^)(NSError *error))fail
+//{
+//    //为所有接口加上token
+//    NSMutableDictionary *mutParameters = [NSMutableDictionary dictionaryWithDictionary:parameters];
+////    if (![mutParameters.allKeys containsObject:@"token"] && ![mutParameters.allKeys containsObject:@"Token"]) {
+////        [mutParameters setValue:self.token forKey:@"token"];
+////    };
+//    
+//    NSLog(@"GET请求地址:%@%@.请求的参数:%@", url, path, parameters);
+//    
+//    NSURLRequest *request = [self makeGetRequestWithBaseUrl:url andPath:path andParameters:mutParameters];
+////    NSMutableURLRequest *mutableRequest = [request mutableCopy];
+////    [mutableRequest addValue:@"Hless" forHTTPHeaderField:@"X-user-nick"];
+////    
+////    request = [mutableRequest copy];
+//    
+//    
+//    [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
+//    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON){
+//        DLog(@"json : %@", JSON);
+//        if ([JSON isKindOfClass:[NSDictionary class]]) {
+//            NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
+//            NSString *state=[numberFormatter stringFromNumber:[JSON objectForKey:@"state"]];
+//            if ([state isEqualToString:@"1"]) {
+//                successful(JSON);
+//            }else{
+////                DLog(@"接口返回失败");
+////                NSString *msg = [JSON objectForKey:@"msg"];
+////                NSError *err = [self errorWithMsg:msg];
+////                fail(err);
+//            }
+//        }else{
+//            DLog(@"返回数据不是JSON数据");
+//            NSError *err = [self errorWithMsg:@"data is not json"];
+//            fail(err);
+//        }
+//        
+//    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON){
+//        fail(error);
+//    }];
+//    [operation start];
+//    
+//    return operation;
+//}
+//
+//-(id)getRequestWithBaseUrl2:(NSString*)url andPath:(NSString*)path andParameters:(NSDictionary*)parameters forSuccessful:(void(^)(id responseObject))successful forFail:(void(^)(NSError *error))fail
+//{
+//    //为所有接口加上token
+//    NSMutableDictionary *mutParameters = [NSMutableDictionary dictionaryWithDictionary:parameters];
+//    //    if (![mutParameters.allKeys containsObject:@"token"] && ![mutParameters.allKeys containsObject:@"Token"]) {
+//    //        [mutParameters setValue:self.token forKey:@"token"];
+//    //    };
+//    
+//    NSLog(@"GET请求地址:%@%@.请求的参数:%@", url, path, parameters);
+//    
+//    NSURLRequest *request = [self makeGetRequestWithBaseUrl:url andPath:path andParameters:mutParameters];
+//    //    NSMutableURLRequest *mutableRequest = [request mutableCopy];
+//    //    [mutableRequest addValue:@"Hless" forHTTPHeaderField:@"X-user-nick"];
+//    //
+//    //    request = [mutableRequest copy];
+//    
+//    
+//    [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
+//    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON){
+//        DLog(@"json : %@", JSON);
+//        if ([JSON isKindOfClass:[NSDictionary class]]) {
+//            NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
+//            NSString *state=[numberFormatter stringFromNumber:[JSON objectForKey:@"state"]];
+//            successful(JSON);
+//            }else
+//            {
+//            DLog(@"返回数据不是JSON数据");
+//            NSError *err = [self errorWithMsg:@"data is not json"];
+//            fail(err);
+//        }
+//        
+//    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON){
+//        fail(error);
+//    }];
+//    [operation start];
+//    
+//    return operation;
+//}
+//
 /**
  *  get请求路径参数拼接
  *
@@ -450,39 +450,39 @@ static CPNetWork * _wanCheNetWork = nil;
  *
  *  @return NSURLRequest对象
  */
--(NSURLRequest*)makeGetRequestWithBaseUrl:(NSString*)url andPath:(NSString*)path andParameters:(NSDictionary*)parameters
-{
-    NSURLRequest *req;
-    NSMutableString *string = [NSMutableString stringWithString:url];
-    if (path) {
-        [string appendFormat:@"%@", path];
-    }
-    
-    if (parameters) {
-        NSEnumerator *en = [parameters keyEnumerator];
-        NSArray *keys = [en allObjects];
-        int i;
-        int count = keys.count;
-        NSString *k = nil;
-        NSString *v = nil;
-        for (i = 0; i < count; i++) {
-            if (i == 0) {
-                [string appendString:@"?"];
-            }
-            k = [keys objectAtIndex:i];
-            v = [parameters objectForKey:k];
-            [string appendString:[NSString stringWithFormat:@"%@=%@", k, v]];
-            if (i < count - 1) {
-                [string appendString:@"&"];
-            }
-        }
-    }
-    
-    NSLog(@"get的请求地址：%@", string);
-    req = [NSURLRequest requestWithURL:[NSURL URLWithString:string] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
-    return req;
-}
-
+//-(NSURLRequest*)makeGetRequestWithBaseUrl:(NSString*)url andPath:(NSString*)path andParameters:(NSDictionary*)parameters
+//{
+//    NSURLRequest *req;
+//    NSMutableString *string = [NSMutableString stringWithString:url];
+//    if (path) {
+//        [string appendFormat:@"%@", path];
+//    }
+//    
+//    if (parameters) {
+//        NSEnumerator *en = [parameters keyEnumerator];
+//        NSArray *keys = [en allObjects];
+//        int i;
+//        int count = keys.count;
+//        NSString *k = nil;
+//        NSString *v = nil;
+//        for (i = 0; i < count; i++) {
+//            if (i == 0) {
+//                [string appendString:@"?"];
+//            }
+//            k = [keys objectAtIndex:i];
+//            v = [parameters objectForKey:k];
+//            [string appendString:[NSString stringWithFormat:@"%@=%@", k, v]];
+//            if (i < count - 1) {
+//                [string appendString:@"&"];
+//            }
+//        }
+//    }
+//    
+//    NSLog(@"get的请求地址：%@", string);
+//    req = [NSURLRequest requestWithURL:[NSURL URLWithString:string] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
+//    return req;
+//}
+//
 /**
  *  请求失败时候提示的错误信息
  *
@@ -490,49 +490,49 @@ static CPNetWork * _wanCheNetWork = nil;
  *
  *  @return NSError错误信息
  */
--(NSError*)errorWithMsg:(NSString*)msg
-{
-    NSError *err = [[NSError alloc]initWithDomain:msg code:-1 userInfo:nil];
-    return err;
-}
-
--(id)getRequestForSinaShortUrlWithBaseUrl:(NSString*)url andPath:(NSString*)path andParameters:(NSDictionary*)parameters forSuccessful:(void(^)(id responseObject))successful forFail:(void(^)(NSError *error))fail
-{
-    NSLog(@"POST请求地址:%@%@.请求的参数:%@", url, path, parameters);
-    
-    NSURLRequest *request = [self makeGetRequestWithBaseUrl:url andPath:path andParameters:parameters];
-    
-    //    [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON){
-        DLog(@"json : %@", JSON);
-    
-        NSLog(@"%@",[JSON class]);
-        NSLog(@"%@",JSON);
-        if ([JSON isKindOfClass:[NSDictionary class]]) {
-            successful(JSON);
-//            if ([[[JSON objectForKey:@"urls"] objectAtIndex:3] isEqualToString:@"0"]) {
-//                successful(JSON);
-//            }else{
-//                DLog(@"接口返回失败");
-//                NSString *msg = [JSON objectForKey:@"msg"];
-//                NSError *err = [self errorWithMsg:msg];
-//                fail(err);
-//            }
-        }else{
-            DLog(@"返回数据不是JSON数据");
-            NSError *err = [self errorWithMsg:@"data is not json"];
-            fail(err);
-        }
-        
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON){
-        //        fail(error);
-        if ([JSON isKindOfClass:[NSDictionary class]]) {
-            successful([JSON objectForKey:@"offer"]);
-        }
-        
-    }];
-    [operation start];
-    
-    return operation;
-}
+//-(NSError*)errorWithMsg:(NSString*)msg
+//{
+//    NSError *err = [[NSError alloc]initWithDomain:msg code:-1 userInfo:nil];
+//    return err;
+//}
+//
+//-(id)getRequestForSinaShortUrlWithBaseUrl:(NSString*)url andPath:(NSString*)path andParameters:(NSDictionary*)parameters forSuccessful:(void(^)(id responseObject))successful forFail:(void(^)(NSError *error))fail
+//{
+//    NSLog(@"POST请求地址:%@%@.请求的参数:%@", url, path, parameters);
+//    
+//    NSURLRequest *request = [self makeGetRequestWithBaseUrl:url andPath:path andParameters:parameters];
+//    
+//    //    [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
+//    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON){
+//        DLog(@"json : %@", JSON);
+//    
+//        NSLog(@"%@",[JSON class]);
+//        NSLog(@"%@",JSON);
+//        if ([JSON isKindOfClass:[NSDictionary class]]) {
+//            successful(JSON);
+////            if ([[[JSON objectForKey:@"urls"] objectAtIndex:3] isEqualToString:@"0"]) {
+////                successful(JSON);
+////            }else{
+////                DLog(@"接口返回失败");
+////                NSString *msg = [JSON objectForKey:@"msg"];
+////                NSError *err = [self errorWithMsg:msg];
+////                fail(err);
+////            }
+//        }else{
+//            DLog(@"返回数据不是JSON数据");
+//            NSError *err = [self errorWithMsg:@"data is not json"];
+//            fail(err);
+//        }
+//        
+//    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON){
+//        //        fail(error);
+//        if ([JSON isKindOfClass:[NSDictionary class]]) {
+//            successful([JSON objectForKey:@"offer"]);
+//        }
+//        
+//    }];
+//    [operation start];
+//    
+//    return operation;
+//}
 @end

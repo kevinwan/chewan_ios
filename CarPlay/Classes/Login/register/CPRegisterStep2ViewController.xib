@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CPRegisterStep2ViewController">
             <connections>
+                <outlet property="footView" destination="i95-Dr-ZHZ" id="xCh-tt-Mix"/>
+                <outlet property="headView" destination="qnB-1s-4Ue" id="BVu-U5-sxh"/>
+                <outlet property="nextStepBtn" destination="ptE-zL-wuX" id="dht-6U-LrH"/>
+                <outlet property="nextStepBtnClick" destination="ptE-zL-wuX" id="ukG-bg-Gca"/>
                 <outlet property="tableView" destination="Jwg-1F-uhf" id="OhH-uF-o1E"/>
+                <outlet property="userIconBtn" destination="TV3-PZ-DHR" id="5fe-Ae-Tnz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,6 +24,61 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="52" sectionHeaderHeight="107" sectionFooterHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="Jwg-1F-uhf">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <view key="tableHeaderView" contentMode="scaleToFill" id="qnB-1s-4Ue">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="107"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TV3-PZ-DHR">
+                                <rect key="frame" x="122" y="15" width="77" height="77"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="77" id="UGY-OR-quK"/>
+                                    <constraint firstAttribute="height" constant="77" id="aT3-Fs-C98"/>
+                                </constraints>
+                                <state key="normal" image="morenHeadBtnImg">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="userIconBtnClick:" destination="-1" eventType="touchUpInside" id="7zv-IV-chg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.94509803920000002" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="TV3-PZ-DHR" firstAttribute="top" secondItem="qnB-1s-4Ue" secondAttribute="top" constant="15" id="FHy-WE-Ama"/>
+                            <constraint firstAttribute="centerX" secondItem="TV3-PZ-DHR" secondAttribute="centerX" id="Ioo-iQ-YZb"/>
+                            <constraint firstAttribute="height" constant="107" id="hsq-Co-3BR"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="hsq-Co-3BR"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <view key="tableFooterView" contentMode="scaleToFill" id="i95-Dr-ZHZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ptE-zL-wuX">
+                                <rect key="frame" x="10" y="20" width="300" height="40"/>
+                                <color key="backgroundColor" red="0.23921568630000001" green="0.76078431369999999" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Zbf-LH-7tx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="下一步">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="ptE-zL-wuX" firstAttribute="leading" secondItem="i95-Dr-ZHZ" secondAttribute="leading" constant="10" id="7rT-Wz-LNE"/>
+                            <constraint firstAttribute="trailing" secondItem="ptE-zL-wuX" secondAttribute="trailing" constant="10" id="Mz0-UH-Xx7"/>
+                            <constraint firstAttribute="centerX" secondItem="ptE-zL-wuX" secondAttribute="centerX" id="QfJ-FP-fb9"/>
+                            <constraint firstItem="ptE-zL-wuX" firstAttribute="top" secondItem="i95-Dr-ZHZ" secondAttribute="top" constant="20" id="Wfn-Ad-jN7"/>
+                        </constraints>
+                    </view>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="y7o-7z-Zq9"/>
                         <outlet property="delegate" destination="-1" id="Zul-PQ-Mh5"/>
@@ -34,4 +95,7 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <resources>
+        <image name="morenHeadBtnImg" width="77" height="77"/>
+    </resources>
 </document>
