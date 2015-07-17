@@ -22,7 +22,15 @@
     // 利用kvc对readonly的属性进行赋值 自定义navigationBar
     [self setValue:[[ZYNavigationBar alloc] init] forKey:@"navigationBar"];
     
-    self.navigationBar.barTintColor = [UIColor greenColor];
+    self.navigationBar.barTintColor = [Tools getColor:@"48d1d5"];
+    
+    
+    // 设置全局的导航栏字体
+    UINavigationBar *bar = [UINavigationBar appearance];
+    NSMutableDictionary *textAttr = [NSMutableDictionary dictionary];
+    textAttr[NSForegroundColorAttributeName] = [UIColor whiteColor];
+    textAttr[NSFontAttributeName] = [UIFont boldSystemFontOfSize:20];
+    [bar setTitleTextAttributes:textAttr];
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated

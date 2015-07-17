@@ -8,6 +8,9 @@
 
 #import "CPMyPublishFrameModel.h"
 #import "CPMyPublishModel.h"
+#import "NSString+Extension.h"
+#import "HMStatusPhotosView.h"
+#define KMargin 10
 
 @implementation CPMyPublishFrameModel
 
@@ -17,27 +20,37 @@
     
     CGFloat timeStampLabelX = 10;
     CGFloat timeStampLabelY = 15;
-    CGFloat timeStampLabelW = 0;
-    CGFloat timeStampLabelH = 0;
+    CGFloat timeStampLabelW = 40;
+    CGFloat timeStampLabelH = 20;
     self.timeStampF = CGRectMake(timeStampLabelX, timeStampLabelY, timeStampLabelW, timeStampLabelH);
+    _cellHeight = CGRectGetMaxY(_timeStampF);
     
-    CGFloat contentLbX = 0;
-    CGFloat contentLbY = 0;
-    CGFloat contentLbW = 0;
-    CGFloat contentLbH = 0;
+    CGFloat contentLbX = CGRectGetMaxX(_timeStampF) + 25;
+    CGFloat contentLbY = timeStampLabelY + 2;
+    CGFloat maxW = kScreenWidth - contentLbX - KMargin;
+    CGFloat contentLbW = [model.introduction sizeWithFont:ContentFont maxW:maxW].width;
+    CGFloat contentLbH = [model.introduction sizeWithFont:ContentFont maxW:maxW].height;
     self.contentLableF = CGRectMake(contentLbX, contentLbY, contentLbW, contentLbH);
+    _cellHeight = CGRectGetMaxY(_contentLableF);
     
-    CGFloat photoViewX = 0;
-    CGFloat photoViewY = 0;
-    CGFloat photoViewW = 0;
-    CGFloat photoViewH = 0;
-    self.photosViewF = CGRectMake(photoViewX, photoViewY, photoViewW, photoViewH);
+    if (model.cover.count > 0) {
+        
+        CGFloat photoViewX = contentLbX;
+        CGFloat photoViewY = _cellHeight + KMargin;
+        CGFloat photoViewW = [HMStatusPhotosView sizeWithPhotosCount:model.cover.count].width;
+        CGFloat photoViewH = [HMStatusPhotosView sizeWithPhotosCount:model.cover.count].height;;
+        self.photosViewF = CGRectMake(photoViewX, photoViewY, photoViewW, photoViewH);
+        _cellHeight = CGRectGetMaxY(_photosViewF);
+    }else{
+        self.photosViewF = CGRectZero;
+    }
     
-    CGFloat bottomViewX = 0;
-    CGFloat bottomViewY = 0;
-    CGFloat bottomViewW = 0;
-    CGFloat bottomViewH = 0;
+    CGFloat bottomViewX = contentLbX;
+    CGFloat bottomViewY = _cellHeight + KMargin;
+    CGFloat bottomViewW = kScreenWidth - contentLbX- KMargin;
+    CGFloat bottomViewH = 70;
     self.bottomViewF = CGRectMake(bottomViewX, bottomViewY, bottomViewW, bottomViewH);
+    _cellHeight = CGRectGetMaxY(_bottomViewF) + KMargin;
 }
 
 @end

@@ -10,6 +10,8 @@
 #import "CPNewMessageCell.h"
 #import "UIBarButtonItem+Extension.h"
 #import "CPActivityApplyControllerView.h"
+#import "CPNetWork.h"
+#import "CPMyPublishController.h"
 
 @interface CPNewMessageController ()
 @end
@@ -19,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationItem.title = @"新的留言";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,7 +53,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CPActivityApplyControllerView *vc = [UIStoryboard storyboardWithName:@"CPActivityApplyControllerView" bundle:nil].instantiateInitialViewController;
+    CPMyPublishController *vc = [[CPMyPublishController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

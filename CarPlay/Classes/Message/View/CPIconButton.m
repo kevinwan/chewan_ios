@@ -10,36 +10,15 @@
 
 @implementation CPIconButton
 
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    if (self = [super initWithCoder:aDecoder]) {
-        [self setUp];
-    }
-    return self;
-}
-
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    if (self = [super initWithFrame:frame]) {
-        [self setUp];
-    }
-    return self;
-}
-
 /**
- *  进行初始化设置
+ *  拦截setframe方法 可以获得button最准确的width
+ *
+ *  @param frame 
  */
-- (void)setUp
+- (void)setFrame:(CGRect)frame
 {
-    self.layer.cornerRadius = self.frame.size.width * 0.5;
-    self.clipsToBounds = YES;
-}
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    
-    self.layer.cornerRadius = self.frame.size.width * 0.5;
+    [super setFrame:frame];
+    self.layer.cornerRadius = frame.size.width * 0.5;
     self.clipsToBounds = YES;
 }
 
