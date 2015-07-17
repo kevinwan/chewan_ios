@@ -75,7 +75,7 @@
     
     // 添加底部区域
     UIView *bottomView = [[UIView alloc] init];
-    bottomView.backgroundColor = [Tools getColor:@"f5f7fa"];
+    bottomView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
     [self addSubview:bottomView];
     self.bottomView = bottomView;
     
