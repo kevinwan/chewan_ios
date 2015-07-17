@@ -28,10 +28,12 @@ static CGFloat photoWH;
 {
     [super load];
     
-    if (kScreenWidth == 320) {
+    if (iphone5) {
         photoWH = 60;
+    }else if (iphone6){
+        photoWH = 80;
     }else{
-        photoWH = 70;
+        photoWH = 90;
     }
 }
 

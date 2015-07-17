@@ -24,17 +24,7 @@
     
     NSDate *currentDate = [NSDate dateWithTimeIntervalSince1970:start / 1000];
     NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-    // 如果是真机调试，转换这种欧美时间，需要设置locale
-    fmt.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-    
-    // 设置日期格式（声明字符串里面每个数字和单词的含义）
-    // E:星期几
-    // M:月份
-    // d:几号(这个月的第几天)
-    // H:24小时制的小时
-    // m:分钟
-    // s:秒
-    // y:年
+
     fmt.dateFormat = @"MM月dd日 HH:mm";
     self.startStr = [fmt stringFromDate:currentDate];
 }
@@ -55,7 +45,6 @@
     // y:年
     //    _created_at = @"Tue Sep 30 17:06:25 +0600 2014";
     
-    // 微博的创建日期
     NSDate *createDate = [NSDate dateWithTimeIntervalSince1970:_publishTime / 1000];
     // 当前时间
     NSDate *now = [NSDate date];
