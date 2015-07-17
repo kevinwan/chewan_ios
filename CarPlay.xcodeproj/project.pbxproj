@@ -18,8 +18,6 @@
 		6B4EF1631B4036EE00292BD4 /* CPMyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4EF1571B4036EE00292BD4 /* CPMyController.m */; };
 		6B4EF1641B4036EE00292BD4 /* CPMyController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B4EF1581B4036EE00292BD4 /* CPMyController.storyboard */; };
 		6B4EF1681B403A5D00292BD4 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4EF1671B403A5D00292BD4 /* UIBarButtonItem+Extension.m */; };
-		6B5FD3481B56898800E34F66 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B5FD3471B56898800E34F66 /* area.plist */; };
-		6B5FD34B1B57A01700E34F66 /* CPHomeStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5FD34A1B57A01700E34F66 /* CPHomeStatusCell.m */; };
 		6B5FD34F1B57C33700E34F66 /* CPEditUsernameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5FD34D1B57C33700E34F66 /* CPEditUsernameViewController.m */; };
 		6B5FD3501B57C33700E34F66 /* CPEditUsernameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B5FD34E1B57C33700E34F66 /* CPEditUsernameViewController.xib */; };
 		6B64938C1B4D04BE00C197D2 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B64938B1B4D04BE00C197D2 /* BaseViewController.m */; };
@@ -48,6 +46,7 @@
 		E30BD5941B54FCC600FD9030 /* ZYNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5931B54FCC600FD9030 /* ZYNavigationBar.m */; };
 		E30BD5971B54FD6E00FD9030 /* ZYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5961B54FD6E00FD9030 /* ZYNavigationController.m */; };
 		E30BD59A1B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5991B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.m */; };
+		E33BAE811B58D5F20021DED6 /* CPHomeStatusCell.h in Sources */ = {isa = PBXBuildFile; fileRef = E33CB2E01B57871F003E76B7 /* CPHomeStatusCell.h */; };
 		E33CB2E21B57871F003E76B7 /* CPHomeStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E33CB2E11B57871F003E76B7 /* CPHomeStatusCell.m */; };
 		E35559A51B53A0CE00B200D0 /* CPSexView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35559A41B53A0CE00B200D0 /* CPSexView.m */; };
 		E35B04201B56076D002C6655 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E35B041F1B56076D002C6655 /* NSDate+Extension.m */; };
@@ -121,8 +120,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		067E537CBBB10C94B3610C79 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		1E1F11B43C6536981B4E2558 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		473C700A9DC662488BA2B8E4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		6B4959C81B33A23900DB63EA /* CarPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B4959CC1B33A23900DB63EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B4959DB1B33A23900DB63EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -144,9 +143,6 @@
 		6B4EF1651B4037DB00292BD4 /* CP_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CP_Prefix.pch; sourceTree = "<group>"; };
 		6B4EF1661B403A5D00292BD4 /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
 		6B4EF1671B403A5D00292BD4 /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
-		6B5FD3471B56898800E34F66 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
-		6B5FD3491B57A01700E34F66 /* CPHomeStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeStatusCell.h; sourceTree = "<group>"; };
-		6B5FD34A1B57A01700E34F66 /* CPHomeStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeStatusCell.m; sourceTree = "<group>"; };
 		6B5FD34C1B57C33700E34F66 /* CPEditUsernameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPEditUsernameViewController.h; sourceTree = "<group>"; };
 		6B5FD34D1B57C33700E34F66 /* CPEditUsernameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPEditUsernameViewController.m; sourceTree = "<group>"; };
 		6B5FD34E1B57C33700E34F66 /* CPEditUsernameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPEditUsernameViewController.xib; sourceTree = "<group>"; };
@@ -180,7 +176,7 @@
 		6BC82F2D1B53C4AF00C8E916 /* CPHomeStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeStatus.m; sourceTree = "<group>"; };
 		6BC82F2E1B53C4AF00C8E916 /* CPHomeUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeUser.h; sourceTree = "<group>"; };
 		6BC82F2F1B53C4AF00C8E916 /* CPHomeUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeUser.m; sourceTree = "<group>"; };
-		7EFC6FDCACCD754B7CBE580D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		8D517A33E680C9B10E7DB410 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E30BD57C1B54EBEB00FD9030 /* CPMySubscribeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMySubscribeController.h; sourceTree = "<group>"; };
 		E30BD57D1B54EBEB00FD9030 /* CPMySubscribeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMySubscribeController.m; sourceTree = "<group>"; };
 		E30BD5851B54EC4A00FD9030 /* CPMySubscribeFrameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMySubscribeFrameModel.h; sourceTree = "<group>"; };
@@ -320,15 +316,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		04C2A89954F5226426A2985A /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				067E537CBBB10C94B3610C79 /* Pods.release.xcconfig */,
-				7EFC6FDCACCD754B7CBE580D /* Pods.debug.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		16CFAD7EE0B36F11A8B32110 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,8 +330,8 @@
 				6B4959CA1B33A23900DB63EA /* CarPlay */,
 				6B4959E41B33A23900DB63EA /* CarPlayTests */,
 				6B4959C91B33A23900DB63EA /* Products */,
-				04C2A89954F5226426A2985A /* Pods */,
 				16CFAD7EE0B36F11A8B32110 /* Frameworks */,
+				76B5D5B82851E64B3498ED4A /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -567,8 +554,6 @@
 		6B64938D1B4D04E100C197D2 /* NetWork */ = {
 			isa = PBXGroup;
 			children = (
-				A56D3B061B57C3D000AD4382 /* NetworkTools.h */,
-				A56D3B071B57C3D000AD4382 /* NetworkTools.m */,
 				6B6493D71B4FABC900C197D2 /* CPNetworkVO.h */,
 				6B6493D81B4FABC900C197D2 /* CPNetworkVO.m */,
 				6B64938E1B4D04E100C197D2 /* CPNetWork.h */,
@@ -631,6 +616,15 @@
 				6B5FD34E1B57C33700E34F66 /* CPEditUsernameViewController.xib */,
 			);
 			path = register;
+			sourceTree = "<group>";
+		};
+		76B5D5B82851E64B3498ED4A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				473C700A9DC662488BA2B8E4 /* Pods.debug.xcconfig */,
+				8D517A33E680C9B10E7DB410 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		E30BD5911B54FC9400FD9030 /* ZYCustomView */ = {
@@ -1072,6 +1066,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E33BAE811B58D5F20021DED6 /* CPHomeStatusCell.h in Sources */,
 				E36AFE651B579F0E0081F499 /* ZHAppDelegate.h in Sources */,
 				E36AFE661B579F0E0081F499 /* ZHPickView.h in Sources */,
 				E375E4931B55171500DADF65 /* CarOwnersCertificationViewController.h in Sources */,
@@ -1098,8 +1093,6 @@
 				E36AFE631B579ECD0081F499 /* ZHAppDelegate.m in Sources */,
 				6B6493941B4D04E500C197D2 /* Tools.m in Sources */,
 				6B64938C1B4D04BE00C197D2 /* BaseViewController.m in Sources */,
-				6B5FD34B1B57A01700E34F66 /* CPHomeStatusCell.m in Sources */,
-				6B6493CE1B4D0D7800C197D2 /* AFURLConnectionOperation.m in Sources */,
 				6B6493FE1B54E61900C197D2 /* CPRegisterStep2ViewController.m in Sources */,
 				E35E6FD01B54B0EC001212D6 /* CPMyPublishFrameModel.m in Sources */,
 				E35E6FCD1B54B0D9001212D6 /* CPMyPublishModel.m in Sources */,
@@ -1266,7 +1259,7 @@
 		};
 		6B4959EC1B33A23900DB63EA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7EFC6FDCACCD754B7CBE580D /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 473C700A9DC662488BA2B8E4 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1280,7 +1273,7 @@
 		};
 		6B4959ED1B33A23900DB63EA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 067E537CBBB10C94B3610C79 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 8D517A33E680C9B10E7DB410 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
