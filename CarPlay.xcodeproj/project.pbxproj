@@ -18,10 +18,8 @@
 		6B4EF1631B4036EE00292BD4 /* CPMyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4EF1571B4036EE00292BD4 /* CPMyController.m */; };
 		6B4EF1641B4036EE00292BD4 /* CPMyController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B4EF1581B4036EE00292BD4 /* CPMyController.storyboard */; };
 		6B4EF1681B403A5D00292BD4 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4EF1671B403A5D00292BD4 /* UIBarButtonItem+Extension.m */; };
-		6B5FD34B1B57A01700E34F66 /* CPHomeStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5FD34A1B57A01700E34F66 /* CPHomeStatusCell.m */; };
 		6B5FD34F1B57C33700E34F66 /* CPEditUsernameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5FD34D1B57C33700E34F66 /* CPEditUsernameViewController.m */; };
 		6B5FD3501B57C33700E34F66 /* CPEditUsernameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B5FD34E1B57C33700E34F66 /* CPEditUsernameViewController.xib */; };
-		6B5FD3511B57D86900E34F66 /* CPHomeStatusCell.h in Sources */ = {isa = PBXBuildFile; fileRef = 6B5FD3491B57A01700E34F66 /* CPHomeStatusCell.h */; };
 		6B64938C1B4D04BE00C197D2 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B64938B1B4D04BE00C197D2 /* BaseViewController.m */; };
 		6B6493901B4D04E100C197D2 /* CPNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B64938F1B4D04E100C197D2 /* CPNetWork.m */; };
 		6B6493941B4D04E500C197D2 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493931B4D04E500C197D2 /* Tools.m */; };
@@ -38,17 +36,16 @@
 		6B6493FF1B54E61900C197D2 /* CPRegisterStep2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B6493FD1B54E61900C197D2 /* CPRegisterStep2ViewController.xib */; };
 		6B7B907B1B58D209006A506D /* CPRegisterCellsTableViewCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B7B90731B58D209006A506D /* CPRegisterCellsTableViewCell1.m */; };
 		6B7B907C1B58D209006A506D /* CPRegisterCellsTableViewCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B7B90741B58D209006A506D /* CPRegisterCellsTableViewCell1.xib */; };
-		6B7B907D1B58D209006A506D /* CPRegisterCellsTableViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B7B90761B58D209006A506D /* CPRegisterCellsTableViewCell2.m */; };
-		6B7B907E1B58D209006A506D /* CPRegisterCellsTableViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B7B90771B58D209006A506D /* CPRegisterCellsTableViewCell2.xib */; };
 		6B7B907F1B58D209006A506D /* CPRegisterCellsTableViewCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B7B90791B58D209006A506D /* CPRegisterCellsTableViewCell3.m */; };
 		6B7B90801B58D209006A506D /* CPRegisterCellsTableViewCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B7B907A1B58D209006A506D /* CPRegisterCellsTableViewCell3.xib */; };
+		6B7B90811B58EEBD006A506D /* CPHomePicCell.h in Sources */ = {isa = PBXBuildFile; fileRef = E36AFEB91B57B21D0081F499 /* CPHomePicCell.h */; };
+		6B7B90821B58EEBD006A506D /* CPHomeStatusCell.h in Sources */ = {isa = PBXBuildFile; fileRef = E33CB2E01B57871F003E76B7 /* CPHomeStatusCell.h */; };
+		6B7B90861B58EFC4006A506D /* CPRegisterCellsTableViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B7B90841B58EFC4006A506D /* CPRegisterCellsTableViewCell2.m */; };
+		6B7B90871B58EFC4006A506D /* CPRegisterCellsTableViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B7B90851B58EFC4006A506D /* CPRegisterCellsTableViewCell2.xib */; };
+		6B7B90891B58F07E006A506D /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B7B90881B58F07E006A506D /* area.plist */; };
 		6BC82F301B53C4AF00C8E916 /* CPHomePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82F2B1B53C4AF00C8E916 /* CPHomePhoto.m */; };
 		6BC82F311B53C4AF00C8E916 /* CPHomeStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82F2D1B53C4AF00C8E916 /* CPHomeStatus.m */; };
 		6BC82F321B53C4AF00C8E916 /* CPHomeUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82F2F1B53C4AF00C8E916 /* CPHomeUser.m */; };
-		6BCBCB521B57AC9200923C5A /* CPHomePicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCBCB4F1B57AC9200923C5A /* CPHomePicCell.m */; };
-		88ACAA7D204A6CD8C60AEDA0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF9EB55A77B23365438833CB /* libPods.a */; };
-		A56D3B051B57B5A800AD4382 /* ZHPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = A56D3B041B57B5A800AD4382 /* ZHPickView.m */; };
-		A56D3B081B57C3D000AD4382 /* NetworkTools.m in Sources */ = {isa = PBXBuildFile; fileRef = A56D3B071B57C3D000AD4382 /* NetworkTools.m */; };
 		E30BD57E1B54EBEB00FD9030 /* CPMySubscribeController.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD57D1B54EBEB00FD9030 /* CPMySubscribeController.m */; };
 		E30BD5891B54EC4A00FD9030 /* CPMySubscribeFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5861B54EC4A00FD9030 /* CPMySubscribeFrameModel.m */; };
 		E30BD58A1B54EC4A00FD9030 /* CPMySubscribeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5881B54EC4A00FD9030 /* CPMySubscribeModel.m */; };
@@ -57,7 +54,6 @@
 		E30BD5941B54FCC600FD9030 /* ZYNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5931B54FCC600FD9030 /* ZYNavigationBar.m */; };
 		E30BD5971B54FD6E00FD9030 /* ZYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5961B54FD6E00FD9030 /* ZYNavigationController.m */; };
 		E30BD59A1B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5991B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.m */; };
-		E33BAE811B58D5F20021DED6 /* CPHomeStatusCell.h in Sources */ = {isa = PBXBuildFile; fileRef = E33CB2E01B57871F003E76B7 /* CPHomeStatusCell.h */; };
 		E33CB2E21B57871F003E76B7 /* CPHomeStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E33CB2E11B57871F003E76B7 /* CPHomeStatusCell.m */; };
 		E35559A51B53A0CE00B200D0 /* CPSexView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35559A41B53A0CE00B200D0 /* CPSexView.m */; };
 		E35B04201B56076D002C6655 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E35B041F1B56076D002C6655 /* NSDate+Extension.m */; };
@@ -84,8 +80,6 @@
 		E36AFE641B579ECD0081F499 /* ZHPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = E36AFE621B579ECD0081F499 /* ZHPickView.m */; };
 		E36AFE651B579F0E0081F499 /* ZHAppDelegate.h in Sources */ = {isa = PBXBuildFile; fileRef = E36AFE5F1B579ECD0081F499 /* ZHAppDelegate.h */; };
 		E36AFE661B579F0E0081F499 /* ZHPickView.h in Sources */ = {isa = PBXBuildFile; fileRef = E36AFE611B579ECD0081F499 /* ZHPickView.h */; };
-		E36AFEB71B57B1E80081F499 /* CPRegisterCellsTableViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = E36AFEB51B57B1E80081F499 /* CPRegisterCellsTableViewCell2.m */; };
-		E36AFEB81B57B1E80081F499 /* CPRegisterCellsTableViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = E36AFEB61B57B1E80081F499 /* CPRegisterCellsTableViewCell2.xib */; };
 		E36AFEBB1B57B21D0081F499 /* CPHomePicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E36AFEBA1B57B21D0081F499 /* CPHomePicCell.m */; };
 		E36C961A1B53BA3200D3EDBB /* CPActivityApplyControllerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E36C96131B53BA3200D3EDBB /* CPActivityApplyControllerView.m */; };
 		E36C961C1B53BA6B00D3EDBB /* CPActivityApplyControllerView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E36C961B1B53BA6B00D3EDBB /* CPActivityApplyControllerView.storyboard */; };
@@ -154,8 +148,6 @@
 		6B4EF1651B4037DB00292BD4 /* CP_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CP_Prefix.pch; sourceTree = "<group>"; };
 		6B4EF1661B403A5D00292BD4 /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
 		6B4EF1671B403A5D00292BD4 /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
-		6B5FD3491B57A01700E34F66 /* CPHomeStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeStatusCell.h; sourceTree = "<group>"; };
-		6B5FD34A1B57A01700E34F66 /* CPHomeStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeStatusCell.m; sourceTree = "<group>"; };
 		6B5FD34C1B57C33700E34F66 /* CPEditUsernameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPEditUsernameViewController.h; sourceTree = "<group>"; };
 		6B5FD34D1B57C33700E34F66 /* CPEditUsernameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPEditUsernameViewController.m; sourceTree = "<group>"; };
 		6B5FD34E1B57C33700E34F66 /* CPEditUsernameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPEditUsernameViewController.xib; sourceTree = "<group>"; };
@@ -187,25 +179,18 @@
 		6B7B90731B58D209006A506D /* CPRegisterCellsTableViewCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRegisterCellsTableViewCell1.m; sourceTree = "<group>"; };
 		6B7B90741B58D209006A506D /* CPRegisterCellsTableViewCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPRegisterCellsTableViewCell1.xib; sourceTree = "<group>"; };
 		6B7B90751B58D209006A506D /* CPRegisterCellsTableViewCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRegisterCellsTableViewCell2.h; sourceTree = "<group>"; };
-		6B7B90761B58D209006A506D /* CPRegisterCellsTableViewCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRegisterCellsTableViewCell2.m; sourceTree = "<group>"; };
-		6B7B90771B58D209006A506D /* CPRegisterCellsTableViewCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPRegisterCellsTableViewCell2.xib; sourceTree = "<group>"; };
 		6B7B90781B58D209006A506D /* CPRegisterCellsTableViewCell3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRegisterCellsTableViewCell3.h; sourceTree = "<group>"; };
 		6B7B90791B58D209006A506D /* CPRegisterCellsTableViewCell3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRegisterCellsTableViewCell3.m; sourceTree = "<group>"; };
 		6B7B907A1B58D209006A506D /* CPRegisterCellsTableViewCell3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPRegisterCellsTableViewCell3.xib; sourceTree = "<group>"; };
+		6B7B90841B58EFC4006A506D /* CPRegisterCellsTableViewCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRegisterCellsTableViewCell2.m; sourceTree = "<group>"; };
+		6B7B90851B58EFC4006A506D /* CPRegisterCellsTableViewCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPRegisterCellsTableViewCell2.xib; sourceTree = "<group>"; };
+		6B7B90881B58F07E006A506D /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		6BC82F2A1B53C4AF00C8E916 /* CPHomePhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomePhoto.h; sourceTree = "<group>"; };
 		6BC82F2B1B53C4AF00C8E916 /* CPHomePhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomePhoto.m; sourceTree = "<group>"; };
 		6BC82F2C1B53C4AF00C8E916 /* CPHomeStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeStatus.h; sourceTree = "<group>"; };
 		6BC82F2D1B53C4AF00C8E916 /* CPHomeStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeStatus.m; sourceTree = "<group>"; };
 		6BC82F2E1B53C4AF00C8E916 /* CPHomeUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeUser.h; sourceTree = "<group>"; };
 		6BC82F2F1B53C4AF00C8E916 /* CPHomeUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeUser.m; sourceTree = "<group>"; };
-		6BCBCB4E1B57AC9200923C5A /* CPHomePicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomePicCell.h; sourceTree = "<group>"; };
-		6BCBCB4F1B57AC9200923C5A /* CPHomePicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomePicCell.m; sourceTree = "<group>"; };
-		A56D3B031B57B5A800AD4382 /* ZHPickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZHPickView.h; path = ZHpickView/ZHPickView.h; sourceTree = "<group>"; };
-		A56D3B041B57B5A800AD4382 /* ZHPickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZHPickView.m; path = ZHpickView/ZHPickView.m; sourceTree = "<group>"; };
-		A56D3B061B57C3D000AD4382 /* NetworkTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkTools.h; sourceTree = "<group>"; };
-		A56D3B071B57C3D000AD4382 /* NetworkTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkTools.m; sourceTree = "<group>"; };
-		C04FB2E7716D65CA69DEA57F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		CF9EB55A77B23365438833CB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D517A33E680C9B10E7DB410 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E30BD57C1B54EBEB00FD9030 /* CPMySubscribeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMySubscribeController.h; sourceTree = "<group>"; };
 		E30BD57D1B54EBEB00FD9030 /* CPMySubscribeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMySubscribeController.m; sourceTree = "<group>"; };
@@ -269,9 +254,6 @@
 		E36AFE601B579ECD0081F499 /* ZHAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHAppDelegate.m; sourceTree = "<group>"; };
 		E36AFE611B579ECD0081F499 /* ZHPickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHPickView.h; sourceTree = "<group>"; };
 		E36AFE621B579ECD0081F499 /* ZHPickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHPickView.m; sourceTree = "<group>"; };
-		E36AFEB41B57B1E80081F499 /* CPRegisterCellsTableViewCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRegisterCellsTableViewCell2.h; sourceTree = "<group>"; };
-		E36AFEB51B57B1E80081F499 /* CPRegisterCellsTableViewCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRegisterCellsTableViewCell2.m; sourceTree = "<group>"; };
-		E36AFEB61B57B1E80081F499 /* CPRegisterCellsTableViewCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPRegisterCellsTableViewCell2.xib; sourceTree = "<group>"; };
 		E36AFEB91B57B21D0081F499 /* CPHomePicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomePicCell.h; sourceTree = "<group>"; };
 		E36AFEBA1B57B21D0081F499 /* CPHomePicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomePicCell.m; sourceTree = "<group>"; };
 		E36C96121B53BA3200D3EDBB /* CPActivityApplyControllerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityApplyControllerView.h; sourceTree = "<group>"; };
@@ -332,7 +314,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD5690C45A77A4D82E40CA3F /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,6 +367,7 @@
 		6B4959CB1B33A23900DB63EA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6B7B90881B58F07E006A506D /* area.plist */,
 				E3B1277A1B54DECB005B1174 /* Images.xcassets */,
 				6B4959DA1B33A23900DB63EA /* LaunchScreen.xib */,
 				6B4959CC1B33A23900DB63EA /* Info.plist */,
@@ -630,17 +612,14 @@
 		6B6493EA1B53821100C197D2 /* register */ = {
 			isa = PBXGroup;
 			children = (
-				E36AFEB41B57B1E80081F499 /* CPRegisterCellsTableViewCell2.h */,
-				E36AFEB51B57B1E80081F499 /* CPRegisterCellsTableViewCell2.m */,
-				E36AFEB61B57B1E80081F499 /* CPRegisterCellsTableViewCell2.xib */,
 				E375E4871B5516EB00DADF65 /* CarOwnersCertification */,
 				E375E48B1B5516EB00DADF65 /* serviceTerms */,
 				6B7B90721B58D209006A506D /* CPRegisterCellsTableViewCell1.h */,
 				6B7B90731B58D209006A506D /* CPRegisterCellsTableViewCell1.m */,
 				6B7B90741B58D209006A506D /* CPRegisterCellsTableViewCell1.xib */,
 				6B7B90751B58D209006A506D /* CPRegisterCellsTableViewCell2.h */,
-				6B7B90761B58D209006A506D /* CPRegisterCellsTableViewCell2.m */,
-				6B7B90771B58D209006A506D /* CPRegisterCellsTableViewCell2.xib */,
+				6B7B90841B58EFC4006A506D /* CPRegisterCellsTableViewCell2.m */,
+				6B7B90851B58EFC4006A506D /* CPRegisterCellsTableViewCell2.xib */,
 				6B7B90781B58D209006A506D /* CPRegisterCellsTableViewCell3.h */,
 				6B7B90791B58D209006A506D /* CPRegisterCellsTableViewCell3.m */,
 				6B7B907A1B58D209006A506D /* CPRegisterCellsTableViewCell3.xib */,
@@ -1038,11 +1017,11 @@
 			files = (
 				E375E4921B5516EB00DADF65 /* serviceTermsViewController.xib in Resources */,
 				E35B046D1B565532002C6655 /* MJPhotoBrowser.bundle in Resources */,
-				E36AFEB81B57B1E80081F499 /* CPRegisterCellsTableViewCell2.xib in Resources */,
 				E35B04221B562F79002C6655 /* TestActivity.plist in Resources */,
 				E375E4901B5516EB00DADF65 /* CarOwnersCertificationViewController.xib in Resources */,
 				6B6493E91B4FE34D00C197D2 /* CPForgetPasswordViewController.xib in Resources */,
 				6B5FD3501B57C33700E34F66 /* CPEditUsernameViewController.xib in Resources */,
+				6B7B90871B58EFC4006A506D /* CPRegisterCellsTableViewCell2.xib in Resources */,
 				6B6493FF1B54E61900C197D2 /* CPRegisterStep2ViewController.xib in Resources */,
 				6B7B90801B58D209006A506D /* CPRegisterCellsTableViewCell3.xib in Resources */,
 				6B7B907C1B58D209006A506D /* CPRegisterCellsTableViewCell1.xib in Resources */,
@@ -1051,8 +1030,8 @@
 				E3B1277B1B54DECB005B1174 /* Images.xcassets in Resources */,
 				6B4EF15C1B4036EE00292BD4 /* CPCityController.storyboard in Resources */,
 				6B4EF15E1B4036EE00292BD4 /* Main.storyboard in Resources */,
+				6B7B90891B58F07E006A506D /* area.plist in Resources */,
 				6B6493EF1B53821F00C197D2 /* registerViewController.xib in Resources */,
-				6B7B907E1B58D209006A506D /* CPRegisterCellsTableViewCell2.xib in Resources */,
 				E36C961C1B53BA6B00D3EDBB /* CPActivityApplyControllerView.storyboard in Resources */,
 				6B6493D61B4D152A00C197D2 /* LoginViewController.xib in Resources */,
 				6B4EF1641B4036EE00292BD4 /* CPMyController.storyboard in Resources */,
@@ -1109,7 +1088,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B5FD3511B57D86900E34F66 /* CPHomeStatusCell.h in Sources */,
+				6B7B90811B58EEBD006A506D /* CPHomePicCell.h in Sources */,
+				6B7B90821B58EEBD006A506D /* CPHomeStatusCell.h in Sources */,
 				E36AFE651B579F0E0081F499 /* ZHAppDelegate.h in Sources */,
 				E36AFE661B579F0E0081F499 /* ZHPickView.h in Sources */,
 				E375E4931B55171500DADF65 /* CarOwnersCertificationViewController.h in Sources */,
@@ -1138,15 +1118,12 @@
 				E36AFE631B579ECD0081F499 /* ZHAppDelegate.m in Sources */,
 				6B6493941B4D04E500C197D2 /* Tools.m in Sources */,
 				6B64938C1B4D04BE00C197D2 /* BaseViewController.m in Sources */,
-				6B7B907D1B58D209006A506D /* CPRegisterCellsTableViewCell2.m in Sources */,
-				6B5FD34B1B57A01700E34F66 /* CPHomeStatusCell.m in Sources */,
 				6B6493FE1B54E61900C197D2 /* CPRegisterStep2ViewController.m in Sources */,
 				E35E6FD01B54B0EC001212D6 /* CPMyPublishFrameModel.m in Sources */,
 				E35E6FCD1B54B0D9001212D6 /* CPMyPublishModel.m in Sources */,
 				6B4EF1681B403A5D00292BD4 /* UIBarButtonItem+Extension.m in Sources */,
 				6BC82F321B53C4AF00C8E916 /* CPHomeUser.m in Sources */,
 				E30BD5941B54FCC600FD9030 /* ZYNavigationBar.m in Sources */,
-				E36AFEB71B57B1E80081F499 /* CPRegisterCellsTableViewCell2.m in Sources */,
 				E3D8793F1B57475400228356 /* CPActivityModel.m in Sources */,
 				E3EEE0021B53952E00595333 /* Foundation+Log.m in Sources */,
 				E30BD57E1B54EBEB00FD9030 /* CPMySubscribeController.m in Sources */,
@@ -1188,6 +1165,7 @@
 				6B6493E81B4FE34D00C197D2 /* CPForgetPasswordViewController.m in Sources */,
 				6B4EF1631B4036EE00292BD4 /* CPMyController.m in Sources */,
 				E35B04201B56076D002C6655 /* NSDate+Extension.m in Sources */,
+				6B7B90861B58EFC4006A506D /* CPRegisterCellsTableViewCell2.m in Sources */,
 				E36AFEBB1B57B21D0081F499 /* CPHomePicCell.m in Sources */,
 				6B6493D91B4FABC900C197D2 /* CPNetworkVO.m in Sources */,
 				E3EEDFF31B53951D00595333 /* CPMessageController.m in Sources */,
