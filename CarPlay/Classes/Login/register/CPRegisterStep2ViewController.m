@@ -10,6 +10,7 @@
 #import "CPRegisterCellsTableViewCell1.h"
 #import "CPRegisterCellsTableViewCell2.h"
 #import "CPRegisterCellsTableViewCell3.h"
+#import "CPEditUsernameViewController.h"
 #import "ZHPickView.h"
 
 @interface CPRegisterStep2ViewController ()<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate,ZHPickViewDelegate>
@@ -26,11 +27,16 @@
     self.tableView.tableHeaderView=self.headView;
     self.tableView.tableFooterView=self.footView;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-//    self.loginBtn.layer.cornerRadius=3.0;
-//    self.loginBtn.layer.masksToBounds=YES;
+    self.nextStep.layer.cornerRadius=3.0;
+    self.nextStep.layer.masksToBounds=YES;
     self.userIconBtn.layer.cornerRadius=38.5;
     self.userIconBtn.layer.masksToBounds=YES;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removePickview) name:@"remove" object:nil];
+    
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [self.pickview removeFromSuperview];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,6 +61,8 @@
         if (cell0 == nil) {
             cell0 = [[[NSBundle mainBundle] loadNibNamed:@"CPRegisterCellsTableViewCell2" owner:nil options:nil] lastObject];
         }
+        [cell0.checkManBtn addTarget:nil action:@selector(checkSex:) forControlEvents:UIControlEventTouchUpInside];
+        [cell0.checkWomanBtn addTarget:nil action:@selector(checkSex:) forControlEvents:UIControlEventTouchUpInside];
         cell=cell0;
     }else if (indexPath.row==1) {
         CPRegisterCellsTableViewCell1 *cell1=[tableView dequeueReusableCellWithIdentifier:CPRegisterCellsTableViewCell2Identifier];
@@ -135,6 +143,12 @@
         [self.tableView setFrame:frame];
         [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentSize.height -self.tableView.bounds.size.height) animated:YES];
     }
+    
+    if (indexPath.row==1) {
+        CPEditUsernameViewController *CPEditUsernameVC=[[CPEditUsernameViewController alloc]init];
+        CPEditUsernameVC.title=@"昵称";
+        [self.navigationController pushViewController:CPEditUsernameVC animated:YES];
+    }
 }
 
 -(void)removePickview{
@@ -149,7 +163,20 @@
 -(void)toobarDonBtnHaveClick:(ZHPickView *)pickView resultString:(NSString *)resultString{
     
     CPRegisterCellsTableViewCell3 * cell=(CPRegisterCellsTableViewCell3 *)[self.tableView cellForRowAtIndexPath:_indexPath];
-    cell.cellContent.text=resultString;
+    if (_indexPath.row==2) {
+        double age=[resultString doubleValue]/31536000;
+        cell.cellContent.text=[[NSString alloc]initWithFormat:@"%.0f岁",0-age];
+        NSDate *brithDay=[[NSDate alloc]initWithTimeIntervalSinceNow:[resultString doubleValue]];
+        NSCalendar* calendar = [NSCalendar currentCalendar];
+        NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:brithDay]; // Get necessary date components
+        NSLog(@"%ld",(long)[components year]);// gives you year
+        NSLog(@"%ld",(long)[components month]); //gives you month
+        NSLog(@"%ld",(long)[components day]); //gives you day
+        
+    }else{
+        cell.cellContent.text=resultString;
+    }
+    
     //开始动画
     [UIView beginAnimations:nil context:nil];
     //设定动画持续时间
@@ -191,7 +218,6 @@
     [self.userIconBtn setImage:editedImage forState:UIControlStateNormal];
     [picker dismissViewControllerAnimated:YES completion:^{
         NSData *data=UIImageJPEGRepresentation(editedImage, 0.4);
-//        encodedImageStr=[data base64Encoding];
         [self upLoadImageWithBase64Encodeing:data];
         
     }];
@@ -238,6 +264,23 @@
 //        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"上传失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
 //    }];
 //    [oper start];
+}
+
+#pragma private methods
+-(void)checkSex:(UIButton *)btn{
+    NSIndexPath *index=[NSIndexPath indexPathForRow:0 inSection:0];
+    CPRegisterCellsTableViewCell2 *cell=[self.tableView cellForRowAtIndexPath:index];
+    if (btn.tag==1) {
+        [cell.checkManBtn setImage:[UIImage imageNamed:@"sexChecked"] forState:UIControlStateNormal];
+        [cell.checkManBtn setTitleColor:[Tools getColor:@"fd6d53"] forState:UIControlStateNormal];
+        [cell.checkWomanBtn setImage:[UIImage imageNamed:@"sexUnchecked"] forState:UIControlStateNormal];
+        [cell.checkWomanBtn setTitleColor:[Tools getColor:@"aab2bd"] forState:UIControlStateNormal];
+    }else{
+        [cell.checkManBtn setImage:[UIImage imageNamed:@"sexUnchecked"] forState:UIControlStateNormal];
+        [cell.checkManBtn setTitleColor:[Tools getColor:@"aab2bd"] forState:UIControlStateNormal];
+        [cell.checkWomanBtn setImage:[UIImage imageNamed:@"sexChecked"] forState:UIControlStateNormal];
+        [cell.checkWomanBtn setTitleColor:[Tools getColor:@"fd6d53"] forState:UIControlStateNormal];
+    }
 }
 
 @end

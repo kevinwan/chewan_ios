@@ -1,0 +1,55 @@
+//
+//  CPTopViewButton.m
+//  CarPlay
+//
+//  Created by chewan on 15/7/16.
+//  Copyright (c) 2015年 gongpingjia. All rights reserved.
+//
+
+#import "CPTopViewButton.h"
+#import "NSString+Extension.h"
+
+@implementation CPTopViewButton
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder]) {
+        [self setUp];
+    }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
+        [self setUp];
+    }
+    return self;
+}
+
+/**
+ *  进行初始化设置
+ */
+- (void)setUp
+{
+    self.titleLabel.textAlignment = NSTextAlignmentLeft;
+}
+
+/**
+ *  自定义imageView和titleLable的frame
+ */
+- (CGRect)imageRectForContentRect:(CGRect)contentRect
+{
+    return CGRectMake(5, 0, 12, contentRect.size.height);
+}
+
+- (CGRect)titleRectForContentRect:(CGRect)contentRect
+{
+    CGFloat titleX = 20;
+    CGFloat titleY = 0;
+    CGFloat titleW = contentRect.size.width - 20;
+    CGFloat titleH = contentRect.size.height;
+    return CGRectMake(titleX, titleY, titleW, titleH);
+}
+
+@end

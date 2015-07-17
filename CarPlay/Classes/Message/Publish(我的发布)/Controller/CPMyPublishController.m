@@ -7,16 +7,40 @@
 //
 
 #import "CPMyPublishController.h"
+#import "CPMyPublishFrameModel.h"
+#import "CPMyPublishModel.h"
+#import "MJExtension.h"
+#import "CPMyPublishCell.h"
 
 @interface CPMyPublishController ()
-
+@property (nonatomic, strong) NSMutableArray *frameModels;
 @end
 
 @implementation CPMyPublishController
 
+#pragma mark - 懒加载
+- (NSMutableArray *)frameModels
+{
+    if (_frameModels == nil) {
+        _frameModels = [NSMutableArray array];
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"TestActivity.plist" ofType:nil];
+        NSArray *arr = [NSArray arrayWithContentsOfFile:path];
+        for (NSDictionary *dict in arr) {
+            CPMyPublishFrameModel *frameModel = [[CPMyPublishFrameModel alloc] init];
+            frameModel.model = [CPMyPublishModel objectWithKeyValues:dict];
+            [_frameModels addObject:frameModel];
+        }
+    }
+    return _frameModels;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationItem.title = @"我的发布";
+    self.tableView.allowsSelection = NO;
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -26,17 +50,23 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-
-    return 0;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return self.frameModels.count;
 }
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CPMyPublishCell *cell = [CPMyPublishCell cellWithTableView:tableView];
+    cell.indexPath = indexPath;
+    cell.frameModel = self.frameModels[indexPath.row];
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CPMyPublishFrameModel *frameModel = self.frameModels[indexPath.row];
+    return frameModel.cellHeight;
+}
+
 
 @end

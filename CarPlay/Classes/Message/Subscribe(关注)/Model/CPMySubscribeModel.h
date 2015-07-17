@@ -11,6 +11,60 @@
 #define TimeStampFont     [UIFont systemFontOfSize:16]
 #define contentFont     [UIFont systemFontOfSize:16]
 
+@class CPOrganizer,Data;
 @interface CPMySubscribeModel : NSObject
+
+@property (nonatomic, assign) long long start;
+
+@property (nonatomic, copy) NSString *startStr;
+
+@property (nonatomic, strong) NSArray *members;
+
+@property (nonatomic, copy) NSString *introduction;
+
+@property (nonatomic, assign) NSInteger totalSeat;
+
+@property (nonatomic, copy) NSString *seatStr;
+
+@property (nonatomic, copy) NSString *activityId;
+
+@property (nonatomic, copy) NSString *type;
+
+@property (nonatomic, copy) NSString *pay;
+
+@property (nonatomic, copy) NSString *location;
+
+@property (nonatomic, strong) NSArray *cover;
+
+@property (nonatomic, assign) long long publishTime;
+// 发布时间的str
+@property (nonatomic, copy) NSString *publishTimeStr;
+
+@property (nonatomic, assign) NSInteger availableSeat;
+
+@property (nonatomic, strong) CPOrganizer *organizer;
+
+@end
+
+@interface CPOrganizer : NSObject
+
+@property (nonatomic, copy) NSString *gender;
+
+@property (nonatomic, copy) NSString *nickname;
+
+@property (nonatomic, assign) NSInteger age;
+
+@property (nonatomic, assign) NSInteger drivingExperience;
+
+// 信息的描述
+@property (nonatomic, copy) NSString *descStr;
+
+@property (nonatomic, copy) NSString *photo;
+
+@property (nonatomic, copy) NSString *carBrandLogo;
+
+@property (nonatomic, copy) NSString *carModel;
+
+@property (nonatomic, assign) BOOL isMan;
 
 @end

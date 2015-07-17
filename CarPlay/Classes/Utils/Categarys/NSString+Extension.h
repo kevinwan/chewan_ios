@@ -9,7 +9,24 @@
 #import <Foundation/Foundation.h>
 
 @interface NSString (Extension)
+
+/**
+ *  根据字号计算文字大小
+ *
+ *  @param font font
+ *  @param maxW 限制宽度
+ *
+ *  @return size
+ */
 - (CGSize)sizeWithFont:(UIFont *)font maxW:(CGFloat)maxW;
+
+/**
+ *  根据字号计算文字大小(一行)
+ *
+ *  @param font font
+ *
+ *  @return size
+ */
 - (CGSize)sizeWithFont:(UIFont *)font;
 
 /**

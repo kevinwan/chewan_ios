@@ -7,6 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+
+#define TimeLabelFont     [UIFont systemFontOfSize:13]
+#define NickNameFont     [UIFont systemFontOfSize:14]
+#define SeatViewFont     [UIFont systemFontOfSize:11]
+#define PayViewFont     [UIFont systemFontOfSize:11]
+#define DescFont     [UIFont systemFontOfSize:12]
+
 @class CPMySubscribeModel;
 @interface CPMySubscribeFrameModel : NSObject
 
@@ -24,8 +31,17 @@
 /** 发布时间的frame */
 @property (nonatomic, assign) CGRect timeLabelF;
 
-/** 描述的frame */
+/** 汽车品牌的frame */
+@property (nonatomic, assign) CGRect brandF;
+
+/** 驾龄的frame描述的frame */
 @property (nonatomic, assign) CGRect descLabelF;
+
+/** payview的frame */
+@property (nonatomic, assign) CGRect payViewF;
+
+/** seatview的frame */
+@property (nonatomic, assign) CGRect seatViewF;
 
 /** 内容label的frame */
 @property (nonatomic, assign) CGRect contentLableF;
