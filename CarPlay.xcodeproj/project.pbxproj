@@ -48,6 +48,8 @@
 		E30BD59A1B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5991B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.m */; };
 		E33BAE811B58D5F20021DED6 /* CPHomeStatusCell.h in Sources */ = {isa = PBXBuildFile; fileRef = E33CB2E01B57871F003E76B7 /* CPHomeStatusCell.h */; };
 		E33BAE841B58DC110021DED6 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E33BAE831B58DC110021DED6 /* NSDate+Extension.m */; };
+		E33BAE871B58F0AC0021DED6 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = E33BAE851B58F0AC0021DED6 /* area.plist */; };
+		E33BAE881B58F0AC0021DED6 /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = E33BAE861B58F0AC0021DED6 /* city.plist */; };
 		E33CB2E21B57871F003E76B7 /* CPHomeStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E33CB2E11B57871F003E76B7 /* CPHomeStatusCell.m */; };
 		E35559A51B53A0CE00B200D0 /* CPSexView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35559A41B53A0CE00B200D0 /* CPSexView.m */; };
 		E35B04221B562F79002C6655 /* TestActivity.plist in Resources */ = {isa = PBXBuildFile; fileRef = E35B04211B562F79002C6655 /* TestActivity.plist */; };
@@ -195,6 +197,8 @@
 		E30BD5991B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
 		E33BAE821B58DC110021DED6 /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
 		E33BAE831B58DC110021DED6 /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
+		E33BAE851B58F0AC0021DED6 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
+		E33BAE861B58F0AC0021DED6 /* city.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
 		E33CB2E01B57871F003E76B7 /* CPHomeStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeStatusCell.h; sourceTree = "<group>"; };
 		E33CB2E11B57871F003E76B7 /* CPHomeStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeStatusCell.m; sourceTree = "<group>"; };
 		E35559A31B53A0CE00B200D0 /* CPSexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSexView.h; sourceTree = "<group>"; };
@@ -356,6 +360,8 @@
 		6B4959CB1B33A23900DB63EA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E33BAE851B58F0AC0021DED6 /* area.plist */,
+				E33BAE861B58F0AC0021DED6 /* city.plist */,
 				E3B1277A1B54DECB005B1174 /* Images.xcassets */,
 				6B4959DA1B33A23900DB63EA /* LaunchScreen.xib */,
 				6B4959CC1B33A23900DB63EA /* Info.plist */,
@@ -1007,6 +1013,7 @@
 				6B4959DC1B33A23900DB63EA /* LaunchScreen.xib in Resources */,
 				E36C96271B53C78200D3EDBB /* CPSubscribePersonController.storyboard in Resources */,
 				E3B1277B1B54DECB005B1174 /* Images.xcassets in Resources */,
+				E33BAE871B58F0AC0021DED6 /* area.plist in Resources */,
 				6B4EF15C1B4036EE00292BD4 /* CPCityController.storyboard in Resources */,
 				6B4EF15E1B4036EE00292BD4 /* Main.storyboard in Resources */,
 				6B6493EF1B53821F00C197D2 /* registerViewController.xib in Resources */,
@@ -1016,6 +1023,7 @@
 				E3EEDFF61B53951D00595333 /* CPNewMessageController.storyboard in Resources */,
 				E3EEDFF41B53951D00595333 /* CPMessageController.storyboard in Resources */,
 				6B6493F41B539A6700C197D2 /* CPNewPassWordViewController.xib in Resources */,
+				E33BAE881B58F0AC0021DED6 /* city.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
