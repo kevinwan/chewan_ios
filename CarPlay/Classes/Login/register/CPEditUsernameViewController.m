@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self setRightBarWithText:@"保存"];
 }
 
 - (void)didReceiveMemoryWarning {

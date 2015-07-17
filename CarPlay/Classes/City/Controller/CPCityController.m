@@ -34,46 +34,46 @@
     [super viewDidLoad];
 
     // 加载活动数据
-//    [self setupLoadStatus];
+    [self setupLoadStatus];
     
 }
 
 
 // 加载活动数据
-//- (void)setupLoadStatus{
-//    
-//    // 封装请求参数
-//    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-//    parameters[@"key"] = @"hot";
-//    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
-//    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
-//    parameters[@"city"] = @"南京";
-//    
-//    
-//    // 获取网络管理者
-//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-//    
-//    // 发送请求
-//    [manager GET:@"http://cwapi.gongpingjia.com/v1/activity/list" parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
-//        // 取出活动数据
-//        self.status = responseObject[@"data"];
-//        NSLog(@"%@",self.status);
-//        
-//        // 取出活动数据
-//        NSArray *dicts = responseObject[@"data"];
-//        
-//        // 转换为模型
-//        self.status = [CPHomeStatus objectArrayWithKeyValuesArray:dicts];
-//          
-//        // 刷新表格
-//        [self.tableView reloadData];
-//        
-//    } failure:^(NSURLSessionDataTask * task, NSError * error) {
-//        //
-//        NSLog(@"%@",@"失败");
-//    }];
-//    
-//}
+- (void)setupLoadStatus{
+    
+    // 封装请求参数
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    parameters[@"key"] = @"hot";
+    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
+    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
+    parameters[@"city"] = @"南京";
+    
+    
+    // 获取网络管理者
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    // 发送请求
+    [manager GET:@"http://cwapi.gongpingjia.com/v1/activity/list" parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
+        // 取出活动数据
+        self.status = responseObject[@"data"];
+        NSLog(@"%@",self.status);
+        
+        // 取出活动数据
+        NSArray *dicts = responseObject[@"data"];
+        
+        // 转换为模型
+        self.status = [CPHomeStatus objectArrayWithKeyValuesArray:dicts];
+          
+        // 刷新表格
+        [self.tableView reloadData];
+        
+    } failure:^(NSURLSessionDataTask * task, NSError * error) {
+        //
+        NSLog(@"%@",@"失败");
+    }];
+    
+}
 
 
 

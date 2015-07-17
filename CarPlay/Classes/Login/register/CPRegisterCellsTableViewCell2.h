@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface CPRegisterCellsTableViewCell2 : UITableViewCell
-
+@property (weak, nonatomic) IBOutlet UIButton *checkManBtn;
+@property (weak, nonatomic) IBOutlet UIButton *checkWomanBtn;
 @end
