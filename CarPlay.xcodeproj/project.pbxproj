@@ -47,9 +47,9 @@
 		E30BD5971B54FD6E00FD9030 /* ZYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5961B54FD6E00FD9030 /* ZYNavigationController.m */; };
 		E30BD59A1B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5991B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.m */; };
 		E33BAE811B58D5F20021DED6 /* CPHomeStatusCell.h in Sources */ = {isa = PBXBuildFile; fileRef = E33CB2E01B57871F003E76B7 /* CPHomeStatusCell.h */; };
+		E33BAE841B58DC110021DED6 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E33BAE831B58DC110021DED6 /* NSDate+Extension.m */; };
 		E33CB2E21B57871F003E76B7 /* CPHomeStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E33CB2E11B57871F003E76B7 /* CPHomeStatusCell.m */; };
 		E35559A51B53A0CE00B200D0 /* CPSexView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35559A41B53A0CE00B200D0 /* CPSexView.m */; };
-		E35B04201B56076D002C6655 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E35B041F1B56076D002C6655 /* NSDate+Extension.m */; };
 		E35B04221B562F79002C6655 /* TestActivity.plist in Resources */ = {isa = PBXBuildFile; fileRef = E35B04211B562F79002C6655 /* TestActivity.plist */; };
 		E35B04271B5645BC002C6655 /* HMStatusPhotosView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35B04241B5645BC002C6655 /* HMStatusPhotosView.m */; };
 		E35B04281B5645BC002C6655 /* HMStatusPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35B04261B5645BC002C6655 /* HMStatusPhotoView.m */; };
@@ -193,12 +193,12 @@
 		E30BD5961B54FD6E00FD9030 /* ZYNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYNavigationController.m; sourceTree = "<group>"; };
 		E30BD5981B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
 		E30BD5991B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
+		E33BAE821B58DC110021DED6 /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
+		E33BAE831B58DC110021DED6 /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
 		E33CB2E01B57871F003E76B7 /* CPHomeStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeStatusCell.h; sourceTree = "<group>"; };
 		E33CB2E11B57871F003E76B7 /* CPHomeStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeStatusCell.m; sourceTree = "<group>"; };
 		E35559A31B53A0CE00B200D0 /* CPSexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSexView.h; sourceTree = "<group>"; };
 		E35559A41B53A0CE00B200D0 /* CPSexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSexView.m; sourceTree = "<group>"; };
-		E35B041E1B56076D002C6655 /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
-		E35B041F1B56076D002C6655 /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
 		E35B04211B562F79002C6655 /* TestActivity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestActivity.plist; sourceTree = "<group>"; };
 		E35B04231B5645BC002C6655 /* HMStatusPhotosView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMStatusPhotosView.h; sourceTree = "<group>"; };
 		E35B04241B5645BC002C6655 /* HMStatusPhotosView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMStatusPhotosView.m; sourceTree = "<group>"; };
@@ -899,8 +899,8 @@
 		E3EEDFF91B53952E00595333 /* Categarys */ = {
 			isa = PBXGroup;
 			children = (
-				E35B041E1B56076D002C6655 /* NSDate+Extension.h */,
-				E35B041F1B56076D002C6655 /* NSDate+Extension.m */,
+				E33BAE821B58DC110021DED6 /* NSDate+Extension.h */,
+				E33BAE831B58DC110021DED6 /* NSDate+Extension.m */,
 				E3EEDFFA1B53952E00595333 /* Foundation+Log.m */,
 				E3EEDFFB1B53952E00595333 /* NSString+Extension.h */,
 				E3EEDFFC1B53952E00595333 /* NSString+Extension.m */,
@@ -1116,6 +1116,7 @@
 				6B4EF1601B4036EE00292BD4 /* main.m in Sources */,
 				E35559A51B53A0CE00B200D0 /* CPSexView.m in Sources */,
 				6B6493D51B4D152A00C197D2 /* LoginViewController.m in Sources */,
+				E33BAE841B58DC110021DED6 /* NSDate+Extension.m in Sources */,
 				E35B04721B565532002C6655 /* MJPhotoView.m in Sources */,
 				E30BD59A1B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				6B4EF15F1B4036EE00292BD4 /* AppDelegate.m in Sources */,
@@ -1140,7 +1141,6 @@
 				E36AFE641B579ECD0081F499 /* ZHPickView.m in Sources */,
 				6B6493E81B4FE34D00C197D2 /* CPForgetPasswordViewController.m in Sources */,
 				6B4EF1631B4036EE00292BD4 /* CPMyController.m in Sources */,
-				E35B04201B56076D002C6655 /* NSDate+Extension.m in Sources */,
 				E36AFEBB1B57B21D0081F499 /* CPHomePicCell.m in Sources */,
 				6B6493D91B4FABC900C197D2 /* CPNetworkVO.m in Sources */,
 				E3EEDFF31B53951D00595333 /* CPMessageController.m in Sources */,

@@ -1,69 +1,79 @@
 //
 //  NSDate+Extension.m
-//  
+//  CarPlay
 //
-//  Created by apple on 14-10-18.
-//  Copyright (c) 2014年 fengxing. All rights reserved.
+//  Created by 公平价 on 15/7/17.
+//  Copyright (c) 2015年 gongpingjia. All rights reserved.
 //
 
 #import "NSDate+Extension.h"
 
 @implementation NSDate (Extension)
+/**
+ *  是否为今天
+ */
+- (BOOL)isToday
+{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    int unit = NSCalendarUnitDay | NSCalendarUnitMonth |  NSCalendarUnitYear;
+    
+    // 1.获得当前时间的年月日
+    NSDateComponents *nowCmps = [calendar components:unit fromDate:[NSDate date]];
+    
+    // 2.获得self的年月日
+    NSDateComponents *selfCmps = [calendar components:unit fromDate:self];
+    return
+    (selfCmps.year == nowCmps.year) &&
+    (selfCmps.month == nowCmps.month) &&
+    (selfCmps.day == nowCmps.day);
+}
 
 /**
- *  判断某个时间是否为今年
+ *  是否为昨天
+ */
+- (BOOL)isYesterday
+{
+    // 2014-05-01
+    NSDate *nowDate = [[NSDate date] dateWithYMD];
+    
+    // 2014-04-30
+    NSDate *selfDate = [self dateWithYMD];
+    
+    // 获得nowDate和selfDate的差距
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *cmps = [calendar components:NSCalendarUnitDay fromDate:selfDate toDate:nowDate options:0];
+    return cmps.day == 1;
+}
+
+- (NSDate *)dateWithYMD
+{
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    fmt.dateFormat = @"yyyy-MM-dd";
+    NSString *selfStr = [fmt stringFromDate:self];
+    return [fmt dateFromString:selfStr];
+}
+
+/**
+ *  是否为今年
  */
 - (BOOL)isThisYear
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    // 获得某个时间的年月日时分秒
-    NSDateComponents *dateCmps = [calendar components:NSCalendarUnitYear fromDate:self];
-    NSDateComponents *nowCmps = [calendar components:NSCalendarUnitYear fromDate:[NSDate date]];
-    return dateCmps.year == nowCmps.year;
+    int unit = NSCalendarUnitYear;
+    
+    // 1.获得当前时间的年月日
+    NSDateComponents *nowCmps = [calendar components:unit fromDate:[NSDate date]];
+    
+    // 2.获得self的年月日
+    NSDateComponents *selfCmps = [calendar components:unit fromDate:self];
+    
+    return nowCmps.year == selfCmps.year;
 }
 
-/**
- *  判断某个时间是否为昨天
- */
-- (BOOL)isYesterday
+- (NSDateComponents *)deltaWithNow
 {
-    NSDate *now = [NSDate date];
-    
-    // date ==  2014-04-30 10:05:28 --> 2014-04-30 00:00:00
-    // now == 2014-05-01 09:22:10 --> 2014-05-01 00:00:00
-    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-    fmt.dateFormat = @"yyyy-MM-dd";
-    
-    // 2014-04-30
-    NSString *dateStr = [fmt stringFromDate:self];
-    // 2014-10-18
-    NSString *nowStr = [fmt stringFromDate:now];
-    
-    // 2014-10-30 00:00:00
-    NSDate *date = [fmt dateFromString:dateStr];
-    // 2014-10-18 00:00:00
-    now = [fmt dateFromString:nowStr];
-    
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    
-    NSCalendarUnit unit = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
-    NSDateComponents *cmps = [calendar components:unit fromDate:date toDate:now options:0];
-    
-    return cmps.year == 0 && cmps.month == 0 && cmps.day == 1;
-}
-
-/**
- *  判断某个时间是否为今天
- */
-- (BOOL)isToday
-{
-    NSDate *now = [NSDate date];
-    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-    fmt.dateFormat = @"yyyy-MM-dd";
-    
-    NSString *dateStr = [fmt stringFromDate:self];
-    NSString *nowStr = [fmt stringFromDate:now];
-    
-    return [dateStr isEqualToString:nowStr];
+    int unit = NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+    return [calendar components:unit fromDate:self toDate:[NSDate date] options:0];
 }
 @end

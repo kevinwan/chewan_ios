@@ -11,6 +11,7 @@
 #import "CPMyPublishModel.h"
 #import "MJExtension.h"
 #import "CPMyPublishCell.h"
+#import "ZYNetWorkTool.h"
 
 @interface CPMyPublishController ()
 @property (nonatomic, strong) NSMutableArray *frameModels;
@@ -41,6 +42,17 @@
     self.tableView.allowsSelection = NO;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    NSString *url = [NSString stringWithFormat:@"/user/%@/post",[Tools getValueFromKeyForUserId:@"userId"]];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"userId"] = [Tools getValueFromKeyForUserId:@"userId"];
+    params[@"token"] = [Tools getValueFromKey:@"token"];
+    
+    [ZYNetWorkTool getWithUrl:url params:params success:^(id responseObject) {
+        DLog(@"%@",responseObject);
+    } failure:^(NSError *error) {
+        DLog(@"%@",error);
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

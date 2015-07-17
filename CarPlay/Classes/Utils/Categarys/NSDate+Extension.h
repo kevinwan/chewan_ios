@@ -1,24 +1,34 @@
 //
 //  NSDate+Extension.h
+//  CarPlay
 //
-//
-//  Created by apple on 14-10-18.
-//  Copyright (c) 2014年 fengxing. All rights reserved.
+//  Created by 公平价 on 15/7/17.
+//  Copyright (c) 2015年 gongpingjia. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
 @interface NSDate (Extension)
 /**
- *  判断某个时间是否为今年
+ *  是否为今天
  */
-- (BOOL)isThisYear;
+- (BOOL)isToday;
 /**
- *  判断某个时间是否为昨天
+ *  是否为昨天
  */
 - (BOOL)isYesterday;
 /**
- *  判断某个时间是否为今天
+ *  是否为今年
  */
-- (BOOL)isToday;
+- (BOOL)isThisYear;
+
+/**
+ *  返回一个只有年月日的时间
+ */
+- (NSDate *)dateWithYMD;
+
+/**
+ *  获得与当前时间的差距
+ */
+- (NSDateComponents *)deltaWithNow;
 @end
