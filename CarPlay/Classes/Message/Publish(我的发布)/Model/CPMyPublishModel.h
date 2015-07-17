@@ -12,9 +12,8 @@
 #define contentFont     [UIFont systemFontOfSize:16]
 @class CPOrganizer;
 @interface CPMyPublishModel : NSObject
-@property (nonatomic, assign) long long start;
 
-@property (nonatomic, copy) NSString *startStr;
+@property (nonatomic, copy) NSString *startDate;
 
 @property (nonatomic, strong) NSArray *members;
 
@@ -34,9 +33,8 @@
 
 @property (nonatomic, strong) NSArray *cover;
 
-@property (nonatomic, assign) long long publishTime;
 // 发布时间的str
-@property (nonatomic, copy) NSString *publishTimeStr;
+@property (nonatomic, copy) NSString *publishDate;
 
 @property (nonatomic, assign) NSInteger availableSeat;
 

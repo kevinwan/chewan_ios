@@ -89,8 +89,8 @@ typedef enum _BasicViewControllerInfo {
     eBasicControllerInfo_ImageName,
     eBasicControllerInfo_BadgeString
 }BasicViewControllerInfo;
-
-
+#define CPSuccess 0
+#define CPFailure 1
 
 #pragma mark - runtime macros
 // check if runs on iPad
