@@ -82,5 +82,4 @@
     return frameModel.cellHeight;
 }
 
-
 @end
