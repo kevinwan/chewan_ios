@@ -43,13 +43,11 @@
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    NSString *url = [NSString stringWithFormat:@"v1/user/%@/post",@"846de312-306c-4916-91c1-a5e69b158014"];
+    NSString *url = [NSString stringWithFormat:@"/user/%@/post",[Tools getValueFromKeyForUserId:@"userId"]];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-//    params[@"userId"] = [Tools getValueFromKeyForUserId:@"userId"];
-//    params[@"token"] = [Tools getValueFromKey:@"token"];
+    params[@"userId"] = [Tools getValueFromKeyForUserId:@"userId"];
+    params[@"token"] = [Tools getValueFromKey:@"token"];
     
-    params[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
-    params[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
     [ZYNetWorkTool getWithUrl:url params:params success:^(id responseObject) {
         DLog(@"%@",responseObject);
     } failure:^(NSError *error) {
