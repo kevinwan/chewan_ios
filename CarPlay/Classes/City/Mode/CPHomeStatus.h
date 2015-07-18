@@ -19,11 +19,13 @@
 @property (nonatomic, copy) NSString *introduction;
 
 /** 活动创建时间 */
-@property (nonatomic, copy) NSString *publishTime;
+@property (nonatomic, assign) long long publishTime;
+@property (nonatomic,copy) NSString *publishTimeStr;
 
 
 /** 活动时间 */
-@property (nonatomic, copy) NSString *start;
+@property (nonatomic, assign) long long start;
+@property (nonatomic,copy) NSString *startStr;
 
 /** 活动地点 */
 @property (nonatomic, copy) NSString *location;
@@ -32,7 +34,7 @@
 @property (nonatomic, copy) NSString *totalSeat;
 
 /** 可用座位数 */
-@property (nonatomic, copy) NSString *availableSeat;
+@property (nonatomic, copy) NSString *holdingSeat;
 
 
 /** 付费类型 */
@@ -49,6 +51,7 @@
 /** 活动配图地址。多图时返回多图链接。无配图返回“[]” */
 @property (nonatomic, strong) NSArray *cover;
 
-
+/** 头像配图地址。多图时返回多图链接。无配图返回“[]” */
+@property (nonatomic, strong) NSArray *members;
 
 @end
