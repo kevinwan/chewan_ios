@@ -75,7 +75,7 @@ static CPNetWork * _wanCheNetWork = nil;
         [string appendString:@"?"];
         NSString *tem = firstObject;
         /**
-         *  读取可变参数，使用指针遍历堆栈中参数列表
+         *  读取可变参数，使用指针遍历堆栈中参数列表-(id)postRequestWithBaseUrl:(NSString*)url andPath:(NSString*)path andParameters:(NSDictionary*)parameters forSueccessful:(void(^)(id responseObject))successful forFail:(void(^)(NSError *error)) fail
          */
         va_start(paraList, firstObject);
         

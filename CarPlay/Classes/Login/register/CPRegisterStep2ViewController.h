@@ -17,7 +17,8 @@
 @property (weak, nonatomic) IBOutlet UIView *footView;
 @property (weak, nonatomic) IBOutlet UIButton *nextStep;
 @property (weak, nonatomic) IBOutlet UIButton *nextStepBtn;
-@property (weak, nonatomic) IBOutlet UIButton *nextStepBtnClick;
+- (IBAction)nextStepBtnClick:(id)sender;
+
 @property(nonatomic,strong)ZHPickView *pickview;
 @property(nonatomic,strong)NSIndexPath *indexPath;
 @end

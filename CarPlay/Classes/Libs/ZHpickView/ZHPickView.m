@@ -14,6 +14,7 @@
 @property(nonatomic,assign)BOOL isLevelArray;
 @property(nonatomic,assign)BOOL isLevelString;
 @property(nonatomic,assign)BOOL isLevelDic;
+@property(nonatomic,assign)BOOL isFromPlist;
 @property(nonatomic,strong)NSDictionary *levelTwoDic;
 @property(nonatomic,strong)UIToolbar *toolbar;
 @property(nonatomic,strong)UIPickerView *pickerView;
@@ -59,6 +60,10 @@
     
     self=[super init];
     if (self) {
+        _isLevelDic=YES;
+        _isLevelString=NO;
+        _isLevelArray=NO;
+        _isFromPlist=YES;
         NSBundle *bundle = [NSBundle mainBundle];
         NSString *plistPath = [bundle pathForResource:@"area" ofType:@"plist"];
         areaDic = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
@@ -101,7 +106,7 @@
         
         [self setUpPickView];
         [self setFrameWith:isHaveNavControler];
-        _isLevelDic=YES;
+        
 //         _dicKeyArray=[[NSMutableArray alloc] init];
 //        for (id levelTwo in areaDic) {
 //                _isLevelDic=YES;
@@ -146,13 +151,40 @@
 
 -(void)setArrayClass:(NSArray *)array{
     _dicKeyArray=[[NSMutableArray alloc] init];
+    
     for (id levelTwo in array) {
+        
+        if ([levelTwo isKindOfClass:[NSArray class]]) {
+            _isLevelArray=YES;
+            _isLevelString=NO;
+            _isLevelDic=NO;
+            _isFromPlist=NO;
+        }else if ([levelTwo isKindOfClass:[NSString class]]){
+            _isLevelString=YES;
+            _isLevelArray=NO;
+            _isLevelDic=NO;
+            _isFromPlist=NO;
+            
+        }else if ([levelTwo isKindOfClass:[NSDictionary class]])
+        {
             _isLevelDic=YES;
             _isLevelString=NO;
             _isLevelArray=NO;
+            _isFromPlist=NO;
             _levelTwoDic=levelTwo;
             [_dicKeyArray addObject:[_levelTwoDic allKeys] ];
+        }
     }
+    
+    
+//    for (id levelTwo in array) {
+//            _isLevelDic=YES;
+//            _isLevelString=NO;
+//            _isLevelArray=NO;
+//            _isFromPlist=NO;
+//            _levelTwoDic=levelTwo;
+//            [_dicKeyArray addObject:[_levelTwoDic allKeys] ];
+//    }
 }
 
 -(void)setFrameWith:(BOOL)isHaveNavControler{
@@ -174,8 +206,8 @@
     pickView.delegate=self;
     pickView.dataSource=self;
     pickView.frame=CGRectMake(0, ZHToobarHeight, pickView.frame.size.width, pickView.frame.size.height);
-    pickView.showsSelectionIndicator = YES;
-    [pickView selectRow: 0 inComponent: 0 animated: YES];
+//    pickView.showsSelectionIndicator = YES;
+//    [pickView selectRow: 0 inComponent: 0 animated: YES];
     _pickeviewHeight=pickView.frame.size.height;
     [self addSubview:pickView];
 }
@@ -219,20 +251,55 @@
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
-    return 3;
+    NSInteger component;
+    if (_isLevelArray) {
+        component=_plistArray.count;
+    } else if (_isLevelString){
+        component=1;
+    }else if(_isLevelDic){
+        if (_isFromPlist) {
+            component=3;
+        }else{
+            component=[_levelTwoDic allKeys].count*2;
+        }
+        
+    }
+    return component;
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    if (component == PROVINCE_COMPONENT) {
-        return [province count];
+    NSArray *rowArray=[[NSArray alloc] init];
+    if (_isLevelArray) {
+        rowArray=_plistArray[component];
+    }else if (_isLevelString){
+        rowArray=_plistArray;
+    }else if (_isLevelDic){
+        if (_isFromPlist) {
+        if (component == PROVINCE_COMPONENT) {
+            rowArray=province;
+        }
+        else if (component == CITY_COMPONENT) {
+            rowArray=city;
+        }
+        else {
+            rowArray=district;
+        }
+        }else{
+            NSInteger pIndex = [pickerView selectedRowInComponent:0];
+            NSDictionary *dic=_plistArray[pIndex];
+            for (id dicValue in [dic allValues]) {
+                if ([dicValue isKindOfClass:[NSArray class]]) {
+                    if (component%2==1) {
+                        rowArray=dicValue;
+                    }else{
+                        rowArray=_plistArray;
+                    }
+                }
+            }
+        }
     }
-    else if (component == CITY_COMPONENT) {
-        return [city count];
-    }
-    else {
-        return [district count];
-    }
+    return rowArray.count;
 }
 
 
@@ -240,15 +307,56 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    if (component == PROVINCE_COMPONENT) {
-        return [province objectAtIndex: row];
+    NSString *rowTitle=nil;
+    if (_isLevelArray) {
+        rowTitle=_plistArray[component][row];
+    }else if (_isLevelString){
+        rowTitle=_plistArray[row];
+    }else if (_isLevelDic){
+        if (_isFromPlist) {
+            if (component == PROVINCE_COMPONENT) {
+                rowTitle = [province objectAtIndex: row];
+            }
+            else if (component == CITY_COMPONENT) {
+                rowTitle = [city objectAtIndex: row];
+            }
+            else {
+                rowTitle = [district objectAtIndex: row];
+            }
+        }else{
+            NSInteger pIndex = [pickerView selectedRowInComponent:0];
+            NSDictionary *dic=_plistArray[pIndex];
+            if(component%2==0)
+            {
+                rowTitle=_dicKeyArray[row][component];
+            }
+            for (id aa in [dic allValues]) {
+                if ([aa isKindOfClass:[NSArray class]]&&component%2==1){
+                    NSArray *bb=aa;
+                    if (bb.count>row) {
+                        rowTitle=aa[row];
+                    }
+                    
+                }
+            }
+        }
+       
     }
-    else if (component == CITY_COMPONENT) {
-        return [city objectAtIndex: row];
-    }
-    else {
-        return [district objectAtIndex: row];
-    }
+    return rowTitle;
+    
+    
+    
+    
+    
+//    if (component == PROVINCE_COMPONENT) {
+//        return [province objectAtIndex: row];
+//    }
+//    else if (component == CITY_COMPONENT) {
+//        return [city objectAtIndex: row];
+//    }
+//    else {
+//        return [district objectAtIndex: row];
+//    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -258,65 +366,101 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    if (component == PROVINCE_COMPONENT) {
-        selectedProvince = [province objectAtIndex: row];
-        NSDictionary *tmp = [NSDictionary dictionaryWithDictionary: [areaDic objectForKey: [NSString stringWithFormat:@"%ld", (long)row]]];
-        NSDictionary *dic = [NSDictionary dictionaryWithDictionary: [tmp objectForKey: selectedProvince]];
-        NSArray *cityArray = [dic allKeys];
-        NSArray *sortedArray = [cityArray sortedArrayUsingComparator: ^(id obj1, id obj2) {
-            
-            if ([obj1 integerValue] > [obj2 integerValue]) {
-                return (NSComparisonResult)NSOrderedDescending;//递减
-            }
-            
-            if ([obj1 integerValue] < [obj2 integerValue]) {
-                return (NSComparisonResult)NSOrderedAscending;//上升
-            }
-            return (NSComparisonResult)NSOrderedSame;
-        }];
-        
-        NSMutableArray *array = [[NSMutableArray alloc] init];
-        for (int i=0; i<[sortedArray count]; i++) {
-            NSString *index = [sortedArray objectAtIndex:i];
-            NSArray *temp = [[dic objectForKey: index] allKeys];
-            [array addObject: [temp objectAtIndex:0]];
-        }
-        
-        city = [[NSArray alloc] initWithArray: array];
-      
-        NSDictionary *cityDic = [dic objectForKey: [sortedArray objectAtIndex: 0]];
-        district = [[NSArray alloc] initWithArray: [cityDic objectForKey: [city objectAtIndex: 0]]];
-        [pickerView selectRow: 0 inComponent: CITY_COMPONENT animated: YES];
-        [pickerView selectRow: 0 inComponent: DISTRICT_COMPONENT animated: YES];
-        [pickerView reloadComponent: CITY_COMPONENT];
-        [pickerView reloadComponent: DISTRICT_COMPONENT];
-        
-    }
-    else if (component == CITY_COMPONENT) {
-        NSString *provinceIndex = [NSString stringWithFormat: @"%lu", (unsigned long)[province indexOfObject: selectedProvince]];
-        NSDictionary *tmp = [NSDictionary dictionaryWithDictionary: [areaDic objectForKey: provinceIndex]];
-        NSDictionary *dic = [NSDictionary dictionaryWithDictionary: [tmp objectForKey: selectedProvince]];
-        NSArray *dicKeyArray = [dic allKeys];
-        NSArray *sortedArray = [dicKeyArray sortedArrayUsingComparator: ^(id obj1, id obj2) {
-            
-            if ([obj1 integerValue] > [obj2 integerValue]) {
-                return (NSComparisonResult)NSOrderedDescending;
-            }
-            
-            if ([obj1 integerValue] < [obj2 integerValue]) {
-                return (NSComparisonResult)NSOrderedAscending;
-            }
-            return (NSComparisonResult)NSOrderedSame;
-        }];
-        
-        NSDictionary *cityDic = [NSDictionary dictionaryWithDictionary: [dic objectForKey: [sortedArray objectAtIndex: row]]];
-        NSArray *cityKeyArray = [cityDic allKeys];
-
-        district = [[NSArray alloc] initWithArray: [cityDic objectForKey: [cityKeyArray objectAtIndex:0]]];
-        [pickerView selectRow: 0 inComponent: DISTRICT_COMPONENT animated: YES];
-        [pickerView reloadComponent: DISTRICT_COMPONENT];
-    }
     
+    if (_isLevelDic&&component%2==0) {
+        
+        [pickerView reloadComponent:1];
+        [pickerView selectRow:0 inComponent:1 animated:YES];
+    }
+    if (_isLevelString) {
+        _resultString=_plistArray[row];
+        
+    }else if (_isLevelArray){
+        _resultString=@"";
+        if (![self.componentArray containsObject:@(component)]) {
+            [self.componentArray addObject:@(component)];
+        }
+        for (int i=0; i<_plistArray.count;i++) {
+            if ([self.componentArray containsObject:@(i)]) {
+                NSInteger cIndex = [pickerView selectedRowInComponent:i];
+                _resultString=[NSString stringWithFormat:@"%@%@",_resultString,_plistArray[i][cIndex]];
+            }else{
+                _resultString=[NSString stringWithFormat:@"%@%@",_resultString,_plistArray[i][0]];
+            }
+        }
+    }else if (_isLevelDic){
+        if (_isFromPlist) {
+            if (component == PROVINCE_COMPONENT) {
+                selectedProvince = [province objectAtIndex: row];
+                NSDictionary *tmp = [NSDictionary dictionaryWithDictionary: [areaDic objectForKey: [NSString stringWithFormat:@"%ld", (long)row]]];
+                NSDictionary *dic = [NSDictionary dictionaryWithDictionary: [tmp objectForKey: selectedProvince]];
+                NSArray *cityArray = [dic allKeys];
+                NSArray *sortedArray = [cityArray sortedArrayUsingComparator: ^(id obj1, id obj2) {
+                    
+                    if ([obj1 integerValue] > [obj2 integerValue]) {
+                        return (NSComparisonResult)NSOrderedDescending;//递减
+                    }
+                    
+                    if ([obj1 integerValue] < [obj2 integerValue]) {
+                        return (NSComparisonResult)NSOrderedAscending;//上升
+                    }
+                    return (NSComparisonResult)NSOrderedSame;
+                }];
+                
+                NSMutableArray *array = [[NSMutableArray alloc] init];
+                for (int i=0; i<[sortedArray count]; i++) {
+                    NSString *index = [sortedArray objectAtIndex:i];
+                    NSArray *temp = [[dic objectForKey: index] allKeys];
+                    [array addObject: [temp objectAtIndex:0]];
+                }
+                
+                city = [[NSArray alloc] initWithArray: array];
+                
+                NSDictionary *cityDic = [dic objectForKey: [sortedArray objectAtIndex: 0]];
+                district = [[NSArray alloc] initWithArray: [cityDic objectForKey: [city objectAtIndex: 0]]];
+                [pickerView selectRow: 0 inComponent: CITY_COMPONENT animated: YES];
+                [pickerView selectRow: 0 inComponent: DISTRICT_COMPONENT animated: YES];
+                [pickerView reloadComponent: CITY_COMPONENT];
+                [pickerView reloadComponent: DISTRICT_COMPONENT];
+                
+            }
+            else if (component == CITY_COMPONENT) {
+                NSString *provinceIndex = [NSString stringWithFormat: @"%lu", (unsigned long)[province indexOfObject: selectedProvince]];
+                NSDictionary *tmp = [NSDictionary dictionaryWithDictionary: [areaDic objectForKey: provinceIndex]];
+                NSDictionary *dic = [NSDictionary dictionaryWithDictionary: [tmp objectForKey: selectedProvince]];
+                NSArray *dicKeyArray = [dic allKeys];
+                NSArray *sortedArray = [dicKeyArray sortedArrayUsingComparator: ^(id obj1, id obj2) {
+                    
+                    if ([obj1 integerValue] > [obj2 integerValue]) {
+                        return (NSComparisonResult)NSOrderedDescending;
+                    }
+                    
+                    if ([obj1 integerValue] < [obj2 integerValue]) {
+                        return (NSComparisonResult)NSOrderedAscending;
+                    }
+                    return (NSComparisonResult)NSOrderedSame;
+                }];
+                
+                NSDictionary *cityDic = [NSDictionary dictionaryWithDictionary: [dic objectForKey: [sortedArray objectAtIndex: row]]];
+                NSArray *cityKeyArray = [cityDic allKeys];
+                
+                district = [[NSArray alloc] initWithArray: [cityDic objectForKey: [cityKeyArray objectAtIndex:0]]];
+                [pickerView selectRow: 0 inComponent: DISTRICT_COMPONENT animated: YES];
+                [pickerView reloadComponent: DISTRICT_COMPONENT];
+            }
+        }else{
+            if (component==0) {
+                _state =_dicKeyArray[row][0];
+            }else{
+                NSInteger cIndex = [pickerView selectedRowInComponent:0];
+                NSDictionary *dicValueDic=_plistArray[cIndex];
+                NSArray *dicValueArray=[dicValueDic allValues][0];
+                if (dicValueArray.count>row) {
+                    _city =dicValueArray[row];
+                }
+            }
+        }
+    }
 }
 
 -(void)remove{
@@ -335,7 +479,14 @@
         if (_resultString) {
            
         }else{
-            if (_isLevelDic){
+            if (_isLevelString) {
+                _resultString=[NSString stringWithFormat:@"%@",_plistArray[0]];
+            }else if (_isLevelArray){
+                _resultString=@"";
+                for (int i=0; i<_plistArray.count;i++) {
+                    _resultString=[NSString stringWithFormat:@"%@%@",_resultString,_plistArray[i][0]];
+                }
+            }else if (_isLevelDic){
                 
                 NSInteger provinceIndex = [_pickerView selectedRowInComponent: PROVINCE_COMPONENT];
                 NSInteger cityIndex = [_pickerView selectedRowInComponent: CITY_COMPONENT];

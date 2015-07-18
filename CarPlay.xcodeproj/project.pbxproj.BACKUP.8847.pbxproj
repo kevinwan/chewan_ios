@@ -1428,8 +1428,11 @@
 				E36C962A1B53C80900D3EDBB /* CPCancleSubBtn.m in Sources */,
 				E3CE35991B59E7FC008434B5 /* XLFormSliderCell.m in Sources */,
 				E30BD5901B54ECCC00FD9030 /* CPMySubscribeCell.m in Sources */,
+<<<<<<< HEAD
 				E3CE35AD1B59E7FC008434B5 /* XLFormTextView.m in Sources */,
+=======
 				6B7B90921B5906CB006A506D /* CPRegisterCellsTableViewCell3.m in Sources */,
+>>>>>>> c121de5b4155e1936a41e347ad0be1486e554e10
 				E30BD58A1B54EC4A00FD9030 /* CPMySubscribeModel.m in Sources */,
 				6BC82F301B53C4AF00C8E916 /* CPHomePhoto.m in Sources */,
 				E3CE35931B59E7FC008434B5 /* XLFormDatePickerCell.m in Sources */,

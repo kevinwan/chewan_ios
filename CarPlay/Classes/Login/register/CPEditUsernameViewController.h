@@ -9,5 +9,6 @@
 #import "BaseViewController.h"
 
 @interface CPEditUsernameViewController : BaseViewController
+@property (weak, nonatomic) IBOutlet UITextField *nicknameLable;
 
 @end

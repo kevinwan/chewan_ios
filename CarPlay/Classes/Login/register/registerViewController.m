@@ -44,22 +44,21 @@
     hud.color = [UIColor clearColor];
     hud.labelText=@"加载中…";
     hud.dimBackground=NO;
-    [[CPNetworkVO sharedInstance] getIdentifyingCodeWithPhone:self.userPhone.text sucess:^(id result){
+//
+     NSDictionary *para=[NSDictionary dictionaryWithObjectsAndKeys:self.userPhone.text,@"phone",nil];
+    [ZYNetWorkTool getWithUrl:[[NSString alloc]initWithFormat:@"v1/phone/%@/verification",self.userPhone.text] params:para success:^(id responseObject) {
         [hud hide:YES];
-        NSLog(@"%@",result);
-//        NSDictionary *data=[result objectForKey:@"data"];
-//        if ([data objectForKey:@"token"]) {
-//            [Tools setValueForKey:[data objectForKey:@"token"] key:@"token"];
-//        }
-//        
-//        if ([data objectForKey:@"userId"]) {
-//            [Tools setValueForKey:[data objectForKey:@"userId"] key:@"userId"];
-//        }
-    }fail:^(NSError *error){
-        
+        NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
+        NSString *state=[numberFormatter stringFromNumber:[responseObject objectForKey:@"result"]];
+        if (![state isEqualToString:@"0"]) {
+            NSString *errmsg =[responseObject objectForKey:@"errmsg"];
+            [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        }
+    } failure:^(NSError *error) {
         [hud hide:YES];
-    }];
+        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
 
+    }];
 }
 
 - (IBAction)checkBtnClick:(id)sender {
@@ -82,9 +81,7 @@
 
 - (IBAction)nextBtnClick:(id)sender {
     CPRegisterStep2ViewController *CPRegisterStep2VC=[[CPRegisterStep2ViewController alloc]init];
-    CPRegisterStep2VC.title=@"注册";
     [self.navigationController pushViewController:CPRegisterStep2VC animated:YES];
-    
     
 //    if (agreeTheServiceTerms) {
 //        if ([Tools isValidateMobile:self.userPhone.text]) {
@@ -94,13 +91,25 @@
 //                    hud.color = [UIColor clearColor];
 //                    hud.labelText=@"加载中…";
 //                    hud.dimBackground=NO;
-//                    [[CPNetworkVO sharedInstance] checkIdentifyingCodeWithPhone:self.userPhone.text code:self.identifyingCodeTextField.text sucess:^(id result){
+//                    NSDictionary *para=[NSDictionary dictionaryWithObjectsAndKeys:self.identifyingCodeTextField.text,@"code",nil];
+//                    [ZYNetWorkTool postJsonWithUrl:[[NSString alloc]initWithFormat:@"v1/phone/%@/verification",self.userPhone.text] params:para success:^(id responseObject) {
 //                        [hud hide:YES];
-//                        CPRegisterStep2ViewController *CPRegisterStep2VC=[[CPRegisterStep2ViewController alloc]init];
-//                        CPRegisterStep2VC.title=@"注册";
-//                        [self.navigationController pushViewController:CPRegisterStep2VC animated:YES];
-//                    }fail:^(NSError *error){
-//                        [hud hide:YES];
+//                        NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
+//                        NSString *state=[numberFormatter stringFromNumber:[responseObject objectForKey:@"result"]];
+//                        if (![state isEqualToString:@"0"]) {
+//                            NSString *errmsg =[responseObject objectForKey:@"errmsg"];
+//                            [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+//                        }else{
+//                            CPRegisterStep2ViewController *CPRegisterStep2VC=[[CPRegisterStep2ViewController alloc]init];
+//                            CPRegisterStep2VC.title=@"注册";
+//                            [Tools setValueForKey:self.userPhone.text key:@"phone"];
+//                             NSString *password=[Tools md5EncryptWithString:self.password.text];
+//                            [Tools setValueForKey:password key:@"password"];
+//                            [Tools setValueForKey:self.identifyingCodeTextField.text key:@"code"];
+//                            [self.navigationController pushViewController:CPRegisterStep2VC animated:YES];
+//                        }
+//                    } failed:^(NSError *error) {
+//                        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
 //                    }];
 //                }else{
 //                    if ([self.identifyingCodeTextField.text length]==0) {

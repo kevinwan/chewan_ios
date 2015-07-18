@@ -10,7 +10,6 @@
                 <outlet property="footView" destination="i95-Dr-ZHZ" id="xCh-tt-Mix"/>
                 <outlet property="headView" destination="qnB-1s-4Ue" id="BVu-U5-sxh"/>
                 <outlet property="nextStepBtn" destination="ptE-zL-wuX" id="dht-6U-LrH"/>
-                <outlet property="nextStepBtnClick" destination="ptE-zL-wuX" id="ukG-bg-Gca"/>
                 <outlet property="tableView" destination="Jwg-1F-uhf" id="OhH-uF-o1E"/>
                 <outlet property="userIconBtn" destination="TV3-PZ-DHR" id="5fe-Ae-Tnz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -69,6 +68,9 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="nextStepBtnClick:" destination="-1" eventType="touchUpInside" id="9JO-De-ann"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
