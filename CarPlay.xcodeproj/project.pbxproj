@@ -37,6 +37,7 @@
 		6BC82F301B53C4AF00C8E916 /* CPHomePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82F2B1B53C4AF00C8E916 /* CPHomePhoto.m */; };
 		6BC82F311B53C4AF00C8E916 /* CPHomeStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82F2D1B53C4AF00C8E916 /* CPHomeStatus.m */; };
 		6BC82F321B53C4AF00C8E916 /* CPHomeUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82F2F1B53C4AF00C8E916 /* CPHomeUser.m */; };
+		6BCCEA391B5A5BD6002465AC /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCCEA381B5A5BD6002465AC /* NSDate+Extension.m */; };
 		AD5690C45A77A4D82E40CA3F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E1F11B43C6536981B4E2558 /* libPods.a */; };
 		E30BD57E1B54EBEB00FD9030 /* CPMySubscribeController.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD57D1B54EBEB00FD9030 /* CPMySubscribeController.m */; };
 		E30BD5891B54EC4A00FD9030 /* CPMySubscribeFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5861B54EC4A00FD9030 /* CPMySubscribeFrameModel.m */; };
@@ -176,6 +177,8 @@
 		6BC82F2D1B53C4AF00C8E916 /* CPHomeStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeStatus.m; sourceTree = "<group>"; };
 		6BC82F2E1B53C4AF00C8E916 /* CPHomeUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeUser.h; sourceTree = "<group>"; };
 		6BC82F2F1B53C4AF00C8E916 /* CPHomeUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeUser.m; sourceTree = "<group>"; };
+		6BCCEA371B5A5BD6002465AC /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
+		6BCCEA381B5A5BD6002465AC /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
 		8D517A33E680C9B10E7DB410 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E30BD57C1B54EBEB00FD9030 /* CPMySubscribeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMySubscribeController.h; sourceTree = "<group>"; };
 		E30BD57D1B54EBEB00FD9030 /* CPMySubscribeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMySubscribeController.m; sourceTree = "<group>"; };
@@ -468,6 +471,8 @@
 		6B4EF1421B4036EE00292BD4 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				6BCCEA371B5A5BD6002465AC /* NSDate+Extension.h */,
+				6BCCEA381B5A5BD6002465AC /* NSDate+Extension.m */,
 				6B4EF1661B403A5D00292BD4 /* UIBarButtonItem+Extension.h */,
 				6B4EF1671B403A5D00292BD4 /* UIBarButtonItem+Extension.m */,
 			);
@@ -1130,6 +1135,7 @@
 				E35E6FD31B54B1DE001212D6 /* CPMyPublishBottomView.m in Sources */,
 				E3AE58C61B57E08800D8F0CA /* ZYNetWorkManager.m in Sources */,
 				6B6493901B4D04E100C197D2 /* CPNetWork.m in Sources */,
+				6BCCEA391B5A5BD6002465AC /* NSDate+Extension.m in Sources */,
 				E36C961A1B53BA3200D3EDBB /* CPActivityApplyControllerView.m in Sources */,
 				E35B046C1B565532002C6655 /* MJPhoto.m in Sources */,
 				E3EEE0041B53952E00595333 /* UIImage+Extension.m in Sources */,

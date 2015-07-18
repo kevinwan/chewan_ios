@@ -18,6 +18,7 @@
 #define CPColor(r, g, b, a) [UIColor colorWithRed:(r/255.0) green:(g/255.0) blue:(b/255.0) alpha:a]
 
 #import "UIBarButtonItem+Extension.h"
+#import "NSDate+Extension.h"
 #import "macro.h"
 #import "Tools.h"
 #import "CPNetworkVO.h"
