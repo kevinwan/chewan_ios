@@ -107,7 +107,7 @@
     CPMyPublishModel *model = frameModel.model;
     
     // 进行内容的设置
-    self.timeStampLabel.text = model.publishTimeStr;
+    self.timeStampLabel.text = model.publishDate;
     self.contentLb.text = model.introduction;
     self.photosView.pic_urls = model.cover;
     self.bottomView.model = model;

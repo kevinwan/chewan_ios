@@ -24,13 +24,6 @@
 {
     if (_frameModels == nil) {
         _frameModels = [NSMutableArray array];
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"TestActivity.plist" ofType:nil];
-        NSArray *arr = [NSArray arrayWithContentsOfFile:path];
-        for (NSDictionary *dict in arr) {
-            CPMyPublishFrameModel *frameModel = [[CPMyPublishFrameModel alloc] init];
-            frameModel.model = [CPMyPublishModel objectWithKeyValues:dict];
-            [_frameModels addObject:frameModel];
-        }
     }
     return _frameModels;
 }
@@ -42,14 +35,25 @@
     self.tableView.allowsSelection = NO;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
-    NSString *url = [NSString stringWithFormat:@"/user/%@/post",[Tools getValueFromKeyForUserId:@"userId"]];
+    NSString *userId = @"846de312-306c-4916-91c1-a5e69b158014";
+    NSString *url = [NSString stringWithFormat:@"v1/user/%@/post",userId];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"userId"] = [Tools getValueFromKeyForUserId:@"userId"];
-    params[@"token"] = [Tools getValueFromKey:@"token"];
+    params[@"userId"] = userId;
+    params[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
     
-    [ZYNetWorkTool getWithUrl:url params:params success:^(id responseObject) {
+    [ZYNetWorkTool getWithUrl:url params:params success:^(NSDictionary *responseObject) {
         DLog(@"%@",responseObject);
+        int result = [responseObject[@"result"] intValue];
+        if (result == CPSuccess) {
+            NSArray *arr = [CPMyPublishModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
+            for (int i = 0; i < arr.count; i++) {
+                CPMyPublishFrameModel *frameModel = [[CPMyPublishFrameModel alloc] init];
+                frameModel.model = arr[i];
+                [self.frameModels addObject:frameModel];
+            }
+            [self.tableView reloadData];
+        }
+        
     } failure:^(NSError *error) {
         DLog(@"%@",error);
     }];

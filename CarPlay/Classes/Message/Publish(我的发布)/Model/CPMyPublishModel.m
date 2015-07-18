@@ -16,25 +16,12 @@
     return @{@"members" : [CPOrganizer class], @"cover" : [HMPhoto class]};
 }
 
-- (void)setStart:(long long)start
+- (void)setPublishDate:(NSString *)publishDate
 {
-    _start = start;
-    
-    NSDate *currentDate = [NSDate dateWithTimeIntervalSince1970:start / 1000];
-    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-    
-    fmt.dateFormat = @"MM月dd日";
-    self.startStr = [fmt stringFromDate:currentDate];
-}
-
-- (void)setPublishTime:(long long)publishTime
-{
-    _publishTime = publishTime;
-    
-    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-    fmt.dateFormat = @"MM.dd";
-    NSDate *createDate = [NSDate dateWithTimeIntervalSince1970:publishTime / 1000];
-    self.publishTimeStr = [fmt stringFromDate:createDate];
+    NSArray *arr = [publishDate componentsSeparatedByString:@"."];
+    int o = [[arr firstObject] intValue];
+    int t = [[arr lastObject] intValue];
+    _publishDate = [NSString stringWithFormat:@"%02d.%02d",o, t];
 }
 
 @end

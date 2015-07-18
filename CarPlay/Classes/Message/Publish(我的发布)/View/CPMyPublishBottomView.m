@@ -65,9 +65,9 @@
     [self addSubview:topView];
     self.topView = topView;
     
-    self.dateBtn = [self addBtnWithIcon:@"开始时间" titile:@"7月14号"];
-    self.addressBtn = [self addBtnWithIcon:@"目的地" titile:@"万达影城CBD"];
-    self.moneyBtn = [self addBtnWithIcon:@"费用" titile:@"你请客"];
+    self.dateBtn = [self addBtnWithIcon:@"开始时间"];
+    self.addressBtn = [self addBtnWithIcon:@"目的地"];
+    self.moneyBtn = [self addBtnWithIcon:@"费用"];
     
     [topView addSubview:self.dateBtn];
     [topView addSubview:self.addressBtn];
@@ -107,10 +107,9 @@
 /**
  *  创建同时显示icon和title的button
  */
-- (UIButton *)addBtnWithIcon:(NSString *)icon titile:(NSString *)title
+- (UIButton *)addBtnWithIcon:(NSString *)icon
 {
     CPTopViewButton *btn = [CPTopViewButton buttonWithType:UIButtonTypeCustom];
-    [btn setTitle:title forState:UIControlStateNormal];
     if (kScreenWidth == 320) {
         btn.titleLabel.font = [UIFont systemFontOfSize:9];
     }else{
@@ -179,6 +178,10 @@
 - (void)setModel:(CPMyPublishModel *)model
 {
     _model = model;
+    
+    [self.dateBtn setTitle:model.startDate forState:UIControlStateNormal];
+    [self.addressBtn setTitle:model.location forState:UIControlStateNormal];
+    [self.moneyBtn setTitle:model.pay forState:UIControlStateNormal];
     
     // 显示人数红色的处理
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"参与人数"];

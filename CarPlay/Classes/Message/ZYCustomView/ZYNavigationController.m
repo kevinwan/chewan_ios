@@ -35,7 +35,12 @@
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
+    if (self.viewControllers.count > 0) {
+        viewController.hidesBottomBarWhenPushed = YES;
+    }
+    
     viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithNorImage:@"返回" higImage:nil title:nil target:self action:@selector(back)];
+    
     [super pushViewController:viewController animated:animated];
 }
 
@@ -43,6 +48,5 @@
 {
     [self popViewControllerAnimated:YES];
 }
-
 
 @end
