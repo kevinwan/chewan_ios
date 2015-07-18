@@ -79,7 +79,13 @@
             [formData appendPartWithFileData:file.data name:file.name fileName:file.filename mimeType:file.mimeType];
         }
     } success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+        if (success) {
+            success(responseObject);
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (failure) {
+            failure(error);
+        }
     }];
 }
 

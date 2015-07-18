@@ -16,6 +16,9 @@
 @interface CPRegisterStep2ViewController ()<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate,ZHPickViewDelegate>
 {
     NSString *photoId;
+    NSInteger brithYear;
+    NSInteger birthMonth;
+    NSInteger birthDay;
 }
 @end
 
@@ -24,6 +27,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     photoId=[[NSString alloc]init];
+    brithYear=0;
+    birthMonth=0;
+    birthDay=0;
     self.tableView.tableHeaderView=self.headView;
     self.tableView.tableFooterView=self.footView;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -32,7 +38,11 @@
     self.userIconBtn.layer.cornerRadius=38.5;
     self.userIconBtn.layer.masksToBounds=YES;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removePickview) name:@"remove" object:nil];
-    
+    [Tools setValueForKey:@"男" key:@"gender"];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [self.tableView reloadData];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -69,7 +79,9 @@
         if (cell1 == nil) {
             cell1 = [[[NSBundle mainBundle] loadNibNamed:@"CPRegisterCellsTableViewCell1" owner:nil options:nil] lastObject];
         }
-        
+        if ([Tools getValueFromKey:@"nickname"]) {
+            cell1.cellContent.text=[Tools getValueFromKey:@"nickname"];
+        }
         cell=cell1;
     }else{
         CPRegisterCellsTableViewCell3 *cell3=[tableView dequeueReusableCellWithIdentifier:CPRegisterCellsTableViewCell3Identifier];
@@ -148,6 +160,7 @@
         CPEditUsernameViewController *CPEditUsernameVC=[[CPEditUsernameViewController alloc]init];
         CPEditUsernameVC.title=@"昵称";
         [self.navigationController pushViewController:CPEditUsernameVC animated:YES];
+//        [self presentViewController:CPEditUsernameVC animated:YES completion:nil];
     }
 }
 
@@ -169,12 +182,16 @@
         NSDate *brithDay=[[NSDate alloc]initWithTimeIntervalSinceNow:[resultString doubleValue]];
         NSCalendar* calendar = [NSCalendar currentCalendar];
         NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:brithDay]; // Get necessary date components
-        NSLog(@"%ld",(long)[components year]);// gives you year
-        NSLog(@"%ld",(long)[components month]); //gives you month
-        NSLog(@"%ld",(long)[components day]); //gives you day
-        
+        brithYear=[components year];
+        birthMonth=[components month];
+        birthDay=[components day];
     }else{
-        cell.cellContent.text=resultString;
+        NSArray *array = [resultString componentsSeparatedByString:@","];
+        NSString *cellContentLableText=[[NSString alloc]initWithFormat:@"%@%@",[array objectAtIndex:1],[array objectAtIndex:2]];
+        [Tools setValueForKey:[array objectAtIndex:0] key:@"province"];
+        [Tools setValueForKey:[array objectAtIndex:1] key:@"city"];
+        [Tools setValueForKey:[array objectAtIndex:2] key:@"district"];
+        cell.cellContent.text=cellContentLableText;
     }
     
     //开始动画
@@ -224,46 +241,31 @@
 }
 
 -(void)upLoadImageWithBase64Encodeing:(NSData *)encodedImageData{
-//    
-//    NSString *url=[NSString stringWithFormat:@"%@/v1/avatar/upload",BASE_URL];
-//    
-//    AFHTTPClient *httpClient = [AFHTTPClient clientWithBaseURL:[NSURL URLWithString:url]];
-//    NSMutableURLRequest *request=[httpClient multipartFormRequestWithMethod:@"POST" path:nil parameters:nil constructingBodyWithBlock:^(id formData) {
-//        [formData appendPartWithFileData:encodedImageData name:@"photo" fileName:@"avatar.jpg" mimeType:@"image/jpeg"];
-//    }];
-//    AFHTTPRequestOperation *oper=[[AFHTTPRequestOperation alloc]initWithRequest:request];
-//    [oper setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-//
-//        NSDictionary *dicData=[NSJSONSerialization  JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-//        
-//        NSString *resStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-//        NSData *data_utf8 = [resStr dataUsingEncoding:NSUTF8StringEncoding];
-//        
-//        NSError *error = nil;
-//        id json = [NSJSONSerialization JSONObjectWithData:data_utf8 options:kNilOptions error:&error];
-//        
-//        if (json) {
-//            if ([json isKindOfClass:[NSDictionary class]]) {
-//                NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
-//                NSString *state=[numberFormatter stringFromNumber:[json objectForKey:@"result"]];
-//                if (![state isEqualToString:@"0"]) {
-//                    photoId=[json objectForKey:@"photoId"];
-//                    [Tools setValueForKey:[json objectForKey:@"photoUrl"] key:@"photoUrl"];
-//                }else{
-//                    [[[UIAlertView alloc]initWithTitle:@"提示" message:@"上传失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-//                }
-//            }else{
-//                DLog(@"返回数据不是JSON数据:%@", [json class]);
-//            }
-//        }else
-//        {
-//            DLog(@"解析数据失败:%@", json);
-//        }
-//        
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"上传失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-//    }];
-//    [oper start];
+    ZYHttpFile *file=[[ZYHttpFile alloc]init];
+    file.name=@"photo";
+    file.data=encodedImageData;
+    file.filename=@"avatar.jpg";
+    file.mimeType=@"image/jpeg";
+    NSArray *files=[[NSArray alloc]initWithObjects:file, nil];
+    MBProgressHUD *hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.color = [UIColor clearColor];
+    hud.labelText=@"加载中…";
+    hud.dimBackground=YES;
+    [ZYNetWorkTool postFileWithUrl:@"v1/avatar/upload" params:nil files:files success:^(id responseObject){
+                [hud hide:YES];
+                NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
+                NSString *state=[numberFormatter stringFromNumber:[responseObject objectForKey:@"result"]];
+                if ([state isEqualToString:@"0"]) {
+                    NSDictionary *data=[responseObject objectForKey:@"data"];
+                    [Tools setValueForKey:[data objectForKey:@"photoId"] key:@"photoId"];
+                    [Tools setValueForKey:[data objectForKey:@"photoUrl"] key:@"photoUrl"];
+                }else{
+                    [[[UIAlertView alloc]initWithTitle:@"提示" message:@"上传失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                }
+    }failure:^(NSError *erro){
+        [hud hide:YES];
+        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+    }];
 }
 
 #pragma private methods
@@ -275,12 +277,62 @@
         [cell.checkManBtn setTitleColor:[Tools getColor:@"fd6d53"] forState:UIControlStateNormal];
         [cell.checkWomanBtn setImage:[UIImage imageNamed:@"sexUnchecked"] forState:UIControlStateNormal];
         [cell.checkWomanBtn setTitleColor:[Tools getColor:@"aab2bd"] forState:UIControlStateNormal];
+        [Tools setValueForKey:@"男" key:@"gender"];
     }else{
         [cell.checkManBtn setImage:[UIImage imageNamed:@"sexUnchecked"] forState:UIControlStateNormal];
         [cell.checkManBtn setTitleColor:[Tools getColor:@"aab2bd"] forState:UIControlStateNormal];
         [cell.checkWomanBtn setImage:[UIImage imageNamed:@"sexChecked"] forState:UIControlStateNormal];
         [cell.checkWomanBtn setTitleColor:[Tools getColor:@"fd6d53"] forState:UIControlStateNormal];
+        [Tools setValueForKey:@"女" key:@"gender"];
     }
 }
 
+- (IBAction)nextStepBtnClick:(id)sender {
+    NSString *phone=[Tools getValueFromKey:@"phone"];
+    NSString *password=[Tools getValueFromKey:@"password"];
+    NSString *code=[Tools getValueFromKey:@"code"];
+    NSString *nickname=[Tools getValueFromKey:@"nickname"];
+    NSString *gender=[Tools getValueFromKey:@"gender"];
+    NSString *province=[Tools getValueFromKey:@"province"];
+    NSString *city=[Tools getValueFromKey:@"city"];
+    NSString *district=[Tools getValueFromKey:@"district"];
+    NSString *photo=[Tools getValueFromKey:@"photoId"];
+    NSDictionary *para=[NSDictionary dictionaryWithObjectsAndKeys:phone,@"phone",password,@"password",code,@"code",nickname,@"nickname",gender,@"gender",province,@"province",city,@"city",district,@"district",photo,@"photo",@(brithYear),@"birthYear",@(birthMonth),@"birthMonth",@(birthDay),@"birthDay",nil];
+    
+//    NSMutableDictionary *para=[NSMutableDictionary dictionary];
+//    para[@"phone"] =phone ;
+//    para[@"password"] =password ;
+//    para[@"code"] =code ;
+//    para[@"nickname"] =nickname ;
+//    para[@"gender"] =gender ;
+//    para[@"province"] =province ;
+//    para[@"city"] =city ;
+//    para[@"district"] =district ;
+//    para[@"photo"] =photo ;
+//    para[@"brithYear"] =@(brithYear);
+//     para[@"birthMonth"] =@(birthMonth);
+//     para[@"birthDay"] =@(birthDay);
+    
+    
+    MBProgressHUD *hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.color = [UIColor clearColor];
+    hud.labelText=@"加载中…";
+    hud.dimBackground=NO;
+    [ZYNetWorkTool postJsonWithUrl:@"v1/user/register" params:para success:^(id responseObject) {
+        [hud hide:YES];
+        NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
+        NSString *state=[numberFormatter stringFromNumber:[responseObject objectForKey:@"result"]];
+        if (![state isEqualToString:@"0"]) {
+            NSString *errmsg =[responseObject objectForKey:@"errmsg"];
+            [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        }else{
+            NSDictionary *data=[responseObject objectForKey:@"data"];
+            [Tools setValueForKey:[data objectForKey:@"userId"] key:@"userId"];
+            [Tools setValueForKey:[data objectForKey:@"token"] key:@"token"];
+        }
+    } failed:^(NSError *error) {
+        [hud hide:YES];
+        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+    }];
+}
 @end

@@ -34,7 +34,26 @@
 
 - (IBAction)getIdentifyingCodeBtnClick:(id)sender {
     if ([Tools isValidateMobile:self.phoneLable.text]) {
-        
+        MBProgressHUD *hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.color = [UIColor clearColor];
+        hud.labelText=@"加载中…";
+        hud.dimBackground=NO;
+        //
+        NSDictionary *para=[NSDictionary dictionaryWithObjectsAndKeys:self.phoneLable.text,@"phone",nil];
+        [ZYNetWorkTool getWithUrl:[[NSString alloc]initWithFormat:@"/v1/phone/%@/verification",self.phoneLable.text] params:para success:^(id responseObject) {
+            [hud hide:YES];
+            NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
+            NSString *state=[numberFormatter stringFromNumber:[responseObject objectForKey:@"result"]];
+            if (![state isEqualToString:@"0"]) {
+                NSString *errmsg =[responseObject objectForKey:@"errmsg"];
+                [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                [hud hide:YES];
+            }
+        } failure:^(NSError *error) {
+            [hud hide:YES];
+            [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+            [hud hide:YES];
+        }];
     }else{
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"错误" message:@"请正确输入手机号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alert show];

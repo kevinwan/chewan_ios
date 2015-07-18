@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pnx-YH-JNi">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
@@ -42,7 +43,7 @@
         <!--Navigation Controller-->
         <scene sceneID="zAl-E4-OcR">
             <objects>
-                <navigationController id="pnx-YH-JNi" sceneMemberID="viewController">
+                <navigationController id="pnx-YH-JNi" customClass="ZYNavigationController" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2So-lA-2Vj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -54,7 +55,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uhD-13-KfA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-418" y="329"/>
+            <point key="canvasLocation" x="-421.5" y="328.5"/>
         </scene>
     </scenes>
     <resources>

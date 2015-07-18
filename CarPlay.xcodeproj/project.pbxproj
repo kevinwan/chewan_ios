@@ -34,6 +34,10 @@
 		6B6493F41B539A6700C197D2 /* CPNewPassWordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B6493F21B539A6700C197D2 /* CPNewPassWordViewController.xib */; };
 		6B6493FE1B54E61900C197D2 /* CPRegisterStep2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493FC1B54E61900C197D2 /* CPRegisterStep2ViewController.m */; };
 		6B6493FF1B54E61900C197D2 /* CPRegisterStep2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B6493FD1B54E61900C197D2 /* CPRegisterStep2ViewController.xib */; };
+		6B7B908D1B5906C0006A506D /* CPRegisterCellsTableViewCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B7B908B1B5906C0006A506D /* CPRegisterCellsTableViewCell1.m */; };
+		6B7B908E1B5906C0006A506D /* CPRegisterCellsTableViewCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B7B908C1B5906C0006A506D /* CPRegisterCellsTableViewCell1.xib */; };
+		6B7B90921B5906CB006A506D /* CPRegisterCellsTableViewCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B7B90901B5906CB006A506D /* CPRegisterCellsTableViewCell3.m */; };
+		6B7B90931B5906CB006A506D /* CPRegisterCellsTableViewCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B7B90911B5906CB006A506D /* CPRegisterCellsTableViewCell3.xib */; };
 		6BC82F301B53C4AF00C8E916 /* CPHomePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82F2B1B53C4AF00C8E916 /* CPHomePhoto.m */; };
 		6BC82F311B53C4AF00C8E916 /* CPHomeStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82F2D1B53C4AF00C8E916 /* CPHomeStatus.m */; };
 		6BC82F321B53C4AF00C8E916 /* CPHomeUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC82F2F1B53C4AF00C8E916 /* CPHomeUser.m */; };
@@ -170,6 +174,12 @@
 		6B6493FB1B54E61900C197D2 /* CPRegisterStep2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRegisterStep2ViewController.h; sourceTree = "<group>"; };
 		6B6493FC1B54E61900C197D2 /* CPRegisterStep2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRegisterStep2ViewController.m; sourceTree = "<group>"; };
 		6B6493FD1B54E61900C197D2 /* CPRegisterStep2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPRegisterStep2ViewController.xib; sourceTree = "<group>"; };
+		6B7B908A1B5906C0006A506D /* CPRegisterCellsTableViewCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRegisterCellsTableViewCell1.h; sourceTree = "<group>"; };
+		6B7B908B1B5906C0006A506D /* CPRegisterCellsTableViewCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRegisterCellsTableViewCell1.m; sourceTree = "<group>"; };
+		6B7B908C1B5906C0006A506D /* CPRegisterCellsTableViewCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPRegisterCellsTableViewCell1.xib; sourceTree = "<group>"; };
+		6B7B908F1B5906CB006A506D /* CPRegisterCellsTableViewCell3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRegisterCellsTableViewCell3.h; sourceTree = "<group>"; };
+		6B7B90901B5906CB006A506D /* CPRegisterCellsTableViewCell3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRegisterCellsTableViewCell3.m; sourceTree = "<group>"; };
+		6B7B90911B5906CB006A506D /* CPRegisterCellsTableViewCell3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPRegisterCellsTableViewCell3.xib; sourceTree = "<group>"; };
 		6BC82F2A1B53C4AF00C8E916 /* CPHomePhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomePhoto.h; sourceTree = "<group>"; };
 		6BC82F2B1B53C4AF00C8E916 /* CPHomePhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomePhoto.m; sourceTree = "<group>"; };
 		6BC82F2C1B53C4AF00C8E916 /* CPHomeStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeStatus.h; sourceTree = "<group>"; };
@@ -600,9 +610,15 @@
 		6B6493EA1B53821100C197D2 /* register */ = {
 			isa = PBXGroup;
 			children = (
+				6B7B908A1B5906C0006A506D /* CPRegisterCellsTableViewCell1.h */,
+				6B7B908B1B5906C0006A506D /* CPRegisterCellsTableViewCell1.m */,
+				6B7B908C1B5906C0006A506D /* CPRegisterCellsTableViewCell1.xib */,
 				E36AFEB41B57B1E80081F499 /* CPRegisterCellsTableViewCell2.h */,
 				E36AFEB51B57B1E80081F499 /* CPRegisterCellsTableViewCell2.m */,
 				E36AFEB61B57B1E80081F499 /* CPRegisterCellsTableViewCell2.xib */,
+				6B7B908F1B5906CB006A506D /* CPRegisterCellsTableViewCell3.h */,
+				6B7B90901B5906CB006A506D /* CPRegisterCellsTableViewCell3.m */,
+				6B7B90911B5906CB006A506D /* CPRegisterCellsTableViewCell3.xib */,
 				E375E4871B5516EB00DADF65 /* CarOwnersCertification */,
 				E375E48B1B5516EB00DADF65 /* serviceTerms */,
 				6B6493EB1B53821F00C197D2 /* registerViewController.h */,
@@ -997,10 +1013,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E375E4921B5516EB00DADF65 /* serviceTermsViewController.xib in Resources */,
+				6B7B90931B5906CB006A506D /* CPRegisterCellsTableViewCell3.xib in Resources */,
 				E35B046D1B565532002C6655 /* MJPhotoBrowser.bundle in Resources */,
 				E36AFEB81B57B1E80081F499 /* CPRegisterCellsTableViewCell2.xib in Resources */,
 				E35B04221B562F79002C6655 /* TestActivity.plist in Resources */,
 				E375E4901B5516EB00DADF65 /* CarOwnersCertificationViewController.xib in Resources */,
+				6B7B908E1B5906C0006A506D /* CPRegisterCellsTableViewCell1.xib in Resources */,
 				6B6493E91B4FE34D00C197D2 /* CPForgetPasswordViewController.xib in Resources */,
 				6B5FD3501B57C33700E34F66 /* CPEditUsernameViewController.xib in Resources */,
 				6B6493FF1B54E61900C197D2 /* CPRegisterStep2ViewController.xib in Resources */,
@@ -1109,6 +1127,7 @@
 				E35E6FC71B54AFB8001212D6 /* CPMyPublishController.m in Sources */,
 				E36C962A1B53C80900D3EDBB /* CPCancleSubBtn.m in Sources */,
 				E30BD5901B54ECCC00FD9030 /* CPMySubscribeCell.m in Sources */,
+				6B7B90921B5906CB006A506D /* CPRegisterCellsTableViewCell3.m in Sources */,
 				E30BD58A1B54EC4A00FD9030 /* CPMySubscribeModel.m in Sources */,
 				6BC82F301B53C4AF00C8E916 /* CPHomePhoto.m in Sources */,
 				E375E48F1B5516EB00DADF65 /* CarOwnersCertificationViewController.m in Sources */,
@@ -1143,6 +1162,7 @@
 				6B4EF1631B4036EE00292BD4 /* CPMyController.m in Sources */,
 				E36AFEBB1B57B21D0081F499 /* CPHomePicCell.m in Sources */,
 				6B6493D91B4FABC900C197D2 /* CPNetworkVO.m in Sources */,
+				6B7B908D1B5906C0006A506D /* CPRegisterCellsTableViewCell1.m in Sources */,
 				E3EEDFF31B53951D00595333 /* CPMessageController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
