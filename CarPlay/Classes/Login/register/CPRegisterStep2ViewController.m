@@ -16,9 +16,9 @@
 @interface CPRegisterStep2ViewController ()<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate,ZHPickViewDelegate>
 {
     NSString *photoId;
-    NSInteger brithYear;
-    NSInteger birthMonth;
-    NSInteger birthDay;
+    int brithYear;
+    int birthMonth;
+    int birthDay;
 }
 @end
 
@@ -182,7 +182,7 @@
         NSDate *brithDay=[[NSDate alloc]initWithTimeIntervalSinceNow:[resultString doubleValue]];
         NSCalendar* calendar = [NSCalendar currentCalendar];
         NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:brithDay]; // Get necessary date components
-        brithYear=[components year];
+        brithYear=[components month];
         birthMonth=[components month];
         birthDay=[components day];
     }else{
@@ -297,42 +297,43 @@
     NSString *city=[Tools getValueFromKey:@"city"];
     NSString *district=[Tools getValueFromKey:@"district"];
     NSString *photo=[Tools getValueFromKey:@"photoId"];
-    NSDictionary *para=[NSDictionary dictionaryWithObjectsAndKeys:phone,@"phone",password,@"password",code,@"code",nickname,@"nickname",gender,@"gender",province,@"province",city,@"city",district,@"district",photo,@"photo",@(brithYear),@"birthYear",@(birthMonth),@"birthMonth",@(birthDay),@"birthDay",nil];
-    
-//    NSMutableDictionary *para=[NSMutableDictionary dictionary];
-//    para[@"phone"] =phone ;
-//    para[@"password"] =password ;
-//    para[@"code"] =code ;
-//    para[@"nickname"] =nickname ;
-//    para[@"gender"] =gender ;
-//    para[@"province"] =province ;
-//    para[@"city"] =city ;
-//    para[@"district"] =district ;
-//    para[@"photo"] =photo ;
-//    para[@"brithYear"] =@(brithYear);
-//     para[@"birthMonth"] =@(birthMonth);
-//     para[@"birthDay"] =@(birthDay);
-    
-    
-    MBProgressHUD *hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.color = [UIColor clearColor];
-    hud.labelText=@"加载中…";
-    hud.dimBackground=NO;
-    [ZYNetWorkTool postJsonWithUrl:@"v1/user/register" params:para success:^(id responseObject) {
-        [hud hide:YES];
-        NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
-        NSString *state=[numberFormatter stringFromNumber:[responseObject objectForKey:@"result"]];
-        if (![state isEqualToString:@"0"]) {
-            NSString *errmsg =[responseObject objectForKey:@"errmsg"];
-            [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+    if (photo) {
+        if(nickname){
+            if(brithYear && birthMonth && birthDay){
+                if(province && city && district){
+                    NSDictionary *para=[NSDictionary dictionaryWithObjectsAndKeys:phone,@"phone",password,@"password",code,@"code",nickname,@"nickname",gender,@"gender",province,@"province",city,@"city",district,@"district",photo,@"photo",@(brithYear),@"birthYear",@(birthMonth),@"birthMonth",@(birthDay),@"birthDay",nil];
+                    
+                    MBProgressHUD *hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                    hud.color = [UIColor clearColor];
+                    hud.labelText=@"加载中…";
+                    hud.dimBackground=NO;
+                    [ZYNetWorkTool postJsonWithUrl:@"v1/user/register" params:para success:^(id responseObject) {
+                        [hud hide:YES];
+                        NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
+                        NSString *state=[numberFormatter stringFromNumber:[responseObject objectForKey:@"result"]];
+                        if (![state isEqualToString:@"0"]) {
+                            NSString *errmsg =[responseObject objectForKey:@"errmsg"];
+                            [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                        }else{
+                            NSDictionary *data=[responseObject objectForKey:@"data"];
+                            [Tools setValueForKey:[data objectForKey:@"userId"] key:@"userId"];
+                            [Tools setValueForKey:[data objectForKey:@"token"] key:@"token"];
+                        }
+                    } failed:^(NSError *error) {
+                        [hud hide:YES];
+                        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                    }];
+                }else{
+                    [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请选择您的地区" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                }
+            }else{
+                [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请选择您的生日" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+            }
         }else{
-            NSDictionary *data=[responseObject objectForKey:@"data"];
-            [Tools setValueForKey:[data objectForKey:@"userId"] key:@"userId"];
-            [Tools setValueForKey:[data objectForKey:@"token"] key:@"token"];
+         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请填写您的昵称" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
         }
-    } failed:^(NSError *error) {
-        [hud hide:YES];
-        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-    }];
+    }else{
+        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请上传您的头像" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+    }
 }
 @end
