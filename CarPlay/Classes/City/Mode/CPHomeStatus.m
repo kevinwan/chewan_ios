@@ -9,13 +9,16 @@
 #import "CPHomeStatus.h"
 #import "MJExtension.h"
 #import "CPHomePhoto.h"
+#import "CPHomeMember.h"
 
 
 @implementation CPHomeStatus
 
+// 数组转模型
 + (NSDictionary *)objectClassInArray{
-    return @{@"cover":[CPHomePhoto class]};
+    return @{@"cover":[CPHomePhoto class],@"members":[CPHomeMember class]};
 }
+
 
 // 活动时间转为字符串
 - (NSString *)startStr{

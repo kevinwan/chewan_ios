@@ -16,6 +16,15 @@
 		6B4EF1631B4036EE00292BD4 /* CPMyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4EF1571B4036EE00292BD4 /* CPMyController.m */; };
 		6B4EF1641B4036EE00292BD4 /* CPMyController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B4EF1581B4036EE00292BD4 /* CPMyController.storyboard */; };
 		6B4EF1681B403A5D00292BD4 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4EF1671B403A5D00292BD4 /* UIBarButtonItem+Extension.m */; };
+		6B5F9B6C1B5D29FE00F9D1E8 /* CPCityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5F9B5A1B5D29FE00F9D1E8 /* CPCityController.m */; };
+		6B5F9B6D1B5D29FE00F9D1E8 /* CPCityController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B5F9B5B1B5D29FE00F9D1E8 /* CPCityController.storyboard */; };
+		6B5F9B6E1B5D29FE00F9D1E8 /* CPHomeMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5F9B5E1B5D29FE00F9D1E8 /* CPHomeMember.m */; };
+		6B5F9B6F1B5D29FE00F9D1E8 /* CPHomePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5F9B601B5D29FE00F9D1E8 /* CPHomePhoto.m */; };
+		6B5F9B701B5D29FE00F9D1E8 /* CPHomeStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5F9B621B5D29FE00F9D1E8 /* CPHomeStatus.m */; };
+		6B5F9B711B5D29FE00F9D1E8 /* CPHomeUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5F9B641B5D29FE00F9D1E8 /* CPHomeUser.m */; };
+		6B5F9B721B5D29FE00F9D1E8 /* CPHomeIconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5F9B671B5D29FE00F9D1E8 /* CPHomeIconCell.m */; };
+		6B5F9B731B5D29FE00F9D1E8 /* CPHomePicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5F9B691B5D29FE00F9D1E8 /* CPHomePicCell.m */; };
+		6B5F9B741B5D29FE00F9D1E8 /* CPHomeStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5F9B6B1B5D29FE00F9D1E8 /* CPHomeStatusCell.m */; };
 		6B5FD34F1B57C33700E34F66 /* CPEditUsernameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5FD34D1B57C33700E34F66 /* CPEditUsernameViewController.m */; };
 		6B5FD3501B57C33700E34F66 /* CPEditUsernameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B5FD34E1B57C33700E34F66 /* CPEditUsernameViewController.xib */; };
 		6B64938C1B4D04BE00C197D2 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B64938B1B4D04BE00C197D2 /* BaseViewController.m */; };
@@ -36,13 +45,6 @@
 		6B7B908E1B5906C0006A506D /* CPRegisterCellsTableViewCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B7B908C1B5906C0006A506D /* CPRegisterCellsTableViewCell1.xib */; };
 		6B7B90921B5906CB006A506D /* CPRegisterCellsTableViewCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B7B90901B5906CB006A506D /* CPRegisterCellsTableViewCell3.m */; };
 		6B7B90931B5906CB006A506D /* CPRegisterCellsTableViewCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B7B90911B5906CB006A506D /* CPRegisterCellsTableViewCell3.xib */; };
-		6BCCEA4D1B5A6089002465AC /* CPCityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCCEA3F1B5A6089002465AC /* CPCityController.m */; };
-		6BCCEA4E1B5A6089002465AC /* CPCityController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BCCEA401B5A6089002465AC /* CPCityController.storyboard */; };
-		6BCCEA4F1B5A6089002465AC /* CPHomePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCCEA431B5A6089002465AC /* CPHomePhoto.m */; };
-		6BCCEA501B5A6089002465AC /* CPHomeStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCCEA451B5A6089002465AC /* CPHomeStatus.m */; };
-		6BCCEA511B5A6089002465AC /* CPHomeUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCCEA471B5A6089002465AC /* CPHomeUser.m */; };
-		6BCCEA521B5A6089002465AC /* CPHomePicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCCEA4A1B5A6089002465AC /* CPHomePicCell.m */; };
-		6BCCEA531B5A6089002465AC /* CPHomeStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCCEA4C1B5A6089002465AC /* CPHomeStatusCell.m */; };
 		6BCCEA561B5A60D5002465AC /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCCEA551B5A60D5002465AC /* NSDate+Extension.m */; };
 		AD5690C45A77A4D82E40CA3F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E1F11B43C6536981B4E2558 /* libPods.a */; };
 		E30BD57E1B54EBEB00FD9030 /* CPMySubscribeController.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD57D1B54EBEB00FD9030 /* CPMySubscribeController.m */; };
@@ -186,6 +188,23 @@
 		6B4EF1651B4037DB00292BD4 /* CP_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CP_Prefix.pch; sourceTree = "<group>"; };
 		6B4EF1661B403A5D00292BD4 /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
 		6B4EF1671B403A5D00292BD4 /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
+		6B5F9B591B5D29FE00F9D1E8 /* CPCityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCityController.h; sourceTree = "<group>"; };
+		6B5F9B5A1B5D29FE00F9D1E8 /* CPCityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCityController.m; sourceTree = "<group>"; };
+		6B5F9B5B1B5D29FE00F9D1E8 /* CPCityController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPCityController.storyboard; sourceTree = "<group>"; };
+		6B5F9B5D1B5D29FE00F9D1E8 /* CPHomeMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeMember.h; sourceTree = "<group>"; };
+		6B5F9B5E1B5D29FE00F9D1E8 /* CPHomeMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeMember.m; sourceTree = "<group>"; };
+		6B5F9B5F1B5D29FE00F9D1E8 /* CPHomePhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomePhoto.h; sourceTree = "<group>"; };
+		6B5F9B601B5D29FE00F9D1E8 /* CPHomePhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomePhoto.m; sourceTree = "<group>"; };
+		6B5F9B611B5D29FE00F9D1E8 /* CPHomeStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeStatus.h; sourceTree = "<group>"; };
+		6B5F9B621B5D29FE00F9D1E8 /* CPHomeStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeStatus.m; sourceTree = "<group>"; };
+		6B5F9B631B5D29FE00F9D1E8 /* CPHomeUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeUser.h; sourceTree = "<group>"; };
+		6B5F9B641B5D29FE00F9D1E8 /* CPHomeUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeUser.m; sourceTree = "<group>"; };
+		6B5F9B661B5D29FE00F9D1E8 /* CPHomeIconCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeIconCell.h; sourceTree = "<group>"; };
+		6B5F9B671B5D29FE00F9D1E8 /* CPHomeIconCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeIconCell.m; sourceTree = "<group>"; };
+		6B5F9B681B5D29FE00F9D1E8 /* CPHomePicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomePicCell.h; sourceTree = "<group>"; };
+		6B5F9B691B5D29FE00F9D1E8 /* CPHomePicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomePicCell.m; sourceTree = "<group>"; };
+		6B5F9B6A1B5D29FE00F9D1E8 /* CPHomeStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeStatusCell.h; sourceTree = "<group>"; };
+		6B5F9B6B1B5D29FE00F9D1E8 /* CPHomeStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeStatusCell.m; sourceTree = "<group>"; };
 		6B5FD34C1B57C33700E34F66 /* CPEditUsernameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPEditUsernameViewController.h; sourceTree = "<group>"; };
 		6B5FD34D1B57C33700E34F66 /* CPEditUsernameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPEditUsernameViewController.m; sourceTree = "<group>"; };
 		6B5FD34E1B57C33700E34F66 /* CPEditUsernameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPEditUsernameViewController.xib; sourceTree = "<group>"; };
@@ -219,19 +238,6 @@
 		6B7B908F1B5906CB006A506D /* CPRegisterCellsTableViewCell3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRegisterCellsTableViewCell3.h; sourceTree = "<group>"; };
 		6B7B90901B5906CB006A506D /* CPRegisterCellsTableViewCell3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRegisterCellsTableViewCell3.m; sourceTree = "<group>"; };
 		6B7B90911B5906CB006A506D /* CPRegisterCellsTableViewCell3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPRegisterCellsTableViewCell3.xib; sourceTree = "<group>"; };
-		6BCCEA3E1B5A6089002465AC /* CPCityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCityController.h; sourceTree = "<group>"; };
-		6BCCEA3F1B5A6089002465AC /* CPCityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCityController.m; sourceTree = "<group>"; };
-		6BCCEA401B5A6089002465AC /* CPCityController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPCityController.storyboard; sourceTree = "<group>"; };
-		6BCCEA421B5A6089002465AC /* CPHomePhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomePhoto.h; sourceTree = "<group>"; };
-		6BCCEA431B5A6089002465AC /* CPHomePhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomePhoto.m; sourceTree = "<group>"; };
-		6BCCEA441B5A6089002465AC /* CPHomeStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeStatus.h; sourceTree = "<group>"; };
-		6BCCEA451B5A6089002465AC /* CPHomeStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeStatus.m; sourceTree = "<group>"; };
-		6BCCEA461B5A6089002465AC /* CPHomeUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeUser.h; sourceTree = "<group>"; };
-		6BCCEA471B5A6089002465AC /* CPHomeUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeUser.m; sourceTree = "<group>"; };
-		6BCCEA491B5A6089002465AC /* CPHomePicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomePicCell.h; sourceTree = "<group>"; };
-		6BCCEA4A1B5A6089002465AC /* CPHomePicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomePicCell.m; sourceTree = "<group>"; };
-		6BCCEA4B1B5A6089002465AC /* CPHomeStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeStatusCell.h; sourceTree = "<group>"; };
-		6BCCEA4C1B5A6089002465AC /* CPHomeStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeStatusCell.m; sourceTree = "<group>"; };
 		6BCCEA541B5A60D5002465AC /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
 		6BCCEA551B5A60D5002465AC /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
 		8D517A33E680C9B10E7DB410 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -527,7 +533,7 @@
 		6B4EF1381B4036EE00292BD4 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				6BCCEA3C1B5A6089002465AC /* City */,
+				6B5F9B571B5D29FE00F9D1E8 /* City */,
 				E3EEDFE51B53951D00595333 /* Message */,
 				6B6493911B4D04E500C197D2 /* Utils */,
 				6B64938D1B4D04E100C197D2 /* NetWork */,
@@ -642,6 +648,54 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		6B5F9B571B5D29FE00F9D1E8 /* City */ = {
+			isa = PBXGroup;
+			children = (
+				6B5F9B581B5D29FE00F9D1E8 /* Controller */,
+				6B5F9B5C1B5D29FE00F9D1E8 /* Mode */,
+				6B5F9B651B5D29FE00F9D1E8 /* View */,
+			);
+			path = City;
+			sourceTree = "<group>";
+		};
+		6B5F9B581B5D29FE00F9D1E8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6B5F9B591B5D29FE00F9D1E8 /* CPCityController.h */,
+				6B5F9B5A1B5D29FE00F9D1E8 /* CPCityController.m */,
+				6B5F9B5B1B5D29FE00F9D1E8 /* CPCityController.storyboard */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		6B5F9B5C1B5D29FE00F9D1E8 /* Mode */ = {
+			isa = PBXGroup;
+			children = (
+				6B5F9B5D1B5D29FE00F9D1E8 /* CPHomeMember.h */,
+				6B5F9B5E1B5D29FE00F9D1E8 /* CPHomeMember.m */,
+				6B5F9B5F1B5D29FE00F9D1E8 /* CPHomePhoto.h */,
+				6B5F9B601B5D29FE00F9D1E8 /* CPHomePhoto.m */,
+				6B5F9B611B5D29FE00F9D1E8 /* CPHomeStatus.h */,
+				6B5F9B621B5D29FE00F9D1E8 /* CPHomeStatus.m */,
+				6B5F9B631B5D29FE00F9D1E8 /* CPHomeUser.h */,
+				6B5F9B641B5D29FE00F9D1E8 /* CPHomeUser.m */,
+			);
+			path = Mode;
+			sourceTree = "<group>";
+		};
+		6B5F9B651B5D29FE00F9D1E8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6B5F9B661B5D29FE00F9D1E8 /* CPHomeIconCell.h */,
+				6B5F9B671B5D29FE00F9D1E8 /* CPHomeIconCell.m */,
+				6B5F9B681B5D29FE00F9D1E8 /* CPHomePicCell.h */,
+				6B5F9B691B5D29FE00F9D1E8 /* CPHomePicCell.m */,
+				6B5F9B6A1B5D29FE00F9D1E8 /* CPHomeStatusCell.h */,
+				6B5F9B6B1B5D29FE00F9D1E8 /* CPHomeStatusCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		6B6493891B4D04BE00C197D2 /* BaseViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -722,50 +776,6 @@
 				6B5FD34E1B57C33700E34F66 /* CPEditUsernameViewController.xib */,
 			);
 			path = register;
-			sourceTree = "<group>";
-		};
-		6BCCEA3C1B5A6089002465AC /* City */ = {
-			isa = PBXGroup;
-			children = (
-				6BCCEA3D1B5A6089002465AC /* Controller */,
-				6BCCEA411B5A6089002465AC /* Mode */,
-				6BCCEA481B5A6089002465AC /* View */,
-			);
-			path = City;
-			sourceTree = "<group>";
-		};
-		6BCCEA3D1B5A6089002465AC /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				6BCCEA3E1B5A6089002465AC /* CPCityController.h */,
-				6BCCEA3F1B5A6089002465AC /* CPCityController.m */,
-				6BCCEA401B5A6089002465AC /* CPCityController.storyboard */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		6BCCEA411B5A6089002465AC /* Mode */ = {
-			isa = PBXGroup;
-			children = (
-				6BCCEA421B5A6089002465AC /* CPHomePhoto.h */,
-				6BCCEA431B5A6089002465AC /* CPHomePhoto.m */,
-				6BCCEA441B5A6089002465AC /* CPHomeStatus.h */,
-				6BCCEA451B5A6089002465AC /* CPHomeStatus.m */,
-				6BCCEA461B5A6089002465AC /* CPHomeUser.h */,
-				6BCCEA471B5A6089002465AC /* CPHomeUser.m */,
-			);
-			path = Mode;
-			sourceTree = "<group>";
-		};
-		6BCCEA481B5A6089002465AC /* View */ = {
-			isa = PBXGroup;
-			children = (
-				6BCCEA491B5A6089002465AC /* CPHomePicCell.h */,
-				6BCCEA4A1B5A6089002465AC /* CPHomePicCell.m */,
-				6BCCEA4B1B5A6089002465AC /* CPHomeStatusCell.h */,
-				6BCCEA4C1B5A6089002465AC /* CPHomeStatusCell.m */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		76B5D5B82851E64B3498ED4A /* Pods */ = {
@@ -1306,7 +1316,7 @@
 				6B7B908E1B5906C0006A506D /* CPRegisterCellsTableViewCell1.xib in Resources */,
 				6B6493E91B4FE34D00C197D2 /* CPForgetPasswordViewController.xib in Resources */,
 				6B5FD3501B57C33700E34F66 /* CPEditUsernameViewController.xib in Resources */,
-				6BCCEA4E1B5A6089002465AC /* CPCityController.storyboard in Resources */,
+				6B5F9B6D1B5D29FE00F9D1E8 /* CPCityController.storyboard in Resources */,
 				6B6493FF1B54E61900C197D2 /* CPRegisterStep2ViewController.xib in Resources */,
 				6B4959DC1B33A23900DB63EA /* LaunchScreen.xib in Resources */,
 				E36C96271B53C78200D3EDBB /* CPSubscribePersonController.storyboard in Resources */,
@@ -1370,6 +1380,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B5F9B6F1B5D29FE00F9D1E8 /* CPHomePhoto.m in Sources */,
 				E36AFE651B579F0E0081F499 /* ZHAppDelegate.h in Sources */,
 				E3CE35B01B59E7FC008434B5 /* XLFormValidator.m in Sources */,
 				E36AFE661B579F0E0081F499 /* ZHPickView.h in Sources */,
@@ -1383,6 +1394,7 @@
 				E30BD5891B54EC4A00FD9030 /* CPMySubscribeFrameModel.m in Sources */,
 				E35B04281B5645BC002C6655 /* HMStatusPhotoView.m in Sources */,
 				E3CE35921B59E7FC008434B5 /* XLFormDateCell.m in Sources */,
+				6B5F9B6E1B5D29FE00F9D1E8 /* CPHomeMember.m in Sources */,
 				E35B04711B565532002C6655 /* MJPhotoToolbar.m in Sources */,
 				E35B042B1B56460C002C6655 /* HMPhoto.m in Sources */,
 				E3EEDFF81B53951D00595333 /* CPNewMessageCell.m in Sources */,
@@ -1391,8 +1403,10 @@
 				E36C96251B53C77600D3EDBB /* CPSubscribePersonController.m in Sources */,
 				E3CE35A01B59E7FC008434B5 /* XLFormViewController.m in Sources */,
 				6B5FD34F1B57C33700E34F66 /* CPEditUsernameViewController.m in Sources */,
+				6B5F9B711B5D29FE00F9D1E8 /* CPHomeUser.m in Sources */,
 				E3CE35B11B59E7FC008434B5 /* XLForm.m in Sources */,
 				E3EEDFF71B53951D00595333 /* CPBadgeView.m in Sources */,
+				6B5F9B6C1B5D29FE00F9D1E8 /* CPCityController.m in Sources */,
 				E375E4911B5516EB00DADF65 /* serviceTermsViewController.m in Sources */,
 				E3CE35A71B59E7FC008434B5 /* NSPredicate+XLFormAdditions.m in Sources */,
 				6B6493EE1B53821F00C197D2 /* registerViewController.m in Sources */,
@@ -1401,9 +1415,9 @@
 				6B4EF15D1B4036EE00292BD4 /* CPTabBarController.m in Sources */,
 				E3CE35971B59E7FC008434B5 /* XLFormSegmentedCell.m in Sources */,
 				E3EEDFF51B53951D00595333 /* CPNewMessageController.m in Sources */,
-				6BCCEA4D1B5A6089002465AC /* CPCityController.m in Sources */,
 				E3CE37251B5A4085008434B5 /* CPActivityNameController.m in Sources */,
 				E30BD58F1B54ECCC00FD9030 /* CPMySubscribeBottomView.m in Sources */,
+				6B5F9B731B5D29FE00F9D1E8 /* CPHomePicCell.m in Sources */,
 				E35B046E1B565532002C6655 /* MJPhotoBrowser.m in Sources */,
 				E36AFE631B579ECD0081F499 /* ZHAppDelegate.m in Sources */,
 				6B6493941B4D04E500C197D2 /* Tools.m in Sources */,
@@ -1419,6 +1433,7 @@
 				E3D8793F1B57475400228356 /* CPActivityModel.m in Sources */,
 				E3EEE0021B53952E00595333 /* Foundation+Log.m in Sources */,
 				E3CE359F1B59E7FC008434B5 /* XLFormOptionsViewController.m in Sources */,
+				6B5F9B741B5D29FE00F9D1E8 /* CPHomeStatusCell.m in Sources */,
 				E3CE359E1B59E7FC008434B5 /* XLFormOptionsObject.m in Sources */,
 				E30BD57E1B54EBEB00FD9030 /* CPMySubscribeController.m in Sources */,
 				E3CE35911B59E7FC008434B5 /* XLFormCheckCell.m in Sources */,
@@ -1446,18 +1461,18 @@
 				E35B04721B565532002C6655 /* MJPhotoView.m in Sources */,
 				E30BD59A1B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				6B4EF15F1B4036EE00292BD4 /* AppDelegate.m in Sources */,
-				6BCCEA521B5A6089002465AC /* CPHomePicCell.m in Sources */,
 				E36C961F1B53BB2800D3EDBB /* CPActivityApplyCell.m in Sources */,
+				6B5F9B721B5D29FE00F9D1E8 /* CPHomeIconCell.m in Sources */,
 				E3B1277E1B54E19B005B1174 /* CPIconButton.m in Sources */,
 				E3AE58C71B57E08800D8F0CA /* ZYNetWorkTool.m in Sources */,
 				E3EEE0031B53952E00595333 /* NSString+Extension.m in Sources */,
 				E35B04761B566366002C6655 /* CPPayButton.m in Sources */,
+				6B5F9B701B5D29FE00F9D1E8 /* CPHomeStatus.m in Sources */,
 				E35B046F1B565532002C6655 /* MJPhotoLoadingView.m in Sources */,
 				E3CE35AA1B59E7FC008434B5 /* XLFormRightDetailCell.m in Sources */,
 				E3CE35AF1B59E7FC008434B5 /* XLFormValidationStatus.m in Sources */,
 				E36C96221B53BC2800D3EDBB /* CPActivityApplyButton.m in Sources */,
 				E35E6FD31B54B1DE001212D6 /* CPMyPublishBottomView.m in Sources */,
-				6BCCEA531B5A6089002465AC /* CPHomeStatusCell.m in Sources */,
 				E3CE35941B59E7FC008434B5 /* XLFormInlineSelectorCell.m in Sources */,
 				E3CE35A81B59E7FC008434B5 /* NSString+XLFormAdditions.m in Sources */,
 				E3CE35A21B59E7FC008434B5 /* XLFormRowDescriptor.m in Sources */,
@@ -1473,18 +1488,15 @@
 				E35B04701B565532002C6655 /* MJPhotoProgressView.m in Sources */,
 				E3CE35901B59E7FC008434B5 /* XLFormButtonCell.m in Sources */,
 				E35E6FCA1B54B076001212D6 /* CPMyPublishCell.m in Sources */,
-				6BCCEA501B5A6089002465AC /* CPHomeStatus.m in Sources */,
 				E3B127791B54D9C2005B1174 /* CPChatButton.m in Sources */,
 				E3CE359B1B59E7FC008434B5 /* XLFormSwitchCell.m in Sources */,
 				E3CE35A51B59E7FC008434B5 /* NSExpression+XLFormAdditions.m in Sources */,
 				E36AFE641B579ECD0081F499 /* ZHPickView.m in Sources */,
 				E3CE371F1B5A232D008434B5 /* CPCreatActivityCell.m in Sources */,
 				6B6493E81B4FE34D00C197D2 /* CPForgetPasswordViewController.m in Sources */,
-				6BCCEA511B5A6089002465AC /* CPHomeUser.m in Sources */,
 				6B4EF1631B4036EE00292BD4 /* CPMyController.m in Sources */,
 				E3CE35AE1B59E7FC008434B5 /* XLFormRegexValidator.m in Sources */,
 				E3CE35A31B59E7FC008434B5 /* XLFormSectionDescriptor.m in Sources */,
-				6BCCEA4F1B5A6089002465AC /* CPHomePhoto.m in Sources */,
 				6B6493D91B4FABC900C197D2 /* CPNetworkVO.m in Sources */,
 				6BCCEA561B5A60D5002465AC /* NSDate+Extension.m in Sources */,
 				6B7B908D1B5906C0006A506D /* CPRegisterCellsTableViewCell1.m in Sources */,
