@@ -84,3 +84,9 @@
 #define COCOAPODS_VERSION_MINOR_SVProgressHUD 1
 #define COCOAPODS_VERSION_PATCH_SVProgressHUD 3
 
+// UzysAssetsPickerController
+#define COCOAPODS_POD_AVAILABLE_UzysAssetsPickerController
+#define COCOAPODS_VERSION_MAJOR_UzysAssetsPickerController 0
+#define COCOAPODS_VERSION_MINOR_UzysAssetsPickerController 9
+#define COCOAPODS_VERSION_PATCH_UzysAssetsPickerController 8
+

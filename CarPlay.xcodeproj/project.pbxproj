@@ -143,6 +143,9 @@
 		E3CE37251B5A4085008434B5 /* CPActivityNameController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE37241B5A4085008434B5 /* CPActivityNameController.m */; };
 		E3D8793F1B57475400228356 /* CPActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D8793E1B57475400228356 /* CPActivityModel.m */; };
 		E3D879421B575EC200228356 /* CPTopViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D879411B575EC200228356 /* CPTopViewButton.m */; };
+		E3E1DBFD1B5C8CFB00386B18 /* ZYPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E1DBFC1B5C8CFB00386B18 /* ZYPickView.m */; };
+		E3E1DC001B5CA87C00386B18 /* CPReturnValueControllerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E1DBFF1B5CA87C00386B18 /* CPReturnValueControllerView.m */; };
+		E3E1DC031B5CBF8E00386B18 /* CPMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E1DC021B5CBF8E00386B18 /* CPMapViewController.m */; };
 		E3EEDFF31B53951D00595333 /* CPMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EEDFE81B53951D00595333 /* CPMessageController.m */; };
 		E3EEDFF41B53951D00595333 /* CPMessageController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3EEDFE91B53951D00595333 /* CPMessageController.storyboard */; };
 		E3EEDFF51B53951D00595333 /* CPNewMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EEDFEB1B53951D00595333 /* CPNewMessageController.m */; };
@@ -316,6 +319,7 @@
 		E375E48C1B5516EB00DADF65 /* serviceTermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = serviceTermsViewController.h; sourceTree = "<group>"; };
 		E375E48D1B5516EB00DADF65 /* serviceTermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = serviceTermsViewController.m; sourceTree = "<group>"; };
 		E375E48E1B5516EB00DADF65 /* serviceTermsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = serviceTermsViewController.xib; sourceTree = "<group>"; };
+		E39435DB1B5CE4E100AF91BF /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		E3AE58C21B57E08800D8F0CA /* ZYNetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYNetWorkManager.h; sourceTree = "<group>"; };
 		E3AE58C31B57E08800D8F0CA /* ZYNetWorkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYNetWorkManager.m; sourceTree = "<group>"; };
 		E3AE58C41B57E08800D8F0CA /* ZYNetWorkTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYNetWorkTool.h; sourceTree = "<group>"; };
@@ -416,6 +420,12 @@
 		E3D8793E1B57475400228356 /* CPActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityModel.m; sourceTree = "<group>"; };
 		E3D879401B575EC200228356 /* CPTopViewButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTopViewButton.h; sourceTree = "<group>"; };
 		E3D879411B575EC200228356 /* CPTopViewButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTopViewButton.m; sourceTree = "<group>"; };
+		E3E1DBFB1B5C8CFB00386B18 /* ZYPickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYPickView.h; sourceTree = "<group>"; };
+		E3E1DBFC1B5C8CFB00386B18 /* ZYPickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYPickView.m; sourceTree = "<group>"; };
+		E3E1DBFE1B5CA87C00386B18 /* CPReturnValueControllerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPReturnValueControllerView.h; sourceTree = "<group>"; };
+		E3E1DBFF1B5CA87C00386B18 /* CPReturnValueControllerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPReturnValueControllerView.m; sourceTree = "<group>"; };
+		E3E1DC011B5CBF8E00386B18 /* CPMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMapViewController.h; sourceTree = "<group>"; };
+		E3E1DC021B5CBF8E00386B18 /* CPMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMapViewController.m; sourceTree = "<group>"; };
 		E3EEDFE71B53951D00595333 /* CPMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMessageController.h; sourceTree = "<group>"; };
 		E3EEDFE81B53951D00595333 /* CPMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMessageController.m; sourceTree = "<group>"; };
 		E3EEDFE91B53951D00595333 /* CPMessageController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMessageController.storyboard; sourceTree = "<group>"; };
@@ -458,6 +468,7 @@
 		16CFAD7EE0B36F11A8B32110 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E39435DB1B5CE4E100AF91BF /* AssetsLibrary.framework */,
 				1E1F11B43C6536981B4E2558 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -776,6 +787,8 @@
 		E30BD5911B54FC9400FD9030 /* ZYCustomView */ = {
 			isa = PBXGroup;
 			children = (
+				E3E1DBFB1B5C8CFB00386B18 /* ZYPickView.h */,
+				E3E1DBFC1B5C8CFB00386B18 /* ZYPickView.m */,
 				E30BD5981B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.h */,
 				E30BD5991B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.m */,
 				E30BD5921B54FCC600FD9030 /* ZYNavigationBar.h */,
@@ -888,13 +901,17 @@
 				E36C961B1B53BA6B00D3EDBB /* CPActivityApplyControllerView.storyboard */,
 				E3CE35351B59E1B0008434B5 /* CPCreatActivityController.h */,
 				E3CE35361B59E1B0008434B5 /* CPCreatActivityController.m */,
+				E3CE371B1B59FEBA008434B5 /* CPCreatActivityController.storyboard */,
 				E3CE35381B59E1C0008434B5 /* CPEditActivityController.h */,
 				E3CE35391B59E1C0008434B5 /* CPEditActivityController.m */,
-				E3CE371B1B59FEBA008434B5 /* CPCreatActivityController.storyboard */,
 				E3CE37201B5A3F00008434B5 /* CPActivityIntroduceController.h */,
 				E3CE37211B5A3F00008434B5 /* CPActivityIntroduceController.m */,
 				E3CE37231B5A4085008434B5 /* CPActivityNameController.h */,
 				E3CE37241B5A4085008434B5 /* CPActivityNameController.m */,
+				E3E1DBFE1B5CA87C00386B18 /* CPReturnValueControllerView.h */,
+				E3E1DBFF1B5CA87C00386B18 /* CPReturnValueControllerView.m */,
+				E3E1DC011B5CBF8E00386B18 /* CPMapViewController.h */,
+				E3E1DC021B5CBF8E00386B18 /* CPMapViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1275,6 +1292,10 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
+				es,
+				ja,
+				"zh-Hans",
 			);
 			mainGroup = 6B4959BF1B33A23900DB63EA;
 			productRefGroup = 6B4959C91B33A23900DB63EA /* Products */;
@@ -1379,11 +1400,14 @@
 				E35B04791B568761002C6655 /* CPMoreButton.m in Sources */,
 				E33CB2E21B57871F003E76B7 /* CPHomeStatusCell.m in Sources */,
 				E30BD5891B54EC4A00FD9030 /* CPMySubscribeFrameModel.m in Sources */,
+				E3E1DC031B5CBF8E00386B18 /* CPMapViewController.m in Sources */,
+				E3E1DC001B5CA87C00386B18 /* CPReturnValueControllerView.m in Sources */,
 				E35B04281B5645BC002C6655 /* HMStatusPhotoView.m in Sources */,
 				E3CE35921B59E7FC008434B5 /* XLFormDateCell.m in Sources */,
 				E35B04711B565532002C6655 /* MJPhotoToolbar.m in Sources */,
 				E35B042B1B56460C002C6655 /* HMPhoto.m in Sources */,
 				E3EEDFF81B53951D00595333 /* CPNewMessageCell.m in Sources */,
+				E3E1DBFD1B5C8CFB00386B18 /* ZYPickView.m in Sources */,
 				6B6493F31B539A6700C197D2 /* CPNewPassWordViewController.m in Sources */,
 				E3D879421B575EC200228356 /* CPTopViewButton.m in Sources */,
 				E36C96251B53C77600D3EDBB /* CPSubscribePersonController.m in Sources */,

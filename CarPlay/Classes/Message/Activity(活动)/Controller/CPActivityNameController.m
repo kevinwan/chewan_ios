@@ -59,6 +59,9 @@
 
 - (void)confirm
 {
+    if (self.completion) {
+        self.completion(self.textF.text);
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
