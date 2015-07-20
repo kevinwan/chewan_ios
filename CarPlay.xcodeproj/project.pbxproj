@@ -44,6 +44,11 @@
 		6BCCEA521B5A6089002465AC /* CPHomePicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCCEA4A1B5A6089002465AC /* CPHomePicCell.m */; };
 		6BCCEA531B5A6089002465AC /* CPHomeStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCCEA4C1B5A6089002465AC /* CPHomeStatusCell.m */; };
 		6BCCEA561B5A60D5002465AC /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCCEA551B5A60D5002465AC /* NSDate+Extension.m */; };
+		6BE190C31B5CE85500A41B3C /* CPBrandModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE190C11B5CE85500A41B3C /* CPBrandModelViewController.m */; };
+		6BE190C41B5CE85500A41B3C /* CPBrandModelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BE190C21B5CE85500A41B3C /* CPBrandModelViewController.xib */; };
+		6BE190CE1B5CF79300A41B3C /* CustomBrandCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE190C81B5CF79300A41B3C /* CustomBrandCell.m */; };
+		6BE190CF1B5CF79300A41B3C /* CustomSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE190CA1B5CF79300A41B3C /* CustomSectionView.m */; };
+		6BE190D01B5CF79300A41B3C /* CustomSlideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE190CC1B5CF79300A41B3C /* CustomSlideCell.m */; };
 		AD5690C45A77A4D82E40CA3F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E1F11B43C6536981B4E2558 /* libPods.a */; };
 		E30BD57E1B54EBEB00FD9030 /* CPMySubscribeController.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD57D1B54EBEB00FD9030 /* CPMySubscribeController.m */; };
 		E30BD5891B54EC4A00FD9030 /* CPMySubscribeFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5861B54EC4A00FD9030 /* CPMySubscribeFrameModel.m */; };
@@ -234,6 +239,15 @@
 		6BCCEA4C1B5A6089002465AC /* CPHomeStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeStatusCell.m; sourceTree = "<group>"; };
 		6BCCEA541B5A60D5002465AC /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
 		6BCCEA551B5A60D5002465AC /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
+		6BE190C01B5CE85500A41B3C /* CPBrandModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPBrandModelViewController.h; sourceTree = "<group>"; };
+		6BE190C11B5CE85500A41B3C /* CPBrandModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPBrandModelViewController.m; sourceTree = "<group>"; };
+		6BE190C21B5CE85500A41B3C /* CPBrandModelViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPBrandModelViewController.xib; sourceTree = "<group>"; };
+		6BE190C71B5CF79300A41B3C /* CustomBrandCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomBrandCell.h; sourceTree = "<group>"; };
+		6BE190C81B5CF79300A41B3C /* CustomBrandCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomBrandCell.m; sourceTree = "<group>"; };
+		6BE190C91B5CF79300A41B3C /* CustomSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSectionView.h; sourceTree = "<group>"; };
+		6BE190CA1B5CF79300A41B3C /* CustomSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSectionView.m; sourceTree = "<group>"; };
+		6BE190CB1B5CF79300A41B3C /* CustomSlideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSlideCell.h; sourceTree = "<group>"; };
+		6BE190CC1B5CF79300A41B3C /* CustomSlideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSlideCell.m; sourceTree = "<group>"; };
 		8D517A33E680C9B10E7DB410 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E30BD57C1B54EBEB00FD9030 /* CPMySubscribeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMySubscribeController.h; sourceTree = "<group>"; };
 		E30BD57D1B54EBEB00FD9030 /* CPMySubscribeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMySubscribeController.m; sourceTree = "<group>"; };
@@ -768,6 +782,22 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		6BE190BF1B5CE84700A41B3C /* CPBrandModel */ = {
+			isa = PBXGroup;
+			children = (
+				6BE190C71B5CF79300A41B3C /* CustomBrandCell.h */,
+				6BE190C81B5CF79300A41B3C /* CustomBrandCell.m */,
+				6BE190C91B5CF79300A41B3C /* CustomSectionView.h */,
+				6BE190CA1B5CF79300A41B3C /* CustomSectionView.m */,
+				6BE190CB1B5CF79300A41B3C /* CustomSlideCell.h */,
+				6BE190CC1B5CF79300A41B3C /* CustomSlideCell.m */,
+				6BE190C01B5CE85500A41B3C /* CPBrandModelViewController.h */,
+				6BE190C11B5CE85500A41B3C /* CPBrandModelViewController.m */,
+				6BE190C21B5CE85500A41B3C /* CPBrandModelViewController.xib */,
+			);
+			path = CPBrandModel;
+			sourceTree = "<group>";
+		};
 		76B5D5B82851E64B3498ED4A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -980,6 +1010,7 @@
 		E375E4871B5516EB00DADF65 /* CarOwnersCertification */ = {
 			isa = PBXGroup;
 			children = (
+				6BE190BF1B5CE84700A41B3C /* CPBrandModel */,
 				E375E4881B5516EB00DADF65 /* CarOwnersCertificationViewController.h */,
 				E375E4891B5516EB00DADF65 /* CarOwnersCertificationViewController.m */,
 				E375E48A1B5516EB00DADF65 /* CarOwnersCertificationViewController.xib */,
@@ -1319,6 +1350,7 @@
 				6B4EF1641B4036EE00292BD4 /* CPMyController.storyboard in Resources */,
 				E3EEDFF61B53951D00595333 /* CPNewMessageController.storyboard in Resources */,
 				E3EEDFF41B53951D00595333 /* CPMessageController.storyboard in Resources */,
+				6BE190C41B5CE85500A41B3C /* CPBrandModelViewController.xib in Resources */,
 				6B6493F41B539A6700C197D2 /* CPNewPassWordViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1378,8 +1410,10 @@
 				E375E4931B55171500DADF65 /* CarOwnersCertificationViewController.h in Sources */,
 				E375E4941B55171500DADF65 /* serviceTermsViewController.h in Sources */,
 				E3CE359A1B59E7FC008434B5 /* XLFormStepCounterCell.m in Sources */,
+				6BE190D01B5CF79300A41B3C /* CustomSlideCell.m in Sources */,
 				E3CE35A91B59E7FC008434B5 /* UIView+XLFormAdditions.m in Sources */,
 				E35B04791B568761002C6655 /* CPMoreButton.m in Sources */,
+				6BE190C31B5CE85500A41B3C /* CPBrandModelViewController.m in Sources */,
 				E30BD5891B54EC4A00FD9030 /* CPMySubscribeFrameModel.m in Sources */,
 				E35B04281B5645BC002C6655 /* HMStatusPhotoView.m in Sources */,
 				E3CE35921B59E7FC008434B5 /* XLFormDateCell.m in Sources */,
@@ -1398,6 +1432,7 @@
 				6B6493EE1B53821F00C197D2 /* registerViewController.m in Sources */,
 				E3CE35371B59E1B0008434B5 /* CPCreatActivityController.m in Sources */,
 				E3CE35AC1B59E7FC008434B5 /* XLFormRowNavigationAccessoryView.m in Sources */,
+				6BE190CE1B5CF79300A41B3C /* CustomBrandCell.m in Sources */,
 				6B4EF15D1B4036EE00292BD4 /* CPTabBarController.m in Sources */,
 				E3CE35971B59E7FC008434B5 /* XLFormSegmentedCell.m in Sources */,
 				E3EEDFF51B53951D00595333 /* CPNewMessageController.m in Sources */,
@@ -1484,6 +1519,7 @@
 				6B4EF1631B4036EE00292BD4 /* CPMyController.m in Sources */,
 				E3CE35AE1B59E7FC008434B5 /* XLFormRegexValidator.m in Sources */,
 				E3CE35A31B59E7FC008434B5 /* XLFormSectionDescriptor.m in Sources */,
+				6BE190CF1B5CF79300A41B3C /* CustomSectionView.m in Sources */,
 				6BCCEA4F1B5A6089002465AC /* CPHomePhoto.m in Sources */,
 				6B6493D91B4FABC900C197D2 /* CPNetworkVO.m in Sources */,
 				6BCCEA561B5A60D5002465AC /* NSDate+Extension.m in Sources */,

@@ -217,6 +217,8 @@
     datePicker.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
     datePicker.datePickerMode = datePickerMode;
     datePicker.backgroundColor=[UIColor whiteColor];
+    NSDate *now = [[NSDate alloc]init];
+    datePicker.maximumDate=now;
     if (_defaulDate) {
         [datePicker setDate:_defaulDate];
     }
