@@ -11,7 +11,9 @@
 #import "CPHomeUser.h"
 #import "CPHomeStatus.h"
 #import "CPHomePicCell.h"
+#import "CPHomeIconCell.h"
 #import "CPHomePhoto.h"
+#import "CPHomeMember.h"
 
 
 @interface CPHomeStatusCell()<UICollectionViewDataSource,UICollectionViewDelegate>
@@ -73,6 +75,15 @@
 
 // 我要去玩
 @property (weak, nonatomic) IBOutlet UIButton *myPlay;
+
+
+// 配图collectionView
+@property (weak, nonatomic) IBOutlet UICollectionView *pictureView;
+
+// 头像collectionView
+@property (weak, nonatomic) IBOutlet UICollectionView *iconView;
+
+
 
 @end
 
@@ -210,6 +221,7 @@
     self.introduction.text = _status.introduction;
     
     
+    
     // 头像列表
     [self.bottomIconList setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"头像列表背景"]]];
     
@@ -258,23 +270,47 @@
 #pragma mark - collectionView数据源方法
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    // 返回配图个数
-    return self.status.cover.count;
+    if (collectionView == self.pictureView) {
+        // 返回配图个数
+        return self.status.cover.count;
+    }else
+    {
+        return self.status.members.count;
+    }
+    
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    // 创建cell
-    CPHomePicCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[CPHomePicCell identifier] forIndexPath:indexPath];
+    if (collectionView == self.pictureView) {
+        // 创建cell
+        CPHomePicCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[CPHomePicCell identifier] forIndexPath:indexPath];
+        
+        // 获取对应图片模型
+        CPHomePhoto *photo = self.status.cover[indexPath.item];
+        
+        // 设置数据
+        cell.homePhoto = photo;
+        
+        // 返回cell
+        return cell;
+    }else{
+        // 创建cell
+        CPHomeIconCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[CPHomeIconCell identifier] forIndexPath:indexPath];
+        
+        // 获取对应图片模型
+        CPHomeMember *photo = self.status.members[indexPath.item];
+        photo.membersCount = self.status.members.count;
+        photo.currentMember = indexPath.item;
+        
+        // 设置数据
+        cell.homeMember = photo;
+        
+        // 返回cell
+        return cell;
+    }
     
-    // 获取对应图片模型
-    CPHomePhoto *photo = self.status.cover[indexPath.item];
     
-    // 设置数据
-    cell.homePhoto = photo;
-    
-    // 返回cell
-    return cell;
 }
 
 #pragma mark - 外部方法
@@ -292,6 +328,7 @@
     return CGRectGetMaxY(self.bottomIconList.frame);
     
 }
+
 
 
 

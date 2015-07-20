@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B48A7691B5D271B00CE7D85 /* CPHomeMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B48A7681B5D271B00CE7D85 /* CPHomeMember.m */; };
+		6B48A76C1B5D273C00CE7D85 /* CPHomeIconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B48A76B1B5D273C00CE7D85 /* CPHomeIconCell.m */; };
 		6B4959DC1B33A23900DB63EA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B4959DA1B33A23900DB63EA /* LaunchScreen.xib */; };
 		6B4959E81B33A23900DB63EA /* CarPlayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4959E71B33A23900DB63EA /* CarPlayTests.m */; };
 		6B4EF15B1B4036EE00292BD4 /* CPCityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4EF13C1B4036EE00292BD4 /* CPCityController.m */; };
@@ -123,6 +125,10 @@
 /* Begin PBXFileReference section */
 		1E1F11B43C6536981B4E2558 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		473C700A9DC662488BA2B8E4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		6B48A7671B5D271B00CE7D85 /* CPHomeMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeMember.h; sourceTree = "<group>"; };
+		6B48A7681B5D271B00CE7D85 /* CPHomeMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeMember.m; sourceTree = "<group>"; };
+		6B48A76A1B5D273C00CE7D85 /* CPHomeIconCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeIconCell.h; sourceTree = "<group>"; };
+		6B48A76B1B5D273C00CE7D85 /* CPHomeIconCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeIconCell.m; sourceTree = "<group>"; };
 		6B4959C81B33A23900DB63EA /* CarPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B4959CC1B33A23900DB63EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B4959DB1B33A23900DB63EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -425,6 +431,8 @@
 		6B4EF13E1B4036EE00292BD4 /* Mode */ = {
 			isa = PBXGroup;
 			children = (
+				6B48A7671B5D271B00CE7D85 /* CPHomeMember.h */,
+				6B48A7681B5D271B00CE7D85 /* CPHomeMember.m */,
 				6BC82F2A1B53C4AF00C8E916 /* CPHomePhoto.h */,
 				6BC82F2B1B53C4AF00C8E916 /* CPHomePhoto.m */,
 				6BC82F2C1B53C4AF00C8E916 /* CPHomeStatus.h */,
@@ -438,6 +446,8 @@
 		6B4EF13F1B4036EE00292BD4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6B48A76A1B5D273C00CE7D85 /* CPHomeIconCell.h */,
+				6B48A76B1B5D273C00CE7D85 /* CPHomeIconCell.m */,
 				E36AFEB91B57B21D0081F499 /* CPHomePicCell.h */,
 				E36AFEBA1B57B21D0081F499 /* CPHomePicCell.m */,
 				E33CB2E01B57871F003E76B7 /* CPHomeStatusCell.h */,
@@ -1082,6 +1092,7 @@
 				E35B04281B5645BC002C6655 /* HMStatusPhotoView.m in Sources */,
 				E35B04711B565532002C6655 /* MJPhotoToolbar.m in Sources */,
 				E35B042B1B56460C002C6655 /* HMPhoto.m in Sources */,
+				6B48A76C1B5D273C00CE7D85 /* CPHomeIconCell.m in Sources */,
 				E3EEDFF81B53951D00595333 /* CPNewMessageCell.m in Sources */,
 				6B6493F31B539A6700C197D2 /* CPNewPassWordViewController.m in Sources */,
 				E3D879421B575EC200228356 /* CPTopViewButton.m in Sources */,
@@ -1100,6 +1111,7 @@
 				6B64938C1B4D04BE00C197D2 /* BaseViewController.m in Sources */,
 				6B6493FE1B54E61900C197D2 /* CPRegisterStep2ViewController.m in Sources */,
 				E35E6FD01B54B0EC001212D6 /* CPMyPublishFrameModel.m in Sources */,
+				6B48A7691B5D271B00CE7D85 /* CPHomeMember.m in Sources */,
 				E35E6FCD1B54B0D9001212D6 /* CPMyPublishModel.m in Sources */,
 				6B4EF1681B403A5D00292BD4 /* UIBarButtonItem+Extension.m in Sources */,
 				6BC82F321B53C4AF00C8E916 /* CPHomeUser.m in Sources */,
