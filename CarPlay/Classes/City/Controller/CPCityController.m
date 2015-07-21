@@ -15,7 +15,7 @@
 #import "CPHomeStatusCell.h"
 
 
-@interface CPCityController ()<UITableViewDataSource,UITableViewDelegate>
+@interface CPCityController ()<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 
 // 存储所有活动数据
 @property (nonatomic,strong) NSArray *status;
@@ -128,6 +128,10 @@
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 200;
 }
+
+
+
+
 
 #pragma mark - lazy
 

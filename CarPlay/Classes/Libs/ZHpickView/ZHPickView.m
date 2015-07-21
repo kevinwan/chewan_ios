@@ -217,6 +217,8 @@
     datePicker.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
     datePicker.datePickerMode = datePickerMode;
     datePicker.backgroundColor=[UIColor whiteColor];
+    NSDate *now = [[NSDate alloc]init];
+    datePicker.maximumDate=now;
     if (_defaulDate) {
         [datePicker setDate:_defaulDate];
     }
@@ -366,12 +368,6 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    
-    if (_isLevelDic&&component%2==0) {
-        
-        [pickerView reloadComponent:1];
-        [pickerView selectRow:0 inComponent:1 animated:YES];
-    }
     if (_isLevelString) {
         _resultString=_plistArray[row];
         
@@ -447,6 +443,8 @@
                 district = [[NSArray alloc] initWithArray: [cityDic objectForKey: [cityKeyArray objectAtIndex:0]]];
                 [pickerView selectRow: 0 inComponent: DISTRICT_COMPONENT animated: YES];
                 [pickerView reloadComponent: DISTRICT_COMPONENT];
+            }else if (component == DISTRICT_COMPONENT){
+                
             }
         }else{
             if (component==0) {

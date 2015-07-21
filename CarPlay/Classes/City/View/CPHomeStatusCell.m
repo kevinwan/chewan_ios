@@ -11,7 +11,9 @@
 #import "CPHomeUser.h"
 #import "CPHomeStatus.h"
 #import "CPHomePicCell.h"
+#import "CPHomeIconCell.h"
 #import "CPHomePhoto.h"
+#import "CPHomeMember.h"
 
 
 @interface CPHomeStatusCell()<UICollectionViewDataSource,UICollectionViewDelegate>
@@ -23,14 +25,15 @@
 // 昵称
 @property (weak, nonatomic) IBOutlet UILabel *nickname;
 
-// 年龄
-@property (weak, nonatomic) IBOutlet UILabel *age;
+// 性别和年龄
+@property (weak, nonatomic) IBOutlet UIButton *genderAndAge;
 
-// 性别
-@property (weak, nonatomic) IBOutlet UIImageView *gender;
 
 // 车标
 @property (weak, nonatomic) IBOutlet UIImageView *carBrandLogo;
+
+// 状态描述
+@property (weak, nonatomic) IBOutlet UILabel *states;
 
 // 发布时间
 @property (weak, nonatomic) IBOutlet UILabel *publishTime;
@@ -38,8 +41,25 @@
 // 付费方式
 @property (weak, nonatomic) IBOutlet UILabel *pay;
 
+// 付费方式View
+@property (weak, nonatomic) IBOutlet UIView *payView;
+
+
+// 已占座位
+@property (weak, nonatomic) IBOutlet UILabel *holdingSeat;
+
+
+// 总座
+@property (weak, nonatomic) IBOutlet UILabel *totalSeat;
+
 // 正文
 @property (weak, nonatomic) IBOutlet UILabel *introduction;
+
+// 活动时间
+@property (weak, nonatomic) IBOutlet UILabel *start;
+
+// 地点
+@property (weak, nonatomic) IBOutlet UILabel *loction;
 
 // 配图容器的高度
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *pictureViewHeight;
@@ -47,8 +67,22 @@
 // 配图容器的宽度
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *pictureViewWidth;
 
+// 车标到头像距离
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *carModelConstraint;
+
 // 底部头像列表
 @property (weak, nonatomic) IBOutlet UIView *bottomIconList;
+
+// 我要去玩
+@property (weak, nonatomic) IBOutlet UIButton *myPlay;
+
+
+// 配图collectionView
+@property (weak, nonatomic) IBOutlet UICollectionView *pictureView;
+
+// 头像collectionView
+@property (weak, nonatomic) IBOutlet UICollectionView *iconView;
+
 
 
 @end
@@ -80,28 +114,116 @@
     NSURL *urlPhoto = [NSURL URLWithString:user.photo];
     [self.photo sd_setImageWithURL:urlPhoto placeholderImage:[UIImage imageNamed:@"默认头像"]];
     
+    // 我要去玩
+    self.myPlay.layer.cornerRadius = 12;
+    self.myPlay.layer.masksToBounds = YES;
+    
     // 昵称
     self.nickname.text = user.nickname;
     
     // 年龄
-    self.age.text = user.age;
+    [self.genderAndAge setTitle:user.age forState:UIControlStateNormal];
     
+
     // 性别
-    NSURL *urlGender = [NSURL URLWithString:user.gender];
-    [self.gender sd_setImageWithURL:urlGender placeholderImage:[UIImage imageNamed:@""]];
+    if ([user.gender isEqualToString:@"男"]) {
+        [self.genderAndAge setBackgroundImage:[UIImage imageNamed:@"男-1"] forState:UIControlStateNormal];
+    }else{
+        [self.genderAndAge setBackgroundImage:[UIImage imageNamed:@"女-1"] forState:UIControlStateNormal];
+    }
     
     // 车标
-    NSURL *urlCarBrandLogo = [NSURL URLWithString:user.carBrandLogo];
-    [self.carBrandLogo sd_setImageWithURL:urlCarBrandLogo placeholderImage:[UIImage imageNamed:@""]];
+    if (user.carBrandLogo == nil || [user.carBrandLogo isEqualToString:@""]) {
+        //
+        self.carBrandLogo.hidden = YES;
+    }else{
+        self.carBrandLogo.hidden = NO;
+        NSURL *urlCarBrandLogo = [NSURL URLWithString:user.carBrandLogo];
+        [self.carBrandLogo sd_setImageWithURL:urlCarBrandLogo placeholderImage:[UIImage imageNamed:@""]];
+        
+    }
     
+   
+    // 状态描述
+    NSString *tempCarModel = @"";     // 存储转换后的carModel
+    NSString *tempDrivingExperience = @"";   // 存储转换后的drivingExperience
+    
+    if (user.carModel == nil || [user.carModel isEqualToString:@""])
+    {}else{
+        tempCarModel = user.carModel;
+    }
+    
+    if ( [user.drivingExperience  isEqualToString:@"0"]|| user.drivingExperience == nil || [user.drivingExperience isEqualToString:@""]) {
+        // 没有车的情况
+        self.carModelConstraint.constant = 10;
+        tempDrivingExperience = @"带我飞~";
+        
+    }else{
+        //有车的情况
+        self.carModelConstraint.constant = 37;
+        if (user.carModel == nil || [user.carModel isEqualToString:@""]) {
+            tempDrivingExperience = [NSString stringWithFormat:@"%@年驾龄",user.drivingExperience];
+
+        }else{
+            tempDrivingExperience = [NSString stringWithFormat:@",%@年驾龄",user.drivingExperience];
+        }
+    }
+    
+    NSString *states = [NSString stringWithFormat:@"%@%@",tempCarModel,tempDrivingExperience];
+    self.states.text = states;
     
     // 发布时间
+    self.publishTime.text = _status.publishTimeStr;
+    
+    // 活动时间
+    self.start.text = _status.startStr;
+    
+    // 活动地点
+    self.loction.text = _status.location;
     
     // 付费方式
     self.pay.text = _status.pay;
     
+    // 付费方式View
+    self.payView.layer.cornerRadius = 3;
+    self.payView.clipsToBounds = YES;
+    if ([_status.pay isEqualToString:@"AA制"]) {
+        // AA制
+        self.payView.backgroundColor = [UIColor greenColor];
+    }else if([_status.pay isEqualToString:@"我请客"]){
+        // 我请客
+        self.payView.backgroundColor = [UIColor redColor];
+    }else{
+        // 请我吧
+        self.payView.backgroundColor = [UIColor grayColor];
+    }
+    
+    
+    
+    // 余座
+    if (_status.holdingSeat == nil || [_status.holdingSeat isEqualToString:@""]) {
+        self.holdingSeat.text = @"";
+    }else{
+        self.holdingSeat.text = _status.holdingSeat;
+    }
+
+    
+    // 总座
+    if (_status.totalSeat == nil || [_status.totalSeat isEqualToString:@""]) {
+        self.totalSeat.text = @"";
+    }else{
+        NSString *totalSeatStr = [NSString stringWithFormat:@"/%@座",_status.totalSeat];
+        self.totalSeat.text = totalSeatStr;
+    }
+    
+    
     // 正文
     self.introduction.text = _status.introduction;
+    
+    
+    
+    // 头像列表
+    [self.bottomIconList setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"头像列表背景"]]];
     
     
     // 计算配图宽高
@@ -148,23 +270,47 @@
 #pragma mark - collectionView数据源方法
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    // 返回配图个数
-    return self.status.cover.count;
+    if (collectionView == self.pictureView) {
+        // 返回配图个数
+        return self.status.cover.count;
+    }else
+    {
+        return self.status.members.count;
+    }
+    
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    // 创建cell
-    CPHomePicCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[CPHomePicCell identifier] forIndexPath:indexPath];
+    if (collectionView == self.pictureView) {
+        // 创建cell
+        CPHomePicCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[CPHomePicCell identifier] forIndexPath:indexPath];
+        
+        // 获取对应图片模型
+        CPHomePhoto *photo = self.status.cover[indexPath.item];
+        
+        // 设置数据
+        cell.homePhoto = photo;
+        
+        // 返回cell
+        return cell;
+    }else{
+        // 创建cell
+        CPHomeIconCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[CPHomeIconCell identifier] forIndexPath:indexPath];
+        
+        // 获取对应图片模型
+        CPHomeMember *photo = self.status.members[indexPath.item];
+        photo.membersCount = self.status.members.count;
+        photo.currentMember = indexPath.item;
+        
+        // 设置数据
+        cell.homeMember = photo;
+        
+        // 返回cell
+        return cell;
+    }
     
-    // 获取对应图片模型
-    CPHomePhoto *photo = self.status.cover[indexPath.item];
     
-    // 设置数据
-    cell.homePhoto = photo;
-    
-    // 返回cell
-    return cell;
 }
 
 #pragma mark - 外部方法
@@ -182,6 +328,7 @@
     return CGRectGetMaxY(self.bottomIconList.frame);
     
 }
+
 
 
 
