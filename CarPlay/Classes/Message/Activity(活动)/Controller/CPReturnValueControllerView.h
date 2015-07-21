@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface CPReturnValueControllerView : UIViewController
-@property (nonatomic, copy) void (^completion)(NSString *result);
+@property (nonatomic, copy) void (^completion)(id result);
+@property (nonatomic, strong) id forValue;
 @end

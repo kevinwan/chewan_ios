@@ -25,6 +25,9 @@
                                         <color key="titleColor" red="0.396078431372549" green="0.42352941176470588" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="finishBtnClick" destination="ILW-9S-CTC" eventType="touchUpInside" id="rtH-XT-cTX"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SV3-O3-Gvx">
                                     <rect key="frame" x="149" y="20" width="161" height="38"/>
@@ -33,6 +36,9 @@
                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="finishToFriends" destination="ILW-9S-CTC" eventType="touchUpInside" id="AND-Yl-9R1"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -100,7 +106,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rE2-eC-qIF" id="nNg-Fk-FMT">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="活动类型" translatesAutoresizingMaskIntoConstraints="NO" id="cxj-xg-5dc">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="活动介绍" translatesAutoresizingMaskIntoConstraints="NO" id="cxj-xg-5dc">
                                                     <rect key="frame" x="10" y="16" width="18" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="5Xx-u6-NEr"/>
@@ -117,10 +123,19 @@
                                                     <color key="textColor" red="0.66666666669999997" green="0.69803921570000005" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="f2n-do-cIH">
+                                                    <rect key="frame" x="293" y="16" width="17" height="17"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="17" id="YWW-Rw-Bew"/>
+                                                        <constraint firstAttribute="height" constant="17" id="Zy9-4I-odZ"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="YJF-7b-NnN" firstAttribute="leading" secondItem="cxj-xg-5dc" secondAttribute="trailing" constant="8" id="Cse-33-Qnk"/>
                                                 <constraint firstItem="YJF-7b-NnN" firstAttribute="centerY" secondItem="cxj-xg-5dc" secondAttribute="centerY" constant="-1" id="GXw-mp-svd"/>
+                                                <constraint firstItem="f2n-do-cIH" firstAttribute="top" secondItem="nNg-Fk-FMT" secondAttribute="top" constant="16" id="N39-yn-CkI"/>
+                                                <constraint firstAttribute="trailing" secondItem="f2n-do-cIH" secondAttribute="trailing" constant="10" id="a1Z-G1-q57"/>
                                                 <constraint firstItem="cxj-xg-5dc" firstAttribute="top" secondItem="nNg-Fk-FMT" secondAttribute="top" constant="16" id="dxy-Rr-Ozf"/>
                                                 <constraint firstItem="cxj-xg-5dc" firstAttribute="leading" secondItem="nNg-Fk-FMT" secondAttribute="leading" constant="10" id="gzr-PI-55A"/>
                                             </constraints>
@@ -144,7 +159,7 @@
                                                         <constraint firstAttribute="height" constant="17" id="p74-qd-3sW"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="活动类型" translatesAutoresizingMaskIntoConstraints="NO" id="ChG-md-RmS">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="目的地" translatesAutoresizingMaskIntoConstraints="NO" id="ChG-md-RmS">
                                                     <rect key="frame" x="10" y="16" width="18" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="18" id="TRl-sU-B1B"/>
@@ -188,7 +203,7 @@
                                                         <constraint firstAttribute="height" constant="17" id="xhl-ZW-2NL"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="活动类型" translatesAutoresizingMaskIntoConstraints="NO" id="Aji-av-o4g">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="开始时间" translatesAutoresizingMaskIntoConstraints="NO" id="Aji-av-o4g">
                                                     <rect key="frame" x="10" y="16" width="18" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="XVB-s1-TN1"/>
@@ -232,7 +247,7 @@
                                                         <constraint firstAttribute="width" constant="17" id="bBl-IW-OG7"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="活动类型" translatesAutoresizingMaskIntoConstraints="NO" id="p6h-wN-7er">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="结束时间" translatesAutoresizingMaskIntoConstraints="NO" id="p6h-wN-7er">
                                                     <rect key="frame" x="10" y="16" width="18" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="6YO-zO-iSQ"/>
@@ -276,7 +291,7 @@
                                                         <constraint firstAttribute="width" constant="17" id="f7c-LZ-5CJ"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="活动类型" translatesAutoresizingMaskIntoConstraints="NO" id="zVZ-gX-xo6">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="费用" translatesAutoresizingMaskIntoConstraints="NO" id="zVZ-gX-xo6">
                                                     <rect key="frame" x="10" y="16" width="18" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="rel-Op-HWf"/>
@@ -320,7 +335,7 @@
                                                         <constraint firstAttribute="width" constant="17" id="zkW-7d-QXR"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="活动类型" translatesAutoresizingMaskIntoConstraints="NO" id="GRJ-OH-2NO">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="座位数" translatesAutoresizingMaskIntoConstraints="NO" id="GRJ-OH-2NO">
                                                     <rect key="frame" x="10" y="16" width="18" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="18" id="v8c-By-Fqb"/>
@@ -374,6 +389,12 @@
     </scenes>
     <resources>
         <image name="arrow" width="17" height="17"/>
+        <image name="座位数" width="18" height="18"/>
+        <image name="开始时间" width="18" height="18"/>
+        <image name="活动介绍" width="19" height="18"/>
         <image name="活动类型" width="18" height="18"/>
+        <image name="目的地" width="18" height="18"/>
+        <image name="结束时间" width="18" height="18"/>
+        <image name="费用" width="18" height="18"/>
     </resources>
 </document>

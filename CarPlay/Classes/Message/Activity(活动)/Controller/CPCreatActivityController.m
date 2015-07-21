@@ -14,6 +14,7 @@
 #import "NSString+Extension.h"
 #import <UzysAssetsPickerController/UzysWrapperPickerController.h>
 #import "UzysAssetsPickerController.h"
+#import "CPEditImageView.h"
 
 #define maxCount 9
 typedef enum {
@@ -24,7 +25,7 @@ typedef enum {
     ActivityCreateSeat
 }ActivityCreate;
 
-@interface CPCreatActivityController ()<ZYPickViewDelegate, UIActionSheetDelegate,UIImagePickerControllerDelegate, UzysAssetsPickerControllerDelegate, UINavigationControllerDelegate>
+@interface CPCreatActivityController ()<ZYPickViewDelegate, UIActionSheetDelegate,UIImagePickerControllerDelegate, UzysAssetsPickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate>
 @property (nonatomic, assign) BOOL isOpen;
 @property (nonatomic, assign) NSUInteger lastRow;
 @property (nonatomic, strong) NSArray *activivtyDatas;
@@ -37,12 +38,22 @@ typedef enum {
 @property (nonatomic, assign) NSUInteger picIndex;
 @property (weak, nonatomic) IBOutlet UIButton *finishBtn;
 @property (weak, nonatomic) IBOutlet UIButton *finishToFriend;
-
+@property (nonatomic, assign) CGPoint currentOffset;
+@property (nonatomic, strong) NSMutableArray *editPhotoViews;
+@property (nonatomic, strong) UIBarButtonItem *rightItem;
 @end
 
 @implementation CPCreatActivityController
 
 #pragma mark - lazy
+
+- (UIBarButtonItem *)rightItem
+{
+    if (_rightItem == nil) {
+        _rightItem = [UIBarButtonItem itemWithNorImage:@"删除" higImage:nil title:nil target:self action:@selector(showAlertIfDelete)];
+    }
+    return _rightItem;
+}
 
 - (UILabel *)nameLabel
 {
@@ -50,13 +61,21 @@ typedef enum {
         _nameLabel = [[UILabel alloc] init];
         _nameLabel.numberOfLines = 0;
         _nameLabel.textColor = [Tools getColor:@"656c78"];
-        _nameLabel.x = 15;
+        _nameLabel.x = 8;
         _nameLabel.y = 40;
-        _nameLabel.width = kScreenWidth - 30;
-        _nameLabel.font = [UIFont systemFontOfSize:16];
+        _nameLabel.width = kScreenWidth - 16;
+        _nameLabel.font = [UIFont systemFontOfSize:15];
         _nameLabel.tag = 222;
     }
     return _nameLabel;
+}
+
+- (NSMutableArray *)editPhotoViews
+{
+    if (_editPhotoViews == nil) {
+        _editPhotoViews = [NSMutableArray array];
+    }
+    return _editPhotoViews;
 }
 
 - (NSArray *)activivtyDatas
@@ -76,7 +95,8 @@ typedef enum {
     self.finishBtn.clipsToBounds = YES;
     self.finishToFriend.layer.cornerRadius = 3;
     self.finishToFriend.clipsToBounds = YES;
-    
+    self.currentOffset = CGPointMake(0, -64);
+    self.picIndex = 10;
     
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
     [CPNotificationCenter addObserver:self selector:@selector(pickerViewCancle:) name:@"PicViewCancle" object:nil];
@@ -87,11 +107,11 @@ typedef enum {
 /**
  *  当picker取消时调用
  *
- *  @param notify <#notify description#>
+ *  @param notify row
  */
 - (void)pickerViewCancle:(NSNotification *)notify
 {
-    [self.tableView setContentOffset:CGPointMake(0, -64) animated:YES];
+    [self.tableView setContentOffset:self.currentOffset animated:YES];
     int row = [notify.userInfo[@"row"] intValue];
     [self closeArrowWithRow:row];
     self.pickView = nil;
@@ -163,7 +183,6 @@ typedef enum {
             _pickView.tag = ActivityCreateStart;
             _pickView.row = 4;
             _pickView.delegate = self;
-            _pickView.height = 80;
             [_pickView show];
         }
     };
@@ -244,6 +263,42 @@ typedef enum {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CPCreatActivityCell *cell = [self cellWithRow:indexPath.row];
+    
+    if (indexPath.row != 2 && self.editPhotoViews.count != 0) {
+        [self cancleEditPhotoSelect];
+    }
+    
+    if (cell.destClass){
+        CPReturnValueControllerView *vc = [[cell.destClass alloc] init];
+        if (indexPath.row == 3) {
+            
+            vc.completion = ^(NSString *str){
+                
+            };
+        }
+        
+        if (indexPath.row == 1) {
+            if (self.nameLabel.text.length) {
+                vc.forValue = self.nameLabel.text;
+            }
+            
+            vc.completion = ^(NSString *str){
+                if (str.length) {
+                    [self setNameCellHeightWithString:str];
+                    self.nameLabel.text = str;
+                    self.nameLabel.height = [str sizeWithFont:[UIFont systemFontOfSize:15] maxW:kScreenWidth - 30].height;
+                    [self.tableView reloadData];
+                }else{
+                    self.nameLabel.text = nil;
+                    self.nameLableHeight = 50;
+                    [self.tableView reloadData];
+                }
+            };
+        }
+        
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
     if (self.isOpen) {
         [self closeArrowWithRow:indexPath.row];
     }else{
@@ -258,28 +313,6 @@ typedef enum {
         [self viewUpWithCell:cell];
         return;
     }
-    if (cell.destClass){
-        CPReturnValueControllerView *vc = [[cell.destClass alloc] init];
-        if (indexPath.row == 3) {
-            
-            vc.completion = ^(NSString *str){
-                
-            };
-        }
-        
-        if (indexPath.row == 1) {
-            vc.completion = ^(NSString *str){
-                NSLog(@"%@...",str);
-                [self setNameCellHeightWithString:str];
-                
-                self.nameLabel.text = str;
-                self.nameLabel.height = [str sizeWithFont:[UIFont systemFontOfSize:16] maxW:kScreenWidth - 30].height;
-                [self.tableView reloadData];
-            };
-        }
-        
-        [self.navigationController pushViewController:vc animated:YES];
-    }
     
 }
 
@@ -287,9 +320,17 @@ typedef enum {
 {
     CGRect covertedRect = [cell convertRect:cell.bounds toView:[UIApplication sharedApplication].keyWindow];
     if (covertedRect.origin.y + 20 >= kScreenHeight - self.pickView.height) {
+        
+        self.currentOffset = self.tableView.contentOffset;
         [self.tableView setContentOffset:CGPointMake(0, covertedRect.origin.y + self.tableView.contentOffset.y - (kScreenHeight - self.pickView.height - 50)) animated:YES];
     }else{
-         [self.tableView setContentOffset:CGPointMake(0, -64) animated:YES];
+        if (self.tableView.contentOffset.y > -64) {
+            
+            self.currentOffset = self.tableView.contentOffset;
+            [self.tableView setContentOffset:CGPointMake(0, covertedRect.origin.y + self.tableView.contentOffset.y - (kScreenHeight - self.pickView.height - 50)) animated:YES];
+        }else{
+            [self.tableView setContentOffset:CGPointMake(0, -64) animated:YES];
+        }
     }
 }
 
@@ -412,7 +453,6 @@ typedef enum {
         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
             
             UIImagePickerController *pick = [[UIImagePickerController alloc] init];
-            pick.allowsEditing = YES;
             pick.delegate = self;
             pick.sourceType = UIImagePickerControllerSourceTypeCamera;
             [self presentViewController:pick animated:YES completion:nil];
@@ -453,17 +493,24 @@ typedef enum {
             
         }];
     [self addPhoto:arr];
+    [self dismissViewControllerAnimated:YES completion:nil];
         
 }
 
 - (void)uzysAssetsPickerControllerDidExceedMaximumNumberOfSelection:(UzysAssetsPickerController *)picker
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+    [self showAlert];
+}
+
+- (void)showAlert
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
                                                     message:@"您最多只能上传9张图片"
                                                    delegate:nil
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
     [alert show];
+
 }
 
 - (void)uzysAssetsPickerControllerDidCancel:(UzysAssetsPickerController *)picker
@@ -471,6 +518,16 @@ typedef enum {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+
+/**
+ *  系统的拍照完毕方法
+ */
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    
+    [self addPhoto:@[info[UIImagePickerControllerEditedImage]]];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
@@ -483,14 +540,47 @@ typedef enum {
  */
 - (void)addPhoto:(NSArray *)arr
 {
+    if (self.photoView.subviews.count + arr.count > 10){
+        [self showAlert];
+        return;
+    }
+    
     for (int i = 0; i < arr.count; i++) {
-        UIImageView *imageView = [[UIImageView alloc] init];
+        CPEditImageView *imageView = [[CPEditImageView alloc] init];
         imageView.image = arr[i];
+        imageView.tag = self.picIndex++;
+        UILongPressGestureRecognizer *longPressGes = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+        [imageView addGestureRecognizer:longPressGes];
         [self.photoView insertSubview:imageView atIndex:0];
     }
     
-    CGFloat imgX = 0;
-    CGFloat imgY = 0;
+    [self layoutPhotoView];
+}
+
+/**
+ *  长按的选中效果
+ *
+ *  @param recognizer
+ */
+- (void)longPress:(UILongPressGestureRecognizer *)recognizer
+{
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        CPEditImageView *editImageView = (CPEditImageView *)recognizer.view;
+        editImageView.showSelectImage = YES;
+        
+        [self.editPhotoViews addObject:editImageView];
+        if (self.navigationItem.rightBarButtonItem == nil){
+            self.navigationItem.rightBarButtonItem = self.rightItem;
+        }
+    }
+}
+
+/**
+ *  重新布局photoView
+ */
+- (void)layoutPhotoView
+{
+    
     CGFloat imgW = self.photoWH;
     CGFloat imgH = imgW;
     NSUInteger count = self.photoView.subviews.count;
@@ -505,6 +595,83 @@ typedef enum {
     self.photoViewHeight = column * (imgH + 10) + 10;
     self.photoView.height = self.photoViewHeight;
     [self.tableView reloadData];
+}
+
+#pragma mark - 处理图片的编辑
+/**
+ *  取消所有照片的选中
+ */
+- (void)cancleEditPhotoSelect
+{
+    for (int i = 0; i < self.photoView.subviews.count; i++) {
+        UIView *subView = self.photoView.subviews[i];
+        if ([subView isKindOfClass:[CPEditImageView class]]) {
+            CPEditImageView *editView = (CPEditImageView *)subView;
+            editView.showSelectImage = NO;
+        }
+    }
+    self.navigationItem.rightBarButtonItem = nil;
+}
+
+/**
+ *  提示是否删除
+ */
+- (void)showAlertIfDelete
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"确认删除选中的图片" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"删除", nil];
+    [alertView show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        return;
+    }
+    [self deleteSelectPhoto];
+}
+
+/**
+ *  删除选中的图片
+ */
+- (void)deleteSelectPhoto
+{
+    [self.editPhotoViews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self.editPhotoViews removeAllObjects];
+    [self layoutPhotoView];
+    self.navigationItem.rightBarButtonItem = nil;
+}
+
+/**
+ *  视图即将消失的时候做清理工作
+ *
+ *  @param animated 是否动画
+ */
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    // 如果有选中图片 清理
+    if (self.editPhotoViews.count) {
+        [self cancleEditPhotoSelect];
+    }
+    
+    if (self.pickView) {
+        [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:self.lastRow inSection:0]];
+    }
+}
+
+#pragma mark - 处理按钮点击事件
+/**
+ *  点击完成按钮
+ */
+- (IBAction)finishBtnClick {
+    
+}
+
+/**
+ *  点击
+ */
+- (IBAction)finishToFriends {
 }
 
 @end

@@ -12,7 +12,6 @@
 @protocol ZYPickViewDelegate <NSObject>
 
 -(void)toobarDonBtnHaveClick:(ZYPickView *)pickView resultString:(NSString *)resultString;
-- (void)toobarCancleBtnHaveClick:(ZYPickView *)pickView;
 
 @end
 

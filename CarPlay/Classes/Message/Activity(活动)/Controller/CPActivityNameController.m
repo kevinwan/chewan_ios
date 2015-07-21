@@ -23,11 +23,15 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(confirm)];
+    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:17], NSForegroundColorAttributeName :[UIColor whiteColor]} forState:UIControlStateNormal];
     
     UITextField *textF = [[UITextField alloc] init];
-    textF.textColor = [Tools getColor:@"434a54"];
+    textF.textColor = [Tools getColor:@"656c78"];
     textF.font = [UIFont systemFontOfSize:14];
     textF.frame = CGRectMake(10, 20 + 64, self.view.width - 20, 30);
+    if (self.forValue) {
+        textF.text = self.forValue;
+    }
     [self.view addSubview:textF];
     self.textF = textF;
     

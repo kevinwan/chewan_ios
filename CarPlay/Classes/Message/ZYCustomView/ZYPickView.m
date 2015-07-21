@@ -283,9 +283,7 @@
 }
 
 -(void)remove{
-    if ([self.delegate respondsToSelector:@selector(toobarCancleBtnHaveClick:)]) {
-        [self.delegate toobarCancleBtnHaveClick:self];
-    }
+
     [UIView animateWithDuration:0.25 animations:^{
         self.frame = CGRectMake(self.frame.origin.x, [UIScreen mainScreen].bounds.size.height, self.frame.size.width, self.frame.size.width);
     }completion:^(BOOL finished) {
