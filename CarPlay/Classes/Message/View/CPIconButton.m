@@ -22,4 +22,10 @@
     self.clipsToBounds = YES;
 }
 
+- (void)awakeFromNib
+{
+    self.layer.cornerRadius = self.bounds.size.width * 0.5;
+    self.clipsToBounds = YES;
+}
+
 @end

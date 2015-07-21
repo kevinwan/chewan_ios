@@ -196,7 +196,7 @@ typedef enum {
             _pickView = nil;
         }else{
             [_pickView removeFromSuperview];
-            _pickView  = [[ZYPickView alloc] initDatePickWithDate:[NSDate date] datePickerMode:UIDatePickerModeDateAndTime isHaveNavControler:NO];
+            _pickView  = [[ZYPickView alloc] initDatePickWithDate:[NSDate date] datePickerMode:UIDatePickerModeDate isHaveNavControler:NO];
             _pickView.tag = ActivityCreateEnd;
             _pickView.row = 5;
             _pickView.delegate = self;

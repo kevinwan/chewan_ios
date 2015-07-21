@@ -154,6 +154,7 @@
 		E3E1DBFD1B5C8CFB00386B18 /* ZYPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E1DBFC1B5C8CFB00386B18 /* ZYPickView.m */; };
 		E3E1DC001B5CA87C00386B18 /* CPReturnValueControllerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E1DBFF1B5CA87C00386B18 /* CPReturnValueControllerView.m */; };
 		E3E1DC031B5CBF8E00386B18 /* CPMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E1DC021B5CBF8E00386B18 /* CPMapViewController.m */; };
+		E3E315041B5E551A00FB0B55 /* CPActivityApplyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E315031B5E551A00FB0B55 /* CPActivityApplyModel.m */; };
 		E3EEDFF31B53951D00595333 /* CPMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EEDFE81B53951D00595333 /* CPMessageController.m */; };
 		E3EEDFF41B53951D00595333 /* CPMessageController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3EEDFE91B53951D00595333 /* CPMessageController.storyboard */; };
 		E3EEDFF51B53951D00595333 /* CPNewMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EEDFEB1B53951D00595333 /* CPNewMessageController.m */; };
@@ -454,6 +455,8 @@
 		E3E1DBFF1B5CA87C00386B18 /* CPReturnValueControllerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPReturnValueControllerView.m; sourceTree = "<group>"; };
 		E3E1DC011B5CBF8E00386B18 /* CPMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMapViewController.h; sourceTree = "<group>"; };
 		E3E1DC021B5CBF8E00386B18 /* CPMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMapViewController.m; sourceTree = "<group>"; };
+		E3E315021B5E551A00FB0B55 /* CPActivityApplyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityApplyModel.h; sourceTree = "<group>"; };
+		E3E315031B5E551A00FB0B55 /* CPActivityApplyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityApplyModel.m; sourceTree = "<group>"; };
 		E3EEDFE71B53951D00595333 /* CPMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMessageController.h; sourceTree = "<group>"; };
 		E3EEDFE81B53951D00595333 /* CPMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMessageController.m; sourceTree = "<group>"; };
 		E3EEDFE91B53951D00595333 /* CPMessageController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMessageController.storyboard; sourceTree = "<group>"; };
@@ -814,50 +817,6 @@
 			path = register;
 			sourceTree = "<group>";
 		};
-		6BCCEA3C1B5A6089002465AC /* City */ = {
-			isa = PBXGroup;
-			children = (
-				6BCCEA3D1B5A6089002465AC /* Controller */,
-				6BCCEA411B5A6089002465AC /* Mode */,
-				6BCCEA481B5A6089002465AC /* View */,
-			);
-			path = City;
-			sourceTree = "<group>";
-		};
-		6BCCEA3D1B5A6089002465AC /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				6BCCEA3E1B5A6089002465AC /* CPCityController.h */,
-				6BCCEA3F1B5A6089002465AC /* CPCityController.m */,
-				6BCCEA401B5A6089002465AC /* CPCityController.storyboard */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		6BCCEA411B5A6089002465AC /* Mode */ = {
-			isa = PBXGroup;
-			children = (
-				6BCCEA421B5A6089002465AC /* CPHomePhoto.h */,
-				6BCCEA431B5A6089002465AC /* CPHomePhoto.m */,
-				6BCCEA441B5A6089002465AC /* CPHomeStatus.h */,
-				6BCCEA451B5A6089002465AC /* CPHomeStatus.m */,
-				6BCCEA461B5A6089002465AC /* CPHomeUser.h */,
-				6BCCEA471B5A6089002465AC /* CPHomeUser.m */,
-			);
-			path = Mode;
-			sourceTree = "<group>";
-		};
-		6BCCEA481B5A6089002465AC /* View */ = {
-			isa = PBXGroup;
-			children = (
-				6BCCEA491B5A6089002465AC /* CPHomePicCell.h */,
-				6BCCEA4A1B5A6089002465AC /* CPHomePicCell.m */,
-				6BCCEA4B1B5A6089002465AC /* CPHomeStatusCell.h */,
-				6BCCEA4C1B5A6089002465AC /* CPHomeStatusCell.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		6BE190BF1B5CE84700A41B3C /* CPBrandModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -998,20 +957,7 @@
 				E36C96121B53BA3200D3EDBB /* CPActivityApplyControllerView.h */,
 				E36C96131B53BA3200D3EDBB /* CPActivityApplyControllerView.m */,
 				E36C961B1B53BA6B00D3EDBB /* CPActivityApplyControllerView.storyboard */,
-				E3CE35351B59E1B0008434B5 /* CPCreatActivityController.h */,
-				E3CE35361B59E1B0008434B5 /* CPCreatActivityController.m */,
-				E3CE371B1B59FEBA008434B5 /* CPCreatActivityController.storyboard */,
-				E3CE35381B59E1C0008434B5 /* CPEditActivityController.h */,
-				E3CE35391B59E1C0008434B5 /* CPEditActivityController.m */,
-				E3FCDD4E1B5E491400F9C379 /* CPEditActivityController.storyboard */,
-				E3CE37201B5A3F00008434B5 /* CPActivityIntroduceController.h */,
-				E3CE37211B5A3F00008434B5 /* CPActivityIntroduceController.m */,
-				E3CE37231B5A4085008434B5 /* CPActivityNameController.h */,
-				E3CE37241B5A4085008434B5 /* CPActivityNameController.m */,
-				E3E1DBFE1B5CA87C00386B18 /* CPReturnValueControllerView.h */,
-				E3E1DBFF1B5CA87C00386B18 /* CPReturnValueControllerView.m */,
-				E3E1DC011B5CBF8E00386B18 /* CPMapViewController.h */,
-				E3E1DC021B5CBF8E00386B18 /* CPMapViewController.m */,
+				E3E315051B5E6CF100FB0B55 /* 创建和编辑活动 */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1023,6 +969,8 @@
 				E3D8793E1B57475400228356 /* CPActivityModel.m */,
 				E3FCDD481B5E34E200F9C379 /* CPAnnotation.h */,
 				E3FCDD491B5E34E200F9C379 /* CPAnnotation.m */,
+				E3E315021B5E551A00FB0B55 /* CPActivityApplyModel.h */,
+				E3E315031B5E551A00FB0B55 /* CPActivityApplyModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1265,6 +1213,27 @@
 				E3CE358B1B59E7FC008434B5 /* XLFormValidatorProtocol.h */,
 			);
 			path = Validation;
+			sourceTree = "<group>";
+		};
+		E3E315051B5E6CF100FB0B55 /* 创建和编辑活动 */ = {
+			isa = PBXGroup;
+			children = (
+				E3CE35351B59E1B0008434B5 /* CPCreatActivityController.h */,
+				E3CE35361B59E1B0008434B5 /* CPCreatActivityController.m */,
+				E3CE371B1B59FEBA008434B5 /* CPCreatActivityController.storyboard */,
+				E3CE35381B59E1C0008434B5 /* CPEditActivityController.h */,
+				E3CE35391B59E1C0008434B5 /* CPEditActivityController.m */,
+				E3FCDD4E1B5E491400F9C379 /* CPEditActivityController.storyboard */,
+				E3CE37201B5A3F00008434B5 /* CPActivityIntroduceController.h */,
+				E3CE37211B5A3F00008434B5 /* CPActivityIntroduceController.m */,
+				E3CE37231B5A4085008434B5 /* CPActivityNameController.h */,
+				E3CE37241B5A4085008434B5 /* CPActivityNameController.m */,
+				E3E1DBFE1B5CA87C00386B18 /* CPReturnValueControllerView.h */,
+				E3E1DBFF1B5CA87C00386B18 /* CPReturnValueControllerView.m */,
+				E3E1DC011B5CBF8E00386B18 /* CPMapViewController.h */,
+				E3E1DC021B5CBF8E00386B18 /* CPMapViewController.m */,
+			);
+			name = "创建和编辑活动";
 			sourceTree = "<group>";
 		};
 		E3EEDFE51B53951D00595333 /* Message */ = {
@@ -1516,6 +1485,7 @@
 				E35B04281B5645BC002C6655 /* HMStatusPhotoView.m in Sources */,
 				E3CE35921B59E7FC008434B5 /* XLFormDateCell.m in Sources */,
 				6B5F9B6E1B5D29FE00F9D1E8 /* CPHomeMember.m in Sources */,
+				E3E315041B5E551A00FB0B55 /* CPActivityApplyModel.m in Sources */,
 				E35B04711B565532002C6655 /* MJPhotoToolbar.m in Sources */,
 				E35B042B1B56460C002C6655 /* HMPhoto.m in Sources */,
 				E3EEDFF81B53951D00595333 /* CPNewMessageCell.m in Sources */,
@@ -1623,7 +1593,6 @@
 				E3CE35AE1B59E7FC008434B5 /* XLFormRegexValidator.m in Sources */,
 				E3CE35A31B59E7FC008434B5 /* XLFormSectionDescriptor.m in Sources */,
 				6BE190CF1B5CF79300A41B3C /* CustomSectionView.m in Sources */,
-				6BCCEA4F1B5A6089002465AC /* CPHomePhoto.m in Sources */,
 				6B6493D91B4FABC900C197D2 /* CPNetworkVO.m in Sources */,
 				6BCCEA561B5A60D5002465AC /* NSDate+Extension.m in Sources */,
 				6B7B908D1B5906C0006A506D /* CPRegisterCellsTableViewCell1.m in Sources */,

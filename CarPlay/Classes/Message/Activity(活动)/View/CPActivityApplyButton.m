@@ -42,7 +42,7 @@
 {
     if (selected) {
         self.backgroundColor = [Tools getColor:@"f1f1f1"];
-        [self setTitle:@"拒绝" forState:UIControlStateNormal];
+        [self setTitle:@"已同意" forState:UIControlStateNormal];
         [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     }else{
         self.backgroundColor = [Tools getColor:@"fc6e51"];

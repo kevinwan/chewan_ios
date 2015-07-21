@@ -53,7 +53,6 @@
 {
     // 1.创建一个请求管理者
     ZYNetWorkManager *mgr = [ZYNetWorkManager sharedInstances];
-    NSLog(@"%@",mgr.requestSerializer);
     mgr.requestSerializer = [AFJSONRequestSerializer serializer];
     mgr.requestSerializer.timeoutInterval = 40;
     [mgr POST:url parameters:jsonDict success:^(AFHTTPRequestOperation *operation, id responseObject) {
