@@ -15,6 +15,8 @@
 #import <UzysAssetsPickerController/UzysWrapperPickerController.h>
 #import "UzysAssetsPickerController.h"
 #import "CPEditImageView.h"
+#import "CPCreatActivityModel.h"
+#import "CPLocationModel.h"
 
 #define maxCount 9
 typedef enum {
@@ -41,6 +43,7 @@ typedef enum {
 @property (nonatomic, assign) CGPoint currentOffset;
 @property (nonatomic, strong) NSMutableArray *editPhotoViews;
 @property (nonatomic, strong) UIBarButtonItem *rightItem;
+@property (nonatomic, strong) CPLocationModel *selectLocation;
 @end
 
 @implementation CPCreatActivityController
@@ -270,10 +273,16 @@ typedef enum {
     
     if (cell.destClass){
         CPReturnValueControllerView *vc = [[cell.destClass alloc] init];
+        if (self.selectLocation) {
+            vc.forValue = self.selectLocation;
+        }
         if (indexPath.row == 3) {
             
-            vc.completion = ^(NSString *str){
-                
+            vc.completion = ^(CPLocationModel *model){
+                if (model) {
+                    [self labelWithRow:3].text = model.location;
+                    self.selectLocation = model;
+                }
             };
         }
         
@@ -665,13 +674,64 @@ typedef enum {
  *  点击完成按钮
  */
 - (IBAction)finishBtnClick {
+    // 上传图片
+//    v1/activity/cover/upload?userId=4d672627-860c-4118-bcbd-2978aca469ad&token=4b35299f-8dc4-4999-bfaf-c0ad5c6aab43
+//    ZYNetWorkTool postFileWithUrl:@"" params:<#(id)#> files:<#(NSArray *)#> success:<#^(id responseObject)success#> failure:<#^(NSError *error)failure#>
     
+//    NSMutableArray *images = [NSMutableArray array];
+//    __block int successCount = 0;
+    NSMutableArray *photoIds = [NSMutableArray array];
+    NSUInteger photoCount = self.photoView.subviews.count - 1;
+    for (UIView *subView in self.photoView.subviews) {
+        if ([subView isKindOfClass:[CPEditImageView class]]) {
+            CPEditImageView *imageView = (CPEditImageView *)subView;
+            
+            CPHttpFile *imageFile = [CPHttpFile fileWithName:@"cover.jpg" data:UIImageJPEGRepresentation(imageView.image, 0.4) mimeType:@"image/jpeg" filename:@"cover.jpg"];
+            
+            [CPNetWorkTool postFileWithUrl:@"v1/activity/cover/upload" params:nil files:@[imageFile] success:^(id responseObject) {
+                if (CPSuccess) {
+                    DLog(@"%@",responseObject);
+                    NSString *photoId =
+                     responseObject[@"data"][@"photoId"];
+                    [photoIds addObject:photoId];
+                    
+                    // 图片上传完成
+                    if (photoIds.count == photoCount) {
+                        [self uploadCreatActivtyInfoWithPicId:photoIds];
+                    }
+                }
+                
+            } failure:^(NSError *error) {
+                
+            }];
+        }
+    }
+//
+//
+    
+}
+
+/**
+ *  上传创建活动的信息
+ */
+- (void)uploadCreatActivtyInfoWithPicId:(NSArray *)picIds
+{
+    
+    //    // 进行发请求 创建活动
+    CPCreatActivityModel *model = [[CPCreatActivityModel alloc] init];
+    if (self.nameLabel.text.trimStr == 0) {
+        [SVProgressHUD showInfoWithStatus:@"活动介绍不能为空"];
+        return;
+    }
+    model.introduction = self.nameLabel.text;
 }
 
 /**
  *  点击
  */
-- (IBAction)finishToFriends {
+- (IBAction)finishToFriends
+{
+    
 }
 
 @end

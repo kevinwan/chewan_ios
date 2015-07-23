@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-
+#import "SVProgressHUD.h"
+#import <MAMapKit/MAMapKit.h>
 @interface AppDelegate ()
 
 @end
@@ -16,7 +17,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+    [MAMapServices sharedServices].apiKey = GaoDeAppKey;
+    [SVProgressHUD setBackgroundColor:RGBACOLOR(0, 0, 0, 0.5)];
+    [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
     return YES;
 }
 

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
+@class CPLocationModel;
 @interface CPAnnotation : NSObject<MKAnnotation>
 /**
  *  大头针的位置
@@ -27,5 +28,10 @@
  *  图标
  */
 @property (nonatomic, copy) NSString *icon;
+
+/**
+ *  记录我需要的位置
+ */
+@property (nonatomic, strong) CPLocationModel *model;
 
 @end

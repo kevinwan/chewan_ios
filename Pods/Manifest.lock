@@ -20,6 +20,8 @@ PODS:
   - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - AMap2DMap (2.6.0)
+  - AMapSearch (2.6.0)
   - MBProgressHUD (0.9.1)
   - MJExtension (2.5.2)
   - MJRefresh (2.2.1)
@@ -31,6 +33,8 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - AMap2DMap
+  - AMapSearch
   - MBProgressHUD
   - MJExtension
   - MJRefresh
@@ -40,6 +44,8 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  AMap2DMap: b5ce82581ca53b71a0136da858f7ef04db1ffc59
+  AMapSearch: 0ea3101eec4b9f500b53e33dcda30d343d41613b
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MJExtension: 73e812aca0846e4a7b4d7aca34cfacf48d1f3310
   MJRefresh: c3fa0387e8e97a11a9666639d2f815607edd1c2f

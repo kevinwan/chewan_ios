@@ -41,15 +41,19 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"token"] = [Tools getValueFromKey:@"token"];
     [ZYNetWorkTool getWithUrl:url params:params success:^(id responseObject) {
-        if ([responseObject[@"result"] intValue] == CPSuccess) {
+        if (CPSuccess) {
             NSArray *data = [CPActivityApplyModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
+            if (data.count == 0) {
+                [SVProgressHUD showInfoWithStatus:@"没有新的申请"];
+                return;
+            }
             [self.datas addObjectsFromArray:data];
             
             NSLog(@"%@---%@",responseObject, self.tableView);
             [self.tableView reloadData];
         }
     } failure:^(NSError *error) {
-        
+         [SVProgressHUD showErrorWithStatus:@"加载失败"];
     }];
 }
 
@@ -60,9 +64,18 @@
     DLog(@"%@---",url);
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
     json[@"action"] = @"1";
-    [ZYNetWorkTool postWithUrl:url params:json success:^(id responseObject) {
+//    [ZYNetWorkTool postWithUrl:url params:json success:^(id responseObject) {
+//        DLog(@"%@",responseObject);
+//    } failure:^(NSError *error) {
+//        
+//    }];
+    [ZYNetWorkTool postJsonWithUrl:url params:json success:^(id responseObject) {
         DLog(@"%@",responseObject);
-    } failure:^(NSError *error) {
+        
+        if (CPSuccess) {
+            
+        }
+    } failed:^(NSError *error) {
         
     }];
 }

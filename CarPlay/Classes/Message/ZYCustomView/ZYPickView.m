@@ -332,7 +332,7 @@
         NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
         if (_datePicker.datePickerMode == UIDatePickerModeDate) {
             fmt.dateFormat = @"yyyy年MM月dd日";
-        }else if (_datePicker.datePickerMode == UIDatePickerModeTime){
+        }else if (_datePicker.datePickerMode == UIDatePickerModeDateAndTime){
             fmt.dateFormat = @"yyyy年MM月dd日 HH:mm";
         }
         _resultString=[fmt stringFromDate:_datePicker.date];

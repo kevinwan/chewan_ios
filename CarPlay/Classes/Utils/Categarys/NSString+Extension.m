@@ -51,5 +51,12 @@
         return [[mgr attributesOfItemAtPath:self error:nil][NSFileSize] integerValue];
     }
 }
+/**
+ *  去除字符串首尾的空格
+ */
+- (NSString *)trimStr
+{
+    return [self stringByReplacingOccurrencesOfString:@" " withString:@""];
+}
 
 @end

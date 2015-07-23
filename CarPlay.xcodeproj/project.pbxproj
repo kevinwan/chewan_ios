@@ -61,6 +61,7 @@
 		E30BD5971B54FD6E00FD9030 /* ZYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5961B54FD6E00FD9030 /* ZYNavigationController.m */; };
 		E30BD59A1B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5991B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.m */; };
 		E33BAE841B58DC110021DED6 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E33BAE831B58DC110021DED6 /* NSDate+Extension.m */; };
+		E34779691B5FAB0F00D91D4A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E34779681B5FAB0F00D91D4A /* MapKit.framework */; };
 		E35559A51B53A0CE00B200D0 /* CPSexView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35559A41B53A0CE00B200D0 /* CPSexView.m */; };
 		E35B04221B562F79002C6655 /* TestActivity.plist in Resources */ = {isa = PBXBuildFile; fileRef = E35B04211B562F79002C6655 /* TestActivity.plist */; };
 		E35B04271B5645BC002C6655 /* HMStatusPhotosView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35B04241B5645BC002C6655 /* HMStatusPhotosView.m */; };
@@ -107,6 +108,10 @@
 		E3B127791B54D9C2005B1174 /* CPChatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B127781B54D9C2005B1174 /* CPChatButton.m */; };
 		E3B1277B1B54DECB005B1174 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3B1277A1B54DECB005B1174 /* Images.xcassets */; };
 		E3B1277E1B54E19B005B1174 /* CPIconButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B1277D1B54E19B005B1174 /* CPIconButton.m */; };
+		E3C611491B5F328C00B7E73A /* CPCreatActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C611481B5F328C00B7E73A /* CPCreatActivityModel.m */; };
+		E3C6114C1B5F363900B7E73A /* CPNetWorkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C6114B1B5F363900B7E73A /* CPNetWorkTool.m */; };
+		E3C6114F1B5F498600B7E73A /* CPLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C6114E1B5F498600B7E73A /* CPLocationModel.m */; };
+		E3C611521B5F4A6C00B7E73A /* ZYSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C611511B5F4A6C00B7E73A /* ZYSearchBar.m */; };
 		E3CE35371B59E1B0008434B5 /* CPCreatActivityController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE35361B59E1B0008434B5 /* CPCreatActivityController.m */; };
 		E3CE353A1B59E1C0008434B5 /* CPEditActivityController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE35391B59E1C0008434B5 /* CPEditActivityController.m */; };
 		E3CE358F1B59E7FC008434B5 /* XLFormBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE353F1B59E7FC008434B5 /* XLFormBaseCell.m */; };
@@ -281,6 +286,7 @@
 		E30BD5991B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
 		E33BAE821B58DC110021DED6 /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
 		E33BAE831B58DC110021DED6 /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
+		E34779681B5FAB0F00D91D4A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E35559A31B53A0CE00B200D0 /* CPSexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSexView.h; sourceTree = "<group>"; };
 		E35559A41B53A0CE00B200D0 /* CPSexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSexView.m; sourceTree = "<group>"; };
 		E35B04211B562F79002C6655 /* TestActivity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestActivity.plist; sourceTree = "<group>"; };
@@ -358,6 +364,14 @@
 		E3B1277A1B54DECB005B1174 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E3B1277C1B54E19B005B1174 /* CPIconButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPIconButton.h; sourceTree = "<group>"; };
 		E3B1277D1B54E19B005B1174 /* CPIconButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPIconButton.m; sourceTree = "<group>"; };
+		E3C611471B5F328C00B7E73A /* CPCreatActivityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCreatActivityModel.h; sourceTree = "<group>"; };
+		E3C611481B5F328C00B7E73A /* CPCreatActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCreatActivityModel.m; sourceTree = "<group>"; };
+		E3C6114A1B5F363900B7E73A /* CPNetWorkTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNetWorkTool.h; sourceTree = "<group>"; };
+		E3C6114B1B5F363900B7E73A /* CPNetWorkTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNetWorkTool.m; sourceTree = "<group>"; };
+		E3C6114D1B5F498600B7E73A /* CPLocationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLocationModel.h; sourceTree = "<group>"; };
+		E3C6114E1B5F498600B7E73A /* CPLocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPLocationModel.m; sourceTree = "<group>"; };
+		E3C611501B5F4A6C00B7E73A /* ZYSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYSearchBar.h; sourceTree = "<group>"; };
+		E3C611511B5F4A6C00B7E73A /* ZYSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYSearchBar.m; sourceTree = "<group>"; };
 		E3CE35351B59E1B0008434B5 /* CPCreatActivityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCreatActivityController.h; sourceTree = "<group>"; };
 		E3CE35361B59E1B0008434B5 /* CPCreatActivityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCreatActivityController.m; sourceTree = "<group>"; };
 		E3CE35381B59E1C0008434B5 /* CPEditActivityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPEditActivityController.h; sourceTree = "<group>"; };
@@ -487,6 +501,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E34779691B5FAB0F00D91D4A /* MapKit.framework in Frameworks */,
 				AD5690C45A77A4D82E40CA3F /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -504,6 +519,7 @@
 		16CFAD7EE0B36F11A8B32110 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E34779681B5FAB0F00D91D4A /* MapKit.framework */,
 				E39435DB1B5CE4E100AF91BF /* AssetsLibrary.framework */,
 				1E1F11B43C6536981B4E2558 /* libPods.a */,
 			);
@@ -845,6 +861,8 @@
 		E30BD5911B54FC9400FD9030 /* ZYCustomView */ = {
 			isa = PBXGroup;
 			children = (
+				E3C611501B5F4A6C00B7E73A /* ZYSearchBar.h */,
+				E3C611511B5F4A6C00B7E73A /* ZYSearchBar.m */,
 				E3E1DBFB1B5C8CFB00386B18 /* ZYPickView.h */,
 				E3E1DBFC1B5C8CFB00386B18 /* ZYPickView.m */,
 				E30BD5981B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.h */,
@@ -971,6 +989,10 @@
 				E3FCDD491B5E34E200F9C379 /* CPAnnotation.m */,
 				E3E315021B5E551A00FB0B55 /* CPActivityApplyModel.h */,
 				E3E315031B5E551A00FB0B55 /* CPActivityApplyModel.m */,
+				E3C611471B5F328C00B7E73A /* CPCreatActivityModel.h */,
+				E3C611481B5F328C00B7E73A /* CPCreatActivityModel.m */,
+				E3C6114D1B5F498600B7E73A /* CPLocationModel.h */,
+				E3C6114E1B5F498600B7E73A /* CPLocationModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1072,6 +1094,8 @@
 				E3AE58C31B57E08800D8F0CA /* ZYNetWorkManager.m */,
 				E3AE58C41B57E08800D8F0CA /* ZYNetWorkTool.h */,
 				E3AE58C51B57E08800D8F0CA /* ZYNetWorkTool.m */,
+				E3C6114A1B5F363900B7E73A /* CPNetWorkTool.h */,
+				E3C6114B1B5F363900B7E73A /* CPNetWorkTool.m */,
 			);
 			path = ZYNetWorkTool;
 			sourceTree = "<group>";
@@ -1475,7 +1499,9 @@
 				E375E4931B55171500DADF65 /* CarOwnersCertificationViewController.h in Sources */,
 				E375E4941B55171500DADF65 /* serviceTermsViewController.h in Sources */,
 				E3CE359A1B59E7FC008434B5 /* XLFormStepCounterCell.m in Sources */,
+				E3C6114F1B5F498600B7E73A /* CPLocationModel.m in Sources */,
 				6BE190D01B5CF79300A41B3C /* CustomSlideCell.m in Sources */,
+				E3C6114C1B5F363900B7E73A /* CPNetWorkTool.m in Sources */,
 				E3CE35A91B59E7FC008434B5 /* UIView+XLFormAdditions.m in Sources */,
 				E35B04791B568761002C6655 /* CPMoreButton.m in Sources */,
 				6BE190C31B5CE85500A41B3C /* CPBrandModelViewController.m in Sources */,
@@ -1494,6 +1520,7 @@
 				E3D879421B575EC200228356 /* CPTopViewButton.m in Sources */,
 				E36C96251B53C77600D3EDBB /* CPSubscribePersonController.m in Sources */,
 				E3CE35A01B59E7FC008434B5 /* XLFormViewController.m in Sources */,
+				E3C611521B5F4A6C00B7E73A /* ZYSearchBar.m in Sources */,
 				6B5FD34F1B57C33700E34F66 /* CPEditUsernameViewController.m in Sources */,
 				6B5F9B711B5D29FE00F9D1E8 /* CPHomeUser.m in Sources */,
 				E3CE35B11B59E7FC008434B5 /* XLForm.m in Sources */,
@@ -1579,6 +1606,7 @@
 				E3EEE0041B53952E00595333 /* UIImage+Extension.m in Sources */,
 				E35B04271B5645BC002C6655 /* HMStatusPhotosView.m in Sources */,
 				E3EEE0051B53952E00595333 /* UIView+Extension.m in Sources */,
+				E3C611491B5F328C00B7E73A /* CPCreatActivityModel.m in Sources */,
 				E35B04701B565532002C6655 /* MJPhotoProgressView.m in Sources */,
 				E3CE35901B59E7FC008434B5 /* XLFormButtonCell.m in Sources */,
 				E35E6FCA1B54B076001212D6 /* CPMyPublishCell.m in Sources */,
@@ -1719,6 +1747,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CarPlay",
+				);
 				GCC_PREFIX_HEADER = CarPlay/CP_Prefix.pch;
 				INFOPLIST_FILE = CarPlay/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -1735,6 +1767,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CarPlay",
+				);
 				GCC_PREFIX_HEADER = CarPlay/CP_Prefix.pch;
 				INFOPLIST_FILE = CarPlay/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
