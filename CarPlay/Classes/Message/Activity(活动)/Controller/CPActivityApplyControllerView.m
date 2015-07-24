@@ -82,6 +82,7 @@
 
 - (void)dealloc
 {
+    
     [CPNotificationCenter removeObserver:self];
 }
 

@@ -77,6 +77,7 @@
 
 //登陆状态改变
 #define NOTIFICATION_LOGINCHANGE @"loginStatusChange"
+#define NOTIFICATION_HASLOGIN @"hasLogin"
 //宏定义属性
 #define Property(s) @property (nonatomic,copy)NSString *s
 

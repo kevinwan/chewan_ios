@@ -114,6 +114,14 @@ typedef enum {
     [super viewDidLoad];
     
     self.title = @"创建活动";
+
+}
+
+/**
+ *  初始化设置
+ */
+- (void)setUp
+{
     self.photoWH = (kScreenWidth - 50) / 4;
     self.finishBtn.layer.cornerRadius = 3;
     self.finishBtn.clipsToBounds = YES;
@@ -121,11 +129,6 @@ typedef enum {
     self.finishToFriend.clipsToBounds = YES;
     self.currentOffset = CGPointMake(0, -64);
     self.picIndex = 10;
-    NSString *userId = [Tools getValueFromKey:@"userId"];
-    if (userId.length == 0) {
-        [SVProgressHUD showWithStatus:@"你还没有登录,不能创建活动哦"];
-    }
-
     
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
     [CPNotificationCenter addObserver:self selector:@selector(pickerViewCancle:) name:@"PicViewCancle" object:nil];
@@ -133,11 +136,26 @@ typedef enum {
     [self setUpCellOperation];
     self.currentModel.type = @"吃饭";
     self.currentModel.pay = @"我请客";
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    NSString *userId = [Tools getValueFromKey:@"userId"];
+    if (userId.length == 0) {
+        [SVProgressHUD showInfoWithStatus:@"你还没有登录,不能创建活动哦"];
+        return;
+    }
     NSString *url = [NSString stringWithFormat:@"v1/user/%@/seats",userId];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"token"] = [Tools getValueFromKey:@"token"];
+    NSString *token = [Tools getValueFromKey:@"token"];
+    if (token){
+        params[@"token"] = [Tools getValueFromKey:@"token"];
+    }else{
+        [SVProgressHUD showInfoWithStatus:@"你还没有登录,不能创建活动哦"];
+        return;
+    }
     [ZYNetWorkTool getWithUrl:url params:params success:^(id responseObject) {
-        NSLog(@"%@",responseObject);
         if (CPSuccess){
             // 更改seat的座位
             [self changeSeatWithResult:responseObject[@"data"]];
@@ -276,7 +294,7 @@ typedef enum {
         }else{
             
             [_pickView removeFromSuperview];
-            _pickView=[[ZYPickView alloc] initPickviewWithArray:@[@"AA制",@"我请客", @"其他" ] isHaveNavControler:NO];
+            _pickView=[[ZYPickView alloc] initPickviewWithArray:@[@"我请客", @"AA制", @"其他" ] isHaveNavControler:NO];
             _pickView.tag = ActivityCreatePay;
             _pickView.row = 6;
             _pickView.delegate = self;
@@ -295,7 +313,7 @@ typedef enum {
         }else{
             
             [_pickView removeFromSuperview];
-            _pickView=[[ZYPickView alloc] initPickviewWithArray:@[@"2个", @"3个", @"4个", @"5个"] isHaveNavControler:NO];
+            _pickView=[[ZYPickView alloc] initPickviewWithArray:self.seats isHaveNavControler:NO];
             _pickView.tag = ActivityCreateSeat;
             _pickView.row = 7;
             _pickView.delegate = self;
@@ -331,11 +349,11 @@ typedef enum {
     
     if (cell.destClass){
         CPReturnValueControllerView *vc = [[cell.destClass alloc] init];
-        if (self.selectLocation) {
-            vc.forValue = self.selectLocation;
-        }
+
         if (indexPath.row == 3) {
-            
+            if (self.selectLocation) {
+                vc.forValue = self.selectLocation;
+            }
             vc.completion = ^(CPLocationModel *model){
                 if (model) {
                     [self labelWithRow:3].text = model.location;
@@ -563,14 +581,12 @@ typedef enum {
             pick.sourceType = UIImagePickerControllerSourceTypeCamera;
             [self presentViewController:pick animated:YES completion:nil];
         }else{
-
-            
+            [SVProgressHUD showErrorWithStatus:@"相机不可用"];
         }
     }else{
         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
             UzysAssetsPickerController *picker = [[UzysAssetsPickerController alloc] init];
             picker.delegate = self;
-            
             picker.maximumNumberOfSelectionPhoto = 10 - self.photoView.subviews.count;
             [self presentViewController:picker animated:YES completion:nil];
         }
@@ -599,8 +615,12 @@ typedef enum {
             
         }];
     [self addPhoto:arr];
-    [self dismissViewControllerAnimated:YES completion:nil];
-        
+    [SVProgressHUD showWithStatus:@"加载中"];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [SVProgressHUD dismiss];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    });
+    
 }
 
 - (void)uzysAssetsPickerControllerDidExceedMaximumNumberOfSelection:(UzysAssetsPickerController *)picker
@@ -630,8 +650,8 @@ typedef enum {
  */
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    
-    [self addPhoto:@[info[UIImagePickerControllerEditedImage]]];
+    UIImage *portraitImg = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    [self addPhoto:@[portraitImg]];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -672,11 +692,17 @@ typedef enum {
 {
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         CPEditImageView *editImageView = (CPEditImageView *)recognizer.view;
-        editImageView.showSelectImage = YES;
-        
-        [self.editPhotoViews addObject:editImageView];
-        if (self.navigationItem.rightBarButtonItem == nil){
+        if (editImageView.select) {
+            [self.editPhotoViews removeObject:editImageView];
+        }else{
+             [self.editPhotoViews addObject:editImageView];
+        }
+        editImageView.showSelectImage = !editImageView.select;
+       
+        if (self.editPhotoViews.count > 0){
             self.navigationItem.rightBarButtonItem = self.rightItem;
+        }else{
+            self.navigationItem.rightBarButtonItem = nil;
         }
     }
 }
@@ -804,13 +830,10 @@ typedef enum {
         [SVProgressHUD showInfoWithStatus:@"请选择座位数"];
         return;
     }
-    // 上传图片
-//    v1/activity/cover/upload?userId=4d672627-860c-4118-bcbd-2978aca469ad&token=4b35299f-8dc4-4999-bfaf-c0ad5c6aab43
-//    ZYNetWorkTool postFileWithUrl:@"" params:<#(id)#> files:<#(NSArray *)#> success:<#^(id responseObject)success#> failure:<#^(NSError *error)failure#>
     
-//    NSMutableArray *images = [NSMutableArray array];
-//    __block int successCount = 0;
+    // 上传图片
     NSMutableArray *photoIds = [NSMutableArray array];
+    [SVProgressHUD showWithStatus:@"创建中"];
     NSUInteger photoCount = self.photoView.subviews.count - 1;
     for (UIView *subView in self.photoView.subviews) {
         if ([subView isKindOfClass:[CPEditImageView class]]) {
@@ -820,7 +843,6 @@ typedef enum {
             
             [CPNetWorkTool postFileWithUrl:@"v1/activity/cover/upload" params:nil files:@[imageFile] success:^(id responseObject) {
                 if (CPSuccess) {
-                    DLog(@"%@",responseObject);
                     NSString *photoId =
                      responseObject[@"data"][@"photoId"];
                     [photoIds addObject:photoId];
@@ -832,12 +854,11 @@ typedef enum {
                 }
                 
             } failure:^(NSError *error) {
-                
+                [SVProgressHUD dismiss];
+                [SVProgressHUD showErrorWithStatus:@"上传失败"];
             }];
         }
     }
-//
-//
     
 }
 
@@ -848,13 +869,14 @@ typedef enum {
 {
     self.currentModel.cover = picIds;
   
-    
     NSDictionary *params = [self.currentModel keyValues];
     DLog(@"%@",params);
     [CPNetWorkTool postJsonWithUrl:@"v1/activity/register" params:params success:^(id responseObject) {
+        [SVProgressHUD showSuccessWithStatus:@"创建成功"];
         DLog(@"%@....",responseObject);
     } failed:^(NSError *error) {
-        
+        [SVProgressHUD dismiss];
+        [SVProgressHUD showWithStatus:@"创建失败"];
     }];
 }
 

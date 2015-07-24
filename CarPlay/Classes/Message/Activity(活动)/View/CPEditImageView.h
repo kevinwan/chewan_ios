@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface CPEditImageView : UIImageView
+@property (nonatomic, assign) BOOL select;
 @property (nonatomic, assign) BOOL showSelectImage;
 @end
