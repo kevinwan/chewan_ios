@@ -114,6 +114,14 @@ typedef enum {
     [super viewDidLoad];
     
     self.title = @"创建活动";
+
+}
+
+/**
+ *  初始化设置
+ */
+- (void)setUp
+{
     self.photoWH = (kScreenWidth - 50) / 4;
     self.finishBtn.layer.cornerRadius = 3;
     self.finishBtn.clipsToBounds = YES;
@@ -121,12 +129,6 @@ typedef enum {
     self.finishToFriend.clipsToBounds = YES;
     self.currentOffset = CGPointMake(0, -64);
     self.picIndex = 10;
-    NSString *userId = [Tools getValueFromKey:@"userId"];
-    if (userId.length == 0) {
-        [SVProgressHUD showInfoWithStatus:@"你还没有登录,不能创建活动哦"];
-        return;
-    }
-
     
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
     [CPNotificationCenter addObserver:self selector:@selector(pickerViewCancle:) name:@"PicViewCancle" object:nil];
@@ -134,17 +136,26 @@ typedef enum {
     [self setUpCellOperation];
     self.currentModel.type = @"吃饭";
     self.currentModel.pay = @"我请客";
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    NSString *userId = [Tools getValueFromKey:@"userId"];
+    if (userId.length == 0) {
+        [SVProgressHUD showInfoWithStatus:@"你还没有登录,不能创建活动哦"];
+        return;
+    }
     NSString *url = [NSString stringWithFormat:@"v1/user/%@/seats",userId];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     NSString *token = [Tools getValueFromKey:@"token"];
     if (token){
         params[@"token"] = [Tools getValueFromKey:@"token"];
     }else{
-       [SVProgressHUD showInfoWithStatus:@"你还没有登录,不能创建活动哦"];
+        [SVProgressHUD showInfoWithStatus:@"你还没有登录,不能创建活动哦"];
         return;
     }
     [ZYNetWorkTool getWithUrl:url params:params success:^(id responseObject) {
-        NSLog(@"%@",responseObject);
         if (CPSuccess){
             // 更改seat的座位
             [self changeSeatWithResult:responseObject[@"data"]];
@@ -283,7 +294,7 @@ typedef enum {
         }else{
             
             [_pickView removeFromSuperview];
-            _pickView=[[ZYPickView alloc] initPickviewWithArray:@[@"AA制",@"我请客", @"其他" ] isHaveNavControler:NO];
+            _pickView=[[ZYPickView alloc] initPickviewWithArray:@[@"我请客", @"AA制", @"其他" ] isHaveNavControler:NO];
             _pickView.tag = ActivityCreatePay;
             _pickView.row = 6;
             _pickView.delegate = self;
@@ -302,7 +313,7 @@ typedef enum {
         }else{
             
             [_pickView removeFromSuperview];
-            _pickView=[[ZYPickView alloc] initPickviewWithArray:@[@"2个", @"3个", @"4个", @"5个"] isHaveNavControler:NO];
+            _pickView=[[ZYPickView alloc] initPickviewWithArray:self.seats isHaveNavControler:NO];
             _pickView.tag = ActivityCreateSeat;
             _pickView.row = 7;
             _pickView.delegate = self;

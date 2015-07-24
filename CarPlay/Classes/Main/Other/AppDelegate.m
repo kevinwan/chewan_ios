@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "LoginViewController.h"
+#import "CPTabBarController.h"
 #import "SVProgressHUD.h"
 #import <MAMapKit/MAMapKit.h>
 @interface AppDelegate ()
@@ -17,6 +19,11 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loginStateChange:)
+                                                 name:NOTIFICATION_LOGINCHANGE
+                                               object:nil];
+    
     [MAMapServices sharedServices].apiKey = GaoDeAppKey;
     [SVProgressHUD setBackgroundColor:RGBACOLOR(0, 0, 0, 0.5)];
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
@@ -42,6 +49,24 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - private
+//登陆状态改变
+-(void)loginStateChange:(NSNotification *)notification
+{
+ 
+    if (NOTIFICATION_HASLOGIN) {//登陆成功加载主窗口控制器
+        //加载申请通知的数据
+        CPTabBarController *tabBarController=[[CPTabBarController alloc]init];
+        self.window.rootViewController = tabBarController;
+        [self.window makeKeyAndVisible];
+    }else{//登陆失败加载登陆页面控制器
+        LoginViewController *loginVC=[[LoginViewController alloc]init];
+        UINavigationController* nav1 = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        self.window.rootViewController=nav1;
+        [self.window makeKeyAndVisible];
+    }
 }
 
 @end

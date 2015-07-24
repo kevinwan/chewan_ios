@@ -9,12 +9,17 @@
 #import "CPBrandModelViewController.h"
 #import "CustomBrandCell.h"
 #import "CustomSlideCell.h"
-#import <SDWebImage/UIImageView+WebCache.h>
 
-@interface CPBrandModelViewController ()
+#import "MJNIndexView.h"
+#import "CustomSectionView.h"
+
+@interface CPBrandModelViewController ()<MJNIndexViewDataSource,UITableViewDataSource,UITableViewDelegate>
 {
     NSArray *brandArray;
+    NSArray *modelArray;
     NSMutableDictionary *sortedBrandData;
+    NSString *currentBrandName;
+    NSString *currentBrandUrl;
 }
 
 @end
@@ -24,11 +29,61 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     brandArray=[[NSArray alloc]init];
+    modelArray=[[NSArray alloc]init];
     sortedBrandData=[[NSMutableDictionary alloc]init];
+    
+    //隐藏视图
+    self.modelSlideView = [UIView new];
+    _modelSlideView.hidden = YES;
+    _modelSlideView.userInteractionEnabled = YES;
+    [self.view addSubview:_modelSlideView];
+    [_modelSlideView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0.0f, 60.0f, 0.0f, 0.0f));
+    }];
+    // 第三方控件视图我就不修改了
+    self.indexView = [[MJNIndexView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 60)];
+    _indexView.dataSource = self;
+    _indexView.fontColor = [Tools getColor:@"aab2bd"];
+    _indexView.font = [UIFont systemFontOfSize:11.0f];
+    _indexView.minimumGapBetweenItems = 10.f;
+    _indexView.ergonomicHeight = NO;
+    _indexView.selectedItemFontColor=[Tools getColor:@"48d1d5"];
+    [self.view addSubview:_indexView];
+    
+    // DetailsTbView
+    self.modelTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    _modelTableView.bounces = NO;
+    _modelTableView.sectionHeaderHeight=50.0f;
+    _modelTableView.delegate = self;
+    _modelTableView.dataSource = self;
+    _modelTableView.backgroundColor = [UIColor whiteColor];
+    [_modelTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+    [_modelSlideView addSubview:_modelTableView];
+    _modelTableView.tableFooterView = [UIView new];
+    [_modelTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(_modelSlideView).with.insets(UIEdgeInsetsMake(0.0f, 0.5f, 0.0f, 0.0f));
+    }];
+    
+    // 清扫手势
+    UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipes:)];
+    swipeGesture.numberOfTouchesRequired = 1;
+    [_modelSlideView addGestureRecognizer:swipeGesture];
+    
+  
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [self getData];
+}
+
+-(void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    if ([self.brandTableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.brandTableView setSeparatorInset:UIEdgeInsetsZero];
+    }
+    if ([self.brandTableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        [self.brandTableView setLayoutMargins:UIEdgeInsetsZero];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,14 +93,13 @@
 #pragma mark - TableView Delegate & DataSource
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (tableView == _brandTableView) {
-//        return [CustomBrandCell standardHeight];
-//        return 60;
-//    }
-//    else if (tableView == _modelTableView){
-//        return [CustomSlideCell standardHeight];
-        return 50;
-//    }
+    if (tableView == _brandTableView) {
+        return [CustomBrandCell standardHeight];
+    }
+    else if (tableView == _modelTableView){
+        return [CustomSlideCell standardHeight];
+    }
+    return 44;
 }
 
 
@@ -53,28 +107,29 @@
 {
     if (tableView == _brandTableView) {
                 UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 20)];
-                imageview.backgroundColor = [UIColor redColor];
+                imageview.backgroundColor = [Tools getColor:@"f5f7fa"];
                 UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12, 0, kScreenWidth, 20)];
                 label.backgroundColor = [UIColor clearColor];
                 label.text = [brandArray objectAtIndex:section];
                 label.font = [UIFont systemFontOfSize:16];
-                label.textColor = [Tools getColor:@"aab3bd"];
+                label.textColor = [Tools getColor:@"434a53"];
                 [imageview addSubview:label];
                 return imageview;
     } else {
-//        self.sectionView = [[CustomSectionView alloc] initWithFrame:CGRectMake(0, 0, _modelTableView.width, 50.0f)];
-//        if (_slugString) {
-//            _sectionView.CarName = _slugString;
-//            _sectionView.imageName = [(brand_json *)[[MD_DataBaseTool findAllObject:[brand_json class] conditions:@"name=?" args:[NSArray arrayWithObject:_slugString] order:Nil] lastObject] logo_img];
-            return nil;
+        self.sectionView = [[CustomSectionView alloc] initWithFrame:CGRectMake(0, 0, _modelTableView.width, 50.0f)];
+        if (currentBrandName) {
+            _sectionView.CarName = currentBrandName;
+            _sectionView.imageName=currentBrandUrl;
         }
+        return _sectionView;
+    }
 }
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     if (tableView == _brandTableView) {
-        return [brandArray count];
+            return [brandArray count];
         }else{
             return 1;
     }
@@ -87,7 +142,7 @@
     {
         return [[sortedBrandData objectForKey:[brandArray objectAtIndex:section]] count];
     }else {
-            return 0;
+            return [modelArray count];
     }
 }
 
@@ -112,18 +167,6 @@
         if ([cellData objectForKey:@"name"]) {
             cell.brandNameLabel.text=[cellData objectForKey:@"name"];
         }
-        
-        // 对不限品牌稍微特殊处理一下
-//        if ((indexPath.section == 1) && (self.type != SelectBrandTypeReckon) && (self.type != SelectBrandTypeModel)) {
-//            cell.brandNameLabel.text = @"不限品牌";
-//            cell.thumbnailView.image = [UIImage imageNamed:@"pinpaibiao"] ;
-//        }else {
-//            NSInteger index = indexPath.section;
-//            if (index >= 1) {
-//                [cell.thumbnailView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",kImageHost,logoImageURL,[self.allBrands[index-1][indexPath.row] logo_img]]]];
-//                cell.brandNameLabel.text = [self.allBrands[index-1][indexPath.row] name];
-//            }
-//        }
         return cell;
     }
     else if (tableView == _modelTableView) {
@@ -131,6 +174,21 @@
             if (cell == nil) {
                 cell = [[CustomSlideCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:slideIdentify];
             }
+        NSDictionary *data=[modelArray objectAtIndex:indexPath.row];
+        if ([data objectForKey:@"name"]) {
+            cell.carNameLabel.text =[data objectForKey:@"name"];
+        }
+        
+//        if ((indexPath.row == 0) && (self.type == SelectBrandTypeBuyCar)) {
+//            cell.picImage.image = [UIImage imageNamed:@"kuanxingbuxian"];
+//            cell.picImage.contentMode = UIViewContentModeScaleAspectFit;
+//     }
+//        NSURL *url=[[NSURL alloc]initWithString:[cellData objectForKey:@"logo_img"]];
+        
+//        if ([data objectForKey:@"name"]) {
+//            cell.picImage sd_setImageWithURL
+//        }
+        
 //            if (_slugString) {
 //                NSString * brandSlug = [[[MD_DataBaseTool findAllObject:[brand_json class] conditions:@"name=?" args:[NSArray arrayWithObject:_slugString] order:nil] lastObject] slug];
 //                
@@ -161,107 +219,64 @@
     return nil;
 }
 //
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    if (tableView == _brandTableView) {
-//        CustomBrandCell *cell = (CustomBrandCell *)[tableView cellForRowAtIndexPath:indexPath];
-//        NSString *brandName = cell.brandNameLabel.text;
-//        if (self.type == SelectBrandTypeBusiness || self.type == SelectBrandTypeBuyCar) {
-//            if ([brandName isEqualToString:@"不限品牌"]) {
-//                if (self.selectBrandBlock) {
-//                    self.selectBrandBlock(@"", @"", @"", @"不限品牌", @"", @"");
-//                }
-//                return;
-//            }
-//            else {
-//                // 如果是商家此时就要直接返回了
-//                if (self.type == SelectBrandTypeBusiness) {
-//                    if (self.selectBrandBlock) {
-//                        NSArray *dataArray = [MD_DataBaseTool findAllObject:[brand_json class] conditions:@"name=?" args:[NSArray arrayWithObject:brandName] order:nil];
-//                        self.selectBrandBlock([[dataArray lastObject] slug], @"", @"", brandName, @"", @"");
-//                    }
-//                    return;
-//                }
-//            }
-//        }
-//        
-//        [UIView animateWithDuration:0.25 animations:^{
-//            // 把第三层滚回去
-//            _detailSlideView.x = self.view.width;
-//            _modelSlideView.hidden = NO;
-//            _modelSlideView.frame = CGRectMake(60, _topView.top, kScreenWidth - 60, _brandTableView.height);
-//        }];
-//        self.slugString = brandName;
-//        [_modelTableView reloadData];
-//    }
-//    else if (tableView == _modelTableView) {
-//        CustomSlideCell *cell = (CustomSlideCell *)[tableView cellForRowAtIndexPath:indexPath];
-//        NSString *modelName = cell.carNameLabel.text;
- 
-//            NSArray *dataArray = [MD_DataBaseTool findAllObject:[model_json class] conditions:@"name=?" args:@[modelName] order:nil];
-//            NSString *brand = [[dataArray lastObject] parent];
-//            NSString *model = [[dataArray lastObject] slug];
-//            if (self.type == SelectBrandTypeBuyCar || self.type == SelectBrandTypeModel) {
-//                if (self.selectBrandBlock) {
-//                    self.selectBrandBlock(brand, model, @"", modelName, @"", @"");
-//                    return;
-//                }
-//            }
-//            // 否则直接展示新的分类界面
-//            [self.view showWaitWithMessage:@"加载中..."];
-//            // 此时也应该清空之前可能有的过滤条件
-//            _selectedControl = @"";
-//            _selectedVolume = @"";
-//            _brand = brand;
-//            _model = model;
-//            [GPJNetworkAdapter detailModelQueryWithBrandBrand:brand model:model successBlock:^(id responseData) {
-//                [self.view hideWait];
-//                NSDictionary *dic = (NSDictionary *)responseData;
-//                if ([dic operationSuccess]) {
-//                    _rawDetails = [dic objectForKey:@"detail_model"];
-//                    [UIView animateWithDuration:0.25 animations:^{
-//                        _detailSlideView.hidden = NO;
-//                        _detailSlideView.frame = CGRectMake(120, _topView.top, kScreenWidth - 120, _brandTableView.height);
-//                    }];
-//                    [self filterRawDetailsDisplayAllVolume:YES];
-//                    [_detailTableView reloadData];
-//                }
-//                else {
-//                    [self.view alert:@"没有找到对应的款型"];
-//                }
-//            } failBlock:^(NSString *errorDescription) {
-//                [self.view alertError:errorDescription];
-//            }];
-//        
-//    }
-//}
-
--(NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return brandArray;
+    if (tableView == _brandTableView) {
+        CustomBrandCell *cell = (CustomBrandCell *)[tableView cellForRowAtIndexPath:indexPath];
+        NSDictionary *data=[[sortedBrandData objectForKey:[brandArray objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+        
+        NSString *brandName =[data objectForKey:@"slug"];
+        currentBrandName = [data objectForKey:@"name"];
+        currentBrandUrl = [data objectForKey:@"logo_img"];
+        [Tools setValueForKey:currentBrandName key:@"brandName"];
+        [Tools setValueForKey:currentBrandUrl key:@"brandUrl"];
+        [UIView animateWithDuration:0.25 animations:^{
+            // 把第三层滚回去
+            _modelSlideView.hidden = NO;
+            _indexView.hidden=YES;
+            _modelSlideView.frame = CGRectMake(60, 0, SCREEN_WIDTH - 60, _brandTableView.height);
+        }];
+        [self getModelData:brandName];
+    }
+    else if (tableView == _modelTableView) {
+        CustomSlideCell *cell = (CustomSlideCell *)[tableView cellForRowAtIndexPath:indexPath];
+        NSString *modelName = cell.carNameLabel.text;
+        [Tools setValueForKey:modelName key:@"modelName"];
+        NSString *slug=[[modelArray objectAtIndex:indexPath.row] objectForKey:@"slug"];
+        [Tools setValueForKey:slug key:@"slug"];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
+
+//-(NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+//{
+//    return brandArray;
+//}
 
 
 #pragma mark - IndexViewDataSource
 
-//- (NSArray *)sectionIndexTitlesForMJNIndexView:(MJNIndexView *)indexView {
-//    
-//    if (_indexPathArray.count > 0) {
-//        
-//        return _indexPathArray;
-//    }
-//    return nil;
-//}
+- (NSArray *)sectionIndexTitlesForMJNIndexView:(MJNIndexView *)indexView {
+    
+    if ([brandArray count] > 0) {
+        
+        return brandArray;
+    }
+    return brandArray;
+}
 
-
-//- (void)sectionForSectionMJNIndexTitle:(NSString *)title atIndex:(NSInteger)index
-//{
-//    if (_indexPathNumberArray.count > 0) {
-//        [_brandTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection: [_indexPathNumberArray[index] integerValue]] atScrollPosition:UITableViewScrollPositionTop animated:YES];
-//    }
-//}
-
-
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+    if([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]){
+        [cell setPreservesSuperviewLayoutMargins:NO];
+    }
+}
 
 
 #pragma privateMethods
@@ -298,12 +313,49 @@
             
 //            brandArray=[sortedBrandData allValues];
             [self.brandTableView reloadData];
+            [self.indexView refreshIndexItems];
         }
     } failure:^(NSError *error) {
         [hud hide:YES];
         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
         
     }];
+}
+
+-(void)getModelData:(NSString *)model{
+    MBProgressHUD *hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.color = [UIColor clearColor];
+    hud.labelText=@"加载中…";
+    hud.dimBackground=NO;
+//    NSString *path=[[NSString alloc]initWithFormat:@"v1/car/model",model];
+    NSDictionary *para=[[NSDictionary alloc]initWithObjectsAndKeys:model,@"brand", nil];
+    [ZYNetWorkTool getWithUrl:@"v1/car/model" params:para success:^(id responseObject) {
+        [hud hide:YES];
+        NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
+        NSString *state=[numberFormatter stringFromNumber:[responseObject objectForKey:@"result"]];
+        if (![state isEqualToString:@"0"]) {
+            NSString *errmsg =[responseObject objectForKey:@"errmsg"];
+            [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        }else{
+            modelArray=[responseObject objectForKey:@"data"];
+            [self.modelTableView reloadData];
+        }
+    } failure:^(NSError *error) {
+        [hud hide:YES];
+        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        
+    }];
+}
+
+- (void)handleSwipes:(UISwipeGestureRecognizer *)swipe
+{
+    if (swipe.direction == UISwipeGestureRecognizerDirectionRight) {
+        [UIView animateWithDuration:0.25 animations:^{
+            // 如果拖动model，则detail也要一起滚
+            [swipe.view setX:SCREEN_WIDTH];
+            _indexView.hidden=NO;
+        }];
+    }
 }
 
 @end
