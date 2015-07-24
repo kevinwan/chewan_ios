@@ -115,6 +115,7 @@ typedef enum {
     
     self.title = @"创建活动";
 
+    [self setUp];
 }
 
 /**
@@ -133,7 +134,11 @@ typedef enum {
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
     [CPNotificationCenter addObserver:self selector:@selector(pickerViewCancle:) name:@"PicViewCancle" object:nil];
     
+    [self.seats addObject:@"1个"];
+    [self.seats addObject:@"2个"];
+    [self labelWithRow:7].text = @"人数";
     [self setUpCellOperation];
+    
     self.currentModel.type = @"吃饭";
     self.currentModel.pay = @"我请客";
 }
@@ -163,9 +168,6 @@ typedef enum {
         }
     } failure:^(NSError *error) {
         
-        [self.seats addObject:@"1个"];
-        [self.seats addObject:@"2个"];
-        [self labelWithRow:7].text = @"邀请人数";
     }];
 }
 
@@ -611,8 +613,6 @@ typedef enum {
                                                scale:representation.defaultRepresentation.scale
                                          orientation:(UIImageOrientation)representation.defaultRepresentation.orientation];
             [arr addObject:img];
-            
-            
         }];
     [self addPhoto:arr];
     [SVProgressHUD showWithStatus:@"加载中"];
