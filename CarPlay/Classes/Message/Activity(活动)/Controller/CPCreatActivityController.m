@@ -17,6 +17,8 @@
 #import "CPEditImageView.h"
 #import "CPCreatActivityModel.h"
 #import "CPLocationModel.h"
+#import "MJExtension.h"
+#import "NSDate+Extension.h"
 
 #define maxCount 9
 typedef enum {
@@ -44,11 +46,30 @@ typedef enum {
 @property (nonatomic, strong) NSMutableArray *editPhotoViews;
 @property (nonatomic, strong) UIBarButtonItem *rightItem;
 @property (nonatomic, strong) CPLocationModel *selectLocation;
+@property (nonatomic, strong) CPCreatActivityModel *currentModel;
+@property (nonatomic, strong) NSMutableArray *seats;
 @end
 
 @implementation CPCreatActivityController
 
 #pragma mark - lazy
+
+
+- (NSMutableArray *)seats
+{
+    if (_seats == nil) {
+        _seats = [NSMutableArray array];
+    }
+    return _seats;
+}
+
+- (CPCreatActivityModel *)currentModel
+{
+    if (_currentModel == nil) {
+        _currentModel = [[CPCreatActivityModel alloc] init];
+    }
+    return _currentModel;
+}
 
 - (UIBarButtonItem *)rightItem
 {
@@ -100,11 +121,48 @@ typedef enum {
     self.finishToFriend.clipsToBounds = YES;
     self.currentOffset = CGPointMake(0, -64);
     self.picIndex = 10;
+    NSString *userId = [Tools getValueFromKey:@"userId"];
+    if (userId.length == 0) {
+        [SVProgressHUD showWithStatus:@"你还没有登录,不能创建活动哦"];
+    }
+
     
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
     [CPNotificationCenter addObserver:self selector:@selector(pickerViewCancle:) name:@"PicViewCancle" object:nil];
     
     [self setUpCellOperation];
+    self.currentModel.type = @"吃饭";
+    self.currentModel.pay = @"我请客";
+    NSString *url = [NSString stringWithFormat:@"v1/user/%@/seats",userId];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"token"] = [Tools getValueFromKey:@"token"];
+    [ZYNetWorkTool getWithUrl:url params:params success:^(id responseObject) {
+        NSLog(@"%@",responseObject);
+        if (CPSuccess){
+            // 更改seat的座位
+            [self changeSeatWithResult:responseObject[@"data"]];
+            
+        }
+    } failure:^(NSError *error) {
+        
+        [self.seats addObject:@"1个"];
+        [self.seats addObject:@"2个"];
+        [self labelWithRow:7].text = @"邀请人数";
+    }];
+}
+
+- (void)changeSeatWithResult:(NSDictionary *)result
+{
+    if ([result[@"isAuthenticated"] intValue] == 1) {
+        [self labelWithRow:7].text = @"座位数";
+        for(int i = [result[@"minValue"] intValue]; i < [result[@"maxValue"] intValue]; i++){
+            [self.seats addObject:[NSString stringWithFormat:@"%zd个",i]];
+        }
+    }else{
+        [self.seats addObject:@"1个"];
+        [self.seats addObject:@"2个"];
+        [self labelWithRow:7].text = @"邀请人数";
+    }
 }
 
 /**
@@ -218,7 +276,7 @@ typedef enum {
         }else{
             
             [_pickView removeFromSuperview];
-            _pickView=[[ZYPickView alloc] initPickviewWithArray:@[@"我请客", @"你请客", @"AA制"] isHaveNavControler:NO];
+            _pickView=[[ZYPickView alloc] initPickviewWithArray:@[@"AA制",@"我请客", @"其他" ] isHaveNavControler:NO];
             _pickView.tag = ActivityCreatePay;
             _pickView.row = 6;
             _pickView.delegate = self;
@@ -282,6 +340,13 @@ typedef enum {
                 if (model) {
                     [self labelWithRow:3].text = model.location;
                     self.selectLocation = model;
+                    self.currentModel.latitude = model.latitude.doubleValue;
+                    self.currentModel.longitude = model.longitude.doubleValue;
+                    self.currentModel.city = model.city;
+                    self.currentModel.province = model.province;
+                    self.currentModel.district = model.district;
+                    self.currentModel.location = model.location;
+                    self.currentModel.address = model.address;
                 }
             };
         }
@@ -296,6 +361,7 @@ typedef enum {
                     [self setNameCellHeightWithString:str];
                     self.nameLabel.text = str;
                     self.nameLabel.height = [str sizeWithFont:[UIFont systemFontOfSize:15] maxW:kScreenWidth - 30].height;
+                    self.currentModel.introduction = str;
                     [self.tableView reloadData];
                 }else{
                     self.nameLabel.text = nil;
@@ -325,6 +391,11 @@ typedef enum {
     
 }
 
+/**
+ *  自动调整cell的位置
+ *
+ *  @param cell cell description
+ */
 - (void)viewUpWithCell:(CPCreatActivityCell *)cell
 {
     CGRect covertedRect = [cell convertRect:cell.bounds toView:[UIApplication sharedApplication].keyWindow];
@@ -334,7 +405,6 @@ typedef enum {
         [self.tableView setContentOffset:CGPointMake(0, covertedRect.origin.y + self.tableView.contentOffset.y - (kScreenHeight - self.pickView.height - 50)) animated:YES];
     }else{
         if (self.tableView.contentOffset.y > -64) {
-            
             self.currentOffset = self.tableView.contentOffset;
             [self.tableView setContentOffset:CGPointMake(0, covertedRect.origin.y + self.tableView.contentOffset.y - (kScreenHeight - self.pickView.height - 50)) animated:YES];
         }else{
@@ -361,6 +431,28 @@ typedef enum {
     return 50;
 }
 
+/**
+ *  根据字符串返回一个时间戳
+ *
+ *  @param dateStr 字符串
+ *
+ *  @return return value description
+ */
+- (NSTimeInterval)timeWithString:(NSString *)dateStr
+{
+    if ([dateStr isEqualToString:@"不确定"]){
+        return 0;
+    }
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    if ([dateStr containsString:@":"]) {
+        fmt.dateFormat = @"yyyy年MM月dd日 HH:mm";
+    }else{
+        fmt.dateFormat = @"yyyy年MM月dd日";
+    }
+    NSDate *date = [fmt dateFromString:dateStr];
+    return date.timeIntervalSince1970 * 1000;
+}
+
 #pragma mark - ZHPickViewDelegate
 -(void)toobarDonBtnHaveClick:(ZYPickView *)pickView resultString:(NSString *)resultString{
 
@@ -368,26 +460,31 @@ typedef enum {
         case ActivityCreateType:
         {
             [self labelWithRow:0].text = resultString;
+            self.currentModel.type = resultString;
             break;
         }
         case ActivityCreateStart:
         {
             [self labelWithRow:4].text = resultString;
+            self.currentModel.start = [self timeWithString:resultString];
             break;
         }
         case ActivityCreateEnd:
         {
             [self labelWithRow:5].text = resultString;
+            self.currentModel.end = [self timeWithString:resultString];
             break;
         }
         case ActivityCreatePay:
         {
             [self labelWithRow:6].text = resultString;
+            self.currentModel.pay = resultString;
             break;
         }
         case ActivityCreateSeat:
         {
             [self labelWithRow:7].text = resultString;
+            self.currentModel.seat = [[resultString substringToIndex:1] intValue];
             break;
         }
             
@@ -674,6 +771,39 @@ typedef enum {
  *  点击完成按钮
  */
 - (IBAction)finishBtnClick {
+    
+    if (self.currentModel.introduction.length == 0) {
+        [SVProgressHUD showInfoWithStatus:@"活动介绍不能为空"];
+        return;
+    }
+    
+    if (self.currentModel.type.length == 0) {
+        [SVProgressHUD showInfoWithStatus:@"活动类型不能为空"];
+        return;
+    }
+    
+    if (self.currentModel.latitude == 0) {
+        [SVProgressHUD showInfoWithStatus:@"请选择活动地点"];
+        return;
+    }
+    
+    if (self.currentModel.start == 0){
+        [SVProgressHUD showInfoWithStatus:@"请选择开始时间"];
+        return;
+    }
+    if (self.currentModel.end) {
+        NSDate *startDate = [NSDate dateWithTimeIntervalSince1970:self.currentModel.start];
+        NSDate *endDate = [NSDate dateWithTimeIntervalSince1970:self.currentModel.end];
+        if([startDate compare:endDate] == NSOrderedDescending){
+            [SVProgressHUD showInfoWithStatus:@"结束时间不能早于开始时间"];
+            return;
+        }
+    }
+    
+    if (self.currentModel.seat == 0) {
+        [SVProgressHUD showInfoWithStatus:@"请选择座位数"];
+        return;
+    }
     // 上传图片
 //    v1/activity/cover/upload?userId=4d672627-860c-4118-bcbd-2978aca469ad&token=4b35299f-8dc4-4999-bfaf-c0ad5c6aab43
 //    ZYNetWorkTool postFileWithUrl:@"" params:<#(id)#> files:<#(NSArray *)#> success:<#^(id responseObject)success#> failure:<#^(NSError *error)failure#>
@@ -716,14 +846,16 @@ typedef enum {
  */
 - (void)uploadCreatActivtyInfoWithPicId:(NSArray *)picIds
 {
+    self.currentModel.cover = picIds;
+  
     
-    //    // 进行发请求 创建活动
-    CPCreatActivityModel *model = [[CPCreatActivityModel alloc] init];
-    if (self.nameLabel.text.trimStr == 0) {
-        [SVProgressHUD showInfoWithStatus:@"活动介绍不能为空"];
-        return;
-    }
-    model.introduction = self.nameLabel.text;
+    NSDictionary *params = [self.currentModel keyValues];
+    DLog(@"%@",params);
+    [CPNetWorkTool postJsonWithUrl:@"v1/activity/register" params:params success:^(id responseObject) {
+        DLog(@"%@....",responseObject);
+    } failed:^(NSError *error) {
+        
+    }];
 }
 
 /**
@@ -731,7 +863,7 @@ typedef enum {
  */
 - (IBAction)finishToFriends
 {
-    
+    [self finishBtnClick];
 }
 
 @end

@@ -19,4 +19,9 @@
 @property (nonatomic, copy) NSString *city;
 // 区
 @property (nonatomic, copy) NSString *district;
+/**
+ *  省份
+ */
+@property (nonatomic, copy) NSString *province;
+@property (nonatomic, copy) NSString *address;
 @end

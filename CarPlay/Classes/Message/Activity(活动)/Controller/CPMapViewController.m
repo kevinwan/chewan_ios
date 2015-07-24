@@ -173,13 +173,23 @@
     UITapGestureRecognizer *mTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPress:)];
     [customMapView addGestureRecognizer:mTap];
     
+    // 如果有值意味着修改位置 需要显示上一次的位置
     if (self.forValue) {
         CPLocationModel *model = (CPLocationModel *)self.forValue;
         CPAnnotation *annotation = [[CPAnnotation alloc] init];
         annotation.coordinate = CLLocationCoordinate2DMake(model.latitude.doubleValue, model.longitude.doubleValue);
         annotation.title = model.location;
+        annotation.icon = @"定位";
+        self.searchBar.placeholder = model.location;
+        CLLocationCoordinate2D center = annotation.coordinate;
+        // 指定经纬度的跨度
+        MKCoordinateSpan span = MKCoordinateSpanMake(0.01,0.01);
+        // 将用户当前的位置作为显示区域的中心点, 并且指定需要显示的跨度范围
+        MKCoordinateRegion region = MKCoordinateRegionMake(center, span);
+        
+        // 设置显示区域
         [self.customMapView addAnnotation:annotation];
-        [self.customMapView setCenterCoordinate:annotation.coordinate animated:YES];
+        [self.customMapView setRegion:region animated:NO];
     }
 }
 
@@ -243,24 +253,29 @@
     
     // 利用反地理编码获取位置之后设置标题
     [self.geocoder reverseGeocodeLocation:userLocation.location completionHandler:^(NSArray *placemarks, NSError *error) {
-        CLPlacemark *placemark = [placemarks firstObject];
-        NSLog(@"获取地理位置成功 name = %@ locality = %@", placemark.name, placemark.locality);
-        userLocation.title = placemark.name;
-        userLocation.subtitle = placemark.locality;
-        
-        self.userLocation =[self locationModelWithPlaceMark:placemark];
-        
-        if (!self.orientationSuccess && self.forValue == nil){
+        if (self.forValue){ //
+            return;
+        }else{
             
-            CLLocationCoordinate2D center = userLocation.location.coordinate;
-            // 指定经纬度的跨度
-            MKCoordinateSpan span = MKCoordinateSpanMake(0.01,0.01);
-            // 将用户当前的位置作为显示区域的中心点, 并且指定需要显示的跨度范围
-            MKCoordinateRegion region = MKCoordinateRegionMake(center, span);
+            CLPlacemark *placemark = [placemarks firstObject];
+            NSLog(@"获取地理位置成功 name = %@ locality = %@", placemark.name, placemark.locality);
+            userLocation.title = placemark.name;
+            userLocation.subtitle = placemark.locality;
             
-            // 设置显示区域
-            [self.customMapView setRegion:region animated:NO];
-            self.orientationSuccess = YES;
+            self.userLocation =[self locationModelWithPlaceMark:placemark];
+            
+            // 如果没有定位成功过
+            if (!self.orientationSuccess) {
+                CLLocationCoordinate2D center = userLocation.location.coordinate;
+                // 指定经纬度的跨度
+                MKCoordinateSpan span = MKCoordinateSpanMake(0.01,0.01);
+                // 将用户当前的位置作为显示区域的中心点, 并且指定需要显示的跨度范围
+                MKCoordinateRegion region = MKCoordinateRegionMake(center, span);
+                
+                // 设置显示区域
+                [self.customMapView setRegion:region animated:NO];
+                self.orientationSuccess = YES;
+            }
         }
     }];
 
@@ -268,7 +283,10 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
 
-    if (textField.text) {
+    if (self.descLocationView.hidden == NO) {
+        self.descLocationView.hidden = YES;
+    }
+    if (textField.text.length) {
         if (self.resultTableView.hidden == YES) {
             self.resultTableView.hidden = NO;
         }
@@ -359,7 +377,9 @@
             model.location = gecode.township;
         }
         model.district = gecode.district;
+        model.province = gecode.province;
         model.city = gecode.city;
+        model.address = gecode.formattedAddress;
         if (model.city.length == 0) {
             model.city = gecode.province;
         }
@@ -550,11 +570,13 @@
     model.location = poi.name;
     model.latitude = @(poi.location.latitude);
     model.longitude = @(poi.location.longitude);
-    model.city = poi.city;
+    model.city = reGeocode.addressComponent.city;
     if (model.city.length == 0) {
-        model.city = poi.province;
+        model.city = reGeocode.addressComponent.province;
     }
-    model.district = poi.district;
+    model.district = reGeocode.addressComponent.district;
+    model.province = reGeocode.addressComponent.province;
+    model.address = reGeocode.formattedAddress;
     self.selectLocation = model;
     
     [self removeAnnotaionNoSelf];

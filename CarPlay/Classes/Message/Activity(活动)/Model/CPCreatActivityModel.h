@@ -17,18 +17,25 @@
 @property (nonatomic, strong) NSArray *cover;
 //“location”:”$location”,
 @property (nonatomic, copy) NSString *location;
+@property (nonatomic, copy) NSString *address;
 //“longitude”:”$longitude”,
-@property (nonatomic, copy) NSString *longitude;
+@property (nonatomic, assign) double longitude;
 //“latitude”:”$latitude”,
-@property (nonatomic, copy) NSString *latitude;
+@property (nonatomic, assign) double latitude;
 //“start”:”$start”,
-@property (nonatomic, copy) NSString *start;
+@property (nonatomic, assign) NSTimeInterval start;
 //“end”:”$end”,
-@property (nonatomic, copy) NSString *end;
+@property (nonatomic, assign) NSTimeInterval end;
 //“city”:”$city”,
 @property (nonatomic, copy) NSString *city;
 //“pay”:”$pay”,
 @property (nonatomic, copy) NSString *pay;
 //“seat”:”$seat”
-@property (nonatomic, copy) NSString *seat;
+@property (nonatomic, assign) int seat;
+/**
+ *  省份
+ */
+@property (nonatomic, copy) NSString *province;
+@property (nonatomic, copy) NSString *district;
+
 @end
