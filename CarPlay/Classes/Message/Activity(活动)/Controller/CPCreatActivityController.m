@@ -791,6 +791,7 @@ typedef enum {
         [self cancleEditPhotoSelect];
     }
     
+    // 去除pickerView
     if (self.pickView) {
         [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:self.lastRow inSection:0]];
     }
