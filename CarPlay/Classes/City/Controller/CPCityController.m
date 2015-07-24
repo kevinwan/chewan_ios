@@ -13,9 +13,10 @@
 #import "CPHomeStatus.h"
 #import "CPHomeUser.h"
 #import "CPHomeStatusCell.h"
+#import "CPActiveDetailsController.h"
 
 
-@interface CPCityController ()<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
+@interface CPCityController ()<UITableViewDataSource,UITableViewDelegate>
 
 // 存储所有活动数据
 @property (nonatomic,strong) NSArray *status;
@@ -25,6 +26,11 @@
 
 // 缓存cell高度（线程安全、内存紧张时会自动释放、不会拷贝key）
 @property (nonatomic,strong) NSCache *rowHeightCache;
+
+// 创建活动
+- (IBAction)createActive:(id)sender;
+
+
 
 @end
 
@@ -56,8 +62,8 @@
     // 发送请求
     [manager GET:@"http://cwapi.gongpingjia.com/v1/activity/list" parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
         // 取出活动数据
-        self.status = responseObject[@"data"];
-        NSLog(@"%@",self.status);
+//        self.status = responseObject[@"data"];
+//        NSLog(@"%@",self.status);
         
         // 取出活动数据
         NSArray *dicts = responseObject[@"data"];
@@ -130,7 +136,22 @@
 }
 
 
-
+// 点击cell跳转到活动详情页
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    // 获取活动详情storyboard中的控制器
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPActiveDetailsController" bundle:nil];
+    CPActiveDetailsController *ac = sb.instantiateInitialViewController;
+    // 取出对应行模型
+    CPHomeStatus *status = self.status[indexPath.row];
+    
+    ac.activeId = status.activityId;
+    
+//    NSLog(@"%@",ac.activeId);
+    
+    [self.navigationController pushViewController:ac animated:YES];
+    
+}
 
 
 #pragma mark - lazy
@@ -140,6 +161,15 @@
         _rowHeightCache = [[NSCache alloc] init];
     }
     return _rowHeightCache;
+}
+
+// 创建活动
+- (IBAction)createActive:(id)sender {
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPCreatActivityController" bundle:nil];
+    
+    [self.navigationController pushViewController:sb.instantiateInitialViewController animated:YES];
+    
+    
 }
 
 
