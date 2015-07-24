@@ -10,6 +10,9 @@
 
 @interface CPHomeUser : NSObject
 
+// id
+@property (nonatomic,copy) NSString *userId;
+
 // 年龄
 @property (nonatomic,copy) NSString *age;
 

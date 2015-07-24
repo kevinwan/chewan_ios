@@ -43,8 +43,7 @@
     
     [ZYNetWorkTool getWithUrl:url params:params success:^(NSDictionary *responseObject) {
         DLog(@"%@",responseObject);
-        int result = [responseObject[@"result"] intValue];
-        if (result == CPSuccess) {
+        if (CPSuccess) {
             NSArray *arr = [CPMyPublishModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
             for (int i = 0; i < arr.count; i++) {
                 CPMyPublishFrameModel *frameModel = [[CPMyPublishFrameModel alloc] init];

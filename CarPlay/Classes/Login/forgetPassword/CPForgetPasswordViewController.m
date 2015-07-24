@@ -10,13 +10,16 @@
 #import "CPNewPassWordViewController.h"
 
 @interface CPForgetPasswordViewController ()
-
+{
+    BOOL gotIdentifyingCode;
+}
 @end
 
 @implementation CPForgetPasswordViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    gotIdentifyingCode=NO;
     self.getIdentifyingCodeBtn.layer.cornerRadius=15.0;
     self.getIdentifyingCodeBtn.layer.masksToBounds=YES;
     self.nextBtn.layer.cornerRadius=3.0;
@@ -51,6 +54,8 @@
                     NSString *errmsg =[responseObject objectForKey:@"errmsg"];
                     [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                     [hud hide:YES];
+                }else{
+                    gotIdentifyingCode=YES;
                 }
             } failure:^(NSError *error) {
                 [hud hide:YES];
@@ -69,9 +74,26 @@
 }
 
 - (IBAction)nextBtnClick:(id)sender {
-    CPNewPassWordViewController *CPNewPassWordVC=[[CPNewPassWordViewController alloc]init];
-    CPNewPassWordVC.title=@"找回密码";
-    [self.navigationController pushViewController:CPNewPassWordVC animated:YES];
+    if (self.phoneLable.text && ![self.phoneLable.text isEqualToString:@""]) {
+        if ([Tools isValidateMobile:self.phoneLable.text]) {
+            if (self.identifyingCodeTextField.text && ![self.identifyingCodeTextField.text isEqualToString:@""]) {
+                CPNewPassWordViewController *CPNewPassWordVC=[[CPNewPassWordViewController alloc]init];
+                CPNewPassWordVC.pwd=self.identifyingCodeTextField.text;
+                CPNewPassWordVC.phone=self.phoneLable.text;
+                CPNewPassWordVC.title=@"找回密码";
+                [self.navigationController pushViewController:CPNewPassWordVC animated:YES];
+            }else{
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请输入验证码" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alert show];
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请正确输入手机号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请输入您的手机号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
 }
 
 -(void)startTime{
@@ -90,7 +112,7 @@
                 [self.getIdentifyingCodeBtn setTitleColor:[Tools getColor:@"ffffff"] forState:UIControlStateNormal];
             });
         }else{
-            int seconds = timeout % 60;
+            int seconds = timeout;
             NSString *strTime = [NSString stringWithFormat:@"%.2d", seconds];
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置界面的按钮显示 根据自己需求设置

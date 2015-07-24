@@ -55,8 +55,10 @@
     _showSelectImage = showSelectImage;
     
     if (showSelectImage) {
+        _select = YES;
         self.selectImage.hidden = NO;
     }else{
+        _select = NO;
         self.selectImage.hidden = YES;
     }
 }

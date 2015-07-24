@@ -105,7 +105,7 @@
     
     if (indexPath.row==2 || indexPath.row==3) {
         if ((_indexPath.row==2 || _indexPath.row==3) && ![indexPath compare:_indexPath] == NSOrderedSame) {
-            CPRegisterCellsTableViewCell3 *cell=[tableView cellForRowAtIndexPath:_indexPath];
+            CPRegisterCellsTableViewCell3 *cell=(CPRegisterCellsTableViewCell3 *)[tableView cellForRowAtIndexPath:_indexPath];
             //开始动画
             [UIView beginAnimations:nil context:nil];
             //设定动画持续时间
@@ -116,7 +116,7 @@
             [UIView commitAnimations];
         }
         _indexPath=indexPath;
-        CPRegisterCellsTableViewCell3 *cell=[tableView cellForRowAtIndexPath:indexPath];
+        CPRegisterCellsTableViewCell3 *cell=(CPRegisterCellsTableViewCell3 *)[tableView cellForRowAtIndexPath:indexPath];
         //开始动画
         [UIView beginAnimations:nil context:nil];
         //设定动画持续时间
@@ -127,7 +127,7 @@
         [UIView commitAnimations];
         
     }else if(_indexPath.row==2 || _indexPath.row==3){
-        CPRegisterCellsTableViewCell3 *cell=[tableView cellForRowAtIndexPath:_indexPath];
+        CPRegisterCellsTableViewCell3 *cell=(CPRegisterCellsTableViewCell3 *)[tableView cellForRowAtIndexPath:_indexPath];
         //开始动画
         [UIView beginAnimations:nil context:nil];
         //设定动画持续时间
@@ -300,49 +300,46 @@
     NSString *city=[Tools getValueFromKey:@"city"];
     NSString *district=[Tools getValueFromKey:@"district"];
     NSString *photo=[Tools getValueFromKey:@"photoId"];
-    CarOwnersCertificationViewController *CarOwnersCertificationVC=[[CarOwnersCertificationViewController alloc]init];
-    CarOwnersCertificationVC.title=@"车主认证";
-    [self.navigationController pushViewController:CarOwnersCertificationVC animated:YES];
-//    if (photo) {
-//        if(nickname){
-//            if(brithYear && birthMonth && birthDay){
-//                if(province && city && district){
-//                    NSDictionary *para=[NSDictionary dictionaryWithObjectsAndKeys:phone,@"phone",password,@"password",code,@"code",nickname,@"nickname",gender,@"gender",province,@"province",city,@"city",district,@"district",photo,@"photo",@(brithYear),@"birthYear",@(birthMonth),@"birthMonth",@(birthDay),@"birthDay",nil];
-//                    
-//                    MBProgressHUD *hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//                    hud.color = [UIColor clearColor];
-//                    hud.labelText=@"加载中…";
-//                    hud.dimBackground=NO;
-//                    [ZYNetWorkTool postJsonWithUrl:@"v1/user/register" params:para success:^(id responseObject) {
-//                        [hud hide:YES];
-//                        NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
-//                        NSString *state=[numberFormatter stringFromNumber:[responseObject objectForKey:@"result"]];
-//                        if (![state isEqualToString:@"0"]) {
-//                            NSString *errmsg =[responseObject objectForKey:@"errmsg"];
-//                            [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-//                        }else{
-//                            NSDictionary *data=[responseObject objectForKey:@"data"];
-//                            [Tools setValueForKey:[data objectForKey:@"userId"] key:@"userId"];
-//                            [Tools setValueForKey:[data objectForKey:@"token"] key:@"token"];
-//                            CarOwnersCertificationViewController *CarOwnersCertificationVC=[[CarOwnersCertificationViewController alloc]init];
-//                            CarOwnersCertificationVC.title=@"车主认证";
-//                            [self.navigationController pushViewController:CarOwnersCertificationVC animated:YES];
-//                        }
-//                    } failed:^(NSError *error) {
-//                        [hud hide:YES];
-//                        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-//                    }];
-//                }else{
-//                    [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请选择您的地区" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-//                }
-//            }else{
-//                [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请选择您的生日" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-//            }
-//        }else{
-//         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请填写您的昵称" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-//        }
-//    }else{
-//        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请上传您的头像" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-//    }
+    if (photo) {
+        if(nickname){
+            if(brithYear && birthMonth && birthDay){
+                if(province && city && district){
+                    NSDictionary *para=[NSDictionary dictionaryWithObjectsAndKeys:phone,@"phone",password,@"password",code,@"code",nickname,@"nickname",gender,@"gender",province,@"province",city,@"city",district,@"district",photo,@"photo",@(brithYear),@"birthYear",@(birthMonth),@"birthMonth",@(birthDay),@"birthDay",nil];
+                    
+                    MBProgressHUD *hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                    hud.color = [UIColor clearColor];
+                    hud.labelText=@"加载中…";
+                    hud.dimBackground=NO;
+                    [ZYNetWorkTool postJsonWithUrl:@"v1/user/register" params:para success:^(id responseObject) {
+                        [hud hide:YES];
+                        NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
+                        NSString *state=[numberFormatter stringFromNumber:[responseObject objectForKey:@"result"]];
+                        if (![state isEqualToString:@"0"]) {
+                            NSString *errmsg =[responseObject objectForKey:@"errmsg"];
+                            [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                        }else{
+                            NSDictionary *data=[responseObject objectForKey:@"data"];
+                            [Tools setValueForKey:[data objectForKey:@"userId"] key:@"userId"];
+                            [Tools setValueForKey:[data objectForKey:@"token"] key:@"token"];
+                            CarOwnersCertificationViewController *CarOwnersCertificationVC=[[CarOwnersCertificationViewController alloc]init];
+                            CarOwnersCertificationVC.title=@"车主认证";
+                            [self.navigationController pushViewController:CarOwnersCertificationVC animated:YES];
+                        }
+                    } failed:^(NSError *error) {
+                        [hud hide:YES];
+                        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                    }];
+                }else{
+                    [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请选择您的地区" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                }
+            }else{
+                [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请选择您的生日" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+            }
+        }else{
+         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请填写您的昵称" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        }
+    }else{
+        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请上传您的头像" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+    }
 }
 @end

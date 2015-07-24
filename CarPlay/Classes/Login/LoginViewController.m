@@ -35,43 +35,48 @@
 }
 
 - (IBAction)loginBtnClick:(id)sender {
-    if ([Tools isValidateMobile:self.userPhone.text]) {
-        MBProgressHUD *hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.color = [UIColor clearColor];
-        hud.labelText=@"加载中…";
-        hud.dimBackground=NO;
-        NSString *password=[Tools md5EncryptWithString:self.password.text];
-        NSDictionary *para=[NSDictionary dictionaryWithObjectsAndKeys:self.userPhone.text,@"phone",password,@"password", nil];
-        
-        [ZYNetWorkTool postJsonWithUrl:@"v1/user/login" params:para success:^(id responseObject) {
-            NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
-            NSString *state=[numberFormatter stringFromNumber:[responseObject objectForKey:@"result"]];
-            if ([state isEqualToString:@"0"]) {
-                NSDictionary *data=[responseObject objectForKey:@"data"];
-                if ([data objectForKey:@"token"]) {
-                    [Tools setValueForKey:[data objectForKey:@"token"] key:@"token"];
+    if (self.userPhone.text && ![self.userPhone.text isEqualToString:@""]) {
+        if ([Tools isValidateMobile:self.userPhone.text]) {
+            MBProgressHUD *hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.color = [UIColor clearColor];
+            hud.labelText=@"加载中…";
+            hud.dimBackground=NO;
+            NSString *password=[Tools md5EncryptWithString:self.password.text];
+            NSDictionary *para=[NSDictionary dictionaryWithObjectsAndKeys:self.userPhone.text,@"phone",password,@"password", nil];
+            
+            [ZYNetWorkTool postJsonWithUrl:@"v1/user/login" params:para success:^(id responseObject) {
+                NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
+                NSString *state=[numberFormatter stringFromNumber:[responseObject objectForKey:@"result"]];
+                if ([state isEqualToString:@"0"]) {
+                    NSDictionary *data=[responseObject objectForKey:@"data"];
+                    if ([data objectForKey:@"token"]) {
+                        [Tools setValueForKey:[data objectForKey:@"token"] key:@"token"];
+                    }
+                    
+                    if ([data objectForKey:@"userId"]) {
+                        [Tools setValueForKey:[data objectForKey:@"userId"] key:@"userId"];
+                    }
+                    
+                    [Tools setValueForKey:self.userPhone.text key:@"phone"];
+                    [Tools setValueForKey:password key:@"password"];
+                    [hud hide:YES];
+                }else{
+                    NSString *errmsg =[responseObject objectForKey:@"errmsg"];
+                    [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                    [hud hide:YES];
                 }
-                
-                if ([data objectForKey:@"userId"]) {
-                    [Tools setValueForKey:[data objectForKey:@"userId"] key:@"userId"];
-                }
-                
-                [Tools setValueForKey:self.userPhone.text key:@"phone"];
-                [Tools setValueForKey:password key:@"password"];
+            }failed:^(NSError *error){
+                [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                 [hud hide:YES];
-            }else{
-                NSString *errmsg =[responseObject objectForKey:@"errmsg"];
-                [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-                [hud hide:YES];
-            }
-        }failed:^(NSError *error){
-            [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-            [hud hide:YES];
-        }];
-        
+            }];
+            
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请正确输入手机号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
     }else{
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请正确输入手机号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [alert show];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"错误" message:@"请输入您的手机号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
     }
 }
 

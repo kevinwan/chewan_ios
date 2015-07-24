@@ -77,20 +77,21 @@
 
 //登陆状态改变
 #define NOTIFICATION_LOGINCHANGE @"loginStatusChange"
+#define NOTIFICATION_HASLOGIN @"hasLogin"
 //宏定义属性
 #define Property(s) @property (nonatomic,copy)NSString *s
 
 
 
-#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
 
 typedef enum _BasicViewControllerInfo {
     eBasicControllerInfo_Title,
     eBasicControllerInfo_ImageName,
     eBasicControllerInfo_BadgeString
 }BasicViewControllerInfo;
-#define CPSuccess 0
-#define CPFailure 1
+#define CPUnLogin @"CPUnLogin"
+#define CPSuccess ([responseObject[@"result"] intValue] == 0)
+#define CPFailure ([responseObject[@"result"] intValue] == 1)
 
 #pragma mark - runtime macros
 // check if runs on iPad

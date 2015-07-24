@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class CPActivityApplyModel;
 @interface CPActivityApplyCell : UITableViewCell
-
+@property (nonatomic, strong) CPActivityApplyModel *model;
 @end

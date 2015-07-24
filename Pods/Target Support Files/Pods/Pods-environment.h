@@ -48,6 +48,18 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 5
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 4
 
+// AMap2DMap
+#define COCOAPODS_POD_AVAILABLE_AMap2DMap
+#define COCOAPODS_VERSION_MAJOR_AMap2DMap 2
+#define COCOAPODS_VERSION_MINOR_AMap2DMap 6
+#define COCOAPODS_VERSION_PATCH_AMap2DMap 0
+
+// AMapSearch
+#define COCOAPODS_POD_AVAILABLE_AMapSearch
+#define COCOAPODS_VERSION_MAJOR_AMapSearch 2
+#define COCOAPODS_VERSION_MINOR_AMapSearch 6
+#define COCOAPODS_VERSION_PATCH_AMapSearch 0
+
 // MBProgressHUD
 #define COCOAPODS_POD_AVAILABLE_MBProgressHUD
 #define COCOAPODS_VERSION_MAJOR_MBProgressHUD 0
@@ -65,6 +77,12 @@
 #define COCOAPODS_VERSION_MAJOR_MJRefresh 2
 #define COCOAPODS_VERSION_MINOR_MJRefresh 3
 #define COCOAPODS_VERSION_PATCH_MJRefresh 2
+
+// Masonry
+#define COCOAPODS_POD_AVAILABLE_Masonry
+#define COCOAPODS_VERSION_MAJOR_Masonry 0
+#define COCOAPODS_VERSION_MINOR_Masonry 6
+#define COCOAPODS_VERSION_PATCH_Masonry 2
 
 // SDWebImage
 #define COCOAPODS_POD_AVAILABLE_SDWebImage
@@ -88,5 +106,5 @@
 #define COCOAPODS_POD_AVAILABLE_UzysAssetsPickerController
 #define COCOAPODS_VERSION_MAJOR_UzysAssetsPickerController 0
 #define COCOAPODS_VERSION_MINOR_UzysAssetsPickerController 9
-#define COCOAPODS_VERSION_PATCH_UzysAssetsPickerController 8
+#define COCOAPODS_VERSION_PATCH_UzysAssetsPickerController 9
 

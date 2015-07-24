@@ -33,4 +33,6 @@
  *  计算当前文件\文件夹的内容大小
  */
 - (NSInteger)fileSize;
+
+- (NSString *)trimStr;
 @end

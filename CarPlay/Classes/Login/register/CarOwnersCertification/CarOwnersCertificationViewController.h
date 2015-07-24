@@ -7,6 +7,7 @@
 //
 
 #import "BaseViewController.h"
+#import "ZHPickView.h"
 
 @interface CarOwnersCertificationViewController : BaseViewController
 @property (weak, nonatomic) IBOutlet UIImageView *imageBtn;
@@ -15,5 +16,5 @@
 @property (weak, nonatomic) IBOutlet UIView *footView;
 @property (weak, nonatomic) IBOutlet UIButton *nextBtn;
 - (IBAction)nextBtnClick:(id)sender;
-
+@property(nonatomic,strong)ZHPickView *pickview;
 @end

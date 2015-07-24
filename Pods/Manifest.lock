@@ -20,6 +20,9 @@ PODS:
   - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - AMap2DMap (2.6.0)
+  - AMapSearch (2.6.0)
+  - Masonry (0.6.2)
   - MBProgressHUD (0.9.1)
   - MJExtension (2.5.2)
   - MJRefresh (2.3.2)
@@ -27,10 +30,13 @@ PODS:
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
   - SVProgressHUD (1.1.3)
-  - UzysAssetsPickerController (0.9.8)
+  - UzysAssetsPickerController (0.9.9)
 
 DEPENDENCIES:
   - AFNetworking
+  - AMap2DMap
+  - AMapSearch
+  - Masonry
   - MBProgressHUD
   - MJExtension
   - MJRefresh
@@ -40,11 +46,14 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  AMap2DMap: b5ce82581ca53b71a0136da858f7ef04db1ffc59
+  AMapSearch: 0ea3101eec4b9f500b53e33dcda30d343d41613b
+  Masonry: 362e8a1cc0beada4a4c4832d5e863da2a51533be
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MJExtension: 73e812aca0846e4a7b4d7aca34cfacf48d1f3310
   MJRefresh: 0f6f5e8387970607c26080b44058b229a23065d7
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
-  UzysAssetsPickerController: b8a21a9433f53f039085c045434b2dcb1fab7d24
+  UzysAssetsPickerController: 47c27bd96955467925f3d4d80b1e2e8aaeff766d
 
 COCOAPODS: 0.37.2
