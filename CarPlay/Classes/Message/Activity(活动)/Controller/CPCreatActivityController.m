@@ -19,8 +19,9 @@
 #import "CPLocationModel.h"
 #import "MJExtension.h"
 #import "NSDate+Extension.h"
-
+#define PickerViewHeght 256
 #define maxCount 9
+#define IntroductFont [UIFont systemFontOfSize:15]
 typedef enum {
     ActivityCreateType = 1,
     ActivityCreateStart,
@@ -48,6 +49,7 @@ typedef enum {
 @property (nonatomic, strong) CPLocationModel *selectLocation;
 @property (nonatomic, strong) CPCreatActivityModel *currentModel;
 @property (nonatomic, strong) NSMutableArray *seats;
+
 @end
 
 @implementation CPCreatActivityController
@@ -86,9 +88,9 @@ typedef enum {
         _nameLabel.numberOfLines = 0;
         _nameLabel.textColor = [Tools getColor:@"656c78"];
         _nameLabel.x = 8;
-        _nameLabel.y = 40;
+        _nameLabel.y = 42;
         _nameLabel.width = kScreenWidth - 16;
-        _nameLabel.font = [UIFont systemFontOfSize:15];
+        _nameLabel.font = IntroductFont;
         _nameLabel.tag = 222;
     }
     return _nameLabel;
@@ -133,7 +135,6 @@ typedef enum {
     
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
     [CPNotificationCenter addObserver:self selector:@selector(pickerViewCancle:) name:@"PicViewCancle" object:nil];
-    
     [self.seats addObject:@"1个"];
     [self.seats addObject:@"2个"];
     [self labelWithRow:7].text = @"人数";
@@ -142,6 +143,7 @@ typedef enum {
     self.currentModel.type = @"吃饭";
     self.currentModel.pay = @"我请客";
 }
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -167,7 +169,7 @@ typedef enum {
             
         }
     } failure:^(NSError *error) {
-        
+        [SVProgressHUD showInfoWithStatus:@"加载座位数失败"];
     }];
 }
 
@@ -380,7 +382,7 @@ typedef enum {
                 if (str.length) {
                     [self setNameCellHeightWithString:str];
                     self.nameLabel.text = str;
-                    self.nameLabel.height = [str sizeWithFont:[UIFont systemFontOfSize:15] maxW:kScreenWidth - 30].height;
+                    self.nameLabel.height = [str sizeWithFont:IntroductFont maxW:kScreenWidth - 30].height;
                     self.currentModel.introduction = str;
                     [self.tableView reloadData];
                 }else{
@@ -418,18 +420,20 @@ typedef enum {
  */
 - (void)viewUpWithCell:(CPCreatActivityCell *)cell
 {
-    CGRect covertedRect = [cell convertRect:cell.bounds toView:[UIApplication sharedApplication].keyWindow];
-    if (covertedRect.origin.y + 20 >= kScreenHeight - self.pickView.height) {
-        
-        self.currentOffset = self.tableView.contentOffset;
-        [self.tableView setContentOffset:CGPointMake(0, covertedRect.origin.y + self.tableView.contentOffset.y - (kScreenHeight - self.pickView.height - 50)) animated:YES];
-    }else{
-        if (self.tableView.contentOffset.y > -64) {
-            self.currentOffset = self.tableView.contentOffset;
-            [self.tableView setContentOffset:CGPointMake(0, covertedRect.origin.y + self.tableView.contentOffset.y - (kScreenHeight - self.pickView.height - 50)) animated:YES];
+    CGRect covertedRect = [cell convertRect:cell.bounds toView:self.tableView];
+    CGFloat cellBottom = covertedRect.origin.y + covertedRect.size.height - self.tableView.contentOffset.y;
+
+    CGFloat margin = kScreenHeight - PickerViewHeght - cellBottom;
+    
+    if (margin >= 0) { // 如果间距大于0
+        if ([self cellWithRow:0] == cell){
+            [self.tableView setContentOffset:CGPointMake(0,- 64) animated:YES];
         }else{
-            [self.tableView setContentOffset:CGPointMake(0, -64) animated:YES];
+            [self.tableView setContentOffset:CGPointMake(0,self.tableView.contentOffset.y - margin) animated:YES];
         }
+    }else{
+        self.currentOffset = self.tableView.contentOffset;
+        [self.tableView setContentOffset:CGPointMake(0,self.tableView.contentOffset.y - margin) animated:YES];
     }
 }
 
@@ -438,7 +442,7 @@ typedef enum {
  */
 - (void)setNameCellHeightWithString:(NSString *)str
 {
-    self.nameLableHeight = 60 + [str sizeWithFont:[UIFont systemFontOfSize:16] maxW:kScreenWidth - 30].height;
+    self.nameLableHeight = 60 + [str sizeWithFont:IntroductFont maxW:kScreenWidth - 30].height;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -464,7 +468,7 @@ typedef enum {
         return 0;
     }
     NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-    if ([dateStr containsString:@":"]) {
+    if ([dateStr contains:dateStr]) {
         fmt.dateFormat = @"yyyy年MM月dd日 HH:mm";
     }else{
         fmt.dateFormat = @"yyyy年MM月dd日";

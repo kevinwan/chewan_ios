@@ -295,7 +295,6 @@
 -(void)show{
     
     [[UIApplication sharedApplication].keyWindow addSubview:self];
-    
 }
 -(void)doneClick
 {

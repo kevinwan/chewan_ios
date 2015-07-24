@@ -18,11 +18,13 @@
     
     NSString *userId = [Tools getValueFromKey:@"userId"];
     if (userId.length == 0) {
-        [CPNotificationCenter postNotificationName:CPUnLogin object:nil];
+        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+        return;
     }
     NSString *token = [Tools getValueFromKey:@"token"];
     if (token.length == 0) {
-        [CPNotificationCenter postNotificationName:CPUnLogin object:nil];
+        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+        return;
     }
     NSString *userStr = [NSString stringWithFormat:@"?userId=%@&token=%@",userId, token];
     
@@ -48,11 +50,13 @@
     mgr.requestSerializer.timeoutInterval = 40;
     NSString *userId = [Tools getValueFromKey:@"userId"];
     if (userId.length == 0) {
-        [CPNotificationCenter postNotificationName:CPUnLogin object:nil];
+        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+        return;
     }
     NSString *token = [Tools getValueFromKey:@"token"];
     if (token.length == 0) {
-        [CPNotificationCenter postNotificationName:CPUnLogin object:nil];
+        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+        return;
     }
     NSString *userStr = [NSString stringWithFormat:@"?userId=%@&token=%@",userId, token];
     
@@ -78,11 +82,13 @@
     mgr.requestSerializer.timeoutInterval = 40;
     NSString *userId = [Tools getValueFromKey:@"userId"];
     if (userId.length == 0) {
-        [CPNotificationCenter postNotificationName:CPUnLogin object:nil];
+        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+        return;
     }
     NSString *token = [Tools getValueFromKey:@"token"];
     if (token.length == 0) {
-        [CPNotificationCenter postNotificationName:CPUnLogin object:nil];
+        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+        return;
     }
     NSString *userStr = [NSString stringWithFormat:@"?userId=%@&token=%@",userId, token];
     
@@ -105,11 +111,13 @@
     mgr.requestSerializer.timeoutInterval = 40;
     NSString *userId = [Tools getValueFromKey:@"userId"];
     if (userId.length == 0) {
-        [CPNotificationCenter postNotificationName:CPUnLogin object:nil];
+        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+        return;
     }
     NSString *token = [Tools getValueFromKey:@"token"];
     if (token.length == 0) {
-        [CPNotificationCenter postNotificationName:CPUnLogin object:nil];
+        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+        return;
     }
     NSString *userStr = [NSString stringWithFormat:@"?userId=%@&token=%@",userId, token];
     
