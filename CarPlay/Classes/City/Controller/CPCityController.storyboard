@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mYA-kp-d5H">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
@@ -24,7 +25,7 @@
         <!--City Controller-->
         <scene sceneID="kff-F8-eZD">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="qfX-Ru-dYa" customClass="CPCityController" sceneMemberID="viewController">
+                <viewController id="qfX-Ru-dYa" customClass="CPCityController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2Wt-3o-gjc"/>
                         <viewControllerLayoutGuide type="bottom" id="3ir-IQ-7yV"/>
@@ -471,7 +472,7 @@
     </scenes>
     <resources>
         <image name="女-1" width="32" height="14"/>
-        <image name="时间" width="12" height="12"/>
+        <image name="时间" width="13" height="13"/>
         <image name="顶部背景" width="6" height="132"/>
     </resources>
 </document>
