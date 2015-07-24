@@ -46,6 +46,18 @@
 		6B7B90921B5906CB006A506D /* CPRegisterCellsTableViewCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B7B90901B5906CB006A506D /* CPRegisterCellsTableViewCell3.m */; };
 		6B7B90931B5906CB006A506D /* CPRegisterCellsTableViewCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B7B90911B5906CB006A506D /* CPRegisterCellsTableViewCell3.xib */; };
 		6BCCEA561B5A60D5002465AC /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCCEA551B5A60D5002465AC /* NSDate+Extension.m */; };
+		6BCF66081B6208C700358190 /* CPActiveDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCF65F11B6208C700358190 /* CPActiveDetailsController.m */; };
+		6BCF66091B6208C700358190 /* CPActiveDetailsController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BCF65F21B6208C700358190 /* CPActiveDetailsController.storyboard */; };
+		6BCF660A1B6208C700358190 /* CPActiveMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCF65F51B6208C700358190 /* CPActiveMember.m */; };
+		6BCF660B1B6208C700358190 /* CPActivePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCF65F71B6208C700358190 /* CPActivePhoto.m */; };
+		6BCF660C1B6208C700358190 /* CPActiveStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCF65F91B6208C700358190 /* CPActiveStatus.m */; };
+		6BCF660D1B6208C700358190 /* CPActiveUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCF65FB1B6208C700358190 /* CPActiveUser.m */; };
+		6BCF660E1B6208C700358190 /* CPDiscussStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCF65FD1B6208C700358190 /* CPDiscussStatus.m */; };
+		6BCF660F1B6208C700358190 /* CPActiveDetailsHead.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCF66001B6208C700358190 /* CPActiveDetailsHead.m */; };
+		6BCF66101B6208C700358190 /* CPActiveDetailsHead.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BCF66011B6208C700358190 /* CPActiveDetailsHead.xib */; };
+		6BCF66111B6208C700358190 /* CPActiveIconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCF66031B6208C700358190 /* CPActiveIconCell.m */; };
+		6BCF66121B6208C700358190 /* CPActivePicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCF66051B6208C700358190 /* CPActivePicCell.m */; };
+		6BCF66131B6208C700358190 /* CPDiscussCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCF66071B6208C700358190 /* CPDiscussCell.m */; };
 		6BE190C31B5CE85500A41B3C /* CPBrandModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE190C11B5CE85500A41B3C /* CPBrandModelViewController.m */; };
 		6BE190C41B5CE85500A41B3C /* CPBrandModelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BE190C21B5CE85500A41B3C /* CPBrandModelViewController.xib */; };
 		6BE190CE1B5CF79300A41B3C /* CustomBrandCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE190C81B5CF79300A41B3C /* CustomBrandCell.m */; };
@@ -258,6 +270,28 @@
 		6B7B90911B5906CB006A506D /* CPRegisterCellsTableViewCell3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPRegisterCellsTableViewCell3.xib; sourceTree = "<group>"; };
 		6BCCEA541B5A60D5002465AC /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
 		6BCCEA551B5A60D5002465AC /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
+		6BCF65F01B6208C700358190 /* CPActiveDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActiveDetailsController.h; sourceTree = "<group>"; };
+		6BCF65F11B6208C700358190 /* CPActiveDetailsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActiveDetailsController.m; sourceTree = "<group>"; };
+		6BCF65F21B6208C700358190 /* CPActiveDetailsController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPActiveDetailsController.storyboard; sourceTree = "<group>"; };
+		6BCF65F41B6208C700358190 /* CPActiveMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActiveMember.h; sourceTree = "<group>"; };
+		6BCF65F51B6208C700358190 /* CPActiveMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActiveMember.m; sourceTree = "<group>"; };
+		6BCF65F61B6208C700358190 /* CPActivePhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivePhoto.h; sourceTree = "<group>"; };
+		6BCF65F71B6208C700358190 /* CPActivePhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivePhoto.m; sourceTree = "<group>"; };
+		6BCF65F81B6208C700358190 /* CPActiveStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActiveStatus.h; sourceTree = "<group>"; };
+		6BCF65F91B6208C700358190 /* CPActiveStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActiveStatus.m; sourceTree = "<group>"; };
+		6BCF65FA1B6208C700358190 /* CPActiveUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActiveUser.h; sourceTree = "<group>"; };
+		6BCF65FB1B6208C700358190 /* CPActiveUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActiveUser.m; sourceTree = "<group>"; };
+		6BCF65FC1B6208C700358190 /* CPDiscussStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPDiscussStatus.h; sourceTree = "<group>"; };
+		6BCF65FD1B6208C700358190 /* CPDiscussStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPDiscussStatus.m; sourceTree = "<group>"; };
+		6BCF65FF1B6208C700358190 /* CPActiveDetailsHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActiveDetailsHead.h; sourceTree = "<group>"; };
+		6BCF66001B6208C700358190 /* CPActiveDetailsHead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActiveDetailsHead.m; sourceTree = "<group>"; };
+		6BCF66011B6208C700358190 /* CPActiveDetailsHead.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPActiveDetailsHead.xib; sourceTree = "<group>"; };
+		6BCF66021B6208C700358190 /* CPActiveIconCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActiveIconCell.h; sourceTree = "<group>"; };
+		6BCF66031B6208C700358190 /* CPActiveIconCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActiveIconCell.m; sourceTree = "<group>"; };
+		6BCF66041B6208C700358190 /* CPActivePicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivePicCell.h; sourceTree = "<group>"; };
+		6BCF66051B6208C700358190 /* CPActivePicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivePicCell.m; sourceTree = "<group>"; };
+		6BCF66061B6208C700358190 /* CPDiscussCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPDiscussCell.h; sourceTree = "<group>"; };
+		6BCF66071B6208C700358190 /* CPDiscussCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPDiscussCell.m; sourceTree = "<group>"; };
 		6BE190C01B5CE85500A41B3C /* CPBrandModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPBrandModelViewController.h; sourceTree = "<group>"; };
 		6BE190C11B5CE85500A41B3C /* CPBrandModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPBrandModelViewController.m; sourceTree = "<group>"; };
 		6BE190C21B5CE85500A41B3C /* CPBrandModelViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPBrandModelViewController.xib; sourceTree = "<group>"; };
@@ -588,6 +622,7 @@
 		6B4EF1381B4036EE00292BD4 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				6BCF65EE1B6208C700358190 /* CPActiveDetails */,
 				6B5F9B571B5D29FE00F9D1E8 /* City */,
 				E3EEDFE51B53951D00595333 /* Message */,
 				6B6493911B4D04E500C197D2 /* Utils */,
@@ -831,6 +866,59 @@
 				6B5FD34E1B57C33700E34F66 /* CPEditUsernameViewController.xib */,
 			);
 			path = register;
+			sourceTree = "<group>";
+		};
+		6BCF65EE1B6208C700358190 /* CPActiveDetails */ = {
+			isa = PBXGroup;
+			children = (
+				6BCF65EF1B6208C700358190 /* Controller */,
+				6BCF65F31B6208C700358190 /* Model */,
+				6BCF65FE1B6208C700358190 /* View */,
+			);
+			path = CPActiveDetails;
+			sourceTree = "<group>";
+		};
+		6BCF65EF1B6208C700358190 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6BCF65F01B6208C700358190 /* CPActiveDetailsController.h */,
+				6BCF65F11B6208C700358190 /* CPActiveDetailsController.m */,
+				6BCF65F21B6208C700358190 /* CPActiveDetailsController.storyboard */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		6BCF65F31B6208C700358190 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6BCF65F41B6208C700358190 /* CPActiveMember.h */,
+				6BCF65F51B6208C700358190 /* CPActiveMember.m */,
+				6BCF65F61B6208C700358190 /* CPActivePhoto.h */,
+				6BCF65F71B6208C700358190 /* CPActivePhoto.m */,
+				6BCF65F81B6208C700358190 /* CPActiveStatus.h */,
+				6BCF65F91B6208C700358190 /* CPActiveStatus.m */,
+				6BCF65FA1B6208C700358190 /* CPActiveUser.h */,
+				6BCF65FB1B6208C700358190 /* CPActiveUser.m */,
+				6BCF65FC1B6208C700358190 /* CPDiscussStatus.h */,
+				6BCF65FD1B6208C700358190 /* CPDiscussStatus.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6BCF65FE1B6208C700358190 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6BCF65FF1B6208C700358190 /* CPActiveDetailsHead.h */,
+				6BCF66001B6208C700358190 /* CPActiveDetailsHead.m */,
+				6BCF66011B6208C700358190 /* CPActiveDetailsHead.xib */,
+				6BCF66021B6208C700358190 /* CPActiveIconCell.h */,
+				6BCF66031B6208C700358190 /* CPActiveIconCell.m */,
+				6BCF66041B6208C700358190 /* CPActivePicCell.h */,
+				6BCF66051B6208C700358190 /* CPActivePicCell.m */,
+				6BCF66061B6208C700358190 /* CPDiscussCell.h */,
+				6BCF66071B6208C700358190 /* CPDiscussCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		6BE190BF1B5CE84700A41B3C /* CPBrandModel */ = {
@@ -1421,6 +1509,7 @@
 				E36AFEB81B57B1E80081F499 /* CPRegisterCellsTableViewCell2.xib in Resources */,
 				E35B04221B562F79002C6655 /* TestActivity.plist in Resources */,
 				E375E4901B5516EB00DADF65 /* CarOwnersCertificationViewController.xib in Resources */,
+				6BCF66101B6208C700358190 /* CPActiveDetailsHead.xib in Resources */,
 				6B7B908E1B5906C0006A506D /* CPRegisterCellsTableViewCell1.xib in Resources */,
 				6B6493E91B4FE34D00C197D2 /* CPForgetPasswordViewController.xib in Resources */,
 				6B5FD3501B57C33700E34F66 /* CPEditUsernameViewController.xib in Resources */,
@@ -1440,6 +1529,7 @@
 				E3EEDFF41B53951D00595333 /* CPMessageController.storyboard in Resources */,
 				6BE190C41B5CE85500A41B3C /* CPBrandModelViewController.xib in Resources */,
 				6B6493F41B539A6700C197D2 /* CPNewPassWordViewController.xib in Resources */,
+				6BCF66091B6208C700358190 /* CPActiveDetailsController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1497,6 +1587,7 @@
 				E3CE35961B59E7FC008434B5 /* XLFormPickerCell.m in Sources */,
 				E3CE37221B5A3F00008434B5 /* CPActivityIntroduceController.m in Sources */,
 				E375E4931B55171500DADF65 /* CarOwnersCertificationViewController.h in Sources */,
+				6BCF66121B6208C700358190 /* CPActivePicCell.m in Sources */,
 				E375E4941B55171500DADF65 /* serviceTermsViewController.h in Sources */,
 				E3CE359A1B59E7FC008434B5 /* XLFormStepCounterCell.m in Sources */,
 				E3C6114F1B5F498600B7E73A /* CPLocationModel.m in Sources */,
@@ -1506,6 +1597,7 @@
 				E35B04791B568761002C6655 /* CPMoreButton.m in Sources */,
 				6BE190C31B5CE85500A41B3C /* CPBrandModelViewController.m in Sources */,
 				E30BD5891B54EC4A00FD9030 /* CPMySubscribeFrameModel.m in Sources */,
+				6BCF660A1B6208C700358190 /* CPActiveMember.m in Sources */,
 				E3E1DC031B5CBF8E00386B18 /* CPMapViewController.m in Sources */,
 				E3E1DC001B5CA87C00386B18 /* CPReturnValueControllerView.m in Sources */,
 				E35B04281B5645BC002C6655 /* HMStatusPhotoView.m in Sources */,
@@ -1524,6 +1616,8 @@
 				6B5FD34F1B57C33700E34F66 /* CPEditUsernameViewController.m in Sources */,
 				6B5F9B711B5D29FE00F9D1E8 /* CPHomeUser.m in Sources */,
 				E3CE35B11B59E7FC008434B5 /* XLForm.m in Sources */,
+				6BCF66111B6208C700358190 /* CPActiveIconCell.m in Sources */,
+				6BCF660B1B6208C700358190 /* CPActivePhoto.m in Sources */,
 				E3EEDFF71B53951D00595333 /* CPBadgeView.m in Sources */,
 				6B5F9B6C1B5D29FE00F9D1E8 /* CPCityController.m in Sources */,
 				E375E4911B5516EB00DADF65 /* serviceTermsViewController.m in Sources */,
@@ -1537,10 +1631,13 @@
 				E3EEDFF51B53951D00595333 /* CPNewMessageController.m in Sources */,
 				E3CE37251B5A4085008434B5 /* CPActivityNameController.m in Sources */,
 				E30BD58F1B54ECCC00FD9030 /* CPMySubscribeBottomView.m in Sources */,
+				6BCF66081B6208C700358190 /* CPActiveDetailsController.m in Sources */,
 				6B5F9B731B5D29FE00F9D1E8 /* CPHomePicCell.m in Sources */,
+				6BCF660C1B6208C700358190 /* CPActiveStatus.m in Sources */,
 				E35B046E1B565532002C6655 /* MJPhotoBrowser.m in Sources */,
 				E36AFE631B579ECD0081F499 /* ZHAppDelegate.m in Sources */,
 				6B6493941B4D04E500C197D2 /* Tools.m in Sources */,
+				6BCF660D1B6208C700358190 /* CPActiveUser.m in Sources */,
 				6B64938C1B4D04BE00C197D2 /* BaseViewController.m in Sources */,
 				6B6493FE1B54E61900C197D2 /* CPRegisterStep2ViewController.m in Sources */,
 				E35E6FD01B54B0EC001212D6 /* CPMyPublishFrameModel.m in Sources */,
@@ -1556,12 +1653,14 @@
 				6B5F9B741B5D29FE00F9D1E8 /* CPHomeStatusCell.m in Sources */,
 				E3CE359E1B59E7FC008434B5 /* XLFormOptionsObject.m in Sources */,
 				E30BD57E1B54EBEB00FD9030 /* CPMySubscribeController.m in Sources */,
+				6BCF660F1B6208C700358190 /* CPActiveDetailsHead.m in Sources */,
 				E3CE35911B59E7FC008434B5 /* XLFormCheckCell.m in Sources */,
 				E36C962D1B53CA2300D3EDBB /* CPSubscribeCell.m in Sources */,
 				E35B04731B565532002C6655 /* SDWebImageManager+MJ.m in Sources */,
 				E35E6FC71B54AFB8001212D6 /* CPMyPublishController.m in Sources */,
 				E36C962A1B53C80900D3EDBB /* CPCancleSubBtn.m in Sources */,
 				E3CE35991B59E7FC008434B5 /* XLFormSliderCell.m in Sources */,
+				6BCF660E1B6208C700358190 /* CPDiscussStatus.m in Sources */,
 				E30BD5901B54ECCC00FD9030 /* CPMySubscribeCell.m in Sources */,
 				E3CE35AD1B59E7FC008434B5 /* XLFormTextView.m in Sources */,
 				6B7B90921B5906CB006A506D /* CPRegisterCellsTableViewCell3.m in Sources */,
@@ -1623,6 +1722,7 @@
 				6BE190CF1B5CF79300A41B3C /* CustomSectionView.m in Sources */,
 				6B6493D91B4FABC900C197D2 /* CPNetworkVO.m in Sources */,
 				6BCCEA561B5A60D5002465AC /* NSDate+Extension.m in Sources */,
+				6BCF66131B6208C700358190 /* CPDiscussCell.m in Sources */,
 				6B7B908D1B5906C0006A506D /* CPRegisterCellsTableViewCell1.m in Sources */,
 				E3EEDFF31B53951D00595333 /* CPMessageController.m in Sources */,
 				E3CE35A61B59E7FC008434B5 /* NSObject+XLFormAdditions.m in Sources */,

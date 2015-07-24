@@ -61,10 +61,10 @@
 // 地点
 @property (weak, nonatomic) IBOutlet UILabel *loction;
 
-// 配图容器的高度
+// 配图容器的高度约束
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *pictureViewHeight;
 
-// 配图容器的宽度
+// 配图容器的宽度约束
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *pictureViewWidth;
 
 // 车标到头像距离
@@ -134,12 +134,11 @@
     
     // 车标
     if (user.carBrandLogo == nil || [user.carBrandLogo isEqualToString:@""]) {
-        //
         self.carBrandLogo.hidden = YES;
     }else{
         self.carBrandLogo.hidden = NO;
         NSURL *urlCarBrandLogo = [NSURL URLWithString:user.carBrandLogo];
-        [self.carBrandLogo sd_setImageWithURL:urlCarBrandLogo placeholderImage:[UIImage imageNamed:@""]];
+        [self.carBrandLogo sd_setImageWithURL:urlCarBrandLogo placeholderImage:[UIImage imageNamed:@"默认头像"]];
         
     }
     
