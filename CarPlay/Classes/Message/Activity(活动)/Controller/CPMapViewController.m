@@ -162,6 +162,7 @@
     [self.view addSubview:btn];
     
     UITableView *tableView = [[UITableView alloc] init];
+    tableView.rowHeight = 50;
     tableView.hidden = YES;
     tableView.delegate = self;
     tableView.dataSource = self;
@@ -535,27 +536,6 @@
     
     self.searchBar.placeholder = tip.name;
 }
-
-
-
-//- (NSString *)title
-//{
-//    /* 包含 省, 市, 区以及乡镇.  */
-//    return [NSString stringWithFormat:@"%@%@%@%@",
-//            self.reGeocode.addressComponent.province,
-//            self.reGeocode.addressComponent.city,
-//            self.reGeocode.addressComponent.district,
-//            self.reGeocode.addressComponent.township];
-//    
-//}
-//
-//- (NSString *)subtitle
-//{
-//    /* 包含 社区，建筑. */
-//    return [NSString stringWithFormat:@"%@%@",
-//            self.reGeocode.addressComponent.neighborhood,
-//            self.reGeocode.addressComponent.building];
-//}
 
 - (void)setDescViewWithModel:(AMapReGeocode *)reGeocode
 {

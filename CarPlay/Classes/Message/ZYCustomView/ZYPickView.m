@@ -136,7 +136,7 @@
 -(void)setUpPickView{
     
     UIPickerView *pickView=[[UIPickerView alloc] init];
-    pickView.backgroundColor=[UIColor lightGrayColor];
+    pickView.backgroundColor=[UIColor whiteColor];
     _pickerView=pickView;
     pickView.delegate=self;
     pickView.dataSource=self;
@@ -150,7 +150,8 @@
     datePicker.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
     datePicker.minimumDate = [NSDate date];
     datePicker.datePickerMode = datePickerMode;
-    datePicker.backgroundColor=[UIColor lightGrayColor];
+    datePicker.backgroundColor=[UIColor whiteColor];
+    datePicker.tintColor = [UIColor blackColor];
     if (_defaulDate) {
         [datePicker setDate:_defaulDate];
     }
