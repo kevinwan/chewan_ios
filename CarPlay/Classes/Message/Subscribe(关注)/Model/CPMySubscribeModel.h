@@ -71,4 +71,11 @@
 
 @property (nonatomic, copy) NSString *headImgUrl;
 
+@property (nonatomic, copy) NSArray *albumPhotos;
+
+@property (nonatomic, assign) NSInteger postNumber;
+
+@property (nonatomic, assign) NSInteger subscribeNumber;
+
+@property (nonatomic, assign) NSInteger joinNumber;
 @end

@@ -24,5 +24,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *myPayAttentionToCountLable;
 @property (weak, nonatomic) IBOutlet UILabel *myParticipateInCountLable;
 @property (nonatomic, strong) CPOrganizer *organizer;
--(id)initWithOrganizer:(CPOrganizer *)organizer;
++ (instancetype)create;
+-(id)assignmentWithCPOrganizer:(CPOrganizer *)organizer;
 @end
