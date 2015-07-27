@@ -15,7 +15,7 @@
 #import <UzysAssetsPickerController/UzysWrapperPickerController.h>
 #import "UzysAssetsPickerController.h"
 #import "CPEditImageView.h"
-
+#define PickerViewHeght 256
 #define maxCount 9
 typedef enum {
     ActivityCreateType = 1,
@@ -317,24 +317,29 @@ typedef enum {
     
 }
 
+/**
+ *  自动调整cell的位置
+ *
+ *  @param cell cell description
+ */
 - (void)viewUpWithCell:(CPCreatActivityCell *)cell
 {
-    CGRect covertedRect = [cell convertRect:cell.bounds toView:[UIApplication sharedApplication].keyWindow];
-    if (covertedRect.origin.y + 20 >= kScreenHeight - self.pickView.height) {
-        
-        self.currentOffset = self.tableView.contentOffset;
-        [self.tableView setContentOffset:CGPointMake(0, covertedRect.origin.y + self.tableView.contentOffset.y - (kScreenHeight - self.pickView.height - 50)) animated:YES];
-    }else{
-        if (self.tableView.contentOffset.y > -64) {
-            
-            self.currentOffset = self.tableView.contentOffset;
-            [self.tableView setContentOffset:CGPointMake(0, covertedRect.origin.y + self.tableView.contentOffset.y - (kScreenHeight - self.pickView.height - 50)) animated:YES];
+    CGRect covertedRect = [cell convertRect:cell.bounds toView:self.tableView];
+    CGFloat cellBottom = covertedRect.origin.y + covertedRect.size.height - self.tableView.contentOffset.y;
+    
+    CGFloat margin = kScreenHeight - PickerViewHeght - cellBottom;
+    
+    if (margin >= 0) { // 如果间距大于0
+        if ([self cellWithRow:0] == cell){
+            [self.tableView setContentOffset:CGPointMake(0,- 64) animated:YES];
         }else{
-            [self.tableView setContentOffset:CGPointMake(0, -64) animated:YES];
+            [self.tableView setContentOffset:CGPointMake(0,self.tableView.contentOffset.y - margin) animated:YES];
         }
+    }else{
+        self.currentOffset = self.tableView.contentOffset;
+        [self.tableView setContentOffset:CGPointMake(0,self.tableView.contentOffset.y - margin) animated:YES];
     }
 }
-
 /**
  *  根据文字计算cell的高度
  */

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPActivityApplyControllerView : UITableViewController
+@interface CPActivityApplyControllerView : ZYTableViewController
 
 @end

@@ -31,6 +31,8 @@
 #import "SVProgressHUD.h"
 #import "NSString+Extension.h"
 #import <Masonry.h>
+#import "ZYTableViewController.h"
+#import <MJExtension/MJExtension.h>
 // 通知中心
 #define CPNotificationCenter [NSNotificationCenter defaultCenter]
 // 偏好设置
@@ -46,6 +48,7 @@
 #define iphone6p ([UIScreen mainScreen].bounds.size.height == 736.0)
 #define GaoDeAppKey @"22417b81c02ba1342b64fc4f6db170a5" //高德地图的Key
 
+
 #ifdef DEBUG // 处于开发阶段
 
 #define SQLog(...) NSLog(@"%s %d \n %@ \n\n",__func__,__LINE__,[NSString stringWithFormat:__VA_ARGS__])
@@ -54,5 +57,8 @@
 
 #define SQLog(...)
 #endif
+
+
+#import <MJExtension/MJExtension.h>
 
 #endif

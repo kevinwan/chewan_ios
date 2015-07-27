@@ -118,6 +118,7 @@
     [btn setTitleColor:[Tools getColor:@"656d78"] forState:UIControlStateNormal];
     [btn setImage:[UIImage imageNamed:icon] forState:UIControlStateNormal];
     btn.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    btn.titleLabel.textAlignment = NSTextAlignmentLeft;
     return btn;
 }
 
@@ -129,12 +130,16 @@
     CGFloat topViewH = self.height * 0.4;
     self.topView.frame = CGRectMake(0, 0, self.height, topViewH);
     
-    CGFloat btnW = self.width / 3;
+    CGFloat btnW = self.width / 3.0;
     CGFloat btnH = topViewH;
     NSUInteger count = self.topView.subviews.count;
     for (int i = 0; i < count; i ++) {
         UIButton *btn = self.topView.subviews[i];
         CGFloat btnX = i * btnW;
+        if (i == 1) {
+            btnX -= 8;
+            btnW += 8;
+        }
         CGFloat btnY = 0;
         btn.frame = CGRectMake(btnX, btnY, btnW, btnH);
     }

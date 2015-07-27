@@ -1,17 +1,17 @@
 //
-//  CPMySubscribeController.h
+//  CPMyJoinController.h
 //  CarPlay
 //
-//  Created by chewan on 15/7/14.
+//  Created by chewan on 15/7/27.
 //  Copyright (c) 2015年 gongpingjia. All rights reserved.
-//  我(他)的关注
+//
 
 #import <UIKit/UIKit.h>
 
-@interface CPMySubscribeController : UITableViewController
+@interface CPMyJoinController : UITableViewController
 
 /**
- *  他的userid
+ *  被访问者的userid
  */
 @property (nonatomic, copy) NSString *hisUserId;
 

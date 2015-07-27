@@ -20,15 +20,23 @@
 #import "MJExtension.h"
 #import "NSDate+Extension.h"
 #import "UMSocial.h"
+#import "UMSocialData.h"
 
+#define PickerViewHeght 256
 #define maxCount 9
+#define IntroductFont [UIFont systemFontOfSize:15]
 typedef enum {
     ActivityCreateType = 1,
     ActivityCreateStart,
     ActivityCreateEnd,
     ActivityCreatePay,
     ActivityCreateSeat
-}ActivityCreate;
+}ActivityCreate; // 创建活动属性的类型
+
+typedef enum {
+    CreateActivityNone = 20,
+    CreateActivityShare
+}CreateActivityType; //创建完活动之后的操作
 
 @interface CPCreatActivityController ()<ZYPickViewDelegate, UIActionSheetDelegate,UIImagePickerControllerDelegate, UzysAssetsPickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate>
 @property (nonatomic, assign) BOOL isOpen;
@@ -49,6 +57,7 @@ typedef enum {
 @property (nonatomic, strong) CPLocationModel *selectLocation;
 @property (nonatomic, strong) CPCreatActivityModel *currentModel;
 @property (nonatomic, strong) NSMutableArray *seats;
+
 @end
 
 @implementation CPCreatActivityController
@@ -87,9 +96,9 @@ typedef enum {
         _nameLabel.numberOfLines = 0;
         _nameLabel.textColor = [Tools getColor:@"656c78"];
         _nameLabel.x = 8;
-        _nameLabel.y = 40;
+        _nameLabel.y = 42;
         _nameLabel.width = kScreenWidth - 16;
-        _nameLabel.font = [UIFont systemFontOfSize:15];
+        _nameLabel.font = IntroductFont;
         _nameLabel.tag = 222;
     }
     return _nameLabel;
@@ -134,7 +143,6 @@ typedef enum {
     
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
     [CPNotificationCenter addObserver:self selector:@selector(pickerViewCancle:) name:@"PicViewCancle" object:nil];
-    
     [self.seats addObject:@"1个"];
     [self.seats addObject:@"2个"];
     [self labelWithRow:7].text = @"人数";
@@ -143,6 +151,7 @@ typedef enum {
     self.currentModel.type = @"吃饭";
     self.currentModel.pay = @"我请客";
 }
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -168,7 +177,7 @@ typedef enum {
             
         }
     } failure:^(NSError *error) {
-        
+        [SVProgressHUD showInfoWithStatus:@"加载座位数失败"];
     }];
 }
 
@@ -176,10 +185,12 @@ typedef enum {
 {
     if ([result[@"isAuthenticated"] intValue] == 1) {
         [self labelWithRow:7].text = @"座位数";
+        [self.seats removeAllObjects];
         for(int i = [result[@"minValue"] intValue]; i < [result[@"maxValue"] intValue]; i++){
             [self.seats addObject:[NSString stringWithFormat:@"%zd个",i]];
         }
     }else{
+        [self.seats removeAllObjects];
         [self.seats addObject:@"1个"];
         [self.seats addObject:@"2个"];
         [self labelWithRow:7].text = @"邀请人数";
@@ -205,30 +216,29 @@ typedef enum {
 - (void)setUpCellOperation
 {
     self.photoViewHeight = self.photoWH + 20;
-    
+    __weak typeof(self) weakSelf = self;
     // 设置活动类型
     CPCreatActivityCell *activityTypeCell = [self cellWithRow:0];
     activityTypeCell.operation = ^{
         
-        if (_pickView.tag == ActivityCreateType && _pickView != nil){
-            [_pickView remove];
-            [self closeArrowWithRow:0];
-            _pickView = nil;
+        if (weakSelf.pickView.tag == ActivityCreateType && weakSelf.pickView != nil){
+            [weakSelf.pickView remove];
+            [weakSelf closeArrowWithRow:0];
+            weakSelf.pickView = nil;
         }else{
             
-            [_pickView removeFromSuperview];
-            _pickView=[[ZYPickView alloc] initPickviewWithArray:self.activivtyDatas isHaveNavControler:NO];
-            [_pickView  setBackgroundColor:[UIColor whiteColor]];
-            _pickView.tag = ActivityCreateType;
-            _pickView.row = 0;
-            _pickView.delegate = self;
-            [_pickView show];
+            [weakSelf.pickView removeFromSuperview];
+            weakSelf.pickView = [[ZYPickView alloc] initPickviewWithArray:weakSelf.activivtyDatas isHaveNavControler:NO];
+            [weakSelf.pickView  setBackgroundColor:[UIColor whiteColor]];
+            weakSelf.pickView.tag = ActivityCreateType;
+            weakSelf.pickView.row = 0;
+            weakSelf.pickView.delegate = weakSelf;
+            [weakSelf.pickView show];
         }
     };
-    
-    // 设置活动名称
+      // 设置活动名称
     CPCreatActivityCell *activityNameCell = [self cellWithRow:1];
-    [activityNameCell.contentView addSubview:self.nameLabel];
+    [activityNameCell.contentView addSubview:weakSelf.nameLabel];
     
     activityNameCell.destClass = [CPActivityNameController class];
     
@@ -254,35 +264,34 @@ typedef enum {
     CPCreatActivityCell *activityStartCell = [self cellWithRow:4];
     activityStartCell.operation = ^{
         
-        if (_pickView.tag == ActivityCreateStart && _pickView != nil){
-            [_pickView remove];
-            [self closeArrowWithRow:4];
-            _pickView = nil;
+        if (weakSelf.pickView.tag == ActivityCreateStart && weakSelf.pickView != nil){
+            [weakSelf.pickView remove];
+            [weakSelf closeArrowWithRow:4];
+            weakSelf.pickView = nil;
         }else{
             
-            [_pickView removeFromSuperview];
-            _pickView  = [[ZYPickView alloc] initDatePickWithDate:[NSDate date] datePickerMode:UIDatePickerModeDateAndTime isHaveNavControler:NO];
-            _pickView.tag = ActivityCreateStart;
-            _pickView.row = 4;
-            _pickView.delegate = self;
-            [_pickView show];
+            [weakSelf.pickView removeFromSuperview];
+            weakSelf.pickView  = [[ZYPickView alloc] initDatePickWithDate:[NSDate date] datePickerMode:UIDatePickerModeDateAndTime isHaveNavControler:NO];
+            weakSelf.pickView.tag = ActivityCreateStart;
+            weakSelf.pickView.row = 4;
+            weakSelf.pickView.delegate = weakSelf;
+            [weakSelf.pickView show];
         }
     };
     
-    
     CPCreatActivityCell *activityEndCell = [self cellWithRow:5];
     activityEndCell.operation = ^{
-        if (_pickView.tag == ActivityCreateEnd && _pickView != nil){
-            [_pickView remove];
-            [self closeArrowWithRow:5];
-            _pickView = nil;
+        if (weakSelf.pickView.tag == ActivityCreateEnd && weakSelf.pickView != nil){
+            [weakSelf.pickView remove];
+            [weakSelf closeArrowWithRow:5];
+            weakSelf.pickView = nil;
         }else{
-            [_pickView removeFromSuperview];
-            _pickView  = [[ZYPickView alloc] initDatePickWithDate:[NSDate date] datePickerMode:UIDatePickerModeDate isHaveNavControler:NO];
-            _pickView.tag = ActivityCreateEnd;
-            _pickView.row = 5;
-            _pickView.delegate = self;
-            [_pickView show];
+            [weakSelf.pickView removeFromSuperview];
+            weakSelf.pickView  = [[ZYPickView alloc] initDatePickWithDate:[NSDate date] datePickerMode:UIDatePickerModeDate isHaveNavControler:NO];
+            weakSelf.pickView.tag = ActivityCreateEnd;
+            weakSelf.pickView.row = 5;
+            weakSelf.pickView.delegate = weakSelf;
+            [weakSelf.pickView show];
         }
     };
     
@@ -290,18 +299,18 @@ typedef enum {
     CPCreatActivityCell *activityPayCell = [self cellWithRow:6];
     activityPayCell.operation = ^{
         
-        if (_pickView.tag == ActivityCreatePay && _pickView != nil){
-            [_pickView remove];
-            [self closeArrowWithRow:6];
-            _pickView = nil;
+        if (weakSelf.pickView.tag == ActivityCreatePay && weakSelf.pickView != nil){
+            [weakSelf.pickView remove];
+            [weakSelf closeArrowWithRow:6];
+            weakSelf.pickView = nil;
         }else{
             
-            [_pickView removeFromSuperview];
-            _pickView=[[ZYPickView alloc] initPickviewWithArray:@[@"我请客", @"AA制", @"其他" ] isHaveNavControler:NO];
-            _pickView.tag = ActivityCreatePay;
-            _pickView.row = 6;
-            _pickView.delegate = self;
-            [_pickView show];
+            [weakSelf.pickView removeFromSuperview];
+            weakSelf.pickView=[[ZYPickView alloc] initPickviewWithArray:@[@"我请客", @"AA制", @"其他" ] isHaveNavControler:NO];
+            weakSelf.pickView.tag = ActivityCreatePay;
+            weakSelf.pickView.row = 6;
+            weakSelf.pickView.delegate = weakSelf;
+            [weakSelf.pickView show];
         }
     };
     
@@ -309,18 +318,18 @@ typedef enum {
     CPCreatActivityCell *activitySeatCell = [self cellWithRow:7];
     activitySeatCell.operation = ^{
         
-        if (_pickView.tag == ActivityCreateSeat && _pickView != nil){
-            [_pickView remove];
-            [self closeArrowWithRow:7];
-            _pickView = nil;
+        if (weakSelf.pickView.tag == ActivityCreateSeat && weakSelf.pickView != nil){
+            [weakSelf.pickView remove];
+            [weakSelf closeArrowWithRow:7];
+            weakSelf.pickView = nil;
         }else{
             
-            [_pickView removeFromSuperview];
-            _pickView=[[ZYPickView alloc] initPickviewWithArray:self.seats isHaveNavControler:NO];
-            _pickView.tag = ActivityCreateSeat;
-            _pickView.row = 7;
-            _pickView.delegate = self;
-            [_pickView show];
+            [weakSelf.pickView removeFromSuperview];
+            weakSelf.pickView=[[ZYPickView alloc] initPickviewWithArray:weakSelf.seats isHaveNavControler:NO];
+            weakSelf.pickView.tag = ActivityCreateSeat;
+            weakSelf.pickView.row = 7;
+            weakSelf.pickView.delegate = weakSelf;
+            [weakSelf.pickView show];
         }
     };
     
@@ -381,7 +390,7 @@ typedef enum {
                 if (str.length) {
                     [self setNameCellHeightWithString:str];
                     self.nameLabel.text = str;
-                    self.nameLabel.height = [str sizeWithFont:[UIFont systemFontOfSize:15] maxW:kScreenWidth - 30].height;
+                    self.nameLabel.height = [str sizeWithFont:IntroductFont maxW:kScreenWidth - 30].height;
                     self.currentModel.introduction = str;
                     [self.tableView reloadData];
                 }else{
@@ -419,18 +428,20 @@ typedef enum {
  */
 - (void)viewUpWithCell:(CPCreatActivityCell *)cell
 {
-    CGRect covertedRect = [cell convertRect:cell.bounds toView:[UIApplication sharedApplication].keyWindow];
-    if (covertedRect.origin.y + 20 >= kScreenHeight - self.pickView.height) {
-        
-        self.currentOffset = self.tableView.contentOffset;
-        [self.tableView setContentOffset:CGPointMake(0, covertedRect.origin.y + self.tableView.contentOffset.y - (kScreenHeight - self.pickView.height - 50)) animated:YES];
-    }else{
-        if (self.tableView.contentOffset.y > -64) {
-            self.currentOffset = self.tableView.contentOffset;
-            [self.tableView setContentOffset:CGPointMake(0, covertedRect.origin.y + self.tableView.contentOffset.y - (kScreenHeight - self.pickView.height - 50)) animated:YES];
+    CGRect covertedRect = [cell convertRect:cell.bounds toView:self.tableView];
+    CGFloat cellBottom = covertedRect.origin.y + covertedRect.size.height - self.tableView.contentOffset.y;
+
+    CGFloat margin = kScreenHeight - PickerViewHeght - cellBottom;
+    
+    if (margin >= 0) { // 如果间距大于0
+        if ([self cellWithRow:0] == cell){
+            [self.tableView setContentOffset:CGPointMake(0,-66) animated:YES];
         }else{
-            [self.tableView setContentOffset:CGPointMake(0, -64) animated:YES];
+            [self.tableView setContentOffset:CGPointMake(0,self.tableView.contentOffset.y - margin) animated:YES];
         }
+    }else{
+        self.currentOffset = self.tableView.contentOffset;
+        [self.tableView setContentOffset:CGPointMake(0,self.tableView.contentOffset.y - margin) animated:YES];
     }
 }
 
@@ -439,7 +450,7 @@ typedef enum {
  */
 - (void)setNameCellHeightWithString:(NSString *)str
 {
-    self.nameLableHeight = 60 + [str sizeWithFont:[UIFont systemFontOfSize:16] maxW:kScreenWidth - 30].height;
+    self.nameLableHeight = 60 + [str sizeWithFont:IntroductFont maxW:kScreenWidth - 30].height;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -465,7 +476,7 @@ typedef enum {
         return 0;
     }
     NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-    if ([dateStr containsString:@":"]) {
+    if ([dateStr contains:dateStr]) {
         fmt.dateFormat = @"yyyy年MM月dd日 HH:mm";
     }else{
         fmt.dateFormat = @"yyyy年MM月dd日";
@@ -517,6 +528,7 @@ typedef enum {
 - (void)dealloc
 {
     [CPNotificationCenter removeObserver:self];
+    DLog(@"创建活动控制器销毁了...");
 }
 
 /**
@@ -788,6 +800,7 @@ typedef enum {
         [self cancleEditPhotoSelect];
     }
     
+    // 去除pickerView
     if (self.pickView) {
         [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:self.lastRow inSection:0]];
     }
@@ -797,7 +810,7 @@ typedef enum {
 /**
  *  点击完成按钮
  */
-- (IBAction)finishBtnClick {
+- (IBAction)finishBtnClick:(UIButton *)button {
     
     if (self.currentModel.introduction.length == 0) {
         [SVProgressHUD showInfoWithStatus:@"活动介绍不能为空"];
@@ -850,7 +863,7 @@ typedef enum {
                     
                     // 图片上传完成
                     if (photoIds.count == photoCount) {
-                        [self uploadCreatActivtyInfoWithPicId:photoIds];
+                        [self uploadCreatActivtyInfoWithPicId:photoIds button:button];
                     }
                 }
                 
@@ -866,15 +879,30 @@ typedef enum {
 /**
  *  上传创建活动的信息
  */
-- (void)uploadCreatActivtyInfoWithPicId:(NSArray *)picIds
+- (void)uploadCreatActivtyInfoWithPicId:(NSArray *)picIds button:(UIButton *)button
 {
     self.currentModel.cover = picIds;
   
     NSDictionary *params = [self.currentModel keyValues];
     DLog(@"%@",params);
     [CPNetWorkTool postJsonWithUrl:@"v1/activity/register" params:params success:^(id responseObject) {
-        [SVProgressHUD showSuccessWithStatus:@"创建成功"];
         DLog(@"%@....",responseObject);
+        
+        if (CPSuccess){
+            [SVProgressHUD showSuccessWithStatus:@"创建成功"];
+            
+            if (button.tag == CreateActivityNone) {
+                // 跳转到活动详情界面
+                
+                
+            }else if (button.tag == CreateActivityShare){
+                // 分享给好友
+                [self shareToFriendWithDict:responseObject[@"data"]];
+            }
+        }else{
+            [SVProgressHUD dismiss];
+            [SVProgressHUD showWithStatus:@"创建失败"];
+        }
     } failed:^(NSError *error) {
         [SVProgressHUD dismiss];
         [SVProgressHUD showWithStatus:@"创建失败"];
@@ -882,12 +910,16 @@ typedef enum {
 }
 
 /**
- *  点击
+ *  根据创建活动成功返回的数据分享给好友
+ *
+ *  @param data 成功后返回的数据
  */
-- (IBAction)finishToFriends
+- (void)shareToFriendWithDict:(NSDictionary *)data
 {
-    [self finishBtnClick];
-    [UMSocialSnsService presentSnsIconSheetView:self appKey:nil shareText:@"come" shareImage:nil shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,UMShareToSms, nil] delegate:nil];
+    [self finishBtnClick:nil];
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = data[@"shareUrl"];
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = data[@"shareUrl"];
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:nil shareText:data[@"shareTitle"] shareImage:nil shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,UMShareToSms, nil] delegate:nil];
 }
 
 @end
