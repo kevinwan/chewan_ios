@@ -80,7 +80,7 @@
 
 - (NSString *)seatStr
 {
-    return [NSString stringWithFormat:@"%zd/%zd",_availableSeat, _totalSeat];
+    return [NSString stringWithFormat:@"%zd/%zd",_holdingSeat, _totalSeat];
 }
 
 @end

@@ -29,7 +29,7 @@
     UINavigationBar *bar = [UINavigationBar appearance];
     NSMutableDictionary *textAttr = [NSMutableDictionary dictionary];
     textAttr[NSForegroundColorAttributeName] = [UIColor whiteColor];
-    textAttr[NSFontAttributeName] = [UIFont boldSystemFontOfSize:20];
+    textAttr[NSFontAttributeName] = [UIFont boldSystemFontOfSize:18];
     [bar setTitleTextAttributes:textAttr];
 }
 

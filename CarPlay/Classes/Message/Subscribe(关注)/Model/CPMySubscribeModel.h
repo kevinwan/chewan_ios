@@ -40,7 +40,7 @@
 // 发布时间的str
 @property (nonatomic, copy) NSString *publishTimeStr;
 
-@property (nonatomic, assign) NSInteger availableSeat;
+@property (nonatomic, assign) NSInteger holdingSeat;
 
 @property (nonatomic, strong) CPOrganizer *organizer;
 
@@ -67,6 +67,7 @@
 
 @property (nonatomic, assign) BOOL isMan;
 
+@property (nonatomic, copy) NSString *userId;
 @property (nonatomic, copy) NSString *backGroudImgUrl;
 
 @property (nonatomic, copy) NSString *headImgUrl;

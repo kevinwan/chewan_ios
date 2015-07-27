@@ -14,6 +14,8 @@
 #import "CPMyPublishController.h"
 #import "CPCreatActivityController.h"
 #import "CPEditActivityController.h"
+#import "CPMySubscribeController.h"
+#import "CPMyJoinController.h"
 
 @interface CPNewMessageController ()
 @end
@@ -57,10 +59,13 @@
 {
 //    CPMyPublishController *vc = [[CPMyPublishController alloc] init];
 //    [self.navigationController pushViewController:vc animated:YES];
-    CPCreatActivityController *vc = [UIStoryboard storyboardWithName:@"CPCreatActivityController" bundle:nil].instantiateInitialViewController;
-    [self.navigationController pushViewController:vc animated:YES];
+//    CPCreatActivityController *vc = [UIStoryboard storyboardWithName:@"CPCreatActivityController" bundle:nil].instantiateInitialViewController;
+//    [self.navigationController pushViewController:vc animated:YES];
 //    CPEditActivityController *vc = [UIStoryboard storyboardWithName:@"CPEditActivityController" bundle:nil].instantiateInitialViewController;
 //        [self.navigationController pushViewController:vc animated:YES];
+    CPMySubscribeController *vc = [[CPMySubscribeController alloc] init];
+    vc.hisUserId = [Tools getValueFromKey:@"userId"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end
