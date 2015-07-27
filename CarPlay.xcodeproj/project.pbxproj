@@ -57,7 +57,6 @@
 		E34065ED1B65D6A2008BB3EB /* CPMyJoinController.m in Sources */ = {isa = PBXBuildFile; fileRef = E34065EC1B65D6A2008BB3EB /* CPMyJoinController.m */; };
 		E34779691B5FAB0F00D91D4A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E34779681B5FAB0F00D91D4A /* MapKit.framework */; };
 		E35559A51B53A0CE00B200D0 /* CPSexView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35559A41B53A0CE00B200D0 /* CPSexView.m */; };
-		E35B04221B562F79002C6655 /* TestActivity.plist in Resources */ = {isa = PBXBuildFile; fileRef = E35B04211B562F79002C6655 /* TestActivity.plist */; };
 		E35B04271B5645BC002C6655 /* HMStatusPhotosView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35B04241B5645BC002C6655 /* HMStatusPhotosView.m */; };
 		E35B04281B5645BC002C6655 /* HMStatusPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35B04261B5645BC002C6655 /* HMStatusPhotoView.m */; };
 		E35B042B1B56460C002C6655 /* HMPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = E35B042A1B56460C002C6655 /* HMPhoto.m */; };
@@ -300,7 +299,6 @@
 		E34779681B5FAB0F00D91D4A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E35559A31B53A0CE00B200D0 /* CPSexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSexView.h; sourceTree = "<group>"; };
 		E35559A41B53A0CE00B200D0 /* CPSexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSexView.m; sourceTree = "<group>"; };
-		E35B04211B562F79002C6655 /* TestActivity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestActivity.plist; sourceTree = "<group>"; };
 		E35B04231B5645BC002C6655 /* HMStatusPhotosView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMStatusPhotosView.h; sourceTree = "<group>"; };
 		E35B04241B5645BC002C6655 /* HMStatusPhotosView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMStatusPhotosView.m; sourceTree = "<group>"; };
 		E35B04251B5645BC002C6655 /* HMStatusPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMStatusPhotoView.h; sourceTree = "<group>"; };
@@ -617,7 +615,6 @@
 				6B4959DA1B33A23900DB63EA /* LaunchScreen.xib */,
 				6B4959CC1B33A23900DB63EA /* Info.plist */,
 				6B4EF1651B4037DB00292BD4 /* CP_Prefix.pch */,
-				E35B04211B562F79002C6655 /* TestActivity.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1545,7 +1542,6 @@
 				E372D8351B6216C100B4FC5C /* CPBrandModelViewController.xib in Resources */,
 				E372D8461B6216C100B4FC5C /* serviceTermsViewController.xib in Resources */,
 				E35B046D1B565532002C6655 /* MJPhotoBrowser.bundle in Resources */,
-				E35B04221B562F79002C6655 /* TestActivity.plist in Resources */,
 				E372D8311B6216C100B4FC5C /* LoginViewController.xib in Resources */,
 				E372D8421B6216C100B4FC5C /* CPRegisterStep2ViewController.xib in Resources */,
 				6BCF66101B6208C700358190 /* CPActiveDetailsHead.xib in Resources */,

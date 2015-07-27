@@ -552,30 +552,6 @@ typedef enum {
     }];
 }
 
-/**
- *  下面的方法用来设置tableView全屏的分割线
- */
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-        [cell setSeparatorInset:UIEdgeInsetsZero];
-    }
-    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-        [cell setLayoutMargins:UIEdgeInsetsZero];
-    }
-    //按照作者最后的意思还要加上下面这一段
-    if([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]){
-        [cell setPreservesSuperviewLayoutMargins:NO];
-    }
-}
--(void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
-    if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
-        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
-    }
-    if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
-        [self.tableView setLayoutMargins:UIEdgeInsetsZero];
-    }
-}
 #pragma mark - 添加相片的相关方法
 - (void)addPhoto
 {
