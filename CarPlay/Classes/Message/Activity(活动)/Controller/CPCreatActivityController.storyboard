@@ -384,6 +384,7 @@
                     <connections>
                         <outlet property="finishBtn" destination="cFT-CB-YPr" id="KmM-Bk-v6l"/>
                         <outlet property="finishToFriend" destination="SV3-O3-Gvx" id="sXx-qt-lkb"/>
+                        <outlet property="seatLabel" destination="8QD-L8-UF9" id="WG4-gS-cCC"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="izD-1F-vcV" userLabel="First Responder" sceneMemberID="firstResponder"/>

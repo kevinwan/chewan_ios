@@ -11,6 +11,7 @@
 #import "CPMyPublishModel.h"
 #import "MJExtension.h"
 #import "CPMyPublishCell.h"
+#import "CPSelectView.h"
 
 @interface CPMyPublishController ()
 @property (nonatomic, strong) NSMutableArray *frameModels;
@@ -35,6 +36,8 @@
     }else{
         self.navigationItem.title = @"他的发布";
     }
+    
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"确定" target:self action:@selector(select)];
     
     self.tableView.allowsSelection = NO;
     
@@ -66,6 +69,23 @@
     }];
 }
 
+- (void)select
+{
+    UIButton *button = [[UIButton alloc] init];
+    [button addTarget:self action:@selector(hide) forControlEvents:UIControlEventTouchUpInside];
+    button.frame = self.view.bounds;
+    button.backgroundColor = RGBACOLOR(111, 111, 111, 0.5);
+    [self.view addSubview:button];
+    
+    
+    CPSelectView *selectView = [CPSelectView selectView];
+    [selectView showWithView:button];
+}
+
+- (void)hide
+{
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

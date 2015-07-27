@@ -54,6 +54,7 @@ typedef enum {
 @property (nonatomic, strong) CPLocationModel *selectLocation;
 @property (nonatomic, strong) CPCreatActivityModel *currentModel;
 @property (nonatomic, strong) NSMutableArray *seats;
+@property (weak, nonatomic) IBOutlet UILabel *seatLabel;
 
 @end
 
@@ -181,16 +182,18 @@ typedef enum {
 - (void)changeSeatWithResult:(NSDictionary *)result
 {
     if ([result[@"isAuthenticated"] intValue] == 1) {
-        [self labelWithRow:7].text = @"座位数";
+        self.seatLabel.text = @"提供座位数";
+        [self labelWithRow:7].text = @"个数";
         [self.seats removeAllObjects];
-        for(int i = [result[@"minValue"] intValue]; i < [result[@"maxValue"] intValue]; i++){
+        for(int i = [result[@"minValue"] intValue]; i <= [result[@"maxValue"] intValue]; i++){
             [self.seats addObject:[NSString stringWithFormat:@"%zd个",i]];
         }
     }else{
         [self.seats removeAllObjects];
         [self.seats addObject:@"1个"];
         [self.seats addObject:@"2个"];
-        [self labelWithRow:7].text = @"邀请人数";
+        self.seatLabel.text = @"邀请人数";
+        [self labelWithRow:7].text = @"人数";
     }
 }
 
@@ -432,7 +435,7 @@ typedef enum {
     
     if (margin >= 0) { // 如果间距大于0
         if ([self cellWithRow:0] == cell){
-            [self.tableView setContentOffset:CGPointMake(0,- 64) animated:YES];
+            [self.tableView scrollsToTop];
         }else{
             [self.tableView setContentOffset:CGPointMake(0,self.tableView.contentOffset.y - margin) animated:YES];
         }
