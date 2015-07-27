@@ -19,6 +19,7 @@
 #import "CPLocationModel.h"
 #import "MJExtension.h"
 #import "NSDate+Extension.h"
+#import "UMSocial.h"
 
 #define maxCount 9
 typedef enum {
@@ -886,6 +887,7 @@ typedef enum {
 - (IBAction)finishToFriends
 {
     [self finishBtnClick];
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:nil shareText:@"come" shareImage:nil shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,UMShareToSms, nil] delegate:nil];
 }
 
 @end

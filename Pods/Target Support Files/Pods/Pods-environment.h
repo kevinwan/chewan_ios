@@ -70,7 +70,7 @@
 #define COCOAPODS_POD_AVAILABLE_MJExtension
 #define COCOAPODS_VERSION_MAJOR_MJExtension 2
 #define COCOAPODS_VERSION_MINOR_MJExtension 5
-#define COCOAPODS_VERSION_PATCH_MJExtension 2
+#define COCOAPODS_VERSION_PATCH_MJExtension 3
 
 // MJRefresh
 #define COCOAPODS_POD_AVAILABLE_MJRefresh
@@ -101,6 +101,12 @@
 #define COCOAPODS_VERSION_MAJOR_SVProgressHUD 1
 #define COCOAPODS_VERSION_MINOR_SVProgressHUD 1
 #define COCOAPODS_VERSION_PATCH_SVProgressHUD 3
+
+// UMengAnalytics-NO-IDFA
+#define COCOAPODS_POD_AVAILABLE_UMengAnalytics_NO_IDFA
+#define COCOAPODS_VERSION_MAJOR_UMengAnalytics_NO_IDFA 3
+#define COCOAPODS_VERSION_MINOR_UMengAnalytics_NO_IDFA 5
+#define COCOAPODS_VERSION_PATCH_UMengAnalytics_NO_IDFA 11
 
 // UzysAssetsPickerController
 #define COCOAPODS_POD_AVAILABLE_UzysAssetsPickerController
