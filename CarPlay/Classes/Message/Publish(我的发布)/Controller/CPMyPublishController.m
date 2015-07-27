@@ -11,7 +11,6 @@
 #import "CPMyPublishModel.h"
 #import "MJExtension.h"
 #import "CPMyPublishCell.h"
-#import "ZYNetWorkTool.h"
 
 @interface CPMyPublishController ()
 @property (nonatomic, strong) NSMutableArray *frameModels;
@@ -31,23 +30,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"我的发布";
+    if ([self.hisUserId isEqualToString:[Tools getValueFromKey:@"userId"]]){
+        self.navigationItem.title = @"我的发布";
+    }else{
+        self.navigationItem.title = @"他的发布";
+    }
+    
     self.tableView.allowsSelection = NO;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    NSString *userId = @"846de312-306c-4916-91c1-a5e69b158014";
     
     if (self.hisUserId.length == 0){
         [SVProgressHUD showInfoWithStatus:@"你访问的用户不合法"];
         return;
     }
     NSString *url = [NSString stringWithFormat:@"v1/user/%@/post",self.hisUserId];
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"userId"] = userId;
-    params[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
-    
-    [ZYNetWorkTool getWithUrl:url params:params success:^(NSDictionary *responseObject) {
-        DLog(@"%@",responseObject);
+    [SVProgressHUD showWithStatus:@"努力加载中"];
+    [CPNetWorkTool getWithUrl:url params:nil success:^(NSDictionary *responseObject) {
+        [SVProgressHUD dismiss];
         if (CPSuccess) {
             NSArray *arr = [CPMyPublishModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
             for (int i = 0; i < arr.count; i++) {
@@ -56,10 +56,13 @@
                 [self.frameModels addObject:frameModel];
             }
             [self.tableView reloadData];
+        }else{
+            [SVProgressHUD showErrorWithStatus:@"加载失败"];
         }
         
     } failure:^(NSError *error) {
-        DLog(@"%@",error);
+        [SVProgressHUD dismiss];
+        [SVProgressHUD showErrorWithStatus:@"加载失败"];
     }];
 }
 

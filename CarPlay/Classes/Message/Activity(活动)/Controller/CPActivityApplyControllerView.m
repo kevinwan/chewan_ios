@@ -14,9 +14,27 @@
 
 @interface CPActivityApplyControllerView ()
 @property (nonatomic, strong) NSMutableArray *datas;
+@property (nonatomic, strong) UIView *noDataView;
 @end
 
 @implementation CPActivityApplyControllerView
+
+- (UIView *)noDataView
+{
+    if (_noDataView == nil) {
+        _noDataView = [[UIView alloc] init];
+        _noDataView.height = self.tableView.height - 64;
+        _noDataView.width = self.view.width;
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button setTitle:@"没有新数据,点击刷新" forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_noDataView addSubview:button];
+        [button sizeToFit];
+        button.centerX = _noDataView.centerXInSelf;
+        button.centerY = _noDataView.centerYInSelf - 30;
+    }
+    return _noDataView;
+}
 
 - (NSMutableArray *)datas
 {
@@ -30,8 +48,15 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"活动参与申请";
+    self.tableView.tableFooterView = [[UIView alloc] init];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     NSString *userId = [Tools getValueFromKey:@"userId"];
     if (userId == nil) {
+        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
         return;
     }
     
@@ -40,21 +65,27 @@
     NSString *url = [NSString stringWithFormat:@"v1/user/%@/application/list",userId];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"token"] = [Tools getValueFromKey:@"token"];
+    [SVProgressHUD showWithStatus:@"努力加载中"];
     [ZYNetWorkTool getWithUrl:url params:params success:^(id responseObject) {
+//        [SVProgressHUD dismiss];
         if (CPSuccess) {
             NSArray *data = [CPActivityApplyModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
             if (data.count == 0) {
                 [SVProgressHUD showInfoWithStatus:@"没有新的申请"];
+                self.tableView.tableFooterView = self.noDataView;
                 return;
             }
+            self.tableView.tableFooterView = [[UIView alloc] init];
             [self.datas addObjectsFromArray:data];
             
             NSLog(@"%@---%@",responseObject, self.tableView);
             [self.tableView reloadData];
         }
     } failure:^(NSError *error) {
-         [SVProgressHUD showErrorWithStatus:@"加载失败"];
+        [SVProgressHUD dismiss];
+        [SVProgressHUD showErrorWithStatus:@"加载失败"];
     }];
+
 }
 
 - (void)agreeBtnClick:(NSNotification *)notify
@@ -69,20 +100,21 @@
 //    } failure:^(NSError *error) {
 //        
 //    }];
+    [SVProgressHUD showWithStatus:@"努力加载中"];
     [ZYNetWorkTool postJsonWithUrl:url params:json success:^(id responseObject) {
         DLog(@"%@",responseObject);
-        
+        [SVProgressHUD dismiss];
         if (CPSuccess) {
             
         }
     } failed:^(NSError *error) {
-        
+        [SVProgressHUD dismiss];
+        [SVProgressHUD showErrorWithStatus:@"加载失败"];
     }];
 }
 
 - (void)dealloc
 {
-    
     [CPNotificationCenter removeObserver:self];
 }
 
@@ -103,31 +135,6 @@
 {
     CPSubscribePersonController *subVc = [UIStoryboard storyboardWithName:@"CPSubscribePersonController" bundle:nil].instantiateInitialViewController;
     [self.navigationController pushViewController:subVc animated:YES];
-}
-
-/**
- *  下面的方法用来设置tableView全屏的分割线
- */
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-        [cell setSeparatorInset:UIEdgeInsetsZero];
-    }
-    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-        [cell setLayoutMargins:UIEdgeInsetsZero];
-    }
-    //按照作者最后的意思还要加上下面这一段
-    if([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]){
-        [cell setPreservesSuperviewLayoutMargins:NO];
-    }
-}
--(void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
-    if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
-        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
-    }
-    if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
-        [self.tableView setLayoutMargins:UIEdgeInsetsZero];
-    }
 }
 
 @end

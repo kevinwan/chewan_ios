@@ -18,9 +18,8 @@
 - (void)setModel:(CPMySubscribeModel *)model
 {
     _model = model;
-    
+
     CPOrganizer *organizer = model.organizer;
-    
     CGFloat iconBtnX = KCellMargin;
     CGFloat iconBtnY = 15;
     CGFloat iconBtnW = KIconBtnWH;
@@ -35,7 +34,7 @@
     self.payViewF = CGRectMake(payBtnX, payBtnY, payBtnW, payBtnH);
     _cellHeight = CGRectGetMaxY(_payViewF);
     
-    if (model.totalSeat && model.availableSeat) {        
+    if (model.totalSeat && model.holdingSeat) {
         CGFloat seatViewW = iconBtnW;
         CGFloat seatViewH = [model.seatStr sizeWithFont:SeatViewFont].height;
         CGFloat seatViewX = iconBtnX;
@@ -65,7 +64,7 @@
     
     
     CGFloat descLableX = 0;
-    if (organizer.carBrandLogo.length) {
+    if (organizer.carBrandLogo.length > 0) {
         CGFloat brandX = nameLableX;
         CGFloat brandY = CGRectGetMaxY(_nameLabelF) + KCellMargin;
         CGFloat brandW = 15;

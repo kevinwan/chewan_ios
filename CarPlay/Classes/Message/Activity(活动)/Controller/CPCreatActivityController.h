@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "XLForm.h"
-@interface CPCreatActivityController : UITableViewController
+@interface CPCreatActivityController : ZYTableViewController
 
 @end

@@ -153,7 +153,6 @@
     
     CPMySubscribeModel *model = frameModel.model;
     CPOrganizer *organizer = model.organizer;
-    
     // 进行内容的设置
     [self.iconBtn sd_setImageWithURL:[NSURL URLWithString:organizer.photo] forState:UIControlStateNormal placeholderImage:nil];
     self.nameLabel.text = organizer.nickname;
@@ -164,10 +163,11 @@
     if (organizer.carBrandLogo.length > 0) {
         self.carBrandLogo.hidden = NO;
         [self.carBrandLogo sd_setImageWithURL:[NSURL URLWithString:organizer.carBrandLogo]];
+        self.descLabel.text = organizer.descStr;
     }else{
         self.carBrandLogo.hidden = YES;
+        self.descLabel.text = @"带我飞 ~";
     }
-    self.descLabel.text = organizer.descStr;
     self.payView.payOption = model.pay;
     
     // 构造
@@ -213,7 +213,7 @@
 - (NSAttributedString *)seatViewTextWithModel:(CPMySubscribeModel *)model
 {
     
-    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%zd",model.availableSeat]];
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%zd",model.holdingSeat]];
     [str addAttribute:NSForegroundColorAttributeName value:[Tools getColor:@"fc6e51"] range:NSMakeRange(0, str.length)];
     NSMutableAttributedString *totalSeat = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"/%zd座",model.totalSeat] attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"aab2bd"]}];
     [str appendAttributedString:totalSeat];

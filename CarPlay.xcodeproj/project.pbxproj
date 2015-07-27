@@ -51,6 +51,8 @@
 		E328F0671B621DA700A20DCE /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = E328F0661B621DA700A20DCE /* city.plist */; };
 		E328F0691B621E1C00A20DCE /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = E328F0681B621E1C00A20DCE /* area.plist */; };
 		E33BAE841B58DC110021DED6 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E33BAE831B58DC110021DED6 /* NSDate+Extension.m */; };
+		E34065E71B65C2FE008BB3EB /* ZYTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E34065E61B65C2FE008BB3EB /* ZYTableViewController.m */; };
+		E34065ED1B65D6A2008BB3EB /* CPMyJoinController.m in Sources */ = {isa = PBXBuildFile; fileRef = E34065EC1B65D6A2008BB3EB /* CPMyJoinController.m */; };
 		E34779691B5FAB0F00D91D4A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E34779681B5FAB0F00D91D4A /* MapKit.framework */; };
 		E35559A51B53A0CE00B200D0 /* CPSexView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35559A41B53A0CE00B200D0 /* CPSexView.m */; };
 		E35B04221B562F79002C6655 /* TestActivity.plist in Resources */ = {isa = PBXBuildFile; fileRef = E35B04211B562F79002C6655 /* TestActivity.plist */; };
@@ -167,7 +169,6 @@
 		E3CE35B21B59E7FC008434B5 /* XLForm.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E3CE358E1B59E7FC008434B5 /* XLForm.bundle */; };
 		E3CE371C1B59FEBA008434B5 /* CPCreatActivityController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3CE371B1B59FEBA008434B5 /* CPCreatActivityController.storyboard */; };
 		E3CE371F1B5A232D008434B5 /* CPCreatActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE371E1B5A232D008434B5 /* CPCreatActivityCell.m */; };
-		E3CE37221B5A3F00008434B5 /* CPActivityIntroduceController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE37211B5A3F00008434B5 /* CPActivityIntroduceController.m */; };
 		E3CE37251B5A4085008434B5 /* CPActivityNameController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE37241B5A4085008434B5 /* CPActivityNameController.m */; };
 		E3D8793F1B57475400228356 /* CPActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D8793E1B57475400228356 /* CPActivityModel.m */; };
 		E3D879421B575EC200228356 /* CPTopViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D879411B575EC200228356 /* CPTopViewButton.m */; };
@@ -287,6 +288,10 @@
 		E328F0681B621E1C00A20DCE /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		E33BAE821B58DC110021DED6 /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
 		E33BAE831B58DC110021DED6 /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
+		E34065E51B65C2FE008BB3EB /* ZYTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYTableViewController.h; sourceTree = "<group>"; };
+		E34065E61B65C2FE008BB3EB /* ZYTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYTableViewController.m; sourceTree = "<group>"; };
+		E34065EB1B65D6A2008BB3EB /* CPMyJoinController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyJoinController.h; sourceTree = "<group>"; };
+		E34065EC1B65D6A2008BB3EB /* CPMyJoinController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyJoinController.m; sourceTree = "<group>"; };
 		E34779681B5FAB0F00D91D4A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E35559A31B53A0CE00B200D0 /* CPSexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSexView.h; sourceTree = "<group>"; };
 		E35559A41B53A0CE00B200D0 /* CPSexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSexView.m; sourceTree = "<group>"; };
@@ -499,8 +504,6 @@
 		E3CE371B1B59FEBA008434B5 /* CPCreatActivityController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPCreatActivityController.storyboard; sourceTree = "<group>"; };
 		E3CE371D1B5A232D008434B5 /* CPCreatActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCreatActivityCell.h; sourceTree = "<group>"; };
 		E3CE371E1B5A232D008434B5 /* CPCreatActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCreatActivityCell.m; sourceTree = "<group>"; };
-		E3CE37201B5A3F00008434B5 /* CPActivityIntroduceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityIntroduceController.h; sourceTree = "<group>"; };
-		E3CE37211B5A3F00008434B5 /* CPActivityIntroduceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityIntroduceController.m; sourceTree = "<group>"; };
 		E3CE37231B5A4085008434B5 /* CPActivityNameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityNameController.h; sourceTree = "<group>"; };
 		E3CE37241B5A4085008434B5 /* CPActivityNameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityNameController.m; sourceTree = "<group>"; };
 		E3D8793D1B57475400228356 /* CPActivityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityModel.h; sourceTree = "<group>"; };
@@ -870,6 +873,8 @@
 				E30BD5931B54FCC600FD9030 /* ZYNavigationBar.m */,
 				E30BD5951B54FD6E00FD9030 /* ZYNavigationController.h */,
 				E30BD5961B54FD6E00FD9030 /* ZYNavigationController.m */,
+				E34065E51B65C2FE008BB3EB /* ZYTableViewController.h */,
+				E34065E61B65C2FE008BB3EB /* ZYTableViewController.m */,
 			);
 			path = ZYCustomView;
 			sourceTree = "<group>";
@@ -1031,6 +1036,8 @@
 				E36C96261B53C78200D3EDBB /* CPSubscribePersonController.storyboard */,
 				E30BD57C1B54EBEB00FD9030 /* CPMySubscribeController.h */,
 				E30BD57D1B54EBEB00FD9030 /* CPMySubscribeController.m */,
+				E34065EB1B65D6A2008BB3EB /* CPMyJoinController.h */,
+				E34065EC1B65D6A2008BB3EB /* CPMyJoinController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1361,8 +1368,6 @@
 				E3CE35381B59E1C0008434B5 /* CPEditActivityController.h */,
 				E3CE35391B59E1C0008434B5 /* CPEditActivityController.m */,
 				E3FCDD4E1B5E491400F9C379 /* CPEditActivityController.storyboard */,
-				E3CE37201B5A3F00008434B5 /* CPActivityIntroduceController.h */,
-				E3CE37211B5A3F00008434B5 /* CPActivityIntroduceController.m */,
 				E3CE37231B5A4085008434B5 /* CPActivityNameController.h */,
 				E3CE37241B5A4085008434B5 /* CPActivityNameController.m */,
 				E3E1DBFE1B5CA87C00386B18 /* CPReturnValueControllerView.h */,
@@ -1613,7 +1618,6 @@
 				E3CE35B01B59E7FC008434B5 /* XLFormValidator.m in Sources */,
 				E36AFE661B579F0E0081F499 /* ZHPickView.h in Sources */,
 				E3CE35961B59E7FC008434B5 /* XLFormPickerCell.m in Sources */,
-				E3CE37221B5A3F00008434B5 /* CPActivityIntroduceController.m in Sources */,
 				6BCF66121B6208C700358190 /* CPActivePicCell.m in Sources */,
 				E3CE359A1B59E7FC008434B5 /* XLFormStepCounterCell.m in Sources */,
 				E3C6114F1B5F498600B7E73A /* CPLocationModel.m in Sources */,
@@ -1652,6 +1656,7 @@
 				E3CE37251B5A4085008434B5 /* CPActivityNameController.m in Sources */,
 				E30BD58F1B54ECCC00FD9030 /* CPMySubscribeBottomView.m in Sources */,
 				6BCF66081B6208C700358190 /* CPActiveDetailsController.m in Sources */,
+				E34065E71B65C2FE008BB3EB /* ZYTableViewController.m in Sources */,
 				6B5F9B731B5D29FE00F9D1E8 /* CPHomePicCell.m in Sources */,
 				6BCF660C1B6208C700358190 /* CPActiveStatus.m in Sources */,
 				E35B046E1B565532002C6655 /* MJPhotoBrowser.m in Sources */,
@@ -1660,6 +1665,7 @@
 				E372D8381B6216C100B4FC5C /* CustomSlideCell.m in Sources */,
 				6BCF660D1B6208C700358190 /* CPActiveUser.m in Sources */,
 				6B64938C1B4D04BE00C197D2 /* BaseViewController.m in Sources */,
+				E34065ED1B65D6A2008BB3EB /* CPMyJoinController.m in Sources */,
 				E35E6FD01B54B0EC001212D6 /* CPMyPublishFrameModel.m in Sources */,
 				E35E6FCD1B54B0D9001212D6 /* CPMyPublishModel.m in Sources */,
 				6B4EF1681B403A5D00292BD4 /* UIBarButtonItem+Extension.m in Sources */,

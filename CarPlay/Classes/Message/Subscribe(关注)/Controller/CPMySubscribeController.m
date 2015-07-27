@@ -38,11 +38,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"我的关注";
+    if ([self.hisUserId isEqualToString:[Tools getValueFromKey:@"userId"]]){
+        self.navigationItem.title = @"我的关注";
+    }else{
+        self.navigationItem.title = @"他的关注";
+    }
     
     self.tableView.allowsSelection = NO;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    NSString *url = [NSString stringWithFormat:@"v1/user/%@/subscribe",[Tools getValueFromKey:@"userId"]];
+    
+    [SVProgressHUD showWithStatus:@"努力加载中"];
+    [CPNetWorkTool getWithUrl:url params:nil success:^(id responseObject) {
+        [SVProgressHUD dismiss];
+        if (CPSuccess) {
+            
+        }
+    } failure:^(NSError *error) {
+        [SVProgressHUD dismiss];
+        [SVProgressHUD showErrorWithStatus:@"加载失败"];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

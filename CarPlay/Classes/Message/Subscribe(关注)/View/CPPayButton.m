@@ -32,8 +32,9 @@
 - (void)setUp
 {
     self.userInteractionEnabled = NO;
-    self.layer.cornerRadius = 4;
+    self.layer.cornerRadius = 3;
     self.clipsToBounds = YES;
+    self.titleLabel.font = [UIFont systemFontOfSize:11];
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
 
@@ -41,7 +42,7 @@
 {
     _payOption = [payOption copy];
     
-    if ([payOption isEqualToString:@"请客"]) {
+    if ([payOption isEqualToString:@"我请客"]) {
         [self payWithSelf];
     }else if ([payOption isEqualToString:@"AA制"]){
         [self payWithAA];
@@ -64,7 +65,7 @@
 
 - (void)payWithOther
 {
-    [self setTitle:@"请我吧" forState:UIControlStateNormal];
+    [self setTitle:@"其他" forState:UIControlStateNormal];
     [self setBackgroundColor:[Tools getColor:@"ccd1d9"]];
 }
 
