@@ -56,7 +56,7 @@
 -(void)loginStateChange:(NSNotification *)notification
 {
  
-    if (NOTIFICATION_HASLOGIN) {//登陆成功加载主窗口控制器
+    if ([Tools getValueFromKey:@"userId"]) {//登陆成功加载主窗口控制器
         //加载申请通知的数据
         CPTabBarController *tabBarController=[[CPTabBarController alloc]init];
         self.window.rootViewController = tabBarController;

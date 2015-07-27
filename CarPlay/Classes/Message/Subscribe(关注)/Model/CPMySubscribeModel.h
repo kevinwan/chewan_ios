@@ -67,4 +67,8 @@
 
 @property (nonatomic, assign) BOOL isMan;
 
+@property (nonatomic, copy) NSString *backGroudImgUrl;
+
+@property (nonatomic, copy) NSString *headImgUrl;
+
 @end

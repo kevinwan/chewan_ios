@@ -73,6 +73,7 @@
 #define WANCHE_USERDEFAULT_USERICON @"usericon"
 #define WANCHE_USERDEFAULT_HASLOGIN @"haslogin"
 
+
 //******************************************************
 
 //登陆状态改变

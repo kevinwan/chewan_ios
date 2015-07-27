@@ -8,6 +8,8 @@
 
 #import "CPMyController.h"
 #import "LoginViewController.h"
+#import "CPMyheaderView.h"
+#import "CPMySubscribeModel.h"
 
 @interface CPMyController ()
 
@@ -17,17 +19,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    CPMyheaderView *headerView=[[CPMyheaderView alloc]initWithOrganizer:nil];
+    self.tableView.tableHeaderView=headerView;
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    if ([Tools getValueFromKey:WANCHE_USERDEFAULT_HASLOGIN]) {
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+   
 }
 
 #pragma mark - Table view data source
