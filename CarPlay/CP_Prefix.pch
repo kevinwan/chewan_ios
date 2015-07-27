@@ -47,4 +47,5 @@
 #define iphone6 ([UIScreen mainScreen].bounds.size.height == 667.0)
 #define iphone6p ([UIScreen mainScreen].bounds.size.height == 736.0)
 #define GaoDeAppKey @"22417b81c02ba1342b64fc4f6db170a5" //高德地图的Key
+#import <MJExtension/MJExtension.h>
 #endif
