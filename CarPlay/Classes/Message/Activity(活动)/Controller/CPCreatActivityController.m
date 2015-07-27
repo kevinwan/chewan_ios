@@ -432,7 +432,7 @@ typedef enum {
     
     if (margin >= 0) { // 如果间距大于0
         if ([self cellWithRow:0] == cell){
-            [self.tableView setContentOffset:CGPointMake(0,-66) animated:YES];
+            [self.tableView setContentOffset:CGPointMake(0,- 64) animated:YES];
         }else{
             [self.tableView setContentOffset:CGPointMake(0,self.tableView.contentOffset.y - margin) animated:YES];
         }

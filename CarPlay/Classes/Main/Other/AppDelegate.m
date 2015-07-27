@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "CPTabBarController.h"
-#import "SVProgressHUD.h"
 #import <MAMapKit/MAMapKit.h>
 @interface AppDelegate ()
 
@@ -19,6 +18,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // 启动时隐藏状态栏,设置白色的状态栏
+    [application setStatusBarHidden:NO];
+    application.statusBarStyle = UIStatusBarStyleLightContent;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(loginStateChange:)
                                                  name:NOTIFICATION_LOGINCHANGE
@@ -67,6 +69,13 @@
         self.window.rootViewController=nav1;
         [self.window makeKeyAndVisible];
     }
+}
+
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
+{
+    // 清空图片缓存
+    [[SDWebImageManager sharedManager].imageCache clearMemory];
+    [[SDWebImageManager sharedManager].imageCache clearDisk];
 }
 
 @end

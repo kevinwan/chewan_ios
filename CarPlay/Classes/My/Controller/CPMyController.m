@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     CPMyheaderView *headerView=[[CPMyheaderView alloc]initWithOrganizer:nil];
-    self.tableView.tableHeaderView=headerView;
+//    self.tableView.tableHeaderView=headerView;
 }
 
 -(void)viewWillAppear:(BOOL)animated{

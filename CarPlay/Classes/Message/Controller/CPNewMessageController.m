@@ -63,7 +63,7 @@
 //    [self.navigationController pushViewController:vc animated:YES];
 //    CPEditActivityController *vc = [UIStoryboard storyboardWithName:@"CPEditActivityController" bundle:nil].instantiateInitialViewController;
 //        [self.navigationController pushViewController:vc animated:YES];
-    CPMyPublishController *vc = [[CPMyPublishController alloc] init];
+    CPMySubscribeController *vc = [[CPMySubscribeController alloc] init];
     vc.hisUserId = [Tools getValueFromKey:@"userId"];
     [self.navigationController pushViewController:vc animated:YES];
 }
