@@ -36,7 +36,12 @@
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     NSString *userId = @"846de312-306c-4916-91c1-a5e69b158014";
-    NSString *url = [NSString stringWithFormat:@"v1/user/%@/post",userId];
+    
+    if (self.hisUserId.length == 0){
+        [SVProgressHUD showInfoWithStatus:@"你访问的用户不合法"];
+        return;
+    }
+    NSString *url = [NSString stringWithFormat:@"v1/user/%@/post",self.hisUserId];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"userId"] = userId;
     params[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";

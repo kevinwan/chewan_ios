@@ -34,5 +34,17 @@
  */
 - (NSInteger)fileSize;
 
+/**
+ *  去除空格后的字符串
+ *
+ *  @return
+ */
 - (NSString *)trimStr;
+
+/**
+ *  判断是否包含某个字符串
+ *  @return 是否包含
+ */
+- (BOOL)contains:(NSString *)string;
+
 @end

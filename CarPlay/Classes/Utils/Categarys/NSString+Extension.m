@@ -59,4 +59,12 @@
     return [self stringByReplacingOccurrencesOfString:@" " withString:@""];
 }
 
+/**
+ *  判断是否包含某个字符串
+ *  @return 是否包含
+ */
+- (BOOL)contains:(NSString *)string
+{
+    return [self rangeOfString:string].length;
+}
 @end
