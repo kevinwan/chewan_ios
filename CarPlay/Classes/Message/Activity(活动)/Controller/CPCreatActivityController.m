@@ -12,7 +12,6 @@
 #import "ZYPickView.h"
 #import "CPMapViewController.h"
 #import "NSString+Extension.h"
-#import <UzysAssetsPickerController/UzysWrapperPickerController.h>
 #import "UzysAssetsPickerController.h"
 #import "CPEditImageView.h"
 #import "CPCreatActivityModel.h"
@@ -206,7 +205,11 @@ typedef enum {
 {
     [self.tableView setContentOffset:self.currentOffset animated:YES];
     int row = [notify.userInfo[@"row"] intValue];
-    [self closeArrowWithRow:row];
+    if (row == 0) {
+        [self.tableView setContentOffset:CGPointMake(0, -64) animated:YES];
+    }else{
+        [self closeArrowWithRow:row];
+    }
     self.pickView = nil;
 }
 
@@ -798,7 +801,7 @@ typedef enum {
         return;
     }
     
-    if (self.currentModel.latitude == 0) {
+    if (self.currentModel.latitude == 0 || self.currentModel.longitude == 0) {
         [SVProgressHUD showInfoWithStatus:@"请选择活动地点"];
         return;
     }

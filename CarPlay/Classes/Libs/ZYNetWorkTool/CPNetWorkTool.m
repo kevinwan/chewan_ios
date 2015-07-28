@@ -8,6 +8,7 @@
 
 #import "CPNetWorkTool.h"
 #import "ZYNetWorkManager.h"
+#import "ZYNetWorkTool.h"
 
 @implementation CPNetWorkTool
 + (void)postWithUrl:(NSString *)url params:(id)params success:(void (^)(id))success failure:(void (^)(NSError *))failure
@@ -37,7 +38,31 @@
               success(responseObject);
           }
       } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-          if (failure) {
+          if ([error.localizedDescription contains:@"口令已过期"]){
+              // 重新发出登录请求
+              NSString *phone = [Tools getValueFromKey:@"phone"];
+              NSString *password = [Tools getValueFromKey:@"password"];
+              [ZYNetWorkTool postWithUrl:@"v1/user/login" params:@{@"phone" : phone, @"password" : password} success:^(id responseObject) {
+                  if (CPSuccess) {
+                       [Tools setValueForKey:[responseObject[@"data"] objectForKey:@"token"] key:@"token"];
+                      [mgr POST:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                          if (success) {
+                              success(responseObject);
+                          }
+                      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                          if (failure) {
+                              failure(error);
+                          }
+                      }];
+                  }
+                  
+              } failure:^(NSError *error) {
+                  if (failure) {
+                      failure(error);
+                  }
+              }];
+              
+          }else if (failure) {
               failure(error);
           }
       }];
@@ -68,7 +93,31 @@
              success(responseObject);
          }
      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-         if (failure) {
+         if ([error.localizedDescription contains:@"口令已过期"]){
+             // 重新发出登录请求
+             NSString *phone = [Tools getValueFromKey:@"phone"];
+             NSString *password = [Tools getValueFromKey:@"password"];
+             [ZYNetWorkTool postWithUrl:@"v1/user/login" params:@{@"phone" : phone, @"password" : password} success:^(id responseObject) {
+                 if (CPSuccess) {
+                     [Tools setValueForKey:[responseObject[@"data"] objectForKey:@"token"] key:@"token"];
+                     [mgr GET:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                         if (success) {
+                             success(responseObject);
+                         }
+                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                         if (failure) {
+                             failure(error);
+                         }
+                     }];
+                 }
+                 
+             } failure:^(NSError *error) {
+                 if (failure) {
+                     failure(error);
+                 }
+             }];
+             
+         }else if (failure) {
              failure(error);
          }
      }];
@@ -98,7 +147,31 @@
             success(responseObject);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if (failure) {
+        if ([error.localizedDescription contains:@"口令已过期"]){
+            // 重新发出登录请求
+            NSString *phone = [Tools getValueFromKey:@"phone"];
+            NSString *password = [Tools getValueFromKey:@"password"];
+            [ZYNetWorkTool postWithUrl:@"v1/user/login" params:@{@"phone" : phone, @"password" : password} success:^(id responseObject) {
+                if (CPSuccess) {
+                    [Tools setValueForKey:[responseObject[@"data"] objectForKey:@"token"] key:@"token"];
+                    [mgr POST:url parameters:jsonDict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                        if (success) {
+                            success(responseObject);
+                        }
+                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                        if (failure) {
+                            failure(error);
+                        }
+                    }];
+                }
+                
+            } failure:^(NSError *error) {
+                if (failure) {
+                    failure(error);
+                }
+            }];
+            
+        }else if (failure) {
             failure(error);
         }
     }];
@@ -133,7 +206,35 @@
             success(responseObject);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if (failure) {
+        if ([error.localizedDescription contains:@"口令已过期"]){
+            // 重新发出登录请求
+            NSString *phone = [Tools getValueFromKey:@"phone"];
+            NSString *password = [Tools getValueFromKey:@"password"];
+            [ZYNetWorkTool postWithUrl:@"v1/user/login" params:@{@"phone" : phone, @"password" : password} success:^(id responseObject) {
+                if (CPSuccess) {
+                    [Tools setValueForKey:[responseObject[@"data"] objectForKey:@"token"] key:@"token"];
+                    [mgr POST:url parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                        for (ZYHttpFile *file in files) {
+                            [formData appendPartWithFileData:file.data name:file.name fileName:file.filename mimeType:file.mimeType];
+                        }
+                    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                        if (success) {
+                            success(responseObject);
+                        }
+                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                        if (failure) {
+                            failure(error);
+                        }
+                    }];
+                }
+                
+            } failure:^(NSError *error) {
+                if (failure) {
+                    failure(error);
+                }
+            }];
+            
+        }else if (failure) {
             failure(error);
         }
     }];

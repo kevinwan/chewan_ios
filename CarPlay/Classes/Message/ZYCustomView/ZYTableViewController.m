@@ -9,10 +9,16 @@
 #import "ZYTableViewController.h"
 
 @interface ZYTableViewController ()
-
+@property (nonatomic, strong) UIView *noNetWorkView;
 @end
 
 @implementation ZYTableViewController
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+}
 
 /**
  *  下面的方法用来设置tableView全屏的分割线
@@ -40,6 +46,12 @@
     if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
         [self.tableView setLayoutMargins:UIEdgeInsetsZero];
     }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [SVProgressHUD dismiss];
 }
 
 @end

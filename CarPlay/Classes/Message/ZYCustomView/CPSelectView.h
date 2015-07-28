@@ -24,7 +24,7 @@
 
 - (void)showWithView:(UIView *)view;
 
-- (void)dismiss;
+- (void)dismissWithCompletion:(void (^)())completion;
 
 @end
 
