@@ -4,7 +4,7 @@
 //
 //  Created by 公平价 on 15/6/19.
 //  Copyright (c) 2015年 gongpingjia. All rights reserved.
-//
+// 2015
 
 #import "CPMyController.h"
 #import "LoginViewController.h"
