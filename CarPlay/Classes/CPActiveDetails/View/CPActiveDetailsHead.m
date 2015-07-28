@@ -71,8 +71,8 @@
 
 @implementation CPActiveDetailsHead
 
-+ (instancetype)headView{
-    return [[[NSBundle mainBundle] loadNibNamed:@"CPActiveDetailsHead" owner:nil options:nil] lastObject];
++ (instancetype)headView:(id)owner{
+    return [[[NSBundle mainBundle] loadNibNamed:@"CPActiveDetailsHead" owner:owner options:nil] lastObject];
     
 }
 

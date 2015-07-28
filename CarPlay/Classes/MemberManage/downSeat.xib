@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MembersManageController">
+            <connections>
+                <outlet property="ageButton" destination="GEB-k3-zIA" id="lXH-Xf-ZNm"/>
+                <outlet property="downButton" destination="kTA-Pc-VG2" id="BJ9-V6-wZP"/>
+                <outlet property="iconImage" destination="wXK-pB-rMS" id="rk7-I7-Zow"/>
+                <outlet property="nameLabel" destination="hBv-Oa-7hN" id="EU5-7K-ULo"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="downSeat">
+            <rect key="frame" x="0.0" y="0.0" width="280" height="219"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wXK-pB-rMS">
+                    <rect key="frame" x="108" y="20" width="63" height="63"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="63" id="R4O-Ds-NJx"/>
+                        <constraint firstAttribute="width" constant="63" id="qi1-fk-Rn9"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hBv-Oa-7hN">
+                    <rect key="frame" x="100" y="93" width="42" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GEB-k3-zIA">
+                    <rect key="frame" x="152" y="96" width="32" height="14"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="14" id="Hpb-SV-duk"/>
+                        <constraint firstAttribute="width" constant="32" id="z0Q-zK-mqH"/>
+                    </constraints>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="占座中..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yaa-8r-qKk">
+                    <rect key="frame" x="107" y="123" width="65.5" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zvZ-BB-CHA">
+                    <rect key="frame" x="10" y="163" width="125" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="NPZ-8o-JIS"/>
+                        <constraint firstAttribute="width" constant="125" id="Xsx-QQ-7zm"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="取消">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="cancelSeatButton:" destination="-1" eventType="touchUpInside" id="9Nm-pg-QqJ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kTA-Pc-VG2">
+                    <rect key="frame" x="145" y="163" width="125" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="125" id="LTr-Cj-XRO"/>
+                        <constraint firstAttribute="height" constant="40" id="axK-Nt-YHa"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="拉下座位">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="downSeatButtonClick:" destination="-1" eventType="touchUpInside" id="h7U-LC-J1g"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="zvZ-BB-CHA" firstAttribute="top" secondItem="Yaa-8r-qKk" secondAttribute="bottom" constant="20" id="3B5-JY-Yx5"/>
+                <constraint firstItem="GEB-k3-zIA" firstAttribute="leading" secondItem="hBv-Oa-7hN" secondAttribute="trailing" constant="10" id="PuH-jN-bua"/>
+                <constraint firstItem="GEB-k3-zIA" firstAttribute="top" secondItem="wXK-pB-rMS" secondAttribute="bottom" constant="13" id="SP7-Da-guP"/>
+                <constraint firstItem="wXK-pB-rMS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="108" id="U4C-TH-7WL"/>
+                <constraint firstAttribute="centerX" secondItem="Yaa-8r-qKk" secondAttribute="centerX" id="YKz-5E-wTe"/>
+                <constraint firstItem="wXK-pB-rMS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="YqV-om-cav"/>
+                <constraint firstItem="hBv-Oa-7hN" firstAttribute="top" secondItem="wXK-pB-rMS" secondAttribute="bottom" constant="10" id="kCa-cM-FQG"/>
+                <constraint firstItem="hBv-Oa-7hN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="100" id="qPS-ad-AOl"/>
+                <constraint firstItem="zvZ-BB-CHA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="rlm-Bg-fGv"/>
+                <constraint firstItem="Yaa-8r-qKk" firstAttribute="top" secondItem="hBv-Oa-7hN" secondAttribute="bottom" constant="10" id="tc6-h1-sg1"/>
+                <constraint firstItem="kTA-Pc-VG2" firstAttribute="top" secondItem="Yaa-8r-qKk" secondAttribute="bottom" constant="20" id="vdM-qO-r2Q"/>
+                <constraint firstItem="kTA-Pc-VG2" firstAttribute="leading" secondItem="zvZ-BB-CHA" secondAttribute="trailing" constant="10" id="yPH-Xs-chb"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="cancelButton" destination="zvZ-BB-CHA" id="mKO-2h-Ccr"/>
+                <outlet property="titleLabel" destination="Yaa-8r-qKk" id="Xv8-dp-uQt"/>
+            </connections>
+            <point key="canvasLocation" x="339" y="282.5"/>
+        </view>
+    </objects>
+</document>
