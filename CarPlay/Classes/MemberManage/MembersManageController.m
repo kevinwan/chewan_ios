@@ -50,6 +50,7 @@
     [self setupFontAndColor];
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTitle:@"邀请" titleColor:[AppAppearance titleColor] font:[AppAppearance textLargeFont] target:self action:@selector(inviteFriend)];
     [self loadMessage];
+ 
 }
 //添加微信分享的语句
 - (void)inviteFriend {
@@ -276,7 +277,6 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return NO;
 }
-
 
 - (void)coverClick {
     [_cover removeFromSuperview];

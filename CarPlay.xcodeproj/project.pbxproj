@@ -868,9 +868,9 @@
 				E372D8471B6216E800B4FC5C /* My */,
 				E372D7FC1B6216C100B4FC5C /* Login */,
 				6BCF65EE1B6208C700358190 /* CPActiveDetails */,
-				A5C608311B65BA2400741EF3 /* members */,
+				A5C608311B65BA2400741EF3 /* Members */,
 				A5C608561B65BA3900741EF3 /* MemberManage */,
-				A5C608B41B65CE2700741EF3 /* service */,
+				A5C608B41B65CE2700741EF3 /* Service */,
 				6B5F9B571B5D29FE00F9D1E8 /* City */,
 				E3EEDFE51B53951D00595333 /* Message */,
 				6B6493911B4D04E500C197D2 /* Utils */,
@@ -1091,7 +1091,7 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		A5C608311B65BA2400741EF3 /* members */ = {
+		A5C608311B65BA2400741EF3 /* Members */ = {
 			isa = PBXGroup;
 			children = (
 				A5C6083C1B65BA2400741EF3 /* Models */,
@@ -1112,6 +1112,7 @@
 				A5C608471B65BA2400741EF3 /* outActivity.m */,
 				A5C608481B65BA2400741EF3 /* outActivity.xib */,
 			);
+			name = Members;
 			path = members;
 			sourceTree = "<group>";
 		};
@@ -1145,7 +1146,7 @@
 			path = MemberManage;
 			sourceTree = "<group>";
 		};
-		A5C608B41B65CE2700741EF3 /* service */ = {
+		A5C608B41B65CE2700741EF3 /* Service */ = {
 			isa = PBXGroup;
 			children = (
 				A5C608B91B65CE2700741EF3 /* SMFoundation */,
@@ -1156,6 +1157,7 @@
 				A5C608E61B65CE2700741EF3 /* UIView+Dealer.h */,
 				A5C608E71B65CE2700741EF3 /* UIView+Dealer.m */,
 			);
+			name = Service;
 			path = service;
 			sourceTree = "<group>";
 		};
@@ -2097,7 +2099,6 @@
 				E36AFE661B579F0E0081F499 /* ZHPickView.h in Sources */,
 				E3CE35961B59E7FC008434B5 /* XLFormPickerCell.m in Sources */,
 				A5C6084C1B65BA2400741EF3 /* memberCell.m in Sources */,
-				E3CE37221B5A3F00008434B5 /* CPActivityIntroduceController.m in Sources */,
 				6BCF66121B6208C700358190 /* CPActivePicCell.m in Sources */,
 				E3CE359A1B59E7FC008434B5 /* XLFormStepCounterCell.m in Sources */,
 				A5C608F21B65CE2700741EF3 /* SMAlertView.m in Sources */,
