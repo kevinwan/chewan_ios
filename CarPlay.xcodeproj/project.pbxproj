@@ -30,6 +30,14 @@
 		6BB09A841B66650C00E0D77D /* CPMyBaseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BB09A821B66650C00E0D77D /* CPMyBaseCell.xib */; };
 		6BB09A891B6669F800E0D77D /* CPSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB09A871B6669F800E0D77D /* CPSettingTableViewController.m */; };
 		6BB09A8A1B6669F800E0D77D /* CPSettingTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BB09A881B6669F800E0D77D /* CPSettingTableViewController.xib */; };
+		6BB09A8F1B67569600E0D77D /* CPHowToPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB09A8D1B67569600E0D77D /* CPHowToPlayViewController.m */; };
+		6BB09A901B67569600E0D77D /* CPHowToPlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BB09A8E1B67569600E0D77D /* CPHowToPlayViewController.xib */; };
+		6BB09A951B67572500E0D77D /* CPFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB09A931B67572500E0D77D /* CPFeedbackViewController.m */; };
+		6BB09A961B67572500E0D77D /* CPFeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BB09A941B67572500E0D77D /* CPFeedbackViewController.xib */; };
+		6BB09A9B1B675A3E00E0D77D /* CPEditInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB09A991B675A3E00E0D77D /* CPEditInfoTableViewController.m */; };
+		6BB09A9C1B675A3E00E0D77D /* CPEditInfoTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BB09A9A1B675A3E00E0D77D /* CPEditInfoTableViewController.xib */; };
+		6BB09AA11B675BF100E0D77D /* CPEditHeadIconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB09A9F1B675BF100E0D77D /* CPEditHeadIconCell.m */; };
+		6BB09AA21B675BF100E0D77D /* CPEditHeadIconCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BB09AA01B675BF100E0D77D /* CPEditHeadIconCell.xib */; };
 		6BCCEA561B5A60D5002465AC /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCCEA551B5A60D5002465AC /* NSDate+Extension.m */; };
 		6BCF66081B6208C700358190 /* CPActiveDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCF65F11B6208C700358190 /* CPActiveDetailsController.m */; };
 		6BCF66091B6208C700358190 /* CPActiveDetailsController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BCF65F21B6208C700358190 /* CPActiveDetailsController.storyboard */; };
@@ -255,6 +263,18 @@
 		6BB09A861B6669F800E0D77D /* CPSettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSettingTableViewController.h; sourceTree = "<group>"; };
 		6BB09A871B6669F800E0D77D /* CPSettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSettingTableViewController.m; sourceTree = "<group>"; };
 		6BB09A881B6669F800E0D77D /* CPSettingTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPSettingTableViewController.xib; sourceTree = "<group>"; };
+		6BB09A8C1B67569600E0D77D /* CPHowToPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPHowToPlayViewController.h; path = CarPlay/Classes/My/View/CPSetting/CPHowToPlayViewController.h; sourceTree = SOURCE_ROOT; };
+		6BB09A8D1B67569600E0D77D /* CPHowToPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CPHowToPlayViewController.m; path = CarPlay/Classes/My/View/CPSetting/CPHowToPlayViewController.m; sourceTree = SOURCE_ROOT; };
+		6BB09A8E1B67569600E0D77D /* CPHowToPlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CPHowToPlayViewController.xib; path = CarPlay/Classes/My/View/CPSetting/CPHowToPlayViewController.xib; sourceTree = SOURCE_ROOT; };
+		6BB09A921B67572500E0D77D /* CPFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPFeedbackViewController.h; sourceTree = "<group>"; };
+		6BB09A931B67572500E0D77D /* CPFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPFeedbackViewController.m; sourceTree = "<group>"; };
+		6BB09A941B67572500E0D77D /* CPFeedbackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPFeedbackViewController.xib; sourceTree = "<group>"; };
+		6BB09A981B675A3E00E0D77D /* CPEditInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPEditInfoTableViewController.h; sourceTree = "<group>"; };
+		6BB09A991B675A3E00E0D77D /* CPEditInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPEditInfoTableViewController.m; sourceTree = "<group>"; };
+		6BB09A9A1B675A3E00E0D77D /* CPEditInfoTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPEditInfoTableViewController.xib; sourceTree = "<group>"; };
+		6BB09A9E1B675BF100E0D77D /* CPEditHeadIconCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPEditHeadIconCell.h; sourceTree = "<group>"; };
+		6BB09A9F1B675BF100E0D77D /* CPEditHeadIconCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPEditHeadIconCell.m; sourceTree = "<group>"; };
+		6BB09AA01B675BF100E0D77D /* CPEditHeadIconCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPEditHeadIconCell.xib; sourceTree = "<group>"; };
 		6BCCEA541B5A60D5002465AC /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
 		6BCCEA551B5A60D5002465AC /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
 		6BCF65F01B6208C700358190 /* CPActiveDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActiveDetailsController.h; sourceTree = "<group>"; };
@@ -823,14 +843,58 @@
 			path = CPMyBaseCell;
 			sourceTree = "<group>";
 		};
-		6BB09A851B6669D800E0D77D /* CPSetting */ = {
+		6BB09A851B6669D800E0D77D /* CPSetting(设置) */ = {
 			isa = PBXGroup;
 			children = (
 				6BB09A861B6669F800E0D77D /* CPSettingTableViewController.h */,
 				6BB09A871B6669F800E0D77D /* CPSettingTableViewController.m */,
 				6BB09A881B6669F800E0D77D /* CPSettingTableViewController.xib */,
 			);
-			path = CPSetting;
+			name = "CPSetting(设置)";
+			path = View/CPSetting;
+			sourceTree = "<group>";
+		};
+		6BB09A8B1B67563700E0D77D /* CPHowToPlay(如何玩转玩车) */ = {
+			isa = PBXGroup;
+			children = (
+				6BB09A8C1B67569600E0D77D /* CPHowToPlayViewController.h */,
+				6BB09A8D1B67569600E0D77D /* CPHowToPlayViewController.m */,
+				6BB09A8E1B67569600E0D77D /* CPHowToPlayViewController.xib */,
+			);
+			name = "CPHowToPlay(如何玩转玩车)";
+			path = Controller/CPHowToPlay;
+			sourceTree = "<group>";
+		};
+		6BB09A911B67570C00E0D77D /* CPFeedback(意见反馈) */ = {
+			isa = PBXGroup;
+			children = (
+				6BB09A921B67572500E0D77D /* CPFeedbackViewController.h */,
+				6BB09A931B67572500E0D77D /* CPFeedbackViewController.m */,
+				6BB09A941B67572500E0D77D /* CPFeedbackViewController.xib */,
+			);
+			name = "CPFeedback(意见反馈)";
+			path = "Feedback(意见反馈)";
+			sourceTree = "<group>";
+		};
+		6BB09A971B675A0900E0D77D /* CPEditInfo(编辑资料) */ = {
+			isa = PBXGroup;
+			children = (
+				6BB09A9D1B675BCA00E0D77D /* CPEditHeadIcon */,
+				6BB09A981B675A3E00E0D77D /* CPEditInfoTableViewController.h */,
+				6BB09A991B675A3E00E0D77D /* CPEditInfoTableViewController.m */,
+				6BB09A9A1B675A3E00E0D77D /* CPEditInfoTableViewController.xib */,
+			);
+			path = "CPEditInfo(编辑资料)";
+			sourceTree = "<group>";
+		};
+		6BB09A9D1B675BCA00E0D77D /* CPEditHeadIcon */ = {
+			isa = PBXGroup;
+			children = (
+				6BB09A9E1B675BF100E0D77D /* CPEditHeadIconCell.h */,
+				6BB09A9F1B675BF100E0D77D /* CPEditHeadIconCell.m */,
+				6BB09AA01B675BF100E0D77D /* CPEditHeadIconCell.xib */,
+			);
+			path = CPEditHeadIcon;
 			sourceTree = "<group>";
 		};
 		6BCF65EE1B6208C700358190 /* CPActiveDetails */ = {
@@ -1202,6 +1266,10 @@
 		E372D8471B6216E800B4FC5C /* My */ = {
 			isa = PBXGroup;
 			children = (
+				6BB09A851B6669D800E0D77D /* CPSetting(设置) */,
+				6BB09A971B675A0900E0D77D /* CPEditInfo(编辑资料) */,
+				6BB09A911B67570C00E0D77D /* CPFeedback(意见反馈) */,
+				6BB09A8B1B67563700E0D77D /* CPHowToPlay(如何玩转玩车) */,
 				E372D8481B6216E800B4FC5C /* Controller */,
 				E372D84C1B6216E800B4FC5C /* Mode */,
 				E372D84D1B6216E800B4FC5C /* View */,
@@ -1229,7 +1297,6 @@
 		E372D84D1B6216E800B4FC5C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6BB09A851B6669D800E0D77D /* CPSetting */,
 				6BB09A7F1B6664EC00E0D77D /* CPMyBaseCell */,
 				E372D84E1B6216E800B4FC5C /* CPMyheaderView.h */,
 				E372D84F1B6216E800B4FC5C /* CPMyheaderView.m */,
@@ -1576,6 +1643,7 @@
 				E372D8521B6216E800B4FC5C /* CPMyController.storyboard in Resources */,
 				E372D8351B6216C100B4FC5C /* CPBrandModelViewController.xib in Resources */,
 				E372D8461B6216C100B4FC5C /* serviceTermsViewController.xib in Resources */,
+				6BB09A961B67572500E0D77D /* CPFeedbackViewController.xib in Resources */,
 				E35B046D1B565532002C6655 /* MJPhotoBrowser.bundle in Resources */,
 				6BB09A8A1B6669F800E0D77D /* CPSettingTableViewController.xib in Resources */,
 				E35B04221B562F79002C6655 /* TestActivity.plist in Resources */,
@@ -1584,6 +1652,7 @@
 				6BCF66101B6208C700358190 /* CPActiveDetailsHead.xib in Resources */,
 				6B5F9B6D1B5D29FE00F9D1E8 /* CPCityController.storyboard in Resources */,
 				E372D82F1B6216C100B4FC5C /* CPNewPassWordViewController.xib in Resources */,
+				6BB09AA21B675BF100E0D77D /* CPEditHeadIconCell.xib in Resources */,
 				6B4959DC1B33A23900DB63EA /* LaunchScreen.xib in Resources */,
 				E3FCDD4F1B5E491400F9C379 /* CPEditActivityController.storyboard in Resources */,
 				E36C96271B53C78200D3EDBB /* CPSubscribePersonController.storyboard in Resources */,
@@ -1602,9 +1671,11 @@
 				E372D8331B6216C100B4FC5C /* CarOwnersCertificationViewController.xib in Resources */,
 				E3EEDFF61B53951D00595333 /* CPNewMessageController.storyboard in Resources */,
 				E372D83C1B6216C100B4FC5C /* CPRegisterCellsTableViewCell1.xib in Resources */,
+				6BB09A9C1B675A3E00E0D77D /* CPEditInfoTableViewController.xib in Resources */,
 				E328F0671B621DA700A20DCE /* city.plist in Resources */,
 				E328F0691B621E1C00A20DCE /* area.plist in Resources */,
 				E3EEDFF41B53951D00595333 /* CPMessageController.storyboard in Resources */,
+				6BB09A901B67569600E0D77D /* CPHowToPlayViewController.xib in Resources */,
 				6BCF66091B6208C700358190 /* CPActiveDetailsController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1711,12 +1782,14 @@
 				6B64938C1B4D04BE00C197D2 /* BaseViewController.m in Sources */,
 				E34065ED1B65D6A2008BB3EB /* CPMyJoinController.m in Sources */,
 				E35E6FD01B54B0EC001212D6 /* CPMyPublishFrameModel.m in Sources */,
+				6BB09A8F1B67569600E0D77D /* CPHowToPlayViewController.m in Sources */,
 				E35E6FCD1B54B0D9001212D6 /* CPMyPublishModel.m in Sources */,
 				6B4EF1681B403A5D00292BD4 /* UIBarButtonItem+Extension.m in Sources */,
 				E372D8301B6216C100B4FC5C /* LoginViewController.m in Sources */,
 				E3CE359C1B59E7FC008434B5 /* XLFormTextFieldCell.m in Sources */,
 				E30BD5941B54FCC600FD9030 /* ZYNavigationBar.m in Sources */,
 				E3CE35981B59E7FC008434B5 /* XLFormSelectorCell.m in Sources */,
+				6BB09A951B67572500E0D77D /* CPFeedbackViewController.m in Sources */,
 				E3D8793F1B57475400228356 /* CPActivityModel.m in Sources */,
 				E3EEE0021B53952E00595333 /* Foundation+Log.m in Sources */,
 				E3CE359F1B59E7FC008434B5 /* XLFormOptionsViewController.m in Sources */,
@@ -1758,6 +1831,7 @@
 				E3B1277E1B54E19B005B1174 /* CPIconButton.m in Sources */,
 				E372D83F1B6216C100B4FC5C /* CPRegisterCellsTableViewCell3.m in Sources */,
 				E3AE58C71B57E08800D8F0CA /* ZYNetWorkTool.m in Sources */,
+				6BB09AA11B675BF100E0D77D /* CPEditHeadIconCell.m in Sources */,
 				E3EEE0031B53952E00595333 /* NSString+Extension.m in Sources */,
 				E35B04761B566366002C6655 /* CPPayButton.m in Sources */,
 				6BB09A891B6669F800E0D77D /* CPSettingTableViewController.m in Sources */,
@@ -1778,6 +1852,7 @@
 				E3CE359D1B59E7FC008434B5 /* XLFormTextViewCell.m in Sources */,
 				E3CE358F1B59E7FC008434B5 /* XLFormBaseCell.m in Sources */,
 				E36C961A1B53BA3200D3EDBB /* CPActivityApplyControllerView.m in Sources */,
+				6BB09A9B1B675A3E00E0D77D /* CPEditInfoTableViewController.m in Sources */,
 				E35B046C1B565532002C6655 /* MJPhoto.m in Sources */,
 				E3EEE0041B53952E00595333 /* UIImage+Extension.m in Sources */,
 				E35B04271B5645BC002C6655 /* HMStatusPhotosView.m in Sources */,

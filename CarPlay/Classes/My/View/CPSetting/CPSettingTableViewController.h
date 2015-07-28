@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface CPSettingTableViewController : UITableViewController
+@property (weak, nonatomic) IBOutlet UIView *footView;
+- (IBAction)loginOutBtnClick:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *loginOutBtn;
 
 @end

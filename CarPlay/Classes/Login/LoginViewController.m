@@ -30,6 +30,13 @@
    
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+    //     设置navigationBar透明的背景颜色，达到透明的效果BIGIN
+    self.navigationController.navigationBarHidden=NO;
+    self.navigationController.navigationBar.translucent=NO;
+    //       设置navigationBar透明的背景颜色，达到透明的效果END
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
