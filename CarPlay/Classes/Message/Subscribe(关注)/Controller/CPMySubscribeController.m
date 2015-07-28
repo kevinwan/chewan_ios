@@ -23,13 +23,6 @@
 {
     if (_frameModels == nil) {
         _frameModels = [NSMutableArray array];
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"TestActivity.plist" ofType:nil];
-        NSArray *arr = [NSArray arrayWithContentsOfFile:path];
-        for (NSDictionary *dict in arr) {
-            CPMySubscribeFrameModel *frameModel = [[CPMySubscribeFrameModel alloc] init];
-            frameModel.model = [CPMySubscribeModel objectWithKeyValues:dict];
-            [_frameModels addObject:frameModel];
-        }
     }
     return _frameModels;
 }
@@ -47,11 +40,14 @@
     self.tableView.allowsSelection = NO;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.tableFooterView = [[UIView alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    [self.frameModels removeAllObjects];
     
     NSString *url = [NSString stringWithFormat:@"v1/user/%@/subscribe",[Tools getValueFromKey:@"userId"]];
     
@@ -59,7 +55,15 @@
     [CPNetWorkTool getWithUrl:url params:nil success:^(id responseObject) {
         [SVProgressHUD dismiss];
         if (CPSuccess) {
-            
+           NSArray *data = [CPMySubscribeModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
+            for (CPMySubscribeModel *model in data) {
+                CPMySubscribeFrameModel *frameModel = [[CPMySubscribeFrameModel alloc] init];
+                frameModel.model = model;
+                [self.frameModels addObject:frameModel];
+            }
+            [self.tableView reloadData];
+        }else{
+            [SVProgressHUD showInfoWithStatus:@"加载失败"];
         }
     } failure:^(NSError *error) {
         [SVProgressHUD dismiss];
