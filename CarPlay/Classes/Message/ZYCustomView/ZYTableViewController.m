@@ -17,6 +17,16 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    // 没有网络的提示
+    if (CPNoNetWork){
+        [[[UIAlertView alloc] initWithTitle:@"提示" message:@"网络连接失败,请检查你的网络" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil, nil] show];
+    }
     
 }
 

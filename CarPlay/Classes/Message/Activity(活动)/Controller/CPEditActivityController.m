@@ -865,7 +865,8 @@ typedef enum {
     }
     params[@"activityId"] = self.currentModel.activityId;
     params[@"type"] = self.currentModel.type;
-    params[@"cover"] = self.currentModel.cover;
+//    params[@"cover"] = self.currentModel.cover;
+        params[@"cover"] = @[@"e0e266ab-88f4-42f7-b49f-f65b6a4cdf52", @"e2dd21a2-eead-4131-ad8f-bdf82c848710"];
     params[@"pay"] = self.currentModel.pay;
     DLog(@"%@",params);
     NSString *url = [NSString stringWithFormat:@"v1/activity/%@/info",self.currentModel.activityId];
