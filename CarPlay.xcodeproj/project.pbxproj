@@ -26,6 +26,10 @@
 		6B6493901B4D04E100C197D2 /* CPNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B64938F1B4D04E100C197D2 /* CPNetWork.m */; };
 		6B6493941B4D04E500C197D2 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493931B4D04E500C197D2 /* Tools.m */; };
 		6B6493D91B4FABC900C197D2 /* CPNetworkVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493D81B4FABC900C197D2 /* CPNetworkVO.m */; };
+		6BB09A831B66650C00E0D77D /* CPMyBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB09A811B66650C00E0D77D /* CPMyBaseCell.m */; };
+		6BB09A841B66650C00E0D77D /* CPMyBaseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BB09A821B66650C00E0D77D /* CPMyBaseCell.xib */; };
+		6BB09A891B6669F800E0D77D /* CPSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB09A871B6669F800E0D77D /* CPSettingTableViewController.m */; };
+		6BB09A8A1B6669F800E0D77D /* CPSettingTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BB09A881B6669F800E0D77D /* CPSettingTableViewController.xib */; };
 		6BCCEA561B5A60D5002465AC /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCCEA551B5A60D5002465AC /* NSDate+Extension.m */; };
 		6BCF66081B6208C700358190 /* CPActiveDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCF65F11B6208C700358190 /* CPActiveDetailsController.m */; };
 		6BCF66091B6208C700358190 /* CPActiveDetailsController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BCF65F21B6208C700358190 /* CPActiveDetailsController.storyboard */; };
@@ -245,6 +249,12 @@
 		6B6493931B4D04E500C197D2 /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
 		6B6493D71B4FABC900C197D2 /* CPNetworkVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNetworkVO.h; sourceTree = "<group>"; };
 		6B6493D81B4FABC900C197D2 /* CPNetworkVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNetworkVO.m; sourceTree = "<group>"; };
+		6BB09A801B66650C00E0D77D /* CPMyBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyBaseCell.h; sourceTree = "<group>"; };
+		6BB09A811B66650C00E0D77D /* CPMyBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyBaseCell.m; sourceTree = "<group>"; };
+		6BB09A821B66650C00E0D77D /* CPMyBaseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPMyBaseCell.xib; sourceTree = "<group>"; };
+		6BB09A861B6669F800E0D77D /* CPSettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSettingTableViewController.h; sourceTree = "<group>"; };
+		6BB09A871B6669F800E0D77D /* CPSettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSettingTableViewController.m; sourceTree = "<group>"; };
+		6BB09A881B6669F800E0D77D /* CPSettingTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPSettingTableViewController.xib; sourceTree = "<group>"; };
 		6BCCEA541B5A60D5002465AC /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
 		6BCCEA551B5A60D5002465AC /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
 		6BCF65F01B6208C700358190 /* CPActiveDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActiveDetailsController.h; sourceTree = "<group>"; };
@@ -803,6 +813,26 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		6BB09A7F1B6664EC00E0D77D /* CPMyBaseCell */ = {
+			isa = PBXGroup;
+			children = (
+				6BB09A801B66650C00E0D77D /* CPMyBaseCell.h */,
+				6BB09A811B66650C00E0D77D /* CPMyBaseCell.m */,
+				6BB09A821B66650C00E0D77D /* CPMyBaseCell.xib */,
+			);
+			path = CPMyBaseCell;
+			sourceTree = "<group>";
+		};
+		6BB09A851B6669D800E0D77D /* CPSetting */ = {
+			isa = PBXGroup;
+			children = (
+				6BB09A861B6669F800E0D77D /* CPSettingTableViewController.h */,
+				6BB09A871B6669F800E0D77D /* CPSettingTableViewController.m */,
+				6BB09A881B6669F800E0D77D /* CPSettingTableViewController.xib */,
+			);
+			path = CPSetting;
+			sourceTree = "<group>";
+		};
 		6BCF65EE1B6208C700358190 /* CPActiveDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -1199,6 +1229,8 @@
 		E372D84D1B6216E800B4FC5C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6BB09A851B6669D800E0D77D /* CPSetting */,
+				6BB09A7F1B6664EC00E0D77D /* CPMyBaseCell */,
 				E372D84E1B6216E800B4FC5C /* CPMyheaderView.h */,
 				E372D84F1B6216E800B4FC5C /* CPMyheaderView.m */,
 				E372D8501B6216E800B4FC5C /* CPMyHeaderView.xib */,
@@ -1545,6 +1577,7 @@
 				E372D8351B6216C100B4FC5C /* CPBrandModelViewController.xib in Resources */,
 				E372D8461B6216C100B4FC5C /* serviceTermsViewController.xib in Resources */,
 				E35B046D1B565532002C6655 /* MJPhotoBrowser.bundle in Resources */,
+				6BB09A8A1B6669F800E0D77D /* CPSettingTableViewController.xib in Resources */,
 				E372D8311B6216C100B4FC5C /* LoginViewController.xib in Resources */,
 				E372D8421B6216C100B4FC5C /* CPRegisterStep2ViewController.xib in Resources */,
 				6BCF66101B6208C700358190 /* CPActiveDetailsHead.xib in Resources */,
@@ -1561,6 +1594,7 @@
 				E372D83E1B6216C100B4FC5C /* CPRegisterCellsTableViewCell2.xib in Resources */,
 				E372D8441B6216C100B4FC5C /* registerViewController.xib in Resources */,
 				E372D8401B6216C100B4FC5C /* CPRegisterCellsTableViewCell3.xib in Resources */,
+				6BB09A841B66650C00E0D77D /* CPMyBaseCell.xib in Resources */,
 				E3CE371C1B59FEBA008434B5 /* CPCreatActivityController.storyboard in Resources */,
 				E372D82D1B6216C100B4FC5C /* CPForgetPasswordViewController.xib in Resources */,
 				E372D83A1B6216C100B4FC5C /* CPEditUsernameViewController.xib in Resources */,
@@ -1697,6 +1731,7 @@
 				E35B04731B565532002C6655 /* SDWebImageManager+MJ.m in Sources */,
 				E35E6FC71B54AFB8001212D6 /* CPMyPublishController.m in Sources */,
 				E36C962A1B53C80900D3EDBB /* CPCancleSubBtn.m in Sources */,
+				6BB09A831B66650C00E0D77D /* CPMyBaseCell.m in Sources */,
 				E3CE35991B59E7FC008434B5 /* XLFormSliderCell.m in Sources */,
 				E372D8511B6216E800B4FC5C /* CPMyController.m in Sources */,
 				6BCF660E1B6208C700358190 /* CPDiscussStatus.m in Sources */,
@@ -1725,6 +1760,7 @@
 				E3AE58C71B57E08800D8F0CA /* ZYNetWorkTool.m in Sources */,
 				E3EEE0031B53952E00595333 /* NSString+Extension.m in Sources */,
 				E35B04761B566366002C6655 /* CPPayButton.m in Sources */,
+				6BB09A891B6669F800E0D77D /* CPSettingTableViewController.m in Sources */,
 				6B5F9B701B5D29FE00F9D1E8 /* CPHomeStatus.m in Sources */,
 				E372D8371B6216C100B4FC5C /* CustomSectionView.m in Sources */,
 				E35B046F1B565532002C6655 /* MJPhotoLoadingView.m in Sources */,
