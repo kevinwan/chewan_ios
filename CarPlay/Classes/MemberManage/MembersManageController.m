@@ -261,7 +261,7 @@
         memberManageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"membercell"];
         cell.models = self.membersArray[indexPath.row - self.carsArray.count];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.deleteButton.tag = indexPath.row;
+        cell.deleteButton.tag = indexPath.row - self.carsArray.count;
         return cell;
     }
    

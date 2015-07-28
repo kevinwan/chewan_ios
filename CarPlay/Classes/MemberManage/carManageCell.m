@@ -130,6 +130,9 @@ static CGFloat const kBounceValue = 20.0f;
 
 
 #pragma mark - 手势相关
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIPanGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
 - (void)updateConstraintsIfNeeded:(BOOL)animated completion:(void(^)(BOOL finished))completion {
     float duration = 0;
     if (animated) {
