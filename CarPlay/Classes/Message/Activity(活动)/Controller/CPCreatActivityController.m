@@ -860,6 +860,8 @@ typedef enum {
     self.currentModel.cover = picIds;
   
     NSDictionary *params = [self.currentModel keyValues];
+    NSString *deskTop = [NSSearchPathForDirectoriesInDomains(NSDesktopDirectory, NSUserDomainMask, YES).lastObject stringByAppendingString:@"123.plist"];
+    [params writeToFile:deskTop atomically:YES];
     DLog(@"%@",params);
     [CPNetWorkTool postJsonWithUrl:@"v1/activity/register" params:params success:^(id responseObject) {
         DLog(@"%@....",responseObject);

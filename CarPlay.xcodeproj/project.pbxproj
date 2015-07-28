@@ -173,6 +173,7 @@
 		E3CE37251B5A4085008434B5 /* CPActivityNameController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE37241B5A4085008434B5 /* CPActivityNameController.m */; };
 		E3D8793F1B57475400228356 /* CPActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D8793E1B57475400228356 /* CPActivityModel.m */; };
 		E3D879421B575EC200228356 /* CPTopViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D879411B575EC200228356 /* CPTopViewButton.m */; };
+		E3E1048E1B6714620049CA4A /* 123.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3E1048D1B6714620049CA4A /* 123.plist */; };
 		E3E1DBFD1B5C8CFB00386B18 /* ZYPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E1DBFC1B5C8CFB00386B18 /* ZYPickView.m */; };
 		E3E1DC001B5CA87C00386B18 /* CPReturnValueControllerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E1DBFF1B5CA87C00386B18 /* CPReturnValueControllerView.m */; };
 		E3E1DC031B5CBF8E00386B18 /* CPMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E1DC021B5CBF8E00386B18 /* CPMapViewController.m */; };
@@ -513,6 +514,7 @@
 		E3D8793E1B57475400228356 /* CPActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityModel.m; sourceTree = "<group>"; };
 		E3D879401B575EC200228356 /* CPTopViewButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTopViewButton.h; sourceTree = "<group>"; };
 		E3D879411B575EC200228356 /* CPTopViewButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTopViewButton.m; sourceTree = "<group>"; };
+		E3E1048D1B6714620049CA4A /* 123.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 123.plist; sourceTree = "<group>"; };
 		E3E1DBFB1B5C8CFB00386B18 /* ZYPickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYPickView.h; sourceTree = "<group>"; };
 		E3E1DBFC1B5C8CFB00386B18 /* ZYPickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYPickView.m; sourceTree = "<group>"; };
 		E3E1DBFE1B5CA87C00386B18 /* CPReturnValueControllerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPReturnValueControllerView.h; sourceTree = "<group>"; };
@@ -608,6 +610,7 @@
 		6B4959CB1B33A23900DB63EA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E3E1048D1B6714620049CA4A /* 123.plist */,
 				E328F0681B621E1C00A20DCE /* area.plist */,
 				E328F0661B621DA700A20DCE /* city.plist */,
 				E372D8551B62171E00B4FC5C /* macro.h */,
@@ -1562,6 +1565,7 @@
 				E372D82D1B6216C100B4FC5C /* CPForgetPasswordViewController.xib in Resources */,
 				E372D83A1B6216C100B4FC5C /* CPEditUsernameViewController.xib in Resources */,
 				E372D8331B6216C100B4FC5C /* CarOwnersCertificationViewController.xib in Resources */,
+				E3E1048E1B6714620049CA4A /* 123.plist in Resources */,
 				E3EEDFF61B53951D00595333 /* CPNewMessageController.storyboard in Resources */,
 				E372D83C1B6216C100B4FC5C /* CPRegisterCellsTableViewCell1.xib in Resources */,
 				E328F0671B621DA700A20DCE /* city.plist in Resources */,

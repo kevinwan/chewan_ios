@@ -14,7 +14,7 @@
 //“description”:”$description”,
 @property (nonatomic, copy) NSString *introduction;
 //“cover”:”$cover”,   cover 是数组
-@property (nonatomic, strong) NSMutableArray *cover;
+@property (nonatomic, strong) NSArray *cover;
 //“location”:”$location”,
 @property (nonatomic, copy) NSString *location;
 @property (nonatomic, copy) NSString *address;

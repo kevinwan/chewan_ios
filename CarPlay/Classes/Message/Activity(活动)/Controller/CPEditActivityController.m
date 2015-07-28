@@ -107,11 +107,14 @@ typedef enum {
 {
     _data = data;
     
-    self.currentModel = [CPCreatActivityModel objectWithKeyValues:data];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _data = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"123" ofType:@"plist"]];
+    
+    self.currentModel = [CPCreatActivityModel objectWithKeyValues:_data];
     
     self.navigationItem.title = @"编辑活动";
     
@@ -144,7 +147,13 @@ typedef enum {
 - (void)setCellData
 {
     [self labelWithRow:1].text = self.currentModel.type;
-    [self labelWithRow:2].text = self.currentModel.introduction;
+    
+    if (self.currentModel.introduction.length > 0) {
+        [self setNameCellHeightWithString:self.currentModel.introduction];
+        self.nameLabel.text = self.currentModel.introduction;
+        self.nameLabel.height = [self.currentModel.introduction sizeWithFont:IntroductFont maxW:kScreenWidth - 30].height;
+        [self.tableView reloadData];
+    }
     
     NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
     fmt.dateFormat = @"yyyy年MM月dd HH:mm";
@@ -158,10 +167,15 @@ typedef enum {
     self.selectLocation.address = self.currentModel.address;
     self.selectLocation.location = self.currentModel.location;
     
+    [self labelWithRow:3].text = self.currentModel.location;
+    
     [self labelWithRow:4].text = startStr;
-    fmt.dateFormat = @"yyyy年MM月dd";
-    NSString *endStr = [fmt stringFromDate:[NSDate dateWithTimeIntervalSince1970:self.currentModel.end / 1000]];
-    [self labelWithRow:5].text = endStr;
+    
+    if (self.currentModel.end > 0) {
+        fmt.dateFormat = @"yyyy年MM月dd";
+        NSString *endStr = [fmt stringFromDate:[NSDate dateWithTimeIntervalSince1970:self.currentModel.end / 1000]];
+        [self labelWithRow:5].text = endStr;
+    }
     
     [self labelWithRow:6].text = self.currentModel.pay;
     
@@ -477,7 +491,7 @@ typedef enum {
 - (void)dealloc
 {
     [CPNotificationCenter removeObserver:self];
-    DLog(@"创建活动控制器销毁了...");
+    DLog(@"编辑活动控制器销毁了...");
 }
 
 /**
@@ -827,7 +841,7 @@ typedef enum {
  */
 - (void)uploadCreatActivtyInfoWithPicId:(NSArray *)picIds button:(UIButton *)button
 {
-    [self.currentModel.cover addObjectsFromArray:picIds];
+    self.currentModel.cover = picIds;
     
     NSDictionary *params = [self.currentModel keyValues];
     DLog(@"%@",params);
