@@ -20,6 +20,7 @@
 #import <MJExtension.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "UMSocial.h"
+#import "UMSocialData.h"
 #define kActivityId @"55838b12-7039-41e5-9150-6dd154de961b"
 #define kUserId @"846de312-306c-4916-91c1-a5e69b158014"
 #define kToken @"750dd49c-6129-4a9a-9558-27fa74fc4ce7"
@@ -52,9 +53,12 @@
     [self loadMessage];
  
 }
+
 //添加微信分享的语句
 - (void)inviteFriend {
-   [UMSocialSnsService presentSnsIconSheetView:self appKey:nil shareText:@"come" shareImage:nil shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,UMShareToSms, nil] delegate:nil];
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/activity/%@/index.html",kActivityId];
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/activity/%@/index.html",kActivityId];
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:nil shareText:@"我刚创建了一个活动，小伙伴们快来加入吧" shareImage:nil shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,UMShareToSms, nil] delegate:nil];
 }
 
 - (void) setupFontAndColor {
@@ -262,7 +266,7 @@
         memberManageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"membercell"];
         cell.models = self.membersArray[indexPath.row - self.carsArray.count];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.deleteButton.tag = indexPath.row;
+        cell.deleteButton.tag = indexPath.row - self.carsArray.count;
         return cell;
     }
    
