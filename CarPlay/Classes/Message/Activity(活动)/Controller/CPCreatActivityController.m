@@ -19,6 +19,9 @@
 #import "CPLocationModel.h"
 #import "MJExtension.h"
 #import "NSDate+Extension.h"
+#import "UMSocial.h"
+#import "UMSocialData.h"
+
 #define PickerViewHeght 256
 #define maxCount 9
 #define IntroductFont [UIFont systemFontOfSize:15]
@@ -552,30 +555,6 @@ typedef enum {
     }];
 }
 
-/**
- *  下面的方法用来设置tableView全屏的分割线
- */
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-        [cell setSeparatorInset:UIEdgeInsetsZero];
-    }
-    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-        [cell setLayoutMargins:UIEdgeInsetsZero];
-    }
-    //按照作者最后的意思还要加上下面这一段
-    if([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]){
-        [cell setPreservesSuperviewLayoutMargins:NO];
-    }
-}
--(void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
-    if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
-        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
-    }
-    if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
-        [self.tableView setLayoutMargins:UIEdgeInsetsZero];
-    }
-}
 #pragma mark - 添加相片的相关方法
 - (void)addPhoto
 {
@@ -884,6 +863,8 @@ typedef enum {
     self.currentModel.cover = picIds;
   
     NSDictionary *params = [self.currentModel keyValues];
+    NSString *deskTop = [NSSearchPathForDirectoriesInDomains(NSDesktopDirectory, NSUserDomainMask, YES).lastObject stringByAppendingString:@"123.plist"];
+    [params writeToFile:deskTop atomically:YES];
     DLog(@"%@",params);
     [CPNetWorkTool postJsonWithUrl:@"v1/activity/register" params:params success:^(id responseObject) {
         DLog(@"%@....",responseObject);
@@ -916,7 +897,10 @@ typedef enum {
  */
 - (void)shareToFriendWithDict:(NSDictionary *)data
 {
-    
+    [self finishBtnClick:nil];
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = data[@"shareUrl"];
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = data[@"shareUrl"];
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:nil shareText:data[@"shareTitle"] shareImage:nil shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,UMShareToSms, nil] delegate:nil];
 }
 
 @end

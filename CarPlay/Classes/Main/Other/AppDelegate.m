@@ -10,6 +10,12 @@
 #import "LoginViewController.h"
 #import "CPTabBarController.h"
 #import <MAMapKit/MAMapKit.h>
+#import "UMSocial.h"
+#import "UMSocialWechatHandler.h"
+#import <MobClick.h>
+#define kCheWanAppID @"55a34ed367e58e6efc00285d"
+#define kWeiXinAppID @"wx4c127cf07bd7d80b"
+#define kWeiXinAppSecret @"315ce754c5a1096c5188b4b69a7b9f04"
 @interface AppDelegate ()
 
 @end
@@ -29,6 +35,12 @@
     [MAMapServices sharedServices].apiKey = GaoDeAppKey;
     [SVProgressHUD setBackgroundColor:RGBACOLOR(0, 0, 0, 0.5)];
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
+    
+    [UMSocialData setAppKey:kCheWanAppID];
+    // 微信分享
+    [UMSocialWechatHandler setWXAppId:kWeiXinAppID appSecret:kWeiXinAppSecret url:nil];
+//    统计分析  nil默认渠道为appStore
+    [MobClick startWithAppkey:kCheWanAppID reportPolicy:BATCH   channelId:nil];
     return YES;
 }
 - (void)applicationWillResignActive:(UIApplication *)application {

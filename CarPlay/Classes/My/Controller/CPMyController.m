@@ -4,7 +4,7 @@
 //
 //  Created by 公平价 on 15/6/19.
 //  Copyright (c) 2015年 gongpingjia. All rights reserved.
-//
+// 2015
 
 #import "CPMyController.h"
 #import "LoginViewController.h"
@@ -32,6 +32,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    CPMyheaderView *headerView=[[CPMyheaderView alloc]initWithOrganizer:nil];
+//    self.tableView.tableHeaderView=headerView;
     data=[[NSDictionary alloc]init];
     albumPhotos=[[NSArray alloc]init];
     titleArray=[[NSArray alloc]initWithObjects:@"我关注的人",@"车主认证",@"玩转玩车",@"意见反馈",@"编辑资料", nil];

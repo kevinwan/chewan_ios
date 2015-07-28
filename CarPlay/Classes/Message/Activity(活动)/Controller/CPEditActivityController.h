@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CPEditActivityController : ZYTableViewController
-
+@property (nonatomic, strong) NSDictionary *data;
 @end

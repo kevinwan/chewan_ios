@@ -56,7 +56,7 @@
 // 加载tableview的顶部
 - (void)loadHeadView{
     // 创建tableheadview
-    CPActiveDetailsHead *headView = [CPActiveDetailsHead headView];
+    CPActiveDetailsHead *headView = [CPActiveDetailsHead headView:self];
     
     // 传递对象数据
     headView.activeStatus = self.activeStatus;
@@ -199,5 +199,10 @@
     //退出键盘
     [self.view endEditing:YES];
 }
-
+//我要去玩按钮点击事件
+- (IBAction)GotoPlayButtonDidClick:(UIButton *)sender {
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MembersManage" bundle:nil];
+    UIViewController * vc = sb.instantiateInitialViewController;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 @end
