@@ -71,7 +71,8 @@
             NSArray *data = [CPActivityApplyModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
             if (data.count == 0) {
                 [SVProgressHUD showInfoWithStatus:@"没有新的申请"];
-                self.tableView.tableFooterView = self.noDataView;
+//                self.tableView.tableFooterView = self.noDataView;
+                [self showNoData];
                 return;
             }
             self.tableView.tableFooterView = [[UIView alloc] init];

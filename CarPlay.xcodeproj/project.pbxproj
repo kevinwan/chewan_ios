@@ -134,6 +134,7 @@
 		E3C6114C1B5F363900B7E73A /* CPNetWorkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C6114B1B5F363900B7E73A /* CPNetWorkTool.m */; };
 		E3C6114F1B5F498600B7E73A /* CPLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C6114E1B5F498600B7E73A /* CPLocationModel.m */; };
 		E3C611521B5F4A6C00B7E73A /* ZYSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C611511B5F4A6C00B7E73A /* ZYSearchBar.m */; };
+		E3CE02761B68671800808698 /* UIViewController+ZY.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE02751B68671800808698 /* UIViewController+ZY.m */; };
 		E3CE35371B59E1B0008434B5 /* CPCreatActivityController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE35361B59E1B0008434B5 /* CPCreatActivityController.m */; };
 		E3CE353A1B59E1C0008434B5 /* CPEditActivityController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE35391B59E1C0008434B5 /* CPEditActivityController.m */; };
 		E3CE358F1B59E7FC008434B5 /* XLFormBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE353F1B59E7FC008434B5 /* XLFormBaseCell.m */; };
@@ -437,6 +438,8 @@
 		E3C6114E1B5F498600B7E73A /* CPLocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPLocationModel.m; sourceTree = "<group>"; };
 		E3C611501B5F4A6C00B7E73A /* ZYSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYSearchBar.h; sourceTree = "<group>"; };
 		E3C611511B5F4A6C00B7E73A /* ZYSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYSearchBar.m; sourceTree = "<group>"; };
+		E3CE02741B68671800808698 /* UIViewController+ZY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZY.h"; sourceTree = "<group>"; };
+		E3CE02751B68671800808698 /* UIViewController+ZY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZY.m"; sourceTree = "<group>"; };
 		E3CE35351B59E1B0008434B5 /* CPCreatActivityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCreatActivityController.h; sourceTree = "<group>"; };
 		E3CE35361B59E1B0008434B5 /* CPCreatActivityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCreatActivityController.m; sourceTree = "<group>"; };
 		E3CE35381B59E1C0008434B5 /* CPEditActivityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPEditActivityController.h; sourceTree = "<group>"; };
@@ -921,6 +924,8 @@
 				E32250E91B660A6F000D1DCC /* CPSelectView.h */,
 				E32250EA1B660A6F000D1DCC /* CPSelectView.m */,
 				E32250EC1B660B12000D1DCC /* CPSelectView.xib */,
+				E3CE02741B68671800808698 /* UIViewController+ZY.h */,
+				E3CE02751B68671800808698 /* UIViewController+ZY.m */,
 			);
 			path = ZYCustomView;
 			sourceTree = "<group>";
@@ -1768,6 +1773,7 @@
 				E372D8321B6216C100B4FC5C /* CarOwnersCertificationViewController.m in Sources */,
 				E33BAE841B58DC110021DED6 /* NSDate+Extension.m in Sources */,
 				E3CE35A11B59E7FC008434B5 /* XLFormDescriptor.m in Sources */,
+				E3CE02761B68671800808698 /* UIViewController+ZY.m in Sources */,
 				E3CE35AB1B59E7FC008434B5 /* XLFormRightImageButton.m in Sources */,
 				E35B04721B565532002C6655 /* MJPhotoView.m in Sources */,
 				E30BD59A1B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,

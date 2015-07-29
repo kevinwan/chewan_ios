@@ -497,7 +497,6 @@ typedef enum {
 - (void)dealloc
 {
     [CPNotificationCenter removeObserver:self];
-    DLog(@"编辑活动控制器销毁了...");
 }
 
 /**

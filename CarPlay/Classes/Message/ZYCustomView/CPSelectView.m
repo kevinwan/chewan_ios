@@ -67,6 +67,7 @@
     self.confirmBtn.clipsToBounds = YES;
 }
 
+#pragma mark - 显示和隐藏方法
 - (void)showWithView:(UIView *)view
 {
     [view addSubview:self];
@@ -89,7 +90,6 @@
 }
 
 #pragma mark - 处理点击细节
-
 
 - (IBAction)arrowClick:(UIButton *)sender {
     
@@ -115,6 +115,7 @@
         self.pickerView.tag = 2;
         self.pickerView.delegate = self;
         [self.pickerView show];
+        
     }else{
         self.secondArrow.transform = CGAffineTransformIdentity;
         [UIView animateWithDuration:0.25 animations:^{
@@ -124,23 +125,6 @@
         self.pickerView.delegate = self;
         [self.pickerView show];
     }
-}
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self.pickerView remove];
-}
-
-- (void)toobarDonBtnHaveClick:(ZYPickView *)pickView resultString:(NSString *)resultString
-{
-    if (pickView.tag == 2) {
-        [self.typeLabel setTitle:resultString forState:UIControlStateNormal];
-        self.secondArrow.transform = CGAffineTransformIdentity;
-    }else{
-        [self.areaLabel setTitle:resultString forState:UIControlStateNormal];
-        self.firstArrow.transform = CGAffineTransformIdentity;
-    }
-    [self.pickerView remove];
 }
 
 - (IBAction)cancleBtnClick:(id)sender {
@@ -188,6 +172,27 @@
     if ([self.delegate respondsToSelector:@selector(selectView:finishBtnClick:)]) {
         [self.delegate selectView:self finishBtnClick:model];
     }
+}
+
+#pragma mark - 处理pickerView
+/**
+ *  处理picker收回
+ */
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.pickerView remove];
+}
+
+- (void)toobarDonBtnHaveClick:(ZYPickView *)pickView resultString:(NSString *)resultString
+{
+    if (pickView.tag == 2) {
+        [self.typeLabel setTitle:resultString forState:UIControlStateNormal];
+        self.secondArrow.transform = CGAffineTransformIdentity;
+    }else{
+        [self.areaLabel setTitle:resultString forState:UIControlStateNormal];
+        self.firstArrow.transform = CGAffineTransformIdentity;
+    }
+    [self.pickerView remove];
 }
 
 @end

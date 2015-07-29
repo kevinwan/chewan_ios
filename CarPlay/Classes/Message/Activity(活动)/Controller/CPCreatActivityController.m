@@ -531,7 +531,6 @@ typedef enum {
 - (void)dealloc
 {
     [CPNotificationCenter removeObserver:self];
-    DLog(@"创建活动控制器销毁了...");
 }
 
 /**
@@ -847,8 +846,8 @@ typedef enum {
                 }
                 
             } failure:^(NSError *error) {
-                [SVProgressHUD dismiss];
-                [SVProgressHUD showErrorWithStatus:@"上传失败"];
+                [self disMiss];
+                [self showError:@"创建失败"];
             }];
         }
     }
@@ -870,7 +869,7 @@ typedef enum {
         DLog(@"%@....",responseObject);
         
         if (CPSuccess){
-            [SVProgressHUD showSuccessWithStatus:@"创建成功"];
+            [self showSuccess:@"创建成功"];
             
             if (button.tag == CreateActivityNone) {
                 // 跳转到活动详情界面
@@ -882,11 +881,11 @@ typedef enum {
             }
         }else{
             [SVProgressHUD dismiss];
-            [SVProgressHUD showWithStatus:@"创建失败"];
+            [self showError:@"创建失败"];
         }
     } failed:^(NSError *error) {
         [SVProgressHUD dismiss];
-        [SVProgressHUD showWithStatus:@"创建失败"];
+        [self showError:@"创建失败"];
     }];
 }
 
