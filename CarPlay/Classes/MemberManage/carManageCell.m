@@ -48,8 +48,15 @@ static CGFloat const kBounceValue = 20.0f;
         button.imageEdgeInsets = UIEdgeInsetsMake(-4, 4, 8, 4);
     }
 }
+- (void)removeImageOfButton:(NSArray *)buttons {
+    for (UIButton *button in buttons) {
+        [button setImage:nil forState:UIControlStateNormal];
+    }
+}
 - (void)setModels:(cars *)models {
     _models = models;
+    //设置初始座位头像图片为nil
+    [self removeImageOfButton:@[self.seatMain,self.seatone, self.seatTwo,self.seatThree,self.seatFour,self.seatLastOne,self.seatLastTwo,self.seatLastThree]];
     NSURL *url = [NSURL URLWithString:_models.carBrandLogo];
     [self.carLog sd_setImageWithURL:url];
     self.carName.text = [NSString stringWithFormat:@"%@",_models.carModel];

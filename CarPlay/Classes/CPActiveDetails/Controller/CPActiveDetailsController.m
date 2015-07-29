@@ -13,6 +13,8 @@
 #import "MJExtension.h"
 #import "CPActiveUser.h"
 #import "CPDiscussStatus.h"
+#import "MembersController.h"
+#import "MembersManageController.h"
 
 
 @interface CPActiveDetailsController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
@@ -201,8 +203,16 @@
 }
 //我要去玩按钮点击事件
 - (IBAction)GotoPlayButtonDidClick:(UIButton *)sender {
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MembersManage" bundle:nil];
-    UIViewController * vc = sb.instantiateInitialViewController;
-    [self.navigationController pushViewController:vc animated:YES];
+    if ([sender.titleLabel.text isEqualToString:@"成员管理"]) {
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MembersManage" bundle:nil];
+        MembersManageController * vc = sb.instantiateInitialViewController;
+        vc.activityId = self.activeId;
+        [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Members" bundle:nil];
+        MembersController * vc = sb.instantiateInitialViewController;
+        vc.activityId = self.activeId;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 @end

@@ -47,7 +47,8 @@
 @property (nonatomic, strong) NSMutableArray *membersArray;
 @property (nonatomic, strong) NSMutableArray *carsArray;
 @property (nonatomic, assign) BOOL member;
-
+@property (nonatomic, copy) NSString *userId;
+@property (nonatomic, copy) NSString *token;
 @end
 
 @implementation MembersController
@@ -83,6 +84,18 @@
 - (void)loadMessage {
     //示例参数@"http://cwapi.gongpingjia.com/v1"
     [self.view showWait];
+//    NSString *userId = [Tools getValueFromKey:@"userId"];
+//    if (userId.length == 0) {
+//        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+//        return;
+//    }
+//    self.userId = userId;
+//    NSString *token = [Tools getValueFromKey:@"token"];
+//    if (token.length == 0) {
+//        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+//        return;
+//    }
+//    self.token = token;
     NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/members?userId=%@&token=%@",kActivityId,kUserId,kToken];
     [ZYNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
         [self.view hideWait];

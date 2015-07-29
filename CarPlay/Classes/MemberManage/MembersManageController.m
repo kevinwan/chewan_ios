@@ -25,6 +25,7 @@
 #define kUserId @"846de312-306c-4916-91c1-a5e69b158014"
 #define kToken @"750dd49c-6129-4a9a-9558-27fa74fc4ce7"
 
+
 @interface MembersManageController () <UITableViewDataSource,UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *memberTableView;
@@ -42,6 +43,8 @@
 @property (nonatomic, strong) NSMutableArray *carsArray;
 @property (nonatomic, assign) BOOL member;
 @property (nonatomic, strong) NSString *tapUserID;
+@property (nonatomic, copy) NSString *userId;
+@property (nonatomic, copy) NSString *token;
 @end
 
 @implementation MembersManageController
@@ -51,7 +54,7 @@
     [self setupFontAndColor];
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTitle:@"邀请" titleColor:[AppAppearance titleColor] font:[AppAppearance textLargeFont] target:self action:@selector(inviteFriend)];
     [self loadMessage];
- 
+
 }
 
 //添加微信分享的语句
@@ -78,8 +81,10 @@
     [ZYNetWorkTool postJsonWithUrl:urlStr params:params success:^(id responseObject) {
         [self.view hideWait];
         if ([responseObject operationSuccess]) {
-            [self.membersArray removeObjectAtIndex:sender.tag];
-            [self.memberTableView reloadData];
+            //把相关座位也要删除
+            [self.carsArray removeAllObjects];
+            [self.membersArray removeAllObjects];
+            [self loadMessage];
             [self.view alert:@"删除成功"];
         } else {
             [self.view alertError:responseObject];
@@ -93,6 +98,18 @@
 - (void)loadMessage {
     //示例参数@"http://cwapi.gongpingjia.com/v1"
     [self.view showWait];
+//        NSString *userId = [Tools getValueFromKey:@"userId"];
+//        if (userId.length == 0) {
+//            [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+//            return;
+//        }
+//        self.userId = userId;
+//        NSString *token = [Tools getValueFromKey:@"token"];
+//        if (token.length == 0) {
+//            [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+//            return;
+//        }
+//        self.token = token;
     NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/members?userId=%@&token=%@",kActivityId,kUserId,kToken];
     [ZYNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
         [self.view hideWait];
