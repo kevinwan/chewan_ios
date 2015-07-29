@@ -7,6 +7,7 @@
 //
 
 #import "CPNewMessageCell.h"
+#import "CPNewMsgModel.h"
 
 @interface CPNewMessageCell()
 
@@ -24,13 +25,24 @@
 @implementation CPNewMessageCell
 
 - (void)awakeFromNib {
-    self.nameLable.text = [NSString stringWithFormat:@"我是%zd号👌👌👌",arc4random_uniform(100)];
+    
+    self.descripteLable.preferredMaxLayoutWidth = kScreenWidth - 80;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)setModel:(CPNewMsgModel *)model
+{
+    _model = model;
+    
+    self.descripteLable.text = [NSString stringWithFormat:@"你没的黄航changialsjdfkladsjkldajsflkdfsjlkdsjfldfsjldfsajlkj我是%zd号👌👌👌",arc4random_uniform(100)];
+    
+    self.nameLable.text = [NSString stringWithFormat:@"我是NB%zd号",arc4random_uniform(100)];
+    
+    [self layoutIfNeeded];
+    
+     NSLog(@"frame---%@",NSStringFromCGRect(self.descripteLable.frame));
+    
+    self.cellHeight = self.descripteLable.bottom + 10;
+    
 }
 
 @end

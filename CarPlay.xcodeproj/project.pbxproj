@@ -120,7 +120,6 @@
 		A57582181B6789E500A5E681 /* UILabel+SMFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = A57581FB1B6789E500A5E681 /* UILabel+SMFoundation.m */; };
 		A57582191B6789E500A5E681 /* UITableView+SMFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = A57581FD1B6789E500A5E681 /* UITableView+SMFoundation.m */; };
 		A575821A1B6789E500A5E681 /* UITextField+SMFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = A57581FF1B6789E500A5E681 /* UITextField+SMFoundation.m */; };
-		A575821B1B6789E500A5E681 /* UITextView+SMFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = A57582011B6789E500A5E681 /* UITextView+SMFoundation.m */; };
 		A575821C1B6789E500A5E681 /* UIView+SMFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = A57582031B6789E500A5E681 /* UIView+SMFoundation.m */; };
 		A575821D1B6789E500A5E681 /* UIView+Dealer.m in Sources */ = {isa = PBXBuildFile; fileRef = A57582051B6789E500A5E681 /* UIView+Dealer.m */; };
 		AD5690C45A77A4D82E40CA3F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E1F11B43C6536981B4E2558 /* libPods.a */; };
@@ -215,6 +214,7 @@
 		E3C6114F1B5F498600B7E73A /* CPLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C6114E1B5F498600B7E73A /* CPLocationModel.m */; };
 		E3C611521B5F4A6C00B7E73A /* ZYSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C611511B5F4A6C00B7E73A /* ZYSearchBar.m */; };
 		E3CE02761B68671800808698 /* UIViewController+ZY.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE02751B68671800808698 /* UIViewController+ZY.m */; };
+		E3CE02791B6885BB00808698 /* CPNewMsgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE02781B6885BB00808698 /* CPNewMsgModel.m */; };
 		E3CE35371B59E1B0008434B5 /* CPCreatActivityController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE35361B59E1B0008434B5 /* CPCreatActivityController.m */; };
 		E3CE353A1B59E1C0008434B5 /* CPEditActivityController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE35391B59E1C0008434B5 /* CPEditActivityController.m */; };
 		E3CE358F1B59E7FC008434B5 /* XLFormBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE353F1B59E7FC008434B5 /* XLFormBaseCell.m */; };
@@ -670,6 +670,8 @@
 		E3C611511B5F4A6C00B7E73A /* ZYSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYSearchBar.m; sourceTree = "<group>"; };
 		E3CE02741B68671800808698 /* UIViewController+ZY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZY.h"; sourceTree = "<group>"; };
 		E3CE02751B68671800808698 /* UIViewController+ZY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZY.m"; sourceTree = "<group>"; };
+		E3CE02771B6885BB00808698 /* CPNewMsgModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPNewMsgModel.h; path = CarPlay/Classes/Message/ZYCustomView/CPNewMsgModel.h; sourceTree = SOURCE_ROOT; };
+		E3CE02781B6885BB00808698 /* CPNewMsgModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CPNewMsgModel.m; path = CarPlay/Classes/Message/ZYCustomView/CPNewMsgModel.m; sourceTree = SOURCE_ROOT; };
 		E3CE35351B59E1B0008434B5 /* CPCreatActivityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCreatActivityController.h; sourceTree = "<group>"; };
 		E3CE35361B59E1B0008434B5 /* CPCreatActivityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCreatActivityController.m; sourceTree = "<group>"; };
 		E3CE35381B59E1C0008434B5 /* CPEditActivityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPEditActivityController.h; sourceTree = "<group>"; };
@@ -2005,6 +2007,8 @@
 		E3EEDFED1B53951D00595333 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E3CE02771B6885BB00808698 /* CPNewMsgModel.h */,
+				E3CE02781B6885BB00808698 /* CPNewMsgModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2334,6 +2338,7 @@
 				E35B04731B565532002C6655 /* SDWebImageManager+MJ.m in Sources */,
 				E35E6FC71B54AFB8001212D6 /* CPMyPublishController.m in Sources */,
 				E36C962A1B53C80900D3EDBB /* CPCancleSubBtn.m in Sources */,
+				E3CE02791B6885BB00808698 /* CPNewMsgModel.m in Sources */,
 				A57581C81B6789D500A5E681 /* memberCell.m in Sources */,
 				6BB09A831B66650C00E0D77D /* CPMyBaseCell.m in Sources */,
 				E3CE35991B59E7FC008434B5 /* XLFormSliderCell.m in Sources */,
