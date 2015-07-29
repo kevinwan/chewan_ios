@@ -875,9 +875,9 @@
 				6B4EF1401B4036EE00292BD4 /* Libs */,
 				6B6493891B4D04BE00C197D2 /* BaseViewController */,
 				6B4EF1411B4036EE00292BD4 /* Main */,
-				A5C608561B65BA3900741EF3 /* MemberManage */,
-				A5C608311B65BA2400741EF3 /* Members */,
 				A5C608B41B65CE2700741EF3 /* Service */,
+				A5C608311B65BA2400741EF3 /* Members */,
+				A5C608561B65BA3900741EF3 /* MemberManage */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
