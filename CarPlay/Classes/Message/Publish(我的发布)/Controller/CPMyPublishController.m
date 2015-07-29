@@ -13,7 +13,7 @@
 #import "CPMyPublishCell.h"
 #import "CPSelectView.h"
 
-@interface CPMyPublishController ()
+@interface CPMyPublishController ()<CPSelectViewDelegate>
 @property (nonatomic, strong) NSMutableArray *frameModels;
 @property (nonatomic, weak) CPSelectView *selectView;
 @end
@@ -76,19 +76,18 @@
     [button addTarget:self action:@selector(hide:) forControlEvents:UIControlEventTouchUpInside];
     button.frame = [UIScreen mainScreen].bounds;
     button.backgroundColor = RGBACOLOR(0, 0, 0, 0.5);
-    [[UIApplication sharedApplication].keyWindow addSubview:button];
+    [self.navigationController.view insertSubview:button belowSubview:self.navigationController.navigationBar];
     
     
     CPSelectView *selectView = [CPSelectView selectView];
+    selectView.delegate = self;
     [selectView showWithView:button];
     self.selectView = selectView;
 }
 
 - (void)hide:(UIButton *)cover
 {
-    [self.selectView dismissWithCompletion:^{
-        [cover removeFromSuperview];
-    }];
+    [self.selectView dismissWithCompletion:nil];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -113,6 +112,16 @@
 {
     CPMyPublishFrameModel *frameModel = self.frameModels[indexPath.row];
     return frameModel.cellHeight;
+}
+
+- (void)selectViewCancleBtnClick:(CPSelectView *)selectView
+{
+    
+}
+
+- (void)selectView:(CPSelectView *)selectView finishBtnClick:(CPSelectViewModel *)result
+{
+    
 }
 
 @end

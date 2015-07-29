@@ -95,7 +95,11 @@
 
 - (NSString *)descStr
 {
-    return [NSString stringWithFormat:@"%@ %zd年驾龄",@"China", _drivingExperience];
+    if (self.carBrandLogo){
+        return [NSString stringWithFormat:@"%@ %zd年驾龄",@"China", _drivingExperience];
+    }else{
+        return @"带我飞 ~";
+    }
 }
 
 @end
