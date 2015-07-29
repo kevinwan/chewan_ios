@@ -12,4 +12,5 @@
 @property (nonatomic, assign) BOOL select;
 @property (nonatomic, assign) BOOL showSelectImage;
 @property (nonatomic, copy) NSString *url;
+@property (nonatomic, copy) NSString *coverId;
 @end

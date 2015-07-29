@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+
 @class CPSelectView,CPSelectViewModel;
+// 点击确认和取消进行代理回调传值
 @protocol CPSelectViewDelegate <NSObject>
 
 - (void)selectView:(CPSelectView *)selectView finishBtnClick:(CPSelectViewModel *)result;
@@ -24,12 +26,13 @@
 
 - (void)showWithView:(UIView *)view;
 
-- (void)dismiss;
+- (void)dismissWithCompletion:(void (^)())completion;
 
 @end
 
-
+// 内部类Model
 @interface CPSelectViewModel : NSObject
+
 @property (nonatomic, copy) NSString *type;
 @property (nonatomic, copy) NSString *city;
 @property (nonatomic, copy) NSString *district;

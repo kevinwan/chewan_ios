@@ -12,12 +12,10 @@
 #import "ZYPickView.h"
 #import "CPMapViewController.h"
 #import "NSString+Extension.h"
-#import <UzysAssetsPickerController/UzysWrapperPickerController.h>
 #import "UzysAssetsPickerController.h"
 #import "CPEditImageView.h"
 #import "CPCreatActivityModel.h"
 #import "CPLocationModel.h"
-#import "MJExtension.h"
 #import "NSDate+Extension.h"
 #import "UMSocial.h"
 #import "UMSocialData.h"
@@ -209,7 +207,11 @@ typedef enum {
 {
     [self.tableView setContentOffset:self.currentOffset animated:YES];
     int row = [notify.userInfo[@"row"] intValue];
-    [self closeArrowWithRow:row];
+    if (row == 0) {
+        [self.tableView setContentOffset:CGPointMake(0, -64) animated:YES];
+    }else{
+        [self closeArrowWithRow:row];
+    }
     self.pickView = nil;
 }
 
@@ -531,7 +533,6 @@ typedef enum {
 - (void)dealloc
 {
     [CPNotificationCenter removeObserver:self];
-    DLog(@"创建活动控制器销毁了...");
 }
 
 /**
@@ -801,7 +802,7 @@ typedef enum {
         return;
     }
     
-    if (self.currentModel.latitude == 0) {
+    if (self.currentModel.latitude == 0 || self.currentModel.longitude == 0) {
         [SVProgressHUD showInfoWithStatus:@"请选择活动地点"];
         return;
     }
@@ -847,8 +848,8 @@ typedef enum {
                 }
                 
             } failure:^(NSError *error) {
-                [SVProgressHUD dismiss];
-                [SVProgressHUD showErrorWithStatus:@"上传失败"];
+                [self disMiss];
+                [self showError:@"创建失败"];
             }];
         }
     }
@@ -870,7 +871,7 @@ typedef enum {
         DLog(@"%@....",responseObject);
         
         if (CPSuccess){
-            [SVProgressHUD showSuccessWithStatus:@"创建成功"];
+            [self showSuccess:@"创建成功"];
             
             if (button.tag == CreateActivityNone) {
                 // 跳转到活动详情界面
@@ -882,11 +883,11 @@ typedef enum {
             }
         }else{
             [SVProgressHUD dismiss];
-            [SVProgressHUD showWithStatus:@"创建失败"];
+            [self showError:@"创建失败"];
         }
     } failed:^(NSError *error) {
         [SVProgressHUD dismiss];
-        [SVProgressHUD showWithStatus:@"创建失败"];
+        [self showError:@"创建失败"];
     }];
 }
 
@@ -897,7 +898,6 @@ typedef enum {
  */
 - (void)shareToFriendWithDict:(NSDictionary *)data
 {
-    [self finishBtnClick:nil];
     [UMSocialData defaultData].extConfig.wechatSessionData.url = data[@"shareUrl"];
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = data[@"shareUrl"];
     [UMSocialSnsService presentSnsIconSheetView:self appKey:nil shareText:data[@"shareTitle"] shareImage:nil shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,UMShareToSms, nil] delegate:nil];

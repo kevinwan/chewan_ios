@@ -73,6 +73,7 @@
     self.bottomView = bottomView;
     
     CPChatButton *chatBtn = [CPChatButton buttonWithType:UIButtonTypeCustom];
+    chatBtn.hidden = YES;
     [bottomView addSubview:chatBtn];
     self.chatBtn = chatBtn;
     

@@ -12,15 +12,16 @@
 #import "ZYPickView.h"
 #import "CPMapViewController.h"
 #import "NSString+Extension.h"
-#import <UzysAssetsPickerController/UzysWrapperPickerController.h>
 #import "UzysAssetsPickerController.h"
 #import "CPEditImageView.h"
 #import "CPCreatActivityModel.h"
 #import "CPLocationModel.h"
 #import "NSDate+Extension.h"
+#import "RegexKitLite.h"
 #define PickerViewHeght 256
 #define maxCount 9
 #define IntroductFont [UIFont systemFontOfSize:15]
+
 typedef enum {
     ActivityCreateType = 1,
     ActivityCreateStart,
@@ -28,11 +29,6 @@ typedef enum {
     ActivityCreatePay,
     ActivityCreateSeat
 }ActivityCreate; // 创建活动属性的类型
-
-typedef enum {
-    CreateActivityNone = 20,
-    CreateActivityShare
-}CreateActivityType; //创建完活动之后的操作
 
 @interface CPEditActivityController ()<ZYPickViewDelegate, UIActionSheetDelegate,UIImagePickerControllerDelegate, UzysAssetsPickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate>
 @property (nonatomic, assign) BOOL isOpen;
@@ -112,6 +108,11 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSLog(@"%zd",CPNoNetWork);
+    
+    if(CPNoNetWork){
+        
+    }
     _data = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"123" ofType:@"plist"]];
     
     self.currentModel = [CPCreatActivityModel objectWithKeyValues:_data];
@@ -180,19 +181,6 @@ typedef enum {
     [self labelWithRow:6].text = self.currentModel.pay;
     
     [self addPhotoWithUrls:self.currentModel.cover];
-}
-
-/**
- *  当picker取消时调用
- *
- *  @param notify row
- */
-- (void)pickerViewCancle:(NSNotification *)notify
-{
-    [self.tableView setContentOffset:self.currentOffset animated:YES];
-    int row = [notify.userInfo[@"row"] intValue];
-    [self closeArrowWithRow:row];
-    self.pickView = nil;
 }
 
 /**
@@ -456,6 +444,24 @@ typedef enum {
 }
 
 #pragma mark - ZHPickViewDelegate
+
+/**
+ *  当picker取消时调用
+ *
+ *  @param notify row
+ */
+- (void)pickerViewCancle:(NSNotification *)notify
+{
+    [self.tableView setContentOffset:self.currentOffset animated:YES];
+    int row = [notify.userInfo[@"row"] intValue];
+    if (row == 1) {
+        [self.tableView setContentOffset:CGPointMake(0, -64) animated:YES];
+    }else{
+        [self closeArrowWithRow:row];
+    }
+    self.pickView = nil;
+}
+
 -(void)toobarDonBtnHaveClick:(ZYPickView *)pickView resultString:(NSString *)resultString{
     
     switch (pickView.tag) {
@@ -491,7 +497,6 @@ typedef enum {
 - (void)dealloc
 {
     [CPNotificationCenter removeObserver:self];
-    DLog(@"编辑活动控制器销毁了...");
 }
 
 /**
@@ -643,9 +648,10 @@ typedef enum {
     
     for (int i = 0; i < arr.count; i++) {
         CPEditImageView *imageView = [[CPEditImageView alloc] init];
-        [imageView sd_setImageWithURL:[NSURL URLWithString:arr[i]] placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:arr[i][@"thumbnail_pic"]] placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
         imageView.tag = self.picIndex++;
-        imageView.url = arr[i];
+        imageView.url = arr[i][@"thumbnail_pic"];
+        imageView.coverId = arr[i][@"coverId"];
         UILongPressGestureRecognizer *longPressGes = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
         [imageView addGestureRecognizer:longPressGes];
         [self.photoView insertSubview:imageView atIndex:0];
@@ -801,15 +807,19 @@ typedef enum {
 
     // 上传图片
     NSMutableArray *photoIds = [NSMutableArray array];
-    [SVProgressHUD showWithStatus:@"创建中"];
+    [SVProgressHUD showWithStatus:@"保存中"];
     NSUInteger photoCount = self.photoView.subviews.count - 1;
     for (UIView *subView in self.photoView.subviews) {
         if ([subView isKindOfClass:[CPEditImageView class]]) {
             CPEditImageView *imageView = (CPEditImageView *)subView;
             
-            if (imageView.url.length > 0) {
-                [photoIds addObject:imageView.url];
-                photoCount--;
+            if (imageView.coverId.length > 0) {
+                [photoIds addObject:imageView.coverId];
+                // 图片上传完成
+                if (photoIds.count == photoCount) {
+                    [self uploadCreatActivtyInfoWithPicId:photoIds];
+                }
+
             }else{
                 CPHttpFile *imageFile = [CPHttpFile fileWithName:@"cover.jpg" data:UIImageJPEGRepresentation(imageView.image, 0.4) mimeType:@"image/jpeg" filename:@"cover.jpg"];
                 
@@ -821,7 +831,7 @@ typedef enum {
                         
                         // 图片上传完成
                         if (photoIds.count == photoCount) {
-                            [self uploadCreatActivtyInfoWithPicId:photoIds button:button];
+                            [self uploadCreatActivtyInfoWithPicId:photoIds];
                         }
                     }
                     
@@ -839,24 +849,38 @@ typedef enum {
 /**
  *  上传创建活动的信息
  */
-- (void)uploadCreatActivtyInfoWithPicId:(NSArray *)picIds button:(UIButton *)button
+- (void)uploadCreatActivtyInfoWithPicId:(NSArray *)picIds
 {
     self.currentModel.cover = picIds;
     
-    NSDictionary *params = [self.currentModel keyValues];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"introduction"] = self.currentModel.introduction;
+    params[@"location"] = self.currentModel.location;
+    params[@"longitude"] = @(self.currentModel.longitude);
+    params[@"start"] = @(self.currentModel.start);
+    params[@"latitude"] = @(self.currentModel.latitude);
+    if (self.currentModel.end > 0) {
+        params[@"end"] = @(self.currentModel.end);
+    }
+    params[@"activityId"] = self.currentModel.activityId;
+    params[@"type"] = self.currentModel.type;
+//    params[@"cover"] = self.currentModel.cover;
+        params[@"cover"] = @[@"e0e266ab-88f4-42f7-b49f-f65b6a4cdf52", @"e2dd21a2-eead-4131-ad8f-bdf82c848710"];
+    params[@"pay"] = self.currentModel.pay;
     DLog(@"%@",params);
-    [CPNetWorkTool postJsonWithUrl:@"v1/activity/register" params:params success:^(id responseObject) {
+    NSString *url = [NSString stringWithFormat:@"v1/activity/%@/info",self.currentModel.activityId];
+    [CPNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
         DLog(@"%@....",responseObject);
         
         if (CPSuccess){
             [SVProgressHUD showSuccessWithStatus:@"修改成功"];
         }else{
             [SVProgressHUD dismiss];
-            [SVProgressHUD showWithStatus:@"修改失败"];
+            [SVProgressHUD showInfoWithStatus:@"修改失败"];
         }
     } failed:^(NSError *error) {
         [SVProgressHUD dismiss];
-        [SVProgressHUD showWithStatus:@"修改失败"];
+        [SVProgressHUD showErrorWithStatus:@"修改失败"];
     }];
 }
 

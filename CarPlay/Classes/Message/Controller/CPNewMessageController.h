@@ -9,6 +9,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPNewMessageController : UITableViewController
+@interface CPNewMessageController : ZYTableViewController
 
 @end

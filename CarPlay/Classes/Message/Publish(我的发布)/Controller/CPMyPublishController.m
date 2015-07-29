@@ -15,6 +15,7 @@
 
 @interface CPMyPublishController ()
 @property (nonatomic, strong) NSMutableArray *frameModels;
+@property (nonatomic, weak) CPSelectView *selectView;
 @end
 
 @implementation CPMyPublishController
@@ -72,19 +73,22 @@
 - (void)select
 {
     UIButton *button = [[UIButton alloc] init];
-    [button addTarget:self action:@selector(hide) forControlEvents:UIControlEventTouchUpInside];
-    button.frame = self.view.bounds;
-    button.backgroundColor = RGBACOLOR(111, 111, 111, 0.5);
-    [self.view addSubview:button];
+    [button addTarget:self action:@selector(hide:) forControlEvents:UIControlEventTouchUpInside];
+    button.frame = [UIScreen mainScreen].bounds;
+    button.backgroundColor = RGBACOLOR(0, 0, 0, 0.5);
+    [[UIApplication sharedApplication].keyWindow addSubview:button];
     
     
     CPSelectView *selectView = [CPSelectView selectView];
     [selectView showWithView:button];
+    self.selectView = selectView;
 }
 
-- (void)hide
+- (void)hide:(UIButton *)cover
 {
-    
+    [self.selectView dismissWithCompletion:^{
+        [cover removeFromSuperview];
+    }];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

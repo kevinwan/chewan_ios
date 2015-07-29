@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface ZYNetWorkTool : NSObject
 
+#pragma mark - 处理网络请求的方法
 /**
  *  post请求
  *

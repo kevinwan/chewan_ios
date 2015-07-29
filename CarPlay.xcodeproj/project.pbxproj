@@ -120,7 +120,6 @@
 		A57582181B6789E500A5E681 /* UILabel+SMFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = A57581FB1B6789E500A5E681 /* UILabel+SMFoundation.m */; };
 		A57582191B6789E500A5E681 /* UITableView+SMFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = A57581FD1B6789E500A5E681 /* UITableView+SMFoundation.m */; };
 		A575821A1B6789E500A5E681 /* UITextField+SMFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = A57581FF1B6789E500A5E681 /* UITextField+SMFoundation.m */; };
-		A575821B1B6789E500A5E681 /* UITextView+SMFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = A57582011B6789E500A5E681 /* UITextView+SMFoundation.m */; };
 		A575821C1B6789E500A5E681 /* UIView+SMFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = A57582031B6789E500A5E681 /* UIView+SMFoundation.m */; };
 		A575821D1B6789E500A5E681 /* UIView+Dealer.m in Sources */ = {isa = PBXBuildFile; fileRef = A57582051B6789E500A5E681 /* UIView+Dealer.m */; };
 		AD5690C45A77A4D82E40CA3F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E1F11B43C6536981B4E2558 /* libPods.a */; };
@@ -214,6 +213,8 @@
 		E3C6114C1B5F363900B7E73A /* CPNetWorkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C6114B1B5F363900B7E73A /* CPNetWorkTool.m */; };
 		E3C6114F1B5F498600B7E73A /* CPLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C6114E1B5F498600B7E73A /* CPLocationModel.m */; };
 		E3C611521B5F4A6C00B7E73A /* ZYSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C611511B5F4A6C00B7E73A /* ZYSearchBar.m */; };
+		E3CE02761B68671800808698 /* UIViewController+ZY.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE02751B68671800808698 /* UIViewController+ZY.m */; };
+		E3CE02791B6885BB00808698 /* CPNewMsgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE02781B6885BB00808698 /* CPNewMsgModel.m */; };
 		E3CE35371B59E1B0008434B5 /* CPCreatActivityController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE35361B59E1B0008434B5 /* CPCreatActivityController.m */; };
 		E3CE353A1B59E1C0008434B5 /* CPEditActivityController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE35391B59E1C0008434B5 /* CPEditActivityController.m */; };
 		E3CE358F1B59E7FC008434B5 /* XLFormBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE353F1B59E7FC008434B5 /* XLFormBaseCell.m */; };
@@ -257,6 +258,9 @@
 		E3CE37251B5A4085008434B5 /* CPActivityNameController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE37241B5A4085008434B5 /* CPActivityNameController.m */; };
 		E3D8793F1B57475400228356 /* CPActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D8793E1B57475400228356 /* CPActivityModel.m */; };
 		E3D879421B575EC200228356 /* CPTopViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D879411B575EC200228356 /* CPTopViewButton.m */; };
+		E3E104A31B67372C0049CA4A /* 123.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3E104A21B67372C0049CA4A /* 123.plist */; };
+		E3E104A71B675C910049CA4A /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E104A61B675C910049CA4A /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E3E104A91B675D520049CA4A /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E3E104A81B675D520049CA4A /* libicucore.dylib */; };
 		E3E1DBFD1B5C8CFB00386B18 /* ZYPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E1DBFC1B5C8CFB00386B18 /* ZYPickView.m */; };
 		E3E1DC001B5CA87C00386B18 /* CPReturnValueControllerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E1DBFF1B5CA87C00386B18 /* CPReturnValueControllerView.m */; };
 		E3E1DC031B5CBF8E00386B18 /* CPMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E1DC021B5CBF8E00386B18 /* CPMapViewController.m */; };
@@ -664,6 +668,10 @@
 		E3C6114E1B5F498600B7E73A /* CPLocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPLocationModel.m; sourceTree = "<group>"; };
 		E3C611501B5F4A6C00B7E73A /* ZYSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYSearchBar.h; sourceTree = "<group>"; };
 		E3C611511B5F4A6C00B7E73A /* ZYSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYSearchBar.m; sourceTree = "<group>"; };
+		E3CE02741B68671800808698 /* UIViewController+ZY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZY.h"; sourceTree = "<group>"; };
+		E3CE02751B68671800808698 /* UIViewController+ZY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZY.m"; sourceTree = "<group>"; };
+		E3CE02771B6885BB00808698 /* CPNewMsgModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPNewMsgModel.h; path = CarPlay/Classes/Message/ZYCustomView/CPNewMsgModel.h; sourceTree = SOURCE_ROOT; };
+		E3CE02781B6885BB00808698 /* CPNewMsgModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CPNewMsgModel.m; path = CarPlay/Classes/Message/ZYCustomView/CPNewMsgModel.m; sourceTree = SOURCE_ROOT; };
 		E3CE35351B59E1B0008434B5 /* CPCreatActivityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCreatActivityController.h; sourceTree = "<group>"; };
 		E3CE35361B59E1B0008434B5 /* CPCreatActivityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCreatActivityController.m; sourceTree = "<group>"; };
 		E3CE35381B59E1C0008434B5 /* CPEditActivityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPEditActivityController.h; sourceTree = "<group>"; };
@@ -753,6 +761,10 @@
 		E3D8793E1B57475400228356 /* CPActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityModel.m; sourceTree = "<group>"; };
 		E3D879401B575EC200228356 /* CPTopViewButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTopViewButton.h; sourceTree = "<group>"; };
 		E3D879411B575EC200228356 /* CPTopViewButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTopViewButton.m; sourceTree = "<group>"; };
+		E3E104A21B67372C0049CA4A /* 123.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 123.plist; sourceTree = "<group>"; };
+		E3E104A51B675C910049CA4A /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
+		E3E104A61B675C910049CA4A /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
+		E3E104A81B675D520049CA4A /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		E3E1DBFB1B5C8CFB00386B18 /* ZYPickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYPickView.h; sourceTree = "<group>"; };
 		E3E1DBFC1B5C8CFB00386B18 /* ZYPickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYPickView.m; sourceTree = "<group>"; };
 		E3E1DBFE1B5CA87C00386B18 /* CPReturnValueControllerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPReturnValueControllerView.h; sourceTree = "<group>"; };
@@ -791,6 +803,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3E104A91B675D520049CA4A /* libicucore.dylib in Frameworks */,
 				A575819B1B6787D600A5E681 /* SystemConfiguration.framework in Frameworks */,
 				A57581991B6787CA00A5E681 /* Security.framework in Frameworks */,
 				A57581971B6787BF00A5E681 /* libiconv.dylib in Frameworks */,
@@ -826,6 +839,7 @@
 		16CFAD7EE0B36F11A8B32110 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E3E104A81B675D520049CA4A /* libicucore.dylib */,
 				A575819A1B6787D600A5E681 /* SystemConfiguration.framework */,
 				A57581981B6787CA00A5E681 /* Security.framework */,
 				A57581961B6787BF00A5E681 /* libiconv.dylib */,
@@ -874,6 +888,7 @@
 		6B4959CB1B33A23900DB63EA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E3E104A21B67372C0049CA4A /* 123.plist */,
 				E328F0681B621E1C00A20DCE /* area.plist */,
 				E328F0661B621DA700A20DCE /* city.plist */,
 				E372D8551B62171E00B4FC5C /* macro.h */,
@@ -925,6 +940,7 @@
 		6B4EF1401B4036EE00292BD4 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				E3E104A41B675C910049CA4A /* RegexKitLite */,
 				E3CE353B1B59E7FC008434B5 /* XLForm */,
 				E3AE58C11B57E08800D8F0CA /* ZYNetWorkTool */,
 				E36AFE5E1B579ECD0081F499 /* ZHpickView */,
@@ -1442,6 +1458,8 @@
 				E32250E91B660A6F000D1DCC /* CPSelectView.h */,
 				E32250EA1B660A6F000D1DCC /* CPSelectView.m */,
 				E32250EC1B660B12000D1DCC /* CPSelectView.xib */,
+				E3CE02741B68671800808698 /* UIViewController+ZY.h */,
+				E3CE02751B68671800808698 /* UIViewController+ZY.m */,
 			);
 			path = ZYCustomView;
 			sourceTree = "<group>";
@@ -1931,6 +1949,15 @@
 			path = Validation;
 			sourceTree = "<group>";
 		};
+		E3E104A41B675C910049CA4A /* RegexKitLite */ = {
+			isa = PBXGroup;
+			children = (
+				E3E104A51B675C910049CA4A /* RegexKitLite.h */,
+				E3E104A61B675C910049CA4A /* RegexKitLite.m */,
+			);
+			path = RegexKitLite;
+			sourceTree = "<group>";
+		};
 		E3E315051B5E6CF100FB0B55 /* 创建和编辑活动 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1980,6 +2007,8 @@
 		E3EEDFED1B53951D00595333 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E3CE02771B6885BB00808698 /* CPNewMsgModel.h */,
+				E3CE02781B6885BB00808698 /* CPNewMsgModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2139,6 +2168,7 @@
 				A57581C91B6789D500A5E681 /* Members.storyboard in Resources */,
 				E372D8401B6216C100B4FC5C /* CPRegisterCellsTableViewCell3.xib in Resources */,
 				6BB09A841B66650C00E0D77D /* CPMyBaseCell.xib in Resources */,
+				E3E104A31B67372C0049CA4A /* 123.plist in Resources */,
 				E3CE371C1B59FEBA008434B5 /* CPCreatActivityController.storyboard in Resources */,
 				A57581D11B6789D500A5E681 /* outActivity.xib in Resources */,
 				E372D82D1B6216C100B4FC5C /* CPForgetPasswordViewController.xib in Resources */,
@@ -2241,6 +2271,7 @@
 				E3E1DBFD1B5C8CFB00386B18 /* ZYPickView.m in Sources */,
 				E3D879421B575EC200228356 /* CPTopViewButton.m in Sources */,
 				E36C96251B53C77600D3EDBB /* CPSubscribePersonController.m in Sources */,
+				E3E104A71B675C910049CA4A /* RegexKitLite.m in Sources */,
 				E3CE35A01B59E7FC008434B5 /* XLFormViewController.m in Sources */,
 				E3C611521B5F4A6C00B7E73A /* ZYSearchBar.m in Sources */,
 				A575820D1B6789E500A5E681 /* NSObject+SMFoundation.m in Sources */,
@@ -2307,6 +2338,7 @@
 				E35B04731B565532002C6655 /* SDWebImageManager+MJ.m in Sources */,
 				E35E6FC71B54AFB8001212D6 /* CPMyPublishController.m in Sources */,
 				E36C962A1B53C80900D3EDBB /* CPCancleSubBtn.m in Sources */,
+				E3CE02791B6885BB00808698 /* CPNewMsgModel.m in Sources */,
 				A57581C81B6789D500A5E681 /* memberCell.m in Sources */,
 				6BB09A831B66650C00E0D77D /* CPMyBaseCell.m in Sources */,
 				E3CE35991B59E7FC008434B5 /* XLFormSliderCell.m in Sources */,
@@ -2330,6 +2362,7 @@
 				E372D8321B6216C100B4FC5C /* CarOwnersCertificationViewController.m in Sources */,
 				E33BAE841B58DC110021DED6 /* NSDate+Extension.m in Sources */,
 				E3CE35A11B59E7FC008434B5 /* XLFormDescriptor.m in Sources */,
+				E3CE02761B68671800808698 /* UIViewController+ZY.m in Sources */,
 				E3CE35AB1B59E7FC008434B5 /* XLFormRightImageButton.m in Sources */,
 				E35B04721B565532002C6655 /* MJPhotoView.m in Sources */,
 				A57582141B6789E500A5E681 /* UIButton+SMFoundation.m in Sources */,

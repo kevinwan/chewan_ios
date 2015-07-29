@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class CPNewMsgModel;
 @interface CPNewMessageCell : UITableViewCell
-
+@property (nonatomic, assign) CGFloat cellHeight;
+@property (nonatomic, strong) CPNewMsgModel *model;
 @end

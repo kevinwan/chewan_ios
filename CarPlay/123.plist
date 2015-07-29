@@ -2,39 +2,61 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>address</key>
-	<string>广东省东莞市</string>
-	<key>city</key>
-	<string>东莞市</string>
+	<key>activityId</key>
+	<string>89dd2c29-5c3d-4f22-bf1f-770ee8c58d1a</string>
 	<key>cover</key>
 	<array>
-		<string>30f90874-4be0-4d48-a0b3-69a3570a22b6</string>
-		<string>c94f693b-e936-479f-ad66-6f2709b093d4</string>
-		<string>1da9e665-7cee-4460-8130-3d2516bd2aa5</string>
-		<string>5a193d8e-e30b-4e0e-a89e-1543910771de</string>
-		<string>937ffb66-6bc1-4079-80e8-7058a7dbccc1</string>
+		<dict>
+			<key>thumbnail_pic</key>
+			<string>http://7xknzo.com1.z0.glb.clouddn.com/asset/activity/cover/ab99abd1-99fa-4b83-8ad3-c7d9c2685bf6/cover.png?imageView2/1/w/200</string>
+			<key>coverId</key>
+			<string>ab99abd1-99fa-4b83-8ad3-c7d9c2685bf6</string>
+		</dict>
+		<dict>
+			<key>thumbnail_pic</key>
+			<string>http://7xknzo.com1.z0.glb.clouddn.com/asset/activity/cover/bf6236a9-55e3-4503-ab69-eb504623b8d2/cover.png?imageView2/1/w/200</string>
+			<key>coverId</key>
+			<string>bf6236a9-55e3-4503-ab69-eb504623b8d2</string>
+		</dict>
 	</array>
-	<key>district</key>
-	<string></string>
-	<key>end</key>
-	<real>0.0</real>
+	<key>holdingSeat</key>
+	<integer>1</integer>
 	<key>introduction</key>
-	<string>Let's go, tell me a better KTV,I will give you my fire😀</string>
-	<key>latitude</key>
-	<real>23.046237999999999</real>
+	<string>Let&apos;s go, tell me a better KTV,I will give you my fire</string>
 	<key>location</key>
-	<string>New Face量贩KTV</string>
-	<key>longitude</key>
-	<real>113.746262</real>
+	<string>南京紫金山</string>
+	<key>members</key>
+	<array/>
+	<key>organizer</key>
+	<dict>
+		<key>age</key>
+		<integer>30</integer>
+		<key>carBrandLogo</key>
+		<string>http://gongpingjia.qiniudn.com/img/logo/7206452af3747880ddd07398a95b9bdbebbc963e.jpg</string>
+		<key>carModel</key>
+		<string>奥迪A4L</string>
+		<key>drivingExperience</key>
+		<integer>3</integer>
+		<key>gender</key>
+		<string>男</string>
+		<key>nickname</key>
+		<string>孔明</string>
+		<key>photo</key>
+		<string>http://7xknzo.com1.z0.glb.clouddn.com/asset/user/846de312-306c-4916-91c1-a5e69b158014/avatar.png?imageView2/1/w/200</string>
+	</dict>
 	<key>pay</key>
 	<string>我请客</string>
-	<key>province</key>
-	<string>广东省</string>
-	<key>seat</key>
-	<integer>3</integer>
+	<key>publishTime</key>
+	<integer>1438047297685</integer>
 	<key>start</key>
-	<real>1438054440000</real>
+	<integer>1438054440000</integer>
+	<key>totalSeat</key>
+	<integer>4</integer>
 	<key>type</key>
 	<string>唱歌</string>
+	<key>longitude</key>
+	<real>118.869529</real>
+	<key>latitude</key>
+	<string>32.02632</string>
 </dict>
 </plist>

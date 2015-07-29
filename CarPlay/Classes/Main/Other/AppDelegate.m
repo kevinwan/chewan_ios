@@ -35,6 +35,8 @@
     [MAMapServices sharedServices].apiKey = GaoDeAppKey;
     [SVProgressHUD setBackgroundColor:RGBACOLOR(0, 0, 0, 0.5)];
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
+    // 开始监控网络状态
+    [self startMonitoringNetWork];
     
     [UMSocialData setAppKey:kCheWanAppID];
     // 微信分享
@@ -88,6 +90,24 @@
     // 清空图片缓存
     [[SDWebImageManager sharedManager].imageCache clearMemory];
     [[SDWebImageManager sharedManager].imageCache clearDisk];
+}
+
+- (void)startMonitoringNetWork
+{
+    NSURL *baseURL = [NSURL URLWithString:BASE_URL];
+    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:baseURL];
+    [manager.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        
+        if (status == AFNetworkReachabilityStatusNotReachable){
+            [CPUserDefaults setBool:YES forKey:CPNetWorkStatus];
+            [CPUserDefaults synchronize];
+        }else{
+            [CPUserDefaults setBool:NO forKey:CPNetWorkStatus];
+            [CPUserDefaults synchronize];
+        }
+    }];
+    
+    [manager.reachabilityManager startMonitoring];
 }
 
 @end

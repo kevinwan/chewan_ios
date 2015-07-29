@@ -32,6 +32,14 @@
  */
 - (void)setUp
 {
+    
+    if (kScreenWidth == 320) {
+        self.titleLabel.font = [UIFont systemFontOfSize:9];
+    }else{
+        self.titleLabel.font = [UIFont systemFontOfSize:11];
+    }
+    [self setTitleColor:[Tools getColor:@"656d78"] forState:UIControlStateNormal];
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.titleLabel.textAlignment = NSTextAlignmentLeft;
 }
 
@@ -47,7 +55,7 @@
 {
     CGFloat titleX = 20;
     CGFloat titleY = 0;
-    CGFloat titleW = contentRect.size.width - 20;
+    CGFloat titleW = contentRect.size.width;
     CGFloat titleH = contentRect.size.height;
     return CGRectMake(titleX, titleY, titleW, titleH);
 }
