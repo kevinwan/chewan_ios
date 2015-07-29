@@ -18,6 +18,9 @@
 #import "CPLocationModel.h"
 #import "MJExtension.h"
 #import "NSDate+Extension.h"
+#import "UMSocial.h"
+#import "UMSocialData.h"
+
 #define PickerViewHeght 256
 #define maxCount 9
 #define IntroductFont [UIFont systemFontOfSize:15]
@@ -896,7 +899,10 @@ typedef enum {
  */
 - (void)shareToFriendWithDict:(NSDictionary *)data
 {
-    
+    [self finishBtnClick:nil];
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = data[@"shareUrl"];
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = data[@"shareUrl"];
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:nil shareText:data[@"shareTitle"] shareImage:nil shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,UMShareToSms, nil] delegate:nil];
 }
 
 @end

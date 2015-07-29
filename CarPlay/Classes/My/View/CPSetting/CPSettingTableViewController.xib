@@ -7,6 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CPSettingTableViewController">
             <connections>
+                <outlet property="footView" destination="wPE-aU-DrO" id="t8s-7f-v5r"/>
+                <outlet property="loginOutBtn" destination="Lge-ft-F0h" id="brm-UX-uEK"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,10 +18,39 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <view key="tableHeaderView" contentMode="scaleToFill" id="wPE-aU-DrO">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lge-ft-F0h">
+                        <rect key="frame" x="10" y="20" width="300" height="40"/>
+                        <color key="backgroundColor" red="0.97254901960784312" green="0.3411764705882353" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="d5r-At-hmH"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="smD-bf-oX0"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <state key="normal" title="退出登录">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="loginOutBtnClick:" destination="-1" eventType="touchUpInside" id="FpZ-Jg-rLK"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="Lge-ft-F0h" secondAttribute="trailing" constant="10" id="Ew1-hZ-vzD"/>
+                    <constraint firstAttribute="bottom" secondItem="Lge-ft-F0h" secondAttribute="bottom" id="Q7f-1D-Qg0"/>
+                    <constraint firstItem="Lge-ft-F0h" firstAttribute="top" secondItem="wPE-aU-DrO" secondAttribute="top" constant="20" id="vEz-dI-NU9"/>
+                    <constraint firstItem="Lge-ft-F0h" firstAttribute="leading" secondItem="wPE-aU-DrO" secondAttribute="leading" constant="10" id="ysG-mu-FuU"/>
+                </constraints>
+            </view>
             <connections>
                 <outlet property="dataSource" destination="-1" id="Tng-2m-Rnh"/>
                 <outlet property="delegate" destination="-1" id="9aC-8N-iBw"/>
             </connections>
+            <point key="canvasLocation" x="-143" y="349"/>
         </tableView>
     </objects>
 </document>

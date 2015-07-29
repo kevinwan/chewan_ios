@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MembersController">
+            <connections>
+                <outlet property="getButton" destination="gIo-DH-pbi" id="Fab-Cn-uWr"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Rvq-Eh-ex8" customClass="emptySeat">
+            <rect key="frame" x="0.0" y="0.0" width="280" height="190"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="member_emptySeat" translatesAutoresizingMaskIntoConstraints="NO" id="ALK-06-9ri">
+                    <rect key="frame" x="108" y="20" width="63" height="63"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="63" id="Dor-vi-W1P"/>
+                        <constraint firstAttribute="height" constant="63" id="Tvf-Ar-91A"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IvC-ug-ZFH">
+                    <rect key="frame" x="10" y="133" width="125" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="qAA-TA-Try"/>
+                        <constraint firstAttribute="width" constant="125" id="ubW-ph-yem"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="取消">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="cancelSeatButton:" destination="-1" eventType="touchUpInside" id="bQl-2J-6eL"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gIo-DH-pbi">
+                    <rect key="frame" x="145" y="133" width="125" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="125" id="mLR-ye-QqC"/>
+                        <constraint firstAttribute="height" constant="40" id="orS-M2-uHE"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="立即抢座">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="getSeatButtonClick:" destination="-1" eventType="touchUpInside" id="BIb-gl-Pif"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="虚位以待..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Uk-rx-ta3">
+                    <rect key="frame" x="98.5" y="93" width="82.5" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="IvC-ug-ZFH" firstAttribute="top" secondItem="0Uk-rx-ta3" secondAttribute="bottom" constant="20" id="8Iv-Ml-35R"/>
+                <constraint firstAttribute="centerX" secondItem="0Uk-rx-ta3" secondAttribute="centerX" id="DFR-MK-hbi"/>
+                <constraint firstItem="IvC-ug-ZFH" firstAttribute="leading" secondItem="Rvq-Eh-ex8" secondAttribute="leading" constant="10" id="IrK-we-lwU"/>
+                <constraint firstItem="gIo-DH-pbi" firstAttribute="top" secondItem="0Uk-rx-ta3" secondAttribute="bottom" constant="20" id="K0e-bI-Av2"/>
+                <constraint firstItem="0Uk-rx-ta3" firstAttribute="top" secondItem="ALK-06-9ri" secondAttribute="bottom" constant="10" id="N46-0Q-D4w"/>
+                <constraint firstItem="ALK-06-9ri" firstAttribute="leading" secondItem="Rvq-Eh-ex8" secondAttribute="leading" constant="108" id="khV-Dp-noB"/>
+                <constraint firstItem="ALK-06-9ri" firstAttribute="top" secondItem="Rvq-Eh-ex8" secondAttribute="top" constant="20" id="qkj-DI-6I8"/>
+                <constraint firstItem="gIo-DH-pbi" firstAttribute="leading" secondItem="IvC-ug-ZFH" secondAttribute="trailing" constant="10" id="qyM-uE-Lep"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="cancelButton" destination="IvC-ug-ZFH" id="yJg-gA-5eW"/>
+                <outlet property="titleLabel" destination="0Uk-rx-ta3" id="k2U-7B-ODf"/>
+            </connections>
+            <point key="canvasLocation" x="339" y="282.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="member_emptySeat" width="65" height="65"/>
+    </resources>
+</document>

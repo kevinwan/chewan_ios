@@ -4,7 +4,7 @@
 //
 //  Created by 公平价 on 15/6/19.
 //  Copyright (c) 2015年 gongpingjia. All rights reserved.
-//
+// 2015
 
 #import "CPMyController.h"
 #import "LoginViewController.h"
@@ -12,6 +12,13 @@
 #import "CPMySubscribeModel.h"
 #import "CPMyBaseCell.h"
 #import "CPSettingTableViewController.h"
+#import "CPMyPublishController.h"
+#import "CPMySubscribeController.h"
+#import "CPMyJoinController.h"
+#import "CarOwnersCertificationViewController.h"
+#import "CPHowToPlayViewController.h"
+#import "CPFeedbackViewController.h"
+#import "CPEditInfoTableViewController.h"
 
 @interface CPMyController ()<UIScrollViewDelegate>
 {
@@ -25,6 +32,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    CPMyheaderView *headerView=[[CPMyheaderView alloc]initWithOrganizer:nil];
+//    self.tableView.tableHeaderView=headerView;
     data=[[NSDictionary alloc]init];
     albumPhotos=[[NSArray alloc]init];
     titleArray=[[NSArray alloc]initWithObjects:@"我关注的人",@"车主认证",@"玩转玩车",@"意见反馈",@"编辑资料", nil];
@@ -53,6 +62,10 @@
     }
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+    [self.timer invalidate];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
    
@@ -79,6 +92,30 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row==0) {
+        
+    }else if (indexPath.row==1) {
+        CarOwnersCertificationViewController *CarOwnersCertificationVC=[[CarOwnersCertificationViewController alloc]init];
+        CarOwnersCertificationVC.title=@"车主认证";
+        
+        [self.navigationController pushViewController:CarOwnersCertificationVC animated:YES];
+    }else if (indexPath.row==2){
+        CPHowToPlayViewController *CPHowToPlayVC=[[CPHowToPlayViewController alloc]init];
+        CPHowToPlayVC.title=@"玩转玩车";
+        [self.navigationController pushViewController:CPHowToPlayVC animated:YES];
+    }else if (indexPath.row==3){
+        CPFeedbackViewController *CPFeedbackVC=[[CPFeedbackViewController alloc]init];
+        CPFeedbackVC.title=@"意见反馈";
+        [self.navigationController pushViewController:CPFeedbackVC animated:YES];
+    }else if (indexPath.row==4){
+        CPEditInfoTableViewController *CPEditInfoTableVC=[[CPEditInfoTableViewController alloc]init];
+        CPEditInfoTableVC.title=@"编辑资料";
+        [self.navigationController pushViewController:CPEditInfoTableVC animated:YES];
+    }
+}
+
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
         [cell setSeparatorInset:UIEdgeInsetsZero];
@@ -92,10 +129,7 @@
 }
 
 - (IBAction)rightBtnClick:(id)sender {
-    LoginViewController *loginVC=[[LoginViewController alloc]init];
-    [loginVC setHidesBottomBarWhenPushed:YES];
-    //    [self.navigationController presentViewController:loginVC animated:YES completion:nil];
-    [self.navigationController pushViewController:loginVC animated:YES];
+    
 }
 
 // 分页控件的监听方法
@@ -110,6 +144,10 @@
 
 - (void)startTimer
 {
+//    if (self.timer) {
+//        [self.timer invalidate];
+//    }
+    
     self.timer = [NSTimer timerWithTimeInterval:2.3 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
     // 添加到运行循环
     [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
@@ -299,5 +337,28 @@
     CPSettingTableViewController *CPSettingTableVC=[[CPSettingTableViewController alloc]init];
     CPSettingTableVC.title=@"设置";
     [self.navigationController pushViewController:CPSettingTableVC animated:YES];
+}
+
+//我的发布
+- (IBAction)myRelease:(id)sender{
+    CPMyPublishController *vc = [[CPMyPublishController alloc] init];
+    
+    vc.hisUserId = [Tools getValueFromKey:@"userId"];
+    
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+//我的关注
+- (IBAction)myPayAttentionTo:(id)sender{
+    CPMySubscribeController *vc = [[CPMySubscribeController alloc] init];
+    vc.hisUserId = [Tools getValueFromKey:@"userId"];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+//我的参与
+- (IBAction)myParticipateIn:(id)sender{
+    CPMyJoinController *vc = [[CPMyJoinController alloc] init];
+    vc.hisUserId = [Tools getValueFromKey:@"userId"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 @end

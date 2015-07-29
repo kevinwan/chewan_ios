@@ -8,6 +8,7 @@
 
 #import "CPSettingTableViewController.h"
 #import "CPMyBaseCell.h"
+#import "LoginViewController.h"
 
 @interface CPSettingTableViewController ()
 {
@@ -19,7 +20,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.tableHeaderView=[[UIView alloc]initWithFrame:CGRectZero];
+    self.tableView.tableFooterView=self.footView;
     titleArray=[[NSArray alloc]initWithObjects:@"清理缓存",@"喜欢我们打分鼓励",@"关于我们",@"版本介绍",@"当前版本", nil];
+    self.loginOutBtn.layer.cornerRadius=3.0;
+    self.loginOutBtn.layer.masksToBounds=YES;
 }
 
 -(void)viewDidLayoutSubviews{
@@ -55,8 +60,23 @@
     }
     cell.icon.image=[UIImage imageNamed:[titleArray objectAtIndex:indexPath.row]];
     cell.titleLable.text=[titleArray objectAtIndex:indexPath.row];
+    if (indexPath.row==0) {
+        float totalSize = [[SDImageCache sharedImageCache] getSize];
+        cell.valueLable.text=[[NSString alloc]initWithFormat:@"%.2fM",totalSize/1024/1024];
+    }
+    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row==0) {
+        [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
+            [self.tableView reloadData];
+            [SVProgressHUD showSuccessWithStatus:@"清理成功"];
+        }];
+    }
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -70,4 +90,10 @@
         [cell setPreservesSuperviewLayoutMargins:NO];
     }
 }
+- (IBAction)loginOutBtnClick:(id)sender {
+    LoginViewController *loginVC=[[LoginViewController alloc]init];
+    [loginVC setHidesBottomBarWhenPushed:YES];
+    [self.navigationController pushViewController:loginVC animated:YES];
+}
+
 @end
