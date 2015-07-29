@@ -10,7 +10,6 @@
 #import "CPActivityApplyCell.h"
 #import "CPSubscribePersonController.h"
 #import "CPActivityApplyModel.h"
-#import "MJExtension.h"
 
 @interface CPActivityApplyControllerView ()
 @property (nonatomic, strong) NSMutableArray *datas;
@@ -95,11 +94,7 @@
     DLog(@"%@---",url);
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
     json[@"action"] = @"1";
-//    [ZYNetWorkTool postWithUrl:url params:json success:^(id responseObject) {
-//        DLog(@"%@",responseObject);
-//    } failure:^(NSError *error) {
-//        
-//    }];
+    
     [SVProgressHUD showWithStatus:@"努力加载中"];
     [ZYNetWorkTool postJsonWithUrl:url params:json success:^(id responseObject) {
         DLog(@"%@",responseObject);

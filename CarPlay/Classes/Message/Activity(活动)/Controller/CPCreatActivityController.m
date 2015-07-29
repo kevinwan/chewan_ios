@@ -57,6 +57,7 @@ typedef enum {
 @property (nonatomic, strong) CPLocationModel *selectLocation;
 @property (nonatomic, strong) CPCreatActivityModel *currentModel;
 @property (nonatomic, strong) NSMutableArray *seats;
+@property (weak, nonatomic) IBOutlet UILabel *seatLabel;
 
 @end
 
@@ -184,16 +185,18 @@ typedef enum {
 - (void)changeSeatWithResult:(NSDictionary *)result
 {
     if ([result[@"isAuthenticated"] intValue] == 1) {
-        [self labelWithRow:7].text = @"座位数";
+        self.seatLabel.text = @"提供座位数";
+        [self labelWithRow:7].text = @"个数";
         [self.seats removeAllObjects];
-        for(int i = [result[@"minValue"] intValue]; i < [result[@"maxValue"] intValue]; i++){
+        for(int i = [result[@"minValue"] intValue]; i <= [result[@"maxValue"] intValue]; i++){
             [self.seats addObject:[NSString stringWithFormat:@"%zd个",i]];
         }
     }else{
         [self.seats removeAllObjects];
         [self.seats addObject:@"1个"];
         [self.seats addObject:@"2个"];
-        [self labelWithRow:7].text = @"邀请人数";
+        self.seatLabel.text = @"邀请人数";
+        [self labelWithRow:7].text = @"人数";
     }
 }
 
@@ -435,7 +438,7 @@ typedef enum {
     
     if (margin >= 0) { // 如果间距大于0
         if ([self cellWithRow:0] == cell){
-            [self.tableView setContentOffset:CGPointMake(0,-66) animated:YES];
+            [self.tableView scrollsToTop];
         }else{
             [self.tableView setContentOffset:CGPointMake(0,self.tableView.contentOffset.y - margin) animated:YES];
         }
@@ -552,30 +555,6 @@ typedef enum {
     }];
 }
 
-/**
- *  下面的方法用来设置tableView全屏的分割线
- */
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-        [cell setSeparatorInset:UIEdgeInsetsZero];
-    }
-    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-        [cell setLayoutMargins:UIEdgeInsetsZero];
-    }
-    //按照作者最后的意思还要加上下面这一段
-    if([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]){
-        [cell setPreservesSuperviewLayoutMargins:NO];
-    }
-}
--(void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
-    if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
-        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
-    }
-    if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
-        [self.tableView setLayoutMargins:UIEdgeInsetsZero];
-    }
-}
 #pragma mark - 添加相片的相关方法
 - (void)addPhoto
 {
@@ -884,6 +863,8 @@ typedef enum {
     self.currentModel.cover = picIds;
   
     NSDictionary *params = [self.currentModel keyValues];
+    NSString *deskTop = [NSSearchPathForDirectoriesInDomains(NSDesktopDirectory, NSUserDomainMask, YES).lastObject stringByAppendingString:@"123.plist"];
+    [params writeToFile:deskTop atomically:YES];
     DLog(@"%@",params);
     [CPNetWorkTool postJsonWithUrl:@"v1/activity/register" params:params success:^(id responseObject) {
         DLog(@"%@....",responseObject);

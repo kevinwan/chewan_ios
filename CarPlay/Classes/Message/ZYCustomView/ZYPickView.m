@@ -163,7 +163,7 @@
 
 -(void)setUpToolBar{
     _toolbar=[self setToolbarStyle];
-    [self setTintColor:[UIColor redColor]];
+    [self setTintColor:[Tools getColor:@"fc6e51"]];
     [self setToolbarWithPickViewFrame];
     [self addSubview:_toolbar];
 }

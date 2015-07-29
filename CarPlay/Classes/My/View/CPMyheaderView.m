@@ -19,7 +19,11 @@
 - (IBAction)myParticipateIn:(id)sender {
 }
 
--(id)initWithOrganizer:(CPOrganizer *)organizer{
++ (instancetype)create{
+    return [[[NSBundle mainBundle] loadNibNamed:@"CPMyheaderView" owner:nil options:nil] lastObject];
+}
+
+-(void)assignmentWithCPOrganizer:(CPOrganizer *)organizer{
     _organizer = organizer;
     if (_organizer) {
         if (_organizer.backGroudImgUrl) {
@@ -66,7 +70,6 @@
             self.carModelAndDrivingExperience.text=description;
         }
     }
-    return self;
 }
 
 @end
