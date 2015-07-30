@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface CPMyController : UITableViewController
+- (IBAction)photoManage:(id)sender;
+
 - (IBAction)rightBtnClick:(id)sender;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLable;

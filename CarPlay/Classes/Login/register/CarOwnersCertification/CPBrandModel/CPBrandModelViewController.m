@@ -51,6 +51,7 @@
     [self.view addSubview:_indexView];
     
     // DetailsTbView
+    
     self.modelTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     _modelTableView.bounces = NO;
     _modelTableView.sectionHeaderHeight=50.0f;
@@ -61,7 +62,7 @@
     [_modelSlideView addSubview:_modelTableView];
     _modelTableView.tableFooterView = [UIView new];
     [_modelTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(_modelSlideView).with.insets(UIEdgeInsetsMake(0.0f, 0.5f, 0.0f, 0.0f));
+        make.edges.equalTo(_modelSlideView).with.insets(UIEdgeInsetsMake(66.0f, 0.5f, 0.0f, 0.0f));
     }];
     
     // 清扫手势

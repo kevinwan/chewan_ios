@@ -38,6 +38,9 @@
 		6BB09A9C1B675A3E00E0D77D /* CPEditInfoTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BB09A9A1B675A3E00E0D77D /* CPEditInfoTableViewController.xib */; };
 		6BB09AA11B675BF100E0D77D /* CPEditHeadIconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB09A9F1B675BF100E0D77D /* CPEditHeadIconCell.m */; };
 		6BB09AA21B675BF100E0D77D /* CPEditHeadIconCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BB09AA01B675BF100E0D77D /* CPEditHeadIconCell.xib */; };
+		6BB09AA71B68B02900E0D77D /* CPPhotoalbumManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB09AA51B68B02900E0D77D /* CPPhotoalbumManagement.m */; };
+		6BB09AA81B68B02900E0D77D /* CPPhotoalbumManagement.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BB09AA61B68B02900E0D77D /* CPPhotoalbumManagement.xib */; };
+		6BB09AB41B69F52900E0D77D /* CPNewfeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB09AB31B69F52900E0D77D /* CPNewfeatureViewController.m */; };
 		6BCCEA561B5A60D5002465AC /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCCEA551B5A60D5002465AC /* NSDate+Extension.m */; };
 		6BCF66081B6208C700358190 /* CPActiveDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCF65F11B6208C700358190 /* CPActiveDetailsController.m */; };
 		6BCF66091B6208C700358190 /* CPActiveDetailsController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BCF65F21B6208C700358190 /* CPActiveDetailsController.storyboard */; };
@@ -350,6 +353,11 @@
 		6BB09A9E1B675BF100E0D77D /* CPEditHeadIconCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPEditHeadIconCell.h; sourceTree = "<group>"; };
 		6BB09A9F1B675BF100E0D77D /* CPEditHeadIconCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPEditHeadIconCell.m; sourceTree = "<group>"; };
 		6BB09AA01B675BF100E0D77D /* CPEditHeadIconCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPEditHeadIconCell.xib; sourceTree = "<group>"; };
+		6BB09AA41B68B02900E0D77D /* CPPhotoalbumManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPhotoalbumManagement.h; sourceTree = "<group>"; };
+		6BB09AA51B68B02900E0D77D /* CPPhotoalbumManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPPhotoalbumManagement.m; sourceTree = "<group>"; };
+		6BB09AA61B68B02900E0D77D /* CPPhotoalbumManagement.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPPhotoalbumManagement.xib; sourceTree = "<group>"; };
+		6BB09AB21B69F52900E0D77D /* CPNewfeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNewfeatureViewController.h; sourceTree = "<group>"; };
+		6BB09AB31B69F52900E0D77D /* CPNewfeatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNewfeatureViewController.m; sourceTree = "<group>"; };
 		6BCCEA541B5A60D5002465AC /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
 		6BCCEA551B5A60D5002465AC /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
 		6BCF65F01B6208C700358190 /* CPActiveDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActiveDetailsController.h; sourceTree = "<group>"; };
@@ -992,6 +1000,7 @@
 		6B4EF1481B4036EE00292BD4 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				6BB09AB11B69F52100E0D77D /* CPNewfeature */,
 				6B4EF1491B4036EE00292BD4 /* AppDelegate.h */,
 				E372D8561B62172400B4FC5C /* AppDelegate.m */,
 				6B4EF14B1B4036EE00292BD4 /* main.m */,
@@ -1147,6 +1156,25 @@
 				6BB09AA01B675BF100E0D77D /* CPEditHeadIconCell.xib */,
 			);
 			path = CPEditHeadIcon;
+			sourceTree = "<group>";
+		};
+		6BB09AA31B68B00900E0D77D /* CPPhotoalbumManagement(相册管理) */ = {
+			isa = PBXGroup;
+			children = (
+				6BB09AA41B68B02900E0D77D /* CPPhotoalbumManagement.h */,
+				6BB09AA51B68B02900E0D77D /* CPPhotoalbumManagement.m */,
+				6BB09AA61B68B02900E0D77D /* CPPhotoalbumManagement.xib */,
+			);
+			path = "CPPhotoalbumManagement(相册管理)";
+			sourceTree = "<group>";
+		};
+		6BB09AB11B69F52100E0D77D /* CPNewfeature */ = {
+			isa = PBXGroup;
+			children = (
+				6BB09AB21B69F52900E0D77D /* CPNewfeatureViewController.h */,
+				6BB09AB31B69F52900E0D77D /* CPNewfeatureViewController.m */,
+			);
+			path = CPNewfeature;
 			sourceTree = "<group>";
 		};
 		6BCF65EE1B6208C700358190 /* CPActiveDetails */ = {
@@ -1749,6 +1777,7 @@
 		E372D8471B6216E800B4FC5C /* My */ = {
 			isa = PBXGroup;
 			children = (
+				6BB09AA31B68B00900E0D77D /* CPPhotoalbumManagement(相册管理) */,
 				6BB09A851B6669D800E0D77D /* CPSetting(设置) */,
 				6BB09A971B675A0900E0D77D /* CPEditInfo(编辑资料) */,
 				6BB09A911B67570C00E0D77D /* CPFeedback(意见反馈) */,
@@ -2139,6 +2168,7 @@
 				E372D8461B6216C100B4FC5C /* serviceTermsViewController.xib in Resources */,
 				6BB09A961B67572500E0D77D /* CPFeedbackViewController.xib in Resources */,
 				E35B046D1B565532002C6655 /* MJPhotoBrowser.bundle in Resources */,
+				6BB09AA81B68B02900E0D77D /* CPPhotoalbumManagement.xib in Resources */,
 				6BB09A8A1B6669F800E0D77D /* CPSettingTableViewController.xib in Resources */,
 				E372D8311B6216C100B4FC5C /* LoginViewController.xib in Resources */,
 				E372D8421B6216C100B4FC5C /* CPRegisterStep2ViewController.xib in Resources */,
@@ -2334,6 +2364,7 @@
 				E3CE35911B59E7FC008434B5 /* XLFormCheckCell.m in Sources */,
 				E36C962D1B53CA2300D3EDBB /* CPSubscribeCell.m in Sources */,
 				E372D8391B6216C100B4FC5C /* CPEditUsernameViewController.m in Sources */,
+				6BB09AA71B68B02900E0D77D /* CPPhotoalbumManagement.m in Sources */,
 				A57582091B6789E500A5E681 /* NSDate+SMFoundation.m in Sources */,
 				E35B04731B565532002C6655 /* SDWebImageManager+MJ.m in Sources */,
 				E35E6FC71B54AFB8001212D6 /* CPMyPublishController.m in Sources */,
@@ -2399,6 +2430,7 @@
 				E36C961A1B53BA3200D3EDBB /* CPActivityApplyControllerView.m in Sources */,
 				6BB09A9B1B675A3E00E0D77D /* CPEditInfoTableViewController.m in Sources */,
 				E35B046C1B565532002C6655 /* MJPhoto.m in Sources */,
+				6BB09AB41B69F52900E0D77D /* CPNewfeatureViewController.m in Sources */,
 				E3EEE0041B53952E00595333 /* UIImage+Extension.m in Sources */,
 				A57582101B6789E500A5E681 /* SMAlertView.m in Sources */,
 				E35B04271B5645BC002C6655 /* HMStatusPhotosView.m in Sources */,

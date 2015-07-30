@@ -4,7 +4,7 @@
 //
 //  Created by 公平价 on 15/6/19.
 //  Copyright (c) 2015年 gongpingjia. All rights reserved.
-// 2015
+//
 
 #import "CPMyController.h"
 #import "LoginViewController.h"
@@ -19,6 +19,7 @@
 #import "CPHowToPlayViewController.h"
 #import "CPFeedbackViewController.h"
 #import "CPEditInfoTableViewController.h"
+#import "CPPhotoalbumManagement.h"
 
 @interface CPMyController ()<UIScrollViewDelegate>
 {
@@ -32,8 +33,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    CPMyheaderView *headerView=[[CPMyheaderView alloc]initWithOrganizer:nil];
-//    self.tableView.tableHeaderView=headerView;
     data=[[NSDictionary alloc]init];
     albumPhotos=[[NSArray alloc]init];
     titleArray=[[NSArray alloc]initWithObjects:@"我关注的人",@"车主认证",@"玩转玩车",@"意见反馈",@"编辑资料", nil];
@@ -128,8 +127,17 @@
     }
 }
 
+- (IBAction)photoManage:(id)sender {
+    CPPhotoalbumManagement *CPPhotoalbumManagementVC=[[CPPhotoalbumManagement alloc]init];
+    CPPhotoalbumManagementVC.title=@"相册管理";
+    [self.navigationController pushViewController:CPPhotoalbumManagementVC animated:YES];
+
+}
+
 - (IBAction)rightBtnClick:(id)sender {
-    
+//    CPPhotoalbumManagement *CPPhotoalbumManagementVC=[[CPPhotoalbumManagement alloc]init];
+//    CPPhotoalbumManagementVC.title=@"相册管理";
+//    [self.navigationController pushViewController:CPPhotoalbumManagementVC animated:YES];
 }
 
 // 分页控件的监听方法
@@ -219,6 +227,9 @@
     imageView.image = image;
 
     [self.scrollView addSubview:imageView];
+    
+    // 分页控件，本质上和scrollView没有任何关系，是两个独立的控件
+    _pageControl = [[UIPageControl alloc] init];
 }
 
 -(void)getData{
@@ -239,8 +250,6 @@
 -(void)loadUserData:(CPOrganizer *)organizer{
     if (organizer) {
         if (organizer.albumPhotos) {
-            // 分页控件，本质上和scrollView没有任何关系，是两个独立的控件
-            _pageControl = [[UIPageControl alloc] init];
             // 总页数
             _pageControl.numberOfPages = [albumPhotos count];
             // 控件尺寸
@@ -262,13 +271,16 @@
             for (int i = 0; i < [albumPhotos count]; i++) {
                 
                 UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.scrollView.bounds];
-                NSURL *url=[[NSURL alloc]initWithString:[albumPhotos objectAtIndex:i]];
-                [imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"myBackground"]];
-                CGRect frame = imageView.frame;
-                frame.origin.x = i * frame.size.width;
-                
-                imageView.frame = frame;
-                [self.scrollView addSubview:imageView];
+                NSString *urlstr=[[albumPhotos objectAtIndex:i] objectForKey:@"thumbnail_pic"];
+                if (urlstr) {
+                    NSURL *url=[[NSURL alloc]initWithString:urlstr];
+                    [imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"myBackground"]];
+                    CGRect frame = imageView.frame;
+                    frame.origin.x = i * frame.size.width;
+                    
+                    imageView.frame = frame;
+                    [self.scrollView addSubview:imageView];
+                }
                 self.scrollView.delegate=self;
             }
             self.pageControl.currentPage = 0;

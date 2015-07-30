@@ -384,7 +384,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="拍照" id="vOk-ZM-JGM">
                             <connections>
-                                <action selector="rightBtnClick:" destination="r3R-pX-ybV" id="Ar7-TA-lQ4"/>
+                                <action selector="photoManage:" destination="r3R-pX-ybV" id="8TH-vc-ZOm"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
