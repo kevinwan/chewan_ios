@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface CPSexView : UIButton
+@property (nonatomic, assign) NSUInteger age;
 @property (nonatomic, assign) BOOL isMan;
 @end

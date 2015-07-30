@@ -8,8 +8,10 @@
 
 #import "CPNetWorkTool.h"
 #import "ZYNetWorkManager.h"
+#import "ZYNetWorkTool.h"
 
 @implementation CPNetWorkTool
+
 + (void)postWithUrl:(NSString *)url params:(id)params success:(void (^)(id))success failure:(void (^)(NSError *))failure
 {
     // 1.创建一个请求管理者
@@ -37,7 +39,36 @@
               success(responseObject);
           }
       } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-          if (failure) {
+          // 如果token过期
+          if ([error.localizedDescription contains:@"口令已过期"]){
+              // 重新发出登录请求
+              NSString *phone = [Tools getValueFromKey:@"phone"];
+              NSString *password = [Tools getValueFromKey:@"password"];
+              [mgr POST:[BASE_URL stringByAppendingString:@"v1/user/login"] parameters:@{@"phone" : phone, @"password" : password } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                  
+                  if (CPSuccess) {
+                      
+                      // 重新设置token
+                      [Tools setValueForKey:[responseObject[@"data"] objectForKey:@"token"] key:@"token"];
+                      // 再次访问请求
+                      [mgr POST:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                          if (success) {
+                              success(responseObject);
+                          }
+                      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                          if (failure) {
+                              failure(error);
+                          }
+                      }];
+                  }
+                  
+              } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                  if (failure) {
+                      failure(error);
+                  }
+              }];
+              
+          }else if (failure) {
               failure(error);
           }
       }];
@@ -68,7 +99,34 @@
              success(responseObject);
          }
      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-         if (failure) {
+         // 如果token过期
+         if ([error.localizedDescription contains:@"口令已过期"]){
+             // 重新发出登录请求
+             NSString *phone = [Tools getValueFromKey:@"phone"];
+             NSString *password = [Tools getValueFromKey:@"password"];
+             [mgr GET:[BASE_URL stringByAppendingString:@"v1/user/login"] parameters:@{@"phone" : phone, @"password" : password } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                 
+                 if (CPSuccess) {
+                     
+                     // 重新设置token
+                     [Tools setValueForKey:[responseObject[@"data"] objectForKey:@"token"] key:@"token"];
+                     // 再次访问请求
+                     [mgr POST:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                         if (success) {
+                             success(responseObject);
+                         }
+                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                         if (failure) {
+                             failure(error);
+                         }
+                     }];
+                 }
+                 
+             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                 if (failure) {
+                     failure(error);
+                 }}];
+         }else if (failure) {
              failure(error);
          }
      }];
@@ -98,7 +156,34 @@
             success(responseObject);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if (failure) {
+        // 如果token过期
+        if ([error.localizedDescription contains:@"口令已过期"]){
+            // 重新发出登录请求
+            NSString *phone = [Tools getValueFromKey:@"phone"];
+            NSString *password = [Tools getValueFromKey:@"password"];
+            [mgr POST:[BASE_URL stringByAppendingString:@"v1/user/login"] parameters:@{@"phone" : phone, @"password" : password } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                
+                if (CPSuccess) {
+                    
+                    // 重新设置token
+                    [Tools setValueForKey:[responseObject[@"data"] objectForKey:@"token"] key:@"token"];
+                    // 再次访问请求
+                    [mgr POST:url parameters:jsonDict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                        if (success) {
+                            success(responseObject);
+                        }
+                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                        if (failure) {
+                            failure(error);
+                        }}];
+                }
+                
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                if (failure) {
+                    failure(error);
+                }}];
+            
+        }else if (failure) {
             failure(error);
         }
     }];
@@ -133,7 +218,35 @@
             success(responseObject);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if (failure) {
+        // 如果口令过期
+        if ([error.localizedDescription contains:@"口令已过期"]){
+            // 重新发出登录请求
+            NSString *phone = [Tools getValueFromKey:@"phone"];
+            NSString *password = [Tools getValueFromKey:@"password"];
+            [mgr POST:[BASE_URL stringByAppendingString:@"v1/user/login"] parameters:@{@"phone" : phone, @"password" : password} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                
+                if (CPSuccess) {
+                    [Tools setValueForKey:[responseObject[@"data"] objectForKey:@"token"] key:@"token"];
+                    
+                    [mgr POST:url parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                        for (ZYHttpFile *file in files) {
+                            [formData appendPartWithFileData:file.data name:file.name fileName:file.filename mimeType:file.mimeType];
+                        }
+                    } success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+                        if (success) {
+                            success(responseObject);
+                        }
+                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                        if (failure) {
+                            failure(error);
+                        }}];
+                }
+                
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                if (failure) {
+                    failure(error);
+                }}];
+        }else if (failure) {
             failure(error);
         }
     }];

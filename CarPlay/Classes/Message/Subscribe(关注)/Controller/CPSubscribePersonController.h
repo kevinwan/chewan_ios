@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPSubscribePersonController : UITableViewController
+@interface CPSubscribePersonController : ZYTableViewController
 
 @end

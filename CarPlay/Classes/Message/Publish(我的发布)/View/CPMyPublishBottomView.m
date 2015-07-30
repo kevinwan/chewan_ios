@@ -88,6 +88,7 @@
     self.personNumLable = personNumLable;
     
     CPChatButton *chatBtn = [CPChatButton buttonWithType:UIButtonTypeCustom];
+    chatBtn.hidden = YES;
     [bottomView addSubview:chatBtn];
     self.chatBtn = chatBtn;
     
@@ -110,15 +111,7 @@
 - (UIButton *)addBtnWithIcon:(NSString *)icon
 {
     CPTopViewButton *btn = [CPTopViewButton buttonWithType:UIButtonTypeCustom];
-    if (kScreenWidth == 320) {
-        btn.titleLabel.font = [UIFont systemFontOfSize:9];
-    }else{
-        btn.titleLabel.font = [UIFont systemFontOfSize:11];
-    }
-    [btn setTitleColor:[Tools getColor:@"656d78"] forState:UIControlStateNormal];
     [btn setImage:[UIImage imageNamed:icon] forState:UIControlStateNormal];
-    btn.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    btn.titleLabel.textAlignment = NSTextAlignmentLeft;
     return btn;
 }
 
@@ -138,7 +131,11 @@
         CGFloat btnX = i * btnW;
         if (i == 1) {
             btnX -= 8;
-            btnW += 8;
+            btnW += 10;
+        }
+        if (i == 2){
+            btnX += 2;
+            btnW -= 2;
         }
         CGFloat btnY = 0;
         btn.frame = CGRectMake(btnX, btnY, btnW, btnH);

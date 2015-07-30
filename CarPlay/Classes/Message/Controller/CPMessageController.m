@@ -10,6 +10,7 @@
 #import "CPNewMessageController.h"
 #import "CPMySubscribeController.h"
 #import "CPActivityApplyControllerView.h"
+#import "CPSubscribePersonController.h"
 
 typedef enum {
     CPMessageOptionMsg, // 新留言消息
@@ -25,6 +26,7 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.backgroundColor = [UIColor whiteColor];
+    self.tableView.tableFooterView = [[UIView alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,11 +39,11 @@ typedef enum {
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
     if (indexPath.row == 1) {
         
-        CPActivityApplyControllerView *newMsgVc = [UIStoryboard storyboardWithName:@"CPActivityApplyControllerView" bundle:nil].instantiateInitialViewController;
-        [self.navigationController pushViewController:newMsgVc animated:YES];
+//        CPActivityApplyControllerView *newMsgVc = [UIStoryboard storyboardWithName:@"CPActivityApplyControllerView" bundle:nil].instantiateInitialViewController;
+//        [self.navigationController pushViewController:newMsgVc animated:YES];
         
-//        CPMySubscribeController *vc = [[CPMySubscribeController alloc] init];
-//        [self.navigationController pushViewController:vc animated:YES];
+        CPSubscribePersonController *vc = [UIStoryboard storyboardWithName:@"CPSubscribePersonController" bundle:nil].instantiateInitialViewController;
+        [self.navigationController pushViewController:vc animated:YES];
     }else{
         CPNewMessageController *newMsgVc = [UIStoryboard storyboardWithName:@"CPNewMessageController" bundle:nil].instantiateInitialViewController;
         [self.navigationController pushViewController:newMsgVc animated:YES];

@@ -3,20 +3,49 @@
 //  CarPlay
 //
 //  Created by chewan on 15/7/27.
-//  Copyright (c) 2015年 gongpingjia. All rights reserved.
+//  Copyright (c) 2015年 苏兆云. All rights reserved.
 //
 
 #import "ZYTableViewController.h"
 
 @interface ZYTableViewController ()
-
+@property (nonatomic, strong) UIView *noNetWorkView;
 @end
 
 @implementation ZYTableViewController
 
-/**
- *  下面的方法用来设置tableView全屏的分割线
- */
+#pragma mark - 控制器的生命周期
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    // 没有网络的提示
+    if (CPNoNetWork){
+        [[[UIAlertView alloc] initWithTitle:@"提示" message:@"网络连接失败,请检查你的网络" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil, nil] show];
+    }
+}
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    // 防止弹窗不消失
+    [SVProgressHUD dismiss];
+}
+
+- (void)dealloc
+{
+    DLog(@"%@控制器销毁了...",self);
+}
+
+#pragma mark - 下面的方法用来设置tableView全屏的分割线
+
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
         [cell setSeparatorInset:UIEdgeInsetsZero];

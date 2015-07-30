@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPMessageController : UITableViewController
+@interface CPMessageController : ZYTableViewController
 
 @end

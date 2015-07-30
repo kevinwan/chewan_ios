@@ -20,6 +20,9 @@
         // 扩展AFN接受的数据类型
         _manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
     });
+    
+    // 防止上传完json数据不能加载普通请求
+    _manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     return _manager;
 }
 
