@@ -14,9 +14,15 @@
 #import "CPHomeUser.h"
 #import "CPHomeStatusCell.h"
 #import "CPActiveDetailsController.h"
+#import "CPSelectView.h"
 
+@interface CPCityController ()<UITableViewDataSource,UITableViewDelegate, CPSelectViewDelegate>
 
-@interface CPCityController ()<UITableViewDataSource,UITableViewDelegate>
+// 蒙板遮罩
+@property (nonatomic,strong) UIButton *coverBtn;
+
+// 蒙板遮罩
+@property (nonatomic,strong) CPSelectView *selectView;
 
 // 存储所有活动数据
 @property (nonatomic,strong) NSArray *status;
@@ -37,6 +43,20 @@
 @end
 
 @implementation CPCityController
+#pragma mark - lazy
+- (UIButton *)coverBtn
+{
+    if (_coverBtn == nil) {
+        _coverBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_coverBtn addTarget:self action:@selector(coverBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        _coverBtn.backgroundColor = RGBACOLOR(0, 0, 0, 0.5);
+        _coverBtn.frame = self.view.bounds;
+        [[UIApplication sharedApplication].keyWindow addSubview:_coverBtn];
+        _coverBtn.hidden = YES;
+    }
+    return _coverBtn;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -178,10 +198,47 @@
 
 // 筛选
 - (IBAction)select:(id)sender {
-   
+    
+    if (self.coverBtn.hidden) {
+        
+        self.coverBtn.hidden = NO;
+        
+        CPSelectView *selectView = [CPSelectView selectView];
+        selectView.delegate = self;
+        [selectView showWithView:self.coverBtn];
+        
+        self.selectView = selectView;
+    }
+    
 }
 
+- (void)coverBtnClick
+{
+    [self.selectView dismissWithCompletion:nil];
+}
 
+#pragma mark - CPSelectDelegate
+- (void)selectView:(CPSelectView *)selectView finishBtnClick:(CPSelectViewModel *)result
+{
+    [selectView dismissWithCompletion:nil];
+    
+    // 根据result中的参数 重新发送请求 刷新表格 reloadData
+    NSLog(@"%@",[result keyValues]);
+}
 
+- (void)selectViewCancleBtnClick:(CPSelectView *)selectView
+{
+    [selectView dismissWithCompletion:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    if (!self.coverBtn.isHidden) {
+        
+        self.coverBtn.hidden = YES;
+    }
+}
 
 @end
