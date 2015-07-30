@@ -82,6 +82,7 @@
     [UIView animateWithDuration:0.25 animations:^{
         self.y = kScreenHeight;
     }completion:^(BOOL finished) {
+        [self.superview setHidden:YES];
         [self removeFromSuperview];
         if (completion) {
             completion();
@@ -129,6 +130,7 @@
 
 - (IBAction)cancleBtnClick:(id)sender {
     if ([self.delegate respondsToSelector:@selector(selectViewCancleBtnClick:)]) {
+         [self dismissWithCompletion:nil];
         [self.delegate selectViewCancleBtnClick:self];
     }
 }
@@ -170,6 +172,7 @@
     }
     NSLog(@"%@",model.keyValues);
     if ([self.delegate respondsToSelector:@selector(selectView:finishBtnClick:)]) {
+        [self dismissWithCompletion:nil];
         [self.delegate selectView:self finishBtnClick:model];
     }
 }

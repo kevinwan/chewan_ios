@@ -17,12 +17,73 @@
 #import "CPMySubscribeController.h"
 #import "CPMyJoinController.h"
 #import "CPNewMsgModel.h"
+#import "AppAppearance.h"
 
 @interface CPNewMessageController ()
 @property (nonatomic, strong) NSCache *cellHeights;
+@property (nonatomic, assign) BOOL isEdit;
+@property (nonatomic, strong) NSMutableArray *items;
+@property (nonatomic, strong) UIButton *deleteBtn;
+@property (nonatomic, strong) UIBarButtonItem *leftItem;
+@property (nonatomic, strong) UIBarButtonItem *rightItem;
+@property (nonatomic, strong) UIBarButtonItem *backItem;
 @end
 
 @implementation CPNewMessageController
+
+#pragma mark - lazy
+
+- (UIBarButtonItem *)backItem
+{
+    if (_backItem == nil) {
+        _backItem = [UIBarButtonItem itemWithNorImage:@"返回" higImage:nil title:nil target:self action:@selector(back)];
+    }
+    return _backItem;
+}
+
+- (UIBarButtonItem *)leftItem
+{
+    if (_leftItem == nil) {
+        _leftItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"全选" target:self action:@selector(selectAll)];
+    }
+    return _leftItem;
+}
+
+- (UIBarButtonItem *)rightItem
+{
+    if (_rightItem == nil) {
+        _rightItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"取消" target:self action:@selector(cancleSelect)];
+    }
+    return _rightItem;
+}
+
+- (UIButton *)deleteBtn
+{
+    if (_deleteBtn == nil) {
+        _deleteBtn = [[UIButton alloc] init];
+        _deleteBtn.height = 44;
+        _deleteBtn.y = kScreenHeight - 44;
+        _deleteBtn.width = kScreenWidth;
+        _deleteBtn.x = 0;
+        [_deleteBtn setTitle:@"删除" forState:UIControlStateNormal];
+        [_deleteBtn setBackgroundColor:[AppAppearance redColor]];
+        _deleteBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+        [_deleteBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_deleteBtn addTarget:self action:@selector(deleteCell) forControlEvents:UIControlEventTouchUpInside];
+        [self.navigationController.view insertSubview:_deleteBtn belowSubview:self.navigationController.navigationBar];
+        _deleteBtn.hidden = YES;
+    }
+    return _deleteBtn;
+}
+
+
+- (NSMutableArray *)items
+{
+    if (_items == nil) {
+        _items = [NSMutableArray array];
+    }
+    return _items;
+}
 
 - (NSCache *)cellHeights
 {
@@ -36,53 +97,91 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"新的留言";
+    
+    self.tableView.allowsMultipleSelectionDuringEditing = YES;
+    
+    for (int i=0; i<50; i++) {
+        CPNewMsgModel *item = [[CPNewMsgModel alloc] init];
+        item.isChecked = NO;
+        [self.items addObject:item];
+    }
+    
+    [CPNotificationCenter addObserver:self selector:@selector(tableViewEdit:) name:CPNewMsgEditNotifycation object:nil];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+- (void)tableViewEdit:(NSNotification *)notify
+{
+    if (self.editing == NO) {
+        NSNumber *rowNum = notify.userInfo[CPNewMsgEditInfo];
+        CPNewMsgModel *model = self.items[rowNum.intValue];
+        model.isChecked = YES;
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rowNum.intValue inSection:0];
+        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        [self setEditing:YES animated:YES];
+    }
+}
+
+- (void)dealloc
+{
+    [CPNotificationCenter removeObserver:self];
 }
 
 #pragma mark - Table view data source
+
+- (void)setEditing:(BOOL)editting animated:(BOOL)animated
+{
+    [super setEditing:editting animated:YES];
+    
+    if (editting) {
+        self.navigationItem.rightBarButtonItem = self.rightItem;
+        self.navigationItem.leftBarButtonItem = self.leftItem;
+        self.deleteBtn.hidden = NO;
+    }else{
+        self.navigationItem.leftBarButtonItem = self.backItem;
+        self.navigationItem.rightBarButtonItem = nil;
+        self.deleteBtn.hidden = YES;
+    }
+    
+    [self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:0.3];
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleNone;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *ID = @"NewMsgCell";
     CPNewMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    cell.model = [[CPNewMsgModel alloc] init];
+    
+    CPNewMsgModel *model = [self.items objectAtIndex:indexPath.row];
+    model.row = indexPath.row;
+    cell.model = model;
     [self.cellHeights setObject:@(cell.cellHeight) forKey:@(indexPath.row)];
+    
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return self.items.count;
 }
 
 /**
- *  滑动删除单元格
+ *  单元格选中效果
  */
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-    }
-}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    CPMyPublishController *vc = [[CPMyPublishController alloc] init];
-//    vc.hisUserId = [Tools getValueFromKey:@"userId"];
-//    [self.navigationController pushViewController:vc animated:YES];
-//    CPCreatActivityController *vc = [UIStoryboard storyboardWithName:@"CPCreatActivityController" bundle:nil].instantiateInitialViewController;
-//    [self.navigationController pushViewController:vc animated:YES];
-    CPEditActivityController *vc = [UIStoryboard storyboardWithName:@"CPEditActivityController" bundle:nil].instantiateInitialViewController;
-        [self.navigationController pushViewController:vc animated:YES];
-//    CPMySubscribeController *vc = [[CPMySubscribeController alloc] init];
-//    vc.hisUserId = [Tools getValueFromKey:@"userId"];
-//    [self.navigationController pushViewController:vc animated:YES];
+    CPNewMsgModel *model = [self.items objectAtIndex:indexPath.row];
     
-//    CPMyJoinController *vc = [[CPMyJoinController alloc] init];
-//    vc.hisUserId = [Tools getValueFromKey:@"userId"];
-//    [self.navigationController pushViewController:vc animated:YES];
+    if (self.editing)
+    {
+        model.isChecked = !model.isChecked;
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -102,6 +201,48 @@
         return cell.cellHeight;
     }
     
+}
+
+#pragma mark - 处理导航条按钮点击
+/**
+ *  全选
+ */
+- (void)selectAll
+{
+    [self.items enumerateObjectsUsingBlock:^(CPNewMsgModel *obj, NSUInteger idx, BOOL *stop) {
+        [obj setIsChecked:YES];
+    }];
+    [self.tableView reloadData];
+}
+
+/**
+ *  取消选中
+ */
+- (void)cancleSelect
+{
+    [self.items enumerateObjectsUsingBlock:^(CPNewMsgModel *obj, NSUInteger idx, BOOL *stop) {
+        [obj setIsChecked:NO];
+    }];
+    [self setEditing:NO animated:YES];
+}
+
+- (void)deleteCell
+{
+    // 必须先获取选中的cell
+    NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
+    for (NSUInteger i = 0;i < self.items.count; i++) {
+        CPNewMsgModel *model = self.items[i];
+        if (model.isChecked) {
+            [indexSet addIndex:i];
+        }
+    }
+    [self.items removeObjectsAtIndexes:indexSet];
+    [self setEditing:NO animated:YES];
+}
+
+- (void)back
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

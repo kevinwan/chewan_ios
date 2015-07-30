@@ -9,17 +9,56 @@
 #import "CPSubscribePersonController.h"
 #import "CPSubscribeCell.h"
 #import "CPMySubscribeController.h"
+#import "CPMySubscribeModel.h"
 
 @interface CPSubscribePersonController ()
-
+@property (nonatomic, strong) NSMutableArray *datas;
 @end
 
 @implementation CPSubscribePersonController
 
+- (NSMutableArray *)datas
+{
+    if (_datas == nil) {
+        _datas = [[NSMutableArray alloc] init];
+    }
+    return _datas;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"关注的人";
+    self.navigationItem.title = @"我关注的人";
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    NSString *userId = [Tools getValueFromKey:@"userId"];
+    NSString *token = [Tools getValueFromKey:@"token"];
+    if (userId.length == 0 || token.length == 0) {
+        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+        return;
+    }
+    
+    NSString *url = [NSString stringWithFormat:@"v1/user/%@/listen",userId];
+    [self showLoading];
+    [ZYNetWorkTool getWithUrl:url params:@{@"token" : token} success:^(id responseObject) {
+        DLog(@"%@...",responseObject);
+        [self disMiss];
+        if (CPSuccess) {
+            NSArray *arr = [CPOrganizer objectArrayWithKeyValuesArray:responseObject[@"data"]];
+            [self.datas removeAllObjects];
+            [self.datas addObjectsFromArray:arr];
+            [self.tableView reloadData];
+        }else{
+            [self showInfo:@"加载失败"];
+        }
+    } failure:^(NSError *error) {
+        [self disMiss];
+        [self showError:@"加载失败"];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -30,12 +69,15 @@
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return self.datas.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *ID = @"SubPersonCell";
+    static NSString *ID = @"SubscribePersonCell";
+    
     CPSubscribeCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    
+    cell.model = self.datas[indexPath.row];
     return cell;
 }
 

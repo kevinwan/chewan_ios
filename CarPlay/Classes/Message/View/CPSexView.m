@@ -46,4 +46,10 @@
     }
 }
 
+- (void)setAge:(NSUInteger)age
+{
+    _age = age;
+    [self setTitle:[NSString stringWithFormat:@"%zd",age] forState:UIControlStateNormal];
+}
+
 @end
