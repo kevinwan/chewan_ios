@@ -52,7 +52,19 @@
 }
 - (IBAction)cancleSubscribeClick:(UIButton *)sender
 {
-    
+    NSString *userId = [Tools getValueFromKey:@"userId"];
+    NSString *token = [Tools getValueFromKey:@"token"];
+    NSString *url = [NSString stringWithFormat:@"v1/user/%@/unlisten?token=%@",userId, token];
+    [SVProgressHUD showWithStatus:@"取消关注中"];
+    [ZYNetWorkTool postJsonWithUrl:url params:@{@"targetUserId" : self.model.userId} success:^(id responseObject) {
+        if (CPSuccess) {
+            [CPNotificationCenter postNotificationName:CPCancleSubscribeNotify object:nil userInfo:@{CPCancleSubscribeInfo : @(self.row)}];
+        }else{
+            [SVProgressHUD showSuccessWithStatus:@"取消失败"];
+        }
+    } failed:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:@"加载失败"];
+    }];
 }
 
 @end

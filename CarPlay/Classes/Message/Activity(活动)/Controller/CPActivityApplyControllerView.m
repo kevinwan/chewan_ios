@@ -48,33 +48,44 @@
     
     self.navigationItem.title = @"活动参与申请";
     self.tableView.tableFooterView = [[UIView alloc] init];
+    [CPNotificationCenter addObserver:self selector:@selector(agreeBtnClick:) name:CPActivityApplyNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self loadData];
+}
+
+- (void)reRefreshData
+{
+    [self loadData];
+}
+
+- (void)loadData
+{
     NSString *userId = [Tools getValueFromKey:@"userId"];
     if (userId == nil) {
         [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
         return;
     }
     
-    [CPNotificationCenter addObserver:self selector:@selector(agreeBtnClick:) name:@"AgreeApply" object:nil];
-    
     NSString *url = [NSString stringWithFormat:@"v1/user/%@/application/list",userId];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"token"] = [Tools getValueFromKey:@"token"];
     [SVProgressHUD showWithStatus:@"努力加载中"];
     [ZYNetWorkTool getWithUrl:url params:params success:^(id responseObject) {
-//        [SVProgressHUD dismiss];
+        DLog(@"%@",responseObject);
         if (CPSuccess) {
             NSArray *data = [CPActivityApplyModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
             if (data.count == 0) {
                 [SVProgressHUD showInfoWithStatus:@"没有新的申请"];
-//                self.tableView.tableFooterView = self.noDataView;
+                //                self.tableView.tableFooterView = self.noDataView;
                 [self showNoData];
                 return;
             }
+            [self disMiss];
+            [self.datas removeAllObjects];
             self.tableView.tableFooterView = [[UIView alloc] init];
             [self.datas addObjectsFromArray:data];
             
@@ -82,31 +93,17 @@
             [self.tableView reloadData];
         }
     } failure:^(NSError *error) {
-        [SVProgressHUD dismiss];
         [SVProgressHUD showErrorWithStatus:@"加载失败"];
     }];
-
 }
 
 - (void)agreeBtnClick:(NSNotification *)notify
 {
-    NSString *appid = notify.userInfo[@"appid"];
-    NSString *url = [NSString stringWithFormat:@"v1/application/%@/process?userId=%@&token=%@",appid,[Tools getValueFromKey:@"userId"],[Tools getValueFromKey:@"token"]];
-    DLog(@"%@---",url);
-    NSMutableDictionary *json = [NSMutableDictionary dictionary];
-    json[@"action"] = @"1";
-    
-    [SVProgressHUD showWithStatus:@"努力加载中"];
-    [ZYNetWorkTool postJsonWithUrl:url params:json success:^(id responseObject) {
-        DLog(@"%@",responseObject);
-        [SVProgressHUD dismiss];
-        if (CPSuccess) {
-            
-        }
-    } failed:^(NSError *error) {
-        [SVProgressHUD dismiss];
-        [SVProgressHUD showErrorWithStatus:@"加载失败"];
-    }];
+    [self showSuccess:@"已同意"];
+    NSUInteger row = [notify.userInfo[CPActivityApplyInfo] intValue];
+    [self.datas removeObjectAtIndex:row];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void)dealloc
@@ -123,6 +120,7 @@
 {
     static NSString *ID = @"ActivityApplyCell";
     CPActivityApplyCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    cell.row = indexPath.row;
     cell.model = self.datas[indexPath.row];
     return cell;
 }

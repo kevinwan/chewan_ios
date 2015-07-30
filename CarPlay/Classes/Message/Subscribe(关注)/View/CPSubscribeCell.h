@@ -7,7 +7,12 @@
 //  我关注的人的cell
 
 #import <UIKit/UIKit.h>
+
+#define CPCancleSubscribeNotify @"CPCancleSubscribeNotify"
+#define CPCancleSubscribeInfo   @"CPCancleSubscribeInfo"
+
 @class CPOrganizer;
 @interface CPSubscribeCell : UITableViewCell
+@property (nonatomic, assign) NSUInteger row;
 @property (nonatomic, strong) CPOrganizer *model;
 @end

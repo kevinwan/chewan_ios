@@ -43,31 +43,46 @@
     self.tableView.allowsSelection = NO;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
-    if (self.hisUserId.length == 0){
-        [SVProgressHUD showInfoWithStatus:@"你访问的用户不合法"];
-        return;
-    }
+    [self loadData];
+}
+
+- (void)reRefreshData
+{
+    [self loadData];
+}
+
+- (void)loadData
+{
     NSString *url = [NSString stringWithFormat:@"v1/user/%@/post",self.hisUserId];
     [SVProgressHUD showWithStatus:@"努力加载中"];
     [CPNetWorkTool getWithUrl:url params:nil success:^(NSDictionary *responseObject) {
-        [SVProgressHUD dismiss];
         if (CPSuccess) {
+            [SVProgressHUD dismiss];
             NSArray *arr = [CPMyPublishModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
-            for (int i = 0; i < arr.count; i++) {
-                CPMyPublishFrameModel *frameModel = [[CPMyPublishFrameModel alloc] init];
-                frameModel.model = arr[i];
-                [self.frameModels addObject:frameModel];
+            if (arr.count > 0) {
+                [self.frameModels removeAllObjects];
+                for (int i = 0; i < arr.count; i++) {
+                    CPMyPublishFrameModel *frameModel = [[CPMyPublishFrameModel alloc] init];
+                    frameModel.model = arr[i];
+                    [self.frameModels addObject:frameModel];
+                }
+                
             }
-            [self.tableView reloadData];
+            if (self.frameModels.count > 0) {
+                [self.tableView reloadData];
+            }else{
+                [self showNoPublish];
+            }
         }else{
-            [SVProgressHUD showErrorWithStatus:@"加载失败"];
+            [self showInfo:@"加载失败"];
+            [self showNetWorkFailed];
         }
         
     } failure:^(NSError *error) {
-        [SVProgressHUD dismiss];
-        [SVProgressHUD showErrorWithStatus:@"加载失败"];
+        [self showError:@"加载失败"];
+        [self showNetWorkOutTime];
     }];
+
 }
 
 - (void)select

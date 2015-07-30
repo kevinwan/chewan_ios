@@ -836,7 +836,6 @@ typedef enum {
                     }
                     
                 } failure:^(NSError *error) {
-                    [SVProgressHUD dismiss];
                     [SVProgressHUD showErrorWithStatus:@"上传失败"];
                 }];
 
@@ -875,11 +874,9 @@ typedef enum {
         if (CPSuccess){
             [SVProgressHUD showSuccessWithStatus:@"修改成功"];
         }else{
-            [SVProgressHUD dismiss];
             [SVProgressHUD showInfoWithStatus:@"修改失败"];
         }
     } failed:^(NSError *error) {
-        [SVProgressHUD dismiss];
         [SVProgressHUD showErrorWithStatus:@"修改失败"];
     }];
 }

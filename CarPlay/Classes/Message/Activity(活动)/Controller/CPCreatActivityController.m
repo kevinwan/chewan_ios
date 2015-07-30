@@ -848,7 +848,6 @@ typedef enum {
                 }
                 
             } failure:^(NSError *error) {
-                [self disMiss];
                 [self showError:@"创建失败"];
             }];
         }
@@ -882,11 +881,9 @@ typedef enum {
                 [self shareToFriendWithDict:responseObject[@"data"]];
             }
         }else{
-            [SVProgressHUD dismiss];
             [self showError:@"创建失败"];
         }
     } failed:^(NSError *error) {
-        [SVProgressHUD dismiss];
         [self showError:@"创建失败"];
     }];
 }
