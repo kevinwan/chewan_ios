@@ -16,6 +16,7 @@
 #import "CPHomeMember.h"
 
 
+
 @interface CPHomeStatusCell()<UICollectionViewDataSource,UICollectionViewDelegate>
 
 
@@ -70,7 +71,7 @@
 // 车标到头像距离
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *carModelConstraint;
 
-// 底部头像列表
+// 底部头像列表框
 @property (weak, nonatomic) IBOutlet UIView *bottomIconList;
 
 // 我要去玩
@@ -102,6 +103,7 @@
 
 
 - (void)setStatus:(CPHomeStatus *)status{
+    
     
     _status = status;
     
@@ -180,6 +182,8 @@
     // 活动地点
     self.loction.text = _status.location;
     
+    
+    
     // 付费方式
     self.pay.text = _status.pay;
     
@@ -229,6 +233,11 @@
     CGSize pictureViewSize = [self caclPictureViewSize];
     self.pictureViewHeight.constant = pictureViewSize.height;
     self.pictureViewWidth.constant = pictureViewSize.width;
+    
+    
+    // 刷新，collectionView数据清零
+    [self.pictureView reloadData];
+    [self.iconView reloadData];
     
 }
 

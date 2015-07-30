@@ -41,6 +41,17 @@
 		6BB09AA71B68B02900E0D77D /* CPPhotoalbumManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB09AA51B68B02900E0D77D /* CPPhotoalbumManagement.m */; };
 		6BB09AA81B68B02900E0D77D /* CPPhotoalbumManagement.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BB09AA61B68B02900E0D77D /* CPPhotoalbumManagement.xib */; };
 		6BB09AB41B69F52900E0D77D /* CPNewfeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB09AB31B69F52900E0D77D /* CPNewfeatureViewController.m */; };
+		6BC8A3E61B6A4DB700B199F2 /* CPTaDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC8A3D11B6A4DB700B199F2 /* CPTaDetailsController.m */; };
+		6BC8A3E71B6A4DB700B199F2 /* CPTaDetailsController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BC8A3D21B6A4DB700B199F2 /* CPTaDetailsController.storyboard */; };
+		6BC8A3E81B6A4DB700B199F2 /* CPTaDetailsStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC8A3D51B6A4DB700B199F2 /* CPTaDetailsStatus.m */; };
+		6BC8A3E91B6A4DB700B199F2 /* CPTaMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC8A3D71B6A4DB700B199F2 /* CPTaMember.m */; };
+		6BC8A3EA1B6A4DB700B199F2 /* CPTaPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC8A3D91B6A4DB700B199F2 /* CPTaPhoto.m */; };
+		6BC8A3EB1B6A4DB700B199F2 /* CPTaPublishStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC8A3DB1B6A4DB700B199F2 /* CPTaPublishStatus.m */; };
+		6BC8A3EC1B6A4DB700B199F2 /* CPTaDetailsHead.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC8A3DE1B6A4DB700B199F2 /* CPTaDetailsHead.m */; };
+		6BC8A3ED1B6A4DB700B199F2 /* CPTaDetailsHead.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BC8A3DF1B6A4DB700B199F2 /* CPTaDetailsHead.xib */; };
+		6BC8A3EE1B6A4DB700B199F2 /* CPTaIconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC8A3E11B6A4DB700B199F2 /* CPTaIconCell.m */; };
+		6BC8A3EF1B6A4DB700B199F2 /* CPTaPicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC8A3E31B6A4DB700B199F2 /* CPTaPicCell.m */; };
+		6BC8A3F01B6A4DB700B199F2 /* CPTaPublishCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC8A3E51B6A4DB700B199F2 /* CPTaPublishCell.m */; };
 		6BCCEA561B5A60D5002465AC /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCCEA551B5A60D5002465AC /* NSDate+Extension.m */; };
 		6BCF66081B6208C700358190 /* CPActiveDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCF65F11B6208C700358190 /* CPActiveDetailsController.m */; };
 		6BCF66091B6208C700358190 /* CPActiveDetailsController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BCF65F21B6208C700358190 /* CPActiveDetailsController.storyboard */; };
@@ -357,6 +368,26 @@
 		6BB09AA61B68B02900E0D77D /* CPPhotoalbumManagement.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPPhotoalbumManagement.xib; sourceTree = "<group>"; };
 		6BB09AB21B69F52900E0D77D /* CPNewfeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNewfeatureViewController.h; sourceTree = "<group>"; };
 		6BB09AB31B69F52900E0D77D /* CPNewfeatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNewfeatureViewController.m; sourceTree = "<group>"; };
+		6BC8A3D01B6A4DB700B199F2 /* CPTaDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTaDetailsController.h; sourceTree = "<group>"; };
+		6BC8A3D11B6A4DB700B199F2 /* CPTaDetailsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTaDetailsController.m; sourceTree = "<group>"; };
+		6BC8A3D21B6A4DB700B199F2 /* CPTaDetailsController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPTaDetailsController.storyboard; sourceTree = "<group>"; };
+		6BC8A3D41B6A4DB700B199F2 /* CPTaDetailsStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTaDetailsStatus.h; sourceTree = "<group>"; };
+		6BC8A3D51B6A4DB700B199F2 /* CPTaDetailsStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTaDetailsStatus.m; sourceTree = "<group>"; };
+		6BC8A3D61B6A4DB700B199F2 /* CPTaMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTaMember.h; sourceTree = "<group>"; };
+		6BC8A3D71B6A4DB700B199F2 /* CPTaMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTaMember.m; sourceTree = "<group>"; };
+		6BC8A3D81B6A4DB700B199F2 /* CPTaPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTaPhoto.h; sourceTree = "<group>"; };
+		6BC8A3D91B6A4DB700B199F2 /* CPTaPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTaPhoto.m; sourceTree = "<group>"; };
+		6BC8A3DA1B6A4DB700B199F2 /* CPTaPublishStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTaPublishStatus.h; sourceTree = "<group>"; };
+		6BC8A3DB1B6A4DB700B199F2 /* CPTaPublishStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTaPublishStatus.m; sourceTree = "<group>"; };
+		6BC8A3DD1B6A4DB700B199F2 /* CPTaDetailsHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTaDetailsHead.h; sourceTree = "<group>"; };
+		6BC8A3DE1B6A4DB700B199F2 /* CPTaDetailsHead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTaDetailsHead.m; sourceTree = "<group>"; };
+		6BC8A3DF1B6A4DB700B199F2 /* CPTaDetailsHead.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPTaDetailsHead.xib; sourceTree = "<group>"; };
+		6BC8A3E01B6A4DB700B199F2 /* CPTaIconCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTaIconCell.h; sourceTree = "<group>"; };
+		6BC8A3E11B6A4DB700B199F2 /* CPTaIconCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTaIconCell.m; sourceTree = "<group>"; };
+		6BC8A3E21B6A4DB700B199F2 /* CPTaPicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTaPicCell.h; sourceTree = "<group>"; };
+		6BC8A3E31B6A4DB700B199F2 /* CPTaPicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTaPicCell.m; sourceTree = "<group>"; };
+		6BC8A3E41B6A4DB700B199F2 /* CPTaPublishCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTaPublishCell.h; sourceTree = "<group>"; };
+		6BC8A3E51B6A4DB700B199F2 /* CPTaPublishCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTaPublishCell.m; sourceTree = "<group>"; };
 		6BCCEA541B5A60D5002465AC /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
 		6BCCEA551B5A60D5002465AC /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
 		6BCF65F01B6208C700358190 /* CPActiveDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActiveDetailsController.h; sourceTree = "<group>"; };
@@ -925,6 +956,7 @@
 		6B4EF1381B4036EE00292BD4 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				6BC8A3CE1B6A4DB700B199F2 /* CPTaDetails */,
 				E372D8471B6216E800B4FC5C /* My */,
 				E372D7FC1B6216C100B4FC5C /* Login */,
 				6BCF65EE1B6208C700358190 /* CPActiveDetails */,
@@ -1172,6 +1204,57 @@
 				6BB09AB31B69F52900E0D77D /* CPNewfeatureViewController.m */,
 			);
 			path = CPNewfeature;
+			sourceTree = "<group>";
+		};
+		6BC8A3CE1B6A4DB700B199F2 /* CPTaDetails */ = {
+			isa = PBXGroup;
+			children = (
+				6BC8A3CF1B6A4DB700B199F2 /* Controller */,
+				6BC8A3D31B6A4DB700B199F2 /* Model */,
+				6BC8A3DC1B6A4DB700B199F2 /* View */,
+			);
+			path = CPTaDetails;
+			sourceTree = "<group>";
+		};
+		6BC8A3CF1B6A4DB700B199F2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6BC8A3D01B6A4DB700B199F2 /* CPTaDetailsController.h */,
+				6BC8A3D11B6A4DB700B199F2 /* CPTaDetailsController.m */,
+				6BC8A3D21B6A4DB700B199F2 /* CPTaDetailsController.storyboard */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		6BC8A3D31B6A4DB700B199F2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6BC8A3D41B6A4DB700B199F2 /* CPTaDetailsStatus.h */,
+				6BC8A3D51B6A4DB700B199F2 /* CPTaDetailsStatus.m */,
+				6BC8A3D61B6A4DB700B199F2 /* CPTaMember.h */,
+				6BC8A3D71B6A4DB700B199F2 /* CPTaMember.m */,
+				6BC8A3D81B6A4DB700B199F2 /* CPTaPhoto.h */,
+				6BC8A3D91B6A4DB700B199F2 /* CPTaPhoto.m */,
+				6BC8A3DA1B6A4DB700B199F2 /* CPTaPublishStatus.h */,
+				6BC8A3DB1B6A4DB700B199F2 /* CPTaPublishStatus.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6BC8A3DC1B6A4DB700B199F2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6BC8A3DD1B6A4DB700B199F2 /* CPTaDetailsHead.h */,
+				6BC8A3DE1B6A4DB700B199F2 /* CPTaDetailsHead.m */,
+				6BC8A3DF1B6A4DB700B199F2 /* CPTaDetailsHead.xib */,
+				6BC8A3E01B6A4DB700B199F2 /* CPTaIconCell.h */,
+				6BC8A3E11B6A4DB700B199F2 /* CPTaIconCell.m */,
+				6BC8A3E21B6A4DB700B199F2 /* CPTaPicCell.h */,
+				6BC8A3E31B6A4DB700B199F2 /* CPTaPicCell.m */,
+				6BC8A3E41B6A4DB700B199F2 /* CPTaPublishCell.h */,
+				6BC8A3E51B6A4DB700B199F2 /* CPTaPublishCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		6BCF65EE1B6208C700358190 /* CPActiveDetails */ = {
@@ -2157,6 +2240,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BC8A3E71B6A4DB700B199F2 /* CPTaDetailsController.storyboard in Resources */,
 				E3CE35B21B59E7FC008434B5 /* XLForm.bundle in Resources */,
 				E372D8521B6216E800B4FC5C /* CPMyController.storyboard in Resources */,
 				E372D8351B6216C100B4FC5C /* CPBrandModelViewController.xib in Resources */,
@@ -2191,6 +2275,7 @@
 				E372D83E1B6216C100B4FC5C /* CPRegisterCellsTableViewCell2.xib in Resources */,
 				E372D8441B6216C100B4FC5C /* registerViewController.xib in Resources */,
 				A57581C91B6789D500A5E681 /* Members.storyboard in Resources */,
+				6BC8A3ED1B6A4DB700B199F2 /* CPTaDetailsHead.xib in Resources */,
 				E372D8401B6216C100B4FC5C /* CPRegisterCellsTableViewCell3.xib in Resources */,
 				6BB09A841B66650C00E0D77D /* CPMyBaseCell.xib in Resources */,
 				E3E104A31B67372C0049CA4A /* 123.plist in Resources */,
@@ -2275,6 +2360,7 @@
 				A57582151B6789E500A5E681 /* UIColor+SMFoundation.m in Sources */,
 				E3C6114F1B5F498600B7E73A /* CPLocationModel.m in Sources */,
 				E3C6114C1B5F363900B7E73A /* CPNetWorkTool.m in Sources */,
+				6BC8A3EA1B6A4DB700B199F2 /* CPTaPhoto.m in Sources */,
 				A575821D1B6789E500A5E681 /* UIView+Dealer.m in Sources */,
 				E3CE35A91B59E7FC008434B5 /* UIView+XLFormAdditions.m in Sources */,
 				A57581CB1B6789D500A5E681 /* cars.m in Sources */,
@@ -2288,7 +2374,9 @@
 				E35B04281B5645BC002C6655 /* HMStatusPhotoView.m in Sources */,
 				E3CE35921B59E7FC008434B5 /* XLFormDateCell.m in Sources */,
 				6B5F9B6E1B5D29FE00F9D1E8 /* CPHomeMember.m in Sources */,
+				6BC8A3EB1B6A4DB700B199F2 /* CPTaPublishStatus.m in Sources */,
 				E3E315041B5E551A00FB0B55 /* CPActivityApplyModel.m in Sources */,
+				6BC8A3E81B6A4DB700B199F2 /* CPTaDetailsStatus.m in Sources */,
 				E35B04711B565532002C6655 /* MJPhotoToolbar.m in Sources */,
 				E35B042B1B56460C002C6655 /* HMPhoto.m in Sources */,
 				E3EEDFF81B53951D00595333 /* CPNewMessageCell.m in Sources */,
@@ -2297,6 +2385,7 @@
 				E3D879421B575EC200228356 /* CPTopViewButton.m in Sources */,
 				E36C96251B53C77600D3EDBB /* CPSubscribePersonController.m in Sources */,
 				E3E104A71B675C910049CA4A /* RegexKitLite.m in Sources */,
+				6BC8A3EF1B6A4DB700B199F2 /* CPTaPicCell.m in Sources */,
 				E3CE35A01B59E7FC008434B5 /* XLFormViewController.m in Sources */,
 				E3C611521B5F4A6C00B7E73A /* ZYSearchBar.m in Sources */,
 				A575820D1B6789E500A5E681 /* NSObject+SMFoundation.m in Sources */,
@@ -2332,6 +2421,7 @@
 				6BCF660D1B6208C700358190 /* CPActiveUser.m in Sources */,
 				A57582171B6789E500A5E681 /* UIImageView+SMFoundation.m in Sources */,
 				6B64938C1B4D04BE00C197D2 /* BaseViewController.m in Sources */,
+				6BC8A3E91B6A4DB700B199F2 /* CPTaMember.m in Sources */,
 				E34065ED1B65D6A2008BB3EB /* CPMyJoinController.m in Sources */,
 				E35E6FD01B54B0EC001212D6 /* CPMyPublishFrameModel.m in Sources */,
 				6BB09A8F1B67569600E0D77D /* CPHowToPlayViewController.m in Sources */,
@@ -2382,6 +2472,7 @@
 				E3CE35951B59E7FC008434B5 /* XLFormLeftRightSelectorCell.m in Sources */,
 				A575820A1B6789E500A5E681 /* NSDictionary+SMFoundation.m in Sources */,
 				E30BD5971B54FD6E00FD9030 /* ZYNavigationController.m in Sources */,
+				6BC8A3F01B6A4DB700B199F2 /* CPTaPublishCell.m in Sources */,
 				6B4EF1601B4036EE00292BD4 /* main.m in Sources */,
 				E35559A51B53A0CE00B200D0 /* CPSexView.m in Sources */,
 				E372D8411B6216C100B4FC5C /* CPRegisterStep2ViewController.m in Sources */,
@@ -2397,8 +2488,10 @@
 				E3B1277E1B54E19B005B1174 /* CPIconButton.m in Sources */,
 				E372D83F1B6216C100B4FC5C /* CPRegisterCellsTableViewCell3.m in Sources */,
 				E3AE58C71B57E08800D8F0CA /* ZYNetWorkTool.m in Sources */,
+				6BC8A3EC1B6A4DB700B199F2 /* CPTaDetailsHead.m in Sources */,
 				6BB09AA11B675BF100E0D77D /* CPEditHeadIconCell.m in Sources */,
 				E3EEE0031B53952E00595333 /* NSString+Extension.m in Sources */,
+				6BC8A3EE1B6A4DB700B199F2 /* CPTaIconCell.m in Sources */,
 				E35B04761B566366002C6655 /* CPPayButton.m in Sources */,
 				6BB09A891B6669F800E0D77D /* CPSettingTableViewController.m in Sources */,
 				6B5F9B701B5D29FE00F9D1E8 /* CPHomeStatus.m in Sources */,
@@ -2444,6 +2537,7 @@
 				E372D85B1B62176C00B4FC5C /* MJNIndexView.m in Sources */,
 				E3CE371F1B5A232D008434B5 /* CPCreatActivityCell.m in Sources */,
 				E372D82C1B6216C100B4FC5C /* CPForgetPasswordViewController.m in Sources */,
+				6BC8A3E61B6A4DB700B199F2 /* CPTaDetailsController.m in Sources */,
 				A57581C51B6789D500A5E681 /* carCell.m in Sources */,
 				A57581A81B6789C500A5E681 /* downSeat.m in Sources */,
 				E3FCDD4A1B5E34E200F9C379 /* CPAnnotation.m in Sources */,

@@ -13,11 +13,14 @@
 #import "CPActivePicCell.h"
 #import "CPActiveIconCell.h"
 #import "CPActiveMember.h"
+#import "UIButton+WebCache.h"
+
 
 @interface CPActiveDetailsHead()<UICollectionViewDataSource,UICollectionViewDelegate>
 
 // 头像
-@property (weak, nonatomic) IBOutlet UIImageView *icon;
+@property (weak, nonatomic) IBOutlet UIButton *iconBtn;
+- (IBAction)iconBtnClick:(id)sender;
 
 // 昵称
 @property (weak, nonatomic) IBOutlet UILabel *name;
@@ -67,12 +70,35 @@
 // 我要去玩
 @property (weak, nonatomic) IBOutlet UIButton *myPlay;
 
+// 底部view
+@property (weak, nonatomic) IBOutlet UIView *bottomView;
+
 @end
 
 @implementation CPActiveDetailsHead
 
-+ (instancetype)headView:(id)owner{
-    return [[[NSBundle mainBundle] loadNibNamed:@"CPActiveDetailsHead" owner:owner options:nil] lastObject];
++ (instancetype)headView{
+    // xib路径
+    return [[[NSBundle mainBundle] loadNibNamed:@"CPActiveDetailsHead" owner:nil options:nil] lastObject];
+    
+}
+
+- (void)awakeFromNib{
+    // 正文宽度
+    self.descriptions.preferredMaxLayoutWidth = [UIScreen mainScreen].bounds.size.width - 20;
+}
+
+// 根据数据获取高度
+- (CGFloat)xibHeightWithActiveStatus:(CPActiveStatus *)activeStatus{
+    
+    // 设置数据，便于系统内部计算尺寸
+    self.activeStatus = activeStatus;
+    
+    // 强制更新布局
+    [self layoutIfNeeded];
+    
+    // 获取高度
+    return CGRectGetMaxY(self.bottomView.frame);
     
 }
 
@@ -89,10 +115,10 @@
     CPActiveUser *user = _activeStatus.organizer;
     
     // 头像
-    self.icon.layer.cornerRadius = 25;
-    self.icon.layer.masksToBounds = YES;
+    self.iconBtn.layer.cornerRadius = 25;
+    self.iconBtn.layer.masksToBounds = YES;
     NSURL *iconUrl = [NSURL URLWithString:user.photo];
-    [self.icon sd_setImageWithURL:iconUrl placeholderImage:[UIImage imageNamed:@"默认头像"]];
+    [self.iconBtn sd_setBackgroundImageWithURL:iconUrl forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"默认头像"]];
  
     // 昵称
     self.name.text = user.nickname;
@@ -258,13 +284,11 @@
 }
 
 
-
-
-
-
-
-
-
-
-
+- (IBAction)iconBtnClick:(id)sender {
+    
+    if (self.goTaDetails != nil) {
+        // 通知控制器跳到他的详情页面
+        self.goTaDetails();
+    }
+}
 @end
