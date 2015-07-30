@@ -20,6 +20,7 @@
 #import "CPFeedbackViewController.h"
 #import "CPEditInfoTableViewController.h"
 #import "CPPhotoalbumManagement.h"
+#import "CPSubscribePersonController.h"
 
 @interface CPMyController ()<UIScrollViewDelegate>
 {
@@ -94,7 +95,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row==0) {
-        
+        CPSubscribePersonController *vc = [UIStoryboard storyboardWithName:@"CPSubscribePersonController" bundle:nil].instantiateInitialViewController;
+        [self.navigationController pushViewController:vc animated:YES];
     }else if (indexPath.row==1) {
         CarOwnersCertificationViewController *CarOwnersCertificationVC=[[CarOwnersCertificationViewController alloc]init];
         CarOwnersCertificationVC.title=@"车主认证";

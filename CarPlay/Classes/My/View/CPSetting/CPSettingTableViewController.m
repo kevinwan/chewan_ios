@@ -72,10 +72,15 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row==0) {
-        [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
-            [self.tableView reloadData];
-            [SVProgressHUD showSuccessWithStatus:@"清理成功"];
-        }];
+        float totalSize = [[SDImageCache sharedImageCache] getSize];
+        if (floor(totalSize/1024/1024*100)) {
+            [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
+                [self.tableView reloadData];
+                [SVProgressHUD showSuccessWithStatus:@"清理成功"];
+            }];
+        }else{
+             [SVProgressHUD showErrorWithStatus:@"没有要清理的内容"];
+        }
     }
 }
 
