@@ -30,6 +30,8 @@
 // 创建活动
 - (IBAction)createActive:(id)sender;
 
+// 筛选
+- (IBAction)select:(id)sender;
 
 
 @end
@@ -62,8 +64,8 @@
     // 发送请求
     [manager GET:@"http://cwapi.gongpingjia.com/v1/activity/list" parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
         // 取出活动数据
-//        self.status = responseObject[@"data"];
-//        NSLog(@"%@",self.status);
+
+//        NSLog(@"%@",responseObject[@"data"]);
         
         // 取出活动数据
         NSArray *dicts = responseObject[@"data"];
@@ -136,6 +138,15 @@
 }
 
 
+#pragma mark - lazy
+
+- (NSCache *)rowHeightCache{
+    if (!_rowHeightCache) {
+        _rowHeightCache = [[NSCache alloc] init];
+    }
+    return _rowHeightCache;
+}
+
 // 点击cell跳转到活动详情页
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -154,14 +165,7 @@
 }
 
 
-#pragma mark - lazy
 
-- (NSCache *)rowHeightCache{
-    if (!_rowHeightCache) {
-        _rowHeightCache = [[NSCache alloc] init];
-    }
-    return _rowHeightCache;
-}
 
 // 创建活动
 - (IBAction)createActive:(id)sender {
@@ -171,6 +175,13 @@
     
     
 }
+
+// 筛选
+- (IBAction)select:(id)sender {
+   
+}
+
+
 
 
 @end

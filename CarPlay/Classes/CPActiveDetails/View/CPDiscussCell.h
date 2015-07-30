@@ -7,8 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "<#header#>"
+#import "CPDiscussStatus.h"
 
 @interface CPDiscussCell : UITableViewCell
+
+@property (nonatomic,strong) CPDiscussStatus *discussStatus;
+
++ (NSString *)identifier;
+
+// 返回一行有多高
+- (CGFloat)cellHeightWithDiscussStatus:(CPDiscussStatus *)discussStatus;
 
 @end
