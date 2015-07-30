@@ -133,7 +133,6 @@
 		E30BD5901B54ECCC00FD9030 /* CPMySubscribeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD58E1B54ECCC00FD9030 /* CPMySubscribeCell.m */; };
 		E30BD5941B54FCC600FD9030 /* ZYNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5931B54FCC600FD9030 /* ZYNavigationBar.m */; };
 		E30BD5971B54FD6E00FD9030 /* ZYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5961B54FD6E00FD9030 /* ZYNavigationController.m */; };
-		E30BD59A1B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5991B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.m */; };
 		E32250EB1B660A6F000D1DCC /* CPSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = E32250EA1B660A6F000D1DCC /* CPSelectView.m */; };
 		E32250ED1B660B12000D1DCC /* CPSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E32250EC1B660B12000D1DCC /* CPSelectView.xib */; };
 		E328F0671B621DA700A20DCE /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = E328F0661B621DA700A20DCE /* city.plist */; };
@@ -535,8 +534,6 @@
 		E30BD5931B54FCC600FD9030 /* ZYNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYNavigationBar.m; sourceTree = "<group>"; };
 		E30BD5951B54FD6E00FD9030 /* ZYNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYNavigationController.h; sourceTree = "<group>"; };
 		E30BD5961B54FD6E00FD9030 /* ZYNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYNavigationController.m; sourceTree = "<group>"; };
-		E30BD5981B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
-		E30BD5991B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
 		E32250E91B660A6F000D1DCC /* CPSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSelectView.h; sourceTree = "<group>"; };
 		E32250EA1B660A6F000D1DCC /* CPSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSelectView.m; sourceTree = "<group>"; };
 		E32250EC1B660B12000D1DCC /* CPSelectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPSelectView.xib; sourceTree = "<group>"; };
@@ -1475,8 +1472,6 @@
 				E3C611511B5F4A6C00B7E73A /* ZYSearchBar.m */,
 				E3E1DBFB1B5C8CFB00386B18 /* ZYPickView.h */,
 				E3E1DBFC1B5C8CFB00386B18 /* ZYPickView.m */,
-				E30BD5981B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.h */,
-				E30BD5991B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.m */,
 				E30BD5921B54FCC600FD9030 /* ZYNavigationBar.h */,
 				E30BD5931B54FCC600FD9030 /* ZYNavigationBar.m */,
 				E30BD5951B54FD6E00FD9030 /* ZYNavigationController.h */,
@@ -2397,7 +2392,6 @@
 				E3CE35AB1B59E7FC008434B5 /* XLFormRightImageButton.m in Sources */,
 				E35B04721B565532002C6655 /* MJPhotoView.m in Sources */,
 				A57582141B6789E500A5E681 /* UIButton+SMFoundation.m in Sources */,
-				E30BD59A1B54FF1C00FD9030 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				E36C961F1B53BB2800D3EDBB /* CPActivityApplyCell.m in Sources */,
 				6B5F9B721B5D29FE00F9D1E8 /* CPHomeIconCell.m in Sources */,
 				E3B1277E1B54E19B005B1174 /* CPIconButton.m in Sources */,
