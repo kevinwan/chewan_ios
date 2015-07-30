@@ -133,6 +133,7 @@
 }
 //点击座位
 - (IBAction)seatDIdClick:(UIButton *)sender {
+    SQLog(@"%tu",sender.tag);
     if ([sender imageForState:UIControlStateNormal] == nil) {
         [self.view alert:@"该座位为空座"];
         return;
@@ -181,11 +182,8 @@
     else if (sender.tag <=5000) {
         seatIndex = @"5";
     }
-    else if (sender.tag <6000) {
+    else if (sender.tag <=6000) {
         seatIndex = @"6";
-    }
-    else if (sender.tag <=7000) {
-        seatIndex = @"7";
     }
     SQLog(@"%@",seatIndex);
     NSArray *usersArray = car.users;
@@ -217,7 +215,6 @@
 //拉下座位
 - (IBAction)downSeatButtonClick:(UIButton *)sender {
     [self coverClick];
- 
     UITableViewCell *c = [self.memberTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:sender.tag%100 inSection:0]];
     UIButton *b = (UIButton *)[c.contentView viewWithTag:sender.tag];
     
@@ -272,10 +269,9 @@
         cell.seatone.tag = indexPath.row + 1000;
         cell.seatTwo.tag = indexPath.row +2000;
         cell.seatThree.tag = indexPath.row +3000;
-        cell.seatFour.tag = indexPath.row + 4000;
-        cell.seatLastThree.tag = indexPath.row +5000;
-        cell.seatLastTwo.tag = indexPath.row + 6000;
-        cell.seatLastThree.tag = indexPath.row + 7000;
+        cell.seatLastThree.tag = indexPath.row +4000;
+        cell.seatLastTwo.tag = indexPath.row + 5000;
+        cell.seatLastOne.tag = indexPath.row + 6000;
         return cell;
         
     } else {

@@ -38,7 +38,7 @@ static CGFloat const kBounceValue = 20.0f;
     [self.mycontentView addGestureRecognizer:self.pan];
     //设置手势代理
     self.pan.delegate = self;
-    [self setupButton:@[self.seatMain,self.seatone, self.seatTwo,self.seatThree,self.seatFour,self.seatLastOne,self.seatLastTwo,self.seatLastThree]];
+    [self setupButton:@[self.seatMain,self.seatone, self.seatTwo,self.seatThree,self.seatLastOne,self.seatLastTwo,self.seatLastThree]];
   
 }
 //button需要设置imageView才美观
@@ -57,7 +57,7 @@ static CGFloat const kBounceValue = 20.0f;
 - (void)setModels:(cars *)models {
     _models = models;
     //设置初始座位头像图片为nil
-    [self removeImageOfButton:@[self.seatMain,self.seatone, self.seatTwo,self.seatThree,self.seatFour,self.seatLastOne,self.seatLastTwo,self.seatLastThree]];
+    [self removeImageOfButton:@[self.seatMain,self.seatone, self.seatTwo,self.seatThree,self.seatLastOne,self.seatLastTwo,self.seatLastThree]];
     NSURL *url = [NSURL URLWithString:_models.carBrandLogo];
     [self.carLog sd_setImageWithURL:url];
     self.carName.text = [NSString stringWithFormat:@"%@",_models.carModel];
@@ -67,7 +67,6 @@ static CGFloat const kBounceValue = 20.0f;
             self.seatLastThree.hidden = YES;
             self.seatLastTwo.hidden = YES;
             self.seatLastOne.hidden = YES;
-            self.seatFour.hidden  = YES;
             self.seatThree.hidden  = YES;
             self.seatTwo.hidden = YES;
             break;
@@ -75,26 +74,19 @@ static CGFloat const kBounceValue = 20.0f;
             self.seatLastThree.hidden = YES;
             self.seatLastTwo.hidden = YES;
             self.seatLastOne.hidden = YES;
-            self.seatFour.hidden  = YES;
             self.seatThree.hidden  = YES;
             break;
         case 4:
             self.seatLastThree.hidden = YES;
             self.seatLastTwo.hidden = YES;
             self.seatLastOne.hidden = YES;
-            self.seatFour.hidden  = YES;
             break;
         case 5:
-            self.seatLastThree.hidden = YES;
-            self.seatLastTwo.hidden = YES;
             self.seatLastOne.hidden = YES;
+            self.seatLastTwo.hidden = YES;
             break;
         case 6:
-            self.seatLastThree.hidden = YES;
-            self.seatLastTwo.hidden = YES;
-            break;
-        case 7:
-            self.seatLastThree.hidden = YES;
+            self.seatLastOne.hidden = YES;
             break;
   
         default:
@@ -117,15 +109,12 @@ static CGFloat const kBounceValue = 20.0f;
                 [self.seatThree sd_setImageWithURL:[NSURL URLWithString:user.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"member_seatIcon"]];
                 break;
             case 4:
-                [self.seatFour sd_setImageWithURL:[NSURL URLWithString:user.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"member_seatIcon"]];
-                break;
-            case 5:
                 [self.seatLastThree sd_setImageWithURL:[NSURL URLWithString:user.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"member_seatIcon"]];
                 break;
-            case 6:
+            case 5:
                 [self.seatLastTwo sd_setImageWithURL:[NSURL URLWithString:user.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"member_seatIcon"]];
                 break;
-            case 7:
+            case 6:
                 [self.seatLastOne sd_setImageWithURL:[NSURL URLWithString:user.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"member_seatIcon"]];
                 break;
                 
