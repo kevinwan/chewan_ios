@@ -10,6 +10,7 @@
 
 @interface UIViewController (ZY)
 
+
 #pragma mark - 处理提示信息
 /**
  *  转圈圈,不会自动消失,需要手动dismiss
@@ -46,7 +47,5 @@
  *  清楚正在显示的视图
  */
 - (void)disMiss;
-
-- (void)showNoData;
 
 @end

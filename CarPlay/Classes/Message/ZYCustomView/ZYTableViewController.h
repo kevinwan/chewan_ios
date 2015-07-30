@@ -10,5 +10,44 @@
 
 @interface ZYTableViewController : UITableViewController
 
+/**
+ *  显示没有网络
+ */
+- (void)showNoNetWork;
+
+/**
+ *  因为服务器或者其他原因导致的网络问题
+ */
+- (void)showNetWorkFailed;
+
+/**
+ *  显示网络超时
+ */
+- (void)showNetWorkOutTime;
+
+/**
+ *  显示没有加载到数据
+ */
+- (void)showNoData;
+
+/**
+ *  显示没有任何发布
+ */
+- (void)showNoPublish;
+
+/**
+ *  显示没有任何关注
+ */
+- (void)showNoSubscribe;
+
+/**
+ *  显示没有任何参与
+ */
+- (void)showNoJoin;
+
+/**
+ *  重新刷新数据,点击重新加载按钮后调用,交由子类具体实现
+ */
+- (void)reRefreshData;
 
 @end

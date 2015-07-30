@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPMyJoinController : UITableViewController
+@interface CPMyJoinController : ZYTableViewController
 
 /**
  *  被访问者的userid

@@ -33,21 +33,41 @@
     }else{
         self.navigationItem.title = @"他的参与";
     }
+
+    [self loadData];
+}
+
+- (void)reRefreshData
+{
+    [self loadData];
+}
+
+- (void)loadData
+{
     
     NSString *url = [NSString stringWithFormat:@"v1/user/%@/join",[Tools getValueFromKey:@"userId"]];
     [SVProgressHUD showWithStatus:@"努力加载中"];
     [CPNetWorkTool getWithUrl:url params:nil success:^(id responseObject) {
-        [SVProgressHUD dismiss];
-        NSArray *data = [CPMySubscribeModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
-        for (CPMySubscribeModel *model in data) {
-            CPMySubscribeFrameModel *frameModel = [[CPMySubscribeFrameModel alloc] init];
-            frameModel.model = model;
-            [self.datas addObject:frameModel];
+        if (CPSuccess) {
+            [self disMiss];
+            NSArray *data = [CPMySubscribeModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
+            for (CPMySubscribeModel *model in data) {
+                CPMySubscribeFrameModel *frameModel = [[CPMySubscribeFrameModel alloc] init];
+                frameModel.model = model;
+                [self.datas addObject:frameModel];
+            }
+            if (self.datas.count > 0) {
+                [self.tableView reloadData];
+            }else{
+                [self showNoJoin];
+            }
+        }else{
+            [self showInfo:@"加载失败"];
+            [self showNetWorkFailed];
         }
-        [self.tableView reloadData];
     } failure:^(NSError *error) {
-        [SVProgressHUD dismiss];
-        [SVProgressHUD showErrorWithStatus:@"加载失败"];
+        [self showError:@"加载失败"];
+        [self showNetWorkOutTime];
     }];
 }
 
