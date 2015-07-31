@@ -8,6 +8,8 @@
 
 #import "CPNewMessageCell.h"
 #import "CPNewMsgModel.h"
+#import "CPSexView.h"
+#import "UIButton+WebCache.h"
 
 @interface CPNewMessageCell()
 @property (nonatomic, strong) UIImageView *checkImageView;
@@ -16,7 +18,7 @@
 // 显示姓名的label
 @property (weak, nonatomic) IBOutlet UILabel *nameLable;
 // 显示性别的区域
-@property (weak, nonatomic) IBOutlet UIButton *sexView;
+@property (weak, nonatomic) IBOutlet CPSexView *sexView;
 // 用户描述的label
 @property (weak, nonatomic) IBOutlet UILabel *descripteLable;
 
@@ -34,6 +36,8 @@
     }
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
     [self addGestureRecognizer:longPress];
+    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 - (void)setModel:(CPNewMsgModel *)model
@@ -42,9 +46,14 @@
     
     [self setChecked:model.isChecked];
     
-    self.descripteLable.text = [NSString stringWithFormat:@"你没的黄随碟附送打法是否打开撒旦;发了卡仕达; 是东风科技阿斯利康大家阿里开发商记录卡双方的家里看范德是%zd号changialsjdfkladsjkldajsflkdfsjlkdsjfldfsjldfsajlkj我👌👌👌",arc4random_uniform(100)];
+    self.descripteLable.text = model.content;
     
-    self.nameLable.text = [NSString stringWithFormat:@"我是NB%zd号",arc4random_uniform(100)];
+    self.nameLable.text = model.nickname;
+    
+    self.sexView.isMan = model.isMan;
+    self.sexView.age = model.age;
+    
+    [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
     
     [self layoutIfNeeded];
     
@@ -95,12 +104,6 @@
     
     if (editting)
     {
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
-        self.backgroundView = [[UIView alloc] init];
-        self.backgroundView.backgroundColor = [UIColor whiteColor];
-        self.textLabel.backgroundColor = [UIColor clearColor];
-        self.detailTextLabel.backgroundColor = [UIColor clearColor];
-        
         if (self.checkImageView == nil)
         {
             self.checkImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"未选"]];
@@ -115,8 +118,6 @@
     else
     {
         _checked = NO;
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
-        self.backgroundView = nil;
         
         if (self.checkImageView)
         {
@@ -136,12 +137,10 @@
     if (checked)
     {
         self.checkImageView.image = [UIImage imageNamed:@"选中"];
-        self.backgroundView.backgroundColor = [UIColor colorWithRed:223.0/255.0 green:230.0/255.0 blue:250.0/255.0 alpha:1.0];
     }
     else
     {
         self.checkImageView.image = [UIImage imageNamed:@"未选"];
-        self.backgroundView.backgroundColor = [UIColor whiteColor];
     }
     _checked = checked;
 }
