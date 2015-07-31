@@ -236,11 +236,11 @@
 -(UIToolbar *)setToolbarStyle{
     UIToolbar *toolbar=[[UIToolbar alloc] init];
     
-    UIBarButtonItem *lefttem=[[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(remove)];
+    UIBarButtonItem *lefttem=[[UIBarButtonItem alloc] initWithTitle:@"      取消" style:UIBarButtonItemStylePlain target:self action:@selector(remove)];
     
     UIBarButtonItem *centerSpace=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
     
-    UIBarButtonItem *right=[[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(doneClick)];
+    UIBarButtonItem *right=[[UIBarButtonItem alloc] initWithTitle:@"确定      " style:UIBarButtonItemStylePlain target:self action:@selector(doneClick)];
     toolbar.items=@[lefttem,centerSpace,right];
     return toolbar;
 }
@@ -462,7 +462,7 @@
 }
 
 -(void)remove{
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"remove" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"remove" object:nil userInfo:@{@"info" : @(self.tag)}];
     [self removeFromSuperview];
 }
 -(void)show{
@@ -514,8 +514,9 @@
     if ([self.delegate respondsToSelector:@selector(toobarDonBtnHaveClick:resultString:)]) {
         [self.delegate toobarDonBtnHaveClick:self resultString:_resultString];
     }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"remove" object:nil userInfo:@{@"info" : @(self.tag)}];
     [self removeFromSuperview];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"remove" object:nil];
 }
 /**
  *  设置PickView的颜色

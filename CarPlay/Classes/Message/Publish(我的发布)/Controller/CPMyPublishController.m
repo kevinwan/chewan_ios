@@ -11,11 +11,9 @@
 #import "CPMyPublishModel.h"
 #import "MJExtension.h"
 #import "CPMyPublishCell.h"
-#import "CPSelectView.h"
 
-@interface CPMyPublishController ()<CPSelectViewDelegate>
+@interface CPMyPublishController ()
 @property (nonatomic, strong) NSMutableArray *frameModels;
-@property (nonatomic, weak) CPSelectView *selectView;
 @end
 
 @implementation CPMyPublishController
@@ -37,8 +35,6 @@
     }else{
         self.navigationItem.title = @"他的发布";
     }
-    
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"确定" target:self action:@selector(select)];
     
     self.tableView.allowsSelection = NO;
     
@@ -85,30 +81,6 @@
 
 }
 
-- (void)select
-{
-    UIButton *button = [[UIButton alloc] init];
-    [button addTarget:self action:@selector(hide:) forControlEvents:UIControlEventTouchUpInside];
-    button.frame = [UIScreen mainScreen].bounds;
-    button.backgroundColor = RGBACOLOR(0, 0, 0, 0.5);
-    [self.navigationController.view insertSubview:button belowSubview:self.navigationController.navigationBar];
-    
-    
-    CPSelectView *selectView = [CPSelectView selectView];
-    selectView.delegate = self;
-    [selectView showWithView:button];
-    self.selectView = selectView;
-}
-
-- (void)hide:(UIButton *)cover
-{
-    [self.selectView dismissWithCompletion:nil];
-}
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -127,16 +99,6 @@
 {
     CPMyPublishFrameModel *frameModel = self.frameModels[indexPath.row];
     return frameModel.cellHeight;
-}
-
-- (void)selectViewCancleBtnClick:(CPSelectView *)selectView
-{
-    
-}
-
-- (void)selectView:(CPSelectView *)selectView finishBtnClick:(CPSelectViewModel *)result
-{
-    
 }
 
 @end

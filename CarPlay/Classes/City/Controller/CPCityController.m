@@ -235,8 +235,7 @@
 {
     [super viewWillDisappear:animated];
     
-    if (!self.coverBtn.isHidden) {
-        
+    if (self.coverBtn) {
         self.coverBtn.hidden = YES;
     }
 }
