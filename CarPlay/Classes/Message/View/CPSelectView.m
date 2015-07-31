@@ -65,6 +65,8 @@
     
     self.confirmBtn.layer.cornerRadius = 3;
     self.confirmBtn.clipsToBounds = YES;
+    
+    [CPNotificationCenter addObserver:self selector:@selector(canclePicker:) name:@"remove" object:nil];
 }
 
 #pragma mark - 显示和隐藏方法
@@ -112,7 +114,8 @@
         [UIView animateWithDuration:0.25 animations:^{
             self.secondArrow.transform = CGAffineTransformRotate(self.secondArrow.transform, M_PI_2);
         }];
-        self.pickerView = [[ZHPickView alloc] initPickviewWithArray:@[@"代驾", @"吃饭", @"唱歌", @"拼车", @"旅行", @"看电影", @"运动"] isHaveNavControler:NO];
+        self.pickerView = [[ZHPickView alloc] initPickviewWithArray:@[@"代驾", @"吃饭", @"唱歌", @"拼车", @"旅行", @"看电影", @"运动", @"不限"] isHaveNavControler:NO];
+        [self.pickerView setTintColor:[Tools getColor:@"fc6e51"]];
         self.pickerView.tag = 2;
         self.pickerView.delegate = self;
         [self.pickerView show];
@@ -123,6 +126,7 @@
             self.firstArrow.transform = CGAffineTransformRotate(self.secondArrow.transform, M_PI_2);
         }];
         self.pickerView =[[ZHPickView alloc] initPickviewWithPlistName:@"city" isHaveNavControler:NO];
+        [self.pickerView setTintColor:[Tools getColor:@"fc6e51"]];
         self.pickerView.delegate = self;
         [self.pickerView show];
     }
@@ -187,12 +191,20 @@
 {
     if (pickView.tag == 2) {
         [self.typeLabel setTitle:resultString forState:UIControlStateNormal];
-        self.secondArrow.transform = CGAffineTransformIdentity;
     }else{
         [self.areaLabel setTitle:resultString forState:UIControlStateNormal];
+    }
+}
+
+- (void)canclePicker:(NSNotification *)notify
+{
+    NSInteger tag = [notify.userInfo[@"info"] intValue];
+    if (tag == 2) {
+        self.secondArrow.transform = CGAffineTransformIdentity;
+    }else{
         self.firstArrow.transform = CGAffineTransformIdentity;
     }
-    [self.pickerView remove];
+    self.lastArrow = nil;
 }
 
 @end
