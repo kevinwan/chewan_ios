@@ -10,4 +10,10 @@
 
 @implementation CPNewMsgModel
 
+- (void)setGender:(NSString *)gender
+{
+    _gender = [gender copy];
+    self.isMan = [gender isEqualToString:@"男"] ? YES : NO;
+}
+
 @end

@@ -21,11 +21,13 @@
     NSString *userId = [Tools getValueFromKey:@"userId"];
     if (userId.length == 0) {
         [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+        [SVProgressHUD dismiss];
         return;
     }
     NSString *token = [Tools getValueFromKey:@"token"];
     if (token.length == 0) {
         [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+        [SVProgressHUD dismiss];
         return;
     }
     NSString *userStr = [NSString stringWithFormat:@"?userId=%@&token=%@",userId, token];
@@ -82,11 +84,13 @@
     NSString *userId = [Tools getValueFromKey:@"userId"];
     if (userId.length == 0) {
         [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+        [SVProgressHUD dismiss];
         return;
     }
     NSString *token = [Tools getValueFromKey:@"token"];
     if (token.length == 0) {
         [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+        [SVProgressHUD dismiss];
         return;
     }
     NSString *userStr = [NSString stringWithFormat:@"?userId=%@&token=%@",userId, token];
@@ -141,11 +145,13 @@
     NSString *userId = [Tools getValueFromKey:@"userId"];
     if (userId.length == 0) {
         [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+        [SVProgressHUD dismiss];
         return;
     }
     NSString *token = [Tools getValueFromKey:@"token"];
     if (token.length == 0) {
         [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+        [SVProgressHUD dismiss];
         return;
     }
     NSString *userStr = [NSString stringWithFormat:@"?userId=%@&token=%@",userId, token];
@@ -197,11 +203,13 @@
     NSString *userId = [Tools getValueFromKey:@"userId"];
     if (userId.length == 0) {
         [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+        [SVProgressHUD dismiss];
         return;
     }
     NSString *token = [Tools getValueFromKey:@"token"];
     if (token.length == 0) {
         [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+        [SVProgressHUD dismiss];
         return;
     }
     NSString *userStr = [NSString stringWithFormat:@"?userId=%@&token=%@",userId, token];

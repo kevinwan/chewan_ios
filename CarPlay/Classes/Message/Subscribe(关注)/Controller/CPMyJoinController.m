@@ -29,6 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.tableFooterView = [[UIView alloc] init];
     if ([self.hisUserId isEqualToString:[Tools getValueFromKey:@"userId"]]){
         self.navigationItem.title = @"我的参与";
     }else{

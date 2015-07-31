@@ -37,6 +37,7 @@
         self.navigationItem.title = @"他的发布";
     }
     
+    self.tableView.tableFooterView = [[UIView alloc] init];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self loadData];
 }

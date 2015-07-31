@@ -209,6 +209,7 @@ typedef enum {
     [self.tableView setContentOffset:self.currentOffset animated:YES];
     int row = [notify.userInfo[@"row"] intValue];
     if (row == 0) {
+        [self closeArrowWithRow:0];
         [self.tableView setContentOffset:CGPointMake(0, -64) animated:YES];
     }else{
         [self closeArrowWithRow:row];
