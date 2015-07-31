@@ -133,7 +133,6 @@
     CPPhotoalbumManagement *CPPhotoalbumManagementVC=[[CPPhotoalbumManagement alloc]init];
     CPPhotoalbumManagementVC.title=@"相册管理";
     [self.navigationController pushViewController:CPPhotoalbumManagementVC animated:YES];
-
 }
 
 // 分页控件的监听方法
