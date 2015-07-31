@@ -202,7 +202,7 @@ typedef enum {
     addPhotoBtn.tag = 9;
     addPhotoBtn.frame = CGRectMake(10, 10, self.photoWH, self.photoWH);
     [addPhotoBtn setBackgroundColor:[Tools getColor:@"ccd1d9"]];
-    [addPhotoBtn setImage:[UIImage imageNamed:@"大相机"] forState:UIControlStateNormal];
+    [addPhotoBtn setImage:[UIImage imageNamed:@"添加"] forState:UIControlStateNormal];
     [addPhotoBtn addTarget:self action:@selector(addPhoto) forControlEvents:UIControlEventTouchUpInside];
     [photoView addSubview:addPhotoBtn];
     
@@ -648,7 +648,7 @@ typedef enum {
     
     for (int i = 0; i < arr.count; i++) {
         CPEditImageView *imageView = [[CPEditImageView alloc] init];
-        [imageView sd_setImageWithURL:[NSURL URLWithString:arr[i][@"thumbnail_pic"]] placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:arr[i][@"thumbnail_pic"]] placeholderImage:[UIImage imageNamed:@"imageplace"]];
         imageView.tag = self.picIndex++;
         imageView.url = arr[i][@"thumbnail_pic"];
         imageView.coverId = arr[i][@"coverId"];
@@ -836,7 +836,6 @@ typedef enum {
                     }
                     
                 } failure:^(NSError *error) {
-                    [SVProgressHUD dismiss];
                     [SVProgressHUD showErrorWithStatus:@"上传失败"];
                 }];
 
@@ -875,11 +874,9 @@ typedef enum {
         if (CPSuccess){
             [SVProgressHUD showSuccessWithStatus:@"修改成功"];
         }else{
-            [SVProgressHUD dismiss];
             [SVProgressHUD showInfoWithStatus:@"修改失败"];
         }
     } failed:^(NSError *error) {
-        [SVProgressHUD dismiss];
         [SVProgressHUD showErrorWithStatus:@"修改失败"];
     }];
 }

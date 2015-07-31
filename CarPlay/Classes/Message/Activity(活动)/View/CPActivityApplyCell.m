@@ -12,6 +12,7 @@
 #import "CPSexView.h"
 #import "UIImageView+WebCache.h"
 #import "CPActivityApplyButton.h"
+#import "AppAppearance.h"
 
 @interface CPActivityApplyCell()
 
@@ -23,14 +24,16 @@
 @property (weak, nonatomic) IBOutlet UIImageView *carView;
 @property (weak, nonatomic) IBOutlet UILabel *offerSeatLabel;
 @property (weak, nonatomic) IBOutlet CPActivityApplyButton *agreeBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *agreeBtnTopMargin;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tipMsgLabelWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *nameLabelWidth;
 
 @end
 
 @implementation CPActivityApplyCell
 
 - (void)awakeFromNib {
-    
-    
+    self.tipMsgLabelWidth.constant = kScreenWidth -  135;
 }
 
 /**
@@ -46,32 +49,50 @@
     return str;
 }
 
+/**
+ *  申请加入活动的text
+ */
+- (NSAttributedString *)tipMsgText:(NSString *)text
+{
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"想加入"];
+    NSMutableAttributedString *activityName = [[NSMutableAttributedString alloc] initWithString:text attributes:@{NSForegroundColorAttributeName : [AppAppearance greenColor]}];
+    [str appendAttributedString:activityName];
+    NSAttributedString *zuo = [[NSAttributedString alloc] initWithString:@"活动sfddaffd"];
+    [str appendAttributedString:zuo];
+    return str;
+}
+
 - (void)setModel:(CPActivityApplyModel *)model
 {
     _model = model;
     
     if (model.photo) {
-        [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.photo] forState:UIControlStateNormal placeholderImage:nil];
+        [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
     }else{
-        [self.iconView setImage:[UIImage imageNamed:nil] forState:UIControlStateNormal];
+        [self.iconView setImage:[UIImage imageNamed:@"placeholderImage"] forState:UIControlStateNormal];
     }
     
     if (model.nickname) {
         self.nameLabel.text = model.nickname;
+        CGFloat nameLableW = [self.nameLabel.text sizeWithFont:self.nameLabel.font].width;
+        if (nameLableW > kScreenWidth - 200) {
+            self.nameLabelWidth.constant = kScreenWidth - 200;
+        }else{
+            self.nameLabelWidth.constant = nameLableW;
+        }
     }else{
         self.nameLabel.text = @"";
+        self.nameLabelWidth.constant = 0;
     }
     
     if (model.age && model.gender) {
         self.sexView.isMan = [model.gender isEqualToString:@"男"];
-        [self.sexView setTitle:[NSString stringWithFormat:@"%zd",[model.age intValue]] forState:UIControlStateNormal];
+        self.sexView.age = model.age.unsignedIntValue;
     }
     
-    self.tipmsgLabel.text = model.title;
-    
-    if (model.carBrandLogo) {
+    if (model.carBrandLogo.length) {
         self.carView.hidden = NO;
-        [self.carView sd_setImageWithURL:[NSURL URLWithString:model.carBrandLogo] placeholderImage:nil];
+        [self.carView sd_setImageWithURL:[NSURL URLWithString:model.carBrandLogo] placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
     }else{
         self.carView.hidden = YES;
     }
@@ -79,20 +100,36 @@
     if ([model.seat intValue]) {
         
         self.offerSeatLabel.attributedText = [self seatLabelText:[NSString stringWithFormat:@"%zd",[model.seat intValue]]];
+        self.tipmsgLabel.attributedText = [self tipMsgText:model.title];
+        self.agreeBtnTopMargin.constant = 10;
     }else{
+         self.tipmsgLabel.text = @"带我飞 ~";
         self.offerSeatLabel.text = @"";
-    }
-    
-    if ([model.status isEqualToString:@"已同意"]) {
-        self.agreeBtn.selected = YES;
-    }else{
-        self.agreeBtn.selected  = NO;
+        self.agreeBtnTopMargin.constant = 20;
     }
     
 }
+
 - (IBAction)agreeBtnClick:(id)sender {
     
-    [CPNotificationCenter postNotificationName:@"AgreeApply" object:nil userInfo:@{@"appid" : _model.applicationId}];
+    
+    NSString *url = [NSString stringWithFormat:@"v1/application/%@/process",_model.applicationId];
+    DLog(@"%@---",url);
+    NSMutableDictionary *json = [NSMutableDictionary dictionary];
+    json[@"action"] = @"1";
+    [SVProgressHUD showWithStatus:@"努力加载中"];
+    [CPNetWorkTool postJsonWithUrl:url params:json success:^(id responseObject) {
+        DLog(@"%@",responseObject);
+        if (CPSuccess) {
+            [CPNotificationCenter postNotificationName:CPActivityApplyNotification object:nil userInfo:@{CPActivityApplyInfo :@(self.row)}];
+        }else{
+            [SVProgressHUD showInfoWithStatus:@"加载失败"];
+        }
+    } failed:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:@"加载失败"];
+    }];
+
+    
 }
 
 

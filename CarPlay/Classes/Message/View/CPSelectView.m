@@ -130,7 +130,6 @@
 
 - (IBAction)cancleBtnClick:(id)sender {
     if ([self.delegate respondsToSelector:@selector(selectViewCancleBtnClick:)]) {
-         [self dismissWithCompletion:nil];
         [self.delegate selectViewCancleBtnClick:self];
     }
 }
@@ -170,9 +169,7 @@
     }else if (self.carLevelSeg.selectedSegmentIndex == 1){
         model.carLevel = @"good";
     }
-    NSLog(@"%@",model.keyValues);
     if ([self.delegate respondsToSelector:@selector(selectView:finishBtnClick:)]) {
-        [self dismissWithCompletion:nil];
         [self.delegate selectView:self finishBtnClick:model];
     }
 }

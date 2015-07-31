@@ -39,7 +39,7 @@
     _photo = photo;
     
     // 1.下载图片
-    [self sd_setImageWithURL:[NSURL URLWithString:photo.thumbnail_pic] placeholderImage:nil];
+    [self sd_setImageWithURL:[NSURL URLWithString:photo.thumbnail_pic] placeholderImage:[UIImage imageNamed:@"imageplace"]];
     
     // 2.控制gif图标的显示
     NSString *extension = photo.thumbnail_pic.pathExtension.lowercaseString;

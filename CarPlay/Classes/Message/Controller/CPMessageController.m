@@ -42,7 +42,7 @@ typedef enum {
 //        CPActivityApplyControllerView *newMsgVc = [UIStoryboard storyboardWithName:@"CPActivityApplyControllerView" bundle:nil].instantiateInitialViewController;
 //        [self.navigationController pushViewController:newMsgVc animated:YES];
         
-        CPSubscribePersonController *vc = [UIStoryboard storyboardWithName:@"CPSubscribePersonController" bundle:nil].instantiateInitialViewController;
+        CPActivityApplyControllerView *vc = [UIStoryboard storyboardWithName:@"CPActivityApplyControllerView" bundle:nil].instantiateInitialViewController;
         [self.navigationController pushViewController:vc animated:YES];
     }else{
         CPNewMessageController *newMsgVc = [UIStoryboard storyboardWithName:@"CPNewMessageController" bundle:nil].instantiateInitialViewController;

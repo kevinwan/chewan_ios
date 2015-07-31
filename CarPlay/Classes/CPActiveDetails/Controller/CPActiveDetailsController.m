@@ -15,11 +15,10 @@
 #import "CPDiscussStatus.h"
 #import "MembersController.h"
 #import "MembersManageController.h"
+#import "CPDiscussCell.h"
 
 
 @interface CPActiveDetailsController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
-// 数据源数组
-@property (nonatomic,strong) NSMutableArray *activeInfos;
 
 // tableView
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -30,6 +29,8 @@
 // 文本输入框
 @property (weak, nonatomic) IBOutlet UITextField *inputView;
 
+// 缓存cell高度（线程安全、内存紧张时会自动释放、不会拷贝key）
+@property (nonatomic,strong) NSCache *rowHeightCache;
 
 // 存储所有活动详情数据
 @property (nonatomic,strong) CPActiveStatus *activeStatus;
@@ -60,11 +61,30 @@
     // 创建tableheadview
     CPActiveDetailsHead *headView = [CPActiveDetailsHead headView:self];
     
+//    headView.frame.size.height = [headView xibHeightWithActiveStatus:self.activeStatus];
+    CGFloat headViewX = 0;
+    CGFloat headViewY = 0;
+    CGFloat headViewW = [UIScreen mainScreen].bounds.size.width;
+    CGFloat headViewH = [headView xibHeightWithActiveStatus:self.activeStatus];
+    
+    headView.frame = CGRectMake(headViewX, headViewY, headViewW, headViewH);
+    
+    if (headView.goTaDetails == nil) {
+        headView.goTaDetails = ^{
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil];
+            
+            [self.navigationController pushViewController:sb.instantiateInitialViewController animated:YES];
+
+        };
+    }
+    
+    
     // 传递对象数据
     headView.activeStatus = self.activeStatus;
     
     // 将创建好的headview加到tableview上
     self.tableView.tableHeaderView = headView;
+    
 }
 
 
@@ -185,14 +205,47 @@
 #pragma mark -数据源方法
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.activeInfos.count;
+//    return 10;
+    return self.discussStatus.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [[UITableViewCell alloc] init];
+    
+//        UITableViewCell *cell = [[UITableViewCell alloc] init];
+//        cell.textLabel.text = @"123";
+    
+    CPDiscussCell *cell = [tableView dequeueReusableCellWithIdentifier:[CPDiscussCell identifier]];
+    cell.discussStatus = self.discussStatus[indexPath.row];
     return cell;
   
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+     // 取出对应行模型
+    CPDiscussStatus *status = self.discussStatus[indexPath.row];
+    
+    // 先从缓存中获取高度，没有才计算
+    NSNumber *rowHeight = [self.rowHeightCache objectForKey:status.userId];
+    
+    CGFloat cellHeight = [rowHeight doubleValue];
+    
+    if (rowHeight == nil) {
+        
+        // 取出cell
+        CPDiscussCell *cell = [tableView dequeueReusableCellWithIdentifier:[CPDiscussCell identifier]];
+        
+        // 获取高度
+        cellHeight = [cell cellHeightWithDiscussStatus:status];
+        
+        // 缓存每一行的高度
+        [self.rowHeightCache setObject:@(cellHeight) forKey:status.userId];
+    }
+    
+    // 设置高度
+    return cellHeight;
+}
+
 
 #pragma mark - 代理方法
 // 当开始拖拽tableview表格的时候调用
@@ -215,4 +268,5 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
+
 @end

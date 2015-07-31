@@ -93,10 +93,18 @@
     self.isMan = [gender isEqualToString:@"男"] ? YES : NO;
 }
 
+/**
+ *  处理用户汽车信息详情
+ *
+ *  @return 拼接的字符串
+ */
 - (NSString *)descStr
 {
     if (self.carBrandLogo){
-        return [NSString stringWithFormat:@"%@ %zd年驾龄",@"China", _drivingExperience];
+        if (_drivingExperience > 0) {
+            return [NSString stringWithFormat:@"%@, %zd年驾龄",_carModel, _drivingExperience];
+        }
+        return [NSString stringWithFormat:@"%@",_carModel];
     }else{
         return @"带我飞 ~";
     }

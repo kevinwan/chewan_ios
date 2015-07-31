@@ -8,7 +8,6 @@
 
 #import "ZYNavigationController.h"
 #import "ZYNavigationBar.h"
-#import "UINavigationController+FDFullscreenPopGesture.h"
 
 @interface ZYNavigationController ()
 

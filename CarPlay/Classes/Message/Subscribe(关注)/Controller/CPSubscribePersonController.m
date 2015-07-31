@@ -29,12 +29,23 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"我关注的人";
+    self.tableView.tableFooterView = [[UIView alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
+    [self loadData];
+}
+
+- (void)reRefreshData
+{
+    [self loadData];
+}
+
+- (void)loadData
+{
     NSString *userId = [Tools getValueFromKey:@"userId"];
     NSString *token = [Tools getValueFromKey:@"token"];
     if (userId.length == 0 || token.length == 0) {
@@ -46,24 +57,40 @@
     [self showLoading];
     [ZYNetWorkTool getWithUrl:url params:@{@"token" : token} success:^(id responseObject) {
         DLog(@"%@...",responseObject);
-        [self disMiss];
         if (CPSuccess) {
+            [self disMiss];
             NSArray *arr = [CPOrganizer objectArrayWithKeyValuesArray:responseObject[@"data"]];
-            [self.datas removeAllObjects];
-            [self.datas addObjectsFromArray:arr];
-            [self.tableView reloadData];
+            if (arr.count > 0) {
+                [self.datas removeAllObjects];
+                [self.datas addObjectsFromArray:arr];
+                [self.tableView reloadData];
+            }else{
+                [self showNoData];
+            }
         }else{
             [self showInfo:@"加载失败"];
+            [self showNetWorkFailed];
         }
     } failure:^(NSError *error) {
-        [self disMiss];
         [self showError:@"加载失败"];
+        [self showNetWorkOutTime];
     }];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)cancleSubscribe:(NSNotification *)notify
+{
+    NSUInteger row = [notify.userInfo[CPCancleSubscribeInfo] intValue];
+    if (self.datas.count > 0) {
+        [self showSuccess:@"取消成功"];
+        [self.datas removeObjectAtIndex:row];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+- (void)dealloc
+{
+    [CPNotificationCenter removeObserver:self];
 }
 
 #pragma mark - Table view data source
@@ -76,7 +103,7 @@
     static NSString *ID = @"SubscribePersonCell";
     
     CPSubscribeCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    
+    cell.row = indexPath.row;
     cell.model = self.datas[indexPath.row];
     return cell;
 }

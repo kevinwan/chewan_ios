@@ -7,11 +7,12 @@
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "Unselected.png"
+      "filename" : "暂无参与@2x.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "暂无参与@3x.png"
     }
   ],
   "info" : {

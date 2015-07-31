@@ -43,32 +43,49 @@
     self.tableView.tableFooterView = [[UIView alloc] init];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)reRefreshData
 {
-    [super viewWillAppear:animated];
-    
-    [self.frameModels removeAllObjects];
+    [self loadData];
+}
+
+- (void)loadData
+{
     
     NSString *url = [NSString stringWithFormat:@"v1/user/%@/subscribe",[Tools getValueFromKey:@"userId"]];
     
     [SVProgressHUD showWithStatus:@"努力加载中"];
     [CPNetWorkTool getWithUrl:url params:nil success:^(id responseObject) {
-        [SVProgressHUD dismiss];
         if (CPSuccess) {
-           NSArray *data = [CPMySubscribeModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
-            for (CPMySubscribeModel *model in data) {
-                CPMySubscribeFrameModel *frameModel = [[CPMySubscribeFrameModel alloc] init];
-                frameModel.model = model;
-                [self.frameModels addObject:frameModel];
+            NSArray *data = [CPMySubscribeModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
+            if (data.count > 0) {
+                [self.frameModels removeAllObjects];
+                for (CPMySubscribeModel *model in data) {
+                    CPMySubscribeFrameModel *frameModel = [[CPMySubscribeFrameModel alloc] init];
+                    frameModel.model = model;
+                    [self.frameModels addObject:frameModel];
+                }
             }
-            [self.tableView reloadData];
+            [self disMiss];
+            if (self.frameModels.count > 0) {
+                [self.tableView reloadData];
+            }else{
+                [self showNoSubscribe];
+            }
         }else{
-            [SVProgressHUD showInfoWithStatus:@"加载失败"];
+            [self showInfo:@"加载失败"];
+            [self showNetWorkFailed];
         }
     } failure:^(NSError *error) {
-        [SVProgressHUD dismiss];
-        [SVProgressHUD showErrorWithStatus:@"加载失败"];
+        [self showError:@"加载失败"];
+        [self showNetWorkOutTime];
     }];
+
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self loadData];
 }
 
 - (void)didReceiveMemoryWarning {

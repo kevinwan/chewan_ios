@@ -103,7 +103,7 @@
         
         if (self.checkImageView == nil)
         {
-            self.checkImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Unselected"]];
+            self.checkImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"未选"]];
             [self addSubview:self.checkImageView];
         }
         
@@ -135,12 +135,12 @@
 {
     if (checked)
     {
-        self.checkImageView.image = [UIImage imageNamed:@"选中照片"];
+        self.checkImageView.image = [UIImage imageNamed:@"选中"];
         self.backgroundView.backgroundColor = [UIColor colorWithRed:223.0/255.0 green:230.0/255.0 blue:250.0/255.0 alpha:1.0];
     }
     else
     {
-        self.checkImageView.image = [UIImage imageNamed:@"Unselected.png"];
+        self.checkImageView.image = [UIImage imageNamed:@"未选"];
         self.backgroundView.backgroundColor = [UIColor whiteColor];
     }
     _checked = checked;

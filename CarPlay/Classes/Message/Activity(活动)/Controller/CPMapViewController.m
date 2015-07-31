@@ -434,7 +434,6 @@
 - (void)searchRequest:(id)request didFailWithError:(NSError *)error
 {
     [SVProgressHUD showInfoWithStatus:@"未知错误"];
-    [SVProgressHUD dismiss];
 }
 
 /**
