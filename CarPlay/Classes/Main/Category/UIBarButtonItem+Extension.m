@@ -35,6 +35,9 @@
         [btn setImage:[UIImage imageNamed:higImage] forState:UIControlStateHighlighted];
     }
     // 设置标题
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    btn.titleLabel.font = [UIFont systemFontOfSize:14];
+    
     [btn setTitle:title forState:UIControlStateNormal];
     
     // 3.监听按钮的点击事件

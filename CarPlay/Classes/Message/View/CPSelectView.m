@@ -29,6 +29,16 @@
 
 @implementation CPSelectView
 
+- (void)awakeFromNib
+{
+    
+    self.cancleBtn.layer.cornerRadius = 3;
+    self.cancleBtn.clipsToBounds = YES;
+    
+    self.confirmBtn.layer.cornerRadius = 3;
+    self.confirmBtn.clipsToBounds = YES;
+}
+
 + (instancetype)selectView
 {
     return [[[NSBundle mainBundle] loadNibNamed:@"CPSelectView" owner:nil options:nil] lastObject];
@@ -37,14 +47,6 @@
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     if (self = [super initWithCoder:aDecoder]) {
-        [self setUp];
-    }
-    return self;
-}
-
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    if (self = [super initWithFrame:frame]) {
         [self setUp];
     }
     return self;
@@ -60,11 +62,7 @@
     self.y = kScreenHeight;
     self.x = 0;
     
-    self.cancleBtn.layer.cornerRadius = 3;
-    self.cancleBtn.clipsToBounds = YES;
-    
-    self.confirmBtn.layer.cornerRadius = 3;
-    self.confirmBtn.clipsToBounds = YES;
+    [CPNotificationCenter addObserver:self selector:@selector(canclePicker:) name:@"remove" object:nil];
 }
 
 #pragma mark - 显示和隐藏方法
@@ -83,6 +81,7 @@
         self.y = kScreenHeight;
     }completion:^(BOOL finished) {
         [self.superview setHidden:YES];
+        [CPNotificationCenter removeObserver:self];
         [self removeFromSuperview];
         if (completion) {
             completion();
@@ -112,7 +111,8 @@
         [UIView animateWithDuration:0.25 animations:^{
             self.secondArrow.transform = CGAffineTransformRotate(self.secondArrow.transform, M_PI_2);
         }];
-        self.pickerView = [[ZHPickView alloc] initPickviewWithArray:@[@"代驾", @"吃饭", @"唱歌", @"拼车", @"旅行", @"看电影", @"运动"] isHaveNavControler:NO];
+        self.pickerView = [[ZHPickView alloc] initPickviewWithArray:@[@"代驾", @"吃饭", @"唱歌", @"拼车", @"旅行", @"看电影", @"运动", @"不限"] isHaveNavControler:NO];
+        [self.pickerView setTintColor:[Tools getColor:@"fc6e51"]];
         self.pickerView.tag = 2;
         self.pickerView.delegate = self;
         [self.pickerView show];
@@ -123,6 +123,7 @@
             self.firstArrow.transform = CGAffineTransformRotate(self.secondArrow.transform, M_PI_2);
         }];
         self.pickerView =[[ZHPickView alloc] initPickviewWithPlistName:@"city" isHaveNavControler:NO];
+        [self.pickerView setTintColor:[Tools getColor:@"fc6e51"]];
         self.pickerView.delegate = self;
         [self.pickerView show];
     }
@@ -130,7 +131,6 @@
 
 - (IBAction)cancleBtnClick:(id)sender {
     if ([self.delegate respondsToSelector:@selector(selectViewCancleBtnClick:)]) {
-         [self dismissWithCompletion:nil];
         [self.delegate selectViewCancleBtnClick:self];
     }
 }
@@ -170,9 +170,7 @@
     }else if (self.carLevelSeg.selectedSegmentIndex == 1){
         model.carLevel = @"good";
     }
-    NSLog(@"%@",model.keyValues);
     if ([self.delegate respondsToSelector:@selector(selectView:finishBtnClick:)]) {
-        [self dismissWithCompletion:nil];
         [self.delegate selectView:self finishBtnClick:model];
     }
 }
@@ -190,12 +188,20 @@
 {
     if (pickView.tag == 2) {
         [self.typeLabel setTitle:resultString forState:UIControlStateNormal];
-        self.secondArrow.transform = CGAffineTransformIdentity;
     }else{
         [self.areaLabel setTitle:resultString forState:UIControlStateNormal];
+    }
+}
+
+- (void)canclePicker:(NSNotification *)notify
+{
+    NSInteger tag = [notify.userInfo[@"info"] intValue];
+    if (tag == 2) {
+        self.secondArrow.transform = CGAffineTransformIdentity;
+    }else{
         self.firstArrow.transform = CGAffineTransformIdentity;
     }
-    [self.pickerView remove];
+    self.lastArrow = nil;
 }
 
 @end

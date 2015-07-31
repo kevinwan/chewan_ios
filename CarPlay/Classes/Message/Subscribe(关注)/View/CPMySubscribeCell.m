@@ -66,6 +66,7 @@
     CPMySubscribeCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (cell == nil) {
         cell = [[CPMySubscribeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return cell;
 }
@@ -87,6 +88,7 @@
 - (void)setUpCell
 {
     CPIconButton *iconBtn = [CPIconButton buttonWithType:UIButtonTypeCustom];
+    [iconBtn addTarget:self action:@selector(clickUserIcon) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:iconBtn];
     self.iconBtn = iconBtn;
     
@@ -154,7 +156,7 @@
     CPMySubscribeModel *model = frameModel.model;
     CPOrganizer *organizer = model.organizer;
     // 进行内容的设置
-    [self.iconBtn sd_setImageWithURL:[NSURL URLWithString:organizer.photo] forState:UIControlStateNormal placeholderImage:nil];
+    [self.iconBtn sd_setImageWithURL:[NSURL URLWithString:organizer.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
     self.nameLabel.text = organizer.nickname;
     [self.sexView setTitle:[NSString stringWithFormat:@"%zd",organizer.age] forState:UIControlStateNormal];
     self.sexView.isMan = organizer.isMan;
@@ -219,6 +221,14 @@
     [str appendAttributedString:totalSeat];
     return str;
     
+}
+
+/**
+ *  点击用户头像
+ */
+- (void)clickUserIcon
+{
+//    [CPNotificationCenter postNotificationName:CPClickUserIconNotification object:nil userInfo:@{CPClickUserIconInfo : _frameModel.model.organizer.userId}];
 }
 
 @end

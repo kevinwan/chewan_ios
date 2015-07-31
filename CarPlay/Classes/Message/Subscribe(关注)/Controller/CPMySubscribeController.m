@@ -11,6 +11,7 @@
 #import "MJExtension.h"
 #import "CPMySubscribeFrameModel.h"
 #import "CPMySubscribeModel.h"
+#import "CPActiveDetailsController.h"
 
 @interface CPMySubscribeController ()
 @property (nonatomic, strong) NSMutableArray *frameModels;
@@ -37,10 +38,7 @@
         self.navigationItem.title = @"他的关注";
     }
     
-    self.tableView.allowsSelection = NO;
-    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.tableFooterView = [[UIView alloc] init];
 }
 
 - (void)reRefreshData
@@ -110,6 +108,15 @@
 {
     CPMySubscribeFrameModel *frameModel = self.frameModels[indexPath.row];
     return frameModel.cellHeight;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // 跳转到活动详情界面
+    CPActiveDetailsController *activityDetailVc = [UIStoryboard storyboardWithName:@"CPActiveDetailsController" bundle:nil ].instantiateInitialViewController;
+    CPMySubscribeFrameModel *frameModel = self.frameModels[indexPath.row];
+    activityDetailVc.activeId = frameModel.model.activityId;
+    [self.navigationController pushViewController:activityDetailVc animated:YES];
 }
 
 @end

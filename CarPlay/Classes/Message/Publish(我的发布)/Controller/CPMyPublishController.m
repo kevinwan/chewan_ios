@@ -11,11 +11,10 @@
 #import "CPMyPublishModel.h"
 #import "MJExtension.h"
 #import "CPMyPublishCell.h"
-#import "CPSelectView.h"
+#import "CPActiveDetailsController.h"
 
-@interface CPMyPublishController ()<CPSelectViewDelegate>
+@interface CPMyPublishController ()
 @property (nonatomic, strong) NSMutableArray *frameModels;
-@property (nonatomic, weak) CPSelectView *selectView;
 @end
 
 @implementation CPMyPublishController
@@ -37,10 +36,6 @@
     }else{
         self.navigationItem.title = @"他的发布";
     }
-    
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"确定" target:self action:@selector(select)];
-    
-    self.tableView.allowsSelection = NO;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self loadData];
@@ -85,30 +80,6 @@
 
 }
 
-- (void)select
-{
-    UIButton *button = [[UIButton alloc] init];
-    [button addTarget:self action:@selector(hide:) forControlEvents:UIControlEventTouchUpInside];
-    button.frame = [UIScreen mainScreen].bounds;
-    button.backgroundColor = RGBACOLOR(0, 0, 0, 0.5);
-    [self.navigationController.view insertSubview:button belowSubview:self.navigationController.navigationBar];
-    
-    
-    CPSelectView *selectView = [CPSelectView selectView];
-    selectView.delegate = self;
-    [selectView showWithView:button];
-    self.selectView = selectView;
-}
-
-- (void)hide:(UIButton *)cover
-{
-    [self.selectView dismissWithCompletion:nil];
-}
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -129,14 +100,13 @@
     return frameModel.cellHeight;
 }
 
-- (void)selectViewCancleBtnClick:(CPSelectView *)selectView
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-}
-
-- (void)selectView:(CPSelectView *)selectView finishBtnClick:(CPSelectViewModel *)result
-{
-    
+    // 跳转到活动详情界面
+    CPActiveDetailsController *activityDetailVc = [UIStoryboard storyboardWithName:@"CPActiveDetailsController" bundle:nil ].instantiateInitialViewController;
+    CPMyPublishFrameModel *frameModel = self.frameModels[indexPath.row];
+    activityDetailVc.activeId = frameModel.model.activityId;
+    [self.navigationController pushViewController:activityDetailVc animated:YES];
 }
 
 @end

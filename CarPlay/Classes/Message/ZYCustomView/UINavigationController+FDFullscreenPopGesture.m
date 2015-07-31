@@ -22,6 +22,8 @@
 
 #import "UINavigationController+FDFullscreenPopGesture.h"
 #import <objc/runtime.h>
+#import "MembersManageController.h"
+#import "MembersController.h"
 
 @interface _FDFullscreenPopGestureRecognizerDelegate : NSObject <UIGestureRecognizerDelegate>
 
@@ -37,13 +39,19 @@
     if (self.navigationController.viewControllers.count <= 1) {
         return NO;
     }
-    
+    //这两个界面关闭全屏的pan手势
+    if ([self.navigationController.visibleViewController isKindOfClass:[MembersManageController class]]) {
+        return NO;
+    }
+    if ([self.navigationController.visibleViewController isKindOfClass:[MembersController class]]) {
+        return NO;
+    }
     // Ignore when the active view controller doesn't allow interactive pop.
     UIViewController *topViewController = self.navigationController.viewControllers.lastObject;
     if (topViewController.fd_interactivePopDisabled) {
         return NO;
     }
-    
+  
     // Ignore when the beginning location is beyond max allowed initial distance to left edge.
     CGPoint beginningLocation = [gestureRecognizer locationInView:gestureRecognizer.view];
     CGFloat maxAllowedInitialDistance = topViewController.fd_interactivePopMaxAllowedInitialDistanceToLeftEdge;

@@ -19,6 +19,7 @@
 #import "NSDate+Extension.h"
 #import "UMSocial.h"
 #import "UMSocialData.h"
+#import "CPActiveDetailsController.h"
 
 #define PickerViewHeght 256
 #define maxCount 9
@@ -863,23 +864,25 @@ typedef enum {
     self.currentModel.cover = picIds;
   
     NSDictionary *params = [self.currentModel keyValues];
-    NSString *deskTop = [NSSearchPathForDirectoriesInDomains(NSDesktopDirectory, NSUserDomainMask, YES).lastObject stringByAppendingString:@"123.plist"];
-    [params writeToFile:deskTop atomically:YES];
     DLog(@"%@",params);
     [CPNetWorkTool postJsonWithUrl:@"v1/activity/register" params:params success:^(id responseObject) {
         DLog(@"%@....",responseObject);
         
         if (CPSuccess){
             [self showSuccess:@"创建成功"];
-            
-            if (button.tag == CreateActivityNone) {
-                // 跳转到活动详情界面
-                
-                
-            }else if (button.tag == CreateActivityShare){
-                // 分享给好友
-                [self shareToFriendWithDict:responseObject[@"data"]];
-            }
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                if (button.tag == CreateActivityNone) {
+                    // 跳转到活动详情界面
+                    CPActiveDetailsController *activityDetailVc = [UIStoryboard storyboardWithName:@"CPActiveDetailsController" bundle:nil ].instantiateInitialViewController;;
+                    activityDetailVc.activeId = responseObject[@"data"][@"activityId"];
+                    [self.navigationController pushViewController:activityDetailVc animated:YES];
+                    
+                }else if (button.tag == CreateActivityShare){
+                    // 分享给好友
+                    [self shareToFriendWithDict:responseObject[@"data"]];
+                }
+
+            });
         }else{
             [self showError:@"创建失败"];
         }

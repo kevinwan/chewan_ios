@@ -93,14 +93,15 @@
     return _cellHeights;
 }
 
+#pragma mark - 控制器生命周期
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.navigationItem.title = @"新的留言";
     
-    self.tableView.allowsMultipleSelectionDuringEditing = YES;
+    self.tableView.allowsSelectionDuringEditing = YES;
     
-    for (int i=0; i<50; i++) {
+    for (int i = 0; i < 50; i++) {
         CPNewMsgModel *item = [[CPNewMsgModel alloc] init];
         item.isChecked = NO;
         [self.items addObject:item];
@@ -230,7 +231,7 @@
 {
     // 必须先获取选中的cell
     NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
-    for (NSUInteger i = 0;i < self.items.count; i++) {
+    for (NSUInteger i = 0; i < self.items.count; i++) {
         CPNewMsgModel *model = self.items[i];
         if (model.isChecked) {
             [indexSet addIndex:i];

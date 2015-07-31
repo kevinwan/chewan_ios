@@ -20,9 +20,11 @@
 #import <MJExtension.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "UMSocial.h"
+#import "UMSocialData.h"
 #define kActivityId @"55838b12-7039-41e5-9150-6dd154de961b"
 #define kUserId @"846de312-306c-4916-91c1-a5e69b158014"
 #define kToken @"750dd49c-6129-4a9a-9558-27fa74fc4ce7"
+
 
 @interface MembersManageController () <UITableViewDataSource,UITableViewDelegate>
 
@@ -41,6 +43,8 @@
 @property (nonatomic, strong) NSMutableArray *carsArray;
 @property (nonatomic, assign) BOOL member;
 @property (nonatomic, strong) NSString *tapUserID;
+@property (nonatomic, copy) NSString *userId;
+@property (nonatomic, copy) NSString *token;
 @end
 
 @implementation MembersManageController
@@ -50,10 +54,14 @@
     [self setupFontAndColor];
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTitle:@"邀请" titleColor:[AppAppearance titleColor] font:[AppAppearance textLargeFont] target:self action:@selector(inviteFriend)];
     [self loadMessage];
+
 }
+
 //添加微信分享的语句
 - (void)inviteFriend {
-   [UMSocialSnsService presentSnsIconSheetView:self appKey:nil shareText:@"come" shareImage:nil shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,UMShareToSms, nil] delegate:nil];
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/activity/%@/index.html",kActivityId];
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/activity/%@/index.html",kActivityId];
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:nil shareText:@"我刚创建了一个活动，小伙伴们快来加入吧" shareImage:nil shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,UMShareToSms, nil] delegate:nil];
 }
 
 - (void) setupFontAndColor {
@@ -73,8 +81,10 @@
     [ZYNetWorkTool postJsonWithUrl:urlStr params:params success:^(id responseObject) {
         [self.view hideWait];
         if ([responseObject operationSuccess]) {
-            [self.membersArray removeObjectAtIndex:sender.tag];
-            [self.memberTableView reloadData];
+            //把相关座位也要删除
+            [self.carsArray removeAllObjects];
+            [self.membersArray removeAllObjects];
+            [self loadMessage];
             [self.view alert:@"删除成功"];
         } else {
             [self.view alertError:responseObject];
@@ -88,6 +98,18 @@
 - (void)loadMessage {
     //示例参数@"http://cwapi.gongpingjia.com/v1"
     [self.view showWait];
+//        NSString *userId = [Tools getValueFromKey:@"userId"];
+//        if (userId.length == 0) {
+//            [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+//            return;
+//        }
+//        self.userId = userId;
+//        NSString *token = [Tools getValueFromKey:@"token"];
+//        if (token.length == 0) {
+//            [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+//            return;
+//        }
+//        self.token = token;
     NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/members?userId=%@&token=%@",kActivityId,kUserId,kToken];
     [ZYNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
         [self.view hideWait];
@@ -111,6 +133,7 @@
 }
 //点击座位
 - (IBAction)seatDIdClick:(UIButton *)sender {
+    SQLog(@"%tu",sender.tag);
     if ([sender imageForState:UIControlStateNormal] == nil) {
         [self.view alert:@"该座位为空座"];
         return;
@@ -159,11 +182,8 @@
     else if (sender.tag <=5000) {
         seatIndex = @"5";
     }
-    else if (sender.tag <6000) {
+    else if (sender.tag <=6000) {
         seatIndex = @"6";
-    }
-    else if (sender.tag <=7000) {
-        seatIndex = @"7";
     }
     SQLog(@"%@",seatIndex);
     NSArray *usersArray = car.users;
@@ -195,7 +215,6 @@
 //拉下座位
 - (IBAction)downSeatButtonClick:(UIButton *)sender {
     [self coverClick];
- 
     UITableViewCell *c = [self.memberTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:sender.tag%100 inSection:0]];
     UIButton *b = (UIButton *)[c.contentView viewWithTag:sender.tag];
     
@@ -250,10 +269,9 @@
         cell.seatone.tag = indexPath.row + 1000;
         cell.seatTwo.tag = indexPath.row +2000;
         cell.seatThree.tag = indexPath.row +3000;
-        cell.seatFour.tag = indexPath.row + 4000;
-        cell.seatLastThree.tag = indexPath.row +5000;
-        cell.seatLastTwo.tag = indexPath.row + 6000;
-        cell.seatLastThree.tag = indexPath.row + 7000;
+        cell.seatLastThree.tag = indexPath.row +4000;
+        cell.seatLastTwo.tag = indexPath.row + 5000;
+        cell.seatLastOne.tag = indexPath.row + 6000;
         return cell;
         
     } else {
@@ -276,7 +294,6 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return NO;
 }
-
 
 - (void)coverClick {
     [_cover removeFromSuperview];

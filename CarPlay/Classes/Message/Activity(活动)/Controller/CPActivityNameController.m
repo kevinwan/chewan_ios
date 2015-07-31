@@ -63,6 +63,11 @@
 
 - (void)confirm
 {
+    if (self.textF.text.length == 0) {
+        [self showInfo:@"你不能输入空的活动介绍"];
+        return;
+    }
+    
     if (self.completion) {
         self.completion(self.textF.text);
     }
