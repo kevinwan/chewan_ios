@@ -29,6 +29,16 @@
 
 @implementation CPSelectView
 
+- (void)awakeFromNib
+{
+    
+    self.cancleBtn.layer.cornerRadius = 3;
+    self.cancleBtn.clipsToBounds = YES;
+    
+    self.confirmBtn.layer.cornerRadius = 3;
+    self.confirmBtn.clipsToBounds = YES;
+}
+
 + (instancetype)selectView
 {
     return [[[NSBundle mainBundle] loadNibNamed:@"CPSelectView" owner:nil options:nil] lastObject];
@@ -37,14 +47,6 @@
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     if (self = [super initWithCoder:aDecoder]) {
-        [self setUp];
-    }
-    return self;
-}
-
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    if (self = [super initWithFrame:frame]) {
         [self setUp];
     }
     return self;
@@ -59,12 +61,6 @@
     self.height = 360;
     self.y = kScreenHeight;
     self.x = 0;
-    
-    self.cancleBtn.layer.cornerRadius = 3;
-    self.cancleBtn.clipsToBounds = YES;
-    
-    self.confirmBtn.layer.cornerRadius = 3;
-    self.confirmBtn.clipsToBounds = YES;
     
     [CPNotificationCenter addObserver:self selector:@selector(canclePicker:) name:@"remove" object:nil];
 }
@@ -85,6 +81,7 @@
         self.y = kScreenHeight;
     }completion:^(BOOL finished) {
         [self.superview setHidden:YES];
+        [CPNotificationCenter removeObserver:self];
         [self removeFromSuperview];
         if (completion) {
             completion();
