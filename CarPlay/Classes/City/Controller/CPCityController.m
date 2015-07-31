@@ -39,6 +39,25 @@
 // 筛选
 - (IBAction)select:(id)sender;
 
+// 顶部按钮点击
+- (IBAction)hotBtnClick:(id)sender;
+- (IBAction)nearBtnClick:(id)sender;
+- (IBAction)lastestBtnClick:(id)sender;
+
+
+// 热门底部线
+@property (weak, nonatomic) IBOutlet UIView *hotLine;
+// 附近底部线
+@property (weak, nonatomic) IBOutlet UIView *nearLine;
+// 最新底部线
+@property (weak, nonatomic) IBOutlet UIView *latestLine;
+
+// 热门约束
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *hotConstraint;
+// 附近约束
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *nearConstraint;
+// 最新约束
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *lastestConstraint;
 
 @end
 
@@ -213,6 +232,21 @@
     
 }
 
+// 热门按钮点击
+- (IBAction)hotBtnClick:(id)sender {
+}
+
+// 附近按钮点击
+- (IBAction)nearBtnClick:(id)sender {
+}
+
+// 最新按钮点击
+- (IBAction)lastestBtnClick:(id)sender {
+}
+
+
+
+// 最新按钮点击
 - (void)coverBtnClick
 {
     [self.selectView dismissWithCompletion:nil];

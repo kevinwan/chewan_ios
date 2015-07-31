@@ -94,6 +94,7 @@
 }
 
 
+// 加载活动信息
 - (void)loadApiData{
     
     // 封装请求参数
@@ -142,8 +143,10 @@
     // 获取网络访问者
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
+    NSString *getUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/activity/%@/comment",self.activeId];
+    
     // 发送请求
-    [manager GET:@"http://cwapi.gongpingjia.com/v1/activity/55838b12-7039-41e5-9150-6dd154de961b/comment" parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
+    [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
         //
 //         NSLog(@"%@",responseObject[@"data"]);
         self.discussStatus = [CPDiscussStatus objectArrayWithKeyValuesArray:responseObject[@"data"]];
@@ -155,10 +158,9 @@
     
 }
 
-
+// 监听键盘事件，通知中心
 - (void)loadKeyboard{
     
-    // 监听键盘事件，通知中心
     // 键盘弹出
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardStatus:) name:UIKeyboardWillChangeFrameNotification object:nil];
     // 键盘隐藏
@@ -176,7 +178,6 @@
 
 // 键盘发生改变后调用的方法
 - (void)keyboardStatus:(NSNotification *)n{
-    
     
     //取出执行动画的时间
     CFTimeInterval duration = [n.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
@@ -201,6 +202,7 @@
     
     
 }
+
 
 - (void)scrollToSelectedRow {
     NSIndexPath *path = [self.tableView indexPathForSelectedRow];
@@ -255,21 +257,64 @@
 }
 
 
-#pragma mark - 代理方法
+
 // 当开始拖拽tableview表格的时候调用
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     
     //退出键盘
     [self.view endEditing:YES];
 }
-//我要去玩按钮点击事件
+
+
+#pragma mark - 文本框代理
+// 点击发送按钮调用
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    // 封装请求参数
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+//
+//    parameters[@"userId"] = @"4d672627-860c-4118-bcbd-2978aca469ad";
+//    parameters[@"token"] = @"4b35299f-8dc4-4999-bfaf-c0ad5c6aab43";
+    NSLog(@"%@",textField.text);
+    parameters[@"comment"] = textField.text;
+    parameters[@"replyUserId"] = @"4d672627-860c-4118-bcbd-2978aca469ad";
+    
+    // 获取网络访问者
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    [manager POST:@"http://cwapi.gongpingjia.com/v1/activity/55838b12-7039-41e5-9150-6dd154de961b/comment?userId=846de312-306c-4916-91c1-a5e69b158014&token=750dd49c-6129-4a9a-9558-27fa74fc4ce7" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        //
+        NSLog(@"%@",responseObject[@"result"]);
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        //
+        NSLog(@"调用失败");
+    }];
+    
+    
+    
+    
+    
+    
+    
+    
+    return YES;
+}
+
+
+
+// 我要去玩按钮点击事件
 - (IBAction)GotoPlayButtonDidClick:(UIButton *)sender {
+    
     if ([sender.titleLabel.text isEqualToString:@"成员管理"]) {
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MembersManage" bundle:nil];
+        
         MembersManageController * vc = sb.instantiateInitialViewController;
         vc.activityId = self.activeId;
         [self.navigationController pushViewController:vc animated:YES];
+        
     } else {
+        
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Members" bundle:nil];
         MembersController * vc = sb.instantiateInitialViewController;
         vc.activityId = self.activeId;
