@@ -185,7 +185,7 @@
         NSDate *brithDay=[[NSDate alloc]initWithTimeIntervalSinceNow:[resultString doubleValue]];
         NSCalendar* calendar = [NSCalendar currentCalendar];
         NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:brithDay]; // Get necessary date components
-        brithYear=[components month];
+        brithYear=[components year];
         birthMonth=[components month];
         birthDay=[components day];
     }else{

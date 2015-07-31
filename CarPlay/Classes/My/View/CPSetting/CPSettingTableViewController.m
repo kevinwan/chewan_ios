@@ -10,7 +10,7 @@
 #import "CPMyBaseCell.h"
 #import "LoginViewController.h"
 
-@interface CPSettingTableViewController ()
+@interface CPSettingTableViewController ()<UIAlertViewDelegate>
 {
     NSArray *titleArray;
 }
@@ -96,9 +96,17 @@
     }
 }
 - (IBAction)loginOutBtnClick:(id)sender {
-    LoginViewController *loginVC=[[LoginViewController alloc]init];
-    [loginVC setHidesBottomBarWhenPushed:YES];
-    [self.navigationController pushViewController:loginVC animated:YES];
+    [Tools setValueForKey:nil key:@"userId"];
+    [[[UIAlertView alloc]initWithTitle:@"提示" message:@"是否注销当前账号？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"注销", nil] show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==1) {
+        LoginViewController *loginVC=[[LoginViewController alloc]init];
+        UINavigationController* nav1 = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        self.view.window.rootViewController=nav1;
+        [self.view.window makeKeyAndVisible];
+    }
 }
 
 @end

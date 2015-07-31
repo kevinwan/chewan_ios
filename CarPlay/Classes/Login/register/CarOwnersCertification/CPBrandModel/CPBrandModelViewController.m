@@ -62,15 +62,13 @@
     [_modelSlideView addSubview:_modelTableView];
     _modelTableView.tableFooterView = [UIView new];
     [_modelTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(_modelSlideView).with.insets(UIEdgeInsetsMake(66.0f, 0.5f, 0.0f, 0.0f));
+        make.edges.equalTo(_modelSlideView).with.insets(UIEdgeInsetsMake(0.0f, 0.5f, 0.0f, 0.0f));
     }];
     
     // 清扫手势
     UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipes:)];
     swipeGesture.numberOfTouchesRequired = 1;
     [_modelSlideView addGestureRecognizer:swipeGesture];
-    
-  
 }
 
 -(void)viewWillAppear:(BOOL)animated{

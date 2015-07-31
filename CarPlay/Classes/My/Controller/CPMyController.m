@@ -203,7 +203,10 @@
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     //    NSLog(@"%s", __func__);
-    [self startTimer];
+    if ([albumPhotos count]>0) {
+        [self startTimer];
+    }
+    
 }
 
 -(void)createScrollViewAndPagController{
@@ -240,10 +243,14 @@
     [ZYNetWorkTool getWithUrl:path params:params success:^(id responseObject) {
         
         data=[responseObject objectForKey:@"data"];
-        albumPhotos=[data objectForKey:@"albumPhotos"];
-        CPOrganizer *organizer= [CPOrganizer objectWithKeyValues:data];
-        [self loadUserData:organizer];
+        if(data && [data objectForKey:@"albumPhotos"]){
+            albumPhotos=[data objectForKey:@"albumPhotos"];
+        }
         
+        if (data) {
+            CPOrganizer *organizer= [CPOrganizer objectWithKeyValues:data];
+            [self loadUserData:organizer];
+        }
     } failure:^(NSError *error) {
         
     }];
@@ -251,12 +258,9 @@
 
 -(void)loadUserData:(CPOrganizer *)organizer{
     if (organizer) {
-        if (organizer.albumPhotos) {
+        if (organizer.albumPhotos && [organizer.albumPhotos count]>0) {
             // 总页数
             _pageControl.numberOfPages = [albumPhotos count];
-            // 控件尺寸
-            CGSize size = [_pageControl sizeForNumberOfPages:[albumPhotos count]];
-            
             _pageControl.bounds = CGRectMake(0, 0, 7, 7);
             _pageControl.center = CGPointMake(self.view.center.x, 170);
             
@@ -292,7 +296,8 @@
         
         if (organizer.photo) {
             NSURL *url = [[NSURL alloc]initWithString:organizer.photo];
-            [self.userHeadImg sd_setImageWithURL:url];
+            [Tools setValueForKey:organizer.photo key:@"photoUrl"];
+            [self.userHeadImg sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"morenHeadBtnImg"]];
         }
         
         if (organizer.nickname) {
@@ -302,6 +307,11 @@
             [self.nameLable setWidth:labelsize.width];
             self.nameLable.text = organizer.nickname;
             [self.userGenderImg setX:self.nameLable.right];
+            [Tools setValueForKey:organizer.nickname key:@"nickname"];
+        }
+        
+        if (organizer.drivingExperience) {
+            [Tools setValueForKey:@(organizer.drivingExperience) key:@"drivingExperience"];
         }
         
         if (!organizer.isMan) {
@@ -313,7 +323,7 @@
             [self.ageLable setX:self.userGenderImg.right-1-self.ageLable.width];
         }
         
-        if (organizer.carBrandLogo) {
+        if (organizer.carBrandLogo && ![Tools isEmptyOrNull:organizer.carBrandLogo]) {
             NSURL *url=[[NSURL alloc]initWithString:organizer.carBrandLogo];
             [self.carBrandLogoImg sd_setImageWithURL:url completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 float weight=image.size.width/image.size.height*13.0;

@@ -10,7 +10,7 @@
 #import "MJNIndexView.h"
 #import "CustomSectionView.h"
 
-@interface CPBrandModelViewController : BaseViewController
+@interface CPBrandModelViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITableView *brandTableView;
 @property (nonatomic, strong) UITableView *modelTableView;
 @property (nonatomic, strong) MJNIndexView *indexView;
