@@ -101,6 +101,8 @@
     
     self.tableView.allowsSelectionDuringEditing = YES;
     
+    self.tableView.tableFooterView = [[UIView alloc] init];
+    
     for (int i = 0; i < 50; i++) {
         CPNewMsgModel *item = [[CPNewMsgModel alloc] init];
         item.isChecked = NO;
