@@ -13,6 +13,8 @@
 #import "MJExtension.h"
 #import "CPActiveUser.h"
 #import "CPDiscussStatus.h"
+#import "MembersController.h"
+#import "MembersManageController.h"
 #import "CPDiscussCell.h"
 
 
@@ -57,7 +59,7 @@
 // 加载tableview的顶部
 - (void)loadHeadView{
     // 创建tableheadview
-    CPActiveDetailsHead *headView = [CPActiveDetailsHead headView];
+    CPActiveDetailsHead *headView = [CPActiveDetailsHead headView:self];
     
 //    headView.frame.size.height = [headView xibHeightWithActiveStatus:self.activeStatus];
     CGFloat headViewX = 0;
@@ -251,6 +253,20 @@
     
     //退出键盘
     [self.view endEditing:YES];
+}
+//我要去玩按钮点击事件
+- (IBAction)GotoPlayButtonDidClick:(UIButton *)sender {
+    if ([sender.titleLabel.text isEqualToString:@"成员管理"]) {
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MembersManage" bundle:nil];
+        MembersManageController * vc = sb.instantiateInitialViewController;
+        vc.activityId = self.activeId;
+        [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Members" bundle:nil];
+        MembersController * vc = sb.instantiateInitialViewController;
+        vc.activityId = self.activeId;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 @end

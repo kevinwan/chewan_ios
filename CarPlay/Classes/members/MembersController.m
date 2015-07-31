@@ -37,7 +37,7 @@
 @property (weak, nonatomic) IBOutlet UIView *carxibYesView;
 @property (weak, nonatomic) IBOutlet UIView *carxibNoVIew;
 @property (weak, nonatomic) IBOutlet UITextField *carxibTextFeild;
-@property (nonatomic, strong) NSArray *pickerArray;
+@property (nonatomic, strong) NSMutableArray *pickerArray;
 
 
 //遮盖
@@ -47,7 +47,8 @@
 @property (nonatomic, strong) NSMutableArray *membersArray;
 @property (nonatomic, strong) NSMutableArray *carsArray;
 @property (nonatomic, assign) BOOL member;
-
+@property (nonatomic, copy) NSString *userId;
+@property (nonatomic, copy) NSString *token;
 @end
 
 @implementation MembersController
@@ -83,6 +84,18 @@
 - (void)loadMessage {
     //示例参数@"http://cwapi.gongpingjia.com/v1"
     [self.view showWait];
+//    NSString *userId = [Tools getValueFromKey:@"userId"];
+//    if (userId.length == 0) {
+//        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+//        return;
+//    }
+//    self.userId = userId;
+//    NSString *token = [Tools getValueFromKey:@"token"];
+//    if (token.length == 0) {
+//        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+//        return;
+//    }
+//    self.token = token;
     NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/members?userId=%@&token=%@",kActivityId,kUserId,kToken];
     [ZYNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
         [self.view hideWait];
@@ -192,11 +205,8 @@
         else if (sender.tag <=5000) {
             seatIndex = @"5";
         }
-        else if (sender.tag <6000) {
+        else if (sender.tag <=6000) {
             seatIndex = @"6";
-        }
-        else if (sender.tag <=7000) {
-            seatIndex = @"7";
         }
         SQLog(@"%@",seatIndex);
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -292,10 +302,9 @@
         cell.seatone.tag = indexPath.row + 1000;
         cell.seatTwo.tag = indexPath.row +2000;
         cell.seatThree.tag = indexPath.row +3000;
-        cell.seatFour.tag = indexPath.row + 4000;
-        cell.seatLastThree.tag = indexPath.row +5000;
-        cell.seatLastTwo.tag = indexPath.row + 6000;
-        cell.seatLastThree.tag = indexPath.row + 7000;
+        cell.seatLastThree.tag = indexPath.row +4000;
+        cell.seatLastTwo.tag = indexPath.row + 5000;
+        cell.seatLastOne.tag = indexPath.row + 6000;
         cell.models = self.carsArray[indexPath.row];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
@@ -348,8 +357,34 @@
     [self.carxibYesView addGestureRecognizer:tapYes];
     UITapGestureRecognizer *tapNo = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapNo)];
     [self.carxibNoVIew addGestureRecognizer:tapNo];
-    NSArray *array = [NSArray arrayWithObjects:@"1", @"2",@"3",@"4",@"5",@"6",@"7",nil];
-    self.pickerArray = array;
+    NSString *urlStr = [NSString stringWithFormat:@"v1/user/%@/seats?token=%@",kUserId,kToken];
+    //主车提供后台返回的车 非车主最多提供两辆车
+    [ZYNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
+        if ([responseObject operationSuccess]) {
+            SQLog(@"%@",responseObject);
+            NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
+            NSString *str = [formatter stringFromNumber:responseObject[@"data"][@"isAuthenticated"]];
+            if ([str isEqualToString:@"0"]) {
+                NSArray *array = @[@"1",@"2"];
+                [self.pickerArray removeAllObjects];
+                [self.pickerArray  addObjectsFromArray:array];
+            } else {
+                NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
+                int maxSeat = [[formatter stringFromNumber:responseObject[@"data"][@"maxValue"]] intValue];
+                int minSeat = [[formatter stringFromNumber:responseObject[@"data"][@"minValue"]] intValue];
+                [self.pickerArray removeAllObjects];
+                for (int i = minSeat; i <= maxSeat; i++) {
+                    NSString *seat = [NSString stringWithFormat:@"%tu",i];
+                    [self.pickerArray addObject:seat];
+                }
+            }
+
+        } else {
+            [self.view alertError:responseObject];
+        }
+    } failure:^(NSError *error) {
+        [self.view alertError:error];
+    }];
     UIPickerView *picker = [[UIPickerView alloc]init];
     picker.delegate = self;
     picker.dataSource = self;
@@ -357,8 +392,6 @@
     self.carxibTextFeild.delegate = self;
     self.carxibTextFeild.font = [AppAppearance textMediumFont];
     self.carxibTextFeild.textColor = [AppAppearance textDarkColor];
-    
-
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
@@ -417,5 +450,10 @@
     }
     return _carsArray;
 }
-
+- (NSMutableArray *)pickerArray {
+    if (!_pickerArray) {
+        _pickerArray = [[NSMutableArray alloc]init];
+    }
+    return _pickerArray;
+}
 @end

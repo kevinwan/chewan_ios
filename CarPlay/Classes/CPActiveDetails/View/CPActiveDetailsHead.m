@@ -77,9 +77,9 @@
 
 @implementation CPActiveDetailsHead
 
-+ (instancetype)headView{
++ (instancetype)headView:(id)owner{
     // xib路径
-    return [[[NSBundle mainBundle] loadNibNamed:@"CPActiveDetailsHead" owner:nil options:nil] lastObject];
+    return [[[NSBundle mainBundle] loadNibNamed:@"CPActiveDetailsHead" owner:owner options:nil] lastObject];
     
 }
 

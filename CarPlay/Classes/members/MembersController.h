@@ -10,6 +10,6 @@
 
 @interface MembersController : UIViewController
 
-
+@property (nonatomic, copy) NSString *activityId;
 @end
 
