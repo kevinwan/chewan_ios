@@ -17,7 +17,7 @@
 #define kCheWanAppID @"55a34ed367e58e6efc00285d"
 #define kWeiXinAppID @"wx4c127cf07bd7d80b"
 #define kWeiXinAppSecret @"315ce754c5a1096c5188b4b69a7b9f04"
-@interface AppDelegate ()
+@interface AppDelegate ()<UIAlertViewDelegate>
 
 @end
 
@@ -38,7 +38,7 @@
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
     // 开始监控网络状态
     [self startMonitoringNetWork];
-    
+    _tabVc = [[CPTabBarController alloc] init];
     [UMSocialData setAppKey:kCheWanAppID];
     // 微信分享
     [UMSocialWechatHandler setWXAppId:kWeiXinAppID appSecret:kWeiXinAppSecret url:nil];
@@ -55,8 +55,7 @@
     
     if ([currentVersion isEqualToString:lastVersion]) {
         // 当前版本号 == 上次使用的版本：显示HMTabBarViewController
-        CPTabBarController *tabVc = [[CPTabBarController alloc] init];
-        self.window.rootViewController = tabVc;
+        self.window.rootViewController = _tabVc;
         [self.window makeKeyAndVisible];
     } else { // 当前版本号 != 上次使用的版本：显示版本新特性
         self.window.rootViewController = [[CPNewfeatureViewController alloc] init];
@@ -96,14 +95,10 @@
  
     if ([Tools getValueFromKey:@"userId"]) {//登陆成功加载主窗口控制器
         //加载申请通知的数据
-        CPTabBarController *tabBarController=[[CPTabBarController alloc]init];
-        self.window.rootViewController = tabBarController;
+        self.window.rootViewController = _tabVc;
         [self.window makeKeyAndVisible];
     }else{//登陆失败加载登陆页面控制器
-        LoginViewController *loginVC=[[LoginViewController alloc]init];
-        UINavigationController* nav1 = [[UINavigationController alloc] initWithRootViewController:loginVC];
-        self.window.rootViewController=nav1;
-        [self.window makeKeyAndVisible];
+        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"您还没有登陆是否登录？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"登陆", nil] show];
     }
 }
 
@@ -130,6 +125,15 @@
     }];
     
     [manager.reachabilityManager startMonitoring];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==1) {
+        LoginViewController *loginVC=[[LoginViewController alloc]init];
+        UINavigationController* nav1 = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        self.window.rootViewController=nav1;
+        [self.window makeKeyAndVisible];
+    }
 }
 
 @end
