@@ -26,6 +26,9 @@
 // 评论框距离底部距离约束
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 
+// tableview距离顶部距离
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topConstraint;
+
 // 文本输入框
 @property (weak, nonatomic) IBOutlet UITextField *inputView;
 
@@ -178,9 +181,11 @@
 
     if ([n.name isEqualToString:UIKeyboardWillHideNotification]) {
         self.bottomConstraint.constant = 0.0;
+        self.topConstraint.constant = 64;
     } else {
         CGRect r = [n.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
         self.bottomConstraint.constant = r.size.height;
+        self.topConstraint.constant = 64 - r.size.height;
     }
     
     //执行动画
