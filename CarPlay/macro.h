@@ -124,4 +124,6 @@ typedef enum _playSoundMode {
 #define CPNetWorkStatus @"CPNetWorkStatus"
 #define CPNoNetWork ([CPUserDefaults boolForKey:CPNetWorkStatus])
 #define CPReRefreshNotification @"CPReRefreshNotification"
+#define CPClickUserIconNotification @"CPClickUserIconNotification"
+#define CPClickUserIconInfo @"CPClickUserIconInfo"
 @end

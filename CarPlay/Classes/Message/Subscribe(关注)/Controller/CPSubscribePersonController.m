@@ -29,7 +29,6 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"我关注的人";
-    self.tableView.tableFooterView = [[UIView alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated

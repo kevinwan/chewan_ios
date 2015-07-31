@@ -10,6 +10,7 @@
 #import "CPMySubscribeModel.h"
 #import "CPMySubscribeCell.h"
 #import "CPMySubscribeFrameModel.h"
+#import "CPActiveDetailsController.h"
 
 @interface CPMyJoinController ()
 @property (nonatomic, strong) NSMutableArray *datas;
@@ -33,6 +34,8 @@
     }else{
         self.navigationItem.title = @"他的参与";
     }
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
     [self loadData];
 }
@@ -90,6 +93,15 @@
 {
     CPMySubscribeFrameModel *frameModel = self.datas[indexPath.row];
     return frameModel.cellHeight;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // 跳转到活动详情界面
+    CPActiveDetailsController *activityDetailVc = [UIStoryboard storyboardWithName:@"CPActiveDetailsController" bundle:nil ].instantiateInitialViewController;
+    CPMySubscribeFrameModel *frameModel = self.datas[indexPath.row];
+    activityDetailVc.activeId = frameModel.model.activityId;
+    [self.navigationController pushViewController:activityDetailVc animated:YES];
 }
 
 @end
