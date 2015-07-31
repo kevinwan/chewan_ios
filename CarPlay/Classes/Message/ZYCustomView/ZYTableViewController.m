@@ -82,6 +82,7 @@
     if (CPNoNetWork){
         [self showNoNetWork];
     }
+    self.tableView.tableFooterView = [[UIView alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated

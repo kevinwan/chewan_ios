@@ -10,7 +10,7 @@
 #import "CPMyBaseCell.h"
 #import "LoginViewController.h"
 
-@interface CPSettingTableViewController ()
+@interface CPSettingTableViewController ()<UIAlertViewDelegate>
 {
     NSArray *titleArray;
 }
@@ -72,10 +72,15 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row==0) {
-        [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
-            [self.tableView reloadData];
-            [SVProgressHUD showSuccessWithStatus:@"清理成功"];
-        }];
+        float totalSize = [[SDImageCache sharedImageCache] getSize];
+        if (floor(totalSize/1024/1024*100)) {
+            [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
+                [self.tableView reloadData];
+                [SVProgressHUD showSuccessWithStatus:@"清理成功"];
+            }];
+        }else{
+             [SVProgressHUD showErrorWithStatus:@"没有要清理的内容"];
+        }
     }
 }
 
@@ -91,9 +96,18 @@
     }
 }
 - (IBAction)loginOutBtnClick:(id)sender {
-    LoginViewController *loginVC=[[LoginViewController alloc]init];
-    [loginVC setHidesBottomBarWhenPushed:YES];
-    [self.navigationController pushViewController:loginVC animated:YES];
+    [Tools setValueForKey:nil key:@"userId"];
+    [[[UIAlertView alloc]initWithTitle:@"提示" message:@"是否注销当前账号？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"注销", nil] show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==1) {
+        LoginViewController *loginVC=[[LoginViewController alloc]init];
+        [Tools setValueForKey:@(NO) key:NOTIFICATION_HASLOGIN];
+        UINavigationController* nav1 = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        self.view.window.rootViewController=nav1;
+        [self.view.window makeKeyAndVisible];
+    }
 }
 
 @end

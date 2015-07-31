@@ -37,9 +37,11 @@
     _modelSlideView.hidden = YES;
     _modelSlideView.userInteractionEnabled = YES;
     [self.view addSubview:_modelSlideView];
-    [_modelSlideView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0.0f, 60.0f, 0.0f, 0.0f));
-    }];
+//    [_modelSlideView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0.0f, 60.0f, 0.0f, 0.0f));
+//    }];
+    [_modelSlideView setFrame:CGRectMake(60.0f, 0, SCREEN_WIDTH-60.0f,SCREEN_HEIGHT)];
+    
     // 第三方控件视图我就不修改了
     self.indexView = [[MJNIndexView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 60)];
     _indexView.dataSource = self;
@@ -52,25 +54,24 @@
     
     // DetailsTbView
     
-    self.modelTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-    _modelTableView.bounces = NO;
+    self.modelTableView = [[UITableView alloc] initWithFrame:_modelSlideView.bounds style:UITableViewStylePlain];
+//    _modelTableView.bounces = NO;
     _modelTableView.sectionHeaderHeight=50.0f;
     _modelTableView.delegate = self;
     _modelTableView.dataSource = self;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     _modelTableView.backgroundColor = [UIColor whiteColor];
     [_modelTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
     [_modelSlideView addSubview:_modelTableView];
     _modelTableView.tableFooterView = [UIView new];
-    [_modelTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(_modelSlideView).with.insets(UIEdgeInsetsMake(66.0f, 0.5f, 0.0f, 0.0f));
-    }];
+//    [_modelTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.edges.equalTo(_modelSlideView).with.insets(UIEdgeInsetsMake(66.0f, 0.5f, 0.0f, 0.0f));
+//    }];
     
     // 清扫手势
     UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipes:)];
     swipeGesture.numberOfTouchesRequired = 1;
     [_modelSlideView addGestureRecognizer:swipeGesture];
-    
-  
 }
 
 -(void)viewWillAppear:(BOOL)animated{

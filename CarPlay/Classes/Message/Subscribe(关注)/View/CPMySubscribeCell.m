@@ -66,6 +66,7 @@
     CPMySubscribeCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (cell == nil) {
         cell = [[CPMySubscribeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return cell;
 }
@@ -87,6 +88,7 @@
 - (void)setUpCell
 {
     CPIconButton *iconBtn = [CPIconButton buttonWithType:UIButtonTypeCustom];
+    [iconBtn addTarget:self action:@selector(clickUserIcon) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:iconBtn];
     self.iconBtn = iconBtn;
     
@@ -219,6 +221,14 @@
     [str appendAttributedString:totalSeat];
     return str;
     
+}
+
+/**
+ *  点击用户头像
+ */
+- (void)clickUserIcon
+{
+//    [CPNotificationCenter postNotificationName:CPClickUserIconNotification object:nil userInfo:@{CPClickUserIconInfo : _frameModel.model.organizer.userId}];
 }
 
 @end
