@@ -12,6 +12,7 @@
 #import "MJExtension.h"
 #import "CPMyPublishCell.h"
 #import "CPActiveDetailsController.h"
+#import "MJRefresh.h"
 
 @interface CPMyPublishController ()
 @property (nonatomic, strong) NSMutableArray *frameModels;
@@ -30,6 +31,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self loadData];
+    }];
+    self.tableView.header.autoChangeAlpha = YES;
     
     if ([self.hisUserId isEqualToString:[Tools getValueFromKey:@"userId"]]){
         self.navigationItem.title = @"我的发布";
@@ -52,6 +57,7 @@
     NSString *url = [NSString stringWithFormat:@"v1/user/%@/post",self.hisUserId];
     [SVProgressHUD showWithStatus:@"努力加载中"];
     [CPNetWorkTool getWithUrl:url params:nil success:^(NSDictionary *responseObject) {
+        [self.tableView.header endRefreshing];
         if (CPSuccess) {
             [SVProgressHUD dismiss];
             NSArray *arr = [CPMyPublishModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
@@ -75,6 +81,7 @@
         }
         
     } failure:^(NSError *error) {
+        [self.tableView.footer endRefreshing];
         [self showError:@"加载失败"];
         [self showNetWorkOutTime];
     }];

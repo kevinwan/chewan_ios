@@ -123,7 +123,6 @@ typedef enum {
         CPNewMessageController *newMsgVc = [UIStoryboard storyboardWithName:@"CPNewMessageController" bundle:nil].instantiateInitialViewController;
         [self.navigationController pushViewController:newMsgVc animated:YES];
     }
-    
 }
 
 @end
