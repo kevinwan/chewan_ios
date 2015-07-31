@@ -48,4 +48,13 @@
     [self popViewControllerAnimated:YES];
 }
 
+// 开启ios自带右滑返回
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+
+    if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.interactivePopGestureRecognizer.delegate = nil;
+    }
+}
+
 @end
