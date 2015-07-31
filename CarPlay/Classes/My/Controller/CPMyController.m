@@ -136,12 +136,6 @@
 
 }
 
-- (IBAction)rightBtnClick:(id)sender {
-//    CPPhotoalbumManagement *CPPhotoalbumManagementVC=[[CPPhotoalbumManagement alloc]init];
-//    CPPhotoalbumManagementVC.title=@"相册管理";
-//    [self.navigationController pushViewController:CPPhotoalbumManagementVC animated:YES];
-}
-
 // 分页控件的监听方法
 - (void)pageChanged:(UIPageControl *)page
 {
@@ -298,6 +292,7 @@
             NSURL *url = [[NSURL alloc]initWithString:organizer.photo];
             [Tools setValueForKey:organizer.photo key:@"photoUrl"];
             [self.userHeadImg sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"morenHeadBtnImg"]];
+            
         }
         
         if (organizer.nickname) {
@@ -355,6 +350,7 @@
 }
 
 - (IBAction)loginBtnClick:(id)sender {
+    [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
 }
 
 - (IBAction)leftBtnClick:(id)sender {

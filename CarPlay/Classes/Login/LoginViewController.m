@@ -64,7 +64,7 @@
                         [Tools setValueForKey:[data objectForKey:@"userId"] key:@"userId"];
                     }
                     [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
-                    
+                    [Tools setValueForKey:@(YES) key:NOTIFICATION_HASLOGIN];
                     [Tools setValueForKey:self.userPhone.text key:@"phone"];
                     [Tools setValueForKey:password key:@"password"];
                     [hud hide:YES];

@@ -103,6 +103,7 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==1) {
         LoginViewController *loginVC=[[LoginViewController alloc]init];
+        [Tools setValueForKey:@(NO) key:NOTIFICATION_HASLOGIN];
         UINavigationController* nav1 = [[UINavigationController alloc] initWithRootViewController:loginVC];
         self.view.window.rootViewController=nav1;
         [self.view.window makeKeyAndVisible];

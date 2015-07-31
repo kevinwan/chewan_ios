@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.tableFooterView=[[UIView alloc]initWithFrame:CGRectZero];
-    self.view.backgroundColor=[UIColor whiteColor];
+    [UIApplication sharedApplication].keyWindow.backgroundColor=[UIColor whiteColor];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removePickview) name:@"remove" object:nil];
 }
 
@@ -69,8 +69,9 @@
         }
         if ([Tools getValueFromKey:@"photoUrl"]) {
             NSURL *url=[[NSURL alloc]initWithString:[Tools getValueFromKey:@"photoUrl"]];
-            [cell.headIcon sd_setImageWithURL:url];
+            [cell.headIcon sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"morenHeadBtnImg"]];
         }
+        
         return cell;
     }else{
         CPRegisterCellsTableViewCell3 *cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifier2];
@@ -208,7 +209,8 @@
     file.mimeType=@"image/jpeg";
     NSArray *files=[[NSArray alloc]initWithObjects:file, nil];
     [self showLoadingWithInfo:@"加载中…"];
-    [ZYNetWorkTool postFileWithUrl:@"v1/avatar/upload" params:nil files:files success:^(id responseObject){
+    NSString *path=[[NSString alloc]initWithFormat:@"v1/user/%@/avatar?token=%@",[Tools getValueFromKey:@"userId"],[Tools getValueFromKey:@"token"]];
+    [ZYNetWorkTool postFileWithUrl:path params:nil files:files success:^(id responseObject){
         [self disMiss];
         NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
         NSString *state=[numberFormatter stringFromNumber:[responseObject objectForKey:@"result"]];
