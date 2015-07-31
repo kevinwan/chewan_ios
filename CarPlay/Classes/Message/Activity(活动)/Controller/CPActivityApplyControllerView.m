@@ -87,8 +87,7 @@
             [self.datas removeAllObjects];
             self.tableView.tableFooterView = [[UIView alloc] init];
             [self.datas addObjectsFromArray:data];
-            
-            NSLog(@"%@---%@",responseObject, self.tableView);
+    
             [self.tableView reloadData];
         }
     } failure:^(NSError *error) {
