@@ -11,7 +11,7 @@
 #import "ZHPickView.h"
 #import "CPRegisterCellsTableViewCell3.h"
 
-@interface CarOwnersCertificationViewController ()<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate,ZHPickViewDelegate>
+@interface CarOwnersCertificationViewController ()<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate,ZHPickViewDelegate,UIAlertViewDelegate>
 {
     BOOL uploaded;
     NSInteger drivingExperience;
@@ -264,6 +264,16 @@
         [hud hide:YES];
         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
     }];
+}
+
+- (void)rightBarClick:(id)sender {
+    [[[UIAlertView alloc]initWithTitle:@"提示" message:@"您将跳过车主认证!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"跳过", nil] show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==1) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+    }
 }
 
 @end

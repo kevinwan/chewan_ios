@@ -93,7 +93,7 @@
 - (void)awakeFromNib {
     
     // 设置正文最大的宽度
-    self.introduction.preferredMaxLayoutWidth = [UIScreen mainScreen].bounds.size.width - 70;
+    self.introduction.preferredMaxLayoutWidth = [UIScreen mainScreen].bounds.size.width - 75;
 }
 
 
@@ -104,7 +104,7 @@
 
 - (void)setStatus:(CPHomeStatus *)status{
     
-    
+//      self.carModelConstraint.constant = 10;
     _status = status;
     
     CPHomeUser *user = _status.organizer;
@@ -134,13 +134,17 @@
         [self.genderAndAge setBackgroundImage:[UIImage imageNamed:@"女-1"] forState:UIControlStateNormal];
     }
     
+  
+    
     // 车标
     if (user.carBrandLogo == nil || [user.carBrandLogo isEqualToString:@""]) {
+        
         self.carBrandLogo.hidden = YES;
     }else{
         self.carBrandLogo.hidden = NO;
         NSURL *urlCarBrandLogo = [NSURL URLWithString:user.carBrandLogo];
         [self.carBrandLogo sd_setImageWithURL:urlCarBrandLogo placeholderImage:[UIImage imageNamed:@"默认头像"]];
+        
         
     }
     
@@ -148,12 +152,16 @@
     // 状态描述
     NSString *tempCarModel = @"";     // 存储转换后的carModel
     NSString *tempDrivingExperience = @"";   // 存储转换后的drivingExperience
+
+
     
+    // 车型是否为空
     if (user.carModel == nil || [user.carModel isEqualToString:@""])
     {}else{
         tempCarModel = user.carModel;
     }
     
+    // 驾龄是否为空
     if ( [user.drivingExperience  isEqualToString:@"0"]|| user.drivingExperience == nil || [user.drivingExperience isEqualToString:@""]) {
         // 没有车的情况
         self.carModelConstraint.constant = 10;
@@ -161,7 +169,12 @@
         
     }else{
         //有车的情况
-        self.carModelConstraint.constant = 37;
+        if (user.carBrandLogo == nil || [user.carBrandLogo isEqualToString:@""]) {
+            self.carModelConstraint.constant = 10;
+        }else{
+            self.carModelConstraint.constant = 37;
+        }
+        
         if (user.carModel == nil || [user.carModel isEqualToString:@""]) {
             tempDrivingExperience = [NSString stringWithFormat:@"%@年驾龄",user.drivingExperience];
 

@@ -157,11 +157,16 @@
     if ( [user.drivingExperience  isEqualToString:@"0"]|| user.drivingExperience == nil || [user.drivingExperience isEqualToString:@""]) {
         // 没有车的情况
         self.carModelConstraint.constant = 10;
+        
         tempDrivingExperience = @"带我飞~";
         
     }else{
         //有车的情况
-        self.carModelConstraint.constant = 37;
+        if (user.carBrandLogo == nil || [user.carBrandLogo isEqualToString:@""]) {
+            self.carModelConstraint.constant = 10;
+        }else{
+            self.carModelConstraint.constant = 37;
+        }
         if (user.carModel == nil || [user.carModel isEqualToString:@""]) {
             tempDrivingExperience = [NSString stringWithFormat:@"%@年驾龄",user.drivingExperience];
             
