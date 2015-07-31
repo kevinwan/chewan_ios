@@ -162,7 +162,7 @@
         UIButton *btn = (UIButton *)[self.bottomView viewWithTag:i + 1];
          CPOrganizer *organizer = model.members[i];
         
-        [btn sd_setImageWithURL:[NSURL URLWithString:organizer.photo] forState:UIControlStateNormal placeholderImage:nil];
+        [btn sd_setImageWithURL:[NSURL URLWithString:organizer.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
     }
     if (count == 4) {
         self.moreBtn.hidden = NO;

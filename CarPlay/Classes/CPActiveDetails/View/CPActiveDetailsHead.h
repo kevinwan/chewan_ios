@@ -23,7 +23,7 @@ typedef void(^GoTaDetails)();
 @property (nonatomic,strong) CPActiveStatus *activeStatus;
 
 // 创建headview
-+ (instancetype)headView;
++ (instancetype)headView:(id)owner;
 
 - (CGFloat)xibHeightWithActiveStatus:(CPActiveStatus *)activeStatus;
 

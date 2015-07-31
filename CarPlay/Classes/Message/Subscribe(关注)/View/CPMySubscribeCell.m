@@ -154,7 +154,7 @@
     CPMySubscribeModel *model = frameModel.model;
     CPOrganizer *organizer = model.organizer;
     // 进行内容的设置
-    [self.iconBtn sd_setImageWithURL:[NSURL URLWithString:organizer.photo] forState:UIControlStateNormal placeholderImage:nil];
+    [self.iconBtn sd_setImageWithURL:[NSURL URLWithString:organizer.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
     self.nameLabel.text = organizer.nickname;
     [self.sexView setTitle:[NSString stringWithFormat:@"%zd",organizer.age] forState:UIControlStateNormal];
     self.sexView.isMan = organizer.isMan;

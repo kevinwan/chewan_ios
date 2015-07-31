@@ -77,13 +77,12 @@
     
     // 加入提示信息的View
     [self.navigationController.view insertSubview:[self tipView] belowSubview:self.navigationController.navigationBar];
-    
+
     // 没有网络的提示
     if (CPNoNetWork){
         [self showNoNetWork];
     }
 }
-
 
 - (void)viewWillAppear:(BOOL)animated
 {

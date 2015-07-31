@@ -201,7 +201,7 @@
         if (i < count) {
             btn.hidden = NO;
             CPOrganizer *org = model.members[i];
-            [btn sd_setImageWithURL:[NSURL URLWithString:org.photo] forState:UIControlStateNormal placeholderImage:nil];
+            [btn sd_setImageWithURL:[NSURL URLWithString:org.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
         }else{
             btn.hidden = YES;
         }
