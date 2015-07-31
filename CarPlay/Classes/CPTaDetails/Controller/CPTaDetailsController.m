@@ -68,7 +68,7 @@
     [manager GET:@"http://cwapi.gongpingjia.com/v1/user/846de312-306c-4916-91c1-a5e69b158014/info" parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
         
 
-        NSLog(@"%@",responseObject[@"data"]);
+//        NSLog(@"%@",responseObject[@"data"]);
         
         // 字典转模型
         self.taStatus = [CPTaDetailsStatus objectWithKeyValues:responseObject[@"data"]];
