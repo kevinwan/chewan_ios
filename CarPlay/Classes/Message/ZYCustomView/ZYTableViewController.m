@@ -82,7 +82,7 @@
     if (CPNoNetWork){
         [self showNoNetWork];
     }
-    self.tableView.tableFooterView = [[UIView alloc] init];
+//    self.tableView.tableFooterView = [[UIView alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -153,22 +153,30 @@
 
 - (void)showNoData
 {
-    [self tipViewWithIcon:@"暂无参与" title:@"暂时没有任何数据" subTitle:@"刷新一下试试吧"];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self tipViewWithIcon:@"暂无参与" title:@"暂时没有任何数据" subTitle:@"刷新一下试试吧"];
+    });
 }
 
 - (void)showNoPublish
 {
-    [self tipViewWithIcon:@"暂无发布" title:@"暂时没有任何发布" subTitle:@"赶紧去添加发布吧"];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self tipViewWithIcon:@"暂无发布" title:@"暂时没有任何发布" subTitle:@"赶紧去添加发布吧"];
+    });
 }
 
 - (void)showNoSubscribe
 {
-    [self tipViewWithIcon:@"暂无关注" title:@"暂时没有任何关注" subTitle:@"赶紧去关注吧"];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self tipViewWithIcon:@"暂无关注" title:@"暂时没有任何关注" subTitle:@"赶紧去关注吧"];
+    });
 }
 
 - (void)showNoJoin
 {
-    [self tipViewWithIcon:@"暂无参与" title:@"暂时没有任何参与" subTitle:@"赶紧去参与吧"];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self tipViewWithIcon:@"暂无参与" title:@"暂时没有任何参与" subTitle:@"赶紧去参与吧"];
+    });
 }
 
 /**

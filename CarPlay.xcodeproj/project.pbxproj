@@ -183,6 +183,10 @@
 		E36C96271B53C78200D3EDBB /* CPSubscribePersonController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E36C96261B53C78200D3EDBB /* CPSubscribePersonController.storyboard */; };
 		E36C962A1B53C80900D3EDBB /* CPCancleSubBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = E36C96291B53C80900D3EDBB /* CPCancleSubBtn.m */; };
 		E36C962D1B53CA2300D3EDBB /* CPSubscribeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E36C962C1B53CA2300D3EDBB /* CPSubscribeCell.m */; };
+		E36CC95B1B6C7D7F00380E53 /* CPMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E36CC95A1B6C7D7F00380E53 /* CPMapViewController.m */; };
+		E36CC95E1B6C7D8B00380E53 /* CommonUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = E36CC95D1B6C7D8B00380E53 /* CommonUtility.m */; };
+		E36CC9611B6C7D9300380E53 /* GeocodeAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E36CC9601B6C7D9300380E53 /* GeocodeAnnotation.m */; };
+		E36CC9641B6C7DA400380E53 /* LineDashPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = E36CC9631B6C7DA400380E53 /* LineDashPolyline.m */; };
 		E372D82C1B6216C100B4FC5C /* CPForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E372D7FF1B6216C100B4FC5C /* CPForgetPasswordViewController.m */; };
 		E372D82D1B6216C100B4FC5C /* CPForgetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E372D8001B6216C100B4FC5C /* CPForgetPasswordViewController.xib */; };
 		E372D82E1B6216C100B4FC5C /* CPNewPassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E372D8021B6216C100B4FC5C /* CPNewPassWordViewController.m */; };
@@ -276,7 +280,6 @@
 		E3E104A91B675D520049CA4A /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E3E104A81B675D520049CA4A /* libicucore.dylib */; };
 		E3E1DBFD1B5C8CFB00386B18 /* ZYPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E1DBFC1B5C8CFB00386B18 /* ZYPickView.m */; };
 		E3E1DC001B5CA87C00386B18 /* CPReturnValueControllerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E1DBFF1B5CA87C00386B18 /* CPReturnValueControllerView.m */; };
-		E3E1DC031B5CBF8E00386B18 /* CPMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E1DC021B5CBF8E00386B18 /* CPMapViewController.m */; };
 		E3E315041B5E551A00FB0B55 /* CPActivityApplyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E315031B5E551A00FB0B55 /* CPActivityApplyModel.m */; };
 		E3EEDFF31B53951D00595333 /* CPMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EEDFE81B53951D00595333 /* CPMessageController.m */; };
 		E3EEDFF41B53951D00595333 /* CPMessageController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3EEDFE91B53951D00595333 /* CPMessageController.storyboard */; };
@@ -632,6 +635,14 @@
 		E36C96291B53C80900D3EDBB /* CPCancleSubBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCancleSubBtn.m; sourceTree = "<group>"; };
 		E36C962B1B53CA2300D3EDBB /* CPSubscribeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSubscribeCell.h; sourceTree = "<group>"; };
 		E36C962C1B53CA2300D3EDBB /* CPSubscribeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSubscribeCell.m; sourceTree = "<group>"; };
+		E36CC9591B6C7D7F00380E53 /* CPMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMapViewController.h; sourceTree = "<group>"; };
+		E36CC95A1B6C7D7F00380E53 /* CPMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMapViewController.m; sourceTree = "<group>"; };
+		E36CC95C1B6C7D8B00380E53 /* CommonUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtility.h; sourceTree = "<group>"; };
+		E36CC95D1B6C7D8B00380E53 /* CommonUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonUtility.m; sourceTree = "<group>"; };
+		E36CC95F1B6C7D9300380E53 /* GeocodeAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeocodeAnnotation.h; sourceTree = "<group>"; };
+		E36CC9601B6C7D9300380E53 /* GeocodeAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeocodeAnnotation.m; sourceTree = "<group>"; };
+		E36CC9621B6C7DA400380E53 /* LineDashPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineDashPolyline.h; sourceTree = "<group>"; };
+		E36CC9631B6C7DA400380E53 /* LineDashPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineDashPolyline.m; sourceTree = "<group>"; };
 		E372D7FE1B6216C100B4FC5C /* CPForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPForgetPasswordViewController.h; sourceTree = "<group>"; };
 		E372D7FF1B6216C100B4FC5C /* CPForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPForgetPasswordViewController.m; sourceTree = "<group>"; };
 		E372D8001B6216C100B4FC5C /* CPForgetPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPForgetPasswordViewController.xib; sourceTree = "<group>"; };
@@ -805,8 +816,6 @@
 		E3E1DBFC1B5C8CFB00386B18 /* ZYPickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYPickView.m; sourceTree = "<group>"; };
 		E3E1DBFE1B5CA87C00386B18 /* CPReturnValueControllerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPReturnValueControllerView.h; sourceTree = "<group>"; };
 		E3E1DBFF1B5CA87C00386B18 /* CPReturnValueControllerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPReturnValueControllerView.m; sourceTree = "<group>"; };
-		E3E1DC011B5CBF8E00386B18 /* CPMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMapViewController.h; sourceTree = "<group>"; };
-		E3E1DC021B5CBF8E00386B18 /* CPMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMapViewController.m; sourceTree = "<group>"; };
 		E3E315021B5E551A00FB0B55 /* CPActivityApplyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityApplyModel.h; sourceTree = "<group>"; };
 		E3E315031B5E551A00FB0B55 /* CPActivityApplyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityApplyModel.m; sourceTree = "<group>"; };
 		E3EEDFE71B53951D00595333 /* CPMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMessageController.h; sourceTree = "<group>"; };
@@ -1675,6 +1684,12 @@
 		E36C96141B53BA3200D3EDBB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E36CC9621B6C7DA400380E53 /* LineDashPolyline.h */,
+				E36CC9631B6C7DA400380E53 /* LineDashPolyline.m */,
+				E36CC95F1B6C7D9300380E53 /* GeocodeAnnotation.h */,
+				E36CC9601B6C7D9300380E53 /* GeocodeAnnotation.m */,
+				E36CC95C1B6C7D8B00380E53 /* CommonUtility.h */,
+				E36CC95D1B6C7D8B00380E53 /* CommonUtility.m */,
 				E3D8793D1B57475400228356 /* CPActivityModel.h */,
 				E3D8793E1B57475400228356 /* CPActivityModel.m */,
 				E3FCDD481B5E34E200F9C379 /* CPAnnotation.h */,
@@ -2065,6 +2080,8 @@
 		E3E315051B5E6CF100FB0B55 /* 创建和编辑活动 */ = {
 			isa = PBXGroup;
 			children = (
+				E36CC9591B6C7D7F00380E53 /* CPMapViewController.h */,
+				E36CC95A1B6C7D7F00380E53 /* CPMapViewController.m */,
 				E3CE35351B59E1B0008434B5 /* CPCreatActivityController.h */,
 				E3CE35361B59E1B0008434B5 /* CPCreatActivityController.m */,
 				E3CE371B1B59FEBA008434B5 /* CPCreatActivityController.storyboard */,
@@ -2075,8 +2092,6 @@
 				E3CE37241B5A4085008434B5 /* CPActivityNameController.m */,
 				E3E1DBFE1B5CA87C00386B18 /* CPReturnValueControllerView.h */,
 				E3E1DBFF1B5CA87C00386B18 /* CPReturnValueControllerView.m */,
-				E3E1DC011B5CBF8E00386B18 /* CPMapViewController.h */,
-				E3E1DC021B5CBF8E00386B18 /* CPMapViewController.m */,
 			);
 			name = "创建和编辑活动";
 			sourceTree = "<group>";
@@ -2355,6 +2370,7 @@
 				E36AFE661B579F0E0081F499 /* ZHPickView.h in Sources */,
 				E3CE35961B59E7FC008434B5 /* XLFormPickerCell.m in Sources */,
 				A57582071B6789E500A5E681 /* NSDictionary+Dealer.m in Sources */,
+				E36CC95E1B6C7D8B00380E53 /* CommonUtility.m in Sources */,
 				6BCF66121B6208C700358190 /* CPActivePicCell.m in Sources */,
 				E3CE359A1B59E7FC008434B5 /* XLFormStepCounterCell.m in Sources */,
 				A57582151B6789E500A5E681 /* UIColor+SMFoundation.m in Sources */,
@@ -2368,7 +2384,6 @@
 				E30BD5891B54EC4A00FD9030 /* CPMySubscribeFrameModel.m in Sources */,
 				6BCF660A1B6208C700358190 /* CPActiveMember.m in Sources */,
 				E372D8571B62172400B4FC5C /* AppDelegate.m in Sources */,
-				E3E1DC031B5CBF8E00386B18 /* CPMapViewController.m in Sources */,
 				A57581CA1B6789D500A5E681 /* MembersController.m in Sources */,
 				E3E1DC001B5CA87C00386B18 /* CPReturnValueControllerView.m in Sources */,
 				E35B04281B5645BC002C6655 /* HMStatusPhotoView.m in Sources */,
@@ -2419,6 +2434,7 @@
 				E372D8381B6216C100B4FC5C /* CustomSlideCell.m in Sources */,
 				6BCF660D1B6208C700358190 /* CPActiveUser.m in Sources */,
 				A57582171B6789E500A5E681 /* UIImageView+SMFoundation.m in Sources */,
+				E36CC9641B6C7DA400380E53 /* LineDashPolyline.m in Sources */,
 				6B64938C1B4D04BE00C197D2 /* BaseViewController.m in Sources */,
 				6BC8A3E91B6A4DB700B199F2 /* CPTaMember.m in Sources */,
 				E34065ED1B65D6A2008BB3EB /* CPMyJoinController.m in Sources */,
@@ -2502,6 +2518,7 @@
 				E372D8341B6216C100B4FC5C /* CPBrandModelViewController.m in Sources */,
 				E3292A281B6A50700023677F /* CPSelectView.m in Sources */,
 				E3CE35AA1B59E7FC008434B5 /* XLFormRightDetailCell.m in Sources */,
+				E36CC9611B6C7D9300380E53 /* GeocodeAnnotation.m in Sources */,
 				E3CE35AF1B59E7FC008434B5 /* XLFormValidationStatus.m in Sources */,
 				E36C96221B53BC2800D3EDBB /* CPActivityApplyButton.m in Sources */,
 				E35E6FD31B54B1DE001212D6 /* CPMyPublishBottomView.m in Sources */,
@@ -2546,6 +2563,7 @@
 				E3CE35A31B59E7FC008434B5 /* XLFormSectionDescriptor.m in Sources */,
 				6B6493D91B4FABC900C197D2 /* CPNetworkVO.m in Sources */,
 				E372D83D1B6216C100B4FC5C /* CPRegisterCellsTableViewCell2.m in Sources */,
+				E36CC95B1B6C7D7F00380E53 /* CPMapViewController.m in Sources */,
 				E372D8531B6216E800B4FC5C /* CPMyheaderView.m in Sources */,
 				6BCCEA561B5A60D5002465AC /* NSDate+Extension.m in Sources */,
 				6BCF66131B6208C700358190 /* CPDiscussCell.m in Sources */,

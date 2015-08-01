@@ -12,6 +12,7 @@
 #import "MJExtension.h"
 #import "CPMyPublishCell.h"
 #import "CPActiveDetailsController.h"
+#import "MJRefresh.h"
 
 @interface CPMyPublishController ()
 @property (nonatomic, strong) NSMutableArray *frameModels;
@@ -30,6 +31,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self loadData];
+    }];
+    
+    
+    // 设置字体
+    header.stateLabel.font = [UIFont systemFontOfSize:15];
+    header.lastUpdatedTimeLabel.font = [UIFont systemFontOfSize:14];
+    
+    // 设置颜色
+    header.stateLabel.textColor = [UIColor redColor];
+    header.lastUpdatedTimeLabel.textColor = [UIColor blueColor];
+    header.autoChangeAlpha = YES;
+    self.tableView.header = header;
     
     if ([self.hisUserId isEqualToString:[Tools getValueFromKey:@"userId"]]){
         self.navigationItem.title = @"我的发布";
@@ -37,6 +52,7 @@
         self.navigationItem.title = @"他的发布";
     }
     
+    self.tableView.tableFooterView = [[UIView alloc] init];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self loadData];
 }
@@ -51,6 +67,7 @@
     NSString *url = [NSString stringWithFormat:@"v1/user/%@/post",self.hisUserId];
     [SVProgressHUD showWithStatus:@"努力加载中"];
     [CPNetWorkTool getWithUrl:url params:nil success:^(NSDictionary *responseObject) {
+        [self.tableView.header endRefreshing];
         if (CPSuccess) {
             [SVProgressHUD dismiss];
             NSArray *arr = [CPMyPublishModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
@@ -74,6 +91,7 @@
         }
         
     } failure:^(NSError *error) {
+        [self.tableView.footer endRefreshing];
         [self showError:@"加载失败"];
         [self showNetWorkOutTime];
     }];

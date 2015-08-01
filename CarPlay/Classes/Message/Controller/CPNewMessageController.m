@@ -101,13 +101,37 @@
     
     self.tableView.allowsSelectionDuringEditing = YES;
     
-    for (int i = 0; i < 50; i++) {
-        CPNewMsgModel *item = [[CPNewMsgModel alloc] init];
-        item.isChecked = NO;
-        [self.items addObject:item];
-    }
-    
+    self.tableView.tableFooterView = [[UIView alloc] init];
+
     [CPNotificationCenter addObserver:self selector:@selector(tableViewEdit:) name:CPNewMsgEditNotifycation object:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+//    http://cwapi.gongpingjia.com/v1/user/846de312-306c-4916-91c1-a5e69b158014/message/list?token=750dd49c-6129-4a9a-9558-27fa74fc4ce7&type=comment
+    BOOL isLogin = [Tools getValueFromKey:NOTIFICATION_HASLOGIN];
+    if (isLogin) {
+        
+    }
+    [self loadData];
+    
+}
+
+- (void)loadData
+{
+    NSString *url = [NSString stringWithFormat:@"/v1/user/%@/message/list?token=%@&type=comment",[Tools getValueFromKey:@"userId"],[Tools getValueFromKey:@"token"]];
+    [ZYNetWorkTool getWithUrl:url params:nil success:^(id responseObject) {
+        if (CPSuccess) {
+            DLog(@"%@",responseObject);
+            
+            NSArray *array = [CPNewMsgModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
+            [self.items addObjectsFromArray:array];
+            [self.tableView reloadData];
+        }
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 - (void)tableViewEdit:(NSNotification *)notify

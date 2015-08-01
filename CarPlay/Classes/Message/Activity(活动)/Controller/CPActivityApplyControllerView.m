@@ -47,6 +47,7 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"活动参与申请";
+  
     self.tableView.tableFooterView = [[UIView alloc] init];
     [CPNotificationCenter addObserver:self selector:@selector(agreeBtnClick:) name:CPActivityApplyNotification object:nil];
 }
@@ -87,8 +88,7 @@
             [self.datas removeAllObjects];
             self.tableView.tableFooterView = [[UIView alloc] init];
             [self.datas addObjectsFromArray:data];
-            
-            NSLog(@"%@---%@",responseObject, self.tableView);
+    
             [self.tableView reloadData];
         }
     } failure:^(NSError *error) {

@@ -39,6 +39,33 @@
 // 筛选
 - (IBAction)select:(id)sender;
 
+// 顶部按钮点击
+- (IBAction)hotBtnClick:(id)sender;
+- (IBAction)nearBtnClick:(id)sender;
+- (IBAction)lastestBtnClick:(id)sender;
+
+
+// 热门底部线
+@property (weak, nonatomic) IBOutlet UIView *hotLine;
+// 附近底部线
+@property (weak, nonatomic) IBOutlet UIView *nearLine;
+// 最新底部线
+@property (weak, nonatomic) IBOutlet UIView *latestLine;
+
+// 热门约束
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *hotConstraint;
+// 附近约束
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *nearConstraint;
+// 最新约束
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *lastestConstraint;
+
+// 热门
+@property (weak, nonatomic) IBOutlet UIButton *hotBtn;
+// 附近
+@property (weak, nonatomic) IBOutlet UIButton *nearBtn;
+// 最新
+@property (weak, nonatomic) IBOutlet UIButton *lastestBtn;
+
 
 @end
 
@@ -213,6 +240,67 @@
     
 }
 
+// 热门按钮点击
+- (IBAction)hotBtnClick:(id)sender {
+    // 按钮颜色
+    [self.hotBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [self.nearBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.lastestBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    
+    // 底边颜色
+    self.hotLine.backgroundColor = [UIColor redColor];
+    self.nearLine.backgroundColor = [UIColor grayColor];
+    self.latestLine.backgroundColor = [UIColor grayColor];
+    
+    // 约束调整
+    self.hotConstraint.constant = 0;
+    self.nearConstraint.constant = 1;
+    self.lastestConstraint.constant = 1;
+    
+}
+
+// 附近按钮点击
+- (IBAction)nearBtnClick:(id)sender {
+    // 按钮颜色
+    [self.hotBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.nearBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [self.lastestBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+
+    // 底边颜色
+    self.hotLine.backgroundColor = [UIColor grayColor];
+    self.nearLine.backgroundColor = [UIColor redColor];
+    self.latestLine.backgroundColor = [UIColor grayColor];
+    
+    // 约束调整
+    self.hotConstraint.constant = 1;
+    self.nearConstraint.constant = 0;
+    self.lastestConstraint.constant = 1;
+  
+}
+
+// 最新按钮点击
+- (IBAction)lastestBtnClick:(id)sender {
+    // 按钮颜色
+    [self.hotBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.nearBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.lastestBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    
+    // 底边颜色
+    self.hotLine.backgroundColor = [UIColor grayColor];
+    self.nearLine.backgroundColor = [UIColor grayColor];
+    self.latestLine.backgroundColor = [UIColor redColor];
+    
+    
+    // 约束调整
+    self.hotConstraint.constant = 1;
+    self.nearConstraint.constant = 1;
+    self.lastestConstraint.constant = 0;
+    
+}
+
+
+
+// 最新按钮点击
 - (void)coverBtnClick
 {
     [self.selectView dismissWithCompletion:nil];
