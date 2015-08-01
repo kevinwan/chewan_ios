@@ -23,6 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self loadPhotos:_albumPhotos];
     self.photoWH = (kScreenWidth - 50) / 4;
     self.picIndex = 10;
     self.photoViewHeight = self.photoWH + 20;
@@ -37,6 +38,10 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [self layoutPhotoView];
 }
 
 - (NSMutableArray *)editPhotoViews
@@ -162,14 +167,22 @@
         [self showAlert];
         return;
     }
-    
+    NSString *path=[[NSString alloc]initWithFormat:@"v1/user/%@/album/upload?token=%@",[Tools getValueFromKey:@"userId"],[Tools getValueFromKey:@"token"]];
     for (int i = 0; i < arr.count; i++) {
-        CPEditImageView *imageView = [[CPEditImageView alloc] init];
-        imageView.image = arr[i];
-        imageView.tag = self.picIndex++;
-        UILongPressGestureRecognizer *longPressGes = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
-        [imageView addGestureRecognizer:longPressGes];
-        [self.photoView insertSubview:imageView atIndex:0];
+        CPHttpFile *imageFile = [CPHttpFile fileWithName:@"a1.jpg" data:UIImageJPEGRepresentation(arr[i], 0.4) mimeType:@"image/jpeg" filename:@"a1.jpg"];
+        
+        [CPNetWorkTool postFileWithUrl:path params:nil files:@[imageFile] success:^(id responseObject) {
+            if (CPSuccess) {
+                CPEditImageView *imageView = [[CPEditImageView alloc] init];
+                imageView.image = arr[i];
+                imageView.tag = self.picIndex++;
+                UILongPressGestureRecognizer *longPressGes = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+                [imageView addGestureRecognizer:longPressGes];
+                [self.photoView insertSubview:imageView atIndex:0];
+            }
+        } failure:^(NSError *error) {
+            [self showError:@"照片上传失败"];
+        }];
     }
     [self layoutPhotoView];
 }
@@ -261,4 +274,24 @@
     self.photoViewHeight = column * (imgH + 10) + 10;
 //    self.photoView.height = self.photoViewHeight;
 }
+
+-(void)loadPhotos:(NSArray *)photos{
+    if (self.photoView.subviews.count + photos.count > 10){
+        [self showAlert];
+        return;
+    }
+    
+    for (int i = 0; i < photos.count; i++) {
+        CPEditImageView *imageView = [[CPEditImageView alloc] init];
+        NSURL *url=[[NSURL alloc]initWithString:photos[i]];
+        [imageView sd_setImageWithURL:url];
+      
+        imageView.tag = self.picIndex++;
+        UILongPressGestureRecognizer *longPressGes = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+        [imageView addGestureRecognizer:longPressGes];
+        [self.photoView insertSubview:imageView atIndex:0];
+    }
+    [self layoutPhotoView];
+}
+
 @end

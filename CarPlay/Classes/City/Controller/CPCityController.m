@@ -15,6 +15,9 @@
 #import "CPHomeStatusCell.h"
 #import "CPActiveDetailsController.h"
 #import "CPSelectView.h"
+#import "MJRefresh.h"
+
+
 
 @interface CPCityController ()<UITableViewDataSource,UITableViewDelegate, CPSelectViewDelegate>
 
@@ -85,15 +88,27 @@
 }
 
 
+@implementation CPCityController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     // 加载活动数据
     [self setupLoadStatus];
     
+    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+  
+    // 马上进入刷新状态
+//    [self.tableView.header beginRefreshing];
+    
+    
 }
 
-
+// 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
+- (void)loadNewData{
+    [self setupLoadStatus];
+    
+}
 
 // 加载活动数据
 - (void)setupLoadStatus{
@@ -123,6 +138,9 @@
           
         // 刷新表格
         [self.tableView reloadData];
+        
+        // 关闭刷新栏
+        [self.tableView.header endRefreshing];
         
     } failure:^(NSURLSessionDataTask * task, NSError * error) {
         //
@@ -187,6 +205,18 @@
 
 
 #pragma mark - lazy
+- (UIButton *)coverBtn
+{
+    if (_coverBtn == nil) {
+        _coverBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_coverBtn addTarget:self action:@selector(coverBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        _coverBtn.backgroundColor = RGBACOLOR(0, 0, 0, 0.5);
+        _coverBtn.frame = self.view.bounds;
+        [[UIApplication sharedApplication].keyWindow addSubview:_coverBtn];
+        _coverBtn.hidden = YES;
+    }
+    return _coverBtn;
+}
 
 - (NSCache *)rowHeightCache{
     if (!_rowHeightCache) {
@@ -201,12 +231,10 @@
     // 获取活动详情storyboard中的控制器
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPActiveDetailsController" bundle:nil];
     CPActiveDetailsController *ac = sb.instantiateInitialViewController;
+    
     // 取出对应行模型
     CPHomeStatus *status = self.status[indexPath.row];
-    
     ac.activeId = status.activityId;
-    
-//    NSLog(@"%@",ac.activeId);
     
     [self.navigationController pushViewController:ac animated:YES];
     
@@ -243,14 +271,14 @@
 // 热门按钮点击
 - (IBAction)hotBtnClick:(id)sender {
     // 按钮颜色
-    [self.hotBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [self.nearBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.lastestBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.hotBtn setTitleColor:[Tools getColor:@"fc6e51"] forState:UIControlStateNormal];
+    [self.nearBtn setTitleColor:[Tools getColor:@"434a53"] forState:UIControlStateNormal];
+    [self.lastestBtn setTitleColor:[Tools getColor:@"434a53"] forState:UIControlStateNormal];
     
     // 底边颜色
-    self.hotLine.backgroundColor = [UIColor redColor];
-    self.nearLine.backgroundColor = [UIColor grayColor];
-    self.latestLine.backgroundColor = [UIColor grayColor];
+    self.hotLine.backgroundColor = [Tools getColor:@"fc6e51"];
+    self.nearLine.backgroundColor = [Tools getColor:@"e6e9ed"];
+    self.latestLine.backgroundColor = [Tools getColor:@"e6e9ed"];
     
     // 约束调整
     self.hotConstraint.constant = 0;
@@ -262,14 +290,14 @@
 // 附近按钮点击
 - (IBAction)nearBtnClick:(id)sender {
     // 按钮颜色
-    [self.hotBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.nearBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [self.lastestBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.hotBtn setTitleColor:[Tools getColor:@"434a53"] forState:UIControlStateNormal];
+    [self.nearBtn setTitleColor:[Tools getColor:@"fc6e51"] forState:UIControlStateNormal];
+    [self.lastestBtn setTitleColor:[Tools getColor:@"434a53"] forState:UIControlStateNormal];
 
     // 底边颜色
-    self.hotLine.backgroundColor = [UIColor grayColor];
-    self.nearLine.backgroundColor = [UIColor redColor];
-    self.latestLine.backgroundColor = [UIColor grayColor];
+    self.hotLine.backgroundColor = [Tools getColor:@"e6e9ed"];
+    self.nearLine.backgroundColor = [Tools getColor:@"fc6e51"];
+    self.latestLine.backgroundColor = [Tools getColor:@"e6e9ed"];
     
     // 约束调整
     self.hotConstraint.constant = 1;
@@ -283,12 +311,12 @@
     // 按钮颜色
     [self.hotBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.nearBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.lastestBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [self.lastestBtn setTitleColor:[Tools getColor:@"fc6e51"] forState:UIControlStateNormal];
     
     // 底边颜色
-    self.hotLine.backgroundColor = [UIColor grayColor];
-    self.nearLine.backgroundColor = [UIColor grayColor];
-    self.latestLine.backgroundColor = [UIColor redColor];
+    self.hotLine.backgroundColor = [Tools getColor:@"e6e9ed"];
+    self.nearLine.backgroundColor = [Tools getColor:@"e6e9ed"];
+    self.latestLine.backgroundColor = [Tools getColor:@"fc6e51"];
     
     
     // 约束调整
@@ -300,7 +328,7 @@
 
 
 
-// 最新按钮点击
+// 蒙版按钮点击
 - (void)coverBtnClick
 {
     [self.selectView dismissWithCompletion:nil];
