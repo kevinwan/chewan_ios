@@ -69,12 +69,10 @@
 // 最新
 @property (weak, nonatomic) IBOutlet UIButton *lastestBtn;
 
+
 @end
 
-
-
 @implementation CPCityController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 

@@ -36,6 +36,8 @@
 - (void)setUp
 {
     self.userInteractionEnabled = YES;
+    self.contentMode = UIViewContentModeScaleAspectFill;
+    self.clipsToBounds = YES;
     UIImageView *selectImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"选中照片"]];
     [self addSubview:selectImage];
     self.selectImage = selectImage;
