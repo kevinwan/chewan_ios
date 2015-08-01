@@ -469,6 +469,7 @@
 		DA6F7B42D85CB60BA427DA19 /* View+MASAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "View+MASAdditions.m"; path = "Masonry/View+MASAdditions.m"; sourceTree = "<group>"; };
 		DAD273AA9C008962019C41AC /* MJRefreshAutoGifFooter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshAutoGifFooter.h; path = MJRefresh/Custom/Footer/Auto/MJRefreshAutoGifFooter.h; sourceTree = "<group>"; };
 		DEA8FFB6BB946802C1434061 /* Pods-MJExtension.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MJExtension.xcconfig"; sourceTree = "<group>"; };
+		E34480C21B6C5B6900BCB312 /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		E34F73298787AF1CDFFBE1DC /* UzysAssetsPickerController.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = UzysAssetsPickerController.xib; path = UzysAssetsPickerController/Library/UzysAssetsPickerController.xib; sourceTree = "<group>"; };
 		E7E5CC50DB5D262364A460BB /* Pods-MBProgressHUD-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MBProgressHUD-Private.xcconfig"; sourceTree = "<group>"; };
 		E812919AD7B3099BAAB3C284 /* MBProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
@@ -613,6 +614,7 @@
 		0FB012D1B06B03581ACB0E56 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
+				E34480C21B6C5B6900BCB312 /* MJRefresh.bundle */,
 				121DB0B74AD7C2EDE16C28D6 /* Pods-MJRefresh.xcconfig */,
 				A628078785648A03240338CD /* Pods-MJRefresh-Private.xcconfig */,
 				88F9DA5D1390DEA33811D808 /* Pods-MJRefresh-dummy.m */,
