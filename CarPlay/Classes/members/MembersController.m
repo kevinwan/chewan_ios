@@ -17,11 +17,6 @@
 #import <MJExtension.h>
 #import "ZYNetWorkTool.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-//米奇Id
-#define kActivityId @"55838b12-7039-41e5-9150-6dd154de961b"
-#define kUserId @"e43fdfdb-7690-48c5-a5cc-250010ed757c"
-#define kToken @"062d2958-b559-46c0-a374-68845b158383"
-
 
 
 @interface MembersController () <UITableViewDataSource,UITableViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDelegate>
@@ -83,20 +78,20 @@
 //加载成员信息和car信息
 - (void)loadMessage {
     //示例参数@"http://cwapi.gongpingjia.com/v1"
+    NSString *userId = [Tools getValueFromKey:@"userId"];
+    if (userId.length == 0) {
+        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+        return;
+    }
+    self.userId = userId;
+    NSString *token = [Tools getValueFromKey:@"token"];
+    if (token.length == 0) {
+        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+        return;
+    }
+    self.token = token;
     [self.view showWait];
-//    NSString *userId = [Tools getValueFromKey:@"userId"];
-//    if (userId.length == 0) {
-//        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
-//        return;
-//    }
-//    self.userId = userId;
-//    NSString *token = [Tools getValueFromKey:@"token"];
-//    if (token.length == 0) {
-//        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
-//        return;
-//    }
-//    self.token = token;
-    NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/members?userId=%@&token=%@",kActivityId,kUserId,kToken];
+    NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/members?userId=%@&token=%@",self.activityId,self.userId,self.token];
     [ZYNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
         [self.view hideWait];
         SQLog(@"%@",responseObject);
@@ -108,7 +103,7 @@
             [self.memberTableView reloadData];
             //判断下是否是成员
             for (members *member in self.membersArray) {
-                if ([kUserId isEqualToString:member.userId]) {
+                if ([self.userId isEqualToString:member.userId]) {
                     self.member = YES;
                     break;
                 }
@@ -131,9 +126,9 @@
 
 //我也要加入
 - (IBAction)carxibButtonClick:(UIButton *)sender {
-    NSString *userId = kUserId;
-    NSString *token = kToken;
-    NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/join?userId=%@&token=%@",kActivityId,userId,token];
+    NSString *userId = self.userId;
+    NSString *token = self.token;
+    NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/join?userId=%@&token=%@",self.activityId,userId,token];
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     NSString *seatStr = self.carxibTextFeild.text;
@@ -184,7 +179,7 @@
     [self coverClick];
     //米奇ID
     if (self.member) {
-        NSString *url = [NSString stringWithFormat:@"v1/activity/%@/seat/take?userId=%@&token=%@",kActivityId,kUserId,kToken];
+        NSString *url = [NSString stringWithFormat:@"v1/activity/%@/seat/take?userId=%@&token=%@",self.activityId,self.userId,self.token];
         cars *car = self.carsArray[sender.tag % 1000];
         NSString *carID = car.carId;
         SQLog(@"%tu",sender.tag);
@@ -211,13 +206,17 @@
         SQLog(@"%@",seatIndex);
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
         params[@"seatIndex"] = seatIndex;
+        if (carID.length!= 0) {
         params[@"carId"] = carID;
+        } else {
+        params[@"carId"] = @"";
+        }
         [self.view showWait];
         [ZYNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
             [self.view hideWait];
             if ([responseObject operationSuccess]) {
                 //从新加载信息
-                NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/members?userId=%@&token=%@",kActivityId,kUserId,kToken];
+                NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/members?userId=%@&token=%@",self.activityId,self.userId,self.token];
                 [ZYNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
                     if ([responseObject operationSuccess]) {
                         NSArray *carModel = [cars objectArrayWithKeyValuesArray:responseObject[@"data"][@"cars"]];
@@ -267,7 +266,7 @@
 - (IBAction)outActivitySureButton:(UIButton *)sender {
     [self coverClick];
     [self.view showWait];
-    NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/quit?userId=%@&token=%@",kActivityId,kUserId,kToken];
+    NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/quit?userId=%@&token=%@",self.activityId,self.userId,self.token];
     [ZYNetWorkTool postWithUrl:urlStr params:nil success:^(id responseObject) {
         [self.view hideWait];
         SQLog(@"%@",responseObject);
@@ -357,7 +356,7 @@
     [self.carxibYesView addGestureRecognizer:tapYes];
     UITapGestureRecognizer *tapNo = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapNo)];
     [self.carxibNoVIew addGestureRecognizer:tapNo];
-    NSString *urlStr = [NSString stringWithFormat:@"v1/user/%@/seats?token=%@",kUserId,kToken];
+    NSString *urlStr = [NSString stringWithFormat:@"v1/user/%@/seats?token=%@",self.userId,self.token];
     //主车提供后台返回的车 非车主最多提供两辆车
     [ZYNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
         if ([responseObject operationSuccess]) {

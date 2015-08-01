@@ -315,7 +315,7 @@
         
     } else {
         
-        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Members" bundle:nil];
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MembersManage" bundle:nil];
         MembersController * vc = sb.instantiateInitialViewController;
         vc.activityId = self.activeId;
         [self.navigationController pushViewController:vc animated:YES];
