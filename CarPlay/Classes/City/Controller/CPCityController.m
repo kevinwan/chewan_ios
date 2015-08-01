@@ -78,7 +78,7 @@
         [_coverBtn addTarget:self action:@selector(coverBtnClick) forControlEvents:UIControlEventTouchUpInside];
         _coverBtn.backgroundColor = RGBACOLOR(0, 0, 0, 0.5);
         _coverBtn.frame = self.view.bounds;
-        [[UIApplication sharedApplication].keyWindow addSubview:_coverBtn];
+        [[UIApplication sharedApplication].windows.lastObject addSubview:_coverBtn];
         _coverBtn.hidden = YES;
     }
     return _coverBtn;

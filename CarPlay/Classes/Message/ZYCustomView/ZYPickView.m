@@ -163,19 +163,32 @@
 
 -(void)setUpToolBar{
     _toolbar=[self setToolbarStyle];
-    [self setTintColor:[Tools getColor:@"fc6e51"]];
+    _toolbar.clipsToBounds = YES;
     [self setToolbarWithPickViewFrame];
     [self addSubview:_toolbar];
 }
 -(UIToolbar *)setToolbarStyle{
     UIToolbar *toolbar=[[UIToolbar alloc] init];
     
-    UIBarButtonItem *lefttem=[[UIBarButtonItem alloc] initWithTitle:@"     取消" style:UIBarButtonItemStylePlain target:self action:@selector(remove)];
+    UIButton *left = [UIButton buttonWithType:UIButtonTypeCustom];
+    left.titleLabel.font = [UIFont systemFontOfSize:16];
+    [left setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [left setTitle:@"      取消" forState:UIControlStateNormal];
+    [left sizeToFit];
+    [left addTarget:self action:@selector(remove) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *lefttem = [[UIBarButtonItem alloc] initWithCustomView:left];
     
     UIBarButtonItem *centerSpace=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
     
-    UIBarButtonItem *right=[[UIBarButtonItem alloc] initWithTitle:@"确定     " style:UIBarButtonItemStylePlain target:self action:@selector(doneClick)];
-    toolbar.items=@[lefttem, centerSpace, right];
+    UIButton *right = [UIButton buttonWithType:UIButtonTypeCustom];
+    right.titleLabel.font = [UIFont systemFontOfSize:16];
+    [right setTitleColor:[Tools getColor:@"fc6e51"] forState:UIControlStateNormal];
+    [right setTitle:@"确定     " forState:UIControlStateNormal];
+    [right sizeToFit];
+    [right addTarget:self action:@selector(doneClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:right];
+    
+    toolbar.items=@[lefttem, centerSpace, rightItem];
     return toolbar;
 }
 -(void)setToolbarWithPickViewFrame{
