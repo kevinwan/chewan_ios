@@ -31,10 +31,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self loadData];
     }];
-    self.tableView.header.autoChangeAlpha = YES;
+    
+    
+    // 设置字体
+    header.stateLabel.font = [UIFont systemFontOfSize:15];
+    header.lastUpdatedTimeLabel.font = [UIFont systemFontOfSize:14];
+    
+    // 设置颜色
+    header.stateLabel.textColor = [UIColor redColor];
+    header.lastUpdatedTimeLabel.textColor = [UIColor blueColor];
+    header.autoChangeAlpha = YES;
+    self.tableView.header = header;
     
     if ([self.hisUserId isEqualToString:[Tools getValueFromKey:@"userId"]]){
         self.navigationItem.title = @"我的发布";
