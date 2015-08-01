@@ -57,10 +57,10 @@
     selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     vc.tabBarItem.selectedImage = selectedImage;
     //设置tabBar标题颜色 也可在storyboard中设置
-    //    self.tabBar.tintColor = [UIColor greenColor];
+    self.tabBar.tintColor = [Tools getColor:@"48d1d5"];
     
     // 设置随机色
-    vc.view.backgroundColor = CPRandomColor;
+//    vc.view.backgroundColor = CPRandomColor;
     // 添加到父控件
     [self addChildViewController:vc.navigationController];
 }
