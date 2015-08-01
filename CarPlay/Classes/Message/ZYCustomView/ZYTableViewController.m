@@ -153,30 +153,22 @@
 
 - (void)showNoData
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self tipViewWithIcon:@"暂无参与" title:@"暂时没有任何数据" subTitle:@"刷新一下试试吧"];
-    });
+    [self tipViewWithIcon:@"暂无参与" title:@"暂时没有任何数据" subTitle:@"刷新一下试试吧"];
 }
 
 - (void)showNoPublish
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self tipViewWithIcon:@"暂无发布" title:@"暂时没有任何发布" subTitle:@"赶紧去添加发布吧"];
-    });
+    [self tipViewWithIcon:@"暂无发布" title:@"暂时没有任何发布" subTitle:@"赶紧去添加发布吧"];
 }
 
 - (void)showNoSubscribe
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self tipViewWithIcon:@"暂无关注" title:@"暂时没有任何关注" subTitle:@"赶紧去关注吧"];
-    });
+    [self tipViewWithIcon:@"暂无关注" title:@"暂时没有任何关注" subTitle:@"赶紧去关注吧"];
 }
 
 - (void)showNoJoin
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self tipViewWithIcon:@"暂无参与" title:@"暂时没有任何参与" subTitle:@"赶紧去参与吧"];
-    });
+    [self tipViewWithIcon:@"暂无参与" title:@"暂时没有任何参与" subTitle:@"赶紧去参与吧"];
 }
 
 /**
@@ -195,7 +187,12 @@
     
     UILabel *subTipLabel = (UILabel *)[self.tipView viewWithTag:3];
     subTipLabel.text = subTitle;
+    
     self.tipView.hidden = NO;
+    self.tipView.alpha = 0.0;
+    [UIView animateWithDuration:0.25 animations:^{
+        self.tipView.alpha = 1.0;
+    }];
     return self.tipView;
 }
 
