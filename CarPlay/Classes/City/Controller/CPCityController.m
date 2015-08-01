@@ -73,23 +73,6 @@
 @end
 
 @implementation CPCityController
-#pragma mark - lazy
-- (UIButton *)coverBtn
-{
-    if (_coverBtn == nil) {
-        _coverBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_coverBtn addTarget:self action:@selector(coverBtnClick) forControlEvents:UIControlEventTouchUpInside];
-        _coverBtn.backgroundColor = RGBACOLOR(0, 0, 0, 0.5);
-        _coverBtn.frame = self.view.bounds;
-        [[UIApplication sharedApplication].windows.lastObject addSubview:_coverBtn];
-        _coverBtn.hidden = YES;
-    }
-    return _coverBtn;
-}
-
-
-@implementation CPCityController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 
