@@ -31,5 +31,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 - (IBAction)loginBtnClick:(id)sender;
 - (IBAction)leftBtnClick:(id)sender;
-
+@property (weak, nonatomic) IBOutlet UILabel *myReleaseLable;
+@property (weak, nonatomic) IBOutlet UILabel *myPayAttentionToLable;
+@property (weak, nonatomic) IBOutlet UILabel *myParticipateInLable;
+@property (weak, nonatomic) IBOutlet UILabel *myReleaseBtnLable;
+@property (weak, nonatomic) IBOutlet UILabel *myPayAttentionToBtnLable;
+@property (weak, nonatomic) IBOutlet UILabel *myParticipateInBtnLable;
 @end

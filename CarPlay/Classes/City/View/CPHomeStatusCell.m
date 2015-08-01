@@ -104,7 +104,6 @@
 
 - (void)setStatus:(CPHomeStatus *)status{
     
-//      self.carModelConstraint.constant = 10;
     _status = status;
     
     CPHomeUser *user = _status.organizer;
@@ -172,7 +171,7 @@
         if (user.carBrandLogo == nil || [user.carBrandLogo isEqualToString:@""]) {
             self.carModelConstraint.constant = 10;
         }else{
-            self.carModelConstraint.constant = 37;
+            self.carModelConstraint.constant = 31;
         }
         
         if (user.carModel == nil || [user.carModel isEqualToString:@""]) {
@@ -201,17 +200,17 @@
     self.pay.text = _status.pay;
     
     // 付费方式View
-    self.payView.layer.cornerRadius = 3;
+    self.payView.layer.cornerRadius = 2;
     self.payView.clipsToBounds = YES;
     if ([_status.pay isEqualToString:@"AA制"]) {
         // AA制
-        self.payView.backgroundColor = [UIColor greenColor];
+        self.payView.backgroundColor = [Tools getColor:@"48d1d5"];
     }else if([_status.pay isEqualToString:@"我请客"]){
         // 我请客
-        self.payView.backgroundColor = [UIColor redColor];
+        self.payView.backgroundColor = [Tools getColor:@"fc6e51"];
     }else{
         // 请我吧
-        self.payView.backgroundColor = [UIColor grayColor];
+        self.payView.backgroundColor = [Tools getColor:@"ccd1d9"];
     }
     
     
@@ -346,7 +345,7 @@
     [self layoutIfNeeded];
     
     // 返回cell高度，cell的高度就是底部头像列表的最大高度
-    return CGRectGetMaxY(self.bottomIconList.frame);
+    return CGRectGetMaxY(self.bottomIconList.frame) + 15;
     
 }
 

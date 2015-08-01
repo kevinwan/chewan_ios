@@ -99,6 +99,7 @@
         [self.navigationController pushViewController:vc animated:YES];
     }else if (indexPath.row==1) {
         CarOwnersCertificationViewController *CarOwnersCertificationVC=[[CarOwnersCertificationViewController alloc]init];
+        CarOwnersCertificationVC.fromMy=@"0";
         CarOwnersCertificationVC.title=@"车主认证";
         
         [self.navigationController pushViewController:CarOwnersCertificationVC animated:YES];
@@ -132,6 +133,7 @@
 - (IBAction)photoManage:(id)sender {
     CPPhotoalbumManagement *CPPhotoalbumManagementVC=[[CPPhotoalbumManagement alloc]init];
     CPPhotoalbumManagementVC.title=@"相册管理";
+    CPPhotoalbumManagementVC.albumPhotos=albumPhotos;
     [self.navigationController pushViewController:CPPhotoalbumManagementVC animated:YES];
 }
 
@@ -360,15 +362,37 @@
 
 //我的发布
 - (IBAction)myRelease:(id)sender{
+    self.myReleaseLable.backgroundColor=[Tools getColor:@"fc6e51"];
+    [self.myReleaseCountLable setTextColor:[Tools getColor:@"fc6e51"]];
+    [self.myReleaseBtnLable setTextColor:[Tools getColor:@"fc6e51"]];
+    
+    self.myPayAttentionToLable.backgroundColor=[UIColor whiteColor];
+    [self.myPayAttentionToCountLable setTextColor:[Tools getColor:@"aab2bd"]];
+    [self.myPayAttentionToBtnLable setTextColor:[Tools getColor:@"aab2bd"]];
+    
+    self.myParticipateInLable.backgroundColor=[UIColor whiteColor];
+    [self.myParticipateInCountLable setTextColor:[Tools getColor:@"aab2bd"]];
+    [self.myParticipateInBtnLable setTextColor:[Tools getColor:@"aab2bd"]];
+    
     CPMyPublishController *vc = [[CPMyPublishController alloc] init];
-    
     vc.hisUserId = [Tools getValueFromKey:@"userId"];
-    
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 //我的关注
 - (IBAction)myPayAttentionTo:(id)sender{
+    self.myReleaseLable.backgroundColor=[UIColor whiteColor];
+    [self.myReleaseCountLable setTextColor:[Tools getColor:@"aab2bd"]];
+    [self.myReleaseBtnLable setTextColor:[Tools getColor:@"aab2bd"]];
+    
+    self.myPayAttentionToLable.backgroundColor=[Tools getColor:@"fc6e51"];
+    [self.myPayAttentionToCountLable setTextColor:[Tools getColor:@"fc6e51"]];
+    [self.myPayAttentionToBtnLable setTextColor:[Tools getColor:@"fc6e51"]];
+    
+    self.myParticipateInLable.backgroundColor=[UIColor whiteColor];
+    [self.myParticipateInCountLable setTextColor:[Tools getColor:@"aab2bd"]];
+    [self.myParticipateInBtnLable setTextColor:[Tools getColor:@"aab2bd"]];
+    
     CPMySubscribeController *vc = [[CPMySubscribeController alloc] init];
     vc.hisUserId = [Tools getValueFromKey:@"userId"];
     [self.navigationController pushViewController:vc animated:YES];
@@ -376,6 +400,19 @@
 
 //我的参与
 - (IBAction)myParticipateIn:(id)sender{
+    
+    self.myReleaseLable.backgroundColor=[UIColor whiteColor];
+    [self.myReleaseCountLable setTextColor:[Tools getColor:@"aab2bd"]];
+    [self.myReleaseBtnLable setTextColor:[Tools getColor:@"aab2bd"]];
+    
+    self.myPayAttentionToLable.backgroundColor=[UIColor whiteColor];
+    [self.myPayAttentionToCountLable setTextColor:[Tools getColor:@"aab2bd"]];
+    [self.myPayAttentionToBtnLable setTextColor:[Tools getColor:@"aab2bd"]];
+    
+    self.myParticipateInLable.backgroundColor=[Tools getColor:@"fc6e51"];
+    [self.myParticipateInCountLable setTextColor:[Tools getColor:@"fc6e51"]];
+    [self.myParticipateInBtnLable setTextColor:[Tools getColor:@"fc6e51"]];
+    
     CPMyJoinController *vc = [[CPMyJoinController alloc] init];
     vc.hisUserId = [Tools getValueFromKey:@"userId"];
     [self.navigationController pushViewController:vc animated:YES];
