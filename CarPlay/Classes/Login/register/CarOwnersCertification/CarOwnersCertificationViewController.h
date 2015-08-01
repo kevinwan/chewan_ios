@@ -17,4 +17,5 @@
 @property (weak, nonatomic) IBOutlet UIButton *nextBtn;
 - (IBAction)nextBtnClick:(id)sender;
 @property(nonatomic,strong)ZHPickView *pickview;
+@property(nonatomic,strong)NSString *fromMy;
 @end

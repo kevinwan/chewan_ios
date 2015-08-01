@@ -28,7 +28,9 @@
     self.tableView.tableFooterView=self.footView;
     self.nextBtn.layer.cornerRadius=3.0;
     self.nextBtn.layer.masksToBounds=YES;
-    [self setRightBarWithText:@"跳过"];
+    if (_fromMy && [_fromMy isEqualToString:@"1"]) {
+        [self setRightBarWithText:@"跳过"];
+    }
     UITapGestureRecognizer *singleTap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageClick)];
     [self.imageBtn addGestureRecognizer:singleTap1];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removePickview) name:@"remove" object:nil];
@@ -79,6 +81,9 @@
         [cell addSubview:cellTopSeparator];
         cell.cellTitle.text=@"车龄";
         cell.textLabel.textColor=[Tools getColor:@"aab2bd"];
+        if ([Tools getValueFromKey:@"drivingExperience"]) {
+            cell.cellContent.text=[[NSString alloc]initWithFormat:@"%@年",[Tools getValueFromKey:@"drivingExperience"]];
+        }
     }else{
         UILabel *cellTopSeparator=[[UILabel alloc]initWithFrame:CGRectMake(0, 51, SCREEN_WIDTH, .5)];
         cellTopSeparator.backgroundColor=[Tools getColor:@"aaaaaa"];
@@ -206,6 +211,7 @@
     NSIndexPath *index=[NSIndexPath indexPathForRow:0 inSection:0];
     CPRegisterCellsTableViewCell3 * cell=(CPRegisterCellsTableViewCell3 *)[self.tableView cellForRowAtIndexPath:index];
     cell.cellContent.text=[[NSString alloc]initWithFormat:@"%@年",resultString];
+    [Tools setValueForKey:resultString key:@"drivingExperience"];
     drivingExperience=[resultString intValue];
 }
 
