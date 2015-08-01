@@ -76,6 +76,13 @@
         }
         [cell0.checkManBtn addTarget:nil action:@selector(checkSex:) forControlEvents:UIControlEventTouchUpInside];
         [cell0.checkWomanBtn addTarget:nil action:@selector(checkSex:) forControlEvents:UIControlEventTouchUpInside];
+        if ([[Tools getValueFromKey:@"gender"] isEqualToString:@"女"]) {
+            [cell0.checkManBtn setImage:[UIImage imageNamed:@"sexUnchecked"] forState:UIControlStateNormal];
+            [cell0.checkManBtn setTitleColor:[Tools getColor:@"aab2bd"] forState:UIControlStateNormal];
+            [cell0.checkWomanBtn setImage:[UIImage imageNamed:@"sexChecked"] forState:UIControlStateNormal];
+            [cell0.checkWomanBtn setTitleColor:[Tools getColor:@"fd6d53"] forState:UIControlStateNormal];
+        }
+        
         cell=cell0;
     }else if (indexPath.row==1) {
         CPRegisterCellsTableViewCell1 *cell1=[tableView dequeueReusableCellWithIdentifier:CPRegisterCellsTableViewCell2Identifier];
@@ -91,8 +98,12 @@
         if (cell3 == nil) {
             cell3 = [[[NSBundle mainBundle] loadNibNamed:@"CPRegisterCellsTableViewCell3" owner:nil options:nil] lastObject];
         }
+        
         if (indexPath.row==3) {
             cell3.cellTitle.text=@"城市";
+            cell3.cellContent.text=[Tools getValueFromKey:@"cityAndDistrict"];
+        }else{
+            cell3.cellContent.text=[Tools getValueFromKey:@"age"];
         }
         cell=cell3;
     }
@@ -182,6 +193,7 @@
     if (_indexPath.row==2) {
         double age=[resultString doubleValue]/31536000;
         cell.cellContent.text=[[NSString alloc]initWithFormat:@"%.0f岁",0-age];
+        [Tools setValueForKey:[[NSString alloc]initWithFormat:@"%.0f岁",0-age] key:@"age"];
         NSDate *brithDay=[[NSDate alloc]initWithTimeIntervalSinceNow:[resultString doubleValue]];
         NSCalendar* calendar = [NSCalendar currentCalendar];
         NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:brithDay]; // Get necessary date components
@@ -195,6 +207,7 @@
         [Tools setValueForKey:[array objectAtIndex:1] key:@"city"];
         [Tools setValueForKey:[array objectAtIndex:2] key:@"district"];
         cell.cellContent.text=cellContentLableText;
+        [Tools setValueForKey:cellContentLableText key:@"cityAndDistrict"];
     }
     
     //开始动画
@@ -322,6 +335,7 @@
                             [Tools setValueForKey:[data objectForKey:@"userId"] key:@"userId"];
                             [Tools setValueForKey:[data objectForKey:@"token"] key:@"token"];
                             CarOwnersCertificationViewController *CarOwnersCertificationVC=[[CarOwnersCertificationViewController alloc]init];
+                            CarOwnersCertificationVC.fromMy=@"1";
                             CarOwnersCertificationVC.title=@"车主认证";
                             [self.navigationController pushViewController:CarOwnersCertificationVC animated:YES];
                         }

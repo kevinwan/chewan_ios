@@ -10,5 +10,5 @@
 
 @interface CPPhotoalbumManagement : BaseViewController
 @property (weak, nonatomic) IBOutlet UIView *photoView;
-
+@property (nonatomic, strong) NSArray *albumPhotos;
 @end
