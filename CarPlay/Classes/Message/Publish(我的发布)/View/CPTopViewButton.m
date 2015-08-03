@@ -32,7 +32,7 @@
  */
 - (void)setUp
 {
-    
+    self.userInteractionEnabled = NO;
     if (kScreenWidth == 320) {
         self.titleLabel.font = [UIFont systemFontOfSize:9];
     }else{
