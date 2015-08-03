@@ -182,6 +182,9 @@
     
     // 2.设置发布数量的字体大小、颜色
     NSDictionary *dictAttP1 = @{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:color}; // 属性字典
+    if(!self.taStatus.postNumber){
+        self.taStatus.postNumber = @"0";
+    }
     
     NSMutableAttributedString *publishAttStr = [[NSMutableAttributedString alloc] initWithString:[self.taStatus.postNumber stringByAppendingString:@"\n"]attributes:dictAttP1];
     
@@ -206,6 +209,10 @@
     // 2.设置发布数量的字体大小、颜色
     NSDictionary *dictAttC1 = @{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:color}; // 属性字典
     
+    if (!self.taStatus.subscribeNumber) {
+        self.taStatus.subscribeNumber = @"0";
+    }
+    
     NSMutableAttributedString *careAttStr = [[NSMutableAttributedString alloc] initWithString:[self.taStatus.subscribeNumber stringByAppendingString:@"\n"]attributes:dictAttC1];
     
     // 3.设置TA的发布的大小、颜色
@@ -227,6 +234,10 @@
     
     // 2.设置发布数量的字体大小、颜色
     NSDictionary *dictAttJ1 = @{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:color}; // 属性字典
+    
+    if (!self.taStatus.joinNumber) {
+        self.taStatus.joinNumber = @"0";
+    }
     
     NSMutableAttributedString *joinAttStr = [[NSMutableAttributedString alloc] initWithString:[self.taStatus.joinNumber stringByAppendingString:@"\n"]attributes:dictAttJ1];
     

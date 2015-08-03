@@ -17,6 +17,12 @@
 
 @interface CPTaDetailsController ()
 
+// 用户id
+@property (nonatomic,copy) NSString *userId2;
+
+// 用户token
+@property (nonatomic,copy) NSString *token;
+
 // 存储所有他详情页的数据
 @property (nonatomic,strong) CPTaDetailsStatus *taStatus;
 
@@ -56,19 +62,26 @@
     
     // 设置请求参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
-    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
-    
+//    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
+//    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
+    if (self.userId2 != nil) {
+        parameters[@"userId"] = self.userId2;
+    }
+    if (self.token != nil) {
+        parameters[@"token"] = self.token;
+    }
     
     // 获取网络访问者
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
+    NSString *getUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/user/%@/info",self.userId1];
+    
     
     // 发送请求
-    [manager GET:@"http://cwapi.gongpingjia.com/v1/user/846de312-306c-4916-91c1-a5e69b158014/info" parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
+    [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
         
 
-//        NSLog(@"%@",responseObject[@"data"]);
+        NSLog(@"%@",responseObject[@"data"]);
         
         // 字典转模型
         self.taStatus = [CPTaDetailsStatus objectWithKeyValues:responseObject[@"data"]];
@@ -177,7 +190,7 @@
     return 200;
 }
 
-#pragma mark - lazy
+#pragma mark - lazy(懒加载)
 
 - (NSCache *)rowHeightCache{
     if (!_rowHeightCache) {
@@ -185,5 +198,22 @@
     }
     return _rowHeightCache;
 }
+
+// 用户id
+- (NSString *)userId2{
+    if (!_userId2) {
+        _userId2 = [Tools getValueFromKey:@"userId"];
+    }
+    return _userId2;
+}
+
+// 用户token
+- (NSString *)token{
+    if (!_token) {
+        _token = [Tools getValueFromKey:@"token"];
+    }
+    return _token;
+}
+
 
 @end

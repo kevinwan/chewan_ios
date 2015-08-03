@@ -22,6 +22,12 @@
 
 @interface CPCityController ()<UITableViewDataSource,UITableViewDelegate, CPSelectViewDelegate>
 
+// 用户id
+@property (nonatomic,copy) NSString *userId;
+
+// 用户token
+@property (nonatomic,copy) NSString *token;
+
 // 蒙板遮罩
 @property (nonatomic,strong) UIButton *coverBtn;
 
@@ -109,16 +115,18 @@
 //    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
 //    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
 //    parameters[@"city"] = @"南京";
-    
+    if (self.userId != nil) {
+        parameters[@"userId"] = self.userId;
+    }
+    if (self.token != nil) {
+        parameters[@"token"] = self.token;
+    }
     
     // 获取网络管理者
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     // 发送请求
     [manager GET:@"http://cwapi.gongpingjia.com/v1/activity/list" parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
-        // 取出活动数据
-
-//        NSLog(@"%@",responseObject[@"data"]);
         
         // 取出活动数据
         NSArray *dicts = responseObject[@"data"];
@@ -193,7 +201,24 @@
 }
 
 
-#pragma mark - lazy
+// 点击cell跳转到活动详情页
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    // 获取活动详情storyboard中的控制器
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPActiveDetailsController" bundle:nil];
+    CPActiveDetailsController *ac = sb.instantiateInitialViewController;
+    
+    // 取出对应行模型
+    CPHomeStatus *status = self.status[indexPath.row];
+    
+    ac.activeId = status.activityId;
+    
+    [self.navigationController pushViewController:ac animated:YES];
+    
+}
+
+
+#pragma mark - lazy(懒加载)
 - (UIButton *)coverBtn
 {
     if (_coverBtn == nil) {
@@ -207,6 +232,7 @@
     return _coverBtn;
 }
 
+// 行高缓存
 - (NSCache *)rowHeightCache{
     if (!_rowHeightCache) {
         _rowHeightCache = [[NSCache alloc] init];
@@ -214,24 +240,26 @@
     return _rowHeightCache;
 }
 
-// 点击cell跳转到活动详情页
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    // 获取活动详情storyboard中的控制器
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPActiveDetailsController" bundle:nil];
-    CPActiveDetailsController *ac = sb.instantiateInitialViewController;
-    
-    // 取出对应行模型
-    CPHomeStatus *status = self.status[indexPath.row];
-    ac.activeId = status.activityId;
-    
-    [self.navigationController pushViewController:ac animated:YES];
-    
+// 用户id
+- (NSString *)userId{
+    if (!_userId) {
+       _userId = [Tools getValueFromKey:@"userId"];
+    }
+    return _userId;
+}
+
+// 用户token
+- (NSString *)token{
+    if (!_token) {
+        _token = [Tools getValueFromKey:@"token"];
+    }
+    return _token;
 }
 
 
 
 
+#pragma mark - 按钮点击事件
 // 创建活动
 - (IBAction)createActive:(id)sender {
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPCreatActivityController" bundle:nil];
