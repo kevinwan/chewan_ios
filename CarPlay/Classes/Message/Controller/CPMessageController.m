@@ -42,6 +42,7 @@ typedef enum {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.tableFooterView = [UIView new];
     
 //    BOOL isLogin = YES;[[Tools getValueFromKey:NOTIFICATION_HASLOGIN] boolValue];
 //    

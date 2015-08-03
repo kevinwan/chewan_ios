@@ -37,22 +37,20 @@
 @property (nonatomic, strong) CPMoreButton *moreBtn;
 
 // 显示没有参与人数的label
-@property (nonatomic, strong) UILabel *noJoinLabel;
+@property (nonatomic, strong) CPMoreButton *noJoinButton;
 
 @end
 
 @implementation CPMySubscribeBottomView
 
-- (UILabel *)noJoinLabel
+- (CPMoreButton *)noJoinButton
 {
-    if (_noJoinLabel == nil) {
-        _noJoinLabel = [[UILabel alloc] init];;
-        _noJoinLabel.text = @"还没有人参与,赶紧邀请小伙伴吧~";
-        _noJoinLabel.font = [UIFont systemFontOfSize:12];
-        _noJoinLabel.textColor = [Tools getColor:@"aab2bd"];
-        _noJoinLabel.hidden = YES;
+    if (_noJoinButton == nil) {
+        _noJoinButton = [CPMoreButton buttonWithType:UIButtonTypeCustom];
+        [_noJoinButton setTitle:@"0" forState:UIControlStateNormal];
+        _noJoinButton.hidden = YES;
     }
-    return _noJoinLabel;
+    return _noJoinButton;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -103,7 +101,7 @@
         [bottomView addSubview:btn];
     }
     
-    [bottomView addSubview:self.noJoinLabel];
+    [bottomView addSubview:self.noJoinButton];
 
 }
 
@@ -153,10 +151,10 @@
     self.moreBtn.y = personBtnY;
     
     
-    self.noJoinLabel.x = 10;
-    self.noJoinLabel.width = self.width;
-    self.noJoinLabel.height = 20;
-    self.noJoinLabel.centerY = self.bottomView.centerYInSelf;
+    self.noJoinButton.x = personBtnStartX;
+    self.noJoinButton.width = personBtnW;
+    self.noJoinButton.height = personBtnW;
+    self.noJoinButton.y = personBtnY;
 }
 
 - (void)setModel:(CPMySubscribeModel *)model
@@ -195,9 +193,9 @@
     [self.chatBtn setTitle:@"我要去玩" forState:UIControlStateNormal];
     
     if (count == 0) {
-        self.noJoinLabel.hidden = NO;
+        self.noJoinButton.hidden = NO;
     }else{
-        self.noJoinLabel.hidden = YES;
+        self.noJoinButton.hidden = YES;
     }
 }
 
