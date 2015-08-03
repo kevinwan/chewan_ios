@@ -90,10 +90,15 @@ typedef enum _BasicViewControllerInfo {
     eBasicControllerInfo_ImageName,
     eBasicControllerInfo_BadgeString
 }BasicViewControllerInfo;
-#define CPUnLogin @"CPUnLogin"
+#define CPIsLogin ([Tools cpIsLogin]) // 是否登录成功
+#define CPUnLogin (![Tools cpIsLogin]) // 是否登录成功
 #define CPSuccess ([responseObject[@"result"] intValue] == 0)
 #define CPFailure ([responseObject[@"result"] intValue] == 1)
-
+#define ZYJumpToLoginView \
+if (CPUnLogin) {\
+    [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];\
+    return;\
+}
 #pragma mark - runtime macros
 // check if runs on iPad
 #define IS_IPAD_RUNTIME (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)

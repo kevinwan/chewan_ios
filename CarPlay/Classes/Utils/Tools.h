@@ -12,6 +12,7 @@
 //公共的静态方法，都写在这里，方便调用
 
 @interface Tools : NSObject
++ (BOOL)cpIsLogin;// 车玩是否登录
 +(NSString *)shortUrl:(NSString *)url;
 +(BOOL) isEmptyOrNull:(NSString *) str;
 +(NSString *) trimString:(NSString *) str;
