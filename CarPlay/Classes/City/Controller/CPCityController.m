@@ -16,6 +16,7 @@
 #import "CPActiveDetailsController.h"
 #import "CPSelectView.h"
 #import "MJRefresh.h"
+#import "SVProgressHUD.h"
 
 
 
@@ -82,14 +83,20 @@
     self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
   
     // 马上进入刷新状态
-//    [self.tableView.header beginRefreshing];
+    [self.tableView.header beginRefreshing];
     
     
 }
 
-// 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
+// 下拉刷新
 - (void)loadNewData{
     [self setupLoadStatus];
+//    [SVProgressHUD showWithStatus:@"hello"];
+//    [self showLoading];
+//    [self disMiss];
+//    if (CPNoNetWork) {
+//        self
+//    }
     
 }
 
@@ -99,9 +106,9 @@
     // 封装请求参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     parameters[@"key"] = @"hot";
-    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
-    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
-    parameters[@"city"] = @"南京";
+//    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
+//    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
+//    parameters[@"city"] = @"南京";
     
     
     // 获取网络管理者
@@ -126,8 +133,7 @@
         [self.tableView.header endRefreshing];
         
     } failure:^(NSURLSessionDataTask * task, NSError * error) {
-        //
-        NSLog(@"%@",@"失败");
+        [SVProgressHUD showWithStatus:@"获取用户信息失败"];
     }];
     
 }

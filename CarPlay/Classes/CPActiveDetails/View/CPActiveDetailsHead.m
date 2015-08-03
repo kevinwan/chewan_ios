@@ -110,7 +110,7 @@
     [self.picColView registerClass:[CPActivePicCell class] forCellWithReuseIdentifier:[CPActivePicCell identifier]];
     
     _activeStatus = activeStatus;
-    
+
     // 取出用户
     CPActiveUser *user = _activeStatus.organizer;
     
@@ -183,6 +183,13 @@
     self.myPlay.layer.cornerRadius = 12;
     self.myPlay.layer.masksToBounds = YES;
     
+    if (activeStatus.isOrganizer) {
+        [self.myPlay setTitle:@"成员管理" forState:UIControlStateNormal];
+    }else if (activeStatus.isMember){
+        [self.myPlay setTitle:@"已加入" forState:UIControlStateNormal];
+    }else{
+        [self.myPlay setTitle:@"我要去玩" forState:UIControlStateNormal];
+    }
  
     
     // 发布时间

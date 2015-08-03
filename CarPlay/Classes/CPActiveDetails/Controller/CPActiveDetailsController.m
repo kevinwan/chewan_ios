@@ -99,8 +99,8 @@
     
     // 封装请求参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
-    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
+//    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
+//    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
     
     // 获取网络管理者
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -137,8 +137,8 @@
     
     // 封装请求参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
-    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
+//    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
+//    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
     
     // 获取网络访问者
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -147,8 +147,9 @@
     
     // 发送请求
     [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
-        //
-//         NSLog(@"%@",responseObject[@"data"]);
+        
+//        NSLog(@"%@",self.activeId);
+//         NSLog(@"%@",responseObject);
         self.discussStatus = [CPDiscussStatus objectArrayWithKeyValuesArray:responseObject[@"data"]];
 //        NSLog(@"%@",self.discussStatus);
         
@@ -290,11 +291,6 @@
         //
         NSLog(@"调用失败");
     }];
-    
-    
-    
-    
-    
     
     
     
