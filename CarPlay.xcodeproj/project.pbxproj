@@ -1684,22 +1684,12 @@
 		E36C96141B53BA3200D3EDBB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E36CC9621B6C7DA400380E53 /* LineDashPolyline.h */,
-				E36CC9631B6C7DA400380E53 /* LineDashPolyline.m */,
-				E36CC95F1B6C7D9300380E53 /* GeocodeAnnotation.h */,
-				E36CC9601B6C7D9300380E53 /* GeocodeAnnotation.m */,
-				E36CC95C1B6C7D8B00380E53 /* CommonUtility.h */,
-				E36CC95D1B6C7D8B00380E53 /* CommonUtility.m */,
-				E3D8793D1B57475400228356 /* CPActivityModel.h */,
+				E3F72C281B6F8EFF006C97E4 /* MapModel */,
 				E3D8793E1B57475400228356 /* CPActivityModel.m */,
-				E3FCDD481B5E34E200F9C379 /* CPAnnotation.h */,
-				E3FCDD491B5E34E200F9C379 /* CPAnnotation.m */,
 				E3E315021B5E551A00FB0B55 /* CPActivityApplyModel.h */,
 				E3E315031B5E551A00FB0B55 /* CPActivityApplyModel.m */,
 				E3C611471B5F328C00B7E73A /* CPCreatActivityModel.h */,
 				E3C611481B5F328C00B7E73A /* CPCreatActivityModel.m */,
-				E3C6114D1B5F498600B7E73A /* CPLocationModel.h */,
-				E3C6114E1B5F498600B7E73A /* CPLocationModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2165,6 +2155,24 @@
 				E3EEE0011B53952E00595333 /* UIView+Extension.m */,
 			);
 			path = Categarys;
+			sourceTree = "<group>";
+		};
+		E3F72C281B6F8EFF006C97E4 /* MapModel */ = {
+			isa = PBXGroup;
+			children = (
+				E36CC95C1B6C7D8B00380E53 /* CommonUtility.h */,
+				E36CC95D1B6C7D8B00380E53 /* CommonUtility.m */,
+				E36CC9621B6C7DA400380E53 /* LineDashPolyline.h */,
+				E36CC9631B6C7DA400380E53 /* LineDashPolyline.m */,
+				E36CC95F1B6C7D9300380E53 /* GeocodeAnnotation.h */,
+				E36CC9601B6C7D9300380E53 /* GeocodeAnnotation.m */,
+				E3D8793D1B57475400228356 /* CPActivityModel.h */,
+				E3FCDD481B5E34E200F9C379 /* CPAnnotation.h */,
+				E3FCDD491B5E34E200F9C379 /* CPAnnotation.m */,
+				E3C6114D1B5F498600B7E73A /* CPLocationModel.h */,
+				E3C6114E1B5F498600B7E73A /* CPLocationModel.m */,
+			);
+			name = MapModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -39,8 +39,8 @@
 // 偏好设置
 #define CPUserDefaults [NSUserDefaults standardUserDefaults]
 // Document的路径
-#define CPDocmentPath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]
-#define CPCachePath [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject]
+#define CPDocmentPath(fileName) [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:fileName]
+#define CPCachePath(fileName) [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:fileName]
 #define kStatusBarHight 20
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height  //屏幕的高度
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width    //屏幕的宽度
@@ -61,5 +61,5 @@
 
 
 #import <MJExtension/MJExtension.h>
-
+#import <MJRefresh.h>
 #endif

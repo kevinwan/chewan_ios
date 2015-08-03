@@ -222,8 +222,10 @@ updatingLocation:(BOOL)updatingLocation
        MAAnnotationView *view = [self.mapView viewForAnnotation:annotation];
         CGRect annitationRect = [view convertRect:view.bounds toView:[UIApplication sharedApplication].keyWindow];
         if (CGRectContainsPoint(annitationRect, touchPoint)) {
-            coordinate = annotation.coordinate;
-            break;
+            
+            [SVProgressHUD showWithStatus:@"加载中"];
+            [self searchReGeocodeWithCoordinate:annotation.coordinate];
+            return;
         }
     }
     
@@ -262,15 +264,6 @@ updatingLocation:(BOOL)updatingLocation
     }
     
     [self setDescViewWithModel:response];
-    //通过AMapPlaceSearchResponse对象处理搜索结果
-    NSString *strCount = [NSString stringWithFormat:@"count: %zd",response.count];
-    NSString *strSuggestion = [NSString stringWithFormat:@"Suggestion: %@", response.suggestion];
-    NSString *strPoi = @"";
-    for (AMapPOI *p in response.pois) {
-        strPoi = [NSString stringWithFormat:@"%@\nPOI: %@", strPoi, p.description];
-    }
-    NSString *result = [NSString stringWithFormat:@"%@ \n %@ \n %@", strCount, strSuggestion, strPoi];
-    NSLog(@"Place: %@", result);
 }
 
 - (void)removeAnnotaionNoSelf
@@ -352,6 +345,7 @@ updatingLocation:(BOOL)updatingLocation
  */
 - (void)onGeocodeSearchDone:(AMapGeocodeSearchRequest *)request response:(AMapGeocodeSearchResponse *)response
 {
+    [SVProgressHUD dismiss];
     if (response.geocodes.count == 0)
     {
         [SVProgressHUD showInfoWithStatus:@"没有搜索到符合条件的地点"];
@@ -413,6 +407,35 @@ updatingLocation:(BOOL)updatingLocation
         [self.mapView addAnnotations:annotations];
     }
     
+}
+
+#pragma mark - 逆地理编码
+- (void)searchReGeocodeWithCoordinate:(CLLocationCoordinate2D)coordinate
+{
+    AMapReGeocodeSearchRequest *regeo = [[AMapReGeocodeSearchRequest alloc] init];
+    
+    regeo.location = [AMapGeoPoint locationWithLatitude:coordinate.latitude longitude:coordinate.longitude];
+    regeo.requireExtension = YES;
+    
+    [self.searchApi AMapReGoecodeSearch:regeo];
+}
+
+/* 逆地理编码回调. */
+- (void)onReGeocodeSearchDone:(AMapReGeocodeSearchRequest *)request response:(AMapReGeocodeSearchResponse *)response
+{
+    [SVProgressHUD dismiss];
+    if (response.regeocode != nil)
+    {
+        [self setDescWithRequest:request ReGeocode:response.regeocode];
+//        DLog(@"%@",response.regeocode.formattedAddress);
+//        
+//        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(request.location.latitude, request.location.longitude);
+//        ReGeocodeAnnotation *reGeocodeAnnotation = [[ReGeocodeAnnotation alloc] initWithCoordinate:coordinate
+//                                                                                         reGeocode:response.regeocode];
+//        
+//        [self.mapView addAnnotation:reGeocodeAnnotation];
+//        [self.mapView selectAnnotation:reGeocodeAnnotation animated:YES];
+    }
 }
 
 - (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id<MAAnnotation>)annotation
@@ -492,6 +515,7 @@ updatingLocation:(BOOL)updatingLocation
     self.resultTableView.hidden = YES;
     AMapTip *tip = self.tips[indexPath.row];
     self.selectTip = tip;
+    self.selectName = tip.name;
     NSString *key = [NSString stringWithFormat:@"%@%@", tip.district, tip.name];
     [self clearAndSearchGeocodeWithKey:key adcode:tip.adcode];
     
@@ -507,6 +531,7 @@ updatingLocation:(BOOL)updatingLocation
     AMapPOI *poi = [reGeocode.pois firstObject];
     
     model.location = poi.name;
+    self.selectName = poi.name;
     model.latitude = @(poi.location.latitude);
     model.longitude = @(poi.location.longitude);
     model.city = poi.city;
@@ -542,6 +567,34 @@ updatingLocation:(BOOL)updatingLocation
     if (addressLabel.text.length == 0) {
         addressLabel.text = model.address;
     }
+}
+
+- (void)setDescWithRequest:(AMapReGeocodeSearchRequest *)request ReGeocode:(AMapReGeocode *)regeocode
+{
+    self.descLocationView.hidden = NO;
+    
+    CPLocationModel *model = [[CPLocationModel alloc] init];
+    model.latitude = @(request.location.latitude);
+    model.longitude = @(request.location.longitude);
+    model.city = regeocode.addressComponent.city;
+    if (model.city.length == 0) {
+        model.city = regeocode.addressComponent.province;
+    }
+    model.province = regeocode.addressComponent.province;
+    model.district = regeocode.addressComponent.district;
+    model.location = self.selectName;
+    model.address = regeocode.formattedAddress;
+    
+    self.selectLocation = model;
+    UILabel *nameLabel = (UILabel *)[self.descLocationView viewWithTag:3];
+    
+    nameLabel.text = self.selectName;
+    self.searchBar.text = self.selectName;
+    self.searchBar.placeholder = self.selectName;
+
+    UILabel *addressLabel = (UILabel *)[self.descLocationView viewWithTag:4];
+    addressLabel.text = regeocode.formattedAddress;
+
 }
 
 
@@ -613,11 +666,18 @@ updatingLocation:(BOOL)updatingLocation
  */
 - (void)mapView:(MAMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
-    if (mapView.zoomLevel > 18.5) {
-        [mapView setZoomLevel:18.5 animated:YES];
+    if (mapView.zoomLevel > 18.8) {
+        [mapView setZoomLevel:18.8 animated:YES];
     }
 }
 
+/**
+ *  用户直接点击键盘
+ *
+ *  @param textField textField description
+ *
+ *  @return return value description
+ */
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [self searchBtnClick];

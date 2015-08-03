@@ -63,7 +63,7 @@
         [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:versionKey];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
-    
+    [self loadUnReadData];
     return YES;
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -135,5 +135,34 @@
         [self.window makeKeyAndVisible];
     }
 }
+
+- (void)loadUnReadData
+{
+    if (CPUnLogin) {
+        return;
+    }
+    NSString *userid = [Tools getValueFromKey:@"userId"];
+    NSString *token = [Tools getValueFromKey:@"token"];
+    NSString *url = [NSString stringWithFormat:@"v1/user/%@/message/count?token=%@", userid, token];
+    [ZYNetWorkTool getWithUrl:url params:nil success:^(id responseObject) {
+        if (CPSuccess) {
+            
+            NSDictionary *comment = responseObject[@"data"][@"comment"];
+            
+            NSDictionary *application = responseObject[@"data"][@"application"];
+            
+            NSUInteger newMsgCount = [comment[@"count"] intValue];
+            NSUInteger activityApplyCount = [application[@"count"] intValue];
+            
+            UITabBarController *tabVc = (UITabBarController *)[UIApplication sharedApplication].keyWindow.rootViewController;
+            UIViewController *vc = tabVc.childViewControllers[1];
+            vc.tabBarItem.badgeValue = [NSString stringWithFormat:@"%zd",newMsgCount+ activityApplyCount];
+            
+        }
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
 
 @end

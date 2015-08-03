@@ -14,6 +14,16 @@
 
 @implementation Tools
 
++ (BOOL)cpIsLogin
+{
+    NSString *userId = [Tools getValueFromKey:@"userId"];
+    NSString *token = [Tools getValueFromKey:@"token"];
+    if (userId.length == 0 || token.length == 0) {
+        return NO;
+    }
+    return YES;
+}
+
 +(BOOL) isEmptyOrNull:(NSString *) str {
     if (!str) {
         // null object
