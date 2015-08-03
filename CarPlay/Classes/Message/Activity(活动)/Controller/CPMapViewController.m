@@ -115,7 +115,6 @@
     self.view.backgroundColor = [UIColor whiteColor];
     _mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
     _mapView.delegate = self;
-    _mapView.zoomLevel = 5;
     [_mapView setUserTrackingMode:MAUserTrackingModeFollow];
     
     [self.view addSubview:_mapView];
@@ -140,12 +139,14 @@
     [self.view addSubview:btn];
     
     UITableView *tableView = [[UITableView alloc] init];
+    tableView.layer.cornerRadius = 3;
+    tableView.clipsToBounds = YES;
     tableView.rowHeight = 50;
     tableView.hidden = YES;
     tableView.delegate = self;
     tableView.dataSource = self;
     [self.view addSubview:tableView];
-    tableView.frame = CGRectMake(searchBar.x, searchBar.bottom,kScreenWidth - 2 * searchBar.x , kScreenHeight - searchBar.bottom - 44);
+    tableView.frame = CGRectMake(searchBar.x, searchBar.bottom,kScreenWidth - 2 * searchBar.x , kScreenHeight - searchBar.bottom - 54);
     tableView.tableFooterView = [[UIView alloc] init];
     self.resultTableView = tableView;
 
@@ -214,7 +215,18 @@ updatingLocation:(BOOL)updatingLocation
     }
     
     CGPoint touchPoint = [gestureRecognizer locationInView:self.mapView];//这里touchPoint是点击的某点在地图控件中的位置
+    
     CLLocationCoordinate2D coordinate = [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];//这里touchMapCoordinate就是该点的经纬度了
+    
+    for (GeocodeAnnotation *annotation in self.mapView.annotations) {
+       MAAnnotationView *view = [self.mapView viewForAnnotation:annotation];
+        CGRect annitationRect = [view convertRect:view.bounds toView:[UIApplication sharedApplication].keyWindow];
+        if (CGRectContainsPoint(annitationRect, touchPoint)) {
+            coordinate = annotation.coordinate;
+            break;
+        }
+    }
+    
     // 利用反地理编码获取位置之后设置标题
     [SVProgressHUD showWithStatus:@"加载中"];
     
@@ -532,6 +544,7 @@ updatingLocation:(BOOL)updatingLocation
     }
 }
 
+
 /**
  *  选中地址
  */
@@ -603,6 +616,12 @@ updatingLocation:(BOOL)updatingLocation
     if (mapView.zoomLevel > 18.5) {
         [mapView setZoomLevel:18.5 animated:YES];
     }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self searchBtnClick];
+    return YES;
 }
 
 @end

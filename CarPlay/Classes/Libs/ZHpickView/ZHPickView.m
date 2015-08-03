@@ -240,7 +240,7 @@
     UIButton *left = [UIButton buttonWithType:UIButtonTypeCustom];
     left.titleLabel.font = [UIFont systemFontOfSize:16];
     [left setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    [left setTitle:@"      取消" forState:UIControlStateNormal];
+    [left setTitle:@"      取消      " forState:UIControlStateNormal];
     [left sizeToFit];
     [left addTarget:self action:@selector(remove) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *lefttem = [[UIBarButtonItem alloc] initWithCustomView:left];
@@ -250,7 +250,7 @@
     UIButton *right = [UIButton buttonWithType:UIButtonTypeCustom];
     right.titleLabel.font = [UIFont systemFontOfSize:16];
     [right setTitleColor:[Tools getColor:@"fc6e51"] forState:UIControlStateNormal];
-    [right setTitle:@"确定     " forState:UIControlStateNormal];
+    [right setTitle:@"      确定     " forState:UIControlStateNormal];
     [right sizeToFit];
     [right addTarget:self action:@selector(doneClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:right];
@@ -477,7 +477,12 @@
 
 -(void)remove{
     [[NSNotificationCenter defaultCenter] postNotificationName:@"remove" object:nil userInfo:@{@"info" : @(self.tag)}];
-    [self removeFromSuperview];
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        self.y = kScreenHeight;
+    }completion:^(BOOL finished) {
+        [self removeFromSuperview];
+    }];
 }
 -(void)show{
     
@@ -530,7 +535,11 @@
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"remove" object:nil userInfo:@{@"info" : @(self.tag)}];
-    [self removeFromSuperview];
+    [UIView animateWithDuration:0.25 animations:^{
+        self.y = kScreenHeight;
+    }completion:^(BOOL finished) {
+        [self removeFromSuperview];
+    }];
 }
 /**
  *  设置PickView的颜色
