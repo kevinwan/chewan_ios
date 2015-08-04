@@ -17,16 +17,20 @@
 #import "MembersManageController.h"
 #import "CPDiscussCell.h"
 #import "CPTaDetailsController.h"
+#import "CPEditActivityController.h"
 #import "UIView+Dealer.h"
 #import "NSDictionary+Dealer.h"
 #import "AppAppearance.h"
 
-@interface CPActiveDetailsController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
+@interface CPActiveDetailsController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
 
-// 活动创建者ID
+// 用户ID
 @property (nonatomic,copy) NSString *userId;
 
-// 活动创建者token
+// 活动创建者
+@property (nonatomic,copy) NSString *createrId;
+
+// 用户token
 @property (nonatomic,copy) NSString *token;
 
 // tableView
@@ -41,6 +45,13 @@
 // 文本输入框
 @property (weak, nonatomic) IBOutlet UITextField *inputView;
 
+// 活动按钮
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *editorActiveBtn;
+
+// 编辑活动点击
+- (IBAction)editorActive:(id)sender;
+
+
 // 缓存cell高度（线程安全、内存紧张时会自动释放、不会拷贝key）
 @property (nonatomic,strong) NSCache *rowHeightCache;
 
@@ -50,10 +61,6 @@
 // 存储所有评论数据
 @property (nonatomic,strong) NSArray *discussStatus;
 
-/** 是否为活动创建者 */
-@property (nonatomic,copy) NSString *isOrganizer;
-/** 是否为活动成员 */
-@property (nonatomic,copy) NSString  *isMember;
 //遮盖
 @property (nonatomic, strong) UIButton *cover;
 @property (nonatomic, strong) UIView *carView;
@@ -78,6 +85,9 @@
     // 加载键盘处理事件
     [self loadKeyboard];
     
+    // 设置标题
+    self.title = @"活动详情";
+    
 }
 
 
@@ -87,8 +97,7 @@
 - (void)loadHeadView{
     // 创建tableheadview
     CPActiveDetailsHead *headView = [CPActiveDetailsHead headView:self];
-    
-//    headView.frame.size.height = [headView xibHeightWithActiveStatus:self.activeStatus];
+
     CGFloat headViewX = 0;
     CGFloat headViewY = 0;
     CGFloat headViewW = [UIScreen mainScreen].bounds.size.width;
@@ -101,7 +110,7 @@
             UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil];
             
             CPTaDetailsController *taViewController = sb.instantiateInitialViewController;
-            taViewController.userId1 = self.userId;
+            taViewController.targetUserId = self.createrId;
             
             [self.navigationController pushViewController:taViewController animated:YES];
 
@@ -123,14 +132,13 @@
     
     // 封装请求参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-//    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
-//    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
-//    if (self.userId != nil) {
-//        parameters[@"userId"] = self.userId;
-//    }
-//    if (self.token != nil) {
-//        parameters[@"token"] = self.token;
-//    }
+
+    if (self.userId != nil) {
+        parameters[@"userId"] = self.userId;
+    }
+    if (self.token != nil) {
+        parameters[@"token"] = self.token;
+    }
     
     // 获取网络管理者
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -142,15 +150,20 @@
     [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
         
         
-//        NSLog(@"%@",responseObject[@"data"]);
-        
         NSDictionary *dicts = responseObject[@"data"];
         
         // 取出活动数据
         self.activeStatus = [CPActiveStatus objectWithKeyValues:dicts];
         
         // 取出被访问者的id
-//        self.userId = self.activeStatus.organizer.userId;
+        self.createrId = self.activeStatus.organizer.userId;
+        
+        // 设置编辑活动按钮
+        if (self.activeStatus.isOrganizer) {
+            self.editorActiveBtn.title = @"编辑活动";
+        }else{
+            [self.editorActiveBtn setTitle:@"关注"];
+        }
         
         
         // 加载headview
@@ -160,8 +173,7 @@
         [self.tableView reloadData];
         
     } failure:^(NSURLSessionDataTask * task, NSError * error) {
-        //
-        NSLog(@"%@",error);
+       
     }];
 }
 
@@ -172,9 +184,12 @@
     // 封装请求参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
 
-//    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
-//    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
-    
+    if (self.userId != nil) {
+        parameters[@"userId"] = self.userId;
+    }
+    if (self.token != nil) {
+        parameters[@"token"] = self.token;
+    }
     
     
     // 获取网络访问者
@@ -185,13 +200,11 @@
     // 发送请求
     [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
         
-//        NSLog(@"%@",self.activeId);
-//         NSLog(@"%@",responseObject);
         self.discussStatus = [CPDiscussStatus objectArrayWithKeyValuesArray:responseObject[@"data"]];
-//        NSLog(@"%@",self.discussStatus);
+
         
     } failure:^(NSURLSessionDataTask * task, NSError * error) {
-        //
+        
     }];
     
 }
@@ -253,14 +266,11 @@
 #pragma mark -数据源方法
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-//    return 10;
+
     return self.discussStatus.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-//        UITableViewCell *cell = [[UITableViewCell alloc] init];
-//        cell.textLabel.text = @"123";
     
     CPDiscussCell *cell = [tableView dequeueReusableCellWithIdentifier:[CPDiscussCell identifier]];
     cell.discussStatus = self.discussStatus[indexPath.row];
@@ -310,19 +320,30 @@
     
     // 封装请求参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-//
-//    parameters[@"userId"] = @"4d672627-860c-4118-bcbd-2978aca469ad";
-//    parameters[@"token"] = @"4b35299f-8dc4-4999-bfaf-c0ad5c6aab43";
-    NSLog(@"%@",textField.text);
+
+    
+//    if (self.userId != nil) {
+//        parameters[@"userId"] = self.userId;
+//    }
+//    if (self.token != nil) {
+//        parameters[@"token"] = self.token;
+//    }
+    
+//    NSLog(@"%@",textField.text);
+//    NSLog(@"%@",self.activeId);
     parameters[@"comment"] = textField.text;
-    parameters[@"replyUserId"] = @"4d672627-860c-4118-bcbd-2978aca469ad";
     
     // 获取网络访问者
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    // 传递参数格式为josn
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
     
-    [manager POST:@"http://cwapi.gongpingjia.com/v1/activity/55838b12-7039-41e5-9150-6dd154de961b/comment?userId=846de312-306c-4916-91c1-a5e69b158014&token=750dd49c-6129-4a9a-9558-27fa74fc4ce7" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-        //
-//        NSLog(@"%@",responseObject[@"result"]);
+    // post地址
+    NSString *postUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/activity/%@/comment?userId=%@&token=%@",self.activeId,self.userId,self.token];
+    
+    [manager POST:postUrl parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+       
+//        NSLog(@"%@",responseObject);
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         //
@@ -337,24 +358,25 @@
 
 #pragma mark - lazy(懒加载)
 //// 用户id
-//- (NSString *)userId{
-//    if (!_userId) {
-//        _userId = [Tools getValueFromKey:@"userId"];
-//    }
-//    return _userId;
-//}
-//
-//// 用户token
-//- (NSString *)token{
-//    if (!_token) {
-//        _token = [Tools getValueFromKey:@"token"];
-//    }
-//    return _token;
-//}
+- (NSString *)userId{
+    if (!_userId) {
+        _userId = [Tools getValueFromKey:@"userId"];
+    }
+    return _userId;
+}
+
+// 用户token
+- (NSString *)token{
+    if (!_token) {
+        _token = [Tools getValueFromKey:@"token"];
+    }
+    return _token;
+}
 
 
 // 我要去玩按钮点击事件
 - (IBAction)GotoPlayButtonDidClick:(UIButton *)sender {
+    
     //登陆状态下可点 拿出创建者字段,非登陆 自动跳转登陆界面
     NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/info",self.activeId];
     [CPNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
@@ -366,8 +388,6 @@
             SQLog(@"%@",userId);
             SQLog(@"%@",strMember);
             SQLog(@"%@",self.activeId);
-            self.isOrganizer = strOrganizer;
-            self.isMember = strMember;
             //根据isOrganizer判断进入那个界面
             if ([strOrganizer isEqualToString:@"1"]) {
                 UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MembersManage" bundle:nil];
@@ -438,9 +458,9 @@
                 self.carxibTextFeild.delegate = self;
                 self.carxibTextFeild.font = [AppAppearance textMediumFont];
                 self.carxibTextFeild.textColor = [AppAppearance textDarkColor];
-
+                
             }
-
+            
         } else {
             [self.view alertError:responseObject];
         }
@@ -448,6 +468,14 @@
     } failure:^(NSError *error) {
         [self.view alertError:error];
     }];
+}
+
+// 编辑活动按钮
+- (IBAction)editorActive:(id)sender {
+    CPEditActivityController *vc = [UIStoryboard storyboardWithName:@"CPEditActivityController" bundle:nil].instantiateInitialViewController;
+    vc.data = [self.activeStatus keyValues]; // 字典
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 //点击提交
 - (IBAction)carxibButtonClick:(UIButton *)sender {
@@ -518,5 +546,4 @@
     }
     return _pickerArray;
 }
-
 @end
