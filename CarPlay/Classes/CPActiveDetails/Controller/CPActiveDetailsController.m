@@ -16,9 +16,19 @@
 #import "MembersController.h"
 #import "MembersManageController.h"
 #import "CPDiscussCell.h"
-
+#import "CPTaDetailsController.h"
+#import "CPEditActivityController.h"
 
 @interface CPActiveDetailsController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
+
+// 用户ID
+@property (nonatomic,copy) NSString *userId;
+
+// 活动创建者
+@property (nonatomic,copy) NSString *createrId;
+
+// 用户token
+@property (nonatomic,copy) NSString *token;
 
 // tableView
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -32,6 +42,10 @@
 // 文本输入框
 @property (weak, nonatomic) IBOutlet UITextField *inputView;
 
+// 编辑活动
+- (IBAction)editorActive:(id)sender;
+
+
 // 缓存cell高度（线程安全、内存紧张时会自动释放、不会拷贝key）
 @property (nonatomic,strong) NSCache *rowHeightCache;
 
@@ -40,6 +54,7 @@
 
 // 存储所有评论数据
 @property (nonatomic,strong) NSArray *discussStatus;
+
 
 @end
 
@@ -79,7 +94,10 @@
         headView.goTaDetails = ^{
             UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil];
             
-            [self.navigationController pushViewController:sb.instantiateInitialViewController animated:YES];
+            CPTaDetailsController *taViewController = sb.instantiateInitialViewController;
+            taViewController.userId1 = self.createrId;
+            
+            [self.navigationController pushViewController:taViewController animated:YES];
 
         };
     }
@@ -101,6 +119,12 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
 //    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
 //    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
+    if (self.userId != nil) {
+        parameters[@"userId"] = self.userId;
+    }
+    if (self.token != nil) {
+        parameters[@"token"] = self.token;
+    }
     
     // 获取网络管理者
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -118,6 +142,10 @@
         
         // 取出活动数据
         self.activeStatus = [CPActiveStatus objectWithKeyValues:dicts];
+        
+        // 取出被访问者的id
+        self.createrId = self.activeStatus.organizer.userId;
+        
         
         // 加载headview
         [self loadHeadView];
@@ -137,8 +165,11 @@
     
     // 封装请求参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+
 //    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
 //    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
+    
+    
     
     // 获取网络访问者
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -298,6 +329,23 @@
 }
 
 
+#pragma mark - lazy(懒加载)
+//// 用户id
+- (NSString *)userId{
+    if (!_userId) {
+        _userId = [Tools getValueFromKey:@"userId"];
+    }
+    return _userId;
+}
+
+// 用户token
+- (NSString *)token{
+    if (!_token) {
+        _token = [Tools getValueFromKey:@"token"];
+    }
+    return _token;
+}
+
 
 // 我要去玩按钮点击事件
 - (IBAction)GotoPlayButtonDidClick:(UIButton *)sender {
@@ -318,4 +366,11 @@
     }
 }
 
+// 编辑活动按钮
+- (IBAction)editorActive:(id)sender {
+    CPEditActivityController *vc = [UIStoryboard storyboardWithName:@"CPEditActivityController" bundle:nil].instantiateInitialViewController;
+    vc.data = [self.activeStatus keyValues]; // 字典
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
 @end

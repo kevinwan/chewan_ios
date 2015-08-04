@@ -295,12 +295,24 @@
     
 }
 
-
+// 点击头像跳转到他的详情页
 - (IBAction)iconBtnClick:(id)sender {
-    
-    if (self.goTaDetails != nil) {
-        // 通知控制器跳到他的详情页面
-        self.goTaDetails();
+    // 判断是否已登录
+    if ([Tools getValueFromKey:NOTIFICATION_HASLOGIN]) {
+        
+         // 已登录通知控制器跳到他的详情页面
+        if (self.goTaDetails != nil) {
+            self.goTaDetails();
+        }
+    }else{
+        
+        // 未登录跳到登录页面
+        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
     }
+    
+    
+    
+    
+    
 }
 @end
