@@ -156,19 +156,16 @@ typedef enum {
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    NSString *userId = [Tools getValueFromKey:@"userId"];
-    if (userId.length == 0) {
-        [SVProgressHUD showInfoWithStatus:@"你还没有登录,不能创建活动哦"];
+    
+    if (CPUnLogin){
         return;
     }
+    NSString *userId = [Tools getValueFromKey:@"userId"];
     NSString *url = [NSString stringWithFormat:@"v1/user/%@/seats",userId];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     NSString *token = [Tools getValueFromKey:@"token"];
     if (token){
         params[@"token"] = [Tools getValueFromKey:@"token"];
-    }else{
-        [SVProgressHUD showInfoWithStatus:@"你还没有登录,不能创建活动哦"];
-        return;
     }
     [ZYNetWorkTool getWithUrl:url params:params success:^(id responseObject) {
         if (CPSuccess){

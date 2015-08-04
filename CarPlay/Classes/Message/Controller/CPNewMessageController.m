@@ -109,13 +109,13 @@
     [CPNotificationCenter addObserver:self selector:@selector(tableViewEdit:) name:CPNewMsgEditNotifycation object:nil];
     
     self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
-    [self reRefreshData];
+    [self showLoading];
+    [self loadData];
 }
 
 - (void)reRefreshData
 {
-    [self showLoading];
-    [self loadData];
+    [self.tableView.header beginRefreshing];
 }
 
 - (void)loadData
@@ -126,12 +126,13 @@
         [self disMiss];
         [self.tableView.header endRefreshing];
         if (CPSuccess) {
+            // 清除之前的数据
             [self.items removeAllObjects];
+            
             NSArray *array = [CPNewMsgModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
             [self.items addObjectsFromArray:array];
             if (self.items.count == 0) {
                 [self showNoData];
-                return;
             }
             [self.tableView reloadData];
         }else{

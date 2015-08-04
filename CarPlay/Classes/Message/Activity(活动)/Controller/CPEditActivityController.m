@@ -55,6 +55,7 @@ typedef enum {
 #pragma mark - lazy
 - (CPCreatActivityModel *)currentModel
 {
+
     if (_currentModel == nil) {
         _currentModel = [[CPCreatActivityModel alloc] init];
     }

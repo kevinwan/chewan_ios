@@ -36,6 +36,8 @@ typedef enum {
     if (_timer == nil) {
         _timer = [NSTimer timerWithTimeInterval:180 target:self selector:@selector(loadData) userInfo:nil repeats:YES];
         [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
+        
+        [self loadData];
     }
     return _timer;
 }
@@ -47,21 +49,24 @@ typedef enum {
     if (CPUnLogin) {
         return;
     }else{
+        self.tableView.header = [CPRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+        
         [self timer];
     }
 }
-
+//
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    BOOL isLogin = YES;[[Tools getValueFromKey:NOTIFICATION_HASLOGIN] boolValue];
-    if (isLogin){
-        [self loadData];
+    if (CPUnLogin){
+        return;
+    }else{
         if (_timer == nil) {
             [self timer];
         }
     }
+    
 }
 
 - (void)loadData
@@ -70,6 +75,7 @@ typedef enum {
     NSString *token = [Tools getValueFromKey:@"token"];
     NSString *url = [NSString stringWithFormat:@"v1/user/%@/message/count?token=%@", userid, token];
     [ZYNetWorkTool getWithUrl:url params:nil success:^(id responseObject) {
+        [self.tableView.header endRefreshing];
         if (CPSuccess) {
             
             NSDictionary *comment = responseObject[@"data"][@"comment"];
@@ -91,9 +97,11 @@ typedef enum {
                 self.activityApplyNewMsgNumber.badgeValue = [NSString stringWithFormat:@"%zd", activityApplyCount];
             }
             
+            self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%zd", activityApplyCount + newMsgCount];
+            
         }
     } failure:^(NSError *error) {
-        
+        [self.tableView.header endRefreshing];
     }];
 }
 
@@ -113,10 +121,22 @@ typedef enum {
         self.activityApplyNewMsgNumber.badgeValue = @"0";
         self.activityApplyNewMsgNumber.hidden = YES;
         self.activityApplyMsgLabel.text = @"没有新的申请";
+        
+        if (self.leaveNewMsgNumber.badgeValue.integerValue > 0) {
+            self.tabBarItem.badgeValue = self.leaveNewMsgNumber.badgeValue;
+        }else{
+            self.tabBarItem.badgeValue = nil;
+        }
         CPActivityApplyControllerView *vc = [UIStoryboard storyboardWithName:@"CPActivityApplyControllerView" bundle:nil].instantiateInitialViewController;
         [self.navigationController pushViewController:vc animated:YES];
     }else{
         self.leaveNewMsgNumber.badgeValue = @"0";
+        
+        if (self.activityApplyNewMsgNumber.badgeValue.integerValue > 0) {
+            self.tabBarItem.badgeValue = self.activityApplyNewMsgNumber.badgeValue;
+        }else{
+            self.tabBarItem.badgeValue = nil;
+        }
         self.leaveNewMsgNumber.hidden = YES;
         self.leaveMsgLabel.text = @"没有新的消息";
         CPNewMessageController *newMsgVc = [UIStoryboard storyboardWithName:@"CPNewMessageController" bundle:nil].instantiateInitialViewController;
