@@ -127,8 +127,14 @@
     [self.genderAndAge setTitle:taStatus.age forState:UIControlStateNormal];
     
     // 设置车标
-    NSURL *carIconUrl = [NSURL URLWithString:taStatus.carBrandLogo];
-    [self.carBrandLogo sd_setImageWithURL:carIconUrl placeholderImage:[UIImage imageNamed:@"默认头像"]];
+    if (taStatus.carBrandLogo == nil || [taStatus.carBrandLogo isEqualToString:@""]) {    
+        self.carBrandLogo.hidden = YES;
+    }else{
+        self.carBrandLogo.hidden = NO;
+        NSURL *urlCarBrandLogo = [NSURL URLWithString:taStatus.carBrandLogo];
+        [self.carBrandLogo sd_setImageWithURL:urlCarBrandLogo placeholderImage:[UIImage imageNamed:@"默认头像"]];
+        
+    }
     
     // 设置状态
     NSString *tempCarModel = @"";     // 存储转换后的carModel
@@ -263,6 +269,10 @@
     // 1.添加5张图片到scrollView中
     for (int i = 0; i<self.photoCount; i++) {
         UIImageView *imageView = [[UIImageView alloc] init];
+        
+        // 设置图片显示格式
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+     
         
         // 设置frame
         CGFloat imageX = i * imageW;

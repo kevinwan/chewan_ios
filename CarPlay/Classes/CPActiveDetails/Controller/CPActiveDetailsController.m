@@ -357,7 +357,7 @@
 
 
 #pragma mark - lazy(懒加载)
-//// 用户id
+// 用户id
 - (NSString *)userId{
     if (!_userId) {
         _userId = [Tools getValueFromKey:@"userId"];
