@@ -17,9 +17,11 @@
 #import "MembersManageController.h"
 #import "CPDiscussCell.h"
 #import "CPTaDetailsController.h"
+#import "UIView+Dealer.h"
+#import "NSDictionary+Dealer.h"
+#import "AppAppearance.h"
 
-
-@interface CPActiveDetailsController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
+@interface CPActiveDetailsController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 
 // 活动创建者ID
 @property (nonatomic,copy) NSString *userId;
@@ -47,6 +49,18 @@
 
 // 存储所有评论数据
 @property (nonatomic,strong) NSArray *discussStatus;
+
+/** 是否为活动创建者 */
+@property (nonatomic,copy) NSString *isOrganizer;
+/** 是否为活动成员 */
+@property (nonatomic,copy) NSString  *isMember;
+//遮盖
+@property (nonatomic, strong) UIButton *cover;
+@property (nonatomic, strong) UIView *carView;
+@property (weak, nonatomic) IBOutlet UIView *carxibYesView;
+@property (weak, nonatomic) IBOutlet UIView *carxibNoVIew;
+@property (weak, nonatomic) IBOutlet UITextField *carxibTextFeild;
+@property (nonatomic, strong) NSMutableArray *pickerArray;
 
 @end
 
@@ -128,7 +142,7 @@
     [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
         
         
-        NSLog(@"%@",responseObject[@"data"]);
+//        NSLog(@"%@",responseObject[@"data"]);
         
         NSDictionary *dicts = responseObject[@"data"];
         
@@ -308,7 +322,7 @@
     
     [manager POST:@"http://cwapi.gongpingjia.com/v1/activity/55838b12-7039-41e5-9150-6dd154de961b/comment?userId=846de312-306c-4916-91c1-a5e69b158014&token=750dd49c-6129-4a9a-9558-27fa74fc4ce7" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         //
-        NSLog(@"%@",responseObject[@"result"]);
+//        NSLog(@"%@",responseObject[@"result"]);
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         //
@@ -341,21 +355,168 @@
 
 // 我要去玩按钮点击事件
 - (IBAction)GotoPlayButtonDidClick:(UIButton *)sender {
+    //登陆状态下可点 拿出创建者字段,非登陆 自动跳转登陆界面
+    NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/info",self.activeId];
+    [CPNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
+        if ([responseObject operationSuccess]) {
+            NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
+            NSString *strOrganizer = [formatter stringFromNumber:responseObject[@"data"][@"isOrganizer"]];
+            NSString *strMember = [formatter stringFromNumber:responseObject[@"data"][@"isMember"]];
+            NSString *userId = [Tools getValueFromKey:@"userId"];
+            SQLog(@"%@",userId);
+            SQLog(@"%@",strMember);
+            SQLog(@"%@",self.activeId);
+            self.isOrganizer = strOrganizer;
+            self.isMember = strMember;
+            //根据isOrganizer判断进入那个界面
+            if ([strOrganizer isEqualToString:@"1"]) {
+                UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MembersManage" bundle:nil];
+                
+                MembersManageController * vc = sb.instantiateInitialViewController;
+                vc.activityId = self.activeId;
+                [self.navigationController pushViewController:vc animated:YES];
+                
+            } else if ([strMember isEqualToString:@"1"]){
+                
+                UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Members" bundle:nil];
+                MembersController * vc = sb.instantiateInitialViewController;
+                vc.activityId = self.activeId;
+                [self.navigationController pushViewController:vc animated:YES];
+            } else {
+                // 遮盖
+                UIButton *cover = [[UIButton alloc] init];
+                self.cover = cover;
+                cover.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.2];
+                [cover addTarget:self action:@selector(coverClick) forControlEvents:UIControlEventTouchUpInside];
+                cover.frame = [UIScreen mainScreen].bounds;
+                [self.view.window addSubview:cover];
+                UIView *carView = [[[NSBundle mainBundle]loadNibNamed:@"CPOfferCar" owner:self options:nil]lastObject];
+                CGFloat carViewX = self.view.window.center.x;
+                CGFloat carViewY = self.view.window.center.y - 100;
+                carView.center = CGPointMake(carViewX, carViewY);
+                self.carView = carView;
+                [self.view.window addSubview:carView];
+                //注意加载之后才有xib
+                UITapGestureRecognizer *tapYes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapYes)];
+                [self.carxibYesView addGestureRecognizer:tapYes];
+                UITapGestureRecognizer *tapNo = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapNo)];
+                [self.carxibNoVIew addGestureRecognizer:tapNo];
+                NSString *userId = [Tools getValueFromKey:@"userId"];
+                NSString *token = [Tools getValueFromKey:@"token"];
+                NSString *urlStr = [NSString stringWithFormat:@"v1/user/%@/seats?token=%@",userId,token];
+                //主车提供后台返回的车 非车主最多提供两辆车
+                [ZYNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
+                    if ([responseObject operationSuccess]) {
+                        SQLog(@"%@",responseObject);
+                        NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
+                        NSString *str = [formatter stringFromNumber:responseObject[@"data"][@"isAuthenticated"]];
+                        if ([str isEqualToString:@"0"]) {
+                            NSArray *array = @[@"1",@"2"];
+                            [self.pickerArray removeAllObjects];
+                            [self.pickerArray  addObjectsFromArray:array];
+                        } else {
+                            NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
+                            int maxSeat = [[formatter stringFromNumber:responseObject[@"data"][@"maxValue"]] intValue];
+                            int minSeat = [[formatter stringFromNumber:responseObject[@"data"][@"minValue"]] intValue];
+                            [self.pickerArray removeAllObjects];
+                            for (int i = minSeat; i <= maxSeat; i++) {
+                                NSString *seat = [NSString stringWithFormat:@"%tu",i];
+                                [self.pickerArray addObject:seat];
+                            }
+                        }
+                        
+                    } else {
+                        [self.view alertError:responseObject];
+                    }
+                } failure:^(NSError *error) {
+                    [self.view alertError:error];
+                }];
+                UIPickerView *picker = [[UIPickerView alloc]init];
+                picker.delegate = self;
+                picker.dataSource = self;
+                self.carxibTextFeild.inputView = picker;
+                self.carxibTextFeild.delegate = self;
+                self.carxibTextFeild.font = [AppAppearance textMediumFont];
+                self.carxibTextFeild.textColor = [AppAppearance textDarkColor];
+
+            }
+
+        } else {
+            [self.view alertError:responseObject];
+        }
+        
+    } failure:^(NSError *error) {
+        [self.view alertError:error];
+    }];
+}
+//点击提交
+- (IBAction)carxibButtonClick:(UIButton *)sender {
     
-    if ([sender.titleLabel.text isEqualToString:@"成员管理"]) {
-        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MembersManage" bundle:nil];
-        
-        MembersManageController * vc = sb.instantiateInitialViewController;
-        vc.activityId = self.activeId;
-        [self.navigationController pushViewController:vc animated:YES];
-        
+    NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/join",self.activeId];
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    NSString *seatStr = self.carxibTextFeild.text;
+    if (seatStr.length!= 0) {
+        parameters[@"seat"] = seatStr;
     } else {
-        
-        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MembersManage" bundle:nil];
-        MembersController * vc = sb.instantiateInitialViewController;
-        vc.activityId = self.activeId;
-        [self.navigationController pushViewController:vc animated:YES];
+        parameters[@"seat"] = @"0";
     }
+    
+    [self coverClick];
+    [CPNetWorkTool postJsonWithUrl:urlStr params:parameters success:^(id responseObject) {
+        if ([responseObject operationSuccess]) {
+            [self.view alert:@"请求成功"];
+        } else {
+            [self.view alertError:responseObject];
+        }
+    } failed:^(NSError *error) {
+        [self.view alertError:error];
+    }];
+    
+}
+
+
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return self.pickerArray.count;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return self.pickerArray[row];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    self.carxibTextFeild.text = [NSString stringWithFormat:@"%@",self.pickerArray[row]];
+}
+
+
+- (void)tapYes {
+    self.carxibTextFeild.enabled = YES;
+    [self.carxibTextFeild becomeFirstResponder];
+}
+- (void)tapNo {
+    self.carxibTextFeild.enabled = NO;
+    [self.carxibTextFeild resignFirstResponder];
+    self.carxibTextFeild.text = nil;
+}
+
+- (void)coverClick {
+    [_cover removeFromSuperview];
+    _cover = nil;
+    
+    [_carView removeFromSuperview];
+    _carView = nil;
+}
+#pragma mark - lazy
+- (NSMutableArray *)pickerArray {
+    if (!_pickerArray) {
+        _pickerArray = [[NSMutableArray alloc]init];
+    }
+    return _pickerArray;
 }
 
 @end

@@ -98,6 +98,9 @@
         if ([responseObject operationSuccess]) {
             NSArray *memberModel = [members objectArrayWithKeyValuesArray:responseObject[@"data"][@"members"]];
             NSArray *carModel = [cars objectArrayWithKeyValuesArray:responseObject[@"data"][@"cars"]];
+            NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"共%@个座位,还剩下%@个座位",responseObject[@"data"][@"totalSeat"],responseObject[@"data"][@"availableSeat"]]];
+            [str addAttribute:NSForegroundColorAttributeName value:[AppAppearance redColor] range:NSMakeRange(str.length -4, 2)];
+            self.seatLabel.attributedText = str;
             [self.membersArray addObjectsFromArray:memberModel];
             [self.carsArray addObjectsFromArray:carModel];
             [self.memberTableView reloadData];
@@ -132,7 +135,11 @@
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     NSString *seatStr = self.carxibTextFeild.text;
-    parameters[@"seat"] = seatStr;
+    if (seatStr.length!= 0) {
+        parameters[@"seat"] = seatStr;
+    } else {
+        parameters[@"seat"] = @"0";
+    }
     [self coverClick];
   [ZYNetWorkTool postJsonWithUrl:urlStr params:parameters success:^(id responseObject) {
       if ([responseObject operationSuccess]) {

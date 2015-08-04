@@ -17,14 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dL5-7y-foD">
-                                <rect key="frame" x="166" y="34" width="42" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="76" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7HR-PL-CIt">
-                                <rect key="frame" x="0.0" y="81.5" width="375" height="585.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="carcell" rowHeight="52" id="ifZ-2n-L5f" customClass="carManageCell">
@@ -303,16 +297,19 @@
                         <constraints>
                             <constraint firstItem="Wav-TW-g1q" firstAttribute="top" secondItem="7HR-PL-CIt" secondAttribute="bottom" id="BrH-fP-u4e"/>
                             <constraint firstAttribute="trailing" secondItem="7HR-PL-CIt" secondAttribute="trailing" id="GIa-fg-2bf"/>
-                            <constraint firstItem="dL5-7y-foD" firstAttribute="top" secondItem="ksR-pt-Kl9" secondAttribute="bottom" constant="14" id="OV8-WG-a7o"/>
-                            <constraint firstAttribute="centerX" secondItem="dL5-7y-foD" secondAttribute="centerX" id="PQK-7h-OGk"/>
+                            <constraint firstItem="7HR-PL-CIt" firstAttribute="top" secondItem="ksR-pt-Kl9" secondAttribute="bottom" id="J7k-wU-zQ5"/>
+                            <constraint firstItem="7HR-PL-CIt" firstAttribute="top" secondItem="VAs-hO-U8d" secondAttribute="top" id="Tkg-gv-yLa"/>
                             <constraint firstItem="7HR-PL-CIt" firstAttribute="leading" secondItem="VAs-hO-U8d" secondAttribute="leading" id="vdH-93-9Gw"/>
-                            <constraint firstItem="7HR-PL-CIt" firstAttribute="top" secondItem="dL5-7y-foD" secondAttribute="bottom" constant="27" id="zVc-r7-GrE"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="J7k-wU-zQ5"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="memberTableView" destination="7HR-PL-CIt" id="RfE-Ap-7gP"/>
-                        <outlet property="seatLabel" destination="dL5-7y-foD" id="PXq-dC-i3f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fRQ-fp-QO1" userLabel="First Responder" sceneMemberID="firstResponder"/>
