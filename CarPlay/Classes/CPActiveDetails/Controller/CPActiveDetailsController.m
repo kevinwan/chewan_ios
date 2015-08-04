@@ -42,7 +42,10 @@
 // 文本输入框
 @property (weak, nonatomic) IBOutlet UITextField *inputView;
 
-// 编辑活动
+// 活动按钮
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *editorActiveBtn;
+
+// 编辑活动点击
 - (IBAction)editorActive:(id)sender;
 
 
@@ -145,6 +148,13 @@
         
         // 取出被访问者的id
         self.createrId = self.activeStatus.organizer.userId;
+        
+        // 设置编辑活动按钮
+        if (self.activeStatus.isOrganizer) {
+            self.editorActiveBtn.title = @"编辑活动";
+        }else{
+            [self.editorActiveBtn setTitle:@"关注"];
+        }
         
         
         // 加载headview

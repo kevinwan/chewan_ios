@@ -162,7 +162,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fO5-eG-bVl">
-                        <barButtonItem key="rightBarButtonItem" title="编辑活动" id="NE3-PY-oot">
+                        <barButtonItem key="rightBarButtonItem" title="关注" id="NE3-PY-oot">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="editorActive:" destination="eal-5W-NNS" id="Gxp-iq-lHn"/>
@@ -175,6 +175,7 @@
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="bottomConstraint" destination="tVl-Xf-dfj" id="8In-To-p8B"/>
+                        <outlet property="editorActiveBtn" destination="NE3-PY-oot" id="UcP-m4-gyx"/>
                         <outlet property="inputView" destination="DVq-8z-gPF" id="kXV-vt-5qg"/>
                         <outlet property="tableView" destination="nHk-l9-2bE" id="JeM-uT-v70"/>
                         <outlet property="topConstraint" destination="vpP-6M-gLT" id="w2I-uQ-mgG"/>
