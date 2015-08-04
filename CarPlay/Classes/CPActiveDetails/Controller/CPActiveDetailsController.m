@@ -95,7 +95,7 @@
             UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil];
             
             CPTaDetailsController *taViewController = sb.instantiateInitialViewController;
-            taViewController.userId1 = self.createrId;
+            taViewController.targetUserId = self.createrId;
             
             [self.navigationController pushViewController:taViewController animated:YES];
 
@@ -304,19 +304,30 @@
     
     // 封装请求参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-//
-//    parameters[@"userId"] = @"4d672627-860c-4118-bcbd-2978aca469ad";
-//    parameters[@"token"] = @"4b35299f-8dc4-4999-bfaf-c0ad5c6aab43";
-    NSLog(@"%@",textField.text);
+
+    
+//    if (self.userId != nil) {
+//        parameters[@"userId"] = self.userId;
+//    }
+//    if (self.token != nil) {
+//        parameters[@"token"] = self.token;
+//    }
+    
+//    NSLog(@"%@",textField.text);
+//    NSLog(@"%@",self.activeId);
     parameters[@"comment"] = textField.text;
-    parameters[@"replyUserId"] = @"4d672627-860c-4118-bcbd-2978aca469ad";
     
     // 获取网络访问者
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    // 传递参数格式为josn
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
     
-    [manager POST:@"http://cwapi.gongpingjia.com/v1/activity/55838b12-7039-41e5-9150-6dd154de961b/comment?userId=846de312-306c-4916-91c1-a5e69b158014&token=750dd49c-6129-4a9a-9558-27fa74fc4ce7" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-        //
-//        NSLog(@"%@",responseObject[@"result"]);
+    // post地址
+    NSString *postUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/activity/%@/comment?userId=%@&token=%@",self.activeId,self.userId,self.token];
+    
+    [manager POST:postUrl parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+       
+        NSLog(@"%@",responseObject);
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         //
