@@ -376,10 +376,11 @@
 
 // 我要去玩按钮点击事件
 - (IBAction)GotoPlayButtonDidClick:(UIButton *)sender {
-    
+    [self.view showWait];
     //登陆状态下可点 拿出创建者字段,非登陆 自动跳转登陆界面
     NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/info",self.activeId];
     [CPNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
+        [self.view hideWait];
         if ([responseObject operationSuccess]) {
             NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
             NSString *strOrganizer = [formatter stringFromNumber:responseObject[@"data"][@"isOrganizer"]];
@@ -403,24 +404,6 @@
                 vc.activityId = self.activeId;
                 [self.navigationController pushViewController:vc animated:YES];
             } else {
-                // 遮盖
-                UIButton *cover = [[UIButton alloc] init];
-                self.cover = cover;
-                cover.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.2];
-                [cover addTarget:self action:@selector(coverClick) forControlEvents:UIControlEventTouchUpInside];
-                cover.frame = [UIScreen mainScreen].bounds;
-                [self.view.window addSubview:cover];
-                UIView *carView = [[[NSBundle mainBundle]loadNibNamed:@"CPOfferCar" owner:self options:nil]lastObject];
-                CGFloat carViewX = self.view.window.center.x;
-                CGFloat carViewY = self.view.window.center.y - 100;
-                carView.center = CGPointMake(carViewX, carViewY);
-                self.carView = carView;
-                [self.view.window addSubview:carView];
-                //注意加载之后才有xib
-                UITapGestureRecognizer *tapYes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapYes)];
-                [self.carxibYesView addGestureRecognizer:tapYes];
-                UITapGestureRecognizer *tapNo = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapNo)];
-                [self.carxibNoVIew addGestureRecognizer:tapNo];
                 NSString *userId = [Tools getValueFromKey:@"userId"];
                 NSString *token = [Tools getValueFromKey:@"token"];
                 NSString *urlStr = [NSString stringWithFormat:@"v1/user/%@/seats?token=%@",userId,token];
@@ -430,11 +413,25 @@
                         SQLog(@"%@",responseObject);
                         NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
                         NSString *str = [formatter stringFromNumber:responseObject[@"data"][@"isAuthenticated"]];
-                        if ([str isEqualToString:@"0"]) {
-                            NSArray *array = @[@"1",@"2"];
-                            [self.pickerArray removeAllObjects];
-                            [self.pickerArray  addObjectsFromArray:array];
-                        } else {
+                        if ([str isEqualToString:@"1"]) {
+                            // 遮盖
+                            UIButton *cover = [[UIButton alloc] init];
+                            self.cover = cover;
+                            cover.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.2];
+                            [cover addTarget:self action:@selector(coverClick) forControlEvents:UIControlEventTouchUpInside];
+                            cover.frame = [UIScreen mainScreen].bounds;
+                            [self.view.window addSubview:cover];
+                            UIView *carView = [[[NSBundle mainBundle]loadNibNamed:@"CPOfferCar" owner:self options:nil]lastObject];
+                            CGFloat carViewX = self.view.window.center.x;
+                            CGFloat carViewY = self.view.window.center.y - 100;
+                            carView.center = CGPointMake(carViewX, carViewY);
+                            self.carView = carView;
+                            [self.view.window addSubview:carView];
+                            //注意加载之后才有xib
+                            UITapGestureRecognizer *tapYes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapYes)];
+                            [self.carxibYesView addGestureRecognizer:tapYes];
+                            UITapGestureRecognizer *tapNo = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapNo)];
+                            [self.carxibNoVIew addGestureRecognizer:tapNo];
                             NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
                             int maxSeat = [[formatter stringFromNumber:responseObject[@"data"][@"maxValue"]] intValue];
                             int minSeat = [[formatter stringFromNumber:responseObject[@"data"][@"minValue"]] intValue];
@@ -443,6 +440,29 @@
                                 NSString *seat = [NSString stringWithFormat:@"%tu",i];
                                 [self.pickerArray addObject:seat];
                             }
+                            UIPickerView *picker = [[UIPickerView alloc]init];
+                            picker.delegate = self;
+                            picker.dataSource = self;
+                            self.carxibTextFeild.inputView = picker;
+                            self.carxibTextFeild.delegate = self;
+                            self.carxibTextFeild.font = [AppAppearance textMediumFont];
+                            self.carxibTextFeild.textColor = [AppAppearance textDarkColor];
+
+                           
+                        } else {
+                            NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/join",self.activeId];
+                            [CPNetWorkTool postJsonWithUrl:urlStr params:nil success:^(id responseObject) {
+                                if ([responseObject operationSuccess]) {
+                                    [self.view alert:@"请求成功"];
+                                } else {
+                                    [self.view alertError:responseObject];
+                                }
+                            } failed:^(NSError *error) {
+                                [self.view alertError:error];
+                            }];
+                            
+ 
+                        
                         }
                         
                     } else {
@@ -451,13 +471,7 @@
                 } failure:^(NSError *error) {
                     [self.view alertError:error];
                 }];
-                UIPickerView *picker = [[UIPickerView alloc]init];
-                picker.delegate = self;
-                picker.dataSource = self;
-                self.carxibTextFeild.inputView = picker;
-                self.carxibTextFeild.delegate = self;
-                self.carxibTextFeild.font = [AppAppearance textMediumFont];
-                self.carxibTextFeild.textColor = [AppAppearance textDarkColor];
+               
                 
             }
             
