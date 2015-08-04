@@ -18,7 +18,7 @@
 @interface CPTaDetailsController ()
 
 // 用户id
-@property (nonatomic,copy) NSString *userId2;
+@property (nonatomic,copy) NSString *userId;
 
 // 用户token
 @property (nonatomic,copy) NSString *token;
@@ -64,8 +64,8 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
 //    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
 //    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
-    if (self.userId2 != nil) {
-        parameters[@"userId"] = self.userId2;
+    if (self.userId != nil) {
+        parameters[@"userId"] = self.userId;
     }
     if (self.token != nil) {
         parameters[@"token"] = self.token;
@@ -75,7 +75,7 @@
     // 获取网络访问者
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
-    NSString *getUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/user/%@/info",self.userId1];
+    NSString *getUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/user/%@/info",self.targetUserId];
     
     
     // 发送请求
@@ -102,16 +102,22 @@
 - (void)setupLoadTaPublishStatus{
     // 设置请求参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
-    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
-    
+//    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
+//    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
+    if (self.userId != nil) {
+        parameters[@"userId"] = self.userId;
+    }
+    if (self.token != nil) {
+        parameters[@"token"] = self.token;
+    }
     
     // 获取网络访问者
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
+    NSString *getUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/user/%@/post",self.targetUserId];
     
     // 发送请求
-    [manager GET:@"http://cwapi.gongpingjia.com/v1/user/846de312-306c-4916-91c1-a5e69b158014/post" parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
+    [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
         // 去出他发布的数据
         NSArray *taPubArr = responseObject[@"data"];
         
@@ -201,11 +207,11 @@
 }
 
 // 用户id
-- (NSString *)userId2{
-    if (!_userId2) {
-        _userId2 = [Tools getValueFromKey:@"userId"];
+- (NSString *)userId{
+    if (!_userId) {
+        _userId = [Tools getValueFromKey:@"userId"];
     }
-    return _userId2;
+    return _userId;
 }
 
 // 用户token

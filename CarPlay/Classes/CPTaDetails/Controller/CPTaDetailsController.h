@@ -10,6 +10,6 @@
 
 @interface CPTaDetailsController : UITableViewController
 
-@property (nonatomic,copy) NSString *userId1;
+@property (nonatomic,copy) NSString *targetUserId;
 
 @end
