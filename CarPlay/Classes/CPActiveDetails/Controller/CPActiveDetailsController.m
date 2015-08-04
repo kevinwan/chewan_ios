@@ -316,7 +316,7 @@
     
     [manager POST:@"http://cwapi.gongpingjia.com/v1/activity/55838b12-7039-41e5-9150-6dd154de961b/comment?userId=846de312-306c-4916-91c1-a5e69b158014&token=750dd49c-6129-4a9a-9558-27fa74fc4ce7" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         //
-        NSLog(@"%@",responseObject[@"result"]);
+//        NSLog(@"%@",responseObject[@"result"]);
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         //
