@@ -57,7 +57,7 @@ typedef enum {
 @property (nonatomic, strong) CPCreatActivityModel *currentModel;
 @property (nonatomic, strong) NSMutableArray *seats;
 @property (weak, nonatomic) IBOutlet UILabel *seatLabel;
-
+@property (nonatomic, assign) BOOL imageEditing;
 @end
 
 @implementation CPCreatActivityController
@@ -376,6 +376,8 @@ typedef enum {
             vc.completion = ^(CPLocationModel *model){
                 if (model) {
                     [self labelWithRow:3].text = model.location;
+                    
+                    DLog(@"----%@ %@ %@ %@",model.province, model.city, model.district,model.location);
                     self.selectLocation = model;
                     self.currentModel.latitude = model.latitude.doubleValue;
                     self.currentModel.longitude = model.longitude.doubleValue;
@@ -672,6 +674,10 @@ typedef enum {
         imageView.tag = self.picIndex++;
         UILongPressGestureRecognizer *longPressGes = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
         [imageView addGestureRecognizer:longPressGes];
+        
+        UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPress:)];
+        [imageView addGestureRecognizer:tapGes];
+        
         [self.photoView insertSubview:imageView atIndex:0];
     }
     
@@ -686,20 +692,41 @@ typedef enum {
 - (void)longPress:(UILongPressGestureRecognizer *)recognizer
 {
     if (recognizer.state == UIGestureRecognizerStateBegan) {
-        CPEditImageView *editImageView = (CPEditImageView *)recognizer.view;
-        if (editImageView.select) {
-            [self.editPhotoViews removeObject:editImageView];
-        }else{
-             [self.editPhotoViews addObject:editImageView];
-        }
-        editImageView.showSelectImage = !editImageView.select;
-       
-        if (self.editPhotoViews.count > 0){
-            self.navigationItem.rightBarButtonItem = self.rightItem;
-        }else{
-            self.navigationItem.rightBarButtonItem = nil;
-        }
+        self.imageEditing = YES;
+        [self dealImageViewTapWithRecognizer:recognizer];
     }
+}
+
+- (void)tapPress:(UITapGestureRecognizer *)recognizer
+{
+    if (self.imageEditing) {
+        [self dealImageViewTapWithRecognizer:recognizer];
+    }
+}
+
+/**
+ *  处理图片手势的触发
+ *
+ *  @param recognizer recognizer description
+ */
+- (void)dealImageViewTapWithRecognizer:(UIGestureRecognizer *)recognizer
+{
+    CPEditImageView *editImageView = (CPEditImageView *)recognizer.view;
+    
+    if (editImageView.select) {
+        [self.editPhotoViews removeObject:editImageView];
+    }else{
+        [self.editPhotoViews addObject:editImageView];
+    }
+    editImageView.showSelectImage = !editImageView.select;
+    
+    if (self.editPhotoViews.count > 0){
+        self.navigationItem.rightBarButtonItem = self.rightItem;
+    }else{
+        self.imageEditing = NO;
+        self.navigationItem.rightBarButtonItem = nil;
+    }
+
 }
 
 /**
@@ -738,6 +765,7 @@ typedef enum {
         }
     }
     self.navigationItem.rightBarButtonItem = nil;
+    self.imageEditing = NO;
 }
 
 /**
@@ -766,6 +794,7 @@ typedef enum {
     [self.editPhotoViews removeAllObjects];
     [self layoutPhotoView];
     self.navigationItem.rightBarButtonItem = nil;
+    self.imageEditing = NO;
 }
 
 /**
@@ -899,9 +928,17 @@ typedef enum {
  */
 - (void)shareToFriendWithDict:(NSDictionary *)data
 {
+    SQLog(@"%@",data);
+    UIImage *image = nil;
+    NSData *dataUrl = [NSData dataWithContentsOfURL:[NSURL URLWithString:data[@"imgUrl"]]];
+    if (dataUrl!=nil) {
+        image = [[UIImage alloc]initWithData:dataUrl];
+    }
     [UMSocialData defaultData].extConfig.wechatSessionData.url = data[@"shareUrl"];
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = data[@"shareTitle"];
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = data[@"shareUrl"];
-    [UMSocialSnsService presentSnsIconSheetView:self appKey:nil shareText:data[@"shareTitle"] shareImage:nil shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,UMShareToSms, nil] delegate:nil];
+    [UMSocialData defaultData].extConfig.wechatTimelineData.title = data[@"shareTitle"];
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:nil shareText:data[@"shareContent"] shareImage:image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,UMShareToSms, nil] delegate:nil];
 }
 
 @end

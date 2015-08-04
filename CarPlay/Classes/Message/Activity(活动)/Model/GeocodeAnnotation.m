@@ -16,23 +16,6 @@
 
 @implementation GeocodeAnnotation
 
-#pragma mark - MAAnnotation Protocol
-
-- (NSString *)title
-{
-    return self.geocode.formattedAddress;
-}
-
-- (NSString *)subtitle
-{
-    return [self.geocode.location description];
-}
-
-- (CLLocationCoordinate2D)coordinate
-{
-    return CLLocationCoordinate2DMake(self.geocode.location.latitude, self.geocode.location.longitude);
-}
-
 #pragma mark - Life Cycle
 
 - (id)initWithGeocode:(AMapGeocode *)geocode
@@ -42,6 +25,7 @@
         self.geocode = geocode;
         self.title = geocode.formattedAddress;
         self.subtitle = geocode.location.description;
+        self.coordinate = CLLocationCoordinate2DMake(geocode.location.latitude, geocode.location.longitude);
     }
     
     return self;

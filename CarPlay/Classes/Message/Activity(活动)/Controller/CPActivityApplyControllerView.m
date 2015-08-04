@@ -10,35 +10,24 @@
 #import "CPActivityApplyCell.h"
 #import "CPSubscribePersonController.h"
 #import "CPActivityApplyModel.h"
+#import "MJRefresh.h"
+#import "CPActiveDetailsController.h"
+
+#define ActivityMsgData @"ActivityMsgData"
 
 @interface CPActivityApplyControllerView ()
 @property (nonatomic, strong) NSMutableArray *datas;
-@property (nonatomic, strong) UIView *noDataView;
 @end
 
 @implementation CPActivityApplyControllerView
 
-- (UIView *)noDataView
-{
-    if (_noDataView == nil) {
-        _noDataView = [[UIView alloc] init];
-        _noDataView.height = self.tableView.height - 64;
-        _noDataView.width = self.view.width;
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button setTitle:@"没有新数据,点击刷新" forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_noDataView addSubview:button];
-        [button sizeToFit];
-        button.centerX = _noDataView.centerXInSelf;
-        button.centerY = _noDataView.centerYInSelf - 30;
-    }
-    return _noDataView;
-}
-
 - (NSMutableArray *)datas
 {
     if (_datas == nil) {
-        _datas = [NSMutableArray array];
+        _datas = [NSKeyedUnarchiver unarchiveObjectWithFile:CPDocmentPath(ActivityMsgData)];
+        if (_datas == nil) {
+            _datas = [NSMutableArray array];
+        }
     }
     return _datas;
 }
@@ -46,16 +35,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"活动参与申请";
+    self.navigationItem.title = @"活动消息";
   
     self.tableView.tableFooterView = [[UIView alloc] init];
     [CPNotificationCenter addObserver:self selector:@selector(agreeBtnClick:) name:CPActivityApplyNotification object:nil];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
+    
+    self.tableView.tableFooterView = [[UIView alloc] init];
+    
     [self loadData];
+    
+    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(reRefreshData)];
 }
 
 - (void)reRefreshData
@@ -65,33 +54,40 @@
 
 - (void)loadData
 {
-    NSString *userId = [Tools getValueFromKey:@"userId"];
-    if (userId == nil) {
+    if (CPUnLogin) {
         [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
         return;
     }
     
-    NSString *url = [NSString stringWithFormat:@"v1/user/%@/application/list",userId];
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"token"] = [Tools getValueFromKey:@"token"];
+    NSString *userId = [Tools getValueFromKey:@"userId"];
+    NSString *token = [Tools getValueFromKey:@"token"];
+    
+    NSString *url = [NSString stringWithFormat:@"v1/user/%@/message/list?token=%@&type=application",userId, token];
     [SVProgressHUD showWithStatus:@"努力加载中"];
-    [ZYNetWorkTool getWithUrl:url params:params success:^(id responseObject) {
+    [ZYNetWorkTool getWithUrl:url params:nil success:^(id responseObject) {
+        [self.tableView.header endRefreshing];
+        [self disMiss];
         DLog(@"%@",responseObject);
         if (CPSuccess) {
             NSArray *data = [CPActivityApplyModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
+
+            [self.datas addObjectsFromArray:data];
+            
             if (data.count == 0) {
-                [SVProgressHUD showInfoWithStatus:@"没有新的申请"];
                 [self showNoData];
                 return;
             }
-            [self disMiss];
-            [self.datas removeAllObjects];
-            self.tableView.tableFooterView = [[UIView alloc] init];
-            [self.datas addObjectsFromArray:data];
     
             [self.tableView reloadData];
+            
+            // 异步存储数据
+            dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                [NSKeyedArchiver archiveRootObject:self.datas toFile:CPDocmentPath(ActivityMsgData)];
+            });
+            
         }
     } failure:^(NSError *error) {
+        [self.tableView.header endRefreshing];
         [SVProgressHUD showErrorWithStatus:@"加载失败"];
     }];
 }
@@ -100,9 +96,13 @@
 {
     [self showSuccess:@"已同意"];
     NSUInteger row = [notify.userInfo[CPActivityApplyInfo] intValue];
-    [self.datas removeObjectAtIndex:row];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
-    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    
+    // 异步存储数据
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        [NSKeyedArchiver archiveRootObject:self.datas toFile:CPDocmentPath(ActivityMsgData)];
+    });
 }
 
 - (void)dealloc
@@ -117,17 +117,36 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *ID = @"ActivityApplyCell";
-    CPActivityApplyCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    static NSString *ID1 = @"ActivityApplyCell";
+    static NSString *ID2 = @"ActivityMsgCell";
+    
+    CPActivityApplyModel *model = self.datas[indexPath.row];
+    CPActivityApplyCell *cell = nil;
+    if ([model.type isEqualToString:@"活动申请处理"]) {
+        
+        cell = [tableView dequeueReusableCellWithIdentifier:ID1];
+    }else{
+        
+        cell = [tableView dequeueReusableCellWithIdentifier:ID2];
+    }
+    
     cell.row = indexPath.row;
-    cell.model = self.datas[indexPath.row];
+    cell.model = model;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CPSubscribePersonController *subVc = [UIStoryboard storyboardWithName:@"CPSubscribePersonController" bundle:nil].instantiateInitialViewController;
-    [self.navigationController pushViewController:subVc animated:YES];
+    CPActivityApplyModel *model = self.datas[indexPath.row];
+    
+    // 如果有activityId,直接跳转到活动详情页面
+    if (model.activityId.length) {
+        CPActiveDetailsController *activityVc = [UIStoryboard storyboardWithName:@"CPActiveDetailsController" bundle:nil].instantiateInitialViewController;;
+        activityVc.activeId = model.activityId;
+        
+        [self.navigationController pushViewController:activityVc animated:YES];
+    }
+    
 }
 
 @end

@@ -32,36 +32,6 @@
 
 @implementation CPActivityApplyCell
 
-- (void)awakeFromNib {
-    self.tipMsgLabelWidth.constant = kScreenWidth -  135;
-}
-
-/**
- *  设置提供座位的label的text
- */
-- (NSAttributedString *)seatLabelText:(NSString *)text
-{
-    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"提供"];
-    NSMutableAttributedString *seat = [[NSMutableAttributedString alloc] initWithString:text attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"fc6e51"]}];
-    [str appendAttributedString:seat];
-    NSAttributedString *zuo = [[NSAttributedString alloc] initWithString:@"座位"];
-    [str appendAttributedString:zuo];
-    return str;
-}
-
-/**
- *  申请加入活动的text
- */
-- (NSAttributedString *)tipMsgText:(NSString *)text
-{
-    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"想加入"];
-    NSMutableAttributedString *activityName = [[NSMutableAttributedString alloc] initWithString:text attributes:@{NSForegroundColorAttributeName : [AppAppearance greenColor]}];
-    [str appendAttributedString:activityName];
-    NSAttributedString *zuo = [[NSAttributedString alloc] initWithString:@"活动sfddaffd"];
-    [str appendAttributedString:zuo];
-    return str;
-}
-
 - (void)setModel:(CPActivityApplyModel *)model
 {
     _model = model;
@@ -71,6 +41,8 @@
     }else{
         [self.iconView setImage:[UIImage imageNamed:@"placeholderImage"] forState:UIControlStateNormal];
     }
+    
+    self.agreeBtn.selected = model.isAgree;
     
     if (model.nickname) {
         self.nameLabel.text = model.nickname;
@@ -90,30 +62,37 @@
         self.sexView.age = model.age.unsignedIntValue;
     }
     
-    if (model.carBrandLogo.length) {
-        self.carView.hidden = NO;
-        [self.carView sd_setImageWithURL:[NSURL URLWithString:model.carBrandLogo] placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
+    if ([model.type isEqualToString:@"活动申请处理"]){
+        self.tipMsgLabelWidth.constant = kScreenWidth -  135;
+        if (model.carBrandLogo.length) {
+            DLog(@"%@]]]]",model.seatText);
+            self.offerSeatLabel.attributedText = model.seatText;
+            self.tipmsgLabel.attributedText = model.text;
+            
+            self.agreeBtnTopMargin.constant = 10;
+            self.carView.hidden = NO;
+            [self.carView sd_setImageWithURL:[NSURL URLWithString:model.carBrandLogo] placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
+        }else{
+            self.tipmsgLabel.text = @"带我飞 ~";
+            self.offerSeatLabel.text = @"";
+            self.agreeBtnTopMargin.constant = 20;
+            self.carView.hidden = YES;
+        }
     }else{
-        self.carView.hidden = YES;
+        if (model.carBrandLogo.length){
+            [self.carView sd_setImageWithURL:[NSURL URLWithString:model.carBrandLogo] placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
+             self.carView.hidden = NO;
+        }else{
+            self.carView.hidden = YES;
+        }
+        self.tipmsgLabel.attributedText = model.text;
     }
-    
-    if ([model.seat intValue]) {
-        
-        self.offerSeatLabel.attributedText = [self seatLabelText:[NSString stringWithFormat:@"%zd",[model.seat intValue]]];
-        self.tipmsgLabel.attributedText = [self tipMsgText:model.title];
-        self.agreeBtnTopMargin.constant = 10;
-    }else{
-         self.tipmsgLabel.text = @"带我飞 ~";
-        self.offerSeatLabel.text = @"";
-        self.agreeBtnTopMargin.constant = 20;
-    }
-    
 }
 
 - (IBAction)agreeBtnClick:(id)sender {
     
     
-    NSString *url = [NSString stringWithFormat:@"v1/application/%@/process",_model.applicationId];
+    NSString *url = [NSString stringWithFormat:@"v1/application/%@/process",_model.activityId];
     DLog(@"%@---",url);
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
     json[@"action"] = @"1";
@@ -122,13 +101,13 @@
         DLog(@"%@",responseObject);
         if (CPSuccess) {
             [CPNotificationCenter postNotificationName:CPActivityApplyNotification object:nil userInfo:@{CPActivityApplyInfo :@(self.row)}];
+            _model.isAgree = YES;
         }else{
             [SVProgressHUD showInfoWithStatus:@"加载失败"];
         }
     } failed:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:@"加载失败"];
     }];
-
     
 }
 

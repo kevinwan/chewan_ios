@@ -38,9 +38,19 @@
 @property (nonatomic, copy) NSString *pay;
 
 
+/** 活动类型 */
+@property (nonatomic, copy) NSString *type;
+
+
 /** 活动作者的用户信息字段 */
 @property (nonatomic, strong) CPActiveUser *organizer;
 
+
+/** 是否为活动创建者 */
+@property (nonatomic,assign) NSInteger isOrganizer;
+
+/** 是否为活动成员 */
+@property (nonatomic,assign) NSInteger isMember;
 
 /** 活动配图地址。多图时返回多图链接。无配图返回“[]” */
 @property (nonatomic, strong) NSArray *cover;

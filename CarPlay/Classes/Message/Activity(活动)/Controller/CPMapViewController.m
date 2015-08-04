@@ -11,14 +11,15 @@
 #import <AMapSearchKit/AMapSearchAPI.h>
 #import <AMapSearchKit/AMapCommonObj.h>
 #import <AMapSearchKit/AMapSearchObj.h>
-#import "CPAnnotation.h"
-#import "CPAnotationView.h"
+//#import "CPAnnotation.h"
+//#import "CPAnotationView.h"
 #import "ZYSearchBar.h"
 #import "CPLocationModel.h"
 #import <MapKit/MKAnnotation.h>
 #import <AMap2DMap/MAMapKit.h>
 #import "GeocodeAnnotation.h"
 #import "CommonUtility.h"
+
 @interface CPMapViewController ()<MKMapViewDelegate, UITextFieldDelegate,UITableViewDelegate, UITableViewDataSource,CLLocationManagerDelegate,AMapSearchDelegate,MAMapViewDelegate, UIGestureRecognizerDelegate>
 @property (nonatomic, strong) CLLocationManager *mgr;
 /**
@@ -123,7 +124,7 @@
     searchBar.placeholder = @"输入您的目的地";
     searchBar.frame = CGRectMake(10, 74, kScreenWidth - 80, 40);
     [self.view addSubview:searchBar];
-    searchBar.delegate = self;
+    [searchBar addTarget:self action:@selector(inputTextDidChange:) forControlEvents:UIControlEventEditingChanged];
     self.searchBar = searchBar;
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -138,12 +139,14 @@
     [self.view addSubview:btn];
     
     UITableView *tableView = [[UITableView alloc] init];
+    tableView.layer.cornerRadius = 3;
+    tableView.clipsToBounds = YES;
     tableView.rowHeight = 50;
     tableView.hidden = YES;
     tableView.delegate = self;
     tableView.dataSource = self;
     [self.view addSubview:tableView];
-    tableView.frame = CGRectMake(searchBar.x, searchBar.bottom,kScreenWidth - 2 * searchBar.x , kScreenHeight - searchBar.bottom - 44);
+    tableView.frame = CGRectMake(searchBar.x, searchBar.bottom,kScreenWidth - 2 * searchBar.x , kScreenHeight - searchBar.bottom - 54);
     tableView.tableFooterView = [[UIView alloc] init];
     self.resultTableView = tableView;
 
@@ -161,7 +164,7 @@
         CLLocationCoordinate2D center = annotation.coordinate;
         
         // 指定经纬度的跨度
-        MACoordinateSpan span = MACoordinateSpanMake(0.01,0.01);
+        MACoordinateSpan span = MACoordinateSpanMake(0.005,0.005);
         MACoordinateRegion region = MACoordinateRegionMake(center, span);
         
         // 设置显示区域
@@ -169,6 +172,7 @@
         [self.mapView addAnnotation:annotation];
     }
 }
+
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
     return YES;
@@ -179,9 +183,9 @@ updatingLocation:(BOOL)updatingLocation
 {
     if(updatingLocation)
     {
-        if (self.orientationSuccess == NO) {
+        if (self.orientationSuccess == NO && self.forValue== nil) {
             // 指定经纬度的跨度
-            MACoordinateSpan span = MACoordinateSpanMake(0.1,0.1);
+            MACoordinateSpan span = MACoordinateSpanMake(0.005,0.005);
             MACoordinateRegion region = MACoordinateRegionMake(userLocation.coordinate, span);
             [self.mapView setRegion:region animated:YES];
             self.orientationSuccess = YES;
@@ -203,21 +207,63 @@ updatingLocation:(BOOL)updatingLocation
 
 - (void)tapPress:(UIGestureRecognizer*)gestureRecognizer {
     
+    [self.searchBar resignFirstResponder];
+    
     if (gestureRecognizer.view == self.mapView) {
         self.resultTableView.hidden = YES;
         self.descLocationView.hidden = YES;
     }
     
     CGPoint touchPoint = [gestureRecognizer locationInView:self.mapView];//这里touchPoint是点击的某点在地图控件中的位置
-    CLLocationCoordinate2D touchMapCoordinate =
-    [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];//这里touchMapCoordinate就是该点的经纬度了
+    
+    CLLocationCoordinate2D coordinate = [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];//这里touchMapCoordinate就是该点的经纬度了
+    
+    for (GeocodeAnnotation *annotation in self.mapView.annotations) {
+       MAAnnotationView *view = [self.mapView viewForAnnotation:annotation];
+        CGRect annitationRect = [view convertRect:view.bounds toView:[UIApplication sharedApplication].keyWindow];
+        if (CGRectContainsPoint(annitationRect, touchPoint)) {
+            
+            [SVProgressHUD showWithStatus:@"加载中"];
+            [self searchReGeocodeWithCoordinate:annotation.coordinate];
+            return;
+        }
+    }
+    
     // 利用反地理编码获取位置之后设置标题
     [SVProgressHUD showWithStatus:@"加载中"];
     
-    AMapReGeocodeSearchRequest *regeo = [[AMapReGeocodeSearchRequest alloc] init];
-    regeo.location = [AMapGeoPoint locationWithLatitude:touchMapCoordinate.latitude longitude:touchMapCoordinate.longitude];
-    regeo.requireExtension = YES;
-    [self.searchApi AMapReGoecodeSearch:regeo];
+    //构造AMapPlaceSearchRequest对象，配置关键字搜索参数
+    AMapPlaceSearchRequest *poiRequest = [[AMapPlaceSearchRequest alloc] init];
+    poiRequest.searchType = AMapSearchType_PlaceAround;
+    poiRequest.location = [AMapGeoPoint locationWithLatitude:coordinate.latitude longitude:coordinate.longitude];
+    // types属性表示限定搜索POI的类别，默认为：餐饮服务、商务住宅、生活服务
+    // POI的类型共分为20种大类别，分别为：
+    // 汽车服务、汽车销售、汽车维修、摩托车服务、餐饮服务、购物服务、生活服务、体育休闲服务、
+    // 医疗保健服务、住宿服务、风景名胜、商务住宅、政府机构及社会团体、科教文化服务、
+    // 交通设施服务、金融保险服务、公司企业、道路附属设施、地名地址信息、公共设施
+    poiRequest.requireExtension = YES;
+    
+    //发起POI搜索
+    [self.searchApi AMapPlaceSearch: poiRequest];
+
+
+
+//    AMapReGeocodeSearchRequest *regeo = [[AMapReGeocodeSearchRequest alloc] init];
+//    regeo.location = [AMapGeoPoint locationWithLatitude:coordinate.latitude longitude:coordinate.longitude];
+//    regeo.requireExtension = YES;
+//    [self.searchApi AMapReGoecodeSearch:regeo];
+}
+
+//实现POI搜索对应的回调函数
+- (void)onPlaceSearchDone:(AMapPlaceSearchRequest *)request response:(AMapPlaceSearchResponse *)response
+{
+    [SVProgressHUD dismiss];
+    if(response.pois.count == 0)
+    {
+        return;
+    }
+    
+    [self setDescViewWithModel:response];
 }
 
 - (void)removeAnnotaionNoSelf
@@ -229,20 +275,18 @@ updatingLocation:(BOOL)updatingLocation
     }
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-
+- (void)inputTextDidChange:(ZYSearchBar *)searchBar{
     if (self.descLocationView.hidden == NO) {
         self.descLocationView.hidden = YES;
     }
-    if (textField.text.length) {
+    if (searchBar.text.length) {
         if (self.resultTableView.hidden == YES) {
             self.resultTableView.hidden = NO;
         }
-        [self searchTipsWithKey:textField.text];
+        [self searchTipsWithKey:searchBar.text];
     }else{
         self.resultTableView.hidden = YES;
     }
-    return YES;
 }
 
 #pragma mark - 懒加载
@@ -301,6 +345,7 @@ updatingLocation:(BOOL)updatingLocation
  */
 - (void)onGeocodeSearchDone:(AMapGeocodeSearchRequest *)request response:(AMapGeocodeSearchResponse *)response
 {
+    [SVProgressHUD dismiss];
     if (response.geocodes.count == 0)
     {
         [SVProgressHUD showInfoWithStatus:@"没有搜索到符合条件的地点"];
@@ -349,7 +394,7 @@ updatingLocation:(BOOL)updatingLocation
         if (annotations.count == 1)
         {
             // 指定经纬度的跨度
-            MACoordinateSpan span = MACoordinateSpanMake(0.1,0.1);
+            MACoordinateSpan span = MACoordinateSpanMake(0.005,0.005);
             MACoordinateRegion region = MACoordinateRegionMake([annotations[0] coordinate], span);
             [self.mapView setRegion:region animated:YES];
         }
@@ -362,6 +407,35 @@ updatingLocation:(BOOL)updatingLocation
         [self.mapView addAnnotations:annotations];
     }
     
+}
+
+#pragma mark - 逆地理编码
+- (void)searchReGeocodeWithCoordinate:(CLLocationCoordinate2D)coordinate
+{
+    AMapReGeocodeSearchRequest *regeo = [[AMapReGeocodeSearchRequest alloc] init];
+    
+    regeo.location = [AMapGeoPoint locationWithLatitude:coordinate.latitude longitude:coordinate.longitude];
+    regeo.requireExtension = YES;
+    
+    [self.searchApi AMapReGoecodeSearch:regeo];
+}
+
+/* 逆地理编码回调. */
+- (void)onReGeocodeSearchDone:(AMapReGeocodeSearchRequest *)request response:(AMapReGeocodeSearchResponse *)response
+{
+    [SVProgressHUD dismiss];
+    if (response.regeocode != nil)
+    {
+        [self setDescWithRequest:request ReGeocode:response.regeocode];
+//        DLog(@"%@",response.regeocode.formattedAddress);
+//        
+//        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(request.location.latitude, request.location.longitude);
+//        ReGeocodeAnnotation *reGeocodeAnnotation = [[ReGeocodeAnnotation alloc] initWithCoordinate:coordinate
+//                                                                                         reGeocode:response.regeocode];
+//        
+//        [self.mapView addAnnotation:reGeocodeAnnotation];
+//        [self.mapView selectAnnotation:reGeocodeAnnotation animated:YES];
+    }
 }
 
 - (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id<MAAnnotation>)annotation
@@ -378,25 +452,10 @@ updatingLocation:(BOOL)updatingLocation
         annotationView.image = [UIImage imageNamed:@"定位"];
         
         //设置中⼼心点偏移，使得标注底部中间点成为经纬度对应点
-        annotationView.centerOffset = CGPointMake(0, -18);
+//        annotationView.centerOffset = CGPointMake(0, -18);
         return annotationView;
     }
     return nil;
-}
-
-/**
- *  逆地理编码回调
- *
- *  @param request  request description
- *  @param response response description
- */
-- (void)onReGeocodeSearchDone:(AMapReGeocodeSearchRequest *)request response:(AMapReGeocodeSearchResponse *)response
-{
-    [SVProgressHUD dismiss];
-    if (response.regeocode.pois.count)
-    {
-        [self setDescViewWithModel:response.regeocode];
-    }
 }
 
 - (void)searchRequest:(id)request didFailWithError:(NSError *)error
@@ -456,13 +515,14 @@ updatingLocation:(BOOL)updatingLocation
     self.resultTableView.hidden = YES;
     AMapTip *tip = self.tips[indexPath.row];
     self.selectTip = tip;
+    self.selectName = tip.name;
     NSString *key = [NSString stringWithFormat:@"%@%@", tip.district, tip.name];
     [self clearAndSearchGeocodeWithKey:key adcode:tip.adcode];
     
     self.searchBar.placeholder = tip.name;
 }
 
-- (void)setDescViewWithModel:(AMapReGeocode *)reGeocode
+- (void)setDescViewWithModel:(AMapPlaceSearchResponse *)reGeocode
 {
     self.descLocationView.hidden = NO;
     
@@ -471,15 +531,21 @@ updatingLocation:(BOOL)updatingLocation
     AMapPOI *poi = [reGeocode.pois firstObject];
     
     model.location = poi.name;
+    self.selectName = poi.name;
     model.latitude = @(poi.location.latitude);
     model.longitude = @(poi.location.longitude);
-    model.city = reGeocode.addressComponent.city;
-    if (model.city.length == 0) {
-        model.city = reGeocode.addressComponent.province;
+    model.city = poi.city;
+    model.district = poi.district;
+    
+    if ([poi.province isEqualToString:poi.city]){
+        model.address = [NSString stringWithFormat:@"%@%@%@",poi.city, poi.district,poi.name];
+    }else{
+        model.address = [NSString stringWithFormat:@"%@%@%@%@",poi.province, poi.city, poi.district,poi.name];
     }
-    model.district = reGeocode.addressComponent.district;
-    model.province = reGeocode.addressComponent.province;
-    model.address = reGeocode.formattedAddress;
+
+    if (model.city.length == 0) {
+        model.city = poi.province;
+    }
     self.selectLocation = model;
     
     [self removeAnnotaionNoSelf];
@@ -497,11 +563,40 @@ updatingLocation:(BOOL)updatingLocation
     self.searchBar.placeholder = poi.name;
     
     UILabel *addressLabel = (UILabel *)[self.descLocationView viewWithTag:4];
-    addressLabel.text = reGeocode.formattedAddress;
+    addressLabel.text = poi.address;
     if (addressLabel.text.length == 0) {
-        addressLabel.text = poi.address;
+        addressLabel.text = model.address;
     }
 }
+
+- (void)setDescWithRequest:(AMapReGeocodeSearchRequest *)request ReGeocode:(AMapReGeocode *)regeocode
+{
+    self.descLocationView.hidden = NO;
+    
+    CPLocationModel *model = [[CPLocationModel alloc] init];
+    model.latitude = @(request.location.latitude);
+    model.longitude = @(request.location.longitude);
+    model.city = regeocode.addressComponent.city;
+    if (model.city.length == 0) {
+        model.city = regeocode.addressComponent.province;
+    }
+    model.province = regeocode.addressComponent.province;
+    model.district = regeocode.addressComponent.district;
+    model.location = self.selectName;
+    model.address = regeocode.formattedAddress;
+    
+    self.selectLocation = model;
+    UILabel *nameLabel = (UILabel *)[self.descLocationView viewWithTag:3];
+    
+    nameLabel.text = self.selectName;
+    self.searchBar.text = self.selectName;
+    self.searchBar.placeholder = self.selectName;
+
+    UILabel *addressLabel = (UILabel *)[self.descLocationView viewWithTag:4];
+    addressLabel.text = regeocode.formattedAddress;
+
+}
+
 
 /**
  *  选中地址
@@ -561,6 +656,32 @@ updatingLocation:(BOOL)updatingLocation
 {
     [super viewWillDisappear:animated];
     [SVProgressHUD dismiss];
+}
+
+/**
+ *  当缩放过大时,返回原来的缩放比例
+ *
+ *  @param mapView  mapView description
+ *  @param animated
+ */
+- (void)mapView:(MAMapView *)mapView regionDidChangeAnimated:(BOOL)animated
+{
+    if (mapView.zoomLevel > 18.8) {
+        [mapView setZoomLevel:18.8 animated:YES];
+    }
+}
+
+/**
+ *  用户直接点击键盘
+ *
+ *  @param textField textField description
+ *
+ *  @return return value description
+ */
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self searchBtnClick];
+    return YES;
 }
 
 @end

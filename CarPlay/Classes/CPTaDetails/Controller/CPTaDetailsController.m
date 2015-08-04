@@ -17,6 +17,12 @@
 
 @interface CPTaDetailsController ()
 
+// 用户id
+@property (nonatomic,copy) NSString *userId;
+
+// 用户token
+@property (nonatomic,copy) NSString *token;
+
 // 存储所有他详情页的数据
 @property (nonatomic,strong) CPTaDetailsStatus *taStatus;
 
@@ -56,16 +62,24 @@
     
     // 设置请求参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
-    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
+//    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
+//    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
+    if (self.userId != nil) {
+        parameters[@"userId"] = self.userId;
+    }
+    if (self.token != nil) {
+        parameters[@"token"] = self.token;
+    }
     
     
     // 获取网络访问者
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
+    NSString *getUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/user/%@/info",self.targetUserId];
+    
     
     // 发送请求
-    [manager GET:@"http://cwapi.gongpingjia.com/v1/user/846de312-306c-4916-91c1-a5e69b158014/info" parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
+    [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
         
 
 //        NSLog(@"%@",responseObject[@"data"]);
@@ -88,16 +102,22 @@
 - (void)setupLoadTaPublishStatus{
     // 设置请求参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
-    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
-    
+//    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
+//    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
+    if (self.userId != nil) {
+        parameters[@"userId"] = self.userId;
+    }
+    if (self.token != nil) {
+        parameters[@"token"] = self.token;
+    }
     
     // 获取网络访问者
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
+    NSString *getUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/user/%@/post",self.targetUserId];
     
     // 发送请求
-    [manager GET:@"http://cwapi.gongpingjia.com/v1/user/846de312-306c-4916-91c1-a5e69b158014/post" parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
+    [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
         // 去出他发布的数据
         NSArray *taPubArr = responseObject[@"data"];
         
@@ -177,7 +197,7 @@
     return 200;
 }
 
-#pragma mark - lazy
+#pragma mark - lazy(懒加载)
 
 - (NSCache *)rowHeightCache{
     if (!_rowHeightCache) {
@@ -185,5 +205,22 @@
     }
     return _rowHeightCache;
 }
+
+// 用户id
+- (NSString *)userId{
+    if (!_userId) {
+        _userId = [Tools getValueFromKey:@"userId"];
+    }
+    return _userId;
+}
+
+// 用户token
+- (NSString *)token{
+    if (!_token) {
+        _token = [Tools getValueFromKey:@"token"];
+    }
+    return _token;
+}
+
 
 @end

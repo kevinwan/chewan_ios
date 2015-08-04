@@ -15,8 +15,18 @@
 #import "CPHomeStatusCell.h"
 #import "CPActiveDetailsController.h"
 #import "CPSelectView.h"
+#import "MJRefresh.h"
+#import "SVProgressHUD.h"
+
+
 
 @interface CPCityController ()<UITableViewDataSource,UITableViewDelegate, CPSelectViewDelegate>
+
+// 用户id
+@property (nonatomic,copy) NSString *userId;
+
+// 用户token
+@property (nonatomic,copy) NSString *token;
 
 // 蒙板遮罩
 @property (nonatomic,strong) UIButton *coverBtn;
@@ -70,30 +80,31 @@
 @end
 
 @implementation CPCityController
-#pragma mark - lazy
-- (UIButton *)coverBtn
-{
-    if (_coverBtn == nil) {
-        _coverBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_coverBtn addTarget:self action:@selector(coverBtnClick) forControlEvents:UIControlEventTouchUpInside];
-        _coverBtn.backgroundColor = RGBACOLOR(0, 0, 0, 0.5);
-        _coverBtn.frame = self.view.bounds;
-        [[UIApplication sharedApplication].keyWindow addSubview:_coverBtn];
-        _coverBtn.hidden = YES;
-    }
-    return _coverBtn;
-}
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     // 加载活动数据
     [self setupLoadStatus];
     
+    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+  
+    // 马上进入刷新状态
+    [self.tableView.header beginRefreshing];
+    
+    
 }
 
-
+// 下拉刷新
+- (void)loadNewData{
+    [self setupLoadStatus];
+//    [SVProgressHUD showWithStatus:@"hello"];
+//    [self showLoading];
+//    [self disMiss];
+//    if (CPNoNetWork) {
+//        self
+//    }
+    
+}
 
 // 加载活动数据
 - (void)setupLoadStatus{
@@ -101,19 +112,21 @@
     // 封装请求参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     parameters[@"key"] = @"hot";
-    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
-    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
-    parameters[@"city"] = @"南京";
-    
+//    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
+//    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
+//    parameters[@"city"] = @"南京";
+    if (self.userId != nil) {
+        parameters[@"userId"] = self.userId;
+    }
+    if (self.token != nil) {
+        parameters[@"token"] = self.token;
+    }
     
     // 获取网络管理者
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     // 发送请求
     [manager GET:@"http://cwapi.gongpingjia.com/v1/activity/list" parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
-        // 取出活动数据
-
-//        NSLog(@"%@",responseObject[@"data"]);
         
         // 取出活动数据
         NSArray *dicts = responseObject[@"data"];
@@ -124,9 +137,11 @@
         // 刷新表格
         [self.tableView reloadData];
         
+        // 关闭刷新栏
+        [self.tableView.header endRefreshing];
+        
     } failure:^(NSURLSessionDataTask * task, NSError * error) {
-        //
-        NSLog(@"%@",@"失败");
+        [SVProgressHUD showWithStatus:@"获取用户信息失败"];
     }];
     
 }
@@ -186,8 +201,38 @@
 }
 
 
-#pragma mark - lazy
+// 点击cell跳转到活动详情页
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    // 获取活动详情storyboard中的控制器
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPActiveDetailsController" bundle:nil];
+    CPActiveDetailsController *ac = sb.instantiateInitialViewController;
+    
+    // 取出对应行模型
+    CPHomeStatus *status = self.status[indexPath.row];
+    
+    ac.activeId = status.activityId;
+    
+    [self.navigationController pushViewController:ac animated:YES];
+    
+}
 
+
+#pragma mark - lazy(懒加载)
+- (UIButton *)coverBtn
+{
+    if (_coverBtn == nil) {
+        _coverBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_coverBtn addTarget:self action:@selector(coverBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        _coverBtn.backgroundColor = RGBACOLOR(0, 0, 0, 0.5);
+        _coverBtn.frame = self.view.bounds;
+        [[UIApplication sharedApplication].keyWindow addSubview:_coverBtn];
+        _coverBtn.hidden = YES;
+    }
+    return _coverBtn;
+}
+
+// 行高缓存
 - (NSCache *)rowHeightCache{
     if (!_rowHeightCache) {
         _rowHeightCache = [[NSCache alloc] init];
@@ -195,26 +240,26 @@
     return _rowHeightCache;
 }
 
-// 点击cell跳转到活动详情页
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    // 获取活动详情storyboard中的控制器
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPActiveDetailsController" bundle:nil];
-    CPActiveDetailsController *ac = sb.instantiateInitialViewController;
-    // 取出对应行模型
-    CPHomeStatus *status = self.status[indexPath.row];
-    
-    ac.activeId = status.activityId;
-    
-//    NSLog(@"%@",ac.activeId);
-    
-    [self.navigationController pushViewController:ac animated:YES];
-    
+// 用户id
+- (NSString *)userId{
+    if (!_userId) {
+       _userId = [Tools getValueFromKey:@"userId"];
+    }
+    return _userId;
+}
+
+// 用户token
+- (NSString *)token{
+    if (!_token) {
+        _token = [Tools getValueFromKey:@"token"];
+    }
+    return _token;
 }
 
 
 
 
+#pragma mark - 按钮点击事件
 // 创建活动
 - (IBAction)createActive:(id)sender {
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPCreatActivityController" bundle:nil];
@@ -243,14 +288,14 @@
 // 热门按钮点击
 - (IBAction)hotBtnClick:(id)sender {
     // 按钮颜色
-    [self.hotBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [self.nearBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.lastestBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.hotBtn setTitleColor:[Tools getColor:@"fc6e51"] forState:UIControlStateNormal];
+    [self.nearBtn setTitleColor:[Tools getColor:@"434a53"] forState:UIControlStateNormal];
+    [self.lastestBtn setTitleColor:[Tools getColor:@"434a53"] forState:UIControlStateNormal];
     
     // 底边颜色
-    self.hotLine.backgroundColor = [UIColor redColor];
-    self.nearLine.backgroundColor = [UIColor grayColor];
-    self.latestLine.backgroundColor = [UIColor grayColor];
+    self.hotLine.backgroundColor = [Tools getColor:@"fc6e51"];
+    self.nearLine.backgroundColor = [Tools getColor:@"e6e9ed"];
+    self.latestLine.backgroundColor = [Tools getColor:@"e6e9ed"];
     
     // 约束调整
     self.hotConstraint.constant = 0;
@@ -262,14 +307,14 @@
 // 附近按钮点击
 - (IBAction)nearBtnClick:(id)sender {
     // 按钮颜色
-    [self.hotBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.nearBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [self.lastestBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.hotBtn setTitleColor:[Tools getColor:@"434a53"] forState:UIControlStateNormal];
+    [self.nearBtn setTitleColor:[Tools getColor:@"fc6e51"] forState:UIControlStateNormal];
+    [self.lastestBtn setTitleColor:[Tools getColor:@"434a53"] forState:UIControlStateNormal];
 
     // 底边颜色
-    self.hotLine.backgroundColor = [UIColor grayColor];
-    self.nearLine.backgroundColor = [UIColor redColor];
-    self.latestLine.backgroundColor = [UIColor grayColor];
+    self.hotLine.backgroundColor = [Tools getColor:@"e6e9ed"];
+    self.nearLine.backgroundColor = [Tools getColor:@"fc6e51"];
+    self.latestLine.backgroundColor = [Tools getColor:@"e6e9ed"];
     
     // 约束调整
     self.hotConstraint.constant = 1;
@@ -283,12 +328,12 @@
     // 按钮颜色
     [self.hotBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.nearBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.lastestBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [self.lastestBtn setTitleColor:[Tools getColor:@"fc6e51"] forState:UIControlStateNormal];
     
     // 底边颜色
-    self.hotLine.backgroundColor = [UIColor grayColor];
-    self.nearLine.backgroundColor = [UIColor grayColor];
-    self.latestLine.backgroundColor = [UIColor redColor];
+    self.hotLine.backgroundColor = [Tools getColor:@"e6e9ed"];
+    self.nearLine.backgroundColor = [Tools getColor:@"e6e9ed"];
+    self.latestLine.backgroundColor = [Tools getColor:@"fc6e51"];
     
     
     // 约束调整
@@ -300,7 +345,7 @@
 
 
 
-// 最新按钮点击
+// 蒙版按钮点击
 - (void)coverBtnClick
 {
     [self.selectView dismissWithCompletion:nil];

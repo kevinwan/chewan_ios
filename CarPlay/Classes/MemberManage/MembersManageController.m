@@ -21,9 +21,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "UMSocial.h"
 #import "UMSocialData.h"
-#define kActivityId @"55838b12-7039-41e5-9150-6dd154de961b"
-#define kUserId @"846de312-306c-4916-91c1-a5e69b158014"
-#define kToken @"750dd49c-6129-4a9a-9558-27fa74fc4ce7"
+
 
 
 @interface MembersManageController () <UITableViewDataSource,UITableViewDelegate>
@@ -59,8 +57,8 @@
 
 //添加微信分享的语句
 - (void)inviteFriend {
-    [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/activity/%@/index.html",kActivityId];
-    [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/activity/%@/index.html",kActivityId];
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/activity/%@/index.html",self.activityId];
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/activity/%@/index.html",self.activityId];
     [UMSocialSnsService presentSnsIconSheetView:self appKey:nil shareText:@"我刚创建了一个活动，小伙伴们快来加入吧" shareImage:nil shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,UMShareToSms, nil] delegate:nil];
 }
 
@@ -73,7 +71,7 @@
 //管理 删除参与者
 - (IBAction)memberCellDelete:(UIButton *)sender {
     [self.view showWait];
-    NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/member/remove?userId=%@&token=%@",kActivityId,kUserId,kToken];
+    NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/member/remove?userId=%@&token=%@",self.activityId,self.userId,self.token];
     SQLog(@"%tu",sender.tag);
     members *TapMember = self.membersArray[sender.tag];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -97,20 +95,20 @@
 //加载成员信息和car信息
 - (void)loadMessage {
     //示例参数@"http://cwapi.gongpingjia.com/v1"
+        NSString *userId = [Tools getValueFromKey:@"userId"];
+        if (userId.length == 0) {
+            [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+            return;
+        }
+        self.userId = userId;
+        NSString *token = [Tools getValueFromKey:@"token"];
+        if (token.length == 0) {
+            [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+            return;
+        }
+        self.token = token;
     [self.view showWait];
-//        NSString *userId = [Tools getValueFromKey:@"userId"];
-//        if (userId.length == 0) {
-//            [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
-//            return;
-//        }
-//        self.userId = userId;
-//        NSString *token = [Tools getValueFromKey:@"token"];
-//        if (token.length == 0) {
-//            [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
-//            return;
-//        }
-//        self.token = token;
-    NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/members?userId=%@&token=%@",kActivityId,kUserId,kToken];
+    NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/members?userId=%@&token=%@",self.activityId,self.userId,self.token];
     [ZYNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
         [self.view hideWait];
         SQLog(@"%@",responseObject);
@@ -218,7 +216,7 @@
     UITableViewCell *c = [self.memberTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:sender.tag%100 inSection:0]];
     UIButton *b = (UIButton *)[c.contentView viewWithTag:sender.tag];
     
-    NSString *url = [NSString stringWithFormat:@"v1/activity/%@/seat/return?userId=%@&token=%@",kActivityId,kUserId,kToken];
+    NSString *url = [NSString stringWithFormat:@"v1/activity/%@/seat/return?userId=%@&token=%@",self.activityId,self.userId,self.token];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"member"] = self.tapUserID;
     [self.view showWait];
@@ -228,7 +226,7 @@
         [self.view hideWait];
         if ([responseObject operationSuccess]) {
             //从新加载信息
-            NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/members?userId=%@&token=%@",kActivityId,kUserId,kToken];
+            NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/members?userId=%@&token=%@",self.activityId,self.userId,self.token];
             [ZYNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
                 if ([responseObject operationSuccess]) {
                     NSArray *carModel = [cars objectArrayWithKeyValuesArray:responseObject[@"data"][@"cars"]];

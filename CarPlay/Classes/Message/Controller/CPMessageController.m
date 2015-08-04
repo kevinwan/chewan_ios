@@ -42,14 +42,13 @@ typedef enum {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.tableFooterView = [UIView new];
     
-//    BOOL isLogin = YES;[[Tools getValueFromKey:NOTIFICATION_HASLOGIN] boolValue];
-//    
-//    if (!isLogin) {
-//        return;
-//    }else{
-//        [self timer];
-//    }
+    if (CPUnLogin) {
+        return;
+    }else{
+        [self timer];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
