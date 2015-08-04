@@ -47,6 +47,8 @@ typedef enum {
 @property (nonatomic, strong) UIBarButtonItem *rightItem;
 @property (nonatomic, strong) CPLocationModel *selectLocation;
 @property (nonatomic, strong) CPCreatActivityModel *currentModel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *locationLabelWitdh;
+
 @property (nonatomic, assign) BOOL imageEditing;
 @end
 
@@ -105,24 +107,21 @@ typedef enum {
 {
     _data = data;
     
+    self.currentModel = [CPCreatActivityModel objectWithKeyValues:_data];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"%zd",CPNoNetWork);
-    
-    if(CPNoNetWork){
-        
-    }
-    _data = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"123" ofType:@"plist"]];
-    
-    self.currentModel = [CPCreatActivityModel objectWithKeyValues:_data];
-    
     self.navigationItem.title = @"编辑活动";
     
     [self setUp];
     
+}
+
+- (void)reRefreshData
+{
+    [self setUp];
 }
 
 /**
@@ -135,6 +134,7 @@ typedef enum {
     self.saveBtn.clipsToBounds = YES;
     self.currentOffset = CGPointMake(0, -64);
     self.picIndex = 10;
+    self.locationLabelWitdh.constant = kScreenWidth - 175;
     
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
     [CPNotificationCenter addObserver:self selector:@selector(pickerViewCancle:) name:@"PicViewCancle" object:nil];
@@ -149,6 +149,10 @@ typedef enum {
  */
 - (void)setCellData
 {
+    if (self.currentModel == nil) {
+        return;
+    }
+    
     [self labelWithRow:1].text = self.currentModel.type;
     
     if (self.currentModel.introduction.length > 0) {
@@ -458,6 +462,7 @@ typedef enum {
     int row = [notify.userInfo[@"row"] intValue];
     if (row == 1) {
         [self.tableView setContentOffset:CGPointMake(0, -64) animated:YES];
+        [self closeArrowWithRow:1];
     }else{
         [self closeArrowWithRow:row];
     }
@@ -891,8 +896,7 @@ typedef enum {
     }
     params[@"activityId"] = self.currentModel.activityId;
     params[@"type"] = self.currentModel.type;
-//    params[@"cover"] = self.currentModel.cover;
-        params[@"cover"] = @[@"e0e266ab-88f4-42f7-b49f-f65b6a4cdf52", @"e2dd21a2-eead-4131-ad8f-bdf82c848710"];
+    params[@"cover"] = picIds;
     params[@"pay"] = self.currentModel.pay;
     DLog(@"%@",params);
     NSString *url = [NSString stringWithFormat:@"v1/activity/%@/info",self.currentModel.activityId];

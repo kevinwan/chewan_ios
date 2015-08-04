@@ -57,6 +57,8 @@ typedef enum {
 @property (nonatomic, strong) CPCreatActivityModel *currentModel;
 @property (nonatomic, strong) NSMutableArray *seats;
 @property (weak, nonatomic) IBOutlet UILabel *seatLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *locationLabelWitdh;
+
 @property (nonatomic, assign) BOOL imageEditing;
 @end
 
@@ -140,6 +142,8 @@ typedef enum {
     self.finishToFriend.clipsToBounds = YES;
     self.currentOffset = CGPointMake(0, -64);
     self.picIndex = 10;
+    self.locationLabelWitdh.constant = kScreenWidth - 175;
+    
     
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
     [CPNotificationCenter addObserver:self selector:@selector(pickerViewCancle:) name:@"PicViewCancle" object:nil];
