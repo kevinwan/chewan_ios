@@ -71,6 +71,7 @@
         parameters[@"token"] = self.token;
     }
     
+    
     // 获取网络访问者
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
@@ -81,7 +82,7 @@
     [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
         
 
-        NSLog(@"%@",responseObject[@"data"]);
+//        NSLog(@"%@",responseObject[@"data"]);
         
         // 字典转模型
         self.taStatus = [CPTaDetailsStatus objectWithKeyValues:responseObject[@"data"]];

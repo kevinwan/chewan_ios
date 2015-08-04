@@ -17,14 +17,17 @@
 #import "MembersManageController.h"
 #import "CPDiscussCell.h"
 #import "CPTaDetailsController.h"
-
+#import "CPEditActivityController.h"
 
 @interface CPActiveDetailsController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 
-// 活动创建者ID
+// 用户ID
 @property (nonatomic,copy) NSString *userId;
 
-// 活动创建者token
+// 活动创建者
+@property (nonatomic,copy) NSString *createrId;
+
+// 用户token
 @property (nonatomic,copy) NSString *token;
 
 // tableView
@@ -39,6 +42,10 @@
 // 文本输入框
 @property (weak, nonatomic) IBOutlet UITextField *inputView;
 
+// 编辑活动
+- (IBAction)editorActive:(id)sender;
+
+
 // 缓存cell高度（线程安全、内存紧张时会自动释放、不会拷贝key）
 @property (nonatomic,strong) NSCache *rowHeightCache;
 
@@ -47,6 +54,7 @@
 
 // 存储所有评论数据
 @property (nonatomic,strong) NSArray *discussStatus;
+
 
 @end
 
@@ -87,7 +95,7 @@
             UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil];
             
             CPTaDetailsController *taViewController = sb.instantiateInitialViewController;
-            taViewController.userId1 = self.userId;
+            taViewController.userId1 = self.createrId;
             
             [self.navigationController pushViewController:taViewController animated:YES];
 
@@ -111,12 +119,12 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
 //    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
 //    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
-//    if (self.userId != nil) {
-//        parameters[@"userId"] = self.userId;
-//    }
-//    if (self.token != nil) {
-//        parameters[@"token"] = self.token;
-//    }
+    if (self.userId != nil) {
+        parameters[@"userId"] = self.userId;
+    }
+    if (self.token != nil) {
+        parameters[@"token"] = self.token;
+    }
     
     // 获取网络管理者
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -128,7 +136,7 @@
     [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
         
         
-        NSLog(@"%@",responseObject[@"data"]);
+//        NSLog(@"%@",responseObject[@"data"]);
         
         NSDictionary *dicts = responseObject[@"data"];
         
@@ -136,7 +144,7 @@
         self.activeStatus = [CPActiveStatus objectWithKeyValues:dicts];
         
         // 取出被访问者的id
-//        self.userId = self.activeStatus.organizer.userId;
+        self.createrId = self.activeStatus.organizer.userId;
         
         
         // 加载headview
@@ -323,20 +331,20 @@
 
 #pragma mark - lazy(懒加载)
 //// 用户id
-//- (NSString *)userId{
-//    if (!_userId) {
-//        _userId = [Tools getValueFromKey:@"userId"];
-//    }
-//    return _userId;
-//}
-//
-//// 用户token
-//- (NSString *)token{
-//    if (!_token) {
-//        _token = [Tools getValueFromKey:@"token"];
-//    }
-//    return _token;
-//}
+- (NSString *)userId{
+    if (!_userId) {
+        _userId = [Tools getValueFromKey:@"userId"];
+    }
+    return _userId;
+}
+
+// 用户token
+- (NSString *)token{
+    if (!_token) {
+        _token = [Tools getValueFromKey:@"token"];
+    }
+    return _token;
+}
 
 
 // 我要去玩按钮点击事件
@@ -358,4 +366,11 @@
     }
 }
 
+// 编辑活动按钮
+- (IBAction)editorActive:(id)sender {
+    CPEditActivityController *vc = [UIStoryboard storyboardWithName:@"CPEditActivityController" bundle:nil].instantiateInitialViewController;
+    vc.data = [self.activeStatus keyValues]; // 字典
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
 @end
