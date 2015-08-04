@@ -16,7 +16,9 @@
 @property (nonatomic, strong) NSMutableArray *editPhotoViews;
 @property (nonatomic, assign) NSUInteger picIndex;
 @property (nonatomic, strong) UIBarButtonItem *rightItem;
+@property (nonatomic, strong) UIBarButtonItem *leftItem;
 @property (nonatomic, assign) CGFloat photoViewHeight;
+@property (nonatomic, assign) BOOL imageEditing;
 @end
 
 @implementation CPPhotoalbumManagement
@@ -58,6 +60,13 @@
         _rightItem = [UIBarButtonItem itemWithNorImage:@"删除" higImage:nil title:nil target:self action:@selector(showAlertIfDelete)];
     }
     return _rightItem;
+}
+
+-(UIBarButtonItem *)leftItem{
+    if (_leftItem == nil) {
+        _leftItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"取消" target:self action:@selector(cancleEditPhotoSelect)];
+    }
+    return _leftItem;
 }
 
 #pragma mark - 添加相片的相关方法
@@ -163,28 +172,37 @@
  */
 - (void)addPhoto:(NSArray *)arr
 {
-    if (self.photoView.subviews.count + arr.count > 10){
-        [self showAlert];
-        return;
-    }
-    NSString *path=[[NSString alloc]initWithFormat:@"v1/user/%@/album/upload?token=%@",[Tools getValueFromKey:@"userId"],[Tools getValueFromKey:@"token"]];
-    for (int i = 0; i < arr.count; i++) {
-        CPHttpFile *imageFile = [CPHttpFile fileWithName:@"a1.jpg" data:UIImageJPEGRepresentation(arr[i], 0.4) mimeType:@"image/jpeg" filename:@"a1.jpg"];
+    if ([Tools getValueFromKey:@"userId"]) {
+        if (self.photoView.subviews.count + arr.count > 10){
+            [self showAlert];
+            return;
+        }
+        NSString *path=[[NSString alloc]initWithFormat:@"v1/user/%@/album/upload?token=%@",[Tools getValueFromKey:@"userId"],[Tools getValueFromKey:@"token"]];
+        for (int i = 0; i < arr.count; i++) {
+            CPHttpFile *imageFile = [CPHttpFile fileWithName:@"a1.jpg" data:UIImageJPEGRepresentation(arr[i], 0.4) mimeType:@"image/jpeg" filename:@"a1.jpg"];
+            
+            [ZYNetWorkTool postFileWithUrl:path params:nil files:@[imageFile] success:^(id responseObject) {
+                if (CPSuccess) {
+                    CPEditImageView *imageView = [[CPEditImageView alloc] init];
+                    imageView.image = arr[i];
+                    imageView.tag = self.picIndex++;
+                    UILongPressGestureRecognizer *longPressGes = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+                    [imageView addGestureRecognizer:longPressGes];
+                    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPress:)];
+                    [imageView addGestureRecognizer:tapGes];
+                    [self.photoView insertSubview:imageView atIndex:0];
+                    [self layoutPhotoView];
+                }else{
+                    [self showError:responseObject[@"errmsg"]];
+                }
+            } failure:^(NSError *error) {
+                [self showError:@"照片上传失败"];
+            }];
+        }
         
-        [CPNetWorkTool postFileWithUrl:path params:nil files:@[imageFile] success:^(id responseObject) {
-            if (CPSuccess) {
-                CPEditImageView *imageView = [[CPEditImageView alloc] init];
-                imageView.image = arr[i];
-                imageView.tag = self.picIndex++;
-                UILongPressGestureRecognizer *longPressGes = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
-                [imageView addGestureRecognizer:longPressGes];
-                [self.photoView insertSubview:imageView atIndex:0];
-            }
-        } failure:^(NSError *error) {
-            [self showError:@"照片上传失败"];
-        }];
+    }else{
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_HASLOGIN object:nil];
     }
-    [self layoutPhotoView];
 }
 
 /**
@@ -195,20 +213,42 @@
 - (void)longPress:(UILongPressGestureRecognizer *)recognizer
 {
     if (recognizer.state == UIGestureRecognizerStateBegan) {
-        CPEditImageView *editImageView = (CPEditImageView *)recognizer.view;
-        if (editImageView.select) {
-            [self.editPhotoViews removeObject:editImageView];
-        }else{
-            [self.editPhotoViews addObject:editImageView];
-        }
-        editImageView.showSelectImage = !editImageView.select;
-        
-        if (self.editPhotoViews.count > 0){
-            self.navigationItem.rightBarButtonItem = self.rightItem;
-        }else{
-            self.navigationItem.rightBarButtonItem = nil;
-        }
+        self.imageEditing = YES;
+        [self dealImageViewTapWithRecognizer:recognizer];
     }
+}
+
+- (void)tapPress:(UITapGestureRecognizer *)recognizer
+{
+    if (self.imageEditing) {
+        [self dealImageViewTapWithRecognizer:recognizer];
+    }
+}
+
+/**
+ *  处理图片手势的触发
+ *
+ *  @param recognizer recognizer description
+ */
+- (void)dealImageViewTapWithRecognizer:(UIGestureRecognizer *)recognizer
+{
+    CPEditImageView *editImageView = (CPEditImageView *)recognizer.view;
+    
+    if (editImageView.select) {
+        [self.editPhotoViews removeObject:editImageView];
+    }else{
+        [self.editPhotoViews addObject:editImageView];
+    }
+    editImageView.showSelectImage = !editImageView.select;
+    
+    if (self.editPhotoViews.count > 0){
+        self.navigationItem.rightBarButtonItem = self.rightItem;
+        self.navigationItem.leftBarButtonItem = self.leftItem;
+    }else{
+        self.imageEditing = NO;
+        self.navigationItem.rightBarButtonItem = nil;
+    }
+    
 }
 
 #pragma mark - 处理图片的编辑
@@ -283,7 +323,7 @@
     
     for (int i = 0; i < photos.count; i++) {
         CPEditImageView *imageView = [[CPEditImageView alloc] init];
-        NSURL *url=[[NSURL alloc]initWithString:photos[i]];
+        NSURL *url=[[NSURL alloc]initWithString:photos[i][@"thumbnail_pic"]];
         [imageView sd_setImageWithURL:url];
       
         imageView.tag = self.picIndex++;
