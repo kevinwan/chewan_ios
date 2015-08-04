@@ -20,6 +20,7 @@
 #import "AppAppearance.h"
 
 @interface CPNewMessageController ()
+
 @property (nonatomic, strong) NSCache *cellHeights;
 @property (nonatomic, assign) BOOL isEdit;
 @property (nonatomic, strong) NSMutableArray *items;
@@ -103,34 +104,42 @@
     
     self.tableView.tableFooterView = [[UIView alloc] init];
 
+    ZYJumpToLoginView // 跳转到登录页面
+    
     [CPNotificationCenter addObserver:self selector:@selector(tableViewEdit:) name:CPNewMsgEditNotifycation object:nil];
+    
+    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    [self reRefreshData];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)reRefreshData
 {
-    [super viewWillAppear:animated];
-//    http://cwapi.gongpingjia.com/v1/user/846de312-306c-4916-91c1-a5e69b158014/message/list?token=750dd49c-6129-4a9a-9558-27fa74fc4ce7&type=comment
-    BOOL isLogin = [Tools getValueFromKey:NOTIFICATION_HASLOGIN];
-    if (isLogin) {
-        
-    }
+    [self showLoading];
     [self loadData];
-    
 }
 
 - (void)loadData
 {
+
     NSString *url = [NSString stringWithFormat:@"/v1/user/%@/message/list?token=%@&type=comment",[Tools getValueFromKey:@"userId"],[Tools getValueFromKey:@"token"]];
     [ZYNetWorkTool getWithUrl:url params:nil success:^(id responseObject) {
+        [self disMiss];
+        [self.tableView.header endRefreshing];
         if (CPSuccess) {
-            DLog(@"%@",responseObject);
-            
+            [self.items removeAllObjects];
             NSArray *array = [CPNewMsgModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
             [self.items addObjectsFromArray:array];
+            if (self.items.count == 0) {
+                [self showNoData];
+                return;
+            }
             [self.tableView reloadData];
+        }else{
+            [self showNetWorkFailed];
         }
     } failure:^(NSError *error) {
-        
+        [self.tableView.header endRefreshing];
+        [self showNetWorkOutTime];
     }];
 }
 

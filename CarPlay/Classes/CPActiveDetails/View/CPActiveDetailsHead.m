@@ -110,7 +110,7 @@
     [self.picColView registerClass:[CPActivePicCell class] forCellWithReuseIdentifier:[CPActivePicCell identifier]];
     
     _activeStatus = activeStatus;
-    
+
     // 取出用户
     CPActiveUser *user = _activeStatus.organizer;
     
@@ -183,6 +183,13 @@
     self.myPlay.layer.cornerRadius = 12;
     self.myPlay.layer.masksToBounds = YES;
     
+    if (activeStatus.isOrganizer) {
+        [self.myPlay setTitle:@"成员管理" forState:UIControlStateNormal];
+    }else if (activeStatus.isMember){
+        [self.myPlay setTitle:@"已加入" forState:UIControlStateNormal];
+    }else{
+        [self.myPlay setTitle:@"我要去玩" forState:UIControlStateNormal];
+    }
  
     
     // 发布时间
@@ -288,12 +295,24 @@
     
 }
 
-
+// 点击头像跳转到他的详情页
 - (IBAction)iconBtnClick:(id)sender {
-    
-    if (self.goTaDetails != nil) {
-        // 通知控制器跳到他的详情页面
-        self.goTaDetails();
+    // 判断是否已登录
+    if ([Tools getValueFromKey:NOTIFICATION_HASLOGIN]) {
+        
+         // 已登录通知控制器跳到他的详情页面
+        if (self.goTaDetails != nil) {
+            self.goTaDetails();
+        }
+    }else{
+        
+        // 未登录跳到登录页面
+        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
     }
+    
+    
+    
+    
+    
 }
 @end

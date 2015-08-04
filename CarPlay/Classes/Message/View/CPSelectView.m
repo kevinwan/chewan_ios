@@ -77,6 +77,10 @@
 
 - (void)dismissWithCompletion:(void (^)())completion
 {
+    // 移除selectView的时候删除pickerView
+    if (self.pickerView) {
+        [self.pickerView removeFromSuperview];
+    }
     [UIView animateWithDuration:0.25 animations:^{
         self.y = kScreenHeight;
     }completion:^(BOOL finished) {

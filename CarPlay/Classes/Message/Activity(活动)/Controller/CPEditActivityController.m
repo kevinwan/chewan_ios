@@ -47,6 +47,7 @@ typedef enum {
 @property (nonatomic, strong) UIBarButtonItem *rightItem;
 @property (nonatomic, strong) CPLocationModel *selectLocation;
 @property (nonatomic, strong) CPCreatActivityModel *currentModel;
+@property (nonatomic, assign) BOOL imageEditing;
 @end
 
 @implementation CPEditActivityController
@@ -652,8 +653,13 @@ typedef enum {
         imageView.tag = self.picIndex++;
         imageView.url = arr[i][@"thumbnail_pic"];
         imageView.coverId = arr[i][@"coverId"];
+        
         UILongPressGestureRecognizer *longPressGes = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
         [imageView addGestureRecognizer:longPressGes];
+        
+        UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPress:)];
+        [imageView addGestureRecognizer:tapGes];
+        
         [self.photoView insertSubview:imageView atIndex:0];
     }
     
@@ -669,20 +675,41 @@ typedef enum {
 - (void)longPress:(UILongPressGestureRecognizer *)recognizer
 {
     if (recognizer.state == UIGestureRecognizerStateBegan) {
-        CPEditImageView *editImageView = (CPEditImageView *)recognizer.view;
-        if (editImageView.select) {
-            [self.editPhotoViews removeObject:editImageView];
-        }else{
-            [self.editPhotoViews addObject:editImageView];
-        }
-        editImageView.showSelectImage = !editImageView.select;
-        
-        if (self.editPhotoViews.count > 0){
-            self.navigationItem.rightBarButtonItem = self.rightItem;
-        }else{
-            self.navigationItem.rightBarButtonItem = nil;
-        }
+        self.imageEditing = YES;
+        [self dealImageViewTapWithRecognizer:recognizer];
     }
+}
+
+- (void)tapPress:(UITapGestureRecognizer *)recognizer
+{
+    if (self.imageEditing) {
+        [self dealImageViewTapWithRecognizer:recognizer];
+    }
+}
+
+/**
+ *  处理图片手势的触发
+ *
+ *  @param recognizer recognizer description
+ */
+- (void)dealImageViewTapWithRecognizer:(UIGestureRecognizer *)recognizer
+{
+    CPEditImageView *editImageView = (CPEditImageView *)recognizer.view;
+    
+    if (editImageView.select) {
+        [self.editPhotoViews removeObject:editImageView];
+    }else{
+        [self.editPhotoViews addObject:editImageView];
+    }
+    editImageView.showSelectImage = !editImageView.select;
+    
+    if (self.editPhotoViews.count > 0){
+        self.navigationItem.rightBarButtonItem = self.rightItem;
+    }else{
+        self.imageEditing = NO;
+        self.navigationItem.rightBarButtonItem = nil;
+    }
+    
 }
 
 /**
@@ -879,6 +906,7 @@ typedef enum {
     } failed:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:@"修改失败"];
     }];
+    
 }
 
 

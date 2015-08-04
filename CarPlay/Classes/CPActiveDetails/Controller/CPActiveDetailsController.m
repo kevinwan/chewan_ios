@@ -16,9 +16,16 @@
 #import "MembersController.h"
 #import "MembersManageController.h"
 #import "CPDiscussCell.h"
+#import "CPTaDetailsController.h"
 
 
 @interface CPActiveDetailsController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
+
+// 活动创建者ID
+@property (nonatomic,copy) NSString *userId;
+
+// 活动创建者token
+@property (nonatomic,copy) NSString *token;
 
 // tableView
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -79,7 +86,10 @@
         headView.goTaDetails = ^{
             UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil];
             
-            [self.navigationController pushViewController:sb.instantiateInitialViewController animated:YES];
+            CPTaDetailsController *taViewController = sb.instantiateInitialViewController;
+            taViewController.userId1 = self.userId;
+            
+            [self.navigationController pushViewController:taViewController animated:YES];
 
         };
     }
@@ -99,8 +109,14 @@
     
     // 封装请求参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
-    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
+//    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
+//    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
+//    if (self.userId != nil) {
+//        parameters[@"userId"] = self.userId;
+//    }
+//    if (self.token != nil) {
+//        parameters[@"token"] = self.token;
+//    }
     
     // 获取网络管理者
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -112,12 +128,16 @@
     [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
         
         
-//        NSLog(@"%@",responseObject[@"data"]);
+        NSLog(@"%@",responseObject[@"data"]);
         
         NSDictionary *dicts = responseObject[@"data"];
         
         // 取出活动数据
         self.activeStatus = [CPActiveStatus objectWithKeyValues:dicts];
+        
+        // 取出被访问者的id
+//        self.userId = self.activeStatus.organizer.userId;
+        
         
         // 加载headview
         [self loadHeadView];
@@ -137,8 +157,11 @@
     
     // 封装请求参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
-    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
+
+//    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
+//    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
+    
+    
     
     // 获取网络访问者
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -147,8 +170,9 @@
     
     // 发送请求
     [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
-        //
-//         NSLog(@"%@",responseObject[@"data"]);
+        
+//        NSLog(@"%@",self.activeId);
+//         NSLog(@"%@",responseObject);
         self.discussStatus = [CPDiscussStatus objectArrayWithKeyValuesArray:responseObject[@"data"]];
 //        NSLog(@"%@",self.discussStatus);
         
@@ -293,14 +317,26 @@
     
     
     
-    
-    
-    
-    
-    
     return YES;
 }
 
+
+#pragma mark - lazy(懒加载)
+//// 用户id
+//- (NSString *)userId{
+//    if (!_userId) {
+//        _userId = [Tools getValueFromKey:@"userId"];
+//    }
+//    return _userId;
+//}
+//
+//// 用户token
+//- (NSString *)token{
+//    if (!_token) {
+//        _token = [Tools getValueFromKey:@"token"];
+//    }
+//    return _token;
+//}
 
 
 // 我要去玩按钮点击事件

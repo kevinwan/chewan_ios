@@ -173,7 +173,7 @@
     UIButton *left = [UIButton buttonWithType:UIButtonTypeCustom];
     left.titleLabel.font = [UIFont systemFontOfSize:16];
     [left setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    [left setTitle:@"      取消" forState:UIControlStateNormal];
+    [left setTitle:@"      取消      " forState:UIControlStateNormal];
     [left sizeToFit];
     [left addTarget:self action:@selector(remove) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *lefttem = [[UIBarButtonItem alloc] initWithCustomView:left];
@@ -183,7 +183,7 @@
     UIButton *right = [UIButton buttonWithType:UIButtonTypeCustom];
     right.titleLabel.font = [UIFont systemFontOfSize:16];
     [right setTitleColor:[Tools getColor:@"fc6e51"] forState:UIControlStateNormal];
-    [right setTitle:@"确定     " forState:UIControlStateNormal];
+    [right setTitle:@"      确定     " forState:UIControlStateNormal];
     [right sizeToFit];
     [right addTarget:self action:@selector(doneClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:right];

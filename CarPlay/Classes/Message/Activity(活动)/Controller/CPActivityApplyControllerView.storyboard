@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Mwc-yt-0aX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Mwc-yt-0aX">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
         <!--Activity Apply Controller View-->
@@ -125,6 +125,85 @@
                                     <outlet property="sexView" destination="KWT-J9-I6p" id="STJ-pn-0rw"/>
                                     <outlet property="tipMsgLabelWidth" destination="YJo-d5-Ii2" id="ByQ-JO-keC"/>
                                     <outlet property="tipmsgLabel" destination="sF2-wu-S2R" id="ncS-T0-E8D"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ActivityMsgCell" id="ejE-Gp-rj5" customClass="CPActivityApplyCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ejE-Gp-rj5" id="yoH-QV-Lho">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KyX-DD-evc" customClass="CPIconButton">
+                                            <rect key="frame" x="10" y="10" width="50" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="HZw-dW-jvO"/>
+                                                <constraint firstAttribute="width" constant="50" id="a3p-A9-ll0"/>
+                                            </constraints>
+                                            <state key="normal" title="Button">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8zr-ji-Dcv">
+                                            <rect key="frame" x="70" y="10" width="40" height="19.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="40" id="9gv-Vk-gvB"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.26274509800000001" green="0.2901960784" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XL7-Yl-q1v">
+                                            <rect key="frame" x="70" y="39.5" width="240" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.66666666669999997" green="0.69803921570000005" blue="0.74117647060000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vnt-a1-8N8">
+                                            <rect key="frame" x="154" y="13" width="15" height="15"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="15" id="DXD-iu-yHw"/>
+                                                <constraint firstAttribute="height" constant="15" id="SJN-h7-BWC"/>
+                                            </constraints>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CkM-Ld-dhN" customClass="CPSexView">
+                                            <rect key="frame" x="117" y="13" width="30" height="15"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="30" id="GO9-aj-gRc"/>
+                                                <constraint firstAttribute="height" constant="15" id="PTC-3Y-hs5"/>
+                                            </constraints>
+                                            <state key="normal" title="88">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="8zr-ji-Dcv" firstAttribute="top" secondItem="yoH-QV-Lho" secondAttribute="top" constant="10" id="2if-MD-cqF"/>
+                                        <constraint firstItem="CkM-Ld-dhN" firstAttribute="centerY" secondItem="8zr-ji-Dcv" secondAttribute="centerY" constant="0.5" id="52s-fF-DbM"/>
+                                        <constraint firstItem="CkM-Ld-dhN" firstAttribute="top" secondItem="yoH-QV-Lho" secondAttribute="top" constant="5" id="AoL-HE-x8Z"/>
+                                        <constraint firstItem="vnt-a1-8N8" firstAttribute="centerY" secondItem="8zr-ji-Dcv" secondAttribute="centerY" id="IBz-TT-v8C"/>
+                                        <constraint firstAttribute="trailing" secondItem="XL7-Yl-q1v" secondAttribute="trailing" constant="10" id="LZk-Ib-KEk"/>
+                                        <constraint firstItem="8zr-ji-Dcv" firstAttribute="leading" secondItem="KyX-DD-evc" secondAttribute="trailing" constant="10" id="SxZ-Om-NeN"/>
+                                        <constraint firstItem="vnt-a1-8N8" firstAttribute="leading" secondItem="CkM-Ld-dhN" secondAttribute="trailing" constant="7" id="aGe-KP-sjE"/>
+                                        <constraint firstItem="XL7-Yl-q1v" firstAttribute="leading" secondItem="KyX-DD-evc" secondAttribute="trailing" constant="10" id="fvt-Cn-blP"/>
+                                        <constraint firstItem="KyX-DD-evc" firstAttribute="leading" secondItem="yoH-QV-Lho" secondAttribute="leading" constant="10" id="jwj-tn-IeR"/>
+                                        <constraint firstItem="8zr-ji-Dcv" firstAttribute="centerY" secondItem="CkM-Ld-dhN" secondAttribute="centerY" id="s2i-gT-fHd"/>
+                                        <constraint firstItem="XL7-Yl-q1v" firstAttribute="top" secondItem="8zr-ji-Dcv" secondAttribute="bottom" constant="10" id="x9Z-eW-loi"/>
+                                        <constraint firstItem="CkM-Ld-dhN" firstAttribute="leading" secondItem="8zr-ji-Dcv" secondAttribute="trailing" constant="7" id="y9F-dh-ZK0"/>
+                                        <constraint firstAttribute="centerY" secondItem="KyX-DD-evc" secondAttribute="centerY" id="zmW-aD-b6X"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="52s-fF-DbM"/>
+                                            <exclude reference="AoL-HE-x8Z"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="carView" destination="vnt-a1-8N8" id="rFa-Rz-T39"/>
+                                    <outlet property="iconView" destination="KyX-DD-evc" id="swG-7u-dEW"/>
+                                    <outlet property="nameLabel" destination="8zr-ji-Dcv" id="aq8-5F-U3H"/>
+                                    <outlet property="nameLabelWidth" destination="9gv-Vk-gvB" id="0Wk-hF-ON8"/>
+                                    <outlet property="sexView" destination="CkM-Ld-dhN" id="ssi-xN-T0D"/>
+                                    <outlet property="tipmsgLabel" destination="XL7-Yl-q1v" id="prd-hQ-III"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
