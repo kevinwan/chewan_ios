@@ -75,6 +75,9 @@
     // 加载键盘处理事件
     [self loadKeyboard];
     
+    // 设置标题
+    self.title = @"活动详情";
+    
 }
 
 
@@ -84,8 +87,7 @@
 - (void)loadHeadView{
     // 创建tableheadview
     CPActiveDetailsHead *headView = [CPActiveDetailsHead headView:self];
-    
-//    headView.frame.size.height = [headView xibHeightWithActiveStatus:self.activeStatus];
+
     CGFloat headViewX = 0;
     CGFloat headViewY = 0;
     CGFloat headViewW = [UIScreen mainScreen].bounds.size.width;
@@ -120,8 +122,7 @@
     
     // 封装请求参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-//    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
-//    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
+
     if (self.userId != nil) {
         parameters[@"userId"] = self.userId;
     }
@@ -138,8 +139,6 @@
     // 发送请求
     [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
         
-        
-//        NSLog(@"%@",responseObject[@"data"]);
         
         NSDictionary *dicts = responseObject[@"data"];
         
@@ -164,8 +163,7 @@
         [self.tableView reloadData];
         
     } failure:^(NSURLSessionDataTask * task, NSError * error) {
-        //
-        NSLog(@"%@",error);
+       
     }];
 }
 
@@ -176,9 +174,12 @@
     // 封装请求参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
 
-//    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
-//    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
-    
+    if (self.userId != nil) {
+        parameters[@"userId"] = self.userId;
+    }
+    if (self.token != nil) {
+        parameters[@"token"] = self.token;
+    }
     
     
     // 获取网络访问者
@@ -189,13 +190,11 @@
     // 发送请求
     [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
         
-//        NSLog(@"%@",self.activeId);
-//         NSLog(@"%@",responseObject);
         self.discussStatus = [CPDiscussStatus objectArrayWithKeyValuesArray:responseObject[@"data"]];
-//        NSLog(@"%@",self.discussStatus);
+
         
     } failure:^(NSURLSessionDataTask * task, NSError * error) {
-        //
+        
     }];
     
 }
@@ -257,14 +256,11 @@
 #pragma mark -数据源方法
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-//    return 10;
+
     return self.discussStatus.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-//        UITableViewCell *cell = [[UITableViewCell alloc] init];
-//        cell.textLabel.text = @"123";
     
     CPDiscussCell *cell = [tableView dequeueReusableCellWithIdentifier:[CPDiscussCell identifier]];
     cell.discussStatus = self.discussStatus[indexPath.row];
@@ -337,7 +333,7 @@
     
     [manager POST:postUrl parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
        
-        NSLog(@"%@",responseObject);
+//        NSLog(@"%@",responseObject);
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         //
