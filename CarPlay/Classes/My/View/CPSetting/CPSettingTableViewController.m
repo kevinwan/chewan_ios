@@ -27,6 +27,12 @@
     self.loginOutBtn.layer.masksToBounds=YES;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    if (![Tools getValueFromKey:@"userId"]) {
+        [self.loginOutBtn setTitle:@"登录" forState:UIControlStateNormal];
+    }
+}
+
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
@@ -49,7 +55,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -96,8 +102,12 @@
     }
 }
 - (IBAction)loginOutBtnClick:(id)sender {
-    [Tools setValueForKey:nil key:@"userId"];
-    [[[UIAlertView alloc]initWithTitle:@"提示" message:@"是否注销当前账号？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"注销", nil] show];
+    if ([Tools getValueFromKey:@"userId"]) {
+        [Tools setValueForKey:nil key:@"userId"];
+        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"是否注销当前账号？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"注销", nil] show];
+    }else{
+        [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+    }
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{

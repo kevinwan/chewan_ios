@@ -31,16 +31,18 @@
     brandArray=[[NSArray alloc]init];
     modelArray=[[NSArray alloc]init];
     sortedBrandData=[[NSMutableDictionary alloc]init];
-    
+    if (!_fromMy || ![_fromMy isEqualToString:@"1"]) {
+        self.brandTableView.contentInset=UIEdgeInsetsMake(64, 0, 0, 0);
+    }
     //隐藏视图
     self.modelSlideView = [UIView new];
     _modelSlideView.hidden = YES;
     _modelSlideView.userInteractionEnabled = YES;
     [self.view addSubview:_modelSlideView];
-//    [_modelSlideView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0.0f, 60.0f, 0.0f, 0.0f));
-//    }];
-    [_modelSlideView setFrame:CGRectMake(60.0f, 0, SCREEN_WIDTH-60.0f,SCREEN_HEIGHT)];
+    [_modelSlideView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0.0f, 60.0f, 0.0f, 0.0f));
+    }];
+//    [_modelSlideView setFrame:CGRectMake(60.0f, 0, SCREEN_WIDTH-60.0f,SCREEN_HEIGHT)];
     
     // 第三方控件视图我就不修改了
     self.indexView = [[MJNIndexView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 60)];
@@ -54,7 +56,7 @@
     
     // DetailsTbView
     
-    self.modelTableView = [[UITableView alloc] initWithFrame:_modelSlideView.bounds style:UITableViewStylePlain];
+    self.modelTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
 //    _modelTableView.bounces = NO;
     _modelTableView.sectionHeaderHeight=50.0f;
     _modelTableView.delegate = self;
@@ -67,7 +69,11 @@
 //    [_modelTableView mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.edges.equalTo(_modelSlideView).with.insets(UIEdgeInsetsMake(66.0f, 0.5f, 0.0f, 0.0f));
 //    }];
-    
+    if (!_fromMy || ![_fromMy isEqualToString:@"1"]) {
+        self.modelTableView.frame=CGRectMake(0, 66, SCREEN_WIDTH, SCREEN_HEIGHT-66);
+    }else{
+        self.modelTableView.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    }
     // 清扫手势
     UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipes:)];
     swipeGesture.numberOfTouchesRequired = 1;

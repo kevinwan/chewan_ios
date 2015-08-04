@@ -47,7 +47,12 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    [self.tableView reloadData];
+    if ([Tools getValueFromKey:@"userId"]) {
+        [self.tableView reloadData];
+    }else{
+        [self.tableView removeFromSuperview];
+        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -64,7 +69,10 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+    if ([Tools getValueFromKey:@"userId"]) {
+        return 1;
+    }else
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -116,6 +124,7 @@
     [_pickview remove];
     if (indexPath.row==1) {
         CPBrandModelViewController *CPBrandModelVC=[[CPBrandModelViewController alloc]init];
+        CPBrandModelVC.fromMy=@"1";
         CPBrandModelVC.title=@"车型选择";
         [self.navigationController pushViewController:CPBrandModelVC animated:YES];
     }

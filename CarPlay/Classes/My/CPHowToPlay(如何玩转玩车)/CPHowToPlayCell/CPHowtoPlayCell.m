@@ -1,24 +1,23 @@
 //
-//  CPMyBaseCell.m
+//  CPHowtoPlayCell.m
 //  CarPlay
 //
-//  Created by 公平价 on 15/7/27.
+//  Created by 公平价 on 15/8/1.
 //  Copyright (c) 2015年 gongpingjia. All rights reserved.
 //
 
-#import "CPMyBaseCell.h"
+#import "CPHowtoPlayCell.h"
 
-@implementation CPMyBaseCell
+@implementation CPHowtoPlayCell
 
 - (void)awakeFromNib {
-    if (!_icon) {
-        _titleLable.x=_icon.x;
-        [_icon removeFromSuperview];
-    }
+    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
 }
 
 @end
