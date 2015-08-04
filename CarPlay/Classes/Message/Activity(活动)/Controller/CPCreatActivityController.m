@@ -929,9 +929,17 @@ typedef enum {
  */
 - (void)shareToFriendWithDict:(NSDictionary *)data
 {
+    SQLog(@"%@",data);
+    UIImage *image = nil;
+    NSData *dataUrl = [NSData dataWithContentsOfURL:[NSURL URLWithString:data[@"imgUrl"]]];
+    if (dataUrl!=nil) {
+        image = [[UIImage alloc]initWithData:dataUrl];
+    }
     [UMSocialData defaultData].extConfig.wechatSessionData.url = data[@"shareUrl"];
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = data[@"shareTitle"];
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = data[@"shareUrl"];
-    [UMSocialSnsService presentSnsIconSheetView:self appKey:nil shareText:data[@"shareTitle"] shareImage:nil shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,UMShareToSms, nil] delegate:nil];
+    [UMSocialData defaultData].extConfig.wechatTimelineData.title = data[@"shareTitle"];
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:nil shareText:data[@"shareContent"] shareImage:image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,UMShareToSms, nil] delegate:nil];
 }
 
 @end

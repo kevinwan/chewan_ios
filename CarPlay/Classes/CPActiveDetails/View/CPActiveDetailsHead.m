@@ -165,7 +165,7 @@
         if (user.carBrandLogo == nil || [user.carBrandLogo isEqualToString:@""]) {
             self.carModelConstraint.constant = 10;
         }else{
-            self.carModelConstraint.constant = 37;
+            self.carModelConstraint.constant = 31;
         }
         if (user.carModel == nil || [user.carModel isEqualToString:@""]) {
             tempDrivingExperience = [NSString stringWithFormat:@"%@年驾龄",user.drivingExperience];
@@ -182,6 +182,7 @@
     // 我要去玩按钮
     self.myPlay.layer.cornerRadius = 12;
     self.myPlay.layer.masksToBounds = YES;
+    
     
     if (activeStatus.isOrganizer) {
         [self.myPlay setTitle:@"成员管理" forState:UIControlStateNormal];

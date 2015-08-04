@@ -45,7 +45,8 @@
     // 加载他的发布
     [self setupLoadTaPublishStatus];
     
-   
+    // 页面标题
+    self.title = @"TA的详情";
     
 }
 

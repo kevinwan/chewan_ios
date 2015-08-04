@@ -98,11 +98,7 @@
 - (void)loadNewData{
     [self setupLoadStatus];
 //    [SVProgressHUD showWithStatus:@"hello"];
-//    [self showLoading];
-//    [self disMiss];
-//    if (CPNoNetWork) {
-//        self
-//    }
+
     
 }
 
@@ -112,8 +108,7 @@
     // 封装请求参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     parameters[@"key"] = @"hot";
-//    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
-//    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
+
 //    parameters[@"city"] = @"南京";
     if (self.userId != nil) {
         parameters[@"userId"] = self.userId;

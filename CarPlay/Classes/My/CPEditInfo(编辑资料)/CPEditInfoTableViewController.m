@@ -30,6 +30,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removePickview) name:@"remove" object:nil];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    if (![Tools getValueFromKey:@"userId"]) {
+        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+    }
+}
+
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
@@ -51,7 +57,10 @@
 
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    if ([Tools getValueFromKey:@"userId"]) {
+        return 1;
+    }else
+        return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

@@ -110,7 +110,7 @@
     }else if (indexPath.row==3){
         CPFeedbackViewController *CPFeedbackVC=[[CPFeedbackViewController alloc]init];
         CPFeedbackVC.title=@"意见反馈";
-        [self.navigationController pushViewController:CPFeedbackVC animated:YES];
+        [self.navigationController pushViewController:[UIStoryboard storyboardWithName:@"CPFeedbackViewController" bundle:nil].instantiateInitialViewController animated:YES];
     }else if (indexPath.row==4){
         CPEditInfoTableViewController *CPEditInfoTableVC=[[CPEditInfoTableViewController alloc]init];
         CPEditInfoTableVC.title=@"编辑资料";
@@ -131,10 +131,14 @@
 }
 
 - (IBAction)photoManage:(id)sender {
-    CPPhotoalbumManagement *CPPhotoalbumManagementVC=[[CPPhotoalbumManagement alloc]init];
-    CPPhotoalbumManagementVC.title=@"相册管理";
-    CPPhotoalbumManagementVC.albumPhotos=albumPhotos;
-    [self.navigationController pushViewController:CPPhotoalbumManagementVC animated:YES];
+    if ([Tools getValueFromKey:@"userId"]) {
+        CPPhotoalbumManagement *CPPhotoalbumManagementVC=[[CPPhotoalbumManagement alloc]init];
+        CPPhotoalbumManagementVC.title=@"相册管理";
+        CPPhotoalbumManagementVC.albumPhotos=albumPhotos;
+        [self.navigationController pushViewController:CPPhotoalbumManagementVC animated:YES];
+    }else{
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+    }
 }
 
 // 分页控件的监听方法
