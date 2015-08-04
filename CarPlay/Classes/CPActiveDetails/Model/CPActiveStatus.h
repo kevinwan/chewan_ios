@@ -38,6 +38,10 @@
 @property (nonatomic, copy) NSString *pay;
 
 
+/** 活动类型 */
+@property (nonatomic, copy) NSString *type;
+
+
 /** 活动作者的用户信息字段 */
 @property (nonatomic, strong) CPActiveUser *organizer;
 
