@@ -63,4 +63,6 @@
 #import <MJExtension/MJExtension.h>
 #import <MJRefresh.h>
 #import "CPRefreshHeader.h"
+#import "CPRefreshFooter.h"
+
 #endif

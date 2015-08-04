@@ -12,6 +12,7 @@
 #import "CPMySubscribeFrameModel.h"
 #import "CPMySubscribeModel.h"
 #import "CPActiveDetailsController.h"
+#import "CPTaDetailsController.h"
 
 @interface CPMySubscribeController ()
 @property (nonatomic, strong) NSMutableArray *frameModels;
@@ -33,49 +34,74 @@
     [super viewDidLoad];
     
     self.tableView.tableFooterView = [[UIView alloc] init];
-    if ([self.hisUserId isEqualToString:[Tools getValueFromKey:@"userId"]]){
-        self.navigationItem.title = @"我的关注";
-    }else{
-        self.navigationItem.title = @"他的关注";
-    }
-    
+//    if ([self.hisUserId isEqualToString:[Tools getValueFromKey:@"userId"]]){
+    self.navigationItem.title = @"我的关注";
+//    }else{
+//        self.navigationItem.title = @"他的关注";
+//    }
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    
+    __weak typeof(self) weakSelf = self;
+    self.tableView.header = [CPRefreshHeader headerWithRefreshingBlock:^{
+        self.ignore = 0;
+        [weakSelf loadDataWithParam:0];
+    }];
+    
+    self.tableView.footer = [CPRefreshFooter footerWithRefreshingBlock:^{
+        self.ignore += CPPageNum;
+        [weakSelf loadDataWithParam:self.ignore];
+    }];
+    
+    ZYJumpToLoginView // 跳转到登陆界面
+    [self reRefreshData];
 }
 
 - (void)reRefreshData
 {
-    [self loadData];
+    [self showLoading];
+    [self loadDataWithParam:0];
 }
 
-- (void)loadData
+- (void)loadDataWithParam:(NSInteger)ignore
 {
     
     NSString *url = [NSString stringWithFormat:@"v1/user/%@/subscribe",[Tools getValueFromKey:@"userId"]];
     
-    [SVProgressHUD showWithStatus:@"努力加载中"];
-    [CPNetWorkTool getWithUrl:url params:nil success:^(id responseObject) {
+    [CPNetWorkTool getWithUrl:url params:@{@"ignore" : @(ignore)} success:^(id responseObject) {
+        [self disMiss];
+        [self.tableView.footer endRefreshing];
+        [self.tableView.header endRefreshing];
         if (CPSuccess) {
             NSArray *data = [CPMySubscribeModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
-            if (data.count > 0) {
+            if (self.ignore == 0) {
                 [self.frameModels removeAllObjects];
+            }
+            
+            if (data.count) {
                 for (CPMySubscribeModel *model in data) {
                     CPMySubscribeFrameModel *frameModel = [[CPMySubscribeFrameModel alloc] init];
                     frameModel.model = model;
                     [self.frameModels addObject:frameModel];
                 }
-            }
-            [self disMiss];
-            if (self.frameModels.count > 0) {
+
                 [self.tableView reloadData];
             }else{
+                if (self.frameModels.count > 0) {
+                    [self showInfo:@"暂无更多数据"];
+                }
+            }
+            
+            if (self.frameModels.count == 0) {
                 [self showNoSubscribe];
             }
-        }else{
-            [self showInfo:@"加载失败"];
+        }else if (self.frameModels.count == 0){
             [self showNetWorkFailed];
         }
     } failure:^(NSError *error) {
-        [self showError:@"加载失败"];
+        [self disMiss];
+        [self.tableView.footer endRefreshing];
+        [self.tableView.header endRefreshing];
         [self showNetWorkOutTime];
     }];
 
@@ -84,12 +110,14 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self loadData];
+    
+    [CPNotificationCenter addObserver:self selector:@selector(userIconClick:) name:CPClickUserIconNotification object:nil];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [CPNotificationCenter removeObserver:self];
 }
 
 #pragma mark - Table view data source
@@ -118,6 +146,13 @@
     CPMySubscribeFrameModel *frameModel = self.frameModels[indexPath.row];
     activityDetailVc.activeId = frameModel.model.activityId;
     [self.navigationController pushViewController:activityDetailVc animated:YES];
+}
+
+- (void)userIconClick:(NSNotification *)notify
+{
+    CPTaDetailsController *vc = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil].instantiateInitialViewController;
+    vc.targetUserId = notify.userInfo[CPClickUserIconInfo];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

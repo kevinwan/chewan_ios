@@ -641,6 +641,10 @@ typedef enum {
         imageView.tag = self.picIndex++;
         UILongPressGestureRecognizer *longPressGes = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
         [imageView addGestureRecognizer:longPressGes];
+        
+        
+        UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPress:)];
+        [imageView addGestureRecognizer:tapGes];
         [self.photoView insertSubview:imageView atIndex:0];
     }
     

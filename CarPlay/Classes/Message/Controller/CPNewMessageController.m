@@ -285,7 +285,7 @@
 - (void)userIconClick:(NSNotification *)notify
 {
     CPTaDetailsController *vc = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil].instantiateInitialViewController;
-    vc.userId1 = notify.userInfo[CPClickUserIconInfo];
+    vc.targetUserId = notify.userInfo[CPClickUserIconInfo];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

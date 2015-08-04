@@ -15,6 +15,7 @@
     if (self = [super initWithFrame:frame]) {
         self.lastUpdatedTimeLabel.font = [UIFont systemFontOfSize:13];
         self.stateLabel.font = [UIFont systemFontOfSize:12];
+        self.autoChangeAlpha = YES;
 //        self.stateLabel.textColor = [Tools getColor:@"aab2bd"];
 //        self.lastUpdatedTimeLabel.textColor = [Tools getColor:@"aab2bd"];
     }

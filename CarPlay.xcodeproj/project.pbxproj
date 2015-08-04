@@ -149,6 +149,7 @@
 		E3292A281B6A50700023677F /* CPSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3292A261B6A50700023677F /* CPSelectView.m */; };
 		E3292A291B6A50700023677F /* CPSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3292A271B6A50700023677F /* CPSelectView.xib */; };
 		E338A7451B70540C00E706C2 /* CPRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = E338A7441B70540C00E706C2 /* CPRefreshHeader.m */; };
+		E338A7481B7099CE00E706C2 /* CPRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = E338A7471B7099CE00E706C2 /* CPRefreshFooter.m */; };
 		E33BAE841B58DC110021DED6 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E33BAE831B58DC110021DED6 /* NSDate+Extension.m */; };
 		E34065E71B65C2FE008BB3EB /* ZYTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E34065E61B65C2FE008BB3EB /* ZYTableViewController.m */; };
 		E34065ED1B65D6A2008BB3EB /* CPMyJoinController.m in Sources */ = {isa = PBXBuildFile; fileRef = E34065EC1B65D6A2008BB3EB /* CPMyJoinController.m */; };
@@ -576,6 +577,8 @@
 		E3292A271B6A50700023677F /* CPSelectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPSelectView.xib; sourceTree = "<group>"; };
 		E338A7431B70540C00E706C2 /* CPRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRefreshHeader.h; sourceTree = "<group>"; };
 		E338A7441B70540C00E706C2 /* CPRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRefreshHeader.m; sourceTree = "<group>"; };
+		E338A7461B7099CE00E706C2 /* CPRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRefreshFooter.h; sourceTree = "<group>"; };
+		E338A7471B7099CE00E706C2 /* CPRefreshFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRefreshFooter.m; sourceTree = "<group>"; };
 		E33BAE821B58DC110021DED6 /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
 		E33BAE831B58DC110021DED6 /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
 		E34065E51B65C2FE008BB3EB /* ZYTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYTableViewController.h; sourceTree = "<group>"; };
@@ -2141,6 +2144,8 @@
 				E3B1277D1B54E19B005B1174 /* CPIconButton.m */,
 				E338A7431B70540C00E706C2 /* CPRefreshHeader.h */,
 				E338A7441B70540C00E706C2 /* CPRefreshHeader.m */,
+				E338A7461B7099CE00E706C2 /* CPRefreshFooter.h */,
+				E338A7471B7099CE00E706C2 /* CPRefreshFooter.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2561,6 +2566,7 @@
 				E3CE35901B59E7FC008434B5 /* XLFormButtonCell.m in Sources */,
 				A57581AC1B6789C500A5E681 /* MembersManageController.m in Sources */,
 				E35E6FCA1B54B076001212D6 /* CPMyPublishCell.m in Sources */,
+				E338A7481B7099CE00E706C2 /* CPRefreshFooter.m in Sources */,
 				E3B127791B54D9C2005B1174 /* CPChatButton.m in Sources */,
 				E3CE359B1B59E7FC008434B5 /* XLFormSwitchCell.m in Sources */,
 				E3CE35A51B59E7FC008434B5 /* NSExpression+XLFormAdditions.m in Sources */,

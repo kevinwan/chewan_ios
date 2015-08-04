@@ -50,7 +50,6 @@ typedef enum {
         return;
     }else{
         self.tableView.header = [CPRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
-        
         [self timer];
     }
 }
@@ -82,22 +81,29 @@ typedef enum {
             
             NSDictionary *application = responseObject[@"data"][@"application"];
             
-            self.leaveMsgLabel.text = comment[@"content"];
-            self.activityApplyMsgLabel.text = application[@"content"];
 
             NSUInteger newMsgCount = [comment[@"count"] intValue];
             NSUInteger activityApplyCount = [application[@"count"] intValue];
             if (newMsgCount > 0) {
                 self.leaveNewMsgNumber.hidden = NO;
                 self.leaveNewMsgNumber.badgeValue = [NSString stringWithFormat:@"%zd",newMsgCount];
+                
+                self.leaveMsgLabel.text = comment[@"content"];
             }
             
             if (activityApplyCount > 0) {
                 self.activityApplyNewMsgNumber.hidden = NO;
                 self.activityApplyNewMsgNumber.badgeValue = [NSString stringWithFormat:@"%zd", activityApplyCount];
+                self.activityApplyMsgLabel.text = application[@"content"];
             }
             
-            self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%zd", activityApplyCount + newMsgCount];
+            if (activityApplyCount + newMsgCount > 0) {
+                
+                self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%zd", activityApplyCount + newMsgCount];
+            }else{
+                
+                self.tabBarItem.badgeValue = nil;
+            }
             
         }
     } failure:^(NSError *error) {
@@ -114,9 +120,6 @@ typedef enum {
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
     if (indexPath.row == 1) {
-        
-//        CPActivityApplyControllerView *newMsgVc = [UIStoryboard storyboardWithName:@"CPActivityApplyControllerView" bundle:nil].instantiateInitialViewController;
-//        [self.navigationController pushViewController:newMsgVc animated:YES];
         
         self.activityApplyNewMsgNumber.badgeValue = @"0";
         self.activityApplyNewMsgNumber.hidden = YES;
