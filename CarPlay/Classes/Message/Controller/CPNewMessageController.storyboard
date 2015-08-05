@@ -28,6 +28,9 @@
                                             <state key="normal" image="消息选中">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="iconViewClick:" destination="WCU-Of-4x1" eventType="touchUpInside" id="7IC-vs-JSF"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTM-TD-cwH">
                                             <rect key="frame" x="70" y="40" width="36" height="17"/>

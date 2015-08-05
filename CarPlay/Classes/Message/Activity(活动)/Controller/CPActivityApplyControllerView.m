@@ -12,6 +12,7 @@
 #import "CPActivityApplyModel.h"
 #import "MJRefresh.h"
 #import "CPActiveDetailsController.h"
+#import "CPTaDetailsController.h"
 
 #define ActivityMsgData @"ActivityMsgData"
 
@@ -24,10 +25,7 @@
 - (NSMutableArray *)datas
 {
     if (_datas == nil) {
-        _datas = [NSKeyedUnarchiver unarchiveObjectWithFile:CPDocmentPath(ActivityMsgData)];
-        if (_datas == nil) {
-            _datas = [NSMutableArray array];
-        }
+        _datas = [NSMutableArray array];
     }
     return _datas;
 }
@@ -37,58 +35,69 @@
     
     self.navigationItem.title = @"活动消息";
   
-    self.tableView.tableFooterView = [[UIView alloc] init];
+    
     [CPNotificationCenter addObserver:self selector:@selector(agreeBtnClick:) name:CPActivityApplyNotification object:nil];
-    
+    [CPNotificationCenter addObserver:self selector:@selector(userIconClick:) name:CPClickUserIconNotification object:nil];
     self.tableView.tableFooterView = [[UIView alloc] init];
     
-    [self loadData];
+    __weak typeof(self) weakSelf = self;
+    self.tableView.header = [CPRefreshHeader headerWithRefreshingBlock:^{
+        weakSelf.ignore = 0;
+        [weakSelf loadDataWithParam:0];
+    }];
     
-    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(reRefreshData)];
+    self.tableView.footer = [CPRefreshFooter footerWithRefreshingBlock:^{
+        weakSelf.ignore += CPPageNum;
+        [weakSelf loadDataWithParam:weakSelf.ignore];
+    }];
+    ZYJumpToLoginView
+    [self reRefreshData];
 }
 
 - (void)reRefreshData
 {
-    [self loadData];
+    [self showLoading];
+    [self loadDataWithParam:0];
 }
 
-- (void)loadData
+- (void)loadDataWithParam:(NSInteger)ignore
 {
-    if (CPUnLogin) {
-        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
-        return;
-    }
     
     NSString *userId = [Tools getValueFromKey:@"userId"];
     NSString *token = [Tools getValueFromKey:@"token"];
     
     NSString *url = [NSString stringWithFormat:@"v1/user/%@/message/list?token=%@&type=application",userId, token];
     [SVProgressHUD showWithStatus:@"努力加载中"];
-    [ZYNetWorkTool getWithUrl:url params:nil success:^(id responseObject) {
+    [ZYNetWorkTool getWithUrl:url params:@{@"ignore" : @(ignore)} success:^(id responseObject) {
+        [self.tableView.footer endRefreshing];
         [self.tableView.header endRefreshing];
         [self disMiss];
-        DLog(@"%@",responseObject);
         if (CPSuccess) {
+            
+            if (self.ignore == 0) {
+                [self.datas removeAllObjects];
+            }
             NSArray *data = [CPActivityApplyModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
 
-            [self.datas addObjectsFromArray:data];
-            
-            if (data.count == 0) {
-                [self showNoData];
-                return;
+            if (data.count) {
+                [self.datas addObjectsFromArray:data];
+                [self.tableView reloadData];
+            }else{
+                if (self.datas.count > 0) {
+                    [self showInfo:@"暂无更多数据"];
+                }
             }
-    
-            [self.tableView reloadData];
-            
-            // 异步存储数据
-            dispatch_async(dispatch_get_global_queue(0, 0), ^{
-                [NSKeyedArchiver archiveRootObject:self.datas toFile:CPDocmentPath(ActivityMsgData)];
-            });
-            
+            if (self.datas.count == 0) {
+                [self showNoData];
+            }
+        }else if (self.datas.count == 0){
+            [self showNetWorkFailed];
         }
     } failure:^(NSError *error) {
+        [self disMiss];
         [self.tableView.header endRefreshing];
-        [SVProgressHUD showErrorWithStatus:@"加载失败"];
+        [self.tableView.footer endRefreshing];
+        [self showNetWorkOutTime];
     }];
 }
 
@@ -98,11 +107,6 @@
     NSUInteger row = [notify.userInfo[CPActivityApplyInfo] intValue];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-    
-    // 异步存储数据
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        [NSKeyedArchiver archiveRootObject:self.datas toFile:CPDocmentPath(ActivityMsgData)];
-    });
 }
 
 - (void)dealloc
@@ -147,6 +151,13 @@
         [self.navigationController pushViewController:activityVc animated:YES];
     }
     
+}
+
+- (void)userIconClick:(NSNotification *)notify
+{
+    CPTaDetailsController *vc = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil].instantiateInitialViewController;
+    vc.targetUserId = notify.userInfo[CPClickUserIconInfo];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

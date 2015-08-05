@@ -66,5 +66,11 @@
         [SVProgressHUD showErrorWithStatus:@"加载失败"];
     }];
 }
+- (IBAction)iconViewClick:(id)sender {
+    
+    if (_model.userId.length) {
+        [CPNotificationCenter postNotificationName:CPClickUserIconNotification object:nil userInfo:@{CPClickUserIconInfo : _model.userId}];
+    }
+}
 
 @end

@@ -10,6 +10,7 @@
 #import "CPSubscribeCell.h"
 #import "CPMySubscribeController.h"
 #import "CPMySubscribeModel.h"
+#import "CPTaDetailsController.h"
 
 @interface CPSubscribePersonController ()
 @property (nonatomic, strong) NSMutableArray *datas;
@@ -30,49 +31,77 @@
     
     self.navigationItem.title = @"我关注的人";
     self.tableView.tableFooterView = [[UIView alloc] init];
+    
+    __weak typeof(self) weakSelf = self;
+    self.tableView.header = [CPRefreshHeader headerWithRefreshingBlock:^{
+        weakSelf.ignore = 0;
+        [weakSelf loadDataWithParam:0];
+    }];
+    
+    self.tableView.footer = [CPRefreshFooter footerWithRefreshingBlock:^{
+        weakSelf.ignore += CPPageNum;
+        [weakSelf loadDataWithParam:weakSelf.ignore];
+    }];
+    
+    ZYJumpToLoginView
+    [self reRefreshData];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    [self loadData];
+    [CPNotificationCenter addObserver:self selector:@selector(userIconClick:) name:CPClickUserIconNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [CPNotificationCenter removeObserver:self];
 }
 
 - (void)reRefreshData
 {
-    [self loadData];
+    [self showLoading];
+    [self loadDataWithParam:0];
 }
 
-- (void)loadData
+- (void)loadDataWithParam:(NSInteger)ignore
 {
+
     NSString *userId = [Tools getValueFromKey:@"userId"];
     NSString *token = [Tools getValueFromKey:@"token"];
-    if (userId.length == 0 || token.length == 0) {
-        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
-        return;
-    }
     
     NSString *url = [NSString stringWithFormat:@"v1/user/%@/listen",userId];
-    [self showLoading];
-    [ZYNetWorkTool getWithUrl:url params:@{@"token" : token} success:^(id responseObject) {
-        DLog(@"%@...",responseObject);
+    [ZYNetWorkTool getWithUrl:url params:@{@"token" : token,@"ignore" : @(ignore)} success:^(id responseObject) {
+        [self.tableView.header endRefreshing];
+        [self.tableView.footer endRefreshing];
+        [self disMiss];
         if (CPSuccess) {
-            [self disMiss];
             NSArray *arr = [CPOrganizer objectArrayWithKeyValuesArray:responseObject[@"data"]];
-            if (arr.count > 0) {
+            if (self.ignore == 0) {
                 [self.datas removeAllObjects];
+            }
+            if (arr.count) {
                 [self.datas addObjectsFromArray:arr];
                 [self.tableView reloadData];
             }else{
-                [self showNoData];
+                if (self.datas.count > 0) {
+                    [self showInfo:@"暂无更多数据"];
+                }
             }
-        }else{
-            [self showInfo:@"加载失败"];
+
+            if (self.datas.count == 0) {
+                [self showNoSubscribe];
+            }
+            
+        }else if (self.datas.count == 0){
             [self showNetWorkFailed];
         }
     } failure:^(NSError *error) {
-        [self showError:@"加载失败"];
+        [self disMiss];
+        [self.tableView.header endRefreshing];
+        [self.tableView.footer endRefreshing];
         [self showNetWorkOutTime];
     }];
 }
@@ -86,11 +115,6 @@
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
-}
-
-- (void)dealloc
-{
-    [CPNotificationCenter removeObserver:self];
 }
 
 #pragma mark - Table view data source
@@ -114,6 +138,13 @@
     CPMySubscribeController *vc = [[CPMySubscribeController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
     
+}
+
+- (void)userIconClick:(NSNotification *)notify
+{
+    CPTaDetailsController *vc = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil].instantiateInitialViewController;
+    vc.targetUserId = notify.userInfo[CPClickUserIconInfo];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

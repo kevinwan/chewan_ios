@@ -18,6 +18,7 @@
 #import "CPMyJoinController.h"
 #import "CPNewMsgModel.h"
 #import "AppAppearance.h"
+#import "CPTaDetailsController.h"
 
 @interface CPNewMessageController ()
 
@@ -107,15 +108,16 @@
     ZYJumpToLoginView // 跳转到登录页面
     
     [CPNotificationCenter addObserver:self selector:@selector(tableViewEdit:) name:CPNewMsgEditNotifycation object:nil];
+    [CPNotificationCenter addObserver:self selector:@selector(userIconClick:) name:CPClickUserIconNotification object:nil];
     
     self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
-    [self reRefreshData];
+    [self showLoading];
+    [self loadData];
 }
 
 - (void)reRefreshData
 {
-    [self showLoading];
-    [self loadData];
+    [self.tableView.header beginRefreshing];
 }
 
 - (void)loadData
@@ -126,12 +128,13 @@
         [self disMiss];
         [self.tableView.header endRefreshing];
         if (CPSuccess) {
+            // 清除之前的数据
             [self.items removeAllObjects];
+            
             NSArray *array = [CPNewMsgModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
             [self.items addObjectsFromArray:array];
             if (self.items.count == 0) {
                 [self showNoData];
-                return;
             }
             [self.tableView reloadData];
         }else{
@@ -277,6 +280,13 @@
 - (void)back
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)userIconClick:(NSNotification *)notify
+{
+    CPTaDetailsController *vc = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil].instantiateInitialViewController;
+    vc.targetUserId = notify.userInfo[CPClickUserIconInfo];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

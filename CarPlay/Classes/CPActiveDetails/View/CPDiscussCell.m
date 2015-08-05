@@ -88,7 +88,7 @@
     [self layoutIfNeeded];
     
     // 返回cell高度，cell的高度就是底部头像列表的最大高度
-    return CGRectGetMaxY(self.comment.frame);
+    return CGRectGetMaxY(self.comment.frame) + 10;
     
 }
 
