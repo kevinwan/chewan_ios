@@ -45,7 +45,8 @@
     // 加载他的发布
     [self setupLoadTaPublishStatus];
     
-   
+    // 页面标题
+    self.title = @"TA的详情";
     
 }
 
@@ -62,8 +63,7 @@
     
     // 设置请求参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-//    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
-//    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
+
     if (self.userId != nil) {
         parameters[@"userId"] = self.userId;
     }
@@ -102,8 +102,7 @@
 - (void)setupLoadTaPublishStatus{
     // 设置请求参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-//    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
-//    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
+
     if (self.userId != nil) {
         parameters[@"userId"] = self.userId;
     }

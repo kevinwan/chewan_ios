@@ -31,71 +31,84 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self loadData];
+//    if ([self.hisUserId isEqualToString:[Tools getValueFromKey:@"userId"]]){
+        self.navigationItem.title = @"我的发布";
+//    }else{
+//        self.navigationItem.title = @"他的发布";
+//    }
+    
+    __weak typeof(self) weakSelf = self;
+    
+    self.tableView.header = [CPRefreshHeader headerWithRefreshingBlock:^{
+        weakSelf.ignore = 0;
+        [weakSelf loadDataWithParams:0];
     }];
     
-    
-    // 设置字体
-    header.stateLabel.font = [UIFont systemFontOfSize:15];
-    header.lastUpdatedTimeLabel.font = [UIFont systemFontOfSize:14];
-    
-    // 设置颜色
-    header.stateLabel.textColor = [UIColor redColor];
-    header.lastUpdatedTimeLabel.textColor = [UIColor blueColor];
-    header.autoChangeAlpha = YES;
-    self.tableView.header = header;
-    
-    if ([self.hisUserId isEqualToString:[Tools getValueFromKey:@"userId"]]){
-        self.navigationItem.title = @"我的发布";
-    }else{
-        self.navigationItem.title = @"他的发布";
-    }
-    
+    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
+    self.tableView.footer = [CPRefreshFooter footerWithRefreshingBlock:^{
+        weakSelf.ignore += CPPageNum;
+        [weakSelf loadDataWithParams:weakSelf.ignore];
+    }];
+//    // 设置了底部inset
+//    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
+//   //  忽略掉底部inset
+//    self.tableView.footer.ignoredScrollViewContentInsetTop = 30;
+//    
     self.tableView.tableFooterView = [[UIView alloc] init];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self loadData];
+    ZYJumpToLoginView
+    [self reRefreshData];
 }
 
 - (void)reRefreshData
 {
-    [self loadData];
+    [self showLoading];
+    [self loadDataWithParams:0];
 }
 
-- (void)loadData
+- (void)loadDataWithParams:(NSUInteger)ignore
 {
     NSString *url = [NSString stringWithFormat:@"v1/user/%@/post",self.hisUserId];
-    [SVProgressHUD showWithStatus:@"努力加载中"];
-    [CPNetWorkTool getWithUrl:url params:nil success:^(NSDictionary *responseObject) {
+    [CPNetWorkTool getWithUrl:url params:@{@"ignore" : @(ignore)} success:^(NSDictionary *responseObject) {
+        [self disMiss];
         [self.tableView.header endRefreshing];
+        [self.tableView.footer endRefreshing];
         if (CPSuccess) {
-            [SVProgressHUD dismiss];
             NSArray *arr = [CPMyPublishModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
-            if (arr.count > 0) {
+            if (self.ignore == 0) {
                 [self.frameModels removeAllObjects];
+            }
+            if (arr.count) {
                 for (int i = 0; i < arr.count; i++) {
                     CPMyPublishFrameModel *frameModel = [[CPMyPublishFrameModel alloc] init];
                     frameModel.model = arr[i];
                     [self.frameModels addObject:frameModel];
                 }
-                
-            }
-            if (self.frameModels.count > 0) {
                 [self.tableView reloadData];
             }else{
+                if (self.frameModels.count > 0) {
+                    [self.tableView.footer noticeNoMoreData];
+                }
+            }
+            if (self.frameModels.count == 0) {
                 [self showNoPublish];
             }
         }else{
-            [self showInfo:@"加载失败"];
             [self showNetWorkFailed];
         }
         
     } failure:^(NSError *error) {
+        [self disMiss];
+        [self.tableView.header endRefreshing];
         [self.tableView.footer endRefreshing];
-        [self showError:@"加载失败"];
         [self showNetWorkOutTime];
     }];
 
+}
+
+- (void)dealloc
+{
+    DLog(@"silekljkl");
 }
 
 #pragma mark - Table view data source

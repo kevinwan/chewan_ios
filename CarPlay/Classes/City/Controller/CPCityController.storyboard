@@ -535,6 +535,6 @@
     <resources>
         <image name="女-1" width="32" height="14"/>
         <image name="时间" width="12" height="12"/>
-        <image name="顶部背景" width="32" height="14"/>
+        <image name="顶部背景" width="12" height="12"/>
     </resources>
 </document>

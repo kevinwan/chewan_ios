@@ -11,6 +11,15 @@
 @implementation CPActivityApplyModel
 MJCodingImplementation
 
+- (void)setRemarks:(NSString *)remarks
+{
+    _remarks = [remarks copy];
+    
+    if ([_remarks isEqualToString:@"已同意"]) {
+        self.isAgree = YES;
+    }
+}
+
 - (void)setContent:(NSString *)content
 {
     _content = [content copy];

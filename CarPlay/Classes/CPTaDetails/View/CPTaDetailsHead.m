@@ -127,18 +127,29 @@
     [self.genderAndAge setTitle:taStatus.age forState:UIControlStateNormal];
     
     // 设置车标
-    NSURL *carIconUrl = [NSURL URLWithString:taStatus.carBrandLogo];
-    [self.carBrandLogo sd_setImageWithURL:carIconUrl placeholderImage:[UIImage imageNamed:@"默认头像"]];
+    if (taStatus.carBrandLogo == nil || [taStatus.carBrandLogo isEqualToString:@""]) {    
+        self.carBrandLogo.hidden = YES;
+    }else{
+        self.carBrandLogo.hidden = NO;
+        NSURL *urlCarBrandLogo = [NSURL URLWithString:taStatus.carBrandLogo];
+        [self.carBrandLogo sd_setImageWithURL:urlCarBrandLogo placeholderImage:[UIImage imageNamed:@"默认头像"]];
+        
+    }
+    
+    
+
     
     // 设置状态
     NSString *tempCarModel = @"";     // 存储转换后的carModel
     NSString *tempDrivingExperience = @"";   // 存储转换后的drivingExperience
     
+    // 车型是否为空
     if (taStatus.carModel == nil || [taStatus.carModel isEqualToString:@""])
     {}else{
         tempCarModel = taStatus.carModel;
     }
     
+    // 驾龄是否为空
     if ( [taStatus.drivingExperience  isEqualToString:@"0"]|| taStatus.drivingExperience == nil || [taStatus.drivingExperience isEqualToString:@""]) {
         // 没有车的情况
         self.carModelConstraint.constant = 10;
@@ -146,7 +157,12 @@
         
     }else{
         //有车的情况
-        self.carModelConstraint.constant = 38;
+        
+        if (taStatus.carBrandLogo == nil || [taStatus.carBrandLogo isEqualToString:@""]) {
+            self.carModelConstraint.constant = 10;
+        }else{
+            self.carModelConstraint.constant = 31;
+        }
         if (taStatus.carModel == nil || [taStatus.carModel isEqualToString:@""]) {
             tempDrivingExperience = [NSString stringWithFormat:@"%@年驾龄",taStatus.drivingExperience];
             
@@ -163,13 +179,13 @@
     self.care.layer.masksToBounds = YES;
     
     // 设置发布
-    [self setPublishBtn:[UIColor redColor]];
+    [self setPublishBtn:[Tools getColor:@"fc6e51"]];
     
     // 设置关注
-    [self setCareBtn:[UIColor grayColor]];
+    [self setCareBtn:[Tools getColor:@"aab2bd"]];
     
     // 设置参与
-    [self setJoinBtn:[UIColor grayColor]];
+    [self setJoinBtn:[Tools getColor:@"aab2bd"]];
     
     
 }
@@ -181,7 +197,7 @@
     self.taPublish.titleLabel.numberOfLines = 0; // 显示多行文字
     
     // 2.设置发布数量的字体大小、颜色
-    NSDictionary *dictAttP1 = @{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:color}; // 属性字典
+    NSDictionary *dictAttP1 = @{NSFontAttributeName:[UIFont systemFontOfSize:16],NSForegroundColorAttributeName:color}; // 属性字典
     if(!self.taStatus.postNumber){
         self.taStatus.postNumber = @"0";
     }
@@ -189,7 +205,7 @@
     NSMutableAttributedString *publishAttStr = [[NSMutableAttributedString alloc] initWithString:[self.taStatus.postNumber stringByAppendingString:@"\n"]attributes:dictAttP1];
     
     // 3.设置TA的发布的大小、颜色
-    NSDictionary *dictAttP2 = @{NSFontAttributeName:[UIFont systemFontOfSize:14],NSForegroundColorAttributeName:color};
+    NSDictionary *dictAttP2 = @{NSFontAttributeName:[UIFont systemFontOfSize:12],NSForegroundColorAttributeName:color};
     NSAttributedString *publishAttStr1 = [[NSAttributedString alloc] initWithString:@"TA的发布" attributes:dictAttP2];
     
     // 4.拼接字符串
@@ -207,7 +223,7 @@
     self.taCare.titleLabel.numberOfLines = 0; // 显示多行文字
     
     // 2.设置发布数量的字体大小、颜色
-    NSDictionary *dictAttC1 = @{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:color}; // 属性字典
+    NSDictionary *dictAttC1 = @{NSFontAttributeName:[UIFont systemFontOfSize:16],NSForegroundColorAttributeName:color}; // 属性字典
     
     if (!self.taStatus.subscribeNumber) {
         self.taStatus.subscribeNumber = @"0";
@@ -216,7 +232,7 @@
     NSMutableAttributedString *careAttStr = [[NSMutableAttributedString alloc] initWithString:[self.taStatus.subscribeNumber stringByAppendingString:@"\n"]attributes:dictAttC1];
     
     // 3.设置TA的发布的大小、颜色
-    NSDictionary *dictAttC2 = @{NSFontAttributeName:[UIFont systemFontOfSize:14],NSForegroundColorAttributeName:color};
+    NSDictionary *dictAttC2 = @{NSFontAttributeName:[UIFont systemFontOfSize:12],NSForegroundColorAttributeName:color};
     NSAttributedString *careAttStr1 = [[NSAttributedString alloc] initWithString:@"TA的关注" attributes:dictAttC2];
     
     // 4.拼接字符串
@@ -233,7 +249,7 @@
     self.taJoin.titleLabel.numberOfLines = 0; // 显示多行文字
     
     // 2.设置发布数量的字体大小、颜色
-    NSDictionary *dictAttJ1 = @{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:color}; // 属性字典
+    NSDictionary *dictAttJ1 = @{NSFontAttributeName:[UIFont systemFontOfSize:16],NSForegroundColorAttributeName:color}; // 属性字典
     
     if (!self.taStatus.joinNumber) {
         self.taStatus.joinNumber = @"0";
@@ -242,7 +258,7 @@
     NSMutableAttributedString *joinAttStr = [[NSMutableAttributedString alloc] initWithString:[self.taStatus.joinNumber stringByAppendingString:@"\n"]attributes:dictAttJ1];
     
     // 3.设置TA的发布的大小、颜色
-    NSDictionary *dictAttJ2 = @{NSFontAttributeName:[UIFont systemFontOfSize:14],NSForegroundColorAttributeName:color};
+    NSDictionary *dictAttJ2 = @{NSFontAttributeName:[UIFont systemFontOfSize:12],NSForegroundColorAttributeName:color};
     NSAttributedString *joinAttStr1 = [[NSAttributedString alloc] initWithString:@"TA的参与" attributes:dictAttJ2];
     
     // 4.拼接字符串
@@ -255,14 +271,40 @@
 
 // 设置图片轮播器
 - (void)setPicPlay{
+    
+    // 添加定时器(每隔2秒调用一次self 的nextImage方法)
+    [self addTimer];
+    
     // 0.一些固定的尺寸参数
     CGFloat imageW = [UIScreen mainScreen].bounds.size.width;
     CGFloat imageH = self.scrollView.frame.size.height;
     CGFloat imageY = 0;
     
-    // 1.添加5张图片到scrollView中
+    // 1.添加图片到scrollView中
+    if (self.photoCount == 0) {
+        [self removeTimer];
+        UIImageView *imageView = [[UIImageView alloc] init];
+        
+        // 设置图片显示格式
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        
+        
+        // 设置frame
+        imageView.frame = CGRectMake(0, 0, imageW, imageH);
+        
+        // 设置图片
+        imageView.image = [UIImage imageNamed:@"myBackground"];
+        
+        [self.scrollView addSubview:imageView];
+
+    }
+    
     for (int i = 0; i<self.photoCount; i++) {
         UIImageView *imageView = [[UIImageView alloc] init];
+        
+        // 设置图片显示格式
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+     
         
         // 设置frame
         CGFloat imageX = i * imageW;
@@ -292,8 +334,7 @@
     // 5.设置pageControl的总页数
     self.pageControl.numberOfPages = self.photoCount;
     
-    // 6.添加定时器(每隔2秒调用一次self 的nextImage方法)
-    [self addTimer];
+   
 }
 
 
@@ -365,53 +406,53 @@
 
 - (IBAction)taPublishClick:(id)sender {
     // 设置底部线颜色
-    self.publishView.backgroundColor = [UIColor redColor];
-    self.careView.backgroundColor = [UIColor grayColor];
-    self.joinView.backgroundColor = [UIColor grayColor];
+    self.publishView.backgroundColor = [Tools getColor:@"fc6e51"];
+    self.careView.backgroundColor = [Tools getColor:@"e6e9ed"];
+    self.joinView.backgroundColor = [Tools getColor:@"e6e9ed"];
     
     // 设置约束
-    self.taPublishConstraint.constant = 2;
+    self.taPublishConstraint.constant = 4;
     self.taCareConstraint.constant = 5;
     self.taJoinConstraint.constant = 5;
     
     // 设置文字颜色
-    [self setPublishBtn:[UIColor redColor]];
-    [self setCareBtn:[UIColor grayColor]];
-    [self setJoinBtn:[UIColor grayColor]];
+    [self setPublishBtn:[Tools getColor:@"fc6e51"]];
+    [self setCareBtn:[Tools getColor:@"aab2bd"]];
+    [self setJoinBtn:[Tools getColor:@"aab2bd"]];
 }
 
 - (IBAction)taCareClick:(id)sender {
     // 设置底部线颜色
-    self.publishView.backgroundColor = [UIColor grayColor];
-    self.careView.backgroundColor = [UIColor redColor];
-    self.joinView.backgroundColor = [UIColor grayColor];
+    self.publishView.backgroundColor = [Tools getColor:@"e6e9ed"];
+    self.careView.backgroundColor = [Tools getColor:@"fc6e51"];
+    self.joinView.backgroundColor = [Tools getColor:@"e6e9ed"];
     
     self.taPublishConstraint.constant = 5;
-    self.taCareConstraint.constant = 2;
+    self.taCareConstraint.constant = 4;
     self.taJoinConstraint.constant = 5;
     
     // 设置文字颜色
-    [self setPublishBtn:[UIColor grayColor]];
-    [self setCareBtn:[UIColor redColor]];
-    [self setJoinBtn:[UIColor grayColor]];
+    [self setPublishBtn:[Tools getColor:@"aab2bd"]];
+    [self setCareBtn:[Tools getColor:@"fc6e51"]];
+    [self setJoinBtn:[Tools getColor:@"aab2bd"]];
     
 }
 
 - (IBAction)taJoinClick:(id)sender {
     // 设置底部线颜色
-    self.publishView.backgroundColor = [UIColor grayColor];
-    self.careView.backgroundColor = [UIColor grayColor];
-    self.joinView.backgroundColor = [UIColor redColor];
+    self.publishView.backgroundColor = [Tools getColor:@"e6e9ed"];
+    self.careView.backgroundColor = [Tools getColor:@"e6e9ed"];
+    self.joinView.backgroundColor = [Tools getColor:@"fc6e51"];
     
     // 设置约束
     self.taPublishConstraint.constant = 5;
     self.taCareConstraint.constant = 5;
-    self.taJoinConstraint.constant = 2;
+    self.taJoinConstraint.constant = 4;
     
     // 设置文字颜色
-    [self setPublishBtn:[UIColor grayColor]];
-    [self setCareBtn:[UIColor grayColor]];
-    [self setJoinBtn:[UIColor redColor]];
+    [self setPublishBtn:[Tools getColor:@"aab2bd"]];
+    [self setCareBtn:[Tools getColor:@"aab2bd"]];
+    [self setJoinBtn:[Tools getColor:@"fc6e51"]];
 
     
 }

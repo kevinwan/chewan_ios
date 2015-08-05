@@ -18,6 +18,7 @@
 #import "CPMyJoinController.h"
 #import "CPNewMsgModel.h"
 #import "AppAppearance.h"
+#import "CPTaDetailsController.h"
 
 @interface CPNewMessageController ()
 
@@ -104,41 +105,69 @@
     
     self.tableView.tableFooterView = [[UIView alloc] init];
 
-    ZYJumpToLoginView // 跳转到登录页面
     
     [CPNotificationCenter addObserver:self selector:@selector(tableViewEdit:) name:CPNewMsgEditNotifycation object:nil];
-    
-    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    [CPNotificationCenter addObserver:self selector:@selector(userIconClick:) name:CPClickUserIconNotification object:nil];
+    __weak typeof(self) weakSelf = self;
+    self.tableView.header = [CPRefreshHeader headerWithRefreshingBlock:^{
+        weakSelf.ignore = 0;
+        [weakSelf loadDataWithParam:0];
+    }];
+    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
+    self.tableView.footer = [CPRefreshFooter footerWithRefreshingBlock:^{
+        weakSelf.ignore += CPPageNum;
+        [weakSelf loadDataWithParam:weakSelf.ignore];
+    }];
+    // 设置了底部inset
+//    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
+//    // 忽略掉底部inset
+//    self.tableView.footer.ignoredScrollViewContentInsetTop = 30;
     [self reRefreshData];
+    
+    ZYJumpToLoginView // 跳转到登录页面
 }
 
 - (void)reRefreshData
 {
     [self showLoading];
-    [self loadData];
+    [self loadDataWithParam:0];
 }
 
-- (void)loadData
+- (void)loadDataWithParam:(NSInteger)ignore
 {
 
     NSString *url = [NSString stringWithFormat:@"/v1/user/%@/message/list?token=%@&type=comment",[Tools getValueFromKey:@"userId"],[Tools getValueFromKey:@"token"]];
-    [ZYNetWorkTool getWithUrl:url params:nil success:^(id responseObject) {
+    [ZYNetWorkTool getWithUrl:url params:@{@"ignore" : @(ignore)} success:^(id responseObject) {
         [self disMiss];
         [self.tableView.header endRefreshing];
+        [self.tableView.footer endRefreshing];
         if (CPSuccess) {
-            [self.items removeAllObjects];
+            
+            // 清除之前的数据
+            if (self.ignore == 0) {
+                [self.items removeAllObjects];
+                [self.tableView.footer resetNoMoreData];
+            }
+    
             NSArray *array = [CPNewMsgModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
-            [self.items addObjectsFromArray:array];
+            if (array.count > 0) {
+                [self.items addObjectsFromArray:array];
+                [self.tableView reloadData];
+            }else{
+                if (self.items.count > 0) {
+                    [self.tableView.footer noticeNoMoreData];
+                }
+            }
             if (self.items.count == 0) {
                 [self showNoData];
-                return;
             }
-            [self.tableView reloadData];
         }else{
             [self showNetWorkFailed];
         }
     } failure:^(NSError *error) {
+        [self disMiss];
         [self.tableView.header endRefreshing];
+        [self.tableView.footer endRefreshing];
         [self showNetWorkOutTime];
     }];
 }
@@ -264,19 +293,39 @@
 {
     // 必须先获取选中的cell
     NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
+    NSMutableArray *msgIds = [NSMutableArray array];
     for (NSUInteger i = 0; i < self.items.count; i++) {
         CPNewMsgModel *model = self.items[i];
         if (model.isChecked) {
             [indexSet addIndex:i];
+            [msgIds addObject:model.messageId];
         }
     }
-    [self.items removeObjectsAtIndexes:indexSet];
-    [self setEditing:NO animated:YES];
+    [self showLoading];
+    [CPNetWorkTool postJsonWithUrl:@"/v1/message/remove" params:@{@"messages" : msgIds} success:^(id responseObject) {
+        if (CPSuccess){
+            [self showSuccess:@"删除成功"];
+            [self.items removeObjectsAtIndexes:indexSet];
+            [self setEditing:NO animated:YES];
+        }else{
+            [self showInfo:@"网络异常"];
+        }
+    } failed:^(NSError *error) {
+        [self showInfo:@"网络异常"];
+    }];
+    
 }
 
 - (void)back
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)userIconClick:(NSNotification *)notify
+{
+    CPTaDetailsController *vc = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil].instantiateInitialViewController;
+    vc.targetUserId = notify.userInfo[CPClickUserIconInfo];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #define CPActivityApplyNotification @"CPActivityApplyNotification"
 #define CPActivityApplyInfo @"CPActivityApplyInfo"
-
+#define CPNewActivityMsgEditNotifycation @"CPNewActivityMsgEditNotifycation"
+#define CPNewActivityMsgEditInfo @"CPNewActivityMsgEditInfo"
 @class CPActivityApplyModel;
 @interface CPActivityApplyCell : UITableViewCell
-@property (nonatomic, assign) NSUInteger row;
 @property (nonatomic, strong) CPActivityApplyModel *model;
+@property (nonatomic, assign) BOOL isEdit;
+@property (nonatomic, assign) BOOL checked;
 @end

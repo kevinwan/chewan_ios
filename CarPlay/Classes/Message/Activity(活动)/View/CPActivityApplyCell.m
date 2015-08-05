@@ -16,6 +16,7 @@
 
 @interface CPActivityApplyCell()
 
+@property (nonatomic, strong) UIImageView *checkImageView;
 @property (weak, nonatomic) IBOutlet UIButton *iconView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *tipmsgLabel;
@@ -32,10 +33,18 @@
 
 @implementation CPActivityApplyCell
 
+- (void)awakeFromNib
+{
+    
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+    [self addGestureRecognizer:longPress];
+}
+
 - (void)setModel:(CPActivityApplyModel *)model
 {
     _model = model;
     
+    [self setChecked:model.isChecked];
     if (model.photo) {
         [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
     }else{
@@ -90,18 +99,19 @@
 }
 
 - (IBAction)agreeBtnClick:(id)sender {
-    
-    
-    NSString *url = [NSString stringWithFormat:@"v1/application/%@/process",_model.activityId];
+
+    NSString *url = [NSString stringWithFormat:@"v1/application/%@/process",_model.applicationId];
     DLog(@"%@---",url);
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
-    json[@"action"] = @"1";
+    json[@"action"] = @(1);
     [SVProgressHUD showWithStatus:@"努力加载中"];
     [CPNetWorkTool postJsonWithUrl:url params:json success:^(id responseObject) {
         DLog(@"%@",responseObject);
         if (CPSuccess) {
-            [CPNotificationCenter postNotificationName:CPActivityApplyNotification object:nil userInfo:@{CPActivityApplyInfo :@(self.row)}];
-            _model.isAgree = YES;
+            [SVProgressHUD showSuccessWithStatus:@"已同意"];
+           _model.isAgree = YES;
+            [CPNotificationCenter postNotificationName:CPActivityApplyNotification object:nil userInfo:@{CPActivityApplyInfo :@(self.model.row)}];
+     
         }else{
             [SVProgressHUD showInfoWithStatus:@"加载失败"];
         }
@@ -109,6 +119,99 @@
         [SVProgressHUD showErrorWithStatus:@"加载失败"];
     }];
     
+}
+
+- (IBAction)iconViewClick:(id)sender {
+    
+    if (_model.userId.length) {
+        [CPNotificationCenter postNotificationName:CPClickUserIconNotification object:nil userInfo:@{CPClickUserIconInfo : _model.userId}];
+    }
+    
+}
+
+
+- (void)longPress:(UILongPressGestureRecognizer *)recognizer
+{
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        DLog(@"发一次通知");
+        [CPNotificationCenter postNotificationName:CPNewActivityMsgEditNotifycation object:nil userInfo:@{CPNewActivityMsgEditInfo : @(self.model.row)}];
+    }
+}
+
+#pragma mark - 可以多选的tableView
+
+- (void) setCheckImageViewCenter:(CGPoint)pt alpha:(CGFloat)alpha animated:(BOOL)animated
+{
+    if (animated)
+    {
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [UIView setAnimationDuration:0.3];
+        
+        self.checkImageView.center = pt;
+        self.checkImageView.alpha = alpha;
+        
+        [UIView commitAnimations];
+    }
+    else
+    {
+        self.checkImageView.center = pt;
+        self.checkImageView.alpha = alpha;
+    }
+}
+
+
+- (void) setEditing:(BOOL)editting animated:(BOOL)animated
+{
+    if (self.editing == editting)
+    {
+        return;
+    }
+    
+    [super setEditing:editting animated:animated];
+    
+    if (editting)
+    {
+        if (self.checkImageView == nil)
+        {
+            self.checkImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"未选"]];
+            [self addSubview:self.checkImageView];
+        }
+        
+        [self setChecked:_checked];
+        self.checkImageView.center = CGPointMake(-CGRectGetWidth(self.checkImageView.frame) * 0.5, CGRectGetHeight(self.bounds) * 0.5);
+        self.checkImageView.alpha = 0.0;
+        [self setCheckImageViewCenter:CGPointMake(20.5, CGRectGetHeight(self.bounds) * 0.5) alpha:1.0 animated:animated];
+    }
+    else
+    {
+        _checked = NO;
+        
+        if (self.checkImageView)
+        {
+            [self setCheckImageViewCenter:CGPointMake(-CGRectGetWidth(self.checkImageView.frame) * 0.5, CGRectGetHeight(self.bounds) * 0.5) alpha:0.0 animated:animated];
+        }
+    }
+}
+
+- (void)dealloc
+{
+    self.checkImageView = nil;
+}
+
+
+- (void) setChecked:(BOOL)checked
+{
+    if (checked)
+    {
+        self.checkImageView.image = [UIImage imageNamed:@"选中"];
+    }
+    else
+    {
+        self.checkImageView.image = [UIImage imageNamed:@"未选"];
+    }
+    _checked = checked;
 }
 
 

@@ -50,6 +50,8 @@ typedef enum {
 @property (nonatomic, strong) UIBarButtonItem *leftItem1;
 @property (nonatomic, strong) CPLocationModel *selectLocation;
 @property (nonatomic, strong) CPCreatActivityModel *currentModel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *locationLabelWitdh;
+
 @property (nonatomic, assign) BOOL imageEditing;
 @end
 
@@ -58,6 +60,7 @@ typedef enum {
 #pragma mark - lazy
 - (CPCreatActivityModel *)currentModel
 {
+
     if (_currentModel == nil) {
         _currentModel = [[CPCreatActivityModel alloc] init];
     }
@@ -107,24 +110,29 @@ typedef enum {
 {
     _data = data;
     
+    self.currentModel = [CPCreatActivityModel objectWithKeyValues:_data];
+}
+
+- (instancetype)init
+{
+    if (self = [super init]) {
+        self.isShowNoNetWork = NO;
+    }
+    return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"%zd",CPNoNetWork);
-    
-    if(CPNoNetWork){
-        
-    }
-    _data = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"123" ofType:@"plist"]];
-    
-    self.currentModel = [CPCreatActivityModel objectWithKeyValues:_data];
-    
     self.navigationItem.title = @"编辑活动";
     
     [self setUp];
-    
+    [[[UIAlertView alloc] initWithTitle:@"提示" message:@"已经发布的活动只允许修改一次哦" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+}
+
+- (void)reRefreshData
+{
+    [self setUp];
 }
 
 /**
@@ -137,6 +145,7 @@ typedef enum {
     self.saveBtn.clipsToBounds = YES;
     self.currentOffset = CGPointMake(0, -64);
     self.picIndex = 10;
+    self.locationLabelWitdh.constant = kScreenWidth - 175;
     
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
     [CPNotificationCenter addObserver:self selector:@selector(pickerViewCancle:) name:@"PicViewCancle" object:nil];
@@ -144,6 +153,7 @@ typedef enum {
     
     // 设置cell的数据
     [self setCellData];
+    
 }
 
 /**
@@ -151,6 +161,10 @@ typedef enum {
  */
 - (void)setCellData
 {
+    if (self.currentModel == nil) {
+        return;
+    }
+    
     [self labelWithRow:1].text = self.currentModel.type;
     
     if (self.currentModel.introduction.length > 0) {
@@ -185,6 +199,9 @@ typedef enum {
     [self labelWithRow:6].text = self.currentModel.pay;
     
     [self addPhotoWithUrls:self.currentModel.cover];
+    if (self.photoView.subviews.count == 10) {
+        [self.photoView.subviews.lastObject setHidden:YES];
+    }
 }
 
 /**
@@ -460,6 +477,7 @@ typedef enum {
     int row = [notify.userInfo[@"row"] intValue];
     if (row == 1) {
         [self.tableView setContentOffset:CGPointMake(0, -64) animated:YES];
+        [self closeArrowWithRow:1];
     }else{
         [self closeArrowWithRow:row];
     }
@@ -576,6 +594,9 @@ typedef enum {
         [arr addObject:img];
     }];
     [self addPhoto:arr];
+    if (self.photoView.subviews.count == 10) {
+        [self.photoView.subviews.lastObject setHidden:YES];
+    }
     [SVProgressHUD showWithStatus:@"加载中"];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [SVProgressHUD dismiss];
@@ -638,6 +659,10 @@ typedef enum {
         imageView.tag = self.picIndex++;
         UILongPressGestureRecognizer *longPressGes = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
         [imageView addGestureRecognizer:longPressGes];
+        
+        
+        UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPress:)];
+        [imageView addGestureRecognizer:tapGes];
         [self.photoView insertSubview:imageView atIndex:0];
     }
     
@@ -779,6 +804,9 @@ typedef enum {
     [self.editPhotoViews removeAllObjects];
     [self layoutPhotoView];
     self.navigationItem.rightBarButtonItem = nil;
+    if (self.photoView.subviews.count < 10) {
+        [self.photoView.subviews.lastObject setHidden:NO];
+    }
 }
 
 /**
@@ -837,8 +865,14 @@ typedef enum {
 
     // 上传图片
     NSMutableArray *photoIds = [NSMutableArray array];
-    [SVProgressHUD showWithStatus:@"保存中"];
     NSUInteger photoCount = self.photoView.subviews.count - 1;
+    if (photoCount < 1){
+        [self showInfo:@"你最少需要上传1张图片"];
+        return;
+    }
+    
+    [SVProgressHUD showWithStatus:@"保存中"];
+
     for (UIView *subView in self.photoView.subviews) {
         if ([subView isKindOfClass:[CPEditImageView class]]) {
             CPEditImageView *imageView = (CPEditImageView *)subView;
@@ -880,7 +914,9 @@ typedef enum {
  */
 - (void)uploadCreatActivtyInfoWithPicId:(NSArray *)picIds
 {
-    self.currentModel.cover = picIds;
+    if (picIds.count) {
+        self.currentModel.cover = picIds;
+    }
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"introduction"] = self.currentModel.introduction;
@@ -893,8 +929,7 @@ typedef enum {
     }
     params[@"activityId"] = self.currentModel.activityId;
     params[@"type"] = self.currentModel.type;
-//    params[@"cover"] = self.currentModel.cover;
-        params[@"cover"] = @[@"e0e266ab-88f4-42f7-b49f-f65b6a4cdf52", @"e2dd21a2-eead-4131-ad8f-bdf82c848710"];
+    params[@"cover"] = picIds;
     params[@"pay"] = self.currentModel.pay;
     DLog(@"%@",params);
     NSString *url = [NSString stringWithFormat:@"v1/activity/%@/info",self.currentModel.activityId];

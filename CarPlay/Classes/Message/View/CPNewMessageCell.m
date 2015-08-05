@@ -145,4 +145,11 @@
     _checked = checked;
 }
 
+- (IBAction)iconViewClick:(id)sender {
+    if (_model.userId.length) {
+        [CPNotificationCenter postNotificationName:CPClickUserIconNotification object:nil userInfo:@{CPClickUserIconInfo : _model.userId}];
+    }
+}
+
+
 @end

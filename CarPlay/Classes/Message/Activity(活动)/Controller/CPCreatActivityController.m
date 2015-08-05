@@ -57,6 +57,8 @@ typedef enum {
 @property (nonatomic, strong) CPCreatActivityModel *currentModel;
 @property (nonatomic, strong) NSMutableArray *seats;
 @property (weak, nonatomic) IBOutlet UILabel *seatLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *locationLabelWitdh;
+
 @property (nonatomic, assign) BOOL imageEditing;
 @end
 
@@ -140,6 +142,8 @@ typedef enum {
     self.finishToFriend.clipsToBounds = YES;
     self.currentOffset = CGPointMake(0, -64);
     self.picIndex = 10;
+    self.locationLabelWitdh.constant = kScreenWidth - 175;
+    
     
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
     [CPNotificationCenter addObserver:self selector:@selector(pickerViewCancle:) name:@"PicViewCancle" object:nil];
@@ -156,19 +160,16 @@ typedef enum {
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    NSString *userId = [Tools getValueFromKey:@"userId"];
-    if (userId.length == 0) {
-        [SVProgressHUD showInfoWithStatus:@"你还没有登录,不能创建活动哦"];
+    
+    if (CPUnLogin){
         return;
     }
+    NSString *userId = [Tools getValueFromKey:@"userId"];
     NSString *url = [NSString stringWithFormat:@"v1/user/%@/seats",userId];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     NSString *token = [Tools getValueFromKey:@"token"];
     if (token){
         params[@"token"] = [Tools getValueFromKey:@"token"];
-    }else{
-        [SVProgressHUD showInfoWithStatus:@"你还没有登录,不能创建活动哦"];
-        return;
     }
     [ZYNetWorkTool getWithUrl:url params:params success:^(id responseObject) {
         if (CPSuccess){
@@ -612,6 +613,9 @@ typedef enum {
             [arr addObject:img];
         }];
     [self addPhoto:arr];
+    if (self.photoView.subviews.count == 10) {
+        [self.photoView.subviews.lastObject setHidden:YES];
+    }
     [SVProgressHUD showWithStatus:@"加载中"];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [SVProgressHUD dismiss];
@@ -649,6 +653,9 @@ typedef enum {
 {
     UIImage *portraitImg = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
     [self addPhoto:@[portraitImg]];
+    if (self.photoView.subviews.count == 10) {
+        [self.photoView.subviews.lastObject setHidden:YES];
+    }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -795,6 +802,9 @@ typedef enum {
     [self layoutPhotoView];
     self.navigationItem.rightBarButtonItem = nil;
     self.imageEditing = NO;
+    if (self.photoView.subviews.count < 10) {
+        [self.photoView.subviews.lastObject setHidden:NO];
+    }
 }
 
 /**
@@ -858,8 +868,14 @@ typedef enum {
     
     // 上传图片
     NSMutableArray *photoIds = [NSMutableArray array];
-    [SVProgressHUD showWithStatus:@"创建中"];
+    
     NSUInteger photoCount = self.photoView.subviews.count - 1;
+    if (photoCount < 1){
+        [self showInfo:@"你最少需要上传1张图片"];
+        return;
+    }
+    
+    [SVProgressHUD showWithStatus:@"创建中"];
     for (UIView *subView in self.photoView.subviews) {
         if ([subView isKindOfClass:[CPEditImageView class]]) {
             CPEditImageView *imageView = (CPEditImageView *)subView;
@@ -891,7 +907,9 @@ typedef enum {
  */
 - (void)uploadCreatActivtyInfoWithPicId:(NSArray *)picIds button:(UIButton *)button
 {
-    self.currentModel.cover = picIds;
+    if (picIds.count) {
+        self.currentModel.cover = picIds;
+    }
   
     NSDictionary *params = [self.currentModel keyValues];
     DLog(@"%@",params);

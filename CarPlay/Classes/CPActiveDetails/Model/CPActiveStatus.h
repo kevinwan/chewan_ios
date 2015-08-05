@@ -58,4 +58,20 @@
 /** 头像配图地址。多图时返回多图链接。无配图返回“[]” */
 @property (nonatomic, strong) NSArray *members;
 
+/** 经度 */
+@property (nonatomic, assign) double longitude;
+
+/** 纬度 */
+@property (nonatomic, assign) double latitude;
+
+/** 城市 */
+@property (nonatomic, copy) NSString *city;
+
+/** 省 */
+@property (nonatomic, copy) NSString *province;
+
+/** 县、区*/
+@property (nonatomic, copy) NSString *district;
+
+
 @end

@@ -100,11 +100,8 @@
  */
 - (NSString *)descStr
 {
-    if (self.carBrandLogo){
-        if (_drivingExperience > 0) {
-            return [NSString stringWithFormat:@"%@, %zd年驾龄",_carModel, _drivingExperience];
-        }
-        return [NSString stringWithFormat:@"%@",_carModel];
+    if (self.carModel.length){
+        return [NSString stringWithFormat:@"%@, %zd年驾龄",_carModel, _drivingExperience];
     }else{
         return @"带我飞 ~";
     }
