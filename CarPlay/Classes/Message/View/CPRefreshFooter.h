@@ -8,6 +8,5 @@
 
 #import "MJRefreshAutoFooter.h"
 
-@interface CPRefreshFooter : MJRefreshAutoNormalFooter
-
+@interface CPRefreshFooter : MJRefreshBackNormalFooter
 @end
