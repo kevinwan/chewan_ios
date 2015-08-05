@@ -73,6 +73,7 @@
 // 底部view
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 
+
 @end
 
 @implementation CPActiveDetailsHead

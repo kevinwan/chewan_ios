@@ -68,7 +68,7 @@
 @property (weak, nonatomic) IBOutlet UIView *carxibNoVIew;
 @property (weak, nonatomic) IBOutlet UITextField *carxibTextFeild;
 @property (nonatomic, strong) NSMutableArray *pickerArray;
-
+@property (weak, nonatomic) IBOutlet UICollectionView *iconsView;
 @end
 
 @implementation CPActiveDetailsController
@@ -87,7 +87,7 @@
     
     // 设置标题
     self.title = @"活动详情";
-    
+
 }
 
 
@@ -123,6 +123,9 @@
     
     // 将创建好的headview加到tableview上
     self.tableView.tableHeaderView = headView;
+    //点击小头像手势
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapIconsView)];
+    [self.iconsView addGestureRecognizer:tap];
     
 }
 
@@ -374,7 +377,22 @@
     }
     return _token;
 }
+//点击小头像方法
+- (void)tapIconsView {
+    if (self.activeStatus.isOrganizer) {
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MembersManage" bundle:nil];
+        
+        MembersManageController * vc = sb.instantiateInitialViewController;
+        vc.activityId = self.activeId;
+        [self.navigationController pushViewController:vc animated:YES];
 
+    } else  {
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Members" bundle:nil];
+        MembersController * vc = sb.instantiateInitialViewController;
+        vc.activityId = self.activeId;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
 
 // 我要去玩按钮点击事件
 - (IBAction)GotoPlayButtonDidClick:(UIButton *)sender {
