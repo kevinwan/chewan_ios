@@ -613,6 +613,9 @@ typedef enum {
             [arr addObject:img];
         }];
     [self addPhoto:arr];
+    if (self.photoView.subviews.count == 10) {
+        [self.photoView.subviews.lastObject setHidden:YES];
+    }
     [SVProgressHUD showWithStatus:@"加载中"];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [SVProgressHUD dismiss];
@@ -650,6 +653,9 @@ typedef enum {
 {
     UIImage *portraitImg = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
     [self addPhoto:@[portraitImg]];
+    if (self.photoView.subviews.count == 10) {
+        [self.photoView.subviews.lastObject setHidden:YES];
+    }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -796,6 +802,9 @@ typedef enum {
     [self layoutPhotoView];
     self.navigationItem.rightBarButtonItem = nil;
     self.imageEditing = NO;
+    if (self.photoView.subviews.count < 10) {
+        [self.photoView.subviews.lastObject setHidden:NO];
+    }
 }
 
 /**
@@ -859,8 +868,14 @@ typedef enum {
     
     // 上传图片
     NSMutableArray *photoIds = [NSMutableArray array];
-    [SVProgressHUD showWithStatus:@"创建中"];
+    
     NSUInteger photoCount = self.photoView.subviews.count - 1;
+    if (photoCount < 1){
+        [self showInfo:@"你最少需要上传1张图片"];
+        return;
+    }
+    
+    [SVProgressHUD showWithStatus:@"创建中"];
     for (UIView *subView in self.photoView.subviews) {
         if ([subView isKindOfClass:[CPEditImageView class]]) {
             CPEditImageView *imageView = (CPEditImageView *)subView;
@@ -892,7 +907,9 @@ typedef enum {
  */
 - (void)uploadCreatActivtyInfoWithPicId:(NSArray *)picIds button:(UIButton *)button
 {
-    self.currentModel.cover = picIds;
+    if (picIds.count) {
+        self.currentModel.cover = picIds;
+    }
   
     NSDictionary *params = [self.currentModel keyValues];
     DLog(@"%@",params);

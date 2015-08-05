@@ -14,6 +14,22 @@
 
 @implementation ZYTableViewController
 
+- (instancetype)init
+{
+    if (self = [super init]){
+        self.isShowNoNetWork = YES;
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder]) {
+        self.isShowNoNetWork = YES;
+    }
+    return self;
+}
+
 #pragma mark - lazy
 - (UIView *)tipView
 {
@@ -79,7 +95,7 @@
     [self.navigationController.view insertSubview:[self tipView] belowSubview:self.navigationController.navigationBar];
 
     // 没有网络的提示
-    if (CPNoNetWork){
+    if (CPNoNetWork && self.isShowNoNetWork){
         [self showNoNetWork];
     }
 

@@ -10,6 +10,8 @@
 
 @interface CPActivityApplyModel : NSObject
 
+@property (nonatomic, assign) NSUInteger row;
+
 @property (nonatomic, copy) NSString *status;
 
 @property (nonatomic, copy) NSString *gender;
@@ -54,5 +56,7 @@
  *  是否同意
  */
 @property (nonatomic, assign) BOOL isAgree;
+
+@property (nonatomic, assign) BOOL isChecked;
 
 @end

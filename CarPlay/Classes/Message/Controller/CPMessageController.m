@@ -46,14 +46,12 @@ typedef enum {
     [super viewDidLoad];
     self.tableView.tableFooterView = [UIView new];
     
-    if (CPUnLogin) {
-        return;
-    }else{
-        self.tableView.header = [CPRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    self.tableView.header = [CPRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    if (CPIsLogin){
         [self timer];
     }
 }
-//
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -70,9 +68,15 @@ typedef enum {
 
 - (void)loadData
 {
+    if (CPUnLogin) {
+        [self.tableView.header endRefreshing];
+        return;
+    }
+    
     NSString *userid = [Tools getValueFromKey:@"userId"];
     NSString *token = [Tools getValueFromKey:@"token"];
     NSString *url = [NSString stringWithFormat:@"v1/user/%@/message/count?token=%@", userid, token];
+    
     [ZYNetWorkTool getWithUrl:url params:nil success:^(id responseObject) {
         [self.tableView.header endRefreshing];
         if (CPSuccess) {
@@ -94,7 +98,12 @@ typedef enum {
             if (activityApplyCount > 0) {
                 self.activityApplyNewMsgNumber.hidden = NO;
                 self.activityApplyNewMsgNumber.badgeValue = [NSString stringWithFormat:@"%zd", activityApplyCount];
-                self.activityApplyMsgLabel.text = application[@"content"];
+                NSString *text = [application[@"content"] stringByAppendingString:@"活动"];
+                NSAttributedString *activityName = [[NSAttributedString alloc] initWithString:text attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"48d1d5"]}];
+                
+                NSMutableAttributedString *msg = [[NSMutableAttributedString alloc] initWithString:@"您已成功加入"];
+                [msg appendAttributedString:activityName];
+                self.activityApplyMsgLabel.attributedText = msg;
             }
             
             if (activityApplyCount + newMsgCount > 0) {
