@@ -162,7 +162,7 @@
     self.sexView.isMan = organizer.isMan;
     self.timeLabel.text = model.publishTimeStr;
     
-    if (organizer.carBrandLogo.length > 0) {
+    if (organizer.carModel.length > 0) {
         self.carBrandLogo.hidden = NO;
         [self.carBrandLogo sd_setImageWithURL:[NSURL URLWithString:organizer.carBrandLogo]];
         self.descLabel.text = organizer.descStr;
@@ -228,7 +228,10 @@
  */
 - (void)clickUserIcon
 {
-//    [CPNotificationCenter postNotificationName:CPClickUserIconNotification object:nil userInfo:@{CPClickUserIconInfo : _frameModel.model.organizer.userId}];
+    NSString *userId = _frameModel.model.organizer.userId;
+    if (userId.length) {
+        [CPNotificationCenter postNotificationName:CPClickUserIconNotification object:nil userInfo:@{CPClickUserIconInfo : userId}];
+    }
 }
 
 @end

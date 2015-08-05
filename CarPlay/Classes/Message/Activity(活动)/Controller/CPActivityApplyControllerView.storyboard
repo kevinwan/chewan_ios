@@ -28,6 +28,9 @@
                                             <state key="normal" title="Button">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="iconViewClick:" destination="a3Y-0p-2ru" eventType="touchUpInside" id="BUR-fO-RYz"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bni-Ga-wfI" customClass="CPActivityApplyButton">
                                             <rect key="frame" x="255" y="10" width="55" height="30"/>
@@ -141,6 +144,9 @@
                                             <state key="normal" title="Button">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="iconViewClick:" destination="ejE-Gp-rj5" eventType="touchUpInside" id="cwI-sv-pX7"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8zr-ji-Dcv">
                                             <rect key="frame" x="70" y="10" width="40" height="19.5"/>
