@@ -344,6 +344,8 @@
     [manager POST:postUrl parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
        
 //        NSLog(@"%@",responseObject);
+//        [self.tableView reloadData];
+//        [self loadDiscussData];
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         //
