@@ -99,18 +99,19 @@
 }
 
 - (IBAction)agreeBtnClick:(id)sender {
-    
-    
-    NSString *url = [NSString stringWithFormat:@"v1/application/%@/process",_model.activityId];
+
+    NSString *url = [NSString stringWithFormat:@"v1/application/%@/process",_model.applicationId];
     DLog(@"%@---",url);
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
-    json[@"action"] = @"1";
+    json[@"action"] = @(1);
     [SVProgressHUD showWithStatus:@"努力加载中"];
     [CPNetWorkTool postJsonWithUrl:url params:json success:^(id responseObject) {
         DLog(@"%@",responseObject);
         if (CPSuccess) {
-            [CPNotificationCenter postNotificationName:CPActivityApplyNotification object:nil userInfo:@{CPActivityApplyInfo :@(self.row)}];
-            _model.isAgree = YES;
+            [SVProgressHUD showSuccessWithStatus:@"已同意"];
+           _model.isAgree = YES;
+            [CPNotificationCenter postNotificationName:CPActivityApplyNotification object:nil userInfo:@{CPActivityApplyInfo :@(self.model.row)}];
+     
         }else{
             [SVProgressHUD showInfoWithStatus:@"加载失败"];
         }

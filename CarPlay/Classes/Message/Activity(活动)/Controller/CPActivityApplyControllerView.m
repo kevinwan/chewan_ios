@@ -91,20 +91,21 @@
     
     [CPNotificationCenter addObserver:self selector:@selector(tableViewEdit:) name:CPNewActivityMsgEditNotifycation object:nil];
     [CPNotificationCenter addObserver:self selector:@selector(userIconClick:) name:CPClickUserIconNotification object:nil];
+    [CPNotificationCenter addObserver:self selector:@selector(agreeBtnClick:) name:CPActivityApplyNotification object:nil];
     __weak typeof(self) weakSelf = self;
     self.tableView.header = [CPRefreshHeader headerWithRefreshingBlock:^{
         weakSelf.ignore = 0;
         [weakSelf loadDataWithParam:0];
     }];
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
-    self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    self.tableView.footer = [CPRefreshFooter footerWithRefreshingBlock:^{
         weakSelf.ignore += CPPageNum;
         [weakSelf loadDataWithParam:weakSelf.ignore];
     }];
-    // 设置了底部inset
-    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
-    // 忽略掉底部inset
-    self.tableView.footer.ignoredScrollViewContentInsetTop = 30;
+//    // 设置了底部inset
+//    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
+//    // 忽略掉底部inset
+//    self.tableView.footer.ignoredScrollViewContentInsetTop = 30;
     [self reRefreshData];
     
     ZYJumpToLoginView // 跳转到登录页面
@@ -133,6 +134,7 @@
             
             if (self.ignore == 0) {
                 [self.datas removeAllObjects];
+                [self.tableView.footer resetNoMoreData];
             }
             NSArray *data = [CPActivityApplyModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
             
@@ -141,7 +143,7 @@
                 [self.tableView reloadData];
             }else{
                 if (self.datas.count > 0) {
-                    [self showInfo:@"暂无更多数据"];
+                    [self.tableView.footer noticeNoMoreData];
                 }
             }
             if (self.datas.count == 0) {
@@ -160,7 +162,6 @@
 
 - (void)agreeBtnClick:(NSNotification *)notify
 {
-    [self showSuccess:@"已同意"];
     NSUInteger row = [notify.userInfo[CPActivityApplyInfo] intValue];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
@@ -243,7 +244,14 @@
     {
         model.isChecked = !model.isChecked;
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    }else{
+        if (model.activityId.length) {
+            CPActiveDetailsController *vc = [UIStoryboard storyboardWithName:@"CPActiveDetailsController" bundle:nil].instantiateInitialViewController;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
+    
+    
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -308,6 +316,7 @@
     CPTaDetailsController *vc = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil].instantiateInitialViewController;
     vc.targetUserId = notify.userInfo[CPClickUserIconInfo];
     [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 @end

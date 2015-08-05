@@ -42,6 +42,8 @@
 
 @property (nonatomic, copy) NSString *content;
 
+@property (nonatomic, copy) NSString *applicationId;
+
 /**
  *  显示的内容
  */
@@ -52,6 +54,7 @@
  */
 @property (nonatomic, copy) NSAttributedString *seatText;
 
+@property (nonatomic, copy) NSString *remarks;
 /**
  *  是否同意
  */

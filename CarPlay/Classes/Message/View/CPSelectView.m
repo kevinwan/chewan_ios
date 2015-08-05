@@ -9,6 +9,9 @@
 #import "CPSelectView.h"
 #import "ZYPickView.h"
 #import "ZHPickView.h"
+#import "PPiFlatSegmentedControl.h"
+#import "CPSegmentControl.h"
+#import "ZYSegmentControl.h"
 
 @interface CPSelectView ()<ZHPickViewDelegate>
 
@@ -20,9 +23,9 @@
 @property (nonatomic, weak) UIButton *lastArrow;
 @property (weak, nonatomic) IBOutlet UIButton *cancleBtn;
 @property (weak, nonatomic) IBOutlet UIButton *confirmBtn;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *genderSeg;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *authoCarSeg;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *carLevelSeg;
+@property (weak, nonatomic) IBOutlet ZYSegmentControl *genderSeg;
+@property (weak, nonatomic) IBOutlet ZYSegmentControl *authoCarSeg;
+@property (weak, nonatomic) IBOutlet ZYSegmentControl *carLevelSeg;
 
 @end
 
@@ -31,7 +34,10 @@
 
 - (void)awakeFromNib
 {
-    
+    self.genderSeg.items = @[@"男生", @"女生", @"不限"];
+    self.authoCarSeg.items = @[@"车主", @"非车主", @"不限"];
+    self.carLevelSeg.items = @[@"一般", @"好车", @"不限"];
+
     self.cancleBtn.layer.cornerRadius = 3;
     self.cancleBtn.clipsToBounds = YES;
     

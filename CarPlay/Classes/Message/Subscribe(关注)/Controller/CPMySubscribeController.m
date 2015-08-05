@@ -49,14 +49,14 @@
     }];
     
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
-    self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    self.tableView.footer = [CPRefreshFooter footerWithRefreshingBlock:^{
         weakSelf.ignore += CPPageNum;
         [weakSelf loadDataWithParam:weakSelf.ignore];
     }];
-    // 设置了底部inset
-    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
-    // 忽略掉底部inset
-    self.tableView.footer.ignoredScrollViewContentInsetTop = 30;
+//    // 设置了底部inset
+//    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
+//    // 忽略掉底部inset
+//    self.tableView.footer.ignoredScrollViewContentInsetTop = 30;
     
     ZYJumpToLoginView // 跳转到登陆界面
     [self reRefreshData];
@@ -81,6 +81,7 @@
             NSArray *data = [CPMySubscribeModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
             if (self.ignore == 0) {
                 [self.frameModels removeAllObjects];
+                [self.tableView.footer resetNoMoreData];
             }
             
             if (data.count) {
@@ -93,7 +94,7 @@
                 [self.tableView reloadData];
             }else{
                 if (self.frameModels.count > 0) {
-                    [self showInfo:@"暂无更多数据"];
+                    [self.tableView.footer noticeNoMoreData];
                 }
             }
             

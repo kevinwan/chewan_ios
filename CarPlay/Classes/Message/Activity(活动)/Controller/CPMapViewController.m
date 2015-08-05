@@ -160,6 +160,7 @@
         GeocodeAnnotation *annotation = [[GeocodeAnnotation alloc] init];
         annotation.coordinate = CLLocationCoordinate2DMake(model.latitude.doubleValue, model.longitude.doubleValue);
         annotation.title = model.location;
+        self.selectName = model.location;
         self.searchBar.placeholder = model.location;
         CLLocationCoordinate2D center = annotation.coordinate;
         

@@ -10,12 +10,11 @@
 
 @implementation CPRefreshFooter
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
+        [self setTitle:@"已无更多数据" forState:MJRefreshStateNoMoreData];
+    }
+    return self;
 }
-*/
-
 @end
