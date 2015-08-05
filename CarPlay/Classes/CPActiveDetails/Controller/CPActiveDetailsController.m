@@ -393,7 +393,8 @@
         }];
 
     }else{
-        NSLog(@"未登录");
+        // 未登录跳到登录页面
+        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
     }
     
     
