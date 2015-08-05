@@ -37,7 +37,7 @@
     self.tableView.tableFooterView=[UIView new];
     self.tableView.bounces=NO;
     self.photoWH = (kScreenWidth - 50) / 4;
-    
+    self.photoViewHeight = self.photoWH + 20;
     self.navigationItem.rightBarButtonItem=self.rightItem1;
     //    点击其他地方隐藏键盘
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
@@ -45,15 +45,16 @@
     tapGestureRecognizer.cancelsTouchesInView = NO;
     //将触摸事件添加到当前view
     [self.view addGestureRecognizer:tapGestureRecognizer];
-}
-
--(void)viewWillAppear:(BOOL)animated{
     if ([Tools getValueFromKey:@"userId"]) {
         [self setUpCellOperation];
     }else{
         [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
     }
 }
+
+//-(void)viewWillAppear:(BOOL)animated{
+//    
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -103,11 +104,10 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
+        NSLog(@"aaaaaaa%f",self.photoViewHeight);
         return self.photoViewHeight;
-    }else if (indexPath.row == 1){
+    }else
         return 92.0f;
-    }
-    return 50;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -232,8 +232,8 @@
                 UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPress:)];
                 [imageView addGestureRecognizer:tapGes];
                 [self.photoView insertSubview:imageView atIndex:0];
-                [self layoutPhotoView];
     }
+    [self layoutPhotoView];
 }
 
 
@@ -389,8 +389,6 @@
  */
 - (void)setUpCellOperation
 {
-    self.photoViewHeight = self.photoWH + 20;
-    
     CPCreatActivityCell *activityPhotoCell = [self cellWithRow:0];
     
     UIView *photoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, self.photoViewHeight)];

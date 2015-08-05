@@ -17,6 +17,7 @@
 @property (nonatomic, assign) NSUInteger picIndex;
 @property (nonatomic, strong) UIBarButtonItem *rightItem;
 @property (nonatomic, strong) UIBarButtonItem *leftItem;
+@property (nonatomic, strong) UIBarButtonItem *leftItem1;
 @property (nonatomic, assign) CGFloat photoViewHeight;
 @property (nonatomic, assign) BOOL imageEditing;
 @end
@@ -62,11 +63,19 @@
     return _rightItem;
 }
 
--(UIBarButtonItem *)leftItem{
+- (UIBarButtonItem *)leftItem
+{
     if (_leftItem == nil) {
-        _leftItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"取消" target:self action:@selector(cancleEditPhotoSelect)];
+        _leftItem = [UIBarButtonItem itemWithNorImage:@"返回" higImage:nil title:nil target:self action:@selector(goBack)];
     }
     return _leftItem;
+}
+
+-(UIBarButtonItem *)leftItem1{
+    if (_leftItem1 == nil) {
+        _leftItem1 = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"取消" target:self action:@selector(cancleEditPhotoSelect)];
+    }
+    return _leftItem1;
 }
 
 #pragma mark - 添加相片的相关方法
@@ -243,10 +252,11 @@
     
     if (self.editPhotoViews.count > 0){
         self.navigationItem.rightBarButtonItem = self.rightItem;
-        self.navigationItem.leftBarButtonItem = self.leftItem;
+        self.navigationItem.leftBarButtonItem = self.leftItem1;
     }else{
         self.imageEditing = NO;
         self.navigationItem.rightBarButtonItem = nil;
+        self.navigationItem.leftBarButtonItem = self.leftItem;
     }
     
 }
@@ -265,6 +275,7 @@
         }
     }
     self.navigationItem.rightBarButtonItem = nil;
+    self.navigationItem.leftBarButtonItem = self.leftItem;
 }
 
 /**
@@ -334,4 +345,7 @@
     [self layoutPhotoView];
 }
 
+-(void)goBack{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

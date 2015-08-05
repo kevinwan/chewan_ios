@@ -33,7 +33,10 @@
 		6B9CFD691B6CB54C00EF167D /* CPHowToPlayInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9CFD671B6CB54C00EF167D /* CPHowToPlayInfoViewController.m */; };
 		6B9CFD6A1B6CB54C00EF167D /* CPHowToPlayInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B9CFD681B6CB54C00EF167D /* CPHowToPlayInfoViewController.xib */; };
 		6B9CFD6C1B6CBED500EF167D /* CPFeedbackViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B9CFD6B1B6CBED500EF167D /* CPFeedbackViewController.storyboard */; };
-		6B9CFD6F1B6CC56000EF167D /* CPFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9CFD6E1B6CC56000EF167D /* CPFeedbackViewController.m */; };
+		6B9CFD741B71D93E00EF167D /* CPAbout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9CFD731B71D93E00EF167D /* CPAbout.m */; };
+		6B9CFD761B71D95200EF167D /* CPAbout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B9CFD751B71D95200EF167D /* CPAbout.storyboard */; };
+		6B9CFD791B71EA7500EF167D /* CPVersionIntroduction.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9CFD781B71EA7500EF167D /* CPVersionIntroduction.m */; };
+		6B9CFD7B1B71EA8200EF167D /* CPVersionIntroduction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B9CFD7A1B71EA8200EF167D /* CPVersionIntroduction.storyboard */; };
 		6BB09A831B66650C00E0D77D /* CPMyBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB09A811B66650C00E0D77D /* CPMyBaseCell.m */; };
 		6BB09A841B66650C00E0D77D /* CPMyBaseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BB09A821B66650C00E0D77D /* CPMyBaseCell.xib */; };
 		6BB09A891B6669F800E0D77D /* CPSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB09A871B6669F800E0D77D /* CPSettingTableViewController.m */; };
@@ -45,6 +48,7 @@
 		6BB09AA71B68B02900E0D77D /* CPPhotoalbumManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB09AA51B68B02900E0D77D /* CPPhotoalbumManagement.m */; };
 		6BB09AA81B68B02900E0D77D /* CPPhotoalbumManagement.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BB09AA61B68B02900E0D77D /* CPPhotoalbumManagement.xib */; };
 		6BB09AB41B69F52900E0D77D /* CPNewfeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB09AB31B69F52900E0D77D /* CPNewfeatureViewController.m */; };
+		6BBCFFC61B721E6900F63818 /* CPFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BBCFFC51B721E6900F63818 /* CPFeedbackViewController.m */; };
 		6BC8A3E61B6A4DB700B199F2 /* CPTaDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC8A3D11B6A4DB700B199F2 /* CPTaDetailsController.m */; };
 		6BC8A3E71B6A4DB700B199F2 /* CPTaDetailsController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BC8A3D21B6A4DB700B199F2 /* CPTaDetailsController.storyboard */; };
 		6BC8A3E81B6A4DB700B199F2 /* CPTaDetailsStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC8A3D51B6A4DB700B199F2 /* CPTaDetailsStatus.m */; };
@@ -364,8 +368,12 @@
 		6B9CFD671B6CB54C00EF167D /* CPHowToPlayInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHowToPlayInfoViewController.m; sourceTree = "<group>"; };
 		6B9CFD681B6CB54C00EF167D /* CPHowToPlayInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPHowToPlayInfoViewController.xib; sourceTree = "<group>"; };
 		6B9CFD6B1B6CBED500EF167D /* CPFeedbackViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPFeedbackViewController.storyboard; sourceTree = "<group>"; };
-		6B9CFD6D1B6CC56000EF167D /* CPFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPFeedbackViewController.h; sourceTree = "<group>"; };
-		6B9CFD6E1B6CC56000EF167D /* CPFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPFeedbackViewController.m; sourceTree = "<group>"; };
+		6B9CFD721B71D93E00EF167D /* CPAbout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAbout.h; sourceTree = "<group>"; };
+		6B9CFD731B71D93E00EF167D /* CPAbout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAbout.m; sourceTree = "<group>"; };
+		6B9CFD751B71D95200EF167D /* CPAbout.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPAbout.storyboard; sourceTree = "<group>"; };
+		6B9CFD771B71EA7500EF167D /* CPVersionIntroduction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPVersionIntroduction.h; sourceTree = "<group>"; };
+		6B9CFD781B71EA7500EF167D /* CPVersionIntroduction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPVersionIntroduction.m; sourceTree = "<group>"; };
+		6B9CFD7A1B71EA8200EF167D /* CPVersionIntroduction.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPVersionIntroduction.storyboard; sourceTree = "<group>"; };
 		6BB09A801B66650C00E0D77D /* CPMyBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyBaseCell.h; sourceTree = "<group>"; };
 		6BB09A811B66650C00E0D77D /* CPMyBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyBaseCell.m; sourceTree = "<group>"; };
 		6BB09A821B66650C00E0D77D /* CPMyBaseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPMyBaseCell.xib; sourceTree = "<group>"; };
@@ -383,6 +391,8 @@
 		6BB09AA61B68B02900E0D77D /* CPPhotoalbumManagement.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPPhotoalbumManagement.xib; sourceTree = "<group>"; };
 		6BB09AB21B69F52900E0D77D /* CPNewfeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNewfeatureViewController.h; sourceTree = "<group>"; };
 		6BB09AB31B69F52900E0D77D /* CPNewfeatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNewfeatureViewController.m; sourceTree = "<group>"; };
+		6BBCFFC31B721A9600F63818 /* CPFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPFeedbackViewController.h; sourceTree = "<group>"; };
+		6BBCFFC51B721E6900F63818 /* CPFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPFeedbackViewController.m; sourceTree = "<group>"; };
 		6BC8A3D01B6A4DB700B199F2 /* CPTaDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTaDetailsController.h; sourceTree = "<group>"; };
 		6BC8A3D11B6A4DB700B199F2 /* CPTaDetailsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTaDetailsController.m; sourceTree = "<group>"; };
 		6BC8A3D21B6A4DB700B199F2 /* CPTaDetailsController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPTaDetailsController.storyboard; sourceTree = "<group>"; };
@@ -1182,6 +1192,9 @@
 		6B9CFD701B70AF5A00EF167D /* CPAbout（关于我们） */ = {
 			isa = PBXGroup;
 			children = (
+				6B9CFD721B71D93E00EF167D /* CPAbout.h */,
+				6B9CFD731B71D93E00EF167D /* CPAbout.m */,
+				6B9CFD751B71D95200EF167D /* CPAbout.storyboard */,
 			);
 			path = "CPAbout（关于我们）";
 			sourceTree = "<group>";
@@ -1189,6 +1202,9 @@
 		6B9CFD711B70AF5A00EF167D /* CPVersionIntroduction(版本介绍) */ = {
 			isa = PBXGroup;
 			children = (
+				6B9CFD771B71EA7500EF167D /* CPVersionIntroduction.h */,
+				6B9CFD781B71EA7500EF167D /* CPVersionIntroduction.m */,
+				6B9CFD7A1B71EA8200EF167D /* CPVersionIntroduction.storyboard */,
 			);
 			path = "CPVersionIntroduction(版本介绍)";
 			sourceTree = "<group>";
@@ -1219,9 +1235,9 @@
 		6BB09A911B67570C00E0D77D /* CPFeedback(意见反馈) */ = {
 			isa = PBXGroup;
 			children = (
+				6BBCFFC31B721A9600F63818 /* CPFeedbackViewController.h */,
+				6BBCFFC51B721E6900F63818 /* CPFeedbackViewController.m */,
 				6B9CFD6B1B6CBED500EF167D /* CPFeedbackViewController.storyboard */,
-				6B9CFD6D1B6CC56000EF167D /* CPFeedbackViewController.h */,
-				6B9CFD6E1B6CC56000EF167D /* CPFeedbackViewController.m */,
 			);
 			name = "CPFeedback(意见反馈)";
 			path = "Feedback(意见反馈)";
@@ -2322,9 +2338,9 @@
 				6B9CFD5E1B6CAD8200EF167D /* CPHowToPlayViewController.xib in Resources */,
 				E3CE35B21B59E7FC008434B5 /* XLForm.bundle in Resources */,
 				E372D8521B6216E800B4FC5C /* CPMyController.storyboard in Resources */,
+				6B9CFD761B71D95200EF167D /* CPAbout.storyboard in Resources */,
 				E372D8351B6216C100B4FC5C /* CPBrandModelViewController.xib in Resources */,
 				E372D8461B6216C100B4FC5C /* serviceTermsViewController.xib in Resources */,
-				6BB09A961B67572500E0D77D /* CPFeedbackViewController.xib in Resources */,
 				A5F515441B705E7400690802 /* CPOfferCar.xib in Resources */,
 				E35B046D1B565532002C6655 /* MJPhotoBrowser.bundle in Resources */,
 				6BB09AA81B68B02900E0D77D /* CPPhotoalbumManagement.xib in Resources */,
@@ -2354,6 +2370,7 @@
 				E36C961C1B53BA6B00D3EDBB /* CPActivityApplyControllerView.storyboard in Resources */,
 				A57581A91B6789C500A5E681 /* downSeat.xib in Resources */,
 				E372D83E1B6216C100B4FC5C /* CPRegisterCellsTableViewCell2.xib in Resources */,
+				6B9CFD7B1B71EA8200EF167D /* CPVersionIntroduction.storyboard in Resources */,
 				E372D8441B6216C100B4FC5C /* registerViewController.xib in Resources */,
 				E3292A291B6A50700023677F /* CPSelectView.xib in Resources */,
 				A57581C91B6789D500A5E681 /* Members.storyboard in Resources */,
@@ -2456,6 +2473,7 @@
 				E35B04281B5645BC002C6655 /* HMStatusPhotoView.m in Sources */,
 				E3CE35921B59E7FC008434B5 /* XLFormDateCell.m in Sources */,
 				6B5F9B6E1B5D29FE00F9D1E8 /* CPHomeMember.m in Sources */,
+				6B9CFD741B71D93E00EF167D /* CPAbout.m in Sources */,
 				6BC8A3EB1B6A4DB700B199F2 /* CPTaPublishStatus.m in Sources */,
 				E3E315041B5E551A00FB0B55 /* CPActivityApplyModel.m in Sources */,
 				6BC8A3E81B6A4DB700B199F2 /* CPTaDetailsStatus.m in Sources */,
@@ -2506,6 +2524,7 @@
 				E36CC9641B6C7DA400380E53 /* LineDashPolyline.m in Sources */,
 				6B64938C1B4D04BE00C197D2 /* BaseViewController.m in Sources */,
 				6BC8A3E91B6A4DB700B199F2 /* CPTaMember.m in Sources */,
+				6BBCFFC61B721E6900F63818 /* CPFeedbackViewController.m in Sources */,
 				E34065ED1B65D6A2008BB3EB /* CPMyJoinController.m in Sources */,
 				E35E6FD01B54B0EC001212D6 /* CPMyPublishFrameModel.m in Sources */,
 				E35E6FCD1B54B0D9001212D6 /* CPMyPublishModel.m in Sources */,
@@ -2515,6 +2534,7 @@
 				E30BD5941B54FCC600FD9030 /* ZYNavigationBar.m in Sources */,
 				A57582191B6789E500A5E681 /* UITableView+SMFoundation.m in Sources */,
 				E3CE35981B59E7FC008434B5 /* XLFormSelectorCell.m in Sources */,
+				6B9CFD791B71EA7500EF167D /* CPVersionIntroduction.m in Sources */,
 				E3D8793F1B57475400228356 /* CPActivityModel.m in Sources */,
 				E3EEE0021B53952E00595333 /* Foundation+Log.m in Sources */,
 				E3CE359F1B59E7FC008434B5 /* XLFormOptionsViewController.m in Sources */,
@@ -2613,7 +2633,6 @@
 				E372D82E1B6216C100B4FC5C /* CPNewPassWordViewController.m in Sources */,
 				E3C611491B5F328C00B7E73A /* CPCreatActivityModel.m in Sources */,
 				E35B04701B565532002C6655 /* MJPhotoProgressView.m in Sources */,
-				6B9CFD6F1B6CC56000EF167D /* CPFeedbackViewController.m in Sources */,
 				E3CE35901B59E7FC008434B5 /* XLFormButtonCell.m in Sources */,
 				A57581AC1B6789C500A5E681 /* MembersManageController.m in Sources */,
 				E35E6FCA1B54B076001212D6 /* CPMyPublishCell.m in Sources */,

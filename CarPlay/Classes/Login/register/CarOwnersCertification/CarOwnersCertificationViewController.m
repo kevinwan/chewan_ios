@@ -124,7 +124,9 @@
     [_pickview remove];
     if (indexPath.row==1) {
         CPBrandModelViewController *CPBrandModelVC=[[CPBrandModelViewController alloc]init];
-        CPBrandModelVC.fromMy=@"1";
+        if (![Tools getValueFromKey:@"userId"]) {
+            CPBrandModelVC.fromMy=@"1";
+        }
         CPBrandModelVC.title=@"车型选择";
         [self.navigationController pushViewController:CPBrandModelVC animated:YES];
     }
