@@ -115,6 +115,7 @@
     NSURL *urlPhoto = [NSURL URLWithString:user.photo];
     [self.photo sd_setImageWithURL:urlPhoto placeholderImage:[UIImage imageNamed:@"默认头像"]];
     
+    
     // 我要去玩
     self.myPlay.layer.cornerRadius = 12;
     self.myPlay.layer.masksToBounds = YES;
