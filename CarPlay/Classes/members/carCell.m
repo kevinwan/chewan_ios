@@ -33,7 +33,7 @@ static CGFloat const kBounceValue = 20.0f;
 - (void)awakeFromNib {
     self.carName.font = [AppAppearance textLargeFont];
     self.carName.textColor = [AppAppearance textDarkColor];
-    
+    self.carName.preferredMaxLayoutWidth = 75;
     self.pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(pan:)];
     [self.mycontentView addGestureRecognizer:self.pan];
     //设置手势代理

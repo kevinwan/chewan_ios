@@ -95,11 +95,15 @@
     
     // 设置标题
     self.title = @"活动详情";
+<<<<<<< HEAD
     
     // 发送按钮切圆
     self.sendBtn.layer.cornerRadius = 3;
     self.sendBtn.layer.masksToBounds = YES;
     
+=======
+
+>>>>>>> 34e5c196e6686a33ebf58c5e3e76cc842704be72
 }
 
 

@@ -54,12 +54,6 @@
 // 发送按钮
 @property (weak, nonatomic) IBOutlet UIButton *sendBtn;
 
-// 发送按钮点击
-- (IBAction)sendClick:(id)sender;
-
-// 要发送的信息
-@property (weak, nonatomic) IBOutlet UITextField *sendText;
-
 // 缓存cell高度（线程安全、内存紧张时会自动释放、不会拷贝key）
 @property (nonatomic,strong) NSCache *rowHeightCache;
 
