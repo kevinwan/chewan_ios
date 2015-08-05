@@ -19,7 +19,6 @@
 #import "SVProgressHUD.h"
 
 
-
 @interface CPCityController ()<UITableViewDataSource,UITableViewDelegate, CPSelectViewDelegate>
 
 // 用户id
@@ -28,6 +27,9 @@
 // 用户token
 @property (nonatomic,copy) NSString *token;
 
+// 上滑加载条数
+@property (nonatomic,assign) NSInteger ignoreNum;
+
 // 蒙板遮罩
 @property (nonatomic,strong) UIButton *coverBtn;
 
@@ -35,7 +37,7 @@
 @property (nonatomic,strong) CPSelectView *selectView;
 
 // 存储所有活动数据
-@property (nonatomic,strong) NSArray *status;
+@property (nonatomic,strong) NSMutableArray *status;
 
 // tableView
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -84,30 +86,38 @@
     [super viewDidLoad];
 
     // 加载活动数据
-    [self setupLoadStatus];
+    [self setupLoadStatusWithIgnore:0];
     
-    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
-  
-    // 马上进入刷新状态
-    [self.tableView.header beginRefreshing];
+    // 添加下拉刷新控件（头部）
+    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(dropDownLoadData)];
+    
+    // 添加上拉刷新控件（底部）
+    self.tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(upglideLoadData)];
     
     
 }
 
 // 下拉刷新
-- (void)loadNewData{
-    [self setupLoadStatus];
+- (void)dropDownLoadData{
+    [self setupLoadStatusWithIgnore:0];
 //    [SVProgressHUD showWithStatus:@"hello"];
-
-    
 }
 
+// 上滑
+- (void)upglideLoadData{
+    self.ignoreNum += CPPageNum;
+    [self setupLoadStatusWithIgnore:self.ignoreNum];
+}
+
+
 // 加载活动数据
-- (void)setupLoadStatus{
+- (void)setupLoadStatusWithIgnore:(NSInteger)ignore{
     
     // 封装请求参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     parameters[@"key"] = @"hot";
+    parameters[@"ignore"] = @(ignore);
+//    parameters[@"limit"] = @(10);
 
 //    parameters[@"city"] = @"南京";
     if (self.userId != nil) {
@@ -126,14 +136,24 @@
         // 取出活动数据
         NSArray *dicts = responseObject[@"data"];
         
-        // 转换为模型
-        self.status = [CPHomeStatus objectArrayWithKeyValuesArray:dicts];
-          
+        // 转换为模型数组
+       NSArray *models = [CPHomeStatus objectArrayWithKeyValuesArray:dicts];
+        
+        if (!ignore) {
+            [self.status removeAllObjects];
+            [self.status addObjectsFromArray:models];
+        }else{
+            [self.status addObjectsFromArray:models];
+        }
+
+        
         // 刷新表格
         [self.tableView reloadData];
         
-        // 关闭刷新栏
+        // 关闭下拉刷新栏
         [self.tableView.header endRefreshing];
+        // 关闭上拉刷新栏
+        [self.tableView.footer endRefreshing];
         
     } failure:^(NSURLSessionDataTask * task, NSError * error) {
         [SVProgressHUD showWithStatus:@"获取用户信息失败"];
@@ -251,6 +271,20 @@
     return _token;
 }
 
+// 上拉刷新条数
+- (NSInteger)ignoreNum{
+    if (!_ignoreNum) {
+        _ignoreNum = CPPageNum;
+    }
+    return _ignoreNum;
+}
+
+- (NSMutableArray *)status{
+    if (!_status) {
+        _status = [NSMutableArray array];
+    }
+    return _status;
+}
 
 
 

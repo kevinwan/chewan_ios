@@ -10,6 +10,8 @@
 
 @interface ZYTableViewController : UITableViewController
 
+@property (nonatomic, assign) BOOL isShowNoNetWork;
+
 /**
  *  忽略的条数
  */
