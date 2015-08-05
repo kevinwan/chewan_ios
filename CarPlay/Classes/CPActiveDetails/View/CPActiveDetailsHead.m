@@ -299,7 +299,7 @@
 // 点击头像跳转到他的详情页
 - (IBAction)iconBtnClick:(id)sender {
     // 判断是否已登录
-    if ([Tools getValueFromKey:NOTIFICATION_HASLOGIN]) {
+    if (!CPUnLogin) {
         
          // 已登录通知控制器跳到他的详情页面
         if (self.goTaDetails != nil) {
