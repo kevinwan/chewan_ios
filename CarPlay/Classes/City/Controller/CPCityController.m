@@ -86,21 +86,28 @@
     // 加载活动数据
     [self setupLoadStatus];
     
-    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(dropDown)];
   
     // 马上进入刷新状态
     [self.tableView.header beginRefreshing];
     
     
+    self.tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(upglideLoadData)];
+    
+    
 }
 
 // 下拉刷新
-- (void)loadNewData{
+- (void)dropDownLoadData{
     [self setupLoadStatus];
 //    [SVProgressHUD showWithStatus:@"hello"];
+}
 
+// 上滑
+- (void)upglideLoadData{
     
 }
+
 
 // 加载活动数据
 - (void)setupLoadStatus{
