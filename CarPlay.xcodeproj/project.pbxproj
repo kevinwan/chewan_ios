@@ -142,6 +142,7 @@
 		A575821D1B6789E500A5E681 /* UIView+Dealer.m in Sources */ = {isa = PBXBuildFile; fileRef = A57582051B6789E500A5E681 /* UIView+Dealer.m */; };
 		A5F515431B705E7400690802 /* CPOfferCar.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F515411B705E7300690802 /* CPOfferCar.m */; };
 		A5F515441B705E7400690802 /* CPOfferCar.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5F515421B705E7400690802 /* CPOfferCar.xib */; };
+		A5F515791B71E53100690802 /* NSString+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F515781B71E53100690802 /* NSString+Size.m */; };
 		AD5690C45A77A4D82E40CA3F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E1F11B43C6536981B4E2558 /* libPods.a */; };
 		E30BD57E1B54EBEB00FD9030 /* CPMySubscribeController.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD57D1B54EBEB00FD9030 /* CPMySubscribeController.m */; };
 		E30BD5891B54EC4A00FD9030 /* CPMySubscribeFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5861B54EC4A00FD9030 /* CPMySubscribeFrameModel.m */; };
@@ -571,6 +572,8 @@
 		A5F515401B705E7300690802 /* CPOfferCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPOfferCar.h; sourceTree = "<group>"; };
 		A5F515411B705E7300690802 /* CPOfferCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPOfferCar.m; sourceTree = "<group>"; };
 		A5F515421B705E7400690802 /* CPOfferCar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPOfferCar.xib; sourceTree = "<group>"; };
+		A5F515771B71E53100690802 /* NSString+Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Size.h"; sourceTree = "<group>"; };
+		A5F515781B71E53100690802 /* NSString+Size.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Size.m"; sourceTree = "<group>"; };
 		E30BD57C1B54EBEB00FD9030 /* CPMySubscribeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMySubscribeController.h; sourceTree = "<group>"; };
 		E30BD57D1B54EBEB00FD9030 /* CPMySubscribeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMySubscribeController.m; sourceTree = "<group>"; };
 		E30BD5851B54EC4A00FD9030 /* CPMySubscribeFrameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMySubscribeFrameModel.h; sourceTree = "<group>"; };
@@ -1556,6 +1559,8 @@
 		A57581D21B6789E400A5E681 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				A5F515771B71E53100690802 /* NSString+Size.h */,
+				A5F515781B71E53100690802 /* NSString+Size.m */,
 				A57581D31B6789E400A5E681 /* AppAppearance.h */,
 				A57581D41B6789E400A5E681 /* AppAppearance.m */,
 				A57581D51B6789E400A5E681 /* NSDictionary+Dealer.h */,
@@ -2334,7 +2339,6 @@
 				E372D8521B6216E800B4FC5C /* CPMyController.storyboard in Resources */,
 				E372D8351B6216C100B4FC5C /* CPBrandModelViewController.xib in Resources */,
 				E372D8461B6216C100B4FC5C /* serviceTermsViewController.xib in Resources */,
-				6BB09A961B67572500E0D77D /* CPFeedbackViewController.xib in Resources */,
 				A5F515441B705E7400690802 /* CPOfferCar.xib in Resources */,
 				E35B046D1B565532002C6655 /* MJPhotoBrowser.bundle in Resources */,
 				6BB09AA81B68B02900E0D77D /* CPPhotoalbumManagement.xib in Resources */,
@@ -2457,6 +2461,7 @@
 				A575821D1B6789E500A5E681 /* UIView+Dealer.m in Sources */,
 				E3CE35A91B59E7FC008434B5 /* UIView+XLFormAdditions.m in Sources */,
 				A57581CB1B6789D500A5E681 /* cars.m in Sources */,
+				A5F515791B71E53100690802 /* NSString+Size.m in Sources */,
 				E35B04791B568761002C6655 /* CPMoreButton.m in Sources */,
 				E30BD5891B54EC4A00FD9030 /* CPMySubscribeFrameModel.m in Sources */,
 				6BCF660A1B6208C700358190 /* CPActiveMember.m in Sources */,

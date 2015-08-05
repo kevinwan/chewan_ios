@@ -94,8 +94,8 @@
                                                                 <constraint firstAttribute="height" constant="30" id="k3m-ew-l5H"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="宝马" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJc-lI-Qqe">
-                                                            <rect key="frame" x="50" y="15" width="28" height="17"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="宝马" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJc-lI-Qqe">
+                                                            <rect key="frame" x="50" y="17" width="28" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -165,9 +165,11 @@
                                                         <constraint firstItem="WLs-KX-jaQ" firstAttribute="top" secondItem="7Tj-i0-6iW" secondAttribute="top" constant="10" id="eUl-kh-utT"/>
                                                         <constraint firstItem="wMh-yV-zWK" firstAttribute="top" secondItem="7Tj-i0-6iW" secondAttribute="top" constant="10" id="hvv-S6-avm"/>
                                                         <constraint firstItem="q1y-5J-0V1" firstAttribute="leading" secondItem="7Tj-i0-6iW" secondAttribute="leading" constant="10" id="mF0-vw-mSz"/>
+                                                        <constraint firstAttribute="centerY" secondItem="sJc-lI-Qqe" secondAttribute="centerY" id="rJX-GG-ZPW"/>
                                                     </constraints>
                                                     <variation key="default">
                                                         <mask key="constraints">
+                                                            <exclude reference="Gh7-YE-LQq"/>
                                                             <exclude reference="Gs3-AN-bQt"/>
                                                         </mask>
                                                     </variation>
