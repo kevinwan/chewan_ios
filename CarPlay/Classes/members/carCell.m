@@ -25,6 +25,9 @@ static CGFloat const kBounceValue = 20.0f;
 @property (nonatomic, assign) CGPoint currentPoint;
 @property (nonatomic, assign) CGFloat startingRightLayoutConstraintConstant;
 @property (nonatomic, strong) NSString *totalSeat;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *carLogW;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *carLogH;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *carLogX;
 
 @end
 
@@ -59,7 +62,18 @@ static CGFloat const kBounceValue = 20.0f;
     //设置初始座位头像图片为nil
     [self removeImageOfButton:@[self.seatMain,self.seatone, self.seatTwo,self.seatThree,self.seatLastOne,self.seatLastTwo,self.seatLastThree]];
     NSURL *url = [NSURL URLWithString:_models.carBrandLogo];
-    [self.carLog sd_setImageWithURL:url];
+    if (_models.carBrandLogo.length) {
+        [self.carLog sd_setImageWithURL:url];
+        self.carLogH.constant = 25;
+        self.carLogW.constant = 25;
+        self.carLogX.constant = 10;
+    } else {
+        self.carLog.image = [UIImage imageNamed:@"默认车型"];
+        self.carLogH.constant = 22;
+        self.carLogW.constant = 37;
+        self.carLogX.constant = 25;
+    }
+   
     self.carName.text = [NSString stringWithFormat:@"%@",_models.carModel];
     self.totalSeat = _models.totalSeat;
     switch ([self.totalSeat intValue]) {
