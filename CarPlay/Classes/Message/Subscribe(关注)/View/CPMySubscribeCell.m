@@ -104,7 +104,7 @@
     
     UILabel *contentLb = [[UILabel alloc] init];
     contentLb.textColor = [Tools getColor:@"434a53"];
-    contentLb.font = NickNameFont;
+    contentLb.font = ContentFont;
     contentLb.numberOfLines = 0;
     [self.contentView addSubview:contentLb];
     self.contentLable = contentLb;

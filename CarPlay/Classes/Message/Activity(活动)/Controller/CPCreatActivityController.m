@@ -378,8 +378,6 @@ typedef enum {
             vc.completion = ^(CPLocationModel *model){
                 if (model) {
                     [self labelWithRow:3].text = model.location;
-                    
-                    DLog(@"----%@ %@ %@ %@",model.province, model.city, model.district,model.location);
                     self.selectLocation = model;
                     self.currentModel.latitude = model.latitude.doubleValue;
                     self.currentModel.longitude = model.longitude.doubleValue;

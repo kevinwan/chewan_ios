@@ -17,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dL5-7y-foD">
-                                <rect key="frame" x="166" y="34" width="42" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dL5-7y-foD">
+                                <rect key="frame" x="187" y="34" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -36,7 +36,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="76" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7HR-PL-CIt">
-                                <rect key="frame" x="0.0" y="81.5" width="375" height="480"/>
+                                <rect key="frame" x="0.0" y="61" width="375" height="500.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="carcell" rowHeight="52" id="ifZ-2n-L5f" customClass="carCell">
@@ -88,14 +88,14 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="51.5"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q1y-5J-0V1">
-                                                            <rect key="frame" x="10" y="10" width="30" height="30"/>
+                                                            <rect key="frame" x="10" y="13" width="25" height="25"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="30" id="Cn2-MS-Foz"/>
-                                                                <constraint firstAttribute="height" constant="30" id="k3m-ew-l5H"/>
+                                                                <constraint firstAttribute="width" constant="25" id="Cn2-MS-Foz"/>
+                                                                <constraint firstAttribute="height" constant="25" id="k3m-ew-l5H"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="宝马" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJc-lI-Qqe">
-                                                            <rect key="frame" x="50" y="17" width="28" height="17"/>
+                                                            <rect key="frame" x="45" y="17" width="28" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -163,12 +163,14 @@
                                                         <constraint firstAttribute="trailing" secondItem="wMh-yV-zWK" secondAttribute="trailing" constant="15" id="bHj-Do-eAt"/>
                                                         <constraint firstItem="1hv-hz-3WQ" firstAttribute="top" secondItem="7Tj-i0-6iW" secondAttribute="top" constant="10" id="dJG-Jv-c5I"/>
                                                         <constraint firstItem="WLs-KX-jaQ" firstAttribute="top" secondItem="7Tj-i0-6iW" secondAttribute="top" constant="10" id="eUl-kh-utT"/>
+                                                        <constraint firstAttribute="centerY" secondItem="q1y-5J-0V1" secondAttribute="centerY" id="gJn-1V-wXd"/>
                                                         <constraint firstItem="wMh-yV-zWK" firstAttribute="top" secondItem="7Tj-i0-6iW" secondAttribute="top" constant="10" id="hvv-S6-avm"/>
                                                         <constraint firstItem="q1y-5J-0V1" firstAttribute="leading" secondItem="7Tj-i0-6iW" secondAttribute="leading" constant="10" id="mF0-vw-mSz"/>
                                                         <constraint firstAttribute="centerY" secondItem="sJc-lI-Qqe" secondAttribute="centerY" id="rJX-GG-ZPW"/>
                                                     </constraints>
                                                     <variation key="default">
                                                         <mask key="constraints">
+                                                            <exclude reference="ac2-T5-LHs"/>
                                                             <exclude reference="Gh7-YE-LQq"/>
                                                             <exclude reference="Gs3-AN-bQt"/>
                                                         </mask>
@@ -190,6 +192,9 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="carLog" destination="q1y-5J-0V1" id="GEf-bD-Nrf"/>
+                                            <outlet property="carLogH" destination="k3m-ew-l5H" id="hgy-AA-Cba"/>
+                                            <outlet property="carLogW" destination="Cn2-MS-Foz" id="Zhb-Hj-rBE"/>
+                                            <outlet property="carLogX" destination="mF0-vw-mSz" id="q9m-iH-sHa"/>
                                             <outlet property="carName" destination="sJc-lI-Qqe" id="hQY-Kf-8XB"/>
                                             <outlet property="leftConstraint" destination="M7Q-GR-ADJ" id="8wQ-xT-6xM"/>
                                             <outlet property="mainSeat" destination="WLs-KX-jaQ" id="Eb5-MT-Zjq"/>
@@ -284,6 +289,7 @@
                                             <outlet property="carLogImageView" destination="zXH-gr-hol" id="QD4-7j-uC2"/>
                                             <outlet property="memberIconImageView" destination="n7X-pn-5Ve" id="FVD-9O-Maa"/>
                                             <outlet property="subTitleLabel" destination="cze-AE-CST" id="rsa-A3-C5B"/>
+                                            <outlet property="subTitleLabelX" destination="WuD-Up-VYO" id="hly-Jc-b6T"/>
                                             <outlet property="titleLabel" destination="ePe-eY-eyG" id="iji-Ea-y5C"/>
                                         </connections>
                                     </tableViewCell>
