@@ -209,7 +209,6 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    DLog(@"系统的....");
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
