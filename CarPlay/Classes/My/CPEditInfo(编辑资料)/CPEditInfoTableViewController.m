@@ -95,7 +95,6 @@
         NSString *city=[Tools getValueFromKey:@"city"];
         NSString *district=[Tools getValueFromKey:@"district"];
         
-        
         if (indexPath.row==1) {
             cell.cellTitle.text=@"昵称";
             cell.cellContent.text=nickname;

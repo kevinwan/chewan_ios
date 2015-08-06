@@ -240,15 +240,17 @@
     NSString *path=[[NSString alloc]initWithFormat:@"v1/user/%@/info",[Tools getValueFromKey:@"userId"]];
     NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:[Tools getValueFromKey:@"userId"],@"userId",[Tools getValueFromKey:@"token"],@"token", nil];
     [ZYNetWorkTool getWithUrl:path params:params success:^(id responseObject) {
-        
-        data=[responseObject objectForKey:@"data"];
-        if(data && [data objectForKey:@"albumPhotos"]){
-            albumPhotos=[data objectForKey:@"albumPhotos"];
-        }
-        
-        if (data) {
-            CPOrganizer *organizer= [CPOrganizer objectWithKeyValues:data];
-            [self loadUserData:organizer];
+        if (CPSuccess) {
+            data=[responseObject objectForKey:@"data"];
+            if(data && [data objectForKey:@"albumPhotos"]){
+                albumPhotos=[data objectForKey:@"albumPhotos"];
+            }
+            if (data) {
+                CPOrganizer *organizer= [CPOrganizer objectWithKeyValues:data];
+                NSString *fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"userId"]];
+                [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
+                [self loadUserData:organizer];
+            }
         }
     } failure:^(NSError *error) {
         

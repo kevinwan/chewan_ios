@@ -45,6 +45,9 @@ typedef enum {
 @property (nonatomic, assign) CGPoint currentOffset;
 @property (nonatomic, strong) NSMutableArray *editPhotoViews;
 @property (nonatomic, strong) UIBarButtonItem *rightItem;
+@property (nonatomic, strong) UIBarButtonItem *rightItem1;
+@property (nonatomic, strong) UIBarButtonItem *leftItem;
+@property (nonatomic, strong) UIBarButtonItem *leftItem1;
 @property (nonatomic, strong) CPLocationModel *selectLocation;
 @property (nonatomic, strong) CPCreatActivityModel *currentModel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *locationLabelWitdh;

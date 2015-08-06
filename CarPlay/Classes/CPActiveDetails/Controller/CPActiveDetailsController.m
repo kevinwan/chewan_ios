@@ -45,12 +45,20 @@
 // 文本输入框
 @property (weak, nonatomic) IBOutlet UITextField *inputView;
 
-// 活动按钮
+// 编辑活动按钮
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editorActiveBtn;
 
 // 编辑活动点击
 - (IBAction)editorActive:(id)sender;
 
+// 发送按钮
+@property (weak, nonatomic) IBOutlet UIButton *sendBtn;
+
+// 发送按钮点击
+- (IBAction)sendClick:(id)sender;
+
+// 要发送的信息
+@property (weak, nonatomic) IBOutlet UITextField *sendText;
 
 // 缓存cell高度（线程安全、内存紧张时会自动释放、不会拷贝key）
 @property (nonatomic,strong) NSCache *rowHeightCache;
@@ -87,7 +95,11 @@
     
     // 设置标题
     self.title = @"活动详情";
-
+    
+    // 发送按钮切圆
+    self.sendBtn.layer.cornerRadius = 3;
+    self.sendBtn.layer.masksToBounds = YES;
+    
 }
 
 
@@ -204,10 +216,12 @@
     [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
         
         self.discussStatus = [CPDiscussStatus objectArrayWithKeyValuesArray:responseObject[@"data"]];
-
+        
+        // 刷新界面
+        [self.tableView reloadData];
         
     } failure:^(NSURLSessionDataTask * task, NSError * error) {
-        
+        [SVProgressHUD showErrorWithStatus:@"获取评论失败"];
     }];
     
 }
@@ -321,43 +335,71 @@
 // 点击发送按钮调用
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
-    // 封装请求参数
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-
-    
-//    if (self.userId != nil) {
-//        parameters[@"userId"] = self.userId;
-//    }
-//    if (self.token != nil) {
-//        parameters[@"token"] = self.token;
-//    }
-    
-//    NSLog(@"%@",textField.text);
-//    NSLog(@"%@",self.activeId);
-    parameters[@"comment"] = textField.text;
-    
-    // 获取网络访问者
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    // 传递参数格式为josn
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    
-    // post地址
-    NSString *postUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/activity/%@/comment?userId=%@&token=%@",self.activeId,self.userId,self.token];
-    
-    [manager POST:postUrl parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-       
-//        NSLog(@"%@",responseObject);
-//        [self.tableView reloadData];
-//        [self loadDiscussData];
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        //
-        NSLog(@"调用失败");
-    }];
-    
-    
+    // 发送评论
+    [self sendMessage];
     
     return YES;
+}
+
+// 发送事件
+- (void)sendMessage{
+    
+    if (!CPUnLogin) {
+        // 封装请求参数
+        NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+        
+        
+        //    if (self.userId != nil) {
+        //        parameters[@"userId"] = self.userId;
+        //    }
+        //    if (self.token != nil) {
+        //        parameters[@"token"] = self.token;
+        //    }
+        
+        
+        parameters[@"comment"] = self.sendText.text;
+        
+        // 获取网络访问者
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        // 传递参数格式为josn
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        
+        // post地址
+        NSString *postUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/activity/%@/comment?userId=%@&token=%@",self.activeId,self.userId,self.token];
+        
+        [manager POST:postUrl parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+            
+            // 清除文本框文字
+            self.sendText.text = @"";
+            
+            // 弹出提示信息
+            [SVProgressHUD showInfoWithStatus:@"发布评论成功"];
+            
+            //退出键盘
+            [self.view endEditing:YES];
+            
+            // 重新获取数据
+            [self loadDiscussData];
+            
+            // 刷新界面
+            //        [self.tableView reloadData];
+            
+            //        NSLog(@"%@",responseObject);
+            //        [self.tableView reloadData];
+            //        [self loadDiscussData];
+            
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [SVProgressHUD showErrorWithStatus:@"发送失败"];
+        }];
+
+    }else{
+        // 未登录跳到登录页面
+        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+    }
+    
+    
+    
+    
 }
 
 
@@ -511,6 +553,7 @@
     [self.navigationController pushViewController:vc animated:YES];
     
 }
+
 //点击提交
 - (IBAction)carxibButtonClick:(UIButton *)sender {
     
@@ -579,5 +622,10 @@
         _pickerArray = [[NSMutableArray alloc]init];
     }
     return _pickerArray;
+}
+
+// 发送按钮点击
+- (IBAction)sendClick:(id)sender {
+    [self sendMessage];
 }
 @end

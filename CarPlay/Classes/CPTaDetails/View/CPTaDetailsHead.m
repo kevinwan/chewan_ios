@@ -136,15 +136,20 @@
         
     }
     
+    
+
+    
     // 设置状态
     NSString *tempCarModel = @"";     // 存储转换后的carModel
     NSString *tempDrivingExperience = @"";   // 存储转换后的drivingExperience
     
+    // 车型是否为空
     if (taStatus.carModel == nil || [taStatus.carModel isEqualToString:@""])
     {}else{
         tempCarModel = taStatus.carModel;
     }
     
+    // 驾龄是否为空
     if ( [taStatus.drivingExperience  isEqualToString:@"0"]|| taStatus.drivingExperience == nil || [taStatus.drivingExperience isEqualToString:@""]) {
         // 没有车的情况
         self.carModelConstraint.constant = 10;
@@ -152,7 +157,12 @@
         
     }else{
         //有车的情况
-        self.carModelConstraint.constant = 31;
+        
+        if (taStatus.carBrandLogo == nil || [taStatus.carBrandLogo isEqualToString:@""]) {
+            self.carModelConstraint.constant = 10;
+        }else{
+            self.carModelConstraint.constant = 31;
+        }
         if (taStatus.carModel == nil || [taStatus.carModel isEqualToString:@""]) {
             tempDrivingExperience = [NSString stringWithFormat:@"%@年驾龄",taStatus.drivingExperience];
             

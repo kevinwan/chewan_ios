@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ZYTableViewController.h"
 
-@interface CPFeedbackViewController : ZYTableViewController
+@interface CPFeedbackViewController : UITableViewController
 @property (weak, nonatomic) IBOutlet UITextView *contentTextView;
 
 @end

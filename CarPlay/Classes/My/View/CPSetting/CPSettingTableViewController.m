@@ -9,6 +9,8 @@
 #import "CPSettingTableViewController.h"
 #import "CPMyBaseCell.h"
 #import "LoginViewController.h"
+#import "CPAbout.h"
+#import "CPVersionIntroduction.h"
 
 @interface CPSettingTableViewController ()<UIAlertViewDelegate>
 {
@@ -87,6 +89,14 @@
         }else{
              [SVProgressHUD showErrorWithStatus:@"没有要清理的内容"];
         }
+    }else if (indexPath.row==1){
+        
+    }else if (indexPath.row == 2){
+            CPAbout *CPAbout=[UIStoryboard storyboardWithName:@"CPAbout" bundle:nil].instantiateInitialViewController;
+        [self.navigationController pushViewController:CPAbout animated:YES];
+    }else{
+        CPVersionIntroduction *CPVersionIntroduction=[UIStoryboard storyboardWithName:@"CPVersionIntroduction" bundle:nil].instantiateInitialViewController;
+        [self.navigationController pushViewController:CPVersionIntroduction animated:YES];
     }
 }
 

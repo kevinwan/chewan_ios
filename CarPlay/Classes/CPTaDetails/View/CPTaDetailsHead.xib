@@ -59,7 +59,7 @@
                     </state>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Uea-lm-m8d" userLabel="车标">
-                    <rect key="frame" x="70" y="222" width="14" height="14"/>
+                    <rect key="frame" x="70" y="224.5" width="14" height="14"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="14" id="UNc-sQ-3Ps"/>
                         <constraint firstAttribute="height" constant="14" id="dQH-ay-kOi"/>
@@ -72,7 +72,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yOb-Gl-9Ou" userLabel="切换">
-                    <rect key="frame" x="0.0" y="253" width="320" height="55"/>
+                    <rect key="frame" x="0.0" y="255.5" width="320" height="55"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q9U-SQ-UUp" userLabel="TA的发布">
                             <rect key="frame" x="0.0" y="0.0" width="106.5" height="49"/>
@@ -189,7 +189,7 @@
                 <constraint firstItem="We1-3b-spZ" firstAttribute="top" secondItem="VyO-vN-FlV" secondAttribute="bottom" constant="10" id="SBf-mp-ncm"/>
                 <constraint firstItem="5z2-qP-JpK" firstAttribute="top" secondItem="zcL-vy-fKU" secondAttribute="bottom" constant="8" id="Smd-Pt-XhO"/>
                 <constraint firstAttribute="trailing" secondItem="yOb-Gl-9Ou" secondAttribute="trailing" id="f9B-3F-F2z"/>
-                <constraint firstItem="Uea-lm-m8d" firstAttribute="top" secondItem="VyO-vN-FlV" secondAttribute="bottom" constant="8" id="g5d-nG-fsZ"/>
+                <constraint firstItem="Uea-lm-m8d" firstAttribute="top" secondItem="VyO-vN-FlV" secondAttribute="bottom" constant="10" id="g5d-nG-fsZ"/>
                 <constraint firstItem="yOb-Gl-9Ou" firstAttribute="top" secondItem="Uea-lm-m8d" secondAttribute="bottom" constant="17" id="i9n-eS-iFp"/>
                 <constraint firstItem="5b7-XG-tud" firstAttribute="top" secondItem="5ea-dE-gTu" secondAttribute="bottom" constant="12" id="iWT-2f-H64"/>
                 <constraint firstItem="VyO-vN-FlV" firstAttribute="centerY" secondItem="5z2-qP-JpK" secondAttribute="centerY" constant="-0.25" id="ki1-Qm-UNs"/>
