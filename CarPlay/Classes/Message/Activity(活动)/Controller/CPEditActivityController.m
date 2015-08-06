@@ -332,6 +332,7 @@ typedef enum {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     CPCreatActivityCell *cell = [self cellWithRow:indexPath.row];
     
     if (indexPath.row != 2 && self.editPhotoViews.count != 0) {
@@ -639,7 +640,6 @@ typedef enum {
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    DLog(@"系统的....");
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -931,10 +931,8 @@ typedef enum {
     params[@"type"] = self.currentModel.type;
     params[@"cover"] = picIds;
     params[@"pay"] = self.currentModel.pay;
-    DLog(@"%@",params);
     NSString *url = [NSString stringWithFormat:@"v1/activity/%@/info",self.currentModel.activityId];
     [CPNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
-        DLog(@"%@....",responseObject);
         
         if (CPSuccess){
             [SVProgressHUD showSuccessWithStatus:@"修改成功"];

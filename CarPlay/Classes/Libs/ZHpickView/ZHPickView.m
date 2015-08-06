@@ -321,8 +321,68 @@
 
 #pragma mark- Picker Delegate Methods
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+//- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+//{
+//    
+//    
+//    NSString *rowTitle=nil;
+//    if (_isLevelArray) {
+//        rowTitle=_plistArray[component][row];
+//    }else if (_isLevelString){
+//        rowTitle=_plistArray[row];
+//    }else if (_isLevelDic){
+//        if (_isFromPlist) {
+//            if (component == PROVINCE_COMPONENT) {
+//                rowTitle = [province objectAtIndex: row];
+//            }
+//            else if (component == CITY_COMPONENT) {
+//                rowTitle = [city objectAtIndex: row];
+//            }
+//            else {
+//                rowTitle = [district objectAtIndex: row];
+//            }
+//        }else{
+//            NSInteger pIndex = [pickerView selectedRowInComponent:0];
+//            NSDictionary *dic=_plistArray[pIndex];
+//            if(component%2==0)
+//            {
+//                rowTitle=_dicKeyArray[row][component];
+//            }
+//            for (id aa in [dic allValues]) {
+//                if ([aa isKindOfClass:[NSArray class]]&&component%2==1){
+//                    NSArray *bb=aa;
+//                    if (bb.count>row) {
+//                        rowTitle=aa[row];
+//                    }
+//                    
+//                }
+//            }
+//        }
+//       
+//    }
+//    return rowTitle;
+//    
+//    
+//    
+//    
+//    
+////    if (component == PROVINCE_COMPONENT) {
+////        return [province objectAtIndex: row];
+////    }
+////    else if (component == CITY_COMPONENT) {
+////        return [city objectAtIndex: row];
+////    }
+////    else {
+////        return [district objectAtIndex: row];
+////    }
+//}
+
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
+    UILabel *label = [UILabel new];
+    label.font = [UIFont systemFontOfSize:22];
+    label.textAlignment = NSTextAlignmentCenter;
+    
     NSString *rowTitle=nil;
     if (_isLevelArray) {
         rowTitle=_plistArray[component][row];
@@ -356,23 +416,11 @@
                 }
             }
         }
-       
+        
     }
-    return rowTitle;
+    label.text = rowTitle;
     
-    
-    
-    
-    
-//    if (component == PROVINCE_COMPONENT) {
-//        return [province objectAtIndex: row];
-//    }
-//    else if (component == CITY_COMPONENT) {
-//        return [city objectAtIndex: row];
-//    }
-//    else {
-//        return [district objectAtIndex: row];
-//    }
+    return label;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

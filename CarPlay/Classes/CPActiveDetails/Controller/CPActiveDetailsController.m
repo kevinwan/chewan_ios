@@ -67,7 +67,10 @@
 @property (nonatomic,strong) CPActiveStatus *activeStatus;
 
 // 存储所有评论数据
-@property (nonatomic,strong) NSArray *discussStatus;
+@property (nonatomic,strong) NSMutableArray *discussStatus;
+
+// 上滑加载条数
+@property (nonatomic,assign) NSInteger ignoreNum;
 
 //遮盖
 @property (nonatomic, strong) UIButton *cover;
@@ -88,7 +91,7 @@
     [self loadApiData];
     
     // 加载评论数据
-    [self loadDiscussData];
+    [self loadDiscussDataWithIgnore:0];
     
     // 加载键盘处理事件
     [self loadKeyboard];
@@ -100,9 +103,31 @@
     self.sendBtn.layer.cornerRadius = 3;
     self.sendBtn.layer.masksToBounds = YES;
     
+    // 添加下拉刷新控件（头部）
+    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(dropDownLoadData)];
+    
+    // 添加上拉刷新控件（底部）
+    self.tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(upglideLoadData)];
+    
 }
 
+// 下拉刷新
+- (void)dropDownLoadData{
+    
+    // 计数清零
+    self.ignoreNum = 0;
+    
+    // 刷新活动详情
+    [self loadApiData];
+    [self loadDiscussDataWithIgnore:0];
+    
+}
 
+// 上滑
+- (void)upglideLoadData{
+    self.ignoreNum += CPPageNum;
+    [self loadDiscussDataWithIgnore:self.ignoreNum];
+}
 
 
 // 加载tableview的顶部
@@ -187,6 +212,7 @@
         // 刷新表格
         [self.tableView reloadData];
         
+        
     } failure:^(NSURLSessionDataTask * task, NSError * error) {
        
     }];
@@ -194,11 +220,12 @@
 
 
 // 加载评论数据
-- (void)loadDiscussData{
+- (void)loadDiscussDataWithIgnore:(NSInteger)ignore{
     
     // 封装请求参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-
+    parameters[@"ignore"] = @(ignore);
+    
     if (self.userId != nil) {
         parameters[@"userId"] = self.userId;
     }
@@ -215,10 +242,24 @@
     // 发送请求
     [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
         
-        self.discussStatus = [CPDiscussStatus objectArrayWithKeyValuesArray:responseObject[@"data"]];
+        NSArray *models = [CPDiscussStatus objectArrayWithKeyValuesArray:responseObject[@"data"]];
+        
+        if (!ignore) {
+            [self.discussStatus removeAllObjects];
+            [self.discussStatus addObjectsFromArray:models];
+        }else{
+            [self.discussStatus addObjectsFromArray:models];
+        }
+        
         
         // 刷新界面
         [self.tableView reloadData];
+        
+        // 关闭下拉刷新
+        [self.tableView.header endRefreshing];
+        
+        // 关闭上拉刷新
+        [self.tableView.footer endRefreshing];
         
     } failure:^(NSURLSessionDataTask * task, NSError * error) {
         [SVProgressHUD showErrorWithStatus:@"获取评论失败"];
@@ -321,7 +362,18 @@
     return cellHeight;
 }
 
-
+// 点击cell弹出回复框
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    // 文本框成为第一响应者
+//    [self.inputView becomeFirstResponder];
+//    
+//    CPDiscussStatus *disStatus = self.discussStatus[indexPath.row];
+//    
+//    NSString *phStr = [NSString stringWithFormat:@"回复%@：",disStatus.replyUserName];
+//    
+//    self.inputView.placeholder = phStr;
+    
+}
 
 // 当开始拖拽tableview表格的时候调用
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
@@ -349,14 +401,6 @@
         NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
         
         
-        //    if (self.userId != nil) {
-        //        parameters[@"userId"] = self.userId;
-        //    }
-        //    if (self.token != nil) {
-        //        parameters[@"token"] = self.token;
-        //    }
-        
-        
         parameters[@"comment"] = self.sendText.text;
         
         // 获取网络访问者
@@ -379,14 +423,8 @@
             [self.view endEditing:YES];
             
             // 重新获取数据
-            [self loadDiscussData];
+            [self loadDiscussDataWithIgnore:0];
             
-            // 刷新界面
-            //        [self.tableView reloadData];
-            
-            //        NSLog(@"%@",responseObject);
-            //        [self.tableView reloadData];
-            //        [self loadDiscussData];
             
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             [SVProgressHUD showErrorWithStatus:@"发送失败"];
@@ -418,7 +456,25 @@
         _token = [Tools getValueFromKey:@"token"];
     }
     return _token;
+    
 }
+
+// 所有评论数据
+- (NSMutableArray *)discussStatus{
+    if (!_discussStatus) {
+        _discussStatus = [NSMutableArray array];
+    }
+    return _discussStatus;
+}
+
+// 上拉刷新条数
+- (NSInteger)ignoreNum{
+    if (!_ignoreNum) {
+        _ignoreNum = CPPageNum;
+    }
+    return _ignoreNum;
+}
+
 //点击小头像方法
 - (void)tapIconsView {
     if (self.activeStatus.isOrganizer) {

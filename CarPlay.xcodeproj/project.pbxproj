@@ -441,8 +441,8 @@
 		6BCF65F91B6208C700358190 /* CPActiveStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActiveStatus.m; sourceTree = "<group>"; };
 		6BCF65FA1B6208C700358190 /* CPActiveUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActiveUser.h; sourceTree = "<group>"; };
 		6BCF65FB1B6208C700358190 /* CPActiveUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActiveUser.m; sourceTree = "<group>"; };
-		6BCF65FC1B6208C700358190 /* CPDiscussStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPDiscussStatus.h; path = ../Model/CPDiscussStatus.h; sourceTree = "<group>"; };
-		6BCF65FD1B6208C700358190 /* CPDiscussStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CPDiscussStatus.m; path = ../Model/CPDiscussStatus.m; sourceTree = "<group>"; };
+		6BCF65FC1B6208C700358190 /* CPDiscussStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPDiscussStatus.h; sourceTree = "<group>"; };
+		6BCF65FD1B6208C700358190 /* CPDiscussStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPDiscussStatus.m; sourceTree = "<group>"; };
 		6BCF65FF1B6208C700358190 /* CPActiveDetailsHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActiveDetailsHead.h; sourceTree = "<group>"; };
 		6BCF66001B6208C700358190 /* CPActiveDetailsHead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActiveDetailsHead.m; sourceTree = "<group>"; };
 		6BCF66011B6208C700358190 /* CPActiveDetailsHead.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPActiveDetailsHead.xib; sourceTree = "<group>"; };
@@ -1400,6 +1400,8 @@
 		6BCF65F31B6208C700358190 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6BCF65FC1B6208C700358190 /* CPDiscussStatus.h */,
+				6BCF65FD1B6208C700358190 /* CPDiscussStatus.m */,
 				6BCF65F41B6208C700358190 /* CPActiveMember.h */,
 				6BCF65F51B6208C700358190 /* CPActiveMember.m */,
 				6BCF65F61B6208C700358190 /* CPActivePhoto.h */,
@@ -1418,8 +1420,6 @@
 				6BCF65FF1B6208C700358190 /* CPActiveDetailsHead.h */,
 				6BCF66001B6208C700358190 /* CPActiveDetailsHead.m */,
 				6BCF66011B6208C700358190 /* CPActiveDetailsHead.xib */,
-				6BCF65FC1B6208C700358190 /* CPDiscussStatus.h */,
-				6BCF65FD1B6208C700358190 /* CPDiscussStatus.m */,
 				6BCF66021B6208C700358190 /* CPActiveIconCell.h */,
 				6BCF66031B6208C700358190 /* CPActiveIconCell.m */,
 				6BCF66041B6208C700358190 /* CPActivePicCell.h */,
@@ -2901,7 +2901,6 @@
 			baseConfigurationReference = 473C700A9DC662488BA2B8E4 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2931,7 +2930,6 @@
 			baseConfigurationReference = 8D517A33E680C9B10E7DB410 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (

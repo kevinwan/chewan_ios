@@ -79,4 +79,6 @@
 @property (nonatomic, assign) NSInteger subscribeNumber;
 
 @property (nonatomic, assign) NSInteger joinNumber;
+
+@property (nonatomic, assign) NSInteger isAuthenticated;
 @end

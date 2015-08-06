@@ -46,14 +46,14 @@
     CGFloat nameLableX = CGRectGetMaxX(_iconBtnF) + KCellMargin;
     CGFloat nameLableW = [organizer.nickname sizeWithFont:NickNameFont].width;
     CGFloat nameLableH = [organizer.nickname sizeWithFont:NickNameFont].height;
-    CGFloat nameLableY = (iconBtnH - nameLableH) * 0.5;
+    CGFloat nameLableY = 22.5;
     self.nameLabelF = CGRectMake(nameLableX, nameLableY, nameLableW,nameLableH);
     
     
     CGFloat sexViewX = CGRectGetMaxX(_nameLabelF) + 3;
     CGFloat sexViewW = 30;
     CGFloat sexViewH = 15;
-    CGFloat sexViewY = (iconBtnH - sexViewH) * 0.5;
+    CGFloat sexViewY = 23.5;
     self.sexViewF = CGRectMake(sexViewX, sexViewY, sexViewW,sexViewH);
     
     CGFloat timeLableY = sexViewY;
@@ -84,8 +84,8 @@
     CGFloat contentLbX = nameLableX;
     CGFloat contentLbY = CGRectGetMaxY(_iconBtnF) + 8;
     CGFloat maxW = kScreenWidth - nameLableX - KCellMargin;
-    CGFloat contentLbW = [model.introduction sizeWithFont:NickNameFont maxW:maxW].width;
-    CGFloat contentLbH = [model.introduction sizeWithFont:NickNameFont maxW:maxW].height;
+    CGFloat contentLbW = [model.introduction sizeWithFont:ContentFont maxW:maxW].width;
+    CGFloat contentLbH = [model.introduction sizeWithFont:ContentFont maxW:maxW].height;
     self.contentLableF = CGRectMake(contentLbX, contentLbY, contentLbW, contentLbH);
     
     _cellHeight = CGRectGetMaxY(_contentLableF);
@@ -105,9 +105,9 @@
     }
     
     CGFloat bottomViewX = nameLableX;
-    CGFloat bottomViewY = _cellHeight + KCellMargin;
+    CGFloat bottomViewY = _cellHeight + 2;
     CGFloat bottomViewW = maxW;
-    CGFloat bottomViewH = 60;
+    CGFloat bottomViewH = 65;
     self.bottomViewF = CGRectMake(bottomViewX, bottomViewY, bottomViewW, bottomViewH);
     _cellHeight = CGRectGetMaxY(_bottomViewF) + KCellMargin;
 }

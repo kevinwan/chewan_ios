@@ -361,6 +361,7 @@ typedef enum {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     CPCreatActivityCell *cell = [self cellWithRow:indexPath.row];
     
     if (indexPath.row != 2 && self.editPhotoViews.count != 0) {
@@ -377,8 +378,6 @@ typedef enum {
             vc.completion = ^(CPLocationModel *model){
                 if (model) {
                     [self labelWithRow:3].text = model.location;
-                    
-                    DLog(@"----%@ %@ %@ %@",model.province, model.city, model.district,model.location);
                     self.selectLocation = model;
                     self.currentModel.latitude = model.latitude.doubleValue;
                     self.currentModel.longitude = model.longitude.doubleValue;

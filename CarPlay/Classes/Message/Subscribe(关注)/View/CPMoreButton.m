@@ -32,6 +32,7 @@
 - (void)setUp
 {
     [self setBackgroundColor:[Tools getColor:@"ccd1d9"]];
+    self.titleLabel.font = [UIFont systemFontOfSize:16];
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
 

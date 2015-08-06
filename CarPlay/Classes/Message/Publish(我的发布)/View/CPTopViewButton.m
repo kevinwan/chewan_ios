@@ -34,9 +34,9 @@
 {
     self.userInteractionEnabled = NO;
     if (kScreenWidth == 320) {
-        self.titleLabel.font = [UIFont systemFontOfSize:9];
+        self.titleLabel.font = [UIFont systemFontOfSize:10];
     }else{
-        self.titleLabel.font = [UIFont systemFontOfSize:11];
+        self.titleLabel.font = [UIFont systemFontOfSize:12];
     }
     [self setTitleColor:[Tools getColor:@"656d78"] forState:UIControlStateNormal];
     self.imageView.contentMode = UIViewContentModeScaleAspectFit;

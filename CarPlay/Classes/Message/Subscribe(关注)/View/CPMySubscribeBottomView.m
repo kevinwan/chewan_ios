@@ -36,22 +36,11 @@
 // 聊天的按钮
 @property (nonatomic, strong) CPMoreButton *moreBtn;
 
-// 显示没有参与人数的label
-@property (nonatomic, strong) CPMoreButton *noJoinButton;
 
 @end
 
 @implementation CPMySubscribeBottomView
 
-- (CPMoreButton *)noJoinButton
-{
-    if (_noJoinButton == nil) {
-        _noJoinButton = [CPMoreButton buttonWithType:UIButtonTypeCustom];
-        [_noJoinButton setTitle:@"0" forState:UIControlStateNormal];
-        _noJoinButton.hidden = YES;
-    }
-    return _noJoinButton;
-}
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -80,8 +69,8 @@
     [topView addSubview:self.addressLable];
     
     // 添加底部区域
-    UIView *bottomView = [[UIView alloc] init];
-    bottomView.backgroundColor = [Tools getColor:@"f5f7fa"];
+    UIImageView *bottomView = [[UIImageView alloc] init];
+    bottomView.image = [UIImage imageNamed:@"头像列表背景"];
     [self addSubview:bottomView];
     self.bottomView = bottomView;
     
@@ -100,9 +89,6 @@
         btn.tag = i + 1;
         [bottomView addSubview:btn];
     }
-    
-    [bottomView addSubview:self.noJoinButton];
-
 }
 
 - (void)layoutSubviews
@@ -110,7 +96,7 @@
     [super layoutSubviews];
     
     // 计算topview中的尺寸
-    CGFloat topViewH = self.height * 0.3;
+    CGFloat topViewH = self.height * 0.4;
     self.topView.frame = CGRectMake(0, 0, self.height, topViewH);
     
     CGFloat labW = self.width * 0.5;
@@ -124,37 +110,32 @@
     }
     
     // 计算底部View的尺寸
-    CGFloat bottomViewH = self.height * 0.7;
-    self.bottomView.frame = CGRectMake(0, topViewH, self.width, bottomViewH);
+    CGFloat bottomViewH = self.height * 0.6;
+
+    self.bottomView.frame = CGRectMake(0, topViewH, self.width, 39);
     
     self.chatBtn.x = self.width - self.chatBtn.width - 10;
     self.chatBtn.y = (bottomViewH - self.chatBtn.height) * 0.5;
     
     CGFloat personBtnStartX = 5;
-    CGFloat personBtnH = bottomViewH - 16;
+    CGFloat personBtnH = bottomViewH - 14;
     CGFloat personBtnY = (bottomViewH - personBtnH) * 0.5;
     CGFloat personBtnW = personBtnH;
-    
-    count = self.bottomView.subviews.count;
-    CGFloat maxX = 0;
     
     for (int i = 0; i < KPersonNum; i ++) {
        UIView *btn = [self.bottomView viewWithTag:i + 1];
         CGFloat btnX = personBtnStartX + i * (personBtnW + 5);
         btn.frame = CGRectMake(btnX, personBtnY, personBtnW, personBtnH);
-        maxX = btnX + personBtnW;
     }
+    
+    count = self.model.members.count > 4 ? 4 : self.model.members.count;
     
     self.moreBtn.width = personBtnW;
     self.moreBtn.height = personBtnH;
-    self.moreBtn.x = maxX + 5;
+    self.moreBtn.x = personBtnStartX + count  * (personBtnW + 5);
     self.moreBtn.y = personBtnY;
+
     
-    
-    self.noJoinButton.x = personBtnStartX;
-    self.noJoinButton.width = personBtnW;
-    self.noJoinButton.height = personBtnW;
-    self.noJoinButton.y = personBtnY;
 }
 
 - (void)setModel:(CPMySubscribeModel *)model
@@ -184,19 +165,11 @@
         
         [btn sd_setImageWithURL:[NSURL URLWithString:organizer.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
     }
-    if (count == 4) {
-        self.moreBtn.hidden = NO;
-        [self.moreBtn setTitle:[NSString stringWithFormat:@"%zd",members.count] forState:UIControlStateNormal];
-    }else{
-        self.moreBtn.hidden = YES;
-    }
-    [self.chatBtn setTitle:@"我要去玩" forState:UIControlStateNormal];
+
+    [self.moreBtn setTitle:[NSString stringWithFormat:@"%zd",self.model.members.count] forState:UIControlStateNormal];
     
-    if (count == 0) {
-        self.noJoinButton.hidden = NO;
-    }else{
-        self.noJoinButton.hidden = YES;
-    }
+    [self.chatBtn setTitle:@"我要去玩" forState:UIControlStateNormal];
+    [self setNeedsLayout];
 }
 
 @end

@@ -101,7 +101,6 @@
 - (IBAction)agreeBtnClick:(id)sender {
 
     NSString *url = [NSString stringWithFormat:@"v1/application/%@/process",_model.applicationId];
-    DLog(@"%@---",url);
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
     json[@"action"] = @(1);
     [SVProgressHUD showWithStatus:@"努力加载中"];
