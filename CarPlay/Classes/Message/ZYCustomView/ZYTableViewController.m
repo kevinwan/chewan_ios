@@ -75,6 +75,8 @@
 {
     [super viewDidLoad];
     
+    self.tableView.showsVerticalScrollIndicator = NO;
+    
     // 加入提示信息的View
     [self.navigationController.view insertSubview:[self tipView] belowSubview:self.navigationController.navigationBar];
 }

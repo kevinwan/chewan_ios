@@ -22,6 +22,14 @@
     [self setValue:[[ZYNavigationBar alloc] init] forKey:@"navigationBar"];
     
     self.navigationBar.barTintColor = [Tools getColor:@"48d1d5"];
+ 
+    // 隐藏导航栏边框
+    UIView *backGroundView = self.navigationBar.subviews.firstObject;
+    for (UIView *view in backGroundView.subviews) {
+        if ([view isKindOfClass:[UIImageView class]]) {
+            view.hidden = YES;
+        }
+    }
     
     // 设置全局的导航栏字体
     UINavigationBar *bar = [UINavigationBar appearance];

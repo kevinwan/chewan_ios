@@ -141,7 +141,7 @@
     UITableView *tableView = [[UITableView alloc] init];
     tableView.layer.cornerRadius = 3;
     tableView.clipsToBounds = YES;
-    tableView.rowHeight = 50;
+    tableView.rowHeight = 60;
     tableView.hidden = YES;
     tableView.delegate = self;
     tableView.dataSource = self;

@@ -332,6 +332,7 @@ typedef enum {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     CPCreatActivityCell *cell = [self cellWithRow:indexPath.row];
     
     if (indexPath.row != 2 && self.editPhotoViews.count != 0) {

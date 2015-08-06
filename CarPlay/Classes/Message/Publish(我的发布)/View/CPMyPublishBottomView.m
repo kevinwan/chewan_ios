@@ -74,18 +74,11 @@
     [topView addSubview:self.moneyBtn];
     
     // 添加底部区域
-    UIView *bottomView = [[UIView alloc] init];
-    bottomView.backgroundColor = [Tools getColor:@"f5f7fa"];
+    UIImageView *bottomView = [[UIImageView alloc] init];
+    bottomView.image = [UIImage imageNamed:@"头像列表背景"];
     [self addSubview:bottomView];
     self.bottomView = bottomView;
-    
-    UILabel *personNumLable = [[UILabel alloc] init];
-    personNumLable.textColor = [Tools getColor:@"656d78"];
-    personNumLable.font = [UIFont systemFontOfSize:12];
-    personNumLable.numberOfLines = 0;
-    personNumLable.textAlignment = NSTextAlignmentCenter;
-    [bottomView addSubview:personNumLable];
-    self.personNumLable = personNumLable;
+
     
     CPChatButton *chatBtn = [CPChatButton buttonWithType:UIButtonTypeCustom];
     chatBtn.hidden = YES;
@@ -119,20 +112,19 @@
     
     // 计算topview中的尺寸
     CGFloat topViewH = self.height * 0.6;
-    self.topView.frame = CGRectMake(0, 0, self.height, topViewH);
+    self.topView.frame = CGRectMake(0, 0, self.width, topViewH);
     
     CGFloat btnW = self.width * 0.5;
-    CGFloat btnH = topViewH * 0.5;
+    CGFloat btnH = topViewH * 0.4;
     
     self.dateBtn.x = 0;
     self.dateBtn.y = 0;
     self.dateBtn.width = btnW;
     self.dateBtn.height = btnH;
     
-    self.moneyBtn.width = btnW;
-    self.moneyBtn.height = btnH;
-    self.moneyBtn.x = btnW;
-    self.moneyBtn.y = 0;
+    [self.moneyBtn sizeToFit];
+    self.moneyBtn.x = self.topView.width - self.moneyBtn.width - 10;
+    self.moneyBtn.centerY = self.dateBtn.centerYInSuper;
     
     self.addressBtn.x = 0;
     self.addressBtn.y = btnH;
@@ -147,7 +139,8 @@
 {
     
     CGFloat bottomViewH = self.height * 0.5;
-    self.bottomView.frame = CGRectMake(0, self.height * 0.6, self.width, bottomViewH);
+
+    self.bottomView.frame = CGRectMake(0, self.height * 0.4 + 10, self.width, bottomViewH);
     
     self.chatBtn.x = self.width - self.chatBtn.width - 10;
     self.chatBtn.centerY = self.bottomView.centerYInSelf;
@@ -177,13 +170,6 @@
     [self.addressBtn setTitle:model.location forState:UIControlStateNormal];
     [self.moneyBtn setTitle:model.pay forState:UIControlStateNormal];
     
-    // 显示人数红色的处理
-    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"参与人数"];
-    NSString *personNumStr = [NSString stringWithFormat:@"%zd",model.members.count];
-    NSAttributedString *personNumAttrStr = [[NSAttributedString alloc] initWithString:personNumStr attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"fc6e51"]}];
-    [str appendAttributedString:personNumAttrStr];
-    [str appendAttributedString:[[NSAttributedString alloc] initWithString:@"人"]];
-    self.personNumLable.attributedText = str;
     
     // 循环利用的处理,必须遍历全部的IconButton
     NSUInteger count = model.members.count;

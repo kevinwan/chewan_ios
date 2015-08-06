@@ -69,8 +69,8 @@
     [topView addSubview:self.addressLable];
     
     // 添加底部区域
-    UIView *bottomView = [[UIView alloc] init];
-    bottomView.backgroundColor = [Tools getColor:@"f5f7fa"];
+    UIImageView *bottomView = [[UIImageView alloc] init];
+    bottomView.image = [UIImage imageNamed:@"头像列表背景"];
     [self addSubview:bottomView];
     self.bottomView = bottomView;
     
@@ -112,7 +112,7 @@
     // 计算底部View的尺寸
     CGFloat bottomViewH = self.height * 0.6;
 
-    self.bottomView.frame = CGRectMake(0, topViewH, self.width, bottomViewH);
+    self.bottomView.frame = CGRectMake(0, topViewH, self.width, 39);
     
     self.chatBtn.x = self.width - self.chatBtn.width - 10;
     self.chatBtn.y = (bottomViewH - self.chatBtn.height) * 0.5;
