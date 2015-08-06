@@ -16,6 +16,7 @@
 
 @interface CPMyPublishController ()
 @property (nonatomic, strong) NSMutableArray *frameModels;
+@property (nonatomic, strong) UIView *timeLine;
 @end
 
 @implementation CPMyPublishController
@@ -36,7 +37,6 @@
 //    }else{
 //        self.navigationItem.title = @"他的发布";
 //    }
-    
     __weak typeof(self) weakSelf = self;
     
     self.tableView.header = [CPRefreshHeader headerWithRefreshingBlock:^{
@@ -55,10 +55,29 @@
 //    self.tableView.footer.ignoredScrollViewContentInsetTop = 30;
 //    
     self.tableView.tableFooterView = [[UIView alloc] init];
+    [self addBottomTimeLine];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.footer.hidden = YES;
     ZYJumpToLoginView
     [self reRefreshData];
+    
+}
+
+/**
+ *  添加底部时间线,监听刷新状态
+ */
+- (void)addBottomTimeLine
+{
+    UIView *timeLine = [UIView new];
+    timeLine.backgroundColor = CPColor(200, 200, 200, 0.5);;
+    timeLine.width = 1;
+    timeLine.height = 44;
+    timeLine.x = 55;
+    [self.tableView insertSubview:timeLine atIndex:0];
+    self.timeLine = timeLine;
+    
+    
+    [self.tableView addObserver:self forKeyPath:@"footer.state" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL];
 }
 
 - (void)reRefreshData
@@ -121,7 +140,7 @@
 
 - (void)dealloc
 {
-    DLog(@"silekljkl");
+    [self.tableView removeObserver:self forKeyPath:@"footer.state"];
 }
 
 #pragma mark - Table view data source
@@ -151,6 +170,15 @@
     CPMyPublishFrameModel *frameModel = self.frameModels[indexPath.row];
     activityDetailVc.activeId = frameModel.model.activityId;
     [self.navigationController pushViewController:activityDetailVc animated:YES];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    MJRefreshState state = [change[@"new"] intValue];
+    
+    if (state == MJRefreshStateRefreshing) {
+            self.timeLine.y = self.tableView.contentSize.height;
+    }
 }
 
 @end

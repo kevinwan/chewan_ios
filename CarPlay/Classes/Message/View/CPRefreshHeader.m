@@ -13,6 +13,7 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
+        self.arrowView.image = [UIImage imageNamed:@"refreshArrow"];
         self.lastUpdatedTimeLabel.font = [UIFont systemFontOfSize:12];
         self.stateLabel.font = [UIFont systemFontOfSize:12];
         self.autoChangeAlpha = YES;

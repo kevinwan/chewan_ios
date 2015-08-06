@@ -73,6 +73,18 @@
         [self setArrayClass:array];
         [self setUpPickView];
         [self setFrameWith:isHaveNavControler];
+        NSInteger component = [self numberOfComponentsInPickerView:self.pickerView];
+        for (int i = 0; i < component; i++) {
+            NSInteger row = [self pickerView:self.pickerView numberOfRowsInComponent:i];
+            for (int j = 0; j < row; j++) {
+                
+                
+                UIView *view = [_pickerView viewForRow:j forComponent:i];
+                DLog(@"%@",[view class]);
+                
+            }
+        }
+        
     }
     return self;
 }
@@ -233,7 +245,11 @@
 }
 
 #pragma mark UIPickerViewdelegate
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+{
+    UILabel *lable = [[UILabel alloc] init];
+    lable.font = [UIFont systemFontOfSize:22];
+    lable.textAlignment = NSTextAlignmentCenter;
     NSString *rowTitle=nil;
     if (_isLevelArray) {
         rowTitle=_plistArray[component][row];
@@ -247,7 +263,7 @@
             rowTitle=_dicKeyArray[row][component];
         }
         for (id aa in [dic allValues]) {
-           if ([aa isKindOfClass:[NSArray class]]&&component%2==1){
+            if ([aa isKindOfClass:[NSArray class]]&&component%2==1){
                 NSArray *bb=aa;
                 if (bb.count>row) {
                     rowTitle=aa[row];
@@ -256,8 +272,10 @@
             }
         }
     }
-    return rowTitle;
+    lable.text = rowTitle;
+    return lable;
 }
+
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     

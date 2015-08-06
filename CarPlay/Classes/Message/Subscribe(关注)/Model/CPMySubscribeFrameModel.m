@@ -46,14 +46,14 @@
     CGFloat nameLableX = CGRectGetMaxX(_iconBtnF) + KCellMargin;
     CGFloat nameLableW = [organizer.nickname sizeWithFont:NickNameFont].width;
     CGFloat nameLableH = [organizer.nickname sizeWithFont:NickNameFont].height;
-    CGFloat nameLableY = (iconBtnH - nameLableH) * 0.5;
+    CGFloat nameLableY = 22.5;
     self.nameLabelF = CGRectMake(nameLableX, nameLableY, nameLableW,nameLableH);
     
     
     CGFloat sexViewX = CGRectGetMaxX(_nameLabelF) + 3;
     CGFloat sexViewW = 30;
     CGFloat sexViewH = 15;
-    CGFloat sexViewY = (iconBtnH - sexViewH) * 0.5;
+    CGFloat sexViewY = 23.5;
     self.sexViewF = CGRectMake(sexViewX, sexViewY, sexViewW,sexViewH);
     
     CGFloat timeLableY = sexViewY;

@@ -16,7 +16,8 @@
         self.stateLabel.font = [UIFont systemFontOfSize:14];
         self.autoChangeAlpha = YES;
         self.stateLabel.textColor = [Tools getColor:@"aab2bd"];
-        [self setTitle:@"已无更多数据" forState:MJRefreshStateNoMoreData];
+        [self setTitle:@"加载中..." forState:MJRefreshStateRefreshing];
+        [self setTitle:@"无更多数据" forState:MJRefreshStateNoMoreData];
     }
     return self;
 }
