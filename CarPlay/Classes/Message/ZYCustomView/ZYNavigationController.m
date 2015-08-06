@@ -23,7 +23,6 @@
     
     self.navigationBar.barTintColor = [Tools getColor:@"48d1d5"];
     
-    
     // 设置全局的导航栏字体
     UINavigationBar *bar = [UINavigationBar appearance];
     NSMutableDictionary *textAttr = [NSMutableDictionary dictionary];

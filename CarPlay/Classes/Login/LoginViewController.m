@@ -20,7 +20,6 @@
     [super viewDidLoad];
     self.loginBtn.layer.cornerRadius=3.0;
     self.loginBtn.layer.masksToBounds=YES;
-    self.userPhone.placeholder
 }
 
 -(void)viewWillAppear:(BOOL)animated{

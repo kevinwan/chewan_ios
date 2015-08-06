@@ -58,6 +58,7 @@
 //    // 忽略掉底部inset
 //    self.tableView.footer.ignoredScrollViewContentInsetTop = 30;
     
+    self.tableView.footer.hidden = YES;
     ZYJumpToLoginView // 跳转到登陆界面
     [self reRefreshData];
 }
@@ -70,11 +71,20 @@
 
 - (void)loadDataWithParam:(NSInteger)ignore
 {
-    
-    NSString *url = [NSString stringWithFormat:@"v1/user/%@/subscribe",[Tools getValueFromKey:@"userId"]];
+    NSString *userId = [Tools getValueFromKey:@"userId"];
+    if (!userId.length) {
+        [self.tableView.header endRefreshing];
+        [self.tableView.footer endRefreshing];
+        [self disMiss];
+        return;
+    }
+    NSString *url = [NSString stringWithFormat:@"v1/user/%@/subscribe",userId];
     
     [CPNetWorkTool getWithUrl:url params:@{@"ignore" : @(ignore)} success:^(id responseObject) {
         [self disMiss];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.tableView.footer.hidden = NO;
+        });
         [self.tableView.footer endRefreshing];
         [self.tableView.header endRefreshing];
         if (CPSuccess) {
@@ -106,6 +116,9 @@
         }
     } failure:^(NSError *error) {
         [self disMiss];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.tableView.footer.hidden = NO;
+        });
         [self.tableView.footer endRefreshing];
         [self.tableView.header endRefreshing];
         [self showNetWorkOutTime];

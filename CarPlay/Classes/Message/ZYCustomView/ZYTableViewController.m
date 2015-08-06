@@ -203,6 +203,8 @@
 - (void)reRefresh
 {
     self.tipView.hidden = YES;
+    self.tableView.footer.hidden = YES;
+    ZYJumpToLoginView
     [self reRefreshData];
 }
 
