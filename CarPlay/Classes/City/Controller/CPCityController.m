@@ -139,7 +139,7 @@
     parameters[@"ignore"] = @(ignore);
 //    parameters[@"limit"] = @(10);
 
-//    parameters[@"city"] = @"南京";
+    parameters[@"city"] = @"南京";
     if (self.userId != nil) {
         parameters[@"userId"] = self.userId;
     }
