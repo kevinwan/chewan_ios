@@ -26,6 +26,7 @@ static CGFloat const kBounceValue = 20.0f;
 @property (nonatomic, assign) CGPoint startPoint;
 @property (nonatomic, assign) CGPoint currentPoint;
 @property (nonatomic, assign) CGFloat startingRightLayoutConstraintConstant;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *subTitleLabelX;
 
 @end
 
@@ -67,10 +68,12 @@ static CGFloat const kBounceValue = 20.0f;
     //将2个两个字变红
     if (_models.carModel.length == 0) {
         self.subTitleLabel.text = @"带我飞~";
+        self.subTitleLabelX.constant = -14;
     } else {
         NSMutableAttributedString *subTitle = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@,%@年驾龄,提供%@个座位",_models.carModel, _models.drivingExperience,_models.seat]];
         [subTitle addAttribute:NSForegroundColorAttributeName value:[AppAppearance redColor] range:NSMakeRange(subTitle.length - 4, 2)];
         self.subTitleLabel.attributedText = subTitle;
+        self.subTitleLabelX.constant = 7;
     }
     
     
