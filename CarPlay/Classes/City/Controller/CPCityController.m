@@ -30,6 +30,22 @@
 // 上滑加载条数
 @property (nonatomic,assign) NSInteger ignoreNum;
 
+// 热门、附近、最新标识
+@property (nonatomic,copy) NSString *selectMark;
+
+
+// 用户所在城市
+@property (nonatomic,copy) NSString *myCity;
+
+// 经度
+@property (nonatomic,assign) double *longitude;
+
+// 纬度
+@property (nonatomic,assign) double *latitude;
+
+// 筛选信息类
+@property (nonatomic,strong) CPSelectViewModel *selectViewModel;
+
 // 蒙板遮罩
 @property (nonatomic,strong) UIButton *coverBtn;
 
@@ -84,9 +100,12 @@
 @implementation CPCityController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // 获取用户经纬度和城市
+    
 
     // 加载活动数据
-    [self setupLoadStatusWithIgnore:0];
+    [self setupLoadStatusWithIgnore:0 Key:self.selectMark SelectModel:nil];
     
     // 添加下拉刷新控件（头部）
     self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(dropDownLoadData)];
@@ -99,23 +118,24 @@
 
 // 下拉刷新
 - (void)dropDownLoadData{
-    [self setupLoadStatusWithIgnore:0];
-//    [SVProgressHUD showWithStatus:@"hello"];
+    // 计数清零
+    self.ignoreNum = 0;
+    [self setupLoadStatusWithIgnore:0 Key:self.selectMark SelectModel:nil];
 }
 
 // 上滑
 - (void)upglideLoadData{
     self.ignoreNum += CPPageNum;
-    [self setupLoadStatusWithIgnore:self.ignoreNum];
+    [self setupLoadStatusWithIgnore:self.ignoreNum Key:self.selectMark SelectModel:nil];
 }
 
 
 // 加载活动数据
-- (void)setupLoadStatusWithIgnore:(NSInteger)ignore{
+- (void)setupLoadStatusWithIgnore:(NSInteger)ignore Key:(NSString *)key SelectModel:(CPSelectViewModel *)selectModel{
     
     // 封装请求参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    parameters[@"key"] = @"hot";
+    parameters[@"key"] = key;
     parameters[@"ignore"] = @(ignore);
 //    parameters[@"limit"] = @(10);
 
@@ -125,6 +145,30 @@
     }
     if (self.token != nil) {
         parameters[@"token"] = self.token;
+    }
+    
+    if (selectModel.gender != nil) {
+        parameters[@"gender"] = selectModel.gender;
+    }
+    
+    if (selectModel.city != nil) {
+        parameters[@"city"] = selectModel.city;
+    }
+    
+    if (selectModel.district != nil) {
+        parameters[@"district"] = selectModel.district;
+    }
+    
+    if (selectModel.authenticate >= 0) {
+        parameters[@"authenticate"] = @(selectModel.authenticate);
+    }
+    
+    if (selectModel.type) {
+        parameters[@"type"] = selectModel.type;
+    }
+    
+    if (selectModel.carLevel) {
+        parameters[@"carLevel"] = selectModel.carLevel;
     }
     
     // 获取网络管理者
@@ -286,6 +330,14 @@
     return _status;
 }
 
+// 热门、附近、最新
+- (NSString *)selectMark{
+    if (!_selectMark) {
+        _selectMark = @"hot";
+    }
+    return _selectMark;
+}
+
 
 
 #pragma mark - 按钮点击事件
@@ -331,6 +383,9 @@
     self.nearConstraint.constant = 1;
     self.lastestConstraint.constant = 1;
     
+    [self setupLoadStatusWithIgnore:0 Key:@"hot" SelectModel:nil];
+    self.selectMark = @"hot";
+    
 }
 
 // 附近按钮点击
@@ -349,6 +404,9 @@
     self.hotConstraint.constant = 1;
     self.nearConstraint.constant = 0;
     self.lastestConstraint.constant = 1;
+    
+    [self setupLoadStatusWithIgnore:0 Key:@"nearby" SelectModel:nil];
+    self.selectMark = @"nearby";
   
 }
 
@@ -370,6 +428,9 @@
     self.nearConstraint.constant = 1;
     self.lastestConstraint.constant = 0;
     
+    
+    [self setupLoadStatusWithIgnore:0 Key:@"latest" SelectModel:nil];
+    self.selectMark = @"latest";
 }
 
 
@@ -387,6 +448,8 @@
     
     // 根据result中的参数 重新发送请求 刷新表格 reloadData
     NSLog(@"%@",[result keyValues]);
+    
+    [self setupLoadStatusWithIgnore:0 Key:@"hot" SelectModel:result];
 }
 
 - (void)selectViewCancleBtnClick:(CPSelectView *)selectView
