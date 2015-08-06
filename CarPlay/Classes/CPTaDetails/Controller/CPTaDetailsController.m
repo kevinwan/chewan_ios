@@ -23,11 +23,14 @@
 // 用户token
 @property (nonatomic,copy) NSString *token;
 
+// 上滑加载条数
+@property (nonatomic,assign) NSInteger ignoreNum;
+
 // 存储所有他详情页的数据
 @property (nonatomic,strong) CPTaDetailsStatus *taStatus;
 
 // 存储发布内容数据
-@property (nonatomic,strong) NSArray *taPubStatus;
+@property (nonatomic,strong) NSMutableArray *taPubStatus;
 
 // 缓存cell高度（线程安全、内存紧张时会自动释放、不会拷贝key）
 @property (nonatomic,strong) NSCache *rowHeightCache;
@@ -43,13 +46,35 @@
     [self setupLoadTaStatus];
     
     // 加载他的发布
-    [self setupLoadTaPublishStatus];
+    [self setupLoadTaPublishStatusWithIgnore:0];
     
     // 页面标题
     self.title = @"TA的详情";
     
+    // 添加下拉刷新控件（头部）
+    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(dropDownLoadData)];
+    
+    // 添加上拉刷新控件（底部）
+    self.tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(upglideLoadData)];
+    
 }
 
+// 下拉刷新
+- (void)dropDownLoadData{
+    
+    // 计数清零
+    self.ignoreNum = 0;
+    
+    // 刷新他的详情
+    [self setupLoadTaStatus];
+    [self setupLoadTaPublishStatusWithIgnore:0];
+}
+
+// 上滑
+- (void)upglideLoadData{
+    self.ignoreNum += CPPageNum;
+    [self setupLoadTaPublishStatusWithIgnore:self.ignoreNum];
+}
 
 - (void)setupLoadHeadView{
     CPTaDetailsHead *head = [CPTaDetailsHead headView];
@@ -63,7 +88,7 @@
     
     // 设置请求参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-
+    
     if (self.userId != nil) {
         parameters[@"userId"] = self.userId;
     }
@@ -81,8 +106,6 @@
     // 发送请求
     [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
         
-
-//        NSLog(@"%@",responseObject[@"data"]);
         
         // 字典转模型
         self.taStatus = [CPTaDetailsStatus objectWithKeyValues:responseObject[@"data"]];
@@ -99,10 +122,11 @@
 
 
 // 加载他的详情发布
-- (void)setupLoadTaPublishStatus{
+- (void)setupLoadTaPublishStatusWithIgnore:(NSInteger)ignore{
     // 设置请求参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-
+    parameters[@"ignore"] = @(ignore);
+    
     if (self.userId != nil) {
         parameters[@"userId"] = self.userId;
     }
@@ -121,12 +145,23 @@
         NSArray *taPubArr = responseObject[@"data"];
         
         // 字典数组转模型数组
-        self.taPubStatus = [CPTaPublishStatus objectArrayWithKeyValuesArray:taPubArr];
+        NSArray *models = [CPTaPublishStatus objectArrayWithKeyValuesArray:taPubArr];
         
-//         [self setupLoadHeadView];
+        if (!ignore) {
+            [self.taPubStatus removeAllObjects];
+            [self.taPubStatus addObjectsFromArray:models];
+        }else{
+            [self.taPubStatus addObjectsFromArray:models];
+        }
         
         // 刷新tableview
         [self.tableView reloadData];
+        
+        // 关闭下拉刷新
+        [self.tableView.header endRefreshing];
+        
+        // 关闭上拉刷新
+        [self.tableView.footer endRefreshing];
 
     } failure:^(NSURLSessionDataTask * task, NSError * error) {
         //
@@ -221,5 +256,12 @@
     return _token;
 }
 
+// 他的详情数据
+- (NSMutableArray *)taPubStatus{
+    if (!_taPubStatus) {
+        _taPubStatus = [NSMutableArray array];
+    }
+    return _taPubStatus;
+}
 
 @end

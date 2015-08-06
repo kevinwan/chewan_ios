@@ -20,6 +20,8 @@
     [super viewDidLoad];
     self.loginBtn.layer.cornerRadius=3.0;
     self.loginBtn.layer.masksToBounds=YES;
+    [self.userPhone setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+    [self.password setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
