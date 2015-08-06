@@ -105,9 +105,9 @@
     }
     
     CGFloat bottomViewX = nameLableX;
-    CGFloat bottomViewY = _cellHeight + KCellMargin;
+    CGFloat bottomViewY = _cellHeight + 2;
     CGFloat bottomViewW = maxW;
-    CGFloat bottomViewH = 60;
+    CGFloat bottomViewH = 65;
     self.bottomViewF = CGRectMake(bottomViewX, bottomViewY, bottomViewW, bottomViewH);
     _cellHeight = CGRectGetMaxY(_bottomViewF) + KCellMargin;
 }

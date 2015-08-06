@@ -111,7 +111,7 @@
     
     UILabel *timeLabel = [[UILabel alloc] init];
     timeLabel.font = TimeLabelFont;
-    timeLabel.textColor = [Tools getColor:@"aab2db"];
+    timeLabel.textColor = [Tools getColor:@"aab2bd"];
     [self.contentView addSubview:timeLabel];
     self.timeLabel = timeLabel;
     
@@ -124,7 +124,7 @@
     self.timeLogo = timeLogo;
     
     UILabel *descLabel = [[UILabel alloc] init];
-    descLabel.textColor = [Tools getColor:@"aab2db"];
+    descLabel.textColor = [Tools getColor:@"aab2bd"];
     descLabel.font = DescFont;
     [self.contentView addSubview:descLabel];
     self.descLabel = descLabel;

@@ -13,6 +13,9 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
+        self.stateLabel.font = [UIFont systemFontOfSize:14];
+        self.autoChangeAlpha = YES;
+        self.stateLabel.textColor = [Tools getColor:@"aab2bd"];
         [self setTitle:@"已无更多数据" forState:MJRefreshStateNoMoreData];
     }
     return self;
