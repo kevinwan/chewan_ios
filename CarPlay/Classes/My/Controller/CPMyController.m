@@ -225,11 +225,13 @@
     // 设置代理
     _scrollView.delegate = self;
     
-    UIImage *image = [UIImage imageNamed:@"myBackground"];
+    [_scrollView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, 190)];
     
+    UIImage *image = [UIImage imageNamed:@"myBackground"];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.scrollView.bounds];
+    
     imageView.image = image;
-
+    imageView.contentMode=UIViewContentModeScaleToFill;
     [self.scrollView addSubview:imageView];
     
     // 分页控件，本质上和scrollView没有任何关系，是两个独立的控件
@@ -286,6 +288,7 @@
                     frame.origin.x = i * frame.size.width;
                     
                     imageView.frame = frame;
+                    imageView.contentMode=UIViewContentModeScaleAspectFill;
                     [self.scrollView addSubview:imageView];
                 }
                 self.scrollView.delegate=self;

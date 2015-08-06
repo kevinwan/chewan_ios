@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
@@ -15,6 +16,10 @@
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="startIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Ig2-da-8Ze">
                     <rect key="frame" x="78.5" y="112" width="163" height="163"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="163" id="020-bt-ACu"/>
+                        <constraint firstAttribute="width" constant="163" id="HCt-go-ulm"/>
+                    </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -22,20 +27,12 @@
                 <constraint firstItem="Ig2-da-8Ze" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="112" id="2Ac-Go-LM0"/>
                 <constraint firstAttribute="centerX" secondItem="Ig2-da-8Ze" secondAttribute="centerX" id="E7W-9P-vyp"/>
                 <constraint firstItem="mzp-cW-ZY2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="EYS-M6-loF"/>
-                <constraint firstItem="Ig2-da-8Ze" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="80" id="T9K-G4-Led"/>
-                <constraint firstItem="Ig2-da-8Ze" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="112" id="X4S-AK-HYF"/>
                 <constraint firstAttribute="trailing" secondItem="mzp-cW-ZY2" secondAttribute="trailing" id="djq-oR-eUX"/>
                 <constraint firstItem="mzp-cW-ZY2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="exp-pq-B4f"/>
                 <constraint firstAttribute="bottom" secondItem="mzp-cW-ZY2" secondAttribute="bottom" id="y93-E4-M1Z"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="T9K-G4-Led"/>
-                    <exclude reference="X4S-AK-HYF"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="548" y="455"/>
         </view>
     </objects>
