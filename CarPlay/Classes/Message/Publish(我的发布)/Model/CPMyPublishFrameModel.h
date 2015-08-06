@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 @class CPMyPublishModel;
-#define ContentFont [UIFont systemFontOfSize:14]
+#define ContentFont [UIFont systemFontOfSize:16]
 @interface CPMyPublishFrameModel : NSObject
 
 @property (nonatomic, strong) CPMyPublishModel *model;

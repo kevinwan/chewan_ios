@@ -14,7 +14,7 @@
 
 @interface CPFeedbackViewController ()< UIActionSheetDelegate,UIImagePickerControllerDelegate, UzysAssetsPickerControllerDelegate, UIAlertViewDelegate,UITextViewDelegate>{
     NSMutableArray *photoIds;
-    NSArray *imgs;
+    NSMutableArray *imgs;
 }
 @property (nonatomic, assign) CGFloat photoWH;
 @property (nonatomic, strong) NSMutableArray *editPhotoViews;
@@ -52,14 +52,13 @@
     }
 }
 
-//-(void)viewWillAppear:(BOOL)animated{
-//    
-//}
+-(void)viewWillAppear:(BOOL)animated{
+    imgs=[[NSMutableArray alloc]init];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
 
 - (NSMutableArray *)editPhotoViews
 {
@@ -165,7 +164,7 @@
                                      orientation:(UIImageOrientation)representation.defaultRepresentation.orientation];
         [arr addObject:img];
     }];
-    imgs = [[NSArray alloc]initWithArray:arr];
+    [imgs addObjectsFromArray:arr];
     [self addPhoto:arr];
     [SVProgressHUD showWithStatus:@"加载中"];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -204,6 +203,7 @@
 {
     UIImage *portraitImg = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
     [self addPhoto:@[portraitImg]];
+    [imgs addObject:@[portraitImg]];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

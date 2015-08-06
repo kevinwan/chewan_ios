@@ -7,12 +7,11 @@
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "相机@2x.png"
+      "filename" : "refreshArrow@2x.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x",
-      "filename" : "相机@3x.png"
+      "scale" : "3x"
     }
   ],
   "info" : {

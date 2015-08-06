@@ -72,8 +72,6 @@
         float totalSize = [[SDImageCache sharedImageCache] getSize];
         cell.valueLable.text=[[NSString alloc]initWithFormat:@"%.2fM",totalSize/1024/1024];
     }
-    
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 

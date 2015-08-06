@@ -39,6 +39,12 @@
     // 开始监控网络状态
     [self startMonitoringNetWork];
     _tabVc = [[CPTabBarController alloc] init];
+    
+    UIView *bgView = [[UIView alloc] initWithFrame:_tabVc.tabBar.bounds];
+    bgView.backgroundColor = [UIColor whiteColor];
+    [_tabVc.tabBar insertSubview:bgView atIndex:0];
+    _tabVc.tabBar.opaque = YES;
+    
     [UMSocialData setAppKey:kCheWanAppID];
     // 微信分享
     [UMSocialWechatHandler setWXAppId:kWeiXinAppID appSecret:kWeiXinAppSecret url:nil];
