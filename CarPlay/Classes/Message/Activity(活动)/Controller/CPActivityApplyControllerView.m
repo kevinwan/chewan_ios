@@ -106,9 +106,11 @@
 //    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
 //    // 忽略掉底部inset
 //    self.tableView.footer.ignoredScrollViewContentInsetTop = 30;
+    
+    self.tableView.footer.hidden = YES;
+    ZYJumpToLoginView // 跳转到登录页面
     [self reRefreshData];
     
-    ZYJumpToLoginView // 跳转到登录页面
 }
 
 - (void)reRefreshData
@@ -122,10 +124,17 @@
     
     NSString *userId = [Tools getValueFromKey:@"userId"];
     NSString *token = [Tools getValueFromKey:@"token"];
-    
+    if (! userId.length) {
+        [self disMiss];
+        [self.tableView.footer endRefreshing];
+        [self.tableView.header endRefreshing];
+        return;
+    }
     NSString *url = [NSString stringWithFormat:@"v1/user/%@/message/list?token=%@&type=application",userId, token];
     [ZYNetWorkTool getWithUrl:url params:@{@"ignore" : @(ignore)} success:^(id responseObject) {
-        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.tableView.footer.hidden = NO;
+        });
         [self disMiss];
         [self.tableView.footer endRefreshing];
         [self.tableView.header endRefreshing];
@@ -154,6 +163,9 @@
         }
     } failure:^(NSError *error) {
         [self disMiss];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.tableView.footer.hidden = NO;
+        });
         [self.tableView.header endRefreshing];
         [self.tableView.footer endRefreshing];
         [self showNetWorkOutTime];

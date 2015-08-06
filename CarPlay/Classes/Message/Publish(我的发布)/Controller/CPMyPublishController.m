@@ -69,6 +69,12 @@
 
 - (void)loadDataWithParams:(NSUInteger)ignore
 {
+    if (!self.hisUserId.length) {
+        [self.tableView.header endRefreshing];
+        [self.tableView.footer endRefreshing];
+        [self disMiss];
+        return;
+    }
     NSString *url = [NSString stringWithFormat:@"v1/user/%@/post",self.hisUserId];
     [CPNetWorkTool getWithUrl:url params:@{@"ignore" : @(ignore)} success:^(NSDictionary *responseObject) {
         [self disMiss];

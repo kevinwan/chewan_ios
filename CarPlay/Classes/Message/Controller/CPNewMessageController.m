@@ -122,9 +122,9 @@
 //    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
 //    // 忽略掉底部inset
 //    self.tableView.footer.ignoredScrollViewContentInsetTop = 30;
-    ZYJumpToLoginView // 跳转到登录页面
     
     self.tableView.footer.hidden = YES;
+    ZYJumpToLoginView // 跳转到登录页面
     [self reRefreshData];
     
 }
@@ -138,7 +138,14 @@
 - (void)loadDataWithParam:(NSInteger)ignore
 {
 
-    NSString *url = [NSString stringWithFormat:@"/v1/user/%@/message/list?token=%@&type=comment",[Tools getValueFromKey:@"userId"],[Tools getValueFromKey:@"token"]];
+    NSString *userId = [Tools getValueFromKey:@"userId"];
+    if (!userId.length) {
+        [self.tableView.header endRefreshing];
+        [self.tableView.footer endRefreshing];
+        [self disMiss];
+        return;
+    }
+    NSString *url = [NSString stringWithFormat:@"/v1/user/%@/message/list?token=%@&type=comment",userId,[Tools getValueFromKey:@"token"]];
     [ZYNetWorkTool getWithUrl:url params:@{@"ignore" : @(ignore)} success:^(id responseObject) {
         [self disMiss];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
