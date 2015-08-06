@@ -15,6 +15,7 @@
     if (self = [super initWithFrame:frame]) {
         self.arrowView.image = [UIImage imageNamed:@"refreshArrow"];
         self.lastUpdatedTimeLabel.font = [UIFont systemFontOfSize:12];
+        [self setTitle:@"刷新中..." forState:MJRefreshStateRefreshing];
         self.stateLabel.font = [UIFont systemFontOfSize:12];
         self.autoChangeAlpha = YES;
         self.stateLabel.textColor = [Tools getColor:@"aab2bd"];

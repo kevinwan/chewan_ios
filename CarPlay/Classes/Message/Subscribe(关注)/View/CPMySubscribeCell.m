@@ -214,7 +214,9 @@
 
 - (NSAttributedString *)seatViewTextWithModel:(CPMySubscribeModel *)model
 {
-    
+    if (model.holdingSeat == model.totalSeat){
+        return [[NSAttributedString alloc] initWithString:@"已满" attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"fc6e51"]}];
+    }
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%zd",model.holdingSeat]];
     [str addAttribute:NSForegroundColorAttributeName value:[Tools getColor:@"fc6e51"] range:NSMakeRange(0, str.length)];
     NSMutableAttributedString *totalSeat = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"/%zd座",model.totalSeat] attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"aab2bd"]}];

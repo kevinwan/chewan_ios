@@ -537,6 +537,9 @@ typedef enum {
 - (void)dealloc
 {
     [CPNotificationCenter removeObserver:self];
+    if (self.pickView) {
+        [self.pickView removeFromSuperview];
+    }
 }
 
 /**

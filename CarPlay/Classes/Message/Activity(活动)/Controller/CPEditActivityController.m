@@ -520,6 +520,9 @@ typedef enum {
 - (void)dealloc
 {
     [CPNotificationCenter removeObserver:self];
+    if (self.pickView) {
+        [self.pickView removeFromSuperview];
+    }
 }
 
 /**
@@ -828,6 +831,8 @@ typedef enum {
         [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:self.lastRow inSection:0]];
     }
 }
+
+
 
 #pragma mark - 处理按钮点击事件
 /**

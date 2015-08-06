@@ -131,5 +131,5 @@ typedef enum _playSoundMode {
 #define CPReRefreshNotification @"CPReRefreshNotification"
 #define CPClickUserIconNotification @"CPClickUserIconNotification"
 #define CPClickUserIconInfo @"CPClickUserIconInfo"
-#define CPPageNum 2
+#define CPPageNum 10
 @end
