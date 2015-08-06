@@ -27,6 +27,7 @@
     NSDictionary *data;
     NSArray *albumPhotos;
     NSArray *titleArray;
+    NSArray *iconArray;
 }
 @end
 
@@ -37,12 +38,16 @@
     data=[[NSDictionary alloc]init];
     albumPhotos=[[NSArray alloc]init];
     titleArray=[[NSArray alloc]initWithObjects:@"我关注的人",@"车主认证",@"玩转玩车",@"意见反馈",@"编辑资料", nil];
+    iconArray=[[NSArray alloc]initWithObjects:@"我关注的人",@"车主认证",@"玩转玩车",@"意见反馈",@"活动介绍", nil];
     self.userHeadImg.layer.cornerRadius=25;
     self.userHeadImg.layer.masksToBounds=YES;
     self.loginBtn.layer.cornerRadius=15;
     self.loginBtn.layer.masksToBounds=YES;
+    self.navigationItem.leftBarButtonItem=[UIBarButtonItem itemWithNorImage:@"设置icon" higImage:nil title:nil target:self action:@selector(leftBtnClick:)];
+    self.navigationItem.rightBarButtonItem=[UIBarButtonItem itemWithNorImage:@"拍照" higImage:nil title:nil target:self action:@selector(photoManage:)];
     // 设置图片
     [self createScrollViewAndPagController];
+    self.tableView.tableFooterView=[[UIView alloc]initWithFrame:CGRectZero];
 }
 
 -(void)viewDidLayoutSubviews{
@@ -86,9 +91,8 @@
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"CPMyBaseCell" owner:nil options:nil] lastObject];
     }
-    cell.icon.image=[UIImage imageNamed:[titleArray objectAtIndex:indexPath.row]];
+    cell.icon.image=[UIImage imageNamed:[iconArray objectAtIndex:indexPath.row]];
     cell.titleLable.text=[titleArray objectAtIndex:indexPath.row];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 
@@ -255,7 +259,7 @@
             }
         }
     } failure:^(NSError *error) {
-        
+        [self showError:@"获取个人信息失败"];
     }];
 }
 
@@ -265,7 +269,7 @@
             // 总页数
             _pageControl.numberOfPages = [albumPhotos count];
             _pageControl.bounds = CGRectMake(0, 0, 7, 7);
-            _pageControl.center = CGPointMake(self.view.center.x, 170);
+            _pageControl.center = CGPointMake(self.view.center.x, 180);
             
             // 设置颜色
             _pageControl.pageIndicatorTintColor = [Tools getColor:@"ffffff"];
@@ -311,7 +315,7 @@
             CGSize labelsize = [organizer.nickname sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
             [self.nameLable setWidth:labelsize.width];
             self.nameLable.text = organizer.nickname;
-            [self.userGenderImg setX:self.nameLable.right];
+            [self.userGenderImg setX:self.nameLable.right+7.0];
             [Tools setValueForKey:organizer.nickname key:@"nickname"];
         }
         
