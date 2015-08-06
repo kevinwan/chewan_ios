@@ -56,6 +56,7 @@
 //    
     self.tableView.tableFooterView = [[UIView alloc] init];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.footer.hidden = YES;
     ZYJumpToLoginView
     [self reRefreshData];
 }
@@ -71,6 +72,9 @@
     NSString *url = [NSString stringWithFormat:@"v1/user/%@/post",self.hisUserId];
     [CPNetWorkTool getWithUrl:url params:@{@"ignore" : @(ignore)} success:^(NSDictionary *responseObject) {
         [self disMiss];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.tableView.footer.hidden = NO;
+        });
         [self.tableView.header endRefreshing];
         [self.tableView.footer endRefreshing];
         if (CPSuccess) {
@@ -99,6 +103,9 @@
         
     } failure:^(NSError *error) {
         [self disMiss];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.tableView.footer.hidden = NO;
+        });
         [self.tableView.header endRefreshing];
         [self.tableView.footer endRefreshing];
         [self showNetWorkOutTime];

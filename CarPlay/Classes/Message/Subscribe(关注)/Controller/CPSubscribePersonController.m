@@ -45,6 +45,7 @@
     }];
     
     ZYJumpToLoginView
+    self.tableView.footer.hidden = YES;
     [self reRefreshData];
 }
 
@@ -75,6 +76,9 @@
     
     NSString *url = [NSString stringWithFormat:@"v1/user/%@/listen",userId];
     [ZYNetWorkTool getWithUrl:url params:@{@"token" : token,@"ignore" : @(ignore)} success:^(id responseObject) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.tableView.footer.hidden = NO;
+        });
         [self.tableView.header endRefreshing];
         [self.tableView.footer endRefreshing];
         [self disMiss];
@@ -102,6 +106,9 @@
         }
     } failure:^(NSError *error) {
         [self disMiss];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.tableView.footer.hidden = NO;
+        });
         [self.tableView.header endRefreshing];
         [self.tableView.footer endRefreshing];
         [self showNetWorkOutTime];

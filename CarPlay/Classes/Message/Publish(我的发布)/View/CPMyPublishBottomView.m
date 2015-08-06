@@ -16,7 +16,7 @@
 #import "UIButton+WebCache.h"
 #import "CPMySubscribeModel.h"
 
-#define KPersonNum 3 // 参与人数View的个数
+#define KPersonNum 4 // 参与人数View的个数
 @interface CPMyPublishBottomView()
 
 // 顶部的view
@@ -66,8 +66,8 @@
     self.topView = topView;
     
     self.dateBtn = [self addBtnWithIcon:@"开始时间"];
-    self.addressBtn = [self addBtnWithIcon:@"目的地"];
     self.moneyBtn = [self addBtnWithIcon:@"费用"];
+    self.addressBtn = [self addBtnWithIcon:@"目的地"];
     
     [topView addSubview:self.dateBtn];
     [topView addSubview:self.addressBtn];
@@ -94,7 +94,6 @@
     
     CPMoreButton *moreBtn = [CPMoreButton buttonWithType:UIButtonTypeCustom];
     [bottomView addSubview:moreBtn];
-    [moreBtn setTitle:@"···" forState:UIControlStateNormal];
     self.moreBtn = moreBtn;
     
     for (int i = 0; i < KPersonNum; i++) {
@@ -102,7 +101,6 @@
         btn.tag = i + 1;
         [bottomView addSubview:btn];
     }
-    
 }
 
 /**
@@ -120,26 +118,26 @@
     [super layoutSubviews];
     
     // 计算topview中的尺寸
-    CGFloat topViewH = self.height * 0.4;
+    CGFloat topViewH = self.height * 0.6;
     self.topView.frame = CGRectMake(0, 0, self.height, topViewH);
     
-    CGFloat btnW = self.width / 3.0;
-    CGFloat btnH = topViewH;
-    NSUInteger count = self.topView.subviews.count;
-    for (int i = 0; i < count; i ++) {
-        UIButton *btn = self.topView.subviews[i];
-        CGFloat btnX = i * btnW;
-        if (i == 1) {
-            btnX -= 8;
-            btnW += 10;
-        }
-        if (i == 2){
-            btnX += 2;
-            btnW -= 2;
-        }
-        CGFloat btnY = 0;
-        btn.frame = CGRectMake(btnX, btnY, btnW, btnH);
-    }
+    CGFloat btnW = self.width * 0.5;
+    CGFloat btnH = topViewH * 0.5;
+    
+    self.dateBtn.x = 0;
+    self.dateBtn.y = 0;
+    self.dateBtn.width = btnW;
+    self.dateBtn.height = btnH;
+    
+    self.moneyBtn.width = btnW;
+    self.moneyBtn.height = btnH;
+    self.moneyBtn.x = btnW;
+    self.moneyBtn.y = 0;
+    
+    self.addressBtn.x = 0;
+    self.addressBtn.y = btnH;
+    self.addressBtn.width = self.width;
+    self.addressBtn.height = btnH;
     
     // 计算底部View的尺寸
     [self layoutBottomView];
@@ -148,30 +146,24 @@
 - (void)layoutBottomView
 {
     
-    CGFloat bottomViewH = self.height * 0.6;
-    self.bottomView.frame = CGRectMake(0, self.height * 0.4, self.width, bottomViewH);
-    
-    self.personNumLable.frame = CGRectMake(5, 2, 50, bottomViewH - 4);
+    CGFloat bottomViewH = self.height * 0.5;
+    self.bottomView.frame = CGRectMake(0, self.height * 0.6, self.width, bottomViewH);
     
     self.chatBtn.x = self.width - self.chatBtn.width - 10;
     self.chatBtn.centerY = self.bottomView.centerYInSelf;
-    
-    CGFloat personBtnStartX = self.personNumLable.right + 10;
-    CGFloat personBtnH = bottomViewH - 20;
+
+    CGFloat personBtnStartX = 5;
+    CGFloat personBtnH = bottomViewH - 14;
     CGFloat personBtnY = (bottomViewH - personBtnH) * 0.5;
     CGFloat personBtnW = personBtnH;
     
-    CGFloat maxX = 0;
     for (int i = 0; i < KPersonNum; i ++) {
         UIView *btn = [self.bottomView viewWithTag:i + 1];
         CGFloat btnX = personBtnStartX + i * (personBtnW + 5);
         btn.frame = CGRectMake(btnX, personBtnY, personBtnW, personBtnH);
-        if (i == KPersonNum -1){
-            maxX = CGRectGetMaxX(btn.frame);
-        }
     }
-    
-    self.moreBtn.x = maxX + 5;
+    NSUInteger count = self.model.members.count > KPersonNum? KPersonNum : self.model.members.count;
+    self.moreBtn.x = personBtnStartX + count * (personBtnW + 5);
     self.moreBtn.y = personBtnY;
     self.moreBtn.width = personBtnW;
     self.moreBtn.height = personBtnH;
@@ -206,13 +198,8 @@
             btn.hidden = YES;
         }
     }
-    
-    // 对moreBtn的处理
-    if (count >= KPersonNum) {
-        self.moreBtn.hidden = NO;
-    }else{
-        self.moreBtn.hidden = YES;
-    }
+    [self.moreBtn setTitle:[NSString stringWithFormat:@"%zd",self.model.members.count] forState:UIControlStateNormal];
+    [self setNeedsLayout];
 }
 
 @end

@@ -55,6 +55,7 @@
 //    self.tableView.footer.ignoredScrollViewContentInsetTop = 30;
     
     ZYJumpToLoginView
+    self.tableView.footer.hidden = YES;
     [self reRefreshData];
 }
 
@@ -82,6 +83,9 @@
     NSString *url = [NSString stringWithFormat:@"v1/user/%@/join",[Tools getValueFromKey:@"userId"]];
     [CPNetWorkTool getWithUrl:url params:@{@"ignore" : @(ignore)} success:^(id responseObject) {
         [self disMiss];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.tableView.footer.hidden = NO;
+        });
         [self.tableView.header endRefreshing];
         [self.tableView.footer endRefreshing];
         if (CPSuccess) {
@@ -113,6 +117,9 @@
         }
     } failure:^(NSError *error) {
         [self disMiss];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.tableView.footer.hidden = NO;
+        });
         [self.tableView.header endRefreshing];
         [self.tableView.footer endRefreshing];
         [self showNetWorkOutTime];
