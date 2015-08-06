@@ -13,6 +13,7 @@
 #define SeatViewFont     [UIFont systemFontOfSize:11]
 #define PayViewFont     [UIFont systemFontOfSize:11]
 #define DescFont     [UIFont systemFontOfSize:12]
+#define ContentFont     [UIFont systemFontOfSize:16]
 
 @class CPMySubscribeModel;
 @interface CPMySubscribeFrameModel : NSObject

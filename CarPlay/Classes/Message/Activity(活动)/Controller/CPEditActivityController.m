@@ -520,6 +520,9 @@ typedef enum {
 - (void)dealloc
 {
     [CPNotificationCenter removeObserver:self];
+    if (self.pickView) {
+        [self.pickView removeFromSuperview];
+    }
 }
 
 /**
@@ -640,7 +643,6 @@ typedef enum {
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    DLog(@"系统的....");
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -830,6 +832,8 @@ typedef enum {
     }
 }
 
+
+
 #pragma mark - 处理按钮点击事件
 /**
  *  点击完成按钮
@@ -932,10 +936,8 @@ typedef enum {
     params[@"type"] = self.currentModel.type;
     params[@"cover"] = picIds;
     params[@"pay"] = self.currentModel.pay;
-    DLog(@"%@",params);
     NSString *url = [NSString stringWithFormat:@"v1/activity/%@/info",self.currentModel.activityId];
     [CPNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
-        DLog(@"%@....",responseObject);
         
         if (CPSuccess){
             [SVProgressHUD showSuccessWithStatus:@"修改成功"];

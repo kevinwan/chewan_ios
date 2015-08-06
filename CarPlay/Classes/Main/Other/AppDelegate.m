@@ -34,7 +34,7 @@
                                                object:nil];
     
     [MAMapServices sharedServices].apiKey = GaoDeAppKey;
-    [SVProgressHUD setBackgroundColor:RGBACOLOR(0, 0, 0, 0.5)];
+    [SVProgressHUD setBackgroundColor:RGBACOLOR(0, 0, 0, 0.8)];
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
     // 开始监控网络状态
     [self startMonitoringNetWork];

@@ -73,17 +73,6 @@
         [self setArrayClass:array];
         [self setUpPickView];
         [self setFrameWith:isHaveNavControler];
-        NSInteger component = [self numberOfComponentsInPickerView:self.pickerView];
-        for (int i = 0; i < component; i++) {
-            NSInteger row = [self pickerView:self.pickerView numberOfRowsInComponent:i];
-            for (int j = 0; j < row; j++) {
-                
-                
-                UIView *view = [_pickerView viewForRow:j forComponent:i];
-                DLog(@"%@",[view class]);
-                
-            }
-        }
         
     }
     return self;

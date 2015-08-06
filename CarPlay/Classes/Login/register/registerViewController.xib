@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
@@ -83,7 +84,7 @@
                         </mask>
                     </variation>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ibc-Xp-M40">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ibc-Xp-M40">
                     <rect key="frame" x="227" y="63" width="83" height="30"/>
                     <color key="backgroundColor" red="0.97647058819999999" green="0.3411764706" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -126,10 +127,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bjR-Mr-Cai">
-                    <rect key="frame" x="72" y="178" width="12" height="12"/>
+                    <rect key="frame" x="67" y="173" width="22" height="22"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="12" id="Dic-FM-reh"/>
-                        <constraint firstAttribute="width" constant="12" id="ISF-hO-RMn"/>
+                        <constraint firstAttribute="height" constant="22" id="Dic-FM-reh"/>
+                        <constraint firstAttribute="width" constant="22" id="ISF-hO-RMn"/>
                         <constraint firstAttribute="height" constant="14" id="kyD-rE-Pln"/>
                         <constraint firstAttribute="width" constant="14" id="lfc-RR-Azb"/>
                     </constraints>
@@ -147,7 +148,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我已阅读并同意" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DAq-UQ-hgD">
-                    <rect key="frame" x="91" y="178" width="84" height="12"/>
+                    <rect key="frame" x="96" y="178" width="84" height="12"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="12" id="Zp0-iM-Zch"/>
                         <constraint firstAttribute="width" constant="92" id="avS-t6-Ll0"/>
@@ -165,7 +166,7 @@
                     </variation>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FsJ-ZL-DV4">
-                    <rect key="frame" x="176" y="178" width="72" height="12"/>
+                    <rect key="frame" x="181" y="178" width="72" height="12"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="78" id="QSR-YN-Zrg"/>
                         <constraint firstAttribute="height" constant="14" id="YY6-JP-YIw"/>
@@ -243,7 +244,7 @@
                 <constraint firstAttribute="centerX" secondItem="qfV-9C-goZ" secondAttribute="centerX" constant="-63" id="RLB-Zb-Lvb"/>
                 <constraint firstItem="wYH-pR-agy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="Rdm-Fd-x9t"/>
                 <constraint firstAttribute="trailing" secondItem="wYH-pR-agy" secondAttribute="trailing" constant="10" id="SJ2-tg-VsN"/>
-                <constraint firstItem="bjR-Mr-Cai" firstAttribute="top" secondItem="aUu-I3-FrZ" secondAttribute="bottom" constant="20" id="Uj0-eY-08e"/>
+                <constraint firstItem="bjR-Mr-Cai" firstAttribute="top" secondItem="aUu-I3-FrZ" secondAttribute="bottom" constant="15" id="Uj0-eY-08e"/>
                 <constraint firstItem="DAq-UQ-hgD" firstAttribute="leading" secondItem="bjR-Mr-Cai" secondAttribute="trailing" constant="7" id="WVv-1J-8je"/>
                 <constraint firstAttribute="centerX" secondItem="wYH-pR-agy" secondAttribute="centerX" id="ZIq-iV-ddK"/>
                 <constraint firstItem="bjR-Mr-Cai" firstAttribute="top" secondItem="aUu-I3-FrZ" secondAttribute="bottom" constant="20" id="aYT-Ml-Vqb"/>
@@ -281,6 +282,6 @@
         </view>
     </objects>
     <resources>
-        <image name="checked" width="15" height="15"/>
+        <image name="checked" width="20" height="20"/>
     </resources>
 </document>

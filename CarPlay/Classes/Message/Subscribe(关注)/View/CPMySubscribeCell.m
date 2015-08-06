@@ -104,7 +104,7 @@
     
     UILabel *contentLb = [[UILabel alloc] init];
     contentLb.textColor = [Tools getColor:@"434a53"];
-    contentLb.font = NickNameFont;
+    contentLb.font = ContentFont;
     contentLb.numberOfLines = 0;
     [self.contentView addSubview:contentLb];
     self.contentLable = contentLb;
@@ -214,7 +214,9 @@
 
 - (NSAttributedString *)seatViewTextWithModel:(CPMySubscribeModel *)model
 {
-    
+    if (model.holdingSeat == model.totalSeat){
+        return [[NSAttributedString alloc] initWithString:@"已满" attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"fc6e51"]}];
+    }
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%zd",model.holdingSeat]];
     [str addAttribute:NSForegroundColorAttributeName value:[Tools getColor:@"fc6e51"] range:NSMakeRange(0, str.length)];
     NSMutableAttributedString *totalSeat = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"/%zd座",model.totalSeat] attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"aab2bd"]}];

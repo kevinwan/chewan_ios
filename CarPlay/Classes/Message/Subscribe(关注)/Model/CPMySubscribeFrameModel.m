@@ -84,8 +84,8 @@
     CGFloat contentLbX = nameLableX;
     CGFloat contentLbY = CGRectGetMaxY(_iconBtnF) + 8;
     CGFloat maxW = kScreenWidth - nameLableX - KCellMargin;
-    CGFloat contentLbW = [model.introduction sizeWithFont:NickNameFont maxW:maxW].width;
-    CGFloat contentLbH = [model.introduction sizeWithFont:NickNameFont maxW:maxW].height;
+    CGFloat contentLbW = [model.introduction sizeWithFont:ContentFont maxW:maxW].width;
+    CGFloat contentLbH = [model.introduction sizeWithFont:ContentFont maxW:maxW].height;
     self.contentLableF = CGRectMake(contentLbX, contentLbY, contentLbW, contentLbH);
     
     _cellHeight = CGRectGetMaxY(_contentLableF);
