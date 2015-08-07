@@ -299,13 +299,13 @@
 		E3CFB1511B7210410058B8C3 /* CPSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CFB1501B7210410058B8C3 /* CPSegmentControl.m */; };
 		E3CFB1541B72126A0058B8C3 /* ZYSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CFB1531B72126A0058B8C3 /* ZYSegmentControl.m */; };
 		E3CFB1571B7213580058B8C3 /* CPSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CFB1561B7213580058B8C3 /* CPSegment.m */; };
-		E3D8793F1B57475400228356 /* CPActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D8793E1B57475400228356 /* CPActivityModel.m */; };
 		E3D879421B575EC200228356 /* CPTopViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D879411B575EC200228356 /* CPTopViewButton.m */; };
 		E3E104A71B675C910049CA4A /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E104A61B675C910049CA4A /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E3E104A91B675D520049CA4A /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E3E104A81B675D520049CA4A /* libicucore.dylib */; };
 		E3E1DBFD1B5C8CFB00386B18 /* ZYPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E1DBFC1B5C8CFB00386B18 /* ZYPickView.m */; };
 		E3E1DC001B5CA87C00386B18 /* CPReturnValueControllerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E1DBFF1B5CA87C00386B18 /* CPReturnValueControllerView.m */; };
 		E3E315041B5E551A00FB0B55 /* CPActivityApplyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E315031B5E551A00FB0B55 /* CPActivityApplyModel.m */; };
+		E3E4FBEA1B744F7A00E6E5F1 /* ZYTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E4FBE91B744F7A00E6E5F1 /* ZYTableViewCell.m */; };
 		E3EEDFF31B53951D00595333 /* CPMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EEDFE81B53951D00595333 /* CPMessageController.m */; };
 		E3EEDFF41B53951D00595333 /* CPMessageController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3EEDFE91B53951D00595333 /* CPMessageController.storyboard */; };
 		E3EEDFF51B53951D00595333 /* CPNewMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EEDFEB1B53951D00595333 /* CPNewMessageController.m */; };
@@ -871,8 +871,6 @@
 		E3CFB1531B72126A0058B8C3 /* ZYSegmentControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYSegmentControl.m; sourceTree = "<group>"; };
 		E3CFB1551B7213580058B8C3 /* CPSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSegment.h; sourceTree = "<group>"; };
 		E3CFB1561B7213580058B8C3 /* CPSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSegment.m; sourceTree = "<group>"; };
-		E3D8793D1B57475400228356 /* CPActivityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityModel.h; sourceTree = "<group>"; };
-		E3D8793E1B57475400228356 /* CPActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityModel.m; sourceTree = "<group>"; };
 		E3D879401B575EC200228356 /* CPTopViewButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTopViewButton.h; sourceTree = "<group>"; };
 		E3D879411B575EC200228356 /* CPTopViewButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTopViewButton.m; sourceTree = "<group>"; };
 		E3E104A51B675C910049CA4A /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
@@ -884,6 +882,8 @@
 		E3E1DBFF1B5CA87C00386B18 /* CPReturnValueControllerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPReturnValueControllerView.m; sourceTree = "<group>"; };
 		E3E315021B5E551A00FB0B55 /* CPActivityApplyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityApplyModel.h; sourceTree = "<group>"; };
 		E3E315031B5E551A00FB0B55 /* CPActivityApplyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityApplyModel.m; sourceTree = "<group>"; };
+		E3E4FBE81B744F7A00E6E5F1 /* ZYTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYTableViewCell.h; sourceTree = "<group>"; };
+		E3E4FBE91B744F7A00E6E5F1 /* ZYTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYTableViewCell.m; sourceTree = "<group>"; };
 		E3EEDFE71B53951D00595333 /* CPMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMessageController.h; sourceTree = "<group>"; };
 		E3EEDFE81B53951D00595333 /* CPMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMessageController.m; sourceTree = "<group>"; };
 		E3EEDFE91B53951D00595333 /* CPMessageController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMessageController.storyboard; sourceTree = "<group>"; };
@@ -1685,6 +1685,8 @@
 				E34065E61B65C2FE008BB3EB /* ZYTableViewController.m */,
 				E3CE02741B68671800808698 /* UIViewController+ZY.h */,
 				E3CE02751B68671800808698 /* UIViewController+ZY.m */,
+				E3E4FBE81B744F7A00E6E5F1 /* ZYTableViewCell.h */,
+				E3E4FBE91B744F7A00E6E5F1 /* ZYTableViewCell.m */,
 			);
 			path = ZYCustomView;
 			sourceTree = "<group>";
@@ -1798,7 +1800,6 @@
 			isa = PBXGroup;
 			children = (
 				E3F72C281B6F8EFF006C97E4 /* MapModel */,
-				E3D8793E1B57475400228356 /* CPActivityModel.m */,
 				E3E315021B5E551A00FB0B55 /* CPActivityApplyModel.h */,
 				E3E315031B5E551A00FB0B55 /* CPActivityApplyModel.m */,
 				E3C611471B5F328C00B7E73A /* CPCreatActivityModel.h */,
@@ -2336,7 +2337,6 @@
 				E36CC9631B6C7DA400380E53 /* LineDashPolyline.m */,
 				E36CC95F1B6C7D9300380E53 /* GeocodeAnnotation.h */,
 				E36CC9601B6C7D9300380E53 /* GeocodeAnnotation.m */,
-				E3D8793D1B57475400228356 /* CPActivityModel.h */,
 				E3FCDD481B5E34E200F9C379 /* CPAnnotation.h */,
 				E3FCDD491B5E34E200F9C379 /* CPAnnotation.m */,
 				E3C6114D1B5F498600B7E73A /* CPLocationModel.h */,
@@ -2584,6 +2584,7 @@
 				E35B042B1B56460C002C6655 /* HMPhoto.m in Sources */,
 				E3EEDFF81B53951D00595333 /* CPNewMessageCell.m in Sources */,
 				A57581CE1B6789D500A5E681 /* offerCar.m in Sources */,
+				E3E4FBEA1B744F7A00E6E5F1 /* ZYTableViewCell.m in Sources */,
 				E3E1DBFD1B5C8CFB00386B18 /* ZYPickView.m in Sources */,
 				E3D879421B575EC200228356 /* CPTopViewButton.m in Sources */,
 				6B9CFD5D1B6CAD8200EF167D /* CPHowToPlayViewController.m in Sources */,
@@ -2640,7 +2641,6 @@
 				E3CE35981B59E7FC008434B5 /* XLFormSelectorCell.m in Sources */,
 				6B9CFD791B71EA7500EF167D /* CPVersionIntroduction.m in Sources */,
 				E3CFB1461B720B890058B8C3 /* FAImageView.m in Sources */,
-				E3D8793F1B57475400228356 /* CPActivityModel.m in Sources */,
 				E3EEE0021B53952E00595333 /* Foundation+Log.m in Sources */,
 				E3CE359F1B59E7FC008434B5 /* XLFormOptionsViewController.m in Sources */,
 				E372D83B1B6216C100B4FC5C /* CPRegisterCellsTableViewCell1.m in Sources */,
@@ -2921,7 +2921,7 @@
 					"$(PROJECT_DIR)/CarPlay/UMSocial_Sdk_4.2.3/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "281c7a14-4af5-4246-a365-a26b8f6eedb4";
 			};
 			name = Debug;
 		};
@@ -2950,7 +2950,7 @@
 					"$(PROJECT_DIR)/CarPlay/UMSocial_Sdk_4.2.3/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "281c7a14-4af5-4246-a365-a26b8f6eedb4";
 			};
 			name = Release;
 		};
