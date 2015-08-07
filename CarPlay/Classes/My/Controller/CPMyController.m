@@ -43,8 +43,8 @@
     self.userHeadImg.layer.masksToBounds=YES;
     self.loginBtn.layer.cornerRadius=15;
     self.loginBtn.layer.masksToBounds=YES;
-    self.navigationItem.leftBarButtonItem=[UIBarButtonItem itemWithNorImage:@"设置icon" higImage:nil title:nil target:self action:@selector(leftBtnClick:)];
-    self.navigationItem.rightBarButtonItem=[UIBarButtonItem itemWithNorImage:@"拍照" higImage:nil title:nil target:self action:@selector(photoManage:)];
+    self.navigationItem.leftBarButtonItem=[UIBarButtonItem itemWithNorImage:@"设置" higImage:nil title:nil target:self action:@selector(leftBtnClick:)];
+    self.navigationItem.rightBarButtonItem=[UIBarButtonItem itemWithNorImage:@"相机" higImage:nil title:nil target:self action:@selector(photoManage:)];
     // 设置图片
     [self createScrollViewAndPagController];
     self.tableView.tableFooterView=[[UIView alloc]initWithFrame:CGRectZero];
