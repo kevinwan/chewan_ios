@@ -34,6 +34,7 @@
 @interface CPSelectViewModel : NSObject
 
 @property (nonatomic, copy) NSString *type;
+@property (nonatomic, copy) NSString *province;
 @property (nonatomic, copy) NSString *city;
 @property (nonatomic, copy) NSString *district;
 @property (nonatomic, copy) NSString *gender;

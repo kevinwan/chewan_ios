@@ -31,7 +31,6 @@
     self.descripteLable.preferredMaxLayoutWidth = kScreenWidth - 80;
     
     for (UIGestureRecognizer *recognizer in self.gestureRecognizers) {
-        DLog(@"%@",recognizer);
         [self removeGestureRecognizer:recognizer];
     }
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];

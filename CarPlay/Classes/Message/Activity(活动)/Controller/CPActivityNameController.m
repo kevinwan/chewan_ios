@@ -26,8 +26,8 @@
     [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:17], NSForegroundColorAttributeName :[UIColor whiteColor]} forState:UIControlStateNormal];
     
     UITextField *textF = [[UITextField alloc] init];
-    textF.textColor = [Tools getColor:@"656c78"];
-    textF.font = [UIFont systemFontOfSize:14];
+    textF.textColor = [Tools getColor:@"434a54"];
+    textF.font = [UIFont systemFontOfSize:16];
     textF.frame = CGRectMake(10, 20 + 64, self.view.width - 20, 30);
     if (self.forValue) {
         textF.text = self.forValue;
@@ -47,7 +47,7 @@
     lable.font = [UIFont systemFontOfSize:14];
     lable.textColor = [Tools getColor:@"aab2bd"];
     lable.numberOfLines = 0;
-    lable.attributedText = [[NSAttributedString alloc] initWithString:@"去活动名称时最好带上地点和基本要求\n例如昆明湖一日游"];
+    lable.text = @"介绍越详细越容易吸引人";
     lable.x = 10;
     lable.width = self.view.width - 20;
     lable.height = [lable.text sizeWithFont:lable.font maxW:lable.width].height;

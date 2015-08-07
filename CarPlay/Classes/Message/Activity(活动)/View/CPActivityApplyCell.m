@@ -74,7 +74,6 @@
     if ([model.type isEqualToString:@"活动申请处理"]){
         self.tipMsgLabelWidth.constant = kScreenWidth -  135;
         if (model.carBrandLogo.length) {
-            DLog(@"%@]]]]",model.seatText);
             self.offerSeatLabel.attributedText = model.seatText;
             self.tipmsgLabel.attributedText = model.text;
             
@@ -105,7 +104,7 @@
     json[@"action"] = @(1);
     [SVProgressHUD showWithStatus:@"努力加载中"];
     [CPNetWorkTool postJsonWithUrl:url params:json success:^(id responseObject) {
-        DLog(@"%@",responseObject);
+
         if (CPSuccess) {
             [SVProgressHUD showSuccessWithStatus:@"已同意"];
            _model.isAgree = YES;
@@ -132,7 +131,7 @@
 - (void)longPress:(UILongPressGestureRecognizer *)recognizer
 {
     if (recognizer.state == UIGestureRecognizerStateBegan) {
-        DLog(@"发一次通知");
+
         [CPNotificationCenter postNotificationName:CPNewActivityMsgEditNotifycation object:nil userInfo:@{CPNewActivityMsgEditInfo : @(self.model.row)}];
     }
 }

@@ -74,7 +74,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.showsVerticalScrollIndicator = NO;
     
     // 加入提示信息的View
@@ -115,31 +115,31 @@
 
 #pragma mark - 下面的方法用来设置tableView全屏的分割线
 
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-
-    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-        [cell setSeparatorInset:UIEdgeInsetsZero];
-    }
-    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-        [cell setLayoutMargins:UIEdgeInsetsZero];
-    }
-    if([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]){
-        [cell setPreservesSuperviewLayoutMargins:NO];
-    }
-}
-
-/**
- *  controller布局子控件时调用
- */
-- (void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
-    if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
-        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
-    }
-    if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
-        [self.tableView setLayoutMargins:UIEdgeInsetsZero];
-    }
-}
+//-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+//
+//    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+//        [cell setSeparatorInset:UIEdgeInsetsZero];
+//    }
+//    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+//        [cell setLayoutMargins:UIEdgeInsetsZero];
+//    }
+//    if([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]){
+//        [cell setPreservesSuperviewLayoutMargins:NO];
+//    }
+//}
+//
+///**
+// *  controller布局子控件时调用
+// */
+//- (void)viewDidLayoutSubviews{
+//    [super viewDidLayoutSubviews];
+//    if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+//        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+//    }
+//    if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+//        [self.tableView setLayoutMargins:UIEdgeInsetsZero];
+//    }
+//}
 
 #pragma mark - 处理提示信息公共事件
 

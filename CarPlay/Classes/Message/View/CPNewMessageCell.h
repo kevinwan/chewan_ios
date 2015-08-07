@@ -12,7 +12,7 @@
 #define CPNewMsgEditInfo @"CPNewMsgEditInfo"
 
 @class CPNewMsgModel;
-@interface CPNewMessageCell : UITableViewCell
+@interface CPNewMessageCell : ZYTableViewCell
 @property (nonatomic, assign) BOOL isEdit;
 @property (nonatomic, assign) CGFloat cellHeight;
 @property (nonatomic, strong) CPNewMsgModel *model;
