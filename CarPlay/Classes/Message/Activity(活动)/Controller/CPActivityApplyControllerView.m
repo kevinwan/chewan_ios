@@ -259,6 +259,7 @@
     }else{
         if (model.activityId.length) {
             CPActiveDetailsController *vc = [UIStoryboard storyboardWithName:@"CPActiveDetailsController" bundle:nil].instantiateInitialViewController;
+            vc.activeId = model.activityId;
             [self.navigationController pushViewController:vc animated:YES];
         }
     }
