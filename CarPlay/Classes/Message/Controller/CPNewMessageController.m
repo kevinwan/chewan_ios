@@ -231,7 +231,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    cpnew
     static NSString *ID = @"NewMsgCell";
     CPNewMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     
