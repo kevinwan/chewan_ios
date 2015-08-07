@@ -21,6 +21,7 @@
 #import "UMSocialData.h"
 #import "CPActiveDetailsController.h"
 
+#define PhotoViewMargin 6
 #define PickerViewHeght 256
 #define maxCount 9
 #define IntroductFont [UIFont systemFontOfSize:15]
@@ -135,7 +136,7 @@ typedef enum {
  */
 - (void)setUp
 {
-    self.photoWH = (kScreenWidth - 50) / 4;
+    self.photoWH = (kScreenWidth - 38) / 4;
     self.finishBtn.layer.cornerRadius = 3;
     self.finishBtn.clipsToBounds = YES;
     self.finishToFriend.layer.cornerRadius = 3;
@@ -748,13 +749,13 @@ typedef enum {
     NSUInteger count = self.photoView.subviews.count;
     for (int i = 0; i < count; i++) {
         UIView *subView = self.photoView.subviews[i];
-        subView.x = 10 + (i % 4) * (10 + imgW);
-        subView.y = 10 + (i / 4) * (10 + imgH);
+        subView.x = 10 + (i % 4) * (PhotoViewMargin + imgW);
+        subView.y = PhotoViewMargin + (i / 4) * (PhotoViewMargin + imgH);
         subView.width = imgW;
         subView.height = imgH;
     }
     NSUInteger column = (count % 4 == 0) ? count / 4 : (count / 4 + 1);
-    self.photoViewHeight = column * (imgH + 10) + 10;
+    self.photoViewHeight = column * (imgH + PhotoViewMargin) + PhotoViewMargin;
     self.photoView.height = self.photoViewHeight;
     [self.tableView reloadData];
 }

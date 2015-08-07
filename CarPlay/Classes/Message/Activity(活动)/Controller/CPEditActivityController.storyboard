@@ -337,6 +337,6 @@
         <image name="活动类型" width="18" height="18"/>
         <image name="目的地" width="18" height="18"/>
         <image name="结束时间" width="18" height="18"/>
-        <image name="费用" width="13" height="13"/>
+        <image name="费用" width="18" height="18"/>
     </resources>
 </document>
