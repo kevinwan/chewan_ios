@@ -155,7 +155,11 @@
             parameters[@"gender"] = @"";
         }
         
-
+        if (selectModel.province != nil) {
+            parameters[@"province"] = selectModel.gender;
+        }else{
+            parameters[@"province"] = @"";
+        }
         
         if (selectModel.city != nil) {
             parameters[@"city"] = selectModel.city;
