@@ -115,7 +115,7 @@
     }];
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
     self.tableView.footer = [CPRefreshFooter footerWithRefreshingBlock:^{
-        weakSelf.ignore += CPPageNum;
+        weakSelf.ignore = self.items.count;
         [weakSelf loadDataWithParam:weakSelf.ignore];
     }];
     // 设置了底部inset
