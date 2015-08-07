@@ -155,10 +155,8 @@
     if (![self.areaLabel.titleLabel.text isEqualToString:@"不限"]) {
         NSArray *subAddress = [self.areaLabel.titleLabel.text componentsSeparatedByString:@","];
         if (subAddress.count == 3) {
+            model.province = subAddress[0];
             model.city = subAddress[1];
-            model.district = [subAddress lastObject];
-        }else{
-            model.city = [subAddress firstObject];
             model.district = [subAddress lastObject];
         }
     }
