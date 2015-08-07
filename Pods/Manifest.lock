@@ -22,6 +22,7 @@ PODS:
     - AFNetworking/NSURLSession
   - AMap2DMap (2.6.0)
   - AMapSearch (2.6.0)
+  - INTULocationManager (3.0.3)
   - Masonry (0.6.2)
   - MBProgressHUD (0.9.1)
   - MJExtension (2.5.5)
@@ -37,6 +38,7 @@ DEPENDENCIES:
   - AFNetworking
   - AMap2DMap
   - AMapSearch
+  - INTULocationManager
   - Masonry
   - MBProgressHUD
   - MJExtension
@@ -50,6 +52,7 @@ SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   AMap2DMap: b5ce82581ca53b71a0136da858f7ef04db1ffc59
   AMapSearch: 0ea3101eec4b9f500b53e33dcda30d343d41613b
+  INTULocationManager: e79327803a163f5fec28eb042bb124ed0c6e4876
   Masonry: 362e8a1cc0beada4a4c4832d5e863da2a51533be
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MJExtension: fa526531d00a7c88771bf72e626bb49fb9292b9c
