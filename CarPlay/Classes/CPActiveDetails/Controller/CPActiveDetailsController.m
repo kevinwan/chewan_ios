@@ -104,10 +104,26 @@
     self.sendBtn.layer.masksToBounds = YES;
     
     // 添加下拉刷新控件（头部）
-    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(dropDownLoadData)];
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(dropDownLoadData)];
+    header.arrowView.image = [UIImage imageNamed:@"refreshArrow"];
+    header.lastUpdatedTimeLabel.font = [UIFont systemFontOfSize:12];
+    [header setTitle:@"刷新中..." forState:MJRefreshStateRefreshing];
+    header.stateLabel.font = [UIFont systemFontOfSize:12];
+    header.autoChangeAlpha = YES;
+    header.stateLabel.textColor = [Tools getColor:@"aab2bd"];
+    header.lastUpdatedTimeLabel.textColor = [Tools getColor:@"aab2bd"];
+    
+    self.tableView.header = header;
     
     // 添加上拉刷新控件（底部）
-    self.tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(upglideLoadData)];
+    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(upglideLoadData)];
+    footer.stateLabel.font = [UIFont systemFontOfSize:14];
+    footer.autoChangeAlpha = YES;
+    footer.stateLabel.textColor = [Tools getColor:@"aab2bd"];
+    [footer setTitle:@"加载中..." forState:MJRefreshStateRefreshing];
+    [footer setTitle:@"无更多数据" forState:MJRefreshStateNoMoreData];
+    
+    self.tableView.footer = footer;
     
 }
 

@@ -60,6 +60,7 @@
 		6BC8A3EE1B6A4DB700B199F2 /* CPTaIconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC8A3E11B6A4DB700B199F2 /* CPTaIconCell.m */; };
 		6BC8A3EF1B6A4DB700B199F2 /* CPTaPicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC8A3E31B6A4DB700B199F2 /* CPTaPicCell.m */; };
 		6BC8A3F01B6A4DB700B199F2 /* CPTaPublishCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC8A3E51B6A4DB700B199F2 /* CPTaPublishCell.m */; };
+		6BCB13381B745B6F00CE6AEC /* CPTopButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCB13371B745B6F00CE6AEC /* CPTopButton.m */; };
 		6BCCEA561B5A60D5002465AC /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCCEA551B5A60D5002465AC /* NSDate+Extension.m */; };
 		6BCF66081B6208C700358190 /* CPActiveDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCF65F11B6208C700358190 /* CPActiveDetailsController.m */; };
 		6BCF66091B6208C700358190 /* CPActiveDetailsController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BCF65F21B6208C700358190 /* CPActiveDetailsController.storyboard */; };
@@ -428,6 +429,8 @@
 		6BC8A3E31B6A4DB700B199F2 /* CPTaPicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTaPicCell.m; sourceTree = "<group>"; };
 		6BC8A3E41B6A4DB700B199F2 /* CPTaPublishCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTaPublishCell.h; sourceTree = "<group>"; };
 		6BC8A3E51B6A4DB700B199F2 /* CPTaPublishCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTaPublishCell.m; sourceTree = "<group>"; };
+		6BCB13361B745B6F00CE6AEC /* CPTopButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTopButton.h; sourceTree = "<group>"; };
+		6BCB13371B745B6F00CE6AEC /* CPTopButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTopButton.m; sourceTree = "<group>"; };
 		6BCCEA541B5A60D5002465AC /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
 		6BCCEA551B5A60D5002465AC /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
 		6BCF65F01B6208C700358190 /* CPActiveDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActiveDetailsController.h; sourceTree = "<group>"; };
@@ -1162,6 +1165,8 @@
 				6B5F9B691B5D29FE00F9D1E8 /* CPHomePicCell.m */,
 				6B5F9B6A1B5D29FE00F9D1E8 /* CPHomeStatusCell.h */,
 				6B5F9B6B1B5D29FE00F9D1E8 /* CPHomeStatusCell.m */,
+				6BCB13361B745B6F00CE6AEC /* CPTopButton.h */,
+				6BCB13371B745B6F00CE6AEC /* CPTopButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2558,6 +2563,7 @@
 				A57582071B6789E500A5E681 /* NSDictionary+Dealer.m in Sources */,
 				E36CC95E1B6C7D8B00380E53 /* CommonUtility.m in Sources */,
 				6BCF66121B6208C700358190 /* CPActivePicCell.m in Sources */,
+				6BCB13381B745B6F00CE6AEC /* CPTopButton.m in Sources */,
 				E3CE359A1B59E7FC008434B5 /* XLFormStepCounterCell.m in Sources */,
 				A57582151B6789E500A5E681 /* UIColor+SMFoundation.m in Sources */,
 				E3C6114F1B5F498600B7E73A /* CPLocationModel.m in Sources */,
