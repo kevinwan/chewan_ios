@@ -138,7 +138,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *ID = @"SubscribePersonCell";
+    static NSString *ID = @"MySubscribePersonCell";
     
     CPSubscribeCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     cell.row = indexPath.row;
