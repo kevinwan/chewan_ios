@@ -55,10 +55,11 @@
 //    self.tableView.footer.ignoredScrollViewContentInsetTop = 30;
 //    
     self.tableView.tableFooterView = [[UIView alloc] init];
-    [self addBottomTimeLine];
+
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.footer.hidden = YES;
     ZYJumpToLoginView
+    [self addBottomTimeLine];
     [self reRefreshData];
     
 }
@@ -68,6 +69,7 @@
  */
 - (void)addBottomTimeLine
 {
+
     UIView *timeLine = [UIView new];
     timeLine.backgroundColor = CPColor(200, 200, 200, 0.5);;
     timeLine.width = 1;
@@ -78,10 +80,14 @@
     
     
     [self.tableView addObserver:self forKeyPath:@"footer.state" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL];
+
 }
 
 - (void)reRefreshData
 {
+    if (self.timeLine == nil) {
+        [self addBottomTimeLine];
+    }
     [self showLoading];
     [self loadDataWithParams:0];
 }

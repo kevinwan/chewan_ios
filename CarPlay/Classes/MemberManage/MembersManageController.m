@@ -43,6 +43,10 @@
 @property (nonatomic, strong) NSString *tapUserID;
 @property (nonatomic, copy) NSString *userId;
 @property (nonatomic, copy) NSString *token;
+@property (nonatomic, copy) NSString *shareUrl;
+@property (nonatomic, copy) NSString *shareTitle;
+@property (nonatomic, copy) NSString *shareContent;
+@property (nonatomic, copy) NSString *imgUrl;
 @end
 
 @implementation MembersManageController
@@ -57,9 +61,16 @@
 
 //添加微信分享的语句
 - (void)inviteFriend {
-    [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/activity/%@/index.html",self.activityId];
-    [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/activity/%@/index.html",self.activityId];
-    [UMSocialSnsService presentSnsIconSheetView:self appKey:nil shareText:@"我刚创建了一个活动，小伙伴们快来加入吧" shareImage:nil shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,UMShareToSms, nil] delegate:nil];
+    UIImage *image = nil;
+    NSData *dataUrl = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.imgUrl]];
+    if (dataUrl!=nil) {
+        image = [[UIImage alloc]initWithData:dataUrl];
+    }
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = self.shareUrl;
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = self.shareTitle;
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = self.shareUrl;
+    [UMSocialData defaultData].extConfig.wechatTimelineData.title = self.shareTitle;
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:nil shareText:self.shareContent shareImage:image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,UMShareToSms, nil] delegate:nil];
 }
 
 - (void) setupFontAndColor {
@@ -115,6 +126,10 @@
         if ([responseObject operationSuccess]) {
             NSArray *memberModel = [members objectArrayWithKeyValuesArray:responseObject[@"data"][@"members"]];
             NSArray *carModel = [cars objectArrayWithKeyValuesArray:responseObject[@"data"][@"cars"]];
+            self.shareContent = responseObject[@"data"][@"shareContent"];
+            self.shareTitle = responseObject[@"data"][@"shareTitle"];
+            self.shareUrl = responseObject[@"data"][@"shareUrl"];
+            self.imgUrl = responseObject[@"data"][@"imgUrl"];
             [self.membersArray addObjectsFromArray:memberModel];
             [self.carsArray addObjectsFromArray:carModel];
             [self.memberTableView reloadData];
