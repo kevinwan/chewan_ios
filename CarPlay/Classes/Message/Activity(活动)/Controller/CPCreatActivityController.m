@@ -930,6 +930,10 @@ typedef enum {
                 }else if (button.tag == CreateActivityShare){
                     // 分享给好友
                     [self shareToFriendWithDict:responseObject[@"data"]];
+                    // 跳转到活动详情界面
+                    CPActiveDetailsController *activityDetailVc = [UIStoryboard storyboardWithName:@"CPActiveDetailsController" bundle:nil ].instantiateInitialViewController;;
+                    activityDetailVc.activeId = responseObject[@"data"][@"activityId"];
+                    [self.navigationController pushViewController:activityDetailVc animated:YES];
                 }
 
             });
