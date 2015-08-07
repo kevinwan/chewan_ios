@@ -99,6 +99,8 @@
 // 最新
 @property (weak, nonatomic) IBOutlet UIButton *lastestBtn;
 
+// 是否为第一次加载页面
+@property (nonatomic,assign) NSInteger isFirstLoad;
 
 @end
 
@@ -114,6 +116,8 @@
     
     // 设置顶部按钮
     [self.hotBtn setHighlighted:NO];
+    
+//    [self getLongitudeAndLatitude];
 
     
 }
@@ -153,6 +157,7 @@
             self.myCity = placemark.locality;
 
         }
+        
         [self setupLoadStatusWithIgnore:0 Key:@"nearby" SelectModel:nil];
     }];
 }
