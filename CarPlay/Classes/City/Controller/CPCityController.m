@@ -147,29 +147,45 @@
         parameters[@"token"] = self.token;
     }
     
-    if (selectModel.gender != nil) {
-        parameters[@"gender"] = selectModel.gender;
-    }
-    
-    if (selectModel.city != nil) {
-        parameters[@"city"] = selectModel.city;
-    }
-    
-    if (selectModel.district != nil) {
-        parameters[@"district"] = selectModel.district;
-    }
-    
-    if (selectModel.authenticate >= 0) {
+    // 如果是筛选的情况
+    if (selectModel) {
+        if (selectModel.gender != nil) {
+            parameters[@"gender"] = selectModel.gender;
+        }else{
+            parameters[@"gender"] = @"";
+        }
+        
+
+        
+        if (selectModel.city != nil) {
+            parameters[@"city"] = selectModel.city;
+        }else{
+            parameters[@"city"] = @"";
+        }
+        
+        if (selectModel.district != nil) {
+            parameters[@"district"] = selectModel.district;
+        }else{
+            parameters[@"district"] = @"";
+        }
+        
         parameters[@"authenticate"] = @(selectModel.authenticate);
+        
+        
+        if (selectModel.type) {
+            parameters[@"type"] = selectModel.type;
+        }else{
+            parameters[@"type"] = @"";
+        }
+        
+        if (selectModel.carLevel) {
+            parameters[@"carLevel"] = selectModel.carLevel;
+        }else{
+            parameters[@"carLevel"] = @"";
+        }
+
     }
     
-    if (selectModel.type) {
-        parameters[@"type"] = selectModel.type;
-    }
-    
-    if (selectModel.carLevel) {
-        parameters[@"carLevel"] = selectModel.carLevel;
-    }
     
     // 获取网络管理者
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
