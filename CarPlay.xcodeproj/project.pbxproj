@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6B4959DC1B33A23900DB63EA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B4959DA1B33A23900DB63EA /* LaunchScreen.xib */; };
 		6B4959E81B33A23900DB63EA /* CarPlayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4959E71B33A23900DB63EA /* CarPlayTests.m */; };
 		6B4EF15D1B4036EE00292BD4 /* CPTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4EF1451B4036EE00292BD4 /* CPTabBarController.m */; };
 		6B4EF15E1B4036EE00292BD4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B4EF1461B4036EE00292BD4 /* Main.storyboard */; };
@@ -336,7 +335,6 @@
 		473C700A9DC662488BA2B8E4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		6B4959C81B33A23900DB63EA /* CarPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B4959CC1B33A23900DB63EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6B4959DB1B33A23900DB63EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		6B4959E11B33A23900DB63EA /* CarPlayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarPlayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B4959E61B33A23900DB63EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B4959E71B33A23900DB63EA /* CarPlayTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarPlayTests.m; sourceTree = "<group>"; };
@@ -1003,7 +1001,6 @@
 				E328F0661B621DA700A20DCE /* city.plist */,
 				E372D8551B62171E00B4FC5C /* macro.h */,
 				E3B1277A1B54DECB005B1174 /* Images.xcassets */,
-				6B4959DA1B33A23900DB63EA /* LaunchScreen.xib */,
 				6B4959CC1B33A23900DB63EA /* Info.plist */,
 				6B4EF1651B4037DB00292BD4 /* CP_Prefix.pch */,
 			);
@@ -2458,7 +2455,6 @@
 				A57581801B67871300A5E681 /* UMSnsAccountViewController.xib in Resources */,
 				E372D82F1B6216C100B4FC5C /* CPNewPassWordViewController.xib in Resources */,
 				6BB09AA21B675BF100E0D77D /* CPEditHeadIconCell.xib in Resources */,
-				6B4959DC1B33A23900DB63EA /* LaunchScreen.xib in Resources */,
 				E3FCDD4F1B5E491400F9C379 /* CPEditActivityController.storyboard in Resources */,
 				E36C96271B53C78200D3EDBB /* CPSubscribePersonController.storyboard in Resources */,
 				E3CFB1451B720B890058B8C3 /* fontawesome-webfont.ttf in Resources */,
@@ -2796,14 +2792,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		6B4959DA1B33A23900DB63EA /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6B4959DB1B33A23900DB63EA /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
 		A575813F1B67871300A5E681 /* UMSocialLocalizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2901,6 +2889,7 @@
 			baseConfigurationReference = 473C700A9DC662488BA2B8E4 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2921,7 +2910,7 @@
 					"$(PROJECT_DIR)/CarPlay/UMSocial_Sdk_4.2.3/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "281c7a14-4af5-4246-a365-a26b8f6eedb4";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -2930,6 +2919,7 @@
 			baseConfigurationReference = 8D517A33E680C9B10E7DB410 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2950,7 +2940,7 @@
 					"$(PROJECT_DIR)/CarPlay/UMSocial_Sdk_4.2.3/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "281c7a14-4af5-4246-a365-a26b8f6eedb4";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
