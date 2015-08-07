@@ -663,7 +663,6 @@ typedef enum {
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    DLog(@"系统的....");
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -914,9 +913,8 @@ typedef enum {
     }
   
     NSDictionary *params = [self.currentModel keyValues];
-    DLog(@"%@",params);
+
     [CPNetWorkTool postJsonWithUrl:@"v1/activity/register" params:params success:^(id responseObject) {
-        DLog(@"%@....",responseObject);
         
         if (CPSuccess){
             [self showSuccess:@"创建成功"];

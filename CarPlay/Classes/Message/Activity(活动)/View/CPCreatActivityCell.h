@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPCreatActivityCell : UITableViewCell
+@interface CPCreatActivityCell : ZYTableViewCell
 
 /**
  *  记录cell点击后的操作

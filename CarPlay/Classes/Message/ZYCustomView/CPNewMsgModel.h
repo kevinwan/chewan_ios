@@ -16,6 +16,8 @@
 
 @property (nonatomic, copy) NSString *messageId;
 
+@property (nonatomic, copy) NSString *activityId;
+
 @property (nonatomic, copy) NSString *userId;
 
 @property (nonatomic, copy) NSString *gender;
