@@ -12,7 +12,7 @@
 #define CPCancleSubscribeInfo   @"CPCancleSubscribeInfo"
 
 @class CPOrganizer;
-@interface CPSubscribeCell : UITableViewCell
+@interface CPSubscribeCell : ZYTableViewCell
 @property (nonatomic, assign) NSUInteger row;
 @property (nonatomic, strong) CPOrganizer *model;
 @end

@@ -73,7 +73,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-   
 }
 
 #pragma mark - Table view data source
@@ -292,7 +291,7 @@
                     frame.origin.x = i * frame.size.width;
                     
                     imageView.frame = frame;
-                    imageView.contentMode=UIViewContentModeScaleAspectFill;
+                    imageView.contentMode=UIViewContentModeScaleAspectFit;
                     [self.scrollView addSubview:imageView];
                 }
                 self.scrollView.delegate=self;

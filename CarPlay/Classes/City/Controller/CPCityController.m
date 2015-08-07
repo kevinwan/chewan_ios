@@ -17,9 +17,14 @@
 #import "CPSelectView.h"
 #import "MJRefresh.h"
 #import "SVProgressHUD.h"
+#import "INTULocationManager.h"
+#import <CoreLocation/CoreLocation.h>
 
 
 @interface CPCityController ()<UITableViewDataSource,UITableViewDelegate, CPSelectViewDelegate>
+
+// 地理编码对象
+@property (nonatomic ,strong) CLGeocoder *geocoder;
 
 // 用户id
 @property (nonatomic,copy) NSString *userId;
@@ -38,10 +43,10 @@
 @property (nonatomic,copy) NSString *myCity;
 
 // 经度
-@property (nonatomic,assign) double *longitude;
+@property (nonatomic,assign) double longitude;
 
 // 纬度
-@property (nonatomic,assign) double *latitude;
+@property (nonatomic,assign) double latitude;
 
 // 筛选信息类
 @property (nonatomic,strong) CPSelectViewModel *selectViewModel;
@@ -101,19 +106,83 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // 获取用户经纬度和城市
-    
-
     // 加载活动数据
     [self setupLoadStatusWithIgnore:0 Key:self.selectMark SelectModel:nil];
     
+    // 上拉下拉刷新
+    [self topAndBottomRefresh];
+    
+    // 设置顶部按钮
+    [self.hotBtn setHighlighted:NO];
+
+    
+}
+
+// 获取当前经纬度
+- (void)getLongitudeAndLatitude{
+    // 获取用户经纬度和城市
+    // 1.创建位置管理者
+    INTULocationManager *mgr = [INTULocationManager sharedInstance];
+    // 2.利用位置管理者获取位置
+    [mgr requestLocationWithDesiredAccuracy:INTULocationAccuracyRoom  timeout:5 delayUntilAuthorized:YES block:^(CLLocation *currentLocation, INTULocationAccuracy achievedAccuracy, INTULocationStatus status) {
+        if (status == INTULocationStatusSuccess) {
+
+            self.longitude = currentLocation.coordinate.longitude;
+            self.latitude = currentLocation.coordinate.latitude;
+            
+            [self getAtCity];
+
+        }else if(status ==  INTULocationStatusError)
+        {
+                        NSLog(@"获取失败");
+        }
+    }];
+}
+
+
+// 获取当前城市
+- (void)getAtCity{
+   
+    // 根据用户输入的经纬度创建CLLocation对象
+    CLLocation *cllocation = [[CLLocation alloc] initWithLatitude:self.latitude longitude:self.longitude];
+    
+    [self.geocoder reverseGeocodeLocation:cllocation completionHandler:^(NSArray *placemarks, NSError *error) {
+
+        for (CLPlacemark *placemark in placemarks) {
+
+            self.myCity = placemark.locality;
+
+        }
+        [self setupLoadStatusWithIgnore:0 Key:@"nearby" SelectModel:nil];
+    }];
+}
+
+- (void)topAndBottomRefresh{
     // 添加下拉刷新控件（头部）
-    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(dropDownLoadData)];
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(dropDownLoadData)];
+    header.arrowView.image = [UIImage imageNamed:@"refreshArrow"];
+    header.lastUpdatedTimeLabel.font = [UIFont systemFontOfSize:12];
+    [header setTitle:@"刷新中..." forState:MJRefreshStateRefreshing];
+    header.stateLabel.font = [UIFont systemFontOfSize:12];
+    header.autoChangeAlpha = YES;
+    header.stateLabel.textColor = [Tools getColor:@"aab2bd"];
+    header.lastUpdatedTimeLabel.textColor = [Tools getColor:@"aab2bd"];
+    
+    self.tableView.header = header;
+    
+    
+    
     
     // 添加上拉刷新控件（底部）
-    self.tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(upglideLoadData)];
+    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(upglideLoadData)];
+    footer.stateLabel.font = [UIFont systemFontOfSize:14];
+    footer.autoChangeAlpha = YES;
+    footer.stateLabel.textColor = [Tools getColor:@"aab2bd"];
+    [footer setTitle:@"加载中..." forState:MJRefreshStateRefreshing];
+    [footer setTitle:@"无更多数据" forState:MJRefreshStateNoMoreData];
     
-    
+    self.tableView.footer = footer;
+
 }
 
 // 下拉刷新
@@ -137,9 +206,18 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     parameters[@"key"] = key;
     parameters[@"ignore"] = @(ignore);
-//    parameters[@"limit"] = @(10);
+    
+    if ([self.myCity isEqualToString:@""]) {
+        parameters[@"city"] = self.myCity;
+    }else{
+        parameters[@"city"] = @"";
+    }
+    
+   
+    parameters[@"longitude"] = [NSString stringWithFormat:@"%f",self.longitude];
+    parameters[@"latitude"] = [NSString stringWithFormat:@"%f",self.latitude];
 
-    parameters[@"city"] = @"南京";
+
     if (self.userId != nil) {
         parameters[@"userId"] = self.userId;
     }
@@ -220,7 +298,7 @@
         [self.tableView.footer endRefreshing];
         
     } failure:^(NSURLSessionDataTask * task, NSError * error) {
-        [SVProgressHUD showWithStatus:@"获取用户信息失败"];
+//        [SVProgressHUD showWithStatus:@"获取用户信息失败"];
     }];
     
 }
@@ -298,6 +376,15 @@
 
 
 #pragma mark - lazy(懒加载)
+// 地理编码对象
+- (CLGeocoder *)geocoder
+{
+    if (!_geocoder) {
+        _geocoder = [[CLGeocoder alloc] init];
+    }
+    return _geocoder;
+}
+
 - (UIButton *)coverBtn
 {
     if (_coverBtn == nil) {
@@ -358,6 +445,13 @@
     return _selectMark;
 }
 
+- (NSString *)myCity{
+    if (!_myCity) {
+        _myCity = @"";
+    }
+    return _myCity;
+}
+
 
 
 #pragma mark - 按钮点击事件
@@ -403,8 +497,12 @@
     self.nearConstraint.constant = 1;
     self.lastestConstraint.constant = 1;
     
+    self.myCity = @"";
+    
     [self setupLoadStatusWithIgnore:0 Key:@"hot" SelectModel:nil];
     self.selectMark = @"hot";
+    
+    
     
 }
 
@@ -425,8 +523,14 @@
     self.nearConstraint.constant = 0;
     self.lastestConstraint.constant = 1;
     
-    [self setupLoadStatusWithIgnore:0 Key:@"nearby" SelectModel:nil];
+    // 获取经纬度和城市
+    [self getLongitudeAndLatitude];
+//     NSLog(@"self.myCity=%@ %f %f",self.myCity,self.latitude,self.longitude);
+    
+    
     self.selectMark = @"nearby";
+    
+    
   
 }
 
@@ -448,6 +552,7 @@
     self.nearConstraint.constant = 1;
     self.lastestConstraint.constant = 0;
     
+    self.myCity = @"";
     
     [self setupLoadStatusWithIgnore:0 Key:@"latest" SelectModel:nil];
     self.selectMark = @"latest";

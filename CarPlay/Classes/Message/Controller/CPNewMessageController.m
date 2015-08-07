@@ -19,6 +19,7 @@
 #import "CPNewMsgModel.h"
 #import "AppAppearance.h"
 #import "CPTaDetailsController.h"
+#import "CPActiveDetailsController.h"
 
 @interface CPNewMessageController ()
 
@@ -257,6 +258,12 @@
     {
         model.isChecked = !model.isChecked;
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    }else{
+        if (model.activityId.length) {
+            CPActiveDetailsController *vc = [UIStoryboard storyboardWithName:@"CPActiveDetailsController" bundle:nil].instantiateInitialViewController;
+            vc.activeId = model.activityId;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

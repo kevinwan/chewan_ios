@@ -9,7 +9,6 @@
 #import "CPSelectView.h"
 #import "ZYPickView.h"
 #import "ZHPickView.h"
-#import "PPiFlatSegmentedControl.h"
 #import "CPSegmentControl.h"
 #import "ZYSegmentControl.h"
 

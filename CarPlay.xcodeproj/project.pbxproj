@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6B4959DC1B33A23900DB63EA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B4959DA1B33A23900DB63EA /* LaunchScreen.xib */; };
 		6B4959E81B33A23900DB63EA /* CarPlayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4959E71B33A23900DB63EA /* CarPlayTests.m */; };
 		6B4EF15D1B4036EE00292BD4 /* CPTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4EF1451B4036EE00292BD4 /* CPTabBarController.m */; };
 		6B4EF15E1B4036EE00292BD4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B4EF1461B4036EE00292BD4 /* Main.storyboard */; };
@@ -60,6 +59,7 @@
 		6BC8A3EE1B6A4DB700B199F2 /* CPTaIconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC8A3E11B6A4DB700B199F2 /* CPTaIconCell.m */; };
 		6BC8A3EF1B6A4DB700B199F2 /* CPTaPicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC8A3E31B6A4DB700B199F2 /* CPTaPicCell.m */; };
 		6BC8A3F01B6A4DB700B199F2 /* CPTaPublishCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC8A3E51B6A4DB700B199F2 /* CPTaPublishCell.m */; };
+		6BCB13381B745B6F00CE6AEC /* CPTopButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCB13371B745B6F00CE6AEC /* CPTopButton.m */; };
 		6BCCEA561B5A60D5002465AC /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCCEA551B5A60D5002465AC /* NSDate+Extension.m */; };
 		6BCF66081B6208C700358190 /* CPActiveDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCF65F11B6208C700358190 /* CPActiveDetailsController.m */; };
 		6BCF66091B6208C700358190 /* CPActiveDetailsController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BCF65F21B6208C700358190 /* CPActiveDetailsController.storyboard */; };
@@ -286,26 +286,16 @@
 		E3CE371C1B59FEBA008434B5 /* CPCreatActivityController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3CE371B1B59FEBA008434B5 /* CPCreatActivityController.storyboard */; };
 		E3CE371F1B5A232D008434B5 /* CPCreatActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE371E1B5A232D008434B5 /* CPCreatActivityCell.m */; };
 		E3CE37251B5A4085008434B5 /* CPActivityNameController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE37241B5A4085008434B5 /* CPActivityNameController.m */; };
-		E3CFB1451B720B890058B8C3 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E3CFB1331B720B890058B8C3 /* fontawesome-webfont.ttf */; };
-		E3CFB1461B720B890058B8C3 /* FAImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CFB1371B720B890058B8C3 /* FAImageView.m */; };
-		E3CFB1471B720B890058B8C3 /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CFB1391B720B890058B8C3 /* NSString+FontAwesome.m */; };
-		E3CFB1481B720B890058B8C3 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = E3CFB13A1B720B890058B8C3 /* README.md */; };
-		E3CFB1491B720B890058B8C3 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E3CFB13C1B720B890058B8C3 /* FontAwesome.ttf */; };
-		E3CFB14A1B720B890058B8C3 /* UIFont+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CFB13E1B720B890058B8C3 /* UIFont+FontAwesome.m */; };
-		E3CFB14B1B720B890058B8C3 /* FontAwesome+iOS.podspec in Resources */ = {isa = PBXBuildFile; fileRef = E3CFB13F1B720B890058B8C3 /* FontAwesome+iOS.podspec */; };
-		E3CFB14C1B720B890058B8C3 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E3CFB1401B720B890058B8C3 /* fontawesome-webfont.ttf */; };
-		E3CFB14D1B720B890058B8C3 /* UIButton+PPiAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CFB1421B720B890058B8C3 /* UIButton+PPiAwesome.m */; };
-		E3CFB14E1B720B890058B8C3 /* PPiFlatSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CFB1441B720B890058B8C3 /* PPiFlatSegmentedControl.m */; };
 		E3CFB1511B7210410058B8C3 /* CPSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CFB1501B7210410058B8C3 /* CPSegmentControl.m */; };
 		E3CFB1541B72126A0058B8C3 /* ZYSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CFB1531B72126A0058B8C3 /* ZYSegmentControl.m */; };
 		E3CFB1571B7213580058B8C3 /* CPSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CFB1561B7213580058B8C3 /* CPSegment.m */; };
-		E3D8793F1B57475400228356 /* CPActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D8793E1B57475400228356 /* CPActivityModel.m */; };
 		E3D879421B575EC200228356 /* CPTopViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D879411B575EC200228356 /* CPTopViewButton.m */; };
 		E3E104A71B675C910049CA4A /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E104A61B675C910049CA4A /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E3E104A91B675D520049CA4A /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E3E104A81B675D520049CA4A /* libicucore.dylib */; };
 		E3E1DBFD1B5C8CFB00386B18 /* ZYPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E1DBFC1B5C8CFB00386B18 /* ZYPickView.m */; };
 		E3E1DC001B5CA87C00386B18 /* CPReturnValueControllerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E1DBFF1B5CA87C00386B18 /* CPReturnValueControllerView.m */; };
 		E3E315041B5E551A00FB0B55 /* CPActivityApplyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E315031B5E551A00FB0B55 /* CPActivityApplyModel.m */; };
+		E3E4FBEA1B744F7A00E6E5F1 /* ZYTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E4FBE91B744F7A00E6E5F1 /* ZYTableViewCell.m */; };
 		E3EEDFF31B53951D00595333 /* CPMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EEDFE81B53951D00595333 /* CPMessageController.m */; };
 		E3EEDFF41B53951D00595333 /* CPMessageController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3EEDFE91B53951D00595333 /* CPMessageController.storyboard */; };
 		E3EEDFF51B53951D00595333 /* CPNewMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EEDFEB1B53951D00595333 /* CPNewMessageController.m */; };
@@ -336,7 +326,6 @@
 		473C700A9DC662488BA2B8E4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		6B4959C81B33A23900DB63EA /* CarPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B4959CC1B33A23900DB63EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6B4959DB1B33A23900DB63EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		6B4959E11B33A23900DB63EA /* CarPlayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarPlayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B4959E61B33A23900DB63EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B4959E71B33A23900DB63EA /* CarPlayTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarPlayTests.m; sourceTree = "<group>"; };
@@ -428,6 +417,8 @@
 		6BC8A3E31B6A4DB700B199F2 /* CPTaPicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTaPicCell.m; sourceTree = "<group>"; };
 		6BC8A3E41B6A4DB700B199F2 /* CPTaPublishCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTaPublishCell.h; sourceTree = "<group>"; };
 		6BC8A3E51B6A4DB700B199F2 /* CPTaPublishCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTaPublishCell.m; sourceTree = "<group>"; };
+		6BCB13361B745B6F00CE6AEC /* CPTopButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTopButton.h; sourceTree = "<group>"; };
+		6BCB13371B745B6F00CE6AEC /* CPTopButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTopButton.m; sourceTree = "<group>"; };
 		6BCCEA541B5A60D5002465AC /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
 		6BCCEA551B5A60D5002465AC /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
 		6BCF65F01B6208C700358190 /* CPActiveDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActiveDetailsController.h; sourceTree = "<group>"; };
@@ -850,29 +841,12 @@
 		E3CE371E1B5A232D008434B5 /* CPCreatActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCreatActivityCell.m; sourceTree = "<group>"; };
 		E3CE37231B5A4085008434B5 /* CPActivityNameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityNameController.h; sourceTree = "<group>"; };
 		E3CE37241B5A4085008434B5 /* CPActivityNameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityNameController.m; sourceTree = "<group>"; };
-		E3CFB1331B720B890058B8C3 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
-		E3CFB1361B720B890058B8C3 /* FAImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAImageView.h; sourceTree = "<group>"; };
-		E3CFB1371B720B890058B8C3 /* FAImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FAImageView.m; sourceTree = "<group>"; };
-		E3CFB1381B720B890058B8C3 /* NSString+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FontAwesome.h"; sourceTree = "<group>"; };
-		E3CFB1391B720B890058B8C3 /* NSString+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FontAwesome.m"; sourceTree = "<group>"; };
-		E3CFB13A1B720B890058B8C3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		E3CFB13C1B720B890058B8C3 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
-		E3CFB13D1B720B890058B8C3 /* UIFont+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+FontAwesome.h"; sourceTree = "<group>"; };
-		E3CFB13E1B720B890058B8C3 /* UIFont+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+FontAwesome.m"; sourceTree = "<group>"; };
-		E3CFB13F1B720B890058B8C3 /* FontAwesome+iOS.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "FontAwesome+iOS.podspec"; sourceTree = "<group>"; };
-		E3CFB1401B720B890058B8C3 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
-		E3CFB1411B720B890058B8C3 /* UIButton+PPiAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+PPiAwesome.h"; sourceTree = "<group>"; };
-		E3CFB1421B720B890058B8C3 /* UIButton+PPiAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+PPiAwesome.m"; sourceTree = "<group>"; };
-		E3CFB1431B720B890058B8C3 /* PPiFlatSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPiFlatSegmentedControl.h; sourceTree = "<group>"; };
-		E3CFB1441B720B890058B8C3 /* PPiFlatSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPiFlatSegmentedControl.m; sourceTree = "<group>"; };
 		E3CFB14F1B7210410058B8C3 /* CPSegmentControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSegmentControl.h; sourceTree = "<group>"; };
 		E3CFB1501B7210410058B8C3 /* CPSegmentControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSegmentControl.m; sourceTree = "<group>"; };
 		E3CFB1521B72126A0058B8C3 /* ZYSegmentControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYSegmentControl.h; sourceTree = "<group>"; };
 		E3CFB1531B72126A0058B8C3 /* ZYSegmentControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYSegmentControl.m; sourceTree = "<group>"; };
 		E3CFB1551B7213580058B8C3 /* CPSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSegment.h; sourceTree = "<group>"; };
 		E3CFB1561B7213580058B8C3 /* CPSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSegment.m; sourceTree = "<group>"; };
-		E3D8793D1B57475400228356 /* CPActivityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityModel.h; sourceTree = "<group>"; };
-		E3D8793E1B57475400228356 /* CPActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityModel.m; sourceTree = "<group>"; };
 		E3D879401B575EC200228356 /* CPTopViewButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTopViewButton.h; sourceTree = "<group>"; };
 		E3D879411B575EC200228356 /* CPTopViewButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTopViewButton.m; sourceTree = "<group>"; };
 		E3E104A51B675C910049CA4A /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
@@ -884,6 +858,8 @@
 		E3E1DBFF1B5CA87C00386B18 /* CPReturnValueControllerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPReturnValueControllerView.m; sourceTree = "<group>"; };
 		E3E315021B5E551A00FB0B55 /* CPActivityApplyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityApplyModel.h; sourceTree = "<group>"; };
 		E3E315031B5E551A00FB0B55 /* CPActivityApplyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityApplyModel.m; sourceTree = "<group>"; };
+		E3E4FBE81B744F7A00E6E5F1 /* ZYTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYTableViewCell.h; sourceTree = "<group>"; };
+		E3E4FBE91B744F7A00E6E5F1 /* ZYTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYTableViewCell.m; sourceTree = "<group>"; };
 		E3EEDFE71B53951D00595333 /* CPMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMessageController.h; sourceTree = "<group>"; };
 		E3EEDFE81B53951D00595333 /* CPMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMessageController.m; sourceTree = "<group>"; };
 		E3EEDFE91B53951D00595333 /* CPMessageController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMessageController.storyboard; sourceTree = "<group>"; };
@@ -1003,7 +979,6 @@
 				E328F0661B621DA700A20DCE /* city.plist */,
 				E372D8551B62171E00B4FC5C /* macro.h */,
 				E3B1277A1B54DECB005B1174 /* Images.xcassets */,
-				6B4959DA1B33A23900DB63EA /* LaunchScreen.xib */,
 				6B4959CC1B33A23900DB63EA /* Info.plist */,
 				6B4EF1651B4037DB00292BD4 /* CP_Prefix.pch */,
 			);
@@ -1162,6 +1137,8 @@
 				6B5F9B691B5D29FE00F9D1E8 /* CPHomePicCell.m */,
 				6B5F9B6A1B5D29FE00F9D1E8 /* CPHomeStatusCell.h */,
 				6B5F9B6B1B5D29FE00F9D1E8 /* CPHomeStatusCell.m */,
+				6BCB13361B745B6F00CE6AEC /* CPTopButton.h */,
+				6BCB13371B745B6F00CE6AEC /* CPTopButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1685,6 +1662,8 @@
 				E34065E61B65C2FE008BB3EB /* ZYTableViewController.m */,
 				E3CE02741B68671800808698 /* UIViewController+ZY.h */,
 				E3CE02751B68671800808698 /* UIViewController+ZY.m */,
+				E3E4FBE81B744F7A00E6E5F1 /* ZYTableViewCell.h */,
+				E3E4FBE91B744F7A00E6E5F1 /* ZYTableViewCell.m */,
 			);
 			path = ZYCustomView;
 			sourceTree = "<group>";
@@ -1798,7 +1777,6 @@
 			isa = PBXGroup;
 			children = (
 				E3F72C281B6F8EFF006C97E4 /* MapModel */,
-				E3D8793E1B57475400228356 /* CPActivityModel.m */,
 				E3E315021B5E551A00FB0B55 /* CPActivityApplyModel.h */,
 				E3E315031B5E551A00FB0B55 /* CPActivityApplyModel.m */,
 				E3C611471B5F328C00B7E73A /* CPCreatActivityModel.h */,
@@ -2171,52 +2149,6 @@
 			path = Validation;
 			sourceTree = "<group>";
 		};
-		E3CFB1321B720B890058B8C3 /* Control */ = {
-			isa = PBXGroup;
-			children = (
-				E3CFB1331B720B890058B8C3 /* fontawesome-webfont.ttf */,
-				E3CFB1341B720B890058B8C3 /* PPiAwesomeButton */,
-				E3CFB1431B720B890058B8C3 /* PPiFlatSegmentedControl.h */,
-				E3CFB1441B720B890058B8C3 /* PPiFlatSegmentedControl.m */,
-			);
-			path = Control;
-			sourceTree = "<group>";
-		};
-		E3CFB1341B720B890058B8C3 /* PPiAwesomeButton */ = {
-			isa = PBXGroup;
-			children = (
-				E3CFB1351B720B890058B8C3 /* FontAwesome */,
-				E3CFB13F1B720B890058B8C3 /* FontAwesome+iOS.podspec */,
-				E3CFB1401B720B890058B8C3 /* fontawesome-webfont.ttf */,
-				E3CFB1411B720B890058B8C3 /* UIButton+PPiAwesome.h */,
-				E3CFB1421B720B890058B8C3 /* UIButton+PPiAwesome.m */,
-			);
-			path = PPiAwesomeButton;
-			sourceTree = "<group>";
-		};
-		E3CFB1351B720B890058B8C3 /* FontAwesome */ = {
-			isa = PBXGroup;
-			children = (
-				E3CFB1361B720B890058B8C3 /* FAImageView.h */,
-				E3CFB1371B720B890058B8C3 /* FAImageView.m */,
-				E3CFB1381B720B890058B8C3 /* NSString+FontAwesome.h */,
-				E3CFB1391B720B890058B8C3 /* NSString+FontAwesome.m */,
-				E3CFB13A1B720B890058B8C3 /* README.md */,
-				E3CFB13B1B720B890058B8C3 /* Resources */,
-				E3CFB13D1B720B890058B8C3 /* UIFont+FontAwesome.h */,
-				E3CFB13E1B720B890058B8C3 /* UIFont+FontAwesome.m */,
-			);
-			path = FontAwesome;
-			sourceTree = "<group>";
-		};
-		E3CFB13B1B720B890058B8C3 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				E3CFB13C1B720B890058B8C3 /* FontAwesome.ttf */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		E3E104A41B675C910049CA4A /* RegexKitLite */ = {
 			isa = PBXGroup;
 			children = (
@@ -2284,7 +2216,6 @@
 		E3EEDFEE1B53951D00595333 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E3CFB1321B720B890058B8C3 /* Control */,
 				E3292A251B6A50700023677F /* CPSelectView.h */,
 				E3292A261B6A50700023677F /* CPSelectView.m */,
 				E3292A271B6A50700023677F /* CPSelectView.xib */,
@@ -2336,7 +2267,6 @@
 				E36CC9631B6C7DA400380E53 /* LineDashPolyline.m */,
 				E36CC95F1B6C7D9300380E53 /* GeocodeAnnotation.h */,
 				E36CC9601B6C7D9300380E53 /* GeocodeAnnotation.m */,
-				E3D8793D1B57475400228356 /* CPActivityModel.h */,
 				E3FCDD481B5E34E200F9C379 /* CPAnnotation.h */,
 				E3FCDD491B5E34E200F9C379 /* CPAnnotation.m */,
 				E3C6114D1B5F498600B7E73A /* CPLocationModel.h */,
@@ -2435,7 +2365,6 @@
 			files = (
 				6BC8A3E71B6A4DB700B199F2 /* CPTaDetailsController.storyboard in Resources */,
 				6B9CFD5E1B6CAD8200EF167D /* CPHowToPlayViewController.xib in Resources */,
-				E3CFB14C1B720B890058B8C3 /* fontawesome-webfont.ttf in Resources */,
 				E3CE35B21B59E7FC008434B5 /* XLForm.bundle in Resources */,
 				E372D8521B6216E800B4FC5C /* CPMyController.storyboard in Resources */,
 				6B9CFD761B71D95200EF167D /* CPAbout.storyboard in Resources */,
@@ -2452,16 +2381,13 @@
 				6BCF66101B6208C700358190 /* CPActiveDetailsHead.xib in Resources */,
 				A57581C71B6789D500A5E681 /* emptySeat.xib in Resources */,
 				A575817B1B67871300A5E681 /* UMSCommentInputController.xib in Resources */,
-				E3CFB14B1B720B890058B8C3 /* FontAwesome+iOS.podspec in Resources */,
 				A575817D1B67871300A5E681 /* UMShareEditViewController.xib in Resources */,
 				6B5F9B6D1B5D29FE00F9D1E8 /* CPCityController.storyboard in Resources */,
 				A57581801B67871300A5E681 /* UMSnsAccountViewController.xib in Resources */,
 				E372D82F1B6216C100B4FC5C /* CPNewPassWordViewController.xib in Resources */,
 				6BB09AA21B675BF100E0D77D /* CPEditHeadIconCell.xib in Resources */,
-				6B4959DC1B33A23900DB63EA /* LaunchScreen.xib in Resources */,
 				E3FCDD4F1B5E491400F9C379 /* CPEditActivityController.storyboard in Resources */,
 				E36C96271B53C78200D3EDBB /* CPSubscribePersonController.storyboard in Resources */,
-				E3CFB1451B720B890058B8C3 /* fontawesome-webfont.ttf in Resources */,
 				A57581851B67871300A5E681 /* WeiboSDK.bundle in Resources */,
 				E372D8541B6216E800B4FC5C /* CPMyHeaderView.xib in Resources */,
 				A575817C1B67871300A5E681 /* UMSCommentInputControlleriPad.xib in Resources */,
@@ -2487,7 +2413,6 @@
 				6B9CFD6C1B6CBED500EF167D /* CPFeedbackViewController.storyboard in Resources */,
 				E372D83A1B6216C100B4FC5C /* CPEditUsernameViewController.xib in Resources */,
 				A57581771B67871300A5E681 /* UMSocialLocalizable.strings in Resources */,
-				E3CFB1491B720B890058B8C3 /* FontAwesome.ttf in Resources */,
 				A575817F1B67871300A5E681 /* UMSLoginViewController.xib in Resources */,
 				A575818B1B67871300A5E681 /* UMSocialSDKResourcesNew.bundle in Resources */,
 				A57581CF1B6789D500A5E681 /* offerCar.xib in Resources */,
@@ -2558,6 +2483,7 @@
 				A57582071B6789E500A5E681 /* NSDictionary+Dealer.m in Sources */,
 				E36CC95E1B6C7D8B00380E53 /* CommonUtility.m in Sources */,
 				6BCF66121B6208C700358190 /* CPActivePicCell.m in Sources */,
+				6BCB13381B745B6F00CE6AEC /* CPTopButton.m in Sources */,
 				E3CE359A1B59E7FC008434B5 /* XLFormStepCounterCell.m in Sources */,
 				A57582151B6789E500A5E681 /* UIColor+SMFoundation.m in Sources */,
 				E3C6114F1B5F498600B7E73A /* CPLocationModel.m in Sources */,
@@ -2584,6 +2510,7 @@
 				E35B042B1B56460C002C6655 /* HMPhoto.m in Sources */,
 				E3EEDFF81B53951D00595333 /* CPNewMessageCell.m in Sources */,
 				A57581CE1B6789D500A5E681 /* offerCar.m in Sources */,
+				E3E4FBEA1B744F7A00E6E5F1 /* ZYTableViewCell.m in Sources */,
 				E3E1DBFD1B5C8CFB00386B18 /* ZYPickView.m in Sources */,
 				E3D879421B575EC200228356 /* CPTopViewButton.m in Sources */,
 				6B9CFD5D1B6CAD8200EF167D /* CPHowToPlayViewController.m in Sources */,
@@ -2591,7 +2518,6 @@
 				E3E104A71B675C910049CA4A /* RegexKitLite.m in Sources */,
 				6BC8A3EF1B6A4DB700B199F2 /* CPTaPicCell.m in Sources */,
 				E3CE35A01B59E7FC008434B5 /* XLFormViewController.m in Sources */,
-				E3CFB14E1B720B890058B8C3 /* PPiFlatSegmentedControl.m in Sources */,
 				E3C611521B5F4A6C00B7E73A /* ZYSearchBar.m in Sources */,
 				A575820D1B6789E500A5E681 /* NSObject+SMFoundation.m in Sources */,
 				6B5F9B711B5D29FE00F9D1E8 /* CPHomeUser.m in Sources */,
@@ -2639,8 +2565,6 @@
 				A57582191B6789E500A5E681 /* UITableView+SMFoundation.m in Sources */,
 				E3CE35981B59E7FC008434B5 /* XLFormSelectorCell.m in Sources */,
 				6B9CFD791B71EA7500EF167D /* CPVersionIntroduction.m in Sources */,
-				E3CFB1461B720B890058B8C3 /* FAImageView.m in Sources */,
-				E3D8793F1B57475400228356 /* CPActivityModel.m in Sources */,
 				E3EEE0021B53952E00595333 /* Foundation+Log.m in Sources */,
 				E3CE359F1B59E7FC008434B5 /* XLFormOptionsViewController.m in Sources */,
 				E372D83B1B6216C100B4FC5C /* CPRegisterCellsTableViewCell1.m in Sources */,
@@ -2648,7 +2572,6 @@
 				A57582061B6789E500A5E681 /* AppAppearance.m in Sources */,
 				6B5F9B741B5D29FE00F9D1E8 /* CPHomeStatusCell.m in Sources */,
 				E3CE359E1B59E7FC008434B5 /* XLFormOptionsObject.m in Sources */,
-				E3CFB14D1B720B890058B8C3 /* UIButton+PPiAwesome.m in Sources */,
 				A575820C1B6789E500A5E681 /* NSMutableArray+SMFoundation.m in Sources */,
 				E30BD57E1B54EBEB00FD9030 /* CPMySubscribeController.m in Sources */,
 				A57582111B6789E500A5E681 /* SMBlock.m in Sources */,
@@ -2689,7 +2612,6 @@
 				E372D8411B6216C100B4FC5C /* CPRegisterStep2ViewController.m in Sources */,
 				E372D8321B6216C100B4FC5C /* CarOwnersCertificationViewController.m in Sources */,
 				E33BAE841B58DC110021DED6 /* NSDate+Extension.m in Sources */,
-				E3CFB1471B720B890058B8C3 /* NSString+FontAwesome.m in Sources */,
 				E3CE35A11B59E7FC008434B5 /* XLFormDescriptor.m in Sources */,
 				E3CE02761B68671800808698 /* UIViewController+ZY.m in Sources */,
 				E3CE35AB1B59E7FC008434B5 /* XLFormRightImageButton.m in Sources */,
@@ -2711,7 +2633,6 @@
 				6B5F9B701B5D29FE00F9D1E8 /* CPHomeStatus.m in Sources */,
 				A5F515431B705E7400690802 /* CPOfferCar.m in Sources */,
 				A575820B1B6789E500A5E681 /* NSFileManager+SMFoundation.m in Sources */,
-				E3CFB1481B720B890058B8C3 /* README.md in Sources */,
 				A57582181B6789E500A5E681 /* UILabel+SMFoundation.m in Sources */,
 				E372D8371B6216C100B4FC5C /* CustomSectionView.m in Sources */,
 				E35B046F1B565532002C6655 /* MJPhotoLoadingView.m in Sources */,
@@ -2773,7 +2694,6 @@
 				A575820E1B6789E500A5E681 /* NSString+SMFoundation.m in Sources */,
 				E3CE35A61B59E7FC008434B5 /* NSObject+XLFormAdditions.m in Sources */,
 				E3FCDD4D1B5E355A00F9C379 /* CPAnotationView.m in Sources */,
-				E3CFB14A1B720B890058B8C3 /* UIFont+FontAwesome.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2796,14 +2716,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		6B4959DA1B33A23900DB63EA /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6B4959DB1B33A23900DB63EA /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
 		A575813F1B67871300A5E681 /* UMSocialLocalizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2901,6 +2813,7 @@
 			baseConfigurationReference = 473C700A9DC662488BA2B8E4 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2930,6 +2843,7 @@
 			baseConfigurationReference = 8D517A33E680C9B10E7DB410 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (

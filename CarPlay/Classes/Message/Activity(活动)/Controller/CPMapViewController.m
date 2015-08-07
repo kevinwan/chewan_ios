@@ -635,6 +635,7 @@ updatingLocation:(BOOL)updatingLocation
     }
     //按照作者最后的意思还要加上下面这一段
     if([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]){
+ 
         [cell setPreservesSuperviewLayoutMargins:NO];
     }
 }
