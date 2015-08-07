@@ -72,7 +72,7 @@
     }
     
     if ([model.type isEqualToString:@"活动申请处理"]){
-        self.tipMsgLabelWidth.constant = kScreenWidth -  135;
+        self.tipMsgLabelWidth.constant = kScreenWidth -  150;
         if (model.carBrandLogo.length) {
             self.offerSeatLabel.attributedText = model.seatText;
             self.tipmsgLabel.attributedText = model.text;

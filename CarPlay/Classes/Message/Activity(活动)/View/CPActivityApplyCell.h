@@ -12,7 +12,7 @@
 #define CPNewActivityMsgEditNotifycation @"CPNewActivityMsgEditNotifycation"
 #define CPNewActivityMsgEditInfo @"CPNewActivityMsgEditInfo"
 @class CPActivityApplyModel;
-@interface CPActivityApplyCell : UITableViewCell
+@interface CPActivityApplyCell : ZYTableViewCell
 @property (nonatomic, strong) CPActivityApplyModel *model;
 @property (nonatomic, assign) BOOL isEdit;
 @property (nonatomic, assign) BOOL checked;
