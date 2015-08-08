@@ -108,6 +108,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // 导航栏筛选
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithNorImage:@"首页筛选" higImage:@"" title:nil target:self action:@selector(select:)];
+    
     // 加载活动数据
     [self setupLoadStatusWithIgnore:0 Key:self.selectMark SelectModel:nil];
     
