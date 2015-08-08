@@ -193,8 +193,12 @@
     self.start.text = _status.startStr;
     
     // 活动地点
-    self.loction.text = _status.location;
-    
+    if ([status.location length]>5) {
+        NSString *tempLocation = [_status.location substringToIndex:5];
+        self.loction.text = [NSString stringWithFormat:@"%@...",tempLocation];
+    }else{
+        self.loction.text = status.location;
+    }
     
     
     // 付费方式
@@ -222,6 +226,7 @@
     }else{
         self.holdingSeat.text = _status.holdingSeat;
     }
+//    self.holdingSeat.text = @"已";
 
     
     // 总座
@@ -231,6 +236,7 @@
         NSString *totalSeatStr = [NSString stringWithFormat:@"/%@座",_status.totalSeat];
         self.totalSeat.text = totalSeatStr;
     }
+//    self.totalSeat.text = @"满";
     
     
     // 正文

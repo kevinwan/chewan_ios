@@ -61,6 +61,7 @@
 		6BC8A3F01B6A4DB700B199F2 /* CPTaPublishCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC8A3E51B6A4DB700B199F2 /* CPTaPublishCell.m */; };
 		6BCB13381B745B6F00CE6AEC /* CPTopButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCB13371B745B6F00CE6AEC /* CPTopButton.m */; };
 		6BCB13451B74B0B500CE6AEC /* CPNoNetwork.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BCB13441B74B0B500CE6AEC /* CPNoNetwork.storyboard */; };
+		6BCB3C7C1B750E680010842D /* CPNoNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCB3C7B1B750E680010842D /* CPNoNetwork.m */; };
 		6BCCEA561B5A60D5002465AC /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCCEA551B5A60D5002465AC /* NSDate+Extension.m */; };
 		6BCF66081B6208C700358190 /* CPActiveDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCF65F11B6208C700358190 /* CPActiveDetailsController.m */; };
 		6BCF66091B6208C700358190 /* CPActiveDetailsController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BCF65F21B6208C700358190 /* CPActiveDetailsController.storyboard */; };
@@ -421,6 +422,8 @@
 		6BCB13361B745B6F00CE6AEC /* CPTopButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTopButton.h; sourceTree = "<group>"; };
 		6BCB13371B745B6F00CE6AEC /* CPTopButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTopButton.m; sourceTree = "<group>"; };
 		6BCB13441B74B0B500CE6AEC /* CPNoNetwork.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPNoNetwork.storyboard; sourceTree = "<group>"; };
+		6BCB3C7A1B750E680010842D /* CPNoNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNoNetwork.h; sourceTree = "<group>"; };
+		6BCB3C7B1B750E680010842D /* CPNoNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNoNetwork.m; sourceTree = "<group>"; };
 		6BCCEA541B5A60D5002465AC /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
 		6BCCEA551B5A60D5002465AC /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
 		6BCF65F01B6208C700358190 /* CPActiveDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActiveDetailsController.h; sourceTree = "<group>"; };
@@ -1142,6 +1145,8 @@
 				6BCB13361B745B6F00CE6AEC /* CPTopButton.h */,
 				6BCB13371B745B6F00CE6AEC /* CPTopButton.m */,
 				6BCB13441B74B0B500CE6AEC /* CPNoNetwork.storyboard */,
+				6BCB3C7A1B750E680010842D /* CPNoNetwork.h */,
+				6BCB3C7B1B750E680010842D /* CPNoNetwork.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2517,6 +2522,7 @@
 				E3E4FBEA1B744F7A00E6E5F1 /* ZYTableViewCell.m in Sources */,
 				E3E1DBFD1B5C8CFB00386B18 /* ZYPickView.m in Sources */,
 				E3D879421B575EC200228356 /* CPTopViewButton.m in Sources */,
+				6BCB3C7C1B750E680010842D /* CPNoNetwork.m in Sources */,
 				6B9CFD5D1B6CAD8200EF167D /* CPHowToPlayViewController.m in Sources */,
 				E36C96251B53C77600D3EDBB /* CPSubscribePersonController.m in Sources */,
 				E3E104A71B675C910049CA4A /* RegexKitLite.m in Sources */,
