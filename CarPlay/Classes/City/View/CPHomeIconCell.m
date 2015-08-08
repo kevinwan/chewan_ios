@@ -41,7 +41,7 @@
         [self.iconView addSubview:btn];
         
         // 添加按钮后取出头像图片
-        self.iconView.image = [UIImage imageNamed:@""];
+        self.iconView.image = [UIImage imageNamed:@"用户小头像底片"];
     }
     
     
