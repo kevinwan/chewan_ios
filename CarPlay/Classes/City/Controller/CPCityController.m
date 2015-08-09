@@ -132,7 +132,7 @@
     INTULocationManager *mgr = [INTULocationManager sharedInstance];
     // 2.利用位置管理者获取位置
     [mgr requestLocationWithDesiredAccuracy:INTULocationAccuracyRoom  timeout:5 delayUntilAuthorized:YES block:^(CLLocation *currentLocation, INTULocationAccuracy achievedAccuracy, INTULocationStatus status) {
-        if (status == INTULocationStatusSuccess) {
+        if (status == INTULocationStatusSuccess || status == INTULocationStatusTimedOut) {
 
             self.longitude = currentLocation.coordinate.longitude;
             self.latitude = currentLocation.coordinate.latitude;
@@ -160,8 +160,10 @@
             self.myCity = placemark.locality;
 
         }
+        NSLog(@"%@",self.myCity);
         
         [self setupLoadStatusWithIgnore:0 Key:@"nearby" SelectModel:nil];
+
     }];
 }
 

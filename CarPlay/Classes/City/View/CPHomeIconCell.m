@@ -31,18 +31,18 @@
     [self.iconView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"默认头像"]];
     
     // 判断如果头像超过4个，第五个头像就显示数字
-    if (_homeMember.membersCount > 4 && _homeMember.currentMember == 4) {
-      
-        UIButton *btn = [[UIButton alloc] init];
-        btn.frame = CGRectMake(0, 0, 25, 25);
-        btn.backgroundColor = [UIColor grayColor];
-        NSString *iconCount = [NSString stringWithFormat:@"%@",@(_homeMember.membersCount)];
-        [btn setTitle:iconCount forState:UIControlStateNormal];
-        [self.iconView addSubview:btn];
-        
-        // 添加按钮后取出头像图片
-        self.iconView.image = [UIImage imageNamed:@"用户小头像底片"];
-    }
+//    if (_homeMember.membersCount > 4 && _homeMember.currentMember == 4) {
+//      
+//        UIButton *btn = [[UIButton alloc] init];
+//        btn.frame = CGRectMake(0, 0, 25, 25);
+//        btn.backgroundColor = [UIColor grayColor];
+//        NSString *iconCount = [NSString stringWithFormat:@"%@",@(_homeMember.membersCount)];
+//        [btn setTitle:iconCount forState:UIControlStateNormal];
+//        [self.iconView addSubview:btn];
+//        
+//        // 添加按钮后取出头像图片
+//        self.iconView.image = [UIImage imageNamed:@"用户小头像底片"];
+//    }
     
     
 }

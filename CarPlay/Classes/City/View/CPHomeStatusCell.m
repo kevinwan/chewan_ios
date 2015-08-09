@@ -256,7 +256,7 @@
     
     // 刷新，collectionView数据清零
     [self.pictureView reloadData];
-//    [self.iconView reloadData];
+    [self.iconView reloadData];
     
 }
 
