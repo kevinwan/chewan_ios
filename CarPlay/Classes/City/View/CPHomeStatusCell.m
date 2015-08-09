@@ -340,9 +340,19 @@
     
 }
 
+
+// 点击配图放大
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    if (collectionView == self.pictureView) {
+        if (self.pictureDidSelected != nil) {
+            self.pictureDidSelected(self.status,indexPath);
+        }
+    }
+}
+
+
 #pragma mark - 外部方法
 
-//
 - (CGFloat)cellHeightWithStatus:(CPHomeStatus *)status{
     
     // 设置数据，便于系统内部计算尺寸
