@@ -19,9 +19,10 @@
 #import "SVProgressHUD.h"
 #import "INTULocationManager.h"
 #import <CoreLocation/CoreLocation.h>
+#import "MWPhotoBrowser.h"
 
 
-@interface CPCityController ()<UITableViewDataSource,UITableViewDelegate, CPSelectViewDelegate>
+@interface CPCityController ()<UITableViewDataSource,UITableViewDelegate,MWPhotoBrowserDelegate,CPSelectViewDelegate>
 
 // 地理编码对象
 @property (nonatomic ,strong) CLGeocoder *geocoder;
@@ -59,6 +60,9 @@
 
 // 存储所有活动数据
 @property (nonatomic,strong) NSMutableArray *status;
+
+// 存储所有需要显示的图片对象
+@property (nonatomic, strong) NSMutableArray *photos;
 
 // tableView
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -99,12 +103,17 @@
 // 最新
 @property (weak, nonatomic) IBOutlet UIButton *lastestBtn;
 
+// 是否为第一次加载页面
+@property (nonatomic,assign) NSInteger isFirstLoad;
 
 @end
 
 @implementation CPCityController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // 导航栏筛选
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithNorImage:@"首页筛选" higImage:@"" title:nil target:self action:@selector(select:)];
     
     // 加载活动数据
     [self setupLoadStatusWithIgnore:0 Key:self.selectMark SelectModel:nil];
@@ -114,6 +123,8 @@
     
     // 设置顶部按钮
     [self.hotBtn setHighlighted:NO];
+    
+//    [self getLongitudeAndLatitude];
 
     
 }
@@ -125,7 +136,7 @@
     INTULocationManager *mgr = [INTULocationManager sharedInstance];
     // 2.利用位置管理者获取位置
     [mgr requestLocationWithDesiredAccuracy:INTULocationAccuracyRoom  timeout:5 delayUntilAuthorized:YES block:^(CLLocation *currentLocation, INTULocationAccuracy achievedAccuracy, INTULocationStatus status) {
-        if (status == INTULocationStatusSuccess) {
+        if (status == INTULocationStatusSuccess || status == INTULocationStatusTimedOut) {
 
             self.longitude = currentLocation.coordinate.longitude;
             self.latitude = currentLocation.coordinate.latitude;
@@ -153,7 +164,10 @@
             self.myCity = placemark.locality;
 
         }
+        NSLog(@"%@",self.myCity);
+        
         [self setupLoadStatusWithIgnore:0 Key:@"nearby" SelectModel:nil];
+
     }];
 }
 
@@ -322,6 +336,36 @@
     // 设置数据
     cell.status = self.status[indexPath.row];
     
+    
+    // 弹出图片浏览器
+    if (cell.pictureDidSelected == nil) {
+        __weak typeof(self) weakSelf = self;
+        cell.pictureDidSelected = ^(CPHomeStatus *status,NSIndexPath *path){
+            
+            // 清空photos中的数据
+            [self.photos removeAllObjects];
+            
+            // 初始化所有数据
+            NSArray *urls = [status.cover valueForKeyPath:@"thumbnail_pic"];
+            
+            for (int i = 0; i < urls.count; ++i) {
+                NSURL *url = [NSURL URLWithString:urls[i]];
+                MWPhoto *photo = [MWPhoto photoWithURL:url];
+                [self.photos addObject:photo];
+            }
+            
+            // 创建浏览器
+            MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:weakSelf];
+            [browser setCurrentPhotoIndex:path.item];
+            
+            // 显示浏览器
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:browser];
+            [weakSelf presentViewController:nav animated:YES completion:nil];
+//            [self.navigationController pushViewController:browser animated:YES];
+            
+        };
+    }
+    
     return cell;
 }
 
@@ -357,6 +401,17 @@
     return 200;
 }
 
+#pragma mark - MWPhotoBrowserDelegate
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return self.photos.count;
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (index < self.photos.count)
+        return [self.photos objectAtIndex:index];
+    return nil;
+}
+
 
 // 点击cell跳转到活动详情页
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -376,6 +431,13 @@
 
 
 #pragma mark - lazy(懒加载)
+
+- (NSMutableArray *)photos{
+    if (!_photos) {
+        _photos = [NSMutableArray array];
+    }
+    return _photos;
+}
 // 地理编码对象
 - (CLGeocoder *)geocoder
 {

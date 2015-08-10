@@ -60,6 +60,8 @@
 		6BC8A3EF1B6A4DB700B199F2 /* CPTaPicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC8A3E31B6A4DB700B199F2 /* CPTaPicCell.m */; };
 		6BC8A3F01B6A4DB700B199F2 /* CPTaPublishCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC8A3E51B6A4DB700B199F2 /* CPTaPublishCell.m */; };
 		6BCB13381B745B6F00CE6AEC /* CPTopButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCB13371B745B6F00CE6AEC /* CPTopButton.m */; };
+		6BCB13451B74B0B500CE6AEC /* CPNoNetwork.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BCB13441B74B0B500CE6AEC /* CPNoNetwork.storyboard */; };
+		6BCB3C7C1B750E680010842D /* CPNoNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCB3C7B1B750E680010842D /* CPNoNetwork.m */; };
 		6BCCEA561B5A60D5002465AC /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCCEA551B5A60D5002465AC /* NSDate+Extension.m */; };
 		6BCF66081B6208C700358190 /* CPActiveDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCF65F11B6208C700358190 /* CPActiveDetailsController.m */; };
 		6BCF66091B6208C700358190 /* CPActiveDetailsController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BCF65F21B6208C700358190 /* CPActiveDetailsController.storyboard */; };
@@ -419,6 +421,9 @@
 		6BC8A3E51B6A4DB700B199F2 /* CPTaPublishCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTaPublishCell.m; sourceTree = "<group>"; };
 		6BCB13361B745B6F00CE6AEC /* CPTopButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTopButton.h; sourceTree = "<group>"; };
 		6BCB13371B745B6F00CE6AEC /* CPTopButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTopButton.m; sourceTree = "<group>"; };
+		6BCB13441B74B0B500CE6AEC /* CPNoNetwork.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPNoNetwork.storyboard; sourceTree = "<group>"; };
+		6BCB3C7A1B750E680010842D /* CPNoNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNoNetwork.h; sourceTree = "<group>"; };
+		6BCB3C7B1B750E680010842D /* CPNoNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNoNetwork.m; sourceTree = "<group>"; };
 		6BCCEA541B5A60D5002465AC /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
 		6BCCEA551B5A60D5002465AC /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
 		6BCF65F01B6208C700358190 /* CPActiveDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActiveDetailsController.h; sourceTree = "<group>"; };
@@ -1139,6 +1144,9 @@
 				6B5F9B6B1B5D29FE00F9D1E8 /* CPHomeStatusCell.m */,
 				6BCB13361B745B6F00CE6AEC /* CPTopButton.h */,
 				6BCB13371B745B6F00CE6AEC /* CPTopButton.m */,
+				6BCB13441B74B0B500CE6AEC /* CPNoNetwork.storyboard */,
+				6BCB3C7A1B750E680010842D /* CPNoNetwork.h */,
+				6BCB3C7B1B750E680010842D /* CPNoNetwork.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2370,6 +2378,7 @@
 				6B9CFD761B71D95200EF167D /* CPAbout.storyboard in Resources */,
 				E372D8351B6216C100B4FC5C /* CPBrandModelViewController.xib in Resources */,
 				E372D8461B6216C100B4FC5C /* serviceTermsViewController.xib in Resources */,
+				6BCB13451B74B0B500CE6AEC /* CPNoNetwork.storyboard in Resources */,
 				A5F515441B705E7400690802 /* CPOfferCar.xib in Resources */,
 				E35B046D1B565532002C6655 /* MJPhotoBrowser.bundle in Resources */,
 				6BB09AA81B68B02900E0D77D /* CPPhotoalbumManagement.xib in Resources */,
@@ -2513,6 +2522,7 @@
 				E3E4FBEA1B744F7A00E6E5F1 /* ZYTableViewCell.m in Sources */,
 				E3E1DBFD1B5C8CFB00386B18 /* ZYPickView.m in Sources */,
 				E3D879421B575EC200228356 /* CPTopViewButton.m in Sources */,
+				6BCB3C7C1B750E680010842D /* CPNoNetwork.m in Sources */,
 				6B9CFD5D1B6CAD8200EF167D /* CPHowToPlayViewController.m in Sources */,
 				E36C96251B53C77600D3EDBB /* CPSubscribePersonController.m in Sources */,
 				E3E104A71B675C910049CA4A /* RegexKitLite.m in Sources */,
@@ -2834,7 +2844,7 @@
 					"$(PROJECT_DIR)/CarPlay/UMSocial_Sdk_4.2.3/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "281c7a14-4af5-4246-a365-a26b8f6eedb4";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -2864,7 +2874,7 @@
 					"$(PROJECT_DIR)/CarPlay/UMSocial_Sdk_4.2.3/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "281c7a14-4af5-4246-a365-a26b8f6eedb4";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
