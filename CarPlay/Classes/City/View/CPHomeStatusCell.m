@@ -343,9 +343,11 @@
 
 // 点击配图放大
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+  
     if (collectionView == self.pictureView) {
         if (self.pictureDidSelected != nil) {
-            self.pictureDidSelected(self.status,indexPath);
+              CPHomePicCell *cell = (CPHomePicCell *)[self collectionView:collectionView cellForItemAtIndexPath:indexPath] ;
+            self.pictureDidSelected(self.status,indexPath, cell.pictureView);
         }
     }
 }

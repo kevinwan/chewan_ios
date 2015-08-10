@@ -14,7 +14,7 @@
 {
     if (self = [super initWithFrame:frame]) {
         self.stateLabel.font = [UIFont systemFontOfSize:14];
-        self.autoChangeAlpha = YES;
+        self.automaticallyChangeAlpha = YES;
         self.stateLabel.textColor = [Tools getColor:@"aab2bd"];
         [self setTitle:@"加载中..." forState:MJRefreshStateRefreshing];
         [self setTitle:@"无更多数据" forState:MJRefreshStateNoMoreData];

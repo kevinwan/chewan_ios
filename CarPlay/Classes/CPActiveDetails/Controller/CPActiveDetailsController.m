@@ -109,7 +109,7 @@
     header.lastUpdatedTimeLabel.font = [UIFont systemFontOfSize:12];
     [header setTitle:@"刷新中..." forState:MJRefreshStateRefreshing];
     header.stateLabel.font = [UIFont systemFontOfSize:12];
-    header.autoChangeAlpha = YES;
+    header.automaticallyChangeAlpha = YES;
     header.stateLabel.textColor = [Tools getColor:@"aab2bd"];
     header.lastUpdatedTimeLabel.textColor = [Tools getColor:@"aab2bd"];
     
@@ -118,7 +118,7 @@
     // 添加上拉刷新控件（底部）
     MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(upglideLoadData)];
     footer.stateLabel.font = [UIFont systemFontOfSize:14];
-    footer.autoChangeAlpha = YES;
+    footer.automaticallyChangeAlpha = YES;
     footer.stateLabel.textColor = [Tools getColor:@"aab2bd"];
     [footer setTitle:@"加载中..." forState:MJRefreshStateRefreshing];
     [footer setTitle:@"无更多数据" forState:MJRefreshStateNoMoreData];
@@ -620,9 +620,28 @@
 
 // 编辑活动按钮
 - (IBAction)editorActive:(id)sender {
-    CPEditActivityController *vc = [UIStoryboard storyboardWithName:@"CPEditActivityController" bundle:nil].instantiateInitialViewController;
-    vc.data = [self.activeStatus keyValues]; // 字典
-    [self.navigationController pushViewController:vc animated:YES];
+    if ([self.editorActiveBtn.title isEqualToString:@"关注"]) {
+        NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+        
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        
+        NSString *postUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/activity/%@/subscribe?userId=%@&token=%@",self.activeId,self.userId,self.token];
+        
+        [manager POST:postUrl parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+            //
+//            NSLog(@"msg = %@",responseObject[@"errmsg"]);
+//            NSLog(@"关注成功");
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            //
+        }];
+        
+    }else{
+        CPEditActivityController *vc = [UIStoryboard storyboardWithName:@"CPEditActivityController" bundle:nil].instantiateInitialViewController;
+        vc.data = [self.activeStatus keyValues]; // 字典
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
     
 }
 

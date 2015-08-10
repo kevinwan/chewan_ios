@@ -25,6 +25,7 @@
 {
     if ((self = [super initWithFrame:frame])) {
         self.clipsToBounds = YES;
+        self.userInteractionEnabled = YES;
 		// 图片
 		_imageView = [[UIImageView alloc] init];
 		_imageView.contentMode = UIViewContentModeScaleAspectFit;

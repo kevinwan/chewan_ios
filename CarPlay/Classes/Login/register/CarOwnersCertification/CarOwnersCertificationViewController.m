@@ -187,11 +187,17 @@
                         [hud hide:YES];
                         NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
                         NSString *state=[numberFormatter stringFromNumber:[responseObject objectForKey:@"result"]];
-                        if (![state isEqualToString:@"0"]) {
-                            [[[UIAlertView alloc]initWithTitle:@"提示" message:@"提交失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                        if (CPSuccess) {
+                             [[[UIAlertView alloc]initWithTitle:@"提示" message:@"您的认证提交成功，我们会尽快审核!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                         }else{
-                            [[[UIAlertView alloc]initWithTitle:@"提示" message:@"您的认证提交成功，我们会尽快审核!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                            [[[UIAlertView alloc]initWithTitle:@"提示" message:@"提交失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                         }
+                        
+//                        if (![state isEqualToString:@"0"]) {
+//                            
+//                        }else{
+//                           
+//                        }
                         
                     } failed:^(NSError *error) {
                         [hud hide:YES];

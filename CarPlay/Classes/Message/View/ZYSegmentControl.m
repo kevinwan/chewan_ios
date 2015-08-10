@@ -7,12 +7,12 @@
 //
 
 #import "ZYSegmentControl.h"
-#import "CPSegment.h"
+#import "ZYSegment.h"
 
 @interface ZYSegmentControl ()
 @property (nonatomic, strong) UIView *divider1;
 @property (nonatomic, strong) UIView *divider2;
-@property (nonatomic, weak) CPSegment *lastSeg;
+@property (nonatomic, weak) ZYSegment *lastSeg;
 @end
 
 @implementation ZYSegmentControl
@@ -39,15 +39,15 @@
 - (void)setUp
 {
     
-    self.layer.cornerRadius = 3;
-    self.layer.borderColor = [Tools getColor:@"aab2bd"].CGColor;
+    self.layer.cornerRadius = 2;
+    self.layer.borderColor = [Tools getColor:@"e6e9ed"].CGColor;
     self.layer.borderWidth = 0.5;
     self.clipsToBounds = YES;
 }
 
-- (CPSegment *)addBtnWithTitle:(NSString *)title
+- (ZYSegment *)addBtnWithTitle:(NSString *)title
 {
-    CPSegment *button = [[CPSegment alloc] init];
+    ZYSegment *button = [[ZYSegment alloc] init];
     
     [button setTitle:title forState:UIControlStateNormal];
     [button addTarget:self action:@selector(buttnClick:) forControlEvents:UIControlEventTouchDown];
@@ -60,7 +60,7 @@
     _items = items;
     
     for (int i = 0; i < items.count; i++) {
-        CPSegment *button = [self addBtnWithTitle:items[i]];
+        ZYSegment *button = [self addBtnWithTitle:items[i]];
         if (i == 0) {
             [self buttnClick:button];
         }
@@ -68,18 +68,18 @@
     }
     
     UIView *divider1 = [[UIView alloc] init];
-    divider1.backgroundColor = [Tools getColor:@"aab2bd"];
+    divider1.backgroundColor = [Tools getColor:@"e6e9ed"];
     [self addSubview:divider1];
     self.divider1 = divider1;
     
     UIView *divider2 = [[UIView alloc] init];
-    divider2.backgroundColor = [Tools getColor:@"aab2bd"];
+    divider2.backgroundColor = [Tools getColor:@"e6e9ed"];
     [self addSubview:divider2];
     self.divider2 = divider2;
     [self setNeedsLayout];
 }
 
-- (void)buttnClick:(CPSegment *)segment
+- (void)buttnClick:(ZYSegment *)segment
 {
     if (self.lastSeg == segment) {
         return;
@@ -88,32 +88,43 @@
     self.lastSeg.selected = NO;
     segment.selected = !segment.isSelected;
     self.lastSeg = segment;
+    
+    if (segment.tag == 20) {
+        self.divider1.hidden = YES;
+        self.divider2.hidden = NO;
+    }else if (segment.tag == 21){
+        self.divider1.hidden = YES;
+        self.divider2.hidden = YES;
+    }else{
+        self.divider1.hidden = NO;
+        self.divider2.hidden = YES;
+    }
 }
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
     
-    CGFloat btnW = self.width / 3;
+    CGFloat btnW = (self.width - 1) / 3;
     CGFloat btnH = self.height;
     CGFloat btnX = 0;
     for (int i = 0; i < self.subviews.count; i++) {
         UIView *view = self.subviews[i];
-        if ([view isKindOfClass:[CPSegment class]]) {
+        if ([view isKindOfClass:[ZYSegment class]]) {
             view.width = btnW;
-            view.height = btnH;
-            view.x = btnX;
-            view.y = 0;
-            btnX += btnW;
+            view.height = btnH - 0.5;
+            view.x = btnX + 0.25;
+            view.y = 0.25;
+            btnX += btnW + 0.25;
         }
     }
     btnW = self.width / 3;
-    self.divider1.x = btnW;
+    self.divider1.x = btnW - 0.25;
     self.divider1.y = 0;
     self.divider1.height = btnH;
     self.divider1.width = 0.5;
     
-    self.divider2.x = btnW + btnW - 0.5;
+    self.divider2.x = btnW + btnW - 0.25;
     self.divider2.y = 0;
     self.divider2.height = btnH;
     self.divider2.width = 0.5;

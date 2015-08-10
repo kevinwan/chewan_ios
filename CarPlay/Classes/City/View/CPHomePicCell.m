@@ -11,7 +11,7 @@
 #import "CPHomePhoto.h"
 
 @interface CPHomePicCell()
-@property (weak, nonatomic) IBOutlet UIImageView *pictureView;
+
 
 @end
 

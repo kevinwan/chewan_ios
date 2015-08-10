@@ -288,9 +288,8 @@
 		E3CE371C1B59FEBA008434B5 /* CPCreatActivityController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3CE371B1B59FEBA008434B5 /* CPCreatActivityController.storyboard */; };
 		E3CE371F1B5A232D008434B5 /* CPCreatActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE371E1B5A232D008434B5 /* CPCreatActivityCell.m */; };
 		E3CE37251B5A4085008434B5 /* CPActivityNameController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CE37241B5A4085008434B5 /* CPActivityNameController.m */; };
-		E3CFB1511B7210410058B8C3 /* CPSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CFB1501B7210410058B8C3 /* CPSegmentControl.m */; };
 		E3CFB1541B72126A0058B8C3 /* ZYSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CFB1531B72126A0058B8C3 /* ZYSegmentControl.m */; };
-		E3CFB1571B7213580058B8C3 /* CPSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CFB1561B7213580058B8C3 /* CPSegment.m */; };
+		E3CFB1571B7213580058B8C3 /* ZYSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CFB1561B7213580058B8C3 /* ZYSegment.m */; };
 		E3D879421B575EC200228356 /* CPTopViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D879411B575EC200228356 /* CPTopViewButton.m */; };
 		E3E104A71B675C910049CA4A /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E104A61B675C910049CA4A /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E3E104A91B675D520049CA4A /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E3E104A81B675D520049CA4A /* libicucore.dylib */; };
@@ -846,12 +845,10 @@
 		E3CE371E1B5A232D008434B5 /* CPCreatActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCreatActivityCell.m; sourceTree = "<group>"; };
 		E3CE37231B5A4085008434B5 /* CPActivityNameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityNameController.h; sourceTree = "<group>"; };
 		E3CE37241B5A4085008434B5 /* CPActivityNameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityNameController.m; sourceTree = "<group>"; };
-		E3CFB14F1B7210410058B8C3 /* CPSegmentControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSegmentControl.h; sourceTree = "<group>"; };
-		E3CFB1501B7210410058B8C3 /* CPSegmentControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSegmentControl.m; sourceTree = "<group>"; };
 		E3CFB1521B72126A0058B8C3 /* ZYSegmentControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYSegmentControl.h; sourceTree = "<group>"; };
 		E3CFB1531B72126A0058B8C3 /* ZYSegmentControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYSegmentControl.m; sourceTree = "<group>"; };
-		E3CFB1551B7213580058B8C3 /* CPSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSegment.h; sourceTree = "<group>"; };
-		E3CFB1561B7213580058B8C3 /* CPSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSegment.m; sourceTree = "<group>"; };
+		E3CFB1551B7213580058B8C3 /* ZYSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYSegment.h; sourceTree = "<group>"; };
+		E3CFB1561B7213580058B8C3 /* ZYSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYSegment.m; sourceTree = "<group>"; };
 		E3D879401B575EC200228356 /* CPTopViewButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTopViewButton.h; sourceTree = "<group>"; };
 		E3D879411B575EC200228356 /* CPTopViewButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTopViewButton.m; sourceTree = "<group>"; };
 		E3E104A51B675C910049CA4A /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
@@ -2005,6 +2002,20 @@
 			path = MJIndexView;
 			sourceTree = "<group>";
 		};
+		E38A5EA11B7879F500B068D8 /* CPSelectView(筛选) */ = {
+			isa = PBXGroup;
+			children = (
+				E3292A251B6A50700023677F /* CPSelectView.h */,
+				E3292A261B6A50700023677F /* CPSelectView.m */,
+				E3292A271B6A50700023677F /* CPSelectView.xib */,
+				E3CFB1521B72126A0058B8C3 /* ZYSegmentControl.h */,
+				E3CFB1531B72126A0058B8C3 /* ZYSegmentControl.m */,
+				E3CFB1551B7213580058B8C3 /* ZYSegment.h */,
+				E3CFB1561B7213580058B8C3 /* ZYSegment.m */,
+			);
+			name = "CPSelectView(筛选)";
+			sourceTree = "<group>";
+		};
 		E3AE58C11B57E08800D8F0CA /* ZYNetWorkTool */ = {
 			isa = PBXGroup;
 			children = (
@@ -2224,9 +2235,7 @@
 		E3EEDFEE1B53951D00595333 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E3292A251B6A50700023677F /* CPSelectView.h */,
-				E3292A261B6A50700023677F /* CPSelectView.m */,
-				E3292A271B6A50700023677F /* CPSelectView.xib */,
+				E38A5EA11B7879F500B068D8 /* CPSelectView(筛选) */,
 				E3EEDFEF1B53951D00595333 /* CPBadgeView.h */,
 				E3EEDFF01B53951D00595333 /* CPBadgeView.m */,
 				E3EEDFF11B53951D00595333 /* CPNewMessageCell.h */,
@@ -2239,12 +2248,6 @@
 				E338A7441B70540C00E706C2 /* CPRefreshHeader.m */,
 				E338A7461B7099CE00E706C2 /* CPRefreshFooter.h */,
 				E338A7471B7099CE00E706C2 /* CPRefreshFooter.m */,
-				E3CFB14F1B7210410058B8C3 /* CPSegmentControl.h */,
-				E3CFB1501B7210410058B8C3 /* CPSegmentControl.m */,
-				E3CFB1521B72126A0058B8C3 /* ZYSegmentControl.h */,
-				E3CFB1531B72126A0058B8C3 /* ZYSegmentControl.m */,
-				E3CFB1551B7213580058B8C3 /* CPSegment.h */,
-				E3CFB1561B7213580058B8C3 /* CPSegment.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2585,7 +2588,6 @@
 				A575820C1B6789E500A5E681 /* NSMutableArray+SMFoundation.m in Sources */,
 				E30BD57E1B54EBEB00FD9030 /* CPMySubscribeController.m in Sources */,
 				A57582111B6789E500A5E681 /* SMBlock.m in Sources */,
-				E3CFB1511B7210410058B8C3 /* CPSegmentControl.m in Sources */,
 				A575820F1B6789E500A5E681 /* NSTimer+SMFoundation.m in Sources */,
 				6BCF660F1B6208C700358190 /* CPActiveDetailsHead.m in Sources */,
 				E3CE35911B59E7FC008434B5 /* XLFormCheckCell.m in Sources */,
@@ -2599,7 +2601,7 @@
 				E36C962A1B53C80900D3EDBB /* CPCancleSubBtn.m in Sources */,
 				E3CE02791B6885BB00808698 /* CPNewMsgModel.m in Sources */,
 				A57581C81B6789D500A5E681 /* memberCell.m in Sources */,
-				E3CFB1571B7213580058B8C3 /* CPSegment.m in Sources */,
+				E3CFB1571B7213580058B8C3 /* ZYSegment.m in Sources */,
 				6BB09A831B66650C00E0D77D /* CPMyBaseCell.m in Sources */,
 				E3CE35991B59E7FC008434B5 /* XLFormSliderCell.m in Sources */,
 				E372D8511B6216E800B4FC5C /* CPMyController.m in Sources */,
@@ -2844,7 +2846,7 @@
 					"$(PROJECT_DIR)/CarPlay/UMSocial_Sdk_4.2.3/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "281c7a14-4af5-4246-a365-a26b8f6eedb4";
 			};
 			name = Debug;
 		};
@@ -2874,7 +2876,7 @@
 					"$(PROJECT_DIR)/CarPlay/UMSocial_Sdk_4.2.3/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "281c7a14-4af5-4246-a365-a26b8f6eedb4";
 			};
 			name = Release;
 		};

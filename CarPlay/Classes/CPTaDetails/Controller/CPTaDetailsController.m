@@ -46,7 +46,7 @@
     [self setupLoadTaStatus];
     
     // 加载他的发布
-    [self setupLoadTaPublishStatusWithIgnore:0];
+    [self setupLoadTaPublishStatusWithIgnore:0 SelectStr:@"post"];
     
     // 页面标题
     self.title = @"TA的详情";
@@ -57,7 +57,7 @@
     header.lastUpdatedTimeLabel.font = [UIFont systemFontOfSize:12];
     [header setTitle:@"刷新中..." forState:MJRefreshStateRefreshing];
     header.stateLabel.font = [UIFont systemFontOfSize:12];
-    header.autoChangeAlpha = YES;
+    header.automaticallyChangeAlpha = YES;
     header.stateLabel.textColor = [Tools getColor:@"aab2bd"];
     header.lastUpdatedTimeLabel.textColor = [Tools getColor:@"aab2bd"];
     
@@ -66,7 +66,7 @@
     // 添加上拉刷新控件（底部）
     MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(upglideLoadData)];
     footer.stateLabel.font = [UIFont systemFontOfSize:14];
-    footer.autoChangeAlpha = YES;
+    footer.automaticallyChangeAlpha = YES;
     footer.stateLabel.textColor = [Tools getColor:@"aab2bd"];
     [footer setTitle:@"加载中..." forState:MJRefreshStateRefreshing];
     [footer setTitle:@"无更多数据" forState:MJRefreshStateNoMoreData];
@@ -83,18 +83,22 @@
     
     // 刷新他的详情
     [self setupLoadTaStatus];
-    [self setupLoadTaPublishStatusWithIgnore:0];
+    [self setupLoadTaPublishStatusWithIgnore:0 SelectStr:@"post"];
 }
 
 // 上滑
 - (void)upglideLoadData{
     self.ignoreNum += CPPageNum;
-    [self setupLoadTaPublishStatusWithIgnore:self.ignoreNum];
+    [self setupLoadTaPublishStatusWithIgnore:self.ignoreNum SelectStr:@"post"];
 }
 
 - (void)setupLoadHeadView{
     CPTaDetailsHead *head = [CPTaDetailsHead headView];
     head.taStatus = self.taStatus;
+    head.statusSelected = ^(NSInteger ignore,NSString *selectStr){
+        __weak typeof(self) weakSelf = self;
+        [weakSelf setupLoadTaPublishStatusWithIgnore:ignore SelectStr:selectStr];
+    };
     self.tableView.tableHeaderView = head;
 }
 
@@ -138,7 +142,7 @@
 
 
 // 加载他的详情发布
-- (void)setupLoadTaPublishStatusWithIgnore:(NSInteger)ignore{
+- (void)setupLoadTaPublishStatusWithIgnore:(NSInteger)ignore SelectStr:(NSString *)selectStr{
     // 设置请求参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     parameters[@"ignore"] = @(ignore);
@@ -153,7 +157,7 @@
     // 获取网络访问者
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
-    NSString *getUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/user/%@/post",self.targetUserId];
+    NSString *getUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/user/%@/%@",self.targetUserId,selectStr];
     
     // 发送请求
     [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
