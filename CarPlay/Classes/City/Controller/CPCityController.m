@@ -126,7 +126,8 @@
     // 设置顶部按钮
     [self.hotBtn setHighlighted:NO];
     
-//    [self getLongitudeAndLatitude];
+    // 获取当前经纬度
+    [self getLongitudeAndLatitude];
 
     
 }
@@ -166,9 +167,8 @@
             self.myCity = placemark.locality;
 
         }
-        NSLog(@"%@",self.myCity);
+//        NSLog(@"%@",self.myCity);
         
-        [self setupLoadStatusWithIgnore:0 Key:@"nearby" SelectModel:nil];
 
     }];
 }
@@ -559,9 +559,7 @@
         [self.navigationController pushViewController:sb.instantiateInitialViewController animated:YES];
         
     }
-    
 
-    
 }
 
 // 筛选
@@ -626,7 +624,8 @@
     self.lastestConstraint.constant = 1;
     
     // 获取经纬度和城市
-    [self getLongitudeAndLatitude];
+//    [self getLongitudeAndLatitude];
+    [self setupLoadStatusWithIgnore:0 Key:@"nearby" SelectModel:nil];
 //     NSLog(@"self.myCity=%@ %f %f",self.myCity,self.latitude,self.longitude);
     
     

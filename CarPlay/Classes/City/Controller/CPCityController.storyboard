@@ -543,7 +543,7 @@
     <resources>
         <image name="女-1" width="32" height="14"/>
         <image name="时间" width="12" height="12"/>
-        <image name="顶部背景" width="13" height="13"/>
+        <image name="顶部背景" width="85" height="85"/>
         <image name="首页筛选" width="27" height="27"/>
     </resources>
 </document>
