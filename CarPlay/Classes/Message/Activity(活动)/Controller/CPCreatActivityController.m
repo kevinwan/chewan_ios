@@ -447,7 +447,7 @@ typedef enum {
         if ([self cellWithRow:0] == cell){
             [self.tableView scrollsToTop];
         }else{
-            [self.tableView setContentOffset:CGPointMake(0,self.tableView.contentOffset.y - margin) animated:YES];
+//            [self.tableView setContentOffset:CGPointMake(0,self.tableView.contentOffset.y ) animated:YES];
         }
     }else{
         self.currentOffset = self.tableView.contentOffset;
@@ -460,7 +460,7 @@ typedef enum {
  */
 - (void)setNameCellHeightWithString:(NSString *)str
 {
-    self.nameLableHeight = 60 + [str sizeWithFont:IntroductFont maxW:kScreenWidth - 30].height;
+    self.nameLableHeight = 55 + [str sizeWithFont:IntroductFont maxW:kScreenWidth - 30].height;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

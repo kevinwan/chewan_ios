@@ -31,7 +31,6 @@
 
 - (void)addChildVCWithClass:(Class)class title:(NSString *)title norImageName:(NSString *)norImageName selectedImageName:(NSString *)selectedImageName{
     UIViewController *vc4 = [[class alloc] init];
-    
     [self addChildVCWithController:vc4 title:title norImageName:norImageName selectedImageName:selectedImageName];
 }
 

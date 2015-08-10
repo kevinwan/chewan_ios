@@ -24,7 +24,6 @@ typedef enum {
 @property (weak, nonatomic) IBOutlet CPBadgeView *activityApplyNewMsgNumber;
 @property (weak, nonatomic) IBOutlet UILabel *leaveMsgLabel;
 @property (weak, nonatomic) IBOutlet UILabel *activityApplyMsgLabel;
-@property (weak, nonatomic) IBOutlet UILabel *systemTextLabel;
 
 @property (nonatomic, strong) NSTimer *timer;
 @end
@@ -44,6 +43,7 @@ typedef enum {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.tableView.tableFooterView = [UIView new];
     
     self.tableView.header = [CPRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
@@ -132,7 +132,7 @@ typedef enum {
         
         self.activityApplyNewMsgNumber.badgeValue = @"0";
         self.activityApplyNewMsgNumber.hidden = YES;
-        self.activityApplyMsgLabel.text = @"没有新的申请";
+        self.activityApplyMsgLabel.text = @"没有新的消息";
         
         if (self.leaveNewMsgNumber.badgeValue.integerValue > 0) {
             self.tabBarItem.badgeValue = self.leaveNewMsgNumber.badgeValue;
