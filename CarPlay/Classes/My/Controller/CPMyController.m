@@ -291,7 +291,7 @@
                     frame.origin.x = i * frame.size.width;
                     
                     imageView.frame = frame;
-                    imageView.contentMode=UIViewContentModeScaleAspectFit;
+                    imageView.contentMode=UIViewContentModeScaleAspectFill;
                     [self.scrollView addSubview:imageView];
                 }
                 self.scrollView.delegate=self;
@@ -305,7 +305,6 @@
             NSURL *url = [[NSURL alloc]initWithString:organizer.photo];
             [Tools setValueForKey:organizer.photo key:@"photoUrl"];
             [self.userHeadImg sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"morenHeadBtnImg"]];
-            
         }
         
         if (organizer.nickname) {

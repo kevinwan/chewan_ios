@@ -14,10 +14,11 @@
 
 @interface CPFeedbackViewController ()< UIActionSheetDelegate,UIImagePickerControllerDelegate, UzysAssetsPickerControllerDelegate, UIAlertViewDelegate,UITextViewDelegate>{
     NSMutableArray *photoIds;
-    NSMutableArray *imgs;
+    
 }
 @property (nonatomic, assign) CGFloat photoWH;
 @property (nonatomic, strong) NSMutableArray *editPhotoViews;
+@property (nonatomic, strong) NSMutableArray *imgs;
 @property (nonatomic, assign) NSUInteger picIndex;
 @property (nonatomic, strong) UIBarButtonItem *rightItem;
 @property (nonatomic, strong) UIBarButtonItem *rightItem1;
@@ -32,6 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _imgs=[[NSMutableArray alloc]init];
     photoIds=[[NSMutableArray alloc]init];
     self.navigationItem.title=@"意见反馈";
     self.tableView.tableFooterView=[UIView new];
@@ -52,12 +54,15 @@
     }
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    imgs=[[NSMutableArray alloc]init];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+-(NSMutableArray *)imgs{
+    if (_imgs==nil) {
+        _imgs=[[NSMutableArray alloc]init];
+    }
+    return _imgs;
 }
 
 - (NSMutableArray *)editPhotoViews
@@ -103,7 +108,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
-        NSLog(@"aaaaaaa%f",self.photoViewHeight);
         return self.photoViewHeight;
     }else
         return 92.0f;
@@ -164,7 +168,7 @@
                                      orientation:(UIImageOrientation)representation.defaultRepresentation.orientation];
         [arr addObject:img];
     }];
-    [imgs addObjectsFromArray:arr];
+    [_imgs addObjectsFromArray:arr];
     [self addPhoto:arr];
     [SVProgressHUD showWithStatus:@"加载中"];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -203,7 +207,7 @@
 {
     UIImage *portraitImg = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
     [self addPhoto:@[portraitImg]];
-    [imgs addObject:@[portraitImg]];
+    [_imgs addObject:@[portraitImg]];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -430,33 +434,50 @@
 -(void)submit{
     if ([Tools getValueFromKey:@"userId"]) {
         if (![Tools isEmptyOrNull:self.contentTextView.text] && ![self.contentTextView.text isEqualToString:@"请简要描述你的问题和意见"]) {
-            for (int i = 0; i < imgs.count; i++) {
-                CPHttpFile *imageFile = [CPHttpFile fileWithName:@"a1.jpg" data:UIImageJPEGRepresentation(imgs[i], 0.4) mimeType:@"image/jpeg" filename:@"a1.jpg"];
-                [ZYNetWorkTool postFileWithUrl:@"v1/feedback/upload" params:nil files:@[imageFile] success:^(id responseObject) {
-                    if (CPSuccess) {
-                        NSDictionary *data=[responseObject objectForKey:@"data"];
-                        [photoIds insertObject:[data objectForKey:@"photoId"] atIndex:0];
-                        if (i == imgs.count-1) {
-                            NSString *path=[[NSString alloc]initWithFormat:@"v1/user/%@/feedback/submit?token=%@",[Tools getValueFromKey:@"userId"],[Tools getValueFromKey:@"token"]];
-                            NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:photoIds,@"photos",self.contentTextView.text,@"content", nil];
-                            [ZYNetWorkTool postJsonWithUrl:path params:params success:^(id responseObject) {
-                                if (CPSuccess) {
-                                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"感谢您的反馈" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
+            if (_imgs.count) {
+                for (int i = 0; i < _imgs.count; i++) {
+                    CPHttpFile *imageFile = [CPHttpFile fileWithName:@"a1.jpg" data:UIImageJPEGRepresentation(_imgs[i], 0.4) mimeType:@"image/jpeg" filename:@"a1.jpg"];
+                    [ZYNetWorkTool postFileWithUrl:@"v1/feedback/upload" params:nil files:@[imageFile] success:^(id responseObject) {
+                        if (CPSuccess) {
+                            NSDictionary *data=[responseObject objectForKey:@"data"];
+                            [photoIds insertObject:[data objectForKey:@"photoId"] atIndex:0];
+                            if (i == _imgs.count-1) {
+                                NSString *path=[[NSString alloc]initWithFormat:@"v1/user/%@/feedback/submit?token=%@",[Tools getValueFromKey:@"userId"],[Tools getValueFromKey:@"token"]];
+                                NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:photoIds,@"photos",self.contentTextView.text,@"content", nil];
+                                [ZYNetWorkTool postJsonWithUrl:path params:params success:^(id responseObject) {
+                                    if (CPSuccess) {
+                                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"感谢您的反馈" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
+                                        [alertView show];
+                                        [self.navigationController popViewControllerAnimated:YES];
+                                    }else{
+                                        [self showError:responseObject[@"errmsg"]];
+                                    }
+                                } failed:^(NSError *error) {
+                                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您的反馈提交失败，请稍后再试" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
                                     [alertView show];
-                                    [self.navigationController popViewControllerAnimated:YES];
-                                }else{
-                                    [self showError:responseObject[@"errmsg"]];
-                                }
-                            } failed:^(NSError *error) {
-                                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您的反馈提交成功" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
-                                [alertView show];
-                            }];
+                                }];
+                            }
+                        }else{
+                            [self showError:responseObject[@"errmsg"]];
                         }
+                    } failure:^(NSError *error) {
+                        [self showError:@"照片上传失败"];
+                    }];
+                }
+            }else{
+                NSString *path=[[NSString alloc]initWithFormat:@"v1/user/%@/feedback/submit?token=%@",[Tools getValueFromKey:@"userId"],[Tools getValueFromKey:@"token"]];
+                NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:nil,@"photos",self.contentTextView.text,@"content", nil];
+                [ZYNetWorkTool postJsonWithUrl:path params:params success:^(id responseObject) {
+                    if (CPSuccess) {
+                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"感谢您的反馈" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
+                        [alertView show];
+                        [self.navigationController popViewControllerAnimated:YES];
                     }else{
                         [self showError:responseObject[@"errmsg"]];
                     }
-                } failure:^(NSError *error) {
-                    [self showError:@"照片上传失败"];
+                } failed:^(NSError *error) {
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您的反馈提交失败，请稍后再试" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
+                    [alertView show];
                 }];
             }
         }else{

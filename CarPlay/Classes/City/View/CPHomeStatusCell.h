@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @class CPHomeStatus;
 
-typedef void (^PictureDidSelected)(CPHomeStatus *status,NSIndexPath *path);
+typedef void (^PictureDidSelected)(CPHomeStatus *status,NSIndexPath *path, UIImageView *srcView);
 
 @interface CPHomeStatusCell : UITableViewCell
 

@@ -350,7 +350,7 @@
                                                     </variation>
                                                 </view>
                                                 <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPB-dX-xbs" userLabel="性别和年龄">
-                                                    <rect key="frame" x="118" y="24" width="32" height="14"/>
+                                                    <rect key="frame" x="118" y="25" width="32" height="14"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="14" id="D06-SJ-LrE"/>
                                                         <constraint firstAttribute="width" constant="32" id="Ema-VI-glI"/>
@@ -405,7 +405,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="EN9-pL-wae" firstAttribute="leading" secondItem="cSJ-rS-FPd" secondAttribute="trailing" constant="3" id="2iR-6e-x8h"/>
-                                                <constraint firstItem="nPB-dX-xbs" firstAttribute="top" secondItem="1Ih-6L-HNC" secondAttribute="top" constant="24" id="2jm-DZ-uTl"/>
+                                                <constraint firstItem="nPB-dX-xbs" firstAttribute="top" secondItem="1Ih-6L-HNC" secondAttribute="top" constant="25" id="2jm-DZ-uTl"/>
                                                 <constraint firstItem="5lp-0e-AKr" firstAttribute="leading" secondItem="tGD-7z-70d" secondAttribute="trailing" constant="3" id="2nR-Ye-K1m"/>
                                                 <constraint firstItem="zif-de-PND" firstAttribute="leading" secondItem="lrd-xX-0zS" secondAttribute="leading" id="2xK-tB-Mxv"/>
                                                 <constraint firstItem="cSJ-rS-FPd" firstAttribute="top" secondItem="lrd-xX-0zS" secondAttribute="bottom" constant="5" id="3r8-6d-3he"/>
