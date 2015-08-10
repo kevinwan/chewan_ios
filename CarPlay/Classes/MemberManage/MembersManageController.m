@@ -70,7 +70,9 @@
     [UMSocialData defaultData].extConfig.wechatSessionData.title = self.shareTitle;
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = self.shareUrl;
     [UMSocialData defaultData].extConfig.wechatTimelineData.title = self.shareTitle;
-    [UMSocialSnsService presentSnsIconSheetView:self appKey:nil shareText:self.shareContent shareImage:image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,UMShareToSms, nil] delegate:nil];
+    [UMSocialData defaultData].extConfig.qqData.url = self.shareUrl;
+    [UMSocialData defaultData].extConfig.qqData.title = self.shareTitle;
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:nil shareText:self.shareContent shareImage:image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ, nil] delegate:nil];
 }
 
 - (void) setupFontAndColor {
