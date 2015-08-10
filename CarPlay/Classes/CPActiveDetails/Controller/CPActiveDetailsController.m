@@ -491,7 +491,7 @@
     return _ignoreNum;
 }
 
-//点击小头像方法
+// 点击小头像方法
 - (void)tapIconsView {
     if (self.activeStatus.isOrganizer) {
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MembersManage" bundle:nil];
