@@ -126,7 +126,8 @@
     // 设置顶部按钮
     [self.hotBtn setHighlighted:NO];
     
-//    [self getLongitudeAndLatitude];
+    // 获取当前经纬度
+    [self getLongitudeAndLatitude];
 
     
 }
@@ -166,9 +167,8 @@
             self.myCity = placemark.locality;
 
         }
-        NSLog(@"%@",self.myCity);
+//        NSLog(@"%@",self.myCity);
         
-        [self setupLoadStatusWithIgnore:0 Key:@"nearby" SelectModel:nil];
 
     }];
 }
@@ -180,7 +180,7 @@
     header.lastUpdatedTimeLabel.font = [UIFont systemFontOfSize:12];
     [header setTitle:@"刷新中..." forState:MJRefreshStateRefreshing];
     header.stateLabel.font = [UIFont systemFontOfSize:12];
-    header.autoChangeAlpha = YES;
+    header.automaticallyChangeAlpha = YES;
     header.stateLabel.textColor = [Tools getColor:@"aab2bd"];
     header.lastUpdatedTimeLabel.textColor = [Tools getColor:@"aab2bd"];
     
@@ -192,7 +192,7 @@
     // 添加上拉刷新控件（底部）
     MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(upglideLoadData)];
     footer.stateLabel.font = [UIFont systemFontOfSize:14];
-    footer.autoChangeAlpha = YES;
+    footer.automaticallyChangeAlpha = YES;
     footer.stateLabel.textColor = [Tools getColor:@"aab2bd"];
     [footer setTitle:@"加载中..." forState:MJRefreshStateRefreshing];
     [footer setTitle:@"无更多数据" forState:MJRefreshStateNoMoreData];
@@ -342,7 +342,7 @@
     // 弹出图片浏览器
     if (cell.pictureDidSelected == nil) {
         __weak typeof(self) weakSelf = self;
-        cell.pictureDidSelected = ^(CPHomeStatus *status,NSIndexPath *path, UIImageView *srcView){
+        cell.pictureDidSelected = ^(CPHomeStatus *status,NSIndexPath *path, NSArray *srcView){
             
 //            // 清空photos中的数据
 //            [self.photos removeAllObjects];
@@ -372,15 +372,14 @@
             NSMutableArray *photos = [NSMutableArray array];
             NSUInteger count = urls.count;
             for (int i = 0; i<count; i++) {
-//                HMPhoto *pic = self.pic_urls[i];
-//                
+              
                 MJPhoto *photo = [[MJPhoto alloc] init];
                 // 设置图片的路径
                 photo.url = [NSURL URLWithString:urls[i]];
                 // 设置来源于哪一个UIImageView
-                NSLog(@"weit == %@",srcView.frameStr);
+//                NSLog(@"weit == %@",[srcView[i] frameStr]);
 
-                photo.srcImageView = srcView;
+                photo.srcImageView = srcView[i];
                 [photos addObject:photo];
             }
             browser.photos = photos;
@@ -559,9 +558,7 @@
         [self.navigationController pushViewController:sb.instantiateInitialViewController animated:YES];
         
     }
-    
 
-    
 }
 
 // 筛选
@@ -626,7 +623,8 @@
     self.lastestConstraint.constant = 1;
     
     // 获取经纬度和城市
-    [self getLongitudeAndLatitude];
+//    [self getLongitudeAndLatitude];
+    [self setupLoadStatusWithIgnore:0 Key:@"nearby" SelectModel:nil];
 //     NSLog(@"self.myCity=%@ %f %f",self.myCity,self.latitude,self.longitude);
     
     

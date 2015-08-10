@@ -12,6 +12,7 @@
 #import <MAMapKit/MAMapKit.h>
 #import "UMSocial.h"
 #import "UMSocialWechatHandler.h"
+#import "UMSocialQQHandler.h"
 #import "CPNewfeatureViewController.h"
 #import <MobClick.h>
 #define kCheWanAppID @"55a34ed367e58e6efc00285d"
@@ -48,6 +49,8 @@
     [UMSocialData setAppKey:kCheWanAppID];
     // 微信分享
     [UMSocialWechatHandler setWXAppId:kWeiXinAppID appSecret:kWeiXinAppSecret url:nil];
+    //QQ登录
+    [UMSocialQQHandler setQQWithAppId:@"1104728007" appKey:@"61BpHk8GQwH6FuCs" url:@"http://www.umeng.com/social"];
 //    统计分析  nil默认渠道为appStore
     [MobClick startWithAppkey:kCheWanAppID reportPolicy:BATCH   channelId:nil];
     
@@ -174,5 +177,16 @@
     }];
 }
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return  [UMSocialSnsService handleOpenURL:url];
+}
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    return  [UMSocialSnsService handleOpenURL:url];
+}
 
 @end
