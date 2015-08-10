@@ -25,6 +25,7 @@
 {
     if ((self = [super initWithFrame:frame])) {
         self.clipsToBounds = YES;
+        self.userInteractionEnabled = YES;
 		// 图片
 		_imageView = [[UIImageView alloc] init];
 		_imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -216,7 +217,7 @@
     }
     [UIApplication sharedApplication].statusBarHidden = NO;
     [UIView animateWithDuration:duration + 0.1 animations:^{
-        _imageView.frame = [_photo.srcImageView convertRect:_photo.srcImageView.bounds toView:nil];
+        _imageView.frame = [_photo.srcImageView convertRect:_photo.srcImageView.bounds toView:[UIApplication sharedApplication].keyWindow];
         
         // gif图片仅显示第0张
         if (_imageView.image.images) {

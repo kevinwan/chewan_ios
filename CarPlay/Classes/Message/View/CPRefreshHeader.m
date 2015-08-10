@@ -17,7 +17,7 @@
         self.lastUpdatedTimeLabel.font = [UIFont systemFontOfSize:12];
         [self setTitle:@"刷新中..." forState:MJRefreshStateRefreshing];
         self.stateLabel.font = [UIFont systemFontOfSize:12];
-        self.autoChangeAlpha = YES;
+        self.automaticallyChangeAlpha = YES;
         self.stateLabel.textColor = [Tools getColor:@"aab2bd"];
         self.lastUpdatedTimeLabel.textColor = [Tools getColor:@"aab2bd"];
     }
