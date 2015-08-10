@@ -10,7 +10,7 @@
 @class CPHomePhoto;
 
 @interface CPHomePicCell : UICollectionViewCell
-
+@property (weak, nonatomic) IBOutlet UIImageView *pictureView;
 @property (nonatomic,strong) CPHomePhoto *homePhoto;
 
 // 获取当前cell重用标示符

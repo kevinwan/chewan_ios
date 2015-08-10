@@ -193,8 +193,12 @@
     self.start.text = _status.startStr;
     
     // 活动地点
-    self.loction.text = _status.location;
-    
+    if ([status.location length]>5) {
+        NSString *tempLocation = [_status.location substringToIndex:5];
+        self.loction.text = [NSString stringWithFormat:@"%@...",tempLocation];
+    }else{
+        self.loction.text = status.location;
+    }
     
     
     // 付费方式
@@ -222,6 +226,7 @@
     }else{
         self.holdingSeat.text = _status.holdingSeat;
     }
+//    self.holdingSeat.text = @"已";
 
     
     // 总座
@@ -231,6 +236,7 @@
         NSString *totalSeatStr = [NSString stringWithFormat:@"/%@座",_status.totalSeat];
         self.totalSeat.text = totalSeatStr;
     }
+//    self.totalSeat.text = @"满";
     
     
     // 正文
@@ -334,9 +340,21 @@
     
 }
 
+
+// 点击配图放大
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+  
+    if (collectionView == self.pictureView) {
+        if (self.pictureDidSelected != nil) {
+              CPHomePicCell *cell = (CPHomePicCell *)[self collectionView:collectionView cellForItemAtIndexPath:indexPath] ;
+            self.pictureDidSelected(self.status,indexPath, cell.pictureView);
+        }
+    }
+}
+
+
 #pragma mark - 外部方法
 
-//
 - (CGFloat)cellHeightWithStatus:(CPHomeStatus *)status{
     
     // 设置数据，便于系统内部计算尺寸

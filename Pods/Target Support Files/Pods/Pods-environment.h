@@ -60,11 +60,17 @@
 #define COCOAPODS_VERSION_MINOR_AMapSearch 6
 #define COCOAPODS_VERSION_PATCH_AMapSearch 0
 
+// DACircularProgress
+#define COCOAPODS_POD_AVAILABLE_DACircularProgress
+#define COCOAPODS_VERSION_MAJOR_DACircularProgress 2
+#define COCOAPODS_VERSION_MINOR_DACircularProgress 3
+#define COCOAPODS_VERSION_PATCH_DACircularProgress 1
+
 // INTULocationManager
 #define COCOAPODS_POD_AVAILABLE_INTULocationManager
-#define COCOAPODS_VERSION_MAJOR_INTULocationManager 3
+#define COCOAPODS_VERSION_MAJOR_INTULocationManager 4
 #define COCOAPODS_VERSION_MINOR_INTULocationManager 0
-#define COCOAPODS_VERSION_PATCH_INTULocationManager 3
+#define COCOAPODS_VERSION_PATCH_INTULocationManager 0
 
 // MBProgressHUD
 #define COCOAPODS_POD_AVAILABLE_MBProgressHUD
@@ -76,13 +82,19 @@
 #define COCOAPODS_POD_AVAILABLE_MJExtension
 #define COCOAPODS_VERSION_MAJOR_MJExtension 2
 #define COCOAPODS_VERSION_MINOR_MJExtension 5
-#define COCOAPODS_VERSION_PATCH_MJExtension 5
+#define COCOAPODS_VERSION_PATCH_MJExtension 6
 
 // MJRefresh
 #define COCOAPODS_POD_AVAILABLE_MJRefresh
 #define COCOAPODS_VERSION_MAJOR_MJRefresh 2
-#define COCOAPODS_VERSION_MINOR_MJRefresh 3
-#define COCOAPODS_VERSION_PATCH_MJRefresh 2
+#define COCOAPODS_VERSION_MINOR_MJRefresh 4
+#define COCOAPODS_VERSION_PATCH_MJRefresh 1
+
+// MWPhotoBrowser
+#define COCOAPODS_POD_AVAILABLE_MWPhotoBrowser
+#define COCOAPODS_VERSION_MAJOR_MWPhotoBrowser 2
+#define COCOAPODS_VERSION_MINOR_MWPhotoBrowser 1
+#define COCOAPODS_VERSION_PATCH_MWPhotoBrowser 1
 
 // Masonry
 #define COCOAPODS_POD_AVAILABLE_Masonry

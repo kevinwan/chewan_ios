@@ -15,7 +15,7 @@
 
 #define HMStatusPhotosMaxCount 9
 #define HMStatusPhotosMaxCols(photosCount) ((photosCount==4)?2:3)
-#define HMStatusPhotoMargin 5
+#define HMStatusPhotoMargin 6
 #define HMPhotoWH 60
 
 @interface HMStatusPhotosView()

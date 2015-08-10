@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 @class CPHomeStatus;
 
+typedef void (^PictureDidSelected)(CPHomeStatus *status,NSIndexPath *path, UIImageView *srcView);
+
 @interface CPHomeStatusCell : UITableViewCell
 
 @property (nonatomic,strong) CPHomeStatus *status;
@@ -17,5 +19,8 @@
 
 // 返回每一行有多高
 - (CGFloat)cellHeightWithStatus:(CPHomeStatus *)status;
+
+// 回调函数
+@property (nonatomic,copy) PictureDidSelected pictureDidSelected;
 
 @end

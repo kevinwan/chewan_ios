@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eal-5W-NNS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eal-5W-NNS">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -20,6 +20,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pl9-Br-hab" userLabel="评论">
                                 <rect key="frame" x="0.0" y="521" width="320" height="47"/>
                                 <subviews>
+                                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W28-hL-969" userLabel="评论框上部线">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
+                                        <color key="backgroundColor" red="0.66666666666666663" green="0.69803921568627447" blue="0.74117647058823533" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="yvH-yQ-YoG"/>
+                                        </constraints>
+                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KeV-U4-eRl" userLabel="发送按钮">
                                         <rect key="frame" x="252" y="9" width="60" height="30"/>
                                         <color key="backgroundColor" red="0.28235294117647058" green="0.81960784313725488" blue="0.83529411764705885" alpha="1" colorSpace="calibratedRGB"/>
@@ -51,10 +58,13 @@
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="DVq-8z-gPF" secondAttribute="bottom" constant="8" id="7xE-91-CPV"/>
                                     <constraint firstItem="DVq-8z-gPF" firstAttribute="leading" secondItem="Pl9-Br-hab" secondAttribute="leading" constant="10" id="G5k-4l-bGx"/>
+                                    <constraint firstItem="W28-hL-969" firstAttribute="leading" secondItem="Pl9-Br-hab" secondAttribute="leading" id="QqY-8k-mJf"/>
                                     <constraint firstAttribute="bottom" secondItem="KeV-U4-eRl" secondAttribute="bottom" constant="8" id="Ukn-Oj-Fh4"/>
                                     <constraint firstItem="KeV-U4-eRl" firstAttribute="leading" secondItem="DVq-8z-gPF" secondAttribute="trailing" constant="10" id="bJ1-NF-PzA"/>
                                     <constraint firstAttribute="trailing" secondItem="KeV-U4-eRl" secondAttribute="trailing" constant="8" id="beY-9c-c1Q"/>
+                                    <constraint firstAttribute="trailing" secondItem="W28-hL-969" secondAttribute="trailing" id="iKY-1H-B2r"/>
                                     <constraint firstAttribute="height" constant="47" id="tYn-9A-Eey"/>
+                                    <constraint firstItem="W28-hL-969" firstAttribute="top" secondItem="Pl9-Br-hab" secondAttribute="top" id="yys-fU-Icd"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="104" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="nHk-l9-2bE">
