@@ -86,8 +86,6 @@
 // 头像collectionView
 @property (weak, nonatomic) IBOutlet UICollectionView *iconView;
 
-
-
 @end
 
 @implementation CPHomeStatusCell
@@ -329,6 +327,8 @@
         // 设置数据
         cell.homePhoto = photo;
         
+//        NSLog(@"%@",cell.pictureView.frameStr);
+        
         // 返回cell
         return cell;
     }else{
@@ -355,9 +355,24 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
   
     if (collectionView == self.pictureView) {
+        
+        
         if (self.pictureDidSelected != nil) {
-              CPHomePicCell *cell = (CPHomePicCell *)[self collectionView:collectionView cellForItemAtIndexPath:indexPath] ;
-            self.pictureDidSelected(self.status,indexPath, cell.pictureView);
+            // 获取每一个cell里的所有配图
+            NSMutableArray *imgArr = [NSMutableArray array];
+            NSUInteger count = [self collectionView:collectionView numberOfItemsInSection:0];
+            
+            for (int i = 0; i < count; i++) {
+                NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:0];
+                
+                CPHomePicCell *cell = (CPHomePicCell *)[self collectionView:collectionView cellForItemAtIndexPath:path];
+                cell.pictureView.frame = cell.frame;
+                [imgArr addObject:cell.pictureView];
+            }
+
+            
+
+            self.pictureDidSelected(self.status,indexPath, imgArr);
         }
     }
 }
