@@ -2846,7 +2846,7 @@
 					"$(PROJECT_DIR)/CarPlay/UMSocial_Sdk_4.2.3/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "281c7a14-4af5-4246-a365-a26b8f6eedb4";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -2876,7 +2876,7 @@
 					"$(PROJECT_DIR)/CarPlay/UMSocial_Sdk_4.2.3/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "281c7a14-4af5-4246-a365-a26b8f6eedb4";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

@@ -44,6 +44,13 @@
 @property (nonatomic, copy) NSString *type;
 
 
+/** 是否为活动创建者 */
+@property (nonatomic,assign) NSInteger isOrganizer;
+
+/** 是否为活动成员 */
+@property (nonatomic,assign) NSInteger isMember;
+
+
 /** 活动作者的用户信息字段 */
 @property (nonatomic, strong) CPHomeUser *organizer;
 

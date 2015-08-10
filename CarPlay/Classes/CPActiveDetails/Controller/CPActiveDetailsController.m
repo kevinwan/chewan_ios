@@ -72,7 +72,7 @@
 // 上滑加载条数
 @property (nonatomic,assign) NSInteger ignoreNum;
 
-//遮盖
+// 遮盖
 @property (nonatomic, strong) UIButton *cover;
 @property (nonatomic, strong) UIView *carView;
 @property (weak, nonatomic) IBOutlet UIView *carxibYesView;

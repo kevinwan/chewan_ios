@@ -17,6 +17,7 @@
 
 
 
+
 @interface CPHomeStatusCell()<UICollectionViewDataSource,UICollectionViewDelegate>
 
 
@@ -78,6 +79,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *myPlay;
 
 
+
 // 配图collectionView
 @property (weak, nonatomic) IBOutlet UICollectionView *pictureView;
 
@@ -119,6 +121,14 @@
     // 我要去玩
     self.myPlay.layer.cornerRadius = 12;
     self.myPlay.layer.masksToBounds = YES;
+    
+    if (self.status.isOrganizer) {
+        [self.myPlay setTitle:@"成员管理" forState:UIControlStateNormal];
+    }else if (self.status.isMember){
+        [self.myPlay setTitle:@"已加入" forState:UIControlStateNormal];
+    }else{
+        [self.myPlay setTitle:@"我要去玩" forState:UIControlStateNormal];
+    }
     
     // 昵称
     self.nickname.text = user.nickname;
@@ -367,7 +377,6 @@
     return CGRectGetMaxY(self.bottomIconList.frame) + 15;
     
 }
-
 
 
 
