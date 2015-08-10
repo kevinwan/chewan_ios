@@ -180,7 +180,7 @@
     header.lastUpdatedTimeLabel.font = [UIFont systemFontOfSize:12];
     [header setTitle:@"刷新中..." forState:MJRefreshStateRefreshing];
     header.stateLabel.font = [UIFont systemFontOfSize:12];
-    header.autoChangeAlpha = YES;
+    header.automaticallyChangeAlpha = YES;
     header.stateLabel.textColor = [Tools getColor:@"aab2bd"];
     header.lastUpdatedTimeLabel.textColor = [Tools getColor:@"aab2bd"];
     
@@ -192,7 +192,7 @@
     // 添加上拉刷新控件（底部）
     MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(upglideLoadData)];
     footer.stateLabel.font = [UIFont systemFontOfSize:14];
-    footer.autoChangeAlpha = YES;
+    footer.automaticallyChangeAlpha = YES;
     footer.stateLabel.textColor = [Tools getColor:@"aab2bd"];
     [footer setTitle:@"加载中..." forState:MJRefreshStateRefreshing];
     [footer setTitle:@"无更多数据" forState:MJRefreshStateNoMoreData];
