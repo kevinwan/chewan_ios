@@ -217,7 +217,7 @@
     }
     [UIApplication sharedApplication].statusBarHidden = NO;
     [UIView animateWithDuration:duration + 0.1 animations:^{
-        _imageView.frame = [_photo.srcImageView convertRect:_photo.srcImageView.bounds toView:[UIApplication sharedApplication].keyWindow];
+        _imageView.frame = [_photo.srcImageView convertRect:_photo.srcImageView.bounds toView:nil];
         
         // gif图片仅显示第0张
         if (_imageView.image.images) {
