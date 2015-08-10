@@ -1,5 +1,5 @@
 //
-//  CPSegmentControl.h
+//  CPSegment.h
 //  CarPlay
 //
 //  Created by chewan on 15/8/5.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPSegmentControl : UISegmentedControl
+@interface ZYSegment : UIButton
 
 @end

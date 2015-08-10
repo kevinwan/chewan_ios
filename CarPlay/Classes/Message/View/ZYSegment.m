@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 gongpingjia. All rights reserved.
 //
 
-#import "CPSegment.h"
+#import "ZYSegment.h"
 
-@implementation CPSegment
+@implementation ZYSegment
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -35,7 +35,9 @@
     self.titleLabel.font = [UIFont systemFontOfSize:14];
     [self setTitleColor:[Tools getColor:@"aab2bd"] forState:UIControlStateNormal];
     
-    [self setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    [self setTitleColor:[Tools getColor:@"fc6e51"] forState:UIControlStateSelected];
+    self.layer.borderWidth = 0.8;
+    self.selected = NO;
 }
 
 - (void)setSelected:(BOOL)selected
@@ -43,9 +45,10 @@
     [super setSelected:selected];
     
     if (selected) {
-        self.backgroundColor = [Tools getColor:@"fc6e51"];
+        self.layer.borderColor = [Tools getColor:@"fc6e51"].CGColor;
     }else{
-        self.backgroundColor = [UIColor whiteColor];
+        self.layer.borderColor = [UIColor clearColor].CGColor;
+
     }
 }
 

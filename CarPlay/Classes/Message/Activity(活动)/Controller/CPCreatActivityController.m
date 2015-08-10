@@ -280,7 +280,7 @@ typedef enum {
         }else{
             
             [weakSelf.pickView removeFromSuperview];
-            weakSelf.pickView  = [[ZYPickView alloc] initDatePickWithDate:[NSDate date] datePickerMode:UIDatePickerModeDateAndTime isHaveNavControler:NO];
+            weakSelf.pickView  = [[ZYPickView alloc] initDatePickWithDate:[NSDate date] datePickerMode:UIDatePickerModeTime isHaveNavControler:NO];
             weakSelf.pickView.tag = ActivityCreateStart;
             weakSelf.pickView.row = 4;
             weakSelf.pickView.delegate = weakSelf;
