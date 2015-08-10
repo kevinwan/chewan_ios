@@ -519,10 +519,18 @@
 #pragma mark - 按钮点击事件
 // 创建活动
 - (IBAction)createActive:(id)sender {
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPCreatActivityController" bundle:nil];
+    if (CPUnLogin) {
+    // 未登录则提示登录
+        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+        
+    }else{
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPCreatActivityController" bundle:nil];
+        
+        [self.navigationController pushViewController:sb.instantiateInitialViewController animated:YES];
+        
+    }
     
-    [self.navigationController pushViewController:sb.instantiateInitialViewController animated:YES];
-    
+
     
 }
 
