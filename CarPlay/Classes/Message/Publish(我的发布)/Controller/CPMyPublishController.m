@@ -49,13 +49,8 @@
         weakSelf.ignore = self.frameModels.count;
         [weakSelf loadDataWithParams:weakSelf.ignore];
     }];
-//    // 设置了底部inset
-//    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
-//   //  忽略掉底部inset
-//    self.tableView.footer.ignoredScrollViewContentInsetTop = 30;
-//    
+    
     self.tableView.tableFooterView = [[UIView alloc] init];
-
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.footer.hidden = YES;
     ZYJumpToLoginView
@@ -73,11 +68,9 @@
     UIView *timeLine = [UIView new];
     timeLine.backgroundColor = CPColor(200, 200, 200, 0.5);;
     timeLine.width = 1;
-    timeLine.height = 44;
     timeLine.x = 55;
     [self.tableView insertSubview:timeLine atIndex:0];
     self.timeLine = timeLine;
-    
     
     [self.tableView addObserver:self forKeyPath:@"footer.state" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL];
 
@@ -183,7 +176,13 @@
     MJRefreshState state = [change[@"new"] intValue];
     
     if (state == MJRefreshStateRefreshing) {
-            self.timeLine.y = self.tableView.contentSize.height;
+        self.timeLine.y = self.tableView.contentSize.height;
+        CGFloat keyWindowY = [self.view convertPoint:CGPointMake(0 , self.tableView.contentSize.height)toView:[UIApplication sharedApplication].keyWindow].y;
+        self.timeLine.height = kScreenHeight - keyWindowY;
+    }else if (MJRefreshStateIdle){
+        self.timeLine.y = self.tableView.contentSize.height;
+        CGFloat keyWindowY = [self.view convertPoint:CGPointMake(0 , self.tableView.contentSize.height)toView:[UIApplication sharedApplication].keyWindow].y;
+        self.timeLine.height = kScreenHeight - keyWindowY;
     }
 }
 
