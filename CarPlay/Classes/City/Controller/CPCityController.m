@@ -20,6 +20,8 @@
 #import "INTULocationManager.h"
 #import <CoreLocation/CoreLocation.h>
 #import "MWPhotoBrowser.h"
+#import "MJPhotoBrowser.h"
+#import "MJPhoto.h"
 
 
 @interface CPCityController ()<UITableViewDataSource,UITableViewDelegate,MWPhotoBrowserDelegate,CPSelectViewDelegate>
@@ -62,7 +64,7 @@
 @property (nonatomic,strong) NSMutableArray *status;
 
 // 存储所有需要显示的图片对象
-@property (nonatomic, strong) NSMutableArray *photos;
+//@property (nonatomic, strong) NSMutableArray *photos;
 
 // tableView
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -340,28 +342,56 @@
     // 弹出图片浏览器
     if (cell.pictureDidSelected == nil) {
         __weak typeof(self) weakSelf = self;
-        cell.pictureDidSelected = ^(CPHomeStatus *status,NSIndexPath *path){
+        cell.pictureDidSelected = ^(CPHomeStatus *status,NSIndexPath *path, UIImageView *srcView){
             
-            // 清空photos中的数据
-            [self.photos removeAllObjects];
+//            // 清空photos中的数据
+//            [self.photos removeAllObjects];
+//            
+//            // 初始化所有数据
+//            NSArray *urls = [status.cover valueForKeyPath:@"thumbnail_pic"];
+//            
+//            for (int i = 0; i < urls.count; ++i) {
+//                NSURL *url = [NSURL URLWithString:urls[i]];
+//                MWPhoto *photo = [MWPhoto photoWithURL:url];
+//                [self.photos addObject:photo];
+//            }
+//            
+//            // 创建浏览器
+//            MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:weakSelf];
+//            [browser setCurrentPhotoIndex:path.item];
+//            
+//            // 显示浏览器
+//            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:browser];
+//            [weakSelf presentViewController:nav animated:YES completion:nil];
             
-            // 初始化所有数据
-            NSArray *urls = [status.cover valueForKeyPath:@"thumbnail_pic"];
             
-            for (int i = 0; i < urls.count; ++i) {
-                NSURL *url = [NSURL URLWithString:urls[i]];
-                MWPhoto *photo = [MWPhoto photoWithURL:url];
-                [self.photos addObject:photo];
+            // 1.创建图片浏览器
+            MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+             NSArray *urls = [status.cover valueForKeyPath:@"thumbnail_pic"];
+            // 2.设置图片浏览器显示的所有图片
+            NSMutableArray *photos = [NSMutableArray array];
+            NSUInteger count = urls.count;
+            for (int i = 0; i<count; i++) {
+//                HMPhoto *pic = self.pic_urls[i];
+//                
+                MJPhoto *photo = [[MJPhoto alloc] init];
+                // 设置图片的路径
+                photo.url = [NSURL URLWithString:urls[i]];
+                // 设置来源于哪一个UIImageView
+                NSLog(@"weit == %@",srcView.frameStr);
+                
+                photo.srcImageView = srcView;
+                [photos addObject:photo];
             }
+            browser.photos = photos;
             
-            // 创建浏览器
-            MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:weakSelf];
-            [browser setCurrentPhotoIndex:path.item];
+            // 3.设置默认显示的图片索引
+            browser.currentPhotoIndex = path.item;
             
-            // 显示浏览器
-            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:browser];
-            [weakSelf presentViewController:nav animated:YES completion:nil];
-//            [self.navigationController pushViewController:browser animated:YES];
+            // 3.显示浏览器
+            [browser show];
+            
+
             
         };
     }
@@ -402,15 +432,15 @@
 }
 
 #pragma mark - MWPhotoBrowserDelegate
-- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
-    return self.photos.count;
-}
-
-- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
-    if (index < self.photos.count)
-        return [self.photos objectAtIndex:index];
-    return nil;
-}
+//- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+//    return self.photos.count;
+//}
+//
+//- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+//    if (index < self.photos.count)
+//        return [self.photos objectAtIndex:index];
+//    return nil;
+//}
 
 
 // 点击cell跳转到活动详情页
@@ -432,12 +462,12 @@
 
 #pragma mark - lazy(懒加载)
 
-- (NSMutableArray *)photos{
-    if (!_photos) {
-        _photos = [NSMutableArray array];
-    }
-    return _photos;
-}
+//- (NSMutableArray *)photos{
+//    if (!_photos) {
+//        _photos = [NSMutableArray array];
+//    }
+//    return _photos;
+//}
 // 地理编码对象
 - (CLGeocoder *)geocoder
 {
