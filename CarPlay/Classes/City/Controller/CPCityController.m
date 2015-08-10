@@ -379,7 +379,7 @@
                 photo.url = [NSURL URLWithString:urls[i]];
                 // 设置来源于哪一个UIImageView
                 NSLog(@"weit == %@",srcView.frameStr);
-                
+
                 photo.srcImageView = srcView;
                 [photos addObject:photo];
             }
@@ -483,7 +483,7 @@
         _coverBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_coverBtn addTarget:self action:@selector(coverBtnClick) forControlEvents:UIControlEventTouchUpInside];
         _coverBtn.backgroundColor = RGBACOLOR(0, 0, 0, 0.5);
-        _coverBtn.frame = self.view.bounds;
+        _coverBtn.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight - 64);
         [[UIApplication sharedApplication].keyWindow addSubview:_coverBtn];
         _coverBtn.hidden = YES;
     }
@@ -576,6 +576,8 @@
         [selectView showWithView:self.coverBtn];
         
         self.selectView = selectView;
+    }else{
+        [self selectViewCancleBtnClick:self.selectView];
     }
     
 }
