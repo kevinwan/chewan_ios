@@ -620,9 +620,28 @@
 
 // 编辑活动按钮
 - (IBAction)editorActive:(id)sender {
-    CPEditActivityController *vc = [UIStoryboard storyboardWithName:@"CPEditActivityController" bundle:nil].instantiateInitialViewController;
-    vc.data = [self.activeStatus keyValues]; // 字典
-    [self.navigationController pushViewController:vc animated:YES];
+    if ([self.editorActiveBtn.title isEqualToString:@"关注"]) {
+        NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+        
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        
+        NSString *postUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/activity/%@/subscribe?userId=%@&token=%@",self.activeId,self.userId,self.token];
+        
+        [manager POST:postUrl parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+            //
+//            NSLog(@"msg = %@",responseObject[@"errmsg"]);
+//            NSLog(@"关注成功");
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            //
+        }];
+        
+    }else{
+        CPEditActivityController *vc = [UIStoryboard storyboardWithName:@"CPEditActivityController" bundle:nil].instantiateInitialViewController;
+        vc.data = [self.activeStatus keyValues]; // 字典
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
     
 }
 
