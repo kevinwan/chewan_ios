@@ -342,7 +342,7 @@
     // 弹出图片浏览器
     if (cell.pictureDidSelected == nil) {
         __weak typeof(self) weakSelf = self;
-        cell.pictureDidSelected = ^(CPHomeStatus *status,NSIndexPath *path, UIImageView *srcView){
+        cell.pictureDidSelected = ^(CPHomeStatus *status,NSIndexPath *path, NSArray *srcView){
             
 //            // 清空photos中的数据
 //            [self.photos removeAllObjects];
@@ -372,15 +372,14 @@
             NSMutableArray *photos = [NSMutableArray array];
             NSUInteger count = urls.count;
             for (int i = 0; i<count; i++) {
-//                HMPhoto *pic = self.pic_urls[i];
-//                
+              
                 MJPhoto *photo = [[MJPhoto alloc] init];
                 // 设置图片的路径
                 photo.url = [NSURL URLWithString:urls[i]];
                 // 设置来源于哪一个UIImageView
-                NSLog(@"weit == %@",srcView.frameStr);
+//                NSLog(@"weit == %@",[srcView[i] frameStr]);
 
-                photo.srcImageView = srcView;
+                photo.srcImageView = srcView[i];
                 [photos addObject:photo];
             }
             browser.photos = photos;

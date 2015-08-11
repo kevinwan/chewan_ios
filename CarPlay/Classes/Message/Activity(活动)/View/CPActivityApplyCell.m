@@ -74,7 +74,17 @@
     if ([model.type isEqualToString:@"活动申请处理"]){
         self.tipMsgLabelWidth.constant = kScreenWidth -  150;
         if (model.carBrandLogo.length) {
-            self.offerSeatLabel.attributedText = model.seatText;
+            
+            // 如果不提供座位则不显示
+            if (model.seatText) {
+                self.offerSeatLabel.attributedText = model.seatText;
+                self.agreeBtnTopMargin.constant = 10;
+            }else{
+                // 调整同意按钮的位置为居中
+                self.offerSeatLabel.attributedText = nil;
+                self.agreeBtnTopMargin.constant = 20;
+            }
+            
             self.tipmsgLabel.attributedText = model.text;
             
             self.agreeBtnTopMargin.constant = 10;
@@ -128,15 +138,22 @@
 }
 
 
+
+
+#pragma mark - 可以多选的tableView
+
+/**
+ *  触发多选的通知
+ *
+ *  @param recognizer recognizer description
+ */
 - (void)longPress:(UILongPressGestureRecognizer *)recognizer
 {
     if (recognizer.state == UIGestureRecognizerStateBegan) {
-
+        
         [CPNotificationCenter postNotificationName:CPNewActivityMsgEditNotifycation object:nil userInfo:@{CPNewActivityMsgEditInfo : @(self.model.row)}];
     }
 }
-
-#pragma mark - 可以多选的tableView
 
 - (void) setCheckImageViewCenter:(CGPoint)pt alpha:(CGFloat)alpha animated:(BOOL)animated
 {

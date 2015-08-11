@@ -7,6 +7,7 @@
 //
 #define ZYToobarHeight 40
 #import "ZYPickView.h"
+#import "WMCustomDatePicker.h"
 
 @interface ZYPickView ()<UIPickerViewDelegate,UIPickerViewDataSource>
 @property(nonatomic,copy)NSString *plistName;
@@ -17,7 +18,7 @@
 @property(nonatomic,strong)NSDictionary *levelTwoDic;
 @property(nonatomic,strong)UIToolbar *toolbar;
 @property(nonatomic,strong)UIPickerView *pickerView;
-@property(nonatomic,strong)UIDatePicker *datePicker;
+@property(nonatomic,strong)WMCustomDatePicker *datePicker;
 @property(nonatomic,assign)NSDate *defaulDate;
 @property(nonatomic,assign)BOOL isHaveNavControler;
 @property(nonatomic,assign)NSInteger pickeviewHeight;
@@ -147,19 +148,37 @@
 }
 
 -(void)setUpDatePickerWithdatePickerMode:(UIDatePickerMode)datePickerMode{
-    UIDatePicker *datePicker=[[UIDatePicker alloc] init];
-    datePicker.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
-    datePicker.minimumDate = [NSDate date];
-    datePicker.datePickerMode = datePickerMode;
-    datePicker.backgroundColor=[UIColor whiteColor];
-    datePicker.tintColor = [UIColor blackColor];
-    if (_defaulDate) {
-        [datePicker setDate:_defaulDate];
-    }
-    _datePicker=datePicker;
-    datePicker.frame=CGRectMake(0, ZYToobarHeight, datePicker.frame.size.width, datePicker.frame.size.height);
-    _pickeviewHeight=datePicker.frame.size.height;
-    [self addSubview:datePicker];
+    
+    WMCustomDatePicker *datePicker  = [[WMCustomDatePicker alloc] init];
+    datePicker.datePickerStyle = WMDateStyle_YearMonthDayHourMinute;
+    datePicker.frame = CGRectMake(0, ZYToobarHeight, kScreenWidth, 216);
+//    datePicker.minLimitDate = [NSDate date];
+//    datePicker.tintColor = [UIColor blackColor];
+//    
+//    [datePicker setDatePickerStyle:UUDateStyle_YearMonthDayHourMinute];
+//    if (_defaulDate) {
+//        datePicker.ScrollToDate = _defaulDate;
+//    }
+    _pickeviewHeight = 216;
+        [self addSubview:datePicker];
+    _datePicker = datePicker;
+//    datePicker.frame=CGRectMake(0, ZYToobarHeight, datePicker.frame.size.width, datePicker.frame.size.height);
+//    _pickeviewHeight=datePicker.frame.size.height;
+
+    
+//    UIDatePicker *datePicker=[[UIDatePicker alloc] init];
+//    datePicker.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
+//    datePicker.minimumDate = [NSDate date];
+//    datePicker.datePickerMode = datePickerMode;
+//    datePicker.backgroundColor=[UIColor whiteColor];
+//    datePicker.tintColor = [UIColor blackColor];
+//    if (_defaulDate) {
+//        [datePicker setDate:_defaulDate];
+//    }
+//    _datePicker=datePicker;
+//    datePicker.frame=CGRectMake(0, ZYToobarHeight, datePicker.frame.size.width, datePicker.frame.size.height);
+//    _pickeviewHeight=datePicker.frame.size.height;
+//    [self addSubview:datePicker];
 }
 
 -(void)setUpToolBar{
@@ -237,7 +256,7 @@
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
     UILabel *lable = [[UILabel alloc] init];
-    lable.font = [UIFont systemFontOfSize:22];
+    lable.font = [UIFont systemFontOfSize:18];
     lable.textAlignment = NSTextAlignmentCenter;
     NSString *rowTitle=nil;
     if (_isLevelArray) {
@@ -350,12 +369,12 @@
     }else if (_datePicker) {
         
         NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-        if (_datePicker.datePickerMode == UIDatePickerModeDate) {
-            fmt.dateFormat = @"yyyy年MM月dd日";
-        }else if (_datePicker.datePickerMode == UIDatePickerModeDateAndTime){
-            fmt.dateFormat = @"yyyy年MM月dd日 HH:mm";
-        }
-        _resultString=[fmt stringFromDate:_datePicker.date];
+//        if (_datePicker.datePickerMode == UIDatePickerModeDate) {
+//            fmt.dateFormat = @"yyyy年MM月dd日";
+//        }else if (_datePicker.datePickerMode == UIDatePickerModeDateAndTime){
+//            fmt.dateFormat = @"yyyy年MM月dd日 HH:mm";
+//        }
+        _resultString=_datePicker.selectDateStr;
     }
     if ([self.delegate respondsToSelector:@selector(toobarDonBtnHaveClick:resultString:)]) {
         [self.delegate toobarDonBtnHaveClick:self resultString:_resultString];

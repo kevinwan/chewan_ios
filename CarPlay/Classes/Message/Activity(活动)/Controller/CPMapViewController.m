@@ -114,6 +114,7 @@
     self.navigationItem.title = @"选择活动地点";
     self.view.backgroundColor = [UIColor whiteColor];
     _mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
+    _mapView.zoomLevel = 17;
     _mapView.delegate = self;
     [_mapView setUserTrackingMode:MAUserTrackingModeFollow];
     
@@ -165,11 +166,11 @@
         CLLocationCoordinate2D center = annotation.coordinate;
         
         // 指定经纬度的跨度
-        MACoordinateSpan span = MACoordinateSpanMake(0.005,0.005);
-        MACoordinateRegion region = MACoordinateRegionMake(center, span);
+//        MACoordinateSpan span = MACoordinateSpanMake(0.005,0.005);
+//        MACoordinateRegion region = MACoordinateRegionMake(center, span);
         
         // 设置显示区域
-        [self.mapView setRegion:region animated:YES];
+        [self.mapView setCenterCoordinate:center animated:YES];
         [self.mapView addAnnotation:annotation];
     }
 }
@@ -186,9 +187,10 @@ updatingLocation:(BOOL)updatingLocation
     {
         if (self.orientationSuccess == NO && self.forValue== nil) {
             // 指定经纬度的跨度
-            MACoordinateSpan span = MACoordinateSpanMake(0.005,0.005);
-            MACoordinateRegion region = MACoordinateRegionMake(userLocation.coordinate, span);
-            [self.mapView setRegion:region animated:YES];
+//            MACoordinateSpan span = MACoordinateSpanMake(0.005,0.005);
+//            MACoordinateRegion region = MACoordinateRegionMake(userLocation.coordinate, span);
+//            [self.mapView setRegion:region animated:YES];
+            [self.mapView setCenterCoordinate:userLocation.coordinate animated:YES];
             self.orientationSuccess = YES;
         }
     }

@@ -11,7 +11,7 @@
                 <tabBarController id="YkE-OJ-caE" customClass="CPTabBarController" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="T0o-Gl-nCX">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="T0o-Gl-nCX" customClass="ZYTabBar">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

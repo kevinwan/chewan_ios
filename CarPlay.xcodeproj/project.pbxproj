@@ -236,6 +236,7 @@
 		E372D8571B62172400B4FC5C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E372D8561B62172400B4FC5C /* AppDelegate.m */; };
 		E372D85B1B62176C00B4FC5C /* MJNIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = E372D85A1B62176C00B4FC5C /* MJNIndexView.m */; };
 		E379E2E61B5DEC23001869AA /* CPEditImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E379E2E51B5DEC23001869AA /* CPEditImageView.m */; };
+		E38A5EA41B78847900B068D8 /* ZYTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E38A5EA31B78847900B068D8 /* ZYTabBar.m */; };
 		E3AE58C61B57E08800D8F0CA /* ZYNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AE58C31B57E08800D8F0CA /* ZYNetWorkManager.m */; };
 		E3AE58C71B57E08800D8F0CA /* ZYNetWorkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AE58C51B57E08800D8F0CA /* ZYNetWorkTool.m */; };
 		E3B127791B54D9C2005B1174 /* CPChatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B127781B54D9C2005B1174 /* CPChatButton.m */; };
@@ -291,6 +292,8 @@
 		E3CFB1541B72126A0058B8C3 /* ZYSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CFB1531B72126A0058B8C3 /* ZYSegmentControl.m */; };
 		E3CFB1571B7213580058B8C3 /* ZYSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CFB1561B7213580058B8C3 /* ZYSegment.m */; };
 		E3D879421B575EC200228356 /* CPTopViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D879411B575EC200228356 /* CPTopViewButton.m */; };
+		E3DAC9031B789AA3008B3BA3 /* WMCustomDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DAC9001B789AA3008B3BA3 /* WMCustomDatePicker.m */; };
+		E3DAC9041B789AA3008B3BA3 /* WMDatepicker_DateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DAC9021B789AA3008B3BA3 /* WMDatepicker_DateModel.m */; };
 		E3E104A71B675C910049CA4A /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E104A61B675C910049CA4A /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E3E104A91B675D520049CA4A /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E3E104A81B675D520049CA4A /* libicucore.dylib */; };
 		E3E1DBFD1B5C8CFB00386B18 /* ZYPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E1DBFC1B5C8CFB00386B18 /* ZYPickView.m */; };
@@ -738,6 +741,8 @@
 		E372D85A1B62176C00B4FC5C /* MJNIndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJNIndexView.m; sourceTree = "<group>"; };
 		E379E2E41B5DEC23001869AA /* CPEditImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPEditImageView.h; sourceTree = "<group>"; };
 		E379E2E51B5DEC23001869AA /* CPEditImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPEditImageView.m; sourceTree = "<group>"; };
+		E38A5EA21B78847900B068D8 /* ZYTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYTabBar.h; sourceTree = "<group>"; };
+		E38A5EA31B78847900B068D8 /* ZYTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYTabBar.m; sourceTree = "<group>"; };
 		E39435DB1B5CE4E100AF91BF /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		E3AE58C21B57E08800D8F0CA /* ZYNetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYNetWorkManager.h; sourceTree = "<group>"; };
 		E3AE58C31B57E08800D8F0CA /* ZYNetWorkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYNetWorkManager.m; sourceTree = "<group>"; };
@@ -851,6 +856,10 @@
 		E3CFB1561B7213580058B8C3 /* ZYSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYSegment.m; sourceTree = "<group>"; };
 		E3D879401B575EC200228356 /* CPTopViewButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTopViewButton.h; sourceTree = "<group>"; };
 		E3D879411B575EC200228356 /* CPTopViewButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTopViewButton.m; sourceTree = "<group>"; };
+		E3DAC8FF1B789AA3008B3BA3 /* WMCustomDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCustomDatePicker.h; sourceTree = "<group>"; };
+		E3DAC9001B789AA3008B3BA3 /* WMCustomDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCustomDatePicker.m; sourceTree = "<group>"; };
+		E3DAC9011B789AA3008B3BA3 /* WMDatepicker_DateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDatepicker_DateModel.h; sourceTree = "<group>"; };
+		E3DAC9021B789AA3008B3BA3 /* WMDatepicker_DateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDatepicker_DateModel.m; sourceTree = "<group>"; };
 		E3E104A51B675C910049CA4A /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		E3E104A61B675C910049CA4A /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		E3E104A81B675D520049CA4A /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
@@ -1028,6 +1037,7 @@
 		6B4EF1401B4036EE00292BD4 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				E3DAC8FE1B789AA3008B3BA3 /* WMCoustomDatepicker */,
 				E3E104A41B675C910049CA4A /* RegexKitLite */,
 				E3CE353B1B59E7FC008434B5 /* XLForm */,
 				E3AE58C11B57E08800D8F0CA /* ZYNetWorkTool */,
@@ -1669,6 +1679,8 @@
 				E3CE02751B68671800808698 /* UIViewController+ZY.m */,
 				E3E4FBE81B744F7A00E6E5F1 /* ZYTableViewCell.h */,
 				E3E4FBE91B744F7A00E6E5F1 /* ZYTableViewCell.m */,
+				E38A5EA21B78847900B068D8 /* ZYTabBar.h */,
+				E38A5EA31B78847900B068D8 /* ZYTabBar.m */,
 			);
 			path = ZYCustomView;
 			sourceTree = "<group>";
@@ -2168,6 +2180,17 @@
 			path = Validation;
 			sourceTree = "<group>";
 		};
+		E3DAC8FE1B789AA3008B3BA3 /* WMCoustomDatepicker */ = {
+			isa = PBXGroup;
+			children = (
+				E3DAC8FF1B789AA3008B3BA3 /* WMCustomDatePicker.h */,
+				E3DAC9001B789AA3008B3BA3 /* WMCustomDatePicker.m */,
+				E3DAC9011B789AA3008B3BA3 /* WMDatepicker_DateModel.h */,
+				E3DAC9021B789AA3008B3BA3 /* WMDatepicker_DateModel.m */,
+			);
+			path = WMCoustomDatepicker;
+			sourceTree = "<group>";
+		};
 		E3E104A41B675C910049CA4A /* RegexKitLite */ = {
 			isa = PBXGroup;
 			children = (
@@ -2495,6 +2518,7 @@
 				A57582071B6789E500A5E681 /* NSDictionary+Dealer.m in Sources */,
 				E36CC95E1B6C7D8B00380E53 /* CommonUtility.m in Sources */,
 				6BCF66121B6208C700358190 /* CPActivePicCell.m in Sources */,
+				E38A5EA41B78847900B068D8 /* ZYTabBar.m in Sources */,
 				6BCB13381B745B6F00CE6AEC /* CPTopButton.m in Sources */,
 				E3CE359A1B59E7FC008434B5 /* XLFormStepCounterCell.m in Sources */,
 				A57582151B6789E500A5E681 /* UIColor+SMFoundation.m in Sources */,
@@ -2598,6 +2622,7 @@
 				6BB09AA71B68B02900E0D77D /* CPPhotoalbumManagement.m in Sources */,
 				A57582091B6789E500A5E681 /* NSDate+SMFoundation.m in Sources */,
 				E35B04731B565532002C6655 /* SDWebImageManager+MJ.m in Sources */,
+				E3DAC9041B789AA3008B3BA3 /* WMDatepicker_DateModel.m in Sources */,
 				E35E6FC71B54AFB8001212D6 /* CPMyPublishController.m in Sources */,
 				E36C962A1B53C80900D3EDBB /* CPCancleSubBtn.m in Sources */,
 				E3CE02791B6885BB00808698 /* CPNewMsgModel.m in Sources */,
@@ -2678,6 +2703,7 @@
 				E372D82E1B6216C100B4FC5C /* CPNewPassWordViewController.m in Sources */,
 				E3C611491B5F328C00B7E73A /* CPCreatActivityModel.m in Sources */,
 				E35B04701B565532002C6655 /* MJPhotoProgressView.m in Sources */,
+				E3DAC9031B789AA3008B3BA3 /* WMCustomDatePicker.m in Sources */,
 				E3CE35901B59E7FC008434B5 /* XLFormButtonCell.m in Sources */,
 				A57581AC1B6789C500A5E681 /* MembersManageController.m in Sources */,
 				E35E6FCA1B54B076001212D6 /* CPMyPublishCell.m in Sources */,
