@@ -127,7 +127,7 @@
     self.moneyBtn.centerY = self.dateBtn.centerYInSuper;
     
     self.addressBtn.x = 0;
-    self.addressBtn.y = btnH;
+    self.addressBtn.y = btnH +4;
     self.addressBtn.width = self.width;
     self.addressBtn.height = btnH;
     
@@ -140,7 +140,7 @@
     
     CGFloat bottomViewH = self.height * 0.5;
 
-    self.bottomView.frame = CGRectMake(0, self.height * 0.4 + 10, self.width, bottomViewH);
+    self.bottomView.frame = CGRectMake(0, self.height * 0.4 + 14, self.width, bottomViewH);
     
     self.chatBtn.x = self.width - self.chatBtn.width - 10;
     self.chatBtn.centerY = self.bottomView.centerYInSelf;
@@ -166,7 +166,7 @@
 {
     _model = model;
     
-    [self.dateBtn setTitle:model.startDate forState:UIControlStateNormal];
+    [self.dateBtn setTitle:model.startDateStr forState:UIControlStateNormal];
     [self.addressBtn setTitle:model.location forState:UIControlStateNormal];
     [self.moneyBtn setTitle:model.pay forState:UIControlStateNormal];
     

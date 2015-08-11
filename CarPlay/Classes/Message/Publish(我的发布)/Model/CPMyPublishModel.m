@@ -16,6 +16,14 @@
     return @{@"members" : [CPOrganizer class], @"cover" : [HMPhoto class]};
 }
 
+- (void)setStartDate:(NSTimeInterval)startDate
+{
+    _startDate = startDate;
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    fmt.dateFormat = @"yyyy-MM-dd HH:mm";
+    _startDateStr = [fmt stringFromDate:[NSDate dateWithTimeIntervalSince1970:startDate / 1000]];
+}
+
 - (void)setPublishDate:(NSString *)publishDate
 {
     NSArray *arr = [publishDate componentsSeparatedByString:@"."];

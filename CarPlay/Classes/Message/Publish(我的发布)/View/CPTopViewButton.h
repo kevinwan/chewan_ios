@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CPTopViewButton : UIButton
-
+@property (nonatomic, copy) NSString *text;
 @end

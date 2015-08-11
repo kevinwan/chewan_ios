@@ -35,16 +35,6 @@
     }
 }
 
--(void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
-    if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
-        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
-    }
-    if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
-        [self.tableView setLayoutMargins:UIEdgeInsetsZero];
-    }
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -72,6 +62,13 @@
         float totalSize = [[SDImageCache sharedImageCache] getSize];
         cell.valueLable.text=[[NSString alloc]initWithFormat:@"%.2fM",totalSize/1024/1024];
     }
+//    if (indexPath.row==3) {
+//        UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(0, 51, SCREEN_WIDTH, 1)];
+//        label.backgroundColor=[Tools getColor:@""];
+//        
+//        [cell addSubview:label];
+//    }
+    
     return cell;
 }
 
@@ -95,17 +92,6 @@
     }
 }
 
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-        [cell setSeparatorInset:UIEdgeInsetsZero];
-    }
-    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-        [cell setLayoutMargins:UIEdgeInsetsZero];
-    }
-    if([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]){
-        [cell setPreservesSuperviewLayoutMargins:NO];
-    }
-}
 - (IBAction)loginOutBtnClick:(id)sender {
     if ([Tools getValueFromKey:@"userId"]) {
         [Tools setValueForKey:nil key:@"userId"];

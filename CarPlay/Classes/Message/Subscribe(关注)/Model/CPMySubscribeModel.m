@@ -18,6 +18,17 @@
     return @{@"members" : [CPOrganizer class], @"cover" : [HMPhoto class]};
 }
 
+- (void)setLocation:(NSString *)location
+{
+    _location = [location copy];
+    
+    if (location.length > 6) {
+        _sixLocation = [[location substringToIndex:6] stringByAppendingString:@"..."];
+    }else{
+        _sixLocation = [location copy];
+    }
+}
+
 - (void)setStart:(long long)start
 {
     _start = start;
@@ -25,7 +36,7 @@
     NSDate *currentDate = [NSDate dateWithTimeIntervalSince1970:start / 1000];
     NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
 
-    fmt.dateFormat = @"MM月dd日 HH:mm";
+    fmt.dateFormat = @"yyyy-MM-dd HH:mm";
     self.startStr = [fmt stringFromDate:currentDate];
 }
 
@@ -58,22 +69,22 @@
     
     if ([createDate isThisYear]) { // 今年
         if ([createDate isYesterday]) { // 昨天
-            fmt.dateFormat = @"昨天 HH:mm";
-            return [fmt stringFromDate:createDate];
+            return @"昨天";
         } else if ([createDate isToday]) { // 今天
             if (cmps.hour >= 1) {
-                return [NSString stringWithFormat:@"%d小时前", (int)cmps.hour];
+                fmt.dateFormat = @"HH:mm";
+                return [fmt stringFromDate:createDate];;
             } else if (cmps.minute >= 1) {
                 return [NSString stringWithFormat:@"%d分钟前", (int)cmps.minute];
             } else {
                 return @"刚刚";
             }
         } else { // 今年的其他日子
-            fmt.dateFormat = @"MM-dd HH:mm";
+            fmt.dateFormat = @"yyyy-MM-dd";
             return [fmt stringFromDate:createDate];
         }
     } else { // 非今年
-        fmt.dateFormat = @"yyyy-MM-dd HH:mm";
+        fmt.dateFormat = @"yyyy-MM-dd";
         return [fmt stringFromDate:createDate];
     }
 }

@@ -39,12 +39,15 @@
         self.brandLabel = [[UILabel alloc] initWithFrame:CGRectMake(_brandImage.right + 10.0f, 0.0f, 300.0f, frame.size.height)];
         _brandLabel.backgroundColor = [UIColor clearColor];
         _brandLabel.font = [UIFont systemFontOfSize:16.0f];
-//        _brandLabel.textColor = [AppAppearance textMediumColor];
+        _brandLabel.textColor = [Tools getColor:@"434a53"];
         [self addSubview:_brandLabel];
         
         UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(12.0f, frame.size.height - 0.5f, frame.size.width, 0.5f)];
 //        lineView.backgroundColor = [AppAppearance backgroundColor];
         [self addSubview:lineView];
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, frame.size.height-0.5, SCREEN_WIDTH, .5)];
+        line.backgroundColor = [Tools getColor:@"e6e9ed"];
+        [self addSubview:line];
     }
     
     return self;

@@ -87,7 +87,7 @@
     
     UIView *cicleView = [[UIView alloc] init];
     cicleView.backgroundColor = [Tools getColor:@"48d1d5"];
-    cicleView.layer.cornerRadius = 3;
+    cicleView.layer.cornerRadius = 2.5;
     cicleView.clipsToBounds = YES;
     [self.contentView addSubview:cicleView];
     self.cycleView = cicleView;
@@ -132,8 +132,8 @@
     self.timeLine.height = frameModel.cellHeight - timeLineY;
     self.timeLine.y = timeLineY;
     
-    self.cycleView.width = 6;
-    self.cycleView.height = 6;
+    self.cycleView.width = 5;
+    self.cycleView.height = 5;
     self.cycleView.centerX = self.timeLine.centerXInSuper;
     self.cycleView.centerY = self.timeStampLabel.centerYInSuper;
     

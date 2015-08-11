@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPRegisterCellsTableViewCell3 : UITableViewCell
+@interface CPRegisterCellsTableViewCell3 : ZYTableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *arrowImgView;
 @property (weak, nonatomic) IBOutlet UILabel *cellTitle;
 @property (weak, nonatomic) IBOutlet UILabel *cellContent;

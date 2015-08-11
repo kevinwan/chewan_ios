@@ -15,8 +15,8 @@
 
 #define HMStatusPhotosMaxCount 9
 #define HMStatusPhotosMaxCols(photosCount) ((photosCount==4)?2:3)
-#define HMStatusPhotoMargin 6
-#define HMPhotoWH 60
+#define HMStatusPhotoMargin 3
+#define HMPhotoWH 78
 
 @interface HMStatusPhotosView()
 @end
@@ -95,12 +95,16 @@
     
     NSUInteger count = self.pic_urls.count;
     int maxCols = HMStatusPhotosMaxCols(count);
+    int column = 0;
+    int row = 0;
     for (int i = 0; i<count; i++) {
         HMStatusPhotoView *photoView = self.subviews[i];
         photoView.width = HMPhotoWH;
         photoView.height = HMPhotoWH;
-        photoView.x = (i % maxCols) * (HMPhotoWH + HMStatusPhotoMargin);
-        photoView.y = (i / maxCols) * (HMPhotoWH + HMStatusPhotoMargin);
+        column = i % maxCols;
+        row =  i / maxCols;
+        photoView.x = (column * HMStatusPhotoMargin) + (column * HMPhotoWH);
+        photoView.y = (row * HMStatusPhotoMargin) + (row *HMPhotoWH);
     }
 }
 

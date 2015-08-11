@@ -37,7 +37,7 @@
     
     self.tableView.tableFooterView = [[UIView alloc] init];
 //    if ([self.hisUserId isEqualToString:[Tools getValueFromKey:@"userId"]]){
-    self.navigationItem.title = @"我的关注";
+    self.navigationItem.title = @"我的收藏";
 //    }else{
 //        self.navigationItem.title = @"他的关注";
 //    }
@@ -149,6 +149,11 @@
     CPMySubscribeCell *cell = [CPMySubscribeCell cellWithTableView:tableView];
     cell.frameModel = self.frameModels[indexPath.row];
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

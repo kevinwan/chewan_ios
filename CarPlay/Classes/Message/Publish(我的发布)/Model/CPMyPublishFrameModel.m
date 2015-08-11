@@ -46,7 +46,7 @@
     }
     
     CGFloat bottomViewX = contentLbX;
-    CGFloat bottomViewY = _cellHeight + 5;
+    CGFloat bottomViewY = _cellHeight + 8;
     CGFloat bottomViewW = kScreenWidth - contentLbX - KMargin;
     CGFloat bottomViewH = 80;
     self.bottomViewF = CGRectMake(bottomViewX, bottomViewY, bottomViewW, bottomViewH);

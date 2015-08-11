@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "CPForgetPasswordViewController.h"
 #import "registerViewController.h"
+#import "CPMySubscribeModel.h"
 
 @interface LoginViewController ()
 
@@ -69,6 +70,10 @@
                     [Tools setValueForKey:@(YES) key:NOTIFICATION_HASLOGIN];
                     [Tools setValueForKey:self.userPhone.text key:@"phone"];
                     [Tools setValueForKey:password key:@"password"];
+                    
+                    CPOrganizer *organizer= [CPOrganizer objectWithKeyValues:data];
+                    NSString *fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"userId"]];
+                    [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
                     [hud hide:YES];
                 }else{
                     NSString *errmsg =[responseObject objectForKey:@"errmsg"];

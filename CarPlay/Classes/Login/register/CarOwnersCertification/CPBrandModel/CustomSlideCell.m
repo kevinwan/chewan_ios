@@ -20,7 +20,7 @@
 
 + (CGFloat)standardHeight
 {
-    return 40.0f;
+    return 45.0f;
 }
 
 
@@ -30,10 +30,13 @@
     if (self) {
         self.carNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(12, 0, kScreenWidth - 120-12-5, [CustomSlideCell standardHeight])];
         _carNameLabel.backgroundColor = [UIColor clearColor];
-//        _carNameLabel.font = [AppAppearance textMediumFont];
-//        _carNameLabel.textColor = [AppAppearance textDarkColor];
+        _carNameLabel.font = [UIFont systemFontOfSize:14.0f];
+        _carNameLabel.textColor=[Tools getColor:@"656c78"];
         _carNameLabel.numberOfLines = 0;
         [self.contentView addSubview:_carNameLabel];
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 44.5, SCREEN_WIDTH, .5)];
+        line.backgroundColor = [Tools getColor:@"e6e9ed"];
+        [self.contentView addSubview:line];
     }
     return self;
 }
