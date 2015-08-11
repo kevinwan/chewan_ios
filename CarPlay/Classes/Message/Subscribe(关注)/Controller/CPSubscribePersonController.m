@@ -55,6 +55,8 @@
     [super viewWillAppear:animated];
     
     [CPNotificationCenter addObserver:self selector:@selector(userIconClick:) name:CPClickUserIconNotification object:nil];
+    
+    [CPNotificationCenter addObserver:self selector:@selector(cancleSubscribe:) name:CPCancleSubscribeNotify object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -125,9 +127,14 @@
     NSUInteger row = [notify.userInfo[CPCancleSubscribeInfo] intValue];
     if (self.datas.count > 0) {
         [self showSuccess:@"取消成功"];
-        [self.datas removeObjectAtIndex:row];
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
-        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.datas removeObjectAtIndex:row];
+            if (self.datas.count) {
+                [self.tableView reloadData];
+            }else{
+                [self showNoSubscribe];
+            }
+        });
     }
 }
 
@@ -144,14 +151,6 @@
     cell.row = indexPath.row;
     cell.model = self.datas[indexPath.row];
     return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    CPMySubscribeController *vc = [[CPMySubscribeController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-    
 }
 
 - (void)userIconClick:(NSNotification *)notify

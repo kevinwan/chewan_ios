@@ -32,7 +32,7 @@
 - (void)setUp
 {
     self.layer.cornerRadius = 12;
-    self.titleLabel.font = [UIFont systemFontOfSize:12];
+    self.titleLabel.font = [UIFont systemFontOfSize:14];
     self.clipsToBounds = YES;
     self.selected = NO;
     

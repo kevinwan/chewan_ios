@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *descLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *carLogoView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *carLogoWitdh;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *descLabelXConstrant;
 
 @end
 
@@ -42,8 +43,11 @@
     if (model.carBrandLogo){
         [self.carLogoView sd_setImageWithURL:[NSURL URLWithString:model.carBrandLogo]];
         self.carLogoWitdh.constant = 15;
+        self.descLabelXConstrant.constant = 30;
     }else{
         self.carLogoWitdh.constant = 0;
+        self.descLabelXConstrant.constant = 10;
+        
     }
     
     self.descLabel.text = model.descStr;

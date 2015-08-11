@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Qwo-Hc-Pbx" customClass="CPNoNet">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="网" translatesAutoresizingMaskIntoConstraints="NO" id="jG3-Tb-fZL">
+                    <rect key="frame" x="117.5" y="88" width="85" height="85"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="85" id="DCT-qV-hkY"/>
+                        <constraint firstAttribute="width" constant="85" id="fEA-gh-cYQ"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="网络错误" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="clY-ZI-oJi" userLabel="网络原因">
+                    <rect key="frame" x="124" y="193" width="72" height="21.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <color key="textColor" red="0.26274509800000001" green="0.2901960784" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前网络不可用，请检查网络哦~" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4c-iT-8dS" userLabel="网络原因描述">
+                    <rect key="frame" x="57.5" y="224.5" width="205" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.66666666669999997" green="0.69803921570000005" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lx6-CF-CDR">
+                    <rect key="frame" x="80" y="261.5" width="160" height="40"/>
+                    <color key="backgroundColor" red="0.28235294119999998" green="0.81960784310000001" blue="0.83529411760000005" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="160" id="A8C-LL-4kg"/>
+                        <constraint firstAttribute="height" constant="40" id="kfW-94-Sbo"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="重新加载">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="reloadData:" destination="Qwo-Hc-Pbx" eventType="touchUpInside" id="Won-fa-aYb"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="f4c-iT-8dS" firstAttribute="top" secondItem="clY-ZI-oJi" secondAttribute="bottom" constant="10" id="2fg-yq-quW"/>
+                <constraint firstItem="lx6-CF-CDR" firstAttribute="leading" secondItem="Qwo-Hc-Pbx" secondAttribute="leading" constant="80" id="3V1-19-YHz"/>
+                <constraint firstItem="jG3-Tb-fZL" firstAttribute="leading" secondItem="Qwo-Hc-Pbx" secondAttribute="leading" constant="117.5" id="Jnq-HQ-ZOY"/>
+                <constraint firstItem="clY-ZI-oJi" firstAttribute="top" secondItem="jG3-Tb-fZL" secondAttribute="bottom" constant="20" id="RjG-ah-Xxq"/>
+                <constraint firstItem="lx6-CF-CDR" firstAttribute="top" secondItem="f4c-iT-8dS" secondAttribute="bottom" constant="20" id="Zrk-Xe-h8i"/>
+                <constraint firstItem="jG3-Tb-fZL" firstAttribute="top" secondItem="Qwo-Hc-Pbx" secondAttribute="top" constant="88" id="byh-4N-a4R"/>
+                <constraint firstAttribute="centerX" secondItem="clY-ZI-oJi" secondAttribute="centerX" id="qpV-cv-AAA"/>
+                <constraint firstAttribute="centerX" secondItem="f4c-iT-8dS" secondAttribute="centerX" id="yU2-E0-IEr"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="reloadDataBtn" destination="lx6-CF-CDR" id="XSl-l2-jlL"/>
+            </connections>
+            <point key="canvasLocation" x="167" y="257"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="网" width="85" height="85"/>
+    </resources>
+</document>

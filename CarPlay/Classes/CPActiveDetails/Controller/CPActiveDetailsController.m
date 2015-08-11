@@ -159,13 +159,14 @@
     headView.frame = CGRectMake(headViewX, headViewY, headViewW, headViewH);
     
     if (headView.goTaDetails == nil) {
+        __weak typeof(self) weakSelf = self;
         headView.goTaDetails = ^{
             UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil];
             
             CPTaDetailsController *taViewController = sb.instantiateInitialViewController;
             taViewController.targetUserId = self.createrId;
             
-            [self.navigationController pushViewController:taViewController animated:YES];
+            [weakSelf.navigationController pushViewController:taViewController animated:YES];
 
         };
     }
