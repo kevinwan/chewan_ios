@@ -588,7 +588,7 @@
                             NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/join",self.activeId];
                             [CPNetWorkTool postJsonWithUrl:urlStr params:nil success:^(id responseObject) {
                                 if ([responseObject operationSuccess]) {
-                                    [self.view alert:@"请求成功"];
+                                    [self.view alert:@"请求成功,等待同意"];
                                 } else {
                                     [self.view alertError:responseObject];
                                 }
