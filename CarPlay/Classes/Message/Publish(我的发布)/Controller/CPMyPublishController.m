@@ -59,12 +59,18 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self reRefreshData];
+}
+
 /**
  *  添加底部时间线,监听刷新状态
  */
 - (void)addBottomTimeLine
 {
-
     UIView *timeLine = [UIView new];
     timeLine.backgroundColor = CPColor(200, 200, 200, 0.5);;
     timeLine.width = 1;
