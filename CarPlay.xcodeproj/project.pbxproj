@@ -146,8 +146,8 @@
 		A575821A1B6789E500A5E681 /* UITextField+SMFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = A57581FF1B6789E500A5E681 /* UITextField+SMFoundation.m */; };
 		A575821C1B6789E500A5E681 /* UIView+SMFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = A57582031B6789E500A5E681 /* UIView+SMFoundation.m */; };
 		A575821D1B6789E500A5E681 /* UIView+Dealer.m in Sources */ = {isa = PBXBuildFile; fileRef = A57582051B6789E500A5E681 /* UIView+Dealer.m */; };
-		A5F515431B705E7400690802 /* CPOfferCar.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F515411B705E7300690802 /* CPOfferCar.m */; };
-		A5F515441B705E7400690802 /* CPOfferCar.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5F515421B705E7400690802 /* CPOfferCar.xib */; };
+		A59705911B78CB9D0025B9DB /* CPActiveOfferCar.m in Sources */ = {isa = PBXBuildFile; fileRef = A597058F1B78CB9D0025B9DB /* CPActiveOfferCar.m */; };
+		A59705921B78CB9D0025B9DB /* CPActiveOfferCar.xib in Resources */ = {isa = PBXBuildFile; fileRef = A59705901B78CB9D0025B9DB /* CPActiveOfferCar.xib */; };
 		A5F515791B71E53100690802 /* NSString+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F515781B71E53100690802 /* NSString+Size.m */; };
 		AD5690C45A77A4D82E40CA3F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E1F11B43C6536981B4E2558 /* libPods.a */; };
 		E30BD57E1B54EBEB00FD9030 /* CPMySubscribeController.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD57D1B54EBEB00FD9030 /* CPMySubscribeController.m */; };
@@ -589,9 +589,9 @@
 		A57582031B6789E500A5E681 /* UIView+SMFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SMFoundation.m"; sourceTree = "<group>"; };
 		A57582041B6789E500A5E681 /* UIView+Dealer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Dealer.h"; sourceTree = "<group>"; };
 		A57582051B6789E500A5E681 /* UIView+Dealer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Dealer.m"; sourceTree = "<group>"; };
-		A5F515401B705E7300690802 /* CPOfferCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPOfferCar.h; sourceTree = "<group>"; };
-		A5F515411B705E7300690802 /* CPOfferCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPOfferCar.m; sourceTree = "<group>"; };
-		A5F515421B705E7400690802 /* CPOfferCar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPOfferCar.xib; sourceTree = "<group>"; };
+		A597058E1B78CB9D0025B9DB /* CPActiveOfferCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActiveOfferCar.h; sourceTree = "<group>"; };
+		A597058F1B78CB9D0025B9DB /* CPActiveOfferCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActiveOfferCar.m; sourceTree = "<group>"; };
+		A59705901B78CB9D0025B9DB /* CPActiveOfferCar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPActiveOfferCar.xib; sourceTree = "<group>"; };
 		A5F515771B71E53100690802 /* NSString+Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Size.h"; sourceTree = "<group>"; };
 		A5F515781B71E53100690802 /* NSString+Size.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Size.m"; sourceTree = "<group>"; };
 		E30BD57C1B54EBEB00FD9030 /* CPMySubscribeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMySubscribeController.h; sourceTree = "<group>"; };
@@ -1382,9 +1382,9 @@
 				6BCF65F01B6208C700358190 /* CPActiveDetailsController.h */,
 				6BCF65F11B6208C700358190 /* CPActiveDetailsController.m */,
 				6BCF65F21B6208C700358190 /* CPActiveDetailsController.storyboard */,
-				A5F515401B705E7300690802 /* CPOfferCar.h */,
-				A5F515411B705E7300690802 /* CPOfferCar.m */,
-				A5F515421B705E7400690802 /* CPOfferCar.xib */,
+				A597058E1B78CB9D0025B9DB /* CPActiveOfferCar.h */,
+				A597058F1B78CB9D0025B9DB /* CPActiveOfferCar.m */,
+				A59705901B78CB9D0025B9DB /* CPActiveOfferCar.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2404,8 +2404,8 @@
 				6B9CFD761B71D95200EF167D /* CPAbout.storyboard in Resources */,
 				E372D8351B6216C100B4FC5C /* CPBrandModelViewController.xib in Resources */,
 				E372D8461B6216C100B4FC5C /* serviceTermsViewController.xib in Resources */,
+				A59705921B78CB9D0025B9DB /* CPActiveOfferCar.xib in Resources */,
 				6BCB13451B74B0B500CE6AEC /* CPNoNetwork.storyboard in Resources */,
-				A5F515441B705E7400690802 /* CPOfferCar.xib in Resources */,
 				E35B046D1B565532002C6655 /* MJPhotoBrowser.bundle in Resources */,
 				6BB09AA81B68B02900E0D77D /* CPPhotoalbumManagement.xib in Resources */,
 				6BB09A8A1B6669F800E0D77D /* CPSettingTableViewController.xib in Resources */,
@@ -2548,6 +2548,7 @@
 				A57581CE1B6789D500A5E681 /* offerCar.m in Sources */,
 				E3E4FBEA1B744F7A00E6E5F1 /* ZYTableViewCell.m in Sources */,
 				E3E1DBFD1B5C8CFB00386B18 /* ZYPickView.m in Sources */,
+				A59705911B78CB9D0025B9DB /* CPActiveOfferCar.m in Sources */,
 				E3D879421B575EC200228356 /* CPTopViewButton.m in Sources */,
 				6BCB3C7C1B750E680010842D /* CPNoNetwork.m in Sources */,
 				6B9CFD5D1B6CAD8200EF167D /* CPHowToPlayViewController.m in Sources */,
@@ -2668,7 +2669,6 @@
 				E35B04761B566366002C6655 /* CPPayButton.m in Sources */,
 				6BB09A891B6669F800E0D77D /* CPSettingTableViewController.m in Sources */,
 				6B5F9B701B5D29FE00F9D1E8 /* CPHomeStatus.m in Sources */,
-				A5F515431B705E7400690802 /* CPOfferCar.m in Sources */,
 				A575820B1B6789E500A5E681 /* NSFileManager+SMFoundation.m in Sources */,
 				A57582181B6789E500A5E681 /* UILabel+SMFoundation.m in Sources */,
 				E372D8371B6216C100B4FC5C /* CustomSectionView.m in Sources */,
