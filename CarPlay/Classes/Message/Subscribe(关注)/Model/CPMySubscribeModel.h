@@ -38,6 +38,9 @@
 
 @property (nonatomic, copy) NSString *location;
 
+// sixLocation 只有六个字的location
+@property (nonatomic, copy) NSString *sixLocation;
+
 @property (nonatomic, strong) NSArray *cover;
 
 @property (nonatomic, assign) long long publishTime;

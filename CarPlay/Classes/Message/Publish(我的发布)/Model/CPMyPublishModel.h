@@ -13,7 +13,10 @@
 @class CPOrganizer;
 @interface CPMyPublishModel : NSObject
 
-@property (nonatomic, copy) NSString *startDate;
+@property (nonatomic, assign) NSTimeInterval startDate;
+
+// 创建活动的时间戳
+@property (nonatomic, copy) NSString *startDateStr;
 
 @property (nonatomic, strong) NSArray *members;
 

@@ -33,7 +33,7 @@
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Iu-1p-I3J">
-                                            <rect key="frame" x="90" y="41" width="140" height="17"/>
+                                            <rect key="frame" x="90" y="40" width="140" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="17" id="DhX-sT-nfF"/>
                                             </constraints>
@@ -79,17 +79,17 @@
                                             </state>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yBU-ZA-7o3">
-                                            <rect key="frame" x="70" y="41" width="15" height="15"/>
+                                            <rect key="frame" x="70" y="42" width="14" height="14"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="15" id="xkU-ep-Pda"/>
-                                                <constraint firstAttribute="height" constant="15" id="ylx-cE-hgU"/>
+                                                <constraint firstAttribute="width" constant="14" id="xkU-ep-Pda"/>
+                                                <constraint firstAttribute="height" constant="14" id="ylx-cE-hgU"/>
                                             </constraints>
                                         </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="yBU-ZA-7o3" firstAttribute="top" secondItem="0uZ-N9-UGe" secondAttribute="bottom" constant="5" id="1ya-3D-Tan"/>
+                                        <constraint firstItem="yBU-ZA-7o3" firstAttribute="top" secondItem="0uZ-N9-UGe" secondAttribute="bottom" constant="6" id="1ya-3D-Tan"/>
                                         <constraint firstItem="yBU-ZA-7o3" firstAttribute="leading" secondItem="TJX-ag-TPq" secondAttribute="trailing" constant="10" id="4or-bc-6VZ"/>
-                                        <constraint firstItem="9Iu-1p-I3J" firstAttribute="top" secondItem="0uZ-N9-UGe" secondAttribute="bottom" constant="5" id="5vs-Lu-O3i"/>
+                                        <constraint firstItem="9Iu-1p-I3J" firstAttribute="top" secondItem="0uZ-N9-UGe" secondAttribute="bottom" constant="4" id="5vs-Lu-O3i"/>
                                         <constraint firstItem="0uZ-N9-UGe" firstAttribute="leading" secondItem="TJX-ag-TPq" secondAttribute="trailing" constant="10" id="6wN-4e-M03"/>
                                         <constraint firstItem="0uZ-N9-UGe" firstAttribute="top" secondItem="2Ia-d6-q6R" secondAttribute="top" constant="16" id="7q9-KZ-eWL"/>
                                         <constraint firstItem="TJX-ag-TPq" firstAttribute="leading" secondItem="2Ia-d6-q6R" secondAttribute="leading" constant="10" id="Czd-sX-6VQ"/>

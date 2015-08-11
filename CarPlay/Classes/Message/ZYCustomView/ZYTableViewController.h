@@ -57,4 +57,9 @@
  */
 - (void)reRefreshData;
 
+/**
+ *  去创建活动
+ */
+- (void)createActivity;
+
 @end
