@@ -13,6 +13,8 @@
 #import "CPEditUsernameViewController.h"
 #import "ZHPickView.h"
 #import "CarOwnersCertificationViewController.h"
+#import "CPMySubscribeModel.h"
+#import "UIButton+WebCache.h"
 
 @interface CPRegisterStep2ViewController ()<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate,ZHPickViewDelegate>
 {
@@ -20,6 +22,8 @@
     int brithYear;
     int birthMonth;
     int birthDay;
+    NSString *fileName;
+    CPOrganizer *organizer;
 }
 @end
 
@@ -27,6 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"phone"]];
     photoId=[[NSString alloc]init];
     self.nextStepBtn.layer.cornerRadius=3.0;
     self.nextStepBtn.layer.masksToBounds=YES;
@@ -45,6 +50,12 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    
+    organizer = [NSKeyedUnarchiver unarchiveObjectWithFile:CPDocmentPath(fileName)];
+    if (organizer && organizer.headImgUrl) {
+        NSURL *url=[[NSURL alloc]initWithString:organizer.headImgUrl];
+        [self.userIconBtn sd_setImageWithURL:url forState:UIControlStateNormal];
+    }
     [self.tableView reloadData];
 }
 
@@ -76,7 +87,7 @@
         }
         [cell0.checkManBtn addTarget:nil action:@selector(checkSex:) forControlEvents:UIControlEventTouchUpInside];
         [cell0.checkWomanBtn addTarget:nil action:@selector(checkSex:) forControlEvents:UIControlEventTouchUpInside];
-        if ([[Tools getValueFromKey:@"gender"] isEqualToString:@"女"]) {
+        if (organizer && [organizer.gender isEqualToString:@"女"]) {
             [cell0.checkManBtn setImage:[UIImage imageNamed:@"sexUnchecked"] forState:UIControlStateNormal];
             [cell0.checkManBtn setTitleColor:[Tools getColor:@"aab2bd"] forState:UIControlStateNormal];
             [cell0.checkWomanBtn setImage:[UIImage imageNamed:@"sexChecked"] forState:UIControlStateNormal];
@@ -85,12 +96,12 @@
         
         cell=cell0;
     }else if (indexPath.row==1) {
-        CPRegisterCellsTableViewCell1 *cell1=[tableView dequeueReusableCellWithIdentifier:CPRegisterCellsTableViewCell2Identifier];
+        CPRegisterCellsTableViewCell1 *cell1=[tableView dequeueReusableCellWithIdentifier:CPRegisterCellsTableViewCell1Identifier];
         if (cell1 == nil) {
             cell1 = [[[NSBundle mainBundle] loadNibNamed:@"CPRegisterCellsTableViewCell1" owner:nil options:nil] lastObject];
         }
-        if ([Tools getValueFromKey:@"nickname"]) {
-            cell1.cellContent.text=[Tools getValueFromKey:@"nickname"];
+        if (organizer) {
+            cell1.cellContent.text=organizer.nickname;
         }
         cell=cell1;
     }else{
@@ -101,9 +112,14 @@
         
         if (indexPath.row==3) {
             cell3.cellTitle.text=@"城市";
-            cell3.cellContent.text=[Tools getValueFromKey:@"cityAndDistrict"];
+            if (organizer.cityAndDistrict) {
+                 cell3.cellContent.text=organizer.cityAndDistrict;
+            }
+           
         }else{
-            cell3.cellContent.text=[Tools getValueFromKey:@"age"];
+            if (organizer.age) {
+                cell3.cellContent.text=[[NSString alloc]initWithFormat:@"%ld岁",(long)organizer.age];
+            }
         }
         cell=cell3;
     }
@@ -174,7 +190,6 @@
         CPEditUsernameViewController *CPEditUsernameVC=[[CPEditUsernameViewController alloc]init];
         CPEditUsernameVC.title=@"昵称";
         [self.navigationController pushViewController:CPEditUsernameVC animated:YES];
-//        [self presentViewController:CPEditUsernameVC animated:YES completion:nil];
     }
 }
 
@@ -193,23 +208,50 @@
     if (_indexPath.row==2) {
         double age=[resultString doubleValue]/31536000;
         cell.cellContent.text=[[NSString alloc]initWithFormat:@"%.0f岁",0-age];
-        [Tools setValueForKey:[[NSString alloc]initWithFormat:@"%.0f岁",0-age] key:@"age"];
         NSDate *brithDay=[[NSDate alloc]initWithTimeIntervalSinceNow:[resultString doubleValue]];
         NSCalendar* calendar = [NSCalendar currentCalendar];
         NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:brithDay]; // Get necessary date components
-        brithYear=[components year];
-        birthMonth=[components month];
-        birthDay=[components day];
+
+        [Tools setValueForKey:[[NSString alloc]initWithFormat:@"%.0f岁",0-age] key:@"age"];
+        if (organizer) {
+            organizer.age=0-age;
+            organizer.brithYear=[components year];
+            organizer.birthMonth=[components month];
+            organizer.birthDay=[components day];
+            [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
+            organizer.brithYear=[components year];
+            organizer.birthMonth=[components month];
+            organizer.birthDay=[components day];
+        }else{
+            CPOrganizer *organizer1=[[CPOrganizer alloc]init];
+            organizer1.age=0-age;
+            organizer1.brithYear=[components year];
+            organizer1.birthMonth=[components month];
+            organizer1.birthDay=[components day];
+            [NSKeyedArchiver archiveRootObject:organizer1 toFile:CPDocmentPath(fileName)];
+        }
     }else{
         NSArray *array = [resultString componentsSeparatedByString:@","];
-        NSString *cellContentLableText=[[NSString alloc]initWithFormat:@"%@%@",[array objectAtIndex:1],[array objectAtIndex:2]];
-        [Tools setValueForKey:[array objectAtIndex:0] key:@"province"];
-        [Tools setValueForKey:[array objectAtIndex:1] key:@"city"];
-        [Tools setValueForKey:[array objectAtIndex:2] key:@"district"];
+        NSString *cellContentLableText=[[NSString alloc]initWithFormat:@"%@ %@",[array objectAtIndex:1],[array objectAtIndex:2]];
+
         cell.cellContent.text=cellContentLableText;
         [Tools setValueForKey:cellContentLableText key:@"cityAndDistrict"];
+        if (organizer) {
+            organizer.cityAndDistrict=cellContentLableText;
+            organizer.province = [array objectAtIndex:0];
+            organizer.city = [array objectAtIndex:1];
+            organizer.district = [array objectAtIndex:2];
+            [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
+        }else{
+            CPOrganizer *organizer1 = [[CPOrganizer alloc]init];
+            organizer1.cityAndDistrict = cellContentLableText;
+            organizer1.province = [array objectAtIndex:0];
+            organizer1.city = [array objectAtIndex:1];
+            organizer1.district = [array objectAtIndex:2];
+            [NSKeyedArchiver archiveRootObject:organizer1 toFile:CPDocmentPath(fileName)];
+        }
     }
-    
+//    [self.tableView reloadData];
     //开始动画
     [UIView beginAnimations:nil context:nil];
     //设定动画持续时间
@@ -275,6 +317,16 @@
                     NSDictionary *data=[responseObject objectForKey:@"data"];
                     [Tools setValueForKey:[data objectForKey:@"photoId"] key:@"photoId"];
                     [Tools setValueForKey:[data objectForKey:@"photoUrl"] key:@"photoUrl"];
+                    if (organizer) {
+                        organizer.headImgUrl=[data objectForKey:@"photoUrl"];
+                        organizer.headImgId =[data objectForKey:@"photoId"];
+                        [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
+                    }else{
+                        CPOrganizer *organizer1=[[CPOrganizer alloc]init];
+                        organizer1.headImgUrl=[data objectForKey:@"photoUrl"];
+                        organizer1.headImgId = [data objectForKey:@"photoId"];
+                        [NSKeyedArchiver archiveRootObject:organizer1 toFile:CPDocmentPath(fileName)];
+                    }
                 }else{
                     [[[UIAlertView alloc]initWithTitle:@"提示" message:@"上传失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                 }
@@ -293,67 +345,80 @@
         [cell.checkManBtn setTitleColor:[Tools getColor:@"fd6d53"] forState:UIControlStateNormal];
         [cell.checkWomanBtn setImage:[UIImage imageNamed:@"sexUnchecked"] forState:UIControlStateNormal];
         [cell.checkWomanBtn setTitleColor:[Tools getColor:@"aab2bd"] forState:UIControlStateNormal];
-        [Tools setValueForKey:@"男" key:@"gender"];
+        if (organizer) {
+            organizer.gender=@"男";
+            [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
+        }else{
+            CPOrganizer *organizer1=[[CPOrganizer alloc]init];
+            organizer1.gender=@"男";
+            [NSKeyedArchiver archiveRootObject:organizer1 toFile:CPDocmentPath(fileName)];
+        }
     }else{
         [cell.checkManBtn setImage:[UIImage imageNamed:@"sexUnchecked"] forState:UIControlStateNormal];
         [cell.checkManBtn setTitleColor:[Tools getColor:@"aab2bd"] forState:UIControlStateNormal];
         [cell.checkWomanBtn setImage:[UIImage imageNamed:@"sexChecked"] forState:UIControlStateNormal];
         [cell.checkWomanBtn setTitleColor:[Tools getColor:@"fd6d53"] forState:UIControlStateNormal];
-        [Tools setValueForKey:@"女" key:@"gender"];
+        if (organizer) {
+            organizer.gender=@"女";
+            [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
+        }else{
+            CPOrganizer *organizer1=[[CPOrganizer alloc]init];
+            organizer.gender=@"女";
+            [NSKeyedArchiver archiveRootObject:organizer1 toFile:CPDocmentPath(fileName)];
+        }
     }
 }
 
 - (IBAction)nextStepBtnClick:(id)sender {
-    NSString *phone=[Tools getValueFromKey:@"phone"];
-    NSString *password=[Tools getValueFromKey:@"password"];
-    NSString *code=[Tools getValueFromKey:@"code"];
-    NSString *nickname=[Tools getValueFromKey:@"nickname"];
-    NSString *gender=[Tools getValueFromKey:@"gender"];
-    NSString *province=[Tools getValueFromKey:@"province"];
-    NSString *city=[Tools getValueFromKey:@"city"];
-    NSString *district=[Tools getValueFromKey:@"district"];
-    NSString *photo=[Tools getValueFromKey:@"photoId"];
-    if (photo) {
-        if(nickname){
-            if(brithYear && birthMonth && birthDay){
-                if(province && city && district){
-                    NSDictionary *para=[NSDictionary dictionaryWithObjectsAndKeys:phone,@"phone",password,@"password",code,@"code",nickname,@"nickname",gender,@"gender",province,@"province",city,@"city",district,@"district",photo,@"photo",@(brithYear),@"birthYear",@(birthMonth),@"birthMonth",@(birthDay),@"birthDay",nil];
-                    
-                    MBProgressHUD *hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                    hud.color = [UIColor clearColor];
-                    hud.labelText=@"加载中…";
-                    hud.dimBackground=NO;
-                    [ZYNetWorkTool postJsonWithUrl:@"v1/user/register" params:para success:^(id responseObject) {
-                        [hud hide:YES];
-                        NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
-                        NSString *state=[numberFormatter stringFromNumber:[responseObject objectForKey:@"result"]];
-                        if (![state isEqualToString:@"0"]) {
-                            NSString *errmsg =[responseObject objectForKey:@"errmsg"];
-                            [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-                        }else{
-                            NSDictionary *data=[responseObject objectForKey:@"data"];
-                            [Tools setValueForKey:[data objectForKey:@"userId"] key:@"userId"];
-                            [Tools setValueForKey:[data objectForKey:@"token"] key:@"token"];
-                            CarOwnersCertificationViewController *CarOwnersCertificationVC=[[CarOwnersCertificationViewController alloc]init];
-                            CarOwnersCertificationVC.fromMy=@"1";
-                            CarOwnersCertificationVC.title=@"车主认证";
-                            [self.navigationController pushViewController:CarOwnersCertificationVC animated:YES];
-                        }
-                    } failed:^(NSError *error) {
-                        [hud hide:YES];
-                        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-                    }];
+    if (organizer) {
+        NSString *phone=[Tools getValueFromKey:@"phone"];
+        NSString *password=[Tools getValueFromKey:@"password"];
+        NSString *code=[Tools getValueFromKey:@"code"];
+        if (organizer.headImgId) {
+            if(organizer.nickname){
+                if(organizer.age){
+                    if(organizer.cityAndDistrict){
+                        NSDictionary *para=[NSDictionary dictionaryWithObjectsAndKeys:phone,@"phone",password,@"password",code,@"code",organizer.nickname,@"nickname",organizer.gender,@"gender",organizer.province,@"province",organizer.city,@"city",organizer.district,@"district",organizer.headImgId,@"photo",organizer.brithYear,@"birthYear",organizer.birthMonth,@"birthMonth",organizer.birthDay,@"birthDay",nil];
+                        
+                        MBProgressHUD *hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                        hud.color = [UIColor clearColor];
+                        hud.labelText=@"加载中…";
+                        hud.dimBackground=NO;
+                        [ZYNetWorkTool postJsonWithUrl:@"v1/user/register" params:para success:^(id responseObject) {
+                            [hud hide:YES];
+                            NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
+                            NSString *state=[numberFormatter stringFromNumber:[responseObject objectForKey:@"result"]];
+                            if (![state isEqualToString:@"0"]) {
+                                NSString *errmsg =[responseObject objectForKey:@"errmsg"];
+                                [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                            }else{
+                                NSDictionary *data=[responseObject objectForKey:@"data"];
+                                [Tools setValueForKey:[data objectForKey:@"userId"] key:@"userId"];
+                                [Tools setValueForKey:[data objectForKey:@"token"] key:@"token"];
+                                CarOwnersCertificationViewController *CarOwnersCertificationVC=[[CarOwnersCertificationViewController alloc]init];
+                                CarOwnersCertificationVC.fromMy=@"1";
+                                CarOwnersCertificationVC.title=@"车主认证";
+                                [self.navigationController pushViewController:CarOwnersCertificationVC animated:YES];
+                            }
+                        } failed:^(NSError *error) {
+                            [hud hide:YES];
+                            [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                        }];
+                    }else{
+                        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请选择您的地区" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                    }
                 }else{
-                    [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请选择您的地区" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                    [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请选择您的生日" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                 }
             }else{
-                [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请选择您的生日" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请填写您的昵称" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
             }
         }else{
-         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请填写您的昵称" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+            [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请上传您的头像" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
         }
     }else{
-        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请上传您的头像" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请填写您的个人信息" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
     }
+    
 }
 @end

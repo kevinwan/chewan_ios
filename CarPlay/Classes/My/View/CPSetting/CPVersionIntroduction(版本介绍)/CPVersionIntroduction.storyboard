@@ -10,14 +10,14 @@
         <scene sceneID="vx0-Is-z36">
             <objects>
                 <tableViewController id="aMY-sM-pwM" customClass="CPVersionIntroduction" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="yRQ-8M-tl9">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="yRQ-8M-tl9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
                             <tableViewSection id="rhI-M4-juH">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="224" id="XCi-of-IR7">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="265" id="XCi-of-IR7" customClass="ZYTableViewCell">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XCi-of-IR7" id="w9I-ZT-Ekd">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -40,7 +40,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Tr-hv-BI9">
-                                                    <rect key="frame" x="70" y="62" width="242" height="141.5"/>
+                                                    <rect key="frame" x="70" y="62" width="242" height="184.5"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="同城活动：">
                                                             <attributes>
@@ -49,7 +49,7 @@
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                                             </attributes>
                                                         </fragment>
-                                                        <fragment content="最火爆的同城车友活动，自驾游吃饭...约上附近的车友一起各种happy">
+                                                        <fragment content="最火爆的同城车友活动，自驾游吃饭...约上附近的车友一起各种happy ">
                                                             <attributes>
                                                                 <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <font key="NSFont" size="14" name="STHeitiSC-Light"/>
@@ -63,7 +63,7 @@
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                                             </attributes>
                                                         </fragment>
-                                                        <fragment content="不管你有车还是没有车都可以参加">
+                                                        <fragment content="不管你有车还是没有车都可以参加 ">
                                                             <attributes>
                                                                 <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <font key="NSFont" size="14" name="STHeitiSC-Light"/>
@@ -77,7 +77,7 @@
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                                             </attributes>
                                                         </fragment>
-                                                        <fragment content="加入活动可以抢坐在男神女神旁边活动成员聊天；活动的成员可以聚在一起，成为朋友">
+                                                        <fragment content="加入活动可以抢坐在男神女神旁边活动成员聊天；活动的成员可以聚在一起，成为朋友 ">
                                                             <attributes>
                                                                 <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <font key="NSFont" size="14" name="STHeitiSC-Light"/>
@@ -110,7 +110,7 @@
                                                 <constraint firstItem="0Tr-hv-BI9" firstAttribute="top" secondItem="uVO-Tk-UZn" secondAttribute="bottom" constant="9" id="Ziq-jK-VtC"/>
                                                 <constraint firstItem="uVO-Tk-UZn" firstAttribute="top" secondItem="w9I-ZT-Ekd" secondAttribute="topMargin" constant="24" id="msf-gE-srP"/>
                                                 <constraint firstItem="0Tr-hv-BI9" firstAttribute="trailing" secondItem="w9I-ZT-Ekd" secondAttribute="trailingMargin" id="rrZ-fL-1VT"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="0Tr-hv-BI9" secondAttribute="bottom" constant="12" id="xnk-qb-HsV"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="0Tr-hv-BI9" secondAttribute="bottom" constant="10" id="xnk-qb-HsV"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

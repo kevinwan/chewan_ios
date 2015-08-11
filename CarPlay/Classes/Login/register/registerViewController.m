@@ -11,6 +11,7 @@
 #import "serviceTermsViewController.h"
 #import "CPRegisterStep2ViewController.h"
 
+
 @interface registerViewController ()
 {
     BOOL agreeTheServiceTerms;
@@ -74,11 +75,9 @@
 - (IBAction)checkBtnClick:(id)sender {
     if (agreeTheServiceTerms) {
         [self.checkBtn setBackgroundImage:[UIImage imageNamed:@"unchecked"] forState:UIControlStateNormal];
-        [self.nextBtn setEnabled:NO];
         agreeTheServiceTerms=NO;
     }else{
         [self.checkBtn setBackgroundImage:[UIImage imageNamed:@"checked"] forState:UIControlStateNormal];
-        [self.nextBtn setEnabled:YES];
         agreeTheServiceTerms=YES;
     }
 }
@@ -156,7 +155,7 @@
         }
         
     }else{
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您尚未通同意服务条款" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您尚未同意车玩服务条款" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alert show];
         }
 }

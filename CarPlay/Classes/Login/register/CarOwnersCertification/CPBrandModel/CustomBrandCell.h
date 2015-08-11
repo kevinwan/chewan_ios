@@ -16,7 +16,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CustomBrandCell : UITableViewCell
+@interface CustomBrandCell : ZYTableViewCell
 
 + (CGFloat)standardHeight;
 

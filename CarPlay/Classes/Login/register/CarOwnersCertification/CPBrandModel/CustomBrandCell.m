@@ -20,7 +20,7 @@
 
 + (CGFloat)standardHeight
 {
-    return 44.0f;
+    return 52.0f;
 }
 
 
@@ -38,18 +38,22 @@
 {
     self.backgroundColor = [UIColor whiteColor];
 
-    self.thumbnailView = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f, 7.0f, 30.0f, 30.0f)];
+    self.thumbnailView = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f, 11.0f, 30.0f, 30.0f)];
     _thumbnailView.backgroundColor = [UIColor clearColor];
     _thumbnailView.contentMode = UIViewContentModeScaleAspectFit;
     [self.contentView addSubview:_thumbnailView];
     
-    self.brandNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(_thumbnailView.right +11 , 8, kScreenWidth - _thumbnailView.width - 11, _thumbnailView.height)];
+    self.brandNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(_thumbnailView.right +11 , 12, kScreenWidth - _thumbnailView.width - 11, _thumbnailView.height)];
 
-//    _brandNameLabel.font = [AppAppearance textMediumFont];
+    _brandNameLabel.font = [UIFont systemFontOfSize:16.0f];
     _brandNameLabel.textAlignment = NSTextAlignmentLeft;
-//    self.brandNameLabel.textColor = [AppAppearance textDarkColor];
+    self.brandNameLabel.textColor = [Tools getColor:@"434a53"];
     [self.contentView addSubview:_brandNameLabel];
     
+    
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 51.5, SCREEN_WIDTH, .5)];
+    line.backgroundColor = [Tools getColor:@"e6e9ed"];
+    [self.contentView addSubview:line];
 //    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 

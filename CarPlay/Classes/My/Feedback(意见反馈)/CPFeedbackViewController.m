@@ -466,7 +466,8 @@
                 }
             }else{
                 NSString *path=[[NSString alloc]initWithFormat:@"v1/user/%@/feedback/submit?token=%@",[Tools getValueFromKey:@"userId"],[Tools getValueFromKey:@"token"]];
-                NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:nil,@"photos",self.contentTextView.text,@"content", nil];
+                NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:@"",@"photos",self.contentTextView.text,@"content", nil];
+                NSLog(@"%@",params);
                 [ZYNetWorkTool postJsonWithUrl:path params:params success:^(id responseObject) {
                     if (CPSuccess) {
                         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"感谢您的反馈" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];

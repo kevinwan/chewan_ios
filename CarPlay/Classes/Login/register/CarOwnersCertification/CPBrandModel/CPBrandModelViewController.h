@@ -16,6 +16,7 @@
 @property (nonatomic, strong) MJNIndexView *indexView;
 @property (nonatomic, strong) UIView *modelSlideView;
 @property (nonatomic, strong) CustomSectionView *sectionView;
+@property (nonatomic, strong) NSMutableArray *indexPathNumberArray;
 @property (nonatomic, strong) NSString *fromMy;
 
 @end
