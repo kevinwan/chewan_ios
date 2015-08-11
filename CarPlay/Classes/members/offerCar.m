@@ -21,6 +21,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *carxibLblNO;
 @property (weak, nonatomic) IBOutlet UILabel *carxibLblYES;
 
+
+
 @end
 @implementation offerCar
 

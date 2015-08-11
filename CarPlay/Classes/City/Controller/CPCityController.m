@@ -22,9 +22,10 @@
 #import "MWPhotoBrowser.h"
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
+#import "CPNoNet.h"
 
 
-@interface CPCityController ()<UITableViewDataSource,UITableViewDelegate,MWPhotoBrowserDelegate,CPSelectViewDelegate>
+@interface CPCityController ()<UITableViewDataSource,UITableViewDelegate,CPSelectViewDelegate>
 
 // 地理编码对象
 @property (nonatomic ,strong) CLGeocoder *geocoder;
@@ -114,6 +115,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (CPNoNetWork) {
+        __weak typeof(self) weakSelf = self;
+        CPNoNet *cpNoNet = [CPNoNet footerView];
+        cpNoNet.loadHomePage = ^{
+            [weakSelf setupLoadStatusWithIgnore:0 Key:@"hot" SelectModel:nil];
+        };
+        
+        self.tableView.tableFooterView = cpNoNet;
+
+    }
+    
     // 导航栏筛选
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithNorImage:@"首页筛选" higImage:@"" title:nil target:self action:@selector(select:)];
     
@@ -128,7 +140,6 @@
     
     // 获取当前经纬度
     [self getLongitudeAndLatitude];
-
     
 }
 
@@ -293,6 +304,10 @@
         
         // 取出活动数据
         NSArray *dicts = responseObject[@"data"];
+     
+//        NSLog(@"data:%@",responseObject[@"data"]);
+//        NSLog(@"errmsg:%@",responseObject[@"errmsg"]);
+//        NSLog(@"result:%@",responseObject[@"result"]);
         
         // 转换为模型数组
        NSArray *models = [CPHomeStatus objectArrayWithKeyValuesArray:dicts];
@@ -341,7 +356,7 @@
     
     // 弹出图片浏览器
     if (cell.pictureDidSelected == nil) {
-        __weak typeof(self) weakSelf = self;
+//        __weak typeof(self) weakSelf = self;
         cell.pictureDidSelected = ^(CPHomeStatus *status,NSIndexPath *path, NSArray *srcView){
             
 //            // 清空photos中的数据
@@ -672,7 +687,7 @@
     [selectView dismissWithCompletion:nil];
     
     // 根据result中的参数 重新发送请求 刷新表格 reloadData
-    NSLog(@"%@",[result keyValues]);
+//    NSLog(@"%@",[result keyValues]);
     
     [self setupLoadStatusWithIgnore:0 Key:@"hot" SelectModel:result];
 }
