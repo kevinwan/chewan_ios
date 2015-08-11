@@ -36,7 +36,12 @@ static CGFloat const kBounceValue = 20.0f;
 - (void)awakeFromNib {
     self.carName.font = [AppAppearance textLargeFont];
     self.carName.textColor = [AppAppearance textDarkColor];
-    self.carName.preferredMaxLayoutWidth = 90;
+    CGFloat screenW = [UIScreen mainScreen].bounds.size.width;
+    if (screenW > 320) {
+        self.carName.preferredMaxLayoutWidth = 140;
+    } else {
+        self.carName.preferredMaxLayoutWidth = 90;
+    }
     self.pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(pan:)];
     [self.mycontentView addGestureRecognizer:self.pan];
     //设置手势代理
@@ -47,9 +52,9 @@ static CGFloat const kBounceValue = 20.0f;
 //button需要设置imageView才美观
 - (void)setupButton:(NSArray *)buttons {
     for (UIButton *button in buttons) {
-        button.imageView.layer.cornerRadius = 11;
+        button.imageView.layer.cornerRadius = 12;
         [button clipsToBounds];
-        button.imageEdgeInsets = UIEdgeInsetsMake(-4, 4, 8, 4);
+        button.imageEdgeInsets = UIEdgeInsetsMake(-4, 3, 10, 3);
     }
 }
 - (void)removeImageOfButton:(NSArray *)buttons {
