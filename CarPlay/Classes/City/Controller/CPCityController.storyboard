@@ -38,21 +38,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="30K-bk-WzG" userLabel="顶部三个按钮">
                                 <rect key="frame" x="0.0" y="64" width="320" height="42"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LkF-Xc-tsH" customClass="CPTopButton">
-                                        <rect key="frame" x="0.0" y="0.0" width="106.5" height="40"/>
-                                        <color key="backgroundColor" red="0.96078431372549022" green="0.96862745098039216" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="zoM-hi-It4"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <state key="normal" title="热门">
-                                            <color key="titleColor" red="0.9882352941176471" green="0.43137254901960786" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="hotBtnClick:" destination="qfX-Ru-dYa" eventType="touchUpInside" id="ZHh-nv-QD5"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PMi-nr-DQI" customClass="CPTopButton">
                                         <rect key="frame" x="106" y="0.0" width="106.5" height="40"/>
                                         <color key="backgroundColor" red="0.96078431372549022" green="0.96862745098039216" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
@@ -95,6 +80,21 @@
                                         <rect key="frame" x="213" y="41" width="106.5" height="1"/>
                                         <color key="backgroundColor" red="0.90196078431372551" green="0.9137254901960784" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LkF-Xc-tsH" customClass="CPTopButton">
+                                        <rect key="frame" x="0.0" y="0.0" width="106.5" height="40"/>
+                                        <color key="backgroundColor" red="0.96078431372549022" green="0.96862745098039216" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="zoM-hi-It4"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <state key="normal" title="热门">
+                                            <color key="titleColor" red="0.9882352941176471" green="0.43137254901960786" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="hotBtnClick:" destination="qfX-Ru-dYa" eventType="touchUpInside" id="ZHh-nv-QD5"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96078431372549022" green="0.96862745098039216" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -494,6 +494,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="3ir-IQ-7yV" firstAttribute="top" secondItem="9RT-14-glf" secondAttribute="bottom" id="8aA-Ql-vsg"/>
+                            <constraint firstItem="30K-bk-WzG" firstAttribute="top" secondItem="Dqd-qO-u3X" secondAttribute="topMargin" constant="64" id="LzG-IG-v68"/>
                             <constraint firstAttribute="trailing" secondItem="9RT-14-glf" secondAttribute="trailing" id="OFF-R2-uU2"/>
                             <constraint firstItem="30K-bk-WzG" firstAttribute="leading" secondItem="Dqd-qO-u3X" secondAttribute="leading" id="WWM-Ou-gwF"/>
                             <constraint firstItem="30K-bk-WzG" firstAttribute="top" secondItem="2Wt-3o-gjc" secondAttribute="bottom" id="aOG-pj-VcR"/>
@@ -501,6 +502,11 @@
                             <constraint firstAttribute="trailing" secondItem="30K-bk-WzG" secondAttribute="trailing" id="s5c-dm-aaz"/>
                             <constraint firstItem="9RT-14-glf" firstAttribute="leading" secondItem="Dqd-qO-u3X" secondAttribute="leading" id="t3b-kZ-gyE"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="aOG-pj-VcR"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="gx4-20-3Kr">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="首页筛选" style="plain" id="9gg-it-C73">
@@ -537,7 +543,7 @@
     <resources>
         <image name="女-1" width="32" height="14"/>
         <image name="时间" width="12" height="12"/>
-        <image name="顶部背景" width="13" height="13"/>
+        <image name="顶部背景" width="85" height="85"/>
         <image name="首页筛选" width="27" height="27"/>
     </resources>
 </document>

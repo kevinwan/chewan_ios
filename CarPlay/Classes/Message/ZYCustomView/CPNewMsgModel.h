@@ -38,6 +38,8 @@
 
 @property (nonatomic, assign) long long createTime;
 
+@property (nonatomic, copy) NSString *timeStr;
+
 @property (nonatomic, assign) BOOL isMan;
 
 @end

@@ -72,7 +72,7 @@
 // 上滑加载条数
 @property (nonatomic,assign) NSInteger ignoreNum;
 
-//遮盖
+// 遮盖
 @property (nonatomic, strong) UIButton *cover;
 @property (nonatomic, strong) UIView *carView;
 @property (weak, nonatomic) IBOutlet UIView *carxibYesView;
@@ -109,7 +109,7 @@
     header.lastUpdatedTimeLabel.font = [UIFont systemFontOfSize:12];
     [header setTitle:@"刷新中..." forState:MJRefreshStateRefreshing];
     header.stateLabel.font = [UIFont systemFontOfSize:12];
-    header.autoChangeAlpha = YES;
+    header.automaticallyChangeAlpha = YES;
     header.stateLabel.textColor = [Tools getColor:@"aab2bd"];
     header.lastUpdatedTimeLabel.textColor = [Tools getColor:@"aab2bd"];
     
@@ -118,7 +118,7 @@
     // 添加上拉刷新控件（底部）
     MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(upglideLoadData)];
     footer.stateLabel.font = [UIFont systemFontOfSize:14];
-    footer.autoChangeAlpha = YES;
+    footer.automaticallyChangeAlpha = YES;
     footer.stateLabel.textColor = [Tools getColor:@"aab2bd"];
     [footer setTitle:@"加载中..." forState:MJRefreshStateRefreshing];
     [footer setTitle:@"无更多数据" forState:MJRefreshStateNoMoreData];
@@ -159,13 +159,14 @@
     headView.frame = CGRectMake(headViewX, headViewY, headViewW, headViewH);
     
     if (headView.goTaDetails == nil) {
+        __weak typeof(self) weakSelf = self;
         headView.goTaDetails = ^{
             UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil];
             
             CPTaDetailsController *taViewController = sb.instantiateInitialViewController;
             taViewController.targetUserId = self.createrId;
             
-            [self.navigationController pushViewController:taViewController animated:YES];
+            [weakSelf.navigationController pushViewController:taViewController animated:YES];
 
         };
     }
@@ -491,7 +492,7 @@
     return _ignoreNum;
 }
 
-//点击小头像方法
+// 点击小头像方法
 - (void)tapIconsView {
     if (self.activeStatus.isOrganizer) {
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MembersManage" bundle:nil];
@@ -555,7 +556,7 @@
                             [cover addTarget:self action:@selector(coverClick) forControlEvents:UIControlEventTouchUpInside];
                             cover.frame = [UIScreen mainScreen].bounds;
                             [self.view.window addSubview:cover];
-                            UIView *carView = [[[NSBundle mainBundle]loadNibNamed:@"CPOfferCar" owner:self options:nil]lastObject];
+                            UIView *carView = [[[NSBundle mainBundle]loadNibNamed:@"CPActiveOfferCar" owner:self options:nil]lastObject];
                             CGFloat carViewX = self.view.window.center.x;
                             CGFloat carViewY = self.view.window.center.y - 100;
                             carView.center = CGPointMake(carViewX, carViewY);
@@ -620,9 +621,28 @@
 
 // 编辑活动按钮
 - (IBAction)editorActive:(id)sender {
-    CPEditActivityController *vc = [UIStoryboard storyboardWithName:@"CPEditActivityController" bundle:nil].instantiateInitialViewController;
-    vc.data = [self.activeStatus keyValues]; // 字典
-    [self.navigationController pushViewController:vc animated:YES];
+    if ([self.editorActiveBtn.title isEqualToString:@"关注"]) {
+        NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+        
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        
+        NSString *postUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/activity/%@/subscribe?userId=%@&token=%@",self.activeId,self.userId,self.token];
+        
+        [manager POST:postUrl parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+            //
+//            NSLog(@"msg = %@",responseObject[@"errmsg"]);
+//            NSLog(@"关注成功");
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            //
+        }];
+        
+    }else{
+        CPEditActivityController *vc = [UIStoryboard storyboardWithName:@"CPEditActivityController" bundle:nil].instantiateInitialViewController;
+        vc.data = [self.activeStatus keyValues]; // 字典
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
     
 }
 

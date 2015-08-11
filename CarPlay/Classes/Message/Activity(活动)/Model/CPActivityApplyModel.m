@@ -78,12 +78,17 @@ MJCodingImplementation
 {
     _seat = seat;
 
+    if (seat.integerValue == 0){
+        _seatText = nil;
+        return;
+    }
+    
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"提供"];
     
     NSString *seatString = [NSString stringWithFormat:@"%zd",seat.intValue];
     NSMutableAttributedString *seatAttr = [[NSMutableAttributedString alloc] initWithString:seatString attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"fc6e51"]}];
     [str appendAttributedString:seatAttr];
-    NSAttributedString *zuo = [[NSAttributedString alloc] initWithString:@"座位"];
+    NSAttributedString *zuo = [[NSAttributedString alloc] initWithString:@"空座"];
     [str appendAttributedString:zuo];
     
     _seatText = str;

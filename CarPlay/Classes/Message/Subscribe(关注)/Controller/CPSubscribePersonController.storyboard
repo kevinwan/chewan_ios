@@ -20,7 +20,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TJX-ag-TPq" customClass="CPIconButton">
-                                            <rect key="frame" x="10" y="10" width="50" height="50"/>
+                                            <rect key="frame" x="10" y="11" width="50" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="mrE-Ff-OkW"/>
                                                 <constraint firstAttribute="width" constant="50" id="zhA-ET-hCE"/>
@@ -33,7 +33,7 @@
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Iu-1p-I3J">
-                                            <rect key="frame" x="90" y="40" width="154" height="17"/>
+                                            <rect key="frame" x="90" y="40" width="140" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="17" id="DhX-sT-nfF"/>
                                             </constraints>
@@ -42,7 +42,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0uZ-N9-UGe">
-                                            <rect key="frame" x="70" y="10" width="40" height="20"/>
+                                            <rect key="frame" x="70" y="16" width="40" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="rlh-o9-eic"/>
                                             </constraints>
@@ -51,10 +51,10 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j2K-Ve-aZG" customClass="CPCancleSubBtn">
-                                            <rect key="frame" x="254" y="22" width="56" height="25"/>
+                                            <rect key="frame" x="240" y="22" width="70" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="cAZ-1P-8gs"/>
-                                                <constraint firstAttribute="width" constant="56" id="izp-gX-01o"/>
+                                                <constraint firstAttribute="width" constant="70" id="izp-gX-01o"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <state key="normal" title="取消关注">
@@ -69,7 +69,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0wm-zq-R46" customClass="CPSexView">
-                                            <rect key="frame" x="120" y="13" width="30" height="15"/>
+                                            <rect key="frame" x="117" y="19" width="30" height="15"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="15" id="6cE-uo-LMK"/>
                                             </constraints>
@@ -79,33 +79,34 @@
                                             </state>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yBU-ZA-7o3">
-                                            <rect key="frame" x="70" y="40" width="15" height="15"/>
+                                            <rect key="frame" x="70" y="42" width="14" height="14"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="15" id="xkU-ep-Pda"/>
-                                                <constraint firstAttribute="height" constant="15" id="ylx-cE-hgU"/>
+                                                <constraint firstAttribute="width" constant="14" id="xkU-ep-Pda"/>
+                                                <constraint firstAttribute="height" constant="14" id="ylx-cE-hgU"/>
                                             </constraints>
                                         </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="yBU-ZA-7o3" firstAttribute="top" secondItem="0uZ-N9-UGe" secondAttribute="bottom" constant="10" id="1ya-3D-Tan"/>
+                                        <constraint firstItem="yBU-ZA-7o3" firstAttribute="top" secondItem="0uZ-N9-UGe" secondAttribute="bottom" constant="6" id="1ya-3D-Tan"/>
                                         <constraint firstItem="yBU-ZA-7o3" firstAttribute="leading" secondItem="TJX-ag-TPq" secondAttribute="trailing" constant="10" id="4or-bc-6VZ"/>
-                                        <constraint firstItem="9Iu-1p-I3J" firstAttribute="top" secondItem="0uZ-N9-UGe" secondAttribute="bottom" constant="10" id="5vs-Lu-O3i"/>
+                                        <constraint firstItem="9Iu-1p-I3J" firstAttribute="top" secondItem="0uZ-N9-UGe" secondAttribute="bottom" constant="4" id="5vs-Lu-O3i"/>
                                         <constraint firstItem="0uZ-N9-UGe" firstAttribute="leading" secondItem="TJX-ag-TPq" secondAttribute="trailing" constant="10" id="6wN-4e-M03"/>
-                                        <constraint firstItem="0uZ-N9-UGe" firstAttribute="top" secondItem="2Ia-d6-q6R" secondAttribute="top" constant="10" id="7q9-KZ-eWL"/>
+                                        <constraint firstItem="0uZ-N9-UGe" firstAttribute="top" secondItem="2Ia-d6-q6R" secondAttribute="top" constant="16" id="7q9-KZ-eWL"/>
                                         <constraint firstItem="TJX-ag-TPq" firstAttribute="leading" secondItem="2Ia-d6-q6R" secondAttribute="leading" constant="10" id="Czd-sX-6VQ"/>
+                                        <constraint firstItem="9Iu-1p-I3J" firstAttribute="leading" secondItem="TJX-ag-TPq" secondAttribute="trailing" constant="30" id="DTv-oZ-7XE"/>
                                         <constraint firstAttribute="trailing" secondItem="j2K-Ve-aZG" secondAttribute="trailing" constant="10" id="Fk6-3L-jie"/>
-                                        <constraint firstItem="9Iu-1p-I3J" firstAttribute="leading" secondItem="yBU-ZA-7o3" secondAttribute="trailing" constant="5" id="MO4-jI-zuM"/>
                                         <constraint firstItem="j2K-Ve-aZG" firstAttribute="leading" secondItem="9Iu-1p-I3J" secondAttribute="trailing" constant="10" id="YXX-Of-T6j"/>
                                         <constraint firstAttribute="centerY" secondItem="j2K-Ve-aZG" secondAttribute="centerY" id="ZHZ-Pk-aFO"/>
                                         <constraint firstItem="0wm-zq-R46" firstAttribute="centerY" secondItem="0uZ-N9-UGe" secondAttribute="centerY" id="hIA-mE-2xM"/>
-                                        <constraint firstItem="0wm-zq-R46" firstAttribute="leading" secondItem="0uZ-N9-UGe" secondAttribute="trailing" constant="10" id="p5g-oW-VB9"/>
-                                        <constraint firstAttribute="centerY" secondItem="TJX-ag-TPq" secondAttribute="centerY" id="xBA-Nq-BUA"/>
+                                        <constraint firstItem="0wm-zq-R46" firstAttribute="leading" secondItem="0uZ-N9-UGe" secondAttribute="trailing" constant="7" id="p5g-oW-VB9"/>
+                                        <constraint firstItem="TJX-ag-TPq" firstAttribute="top" secondItem="2Ia-d6-q6R" secondAttribute="top" constant="11" id="ydH-yR-7g9"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="carLogoView" destination="yBU-ZA-7o3" id="Rx7-Ll-i1A"/>
                                     <outlet property="carLogoWitdh" destination="xkU-ep-Pda" id="LYd-oi-81o"/>
                                     <outlet property="descLabel" destination="9Iu-1p-I3J" id="0z9-m5-4rd"/>
+                                    <outlet property="descLabelXConstrant" destination="DTv-oZ-7XE" id="vWY-6R-SgS"/>
                                     <outlet property="iconBtn" destination="TJX-ag-TPq" id="35P-bg-8Oe"/>
                                     <outlet property="nameLbl" destination="0uZ-N9-UGe" id="g8H-MW-RFW"/>
                                     <outlet property="sexView" destination="0wm-zq-R46" id="z2o-67-Yuz"/>

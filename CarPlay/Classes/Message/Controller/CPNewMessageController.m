@@ -119,10 +119,6 @@
         weakSelf.ignore = self.items.count;
         [weakSelf loadDataWithParam:weakSelf.ignore];
     }];
-    // 设置了底部inset
-//    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
-//    // 忽略掉底部inset
-//    self.tableView.footer.ignoredScrollViewContentInsetTop = 30;
     
     self.tableView.footer.hidden = YES;
     ZYJumpToLoginView // 跳转到登录页面
@@ -237,7 +233,7 @@
     CPNewMsgModel *model = [self.items objectAtIndex:indexPath.row];
     model.row = indexPath.row;
     cell.model = model;
-    [self.cellHeights setObject:@(cell.cellHeight) forKey:@(indexPath.row)];
+//    [self.cellHeights setObject:@(cell.cellHeight) forKey:@(indexPath.row)];
     
     return cell;
 }
@@ -269,24 +265,30 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 70;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSNumber *number = [self.cellHeights objectForKey:@(indexPath.row)];
-    
-    if (number) {
-        return number.floatValue;
-    }else{
-      CPNewMessageCell *cell = (CPNewMessageCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
-        [self.cellHeights setObject:@(cell.cellHeight) forKey:@(indexPath.row)];
-        return cell.cellHeight;
-    }
-    
-}
+/**
+ *  利用自动布局实现不固定行高
+ *
+ *  @param CGFloat 预估高度优化性能
+ *
+ */
+//- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return 70;
+//}
+//
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    NSNumber *number = [self.cellHeights objectForKey:@(indexPath.row)];
+//    
+//    if (number) {
+//        return number.floatValue;
+//    }else{
+//      CPNewMessageCell *cell = (CPNewMessageCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
+//        [self.cellHeights setObject:@(cell.cellHeight) forKey:@(indexPath.row)];
+//        return cell.cellHeight;
+//    }
+//    
+//}
 
 #pragma mark - 处理导航条按钮点击
 /**

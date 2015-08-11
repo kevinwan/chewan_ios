@@ -50,7 +50,7 @@
                                                 <action selector="agreeBtnClick:" destination="a3Y-0p-2ru" eventType="touchUpInside" id="dQ3-0r-bev"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提供3左慈" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pDI-1y-kiS">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提供3空座" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pDI-1y-kiS">
                                             <rect key="frame" x="260" y="45" width="46" height="12"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" red="0.66666666666666663" green="0.69803921568627447" blue="0.74117647058823533" alpha="1" colorSpace="calibratedRGB"/>
@@ -75,10 +75,10 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7uz-dv-nJ8">
-                                            <rect key="frame" x="154" y="19" width="15" height="15"/>
+                                            <rect key="frame" x="154" y="19.5" width="14" height="14"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="15" id="Elj-LN-fzt"/>
-                                                <constraint firstAttribute="width" constant="15" id="goS-4d-APO"/>
+                                                <constraint firstAttribute="height" constant="14" id="Elj-LN-fzt"/>
+                                                <constraint firstAttribute="width" constant="14" id="goS-4d-APO"/>
                                             </constraints>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWT-J9-I6p" customClass="CPSexView">
@@ -156,10 +156,10 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vnt-a1-8N8">
-                                            <rect key="frame" x="154" y="19" width="15" height="15"/>
+                                            <rect key="frame" x="154" y="19.5" width="14" height="14"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="15" id="DXD-iu-yHw"/>
-                                                <constraint firstAttribute="height" constant="15" id="SJN-h7-BWC"/>
+                                                <constraint firstAttribute="width" constant="14" id="DXD-iu-yHw"/>
+                                                <constraint firstAttribute="height" constant="14" id="SJN-h7-BWC"/>
                                             </constraints>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CkM-Ld-dhN" customClass="CPSexView">

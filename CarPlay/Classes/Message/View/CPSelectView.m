@@ -9,7 +9,6 @@
 #import "CPSelectView.h"
 #import "ZYPickView.h"
 #import "ZHPickView.h"
-#import "CPSegmentControl.h"
 #import "ZYSegmentControl.h"
 
 @interface CPSelectView ()<ZHPickViewDelegate>
@@ -76,7 +75,7 @@
     [view addSubview:self];
     
     [UIView animateWithDuration:0.25 animations:^{
-        self.y = kScreenHeight - 360;
+        self.y = view.height - 360;
     }];
 }
 

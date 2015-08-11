@@ -17,6 +17,12 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 
+// 用户id
+@property (nonatomic,copy) NSString *userId;
+
+// 用户token
+@property (nonatomic,copy) NSString *token;
+
 // 头像
 @property (weak, nonatomic) IBOutlet UIImageView *photo;
 
@@ -79,6 +85,10 @@
 - (IBAction)taCareClick:(id)sender;
 
 - (IBAction)taJoinClick:(id)sender;
+
+// 关注按钮点击事件
+- (IBAction)careBtnClick:(id)sender;
+
 
 
 // 图片总数
@@ -385,6 +395,23 @@
     self.pageControl.currentPage = page;
 }
 
+#pragma mark - lazy(懒加载)
+// 用户id
+- (NSString *)userId{
+    if (!_userId) {
+        _userId = [Tools getValueFromKey:@"userId"];
+    }
+    return _userId;
+}
+
+// 用户token
+- (NSString *)token{
+    if (!_token) {
+        _token = [Tools getValueFromKey:@"token"];
+    }
+    return _token;
+}
+
 /**
  *  开始拖拽的时候调用
  */
@@ -404,6 +431,7 @@
 }
 
 
+// 发布按钮点击事件
 - (IBAction)taPublishClick:(id)sender {
     // 设置底部线颜色
     self.publishView.backgroundColor = [Tools getColor:@"fc6e51"];
@@ -419,8 +447,16 @@
     [self setPublishBtn:[Tools getColor:@"fc6e51"]];
     [self setCareBtn:[Tools getColor:@"aab2bd"]];
     [self setJoinBtn:[Tools getColor:@"aab2bd"]];
+    
+    if (self.statusSelected != nil) {
+        self.statusSelected(0,@"post");
+    }
+    
+    
+    
 }
 
+// 关注按钮点击事件
 - (IBAction)taCareClick:(id)sender {
     // 设置底部线颜色
     self.publishView.backgroundColor = [Tools getColor:@"e6e9ed"];
@@ -436,8 +472,13 @@
     [self setCareBtn:[Tools getColor:@"fc6e51"]];
     [self setJoinBtn:[Tools getColor:@"aab2bd"]];
     
+    if (self.statusSelected != nil) {
+        self.statusSelected(0,@"subscribe");
+    }
+    
 }
 
+// 参与按钮点击事件
 - (IBAction)taJoinClick:(id)sender {
     // 设置底部线颜色
     self.publishView.backgroundColor = [Tools getColor:@"e6e9ed"];
@@ -453,7 +494,39 @@
     [self setPublishBtn:[Tools getColor:@"aab2bd"]];
     [self setCareBtn:[Tools getColor:@"aab2bd"]];
     [self setJoinBtn:[Tools getColor:@"fc6e51"]];
-
     
+    
+    if (self.statusSelected != nil) {
+        self.statusSelected(0,@"join");
+    }
+    
+}
+
+// 关注按钮点击事件
+- (IBAction)careBtnClick:(id)sender {
+    
+    // 设置请求参数
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    parameters[@"targetUserId"] = self.taStatus.userId;
+    
+    // 获取网络访问者
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    NSString *postUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/user/%@/listen?token=%@",self.userId,self.token];
+    
+    [manager POST:postUrl parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        // da51944f-ab85-4296-83f9-02603cb6937f
+        
+//        NSLog(@"关注成功");
+//        NSLog(@"cuo%@",responseObject[@"errmsg"]);
+        
+        [self.care setTitle:@"已关注" forState:UIControlStateNormal];
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        //
+    }];
+    
+
 }
 @end

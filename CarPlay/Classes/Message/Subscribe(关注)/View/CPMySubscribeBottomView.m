@@ -14,6 +14,7 @@
 #import "CPMoreButton.h"
 #import "UIButton+WebCache.h"
 #import "CPMySubscribeModel.h"
+#import "CPTopViewButton.h"
 
 #define KPersonNum 4 // 参与人数View的个数
 @interface CPMySubscribeBottomView()
@@ -22,10 +23,10 @@
 @property (nonatomic, strong) UIView *topView;
 
 // 显示日期的View
-@property (nonatomic, strong) UILabel *dateLable;
+@property (nonatomic, strong) CPTopViewButton *dateLable;
 
 // 显示地址的按钮
-@property (nonatomic, strong) UILabel *addressLable;
+@property (nonatomic, strong) CPTopViewButton *addressLable;
 
 // 底部的view
 @property (nonatomic, strong) UIView *bottomView;
@@ -58,24 +59,22 @@
     [self addSubview:topView];
     self.topView = topView;
     
-    self.dateLable = [[UILabel alloc] init];
-    self.dateLable.textColor = [Tools getColor:@"656d78"];
-    self.dateLable.font = [UIFont systemFontOfSize:12];
-    self.addressLable = [[UILabel alloc] init];
-    self.addressLable.textColor = [Tools getColor:@"656d78"];
-    self.addressLable.font = [UIFont systemFontOfSize:12];
-    self.addressLable.textAlignment = NSTextAlignmentRight;
+    self.dateLable = [self addBtnWithIcon:@"时间"];
+    self.addressLable = [self addBtnWithIcon:@"地点"];
+    
     [topView addSubview:self.dateLable];
     [topView addSubview:self.addressLable];
     
     // 添加底部区域
     UIImageView *bottomView = [[UIImageView alloc] init];
+    bottomView.userInteractionEnabled = YES;
     bottomView.image = [UIImage imageNamed:@"头像列表背景"];
     [self addSubview:bottomView];
     self.bottomView = bottomView;
     
     CPChatButton *chatBtn = [CPChatButton buttonWithType:UIButtonTypeCustom];
-    chatBtn.hidden = YES;
+    [chatBtn setTitle:@"成员管理" forState:UIControlStateNormal];
+    [chatBtn addTarget:self action:@selector(managerBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:chatBtn];
     self.chatBtn = chatBtn;
     
@@ -89,6 +88,16 @@
         btn.tag = i + 1;
         [bottomView addSubview:btn];
     }
+}
+
+/**
+ *  创建同时显示icon和title的button
+ */
+- (CPTopViewButton *)addBtnWithIcon:(NSString *)icon
+{
+    CPTopViewButton *btn = [CPTopViewButton buttonWithType:UIButtonTypeCustom];
+    [btn setImage:[UIImage imageNamed:icon] forState:UIControlStateNormal];
+    return btn;
 }
 
 - (void)layoutSubviews
@@ -142,9 +151,9 @@
 {
     _model = model;
     
-    self.dateLable.text = [NSString stringWithFormat:@"时间: %@",model.startStr];
+    self.dateLable.text = model.startStr;
     
-    self.addressLable.text = [NSString stringWithFormat:@"地点: %@",model.location];
+    self.addressLable.text = model.sixLocation;
 
     NSArray *members = model.members;
     
@@ -168,8 +177,21 @@
 
     [self.moreBtn setTitle:[NSString stringWithFormat:@"%zd",self.model.members.count] forState:UIControlStateNormal];
     
-    [self.chatBtn setTitle:@"我要去玩" forState:UIControlStateNormal];
+    if (self.model.isOrganizer){
+        [self.chatBtn setTitle:@"成员管理" forState:UIControlStateNormal];
+    }else if (self.model.isMember){
+        [self.chatBtn setTitle:@"已加入" forState:UIControlStateNormal];
+    }else{
+        [self.chatBtn setTitle:@"我要去玩" forState:UIControlStateNormal];
+    }
+    
     [self setNeedsLayout];
+}
+
+- (void)managerBtnClick:(CPChatButton *)button
+{
+    [CPNotificationCenter postNotificationName:ChatButtonClickNotifyCation object:nil userInfo:@{ChatButtonClickInfo : _model}];
+    
 }
 
 @end

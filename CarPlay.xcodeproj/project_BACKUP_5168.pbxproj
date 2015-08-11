@@ -2404,9 +2404,12 @@
 				6B9CFD761B71D95200EF167D /* CPAbout.storyboard in Resources */,
 				E372D8351B6216C100B4FC5C /* CPBrandModelViewController.xib in Resources */,
 				E372D8461B6216C100B4FC5C /* serviceTermsViewController.xib in Resources */,
+<<<<<<< HEAD
 				A5F515441B705E7400690802 /* CPOfferCar.xib in Resources */,
+=======
 				A59705921B78CB9D0025B9DB /* CPActiveOfferCar.xib in Resources */,
 				6BCB13451B74B0B500CE6AEC /* CPNoNetwork.storyboard in Resources */,
+>>>>>>> 927addbf4fdd4321862f569d0a4224732c775631
 				E35B046D1B565532002C6655 /* MJPhotoBrowser.bundle in Resources */,
 				6BB09AA81B68B02900E0D77D /* CPPhotoalbumManagement.xib in Resources */,
 				6BB09A8A1B6669F800E0D77D /* CPSettingTableViewController.xib in Resources */,

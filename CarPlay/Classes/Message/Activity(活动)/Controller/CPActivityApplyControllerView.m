@@ -102,15 +102,10 @@
         weakSelf.ignore = self.datas.count;
         [weakSelf loadDataWithParam:weakSelf.ignore];
     }];
-//    // 设置了底部inset
-//    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
-//    // 忽略掉底部inset
-//    self.tableView.footer.ignoredScrollViewContentInsetTop = 30;
     
     self.tableView.footer.hidden = YES;
     ZYJumpToLoginView // 跳转到登录页面
     [self reRefreshData];
-    
 }
 
 - (void)reRefreshData

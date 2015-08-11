@@ -305,7 +305,7 @@ typedef enum {
         }else{
             
             [weakSelf.pickView removeFromSuperview];
-            weakSelf.pickView=[[ZYPickView alloc] initPickviewWithArray:@[@"我请客", @"AA制", @"其他" ] isHaveNavControler:NO];
+            weakSelf.pickView=[[ZYPickView alloc] initPickviewWithArray:@[@"我请客", @"AA制", @"请我吧" ] isHaveNavControler:NO];
             weakSelf.pickView.tag = ActivityCreatePay;
             weakSelf.pickView.row = 6;
             weakSelf.pickView.delegate = weakSelf;
@@ -431,7 +431,7 @@ typedef enum {
  */
 - (void)setNameCellHeightWithString:(NSString *)str
 {
-    self.nameLableHeight = 60 + [str sizeWithFont:IntroductFont maxW:kScreenWidth - 30].height;
+    self.nameLableHeight = 55 + [str sizeWithFont:IntroductFont maxW:kScreenWidth - 30].height;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

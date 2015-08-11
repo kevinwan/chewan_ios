@@ -50,7 +50,7 @@
     self.nameLabelF = CGRectMake(nameLableX, nameLableY, nameLableW,nameLableH);
     
     
-    CGFloat sexViewX = CGRectGetMaxX(_nameLabelF) + 3;
+    CGFloat sexViewX = CGRectGetMaxX(_nameLabelF) + 7;
     CGFloat sexViewW = 30;
     CGFloat sexViewH = 15;
     CGFloat sexViewY = 23.5;
@@ -67,8 +67,8 @@
     if (organizer.carBrandLogo.length > 0) {
         CGFloat brandX = nameLableX;
         CGFloat brandY = CGRectGetMaxY(_nameLabelF) + KCellMargin;
-        CGFloat brandW = 15;
-        CGFloat brandH = 15;
+        CGFloat brandW = 14;
+        CGFloat brandH = 14;
         self.brandF = CGRectMake(brandX, brandY, brandW, brandH);
         descLableX = CGRectGetMaxX(_brandF) + 5;
     }else{

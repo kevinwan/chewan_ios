@@ -22,9 +22,10 @@
 #import "MWPhotoBrowser.h"
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
+#import "CPNoNet.h"
 
 
-@interface CPCityController ()<UITableViewDataSource,UITableViewDelegate,MWPhotoBrowserDelegate,CPSelectViewDelegate>
+@interface CPCityController ()<UITableViewDataSource,UITableViewDelegate,CPSelectViewDelegate>
 
 // 地理编码对象
 @property (nonatomic ,strong) CLGeocoder *geocoder;
@@ -114,6 +115,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (CPNoNetWork) {
+        __weak typeof(self) weakSelf = self;
+        CPNoNet *cpNoNet = [CPNoNet footerView];
+        cpNoNet.loadHomePage = ^{
+            [weakSelf setupLoadStatusWithIgnore:0 Key:@"hot" SelectModel:nil];
+        };
+        
+        self.tableView.tableFooterView = cpNoNet;
+
+    }
+    
     // 导航栏筛选
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithNorImage:@"首页筛选" higImage:@"" title:nil target:self action:@selector(select:)];
     
@@ -126,8 +138,8 @@
     // 设置顶部按钮
     [self.hotBtn setHighlighted:NO];
     
-//    [self getLongitudeAndLatitude];
-
+    // 获取当前经纬度
+    [self getLongitudeAndLatitude];
     
 }
 
@@ -166,9 +178,8 @@
             self.myCity = placemark.locality;
 
         }
-        NSLog(@"%@",self.myCity);
+//        NSLog(@"%@",self.myCity);
         
-        [self setupLoadStatusWithIgnore:0 Key:@"nearby" SelectModel:nil];
 
     }];
 }
@@ -180,7 +191,7 @@
     header.lastUpdatedTimeLabel.font = [UIFont systemFontOfSize:12];
     [header setTitle:@"刷新中..." forState:MJRefreshStateRefreshing];
     header.stateLabel.font = [UIFont systemFontOfSize:12];
-    header.autoChangeAlpha = YES;
+    header.automaticallyChangeAlpha = YES;
     header.stateLabel.textColor = [Tools getColor:@"aab2bd"];
     header.lastUpdatedTimeLabel.textColor = [Tools getColor:@"aab2bd"];
     
@@ -192,7 +203,7 @@
     // 添加上拉刷新控件（底部）
     MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(upglideLoadData)];
     footer.stateLabel.font = [UIFont systemFontOfSize:14];
-    footer.autoChangeAlpha = YES;
+    footer.automaticallyChangeAlpha = YES;
     footer.stateLabel.textColor = [Tools getColor:@"aab2bd"];
     [footer setTitle:@"加载中..." forState:MJRefreshStateRefreshing];
     [footer setTitle:@"无更多数据" forState:MJRefreshStateNoMoreData];
@@ -293,6 +304,10 @@
         
         // 取出活动数据
         NSArray *dicts = responseObject[@"data"];
+     
+//        NSLog(@"data:%@",responseObject[@"data"]);
+//        NSLog(@"errmsg:%@",responseObject[@"errmsg"]);
+//        NSLog(@"result:%@",responseObject[@"result"]);
         
         // 转换为模型数组
        NSArray *models = [CPHomeStatus objectArrayWithKeyValuesArray:dicts];
@@ -341,8 +356,8 @@
     
     // 弹出图片浏览器
     if (cell.pictureDidSelected == nil) {
-        __weak typeof(self) weakSelf = self;
-        cell.pictureDidSelected = ^(CPHomeStatus *status,NSIndexPath *path, UIImageView *srcView){
+//        __weak typeof(self) weakSelf = self;
+        cell.pictureDidSelected = ^(CPHomeStatus *status,NSIndexPath *path, NSArray *srcView){
             
 //            // 清空photos中的数据
 //            [self.photos removeAllObjects];
@@ -372,15 +387,14 @@
             NSMutableArray *photos = [NSMutableArray array];
             NSUInteger count = urls.count;
             for (int i = 0; i<count; i++) {
-//                HMPhoto *pic = self.pic_urls[i];
-//                
+              
                 MJPhoto *photo = [[MJPhoto alloc] init];
                 // 设置图片的路径
                 photo.url = [NSURL URLWithString:urls[i]];
                 // 设置来源于哪一个UIImageView
-                NSLog(@"weit == %@",srcView.frameStr);
-                
-                photo.srcImageView = srcView;
+//                NSLog(@"weit == %@",[srcView[i] frameStr]);
+
+                photo.srcImageView = srcView[i];
                 [photos addObject:photo];
             }
             browser.photos = photos;
@@ -483,7 +497,7 @@
         _coverBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_coverBtn addTarget:self action:@selector(coverBtnClick) forControlEvents:UIControlEventTouchUpInside];
         _coverBtn.backgroundColor = RGBACOLOR(0, 0, 0, 0.5);
-        _coverBtn.frame = self.view.bounds;
+        _coverBtn.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight - 64);
         [[UIApplication sharedApplication].keyWindow addSubview:_coverBtn];
         _coverBtn.hidden = YES;
     }
@@ -559,9 +573,7 @@
         [self.navigationController pushViewController:sb.instantiateInitialViewController animated:YES];
         
     }
-    
 
-    
 }
 
 // 筛选
@@ -576,6 +588,8 @@
         [selectView showWithView:self.coverBtn];
         
         self.selectView = selectView;
+    }else{
+        [self selectViewCancleBtnClick:self.selectView];
     }
     
 }
@@ -624,7 +638,8 @@
     self.lastestConstraint.constant = 1;
     
     // 获取经纬度和城市
-    [self getLongitudeAndLatitude];
+//    [self getLongitudeAndLatitude];
+    [self setupLoadStatusWithIgnore:0 Key:@"nearby" SelectModel:nil];
 //     NSLog(@"self.myCity=%@ %f %f",self.myCity,self.latitude,self.longitude);
     
     
@@ -672,7 +687,7 @@
     [selectView dismissWithCompletion:nil];
     
     // 根据result中的参数 重新发送请求 刷新表格 reloadData
-    NSLog(@"%@",[result keyValues]);
+//    NSLog(@"%@",[result keyValues]);
     
     [self setupLoadStatusWithIgnore:0 Key:@"hot" SelectModel:result];
 }

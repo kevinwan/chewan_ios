@@ -52,7 +52,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bNu-kq-5fL">
-                    <rect key="frame" x="20" y="310" width="185" height="40"/>
+                    <rect key="frame" x="20" y="308" width="185" height="42"/>
                     <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <state key="normal" title="取消">
@@ -75,16 +75,16 @@
                         <action selector="arrowClick:" destination="T4q-bC-NBp" eventType="touchUpInside" id="3ew-Tb-Zg3"/>
                     </connections>
                 </button>
-                <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2RY-x3-fs1">
+                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2RY-x3-fs1">
                     <rect key="frame" x="0.0" y="42" width="420" height="1"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.90196078431372551" green="0.9137254901960784" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="ksa-65-DvT"/>
                     </constraints>
                 </view>
-                <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NBd-qe-q19">
+                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NBd-qe-q19">
                     <rect key="frame" x="0.0" y="85" width="420" height="1"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.90196078431372551" green="0.9137254901960784" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="d3x-VD-Shw"/>
                     </constraints>
@@ -100,7 +100,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CXD-Y5-rFY">
-                    <rect key="frame" x="215" y="310" width="185" height="40"/>
+                    <rect key="frame" x="215" y="308" width="185" height="42"/>
                     <color key="backgroundColor" red="0.28235294117647058" green="0.81960784313725488" blue="0.83529411764705885" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <state key="normal" title="确定">
@@ -189,7 +189,7 @@
                 <constraint firstAttribute="trailing" secondItem="sak-Xg-AOK" secondAttribute="trailing" constant="10" id="J87-RF-BJO"/>
                 <constraint firstAttribute="bottom" secondItem="bNu-kq-5fL" secondAttribute="bottom" constant="10" id="KqB-u5-4E9"/>
                 <constraint firstItem="izM-lr-NsR" firstAttribute="top" secondItem="T4q-bC-NBp" secondAttribute="top" constant="12" id="LHp-by-YI8"/>
-                <constraint firstItem="bNu-kq-5fL" firstAttribute="top" secondItem="v1d-1Q-Sex" secondAttribute="bottom" constant="20" id="NIB-Qh-57p"/>
+                <constraint firstItem="bNu-kq-5fL" firstAttribute="top" secondItem="v1d-1Q-Sex" secondAttribute="bottom" constant="18" id="NIB-Qh-57p"/>
                 <constraint firstItem="2RY-x3-fs1" firstAttribute="top" secondItem="sak-Xg-AOK" secondAttribute="bottom" constant="10" id="OoY-AG-f4n"/>
                 <constraint firstItem="PX8-DH-hqQ" firstAttribute="leading" secondItem="T4q-bC-NBp" secondAttribute="leading" constant="20" id="QWd-uv-FIi"/>
                 <constraint firstItem="bNu-kq-5fL" firstAttribute="width" secondItem="CXD-Y5-rFY" secondAttribute="width" id="Ujk-TL-ZgJ"/>
@@ -217,7 +217,7 @@
                 <constraint firstItem="2RY-x3-fs1" firstAttribute="leading" secondItem="T4q-bC-NBp" secondAttribute="leading" id="qdI-6f-eqI"/>
                 <constraint firstItem="bNu-kq-5fL" firstAttribute="height" secondItem="CXD-Y5-rFY" secondAttribute="height" id="snF-ga-lIh"/>
                 <constraint firstItem="v1d-1Q-Sex" firstAttribute="top" secondItem="MQ9-Zn-r60" secondAttribute="bottom" constant="10" id="ylJ-tv-ktD"/>
-                <constraint firstItem="CXD-Y5-rFY" firstAttribute="top" secondItem="v1d-1Q-Sex" secondAttribute="bottom" constant="20" id="zmu-jf-cS7"/>
+                <constraint firstItem="CXD-Y5-rFY" firstAttribute="top" secondItem="v1d-1Q-Sex" secondAttribute="bottom" constant="18" id="zmu-jf-cS7"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

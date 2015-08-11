@@ -17,6 +17,7 @@
 
 
 
+
 @interface CPHomeStatusCell()<UICollectionViewDataSource,UICollectionViewDelegate>
 
 
@@ -78,13 +79,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *myPlay;
 
 
+
 // 配图collectionView
 @property (weak, nonatomic) IBOutlet UICollectionView *pictureView;
 
 // 头像collectionView
 @property (weak, nonatomic) IBOutlet UICollectionView *iconView;
-
-
 
 @end
 
@@ -119,6 +119,14 @@
     // 我要去玩
     self.myPlay.layer.cornerRadius = 12;
     self.myPlay.layer.masksToBounds = YES;
+    
+    if (self.status.isOrganizer) {
+        [self.myPlay setTitle:@"成员管理" forState:UIControlStateNormal];
+    }else if (self.status.isMember){
+        [self.myPlay setTitle:@"已加入" forState:UIControlStateNormal];
+    }else{
+        [self.myPlay setTitle:@"我要去玩" forState:UIControlStateNormal];
+    }
     
     // 昵称
     self.nickname.text = user.nickname;
@@ -319,6 +327,8 @@
         // 设置数据
         cell.homePhoto = photo;
         
+//        NSLog(@"%@",cell.pictureView.frameStr);
+        
         // 返回cell
         return cell;
     }else{
@@ -345,9 +355,24 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
   
     if (collectionView == self.pictureView) {
+        
+        
         if (self.pictureDidSelected != nil) {
-              CPHomePicCell *cell = (CPHomePicCell *)[self collectionView:collectionView cellForItemAtIndexPath:indexPath] ;
-            self.pictureDidSelected(self.status,indexPath, cell.pictureView);
+            // 获取每一个cell里的所有配图
+            NSMutableArray *imgArr = [NSMutableArray array];
+            NSUInteger count = [self collectionView:collectionView numberOfItemsInSection:0];
+            
+            for (int i = 0; i < count; i++) {
+                NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:0];
+                
+                CPHomePicCell *cell = (CPHomePicCell *)[self collectionView:collectionView cellForItemAtIndexPath:path];
+                cell.pictureView.frame = cell.frame;
+                [imgArr addObject:cell.pictureView];
+            }
+
+            
+
+            self.pictureDidSelected(self.status,indexPath, imgArr);
         }
     }
 }
@@ -367,7 +392,6 @@
     return CGRectGetMaxY(self.bottomIconList.frame) + 15;
     
 }
-
 
 
 

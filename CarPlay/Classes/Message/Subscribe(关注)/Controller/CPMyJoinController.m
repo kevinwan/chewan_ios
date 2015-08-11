@@ -49,10 +49,6 @@
         weakSelf.ignore = self.datas.count;
         [weakSelf loadDataWithParam:weakSelf.ignore];
     }];
-//    // 设置了底部inset
-//    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
-//    // 忽略掉底部inset
-//    self.tableView.footer.ignoredScrollViewContentInsetTop = 30;
     
     self.tableView.footer.hidden = YES;
     ZYJumpToLoginView
@@ -64,6 +60,7 @@
     [super viewWillAppear:animated];
     
     [CPNotificationCenter addObserver:self selector:@selector(userIconClick:) name:CPClickUserIconNotification object:nil];
+    [CPNotificationCenter addObserver:self selector:@selector(chatButtonClick:) name:ChatButtonClickNotifyCation object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -149,6 +146,11 @@
     
 }
 
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CPMySubscribeFrameModel *frameModel = self.datas[indexPath.row];
@@ -169,6 +171,13 @@
     CPTaDetailsController *vc = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil].instantiateInitialViewController;
     vc.targetUserId = notify.userInfo[CPClickUserIconInfo];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)chatButtonClick:(NSNotification *)notify
+{
+    CPMySubscribeModel *model = notify.userInfo[ChatButtonClickInfo];
+    
+    
 }
 
 @end

@@ -380,7 +380,7 @@
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
     UILabel *label = [UILabel new];
-    label.font = [UIFont systemFontOfSize:22];
+    label.font = [UIFont systemFontOfSize:18];
     label.textAlignment = NSTextAlignmentCenter;
     
     NSString *rowTitle=nil;

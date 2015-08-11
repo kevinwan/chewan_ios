@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 gongpingjia. All rights reserved.
 //
 
-#import "CPOfferCar.h"
+#import "CPActiveOfferCar.h"
 #import "AppAppearance.h"
-@interface CPOfferCar () <UITextFieldDelegate>
+@interface CPActiveOfferCar () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIView *carxibViewOne;
 @property (weak, nonatomic) IBOutlet UIView *carxibViewThree;
 
@@ -22,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *carxibLblYES;
 
 @end
-@implementation CPOfferCar
+@implementation CPActiveOfferCar
 
 - (void)awakeFromNib {
     self.carxibViewOne.layer.borderColor = [[AppAppearance lineColor]CGColor];

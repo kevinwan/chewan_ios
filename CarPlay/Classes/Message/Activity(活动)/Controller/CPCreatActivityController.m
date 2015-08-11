@@ -179,14 +179,14 @@ typedef enum {
             
         }
     } failure:^(NSError *error) {
-        [SVProgressHUD showInfoWithStatus:@"加载座位数失败"];
+        [SVProgressHUD showInfoWithStatus:@"加载空座数失败"];
     }];
 }
 
 - (void)changeSeatWithResult:(NSDictionary *)result
 {
     if ([result[@"isAuthenticated"] intValue] == 1) {
-        self.seatLabel.text = @"提供座位数";
+        self.seatLabel.text = @"提供空座数";
         [self labelWithRow:7].text = @"个数";
         [self.seats removeAllObjects];
         for(int i = [result[@"minValue"] intValue]; i <= [result[@"maxValue"] intValue]; i++){
@@ -280,7 +280,7 @@ typedef enum {
         }else{
             
             [weakSelf.pickView removeFromSuperview];
-            weakSelf.pickView  = [[ZYPickView alloc] initDatePickWithDate:[NSDate date] datePickerMode:UIDatePickerModeDateAndTime isHaveNavControler:NO];
+            weakSelf.pickView  = [[ZYPickView alloc] initDatePickWithDate:[NSDate date] datePickerMode:UIDatePickerModeTime isHaveNavControler:NO];
             weakSelf.pickView.tag = ActivityCreateStart;
             weakSelf.pickView.row = 4;
             weakSelf.pickView.delegate = weakSelf;
@@ -315,7 +315,7 @@ typedef enum {
         }else{
             
             [weakSelf.pickView removeFromSuperview];
-            weakSelf.pickView=[[ZYPickView alloc] initPickviewWithArray:@[@"我请客", @"AA制", @"其他" ] isHaveNavControler:NO];
+            weakSelf.pickView=[[ZYPickView alloc] initPickviewWithArray:@[@"我请客", @"AA制", @"请我吧" ] isHaveNavControler:NO];
             weakSelf.pickView.tag = ActivityCreatePay;
             weakSelf.pickView.row = 6;
             weakSelf.pickView.delegate = weakSelf;
@@ -447,7 +447,7 @@ typedef enum {
         if ([self cellWithRow:0] == cell){
             [self.tableView scrollsToTop];
         }else{
-            [self.tableView setContentOffset:CGPointMake(0,self.tableView.contentOffset.y - margin) animated:YES];
+//            [self.tableView setContentOffset:CGPointMake(0,self.tableView.contentOffset.y ) animated:YES];
         }
     }else{
         self.currentOffset = self.tableView.contentOffset;
@@ -460,7 +460,7 @@ typedef enum {
  */
 - (void)setNameCellHeightWithString:(NSString *)str
 {
-    self.nameLableHeight = 60 + [str sizeWithFont:IntroductFont maxW:kScreenWidth - 30].height;
+    self.nameLableHeight = 55 + [str sizeWithFont:IntroductFont maxW:kScreenWidth - 30].height;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -864,7 +864,7 @@ typedef enum {
     }
     
     if (self.currentModel.seat == 0) {
-        [SVProgressHUD showInfoWithStatus:@"请选择座位数"];
+        [SVProgressHUD showInfoWithStatus:@"请选择空座数"];
         return;
     }
     
@@ -894,6 +894,8 @@ typedef enum {
                     if (photoIds.count == photoCount) {
                         [self uploadCreatActivtyInfoWithPicId:photoIds button:button];
                     }
+                }else{
+                    [self showError:@"创建失败"];
                 }
                 
             } failure:^(NSError *error) {
@@ -961,7 +963,9 @@ typedef enum {
     [UMSocialData defaultData].extConfig.wechatSessionData.title = data[@"shareTitle"];
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = data[@"shareUrl"];
     [UMSocialData defaultData].extConfig.wechatTimelineData.title = data[@"shareTitle"];
-    [UMSocialSnsService presentSnsIconSheetView:self appKey:nil shareText:data[@"shareContent"] shareImage:image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,UMShareToSms, nil] delegate:nil];
+    [UMSocialData defaultData].extConfig.qqData.url = data[@"shareUrl"];
+    [UMSocialData defaultData].extConfig.qqData.title = data[@"shareTitle"];
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:nil shareText:data[@"shareContent"] shareImage:image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ, nil] delegate:nil];
 }
 
 @end
