@@ -12,7 +12,10 @@
 typedef void (^PictureDidSelected)(CPHomeStatus *status,NSIndexPath *path, NSArray *srcView);
 
 @interface CPHomeStatusCell : UITableViewCell
-
+// 我要去玩
+@property (weak, nonatomic) IBOutlet UIButton *myPlay;
+// 头像collectionView
+@property (weak, nonatomic) IBOutlet UICollectionView *iconView;
 @property (nonatomic,strong) CPHomeStatus *status;
 
 + (NSString *)identifier;

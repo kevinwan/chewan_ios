@@ -65,4 +65,9 @@
 #import "CPRefreshHeader.h"
 #import "CPRefreshFooter.h"
 #import "ZYTableViewCell.h"
+#import "NSDictionary+Dealer.h"
+#import "UIView+Dealer.h"
+#import "AppAppearance.h"
+#import "MembersController.h"
+#import "MembersManageController.h"
 #endif

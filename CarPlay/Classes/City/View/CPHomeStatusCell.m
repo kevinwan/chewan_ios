@@ -75,16 +75,14 @@
 // 底部头像列表框
 @property (weak, nonatomic) IBOutlet UIView *bottomIconList;
 
-// 我要去玩
-@property (weak, nonatomic) IBOutlet UIButton *myPlay;
+
 
 
 
 // 配图collectionView
 @property (weak, nonatomic) IBOutlet UICollectionView *pictureView;
 
-// 头像collectionView
-@property (weak, nonatomic) IBOutlet UICollectionView *iconView;
+
 
 @end
 
