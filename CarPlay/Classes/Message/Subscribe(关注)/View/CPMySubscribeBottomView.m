@@ -70,12 +70,14 @@
     
     // 添加底部区域
     UIImageView *bottomView = [[UIImageView alloc] init];
+    bottomView.userInteractionEnabled = YES;
     bottomView.image = [UIImage imageNamed:@"头像列表背景"];
     [self addSubview:bottomView];
     self.bottomView = bottomView;
     
     CPChatButton *chatBtn = [CPChatButton buttonWithType:UIButtonTypeCustom];
-    chatBtn.hidden = YES;
+    [chatBtn setTitle:@"成员管理" forState:UIControlStateNormal];
+    [chatBtn addTarget:self action:@selector(managerBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:chatBtn];
     self.chatBtn = chatBtn;
     
@@ -168,8 +170,21 @@
 
     [self.moreBtn setTitle:[NSString stringWithFormat:@"%zd",self.model.members.count] forState:UIControlStateNormal];
     
-    [self.chatBtn setTitle:@"我要去玩" forState:UIControlStateNormal];
+    if (self.model.isOrganizer){
+        [self.chatBtn setTitle:@"成员管理" forState:UIControlStateNormal];
+    }else if (self.model.isMember){
+        [self.chatBtn setTitle:@"已加入" forState:UIControlStateNormal];
+    }else{
+        [self.chatBtn setTitle:@"我要去玩" forState:UIControlStateNormal];
+    }
+    
     [self setNeedsLayout];
+}
+
+- (void)managerBtnClick:(CPChatButton *)button
+{
+    [CPNotificationCenter postNotificationName:ChatButtonClickNotifyCation object:nil userInfo:@{ChatButtonClickInfo : _model}];
+    
 }
 
 @end

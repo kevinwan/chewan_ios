@@ -556,7 +556,7 @@
                             [cover addTarget:self action:@selector(coverClick) forControlEvents:UIControlEventTouchUpInside];
                             cover.frame = [UIScreen mainScreen].bounds;
                             [self.view.window addSubview:cover];
-                            UIView *carView = [[[NSBundle mainBundle]loadNibNamed:@"CPOfferCar" owner:self options:nil]lastObject];
+                            UIView *carView = [[[NSBundle mainBundle]loadNibNamed:@"CPActiveOfferCar" owner:self options:nil]lastObject];
                             CGFloat carViewX = self.view.window.center.x;
                             CGFloat carViewY = self.view.window.center.y - 100;
                             carView.center = CGPointMake(carViewX, carViewY);

@@ -39,7 +39,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XTp-Ow-wiu" customClass="CPSexView">
-                                            <rect key="frame" x="112" y="19" width="30" height="15"/>
+                                            <rect key="frame" x="109" y="19" width="30" height="15"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="15" id="c0L-dJ-l95"/>
                                             </constraints>
@@ -57,19 +57,36 @@
                                             <color key="textColor" red="0.2627450980392157" green="0.29019607843137257" blue="0.32549019607843138" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f9h-AD-Bh6">
+                                            <rect key="frame" x="277" y="18" width="33" height="16"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" red="0.66666666666666663" green="0.69803921568627447" blue="0.74117647058823533" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DXl-It-t3j">
+                                            <rect key="frame" x="146" y="18" width="17" height="17"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="17" id="6BW-k4-s5G"/>
+                                                <constraint firstAttribute="width" constant="17" id="k0w-oK-LWQ"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="aTM-TD-cwH" firstAttribute="top" secondItem="Cww-tU-NC8" secondAttribute="bottom" constant="5" id="5fz-zM-15T"/>
                                         <constraint firstItem="Cww-tU-NC8" firstAttribute="top" secondItem="qt5-W7-aDr" secondAttribute="top" constant="16" id="6uF-vr-Oy1"/>
+                                        <constraint firstItem="DXl-It-t3j" firstAttribute="centerY" secondItem="XTp-Ow-wiu" secondAttribute="centerY" id="D9A-lE-v27"/>
                                         <constraint firstItem="rRF-I7-I6u" firstAttribute="top" secondItem="qt5-W7-aDr" secondAttribute="top" constant="11" id="Hm9-fT-uCi"/>
+                                        <constraint firstItem="DXl-It-t3j" firstAttribute="leading" secondItem="XTp-Ow-wiu" secondAttribute="trailing" constant="7" id="I4S-FM-gyi"/>
                                         <constraint firstItem="XTp-Ow-wiu" firstAttribute="centerY" secondItem="Cww-tU-NC8" secondAttribute="centerY" constant="-2.5" id="JZP-3L-0vL"/>
                                         <constraint firstItem="XTp-Ow-wiu" firstAttribute="centerY" secondItem="Cww-tU-NC8" secondAttribute="centerY" constant="-2.5" id="Jat-Ep-cZt"/>
-                                        <constraint firstItem="XTp-Ow-wiu" firstAttribute="leading" secondItem="Cww-tU-NC8" secondAttribute="trailing" constant="10" id="VF0-cH-lDP"/>
+                                        <constraint firstItem="XTp-Ow-wiu" firstAttribute="leading" secondItem="Cww-tU-NC8" secondAttribute="trailing" constant="7" id="VF0-cH-lDP"/>
                                         <constraint firstAttribute="centerY" secondItem="rRF-I7-I6u" secondAttribute="centerY" id="Z1z-hw-ehj"/>
                                         <constraint firstItem="rRF-I7-I6u" firstAttribute="leading" secondItem="qt5-W7-aDr" secondAttribute="leading" constant="10" id="aPz-rZ-fWR"/>
                                         <constraint firstItem="Cww-tU-NC8" firstAttribute="leading" secondItem="rRF-I7-I6u" secondAttribute="trailing" constant="10" id="h20-GQ-RDK"/>
                                         <constraint firstItem="Cww-tU-NC8" firstAttribute="centerY" secondItem="XTp-Ow-wiu" secondAttribute="centerY" id="kqd-mL-R8F"/>
+                                        <constraint firstAttribute="trailing" secondItem="f9h-AD-Bh6" secondAttribute="trailing" constant="10" id="m5m-8k-3cK"/>
                                         <constraint firstItem="aTM-TD-cwH" firstAttribute="leading" secondItem="rRF-I7-I6u" secondAttribute="trailing" constant="10" id="o48-GI-EGV"/>
+                                        <constraint firstItem="XTp-Ow-wiu" firstAttribute="centerY" secondItem="f9h-AD-Bh6" secondAttribute="centerY" id="od7-t3-hWk"/>
                                         <constraint firstItem="XTp-Ow-wiu" firstAttribute="baseline" secondItem="Cww-tU-NC8" secondAttribute="baseline" constant="-4" id="qv8-DB-d8Q"/>
                                     </constraints>
                                     <variation key="default">
@@ -82,10 +99,12 @@
                                     </variation>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="carLogoView" destination="DXl-It-t3j" id="ChX-93-DQK"/>
                                     <outlet property="descripteLable" destination="aTM-TD-cwH" id="Zxi-Xq-Prk"/>
                                     <outlet property="iconView" destination="rRF-I7-I6u" id="Fc4-7y-a5n"/>
                                     <outlet property="nameLable" destination="Cww-tU-NC8" id="eG8-cX-vG6"/>
                                     <outlet property="sexView" destination="XTp-Ow-wiu" id="ocQ-X7-GRZ"/>
+                                    <outlet property="timeLabel" destination="f9h-AD-Bh6" id="5jz-2V-YhG"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

@@ -21,6 +21,10 @@
 @property (weak, nonatomic) IBOutlet CPSexView *sexView;
 // 用户描述的label
 @property (weak, nonatomic) IBOutlet UILabel *descripteLable;
+// 留言时间的label
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+// 显示车标的UIImageView
+@property (weak, nonatomic) IBOutlet UIImageView *carLogoView;
 
 @end
 
@@ -51,8 +55,16 @@
     
     self.sexView.isMan = model.isMan;
     self.sexView.age = model.age;
+    self.timeLabel.text = model.timeStr;
     
     [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
+    if (model.carBrandLogo.length) {
+        self.carLogoView.hidden = NO;
+        [self.carLogoView sd_setImageWithURL:[NSURL  URLWithString:model.carBrandLogo] placeholderImage:[UIImage imageNamed:@"imageplace"]];
+    }else{
+        self.carLogoView.hidden = YES;
+    }
+    
     
     [self layoutIfNeeded];
     

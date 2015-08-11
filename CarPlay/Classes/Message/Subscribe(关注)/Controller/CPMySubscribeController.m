@@ -13,6 +13,8 @@
 #import "CPMySubscribeModel.h"
 #import "CPActiveDetailsController.h"
 #import "CPTaDetailsController.h"
+#import "MembersManageController.h"
+#import "MembersController.h"
 
 @interface CPMySubscribeController ()
 @property (nonatomic, strong) NSMutableArray *frameModels;
@@ -53,10 +55,6 @@
         weakSelf.ignore = self.frameModels.count;
         [weakSelf loadDataWithParam:weakSelf.ignore];
     }];
-//    // 设置了底部inset
-//    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
-//    // 忽略掉底部inset
-//    self.tableView.footer.ignoredScrollViewContentInsetTop = 30;
     
     self.tableView.footer.hidden = YES;
     ZYJumpToLoginView // 跳转到登陆界面
@@ -131,6 +129,7 @@
     [super viewWillAppear:animated];
     
     [CPNotificationCenter addObserver:self selector:@selector(userIconClick:) name:CPClickUserIconNotification object:nil];
+    [CPNotificationCenter addObserver:self selector:@selector(chatButtonClick:) name:ChatButtonClickNotifyCation object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -174,4 +173,25 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)chatButtonClick:(NSNotification *)notify
+{
+    CPMySubscribeModel *model = notify.userInfo[ChatButtonClickInfo];
+    //根据isOrganizer判断进入那个界面
+    if (model.isOrganizer == 1) {
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MembersManage" bundle:nil];
+        
+        MembersManageController * vc = sb.instantiateInitialViewController;
+        vc.activityId = model.activityId;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    } else if (model.isMember == 1){
+        
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Members" bundle:nil];
+        MembersController * vc = sb.instantiateInitialViewController;
+        vc.activityId = model.activityId;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+        
+}
+    
 @end

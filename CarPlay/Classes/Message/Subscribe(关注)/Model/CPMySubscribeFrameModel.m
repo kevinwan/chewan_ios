@@ -50,7 +50,7 @@
     self.nameLabelF = CGRectMake(nameLableX, nameLableY, nameLableW,nameLableH);
     
     
-    CGFloat sexViewX = CGRectGetMaxX(_nameLabelF) + 3;
+    CGFloat sexViewX = CGRectGetMaxX(_nameLabelF) + 7;
     CGFloat sexViewW = 30;
     CGFloat sexViewH = 15;
     CGFloat sexViewY = 23.5;

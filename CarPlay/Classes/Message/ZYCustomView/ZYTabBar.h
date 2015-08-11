@@ -1,13 +1,13 @@
 //
-//  CPOfferCar.h
+//  ZYTabBar.h
 //  CarPlay
 //
-//  Created by Jia Zhao on 15/8/3.
+//  Created by chewan on 15/8/10.
 //  Copyright (c) 2015年 gongpingjia. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface CPOfferCar : UIView
+@interface ZYTabBar : UITabBar
 
 @end

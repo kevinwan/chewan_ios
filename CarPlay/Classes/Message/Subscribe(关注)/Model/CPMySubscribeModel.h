@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+// 点击了聊天按钮
+#define ChatButtonClickNotifyCation @"ChatButtonClickNotifyCation"
+#define ChatButtonClickInfo @"ChatButtonClickInfo"
+
 #define TimeStampFont     [UIFont systemFontOfSize:16]
 #define contentFont     [UIFont systemFontOfSize:16]
 
@@ -37,12 +41,19 @@
 @property (nonatomic, strong) NSArray *cover;
 
 @property (nonatomic, assign) long long publishTime;
+
 // 发布时间的str
 @property (nonatomic, copy) NSString *publishTimeStr;
 
 @property (nonatomic, assign) NSInteger holdingSeat;
 
 @property (nonatomic, strong) CPOrganizer *organizer;
+
+// 是成员
+@property (nonatomic, assign) NSInteger isMember;
+
+// 是组织者
+@property (nonatomic, assign) NSInteger isOrganizer;
 
 @end
 
@@ -81,4 +92,5 @@
 @property (nonatomic, assign) NSInteger joinNumber;
 
 @property (nonatomic, assign) NSInteger isAuthenticated;
+
 @end

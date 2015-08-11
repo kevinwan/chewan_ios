@@ -35,7 +35,6 @@
     self.titleLabel.font = [UIFont systemFontOfSize:12];
     self.clipsToBounds = YES;
     
-    [self setTitle:@"聊天" forState:UIControlStateNormal];
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.backgroundColor = [Tools getColor:@"fc6e51"];
 }
