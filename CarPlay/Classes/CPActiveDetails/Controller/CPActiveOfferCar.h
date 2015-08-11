@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPOfferCar : UIView
+@interface CPActiveOfferCar : UIView
 
 @end

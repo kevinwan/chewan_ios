@@ -7,13 +7,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CPActiveDetailsController">
             <connections>
-                <outlet property="carxibNoVIew" destination="Omp-Bw-507" id="yGb-xo-m9z"/>
-                <outlet property="carxibTextFeild" destination="Amh-Jh-XEK" id="Zt8-zw-hKX"/>
-                <outlet property="carxibYesView" destination="b9J-TQ-mXK" id="p2v-S4-RBn"/>
+                <outlet property="carxibNoVIew" destination="Omp-Bw-507" id="zqu-ey-W5X"/>
+                <outlet property="carxibTextFeild" destination="Amh-Jh-XEK" id="l4c-gG-4Fw"/>
+                <outlet property="carxibYesView" destination="b9J-TQ-mXK" id="UYt-3x-1y8"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CPOfferCar">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CPActiveOfferCar">
             <rect key="frame" x="0.0" y="0.0" width="280" height="230"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -151,7 +151,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="carxibButtonClick:" destination="-1" eventType="touchUpInside" id="aeM-g4-pvv"/>
+                        <action selector="carxibButtonClick:" destination="-1" eventType="touchUpInside" id="N6R-Ld-Dfy"/>
                     </connections>
                 </button>
             </subviews>
@@ -172,15 +172,15 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="carxibButton" destination="Wtf-m7-RuN" id="Agv-7A-Y90"/>
-                <outlet property="carxibLblNO" destination="bxh-LK-3jV" id="Dbs-XJ-hlv"/>
-                <outlet property="carxibLblOne" destination="nHz-BB-Ybl" id="02L-3x-JYo"/>
-                <outlet property="carxibLblThree" destination="rCr-xS-5ZT" id="3Wp-LW-4jQ"/>
-                <outlet property="carxibLblTwo" destination="YIB-vn-xRI" id="IcI-Hp-EGF"/>
-                <outlet property="carxibLblYES" destination="kMF-CP-J6s" id="c9P-fr-RUo"/>
-                <outlet property="carxibLblge" destination="sJH-6J-gEQ" id="9b3-9q-Ka3"/>
-                <outlet property="carxibViewOne" destination="4w1-SQ-33A" id="oXF-bG-TcW"/>
-                <outlet property="carxibViewThree" destination="2ND-Sp-2Nd" id="Nlv-cO-xL1"/>
+                <outlet property="carxibButton" destination="Wtf-m7-RuN" id="dE8-7d-a1y"/>
+                <outlet property="carxibLblNO" destination="bxh-LK-3jV" id="O3s-vJ-D09"/>
+                <outlet property="carxibLblOne" destination="nHz-BB-Ybl" id="Dpk-Iz-fRw"/>
+                <outlet property="carxibLblThree" destination="rCr-xS-5ZT" id="LrX-RQ-9eP"/>
+                <outlet property="carxibLblTwo" destination="YIB-vn-xRI" id="7cS-Ds-Mcr"/>
+                <outlet property="carxibLblYES" destination="kMF-CP-J6s" id="5IU-aH-sMY"/>
+                <outlet property="carxibLblge" destination="sJH-6J-gEQ" id="m0Q-qm-qPU"/>
+                <outlet property="carxibViewOne" destination="4w1-SQ-33A" id="BJ6-rF-pBS"/>
+                <outlet property="carxibViewThree" destination="2ND-Sp-2Nd" id="gkO-5h-584"/>
             </connections>
             <point key="canvasLocation" x="324" y="57"/>
         </view>
