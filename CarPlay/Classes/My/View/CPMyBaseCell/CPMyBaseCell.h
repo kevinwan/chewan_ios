@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPMyBaseCell : UITableViewCell
+@interface CPMyBaseCell : ZYTableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *icon;
 @property (weak, nonatomic) IBOutlet UILabel *titleLable;
 @property (weak, nonatomic) IBOutlet UILabel *valueLable;

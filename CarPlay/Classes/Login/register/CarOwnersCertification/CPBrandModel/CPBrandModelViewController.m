@@ -30,6 +30,24 @@
     [super viewDidLoad];
     brandArray=[[NSArray alloc]init];
     modelArray=[[NSArray alloc]init];
+    
+//    NSInteger index = 1;
+//    self.indexPathNumberArray = [NSMutableArray array];
+//    if (self.type != SelectBrandTypeReckon && self.type != SelectBrandTypeModel) {
+//        [brandArray addObject:@[[NSNull null]]];
+//        [brandArray addObject:@"#"];
+//        [_indexPathNumberArray addObject:@(index++)];
+//    }
+//    for (char c = 'A'; c <= 'Z'; c++) {
+//        NSString *initial = [NSString stringWithFormat:@"%c", c];
+//        NSArray *brand = [NSMutableArray arrayWithArray:[Interface brandsWithFirstLetter:initial]];
+//        if (brand.count > 0) {
+//            [self.allBrands addObject:brand];
+//            [brandArray addObject:initial];
+//            [_indexPathNumberArray addObject:@(index++)];
+//        }
+//    }
+    
     sortedBrandData=[[NSMutableDictionary alloc]init];
     if (!_fromMy || ![_fromMy isEqualToString:@"1"]) {
         self.brandTableView.contentInset=UIEdgeInsetsMake(64, 0, 0, 0);
@@ -40,16 +58,20 @@
     _modelSlideView.userInteractionEnabled = YES;
     [self.view addSubview:_modelSlideView];
     [_modelSlideView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0.0f, 60.0f, 0.0f, 0.0f));
+        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f));
     }];
 //    [_modelSlideView setFrame:CGRectMake(60.0f, 0, SCREEN_WIDTH-60.0f,SCREEN_HEIGHT)];
     
     // 第三方控件视图我就不修改了
-    self.indexView = [[MJNIndexView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 60)];
+    if (!_fromMy || ![_fromMy isEqualToString:@"1"]) {
+        self.indexView = [[MJNIndexView alloc] initWithFrame:CGRectMake(0, 60, SCREEN_WIDTH, SCREEN_HEIGHT - 60)];
+    }else{
+        self.indexView = [[MJNIndexView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    }
     _indexView.dataSource = self;
     _indexView.fontColor = [Tools getColor:@"aab2bd"];
     _indexView.font = [UIFont systemFontOfSize:11.0f];
-    _indexView.minimumGapBetweenItems = 10.f;
+    _indexView.minimumGapBetweenItems = 0.f;
     _indexView.ergonomicHeight = NO;
     _indexView.selectedItemFontColor=[Tools getColor:@"48d1d5"];
     [self.view addSubview:_indexView];
@@ -63,16 +85,17 @@
     _modelTableView.dataSource = self;
     self.automaticallyAdjustsScrollViewInsets = NO;
     _modelTableView.backgroundColor = [UIColor whiteColor];
-    [_modelTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+    [_modelTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [_modelSlideView addSubview:_modelTableView];
+    _modelSlideView.backgroundColor=[UIColor colorWithWhite:0.3 alpha:0.8];
     _modelTableView.tableFooterView = [UIView new];
 //    [_modelTableView mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.edges.equalTo(_modelSlideView).with.insets(UIEdgeInsetsMake(66.0f, 0.5f, 0.0f, 0.0f));
 //    }];
     if (!_fromMy || ![_fromMy isEqualToString:@"1"]) {
-        self.modelTableView.frame=CGRectMake(0, 66, SCREEN_WIDTH, SCREEN_HEIGHT-66);
+        self.modelTableView.frame=CGRectMake(60, 64, SCREEN_WIDTH-60, SCREEN_HEIGHT-64);
     }else{
-        self.modelTableView.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        self.modelTableView.frame=CGRectMake(60, 0, SCREEN_WIDTH-60, SCREEN_HEIGHT);
     }
     // 清扫手势
     UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipes:)];
@@ -82,16 +105,6 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [self getData];
-}
-
--(void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
-    if ([self.brandTableView respondsToSelector:@selector(setSeparatorInset:)]) {
-        [self.brandTableView setSeparatorInset:UIEdgeInsetsZero];
-    }
-    if ([self.brandTableView respondsToSelector:@selector(setLayoutMargins:)]) {
-        [self.brandTableView setLayoutMargins:UIEdgeInsetsZero];
-    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -119,7 +132,7 @@
                 UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12, 0, kScreenWidth, 20)];
                 label.backgroundColor = [UIColor clearColor];
                 label.text = [brandArray objectAtIndex:section];
-                label.font = [UIFont systemFontOfSize:16];
+                label.font = [UIFont systemFontOfSize:14];
                 label.textColor = [Tools getColor:@"434a53"];
                 [imageview addSubview:label];
                 return imageview;
@@ -242,7 +255,7 @@
             // 把第三层滚回去
             _modelSlideView.hidden = NO;
             _indexView.hidden=YES;
-            _modelSlideView.frame = CGRectMake(60, 0, SCREEN_WIDTH - 60, _brandTableView.height);
+            _modelSlideView.frame = CGRectMake(0, 0, SCREEN_WIDTH, _brandTableView.height);
         }];
         [self getModelData:brandName];
     }
@@ -274,18 +287,13 @@
     return brandArray;
 }
 
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-        [cell setSeparatorInset:UIEdgeInsetsZero];
-    }
-    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-        [cell setLayoutMargins:UIEdgeInsetsZero];
-    }
-    if([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]){
-        [cell setPreservesSuperviewLayoutMargins:NO];
+- (void)sectionForSectionMJNIndexTitle:(NSString *)title atIndex:(NSInteger)index
+{
+    if (brandArray.count > 0) {
+        NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow:0 inSection:index];
+        [_brandTableView scrollToRowAtIndexPath:scrollIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
     }
 }
-
 
 #pragma privateMethods
 -(void)getData{

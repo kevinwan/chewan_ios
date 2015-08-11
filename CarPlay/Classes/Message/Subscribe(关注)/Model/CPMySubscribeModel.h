@@ -86,6 +86,8 @@
 
 @property (nonatomic, copy) NSString *headImgUrl;
 
+@property (nonatomic, copy) NSString *headImgId;
+
 @property (nonatomic, copy) NSArray *albumPhotos;
 
 @property (nonatomic, assign) NSInteger postNumber;
@@ -96,4 +98,17 @@
 
 @property (nonatomic, assign) NSInteger isAuthenticated;
 
+@property (nonatomic, copy) NSString *cityAndDistrict;
+
+@property (nonatomic, copy) NSString *province;
+
+@property (nonatomic, copy) NSString *city;
+
+@property (nonatomic, copy) NSString *district;
+
+@property (nonatomic, assign) NSInteger brithYear;
+
+@property (nonatomic, assign) NSInteger birthMonth;
+
+@property (nonatomic, assign) NSInteger birthDay;
 @end

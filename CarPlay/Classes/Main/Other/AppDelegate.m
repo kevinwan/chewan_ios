@@ -54,6 +54,9 @@
 //    统计分析  nil默认渠道为appStore
     [MobClick startWithAppkey:kCheWanAppID reportPolicy:BATCH   channelId:nil];
     
+//    [[EaseMob sharedInstance] registerSDKWithAppKey:@"douser#istore" apnsCertName:@"istore_dev"];
+//    [[EaseMob sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
+    
     // 如何知道第一次使用这个版本？比较上次的使用情况
     NSString *versionKey = (__bridge NSString *)kCFBundleVersionKey;
     

@@ -12,6 +12,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *nextBtn;
 - (IBAction)nextBtnClick:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *password;
+@property (weak, nonatomic) IBOutlet UITextField *confirmPassword;
 @property (strong, nonatomic) NSString *pwd;
 @property (strong, nonatomic) NSString *phone;
 @end

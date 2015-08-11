@@ -11,6 +11,7 @@
 #import "CPRegisterCellsTableViewCell3.h"
 #import "ZHPickView.h"
 #import "CPEditUsernameViewController.h"
+#import "CPMySubscribeModel.h"
 
 @interface CPEditInfoTableViewController ()<UIImagePickerControllerDelegate,UIActionSheetDelegate,ZHPickViewDelegate>
 {
@@ -18,6 +19,8 @@
     int brithYear;
     int birthMonth;
     int birthDay;
+    CPOrganizer *organizer;
+    NSString *fileName;
 }
 @end
 
@@ -25,6 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"userId"]];
     self.tableView.tableFooterView=[[UIView alloc]initWithFrame:CGRectZero];
     [UIApplication sharedApplication].keyWindow.backgroundColor=[UIColor whiteColor];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removePickview) name:@"remove" object:nil];
@@ -33,6 +37,8 @@
 -(void)viewWillAppear:(BOOL)animated{
     if (![Tools getValueFromKey:@"userId"]) {
         [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+    }else{
+        organizer=[NSKeyedUnarchiver unarchiveObjectWithFile:CPDocmentPath(fileName)];
     }
 }
 
@@ -89,11 +95,11 @@
         }
         
 
-        NSString *nickname=[Tools getValueFromKey:@"nickname"];
-        NSString *gender=[Tools getValueFromKey:@"gender"];
-        NSString *drivingExperience=[[NSString alloc]initWithFormat:@"%@年",[Tools getValueFromKey:@"drivingExperience"]];
-        NSString *city=[Tools getValueFromKey:@"city"];
-        NSString *district=[Tools getValueFromKey:@"district"];
+        NSString *nickname=organizer.nickname;
+        NSString *gender=organizer.gender;
+        NSString *drivingExperience=[[NSString alloc]initWithFormat:@"%ld年",(long)organizer.drivingExperience];
+        NSString *city=organizer.city;
+        NSString *district=organizer.district;
         
         if (indexPath.row==1) {
             cell.cellTitle.text=@"昵称";
@@ -147,7 +153,6 @@
         //动画结束
         [UIView commitAnimations];
         if (indexPath.row==2) {
-//
             _pickview=[[ZHPickView alloc] initPickviewWithArray:@[@"男", @"女"] isHaveNavControler:NO];
             _pickview.delegate=self;
             [_pickview show];

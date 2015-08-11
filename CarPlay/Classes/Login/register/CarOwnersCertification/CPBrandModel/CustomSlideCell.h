@@ -16,7 +16,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CustomSlideCell : UITableViewCell
+@interface CustomSlideCell : ZYTableViewCell
 
 + (CGFloat)standardHeight;
 
