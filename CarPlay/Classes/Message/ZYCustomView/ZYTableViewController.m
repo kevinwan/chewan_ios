@@ -132,7 +132,7 @@
 
 - (void)showNoData
 {
-    [self tipViewWithIcon:@"暂无参与" title:@"暂时没有任何数据" subTitle:@"刷新一下试试吧" buttonTitle:nil isShow:NO];
+    [self tipViewWithIcon:@"暂无参与" title:@"暂时没有任何数据" subTitle:@"刷新一下试试吧" buttonTitle:@"重新加载" isShow:YES];
 }
 
 - (void)showNoPublish
@@ -142,7 +142,7 @@
 
 - (void)showNoSubscribe
 {
-    [self tipViewWithIcon:@"暂无收藏" title:@"暂时没有任何收藏" subTitle:@"赶紧去收藏吧" buttonTitle:nil isShow:NO];
+    [self tipViewWithIcon:@"暂无关注" title:@"暂时没有任何收藏" subTitle:@"赶紧去收藏吧" buttonTitle:nil isShow:NO];
 }
 
 - (void)showNoJoin

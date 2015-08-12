@@ -75,11 +75,14 @@
         
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.titleLabel.font = [UIFont systemFontOfSize:12];
-        [button setTitle:@"选择>" forState:UIControlStateNormal];
-        [button setTitleColor:[Tools getColor:@"48d1d5"] forState:UIControlStateNormal];
+        button.titleLabel.font = [UIFont systemFontOfSize:14];
+        [button setTitle:@"选定" forState:UIControlStateNormal];
+        [button setBackgroundColor:[Tools getColor:@"fc6e51"]];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         button.width = 50;
         button.height = 30;
+        button.layer.cornerRadius = 3;
+        button.clipsToBounds = YES;
         button.centerY = _descLocationView.centerYInSelf;
         button.x = _descLocationView.width - 60;
         [_descLocationView addSubview:button];
@@ -120,37 +123,8 @@
     
     [self.view addSubview:_mapView];
 
-    ZYSearchBar *searchBar = [[ZYSearchBar alloc] init];
+    [self setUpSubView];
     
-    searchBar.placeholder = @"输入您的目的地";
-    searchBar.frame = CGRectMake(10, 74, kScreenWidth - 80, 40);
-    [self.view addSubview:searchBar];
-    [searchBar addTarget:self action:@selector(inputTextDidChange:) forControlEvents:UIControlEventEditingChanged];
-    self.searchBar = searchBar;
-    
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.layer.cornerRadius = 4;
-    btn.clipsToBounds = YES;
-    btn.titleLabel.font = [UIFont systemFontOfSize:15];
-    [btn setTitle:@"搜索" forState:UIControlStateNormal];
-    [btn setBackgroundColor:[Tools getColor:@"fd6d53"]];
-    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    btn.frame = CGRectMake(searchBar.right + 5, 76, 55, searchBar.height- 5);
-    [btn addTarget:self action:@selector(searchBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btn];
-    
-    UITableView *tableView = [[UITableView alloc] init];
-    tableView.layer.cornerRadius = 3;
-    tableView.clipsToBounds = YES;
-    tableView.rowHeight = 60;
-    tableView.hidden = YES;
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    [self.view addSubview:tableView];
-    tableView.frame = CGRectMake(searchBar.x, searchBar.bottom,kScreenWidth - 2 * searchBar.x , kScreenHeight - searchBar.bottom - 54);
-    tableView.tableFooterView = [[UIView alloc] init];
-    self.resultTableView = tableView;
-
     UITapGestureRecognizer *mTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPress:)];
     mTap.delegate = self;
     [self.mapView addGestureRecognizer:mTap];
@@ -173,6 +147,45 @@
         [self.mapView setCenterCoordinate:center animated:YES];
         [self.mapView addAnnotation:annotation];
     }
+}
+
+/**
+ *  初始化子控件
+ */
+- (void)setUpSubView
+{
+    
+    ZYSearchBar *searchBar = [[ZYSearchBar alloc] init];
+    
+    searchBar.placeholder = @"输入您的目的地";
+    searchBar.frame = CGRectMake(10, 74, kScreenWidth - 80, 40);
+    [self.view addSubview:searchBar];
+    [searchBar addTarget:self action:@selector(inputTextDidChange:) forControlEvents:UIControlEventEditingChanged];
+    self.searchBar = searchBar;
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.layer.cornerRadius = 4;
+    btn.clipsToBounds = YES;
+    btn.titleLabel.font = [UIFont systemFontOfSize:15];
+    [btn setTitle:@"搜索" forState:UIControlStateNormal];
+    [btn setBackgroundColor:[Tools getColor:@"fd6d53"]];
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    btn.frame = CGRectMake(searchBar.right + 5, 76, 55, searchBar.height- 5);
+    [btn addTarget:self action:@selector(searchBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
+    
+    UITableView *tableView = [[UITableView alloc] init];
+    tableView.showsVerticalScrollIndicator = NO;
+    tableView.layer.cornerRadius = 3;
+    tableView.clipsToBounds = YES;
+    tableView.rowHeight = 60;
+    tableView.hidden = YES;
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    [self.view addSubview:tableView];
+    tableView.frame = CGRectMake(searchBar.x, searchBar.bottom,kScreenWidth - 2 * searchBar.x , kScreenHeight - searchBar.bottom - 54);
+    tableView.tableFooterView = [[UIView alloc] init];
+    self.resultTableView = tableView;
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
@@ -505,7 +518,10 @@ updatingLocation:(BOOL)updatingLocation
         cell.accessoryView = button;
     }
     AMapTip *tip = self.tips[indexPath.row];
-    cell.textLabel.text = tip.name;
+    NSRange regexRange = [tip.name rangeOfString:self.searchBar.text.trimStr];
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:tip.name];
+    [str setAttributes:@{NSForegroundColorAttributeName : [Tools getColor:@"48d1d5"]} range:regexRange];
+    cell.textLabel.attributedText = str;
     cell.detailTextLabel.text = tip.district;
     
     return cell;
