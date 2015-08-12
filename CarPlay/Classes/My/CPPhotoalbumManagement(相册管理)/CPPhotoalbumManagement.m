@@ -20,12 +20,14 @@
 @property (nonatomic, strong) UIBarButtonItem *leftItem1;
 @property (nonatomic, assign) CGFloat photoViewHeight;
 @property (nonatomic, assign) BOOL imageEditing;
+@property (nonatomic, strong) NSMutableArray *allPhotoIds;
 @end
 
 @implementation CPPhotoalbumManagement
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _allPhotoIds=[[NSMutableArray alloc]init];
     [self loadPhotos:_albumPhotos];
     self.photoWH = (kScreenWidth - 50) / 4;
     self.picIndex = 10;
@@ -200,6 +202,7 @@
                     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPress:)];
                     [imageView addGestureRecognizer:tapGes];
                     imageView.coverId=responseObject[@"data"][@"photoId"];
+                    [_allPhotoIds addObject:responseObject[@"data"][@"photoId"]];
                     [self.photoView insertSubview:imageView atIndex:0];
                     [self layoutPhotoView];
                 }else{
@@ -301,12 +304,11 @@
  */
 - (void)deleteSelectPhoto
 {
-    NSMutableArray *photoIds=[NSMutableArray array];
     for (CPEditImageView *editImageView in self.editPhotoViews) {
-        [photoIds addObject:editImageView.coverId];
+        [_allPhotoIds removeObject:editImageView.coverId];
     }
     NSString *path=[[NSString alloc]initWithFormat:@"v1/user/%@/album/photos?token=%@",[Tools getValueFromKey:@"userId"],[Tools getValueFromKey:@"token"]];
-    NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:photoIds,@"photos", nil];
+    NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:_allPhotoIds,@"photos", nil];
     
     [ZYNetWorkTool postJsonWithUrl:path params:params success:^(id responseObject) {
         if (CPSuccess) {
@@ -353,7 +355,7 @@
     
     for (int i = 0; i < photos.count; i++) {
         CPEditImageView *imageView = [[CPEditImageView alloc] init];
-        imageView.contentMode=UIViewContentModeScaleAspectFit;
+        imageView.contentMode=UIViewContentModeScaleAspectFill;
         NSURL *url=[[NSURL alloc]initWithString:photos[i][@"thumbnail_pic"]];
         [imageView sd_setImageWithURL:url];
       
@@ -363,6 +365,7 @@
         UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPress:)];
         [imageView addGestureRecognizer:tapGes];
         imageView.coverId = photos[i][@"photoId"];
+        [_allPhotoIds addObject:photos[i][@"photoId"]];
         [self.photoView insertSubview:imageView atIndex:0];
     }
     [self layoutPhotoView];

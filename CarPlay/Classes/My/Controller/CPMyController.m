@@ -63,6 +63,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    [self.timer invalidate];
     if ([Tools getValueFromKey:@"userId"]) {
         self.unLoginStatusView.hidden=YES;
         [self getData];
@@ -187,12 +188,8 @@
 // 滚动视图停下来，修改页面控件的小点（页数）
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    
     // 计算页数
     int page = scrollView.contentOffset.x / scrollView.bounds.size.width;
-    
-//    int page = (self.pageControl.currentPage - 1);
-    
     self.pageControl.currentPage = page;
 }
 
@@ -210,11 +207,9 @@
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    //    NSLog(@"%s", __func__);
     if ([albumPhotos count]>0) {
         [self startTimer];
     }
-    
 }
 
 -(void)createScrollViewAndPagController{
@@ -229,7 +224,7 @@
     _scrollView.pagingEnabled = YES;
     
     // contentSize
-    _scrollView.contentSize = CGSizeMake(_scrollView.bounds.size.width, 0);
+    _scrollView.contentSize = CGSizeMake(_scrollView.bounds.size.width, 190);
     
     // 设置代理
     _scrollView.delegate = self;
@@ -263,7 +258,7 @@
                 [self loadUserData:organizer];
             }
         }else{
-            NSLog(@"234234");
+            [self showError:responseObject[@"errmsg"]];
         }
     } failure:^(NSError *error) {
         [self showError:@"获取个人信息失败"];
@@ -273,20 +268,23 @@
 -(void)loadUserData:(CPOrganizer *)organizer{
     if (organizer) {
         if (organizer.albumPhotos && [organizer.albumPhotos count]>0) {
-            // 总页数
-            _pageControl.numberOfPages = [albumPhotos count];
-            _pageControl.bounds = CGRectMake(0, 0, 7, 7);
-            _pageControl.center = CGPointMake(self.view.center.x, 180);
-            
-            // 设置颜色
-            _pageControl.pageIndicatorTintColor = [Tools getColor:@"ffffff"];
-            _pageControl.currentPageIndicatorTintColor = [Tools getColor:@"48d1d5"];
-            
-            [self.view addSubview:_pageControl];
-            
-            // 添加监听方法
-            /** 在OC中，绝大多数"控件"，都可以监听UIControlEventValueChanged事件，button除外" */
-            [_pageControl addTarget:self action:@selector(pageChanged:) forControlEvents:UIControlEventValueChanged];
+            //相册照片数量大于1的时候才加轮播页数控制
+            if([organizer.albumPhotos count]>1){
+                // 总页数
+                _pageControl.numberOfPages = [albumPhotos count];
+                _pageControl.bounds = CGRectMake(0, 0, 7, 7);
+                _pageControl.center = CGPointMake(self.view.center.x, 180);
+                
+                // 设置颜色
+                _pageControl.pageIndicatorTintColor = [Tools getColor:@"ffffff"];
+                _pageControl.currentPageIndicatorTintColor = [Tools getColor:@"48d1d5"];
+                
+                [self.view addSubview:_pageControl];
+                
+                // 添加监听方法
+                /** 在OC中，绝大多数"控件"，都可以监听UIControlEventValueChanged事件，button除外" */
+                [_pageControl addTarget:self action:@selector(pageChanged:) forControlEvents:UIControlEventValueChanged];
+            }
             
             for (int i = 0; i < [albumPhotos count]; i++) {
                 
@@ -303,7 +301,11 @@
                     [self.scrollView addSubview:imageView];
                 }
                 self.scrollView.delegate=self;
+                UITapGestureRecognizer *singleTap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(photopress:)];
+                [self.scrollView addGestureRecognizer:singleTap2];
+                 _scrollView.contentSize = CGSizeMake(SCREEN_WIDTH*[albumPhotos count], 190);
             }
+            
             self.pageControl.currentPage = 0;
             // 启动时钟
             [self startTimer];
@@ -361,11 +363,6 @@
             self.carModelAndDrivingExperience.text=@"认证审核中";
             [self.carModelAndDrivingExperience setX:self.carBrandLogoImg.left];
         }
-        
-        
-        
-        
-        
         if (organizer.postNumber) {
             self.myReleaseCountLable.text=[[NSString alloc]initWithFormat:@"%zd",organizer.postNumber];
         }
@@ -453,6 +450,18 @@
         CPEditInfoTableViewController *CPEditInfoTableVC=[[CPEditInfoTableViewController alloc]init];
         CPEditInfoTableVC.title=@"编辑资料";
         [self.navigationController pushViewController:CPEditInfoTableVC animated:YES];
+    }else{
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+    }
+}
+
+-(void)photopress:(UIGestureRecognizer *)gestureRecognizer
+{
+    if ([Tools getValueFromKey:@"userId"]) {
+        CPPhotoalbumManagement *CPPhotoalbumManagementVC=[[CPPhotoalbumManagement alloc]init];
+        CPPhotoalbumManagementVC.title=@"相册管理";
+        CPPhotoalbumManagementVC.albumPhotos=albumPhotos;
+        [self.navigationController pushViewController:CPPhotoalbumManagementVC animated:YES];
     }else{
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
     }

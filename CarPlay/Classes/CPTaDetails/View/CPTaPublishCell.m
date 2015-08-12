@@ -78,14 +78,17 @@
     
     // 时间点
     // 切圆
-    self.timePoint.layer.cornerRadius = 5;
+    self.timePoint.layer.cornerRadius = 2.5;
     self.timePoint.layer.masksToBounds = YES;
     
     // 正文
     self.introduction.text = publishStatus.introduction;
     
+    // 头像列表
+    [self.bottomIconList setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"头像列表背景"]]];
+    
     // 开始时间
-    self.startDate.text = publishStatus.startDate;
+    self.startDate.text = publishStatus.startDateStr;
     
     // 地点
     self.location.text = publishStatus.location;
