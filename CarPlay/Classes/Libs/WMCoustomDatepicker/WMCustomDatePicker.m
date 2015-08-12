@@ -97,19 +97,19 @@
     {
         if (i<24) {
             if (i<12) {
-                [monthArray addObject:[NSString stringWithFormat:@"%d月",i+1]];
+                [monthArray addObject:[NSString stringWithFormat:@"%d 月",i+1]];
                 
             }
-            [hourArray addObject:[NSString stringWithFormat:@"%02d时",i]];
+            [hourArray addObject:[NSString stringWithFormat:@"%02d 时",i]];
         }
         if (i%DATEPICKER_interval==0) {
-            [minuteArray addObject:[NSString stringWithFormat:@"%02d分",i]];
+            [minuteArray addObject:[NSString stringWithFormat:@"%02d 分",i]];
         }
         
         
     }
     for (int i = DATEPICKER_MINDATE; i<=DATEPICKER_MAXDATE; i++) {
-        [yearArray addObject:[NSString stringWithFormat:@"%d年",i]];
+        [yearArray addObject:[NSString stringWithFormat:@"%d 年",i]];
     }
     //最大最小限制
     if (self.maxLimitDate) {
@@ -525,15 +525,9 @@
     
     NSString *strWeekDay = [self getWeekDayWithYear:yearArray[yearIndex] month:monthArray[monthIndex] day:dayArray[dayIndex]];
     
-    NSString *dateStr = [NSString stringWithFormat:@"%@%@%@ %@%@", yearArray[yearIndex],
-                         monthArray[monthIndex],
-                         dayArray[dayIndex],
-                         hourArray[hourIndex],
-                         minuteArray[minuteIndex]];
-    dateStr = [dateStr stringByReplacingOccurrencesOfString:@"时" withString:@":"];
-    dateStr = [dateStr stringByReplacingOccurrencesOfString:@"分" withString:@""];
-    NSLog(@"%@",dateStr);
-    _selectDateStr = dateStr;
+    NSDate *selectDate = [self dateFromString:[NSString stringWithFormat:@"%@%@%@%@%@",yearArray[yearIndex],monthArray[monthIndex],dayArray[dayIndex],hourArray[hourIndex],minuteArray[minuteIndex]] withFormat:@"yyyy年MM月dd日HH时mm分"];//选择器时间
+    
+    _selectDateStr = [self stringFromDate:selectDate];
     
     //代理回调
     if ([self.delegate respondsToSelector:@selector(finishDidSelectDatePicker:year:month:day:hour:minute:weekDay:)]) {
@@ -578,11 +572,20 @@
 }
 //根据string返回date
 - (NSDate *)dateFromString:(NSString *)string withFormat:(NSString *)format {
+    string = [string stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
     [inputFormatter setDateFormat:format];
     NSDate *date = [inputFormatter dateFromString:string];
     return date;
 }
+
+- (NSString *)stringFromDate:(NSDate *)date
+{
+    NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
+    inputFormatter.dateFormat = @"yyyy年MM月dd日 HH:mm";
+    return [inputFormatter stringFromDate:date];
+}
+
 //通过年月求每月天数
 - (NSInteger)DaysfromYear:(NSInteger)year andMonth:(NSInteger)month
 {
@@ -630,7 +633,7 @@
 {
     [dayArray removeAllObjects];
     for (int i=1; i<=num; i++) {
-        [dayArray addObject:[NSString stringWithFormat:@"%02d日",i]];
+        [dayArray addObject:[NSString stringWithFormat:@"%02d 日",i]];
     }
 }
 

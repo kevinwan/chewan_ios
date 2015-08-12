@@ -26,13 +26,16 @@
 // 显示车标的UIImageView
 @property (weak, nonatomic) IBOutlet UIImageView *carLogoView;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *descLabelWitdhConstrant;
 @end
 
 @implementation CPNewMessageCell
 
 - (void)awakeFromNib {
     
-    self.descripteLable.preferredMaxLayoutWidth = kScreenWidth - 80;
+    self.descLabelWitdhConstrant.constant = kScreenWidth - 80;
+//    
+//    self.descripteLable.preferredMaxLayoutWidth = kScreenWidth - 80;
     
     for (UIGestureRecognizer *recognizer in self.gestureRecognizers) {
         [self removeGestureRecognizer:recognizer];
@@ -66,9 +69,9 @@
     }
     
     
-    [self layoutIfNeeded];
-    
-    self.cellHeight = self.descripteLable.bottom + 10;
+//    [self layoutIfNeeded];
+//    
+//    self.cellHeight = self.descripteLable.bottom + 10;
     
 }
 

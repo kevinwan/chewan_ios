@@ -132,7 +132,7 @@ typedef enum {
         
         self.activityApplyNewMsgNumber.badgeValue = @"0";
         self.activityApplyNewMsgNumber.hidden = YES;
-        self.activityApplyMsgLabel.text = @"没有新的消息";
+        self.activityApplyMsgLabel.text = @"暂无消息";
         
         if (self.leaveNewMsgNumber.badgeValue.integerValue > 0) {
             self.tabBarItem.badgeValue = self.leaveNewMsgNumber.badgeValue;
@@ -150,7 +150,7 @@ typedef enum {
             self.tabBarItem.badgeValue = nil;
         }
         self.leaveNewMsgNumber.hidden = YES;
-        self.leaveMsgLabel.text = @"没有新的消息";
+        self.leaveMsgLabel.text = @"暂无留言";
         CPNewMessageController *newMsgVc = [UIStoryboard storyboardWithName:@"CPNewMessageController" bundle:nil].instantiateInitialViewController;
         [self.navigationController pushViewController:newMsgVc animated:YES];
     }

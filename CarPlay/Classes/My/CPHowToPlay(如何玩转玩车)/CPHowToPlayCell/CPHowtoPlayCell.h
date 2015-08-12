@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPHowtoPlayCell : UITableViewCell
+@interface CPHowtoPlayCell : ZYTableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *titleLable;
 
 @end

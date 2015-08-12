@@ -75,10 +75,10 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7uz-dv-nJ8">
-                                            <rect key="frame" x="154" y="19" width="15" height="15"/>
+                                            <rect key="frame" x="154" y="19.5" width="14" height="14"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="15" id="Elj-LN-fzt"/>
-                                                <constraint firstAttribute="width" constant="15" id="goS-4d-APO"/>
+                                                <constraint firstAttribute="height" constant="14" id="Elj-LN-fzt"/>
+                                                <constraint firstAttribute="width" constant="14" id="goS-4d-APO"/>
                                             </constraints>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWT-J9-I6p" customClass="CPSexView">
@@ -156,10 +156,10 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vnt-a1-8N8">
-                                            <rect key="frame" x="154" y="19" width="15" height="15"/>
+                                            <rect key="frame" x="154" y="19.5" width="14" height="14"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="15" id="DXD-iu-yHw"/>
-                                                <constraint firstAttribute="height" constant="15" id="SJN-h7-BWC"/>
+                                                <constraint firstAttribute="width" constant="14" id="DXD-iu-yHw"/>
+                                                <constraint firstAttribute="height" constant="14" id="SJN-h7-BWC"/>
                                             </constraints>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CkM-Ld-dhN" customClass="CPSexView">

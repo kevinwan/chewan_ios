@@ -179,14 +179,14 @@ typedef enum {
             
         }
     } failure:^(NSError *error) {
-        [SVProgressHUD showInfoWithStatus:@"加载座位数失败"];
+        [SVProgressHUD showInfoWithStatus:@"加载空座数失败"];
     }];
 }
 
 - (void)changeSeatWithResult:(NSDictionary *)result
 {
     if ([result[@"isAuthenticated"] intValue] == 1) {
-        self.seatLabel.text = @"提供座位数";
+        self.seatLabel.text = @"提供空座数";
         [self labelWithRow:7].text = @"个数";
         [self.seats removeAllObjects];
         for(int i = [result[@"minValue"] intValue]; i <= [result[@"maxValue"] intValue]; i++){
@@ -315,7 +315,7 @@ typedef enum {
         }else{
             
             [weakSelf.pickView removeFromSuperview];
-            weakSelf.pickView=[[ZYPickView alloc] initPickviewWithArray:@[@"我请客", @"AA制", @"其他" ] isHaveNavControler:NO];
+            weakSelf.pickView=[[ZYPickView alloc] initPickviewWithArray:@[@"我请客", @"AA制", @"请我吧" ] isHaveNavControler:NO];
             weakSelf.pickView.tag = ActivityCreatePay;
             weakSelf.pickView.row = 6;
             weakSelf.pickView.delegate = weakSelf;
@@ -864,7 +864,7 @@ typedef enum {
     }
     
     if (self.currentModel.seat == 0) {
-        [SVProgressHUD showInfoWithStatus:@"请选择座位数"];
+        [SVProgressHUD showInfoWithStatus:@"请选择空座数"];
         return;
     }
     
@@ -894,6 +894,8 @@ typedef enum {
                     if (photoIds.count == photoCount) {
                         [self uploadCreatActivtyInfoWithPicId:photoIds button:button];
                     }
+                }else{
+                    [self showError:@"创建失败"];
                 }
                 
             } failure:^(NSError *error) {

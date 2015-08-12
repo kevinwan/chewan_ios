@@ -61,7 +61,7 @@
     self.seatLabel.font = [AppAppearance textLargeFont];
     self.seatLabel.textColor = [AppAppearance textMediumColor];
     
-    [self.addButton setTitle:@"我也要加入" forState:UIControlStateNormal];
+    [self.addButton setTitle:@"加入活动" forState:UIControlStateNormal];
     [self.addButton setTitleColor:[AppAppearance titleColor] forState:UIControlStateNormal];
     [self.addButton setBackgroundColor:[AppAppearance greenColor]];
     self.addButton.layer.cornerRadius = 3;
@@ -143,7 +143,7 @@
     [self coverClick];
   [ZYNetWorkTool postJsonWithUrl:urlStr params:parameters success:^(id responseObject) {
       if ([responseObject operationSuccess]) {
-          [self.view alert:@"请求成功"];
+          [self.view alert:@"请求成功,等待同意"];
       } else {
           [self.view alertError:responseObject];
       }
@@ -243,7 +243,7 @@
         }];
         
     } else {
-        [self.view alert:@"你不是活动成员,无法抢座,请点击\"我也要加入\"加入活动"];
+        [self.view alert:@"加入活动才能抢座，点击底部\"加入活动\"吧"];
     }
 }
 - (IBAction)cancelSeatButton:(UIButton *)sender {
@@ -387,6 +387,7 @@
                 self.carxibTextFeild.delegate = self;
                 self.carxibTextFeild.font = [AppAppearance textMediumFont];
                 self.carxibTextFeild.textColor = [AppAppearance textDarkColor];
+                [self tapYes];
 
             } else {
                 NSString *userId = self.userId;
@@ -394,7 +395,7 @@
                 NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/join?userId=%@&token=%@",self.activityId,userId,token];
                 [ZYNetWorkTool postJsonWithUrl:urlStr params:nil success:^(id responseObject) {
                     if ([responseObject operationSuccess]) {
-                        [self.view alert:@"请求成功"];
+                        [self.view alert:@"请求成功,等待同意"];
                     } else {
                         [self.view alertError:responseObject];
                     }

@@ -36,16 +36,6 @@
                             <constraint firstAttribute="width" constant="21" id="Rap-kb-pEh"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XXH-oJ-9mh">
-                        <rect key="frame" x="0.0" y="51" width="320" height="1"/>
-                        <color key="backgroundColor" red="0.87843137250000003" green="0.8862745098" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="1" id="olw-t8-Icf"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eWg-p8-mhs">
                         <rect key="frame" x="76" y="15" width="205" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -57,15 +47,12 @@
                     <constraint firstAttribute="bottomMargin" secondItem="eWg-p8-mhs" secondAttribute="bottom" constant="7.5" id="0Z6-te-lih"/>
                     <constraint firstItem="hn2-eR-iiT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="1cg-6h-9MG"/>
                     <constraint firstItem="2ug-vA-zkg" firstAttribute="leading" secondItem="eWg-p8-mhs" secondAttribute="trailing" constant="8" id="2Lp-tk-9Ib"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="XXH-oJ-9mh" secondAttribute="bottom" constant="-8.5" id="5wO-1x-sDr"/>
                     <constraint firstItem="eWg-p8-mhs" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="A3i-Co-Jos"/>
                     <constraint firstItem="hn2-eR-iiT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="CA8-bi-Wac"/>
                     <constraint firstItem="2ug-vA-zkg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="KBk-3C-50Y"/>
                     <constraint firstItem="eWg-p8-mhs" firstAttribute="leading" secondItem="hn2-eR-iiT" secondAttribute="trailing" id="Lpw-YT-kwW"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="XXH-oJ-9mh" secondAttribute="trailing" constant="-8" id="Rfo-oB-R3p"/>
                     <constraint firstItem="eWg-p8-mhs" firstAttribute="leading" secondItem="hn2-eR-iiT" secondAttribute="trailing" constant="19" id="Wsx-yO-rLD"/>
                     <constraint firstAttribute="trailingMargin" secondItem="2ug-vA-zkg" secondAttribute="trailing" constant="2" id="c6P-HJ-QnW"/>
-                    <constraint firstItem="XXH-oJ-9mh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="dsU-Wy-yxm"/>
                     <constraint firstAttribute="bottomMargin" secondItem="hn2-eR-iiT" secondAttribute="bottom" constant="7.5" id="gvv-cd-SvS"/>
                     <constraint firstAttribute="bottomMargin" secondItem="2ug-vA-zkg" secondAttribute="bottom" constant="7.5" id="m3D-5A-Ven"/>
                 </constraints>

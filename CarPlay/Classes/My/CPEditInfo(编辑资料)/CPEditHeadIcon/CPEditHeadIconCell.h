@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPEditHeadIconCell : UITableViewCell
+@interface CPEditHeadIconCell : ZYTableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *headIcon;
 @end

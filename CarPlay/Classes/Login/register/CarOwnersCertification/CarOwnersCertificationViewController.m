@@ -36,16 +36,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removePickview) name:@"remove" object:nil];
 }
 
--(void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
-    if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
-        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
-    }
-    if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
-        [self.tableView setLayoutMargins:UIEdgeInsetsZero];
-    }
-}
-
 -(void)viewWillAppear:(BOOL)animated{
     if ([Tools getValueFromKey:@"userId"]) {
         [self.tableView reloadData];
@@ -84,19 +74,14 @@
 
     if (indexPath.row==0) {
         UILabel *cellTopSeparator=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, .5)];
-        cellTopSeparator.backgroundColor=[Tools getColor:@"aaaaaa"];
-        cellTopSeparator.alpha=0.63;
+        cellTopSeparator.backgroundColor=[Tools getColor:@"e6e9ed"];
         [cell addSubview:cellTopSeparator];
-        cell.cellTitle.text=@"车龄";
+        cell.cellTitle.text=@"驾龄";
         cell.textLabel.textColor=[Tools getColor:@"aab2bd"];
         if ([Tools getValueFromKey:@"drivingExperience"]) {
             cell.cellContent.text=[[NSString alloc]initWithFormat:@"%@年",[Tools getValueFromKey:@"drivingExperience"]];
         }
     }else{
-        UILabel *cellTopSeparator=[[UILabel alloc]initWithFrame:CGRectMake(0, 51, SCREEN_WIDTH, .5)];
-        cellTopSeparator.backgroundColor=[Tools getColor:@"aaaaaa"];
-        cellTopSeparator.alpha=0.63;
-        [cell addSubview:cellTopSeparator];
         cell.cellTitle.text=@"车型品牌";
         cell.textLabel.textColor=[Tools getColor:@"aab2bd"];
         if ([Tools getValueFromKey:@"modelName"]) {
@@ -107,26 +92,14 @@
     return  cell;
 }
 
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-        [cell setSeparatorInset:UIEdgeInsetsZero];
-    }
-    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-        [cell setLayoutMargins:UIEdgeInsetsZero];
-    }
-    if([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]){
-        [cell setPreservesSuperviewLayoutMargins:NO];
-    }
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [_pickview remove];
     if (indexPath.row==1) {
         CPBrandModelViewController *CPBrandModelVC=[[CPBrandModelViewController alloc]init];
-        if (![Tools getValueFromKey:@"userId"]) {
-            CPBrandModelVC.fromMy=@"1";
-        }
+//        if (![Tools getValueFromKey:@"userId"]) {
+            CPBrandModelVC.fromMy=_fromMy;
+//        }
         CPBrandModelVC.title=@"车型选择";
         [self.navigationController pushViewController:CPBrandModelVC animated:YES];
     }
@@ -189,16 +162,12 @@
                         NSString *state=[numberFormatter stringFromNumber:[responseObject objectForKey:@"result"]];
                         if (CPSuccess) {
                              [[[UIAlertView alloc]initWithTitle:@"提示" message:@"您的认证提交成功，我们会尽快审核!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                            if (_fromMy && [_fromMy isEqualToString:@"1"]) {
+                                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+                            }
                         }else{
                             [[[UIAlertView alloc]initWithTitle:@"提示" message:@"提交失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                         }
-                        
-//                        if (![state isEqualToString:@"0"]) {
-//                            
-//                        }else{
-//                           
-//                        }
-                        
                     } failed:^(NSError *error) {
                         [hud hide:YES];
                         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];

@@ -36,7 +36,7 @@
     }
     // 设置标题
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    btn.titleLabel.font = [UIFont systemFontOfSize:14];
+    btn.titleLabel.font = [UIFont systemFontOfSize:16];
     
     [btn setTitle:title forState:UIControlStateNormal];
     

@@ -26,9 +26,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="Zwv-mX-Kmz">
-                        <rect key="frame" x="289" y="15" width="21" height="21"/>
+                        <rect key="frame" x="291" y="17" width="17" height="17"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="21" id="6ak-UX-jsy"/>
+                            <constraint firstAttribute="width" constant="17" id="6ak-UX-jsy"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="21" id="K3U-as-Qhs"/>
                         </constraints>
                         <variation key="default">
@@ -41,9 +41,9 @@
                 <constraints>
                     <constraint firstItem="Lnj-vB-MrA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="CYy-qb-AT1"/>
                     <constraint firstItem="Lnj-vB-MrA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="Uy8-TP-1Eg"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="Zwv-mX-Kmz" secondAttribute="trailing" constant="2" id="Wwx-2l-YvL"/>
-                    <constraint firstItem="Zwv-mX-Kmz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="iUj-qW-jwx"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="Zwv-mX-Kmz" secondAttribute="bottom" constant="7.5" id="zZj-Fx-GaV"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Zwv-mX-Kmz" secondAttribute="trailing" constant="4" id="Wwx-2l-YvL"/>
+                    <constraint firstItem="Zwv-mX-Kmz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="9" id="iUj-qW-jwx"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Zwv-mX-Kmz" secondAttribute="bottom" constant="10" id="zZj-Fx-GaV"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

@@ -32,8 +32,11 @@
                                                 <action selector="iconViewClick:" destination="WCU-Of-4x1" eventType="touchUpInside" id="7IC-vs-JSF"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTM-TD-cwH">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTM-TD-cwH">
                                             <rect key="frame" x="70" y="41" width="35.5" height="17"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="35.5" id="jzr-zA-1yR"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.66666666666666663" green="0.69803921568627447" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -63,11 +66,11 @@
                                             <color key="textColor" red="0.66666666666666663" green="0.69803921568627447" blue="0.74117647058823533" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DXl-It-t3j">
-                                            <rect key="frame" x="146" y="18" width="17" height="17"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DXl-It-t3j">
+                                            <rect key="frame" x="146" y="19.5" width="14" height="14"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="17" id="6BW-k4-s5G"/>
-                                                <constraint firstAttribute="width" constant="17" id="k0w-oK-LWQ"/>
+                                                <constraint firstAttribute="height" constant="14" id="6BW-k4-s5G"/>
+                                                <constraint firstAttribute="width" constant="14" id="k0w-oK-LWQ"/>
                                             </constraints>
                                         </imageView>
                                     </subviews>
@@ -100,6 +103,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="carLogoView" destination="DXl-It-t3j" id="ChX-93-DQK"/>
+                                    <outlet property="descLabelWitdhConstrant" destination="jzr-zA-1yR" id="ifL-mt-fcj"/>
                                     <outlet property="descripteLable" destination="aTM-TD-cwH" id="Zxi-Xq-Prk"/>
                                     <outlet property="iconView" destination="rRF-I7-I6u" id="Fc4-7y-a5n"/>
                                     <outlet property="nameLable" destination="Cww-tU-NC8" id="eG8-cX-vG6"/>

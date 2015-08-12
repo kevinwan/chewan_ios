@@ -37,10 +37,12 @@
     [super viewDidLoad];
     data=[[NSDictionary alloc]init];
     albumPhotos=[[NSArray alloc]init];
-    titleArray=[[NSArray alloc]initWithObjects:@"我关注的人",@"车主认证",@"玩转玩车",@"意见反馈",@"编辑资料", nil];
+    titleArray=[[NSArray alloc]initWithObjects:@"我关注的人",@"车主认证",@"玩转车玩",@"意见反馈",@"编辑资料", nil];
     iconArray=[[NSArray alloc]initWithObjects:@"我关注的人",@"车主认证",@"玩转玩车",@"意见反馈",@"活动介绍", nil];
     self.userHeadImg.layer.cornerRadius=25;
     self.userHeadImg.layer.masksToBounds=YES;
+    UITapGestureRecognizer *singleTap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonpress1:)];
+    [self.userHeadImg addGestureRecognizer:singleTap1];
     self.loginBtn.layer.cornerRadius=15;
     self.loginBtn.layer.masksToBounds=YES;
     self.navigationItem.leftBarButtonItem=[UIBarButtonItem itemWithNorImage:@"设置" higImage:nil title:nil target:self action:@selector(leftBtnClick:)];
@@ -115,9 +117,13 @@
         CPFeedbackVC.title=@"意见反馈";
         [self.navigationController pushViewController:[UIStoryboard storyboardWithName:@"CPFeedbackViewController" bundle:nil].instantiateInitialViewController animated:YES];
     }else if (indexPath.row==4){
-        CPEditInfoTableViewController *CPEditInfoTableVC=[[CPEditInfoTableViewController alloc]init];
-        CPEditInfoTableVC.title=@"编辑资料";
-        [self.navigationController pushViewController:CPEditInfoTableVC animated:YES];
+        if ([Tools getValueFromKey:@"userId"]) {
+            CPEditInfoTableViewController *CPEditInfoTableVC=[[CPEditInfoTableViewController alloc]init];
+            CPEditInfoTableVC.title=@"编辑资料";
+            [self.navigationController pushViewController:CPEditInfoTableVC animated:YES];
+        }else{
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+        }
     }
 }
 
@@ -256,6 +262,8 @@
                 [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
                 [self loadUserData:organizer];
             }
+        }else{
+            NSLog(@"234234");
         }
     } failure:^(NSError *error) {
         [self showError:@"获取个人信息失败"];
@@ -316,7 +324,7 @@
             [self.userGenderImg setX:self.nameLable.right+7.0];
             [Tools setValueForKey:organizer.nickname key:@"nickname"];
         }
-        
+    
         if (organizer.drivingExperience) {
             [Tools setValueForKey:@(organizer.drivingExperience) key:@"drivingExperience"];
         }
@@ -330,22 +338,33 @@
             [self.ageLable setX:self.userGenderImg.right-1-self.ageLable.width];
         }
         
-        if (organizer.carBrandLogo && ![Tools isEmptyOrNull:organizer.carBrandLogo]) {
-            NSURL *url=[[NSURL alloc]initWithString:organizer.carBrandLogo];
-            [self.carBrandLogoImg sd_setImageWithURL:url completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                float weight=image.size.width/image.size.height*13.0;
-                [self.carBrandLogoImg setWidth:weight];
-                [self.carModelAndDrivingExperience setX:self.carBrandLogoImg.right];
-            }];
+        if (organizer.isAuthenticated == 1) {
+            if (organizer.carBrandLogo && ![Tools isEmptyOrNull:organizer.carBrandLogo]) {
+                NSURL *url=[[NSURL alloc]initWithString:organizer.carBrandLogo];
+                [self.carBrandLogoImg sd_setImageWithURL:url completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                    float weight=image.size.width/image.size.height*13.0;
+                    [self.carBrandLogoImg setWidth:weight];
+                    [self.carModelAndDrivingExperience setX:self.carBrandLogoImg.right+7.0];
+                }];
+            }
+            if (organizer.carModel) {
+                NSString *description=organizer.carModel;
+                if (organizer.drivingExperience) {
+                    description=[[NSString alloc]initWithFormat:@"%@,%zd年驾龄",organizer.carModel,organizer.drivingExperience];
+                }
+                self.carModelAndDrivingExperience.text=description;
+            }
+        }else if (organizer.isAuthenticated == 0){
+            self.carModelAndDrivingExperience.text=@"未认证";
+            [self.carModelAndDrivingExperience setX:self.carBrandLogoImg.left];
+        }else if (organizer.isAuthenticated == 2){
+            self.carModelAndDrivingExperience.text=@"认证审核中";
+            [self.carModelAndDrivingExperience setX:self.carBrandLogoImg.left];
         }
         
-        if (organizer.carModel) {
-            NSString *description=organizer.carModel;
-            if (organizer.drivingExperience) {
-                description=[[NSString alloc]initWithFormat:@"%@,%zd年驾龄",organizer.carModel,organizer.drivingExperience];
-            }
-            self.carModelAndDrivingExperience.text=description;
-        }
+        
+        
+        
         
         if (organizer.postNumber) {
             self.myReleaseCountLable.text=[[NSString alloc]initWithFormat:@"%zd",organizer.postNumber];
@@ -377,11 +396,11 @@
     [self.myReleaseCountLable setTextColor:[Tools getColor:@"fc6e51"]];
     [self.myReleaseBtnLable setTextColor:[Tools getColor:@"fc6e51"]];
     
-    self.myPayAttentionToLable.backgroundColor=[UIColor whiteColor];
+    self.myPayAttentionToLable.backgroundColor=[UIColor clearColor];
     [self.myPayAttentionToCountLable setTextColor:[Tools getColor:@"aab2bd"]];
     [self.myPayAttentionToBtnLable setTextColor:[Tools getColor:@"aab2bd"]];
     
-    self.myParticipateInLable.backgroundColor=[UIColor whiteColor];
+    self.myParticipateInLable.backgroundColor=[UIColor clearColor];
     [self.myParticipateInCountLable setTextColor:[Tools getColor:@"aab2bd"]];
     [self.myParticipateInBtnLable setTextColor:[Tools getColor:@"aab2bd"]];
     
@@ -392,7 +411,7 @@
 
 //我的关注
 - (IBAction)myPayAttentionTo:(id)sender{
-    self.myReleaseLable.backgroundColor=[UIColor whiteColor];
+    self.myReleaseLable.backgroundColor=[UIColor clearColor];
     [self.myReleaseCountLable setTextColor:[Tools getColor:@"aab2bd"]];
     [self.myReleaseBtnLable setTextColor:[Tools getColor:@"aab2bd"]];
     
@@ -400,7 +419,7 @@
     [self.myPayAttentionToCountLable setTextColor:[Tools getColor:@"fc6e51"]];
     [self.myPayAttentionToBtnLable setTextColor:[Tools getColor:@"fc6e51"]];
     
-    self.myParticipateInLable.backgroundColor=[UIColor whiteColor];
+    self.myParticipateInLable.backgroundColor=[UIColor clearColor];
     [self.myParticipateInCountLable setTextColor:[Tools getColor:@"aab2bd"]];
     [self.myParticipateInBtnLable setTextColor:[Tools getColor:@"aab2bd"]];
     
@@ -412,11 +431,11 @@
 //我的参与
 - (IBAction)myParticipateIn:(id)sender{
     
-    self.myReleaseLable.backgroundColor=[UIColor whiteColor];
+    self.myReleaseLable.backgroundColor=[UIColor clearColor];
     [self.myReleaseCountLable setTextColor:[Tools getColor:@"aab2bd"]];
     [self.myReleaseBtnLable setTextColor:[Tools getColor:@"aab2bd"]];
     
-    self.myPayAttentionToLable.backgroundColor=[UIColor whiteColor];
+    self.myPayAttentionToLable.backgroundColor=[UIColor clearColor];
     [self.myPayAttentionToCountLable setTextColor:[Tools getColor:@"aab2bd"]];
     [self.myPayAttentionToBtnLable setTextColor:[Tools getColor:@"aab2bd"]];
     
@@ -428,4 +447,15 @@
     vc.hisUserId = [Tools getValueFromKey:@"userId"];
     [self.navigationController pushViewController:vc animated:YES];
 }
+-(void)buttonpress1:(UIGestureRecognizer *)gestureRecognizer
+{
+    if ([Tools getValueFromKey:@"userId"]) {
+        CPEditInfoTableViewController *CPEditInfoTableVC=[[CPEditInfoTableViewController alloc]init];
+        CPEditInfoTableVC.title=@"编辑资料";
+        [self.navigationController pushViewController:CPEditInfoTableVC animated:YES];
+    }else{
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+    }
+}
+
 @end

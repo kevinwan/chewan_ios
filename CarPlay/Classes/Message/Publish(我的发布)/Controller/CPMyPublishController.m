@@ -59,12 +59,18 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self reRefreshData];
+}
+
 /**
  *  添加底部时间线,监听刷新状态
  */
 - (void)addBottomTimeLine
 {
-
     UIView *timeLine = [UIView new];
     timeLine.backgroundColor = CPColor(200, 200, 200, 0.5);;
     timeLine.width = 1;
@@ -83,6 +89,12 @@
     }
     [self showLoading];
     [self loadDataWithParams:0];
+}
+
+- (void)createActivity
+{
+    UIViewController *vc = [UIStoryboard storyboardWithName:@"CPCreatActivityController" bundle:nil].instantiateInitialViewController;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)loadDataWithParams:(NSUInteger)ignore
@@ -156,6 +168,11 @@
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CPMyPublishFrameModel *frameModel = self.frameModels[indexPath.row];
@@ -171,6 +188,14 @@
     [self.navigationController pushViewController:activityDetailVc animated:YES];
 }
 
+/**
+ *  KVO监听方法,监控MJRefresh的状态,注意kvo一定要移除监听
+ *
+ *  @param keyPath 监听的key
+ *  @param object  监听对象
+ *  @param change  变化内容new/old
+ *  @param context 上下文
+ */
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     MJRefreshState state = [change[@"new"] intValue];

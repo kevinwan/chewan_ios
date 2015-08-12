@@ -57,11 +57,16 @@
     if (_models.carModel.length == 0) {
         self.subTitleLabel.text = @"带我飞~";
         self.subTitleLabelX.constant = -14;
-    } else {
+    } else if (![_models.seat isEqualToString:@"0"]){
         NSMutableAttributedString *subTitle = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@,%@年驾龄,提供%@个座位",_models.carModel, _models.drivingExperience,_models.seat]];
         [subTitle addAttribute:NSForegroundColorAttributeName value:[AppAppearance redColor] range:NSMakeRange(subTitle.length - 4, 2)];
         self.subTitleLabel.attributedText = subTitle;
         self.subTitleLabelX.constant = 7;
+    } else {
+        NSMutableAttributedString *subTitle = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@,%@年驾龄",_models.carModel, _models.drivingExperience]];
+        self.subTitleLabel.attributedText = subTitle;
+        self.subTitleLabelX.constant = 7;
+    
     }
   
    

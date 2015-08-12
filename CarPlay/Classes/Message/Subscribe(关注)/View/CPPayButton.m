@@ -65,7 +65,7 @@
 
 - (void)payWithOther
 {
-    [self setTitle:@"其他" forState:UIControlStateNormal];
+    [self setTitle:@"请我吧" forState:UIControlStateNormal];
     [self setBackgroundColor:[Tools getColor:@"ccd1d9"]];
 }
 
