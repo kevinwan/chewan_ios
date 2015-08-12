@@ -54,8 +54,8 @@
 //    统计分析  nil默认渠道为appStore
     [MobClick startWithAppkey:kCheWanAppID reportPolicy:BATCH   channelId:nil];
     
-//    [[EaseMob sharedInstance] registerSDKWithAppKey:@"douser#istore" apnsCertName:@"istore_dev"];
-//    [[EaseMob sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
+    [[EaseMob sharedInstance] registerSDKWithAppKey:@"gongpingjia#chewantest" apnsCertName:@"carPlayApns"];
+    [[EaseMob sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     
     // 如何知道第一次使用这个版本？比较上次的使用情况
     NSString *versionKey = (__bridge NSString *)kCFBundleVersionKey;
@@ -84,12 +84,11 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [[EaseMob sharedInstance] applicationDidEnterBackground:application];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [[EaseMob sharedInstance] applicationWillEnterForeground:application];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -97,7 +96,7 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [[EaseMob sharedInstance] applicationWillTerminate:application];
 }
 
 #pragma mark - private
@@ -192,4 +191,94 @@
     return  [UMSocialSnsService handleOpenURL:url];
 }
 
+- (void)didReceiveMessage:(EMMessage *)message{
+    NSLog(@"%@",message);
+}
+
+/*!
+ @method
+ @brief 接受群组邀请并加入群组后的回调
+ @param group 所接受的群组
+ @param error 错误信息
+ */
+- (void)didAcceptInvitationFromGroup:(EMGroup *)group error:(EMError *)error{
+    
+}
+
+/*!
+ @method
+ @brief 群组信息更新后的回调
+ @param group 发生更新的群组
+ @param error 错误信息
+ @discussion
+ 当添加/移除/更改角色/更改主题/更改群组信息之后,都会触发此回调
+ */
+- (void)groupDidUpdateInfo:(EMGroup *)group error:(EMError *)error{
+    
+}
+
+/*!
+ @method
+ @brief 申请加入公开群组后的回调
+ @param group 群组对象
+ @param error 错误信息
+ */
+- (void)didApplyJoinPublicGroup:(EMGroup *)group
+                          error:(EMError *)error{
+    
+}
+
+/*!
+ @method
+ @brief 收到加入群组的申请
+ @param groupId         要加入的群组ID
+ @param groupname       申请人的用户名
+ @param username        申请人的昵称
+ @param reason          申请理由
+ @discussion
+ */
+- (void)didReceiveApplyToJoinGroup:(NSString *)groupId
+                         groupname:(NSString *)groupname
+                     applyUsername:(NSString *)username
+                            reason:(NSString *)reason
+                             error:(EMError *)error{
+    
+}
+
+/*!
+ @method
+ @brief 加入公开群组后的回调
+ @param group 群组对象
+ @param error 错误信息
+ */
+- (void)didJoinPublicGroup:(EMGroup *)group
+                     error:(EMError *)error{
+    
+}
+
+/*!
+ @method
+ @brief 离开一个群组后的回调
+ @param group  所要离开的群组对象
+ @param reason 离开的原因
+ @param error  错误信息
+ @discussion
+ 离开的原因包含主动退出, 被别人请出, 和销毁群组三种情况
+ */
+- (void)group:(EMGroup *)group didLeave:(EMGroupLeaveReason)reason error:(EMError *)error{
+    
+}
+
+/*!
+ @method
+ @brief 离开一个群组后的回调
+ @param group  所要离开的群组对象
+ @param reason 离开的原因
+ @param error  错误信息
+ @discussion
+ 离开的原因包含主动退出, 被别人请出, 和销毁群组三种情况
+ */
+//- (void)group:(EMGroup *)group didLeave:(EMGroupLeaveReason)reason error:(EMError *)error{
+//    
+//}
 @end

@@ -23,7 +23,7 @@
     NSString *s = @"同城活动：最火爆的同城车友活动，自驾游吃饭...约上附近的车友一起各种happy\n\n发布活动：不管你有车还是没有车都可以参加\n\n抢车座：加入活动可以抢坐在男神女神旁边活动成员聊天；活动的成员可以聚在一起，成为朋友\n\n车主认证：如果你有车，你就可以认证车主通过以后你将会更加有吸引力";
     UIFont *font = [UIFont fontWithName:@"Arial" size:14];
     //设置一个行高上限
-    CGSize size = CGSizeMake(320,2000);
+    CGSize size = CGSizeMake(242.0/320.0*SCREEN_WIDTH,2000);
     //计算实际frame大小，并将label的frame变成实际大小
     labelsize = [s sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
 }
