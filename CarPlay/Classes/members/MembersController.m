@@ -143,7 +143,7 @@
     [self coverClick];
   [ZYNetWorkTool postJsonWithUrl:urlStr params:parameters success:^(id responseObject) {
       if ([responseObject operationSuccess]) {
-          [self.view alert:@"请求成功"];
+          [self.view alert:@"请求成功,等待同意"];
       } else {
           [self.view alertError:responseObject];
       }
@@ -387,6 +387,7 @@
                 self.carxibTextFeild.delegate = self;
                 self.carxibTextFeild.font = [AppAppearance textMediumFont];
                 self.carxibTextFeild.textColor = [AppAppearance textDarkColor];
+                [self tapYes];
 
             } else {
                 NSString *userId = self.userId;
@@ -394,7 +395,7 @@
                 NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/join?userId=%@&token=%@",self.activityId,userId,token];
                 [ZYNetWorkTool postJsonWithUrl:urlStr params:nil success:^(id responseObject) {
                     if ([responseObject operationSuccess]) {
-                        [self.view alert:@"请求成功"];
+                        [self.view alert:@"请求成功,等待同意"];
                     } else {
                         [self.view alertError:responseObject];
                     }

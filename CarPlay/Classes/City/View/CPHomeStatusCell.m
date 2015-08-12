@@ -200,7 +200,7 @@
     
     // 活动地点
     if ([status.location length]>5) {
-        NSString *tempLocation = [_status.location substringToIndex:5];
+        NSString *tempLocation = [_status.location substringToIndex:6];
         self.loction.text = [NSString stringWithFormat:@"%@...",tempLocation];
     }else{
         self.loction.text = status.location;
@@ -325,7 +325,6 @@
         // 设置数据
         cell.homePhoto = photo;
         
-//        NSLog(@"%@",cell.pictureView.frameStr);
         
         // 返回cell
         return cell;
@@ -335,8 +334,7 @@
         
         // 获取对应图片模型
         CPHomeMember *photo = self.status.members[indexPath.item];
-        photo.membersCount = self.status.members.count;
-        photo.currentMember = indexPath.item;
+        photo.currentMember = indexPath.item + 1;
         
         // 设置数据
         cell.homeMember = photo;
@@ -371,6 +369,10 @@
             
 
             self.pictureDidSelected(self.status,indexPath, imgArr);
+        }
+    } else {
+        if (self.tapIcons != nil) {
+            self.tapIcons(self.status);
         }
     }
 }

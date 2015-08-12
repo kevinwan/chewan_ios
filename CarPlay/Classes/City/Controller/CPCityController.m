@@ -126,15 +126,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // 没网的时候点击重新加载
     if (CPNoNetWork) {
         __weak typeof(self) weakSelf = self;
         CPNoNet *cpNoNet = [CPNoNet footerView];
         cpNoNet.loadHomePage = ^{
             [weakSelf setupLoadStatusWithIgnore:0 Key:@"hot" SelectModel:nil];
+            self.tableView.tableFooterView = nil;
         };
         
         self.tableView.tableFooterView = cpNoNet;
-
     }
     
     // 导航栏筛选
@@ -422,6 +423,44 @@
         };
     }
     
+    //弹出成员列表 防止单元格重用 先判断
+    if (cell.tapIcons == nil) {
+        __weak typeof(self) weakSelf = self;
+        cell.tapIcons = ^(CPHomeStatus *status) {
+            [SVProgressHUD showWithStatus:@"努力加载中"];
+            //登陆状态下可点 拿出创建者字段,非登陆 自动跳转登陆界面
+            NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/info",status.activityId];
+            SQLog(@"%@",status.activityId);
+            [CPNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
+                [weakSelf disMiss];
+                if ([responseObject operationSuccess]) {
+                    NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
+                    NSString *strOrganizer = [formatter stringFromNumber:responseObject[@"data"][@"isOrganizer"]];
+                    if ([strOrganizer isEqualToString:@"1"]) {
+                        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MembersManage" bundle:nil];
+                        
+                        MembersManageController * vc = sb.instantiateInitialViewController;
+                        vc.activityId = status.activityId;
+                        [weakSelf.navigationController pushViewController:vc animated:YES];
+                        
+                    } else  {
+                        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Members" bundle:nil];
+                        MembersController * vc = sb.instantiateInitialViewController;
+                        vc.activityId = status.activityId;
+                        [weakSelf.navigationController pushViewController:vc animated:YES];
+                    }
+                    
+                } else {
+                    [self.view alertError:responseObject];
+                }
+            } failure:^(NSError *error) {
+                [self.view alertError:error];
+            }];
+
+        
+        };
+    }
+    
     return cell;
 }
 
@@ -480,9 +519,7 @@
     CPHomeStatus *status = self.status[indexPath.row];
     
     ac.activeId = status.activityId;
-    SQLog(@"%@",status.activityId);
-    self.activeId = status.activityId;
-    
+ 
     [self.navigationController pushViewController:ac animated:YES];
     
 }
@@ -771,6 +808,7 @@
                             cover.frame = [UIScreen mainScreen].bounds;
                             [self.view.window addSubview:cover];
                             UIView *carView = [[[NSBundle mainBundle]loadNibNamed:@"CPActiveOfferCar" owner:self options:nil]lastObject];
+                            
                             CGFloat carViewX = self.view.window.center.x;
                             CGFloat carViewY = self.view.window.center.y - 100;
                             carView.center = CGPointMake(carViewX, carViewY);
@@ -796,7 +834,7 @@
                             self.carxibTextFeild.delegate = self;
                             self.carxibTextFeild.font = [AppAppearance textMediumFont];
                             self.carxibTextFeild.textColor = [AppAppearance textDarkColor];
-                            
+                            [self tapYes];
                             
                         } else {
                             NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/join",self.activeId];
@@ -851,7 +889,7 @@
     [self coverClick];
     [CPNetWorkTool postJsonWithUrl:urlStr params:parameters success:^(id responseObject) {
         if ([responseObject operationSuccess]) {
-            [self.view alert:@"请求成功"];
+            [self.view alert:@"请求成功,等待同意"];
         } else {
             [self.view alertError:responseObject];
         }
@@ -903,39 +941,6 @@
         _pickerArray = [[NSMutableArray alloc]init];
     }
     return _pickerArray;
-}
-
-//点击小头像跳转 
-- (void)gotoMember {
-    NSLog(@"123");
-    [SVProgressHUD showWithStatus:@"努力加载中"];
-    //登陆状态下可点 拿出创建者字段,非登陆 自动跳转登陆界面
-    NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/info",self.activeId];
-    [CPNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
-        [self disMiss];
-        if ([responseObject operationSuccess]) {
-            NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
-            NSString *strOrganizer = [formatter stringFromNumber:responseObject[@"data"][@"isOrganizer"]];
-            if ([strOrganizer isEqualToString:@"1"]) {
-                UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MembersManage" bundle:nil];
-                
-                MembersManageController * vc = sb.instantiateInitialViewController;
-                vc.activityId = self.activeId;
-                [self.navigationController pushViewController:vc animated:YES];
-                
-            } else  {
-                UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Members" bundle:nil];
-                MembersController * vc = sb.instantiateInitialViewController;
-                vc.activityId = self.activeId;
-                [self.navigationController pushViewController:vc animated:YES];
-            }
-
-        } else {
-            [self.view alertError:responseObject];
-        }
-    } failure:^(NSError *error) {
-        [self.view alertError:error];
-    }];
 }
 
 @end

@@ -29,7 +29,8 @@
 @property (nonatomic,copy) NSString *pay;
 
 // 开始时间
-@property (nonatomic,copy) NSString *startDate;
+@property (nonatomic,assign) long long startDate;
+@property (nonatomic,copy) NSString *startDateStr;
 
 // 发布日期
 @property (nonatomic,copy) NSString *publishDate;
