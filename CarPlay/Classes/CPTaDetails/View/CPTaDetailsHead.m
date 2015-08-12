@@ -243,7 +243,7 @@
     
     // 3.设置TA的发布的大小、颜色
     NSDictionary *dictAttC2 = @{NSFontAttributeName:[UIFont systemFontOfSize:12],NSForegroundColorAttributeName:color};
-    NSAttributedString *careAttStr1 = [[NSAttributedString alloc] initWithString:@"TA的关注" attributes:dictAttC2];
+    NSAttributedString *careAttStr1 = [[NSAttributedString alloc] initWithString:@"TA的收藏" attributes:dictAttC2];
     
     // 4.拼接字符串
     [careAttStr appendAttributedString:careAttStr1];

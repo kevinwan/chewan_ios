@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mYA-kp-d5H">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mYA-kp-d5H">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -327,7 +327,7 @@
                                                             </connections>
                                                         </collectionView>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.70196080207824707" green="0.70196080207824707" blue="0.70196080207824707" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.96078431372549022" green="0.96862745098039216" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="1Nw-mf-YgX" secondAttribute="bottom" constant="7" id="4oo-2F-JR7"/>
                                                         <constraint firstAttribute="height" constant="43" id="57l-ed-Xxx"/>
@@ -391,14 +391,14 @@
                                                         <constraint firstAttribute="width" constant="40" id="zHX-kc-lta"/>
                                                     </constraints>
                                                 </view>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="开始时间" translatesAutoresizingMaskIntoConstraints="NO" id="gy1-aE-bv0">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="时间新" translatesAutoresizingMaskIntoConstraints="NO" id="gy1-aE-bv0">
                                                     <rect key="frame" x="70" y="187" width="14" height="14"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="14" id="PsS-UW-1G7"/>
                                                         <constraint firstAttribute="height" constant="14" id="s0A-xe-UxW"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="定位icon" translatesAutoresizingMaskIntoConstraints="NO" id="1Kb-1j-FK8">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="地点新" translatesAutoresizingMaskIntoConstraints="NO" id="1Kb-1j-FK8">
                                                     <rect key="frame" x="261" y="187" width="14" height="14"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="14" id="aVW-M0-VDc"/>
@@ -540,11 +540,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="地点新" width="13" height="13"/>
         <image name="女-1" width="32" height="14"/>
-        <image name="定位icon" width="17" height="22"/>
-        <image name="开始时间" width="18" height="18"/>
         <image name="时间" width="12" height="12"/>
-        <image name="顶部背景" width="85" height="85"/>
+        <image name="时间新" width="13" height="13"/>
+        <image name="顶部背景" width="12" height="12"/>
         <image name="首页筛选" width="27" height="27"/>
     </resources>
 </document>

@@ -73,6 +73,8 @@
 // 底部view
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 
+// 座位数
+@property (weak, nonatomic) IBOutlet UILabel *seating;
 
 @end
 
@@ -87,6 +89,9 @@
 - (void)awakeFromNib{
     // 正文宽度
     self.descriptions.preferredMaxLayoutWidth = [UIScreen mainScreen].bounds.size.width - 20;
+    
+    // 目的地
+    self.location.preferredMaxLayoutWidth = [UIScreen mainScreen].bounds.size.width / 2 - 20;
 }
 
 // 根据数据获取高度
@@ -285,7 +290,7 @@
         
         // 获取对应图片模型
         CPActiveMember *photo = self.activeStatus.members[indexPath.item];
-        photo.membersCount = self.activeStatus.members.count;
+//        photo.membersCount = self.activeStatus.members.count;
         photo.currentMember = indexPath.item;
         
         // 设置数据
