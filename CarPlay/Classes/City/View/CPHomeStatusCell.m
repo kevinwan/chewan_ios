@@ -372,6 +372,10 @@
 
             self.pictureDidSelected(self.status,indexPath, imgArr);
         }
+    } else {
+        if (self.tapIcons != nil) {
+            self.tapIcons(self.status);
+        }
     }
 }
 
