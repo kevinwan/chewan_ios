@@ -432,7 +432,6 @@
 }
 
 -(void)submit{
-    if ([Tools getValueFromKey:@"userId"]) {
         if (![Tools isEmptyOrNull:self.contentTextView.text] && ![self.contentTextView.text isEqualToString:@"请简要描述你的问题和意见"]) {
             if (_imgs.count) {
                 for (int i = 0; i < _imgs.count; i++) {
@@ -485,9 +484,6 @@
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请简要描述你的问题和意见" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
             [alertView show];
         }
-    }else{
-        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
-    }
 }
 
 -(void)goBack{

@@ -58,6 +58,10 @@
                 NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
                 NSString *state=[numberFormatter stringFromNumber:[responseObject objectForKey:@"result"]];
                 if ([state isEqualToString:@"0"]) {
+                    
+                    
+                    
+                    
                     NSDictionary *data=[responseObject objectForKey:@"data"];
                     if ([data objectForKey:@"token"]) {
                         [Tools setValueForKey:[data objectForKey:@"token"] key:@"token"];
@@ -65,6 +69,12 @@
                     
                     if ([data objectForKey:@"userId"]) {
                         [Tools setValueForKey:[data objectForKey:@"userId"] key:@"userId"];
+//                        EMError *error = nil;
+//                        NSString *EMuser=[Tools md5EncryptWithString:[data objectForKey:@"userId"]];
+//                        NSDictionary *loginInfo = [[EaseMob sharedInstance].chatManager loginWithUsername:EMuser password:password error:&error];
+//                        if (!error && loginInfo) {
+//                            NSLog(@"登陆成功");
+//                        }
                     }
                     [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
                     [Tools setValueForKey:@(YES) key:NOTIFICATION_HASLOGIN];
