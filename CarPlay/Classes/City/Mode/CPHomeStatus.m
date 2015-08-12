@@ -19,6 +19,34 @@
     return @{@"cover":[CPHomePhoto class],@"members":[CPHomeMember class]};
 }
 
+- (void)setMembers:(NSArray *)members{
+    NSInteger count = members.count;
+    
+    if (members.count < 5) {
+        // 临时头像列表
+        NSMutableArray *tempMembers = [NSMutableArray arrayWithArray:members];
+        CPHomeMember *homeMember = [[CPHomeMember alloc] init];
+        homeMember.membersCount = count;
+        homeMember.photo = @"用户小头像底片";
+        [tempMembers addObject:homeMember];
+        _members = tempMembers;
+    }
+    
+    if (members.count >= 5) {
+        // 临时头像列表
+        NSMutableArray *tempMembers = [NSMutableArray arrayWithArray:[members subarrayWithRange:NSMakeRange(0, 4)]];
+        CPHomeMember *homeMember = [[CPHomeMember alloc] init];
+        homeMember.membersCount = members.count;
+        homeMember.photo = @"用户小头像底片";
+        [tempMembers addObject:homeMember];
+        _members = tempMembers;
+        
+    }
+    
+    
+    
+}
+
 
 // 活动时间转为字符串
 - (NSString *)startStr{
@@ -27,13 +55,16 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     // 如果是真机调试，转换这种欧美时间，需要设置locale
     formatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US"];
-    formatter.dateFormat = @"MM月dd日 HH:mm";
+    formatter.dateFormat = @"yyyy-MM-dd HH:mm";
     // 将时间戳转换为NSDate
     NSDate *startDate = [NSDate dateWithTimeIntervalSince1970:_start / 1000];
     // 返回活动时间字符串
     return [formatter stringFromDate:startDate];
 
 }
+
+
+
 
 
 // 发布时间转为字符串

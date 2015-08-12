@@ -115,15 +115,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // 没网的时候点击重新加载
     if (CPNoNetWork) {
         __weak typeof(self) weakSelf = self;
         CPNoNet *cpNoNet = [CPNoNet footerView];
         cpNoNet.loadHomePage = ^{
             [weakSelf setupLoadStatusWithIgnore:0 Key:@"hot" SelectModel:nil];
+            self.tableView.tableFooterView = nil;
         };
         
         self.tableView.tableFooterView = cpNoNet;
-
     }
     
     // 导航栏筛选

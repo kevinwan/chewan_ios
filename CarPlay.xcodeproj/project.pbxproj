@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B01284F1B7A209200B7A11F /* CPTaNoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B01284E1B7A209200B7A11F /* CPTaNoData.m */; };
+		6B0128511B7A22AF00B7A11F /* CPTaNoData.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B0128501B7A22AF00B7A11F /* CPTaNoData.xib */; };
 		6B4959E81B33A23900DB63EA /* CarPlayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4959E71B33A23900DB63EA /* CarPlayTests.m */; };
 		6B4EF15D1B4036EE00292BD4 /* CPTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4EF1451B4036EE00292BD4 /* CPTabBarController.m */; };
 		6B4EF15E1B4036EE00292BD4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B4EF1461B4036EE00292BD4 /* Main.storyboard */; };
@@ -328,6 +330,9 @@
 /* Begin PBXFileReference section */
 		1E1F11B43C6536981B4E2558 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		473C700A9DC662488BA2B8E4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		6B01284D1B7A209200B7A11F /* CPTaNoData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTaNoData.h; sourceTree = "<group>"; };
+		6B01284E1B7A209200B7A11F /* CPTaNoData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTaNoData.m; sourceTree = "<group>"; };
+		6B0128501B7A22AF00B7A11F /* CPTaNoData.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPTaNoData.xib; sourceTree = "<group>"; };
 		6B4959C81B33A23900DB63EA /* CarPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B4959CC1B33A23900DB63EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B4959E11B33A23900DB63EA /* CarPlayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarPlayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1345,6 +1350,9 @@
 				6BC8A3E31B6A4DB700B199F2 /* CPTaPicCell.m */,
 				6BC8A3E41B6A4DB700B199F2 /* CPTaPublishCell.h */,
 				6BC8A3E51B6A4DB700B199F2 /* CPTaPublishCell.m */,
+				6B01284D1B7A209200B7A11F /* CPTaNoData.h */,
+				6B01284E1B7A209200B7A11F /* CPTaNoData.m */,
+				6B0128501B7A22AF00B7A11F /* CPTaNoData.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2404,9 +2412,7 @@
 				6B9CFD761B71D95200EF167D /* CPAbout.storyboard in Resources */,
 				E372D8351B6216C100B4FC5C /* CPBrandModelViewController.xib in Resources */,
 				E372D8461B6216C100B4FC5C /* serviceTermsViewController.xib in Resources */,
-				A5F515441B705E7400690802 /* CPOfferCar.xib in Resources */,
 				A59705921B78CB9D0025B9DB /* CPActiveOfferCar.xib in Resources */,
-				6BCB13451B74B0B500CE6AEC /* CPNoNetwork.storyboard in Resources */,
 				E35B046D1B565532002C6655 /* MJPhotoBrowser.bundle in Resources */,
 				6BB09AA81B68B02900E0D77D /* CPPhotoalbumManagement.xib in Resources */,
 				6BB09A8A1B6669F800E0D77D /* CPSettingTableViewController.xib in Resources */,
@@ -2461,6 +2467,7 @@
 				E328F0671B621DA700A20DCE /* city.plist in Resources */,
 				E328F0691B621E1C00A20DCE /* area.plist in Resources */,
 				E3EEDFF41B53951D00595333 /* CPMessageController.storyboard in Resources */,
+				6B0128511B7A22AF00B7A11F /* CPTaNoData.xib in Resources */,
 				6BCF66091B6208C700358190 /* CPActiveDetailsController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2514,6 +2521,7 @@
 			files = (
 				6B5F9B6F1B5D29FE00F9D1E8 /* CPHomePhoto.m in Sources */,
 				E36AFE651B579F0E0081F499 /* ZHAppDelegate.h in Sources */,
+				6B01284F1B7A209200B7A11F /* CPTaNoData.m in Sources */,
 				E3CE35B01B59E7FC008434B5 /* XLFormValidator.m in Sources */,
 				E36AFE661B579F0E0081F499 /* ZHPickView.h in Sources */,
 				E3CE35961B59E7FC008434B5 /* XLFormPickerCell.m in Sources */,

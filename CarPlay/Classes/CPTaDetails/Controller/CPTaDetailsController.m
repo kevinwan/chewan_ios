@@ -14,6 +14,7 @@
 #import "MJExtension.h"
 #import "CPTaPublishCell.h"
 #import "CPTaDetailsHead.h"
+#import "CPTaNoData.h"
 
 @interface CPTaDetailsController ()
 
@@ -51,6 +52,14 @@
     // 页面标题
     self.title = @"TA的详情";
     
+
+    
+    // 上拉下拉刷新
+    [self topAndBottomRefresh];
+    
+}
+
+- (void)topAndBottomRefresh{
     // 添加下拉刷新控件（头部）
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(dropDownLoadData)];
     header.arrowView.image = [UIImage imageNamed:@"refreshArrow"];
@@ -72,8 +81,8 @@
     [footer setTitle:@"无更多数据" forState:MJRefreshStateNoMoreData];
     
     self.tableView.footer = footer;
-    
 }
+
 
 // 下拉刷新
 - (void)dropDownLoadData{
@@ -161,8 +170,23 @@
     
     // 发送请求
     [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
+        
+     
+
+        
         // 去出他发布的数据
         NSArray *taPubArr = responseObject[@"data"];
+        
+        // 如果返回数据为空，则显示无数据footerView
+//        if (taPubArr == nil) {
+//            CPTaNoData *noData = [CPTaNoData footerView];
+//            if ([selectStr isEqualToString:@"post"]) {
+//                noData.pictureName = @"暂无发布";
+//            }else{
+//                noData.pictureName = @"暂无关注";
+//            }
+//            self.tableView.tableFooterView = noData;
+//        }
         
         // 字典数组转模型数组
         NSArray *models = [CPTaPublishStatus objectArrayWithKeyValuesArray:taPubArr];
@@ -176,6 +200,7 @@
         
         // 刷新tableview
         [self.tableView reloadData];
+        
         
         // 关闭下拉刷新
         [self.tableView.header endRefreshing];

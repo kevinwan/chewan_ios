@@ -49,8 +49,10 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="centerX" secondItem="lx6-CF-CDR" secondAttribute="centerX" id="0yN-h9-dBt"/>
                 <constraint firstItem="f4c-iT-8dS" firstAttribute="top" secondItem="clY-ZI-oJi" secondAttribute="bottom" constant="10" id="2fg-yq-quW"/>
                 <constraint firstItem="lx6-CF-CDR" firstAttribute="leading" secondItem="Qwo-Hc-Pbx" secondAttribute="leading" constant="80" id="3V1-19-YHz"/>
+                <constraint firstAttribute="centerX" secondItem="jG3-Tb-fZL" secondAttribute="centerX" id="CEX-fz-JyE"/>
                 <constraint firstItem="jG3-Tb-fZL" firstAttribute="leading" secondItem="Qwo-Hc-Pbx" secondAttribute="leading" constant="117.5" id="Jnq-HQ-ZOY"/>
                 <constraint firstItem="clY-ZI-oJi" firstAttribute="top" secondItem="jG3-Tb-fZL" secondAttribute="bottom" constant="20" id="RjG-ah-Xxq"/>
                 <constraint firstItem="lx6-CF-CDR" firstAttribute="top" secondItem="f4c-iT-8dS" secondAttribute="bottom" constant="20" id="Zrk-Xe-h8i"/>
@@ -60,6 +62,12 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="Jnq-HQ-ZOY"/>
+                    <exclude reference="3V1-19-YHz"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="reloadDataBtn" destination="lx6-CF-CDR" id="XSl-l2-jlL"/>
             </connections>
