@@ -31,13 +31,13 @@
                         </variation>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="2ug-vA-zkg">
-                        <rect key="frame" x="289" y="15" width="21" height="21"/>
+                        <rect key="frame" x="291" y="17" width="17" height="17"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="21" id="Rap-kb-pEh"/>
+                            <constraint firstAttribute="width" constant="17" id="Rap-kb-pEh"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eWg-p8-mhs">
-                        <rect key="frame" x="76" y="15" width="205" height="21"/>
+                        <rect key="frame" x="76" y="15" width="207" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.16862745098039217" green="0.21176470588235294" blue="0.28235294117647058" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -49,22 +49,17 @@
                     <constraint firstItem="2ug-vA-zkg" firstAttribute="leading" secondItem="eWg-p8-mhs" secondAttribute="trailing" constant="8" id="2Lp-tk-9Ib"/>
                     <constraint firstItem="eWg-p8-mhs" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="A3i-Co-Jos"/>
                     <constraint firstItem="hn2-eR-iiT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="CA8-bi-Wac"/>
-                    <constraint firstItem="2ug-vA-zkg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="KBk-3C-50Y"/>
+                    <constraint firstItem="2ug-vA-zkg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="9" id="KBk-3C-50Y"/>
                     <constraint firstItem="eWg-p8-mhs" firstAttribute="leading" secondItem="hn2-eR-iiT" secondAttribute="trailing" id="Lpw-YT-kwW"/>
-                    <constraint firstItem="eWg-p8-mhs" firstAttribute="leading" secondItem="hn2-eR-iiT" secondAttribute="trailing" constant="19" id="Wsx-yO-rLD"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="2ug-vA-zkg" secondAttribute="trailing" constant="2" id="c6P-HJ-QnW"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="2ug-vA-zkg" secondAttribute="trailing" constant="4" id="c6P-HJ-QnW"/>
                     <constraint firstAttribute="bottomMargin" secondItem="hn2-eR-iiT" secondAttribute="bottom" constant="7.5" id="gvv-cd-SvS"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="2ug-vA-zkg" secondAttribute="bottom" constant="7.5" id="m3D-5A-Ven"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="2ug-vA-zkg" secondAttribute="bottom" constant="10" id="m3D-5A-Ven"/>
                 </constraints>
-                <variation key="default">
-                    <mask key="constraints">
-                        <exclude reference="Wsx-yO-rLD"/>
-                    </mask>
-                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="arrowImgView" destination="2ug-vA-zkg" id="1GM-z8-Vc8"/>
                 <outlet property="cellContent" destination="eWg-p8-mhs" id="JVj-vg-n0W"/>
+                <outlet property="cellContentRight" destination="2Lp-tk-9Ib" id="1yG-F7-vjp"/>
                 <outlet property="cellTitle" destination="hn2-eR-iiT" id="emg-wB-tSF"/>
             </connections>
         </tableViewCell>

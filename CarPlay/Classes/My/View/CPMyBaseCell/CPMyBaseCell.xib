@@ -32,6 +32,13 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="003-DM-aQE">
+                        <rect key="frame" x="270" y="19" width="14" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="14" id="fjg-vl-m8X"/>
+                            <constraint firstAttribute="height" constant="14" id="sIp-fX-xtJ"/>
+                        </constraints>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bv6-Wt-KRp">
                         <rect key="frame" x="204" y="16" width="80" height="20"/>
                         <constraints>
@@ -45,24 +52,16 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="cKK-qX-4IF">
                         <rect key="frame" x="289" y="17" width="17" height="17"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="21" id="6We-4o-jtO"/>
-                            <constraint firstAttribute="height" constant="21" id="7eS-Bz-Hzl"/>
                             <constraint firstAttribute="width" constant="17" id="7uz-YS-tKh"/>
                             <constraint firstAttribute="height" constant="17" id="Gnx-MR-15V"/>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="21" id="MKo-kM-hz0"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="6We-4o-jtO"/>
-                                <exclude reference="MKo-kM-hz0"/>
-                                <exclude reference="7eS-Bz-Hzl"/>
-                            </mask>
-                        </variation>
                     </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="cKK-qX-4IF" firstAttribute="leading" secondItem="003-DM-aQE" secondAttribute="trailing" constant="5" id="Epz-kQ-8eS"/>
                     <constraint firstAttribute="trailingMargin" secondItem="cKK-qX-4IF" secondAttribute="trailing" constant="2" id="SNi-3h-hHv"/>
                     <constraint firstItem="1fz-tn-Kk8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="Ttd-mi-n9b"/>
+                    <constraint firstItem="003-DM-aQE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="11" id="UEV-5P-Xvc"/>
                     <constraint firstItem="cKK-qX-4IF" firstAttribute="leading" secondItem="bv6-Wt-KRp" secondAttribute="trailing" constant="9" id="Y8O-Bm-al9"/>
                     <constraint firstItem="cKK-qX-4IF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="9" id="f1T-uB-nll"/>
                     <constraint firstItem="wFv-ge-Eir" firstAttribute="leading" secondItem="1fz-tn-Kk8" secondAttribute="trailing" constant="7" id="j7V-SE-vAO"/>
@@ -72,9 +71,14 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="arrow" destination="cKK-qX-4IF" id="SmT-sg-XYg"/>
+                <outlet property="carBrandLogoImg" destination="003-DM-aQE" id="5TO-zd-tKM"/>
+                <outlet property="carBrandLogoImgRight" destination="Epz-kQ-8eS" id="g9h-fh-5VH"/>
                 <outlet property="icon" destination="1fz-tn-Kk8" id="5MU-Mc-Hj9"/>
                 <outlet property="titleLable" destination="wFv-ge-Eir" id="Sj3-ja-h96"/>
                 <outlet property="valueLable" destination="bv6-Wt-KRp" id="3sI-2d-ZTM"/>
+                <outlet property="valueLableRight" destination="Y8O-Bm-al9" id="DLR-pE-24Z"/>
+                <outlet property="valueLableW" destination="ZSg-CO-bWW" id="mzQ-OO-myI"/>
             </connections>
         </tableViewCell>
     </objects>

@@ -28,6 +28,7 @@
     NSArray *albumPhotos;
     NSArray *titleArray;
     NSArray *iconArray;
+    CPOrganizer *organizer;
 }
 @end
 
@@ -36,6 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     data=[[NSDictionary alloc]init];
+    organizer=[[CPOrganizer alloc]init];
     albumPhotos=[[NSArray alloc]init];
     titleArray=[[NSArray alloc]initWithObjects:@"我关注的人",@"车主认证",@"玩转车玩",@"意见反馈",@"编辑资料", nil];
     iconArray=[[NSArray alloc]initWithObjects:@"我关注的人",@"车主认证",@"玩转玩车",@"意见反馈",@"活动介绍", nil];
@@ -95,6 +97,28 @@
     }
     cell.icon.image=[UIImage imageNamed:[iconArray objectAtIndex:indexPath.row]];
     cell.titleLable.text=[titleArray objectAtIndex:indexPath.row];
+    
+    if (indexPath.row==1 && organizer) {
+        if (organizer.isAuthenticated == 1) {
+            if (organizer.carBrandLogo && ![Tools isEmptyOrNull:organizer.carBrandLogo]) {
+                NSURL *url=[[NSURL alloc]initWithString:organizer.carBrandLogo];
+                [cell.carBrandLogoImg sd_setImageWithURL:url completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                    cell.valueLable.text=@"已认证";
+                    cell.valueLable.textColor = [UIColor blackColor];
+                    cell.valueLableRight.constant=10.0f;
+                    cell.carBrandLogoImgRight.constant = -12.0f;
+                    [cell.arrow setHidden:YES];
+                    
+                }];
+            }
+        }else if (organizer.isAuthenticated == 0){
+            cell.valueLable.text=@"未认证";
+            [cell.arrow setHidden:NO];
+        }else if (organizer.isAuthenticated == 2){
+            cell.valueLable.text=@"审核中";
+            [cell.arrow setHidden:NO];
+        }
+    }
     return cell;
 }
 
@@ -104,11 +128,13 @@
         CPSubscribePersonController *vc = [UIStoryboard storyboardWithName:@"CPSubscribePersonController" bundle:nil].instantiateInitialViewController;
         [self.navigationController pushViewController:vc animated:YES];
     }else if (indexPath.row==1) {
-        CarOwnersCertificationViewController *CarOwnersCertificationVC=[[CarOwnersCertificationViewController alloc]init];
-        CarOwnersCertificationVC.fromMy=@"0";
-        CarOwnersCertificationVC.title=@"车主认证";
-        
-        [self.navigationController pushViewController:CarOwnersCertificationVC animated:YES];
+        if (!organizer.isAuthenticated == 1) {
+            CarOwnersCertificationViewController *CarOwnersCertificationVC=[[CarOwnersCertificationViewController alloc]init];
+            CarOwnersCertificationVC.fromMy=@"0";
+            CarOwnersCertificationVC.title=@"车主认证";
+            
+            [self.navigationController pushViewController:CarOwnersCertificationVC animated:YES];
+        }
     }else if (indexPath.row==2){
         CPHowToPlayViewController *CPHowToPlayVC=[[CPHowToPlayViewController alloc]init];
         CPHowToPlayVC.title=@"玩转玩车";
@@ -252,10 +278,12 @@
                 albumPhotos=[data objectForKey:@"albumPhotos"];
             }
             if (data) {
-                CPOrganizer *organizer= [CPOrganizer objectWithKeyValues:data];
+                CPOrganizer *organizer1= [CPOrganizer objectWithKeyValues:data];
+                organizer = organizer1;
                 NSString *fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"userId"]];
                 [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
-                [self loadUserData:organizer];
+                [self loadUserData];
+                [self.tableView reloadData];
             }
         }else{
             [self showError:responseObject[@"errmsg"]];
@@ -265,7 +293,7 @@
     }];
 }
 
--(void)loadUserData:(CPOrganizer *)organizer{
+-(void)loadUserData{
     if (organizer) {
         if (organizer.albumPhotos && [organizer.albumPhotos count]>0) {
             //相册照片数量大于1的时候才加轮播页数控制
