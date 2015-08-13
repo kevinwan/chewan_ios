@@ -192,7 +192,7 @@ typedef enum {
     [self labelWithRow:4].text = startStr;
     
     if (self.currentModel.end > 0) {
-        fmt.dateFormat = @"yyyy年MM月dd";
+        fmt.dateFormat = @"yyyy年MM月dd HH:mm";
         NSString *endStr = [fmt stringFromDate:[NSDate dateWithTimeIntervalSince1970:self.currentModel.end / 1000]];
         [self labelWithRow:5].text = endStr;
     }

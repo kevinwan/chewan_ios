@@ -236,4 +236,5 @@
 {
     CPMySubscribeModel *model = notify.userInfo[ChatButtonClickInfo];
 }
+
 @end

@@ -442,8 +442,8 @@ updatingLocation:(BOOL)updatingLocation
             annotationView.canShowCallout = YES;
             GeocodeAnnotation *anno = (GeocodeAnnotation *)annotation;
             
-            annotationView.image = [UIImage imageNamed:anno.icon];
         }
+        annotationView.image = [UIImage imageNamed:@"定位蓝"];
         
         //设置中⼼心点偏移，使得标注底部中间点成为经纬度对应点
 //        annotationView.centerOffset = CGPointMake(0, -18);
