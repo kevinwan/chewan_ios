@@ -46,13 +46,14 @@
 // 付费方式View
 @property (weak, nonatomic) IBOutlet UIView *payView;
 
-
 // 已占座位
 @property (weak, nonatomic) IBOutlet UILabel *holdingSeat;
 
-
 // 总座
 @property (weak, nonatomic) IBOutlet UILabel *totalSeat;
+
+// 已占座位距左约束
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *holdingSeatConstraint;
 
 // 正文
 @property (weak, nonatomic) IBOutlet UILabel *introduction;
@@ -75,13 +76,8 @@
 // 底部头像列表框
 @property (weak, nonatomic) IBOutlet UIView *bottomIconList;
 
-
-
-
-
 // 配图collectionView
 @property (weak, nonatomic) IBOutlet UICollectionView *pictureView;
-
 
 
 @end
@@ -104,6 +100,8 @@
     
     _status = status;
     
+  
+    
     CPHomeUser *user = _status.organizer;
     
     // 头像
@@ -118,10 +116,17 @@
     self.myPlay.layer.cornerRadius = 12;
     self.myPlay.layer.masksToBounds = YES;
     
+    [self.myPlay setBackgroundColor:[Tools getColor:@"fc6e51"]];
     if (self.status.isOrganizer) {
         [self.myPlay setTitle:@"成员管理" forState:UIControlStateNormal];
     }else if (self.status.isMember){
-        [self.myPlay setTitle:@"已加入" forState:UIControlStateNormal];
+        if (self.status.isMember == 1) {
+            [self.myPlay setTitle:@"已加入" forState:UIControlStateNormal];
+        }else if(self.status.isMember == 2){
+            [self.myPlay setTitle:@"申请中" forState:UIControlStateNormal];
+            [self.myPlay setBackgroundColor:[Tools getColor:@"ccd1d9"]];
+        }
+        
     }else{
         [self.myPlay setTitle:@"我要去玩" forState:UIControlStateNormal];
     }
@@ -225,24 +230,30 @@
     }
     
     
-    
-    // 余座
-    if (_status.holdingSeat == nil || [_status.holdingSeat isEqualToString:@""]) {
-        self.holdingSeat.text = @"";
-    }else{
-        self.holdingSeat.text = _status.holdingSeat;
-    }
-//    self.holdingSeat.text = @"已";
-
-    
-    // 总座
-    if (_status.totalSeat == nil || [_status.totalSeat isEqualToString:@""]) {
+    // 座位已满情况
+    if ([_status.holdingSeat isEqualToString:_status.totalSeat]) {
+        self.holdingSeatConstraint.constant = 24;
+        self.holdingSeat.text = @"已满";
         self.totalSeat.text = @"";
+        
     }else{
-        NSString *totalSeatStr = [NSString stringWithFormat:@"/%@座",_status.totalSeat];
-        self.totalSeat.text = totalSeatStr;
+        // 座位不满的情况
+        // 余座
+        if (_status.holdingSeat == nil || [_status.holdingSeat isEqualToString:@""]) {
+            self.holdingSeat.text = @"";
+        }else{
+            self.holdingSeat.text = _status.holdingSeat;
+        }
+        
+        // 总座
+        if (_status.totalSeat == nil || [_status.totalSeat isEqualToString:@""]) {
+            self.totalSeat.text = @"";
+        }else{
+            NSString *totalSeatStr = [NSString stringWithFormat:@"/%@座",_status.totalSeat];
+            self.totalSeat.text = totalSeatStr;
+        }
     }
-//    self.totalSeat.text = @"满";
+    
     
     
     // 正文
