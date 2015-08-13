@@ -40,13 +40,12 @@
     
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
     self.tableView.footer = [CPRefreshFooter footerWithRefreshingBlock:^{
-        weakSelf.ignore = self.datas.count;
+        weakSelf.ignore = weakSelf.datas.count;
         [weakSelf loadDataWithParam:weakSelf.ignore];
     }];
     
     self.tableView.footer.hidden = YES;
     ZYJumpToLoginView
-    [self reRefreshData];
     
 }
 
@@ -57,8 +56,15 @@
     [CPNotificationCenter addObserver:self selector:@selector(userIconClick:) name:CPClickUserIconNotification object:nil];
     
     [CPNotificationCenter addObserver:self selector:@selector(cancleSubscribe:) name:CPCancleSubscribeNotify object:nil];
+    
+    [self reRefreshData];
+    
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];

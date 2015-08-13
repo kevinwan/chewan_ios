@@ -99,7 +99,7 @@
                                 <constraint firstAttribute="width" constant="70" id="KJM-XZ-rih"/>
                                 <constraint firstAttribute="height" constant="25" id="OLd-Xa-fXk"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <state key="normal" title="我要去玩">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>

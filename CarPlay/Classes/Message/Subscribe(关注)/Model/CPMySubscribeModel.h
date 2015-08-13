@@ -12,11 +12,18 @@
 #define ChatButtonClickNotifyCation @"ChatButtonClickNotifyCation"
 #define ChatButtonClickInfo @"ChatButtonClickInfo"
 
+// 点击了参与人数按钮
+#define JoinPersonClickNotifyCation @"JoinPersonClickNotifyCation"
+#define JoinPersonClickInfo @"JoinPersonClickInfo"
+
 #define TimeStampFont     [UIFont systemFontOfSize:16]
 #define contentFont     [UIFont systemFontOfSize:16]
 
 @class CPOrganizer,Data;
 @interface CPMySubscribeModel : NSObject
+
+// 记录cell的行号
+@property (nonatomic, assign) NSUInteger row;
 
 @property (nonatomic, assign) long long start;
 

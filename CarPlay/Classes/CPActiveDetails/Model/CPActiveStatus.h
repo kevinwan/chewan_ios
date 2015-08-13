@@ -73,5 +73,7 @@
 /** 县、区*/
 @property (nonatomic, copy) NSString *district;
 
+/** 座位数*/
+@property (nonatomic, copy) NSString *seatInfo;
 
 @end

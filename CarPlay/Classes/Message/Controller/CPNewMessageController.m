@@ -310,6 +310,7 @@
     [self.items enumerateObjectsUsingBlock:^(CPNewMsgModel *obj, NSUInteger idx, BOOL *stop) {
         [obj setIsChecked:NO];
     }];
+    self.deleteBtn.hidden = YES;
     [self setEditing:NO animated:YES];
 }
 

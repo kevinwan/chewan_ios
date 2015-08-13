@@ -23,8 +23,8 @@
     if (self = [super init])
     {
         self.geocode = geocode;
-        self.title = geocode.formattedAddress;
-        self.subtitle = geocode.location.description;
+        self.title = geocode.building;
+        self.subtitle = geocode.formattedAddress;
         self.coordinate = CLLocationCoordinate2DMake(geocode.location.latitude, geocode.location.longitude);
     }
     
