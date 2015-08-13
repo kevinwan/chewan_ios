@@ -217,7 +217,8 @@
     // 费用
     self.pay.text = _activeStatus.pay;
     
-    
+    // 座位数
+    self.seating.text = _activeStatus.seatInfo;
     
     // 计算配图宽高
     CGSize pictureViewSize = [self caclPictureViewSize];
