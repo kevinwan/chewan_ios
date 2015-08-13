@@ -186,9 +186,14 @@
 - (void)searchBtnClick
 {
     if (self.search) {
-        self.search(self.searchBar.text);
+        self.search(self.searchBar.text.trimStr);
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.searchBar resignFirstResponder];
 }
 
 @end
