@@ -26,7 +26,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *offerSeatLabel;
 @property (weak, nonatomic) IBOutlet CPActivityApplyButton *agreeBtn;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *agreeBtnTopMargin;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tipMsgLabelWidth;
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *nameLabelWidth;
 
 @end
@@ -45,66 +45,96 @@
     _model = model;
     
     [self setChecked:model.isChecked];
-    if (model.photo) {
-        [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
-    }else{
-        [self.iconView setImage:[UIImage imageNamed:@"placeholderImage"] forState:UIControlStateNormal];
-    }
     
-    self.agreeBtn.selected = model.isAgree;
-    
-    if (model.nickname) {
-        self.nameLabel.text = model.nickname;
-        CGFloat nameLableW = [self.nameLabel.text sizeWithFont:self.nameLabel.font].width;
-        if (nameLableW > kScreenWidth - 200) {
-            self.nameLabelWidth.constant = kScreenWidth - 200;
-        }else{
-            self.nameLabelWidth.constant = nameLableW;
-        }
-    }else{
-        self.nameLabel.text = @"";
-        self.nameLabelWidth.constant = 0;
-    }
-    
-    if (model.age && model.gender) {
-        self.sexView.isMan = [model.gender isEqualToString:@"男"];
-        self.sexView.age = model.age.unsignedIntValue;
-    }
-    
-    if ([model.type isEqualToString:@"活动申请处理"]){
-        self.tipMsgLabelWidth.constant = kScreenWidth -  150;
-        if (model.carBrandLogo.length) {
-            
-            // 如果不提供座位则不显示
-            if (model.seatText) {
-                self.offerSeatLabel.attributedText = model.seatText;
-                self.agreeBtnTopMargin.constant = 10;
+    BOOL isCarAutho =  [model.type isEqualToString:@"车主认证"];
+    BOOL isActivityApply =  [model.type isEqualToString:@"活动申请处理"];
+    if (!isCarAutho){ // 如果不是车主认证,设置昵称,年龄和车标
+        if (model.nickname) {
+            self.nameLabel.text = model.nickname;
+            CGFloat nameLableW = [self.nameLabel.text sizeWithFont:self.nameLabel.font].width;
+            if (nameLableW > kScreenWidth - 200) {
+                self.nameLabelWidth.constant = kScreenWidth - 200;
             }else{
-                // 调整同意按钮的位置为居中
-                self.offerSeatLabel.attributedText = nil;
-                self.agreeBtnTopMargin.constant = 20;
+                self.nameLabelWidth.constant = nameLableW + 3;
             }
-            
-            self.tipmsgLabel.attributedText = model.text;
-            
-            self.agreeBtnTopMargin.constant = 10;
-            self.carView.hidden = NO;
-            [self.carView sd_setImageWithURL:[NSURL URLWithString:model.carBrandLogo] placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
         }else{
-            self.tipmsgLabel.text = @"带我飞 ~";
-            self.offerSeatLabel.text = @"";
-            self.agreeBtnTopMargin.constant = 20;
-            self.carView.hidden = YES;
+            self.nameLabel.text = @"";
+            self.nameLabelWidth.constant = 0;
         }
-    }else{
+        
+        if (model.age && model.gender) {
+            self.sexView.isMan = [model.gender isEqualToString:@"男"];
+            self.sexView.age = model.age.unsignedIntValue;
+        }
+        
         if (model.carBrandLogo.length){
             [self.carView sd_setImageWithURL:[NSURL URLWithString:model.carBrandLogo] placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
-             self.carView.hidden = NO;
+            self.carView.hidden = NO;
         }else{
             self.carView.hidden = YES;
         }
-        self.tipmsgLabel.attributedText = model.text;
+        
+        if (model.photo.length) {
+            [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
+        }else{
+            [self.iconView setImage:[UIImage imageNamed:@"placeholderImage"] forState:UIControlStateNormal];
+        }
+        
     }
+    
+
+    if (isActivityApply) {
+
+        self.agreeBtn.selected = model.isAgree;
+        
+        // 如果不提供座位则不显示
+        if (model.seatText.length) {
+            self.offerSeatLabel.attributedText = model.seatText;
+            self.agreeBtnTopMargin.constant = 10;
+        }else{
+            // 调整同意按钮的位置为居中
+            self.agreeBtnTopMargin.constant = 20;
+            self.offerSeatLabel.attributedText = nil;
+        }
+        
+        
+    }
+    
+    self.tipmsgLabel.attributedText = model.text;
+    
+    
+ 
+
+    
+//
+//    
+//    // 1. 活动申请处理
+//    if ([model.type isEqualToString:@"活动申请处理"]){
+////        self.tipMsgLabelWidth.constant = kScreenWidth -  150;
+//        if (model.carBrandLogo.length) {
+//            
+//            
+//            self.agreeBtnTopMargin.constant = 10;
+//            self.carView.hidden = NO;
+//            [self.carView sd_setImageWithURL:[NSURL URLWithString:model.carBrandLogo] placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
+//        }
+////        else{
+////            self.tipmsgLabel.text = @"带我飞 ~";
+////            self.offerSeatLabel.text = @"";
+////            self.agreeBtnTopMargin.constant = 20;
+////            self.carView.hidden = YES;
+////        }
+//    }else if ([model.type isEqualToString:@"车主认证"]){
+//        
+//    }else{
+//        if (model.carBrandLogo.length){
+//            [self.carView sd_setImageWithURL:[NSURL URLWithString:model.carBrandLogo] placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
+//             self.carView.hidden = NO;
+//        }else{
+//            self.carView.hidden = YES;
+//        }
+//        self.tipmsgLabel.attributedText = model.text;
+//    }
 }
 
 - (IBAction)agreeBtnClick:(id)sender {

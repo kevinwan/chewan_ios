@@ -163,6 +163,7 @@
 		E328F0691B621E1C00A20DCE /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = E328F0681B621E1C00A20DCE /* area.plist */; };
 		E3292A281B6A50700023677F /* CPSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3292A261B6A50700023677F /* CPSelectView.m */; };
 		E3292A291B6A50700023677F /* CPSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3292A271B6A50700023677F /* CPSelectView.xib */; };
+		E3332D4D1B7B1CCA006C9AEF /* CPMapSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3332D4C1B7B1CCA006C9AEF /* CPMapSearchViewController.m */; };
 		E338A7451B70540C00E706C2 /* CPRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = E338A7441B70540C00E706C2 /* CPRefreshHeader.m */; };
 		E338A7481B7099CE00E706C2 /* CPRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = E338A7471B7099CE00E706C2 /* CPRefreshFooter.m */; };
 		E33BAE841B58DC110021DED6 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E33BAE831B58DC110021DED6 /* NSDate+Extension.m */; };
@@ -238,6 +239,8 @@
 		E372D8571B62172400B4FC5C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E372D8561B62172400B4FC5C /* AppDelegate.m */; };
 		E372D85B1B62176C00B4FC5C /* MJNIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = E372D85A1B62176C00B4FC5C /* MJNIndexView.m */; };
 		E379E2E61B5DEC23001869AA /* CPEditImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E379E2E51B5DEC23001869AA /* CPEditImageView.m */; };
+		E379FCBE1B7B76A200BB19A6 /* CPCarAuthoAllowController.m in Sources */ = {isa = PBXBuildFile; fileRef = E379FCBD1B7B76A200BB19A6 /* CPCarAuthoAllowController.m */; };
+		E379FCC11B7B7A7100BB19A6 /* CPCarAuthoFailedController.m in Sources */ = {isa = PBXBuildFile; fileRef = E379FCC01B7B7A7100BB19A6 /* CPCarAuthoFailedController.m */; };
 		E38A5EA41B78847900B068D8 /* ZYTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E38A5EA31B78847900B068D8 /* ZYTabBar.m */; };
 		E3AE58C61B57E08800D8F0CA /* ZYNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AE58C31B57E08800D8F0CA /* ZYNetWorkManager.m */; };
 		E3AE58C71B57E08800D8F0CA /* ZYNetWorkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AE58C51B57E08800D8F0CA /* ZYNetWorkTool.m */; };
@@ -618,6 +621,8 @@
 		E3292A251B6A50700023677F /* CPSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSelectView.h; sourceTree = "<group>"; };
 		E3292A261B6A50700023677F /* CPSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSelectView.m; sourceTree = "<group>"; };
 		E3292A271B6A50700023677F /* CPSelectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPSelectView.xib; sourceTree = "<group>"; };
+		E3332D4B1B7B1CCA006C9AEF /* CPMapSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMapSearchViewController.h; sourceTree = "<group>"; };
+		E3332D4C1B7B1CCA006C9AEF /* CPMapSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMapSearchViewController.m; sourceTree = "<group>"; };
 		E338A7431B70540C00E706C2 /* CPRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRefreshHeader.h; sourceTree = "<group>"; };
 		E338A7441B70540C00E706C2 /* CPRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRefreshHeader.m; sourceTree = "<group>"; };
 		E338A7461B7099CE00E706C2 /* CPRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRefreshFooter.h; sourceTree = "<group>"; };
@@ -746,6 +751,10 @@
 		E372D85A1B62176C00B4FC5C /* MJNIndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJNIndexView.m; sourceTree = "<group>"; };
 		E379E2E41B5DEC23001869AA /* CPEditImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPEditImageView.h; sourceTree = "<group>"; };
 		E379E2E51B5DEC23001869AA /* CPEditImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPEditImageView.m; sourceTree = "<group>"; };
+		E379FCBC1B7B76A200BB19A6 /* CPCarAuthoAllowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCarAuthoAllowController.h; sourceTree = "<group>"; };
+		E379FCBD1B7B76A200BB19A6 /* CPCarAuthoAllowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCarAuthoAllowController.m; sourceTree = "<group>"; };
+		E379FCBF1B7B7A7100BB19A6 /* CPCarAuthoFailedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCarAuthoFailedController.h; sourceTree = "<group>"; };
+		E379FCC01B7B7A7100BB19A6 /* CPCarAuthoFailedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCarAuthoFailedController.m; sourceTree = "<group>"; };
 		E38A5EA21B78847900B068D8 /* ZYTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYTabBar.h; sourceTree = "<group>"; };
 		E38A5EA31B78847900B068D8 /* ZYTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYTabBar.m; sourceTree = "<group>"; };
 		E39435DB1B5CE4E100AF91BF /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -1790,6 +1799,10 @@
 		E36C96111B53BA3200D3EDBB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E379FCBF1B7B7A7100BB19A6 /* CPCarAuthoFailedController.h */,
+				E379FCC01B7B7A7100BB19A6 /* CPCarAuthoFailedController.m */,
+				E379FCBC1B7B76A200BB19A6 /* CPCarAuthoAllowController.h */,
+				E379FCBD1B7B76A200BB19A6 /* CPCarAuthoAllowController.m */,
 				E36C96121B53BA3200D3EDBB /* CPActivityApplyControllerView.h */,
 				E36C96131B53BA3200D3EDBB /* CPActivityApplyControllerView.m */,
 				E36C961B1B53BA6B00D3EDBB /* CPActivityApplyControllerView.storyboard */,
@@ -2223,6 +2236,8 @@
 				E3CE37241B5A4085008434B5 /* CPActivityNameController.m */,
 				E3E1DBFE1B5CA87C00386B18 /* CPReturnValueControllerView.h */,
 				E3E1DBFF1B5CA87C00386B18 /* CPReturnValueControllerView.m */,
+				E3332D4B1B7B1CCA006C9AEF /* CPMapSearchViewController.h */,
+				E3332D4C1B7B1CCA006C9AEF /* CPMapSearchViewController.m */,
 			);
 			name = "创建和编辑活动";
 			sourceTree = "<group>";
@@ -2534,6 +2549,7 @@
 				E3C6114F1B5F498600B7E73A /* CPLocationModel.m in Sources */,
 				E3C6114C1B5F363900B7E73A /* CPNetWorkTool.m in Sources */,
 				6BC8A3EA1B6A4DB700B199F2 /* CPTaPhoto.m in Sources */,
+				E379FCBE1B7B76A200BB19A6 /* CPCarAuthoAllowController.m in Sources */,
 				A575821D1B6789E500A5E681 /* UIView+Dealer.m in Sources */,
 				E3CE35A91B59E7FC008434B5 /* UIView+XLFormAdditions.m in Sources */,
 				A57581CB1B6789D500A5E681 /* cars.m in Sources */,
@@ -2547,6 +2563,7 @@
 				E35B04281B5645BC002C6655 /* HMStatusPhotoView.m in Sources */,
 				E3CE35921B59E7FC008434B5 /* XLFormDateCell.m in Sources */,
 				6B5F9B6E1B5D29FE00F9D1E8 /* CPHomeMember.m in Sources */,
+				E3332D4D1B7B1CCA006C9AEF /* CPMapSearchViewController.m in Sources */,
 				6B9CFD741B71D93E00EF167D /* CPAbout.m in Sources */,
 				6BC8A3EB1B6A4DB700B199F2 /* CPTaPublishStatus.m in Sources */,
 				E3E315041B5E551A00FB0B55 /* CPActivityApplyModel.m in Sources */,
@@ -2645,6 +2662,7 @@
 				E30BD5901B54ECCC00FD9030 /* CPMySubscribeCell.m in Sources */,
 				E3CE35AD1B59E7FC008434B5 /* XLFormTextView.m in Sources */,
 				E379E2E61B5DEC23001869AA /* CPEditImageView.m in Sources */,
+				E379FCC11B7B7A7100BB19A6 /* CPCarAuthoFailedController.m in Sources */,
 				A57581D01B6789D500A5E681 /* outActivity.m in Sources */,
 				E30BD58A1B54EC4A00FD9030 /* CPMySubscribeModel.m in Sources */,
 				E3CE35931B59E7FC008434B5 /* XLFormDatePickerCell.m in Sources */,
@@ -2882,7 +2900,7 @@
 					"$(PROJECT_DIR)/CarPlay/UMSocial_Sdk_4.2.3/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "357d5bce-24a1-43a0-8657-b8b75bba4063";
 			};
 			name = Debug;
 		};
@@ -2912,7 +2930,7 @@
 					"$(PROJECT_DIR)/CarPlay/UMSocial_Sdk_4.2.3/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "357d5bce-24a1-43a0-8657-b8b75bba4063";
 			};
 			name = Release;
 		};

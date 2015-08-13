@@ -46,4 +46,11 @@
     self.width += 10;
 }
 
+- (void)showApplying
+{
+    [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    self.backgroundColor = [Tools getColor:@"f1f1f1"];
+    [self setTitle:@"申请中" forState:UIControlStateNormal];
+}
+
 @end

@@ -179,7 +179,9 @@
     
     if (self.model.isOrganizer){
         [self.chatBtn setTitle:@"成员管理" forState:UIControlStateNormal];
-    }else if (self.model.isMember){
+    }else if (self.model.isMember == 1){
+        [self.chatBtn setTitle:@"已加入" forState:UIControlStateNormal];
+    }else if (self.model.isMember == 1){
         [self.chatBtn setTitle:@"已加入" forState:UIControlStateNormal];
     }else{
         [self.chatBtn setTitle:@"我要去玩" forState:UIControlStateNormal];

@@ -13,6 +13,8 @@
 #import "MJRefresh.h"
 #import "CPActiveDetailsController.h"
 #import "CPTaDetailsController.h"
+#import "CPCarAuthoFailedController.h"
+#import "CPCarAuthoAllowController.h"
 
 #define ActivityMsgData @"ActivityMsgData"
 
@@ -133,7 +135,7 @@
         [self disMiss];
         [self.tableView.footer endRefreshing];
         [self.tableView.header endRefreshing];
-
+        DLog(@"%@",responseObject);
         if (CPSuccess) {
             
             if (self.ignore == 0) {
@@ -220,15 +222,17 @@
 {
     static NSString *ID1 = @"ActivityApplyCell";
     static NSString *ID2 = @"ActivityMsgCell";
+    static NSString *ID3 = @"CarAuthoMsgCell";
     CPActivityApplyCell *cell;
     CPActivityApplyModel *model = [self.datas objectAtIndex:indexPath.row];
     model.row = indexPath.row;
     if ([model.type isEqualToString:@"活动申请处理"]) {
        cell = [tableView dequeueReusableCellWithIdentifier:ID1];
         
-    }else{
+    }else if ([model.type isEqualToString:@"车主认证"]){
+        cell = [tableView dequeueReusableCellWithIdentifier:ID3];
+    }else{ // 活动邀请 活动申请处理结果
         cell = [tableView dequeueReusableCellWithIdentifier:ID2];
-        
     }
     cell.model = model;
     
@@ -252,6 +256,19 @@
         model.isChecked = !model.isChecked;
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     }else{
+        if ([model.type isEqualToString:@"车主认证"]) {
+            if ([model.content contains:@"未通过"]){
+                CPCarAuthoFailedController *vc = [[CPCarAuthoFailedController alloc] init];
+                vc.model = model;
+                [self.navigationController pushViewController:vc animated:YES];
+            }else{
+                CPCarAuthoAllowController *vc = [[CPCarAuthoAllowController alloc] init];
+                vc.model = model;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            return;
+        }
+        
         if (model.activityId.length) {
             CPActiveDetailsController *vc = [UIStoryboard storyboardWithName:@"CPActiveDetailsController" bundle:nil].instantiateInitialViewController;
             vc.activeId = model.activityId;
@@ -282,6 +299,7 @@
     [self.datas enumerateObjectsUsingBlock:^(CPActivityApplyModel *obj, NSUInteger idx, BOOL *stop) {
         [obj setIsChecked:NO];
     }];
+    self.deleteBtn.hidden = YES;
     [self setEditing:NO animated:YES];
 }
 

@@ -28,7 +28,7 @@
         self.userInteractionEnabled = YES;
 		// 图片
 		_imageView = [[UIImageView alloc] init];
-		_imageView.contentMode = UIViewContentModeScaleAspectFit;
+		_imageView.contentMode = UIViewContentModeScaleAspectFill;
 		[self addSubview:_imageView];
         
         // 进度条
@@ -178,7 +178,7 @@
         _photo.firstShow = NO; // 已经显示过了
         _imageView.frame = [_photo.srcImageView convertRect:_photo.srcImageView.bounds toView:nil];
         
-        [UIView animateWithDuration:0.3 animations:^{
+        [UIView animateWithDuration:0.35 animations:^{
             _imageView.frame = imageFrame;
         } completion:^(BOOL finished) {
             // 设置底部的小图片
@@ -212,13 +212,14 @@
     _photo.srcImageView.image = nil;
     
     CGFloat duration = 0.15;
-    if (_photo.srcImageView.clipsToBounds) {
-        [self performSelector:@selector(reset) withObject:nil afterDelay:duration];
-    }
+//    if (_photo.srcImageView.clipsToBounds) {
+//        [self performSelector:@selector(reset) withObject:nil afterDelay:duration];
+//    }
+    _imageView.clipsToBounds = YES;
     [UIApplication sharedApplication].statusBarHidden = NO;
-    [UIView animateWithDuration:duration + 0.1 animations:^{
+    [UIView animateWithDuration:duration + 0.2 animations:^{
         _imageView.frame = [_photo.srcImageView convertRect:_photo.srcImageView.bounds toView:nil];
-        
+//
         // gif图片仅显示第0张
         if (_imageView.image.images) {
             _imageView.image = _imageView.image.images[0];
@@ -229,6 +230,7 @@
             [self.photoViewDelegate photoViewSingleTap:self];
         }
     } completion:^(BOOL finished) {
+        
         // 设置底部的小图片
         _photo.srcImageView.image = _photo.placeholder;
         

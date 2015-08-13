@@ -46,7 +46,6 @@
     
     self.tableView.footer.hidden = YES;
     ZYJumpToLoginView
-    [self reRefreshData];
     
 }
 
@@ -57,8 +56,15 @@
     [CPNotificationCenter addObserver:self selector:@selector(userIconClick:) name:CPClickUserIconNotification object:nil];
     
     [CPNotificationCenter addObserver:self selector:@selector(cancleSubscribe:) name:CPCancleSubscribeNotify object:nil];
+    
+    [self reRefreshData];
+    
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];

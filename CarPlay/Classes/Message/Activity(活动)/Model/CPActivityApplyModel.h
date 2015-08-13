@@ -55,6 +55,7 @@
 @property (nonatomic, copy) NSAttributedString *seatText;
 
 @property (nonatomic, copy) NSString *remarks;
+
 /**
  *  是否同意
  */

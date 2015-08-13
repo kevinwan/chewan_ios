@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CPChatButton : UIButton
-
+- (void)showApplying;
 @end
