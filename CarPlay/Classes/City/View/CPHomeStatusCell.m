@@ -46,13 +46,14 @@
 // 付费方式View
 @property (weak, nonatomic) IBOutlet UIView *payView;
 
-
 // 已占座位
 @property (weak, nonatomic) IBOutlet UILabel *holdingSeat;
 
-
 // 总座
 @property (weak, nonatomic) IBOutlet UILabel *totalSeat;
+
+// 已占座位距左约束
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *holdingSeatConstraint;
 
 // 正文
 @property (weak, nonatomic) IBOutlet UILabel *introduction;
@@ -75,13 +76,8 @@
 // 底部头像列表框
 @property (weak, nonatomic) IBOutlet UIView *bottomIconList;
 
-
-
-
-
 // 配图collectionView
 @property (weak, nonatomic) IBOutlet UICollectionView *pictureView;
-
 
 
 @end
@@ -103,6 +99,8 @@
 - (void)setStatus:(CPHomeStatus *)status{
     
     _status = status;
+    
+  
     
     CPHomeUser *user = _status.organizer;
     
@@ -225,24 +223,30 @@
     }
     
     
-    
-    // 余座
-    if (_status.holdingSeat == nil || [_status.holdingSeat isEqualToString:@""]) {
-        self.holdingSeat.text = @"";
-    }else{
-        self.holdingSeat.text = _status.holdingSeat;
-    }
-//    self.holdingSeat.text = @"已";
-
-    
-    // 总座
-    if (_status.totalSeat == nil || [_status.totalSeat isEqualToString:@""]) {
+    // 座位已满情况
+    if ([_status.holdingSeat isEqualToString:_status.totalSeat]) {
+        self.holdingSeatConstraint.constant = 24;
+        self.holdingSeat.text = @"已满";
         self.totalSeat.text = @"";
+        
     }else{
-        NSString *totalSeatStr = [NSString stringWithFormat:@"/%@座",_status.totalSeat];
-        self.totalSeat.text = totalSeatStr;
+        // 座位不满的情况
+        // 余座
+        if (_status.holdingSeat == nil || [_status.holdingSeat isEqualToString:@""]) {
+            self.holdingSeat.text = @"";
+        }else{
+            self.holdingSeat.text = _status.holdingSeat;
+        }
+        
+        // 总座
+        if (_status.totalSeat == nil || [_status.totalSeat isEqualToString:@""]) {
+            self.totalSeat.text = @"";
+        }else{
+            NSString *totalSeatStr = [NSString stringWithFormat:@"/%@座",_status.totalSeat];
+            self.totalSeat.text = totalSeatStr;
+        }
     }
-//    self.totalSeat.text = @"满";
+    
     
     
     // 正文
