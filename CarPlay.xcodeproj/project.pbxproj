@@ -28,6 +28,9 @@
 		6B512FBF1B7C524800258CA0 /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B512FBE1B7C524800258CA0 /* libopencore-amrwb.a */; };
 		6B512FC41B7C70F400258CA0 /* AppDelegate+EaseMob.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B512FC11B7C70F400258CA0 /* AppDelegate+EaseMob.m */; };
 		6B512FC51B7C70F400258CA0 /* AppDelegate+EaseMobDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B512FC31B7C70F400258CA0 /* AppDelegate+EaseMobDebug.m */; };
+		6B512FCC1B7CC20500258CA0 /* CPCarAuthoAllowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B512FC71B7CC20500258CA0 /* CPCarAuthoAllowController.m */; };
+		6B512FCD1B7CC20500258CA0 /* CPCarAuthoFailedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B512FC91B7CC20500258CA0 /* CPCarAuthoFailedController.m */; };
+		6B512FCE1B7CC20500258CA0 /* CPMapSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B512FCB1B7CC20500258CA0 /* CPMapSearchViewController.m */; };
 		6B5F9B6C1B5D29FE00F9D1E8 /* CPCityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5F9B5A1B5D29FE00F9D1E8 /* CPCityController.m */; };
 		6B5F9B6D1B5D29FE00F9D1E8 /* CPCityController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B5F9B5B1B5D29FE00F9D1E8 /* CPCityController.storyboard */; };
 		6B5F9B6E1B5D29FE00F9D1E8 /* CPHomeMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5F9B5E1B5D29FE00F9D1E8 /* CPHomeMember.m */; };
@@ -396,6 +399,12 @@
 		6B512FC11B7C70F400258CA0 /* AppDelegate+EaseMob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+EaseMob.m"; sourceTree = "<group>"; };
 		6B512FC21B7C70F400258CA0 /* AppDelegate+EaseMobDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+EaseMobDebug.h"; sourceTree = "<group>"; };
 		6B512FC31B7C70F400258CA0 /* AppDelegate+EaseMobDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+EaseMobDebug.m"; sourceTree = "<group>"; };
+		6B512FC61B7CC20500258CA0 /* CPCarAuthoAllowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCarAuthoAllowController.h; sourceTree = "<group>"; };
+		6B512FC71B7CC20500258CA0 /* CPCarAuthoAllowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCarAuthoAllowController.m; sourceTree = "<group>"; };
+		6B512FC81B7CC20500258CA0 /* CPCarAuthoFailedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCarAuthoFailedController.h; sourceTree = "<group>"; };
+		6B512FC91B7CC20500258CA0 /* CPCarAuthoFailedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCarAuthoFailedController.m; sourceTree = "<group>"; };
+		6B512FCA1B7CC20500258CA0 /* CPMapSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMapSearchViewController.h; sourceTree = "<group>"; };
+		6B512FCB1B7CC20500258CA0 /* CPMapSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMapSearchViewController.m; sourceTree = "<group>"; };
 		6B5F9B591B5D29FE00F9D1E8 /* CPCityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCityController.h; sourceTree = "<group>"; };
 		6B5F9B5A1B5D29FE00F9D1E8 /* CPCityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCityController.m; sourceTree = "<group>"; };
 		6B5F9B5B1B5D29FE00F9D1E8 /* CPCityController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPCityController.storyboard; sourceTree = "<group>"; };
@@ -1938,6 +1947,12 @@
 		E36C96111B53BA3200D3EDBB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6B512FC61B7CC20500258CA0 /* CPCarAuthoAllowController.h */,
+				6B512FC71B7CC20500258CA0 /* CPCarAuthoAllowController.m */,
+				6B512FC81B7CC20500258CA0 /* CPCarAuthoFailedController.h */,
+				6B512FC91B7CC20500258CA0 /* CPCarAuthoFailedController.m */,
+				6B512FCA1B7CC20500258CA0 /* CPMapSearchViewController.h */,
+				6B512FCB1B7CC20500258CA0 /* CPMapSearchViewController.m */,
 				E36C96121B53BA3200D3EDBB /* CPActivityApplyControllerView.h */,
 				E36C96131B53BA3200D3EDBB /* CPActivityApplyControllerView.m */,
 				E36C961B1B53BA6B00D3EDBB /* CPActivityApplyControllerView.storyboard */,
@@ -2782,6 +2797,7 @@
 				A575820F1B6789E500A5E681 /* NSTimer+SMFoundation.m in Sources */,
 				6BCF660F1B6208C700358190 /* CPActiveDetailsHead.m in Sources */,
 				E3CE35911B59E7FC008434B5 /* XLFormCheckCell.m in Sources */,
+				6B512FCE1B7CC20500258CA0 /* CPMapSearchViewController.m in Sources */,
 				E36C962D1B53CA2300D3EDBB /* CPSubscribeCell.m in Sources */,
 				E372D8391B6216C100B4FC5C /* CPEditUsernameViewController.m in Sources */,
 				E3CFB1541B72126A0058B8C3 /* ZYSegmentControl.m in Sources */,
@@ -2810,6 +2826,7 @@
 				E3CE35A41B59E7FC008434B5 /* NSArray+XLFormAdditions.m in Sources */,
 				E3CE353A1B59E1C0008434B5 /* CPEditActivityController.m in Sources */,
 				E3CE35951B59E7FC008434B5 /* XLFormLeftRightSelectorCell.m in Sources */,
+				6B512FCD1B7CC20500258CA0 /* CPCarAuthoFailedController.m in Sources */,
 				A575820A1B6789E500A5E681 /* NSDictionary+SMFoundation.m in Sources */,
 				E30BD5971B54FD6E00FD9030 /* ZYNavigationController.m in Sources */,
 				6BC8A3F01B6A4DB700B199F2 /* CPTaPublishCell.m in Sources */,
@@ -2863,6 +2880,7 @@
 				6BB09A9B1B675A3E00E0D77D /* CPEditInfoTableViewController.m in Sources */,
 				E35B046C1B565532002C6655 /* MJPhoto.m in Sources */,
 				6BB09AB41B69F52900E0D77D /* CPNewfeatureViewController.m in Sources */,
+				6B512FCC1B7CC20500258CA0 /* CPCarAuthoAllowController.m in Sources */,
 				E3EEE0041B53952E00595333 /* UIImage+Extension.m in Sources */,
 				A57582101B6789E500A5E681 /* SMAlertView.m in Sources */,
 				E35B04271B5645BC002C6655 /* HMStatusPhotosView.m in Sources */,
