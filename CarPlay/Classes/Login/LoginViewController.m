@@ -58,10 +58,6 @@
                 NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
                 NSString *state=[numberFormatter stringFromNumber:[responseObject objectForKey:@"result"]];
                 if ([state isEqualToString:@"0"]) {
-                    
-                    
-                    
-                    
                     NSDictionary *data=[responseObject objectForKey:@"data"];
                     if ([data objectForKey:@"token"]) {
                         [Tools setValueForKey:[data objectForKey:@"token"] key:@"token"];
