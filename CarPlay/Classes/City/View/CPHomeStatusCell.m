@@ -264,6 +264,20 @@
     [self.pictureView reloadData];
     [self.iconView reloadData];
     
+//    NSLog(@"--%@",self.iconView.subviews);
+//    for (int i=0; i<self.iconView.subviews.count; i++) {
+//        
+//        UIView *image = self.iconView.subviews[i];
+//        
+//        NSLog(@"++%@",image.subviews);
+//        for (int i=0; i < image.subviews.count; i++) {
+//            if ([image.subviews[i] isKindOfClass:[UIButton class]]) {
+//                UIView *view = image.subviews[i];
+//                [view removeFromSuperview];
+//            }
+//        }
+//    }
+    
 }
 
 // 计算配图宽高
@@ -274,6 +288,9 @@
     // 处理没有配图的情况
     if (count == 0) {
         return CGSizeZero;
+    }
+    if (count == 1) {
+        return CGSizeMake(159, 107);
     }
     
     // 计算行数列数
@@ -318,6 +335,20 @@
     if (collectionView == self.pictureView) {
         // 创建cell
         CPHomePicCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[CPHomePicCell identifier] forIndexPath:indexPath];
+        
+        // 特殊处理有一张图片的情况
+        if (self.status.cover.count == 1) {
+            CGRect temp = cell.frame;
+            temp = CGRectMake(0, 0, 159, 107);
+            cell.frame = temp;
+        }
+        if (self.status.cover.count > 1 && indexPath.item == 0) {
+            CGRect temp = cell.frame;
+            temp = CGRectMake(0, 0, 78, 78);
+            cell.frame = temp;
+        }
+        
+
         
         // 获取对应图片模型
         CPHomePhoto *photo = self.status.cover[indexPath.item];
