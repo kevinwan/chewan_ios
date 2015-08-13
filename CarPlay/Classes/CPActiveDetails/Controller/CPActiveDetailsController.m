@@ -219,7 +219,7 @@
         if (self.activeStatus.isOrganizer) {
             self.editorActiveBtn.title = @"编辑活动";
         }else{
-            [self.editorActiveBtn setTitle:@"关注"];
+            [self.editorActiveBtn setTitle:@"收藏"];
         }
         
         
