@@ -14,6 +14,7 @@
 #import "UMSocialWechatHandler.h"
 #import "UMSocialQQHandler.h"
 #import "CPNewfeatureViewController.h"
+#import "AppDelegate+EaseMob.h"
 #import <MobClick.h>
 #define kCheWanAppID @"55a34ed367e58e6efc00285d"
 #define kWeiXinAppID @"wx4c127cf07bd7d80b"
@@ -54,9 +55,10 @@
 //    统计分析  nil默认渠道为appStore
     [MobClick startWithAppkey:kCheWanAppID reportPolicy:BATCH   channelId:nil];
     
-    [[EaseMob sharedInstance] registerSDKWithAppKey:@"gongpingjia#chewantest" apnsCertName:@"carPlayApns"];
-    [[EaseMob sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
-    
+//    [[EaseMob sharedInstance] registerSDKWithAppKey:@"gongpingjia#chewantest" apnsCertName:@"carPlayApns"];
+//    [[EaseMob sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
+    // 初始化环信SDK，详细内容在AppDelegate+EaseMob.m 文件中
+    [self easemobApplication:application didFinishLaunchingWithOptions:launchOptions];
     // 如何知道第一次使用这个版本？比较上次的使用情况
     NSString *versionKey = (__bridge NSString *)kCFBundleVersionKey;
     
@@ -103,8 +105,9 @@
 //登陆状态改变
 -(void)loginStateChange:(NSNotification *)notification
 {
- 
-    if ([Tools getValueFromKey:@"userId"]) {//登陆成功加载主窗口控制器
+    BOOL isAutoLogin = [[[EaseMob sharedInstance] chatManager] isAutoLoginEnabled];
+    BOOL loginSuccess = [notification.object boolValue];
+    if ((isAutoLogin || loginSuccess) && [Tools getValueFromKey:@"userId"]) {//登陆成功加载主窗口控制器
         //加载申请通知的数据
         self.window.rootViewController = _tabVc;
         [self.window makeKeyAndVisible];
@@ -165,8 +168,8 @@
             NSUInteger newMsgCount = [comment[@"count"] intValue];
             NSUInteger activityApplyCount = [application[@"count"] intValue];
             
-            UITabBarController *tabVc = (UITabBarController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-            UIViewController *vc = tabVc.childViewControllers[1];
+//            UITabBarController *tabVc = (UITabBarController *)[UIApplication sharedApplication].keyWindow.rootViewController;
+            UIViewController *vc = _tabVc.childViewControllers[1];
             if (newMsgCount + activityApplyCount > 0) {
             vc.tabBarItem.badgeValue = [NSString stringWithFormat:@"%zd",newMsgCount+ activityApplyCount];
             }else{
@@ -191,94 +194,4 @@
     return  [UMSocialSnsService handleOpenURL:url];
 }
 
-- (void)didReceiveMessage:(EMMessage *)message{
-    NSLog(@"%@",message);
-}
-
-/*!
- @method
- @brief 接受群组邀请并加入群组后的回调
- @param group 所接受的群组
- @param error 错误信息
- */
-- (void)didAcceptInvitationFromGroup:(EMGroup *)group error:(EMError *)error{
-    
-}
-
-/*!
- @method
- @brief 群组信息更新后的回调
- @param group 发生更新的群组
- @param error 错误信息
- @discussion
- 当添加/移除/更改角色/更改主题/更改群组信息之后,都会触发此回调
- */
-- (void)groupDidUpdateInfo:(EMGroup *)group error:(EMError *)error{
-    
-}
-
-/*!
- @method
- @brief 申请加入公开群组后的回调
- @param group 群组对象
- @param error 错误信息
- */
-- (void)didApplyJoinPublicGroup:(EMGroup *)group
-                          error:(EMError *)error{
-    
-}
-
-/*!
- @method
- @brief 收到加入群组的申请
- @param groupId         要加入的群组ID
- @param groupname       申请人的用户名
- @param username        申请人的昵称
- @param reason          申请理由
- @discussion
- */
-- (void)didReceiveApplyToJoinGroup:(NSString *)groupId
-                         groupname:(NSString *)groupname
-                     applyUsername:(NSString *)username
-                            reason:(NSString *)reason
-                             error:(EMError *)error{
-    
-}
-
-/*!
- @method
- @brief 加入公开群组后的回调
- @param group 群组对象
- @param error 错误信息
- */
-- (void)didJoinPublicGroup:(EMGroup *)group
-                     error:(EMError *)error{
-    
-}
-
-/*!
- @method
- @brief 离开一个群组后的回调
- @param group  所要离开的群组对象
- @param reason 离开的原因
- @param error  错误信息
- @discussion
- 离开的原因包含主动退出, 被别人请出, 和销毁群组三种情况
- */
-- (void)group:(EMGroup *)group didLeave:(EMGroupLeaveReason)reason error:(EMError *)error{
-    
-}
-
-/*!
- @method
- @brief 离开一个群组后的回调
- @param group  所要离开的群组对象
- @param reason 离开的原因
- @param error  错误信息
- @discussion
- 离开的原因包含主动退出, 被别人请出, 和销毁群组三种情况
- */
-//- (void)group:(EMGroup *)group didLeave:(EMGroupLeaveReason)reason error:(EMError *)error{
-//    
-//}
 @end

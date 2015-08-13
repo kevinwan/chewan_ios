@@ -10,12 +10,19 @@
 #import "CPCityController.h"
 #import "CPMessageController.h"
 #import "CPMyController.h"
+#import "EMCDDeviceManager.h"
 
-@interface CPTabBarController ()
+//两次提示的默认间隔
+static const CGFloat kDefaultPlaySoundInterval = 3.0;
+static NSString *kMessageType = @"MessageType";
+static NSString *kConversationChatter = @"ConversationChatter";
+static NSString *kGroupName = @"GroupName";
 
+@interface CPTabBarController ()<IChatManagerDelegate>
+@property (strong, nonatomic) NSDate *lastPlaySoundDate;
 @end
 
-@implementation CPTabBarController
+@implementation CPTabBarController 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,6 +34,10 @@
     
     // 我的
     [self addChildVCWithSBName:@"CPMyController" title:@"我的" norImageName:@"我的" selectedImageName:@"我的选中"];
+    
+    [[EaseMob sharedInstance].chatManager addDelegate:self delegateQueue:nil];
+    
+    [self setupUnreadMessageCount];
 }
 
 - (void)addChildVCWithClass:(Class)class title:(NSString *)title norImageName:(NSString *)norImageName selectedImageName:(NSString *)selectedImageName{
@@ -69,14 +80,285 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (BOOL)needShowNotification:(NSString *)fromChatter
+{
+    BOOL ret = YES;
+    NSArray *igGroupIds = [[EaseMob sharedInstance].chatManager ignoredGroupIds];
+    for (NSString *str in igGroupIds) {
+        if ([str isEqualToString:fromChatter]) {
+            ret = NO;
+            break;
+        }
+    }
+    
+    return ret;
 }
-*/
+
+#pragma mark - IChatManagerDelegate 消息变化
+
+- (void)didUpdateConversationList:(NSArray *)conversationList
+{
+    [self setupUnreadMessageCount];
+//    [_chatListVC refreshDataSource];
+}
+
+// 未读消息数量变化回调
+-(void)didUnreadMessagesCountChanged
+{
+    [self setupUnreadMessageCount];
+}
+
+- (void)didFinishedReceiveOfflineMessages
+{
+    [self setupUnreadMessageCount];
+}
+
+// 统计未读消息数
+-(void)setupUnreadMessageCount
+{
+    NSArray *conversations = [[[EaseMob sharedInstance] chatManager] conversations];
+    NSInteger unreadCount = 0;
+    for (EMConversation *conversation in conversations) {
+        unreadCount += conversation.unreadMessagesCount;
+    }
+    UIViewController *vc = self.childViewControllers[1];
+    NSInteger badgeValue = [vc.tabBarItem.badgeValue integerValue] + unreadCount;
+    
+    if (badgeValue > 0) {
+        vc.tabBarItem.badgeValue = [NSString stringWithFormat:@"%i",(int)badgeValue];
+    }else{
+        vc.tabBarItem.badgeValue = nil;
+    }
+    
+    UIApplication *application = [UIApplication sharedApplication];
+    [application setApplicationIconBadgeNumber:unreadCount];
+}
+- (void)didReceiveMessage:(EMMessage *)message{
+    BOOL needShowNotification = (message.messageType != eMessageTypeChat) ? [self needShowNotification:message.conversationChatter] : YES;
+    if (needShowNotification) {
+#if !TARGET_IPHONE_SIMULATOR
+        BOOL isAppActivity = [[UIApplication sharedApplication] applicationState] == UIApplicationStateActive;
+        if (!isAppActivity) {
+            [self showNotificationWithMessage:message];
+        }else {
+            [self playSoundAndVibration];
+        }
+#endif
+    }
+}
+
+- (void)playSoundAndVibration{
+    NSTimeInterval timeInterval = [[NSDate date]
+                                   timeIntervalSinceDate:self.lastPlaySoundDate];
+    if (timeInterval < kDefaultPlaySoundInterval) {
+        //如果距离上次响铃和震动时间太短, 则跳过响铃
+        NSLog(@"skip ringing & vibration %@, %@", [NSDate date], self.lastPlaySoundDate);
+        return;
+    }
+    
+    //保存最后一次响铃时间
+    self.lastPlaySoundDate = [NSDate date];
+    
+    // 收到消息时，播放音频
+    [[EMCDDeviceManager sharedInstance] playNewMessageSound];
+    // 收到消息时，震动
+    [[EMCDDeviceManager sharedInstance] playVibration];
+}
+
+- (void)showNotificationWithMessage:(EMMessage *)message
+{
+    EMPushNotificationOptions *options = [[EaseMob sharedInstance].chatManager pushNotificationOptions];
+    //发送本地推送
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    notification.fireDate = [NSDate date]; //触发通知的时间
+    
+    if (options.displayStyle == ePushNotificationDisplayStyle_messageSummary) {
+        id<IEMMessageBody> messageBody = [message.messageBodies firstObject];
+        NSString *messageStr = nil;
+        switch (messageBody.messageBodyType) {
+            case eMessageBodyType_Text:
+            {
+                messageStr = ((EMTextMessageBody *)messageBody).text;
+            }
+                break;
+            case eMessageBodyType_Image:
+            {
+                messageStr = NSLocalizedString(@"message.image", @"Image");
+            }
+                break;
+            case eMessageBodyType_Location:
+            {
+                messageStr = NSLocalizedString(@"message.location", @"Location");
+            }
+                break;
+            case eMessageBodyType_Voice:
+            {
+                messageStr = NSLocalizedString(@"message.voice", @"Voice");
+            }
+                break;
+            case eMessageBodyType_Video:{
+                messageStr = NSLocalizedString(@"message.video", @"Video");
+            }
+                break;
+            default:
+                break;
+        }
+        
+        NSString *title = message.from;
+        if (message.messageType == eMessageTypeGroupChat) {
+            NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
+            for (EMGroup *group in groupArray) {
+                if ([group.groupId isEqualToString:message.conversationChatter]) {
+                    title = [NSString stringWithFormat:@"%@(%@)", message.groupSenderName, group.groupSubject];
+                    break;
+                }
+            }
+        }
+        else if (message.messageType == eMessageTypeChatRoom)
+        {
+            NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+            NSString *key = [NSString stringWithFormat:@"OnceJoinedChatrooms_%@", [[[EaseMob sharedInstance].chatManager loginInfo] objectForKey:@"username" ]];
+            NSMutableDictionary *chatrooms = [NSMutableDictionary dictionaryWithDictionary:[ud objectForKey:key]];
+            NSString *chatroomName = [chatrooms objectForKey:message.conversationChatter];
+            if (chatroomName)
+            {
+                title = [NSString stringWithFormat:@"%@(%@)", message.groupSenderName, chatroomName];
+            }
+        }
+        
+        notification.alertBody = [NSString stringWithFormat:@"%@:%@", title, messageStr];
+    }
+    else{
+        notification.alertBody = NSLocalizedString(@"receiveMessage", @"you have a new message");
+    }
+    
+#warning 去掉注释会显示[本地]开头, 方便在开发中区分是否为本地推送
+    //notification.alertBody = [[NSString alloc] initWithFormat:@"[本地]%@", notification.alertBody];
+    
+    notification.alertAction = NSLocalizedString(@"open", @"Open");
+    notification.timeZone = [NSTimeZone defaultTimeZone];
+    NSTimeInterval timeInterval = [[NSDate date] timeIntervalSinceDate:self.lastPlaySoundDate];
+    if (timeInterval < kDefaultPlaySoundInterval) {
+        NSLog(@"skip ringing & vibration %@, %@", [NSDate date], self.lastPlaySoundDate);
+    } else {
+        notification.soundName = UILocalNotificationDefaultSoundName;
+        self.lastPlaySoundDate = [NSDate date];
+    }
+    
+    NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
+    [userInfo setObject:[NSNumber numberWithInt:message.messageType] forKey:kMessageType];
+    [userInfo setObject:message.conversationChatter forKey:kConversationChatter];
+    notification.userInfo = userInfo;
+    
+    //发送通知
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    //    UIApplication *application = [UIApplication sharedApplication];
+    //    application.applicationIconBadgeNumber += 1;
+}
+
+#pragma mark - IChatManagerDelegate 登陆回调（主要用于监听自动登录是否成功）
+
+- (void)didLoginWithInfo:(NSDictionary *)loginInfo error:(EMError *)error
+{
+    if (error) {
+        NSString *hintText = NSLocalizedString(@"reconnection.retry", @"Fail to log in your account, is try again... \nclick 'logout' button to jump to the login page \nclick 'continue to wait for' button for reconnection successful");
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"prompt", @"Prompt")
+                                                            message:hintText
+                                                           delegate:self
+                                                  cancelButtonTitle:NSLocalizedString(@"reconnection.wait", @"continue to wait")
+                                                  otherButtonTitles:NSLocalizedString(@"logout", @"Logout"),
+                                  nil];
+        alertView.tag = 99;
+        [alertView show];
+//        [_chatListVC isConnect:NO];
+    }
+}
+
+/*!
+ @method
+ @brief 接受群组邀请并加入群组后的回调
+ @param group 所接受的群组
+ @param error 错误信息
+ */
+- (void)didAcceptInvitationFromGroup:(EMGroup *)group error:(EMError *)error{
+    
+}
+
+/*!
+ @method
+ @brief 群组信息更新后的回调
+ @param group 发生更新的群组
+ @param error 错误信息
+ @discussion
+ 当添加/移除/更改角色/更改主题/更改群组信息之后,都会触发此回调
+ */
+- (void)groupDidUpdateInfo:(EMGroup *)group error:(EMError *)error{
+    
+}
+
+/*!
+ @method
+ @brief 申请加入公开群组后的回调
+ @param group 群组对象
+ @param error 错误信息
+ */
+- (void)didApplyJoinPublicGroup:(EMGroup *)group
+                          error:(EMError *)error{
+    
+}
+
+/*!
+ @method
+ @brief 收到加入群组的申请
+ @param groupId         要加入的群组ID
+ @param groupname       申请人的用户名
+ @param username        申请人的昵称
+ @param reason          申请理由
+ @discussion
+ */
+- (void)didReceiveApplyToJoinGroup:(NSString *)groupId
+                         groupname:(NSString *)groupname
+                     applyUsername:(NSString *)username
+                            reason:(NSString *)reason
+                             error:(EMError *)error{
+    
+}
+
+/*!
+ @method
+ @brief 加入公开群组后的回调
+ @param group 群组对象
+ @param error 错误信息
+ */
+- (void)didJoinPublicGroup:(EMGroup *)group
+                     error:(EMError *)error{
+    
+}
+
+/*!
+ @method
+ @brief 离开一个群组后的回调
+ @param group  所要离开的群组对象
+ @param reason 离开的原因
+ @param error  错误信息
+ @discussion
+ 离开的原因包含主动退出, 被别人请出, 和销毁群组三种情况
+ */
+- (void)group:(EMGroup *)group didLeave:(EMGroupLeaveReason)reason error:(EMError *)error{
+    
+}
+
+/*!
+ @method
+ @brief 离开一个群组后的回调
+ @param group  所要离开的群组对象
+ @param reason 离开的原因
+ @param error  错误信息
+ @discussion
+ 离开的原因包含主动退出, 被别人请出, 和销毁群组三种情况
+ */
+//- (void)group:(EMGroup *)group didLeave:(EMGroupLeaveReason)reason error:(EMError *)error{
+//
+//}
 
 @end

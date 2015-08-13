@@ -65,22 +65,25 @@
                     
                     if ([data objectForKey:@"userId"]) {
                         [Tools setValueForKey:[data objectForKey:@"userId"] key:@"userId"];
-//                        EMError *error = nil;
-//                        NSString *EMuser=[Tools md5EncryptWithString:[data objectForKey:@"userId"]];
-//                        NSDictionary *loginInfo = [[EaseMob sharedInstance].chatManager loginWithUsername:EMuser password:password error:&error];
-//                        if (!error && loginInfo) {
-//                            NSLog(@"登陆成功");
-//                        }
+                        EMError *error = nil;
+                        NSString *EMuser=[Tools md5EncryptWithString:[data objectForKey:@"userId"]];
+                        NSDictionary *loginInfo = [[EaseMob sharedInstance].chatManager loginWithUsername:EMuser password:password error:&error];
+                        if (!error && loginInfo) {
+                            [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+                            [Tools setValueForKey:@(YES) key:NOTIFICATION_HASLOGIN];
+                            [Tools setValueForKey:self.userPhone.text key:@"phone"];
+                            [Tools setValueForKey:password key:@"password"];
+                            
+                            CPOrganizer *organizer= [CPOrganizer objectWithKeyValues:data];
+                            NSString *fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"userId"]];
+                            [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
+                            [hud hide:YES];
+                            NSLog(@"登陆成功");
+                            [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+                        }else{
+                            [self showError:error.description];
+                        }
                     }
-                    [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
-                    [Tools setValueForKey:@(YES) key:NOTIFICATION_HASLOGIN];
-                    [Tools setValueForKey:self.userPhone.text key:@"phone"];
-                    [Tools setValueForKey:password key:@"password"];
-                    
-                    CPOrganizer *organizer= [CPOrganizer objectWithKeyValues:data];
-                    NSString *fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"userId"]];
-                    [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
-                    [hud hide:YES];
                 }else{
                     NSString *errmsg =[responseObject objectForKey:@"errmsg"];
                     [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPTabBarController : UITabBarController
+@interface CPTabBarController : UITabBarController 
 
 @end
