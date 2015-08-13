@@ -45,20 +45,33 @@
     NSURL *url = [NSURL URLWithString:_activeMember.photo];
     [self.iconView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"默认头像"]];
     
-    
-    // 判断如果头像超过4个，第五个头像就显示数字
-    if (_activeMember.membersCount > 5 && _activeMember.currentMember == 5) {
-        
+    if ([activeMember.photo isEqualToString:@"用户小头像底片"]) {
         UIButton *btn = [[UIButton alloc] init];
         btn.frame = CGRectMake(0, 0, 25, 25);
-        btn.backgroundColor = [UIColor grayColor];
+        btn.titleLabel.font = [UIFont systemFontOfSize:14];
+//        btn.backgroundColor = [Tools getColor:@"ccd1d9"];
         NSString *iconCount = [NSString stringWithFormat:@"%@",@(_activeMember.membersCount)];
         [btn setTitle:iconCount forState:UIControlStateNormal];
         [self.iconView addSubview:btn];
-        
+
         // 添加按钮后取出头像图片
-        self.iconView.image = [UIImage imageNamed:@""];
+        self.iconView.image = [UIImage imageNamed:activeMember.photo];
     }
+    
+    
+    // 判断如果头像超过4个，第五个头像就显示数字
+//    if (_activeMember.membersCount > 5 && _activeMember.currentMember == 5) {
+//        
+//        UIButton *btn = [[UIButton alloc] init];
+//        btn.frame = CGRectMake(0, 0, 25, 25);
+//        btn.backgroundColor = [UIColor grayColor];
+//        NSString *iconCount = [NSString stringWithFormat:@"%@",@(_activeMember.membersCount)];
+//        [btn setTitle:iconCount forState:UIControlStateNormal];
+//        [self.iconView addSubview:btn];
+//        
+//        // 添加按钮后取出头像图片
+//        self.iconView.image = [UIImage imageNamed:@""];
+//    }
     
     
 }

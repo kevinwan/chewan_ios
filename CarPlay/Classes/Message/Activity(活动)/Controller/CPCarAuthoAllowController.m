@@ -39,12 +39,8 @@
     [self.view addSubview:titleLabel];
     
     UILabel *isAllowLabel = [[UILabel alloc] init];
-    
-    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"您申请的"];
-    [str appendAttributedString:[[NSAttributedString alloc] initWithString:[self.model.carModel stringByAppendingString:@"车主"] attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"48d1d5"]}]];
-    [str appendAttributedString:[[NSAttributedString alloc] initWithString:@"身份认证已经审核通过"]];
 
-    isAllowLabel.attributedText = str;
+    isAllowLabel.text = @"您提交的车主认证已通过审核.";
     isAllowLabel.font = [UIFont systemFontOfSize:14];
     isAllowLabel.textColor = [Tools getColor:@"434a54"];
     [isAllowLabel sizeToFit];

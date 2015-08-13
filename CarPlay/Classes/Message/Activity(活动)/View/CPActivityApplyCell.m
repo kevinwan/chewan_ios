@@ -138,7 +138,10 @@
 }
 
 - (IBAction)agreeBtnClick:(id)sender {
-
+    if (_model.isAgree) {
+        return;
+    }
+    
     NSString *url = [NSString stringWithFormat:@"v1/application/%@/process",_model.applicationId];
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
     json[@"action"] = @(1);
@@ -151,7 +154,16 @@
             [CPNotificationCenter postNotificationName:CPActivityApplyNotification object:nil userInfo:@{CPActivityApplyInfo :@(self.model.row)}];
      
         }else{
-            [SVProgressHUD showInfoWithStatus:@"加载失败"];
+            NSString *errorMsg = responseObject[@"errmsg"];
+            if (errorMsg.length) {
+                if ([errorMsg isEqualToString:@"座位数已满"]) {
+                    [SVProgressHUD showInfoWithStatus:@"座位数已满"];
+                }else if ([errorMsg contains:@"提供空座"]){
+                    [CPNotificationCenter postNotificationName:CPActivityApplyNotification object:nil userInfo:@{CPActivityApplyInfo :@(CPActivityNoCheat)}];
+                }else{
+                    [SVProgressHUD showErrorWithStatus:@"加载失败"];
+                }
+            }
         }
     } failed:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:@"加载失败"];

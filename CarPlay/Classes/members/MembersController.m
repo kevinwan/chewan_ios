@@ -27,7 +27,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *getButton;
 @property (weak, nonatomic) IBOutlet UIButton *outButton;
-@property (weak, nonatomic) IBOutlet UILabel *outPromptLabel;
 //xib
 @property (weak, nonatomic) IBOutlet UIView *carxibYesView;
 @property (weak, nonatomic) IBOutlet UIView *carxibNoVIew;
@@ -71,7 +70,6 @@
     [self.outButton setBackgroundColor:[AppAppearance redColor]];
     self.outButton.layer.cornerRadius = 3;
     [self.outButton clipsToBounds];
-    self.outPromptLabel.textColor = [AppAppearance textMediumColor];
     //改tableView的线的颜色
     self.memberTableView.separatorColor = [AppAppearance lineColor];
 }
@@ -94,7 +92,7 @@
     NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/members?userId=%@&token=%@",self.activityId,self.userId,self.token];
     [ZYNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
         [self.view hideWait];
-        SQLog(@"%@",responseObject);
+//        SQLog(@"%@",responseObject);
         if ([responseObject operationSuccess]) {
             NSArray *memberModel = [members objectArrayWithKeyValuesArray:responseObject[@"data"][@"members"]];
             NSArray *carModel = [cars objectArrayWithKeyValuesArray:responseObject[@"data"][@"cars"]];
@@ -105,18 +103,23 @@
             [self.carsArray addObjectsFromArray:carModel];
             [self.memberTableView reloadData];
             //判断下是否是成员
+            self.member = NO;
             for (members *member in self.membersArray) {
                 if ([self.userId isEqualToString:member.userId]) {
                     self.member = YES;
                     break;
                 }
             }
+            SQLog(@"%tu",self.member);
             if (self.member) {
                 //如果是成员 打开退出活动按钮
                 self.outButton.hidden = NO;
-                self.outPromptLabel.hidden = NO;
-            } else self.addButton.hidden = NO;
-
+                self.addButton.hidden = YES;
+            } else  {
+                self.outButton.hidden = YES;
+                self.addButton.hidden = NO;
+            }
+            
         } else {
             [self.view alertError:responseObject];
         }
@@ -143,7 +146,7 @@
     [self coverClick];
   [ZYNetWorkTool postJsonWithUrl:urlStr params:parameters success:^(id responseObject) {
       if ([responseObject operationSuccess]) {
-          [self.view alert:@"请求成功"];
+          [self.view alert:@"请求成功,等待同意"];
       } else {
           [self.view alertError:responseObject];
       }
@@ -281,9 +284,6 @@
             [self.membersArray removeAllObjects];
             [self.carsArray removeAllObjects];
             [self loadMessage];
-            self.outButton.hidden =YES;
-            self.outPromptLabel.hidden = YES;
-            self.addButton.hidden = NO;
             SQLog(@"%@",self.membersArray);
         } else {
             [self.view alertError:responseObject];
@@ -387,6 +387,7 @@
                 self.carxibTextFeild.delegate = self;
                 self.carxibTextFeild.font = [AppAppearance textMediumFont];
                 self.carxibTextFeild.textColor = [AppAppearance textDarkColor];
+                [self tapYes];
 
             } else {
                 NSString *userId = self.userId;
@@ -394,7 +395,7 @@
                 NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/join?userId=%@&token=%@",self.activityId,userId,token];
                 [ZYNetWorkTool postJsonWithUrl:urlStr params:nil success:^(id responseObject) {
                     if ([responseObject operationSuccess]) {
-                        [self.view alert:@"请求成功"];
+                        [self.view alert:@"请求成功,等待同意"];
                     } else {
                         [self.view alertError:responseObject];
                     }

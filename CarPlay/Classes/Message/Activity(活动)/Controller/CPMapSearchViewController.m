@@ -82,9 +82,14 @@
     self.tableView.rowHeight = 57;
     
     if (self.forValue) {
-        searchBar.text = self.forValue;
         searchBar.placeholder = self.forValue;
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.searchBar becomeFirstResponder];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+
+#define CPActivityNoCheat (-11)
 #define CPActivityApplyNotification @"CPActivityApplyNotification"
 #define CPActivityApplyInfo @"CPActivityApplyInfo"
 #define CPNewActivityMsgEditNotifycation @"CPNewActivityMsgEditNotifycation"

@@ -110,6 +110,8 @@
         HMStatusPhotoView *photoView = self.subviews[0];
         photoView.width = 159;
         photoView.height = 107;
+        photoView.clipsToBounds = YES;
+    }else{
     }
 }
 

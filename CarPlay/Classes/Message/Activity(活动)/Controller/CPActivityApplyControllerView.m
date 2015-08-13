@@ -25,9 +25,60 @@
 @property (nonatomic, strong) UIBarButtonItem *leftItem;
 @property (nonatomic, strong) UIBarButtonItem *rightItem;
 @property (nonatomic, strong) UIBarButtonItem *backItem;
+@property (nonatomic, strong) UIButton *coverView;
 @end
 
 @implementation CPActivityApplyControllerView
+
+- (UIButton *)coverView
+{
+    if (_coverView == nil) {
+        _coverView = [[UIButton alloc] initWithFrame:self.view.bounds];
+        _coverView.backgroundColor = RGBACOLOR(0, 0, 0, 0.5);
+        
+        UIView *bgView = [UIView new];
+        bgView.width = kScreenWidth - 30;
+        bgView.height = 136;
+        bgView.centerX = kScreenWidth * 0.5;
+        bgView.centerY = kScreenHeight * 0.5;
+        [_coverView addSubview:bgView];
+        
+        UILabel *titleLabel = [[UILabel alloc] init];
+        titleLabel.font = [UIFont systemFontOfSize:14];
+        titleLabel.textColor = [Tools getColor:@"656c78"];
+        titleLabel.text = @"还没有人提供车";
+        [titleLabel sizeToFit];
+        titleLabel.centerX = bgView.centerXInSelf;
+        titleLabel.y = 20;
+        [bgView addSubview:titleLabel];
+        
+        UILabel *msgLabel = [[UILabel alloc] init];
+        msgLabel.font = [UIFont systemFontOfSize:14];
+        msgLabel.textColor = [Tools getColor:@"656c78"];
+        msgLabel.text = @"请选择\"提供空座\"的人加入活动!";
+        [msgLabel sizeToFit];
+        msgLabel.centerX = bgView.centerXInSelf;
+        msgLabel.y = 12.5 + titleLabel.bottom;
+        [msgLabel addSubview:msgLabel];
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button setTitle:@"我知道了" forState:UIControlStateNormal];
+        button.titleLabel.font = [UIFont systemFontOfSize:16];
+        button.backgroundColor = [Tools getColor:@"48d1d5"];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        button.width = bgView.width - 20;
+        button.height = 40;
+        button.x = 10;
+        button.y = msgLabel.bottom + 20;
+        button.layer.cornerRadius = 3;
+        button.clipsToBounds = YES;
+        [button addTarget:self action:@selector(buttonClick) forControlEvents:UIControlEventTouchUpInside];
+        [_coverView addSubview:button];
+        _coverView.hidden = NO;
+        [[UIApplication sharedApplication].windows.lastObject addSubview:_coverView];
+    }
+    return _coverView;
+}
 
 - (NSMutableArray *)datas
 {
@@ -172,6 +223,11 @@
 - (void)agreeBtnClick:(NSNotification *)notify
 {
     NSUInteger row = [notify.userInfo[CPActivityApplyInfo] intValue];
+    if (row == CPActivityNoCheat){
+        [self coverView];
+        return;
+    }
+    
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
@@ -341,6 +397,19 @@
     vc.targetUserId = notify.userInfo[CPClickUserIconInfo];
     [self.navigationController pushViewController:vc animated:YES];
     
+}
+
+- (void)buttonClick
+{
+    self.coverView.hidden = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    if (_coverView) {
+        _coverView.hidden = YES;
+    }
 }
 
 @end

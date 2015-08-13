@@ -378,7 +378,7 @@
             if(organizer.nickname){
                 if(organizer.age){
                     if(organizer.cityAndDistrict){
-                        NSDictionary *para=[NSDictionary dictionaryWithObjectsAndKeys:phone,@"phone",password,@"password",code,@"code",organizer.nickname,@"nickname",organizer.gender,@"gender",organizer.province,@"province",organizer.city,@"city",organizer.district,@"district",organizer.headImgId,@"photo",organizer.brithYear,@"birthYear",organizer.birthMonth,@"birthMonth",organizer.birthDay,@"birthDay",nil];
+                        NSDictionary *para=[NSDictionary dictionaryWithObjectsAndKeys:phone,@"phone",password,@"password",code,@"code",organizer.nickname,@"nickname",organizer.gender,@"gender",organizer.province,@"province",organizer.city,@"city",organizer.district,@"district",organizer.headImgId,@"photo",@(organizer.brithYear),@"birthYear",@(organizer.birthMonth),@"birthMonth",@(organizer.birthDay),@"birthDay",nil];
                         
                         MBProgressHUD *hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
                         hud.color = [UIColor clearColor];
@@ -395,6 +395,9 @@
                                 NSDictionary *data=[responseObject objectForKey:@"data"];
                                 [Tools setValueForKey:[data objectForKey:@"userId"] key:@"userId"];
                                 [Tools setValueForKey:[data objectForKey:@"token"] key:@"token"];
+                                [Tools setValueForKey:nil key:@"phone"];
+                                [Tools setValueForKey:nil key:@"password"];
+                                [Tools setValueForKey:nil key:@"code"];
                                 CarOwnersCertificationViewController *CarOwnersCertificationVC=[[CarOwnersCertificationViewController alloc]init];
                                 CarOwnersCertificationVC.fromMy=@"1";
                                 CarOwnersCertificationVC.title=@"车主认证";

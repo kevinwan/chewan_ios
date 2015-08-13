@@ -189,7 +189,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfV-9C-goZ">
-                    <rect key="frame" x="176" y="190" width="72" height="1"/>
+                    <rect key="frame" x="181" y="190" width="72" height="1"/>
                     <color key="backgroundColor" red="0.2470588235" green="0.78823529410000004" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="72" id="FdT-fV-oB0"/>
@@ -237,6 +237,7 @@
                 <constraint firstAttribute="trailing" secondItem="ibc-Xp-M40" secondAttribute="trailing" constant="10" id="D9r-Lo-nBG"/>
                 <constraint firstAttribute="trailing" secondItem="PVG-Kw-MXC" secondAttribute="trailing" constant="10" id="FOV-5y-Hbg"/>
                 <constraint firstItem="ibc-Xp-M40" firstAttribute="top" secondItem="A6h-Xu-bqu" secondAttribute="bottom" constant="11" id="FjP-EH-6KP"/>
+                <constraint firstItem="FsJ-ZL-DV4" firstAttribute="leading" secondItem="qfV-9C-goZ" secondAttribute="leading" id="HVx-sy-Yul"/>
                 <constraint firstItem="aUu-I3-FrZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Hb1-ec-G1o"/>
                 <constraint firstAttribute="trailing" secondItem="VeX-cT-1GG" secondAttribute="trailing" constant="10" id="K4D-pi-02j"/>
                 <constraint firstAttribute="centerX" secondItem="bjR-Mr-Cai" secondAttribute="centerX" constant="82" id="KOR-U7-rXa"/>
@@ -275,6 +276,7 @@
                     <exclude reference="vyz-Zv-sB0"/>
                     <exclude reference="xgU-X3-Ksj"/>
                     <exclude reference="yGL-Ae-sht"/>
+                    <exclude reference="C5z-w9-jTO"/>
                     <exclude reference="RLB-Zb-Lvb"/>
                     <exclude reference="g3c-N3-H05"/>
                 </mask>

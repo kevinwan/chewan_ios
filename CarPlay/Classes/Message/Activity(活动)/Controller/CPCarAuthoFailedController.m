@@ -39,13 +39,16 @@
     
     UILabel *isAllowLabel = [[UILabel alloc] init];
     
+    isAllowLabel.textColor = [Tools getColor:@"434a54"];
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"您申请的"];
-    [str appendAttributedString:[[NSAttributedString alloc] initWithString:[self.model.carModel stringByAppendingString:@"车主"] attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"48d1d5"]}]];
+    NSString *carNameStr = [self.model.carModel stringByAppendingString:@"车主"];
+    NSAttributedString *carName = [[NSAttributedString alloc] initWithString:carNameStr attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"48d1d5"]}];
+    
+    [str appendAttributedString:carName];
     [str appendAttributedString:[[NSAttributedString alloc] initWithString:@"身份认证未通过审核"]];
 
     isAllowLabel.attributedText = str;
     isAllowLabel.font = [UIFont systemFontOfSize:14];
-    isAllowLabel.textColor = [Tools getColor:@"434a54"];
     [isAllowLabel sizeToFit];
     isAllowLabel.centerX = self.view.centerXInSelf;
     isAllowLabel.y = titleLabel.bottom + 15;

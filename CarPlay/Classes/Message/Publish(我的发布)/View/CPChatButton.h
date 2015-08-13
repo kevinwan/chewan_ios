@@ -10,4 +10,8 @@
 
 @interface CPChatButton : UIButton
 - (void)showApplying;
+- (void)showManageMember;
+
+- (void)showHasJoin;
+- (void)showToPlay;
 @end

@@ -47,11 +47,7 @@
     tapGestureRecognizer.cancelsTouchesInView = NO;
     //将触摸事件添加到当前view
     [self.view addGestureRecognizer:tapGestureRecognizer];
-    if ([Tools getValueFromKey:@"userId"]) {
-        [self setUpCellOperation];
-    }else{
-        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
-    }
+    [self setUpCellOperation];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -114,10 +110,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    if ([Tools getValueFromKey:@"userId"]) {
         return 1;
-    }else
-    return 0;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -432,7 +425,6 @@
 }
 
 -(void)submit{
-    if ([Tools getValueFromKey:@"userId"]) {
         if (![Tools isEmptyOrNull:self.contentTextView.text] && ![self.contentTextView.text isEqualToString:@"请简要描述你的问题和意见"]) {
             if (_imgs.count) {
                 for (int i = 0; i < _imgs.count; i++) {
@@ -442,9 +434,8 @@
                             NSDictionary *data=[responseObject objectForKey:@"data"];
                             [photoIds insertObject:[data objectForKey:@"photoId"] atIndex:0];
                             if (i == _imgs.count-1) {
-                                NSString *path=[[NSString alloc]initWithFormat:@"v1/user/%@/feedback/submit?token=%@",[Tools getValueFromKey:@"userId"],[Tools getValueFromKey:@"token"]];
-                                NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:photoIds,@"photos",self.contentTextView.text,@"content", nil];
-                                [ZYNetWorkTool postJsonWithUrl:path params:params success:^(id responseObject) {
+                                NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:photoIds,@"photos",self.contentTextView.text,@"content",[Tools getValueFromKey:@"userId"],@"userId",[Tools getValueFromKey:@"token"],@"token", nil];
+                                [ZYNetWorkTool postJsonWithUrl:@"v1/feedback/submit" params:params success:^(id responseObject) {
                                     if (CPSuccess) {
                                         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"感谢您的反馈" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
                                         [alertView show];
@@ -465,10 +456,9 @@
                     }];
                 }
             }else{
-                NSString *path=[[NSString alloc]initWithFormat:@"v1/user/%@/feedback/submit?token=%@",[Tools getValueFromKey:@"userId"],[Tools getValueFromKey:@"token"]];
-                NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:@"",@"photos",self.contentTextView.text,@"content", nil];
+                NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:@"",@"photos",self.contentTextView.text,@"content",[Tools getValueFromKey:@"userId"],@"userId",[Tools getValueFromKey:@"token"],@"token", nil];
                 NSLog(@"%@",params);
-                [ZYNetWorkTool postJsonWithUrl:path params:params success:^(id responseObject) {
+                [ZYNetWorkTool postJsonWithUrl:@"v1/feedback/submit" params:params success:^(id responseObject) {
                     if (CPSuccess) {
                         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"感谢您的反馈" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
                         [alertView show];
@@ -485,9 +475,6 @@
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请简要描述你的问题和意见" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
             [alertView show];
         }
-    }else{
-        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
-    }
 }
 
 -(void)goBack{

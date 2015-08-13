@@ -200,7 +200,7 @@
     
     // 活动地点
     if ([status.location length]>5) {
-        NSString *tempLocation = [_status.location substringToIndex:5];
+        NSString *tempLocation = [_status.location substringToIndex:6];
         self.loction.text = [NSString stringWithFormat:@"%@...",tempLocation];
     }else{
         self.loction.text = status.location;
@@ -264,6 +264,20 @@
     [self.pictureView reloadData];
     [self.iconView reloadData];
     
+//    NSLog(@"--%@",self.iconView.subviews);
+//    for (int i=0; i<self.iconView.subviews.count; i++) {
+//        
+//        UIView *image = self.iconView.subviews[i];
+//        
+//        NSLog(@"++%@",image.subviews);
+//        for (int i=0; i < image.subviews.count; i++) {
+//            if ([image.subviews[i] isKindOfClass:[UIButton class]]) {
+//                UIView *view = image.subviews[i];
+//                [view removeFromSuperview];
+//            }
+//        }
+//    }
+    
 }
 
 // 计算配图宽高
@@ -274,6 +288,9 @@
     // 处理没有配图的情况
     if (count == 0) {
         return CGSizeZero;
+    }
+    if (count == 1) {
+        return CGSizeMake(159, 107);
     }
     
     // 计算行数列数
@@ -319,13 +336,26 @@
         // 创建cell
         CPHomePicCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[CPHomePicCell identifier] forIndexPath:indexPath];
         
+        // 特殊处理有一张图片的情况
+        if (self.status.cover.count == 1) {
+            CGRect temp = cell.frame;
+            temp = CGRectMake(0, 0, 159, 107);
+            cell.frame = temp;
+        }
+        if (self.status.cover.count > 1 && indexPath.item == 0) {
+            CGRect temp = cell.frame;
+            temp = CGRectMake(0, 0, 78, 78);
+            cell.frame = temp;
+        }
+        
+
+        
         // 获取对应图片模型
         CPHomePhoto *photo = self.status.cover[indexPath.item];
         
         // 设置数据
         cell.homePhoto = photo;
         
-//        NSLog(@"%@",cell.pictureView.frameStr);
         
         // 返回cell
         return cell;
@@ -335,8 +365,7 @@
         
         // 获取对应图片模型
         CPHomeMember *photo = self.status.members[indexPath.item];
-        photo.membersCount = self.status.members.count;
-        photo.currentMember = indexPath.item;
+        photo.currentMember = indexPath.item + 1;
         
         // 设置数据
         cell.homeMember = photo;
@@ -371,6 +400,10 @@
             
 
             self.pictureDidSelected(self.status,indexPath, imgArr);
+        }
+    } else {
+        if (self.tapIcons != nil) {
+            self.tapIcons(self.status);
         }
     }
 }

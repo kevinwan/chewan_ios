@@ -52,7 +52,7 @@
     
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
     self.tableView.footer = [CPRefreshFooter footerWithRefreshingBlock:^{
-        weakSelf.ignore = self.frameModels.count;
+        weakSelf.ignore = weakSelf.frameModels.count;
         [weakSelf loadDataWithParam:weakSelf.ignore];
     }];
     
@@ -79,6 +79,7 @@
     NSString *url = [NSString stringWithFormat:@"v1/user/%@/subscribe",userId];
     
     [CPNetWorkTool getWithUrl:url params:@{@"ignore" : @(ignore)} success:^(id responseObject) {
+        DLog(@"%@",responseObject);
         [self disMiss];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.tableView.footer.hidden = NO;
@@ -129,7 +130,8 @@
     [super viewWillAppear:animated];
     
     [CPNotificationCenter addObserver:self selector:@selector(userIconClick:) name:CPClickUserIconNotification object:nil];
-    [CPNotificationCenter addObserver:self selector:@selector(chatButtonClick:) name:ChatButtonClickNotifyCation object:nil];
+    [CPNotificationCenter addObserver:self selector:@selector(toPlayButtonClick:) name:ChatButtonClickNotifyCation object:nil];
+    [CPNotificationCenter addObserver:self selector:@selector(joinPersonButtonClick:) name:JoinPersonClickNotifyCation object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -147,7 +149,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CPMySubscribeCell *cell = [CPMySubscribeCell cellWithTableView:tableView];
-    cell.frameModel = self.frameModels[indexPath.row];
+    CPMySubscribeFrameModel *frameModel = self.frameModels[indexPath.row];
+    frameModel.model.row = indexPath.row;
+    cell.frameModel = frameModel;
     return cell;
 }
 
@@ -171,6 +175,11 @@
     [self.navigationController pushViewController:activityDetailVc animated:YES];
 }
 
+/**
+ *  点击了用户的头像
+ *
+ *  @param notify notify description
+ */
 - (void)userIconClick:(NSNotification *)notify
 {
     CPTaDetailsController *vc = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil].instantiateInitialViewController;
@@ -178,9 +187,26 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)chatButtonClick:(NSNotification *)notify
+/**
+ *  点击了我要去玩按钮
+ *
+ *  @param notify notify description
+ */
+- (void)toPlayButtonClick:(NSNotification *)notify
 {
-    CPMySubscribeModel *model = notify.userInfo[ChatButtonClickInfo];
+    NSUInteger row = [notify.userInfo[ChatButtonClickInfo] intValue];
+#warning 下面两句请勿删除,如果想要切换按钮状态需要修改model数值,重新刷新表格
+    // 1. 当前的indexPath,刷新表格时使用
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+    
+    // 2. 对按钮状态进行刷新
+//    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    
+    CPMySubscribeFrameModel *frameModel = self.frameModels[row];
+    
+    // 当前行对应的model
+    CPMySubscribeModel *model = frameModel.model;
+    
     //根据isOrganizer判断进入那个界面
     if (model.isOrganizer == 1) {
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MembersManage" bundle:nil];
@@ -195,8 +221,19 @@
         MembersController * vc = sb.instantiateInitialViewController;
         vc.activityId = model.activityId;
         [self.navigationController pushViewController:vc animated:YES];
-    }
+    }else if (model.isMember == 2){ // 申请中
         
-}
+    }
     
+}
+
+/**
+ *  点击了参与人数的按钮
+ *
+ *  @param notify
+ */
+- (void)joinPersonButtonClick:(NSNotification *)notify
+{
+    CPMySubscribeModel *model = notify.userInfo[ChatButtonClickInfo];
+}
 @end

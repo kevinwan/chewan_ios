@@ -59,7 +59,7 @@
     [self addSubview:topView];
     self.topView = topView;
     
-    self.dateLable = [self addBtnWithIcon:@"时间"];
+    self.dateLable = [self addBtnWithIcon:@"开始时间"];
     self.addressLable = [self addBtnWithIcon:@"地点"];
     
     [topView addSubview:self.dateLable];
@@ -81,10 +81,12 @@
     
     CPMoreButton *moreBtn = [CPMoreButton buttonWithType:UIButtonTypeCustom];
     [bottomView addSubview:moreBtn];
+    [moreBtn addTarget:self action:@selector(joinButtonClick) forControlEvents:UIControlEventTouchUpInside];
     self.moreBtn = moreBtn;
     
     for (int i = 0; i < KPersonNum; i++) {
         CPIconButton *btn = [CPIconButton buttonWithType:UIButtonTypeCustom];
+        [btn addTarget:self action:@selector(joinButtonClick) forControlEvents:UIControlEventTouchUpInside];
         btn.tag = i + 1;
         [bottomView addSubview:btn];
     }
@@ -178,13 +180,13 @@
     [self.moreBtn setTitle:[NSString stringWithFormat:@"%zd",self.model.members.count] forState:UIControlStateNormal];
     
     if (self.model.isOrganizer){
-        [self.chatBtn setTitle:@"成员管理" forState:UIControlStateNormal];
+        [self.chatBtn showManageMember];
     }else if (self.model.isMember == 1){
-        [self.chatBtn setTitle:@"已加入" forState:UIControlStateNormal];
-    }else if (self.model.isMember == 1){
-        [self.chatBtn setTitle:@"已加入" forState:UIControlStateNormal];
+        [self.chatBtn showHasJoin];
+    }else if (self.model.isMember == 2){
+        [self.chatBtn showApplying];
     }else{
-        [self.chatBtn setTitle:@"我要去玩" forState:UIControlStateNormal];
+        [self.chatBtn showToPlay];
     }
     
     [self setNeedsLayout];
@@ -192,8 +194,15 @@
 
 - (void)managerBtnClick:(CPChatButton *)button
 {
-    [CPNotificationCenter postNotificationName:ChatButtonClickNotifyCation object:nil userInfo:@{ChatButtonClickInfo : _model}];
+    // 记录点击的button
+    [CPNotificationCenter postNotificationName:ChatButtonClickNotifyCation object:nil userInfo:@{ChatButtonClickInfo : @(self.model.row)}];
     
+}
+
+- (void)joinButtonClick
+{
+    // 记录点击的button
+    [CPNotificationCenter postNotificationName:JoinPersonClickNotifyCation object:nil userInfo:@{JoinPersonClickInfo : @(self.model.row)}];
 }
 
 @end
