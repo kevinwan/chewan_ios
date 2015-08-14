@@ -12,7 +12,7 @@
 
 
 #import "ChatListCell.h"
-#import "UIImageView+EMWebCache.h"
+//#import "UIImageView+EMWebCache.h"
 
 @interface ChatListCell (){
     UILabel *_timeLabel;
