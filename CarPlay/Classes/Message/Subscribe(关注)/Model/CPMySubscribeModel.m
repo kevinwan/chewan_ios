@@ -80,11 +80,11 @@
                 return @"刚刚";
             }
         } else { // 今年的其他日子
-            fmt.dateFormat = @"yyyy-MM-dd";
+            fmt.dateFormat = @"MM-dd";
             return [fmt stringFromDate:createDate];
         }
     } else { // 非今年
-        fmt.dateFormat = @"yyyy-MM-dd";
+        fmt.dateFormat = @"MM-dd";
         return [fmt stringFromDate:createDate];
     }
 }

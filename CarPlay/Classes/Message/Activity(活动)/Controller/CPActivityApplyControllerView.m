@@ -13,6 +13,8 @@
 #import "MJRefresh.h"
 #import "CPActiveDetailsController.h"
 #import "CPTaDetailsController.h"
+#import "CPCarAuthoFailedController.h"
+#import "CPCarAuthoAllowController.h"
 
 #define ActivityMsgData @"ActivityMsgData"
 
@@ -23,9 +25,60 @@
 @property (nonatomic, strong) UIBarButtonItem *leftItem;
 @property (nonatomic, strong) UIBarButtonItem *rightItem;
 @property (nonatomic, strong) UIBarButtonItem *backItem;
+@property (nonatomic, strong) UIButton *coverView;
 @end
 
 @implementation CPActivityApplyControllerView
+
+- (UIButton *)coverView
+{
+    if (_coverView == nil) {
+        _coverView = [[UIButton alloc] initWithFrame:self.view.bounds];
+        _coverView.backgroundColor = RGBACOLOR(0, 0, 0, 0.5);
+        
+        UIView *bgView = [UIView new];
+        bgView.width = kScreenWidth - 30;
+        bgView.height = 136;
+        bgView.centerX = kScreenWidth * 0.5;
+        bgView.centerY = kScreenHeight * 0.5;
+        [_coverView addSubview:bgView];
+        
+        UILabel *titleLabel = [[UILabel alloc] init];
+        titleLabel.font = [UIFont systemFontOfSize:14];
+        titleLabel.textColor = [Tools getColor:@"656c78"];
+        titleLabel.text = @"还没有人提供车";
+        [titleLabel sizeToFit];
+        titleLabel.centerX = bgView.centerXInSelf;
+        titleLabel.y = 20;
+        [bgView addSubview:titleLabel];
+        
+        UILabel *msgLabel = [[UILabel alloc] init];
+        msgLabel.font = [UIFont systemFontOfSize:14];
+        msgLabel.textColor = [Tools getColor:@"656c78"];
+        msgLabel.text = @"请选择\"提供空座\"的人加入活动!";
+        [msgLabel sizeToFit];
+        msgLabel.centerX = bgView.centerXInSelf;
+        msgLabel.y = 12.5 + titleLabel.bottom;
+        [msgLabel addSubview:msgLabel];
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button setTitle:@"我知道了" forState:UIControlStateNormal];
+        button.titleLabel.font = [UIFont systemFontOfSize:16];
+        button.backgroundColor = [Tools getColor:@"48d1d5"];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        button.width = bgView.width - 20;
+        button.height = 40;
+        button.x = 10;
+        button.y = msgLabel.bottom + 20;
+        button.layer.cornerRadius = 3;
+        button.clipsToBounds = YES;
+        [button addTarget:self action:@selector(buttonClick) forControlEvents:UIControlEventTouchUpInside];
+        [_coverView addSubview:button];
+        _coverView.hidden = NO;
+        [[UIApplication sharedApplication].windows.lastObject addSubview:_coverView];
+    }
+    return _coverView;
+}
 
 - (NSMutableArray *)datas
 {
@@ -133,7 +186,7 @@
         [self disMiss];
         [self.tableView.footer endRefreshing];
         [self.tableView.header endRefreshing];
-
+        DLog(@"%@",responseObject);
         if (CPSuccess) {
             
             if (self.ignore == 0) {
@@ -170,6 +223,11 @@
 - (void)agreeBtnClick:(NSNotification *)notify
 {
     NSUInteger row = [notify.userInfo[CPActivityApplyInfo] intValue];
+    if (row == CPActivityNoCheat){
+        [self coverView];
+        return;
+    }
+    
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
@@ -220,15 +278,17 @@
 {
     static NSString *ID1 = @"ActivityApplyCell";
     static NSString *ID2 = @"ActivityMsgCell";
+    static NSString *ID3 = @"CarAuthoMsgCell";
     CPActivityApplyCell *cell;
     CPActivityApplyModel *model = [self.datas objectAtIndex:indexPath.row];
     model.row = indexPath.row;
     if ([model.type isEqualToString:@"活动申请处理"]) {
        cell = [tableView dequeueReusableCellWithIdentifier:ID1];
         
-    }else{
+    }else if ([model.type isEqualToString:@"车主认证"]){
+        cell = [tableView dequeueReusableCellWithIdentifier:ID3];
+    }else{ // 活动邀请 活动申请处理结果
         cell = [tableView dequeueReusableCellWithIdentifier:ID2];
-        
     }
     cell.model = model;
     
@@ -252,6 +312,19 @@
         model.isChecked = !model.isChecked;
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     }else{
+        if ([model.type isEqualToString:@"车主认证"]) {
+            if ([model.content contains:@"未通过"]){
+                CPCarAuthoFailedController *vc = [[CPCarAuthoFailedController alloc] init];
+                vc.model = model;
+                [self.navigationController pushViewController:vc animated:YES];
+            }else{
+                CPCarAuthoAllowController *vc = [[CPCarAuthoAllowController alloc] init];
+                vc.model = model;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            return;
+        }
+        
         if (model.activityId.length) {
             CPActiveDetailsController *vc = [UIStoryboard storyboardWithName:@"CPActiveDetailsController" bundle:nil].instantiateInitialViewController;
             vc.activeId = model.activityId;
@@ -282,6 +355,7 @@
     [self.datas enumerateObjectsUsingBlock:^(CPActivityApplyModel *obj, NSUInteger idx, BOOL *stop) {
         [obj setIsChecked:NO];
     }];
+    self.deleteBtn.hidden = YES;
     [self setEditing:NO animated:YES];
 }
 
@@ -323,6 +397,19 @@
     vc.targetUserId = notify.userInfo[CPClickUserIconInfo];
     [self.navigationController pushViewController:vc animated:YES];
     
+}
+
+- (void)buttonClick
+{
+    self.coverView.hidden = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    if (_coverView) {
+        _coverView.hidden = YES;
+    }
 }
 
 @end

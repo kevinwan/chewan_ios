@@ -106,10 +106,21 @@
         photoView.x = (column * HMStatusPhotoMargin) + (column * HMPhotoWH);
         photoView.y = (row * HMStatusPhotoMargin) + (row *HMPhotoWH);
     }
+    if (count == 1) {
+        HMStatusPhotoView *photoView = self.subviews[0];
+        photoView.width = 159;
+        photoView.height = 107;
+        photoView.clipsToBounds = YES;
+    }else{
+    }
 }
 
 + (CGSize)sizeWithPhotosCount:(NSUInteger)photosCount
 {
+    if (photosCount == 1) {
+        return CGSizeMake(159, 107);
+    }
+    
     int maxCols = HMStatusPhotosMaxCols(photosCount);
     
     // 总列数

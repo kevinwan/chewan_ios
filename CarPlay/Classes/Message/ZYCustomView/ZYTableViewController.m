@@ -10,15 +10,20 @@
 
 @interface ZYTableViewController ()
 @property (nonatomic, strong) UIView *tipView;
+@property (nonatomic, strong) UIImageView *coverView;
 @end
 
 @implementation ZYTableViewController
 
 #pragma mark - lazy
+/**
+ *  创建提示View
+ */
 - (UIView *)tipView
 {
     if (_tipView == nil) {
         _tipView = [[UIView alloc] initWithFrame:self.view.bounds];
+        _tipView.y = -44;
         _tipView.hidden = YES;
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"网"]];
         imageView.tag = 1;
@@ -68,7 +73,6 @@
     return _tipView;
 }
 
-
 #pragma mark - 控制器的生命周期
 
 - (void)viewDidLoad
@@ -77,8 +81,18 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.showsVerticalScrollIndicator = NO;
     
-    // 加入提示信息的View
-    [self.navigationController.view insertSubview:[self tipView] belowSubview:self.navigationController.navigationBar];
+    // 加入提示信息的View 开始时默默隐藏
+    [self.tableView addSubview:[self tipView]];
+}
+
+#pragma mark 截图
+- (UIImage *)capture:(UIView *)view
+{
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, YES, 0.0);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -94,6 +108,7 @@
     if (CPNoNetWork && self.isShowNoNetWork){
         [self showNoNetWork];
     }
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -158,6 +173,7 @@
  */
 - (UIView *)tipViewWithIcon:(NSString *)icon title:(NSString *)title subTitle:(NSString *)subTitle buttonTitle:(NSString *)buttonTitle isShow:(BOOL)show
 {
+    self.tableView.scrollEnabled = NO;
     UIImageView *imageView = (UIImageView *)[self.tipView viewWithTag:1];
     imageView.image = [UIImage imageNamed:icon];
     
@@ -196,6 +212,8 @@
 
 - (void)reRefresh
 {
+
+    self.tableView.scrollEnabled = YES;
     self.tipView.hidden = YES;
     self.tableView.footer.hidden = YES;
     ZYJumpToLoginView

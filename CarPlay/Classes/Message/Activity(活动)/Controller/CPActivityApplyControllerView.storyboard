@@ -51,7 +51,7 @@
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提供3空座" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pDI-1y-kiS">
-                                            <rect key="frame" x="260" y="45" width="46" height="12"/>
+                                            <rect key="frame" x="260" y="45.5" width="46" height="12"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" red="0.66666666666666663" green="0.69803921568627447" blue="0.74117647058823533" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -65,17 +65,8 @@
                                             <color key="textColor" red="0.2627450980392157" green="0.29019607843137257" blue="0.32549019607843138" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sF2-wu-S2R">
-                                            <rect key="frame" x="70" y="40.5" width="100" height="17"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="100" id="YJo-d5-Ii2"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" red="0.66666666666666663" green="0.69803921568627447" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7uz-dv-nJ8">
-                                            <rect key="frame" x="154" y="19.5" width="14" height="14"/>
+                                            <rect key="frame" x="154" y="19" width="14" height="14"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="14" id="Elj-LN-fzt"/>
                                                 <constraint firstAttribute="width" constant="14" id="goS-4d-APO"/>
@@ -91,6 +82,12 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sF2-wu-S2R">
+                                            <rect key="frame" x="70" y="41" width="180" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.66666666666666663" green="0.69803921568627447" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="7uz-dv-nJ8" firstAttribute="leading" secondItem="KWT-J9-I6p" secondAttribute="trailing" constant="7" id="5rd-Nf-yXi"/>
@@ -99,15 +96,22 @@
                                         <constraint firstItem="JDe-gO-2tp" firstAttribute="leading" secondItem="fTx-cX-IXy" secondAttribute="trailing" constant="10" id="P1i-ja-Nxx"/>
                                         <constraint firstItem="KWT-J9-I6p" firstAttribute="leading" secondItem="JDe-gO-2tp" secondAttribute="trailing" constant="7" id="VGN-bZ-tqb"/>
                                         <constraint firstItem="sF2-wu-S2R" firstAttribute="leading" secondItem="fTx-cX-IXy" secondAttribute="trailing" constant="10" id="Xjm-ZP-D7j"/>
+                                        <constraint firstItem="sF2-wu-S2R" firstAttribute="centerY" secondItem="pDI-1y-kiS" secondAttribute="centerY" constant="-2" id="a8i-Tr-dJS"/>
                                         <constraint firstItem="Bni-Ga-wfI" firstAttribute="top" secondItem="lmj-BA-b1Y" secondAttribute="top" constant="10" id="an3-HW-zYV"/>
                                         <constraint firstItem="7uz-dv-nJ8" firstAttribute="centerY" secondItem="JDe-gO-2tp" secondAttribute="centerY" id="dK8-Gk-wdT"/>
                                         <constraint firstItem="fTx-cX-IXy" firstAttribute="top" secondItem="lmj-BA-b1Y" secondAttribute="top" constant="11" id="efm-yf-QDp"/>
                                         <constraint firstAttribute="trailing" secondItem="Bni-Ga-wfI" secondAttribute="trailing" constant="10" id="lA2-wd-ifL"/>
+                                        <constraint firstAttribute="trailing" secondItem="sF2-wu-S2R" secondAttribute="trailing" constant="70" id="pr9-0b-3Nh"/>
                                         <constraint firstItem="fTx-cX-IXy" firstAttribute="leading" secondItem="lmj-BA-b1Y" secondAttribute="leading" constant="10" id="qSw-Re-atv"/>
-                                        <constraint firstItem="pDI-1y-kiS" firstAttribute="top" secondItem="Bni-Ga-wfI" secondAttribute="bottom" constant="5" id="qvX-9V-WHT"/>
                                         <constraint firstItem="JDe-gO-2tp" firstAttribute="top" secondItem="lmj-BA-b1Y" secondAttribute="top" constant="16" id="uPe-v2-yzS"/>
+                                        <constraint firstItem="sF2-wu-S2R" firstAttribute="leading" secondItem="Bni-Ga-wfI" secondAttribute="leading" constant="-185" id="z1h-4s-60c"/>
                                         <constraint firstItem="JDe-gO-2tp" firstAttribute="centerY" secondItem="KWT-J9-I6p" secondAttribute="centerY" id="zxf-SH-04U"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="z1h-4s-60c"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="agreeBtn" destination="Bni-Ga-wfI" id="OYc-q4-LPK"/>
@@ -118,7 +122,6 @@
                                     <outlet property="nameLabelWidth" destination="Ufq-xC-aXK" id="lzt-0u-IdY"/>
                                     <outlet property="offerSeatLabel" destination="pDI-1y-kiS" id="Rbb-UK-QEf"/>
                                     <outlet property="sexView" destination="KWT-J9-I6p" id="STJ-pn-0rw"/>
-                                    <outlet property="tipMsgLabelWidth" destination="YJo-d5-Ii2" id="ByQ-JO-keC"/>
                                     <outlet property="tipmsgLabel" destination="sF2-wu-S2R" id="ncS-T0-E8D"/>
                                 </connections>
                             </tableViewCell>
@@ -156,14 +159,14 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vnt-a1-8N8">
-                                            <rect key="frame" x="154" y="19.5" width="14" height="14"/>
+                                            <rect key="frame" x="154" y="18" width="14" height="14"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="14" id="DXD-iu-yHw"/>
                                                 <constraint firstAttribute="height" constant="14" id="SJN-h7-BWC"/>
                                             </constraints>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CkM-Ld-dhN" customClass="CPSexView">
-                                            <rect key="frame" x="117" y="19" width="30" height="15"/>
+                                            <rect key="frame" x="117" y="17.5" width="30" height="15"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="30" id="GO9-aj-gRc"/>
                                                 <constraint firstAttribute="height" constant="15" id="PTC-3Y-hs5"/>
@@ -196,6 +199,53 @@
                                     <outlet property="tipmsgLabel" destination="XL7-Yl-q1v" id="prd-hQ-III"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CarAuthoMsgCell" id="SgH-Mt-eCu" customClass="CPActivityApplyCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SgH-Mt-eCu" id="uV2-ns-Phn">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ndf-6a-97w" customClass="CPIconButton">
+                                            <rect key="frame" x="10" y="11" width="50" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="aMO-DX-466"/>
+                                                <constraint firstAttribute="height" constant="50" id="zwy-0r-t17"/>
+                                            </constraints>
+                                            <state key="normal" title="Button" image="ceo头像">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="iconViewClick:" destination="SgH-Mt-eCu" eventType="touchUpInside" id="ru7-ea-FQQ"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="车玩CEO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="elB-Uo-szH">
+                                            <rect key="frame" x="70" y="16" width="66" height="19.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.9882352941176471" green="0.43137254901960786" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HLk-dw-4FA">
+                                            <rect key="frame" x="70" y="40" width="240" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.66666666669999997" green="0.69803921570000005" blue="0.74117647060000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="HLk-dw-4FA" secondAttribute="trailing" constant="10" id="9PK-c3-IFi"/>
+                                        <constraint firstItem="elB-Uo-szH" firstAttribute="top" secondItem="uV2-ns-Phn" secondAttribute="top" constant="16" id="FoM-8I-2RN"/>
+                                        <constraint firstItem="HLk-dw-4FA" firstAttribute="top" secondItem="elB-Uo-szH" secondAttribute="bottom" constant="5" id="Ibr-5m-W4S"/>
+                                        <constraint firstItem="Ndf-6a-97w" firstAttribute="top" secondItem="uV2-ns-Phn" secondAttribute="top" constant="11" id="ORW-nH-9PU"/>
+                                        <constraint firstItem="elB-Uo-szH" firstAttribute="leading" secondItem="Ndf-6a-97w" secondAttribute="trailing" constant="10" id="ViX-XH-MfE"/>
+                                        <constraint firstItem="HLk-dw-4FA" firstAttribute="leading" secondItem="Ndf-6a-97w" secondAttribute="trailing" constant="10" id="YeL-Gb-Yvp"/>
+                                        <constraint firstItem="Ndf-6a-97w" firstAttribute="leading" secondItem="uV2-ns-Phn" secondAttribute="leading" constant="10" id="z1Q-Ai-0DV"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="iconView" destination="Ndf-6a-97w" id="xAw-ZZ-fgU"/>
+                                    <outlet property="nameLabel" destination="elB-Uo-szH" id="cUA-zI-9rN"/>
+                                    <outlet property="tipmsgLabel" destination="HLk-dw-4FA" id="yTI-Sl-YI7"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="Mwc-yt-0aX" id="4Fl-LT-98W"/>
@@ -209,4 +259,7 @@
             <point key="canvasLocation" x="532" y="85"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ceo头像" width="50" height="50"/>
+    </resources>
 </document>

@@ -38,6 +38,7 @@ MJCodingImplementation
     }
 }
 
+
 - (void)setAttrbuteText
 {
     NSAttributedString *head;
@@ -93,6 +94,5 @@ MJCodingImplementation
     
     _seatText = str;
 }
-
 
 @end

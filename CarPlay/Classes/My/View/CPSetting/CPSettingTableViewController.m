@@ -103,11 +103,17 @@
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==1) {
-        LoginViewController *loginVC=[[LoginViewController alloc]init];
-        [Tools setValueForKey:@(NO) key:NOTIFICATION_HASLOGIN];
-        UINavigationController* nav1 = [[UINavigationController alloc] initWithRootViewController:loginVC];
-        self.view.window.rootViewController=nav1;
-        [self.view.window makeKeyAndVisible];
+        EMError *error = nil;
+        NSDictionary *info = [[EaseMob sharedInstance].chatManager logoffWithUnbindDeviceToken:YES/NO error:&error];
+        if (!error && info) {
+            LoginViewController *loginVC=[[LoginViewController alloc]init];
+            [Tools setValueForKey:@(NO) key:NOTIFICATION_HASLOGIN];
+            UINavigationController* nav1 = [[UINavigationController alloc] initWithRootViewController:loginVC];
+            self.view.window.rootViewController=nav1;
+            [self.view.window makeKeyAndVisible];
+        }else{
+            [self showError:error.description];
+        }
     }
 }
 
