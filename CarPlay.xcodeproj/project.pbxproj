@@ -171,6 +171,7 @@
 		A59705971B7A01D10025B9DB /* CPCityOfferCar.xib in Resources */ = {isa = PBXBuildFile; fileRef = A59705951B7A01D10025B9DB /* CPCityOfferCar.xib */; };
 		A5F515791B71E53100690802 /* NSString+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F515781B71E53100690802 /* NSString+Size.m */; };
 		AD5690C45A77A4D82E40CA3F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E1F11B43C6536981B4E2558 /* libPods.a */; };
+		E30A68CA1B7DD64100EB3D23 /* CPGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = E30A68C91B7DD64100EB3D23 /* CPGuideView.m */; };
 		E30BD57E1B54EBEB00FD9030 /* CPMySubscribeController.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD57D1B54EBEB00FD9030 /* CPMySubscribeController.m */; };
 		E30BD5891B54EC4A00FD9030 /* CPMySubscribeFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5861B54EC4A00FD9030 /* CPMySubscribeFrameModel.m */; };
 		E30BD58A1B54EC4A00FD9030 /* CPMySubscribeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5881B54EC4A00FD9030 /* CPMySubscribeModel.m */; };
@@ -661,6 +662,8 @@
 		A59705951B7A01D10025B9DB /* CPCityOfferCar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPCityOfferCar.xib; sourceTree = "<group>"; };
 		A5F515771B71E53100690802 /* NSString+Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Size.h"; sourceTree = "<group>"; };
 		A5F515781B71E53100690802 /* NSString+Size.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Size.m"; sourceTree = "<group>"; };
+		E30A68C81B7DD64100EB3D23 /* CPGuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPGuideView.h; sourceTree = "<group>"; };
+		E30A68C91B7DD64100EB3D23 /* CPGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPGuideView.m; sourceTree = "<group>"; };
 		E30BD57C1B54EBEB00FD9030 /* CPMySubscribeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMySubscribeController.h; sourceTree = "<group>"; };
 		E30BD57D1B54EBEB00FD9030 /* CPMySubscribeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMySubscribeController.m; sourceTree = "<group>"; };
 		E30BD5851B54EC4A00FD9030 /* CPMySubscribeFrameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMySubscribeFrameModel.h; sourceTree = "<group>"; };
@@ -2442,6 +2445,8 @@
 				E338A7441B70540C00E706C2 /* CPRefreshHeader.m */,
 				E338A7461B7099CE00E706C2 /* CPRefreshFooter.h */,
 				E338A7471B7099CE00E706C2 /* CPRefreshFooter.m */,
+				E30A68C81B7DD64100EB3D23 /* CPGuideView.h */,
+				E30A68C91B7DD64100EB3D23 /* CPGuideView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2735,6 +2740,7 @@
 				A575820D1B6789E500A5E681 /* NSObject+SMFoundation.m in Sources */,
 				6B5F9B711B5D29FE00F9D1E8 /* CPHomeUser.m in Sources */,
 				E3CE35B11B59E7FC008434B5 /* XLForm.m in Sources */,
+				E30A68CA1B7DD64100EB3D23 /* CPGuideView.m in Sources */,
 				6B512FB71B7C522E00258CA0 /* wav.mm in Sources */,
 				6BCF66111B6208C700358190 /* CPActiveIconCell.m in Sources */,
 				6BCF660B1B6208C700358190 /* CPActivePhoto.m in Sources */,

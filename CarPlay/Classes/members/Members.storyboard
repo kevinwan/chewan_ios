@@ -36,7 +36,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="76" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7HR-PL-CIt">
-                                <rect key="frame" x="0.0" y="61" width="375" height="500.5"/>
+                                <rect key="frame" x="0.0" y="51" width="375" height="510.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="carcell" rowHeight="52" id="ifZ-2n-L5f" customClass="carCell">
@@ -315,7 +315,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="9VU-FF-OLY" secondAttribute="trailing" constant="10" id="1ny-Nk-UM2"/>
-                            <constraint firstItem="7HR-PL-CIt" firstAttribute="top" secondItem="dL5-7y-foD" secondAttribute="bottom" constant="27" id="6c2-gg-eWe"/>
+                            <constraint firstItem="7HR-PL-CIt" firstAttribute="top" secondItem="dL5-7y-foD" secondAttribute="bottom" constant="17" id="6c2-gg-eWe"/>
                             <constraint firstAttribute="trailing" secondItem="7HR-PL-CIt" secondAttribute="trailing" id="GIa-fg-2bf"/>
                             <constraint firstItem="V6V-cd-t2O" firstAttribute="top" secondItem="7HR-PL-CIt" secondAttribute="bottom" constant="20" id="Kel-bx-dso"/>
                             <constraint firstItem="9VU-FF-OLY" firstAttribute="top" secondItem="7HR-PL-CIt" secondAttribute="bottom" constant="20" id="L10-iz-4qx"/>

@@ -164,7 +164,7 @@
             UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil];
             
             CPTaDetailsController *taViewController = sb.instantiateInitialViewController;
-            taViewController.targetUserId = self.createrId;
+            taViewController.targetUserId = weakSelf.createrId;
             
             [weakSelf.navigationController pushViewController:taViewController animated:YES];
 
@@ -297,7 +297,7 @@
 }
 
 - (void)dealloc{
-    
+
     //移除监听
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -517,6 +517,7 @@
     [CPNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
         [self disMiss];
         if ([responseObject operationSuccess]) {
+            SQLog(@"%@",responseObject);
             NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
             NSString *strOrganizer = [formatter stringFromNumber:responseObject[@"data"][@"isOrganizer"]];
             NSString *strMember = [formatter stringFromNumber:responseObject[@"data"][@"isMember"]];
@@ -541,7 +542,7 @@
             } else {
                 NSString *userId = [Tools getValueFromKey:@"userId"];
                 NSString *token = [Tools getValueFromKey:@"token"];
-                NSString *urlStr = [NSString stringWithFormat:@"v1/user/%@/seats?token=%@",userId,token];
+                NSString *urlStr = [NSString stringWithFormat:@"v1/user/%@/seats?token=%@&activityId=%@",userId,token,self.activeId];
                 //主车提供后台返回的车 非车主最多提供两辆车
                 [ZYNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
                     if ([responseObject operationSuccess]) {
@@ -720,4 +721,5 @@
 - (IBAction)sendClick:(id)sender {
     [self sendMessage];
 }
+
 @end
