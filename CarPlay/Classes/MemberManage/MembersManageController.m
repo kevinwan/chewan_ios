@@ -21,13 +21,13 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "UMSocial.h"
 #import "UMSocialData.h"
+#import "CPTaDetailsController.h"
 
 
 
 @interface MembersManageController () <UITableViewDataSource,UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *memberTableView;
-@property (weak, nonatomic) IBOutlet UILabel *seatLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *downButton;
 //downSearXib
@@ -47,16 +47,18 @@
 @property (nonatomic, copy) NSString *shareTitle;
 @property (nonatomic, copy) NSString *shareContent;
 @property (nonatomic, copy) NSString *imgUrl;
+@property (nonatomic, strong) NSString *createrId;
 @end
 
 @implementation MembersManageController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIFont *font = [UIFont systemFontOfSize:17];
      self.navigationItem.title = @"成员管理";
     [self setupFontAndColor];
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTitle:@"邀请" titleColor:[AppAppearance titleColor] font:[AppAppearance textLargeFont] target:self action:@selector(inviteFriend)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTitle:@"邀请" titleColor:[AppAppearance titleColor] font:font target:self action:@selector(inviteFriend)];
     [self loadMessage];
-
+    self.memberTableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
 }
 
 //添加微信分享的语句
@@ -76,9 +78,6 @@
 }
 
 - (void) setupFontAndColor {
-    
-    self.seatLabel.font = [AppAppearance textLargeFont];
-    self.seatLabel.textColor = [AppAppearance textMediumColor];
     self.memberTableView.separatorColor = [AppAppearance lineColor];
 }
 //管理 删除参与者
@@ -293,11 +292,24 @@
 
         memberManageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"membercell"];
         cell.models = self.membersArray[indexPath.row - self.carsArray.count];
+        self.createrId = cell.models.userId;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.deleteButton.tag = indexPath.row - self.carsArray.count;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapIconImage)];
+        [cell.memberIconImageView addGestureRecognizer:tap];
         return cell;
     }
    
+}
+- (void)tapIconImage{
+    SQLog(@"123");
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil];
+    
+    CPTaDetailsController *taViewController = sb.instantiateInitialViewController;
+    taViewController.targetUserId = self.createrId;
+    
+    [self.navigationController pushViewController:taViewController animated:YES];
+    
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row < self.carsArray.count) {
