@@ -24,7 +24,8 @@
 #import "MJPhoto.h"
 #import "CPNoNet.h"
 #import "CPHomeIconCell.h"
-
+#import "CPRefreshHeader.h"
+#import "CPRefreshFooter.h"
 
 @interface CPCityController ()<UITableViewDataSource,UITableViewDelegate,CPSelectViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDelegate>
 
@@ -125,19 +126,19 @@
 @implementation CPCityController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     // 没网的时候点击重新加载
     if (CPNoNetWork) {
         __weak typeof(self) weakSelf = self;
         CPNoNet *cpNoNet = [CPNoNet footerView];
         cpNoNet.loadHomePage = ^{
             [weakSelf setupLoadStatusWithIgnore:0 Key:@"hot" SelectModel:nil];
-            self.tableView.tableFooterView = nil;
+            weakSelf.tableView.tableFooterView = nil;
         };
+        
         
         self.tableView.tableFooterView = cpNoNet;
     }
-    
     // 导航栏筛选
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithNorImage:@"首页筛选" higImage:@"" title:nil target:self action:@selector(select:)];
     
@@ -146,14 +147,16 @@
     
     // 上拉下拉刷新
     [self topAndBottomRefresh];
-    
+
     // 设置顶部按钮
     [self.hotBtn setHighlighted:NO];
     
     // 获取当前经纬度
     [self getLongitudeAndLatitude];
     
+  
 }
+
 
 // 获取当前经纬度
 - (void)getLongitudeAndLatitude{
@@ -196,6 +199,8 @@
     }];
 }
 
+
+
 - (void)topAndBottomRefresh{
     // 添加下拉刷新控件（头部）
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(dropDownLoadData)];
@@ -219,7 +224,7 @@
     footer.stateLabel.textColor = [Tools getColor:@"aab2bd"];
     [footer setTitle:@"加载中..." forState:MJRefreshStateRefreshing];
     [footer setTitle:@"无更多数据" forState:MJRefreshStateNoMoreData];
-    
+
     self.tableView.footer = footer;
 
 }
@@ -316,10 +321,7 @@
         
         // 取出活动数据
         NSArray *dicts = responseObject[@"data"];
-     
-//        NSLog(@"data:%@",responseObject[@"data"]);
-//        NSLog(@"errmsg:%@",responseObject[@"errmsg"]);
-//        NSLog(@"result:%@",responseObject[@"result"]);
+    
         
         // 转换为模型数组
        NSArray *models = [CPHomeStatus objectArrayWithKeyValuesArray:dicts];

@@ -164,7 +164,7 @@
             UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil];
             
             CPTaDetailsController *taViewController = sb.instantiateInitialViewController;
-            taViewController.targetUserId = self.createrId;
+            taViewController.targetUserId = weakSelf.createrId;
             
             [weakSelf.navigationController pushViewController:taViewController animated:YES];
 
@@ -297,7 +297,7 @@
 }
 
 - (void)dealloc{
-    
+
     //移除监听
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -720,4 +720,5 @@
 - (IBAction)sendClick:(id)sender {
     [self sendMessage];
 }
+
 @end

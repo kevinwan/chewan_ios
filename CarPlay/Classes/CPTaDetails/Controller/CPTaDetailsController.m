@@ -76,6 +76,7 @@
     MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(upglideLoadData)];
     footer.stateLabel.font = [UIFont systemFontOfSize:14];
     footer.automaticallyChangeAlpha = YES;
+//    footer.automaticallyHidden = NO;
     footer.stateLabel.textColor = [Tools getColor:@"aab2bd"];
     [footer setTitle:@"加载中..." forState:MJRefreshStateRefreshing];
     [footer setTitle:@"无更多数据" forState:MJRefreshStateNoMoreData];
@@ -104,8 +105,8 @@
 - (void)setupLoadHeadView{
     CPTaDetailsHead *head = [CPTaDetailsHead headView];
     head.taStatus = self.taStatus;
+    __weak typeof(self) weakSelf = self;
     head.statusSelected = ^(NSInteger ignore,NSString *selectStr){
-        __weak typeof(self) weakSelf = self;
         [weakSelf setupLoadTaPublishStatusWithIgnore:ignore SelectStr:selectStr];
     };
     self.tableView.tableHeaderView = head;
@@ -308,5 +309,6 @@
     }
     return _taPubStatus;
 }
+
 
 @end
