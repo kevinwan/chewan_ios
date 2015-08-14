@@ -11,6 +11,7 @@
 @property (nonatomic, strong) UIImage *image; // 完整的图片
 
 @property (nonatomic, strong) UIImageView *srcImageView; // 来源view
+@property (nonatomic, assign) UIViewContentMode contentMode;
 @property (nonatomic, strong, readonly) UIImage *placeholder;
 @property (nonatomic, strong, readonly) UIImage *capture;
 

@@ -146,7 +146,7 @@
     searchBar.textColor = [Tools getColor:@"aab2bd"];
     searchBar.placeholder = @"请输入目的地";
     searchBar.rightViewMode = UITextFieldViewModeAlways;
-    searchBar.frame = CGRectMake(10, 5, kScreenWidth - 20, 35);
+    searchBar.frame = CGRectMake(40, 2, kScreenWidth - 50, 35);
     [self.navigationController.navigationBar addSubview:searchBar];
     searchBar.delegate = self;
     self.searchBar = searchBar;
