@@ -151,6 +151,7 @@
     
     UUDatePicker *datePicker  = [[UUDatePicker alloc] init];
     datePicker.datePickerStyle = UUDateStyle_YearMonthDayHourMinute;
+    datePicker.minLimitDate = [NSDate date];
     datePicker.frame = CGRectMake(0, ZYToobarHeight, kScreenWidth, 216);
 //    datePicker.minLimitDate = [NSDate date];
 //    datePicker.tintColor = [UIColor blackColor];

@@ -178,6 +178,7 @@
 		E310BF6B1B7DE69500750BF4 /* ChatListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E310BF6A1B7DE69500750BF4 /* ChatListCell.m */; };
 		E310BF711B7DF7BB00750BF4 /* UUDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E310BF6E1B7DF7BB00750BF4 /* UUDatePicker.m */; };
 		E310BF721B7DF7BB00750BF4 /* UUDatePicker_DateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E310BF701B7DF7BB00750BF4 /* UUDatePicker_DateModel.m */; };
+		E310BF751B7E154200750BF4 /* CPAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E310BF741B7E154200750BF4 /* CPAnnotationView.m */; };
 		E328F0671B621DA700A20DCE /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = E328F0661B621DA700A20DCE /* city.plist */; };
 		E328F0691B621E1C00A20DCE /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = E328F0681B621E1C00A20DCE /* area.plist */; };
 		E3292A281B6A50700023677F /* CPSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3292A261B6A50700023677F /* CPSelectView.m */; };
@@ -313,8 +314,6 @@
 		E3CFB1541B72126A0058B8C3 /* ZYSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CFB1531B72126A0058B8C3 /* ZYSegmentControl.m */; };
 		E3CFB1571B7213580058B8C3 /* ZYSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CFB1561B7213580058B8C3 /* ZYSegment.m */; };
 		E3D879421B575EC200228356 /* CPTopViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D879411B575EC200228356 /* CPTopViewButton.m */; };
-		E3DAC9031B789AA3008B3BA3 /* WMCustomDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DAC9001B789AA3008B3BA3 /* WMCustomDatePicker.m */; };
-		E3DAC9041B789AA3008B3BA3 /* WMDatepicker_DateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DAC9021B789AA3008B3BA3 /* WMDatepicker_DateModel.m */; };
 		E3E104A71B675C910049CA4A /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E104A61B675C910049CA4A /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E3E104A91B675D520049CA4A /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E3E104A81B675D520049CA4A /* libicucore.dylib */; };
 		E3E1DBFD1B5C8CFB00386B18 /* ZYPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E1DBFC1B5C8CFB00386B18 /* ZYPickView.m */; };
@@ -677,6 +676,8 @@
 		E310BF6E1B7DF7BB00750BF4 /* UUDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUDatePicker.m; sourceTree = "<group>"; };
 		E310BF6F1B7DF7BB00750BF4 /* UUDatePicker_DateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUDatePicker_DateModel.h; sourceTree = "<group>"; };
 		E310BF701B7DF7BB00750BF4 /* UUDatePicker_DateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUDatePicker_DateModel.m; sourceTree = "<group>"; };
+		E310BF731B7E154200750BF4 /* CPAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnnotationView.h; sourceTree = "<group>"; };
+		E310BF741B7E154200750BF4 /* CPAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAnnotationView.m; sourceTree = "<group>"; };
 		E328F0661B621DA700A20DCE /* city.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
 		E328F0681B621E1C00A20DCE /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		E3292A251B6A50700023677F /* CPSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSelectView.h; sourceTree = "<group>"; };
@@ -925,10 +926,6 @@
 		E3CFB1561B7213580058B8C3 /* ZYSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYSegment.m; sourceTree = "<group>"; };
 		E3D879401B575EC200228356 /* CPTopViewButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTopViewButton.h; sourceTree = "<group>"; };
 		E3D879411B575EC200228356 /* CPTopViewButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTopViewButton.m; sourceTree = "<group>"; };
-		E3DAC8FF1B789AA3008B3BA3 /* WMCustomDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCustomDatePicker.h; sourceTree = "<group>"; };
-		E3DAC9001B789AA3008B3BA3 /* WMCustomDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCustomDatePicker.m; sourceTree = "<group>"; };
-		E3DAC9011B789AA3008B3BA3 /* WMDatepicker_DateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDatepicker_DateModel.h; sourceTree = "<group>"; };
-		E3DAC9021B789AA3008B3BA3 /* WMDatepicker_DateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDatepicker_DateModel.m; sourceTree = "<group>"; };
 		E3E104A51B675C910049CA4A /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		E3E104A61B675C910049CA4A /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		E3E104A81B675D520049CA4A /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
@@ -1109,7 +1106,6 @@
 			isa = PBXGroup;
 			children = (
 				E310BF6C1B7DF7BB00750BF4 /* UUDatePicker_Block */,
-				E3DAC8FE1B789AA3008B3BA3 /* WMCoustomDatepicker */,
 				E3E104A41B675C910049CA4A /* RegexKitLite */,
 				E3CE353B1B59E7FC008434B5 /* XLForm */,
 				E3AE58C11B57E08800D8F0CA /* ZYNetWorkTool */,
@@ -2003,6 +1999,8 @@
 				E379E2E51B5DEC23001869AA /* CPEditImageView.m */,
 				E3FCDD4B1B5E355A00F9C379 /* CPAnotationView.h */,
 				E3FCDD4C1B5E355A00F9C379 /* CPAnotationView.m */,
+				E310BF731B7E154200750BF4 /* CPAnnotationView.h */,
+				E310BF741B7E154200750BF4 /* CPAnnotationView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2366,17 +2364,6 @@
 				E3CE358B1B59E7FC008434B5 /* XLFormValidatorProtocol.h */,
 			);
 			path = Validation;
-			sourceTree = "<group>";
-		};
-		E3DAC8FE1B789AA3008B3BA3 /* WMCoustomDatepicker */ = {
-			isa = PBXGroup;
-			children = (
-				E3DAC8FF1B789AA3008B3BA3 /* WMCustomDatePicker.h */,
-				E3DAC9001B789AA3008B3BA3 /* WMCustomDatePicker.m */,
-				E3DAC9011B789AA3008B3BA3 /* WMDatepicker_DateModel.h */,
-				E3DAC9021B789AA3008B3BA3 /* WMDatepicker_DateModel.m */,
-			);
-			path = WMCoustomDatepicker;
 			sourceTree = "<group>";
 		};
 		E3E104A41B675C910049CA4A /* RegexKitLite */ = {
@@ -2824,7 +2811,6 @@
 				6BB09AA71B68B02900E0D77D /* CPPhotoalbumManagement.m in Sources */,
 				A57582091B6789E500A5E681 /* NSDate+SMFoundation.m in Sources */,
 				E35B04731B565532002C6655 /* SDWebImageManager+MJ.m in Sources */,
-				E3DAC9041B789AA3008B3BA3 /* WMDatepicker_DateModel.m in Sources */,
 				E35E6FC71B54AFB8001212D6 /* CPMyPublishController.m in Sources */,
 				E36C962A1B53C80900D3EDBB /* CPCancleSubBtn.m in Sources */,
 				E3CE02791B6885BB00808698 /* CPNewMsgModel.m in Sources */,
@@ -2900,6 +2886,7 @@
 				E35B046C1B565532002C6655 /* MJPhoto.m in Sources */,
 				6BB09AB41B69F52900E0D77D /* CPNewfeatureViewController.m in Sources */,
 				6B512FCC1B7CC20500258CA0 /* CPCarAuthoAllowController.m in Sources */,
+				E310BF751B7E154200750BF4 /* CPAnnotationView.m in Sources */,
 				E3EEE0041B53952E00595333 /* UIImage+Extension.m in Sources */,
 				A57582101B6789E500A5E681 /* SMAlertView.m in Sources */,
 				E35B04271B5645BC002C6655 /* HMStatusPhotosView.m in Sources */,
@@ -2909,7 +2896,6 @@
 				E372D82E1B6216C100B4FC5C /* CPNewPassWordViewController.m in Sources */,
 				E3C611491B5F328C00B7E73A /* CPCreatActivityModel.m in Sources */,
 				E35B04701B565532002C6655 /* MJPhotoProgressView.m in Sources */,
-				E3DAC9031B789AA3008B3BA3 /* WMCustomDatePicker.m in Sources */,
 				E3CE35901B59E7FC008434B5 /* XLFormButtonCell.m in Sources */,
 				E310BF6B1B7DE69500750BF4 /* ChatListCell.m in Sources */,
 				6B512FC41B7C70F400258CA0 /* AppDelegate+EaseMob.m in Sources */,

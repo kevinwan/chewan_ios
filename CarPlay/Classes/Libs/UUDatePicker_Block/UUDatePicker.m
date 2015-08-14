@@ -17,8 +17,8 @@
 #define UUPICKER_HOUR 24
 #define UUPICKER_MINUTE 60
 
-#define UU_GRAY [UIColor redColor];
-#define UU_BLACK [UIColor blackColor];
+#define UU_GRAY [Tools getColor:@"aab2bd"]
+#define UU_BLACK [UIColor blackColor]
 
 #ifndef isIOS7
 #define isIOS7  ([[[UIDevice currentDevice]systemVersion]floatValue] >= 7.0)
@@ -464,7 +464,7 @@
             }
             if (component==3) {
                 title = ampmArray[row];
-                textColor = [self returnDayColorRow:row];
+                textColor = [UIColor blackColor];
             }
             if (component==4) {
                 title = hourArray[row];
@@ -716,6 +716,7 @@
         }
     }
 }
+
 - (UIColor *)returnDayColorRow:(NSInteger)row
 {
     if ([yearArray[yearIndex] intValue] < [minDateModel.year intValue] || [yearArray[yearIndex] intValue] > [maxDateModel.year intValue]) {
