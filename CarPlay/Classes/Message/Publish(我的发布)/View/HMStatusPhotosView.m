@@ -30,7 +30,15 @@
         // 预先创建9个图片控件
         for (int i = 0; i<HMStatusPhotosMaxCount; i++) {
             HMStatusPhotoView *photoView = [[HMStatusPhotoView alloc] init];
+            
+            //开启事件
             photoView.userInteractionEnabled = YES;
+            
+            //模式
+            photoView.contentMode=UIViewContentModeScaleAspectFill;
+            
+            photoView.clipsToBounds = YES;
+            
             photoView.tag = i;
             [self addSubview:photoView];
             
@@ -62,6 +70,7 @@
         photo.url = [NSURL URLWithString:pic.bmiddle_pic];
         // 设置来源于哪一个UIImageView
         photo.srcImageView = self.subviews[i];
+        photo.contentMode = [self.subviews[i] contentMode];
         [photos addObject:photo];
     }
     browser.photos = photos;
@@ -110,7 +119,7 @@
         HMStatusPhotoView *photoView = self.subviews[0];
         photoView.width = 159;
         photoView.height = 107;
-        photoView.clipsToBounds = YES;
+//        photoView.clipsToBounds = YES;
     }else{
     }
 }

@@ -167,6 +167,7 @@
 		A575821D1B6789E500A5E681 /* UIView+Dealer.m in Sources */ = {isa = PBXBuildFile; fileRef = A57582051B6789E500A5E681 /* UIView+Dealer.m */; };
 		A5F515791B71E53100690802 /* NSString+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F515781B71E53100690802 /* NSString+Size.m */; };
 		AD5690C45A77A4D82E40CA3F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E1F11B43C6536981B4E2558 /* libPods.a */; };
+		E30A68CA1B7DD64100EB3D23 /* CPGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = E30A68C91B7DD64100EB3D23 /* CPGuideView.m */; };
 		E30BD57E1B54EBEB00FD9030 /* CPMySubscribeController.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD57D1B54EBEB00FD9030 /* CPMySubscribeController.m */; };
 		E30BD5891B54EC4A00FD9030 /* CPMySubscribeFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5861B54EC4A00FD9030 /* CPMySubscribeFrameModel.m */; };
 		E30BD58A1B54EC4A00FD9030 /* CPMySubscribeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5881B54EC4A00FD9030 /* CPMySubscribeModel.m */; };
@@ -174,6 +175,7 @@
 		E30BD5901B54ECCC00FD9030 /* CPMySubscribeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD58E1B54ECCC00FD9030 /* CPMySubscribeCell.m */; };
 		E30BD5941B54FCC600FD9030 /* ZYNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5931B54FCC600FD9030 /* ZYNavigationBar.m */; };
 		E30BD5971B54FD6E00FD9030 /* ZYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5961B54FD6E00FD9030 /* ZYNavigationController.m */; };
+		E310BF6B1B7DE69500750BF4 /* ChatListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E310BF6A1B7DE69500750BF4 /* ChatListCell.m */; };
 		E328F0671B621DA700A20DCE /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = E328F0661B621DA700A20DCE /* city.plist */; };
 		E328F0691B621E1C00A20DCE /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = E328F0681B621E1C00A20DCE /* area.plist */; };
 		E3292A281B6A50700023677F /* CPSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3292A261B6A50700023677F /* CPSelectView.m */; };
@@ -651,6 +653,8 @@
 		A57582051B6789E500A5E681 /* UIView+Dealer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Dealer.m"; sourceTree = "<group>"; };
 		A5F515771B71E53100690802 /* NSString+Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Size.h"; sourceTree = "<group>"; };
 		A5F515781B71E53100690802 /* NSString+Size.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Size.m"; sourceTree = "<group>"; };
+		E30A68C81B7DD64100EB3D23 /* CPGuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPGuideView.h; sourceTree = "<group>"; };
+		E30A68C91B7DD64100EB3D23 /* CPGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPGuideView.m; sourceTree = "<group>"; };
 		E30BD57C1B54EBEB00FD9030 /* CPMySubscribeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMySubscribeController.h; sourceTree = "<group>"; };
 		E30BD57D1B54EBEB00FD9030 /* CPMySubscribeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMySubscribeController.m; sourceTree = "<group>"; };
 		E30BD5851B54EC4A00FD9030 /* CPMySubscribeFrameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMySubscribeFrameModel.h; sourceTree = "<group>"; };
@@ -665,6 +669,8 @@
 		E30BD5931B54FCC600FD9030 /* ZYNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYNavigationBar.m; sourceTree = "<group>"; };
 		E30BD5951B54FD6E00FD9030 /* ZYNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYNavigationController.h; sourceTree = "<group>"; };
 		E30BD5961B54FD6E00FD9030 /* ZYNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYNavigationController.m; sourceTree = "<group>"; };
+		E310BF691B7DE69500750BF4 /* ChatListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListCell.h; sourceTree = "<group>"; };
+		E310BF6A1B7DE69500750BF4 /* ChatListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListCell.m; sourceTree = "<group>"; };
 		E328F0661B621DA700A20DCE /* city.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
 		E328F0681B621E1C00A20DCE /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		E3292A251B6A50700023677F /* CPSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSelectView.h; sourceTree = "<group>"; };
@@ -1834,6 +1840,15 @@
 			path = ZYCustomView;
 			sourceTree = "<group>";
 		};
+		E310BF681B7DE69500750BF4 /* ChatListCell */ = {
+			isa = PBXGroup;
+			children = (
+				E310BF691B7DE69500750BF4 /* ChatListCell.h */,
+				E310BF6A1B7DE69500750BF4 /* ChatListCell.m */,
+			);
+			path = ChatListCell;
+			sourceTree = "<group>";
+		};
 		E35B045C1B565532002C6655 /* MJPhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
@@ -2391,6 +2406,7 @@
 		E3EEDFE61B53951D00595333 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E310BF681B7DE69500750BF4 /* ChatListCell */,
 				E3EEDFE71B53951D00595333 /* CPMessageController.h */,
 				E3EEDFE81B53951D00595333 /* CPMessageController.m */,
 				E3EEDFE91B53951D00595333 /* CPMessageController.storyboard */,
@@ -2426,6 +2442,8 @@
 				E338A7441B70540C00E706C2 /* CPRefreshHeader.m */,
 				E338A7461B7099CE00E706C2 /* CPRefreshFooter.h */,
 				E338A7471B7099CE00E706C2 /* CPRefreshFooter.m */,
+				E30A68C81B7DD64100EB3D23 /* CPGuideView.h */,
+				E30A68C91B7DD64100EB3D23 /* CPGuideView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2716,6 +2734,7 @@
 				A575820D1B6789E500A5E681 /* NSObject+SMFoundation.m in Sources */,
 				6B5F9B711B5D29FE00F9D1E8 /* CPHomeUser.m in Sources */,
 				E3CE35B11B59E7FC008434B5 /* XLForm.m in Sources */,
+				E30A68CA1B7DD64100EB3D23 /* CPGuideView.m in Sources */,
 				6B512FB71B7C522E00258CA0 /* wav.mm in Sources */,
 				6BCF66111B6208C700358190 /* CPActiveIconCell.m in Sources */,
 				6BCF660B1B6208C700358190 /* CPActivePhoto.m in Sources */,
@@ -2872,6 +2891,7 @@
 				E35B04701B565532002C6655 /* MJPhotoProgressView.m in Sources */,
 				E3DAC9031B789AA3008B3BA3 /* WMCustomDatePicker.m in Sources */,
 				E3CE35901B59E7FC008434B5 /* XLFormButtonCell.m in Sources */,
+				E310BF6B1B7DE69500750BF4 /* ChatListCell.m in Sources */,
 				6B512FC41B7C70F400258CA0 /* AppDelegate+EaseMob.m in Sources */,
 				A57581AC1B6789C500A5E681 /* MembersManageController.m in Sources */,
 				E35E6FCA1B54B076001212D6 /* CPMyPublishCell.m in Sources */,
@@ -3044,7 +3064,7 @@
 					"$(PROJECT_DIR)/CarPlay/Classes/Utils/VoiceConvert/opencore-amrwb",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "281c7a14-4af5-4246-a365-a26b8f6eedb4";
 			};
 			name = Debug;
 		};
@@ -3076,7 +3096,7 @@
 					"$(PROJECT_DIR)/CarPlay/Classes/Utils/VoiceConvert/opencore-amrwb",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "281c7a14-4af5-4246-a365-a26b8f6eedb4";
 			};
 			name = Release;
 		};

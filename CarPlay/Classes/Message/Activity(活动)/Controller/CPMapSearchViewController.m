@@ -48,8 +48,8 @@
 {
     UIView *titleView = [[UIView alloc] init];
     titleView.x = 40;
-    titleView.y = 5;
-    titleView.width = kScreenWidth - 60;
+    titleView.y = 2;
+    titleView.width = kScreenWidth - 50;
     titleView.height = 35;
     
     ZYSearchBar *searchBar = [[ZYSearchBar alloc] init];
@@ -57,7 +57,7 @@
     view.width = 10;
     searchBar.leftView = view;
     searchBar.placeholder = @"输入您的目的地";
-    searchBar.frame = CGRectMake(0, 0, titleView.width - 40, titleView.height);
+    searchBar.frame = CGRectMake(0, 0, titleView.width - 45, titleView.height);
     [titleView addSubview:searchBar];
     [searchBar addTarget:self action:@selector(inputTextDidChange:) forControlEvents:UIControlEventEditingChanged];
     searchBar.delegate = self;

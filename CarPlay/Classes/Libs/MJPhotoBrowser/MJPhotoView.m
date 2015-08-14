@@ -24,7 +24,7 @@
 - (id)initWithFrame:(CGRect)frame
 {
     if ((self = [super initWithFrame:frame])) {
-        self.clipsToBounds = YES;
+        
         self.userInteractionEnabled = YES;
 		// 图片
 		_imageView = [[UIImageView alloc] init];
@@ -212,14 +212,19 @@
     _photo.srcImageView.image = nil;
     
     CGFloat duration = 0.15;
-//    if (_photo.srcImageView.clipsToBounds) {
-//        [self performSelector:@selector(reset) withObject:nil afterDelay:duration];
-//    }
-    _imageView.clipsToBounds = YES;
+    if (_photo.srcImageView.clipsToBounds) {
+        [self performSelector:@selector(reset) withObject:nil afterDelay:0.34];
+    }
     [UIApplication sharedApplication].statusBarHidden = NO;
+    
+     CGRect sourceFrame = [_photo.srcImageView convertRect:_photo.srcImageView.bounds toView:nil];
+    
     [UIView animateWithDuration:duration + 0.2 animations:^{
-        _imageView.frame = [_photo.srcImageView convertRect:_photo.srcImageView.bounds toView:nil];
-//
+        _imageView.frame = sourceFrame;
+        _imageView.contentMode = _photo.srcImageView.contentMode;
+        
+        _imageView.clipsToBounds = YES;
+        
         // gif图片仅显示第0张
         if (_imageView.image.images) {
             _imageView.image = _imageView.image.images[0];
@@ -243,8 +248,7 @@
 
 - (void)reset
 {
-    _imageView.image = _photo.capture;
-    _imageView.contentMode = UIViewContentModeScaleToFill;
+//    _imageView.contentMode = UIViewContentModeScaleToFill;
 }
 
 - (void)handleDoubleTap:(UITapGestureRecognizer *)tap {

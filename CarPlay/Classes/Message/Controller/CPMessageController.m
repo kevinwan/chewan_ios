@@ -13,12 +13,18 @@
 #import "CPSubscribePersonController.h"
 #import "CPBadgeView.h"
 
+#import "ChatListCell.h"
+//#import "NSDate+Category.h"
+//#import "ChatViewController.h"
+#import "ConvertToCommonEmoticonsHelper.h"
+//#import "RobotManager.h"
+
 typedef enum {
     CPMessageOptionMsg, // 新留言消息
     CPMessageOptionActivity // 参与活动信息
 }CPMessageOption;
 
-@interface CPMessageController ()
+@interface CPMessageController ()<IChatManagerDelegate>
 @property (weak, nonatomic) IBOutlet CPBadgeView *leaveNewMsgNumber;
 
 @property (weak, nonatomic) IBOutlet CPBadgeView *activityApplyNewMsgNumber;

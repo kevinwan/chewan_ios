@@ -102,6 +102,8 @@
     
     self.navigationItem.title = @"新的留言";
     
+    [CPGuideView showGuideViewWithImageName:@"msgGuide"];
+    
     self.tableView.allowsSelectionDuringEditing = YES;
     
     self.tableView.tableFooterView = [[UIView alloc] init];
