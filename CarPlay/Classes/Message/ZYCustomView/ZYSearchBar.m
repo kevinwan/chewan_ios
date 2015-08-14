@@ -40,7 +40,6 @@
         clearBtn.height = 30;
         self.rightView = clearBtn;
         self.rightViewMode = UITextFieldViewModeWhileEditing;
-        
         self.delegate = self;
     }
     return self;
