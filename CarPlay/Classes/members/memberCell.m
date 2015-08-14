@@ -15,7 +15,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *subTitleLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *memberIconImageView;
+
 @property (weak, nonatomic) IBOutlet UIImageView *carLogImageView;
 @property (weak, nonatomic) IBOutlet UIButton *ageButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *subTitleLabelX;

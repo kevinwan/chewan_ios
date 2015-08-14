@@ -17,6 +17,7 @@
 #import <MJExtension.h>
 #import "ZYNetWorkTool.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "CPTaDetailsController.h"
 
 
 
@@ -42,6 +43,7 @@
 @property (nonatomic, strong) UIButton *noButton;
 @property (nonatomic, strong) UIButton *btn;
 @property (nonatomic, strong) NSMutableArray *pickerArray;
+@property (nonatomic, strong) NSString *createrId;
 @end
 
 @implementation MembersController
@@ -51,7 +53,7 @@
     self.navigationItem.title = @"参与成员";
     [self setupFontAndColor];
     [self loadMessage];
-    
+    self.memberTableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
 }
 
 - (void) setupFontAndColor {
@@ -318,8 +320,23 @@
         memberCell *cell = [tableView dequeueReusableCellWithIdentifier:@"membercell"];
         cell.models = self.membersArray[indexPath.row - self.carsArray.count];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.createrId = cell.models.userId;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapIconImage)];
+        [cell.memberIconImageView addGestureRecognizer:tap];
+
         return cell;
     }
+}
+- (void)tapIconImage{
+    SQLog(@"123");
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil];
+    
+    CPTaDetailsController *taViewController = sb.instantiateInitialViewController;
+    taViewController.targetUserId = self.createrId;
+    
+    [self.navigationController pushViewController:taViewController animated:YES];
+    
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

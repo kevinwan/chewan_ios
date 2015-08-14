@@ -10,5 +10,6 @@
 #import "members.h"
 @interface memberCell : UITableViewCell
 @property (nonatomic, strong) members *models;
+@property (weak, nonatomic) IBOutlet UIImageView *memberIconImageView;
 
 @end
