@@ -57,8 +57,20 @@
      self.navigationItem.title = @"成员管理";
     [self setupFontAndColor];
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTitle:@"邀请" titleColor:[AppAppearance titleColor] font:font target:self action:@selector(inviteFriend)];
-    [self loadMessage];
+    [self setUpRefresh];
+    [self.memberTableView.header beginRefreshing];
     self.memberTableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
+}
+- (void)setUpRefresh {
+    __weak typeof(self) weakSelf = self;
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakSelf loadMessage];
+    }];
+    self.memberTableView.header = header;
+    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMessage)];
+    [footer setTitle:@"" forState: MJRefreshStateIdle];
+    self.memberTableView.footer = footer;
+    
 }
 
 //添加微信分享的语句
@@ -131,16 +143,22 @@
             self.shareTitle = responseObject[@"data"][@"shareTitle"];
             self.shareUrl = responseObject[@"data"][@"shareUrl"];
             self.imgUrl = responseObject[@"data"][@"imgUrl"];
+            [self.membersArray removeAllObjects];
             [self.membersArray addObjectsFromArray:memberModel];
+            [self.carsArray removeAllObjects];
             [self.carsArray addObjectsFromArray:carModel];
+            [self.memberTableView.header endRefreshing];
+            [self.memberTableView.footer endRefreshing];
             [self.memberTableView reloadData];
-        
             
         } else {
             [self.view alertError:responseObject];
         }
     } failure:^(NSError *error) {
         [self.view alertError:error];
+        [self.memberTableView.header endRefreshing];
+        [self.memberTableView.footer endRefreshing];
+
     }];
     
     
