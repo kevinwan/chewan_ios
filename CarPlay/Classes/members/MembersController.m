@@ -19,6 +19,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 
 
+
 @interface MembersController () <UITableViewDataSource,UITableViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *memberTableView;
@@ -27,10 +28,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *getButton;
 @property (weak, nonatomic) IBOutlet UIButton *outButton;
-//xib
-@property (weak, nonatomic) IBOutlet UIView *carxibYesView;
-@property (weak, nonatomic) IBOutlet UIView *carxibNoVIew;
-@property (weak, nonatomic) IBOutlet UITextField *carxibTextFeild;
+
 @property (nonatomic, strong) NSMutableArray *pickerArray;
 
 
@@ -43,6 +41,10 @@
 @property (nonatomic, assign) BOOL member;
 @property (nonatomic, copy) NSString *userId;
 @property (nonatomic, copy) NSString *token;
+@property (nonatomic, strong) UITextField *carxibTextFeild;
+@property (nonatomic, strong) UIButton *yesButton;
+@property (nonatomic, strong) UIButton *noButton;
+@property (nonatomic, strong) UIButton *btn;
 @end
 
 @implementation MembersController
@@ -130,8 +132,8 @@
     
 }
 
-//我也要加入
-- (IBAction)carxibButtonClick:(UIButton *)sender {
+//提交座位
+- (void)offerSeatButton {
     NSString *userId = self.userId;
     NSString *token = self.token;
     NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/join?userId=%@&token=%@",self.activityId,userId,token];
@@ -368,10 +370,16 @@
                 self.carView = carView;
                 [self.view.window addSubview:carView];
                 //注意加载之后才有xib
-                UITapGestureRecognizer *tapYes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapYes)];
-                [self.carxibYesView addGestureRecognizer:tapYes];
-                UITapGestureRecognizer *tapNo = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapNo)];
-                [self.carxibNoVIew addGestureRecognizer:tapNo];
+                UIButton *noButton = (UIButton *)[carView viewWithTag:1000];
+                self.noButton = noButton;
+                UIButton *yeButton = (UIButton *)[carView viewWithTag:2000];
+                self.yesButton = yeButton;
+                UIButton * offerButton = (UIButton *)[carView viewWithTag:3000];
+                UITextField * carxibTextFeild = (UITextField *)[carView viewWithTag:4000];
+                self.carxibTextFeild = carxibTextFeild;
+                UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
+                [carView addGestureRecognizer:tap];
+                [offerButton addTarget:self action:@selector(offerSeatButton) forControlEvents:UIControlEventTouchUpInside];
                 NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
                 int maxSeat = [[formatter stringFromNumber:responseObject[@"data"][@"maxValue"]] intValue];
                 int minSeat = [[formatter stringFromNumber:responseObject[@"data"][@"minValue"]] intValue];
@@ -387,7 +395,7 @@
                 self.carxibTextFeild.delegate = self;
                 self.carxibTextFeild.font = [AppAppearance textMediumFont];
                 self.carxibTextFeild.textColor = [AppAppearance textDarkColor];
-                [self tapYes];
+                [self tap:yeButton];
 
             } else {
                 NSString *userId = self.userId;
@@ -431,17 +439,27 @@
     self.carxibTextFeild.text = [NSString stringWithFormat:@"%@",self.pickerArray[row]];
 }
 
-
-- (void)tapYes {
+- (void)tap:(UIButton *)btn{
+    btn = self.btn;
+    if (btn == self.yesButton) {
+        self.btn = self.noButton;
+        self.yesButton.selected = YES;
+        self.noButton.selected = NO;
+        self.carxibTextFeild.enabled = YES;
+        [self.carxibTextFeild becomeFirstResponder];
+    } else {
+        self.btn = self.yesButton;
+        self.noButton.selected = YES;
+        self.yesButton.selected = NO;
+        self.carxibTextFeild.enabled = NO;
+        [self.carxibTextFeild resignFirstResponder];
+        self.carxibTextFeild.text = nil;
+    }
     
-    self.carxibTextFeild.enabled = YES;
-    [self.carxibTextFeild becomeFirstResponder];
+    
+
 }
-- (void)tapNo {
-    self.carxibTextFeild.enabled = NO;
-    [self.carxibTextFeild resignFirstResponder];
-    self.carxibTextFeild.text = nil;
-}
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     // 这两个都是限制6位就不区分了

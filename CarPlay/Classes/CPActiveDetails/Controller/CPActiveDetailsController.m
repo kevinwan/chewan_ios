@@ -75,11 +75,12 @@
 // 遮盖
 @property (nonatomic, strong) UIButton *cover;
 @property (nonatomic, strong) UIView *carView;
-@property (weak, nonatomic) IBOutlet UIView *carxibYesView;
-@property (weak, nonatomic) IBOutlet UIView *carxibNoVIew;
-@property (weak, nonatomic) IBOutlet UITextField *carxibTextFeild;
 @property (nonatomic, strong) NSMutableArray *pickerArray;
 @property (weak, nonatomic) IBOutlet UICollectionView *iconsView;
+@property (nonatomic, strong) UITextField *carxibTextFeild;
+@property (nonatomic, strong) UIButton *yesButton;
+@property (nonatomic, strong) UIButton *noButton;
+@property (nonatomic, strong) UIButton *btn;
 @end
 
 @implementation CPActiveDetailsController
@@ -557,17 +558,23 @@
                             [cover addTarget:self action:@selector(coverClick) forControlEvents:UIControlEventTouchUpInside];
                             cover.frame = [UIScreen mainScreen].bounds;
                             [self.view.window addSubview:cover];
-                            UIView *carView = [[[NSBundle mainBundle]loadNibNamed:@"CPActiveOfferCar" owner:self options:nil]lastObject];
+                            UIView *carView = [[[NSBundle mainBundle]loadNibNamed:@"offerCar" owner:self options:nil]lastObject];
                             CGFloat carViewX = self.view.window.center.x;
                             CGFloat carViewY = self.view.window.center.y - 100;
                             carView.center = CGPointMake(carViewX, carViewY);
                             self.carView = carView;
                             [self.view.window addSubview:carView];
                             //注意加载之后才有xib
-                            UITapGestureRecognizer *tapYes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapYes)];
-                            [self.carxibYesView addGestureRecognizer:tapYes];
-                            UITapGestureRecognizer *tapNo = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapNo)];
-                            [self.carxibNoVIew addGestureRecognizer:tapNo];
+                            UIButton *noButton = (UIButton *)[carView viewWithTag:1000];
+                            self.noButton = noButton;
+                            UIButton *yeButton = (UIButton *)[carView viewWithTag:2000];
+                            self.yesButton = yeButton;
+                            UIButton * offerButton = (UIButton *)[carView viewWithTag:3000];
+                            UITextField * carxibTextFeild = (UITextField *)[carView viewWithTag:4000];
+                            self.carxibTextFeild = carxibTextFeild;
+                            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
+                            [carView addGestureRecognizer:tap];
+                            [offerButton addTarget:self action:@selector(offerSeatButton) forControlEvents:UIControlEventTouchUpInside];
                             NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
                             int maxSeat = [[formatter stringFromNumber:responseObject[@"data"][@"maxValue"]] intValue];
                             int minSeat = [[formatter stringFromNumber:responseObject[@"data"][@"minValue"]] intValue];
@@ -583,7 +590,7 @@
                             self.carxibTextFeild.delegate = self;
                             self.carxibTextFeild.font = [AppAppearance textMediumFont];
                             self.carxibTextFeild.textColor = [AppAppearance textDarkColor];
-                            [self tapYes];
+                            [self tap:yeButton];
                            
                         } else {
                             NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/join",self.activeId];
@@ -648,7 +655,7 @@
 }
 
 //点击提交
-- (IBAction)carxibButtonClick:(UIButton *)sender {
+- (void)offerSeatButton {
     
     NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/join",self.activeId];
     
@@ -692,14 +699,25 @@
 }
 
 
-- (void)tapYes {
-    self.carxibTextFeild.enabled = YES;
-    [self.carxibTextFeild becomeFirstResponder];
-}
-- (void)tapNo {
-    self.carxibTextFeild.enabled = NO;
-    [self.carxibTextFeild resignFirstResponder];
-    self.carxibTextFeild.text = nil;
+- (void)tap:(UIButton *)btn{
+    btn = self.btn;
+    if (btn == self.yesButton) {
+        self.btn = self.noButton;
+        self.yesButton.selected = YES;
+        self.noButton.selected = NO;
+        self.carxibTextFeild.enabled = YES;
+        [self.carxibTextFeild becomeFirstResponder];
+    } else {
+        self.btn = self.yesButton;
+        self.noButton.selected = YES;
+        self.yesButton.selected = NO;
+        self.carxibTextFeild.enabled = NO;
+        [self.carxibTextFeild resignFirstResponder];
+        self.carxibTextFeild.text = nil;
+    }
+    
+    
+    
 }
 
 - (void)coverClick {
