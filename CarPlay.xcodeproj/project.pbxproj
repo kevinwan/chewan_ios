@@ -176,6 +176,8 @@
 		E30BD5941B54FCC600FD9030 /* ZYNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5931B54FCC600FD9030 /* ZYNavigationBar.m */; };
 		E30BD5971B54FD6E00FD9030 /* ZYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5961B54FD6E00FD9030 /* ZYNavigationController.m */; };
 		E310BF6B1B7DE69500750BF4 /* ChatListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E310BF6A1B7DE69500750BF4 /* ChatListCell.m */; };
+		E310BF711B7DF7BB00750BF4 /* UUDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E310BF6E1B7DF7BB00750BF4 /* UUDatePicker.m */; };
+		E310BF721B7DF7BB00750BF4 /* UUDatePicker_DateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E310BF701B7DF7BB00750BF4 /* UUDatePicker_DateModel.m */; };
 		E328F0671B621DA700A20DCE /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = E328F0661B621DA700A20DCE /* city.plist */; };
 		E328F0691B621E1C00A20DCE /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = E328F0681B621E1C00A20DCE /* area.plist */; };
 		E3292A281B6A50700023677F /* CPSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3292A261B6A50700023677F /* CPSelectView.m */; };
@@ -671,6 +673,10 @@
 		E30BD5961B54FD6E00FD9030 /* ZYNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYNavigationController.m; sourceTree = "<group>"; };
 		E310BF691B7DE69500750BF4 /* ChatListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListCell.h; sourceTree = "<group>"; };
 		E310BF6A1B7DE69500750BF4 /* ChatListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListCell.m; sourceTree = "<group>"; };
+		E310BF6D1B7DF7BB00750BF4 /* UUDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUDatePicker.h; sourceTree = "<group>"; };
+		E310BF6E1B7DF7BB00750BF4 /* UUDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUDatePicker.m; sourceTree = "<group>"; };
+		E310BF6F1B7DF7BB00750BF4 /* UUDatePicker_DateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUDatePicker_DateModel.h; sourceTree = "<group>"; };
+		E310BF701B7DF7BB00750BF4 /* UUDatePicker_DateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUDatePicker_DateModel.m; sourceTree = "<group>"; };
 		E328F0661B621DA700A20DCE /* city.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
 		E328F0681B621E1C00A20DCE /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		E3292A251B6A50700023677F /* CPSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSelectView.h; sourceTree = "<group>"; };
@@ -1102,6 +1108,7 @@
 		6B4EF1401B4036EE00292BD4 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				E310BF6C1B7DF7BB00750BF4 /* UUDatePicker_Block */,
 				E3DAC8FE1B789AA3008B3BA3 /* WMCoustomDatepicker */,
 				E3E104A41B675C910049CA4A /* RegexKitLite */,
 				E3CE353B1B59E7FC008434B5 /* XLForm */,
@@ -1847,6 +1854,17 @@
 				E310BF6A1B7DE69500750BF4 /* ChatListCell.m */,
 			);
 			path = ChatListCell;
+			sourceTree = "<group>";
+		};
+		E310BF6C1B7DF7BB00750BF4 /* UUDatePicker_Block */ = {
+			isa = PBXGroup;
+			children = (
+				E310BF6D1B7DF7BB00750BF4 /* UUDatePicker.h */,
+				E310BF6E1B7DF7BB00750BF4 /* UUDatePicker.m */,
+				E310BF6F1B7DF7BB00750BF4 /* UUDatePicker_DateModel.h */,
+				E310BF701B7DF7BB00750BF4 /* UUDatePicker_DateModel.m */,
+			);
+			path = UUDatePicker_Block;
 			sourceTree = "<group>";
 		};
 		E35B045C1B565532002C6655 /* MJPhotoBrowser */ = {
@@ -2713,6 +2731,7 @@
 				E35B04281B5645BC002C6655 /* HMStatusPhotoView.m in Sources */,
 				E3CE35921B59E7FC008434B5 /* XLFormDateCell.m in Sources */,
 				6B5F9B6E1B5D29FE00F9D1E8 /* CPHomeMember.m in Sources */,
+				E310BF721B7DF7BB00750BF4 /* UUDatePicker_DateModel.m in Sources */,
 				6B9CFD741B71D93E00EF167D /* CPAbout.m in Sources */,
 				6BC8A3EB1B6A4DB700B199F2 /* CPTaPublishStatus.m in Sources */,
 				E3E315041B5E551A00FB0B55 /* CPActivityApplyModel.m in Sources */,
@@ -2746,6 +2765,7 @@
 				A575821A1B6789E500A5E681 /* UITextField+SMFoundation.m in Sources */,
 				E3CE35371B59E1B0008434B5 /* CPCreatActivityController.m in Sources */,
 				E3CE35AC1B59E7FC008434B5 /* XLFormRowNavigationAccessoryView.m in Sources */,
+				E310BF711B7DF7BB00750BF4 /* UUDatePicker.m in Sources */,
 				6B4EF15D1B4036EE00292BD4 /* CPTabBarController.m in Sources */,
 				6BCB87621B79A0FF0012D035 /* CPNoNet.m in Sources */,
 				E3CE35971B59E7FC008434B5 /* XLFormSegmentedCell.m in Sources */,
