@@ -165,8 +165,6 @@
 		A575821A1B6789E500A5E681 /* UITextField+SMFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = A57581FF1B6789E500A5E681 /* UITextField+SMFoundation.m */; };
 		A575821C1B6789E500A5E681 /* UIView+SMFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = A57582031B6789E500A5E681 /* UIView+SMFoundation.m */; };
 		A575821D1B6789E500A5E681 /* UIView+Dealer.m in Sources */ = {isa = PBXBuildFile; fileRef = A57582051B6789E500A5E681 /* UIView+Dealer.m */; };
-		A59705911B78CB9D0025B9DB /* CPActiveOfferCar.m in Sources */ = {isa = PBXBuildFile; fileRef = A597058F1B78CB9D0025B9DB /* CPActiveOfferCar.m */; };
-		A59705921B78CB9D0025B9DB /* CPActiveOfferCar.xib in Resources */ = {isa = PBXBuildFile; fileRef = A59705901B78CB9D0025B9DB /* CPActiveOfferCar.xib */; };
 		A59705961B7A01D10025B9DB /* CPCityOfferCar.m in Sources */ = {isa = PBXBuildFile; fileRef = A59705941B7A01D10025B9DB /* CPCityOfferCar.m */; };
 		A59705971B7A01D10025B9DB /* CPCityOfferCar.xib in Resources */ = {isa = PBXBuildFile; fileRef = A59705951B7A01D10025B9DB /* CPCityOfferCar.xib */; };
 		A5F515791B71E53100690802 /* NSString+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F515781B71E53100690802 /* NSString+Size.m */; };
@@ -653,9 +651,6 @@
 		A57582031B6789E500A5E681 /* UIView+SMFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SMFoundation.m"; sourceTree = "<group>"; };
 		A57582041B6789E500A5E681 /* UIView+Dealer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Dealer.h"; sourceTree = "<group>"; };
 		A57582051B6789E500A5E681 /* UIView+Dealer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Dealer.m"; sourceTree = "<group>"; };
-		A597058E1B78CB9D0025B9DB /* CPActiveOfferCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActiveOfferCar.h; sourceTree = "<group>"; };
-		A597058F1B78CB9D0025B9DB /* CPActiveOfferCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActiveOfferCar.m; sourceTree = "<group>"; };
-		A59705901B78CB9D0025B9DB /* CPActiveOfferCar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPActiveOfferCar.xib; sourceTree = "<group>"; };
 		A59705931B7A01D10025B9DB /* CPCityOfferCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCityOfferCar.h; sourceTree = "<group>"; };
 		A59705941B7A01D10025B9DB /* CPCityOfferCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCityOfferCar.m; sourceTree = "<group>"; };
 		A59705951B7A01D10025B9DB /* CPCityOfferCar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPCityOfferCar.xib; sourceTree = "<group>"; };
@@ -1547,9 +1542,6 @@
 				6BCF65F01B6208C700358190 /* CPActiveDetailsController.h */,
 				6BCF65F11B6208C700358190 /* CPActiveDetailsController.m */,
 				6BCF65F21B6208C700358190 /* CPActiveDetailsController.storyboard */,
-				A597058E1B78CB9D0025B9DB /* CPActiveOfferCar.h */,
-				A597058F1B78CB9D0025B9DB /* CPActiveOfferCar.m */,
-				A59705901B78CB9D0025B9DB /* CPActiveOfferCar.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2575,7 +2567,6 @@
 				6B9CFD761B71D95200EF167D /* CPAbout.storyboard in Resources */,
 				E372D8351B6216C100B4FC5C /* CPBrandModelViewController.xib in Resources */,
 				E372D8461B6216C100B4FC5C /* serviceTermsViewController.xib in Resources */,
-				A59705921B78CB9D0025B9DB /* CPActiveOfferCar.xib in Resources */,
 				E35B046D1B565532002C6655 /* MJPhotoBrowser.bundle in Resources */,
 				6BB09AA81B68B02900E0D77D /* CPPhotoalbumManagement.xib in Resources */,
 				6BB09A8A1B6669F800E0D77D /* CPSettingTableViewController.xib in Resources */,
@@ -2723,7 +2714,6 @@
 				A57581CE1B6789D500A5E681 /* offerCar.m in Sources */,
 				E3E4FBEA1B744F7A00E6E5F1 /* ZYTableViewCell.m in Sources */,
 				E3E1DBFD1B5C8CFB00386B18 /* ZYPickView.m in Sources */,
-				A59705911B78CB9D0025B9DB /* CPActiveOfferCar.m in Sources */,
 				E3D879421B575EC200228356 /* CPTopViewButton.m in Sources */,
 				6B512FAA1B7C504400258CA0 /* EMCDDeviceManagerBase.m in Sources */,
 				6B9CFD5D1B6CAD8200EF167D /* CPHowToPlayViewController.m in Sources */,
