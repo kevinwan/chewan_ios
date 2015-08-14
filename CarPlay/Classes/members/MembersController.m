@@ -52,10 +52,21 @@
     [super viewDidLoad];
     self.navigationItem.title = @"参与成员";
     [self setupFontAndColor];
-    [self loadMessage];
+    [self setUpRefresh];
+    [self.memberTableView.header beginRefreshing];
     self.memberTableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
 }
-
+- (void)setUpRefresh {
+    __weak typeof(self) weakSelf = self;
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakSelf loadMessage];
+    }];
+    self.memberTableView.header = header;
+    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMessage)];
+    [footer setTitle:@"" forState: MJRefreshStateIdle];
+    self.memberTableView.footer = footer;
+    
+}
 - (void) setupFontAndColor {
     
     self.seatLabel.font = [AppAppearance textLargeFont];
@@ -100,7 +111,9 @@
             NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"共%@个座位,还剩下%@个座位",responseObject[@"data"][@"totalSeat"],responseObject[@"data"][@"availableSeat"]]];
             [str addAttribute:NSForegroundColorAttributeName value:[AppAppearance redColor] range:NSMakeRange(str.length -4, 2)];
             self.seatLabel.attributedText = str;
+            [self.membersArray removeAllObjects];
             [self.membersArray addObjectsFromArray:memberModel];
+            [self.carsArray removeAllObjects];
             [self.carsArray addObjectsFromArray:carModel];
             [self.memberTableView reloadData];
             //判断下是否是成员
@@ -120,12 +133,15 @@
                 self.outButton.hidden = YES;
                 self.addButton.hidden = NO;
             }
-            
+            [self.memberTableView.header endRefreshing];
+            [self.memberTableView.footer endRefreshing];
         } else {
             [self.view alertError:responseObject];
         }
             } failure:^(NSError *error) {
                 [self.view alertError:error];
+                [self.memberTableView.header endRefreshing];
+                [self.memberTableView.footer endRefreshing];
     }];
     
     
