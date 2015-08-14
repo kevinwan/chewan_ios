@@ -46,7 +46,7 @@
     
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
     self.tableView.footer = [CPRefreshFooter footerWithRefreshingBlock:^{
-        weakSelf.ignore = self.datas.count;
+        weakSelf.ignore = weakSelf.datas.count;
         [weakSelf loadDataWithParam:weakSelf.ignore];
     }];
     
@@ -60,7 +60,8 @@
     [super viewWillAppear:animated];
     
     [CPNotificationCenter addObserver:self selector:@selector(userIconClick:) name:CPClickUserIconNotification object:nil];
-    [CPNotificationCenter addObserver:self selector:@selector(chatButtonClick:) name:ChatButtonClickNotifyCation object:nil];
+    [CPNotificationCenter addObserver:self selector:@selector(toPlayButtonClick:) name:ChatButtonClickNotifyCation object:nil];
+   [CPNotificationCenter addObserver:self selector:@selector(joinPersonButtonClick:) name:JoinPersonClickNotifyCation object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -140,8 +141,9 @@
 {
     CPMySubscribeCell *cell = [CPMySubscribeCell cellWithTableView:tableView];
     
-    cell.frameModel = self.datas[indexPath.row];
-    
+    CPMySubscribeFrameModel *frameModel = self.datas[indexPath.row];
+    frameModel.model.row = indexPath.row;
+    cell.frameModel = frameModel;
     return cell;
     
 }
@@ -173,11 +175,57 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)chatButtonClick:(NSNotification *)notify
+/**
+ *  点击了我要去玩按钮
+ *
+ *  @param notify notify description
+ */
+- (void)toPlayButtonClick:(NSNotification *)notify
 {
-    CPMySubscribeModel *model = notify.userInfo[ChatButtonClickInfo];
+    NSUInteger row = [notify.userInfo[ChatButtonClickInfo] intValue];
     
+#warning 如果需要修改按钮状态需要使用下面两句话
+    
+    // 1. 当前的indexPath,刷新表格时使用
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+    
+    // 2. 对按钮状态进行刷新
+//    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    CPMySubscribeFrameModel *frameModel = self.datas[row];
+    
+    // 当前行对应的model
+    CPMySubscribeModel *model = frameModel.model;
+    
+    //根据isOrganizer判断进入那个界面
+    if (model.isOrganizer == 1) {
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MembersManage" bundle:nil];
+        
+        MembersManageController * vc = sb.instantiateInitialViewController;
+        vc.activityId = model.activityId;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    } else if (model.isMember == 1){
+        
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Members" bundle:nil];
+        MembersController * vc = sb.instantiateInitialViewController;
+        vc.activityId = model.activityId;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (model.isMember == 2){ // 申请中
+        
+    }
     
 }
+
+/**
+ *  点击了参与人数的按钮
+ *
+ *  @param notify
+ */
+- (void)joinPersonButtonClick:(NSNotification *)notify
+{
+    CPMySubscribeModel *model = notify.userInfo[ChatButtonClickInfo];
+
+}
+
 
 @end

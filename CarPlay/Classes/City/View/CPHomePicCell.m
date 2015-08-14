@@ -22,6 +22,10 @@
     return @"homePicCell";
 }
 
+- (void)awakeFromNib{
+    self.pictureView.contentMode = UIViewContentModeScaleAspectFill;
+}
+
 - (void)setHomePhoto:(CPHomePhoto *)homePhoto{
     
     _homePhoto = homePhoto;

@@ -46,7 +46,7 @@
     
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
     self.tableView.footer = [CPRefreshFooter footerWithRefreshingBlock:^{
-        weakSelf.ignore = self.frameModels.count;
+        weakSelf.ignore = weakSelf.frameModels.count;
         [weakSelf loadDataWithParams:weakSelf.ignore];
     }];
     
@@ -62,7 +62,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+    self.ignore = 0;
     [self reRefreshData];
 }
 

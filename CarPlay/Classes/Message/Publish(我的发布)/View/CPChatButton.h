@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface CPChatButton : UIButton
+- (void)showApplying;
+- (void)showManageMember;
 
+- (void)showHasJoin;
+- (void)showToPlay;
 @end

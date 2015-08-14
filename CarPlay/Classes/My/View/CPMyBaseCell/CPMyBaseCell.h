@@ -12,5 +12,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *icon;
 @property (weak, nonatomic) IBOutlet UILabel *titleLable;
 @property (weak, nonatomic) IBOutlet UILabel *valueLable;
+@property (weak, nonatomic) IBOutlet UIImageView *carBrandLogoImg;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *valueLableW;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *valueLableRight;
+@property (weak, nonatomic) IBOutlet UIImageView *arrow;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *carBrandLogoImgRight;
 
 @end

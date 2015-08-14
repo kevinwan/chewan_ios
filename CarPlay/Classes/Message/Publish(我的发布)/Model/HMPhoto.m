@@ -9,10 +9,16 @@
 #import "HMPhoto.h"
 
 @implementation HMPhoto
+
 - (void)setThumbnail_pic:(NSString *)thumbnail_pic
 {
     _thumbnail_pic = [thumbnail_pic copy];
-    
-    self.bmiddle_pic = [thumbnail_pic stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
 }
+
+- (void)setOriginal_pic:(NSString *)original_pic
+{
+    _original_pic = [original_pic copy];
+    _bmiddle_pic = original_pic;
+}
+
 @end

@@ -12,6 +12,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *arrowImgView;
 @property (weak, nonatomic) IBOutlet UILabel *cellTitle;
 @property (weak, nonatomic) IBOutlet UILabel *cellContent;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cellContentRight;
 
 
 @end
