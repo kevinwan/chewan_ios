@@ -29,22 +29,19 @@
 @property (weak, nonatomic) IBOutlet UIButton *getButton;
 @property (weak, nonatomic) IBOutlet UIButton *outButton;
 
-@property (nonatomic, strong) NSMutableArray *pickerArray;
-
-
-//遮盖
-@property (nonatomic, strong) UIButton *cover;
-@property (nonatomic, strong) UIView *carView;
-
 @property (nonatomic, strong) NSMutableArray *membersArray;
 @property (nonatomic, strong) NSMutableArray *carsArray;
 @property (nonatomic, assign) BOOL member;
 @property (nonatomic, copy) NSString *userId;
 @property (nonatomic, copy) NSString *token;
+//遮盖
+@property (nonatomic, strong) UIButton *cover;
+@property (nonatomic, strong) UIView *carView;
 @property (nonatomic, strong) UITextField *carxibTextFeild;
 @property (nonatomic, strong) UIButton *yesButton;
 @property (nonatomic, strong) UIButton *noButton;
 @property (nonatomic, strong) UIButton *btn;
+@property (nonatomic, strong) NSMutableArray *pickerArray;
 @end
 
 @implementation MembersController
@@ -346,9 +343,7 @@
 #pragma mark - 我也要加入
 //点击加入按钮
 - (IBAction)addButtonClick:(UIButton *)sender {
-  
-
-    NSString *urlStr = [NSString stringWithFormat:@"v1/user/%@/seats?token=%@",self.userId,self.token];
+   NSString *urlStr = [NSString stringWithFormat:@"v1/user/%@/seats?token=%@&activityId=%@",self.userId,self.token,self.activityId];
     //主车提供后台返回的车 非车主最多提供两辆车
     [ZYNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
         if ([responseObject operationSuccess]) {
@@ -442,18 +437,18 @@
 - (void)tap:(UIButton *)btn{
     btn = self.btn;
     if (btn == self.yesButton) {
-        self.btn = self.noButton;
         self.yesButton.selected = YES;
         self.noButton.selected = NO;
         self.carxibTextFeild.enabled = YES;
         [self.carxibTextFeild becomeFirstResponder];
+        self.btn = self.noButton;
     } else {
-        self.btn = self.yesButton;
         self.noButton.selected = YES;
         self.yesButton.selected = NO;
         self.carxibTextFeild.enabled = NO;
         [self.carxibTextFeild resignFirstResponder];
         self.carxibTextFeild.text = nil;
+        self.btn = self.yesButton;
     }
     
     

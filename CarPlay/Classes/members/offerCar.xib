@@ -89,9 +89,9 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" clipsSubviews="YES" tag="4000" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Amh-Jh-XEK">
-                            <rect key="frame" x="251" y="0.0" width="5" height="47"/>
+                            <rect key="frame" x="246" y="0.0" width="10" height="47"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="5" id="fys-1t-x9m"/>
+                                <constraint firstAttribute="width" constant="10" id="fys-1t-x9m"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" returnKeyType="done"/>

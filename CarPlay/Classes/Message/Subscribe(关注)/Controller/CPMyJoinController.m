@@ -204,16 +204,13 @@
         vc.activityId = model.activityId;
         [self.navigationController pushViewController:vc animated:YES];
         
-    } else if (model.isMember == 1){
+    } else  {
         
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Members" bundle:nil];
         MembersController * vc = sb.instantiateInitialViewController;
         vc.activityId = model.activityId;
         [self.navigationController pushViewController:vc animated:YES];
-    }else if (model.isMember == 2){ // 申请中
-        
     }
-    
 }
 
 /**
@@ -223,7 +220,30 @@
  */
 - (void)joinPersonButtonClick:(NSNotification *)notify
 {
-    CPMySubscribeModel *model = notify.userInfo[ChatButtonClickInfo];
+    NSUInteger row = [notify.userInfo[JoinPersonClickInfo
+                                      
+                                      ] intValue];
+    
+    CPMySubscribeFrameModel *frameModel = self.datas[row];
+    
+    // 当前行对应的model
+    CPMySubscribeModel *model = frameModel.model;
+    if (model.isOrganizer == 1) {
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MembersManage" bundle:nil];
+        
+        MembersManageController * vc = sb.instantiateInitialViewController;
+        vc.activityId = model.activityId;
+        
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    } else {
+        
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Members" bundle:nil];
+        MembersController * vc = sb.instantiateInitialViewController;
+        vc.activityId = model.activityId;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+
 
 }
 

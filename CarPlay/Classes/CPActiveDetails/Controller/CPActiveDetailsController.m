@@ -591,7 +591,6 @@
                             self.carxibTextFeild.font = [AppAppearance textMediumFont];
                             self.carxibTextFeild.textColor = [AppAppearance textDarkColor];
                             [self tap:yeButton];
-                           
                         } else {
                             NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/join",self.activeId];
                             [CPNetWorkTool postJsonWithUrl:urlStr params:nil success:^(id responseObject) {
