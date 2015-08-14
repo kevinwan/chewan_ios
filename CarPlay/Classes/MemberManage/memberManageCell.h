@@ -11,4 +11,5 @@
 @interface memberManageCell : UITableViewCell
 @property (nonatomic, strong) members *models;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
+@property (weak, nonatomic) IBOutlet UIImageView *memberIconImageView;
 @end
