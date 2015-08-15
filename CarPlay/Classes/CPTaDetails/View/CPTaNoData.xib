@@ -26,7 +26,7 @@
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cIi-mU-kc2">
                     <rect key="frame" x="80" y="190" width="160" height="40"/>
-                    <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.28235294117647058" green="0.81960784313725488" blue="0.83529411764705885" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="dwF-ub-R8F"/>
                         <constraint firstAttribute="width" constant="160" id="mDg-Lh-eDt"/>
@@ -36,6 +36,9 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="publishActive" destination="mh4-eb-zRh" eventType="touchUpInside" id="3cv-rt-ueE"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -50,6 +53,7 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="showButton" destination="cIi-mU-kc2" id="7ks-p8-sig"/>
                 <outlet property="showPic" destination="gOx-Ad-ecE" id="z2f-AR-5i5"/>
                 <outlet property="showTitle" destination="rFF-hU-pgw" id="acA-g4-z3j"/>
             </connections>

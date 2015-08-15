@@ -14,6 +14,8 @@
 
 @property (nonatomic,copy) NSString *titleName;
 
+@property (nonatomic,assign) BOOL isShowBtn;
+
 + (CPTaNoData *)footerView;
 
 @end

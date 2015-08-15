@@ -186,12 +186,15 @@
             if ([selectStr isEqualToString:@"post"]) {
                 noData.pictureName = @"暂无发布";
                 noData.titleName = @"他还没有发布活动噢~";
+                noData.isShowBtn = NO;
             }else if([selectStr isEqualToString:@"subscribe"]){
                 noData.pictureName = @"暂无关注";
                 noData.titleName = @"他还没有收藏活动噢~";
+                noData.isShowBtn = YES;
             }else{
                 noData.pictureName = @"暂无参与";
                 noData.titleName = @"他还没有参与活动噢~";
+                noData.isShowBtn = NO;
             }
             self.tableView.tableFooterView = noData;
         }else{
