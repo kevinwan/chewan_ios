@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CPHomeUser.h"
 
 @interface CPTaPublishStatus : NSObject
 
@@ -34,6 +35,42 @@
 
 // 发布日期
 @property (nonatomic,copy) NSString *publishDate;
+
+
+
+/** 活动创建时间 */
+@property (nonatomic, assign) long long publishTime;
+@property (nonatomic,copy) NSString *publishTimeStr;
+
+
+/** 活动时间 */
+@property (nonatomic, assign) long long start;
+@property (nonatomic,copy) NSString *startStr;
+
+
+
+/** 总座位数 */
+@property (nonatomic, copy) NSString *totalSeat;
+
+/** 可用座位数 */
+@property (nonatomic, copy) NSString *holdingSeat;
+
+
+/** 活动类型 */
+@property (nonatomic, copy) NSString *type;
+
+
+/** 是否为活动创建者 */
+@property (nonatomic,assign) NSInteger isOrganizer;
+
+/** 是否为活动成员 */
+@property (nonatomic,assign) NSInteger isMember;
+
+
+/** 活动作者的用户信息字段 */
+@property (nonatomic, strong) CPHomeUser *organizer;
+
+
 
 
 @end
