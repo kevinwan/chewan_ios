@@ -77,11 +77,11 @@
                             NSString *fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"userId"]];
                             [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
                             [hud hide:YES];
-                            NSLog(@"登陆成功");
                             [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
                             [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
                         }else{
                             [self showError:error.description];
+                            [hud hide:YES];
                         }
                     }
                 }else{

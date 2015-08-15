@@ -55,6 +55,9 @@
     if (organizer && organizer.headImgUrl) {
         NSURL *url=[[NSURL alloc]initWithString:organizer.headImgUrl];
         [self.userIconBtn sd_setImageWithURL:url forState:UIControlStateNormal];
+    }else{
+        organizer = [[CPOrganizer alloc]init];
+        organizer.gender=@"男";
     }
     [self.tableView reloadData];
 }
@@ -305,12 +308,7 @@
     file.filename=@"avatar.jpg";
     file.mimeType=@"image/jpeg";
     NSArray *files=[[NSArray alloc]initWithObjects:file, nil];
-    MBProgressHUD *hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.color = [UIColor clearColor];
-    hud.labelText=@"加载中…";
-    hud.dimBackground=YES;
     [ZYNetWorkTool postFileWithUrl:@"v1/avatar/upload" params:nil files:files success:^(id responseObject){
-                [hud hide:YES];
                 NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
                 NSString *state=[numberFormatter stringFromNumber:[responseObject objectForKey:@"result"]];
                 if ([state isEqualToString:@"0"]) {
@@ -331,7 +329,6 @@
                     [[[UIAlertView alloc]initWithTitle:@"提示" message:@"上传失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                 }
     }failure:^(NSError *erro){
-        [hud hide:YES];
         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
     }];
 }
