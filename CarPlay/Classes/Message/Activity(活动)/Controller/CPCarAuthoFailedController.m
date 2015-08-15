@@ -7,6 +7,7 @@
 //  认证失败的页面
 
 #import "CPCarAuthoFailedController.h"
+#import "CarOwnersCertificationViewController.h"
 
 @interface CPCarAuthoFailedController ()
 
@@ -84,7 +85,10 @@
  */
 - (void)buttonClick
 {
-    
+    CarOwnersCertificationViewController *CarOwnersCertificationVC=[[CarOwnersCertificationViewController alloc]init];
+    CarOwnersCertificationVC.fromMy=@"0";
+    CarOwnersCertificationVC.title=@"车主认证";
+    [self.navigationController pushViewController:CarOwnersCertificationVC animated:YES];
 }
 
 @end

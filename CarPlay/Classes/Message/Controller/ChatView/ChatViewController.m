@@ -15,7 +15,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
-#import "SRRefreshView.h"
+//#import "SRRefreshView.h"
 #import "DXChatBarMoreView.h"
 #import "DXRecordView.h"
 #import "DXFaceView.h"
@@ -25,20 +25,20 @@
 #import "MessageReadManager.h"
 #import "MessageModelManager.h"
 #import "LocationViewController.h"
-#import "ChatGroupDetailViewController.h"
+//#import "ChatGroupDetailViewController.h"
 #import "UIViewController+HUD.h"
 #import "NSDate+Category.h"
 #import "DXMessageToolBar.h"
 #import "DXChatBarMoreView.h"
 #import "ChatViewController+Category.h"
-#import "ChatroomDetailViewController.h"
+//#import "ChatroomDetailViewController.h"
 #import "EMCDDeviceManager.h"
 #import "EMCDDeviceManagerDelegate.h"
 #import "RobotManager.h"
 #define KPageCount 20
 #define KHintAdjustY    50
 
-@interface ChatViewController ()<UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, SRRefreshDelegate, IChatManagerDelegate, DXChatBarMoreViewDelegate, DXMessageToolBarDelegate, LocationViewDelegate, EMCDDeviceManagerDelegate,EMCallManagerDelegate>
+@interface ChatViewController ()<UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, IChatManagerDelegate, DXChatBarMoreViewDelegate, DXMessageToolBarDelegate, LocationViewDelegate, EMCDDeviceManagerDelegate,EMCallManagerDelegate>
 {
     UIMenuController *_menuController;
     UIMenuItem *_copyMenuItem;
@@ -58,7 +58,6 @@
 @property (nonatomic) EMConversationType conversationType;
 
 @property (strong, nonatomic) NSMutableArray *dataSource;//tableView数据源
-@property (strong, nonatomic) SRRefreshView *slimeView;
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) DXMessageToolBar *chatToolBar;
 
@@ -185,7 +184,6 @@
     
     [self setupBarButtonItem];
     [self.view addSubview:self.tableView];
-    [self.tableView addSubview:self.slimeView];
     [self.view addSubview:self.chatToolBar];
     
     //将self注册为chatToolBar的moreView的代理
@@ -281,9 +279,6 @@
     _tableView.delegate = nil;
     _tableView.dataSource = nil;
     _tableView = nil;
-    
-    _slimeView.delegate = nil;
-    _slimeView = nil;
     
     _chatToolBar.delegate = nil;
     _chatToolBar = nil;
@@ -397,23 +392,6 @@
     }
     
     return _dataSource;
-}
-
-- (SRRefreshView *)slimeView
-{
-    if (_slimeView == nil) {
-        _slimeView = [[SRRefreshView alloc] init];
-        _slimeView.delegate = self;
-        _slimeView.upInset = 0;
-        _slimeView.slimeMissWhenGoingBack = YES;
-        _slimeView.slime.bodyColor = [UIColor grayColor];
-        _slimeView.slime.skinColor = [UIColor grayColor];
-        _slimeView.slime.lineWith = 1;
-        _slimeView.slime.shadowBlur = 4;
-        _slimeView.slime.shadowColor = [UIColor grayColor];
-    }
-    
-    return _slimeView;
 }
 
 - (UITableView *)tableView
@@ -542,32 +520,32 @@
 
 #pragma mark - scrollView delegate
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    if (_slimeView) {
-        [_slimeView scrollViewDidScroll];
-    }
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    if (_slimeView) {
-        [_slimeView scrollViewDidEndDraging];
-    }
-}
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//    if (_slimeView) {
+//        [_slimeView scrollViewDidScroll];
+//    }
+//}
+//
+//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+//{
+//    if (_slimeView) {
+//        [_slimeView scrollViewDidEndDraging];
+//    }
+//}
 
 #pragma mark - slimeRefresh delegate
 //加载更多
-- (void)slimeRefreshStartRefresh:(SRRefreshView *)refreshView
-{
-    _chatTagDate = nil;
-    EMMessage *firstMessage = [self.messages firstObject];
-    if (firstMessage)
-    {
-        [self loadMoreMessagesFrom:firstMessage.timestamp count:KPageCount append:YES];
-    }
-    [_slimeView endRefresh];
-}
+//- (void)slimeRefreshStartRefresh:(SRRefreshView *)refreshView
+//{
+//    _chatTagDate = nil;
+//    EMMessage *firstMessage = [self.messages firstObject];
+//    if (firstMessage)
+//    {
+//        [self loadMoreMessagesFrom:firstMessage.timestamp count:KPageCount append:YES];
+//    }
+//    [_slimeView endRefresh];
+//}
 
 #pragma mark - GestureRecognizer
 
@@ -1530,52 +1508,52 @@
 
 - (void)showRoomContact:(id)sender
 {
-    [self.view endEditing:YES];
-    if (self.conversationType == eConversationTypeGroupChat) {
-        ChatGroupDetailViewController *detailController = [[ChatGroupDetailViewController alloc] initWithGroupId:_chatter];
-        [self.navigationController pushViewController:detailController animated:YES];
-    }
-    else if (self.conversationType == eConversationTypeChatRoom)
-    {
-        ChatroomDetailViewController *detailController = [[ChatroomDetailViewController alloc] initWithChatroomId:_chatter];
-        [self.navigationController pushViewController:detailController animated:YES];
-    }
+//    [self.view endEditing:YES];
+//    if (self.conversationType == eConversationTypeGroupChat) {
+//        ChatGroupDetailViewController *detailController = [[ChatGroupDetailViewController alloc] initWithGroupId:_chatter];
+//        [self.navigationController pushViewController:detailController animated:YES];
+//    }
+//    else if (self.conversationType == eConversationTypeChatRoom)
+//    {
+//        ChatroomDetailViewController *detailController = [[ChatroomDetailViewController alloc] initWithChatroomId:_chatter];
+//        [self.navigationController pushViewController:detailController animated:YES];
+//    }
 }
 
 - (void)removeAllMessages:(id)sender
 {
-    if (_dataSource.count == 0) {
-        [self showHint:NSLocalizedString(@"message.noMessage", @"no messages")];
-        return;
-    }
-    
-    if ([sender isKindOfClass:[NSNotification class]]) {
-        NSString *groupId = (NSString *)[(NSNotification *)sender object];
-        if (self.isChatGroup && [groupId isEqualToString:_conversation.chatter]) {
-            [_conversation removeAllMessages];
-            [_messages removeAllObjects];
-            _chatTagDate = nil;
-            [_dataSource removeAllObjects];
-            [_tableView reloadData];
-            [self showHint:NSLocalizedString(@"message.noMessage", @"no messages")];
-        }
-    }
-    else{
-        __weak typeof(self) weakSelf = self;
-        
-        [EMAlertView showAlertWithTitle:NSLocalizedString(@"prompt", @"Prompt")
-                                message:NSLocalizedString(@"sureToDelete", @"please make sure to delete")
-                        completionBlock:^(NSUInteger buttonIndex, EMAlertView *alertView) {
-                            if (buttonIndex == 1) {
-                                [weakSelf.conversation removeAllMessages];
-                                [weakSelf.messages removeAllObjects];
-                                weakSelf.chatTagDate = nil;
-                                [weakSelf.dataSource removeAllObjects];
-                                [weakSelf.tableView reloadData];
-                            }
-                        } cancelButtonTitle:NSLocalizedString(@"cancel", @"Cancel")
-                      otherButtonTitles:NSLocalizedString(@"ok", @"OK"), nil];
-    }
+//    if (_dataSource.count == 0) {
+//        [self showHint:NSLocalizedString(@"message.noMessage", @"no messages")];
+//        return;
+//    }
+//    
+//    if ([sender isKindOfClass:[NSNotification class]]) {
+//        NSString *groupId = (NSString *)[(NSNotification *)sender object];
+//        if (self.isChatGroup && [groupId isEqualToString:_conversation.chatter]) {
+//            [_conversation removeAllMessages];
+//            [_messages removeAllObjects];
+//            _chatTagDate = nil;
+//            [_dataSource removeAllObjects];
+//            [_tableView reloadData];
+//            [self showHint:NSLocalizedString(@"message.noMessage", @"no messages")];
+//        }
+//    }
+//    else{
+//        __weak typeof(self) weakSelf = self;
+//        
+//        [EMAlertView showAlertWithTitle:NSLocalizedString(@"prompt", @"Prompt")
+//                                message:NSLocalizedString(@"sureToDelete", @"please make sure to delete")
+//                        completionBlock:^(NSUInteger buttonIndex, EMAlertView *alertView) {
+//                            if (buttonIndex == 1) {
+//                                [weakSelf.conversation removeAllMessages];
+//                                [weakSelf.messages removeAllObjects];
+//                                weakSelf.chatTagDate = nil;
+//                                [weakSelf.dataSource removeAllObjects];
+//                                [weakSelf.tableView reloadData];
+//                            }
+//                        } cancelButtonTitle:NSLocalizedString(@"cancel", @"Cancel")
+//                      otherButtonTitles:NSLocalizedString(@"ok", @"OK"), nil];
+//    }
 }
 
 - (void)showMenuViewController:(UIView *)showInView andIndexPath:(NSIndexPath *)indexPath messageType:(MessageBodyType)messageType

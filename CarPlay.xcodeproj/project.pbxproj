@@ -44,6 +44,40 @@
 		6B6493901B4D04E100C197D2 /* CPNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B64938F1B4D04E100C197D2 /* CPNetWork.m */; };
 		6B6493941B4D04E500C197D2 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493931B4D04E500C197D2 /* Tools.m */; };
 		6B6493D91B4FABC900C197D2 /* CPNetworkVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493D81B4FABC900C197D2 /* CPNetworkVO.m */; };
+		6B97110D1B7DF5E700EA0F09 /* ChatSendHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9711081B7DF5E700EA0F09 /* ChatSendHelper.m */; };
+		6B97110E1B7DF5E700EA0F09 /* ChatViewController+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97110A1B7DF5E700EA0F09 /* ChatViewController+Category.m */; };
+		6B97110F1B7DF5E700EA0F09 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97110C1B7DF5E700EA0F09 /* ChatViewController.m */; };
+		6B9711141B7DF60400EA0F09 /* ConvertToCommonEmoticonsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9711111B7DF60400EA0F09 /* ConvertToCommonEmoticonsHelper.m */; };
+		6B9711151B7DF60400EA0F09 /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9711131B7DF60400EA0F09 /* LocationViewController.m */; };
+		6B9711401B7DF60C00EA0F09 /* DXMessageToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9711181B7DF60C00EA0F09 /* DXMessageToolBar.m */; };
+		6B9711411B7DF60C00EA0F09 /* DXFaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97111C1B7DF60C00EA0F09 /* DXFaceView.m */; };
+		6B9711421B7DF60C00EA0F09 /* FacialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97111E1B7DF60C00EA0F09 /* FacialView.m */; };
+		6B9711431B7DF60C00EA0F09 /* DXChatBarMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9711211B7DF60C00EA0F09 /* DXChatBarMoreView.m */; };
+		6B9711441B7DF60C00EA0F09 /* DXRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9711241B7DF60C00EA0F09 /* DXRecordView.m */; };
+		6B9711451B7DF60C00EA0F09 /* EMChatAudioBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9711291B7DF60C00EA0F09 /* EMChatAudioBubbleView.m */; };
+		6B9711461B7DF60C00EA0F09 /* EMChatBaseBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97112B1B7DF60C00EA0F09 /* EMChatBaseBubbleView.m */; };
+		6B9711471B7DF60C00EA0F09 /* EMChatImageBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97112D1B7DF60C00EA0F09 /* EMChatImageBubbleView.m */; };
+		6B9711481B7DF60C00EA0F09 /* EMChatLocationBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97112F1B7DF60C00EA0F09 /* EMChatLocationBubbleView.m */; };
+		6B9711491B7DF60C00EA0F09 /* EMChatTextBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9711311B7DF60C00EA0F09 /* EMChatTextBubbleView.m */; };
+		6B97114A1B7DF60C00EA0F09 /* EMChatVideoBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9711331B7DF60C00EA0F09 /* EMChatVideoBubbleView.m */; };
+		6B97114B1B7DF60C00EA0F09 /* EMChatTimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9711351B7DF60C00EA0F09 /* EMChatTimeCell.m */; };
+		6B97114C1B7DF60C00EA0F09 /* EMChatViewBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9711371B7DF60C00EA0F09 /* EMChatViewBaseCell.m */; };
+		6B97114D1B7DF60C00EA0F09 /* EMChatViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9711391B7DF60C00EA0F09 /* EMChatViewCell.m */; };
+		6B97114E1B7DF60C00EA0F09 /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97113B1B7DF60C00EA0F09 /* MessageModel.m */; };
+		6B97114F1B7DF60C00EA0F09 /* MessageModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97113D1B7DF60C00EA0F09 /* MessageModelManager.m */; };
+		6B9711501B7DF60C00EA0F09 /* MessageReadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97113F1B7DF60C00EA0F09 /* MessageReadManager.m */; };
+		6B9711561B7DF63F00EA0F09 /* InvitationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9711531B7DF63F00EA0F09 /* InvitationManager.m */; };
+		6B9711571B7DF63F00EA0F09 /* RobotManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9711551B7DF63F00EA0F09 /* RobotManager.m */; };
+		6B9711651B7DF74200EA0F09 /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97115A1B7DF74200EA0F09 /* NSDate+Category.m */; };
+		6B9711661B7DF74200EA0F09 /* NSDateFormatter+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97115C1B7DF74200EA0F09 /* NSDateFormatter+Category.m */; };
+		6B9711671B7DF74200EA0F09 /* UIResponder+Router.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97115E1B7DF74200EA0F09 /* UIResponder+Router.m */; };
+		6B9711681B7DF74200EA0F09 /* UIViewController+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9711601B7DF74200EA0F09 /* UIViewController+HUD.m */; };
+		6B9711691B7DF74200EA0F09 /* NSString+Valid.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9711621B7DF74200EA0F09 /* NSString+Valid.m */; };
+		6B97116A1B7DF74200EA0F09 /* UIViewController+DismissKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9711641B7DF74200EA0F09 /* UIViewController+DismissKeyboard.m */; };
+		6B9711701B7DF94200EA0F09 /* EMTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97116D1B7DF94200EA0F09 /* EMTextView.m */; };
+		6B9711711B7DF94200EA0F09 /* XHMessageTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97116F1B7DF94200EA0F09 /* XHMessageTextView.m */; };
+		6B9711771B7DFAA700EA0F09 /* Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9711741B7DFAA700EA0F09 /* Emoji.m */; };
+		6B9711781B7DFAA700EA0F09 /* EmojiEmoticons.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9711761B7DFAA700EA0F09 /* EmojiEmoticons.m */; };
 		6B9CFD5D1B6CAD8200EF167D /* CPHowToPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9CFD5B1B6CAD8200EF167D /* CPHowToPlayViewController.m */; };
 		6B9CFD5E1B6CAD8200EF167D /* CPHowToPlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B9CFD5C1B6CAD8200EF167D /* CPHowToPlayViewController.xib */; };
 		6B9CFD631B6CADD400EF167D /* CPHowtoPlayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9CFD611B6CADD400EF167D /* CPHowtoPlayCell.m */; };
@@ -430,6 +464,74 @@
 		6B6493931B4D04E500C197D2 /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
 		6B6493D71B4FABC900C197D2 /* CPNetworkVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNetworkVO.h; sourceTree = "<group>"; };
 		6B6493D81B4FABC900C197D2 /* CPNetworkVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNetworkVO.m; sourceTree = "<group>"; };
+		6B9711071B7DF5E700EA0F09 /* ChatSendHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatSendHelper.h; sourceTree = "<group>"; };
+		6B9711081B7DF5E700EA0F09 /* ChatSendHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatSendHelper.m; sourceTree = "<group>"; };
+		6B9711091B7DF5E700EA0F09 /* ChatViewController+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChatViewController+Category.h"; sourceTree = "<group>"; };
+		6B97110A1B7DF5E700EA0F09 /* ChatViewController+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ChatViewController+Category.m"; sourceTree = "<group>"; };
+		6B97110B1B7DF5E700EA0F09 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
+		6B97110C1B7DF5E700EA0F09 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
+		6B9711101B7DF60400EA0F09 /* ConvertToCommonEmoticonsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConvertToCommonEmoticonsHelper.h; sourceTree = "<group>"; };
+		6B9711111B7DF60400EA0F09 /* ConvertToCommonEmoticonsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConvertToCommonEmoticonsHelper.m; sourceTree = "<group>"; };
+		6B9711121B7DF60400EA0F09 /* LocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationViewController.h; sourceTree = "<group>"; };
+		6B9711131B7DF60400EA0F09 /* LocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationViewController.m; sourceTree = "<group>"; };
+		6B9711171B7DF60C00EA0F09 /* DXMessageToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXMessageToolBar.h; sourceTree = "<group>"; };
+		6B9711181B7DF60C00EA0F09 /* DXMessageToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXMessageToolBar.m; sourceTree = "<group>"; };
+		6B97111B1B7DF60C00EA0F09 /* DXFaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXFaceView.h; sourceTree = "<group>"; };
+		6B97111C1B7DF60C00EA0F09 /* DXFaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXFaceView.m; sourceTree = "<group>"; };
+		6B97111D1B7DF60C00EA0F09 /* FacialView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacialView.h; sourceTree = "<group>"; };
+		6B97111E1B7DF60C00EA0F09 /* FacialView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacialView.m; sourceTree = "<group>"; };
+		6B9711201B7DF60C00EA0F09 /* DXChatBarMoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXChatBarMoreView.h; sourceTree = "<group>"; };
+		6B9711211B7DF60C00EA0F09 /* DXChatBarMoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXChatBarMoreView.m; sourceTree = "<group>"; };
+		6B9711231B7DF60C00EA0F09 /* DXRecordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXRecordView.h; sourceTree = "<group>"; };
+		6B9711241B7DF60C00EA0F09 /* DXRecordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXRecordView.m; sourceTree = "<group>"; };
+		6B9711281B7DF60C00EA0F09 /* EMChatAudioBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMChatAudioBubbleView.h; sourceTree = "<group>"; };
+		6B9711291B7DF60C00EA0F09 /* EMChatAudioBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMChatAudioBubbleView.m; sourceTree = "<group>"; };
+		6B97112A1B7DF60C00EA0F09 /* EMChatBaseBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMChatBaseBubbleView.h; sourceTree = "<group>"; };
+		6B97112B1B7DF60C00EA0F09 /* EMChatBaseBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMChatBaseBubbleView.m; sourceTree = "<group>"; };
+		6B97112C1B7DF60C00EA0F09 /* EMChatImageBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMChatImageBubbleView.h; sourceTree = "<group>"; };
+		6B97112D1B7DF60C00EA0F09 /* EMChatImageBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMChatImageBubbleView.m; sourceTree = "<group>"; };
+		6B97112E1B7DF60C00EA0F09 /* EMChatLocationBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMChatLocationBubbleView.h; sourceTree = "<group>"; };
+		6B97112F1B7DF60C00EA0F09 /* EMChatLocationBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMChatLocationBubbleView.m; sourceTree = "<group>"; };
+		6B9711301B7DF60C00EA0F09 /* EMChatTextBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMChatTextBubbleView.h; sourceTree = "<group>"; };
+		6B9711311B7DF60C00EA0F09 /* EMChatTextBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMChatTextBubbleView.m; sourceTree = "<group>"; };
+		6B9711321B7DF60C00EA0F09 /* EMChatVideoBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMChatVideoBubbleView.h; sourceTree = "<group>"; };
+		6B9711331B7DF60C00EA0F09 /* EMChatVideoBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMChatVideoBubbleView.m; sourceTree = "<group>"; };
+		6B9711341B7DF60C00EA0F09 /* EMChatTimeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMChatTimeCell.h; sourceTree = "<group>"; };
+		6B9711351B7DF60C00EA0F09 /* EMChatTimeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMChatTimeCell.m; sourceTree = "<group>"; };
+		6B9711361B7DF60C00EA0F09 /* EMChatViewBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMChatViewBaseCell.h; sourceTree = "<group>"; };
+		6B9711371B7DF60C00EA0F09 /* EMChatViewBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMChatViewBaseCell.m; sourceTree = "<group>"; };
+		6B9711381B7DF60C00EA0F09 /* EMChatViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMChatViewCell.h; sourceTree = "<group>"; };
+		6B9711391B7DF60C00EA0F09 /* EMChatViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMChatViewCell.m; sourceTree = "<group>"; };
+		6B97113A1B7DF60C00EA0F09 /* MessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageModel.h; sourceTree = "<group>"; };
+		6B97113B1B7DF60C00EA0F09 /* MessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageModel.m; sourceTree = "<group>"; };
+		6B97113C1B7DF60C00EA0F09 /* MessageModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageModelManager.h; sourceTree = "<group>"; };
+		6B97113D1B7DF60C00EA0F09 /* MessageModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageModelManager.m; sourceTree = "<group>"; };
+		6B97113E1B7DF60C00EA0F09 /* MessageReadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageReadManager.h; sourceTree = "<group>"; };
+		6B97113F1B7DF60C00EA0F09 /* MessageReadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageReadManager.m; sourceTree = "<group>"; };
+		6B9711521B7DF63F00EA0F09 /* InvitationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvitationManager.h; sourceTree = "<group>"; };
+		6B9711531B7DF63F00EA0F09 /* InvitationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitationManager.m; sourceTree = "<group>"; };
+		6B9711541B7DF63F00EA0F09 /* RobotManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RobotManager.h; sourceTree = "<group>"; };
+		6B9711551B7DF63F00EA0F09 /* RobotManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RobotManager.m; sourceTree = "<group>"; };
+		6B9711591B7DF74200EA0F09 /* NSDate+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Category.h"; sourceTree = "<group>"; };
+		6B97115A1B7DF74200EA0F09 /* NSDate+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Category.m"; sourceTree = "<group>"; };
+		6B97115B1B7DF74200EA0F09 /* NSDateFormatter+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Category.h"; sourceTree = "<group>"; };
+		6B97115C1B7DF74200EA0F09 /* NSDateFormatter+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Category.m"; sourceTree = "<group>"; };
+		6B97115D1B7DF74200EA0F09 /* UIResponder+Router.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+Router.h"; sourceTree = "<group>"; };
+		6B97115E1B7DF74200EA0F09 /* UIResponder+Router.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+Router.m"; sourceTree = "<group>"; };
+		6B97115F1B7DF74200EA0F09 /* UIViewController+HUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+HUD.h"; sourceTree = "<group>"; };
+		6B9711601B7DF74200EA0F09 /* UIViewController+HUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+HUD.m"; sourceTree = "<group>"; };
+		6B9711611B7DF74200EA0F09 /* NSString+Valid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Valid.h"; sourceTree = "<group>"; };
+		6B9711621B7DF74200EA0F09 /* NSString+Valid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Valid.m"; sourceTree = "<group>"; };
+		6B9711631B7DF74200EA0F09 /* UIViewController+DismissKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+DismissKeyboard.h"; sourceTree = "<group>"; };
+		6B9711641B7DF74200EA0F09 /* UIViewController+DismissKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+DismissKeyboard.m"; sourceTree = "<group>"; };
+		6B97116C1B7DF94200EA0F09 /* EMTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMTextView.h; sourceTree = "<group>"; };
+		6B97116D1B7DF94200EA0F09 /* EMTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMTextView.m; sourceTree = "<group>"; };
+		6B97116E1B7DF94200EA0F09 /* XHMessageTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHMessageTextView.h; sourceTree = "<group>"; };
+		6B97116F1B7DF94200EA0F09 /* XHMessageTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHMessageTextView.m; sourceTree = "<group>"; };
+		6B9711731B7DFAA700EA0F09 /* Emoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Emoji.h; sourceTree = "<group>"; };
+		6B9711741B7DFAA700EA0F09 /* Emoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Emoji.m; sourceTree = "<group>"; };
+		6B9711751B7DFAA700EA0F09 /* EmojiEmoticons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmojiEmoticons.h; sourceTree = "<group>"; };
+		6B9711761B7DFAA700EA0F09 /* EmojiEmoticons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmojiEmoticons.m; sourceTree = "<group>"; };
 		6B9CFD5A1B6CAD8200EF167D /* CPHowToPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHowToPlayViewController.h; sourceTree = "<group>"; };
 		6B9CFD5B1B6CAD8200EF167D /* CPHowToPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHowToPlayViewController.m; sourceTree = "<group>"; };
 		6B9CFD5C1B6CAD8200EF167D /* CPHowToPlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPHowToPlayViewController.xib; sourceTree = "<group>"; };
@@ -1087,6 +1189,7 @@
 		6B4EF1381B4036EE00292BD4 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				6B9711581B7DF73600EA0F09 /* Category */,
 				6BC8A3CE1B6A4DB700B199F2 /* CPTaDetails */,
 				E372D8471B6216E800B4FC5C /* My */,
 				E372D7FC1B6216C100B4FC5C /* Login */,
@@ -1323,6 +1426,7 @@
 		6B6493911B4D04E500C197D2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				6B9711721B7DFA9E00EA0F09 /* Emoji */,
 				6B512FAB1B7C520C00258CA0 /* VoiceConvert */,
 				6B512F8F1B7C4FFE00258CA0 /* DeviceUtil */,
 				E372D8581B62176C00B4FC5C /* MJIndexView */,
@@ -1331,6 +1435,167 @@
 				6B6493931B4D04E500C197D2 /* Tools.m */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		6B9711061B7DF5E700EA0F09 /* ChatView */ = {
+			isa = PBXGroup;
+			children = (
+				6B9711071B7DF5E700EA0F09 /* ChatSendHelper.h */,
+				6B9711081B7DF5E700EA0F09 /* ChatSendHelper.m */,
+				6B9711091B7DF5E700EA0F09 /* ChatViewController+Category.h */,
+				6B97110A1B7DF5E700EA0F09 /* ChatViewController+Category.m */,
+				6B97110B1B7DF5E700EA0F09 /* ChatViewController.h */,
+				6B97110C1B7DF5E700EA0F09 /* ChatViewController.m */,
+			);
+			path = ChatView;
+			sourceTree = "<group>";
+		};
+		6B9711161B7DF60C00EA0F09 /* MessageToolbar */ = {
+			isa = PBXGroup;
+			children = (
+				6B9711171B7DF60C00EA0F09 /* DXMessageToolBar.h */,
+				6B9711181B7DF60C00EA0F09 /* DXMessageToolBar.m */,
+				6B9711191B7DF60C00EA0F09 /* MessageToolBarBottomView */,
+			);
+			path = MessageToolbar;
+			sourceTree = "<group>";
+		};
+		6B9711191B7DF60C00EA0F09 /* MessageToolBarBottomView */ = {
+			isa = PBXGroup;
+			children = (
+				6B97111A1B7DF60C00EA0F09 /* FaceView */,
+				6B97111F1B7DF60C00EA0F09 /* MoreView */,
+				6B9711221B7DF60C00EA0F09 /* RecordView */,
+			);
+			path = MessageToolBarBottomView;
+			sourceTree = "<group>";
+		};
+		6B97111A1B7DF60C00EA0F09 /* FaceView */ = {
+			isa = PBXGroup;
+			children = (
+				6B97111B1B7DF60C00EA0F09 /* DXFaceView.h */,
+				6B97111C1B7DF60C00EA0F09 /* DXFaceView.m */,
+				6B97111D1B7DF60C00EA0F09 /* FacialView.h */,
+				6B97111E1B7DF60C00EA0F09 /* FacialView.m */,
+			);
+			path = FaceView;
+			sourceTree = "<group>";
+		};
+		6B97111F1B7DF60C00EA0F09 /* MoreView */ = {
+			isa = PBXGroup;
+			children = (
+				6B9711201B7DF60C00EA0F09 /* DXChatBarMoreView.h */,
+				6B9711211B7DF60C00EA0F09 /* DXChatBarMoreView.m */,
+			);
+			path = MoreView;
+			sourceTree = "<group>";
+		};
+		6B9711221B7DF60C00EA0F09 /* RecordView */ = {
+			isa = PBXGroup;
+			children = (
+				6B9711231B7DF60C00EA0F09 /* DXRecordView.h */,
+				6B9711241B7DF60C00EA0F09 /* DXRecordView.m */,
+			);
+			path = RecordView;
+			sourceTree = "<group>";
+		};
+		6B9711251B7DF60C00EA0F09 /* MessageView */ = {
+			isa = PBXGroup;
+			children = (
+				6B9711261B7DF60C00EA0F09 /* ChatCell */,
+				6B97113A1B7DF60C00EA0F09 /* MessageModel.h */,
+				6B97113B1B7DF60C00EA0F09 /* MessageModel.m */,
+				6B97113C1B7DF60C00EA0F09 /* MessageModelManager.h */,
+				6B97113D1B7DF60C00EA0F09 /* MessageModelManager.m */,
+				6B97113E1B7DF60C00EA0F09 /* MessageReadManager.h */,
+				6B97113F1B7DF60C00EA0F09 /* MessageReadManager.m */,
+			);
+			path = MessageView;
+			sourceTree = "<group>";
+		};
+		6B9711261B7DF60C00EA0F09 /* ChatCell */ = {
+			isa = PBXGroup;
+			children = (
+				6B9711271B7DF60C00EA0F09 /* ChatCellBubble */,
+				6B9711341B7DF60C00EA0F09 /* EMChatTimeCell.h */,
+				6B9711351B7DF60C00EA0F09 /* EMChatTimeCell.m */,
+				6B9711361B7DF60C00EA0F09 /* EMChatViewBaseCell.h */,
+				6B9711371B7DF60C00EA0F09 /* EMChatViewBaseCell.m */,
+				6B9711381B7DF60C00EA0F09 /* EMChatViewCell.h */,
+				6B9711391B7DF60C00EA0F09 /* EMChatViewCell.m */,
+			);
+			path = ChatCell;
+			sourceTree = "<group>";
+		};
+		6B9711271B7DF60C00EA0F09 /* ChatCellBubble */ = {
+			isa = PBXGroup;
+			children = (
+				6B9711281B7DF60C00EA0F09 /* EMChatAudioBubbleView.h */,
+				6B9711291B7DF60C00EA0F09 /* EMChatAudioBubbleView.m */,
+				6B97112A1B7DF60C00EA0F09 /* EMChatBaseBubbleView.h */,
+				6B97112B1B7DF60C00EA0F09 /* EMChatBaseBubbleView.m */,
+				6B97112C1B7DF60C00EA0F09 /* EMChatImageBubbleView.h */,
+				6B97112D1B7DF60C00EA0F09 /* EMChatImageBubbleView.m */,
+				6B97112E1B7DF60C00EA0F09 /* EMChatLocationBubbleView.h */,
+				6B97112F1B7DF60C00EA0F09 /* EMChatLocationBubbleView.m */,
+				6B9711301B7DF60C00EA0F09 /* EMChatTextBubbleView.h */,
+				6B9711311B7DF60C00EA0F09 /* EMChatTextBubbleView.m */,
+				6B9711321B7DF60C00EA0F09 /* EMChatVideoBubbleView.h */,
+				6B9711331B7DF60C00EA0F09 /* EMChatVideoBubbleView.m */,
+			);
+			path = ChatCellBubble;
+			sourceTree = "<group>";
+		};
+		6B9711511B7DF63F00EA0F09 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				6B9711521B7DF63F00EA0F09 /* InvitationManager.h */,
+				6B9711531B7DF63F00EA0F09 /* InvitationManager.m */,
+				6B9711541B7DF63F00EA0F09 /* RobotManager.h */,
+				6B9711551B7DF63F00EA0F09 /* RobotManager.m */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		6B9711581B7DF73600EA0F09 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				6B9711591B7DF74200EA0F09 /* NSDate+Category.h */,
+				6B97115A1B7DF74200EA0F09 /* NSDate+Category.m */,
+				6B97115B1B7DF74200EA0F09 /* NSDateFormatter+Category.h */,
+				6B97115C1B7DF74200EA0F09 /* NSDateFormatter+Category.m */,
+				6B97115D1B7DF74200EA0F09 /* UIResponder+Router.h */,
+				6B97115E1B7DF74200EA0F09 /* UIResponder+Router.m */,
+				6B97115F1B7DF74200EA0F09 /* UIViewController+HUD.h */,
+				6B9711601B7DF74200EA0F09 /* UIViewController+HUD.m */,
+				6B9711611B7DF74200EA0F09 /* NSString+Valid.h */,
+				6B9711621B7DF74200EA0F09 /* NSString+Valid.m */,
+				6B9711631B7DF74200EA0F09 /* UIViewController+DismissKeyboard.h */,
+				6B9711641B7DF74200EA0F09 /* UIViewController+DismissKeyboard.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		6B97116B1B7DF94200EA0F09 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				6B97116C1B7DF94200EA0F09 /* EMTextView.h */,
+				6B97116D1B7DF94200EA0F09 /* EMTextView.m */,
+				6B97116E1B7DF94200EA0F09 /* XHMessageTextView.h */,
+				6B97116F1B7DF94200EA0F09 /* XHMessageTextView.m */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		6B9711721B7DFA9E00EA0F09 /* Emoji */ = {
+			isa = PBXGroup;
+			children = (
+				6B9711731B7DFAA700EA0F09 /* Emoji.h */,
+				6B9711741B7DFAA700EA0F09 /* Emoji.m */,
+				6B9711751B7DFAA700EA0F09 /* EmojiEmoticons.h */,
+				6B9711761B7DFAA700EA0F09 /* EmojiEmoticons.m */,
+			);
+			path = Emoji;
 			sourceTree = "<group>";
 		};
 		6B9CFD591B6CAD8200EF167D /* CPHowToPlay(如何玩转玩车) */ = {
@@ -2402,6 +2667,8 @@
 		E3EEDFE51B53951D00595333 /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				6B97116B1B7DF94200EA0F09 /* Custom */,
+				6B9711511B7DF63F00EA0F09 /* Core Data */,
 				E30BD5911B54FC9400FD9030 /* ZYCustomView */,
 				E35E6FC11B54AF96001212D6 /* Publish(我的发布) */,
 				E36C96101B53BA3200D3EDBB /* Activity(活动) */,
@@ -2416,6 +2683,13 @@
 		E3EEDFE61B53951D00595333 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6B9711161B7DF60C00EA0F09 /* MessageToolbar */,
+				6B9711251B7DF60C00EA0F09 /* MessageView */,
+				6B9711101B7DF60400EA0F09 /* ConvertToCommonEmoticonsHelper.h */,
+				6B9711111B7DF60400EA0F09 /* ConvertToCommonEmoticonsHelper.m */,
+				6B9711121B7DF60400EA0F09 /* LocationViewController.h */,
+				6B9711131B7DF60400EA0F09 /* LocationViewController.m */,
+				6B9711061B7DF5E700EA0F09 /* ChatView */,
 				E310BF681B7DE69500750BF4 /* ChatListCell */,
 				E3EEDFE71B53951D00595333 /* CPMessageController.h */,
 				E3EEDFE81B53951D00595333 /* CPMessageController.m */,
@@ -2695,12 +2969,17 @@
 			files = (
 				6B5F9B6F1B5D29FE00F9D1E8 /* CPHomePhoto.m in Sources */,
 				E36AFE651B579F0E0081F499 /* ZHAppDelegate.h in Sources */,
+				6B97110E1B7DF5E700EA0F09 /* ChatViewController+Category.m in Sources */,
 				6B01284F1B7A209200B7A11F /* CPTaNoData.m in Sources */,
 				E3CE35B01B59E7FC008434B5 /* XLFormValidator.m in Sources */,
 				E36AFE661B579F0E0081F499 /* ZHPickView.h in Sources */,
+				6B9711771B7DFAA700EA0F09 /* Emoji.m in Sources */,
+				6B97114E1B7DF60C00EA0F09 /* MessageModel.m in Sources */,
+				6B9711661B7DF74200EA0F09 /* NSDateFormatter+Category.m in Sources */,
 				E3CE35961B59E7FC008434B5 /* XLFormPickerCell.m in Sources */,
 				A57582071B6789E500A5E681 /* NSDictionary+Dealer.m in Sources */,
 				E36CC95E1B6C7D8B00380E53 /* CommonUtility.m in Sources */,
+				6B9711501B7DF60C00EA0F09 /* MessageReadManager.m in Sources */,
 				6BCF66121B6208C700358190 /* CPActivePicCell.m in Sources */,
 				E38A5EA41B78847900B068D8 /* ZYTabBar.m in Sources */,
 				6BCB13381B745B6F00CE6AEC /* CPTopButton.m in Sources */,
@@ -2722,6 +3001,7 @@
 				E3E1DC001B5CA87C00386B18 /* CPReturnValueControllerView.m in Sources */,
 				E35B04281B5645BC002C6655 /* HMStatusPhotoView.m in Sources */,
 				E3CE35921B59E7FC008434B5 /* XLFormDateCell.m in Sources */,
+				6B9711481B7DF60C00EA0F09 /* EMChatLocationBubbleView.m in Sources */,
 				6B5F9B6E1B5D29FE00F9D1E8 /* CPHomeMember.m in Sources */,
 				E310BF721B7DF7BB00750BF4 /* UUDatePicker_DateModel.m in Sources */,
 				6B9CFD741B71D93E00EF167D /* CPAbout.m in Sources */,
@@ -2736,14 +3016,17 @@
 				E3E1DBFD1B5C8CFB00386B18 /* ZYPickView.m in Sources */,
 				E3D879421B575EC200228356 /* CPTopViewButton.m in Sources */,
 				6B512FAA1B7C504400258CA0 /* EMCDDeviceManagerBase.m in Sources */,
+				6B9711151B7DF60400EA0F09 /* LocationViewController.m in Sources */,
 				6B9CFD5D1B6CAD8200EF167D /* CPHowToPlayViewController.m in Sources */,
 				E36C96251B53C77600D3EDBB /* CPSubscribePersonController.m in Sources */,
+				6B9711491B7DF60C00EA0F09 /* EMChatTextBubbleView.m in Sources */,
 				E3E104A71B675C910049CA4A /* RegexKitLite.m in Sources */,
 				6BC8A3EF1B6A4DB700B199F2 /* CPTaPicCell.m in Sources */,
 				E3CE35A01B59E7FC008434B5 /* XLFormViewController.m in Sources */,
 				E3C611521B5F4A6C00B7E73A /* ZYSearchBar.m in Sources */,
 				A575820D1B6789E500A5E681 /* NSObject+SMFoundation.m in Sources */,
 				6B5F9B711B5D29FE00F9D1E8 /* CPHomeUser.m in Sources */,
+				6B9711401B7DF60C00EA0F09 /* DXMessageToolBar.m in Sources */,
 				E3CE35B11B59E7FC008434B5 /* XLForm.m in Sources */,
 				E30A68CA1B7DD64100EB3D23 /* CPGuideView.m in Sources */,
 				6B512FB71B7C522E00258CA0 /* wav.mm in Sources */,
@@ -2757,6 +3040,8 @@
 				A575821A1B6789E500A5E681 /* UITextField+SMFoundation.m in Sources */,
 				E3CE35371B59E1B0008434B5 /* CPCreatActivityController.m in Sources */,
 				E3CE35AC1B59E7FC008434B5 /* XLFormRowNavigationAccessoryView.m in Sources */,
+				6B9711441B7DF60C00EA0F09 /* DXRecordView.m in Sources */,
+				6B97114A1B7DF60C00EA0F09 /* EMChatVideoBubbleView.m in Sources */,
 				E310BF711B7DF7BB00750BF4 /* UUDatePicker.m in Sources */,
 				6B4EF15D1B4036EE00292BD4 /* CPTabBarController.m in Sources */,
 				6BCB87621B79A0FF0012D035 /* CPNoNet.m in Sources */,
@@ -2764,25 +3049,33 @@
 				E3EEDFF51B53951D00595333 /* CPNewMessageController.m in Sources */,
 				E3CE37251B5A4085008434B5 /* CPActivityNameController.m in Sources */,
 				E30BD58F1B54ECCC00FD9030 /* CPMySubscribeBottomView.m in Sources */,
+				6B97110F1B7DF5E700EA0F09 /* ChatViewController.m in Sources */,
 				6BCF66081B6208C700358190 /* CPActiveDetailsController.m in Sources */,
+				6B9711451B7DF60C00EA0F09 /* EMChatAudioBubbleView.m in Sources */,
 				E34065E71B65C2FE008BB3EB /* ZYTableViewController.m in Sources */,
 				A57582131B6789E500A5E681 /* UIBarButtonItem+SMFoundation.m in Sources */,
 				6B5F9B731B5D29FE00F9D1E8 /* CPHomePicCell.m in Sources */,
 				6BCF660C1B6208C700358190 /* CPActiveStatus.m in Sources */,
+				6B9711571B7DF63F00EA0F09 /* RobotManager.m in Sources */,
 				6B9CFD691B6CB54C00EF167D /* CPHowToPlayInfoViewController.m in Sources */,
 				A57582081B6789E500A5E681 /* NSArray+SMFoundation.m in Sources */,
 				E35B046E1B565532002C6655 /* MJPhotoBrowser.m in Sources */,
 				A57581CC1B6789D500A5E681 /* members.m in Sources */,
+				6B9711421B7DF60C00EA0F09 /* FacialView.m in Sources */,
 				E36AFE631B579ECD0081F499 /* ZHAppDelegate.m in Sources */,
 				E3A61B191B7ED06200B641E0 /* CPModelButton.m in Sources */,
 				6B6493941B4D04E500C197D2 /* Tools.m in Sources */,
+				6B9711691B7DF74200EA0F09 /* NSString+Valid.m in Sources */,
 				E372D8381B6216C100B4FC5C /* CustomSlideCell.m in Sources */,
 				6BCF660D1B6208C700358190 /* CPActiveUser.m in Sources */,
+				6B97114D1B7DF60C00EA0F09 /* EMChatViewCell.m in Sources */,
+				6B97116A1B7DF74200EA0F09 /* UIViewController+DismissKeyboard.m in Sources */,
 				A57582171B6789E500A5E681 /* UIImageView+SMFoundation.m in Sources */,
 				E36CC9641B6C7DA400380E53 /* LineDashPolyline.m in Sources */,
 				6B64938C1B4D04BE00C197D2 /* BaseViewController.m in Sources */,
 				6BC8A3E91B6A4DB700B199F2 /* CPTaMember.m in Sources */,
 				6BBCFFC61B721E6900F63818 /* CPFeedbackViewController.m in Sources */,
+				6B9711711B7DF94200EA0F09 /* XHMessageTextView.m in Sources */,
 				E34065ED1B65D6A2008BB3EB /* CPMyJoinController.m in Sources */,
 				E35E6FD01B54B0EC001212D6 /* CPMyPublishFrameModel.m in Sources */,
 				E35E6FCD1B54B0D9001212D6 /* CPMyPublishModel.m in Sources */,
@@ -2790,6 +3083,7 @@
 				6B512FA61B7C504400258CA0 /* EMCDDeviceManager+Media.m in Sources */,
 				6B512FB11B7C522200258CA0 /* EMVoiceConverter.mm in Sources */,
 				E372D8301B6216C100B4FC5C /* LoginViewController.m in Sources */,
+				6B9711671B7DF74200EA0F09 /* UIResponder+Router.m in Sources */,
 				E3CE359C1B59E7FC008434B5 /* XLFormTextFieldCell.m in Sources */,
 				E30BD5941B54FCC600FD9030 /* ZYNavigationBar.m in Sources */,
 				6B512FA51B7C504400258CA0 /* EMAudioRecorderUtil.m in Sources */,
@@ -2801,8 +3095,10 @@
 				E3CE359F1B59E7FC008434B5 /* XLFormOptionsViewController.m in Sources */,
 				E372D83B1B6216C100B4FC5C /* CPRegisterCellsTableViewCell1.m in Sources */,
 				A57582161B6789E500A5E681 /* UIImage+SMFoundation.m in Sources */,
+				6B9711701B7DF94200EA0F09 /* EMTextView.m in Sources */,
 				A57582061B6789E500A5E681 /* AppAppearance.m in Sources */,
 				6B5F9B741B5D29FE00F9D1E8 /* CPHomeStatusCell.m in Sources */,
+				6B9711561B7DF63F00EA0F09 /* InvitationManager.m in Sources */,
 				E3CE359E1B59E7FC008434B5 /* XLFormOptionsObject.m in Sources */,
 				A575820C1B6789E500A5E681 /* NSMutableArray+SMFoundation.m in Sources */,
 				E30BD57E1B54EBEB00FD9030 /* CPMySubscribeController.m in Sources */,
@@ -2813,16 +3109,20 @@
 				6B512FCE1B7CC20500258CA0 /* CPMapSearchViewController.m in Sources */,
 				E36C962D1B53CA2300D3EDBB /* CPSubscribeCell.m in Sources */,
 				E372D8391B6216C100B4FC5C /* CPEditUsernameViewController.m in Sources */,
+				6B97114F1B7DF60C00EA0F09 /* MessageModelManager.m in Sources */,
 				E3CFB1541B72126A0058B8C3 /* ZYSegmentControl.m in Sources */,
+				6B9711141B7DF60400EA0F09 /* ConvertToCommonEmoticonsHelper.m in Sources */,
 				6BB09AA71B68B02900E0D77D /* CPPhotoalbumManagement.m in Sources */,
 				A57582091B6789E500A5E681 /* NSDate+SMFoundation.m in Sources */,
 				E35B04731B565532002C6655 /* SDWebImageManager+MJ.m in Sources */,
 				E35E6FC71B54AFB8001212D6 /* CPMyPublishController.m in Sources */,
+				6B9711651B7DF74200EA0F09 /* NSDate+Category.m in Sources */,
 				E36C962A1B53C80900D3EDBB /* CPCancleSubBtn.m in Sources */,
 				E3CE02791B6885BB00808698 /* CPNewMsgModel.m in Sources */,
 				6B512FB61B7C522E00258CA0 /* amrFileCodec.mm in Sources */,
 				A57581C81B6789D500A5E681 /* memberCell.m in Sources */,
 				E3CFB1571B7213580058B8C3 /* ZYSegment.m in Sources */,
+				6B9711781B7DFAA700EA0F09 /* EmojiEmoticons.m in Sources */,
 				6BB09A831B66650C00E0D77D /* CPMyBaseCell.m in Sources */,
 				E3CE35991B59E7FC008434B5 /* XLFormSliderCell.m in Sources */,
 				E372D8511B6216E800B4FC5C /* CPMyController.m in Sources */,
@@ -2842,6 +3142,7 @@
 				A575820A1B6789E500A5E681 /* NSDictionary+SMFoundation.m in Sources */,
 				E30BD5971B54FD6E00FD9030 /* ZYNavigationController.m in Sources */,
 				6BC8A3F01B6A4DB700B199F2 /* CPTaPublishCell.m in Sources */,
+				6B9711461B7DF60C00EA0F09 /* EMChatBaseBubbleView.m in Sources */,
 				6B4EF1601B4036EE00292BD4 /* main.m in Sources */,
 				E35559A51B53A0CE00B200D0 /* CPSexView.m in Sources */,
 				E372D8411B6216C100B4FC5C /* CPRegisterStep2ViewController.m in Sources */,
@@ -2852,6 +3153,7 @@
 				E3CE35AB1B59E7FC008434B5 /* XLFormRightImageButton.m in Sources */,
 				E35B04721B565532002C6655 /* MJPhotoView.m in Sources */,
 				A57582141B6789E500A5E681 /* UIButton+SMFoundation.m in Sources */,
+				6B9711471B7DF60C00EA0F09 /* EMChatImageBubbleView.m in Sources */,
 				6B9CFD631B6CADD400EF167D /* CPHowtoPlayCell.m in Sources */,
 				E36C961F1B53BB2800D3EDBB /* CPActivityApplyCell.m in Sources */,
 				E338A7451B70540C00E706C2 /* CPRefreshHeader.m in Sources */,
@@ -2862,11 +3164,14 @@
 				6BC8A3EC1B6A4DB700B199F2 /* CPTaDetailsHead.m in Sources */,
 				6BB09AA11B675BF100E0D77D /* CPEditHeadIconCell.m in Sources */,
 				E3EEE0031B53952E00595333 /* NSString+Extension.m in Sources */,
+				6B9711431B7DF60C00EA0F09 /* DXChatBarMoreView.m in Sources */,
 				6BC8A3EE1B6A4DB700B199F2 /* CPTaIconCell.m in Sources */,
 				E35B04761B566366002C6655 /* CPPayButton.m in Sources */,
 				6BB09A891B6669F800E0D77D /* CPSettingTableViewController.m in Sources */,
 				6B5F9B701B5D29FE00F9D1E8 /* CPHomeStatus.m in Sources */,
+				6B97114C1B7DF60C00EA0F09 /* EMChatViewBaseCell.m in Sources */,
 				A575820B1B6789E500A5E681 /* NSFileManager+SMFoundation.m in Sources */,
+				6B9711411B7DF60C00EA0F09 /* DXFaceView.m in Sources */,
 				A57582181B6789E500A5E681 /* UILabel+SMFoundation.m in Sources */,
 				E372D8371B6216C100B4FC5C /* CustomSectionView.m in Sources */,
 				E35B046F1B565532002C6655 /* MJPhotoLoadingView.m in Sources */,
@@ -2884,6 +3189,7 @@
 				E3CE35A21B59E7FC008434B5 /* XLFormRowDescriptor.m in Sources */,
 				E3AE58C61B57E08800D8F0CA /* ZYNetWorkManager.m in Sources */,
 				A575821C1B6789E500A5E681 /* UIView+SMFoundation.m in Sources */,
+				6B97114B1B7DF60C00EA0F09 /* EMChatTimeCell.m in Sources */,
 				6B6493901B4D04E100C197D2 /* CPNetWork.m in Sources */,
 				E3CE359D1B59E7FC008434B5 /* XLFormTextViewCell.m in Sources */,
 				E3CE358F1B59E7FC008434B5 /* XLFormBaseCell.m in Sources */,
@@ -2892,6 +3198,7 @@
 				E35B046C1B565532002C6655 /* MJPhoto.m in Sources */,
 				6BB09AB41B69F52900E0D77D /* CPNewfeatureViewController.m in Sources */,
 				6B512FCC1B7CC20500258CA0 /* CPCarAuthoAllowController.m in Sources */,
+				6B97110D1B7DF5E700EA0F09 /* ChatSendHelper.m in Sources */,
 				E310BF751B7E154200750BF4 /* CPAnnotationView.m in Sources */,
 				E3EEE0041B53952E00595333 /* UIImage+Extension.m in Sources */,
 				A57582101B6789E500A5E681 /* SMAlertView.m in Sources */,
@@ -2911,6 +3218,7 @@
 				E3B127791B54D9C2005B1174 /* CPChatButton.m in Sources */,
 				E3CE359B1B59E7FC008434B5 /* XLFormSwitchCell.m in Sources */,
 				6B512FA91B7C504400258CA0 /* EMCDDeviceManager+Remind.m in Sources */,
+				6B9711681B7DF74200EA0F09 /* UIViewController+HUD.m in Sources */,
 				E3CE35A51B59E7FC008434B5 /* NSExpression+XLFormAdditions.m in Sources */,
 				E36AFE641B579ECD0081F499 /* ZHPickView.m in Sources */,
 				E372D85B1B62176C00B4FC5C /* MJNIndexView.m in Sources */,
@@ -3076,7 +3384,7 @@
 					"$(PROJECT_DIR)/CarPlay/Classes/Utils/VoiceConvert/opencore-amrwb",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4af67cdd-b889-4fb0-9ada-958bd749931d";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -3108,7 +3416,7 @@
 					"$(PROJECT_DIR)/CarPlay/Classes/Utils/VoiceConvert/opencore-amrwb",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4af67cdd-b889-4fb0-9ada-958bd749931d";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
