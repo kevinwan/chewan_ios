@@ -516,10 +516,6 @@
     NSString *postUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/user/%@/listen?token=%@",self.userId,self.token];
     
     [manager POST:postUrl parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-        // da51944f-ab85-4296-83f9-02603cb6937f
-        
-//        NSLog(@"关注成功");
-//        NSLog(@"cuo%@",responseObject[@"errmsg"]);
         
         [self.care setTitle:@"已关注" forState:UIControlStateNormal];
         

@@ -80,7 +80,9 @@
     
 }
 
-
+/**
+ *  重新进行车主认证
+ */
 - (void)buttonClick
 {
     CarOwnersCertificationViewController *CarOwnersCertificationVC=[[CarOwnersCertificationViewController alloc]init];

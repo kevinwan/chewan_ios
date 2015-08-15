@@ -210,6 +210,9 @@
 		E30BD5941B54FCC600FD9030 /* ZYNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5931B54FCC600FD9030 /* ZYNavigationBar.m */; };
 		E30BD5971B54FD6E00FD9030 /* ZYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5961B54FD6E00FD9030 /* ZYNavigationController.m */; };
 		E310BF6B1B7DE69500750BF4 /* ChatListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E310BF6A1B7DE69500750BF4 /* ChatListCell.m */; };
+		E310BF711B7DF7BB00750BF4 /* UUDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E310BF6E1B7DF7BB00750BF4 /* UUDatePicker.m */; };
+		E310BF721B7DF7BB00750BF4 /* UUDatePicker_DateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E310BF701B7DF7BB00750BF4 /* UUDatePicker_DateModel.m */; };
+		E310BF751B7E154200750BF4 /* CPAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E310BF741B7E154200750BF4 /* CPAnnotationView.m */; };
 		E328F0671B621DA700A20DCE /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = E328F0661B621DA700A20DCE /* city.plist */; };
 		E328F0691B621E1C00A20DCE /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = E328F0681B621E1C00A20DCE /* area.plist */; };
 		E3292A281B6A50700023677F /* CPSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3292A261B6A50700023677F /* CPSelectView.m */; };
@@ -290,6 +293,7 @@
 		E372D85B1B62176C00B4FC5C /* MJNIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = E372D85A1B62176C00B4FC5C /* MJNIndexView.m */; };
 		E379E2E61B5DEC23001869AA /* CPEditImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E379E2E51B5DEC23001869AA /* CPEditImageView.m */; };
 		E38A5EA41B78847900B068D8 /* ZYTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E38A5EA31B78847900B068D8 /* ZYTabBar.m */; };
+		E3A61B191B7ED06200B641E0 /* CPModelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A61B181B7ED06200B641E0 /* CPModelButton.m */; };
 		E3AE58C61B57E08800D8F0CA /* ZYNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AE58C31B57E08800D8F0CA /* ZYNetWorkManager.m */; };
 		E3AE58C71B57E08800D8F0CA /* ZYNetWorkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AE58C51B57E08800D8F0CA /* ZYNetWorkTool.m */; };
 		E3B127791B54D9C2005B1174 /* CPChatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B127781B54D9C2005B1174 /* CPChatButton.m */; };
@@ -345,8 +349,6 @@
 		E3CFB1541B72126A0058B8C3 /* ZYSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CFB1531B72126A0058B8C3 /* ZYSegmentControl.m */; };
 		E3CFB1571B7213580058B8C3 /* ZYSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CFB1561B7213580058B8C3 /* ZYSegment.m */; };
 		E3D879421B575EC200228356 /* CPTopViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D879411B575EC200228356 /* CPTopViewButton.m */; };
-		E3DAC9031B789AA3008B3BA3 /* WMCustomDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DAC9001B789AA3008B3BA3 /* WMCustomDatePicker.m */; };
-		E3DAC9041B789AA3008B3BA3 /* WMDatepicker_DateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DAC9021B789AA3008B3BA3 /* WMDatepicker_DateModel.m */; };
 		E3E104A71B675C910049CA4A /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E104A61B675C910049CA4A /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E3E104A91B675D520049CA4A /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E3E104A81B675D520049CA4A /* libicucore.dylib */; };
 		E3E1DBFD1B5C8CFB00386B18 /* ZYPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E1DBFC1B5C8CFB00386B18 /* ZYPickView.m */; };
@@ -773,6 +775,12 @@
 		E30BD5961B54FD6E00FD9030 /* ZYNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYNavigationController.m; sourceTree = "<group>"; };
 		E310BF691B7DE69500750BF4 /* ChatListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListCell.h; sourceTree = "<group>"; };
 		E310BF6A1B7DE69500750BF4 /* ChatListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListCell.m; sourceTree = "<group>"; };
+		E310BF6D1B7DF7BB00750BF4 /* UUDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUDatePicker.h; sourceTree = "<group>"; };
+		E310BF6E1B7DF7BB00750BF4 /* UUDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUDatePicker.m; sourceTree = "<group>"; };
+		E310BF6F1B7DF7BB00750BF4 /* UUDatePicker_DateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUDatePicker_DateModel.h; sourceTree = "<group>"; };
+		E310BF701B7DF7BB00750BF4 /* UUDatePicker_DateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUDatePicker_DateModel.m; sourceTree = "<group>"; };
+		E310BF731B7E154200750BF4 /* CPAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnnotationView.h; sourceTree = "<group>"; };
+		E310BF741B7E154200750BF4 /* CPAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAnnotationView.m; sourceTree = "<group>"; };
 		E328F0661B621DA700A20DCE /* city.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
 		E328F0681B621E1C00A20DCE /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		E3292A251B6A50700023677F /* CPSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSelectView.h; sourceTree = "<group>"; };
@@ -909,6 +917,8 @@
 		E38A5EA21B78847900B068D8 /* ZYTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYTabBar.h; sourceTree = "<group>"; };
 		E38A5EA31B78847900B068D8 /* ZYTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYTabBar.m; sourceTree = "<group>"; };
 		E39435DB1B5CE4E100AF91BF /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		E3A61B171B7ED06200B641E0 /* CPModelButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPModelButton.h; sourceTree = "<group>"; };
+		E3A61B181B7ED06200B641E0 /* CPModelButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPModelButton.m; sourceTree = "<group>"; };
 		E3AE58C21B57E08800D8F0CA /* ZYNetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYNetWorkManager.h; sourceTree = "<group>"; };
 		E3AE58C31B57E08800D8F0CA /* ZYNetWorkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYNetWorkManager.m; sourceTree = "<group>"; };
 		E3AE58C41B57E08800D8F0CA /* ZYNetWorkTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYNetWorkTool.h; sourceTree = "<group>"; };
@@ -1021,10 +1031,6 @@
 		E3CFB1561B7213580058B8C3 /* ZYSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYSegment.m; sourceTree = "<group>"; };
 		E3D879401B575EC200228356 /* CPTopViewButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTopViewButton.h; sourceTree = "<group>"; };
 		E3D879411B575EC200228356 /* CPTopViewButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTopViewButton.m; sourceTree = "<group>"; };
-		E3DAC8FF1B789AA3008B3BA3 /* WMCustomDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCustomDatePicker.h; sourceTree = "<group>"; };
-		E3DAC9001B789AA3008B3BA3 /* WMCustomDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCustomDatePicker.m; sourceTree = "<group>"; };
-		E3DAC9011B789AA3008B3BA3 /* WMDatepicker_DateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDatepicker_DateModel.h; sourceTree = "<group>"; };
-		E3DAC9021B789AA3008B3BA3 /* WMDatepicker_DateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDatepicker_DateModel.m; sourceTree = "<group>"; };
 		E3E104A51B675C910049CA4A /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		E3E104A61B675C910049CA4A /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		E3E104A81B675D520049CA4A /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
@@ -1205,7 +1211,7 @@
 		6B4EF1401B4036EE00292BD4 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
-				E3DAC8FE1B789AA3008B3BA3 /* WMCoustomDatepicker */,
+				E310BF6C1B7DF7BB00750BF4 /* UUDatePicker_Block */,
 				E3E104A41B675C910049CA4A /* RegexKitLite */,
 				E3CE353B1B59E7FC008434B5 /* XLForm */,
 				E3AE58C11B57E08800D8F0CA /* ZYNetWorkTool */,
@@ -2114,6 +2120,17 @@
 			path = ChatListCell;
 			sourceTree = "<group>";
 		};
+		E310BF6C1B7DF7BB00750BF4 /* UUDatePicker_Block */ = {
+			isa = PBXGroup;
+			children = (
+				E310BF6D1B7DF7BB00750BF4 /* UUDatePicker.h */,
+				E310BF6E1B7DF7BB00750BF4 /* UUDatePicker.m */,
+				E310BF6F1B7DF7BB00750BF4 /* UUDatePicker_DateModel.h */,
+				E310BF701B7DF7BB00750BF4 /* UUDatePicker_DateModel.m */,
+			);
+			path = UUDatePicker_Block;
+			sourceTree = "<group>";
+		};
 		E35B045C1B565532002C6655 /* MJPhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
@@ -2250,6 +2267,8 @@
 				E379E2E51B5DEC23001869AA /* CPEditImageView.m */,
 				E3FCDD4B1B5E355A00F9C379 /* CPAnotationView.h */,
 				E3FCDD4C1B5E355A00F9C379 /* CPAnotationView.m */,
+				E310BF731B7E154200750BF4 /* CPAnnotationView.h */,
+				E310BF741B7E154200750BF4 /* CPAnnotationView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2304,6 +2323,8 @@
 				E35B04751B566366002C6655 /* CPPayButton.m */,
 				E35B04771B568761002C6655 /* CPMoreButton.h */,
 				E35B04781B568761002C6655 /* CPMoreButton.m */,
+				E3A61B171B7ED06200B641E0 /* CPModelButton.h */,
+				E3A61B181B7ED06200B641E0 /* CPModelButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2613,17 +2634,6 @@
 				E3CE358B1B59E7FC008434B5 /* XLFormValidatorProtocol.h */,
 			);
 			path = Validation;
-			sourceTree = "<group>";
-		};
-		E3DAC8FE1B789AA3008B3BA3 /* WMCoustomDatepicker */ = {
-			isa = PBXGroup;
-			children = (
-				E3DAC8FF1B789AA3008B3BA3 /* WMCustomDatePicker.h */,
-				E3DAC9001B789AA3008B3BA3 /* WMCustomDatePicker.m */,
-				E3DAC9011B789AA3008B3BA3 /* WMDatepicker_DateModel.h */,
-				E3DAC9021B789AA3008B3BA3 /* WMDatepicker_DateModel.m */,
-			);
-			path = WMCoustomDatepicker;
 			sourceTree = "<group>";
 		};
 		E3E104A41B675C910049CA4A /* RegexKitLite */ = {
@@ -2993,6 +3003,7 @@
 				E3CE35921B59E7FC008434B5 /* XLFormDateCell.m in Sources */,
 				6B9711481B7DF60C00EA0F09 /* EMChatLocationBubbleView.m in Sources */,
 				6B5F9B6E1B5D29FE00F9D1E8 /* CPHomeMember.m in Sources */,
+				E310BF721B7DF7BB00750BF4 /* UUDatePicker_DateModel.m in Sources */,
 				6B9CFD741B71D93E00EF167D /* CPAbout.m in Sources */,
 				6BC8A3EB1B6A4DB700B199F2 /* CPTaPublishStatus.m in Sources */,
 				E3E315041B5E551A00FB0B55 /* CPActivityApplyModel.m in Sources */,
@@ -3031,6 +3042,7 @@
 				E3CE35AC1B59E7FC008434B5 /* XLFormRowNavigationAccessoryView.m in Sources */,
 				6B9711441B7DF60C00EA0F09 /* DXRecordView.m in Sources */,
 				6B97114A1B7DF60C00EA0F09 /* EMChatVideoBubbleView.m in Sources */,
+				E310BF711B7DF7BB00750BF4 /* UUDatePicker.m in Sources */,
 				6B4EF15D1B4036EE00292BD4 /* CPTabBarController.m in Sources */,
 				6BCB87621B79A0FF0012D035 /* CPNoNet.m in Sources */,
 				E3CE35971B59E7FC008434B5 /* XLFormSegmentedCell.m in Sources */,
@@ -3051,6 +3063,7 @@
 				A57581CC1B6789D500A5E681 /* members.m in Sources */,
 				6B9711421B7DF60C00EA0F09 /* FacialView.m in Sources */,
 				E36AFE631B579ECD0081F499 /* ZHAppDelegate.m in Sources */,
+				E3A61B191B7ED06200B641E0 /* CPModelButton.m in Sources */,
 				6B6493941B4D04E500C197D2 /* Tools.m in Sources */,
 				6B9711691B7DF74200EA0F09 /* NSString+Valid.m in Sources */,
 				E372D8381B6216C100B4FC5C /* CustomSlideCell.m in Sources */,
@@ -3102,7 +3115,6 @@
 				6BB09AA71B68B02900E0D77D /* CPPhotoalbumManagement.m in Sources */,
 				A57582091B6789E500A5E681 /* NSDate+SMFoundation.m in Sources */,
 				E35B04731B565532002C6655 /* SDWebImageManager+MJ.m in Sources */,
-				E3DAC9041B789AA3008B3BA3 /* WMDatepicker_DateModel.m in Sources */,
 				E35E6FC71B54AFB8001212D6 /* CPMyPublishController.m in Sources */,
 				6B9711651B7DF74200EA0F09 /* NSDate+Category.m in Sources */,
 				E36C962A1B53C80900D3EDBB /* CPCancleSubBtn.m in Sources */,
@@ -3187,6 +3199,7 @@
 				6BB09AB41B69F52900E0D77D /* CPNewfeatureViewController.m in Sources */,
 				6B512FCC1B7CC20500258CA0 /* CPCarAuthoAllowController.m in Sources */,
 				6B97110D1B7DF5E700EA0F09 /* ChatSendHelper.m in Sources */,
+				E310BF751B7E154200750BF4 /* CPAnnotationView.m in Sources */,
 				E3EEE0041B53952E00595333 /* UIImage+Extension.m in Sources */,
 				A57582101B6789E500A5E681 /* SMAlertView.m in Sources */,
 				E35B04271B5645BC002C6655 /* HMStatusPhotosView.m in Sources */,
@@ -3196,7 +3209,6 @@
 				E372D82E1B6216C100B4FC5C /* CPNewPassWordViewController.m in Sources */,
 				E3C611491B5F328C00B7E73A /* CPCreatActivityModel.m in Sources */,
 				E35B04701B565532002C6655 /* MJPhotoProgressView.m in Sources */,
-				E3DAC9031B789AA3008B3BA3 /* WMCustomDatePicker.m in Sources */,
 				E3CE35901B59E7FC008434B5 /* XLFormButtonCell.m in Sources */,
 				E310BF6B1B7DE69500750BF4 /* ChatListCell.m in Sources */,
 				6B512FC41B7C70F400258CA0 /* AppDelegate+EaseMob.m in Sources */,
@@ -3350,8 +3362,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CarPlay",

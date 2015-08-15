@@ -197,14 +197,14 @@
     CPMySubscribeModel *model = frameModel.model;
     
     //根据isOrganizer判断进入那个界面
-    if (model.isOrganizer == 1) {
+    if (model.isOrganizer == 1) { // 成员管理
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MembersManage" bundle:nil];
         
         MembersManageController * vc = sb.instantiateInitialViewController;
         vc.activityId = model.activityId;
         [self.navigationController pushViewController:vc animated:YES];
         
-    } else  {
+    } else  { // 已加入
         
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Members" bundle:nil];
         MembersController * vc = sb.instantiateInitialViewController;

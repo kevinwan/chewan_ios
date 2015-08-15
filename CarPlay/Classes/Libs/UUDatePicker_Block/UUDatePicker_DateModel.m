@@ -1,14 +1,15 @@
 //
-//  WMDatepicke_DateModel.m
-//  datePicker
+//  UUDatePicker_DateModel.m
+//  text_datepicker
 //
-//  Created by Mac on 15-4-29.
-//  Copyright (c) 2015年 wmeng. All rights reserved.
+//  Created by shake on 14-9-17.
+//  Copyright (c) 2014年 uyiuyao. All rights reserved.
 //
 
-#import "WMDatepicker_DateModel.h"
+#import "UUDatePicker_DateModel.h"
 
-@implementation WMDatepicker_DateModel
+@implementation UUDatePicker_DateModel
+
 - (id)initWithDate:(NSDate *)date
 {
     self = [super init];
@@ -16,7 +17,7 @@
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
         [formatter setDateFormat:@"yyyyMMddHHmm"];
         NSString *dateString = [formatter stringFromDate:date];
-        
+
         self.year     = [dateString substringWithRange:NSMakeRange(0, 4)];
         self.month    = [dateString substringWithRange:NSMakeRange(4, 2)];
         self.day      = [dateString substringWithRange:NSMakeRange(6, 2)];

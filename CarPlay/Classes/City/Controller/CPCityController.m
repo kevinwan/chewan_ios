@@ -397,7 +397,7 @@
             
             // 1.创建图片浏览器
             MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
-             NSArray *urls = [status.cover valueForKeyPath:@"thumbnail_pic"];
+             NSArray *urls = [status.cover valueForKeyPath:@"original_pic"];
             // 2.设置图片浏览器显示的所有图片
             NSMutableArray *photos = [NSMutableArray array];
             NSUInteger count = urls.count;
@@ -419,9 +419,7 @@
             
             // 3.显示浏览器
             [browser show];
-            
-
-            
+                        
         };
     }
     
@@ -581,13 +579,7 @@
     return _token;
 }
 
-// 上拉刷新条数
-- (NSInteger)ignoreNum{
-    if (!_ignoreNum) {
-        _ignoreNum = CPPageNum;
-    }
-    return _ignoreNum;
-}
+
 
 - (NSMutableArray *)status{
     if (!_status) {

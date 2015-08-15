@@ -15,6 +15,7 @@
 #import "CPTaDetailsController.h"
 #import "MembersManageController.h"
 #import "MembersController.h"
+#import "CPModelButton.h"
 
 @interface CPMySubscribeController () <UIPickerViewDataSource,UIPickerViewDelegate,UITextFieldDelegate>
 @property (nonatomic, strong) NSMutableArray *frameModels;
@@ -261,12 +262,13 @@
                     self.noButton = noButton;
                     UIButton *yeButton = (UIButton *)[carView viewWithTag:2000];
                     self.yesButton = yeButton;
-                    UIButton * offerButton = (UIButton *)[carView viewWithTag:3000];
+                    CPModelButton * offerButton = (CPModelButton *)[carView viewWithTag:3000];
+                    offerButton.model = model;
                     UITextField * carxibTextFeild = (UITextField *)[carView viewWithTag:4000];
                     self.carxibTextFeild = carxibTextFeild;
                     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
                     [carView addGestureRecognizer:tap];
-                    [offerButton addTarget:self action:@selector(offerSeatButton) forControlEvents:UIControlEventTouchUpInside];
+                    [offerButton addTarget:self action:@selector(offerSeatButton:) forControlEvents:UIControlEventTouchUpInside];
                     NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
                     int maxSeat = [[formatter stringFromNumber:responseObject[@"data"][@"maxValue"]] intValue];
                     int minSeat = [[formatter stringFromNumber:responseObject[@"data"][@"minValue"]] intValue];
@@ -287,12 +289,12 @@
                     NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/join",self.activeId];
                     [CPNetWorkTool postJsonWithUrl:urlStr params:nil success:^(id responseObject) {
                         if ([responseObject operationSuccess]) {
-                            [self.view alert:@"请求成功,等待同意"];
+                            [self showInfo:@"请求成功,等待同意"];
                         } else {
-                            [self.view alertError:responseObject];
+                           [self showError:@"加载失败"];
                         }
                     } failed:^(NSError *error) {
-                        [self.view alertError:error];
+                        [self showError:@"加载失败"];
                     }];
                     
                     
@@ -300,10 +302,10 @@
                 }
                 
             } else {
-                [self.view alertError:responseObject];
+                [self showError:@"加载失败"];
             }
         } failure:^(NSError *error) {
-            [self.view alertError:error];
+            [self showError:@"加载失败"];
         }];
         
         
@@ -343,7 +345,7 @@
 
 
 //点击提交
-- (void)offerSeatButton {
+- (void)offerSeatButton:(CPModelButton *)button {
     
     NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/join",self.activeId];
     
@@ -358,12 +360,16 @@
     [self coverClick];
     [CPNetWorkTool postJsonWithUrl:urlStr params:parameters success:^(id responseObject) {
         if ([responseObject operationSuccess]) {
-            [self.view alert:@"请求成功,等待同意"];
+            CPMySubscribeModel *model = button.model;
+            [self showInfo:@"请求成功,等待同意"];
+            model.isMember = 2;
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:model.row inSection:0];
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
         } else {
-            [self.view alertError:responseObject];
+            [self showError:@"加载失败"];
         }
     } failed:^(NSError *error) {
-        [self.view alertError:error];
+        [self showError:@"加载失败"];
     }];
     
 }

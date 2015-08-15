@@ -8,8 +8,22 @@
 
 #import "CPTaNoData.h"
 
+
 @interface CPTaNoData ()
+
+// 图片
 @property (weak, nonatomic) IBOutlet UIImageView *showPic;
+
+// 文字
+@property (weak, nonatomic) IBOutlet UILabel *showTitle;
+
+// 按钮
+@property (weak, nonatomic) IBOutlet UIButton *showButton;
+
+
+
+- (IBAction)publishActive;
+
 
 @end
 
@@ -21,8 +35,41 @@
     self.showPic.image = [UIImage imageNamed:pictureName];
 }
 
+// 设置显示文字
+- (void)setTitleName:(NSString *)titleName{
+    _titleName = titleName;
+    self.showTitle.text = titleName;
+}
+
+// 设置按钮
+- (void)setIsShowBtn:(BOOL)isShowBtn{
+    _isShowBtn = isShowBtn;
+    
+    self.showButton.layer.cornerRadius = 3;
+    self.showButton.layer.masksToBounds = YES;
+    
+    if (!isShowBtn) {
+        self.showButton.hidden = YES;
+    }
+}
+
 + (CPTaNoData *)footerView{
      return [[[NSBundle mainBundle] loadNibNamed:@"CPTaNoData" owner:nil options:nil] lastObject];
+}
+
+// 发布活动
+- (IBAction)publishActive {
+    if (CPUnLogin) {
+        // 未登录则提示登录
+        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+        
+    }else{
+        
+        if (self.publishRightNow != nil) {
+            self.publishRightNow();
+        }
+        
+    }
 }
 
 @end
