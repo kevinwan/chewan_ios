@@ -100,7 +100,7 @@ static NSString *kGroupName = @"GroupName";
 {
     [self setupUnreadMessageCount];
     CPMessageController *CPMessageVC = self.childViewControllers[1];
-    [CPMessageVC refreshDataSource];
+//    [CPMessageVC refreshDataSource];
 }
 
 // 未读消息数量变化回调

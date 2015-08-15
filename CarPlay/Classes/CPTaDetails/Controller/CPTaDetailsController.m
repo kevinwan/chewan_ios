@@ -15,6 +15,7 @@
 #import "CPTaPublishCell.h"
 #import "CPTaDetailsHead.h"
 #import "CPTaNoData.h"
+#import "CPHomeStatusCell.h"
 
 @interface CPTaDetailsController ()
 
@@ -240,11 +241,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+//    CPHomeStatusCell *cell = [tableView dequeueReusableCellWithIdentifier:[CPHomeStatusCell identifier]];
+//    
     
     // 创建cell
     CPTaPublishCell *cell = [tableView dequeueReusableCellWithIdentifier:[CPTaPublishCell identifier]];
     
-    // 第一行处理
+    //第一行处理
     if (indexPath.row == 0) {
         cell.isFirst = YES;
     }else{
@@ -253,7 +256,7 @@
     
     // 设置数据
     cell.publishStatus = self.taPubStatus[indexPath.row];
-    
+//    cell.status = self.taPubStatus[indexPath.row];
 
     return cell;
     
