@@ -71,4 +71,5 @@
 #import "AppAppearance.h"
 #import "MembersController.h"
 #import "MembersManageController.h"
+#import "CPGuideView.h" // 新手引导的View
 #endif

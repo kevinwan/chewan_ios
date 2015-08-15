@@ -15,11 +15,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *carxibLblOne;
 @property (weak, nonatomic) IBOutlet UILabel *carxibLblTwo;
 @property (weak, nonatomic) IBOutlet UILabel *carxibLblThree;
-@property (weak, nonatomic) IBOutlet UIButton *carxibButton;
-
 @property (weak, nonatomic) IBOutlet UILabel *carxibLblge;
-@property (weak, nonatomic) IBOutlet UILabel *carxibLblNO;
-@property (weak, nonatomic) IBOutlet UILabel *carxibLblYES;
+@property (weak, nonatomic) IBOutlet UIButton *noButton;
+@property (weak, nonatomic) IBOutlet UIButton *carxibButton;
+@property (weak, nonatomic) IBOutlet UIButton *yesButton;
 
 
 
@@ -39,10 +38,13 @@
     self.carxibLblThree.textColor = [AppAppearance textMediumColor];
     self.carxibLblge.font = [AppAppearance textLargeFont];
     self.carxibLblge.textColor = [AppAppearance textDarkColor];
-        self.carxibLblYES.font = [AppAppearance textMediumFont];
-    self.carxibLblYES.textColor = [AppAppearance redColor];
-    self.carxibLblNO.font = [AppAppearance textMediumFont];
-    self.carxibLblNO.textColor = [AppAppearance textMediumColor];
+    //按钮
+    [self.noButton setTitleColor:[AppAppearance textMediumColor] forState:UIControlStateNormal];
+    [self.noButton setTitleColor:[AppAppearance redColor] forState:UIControlStateSelected];
+      self.noButton.titleEdgeInsets = UIEdgeInsetsMake(0, 7, 0, 0);
+    [self.yesButton setTitleColor:[AppAppearance textMediumColor] forState:UIControlStateNormal];
+    [self.yesButton setTitleColor:[AppAppearance redColor] forState:UIControlStateSelected];
+    self.yesButton.titleEdgeInsets = UIEdgeInsetsMake(0, 7, 0, 0);
     [self.carxibButton setTitleColor:[AppAppearance titleColor] forState:UIControlStateNormal];
     [self.carxibButton setBackgroundColor:[AppAppearance greenColor]];
     self.carxibButton.layer.cornerRadius = 3;

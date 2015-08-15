@@ -45,7 +45,7 @@
             hud.labelText=@"加载中…";
             hud.dimBackground=NO;
             //
-            NSDictionary *para=[NSDictionary dictionaryWithObjectsAndKeys:self.phoneLable.text,@"phone",nil];
+            NSDictionary *para=[NSDictionary dictionaryWithObjectsAndKeys:self.phoneLable.text,@"phone",@(1),@"type",nil];
             [ZYNetWorkTool getWithUrl:[[NSString alloc]initWithFormat:@"/v1/phone/%@/verification",self.phoneLable.text] params:para success:^(id responseObject) {
                 [hud hide:YES];
                 NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];

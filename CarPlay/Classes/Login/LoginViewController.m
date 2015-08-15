@@ -69,7 +69,6 @@
                         NSString *EMuser=[Tools md5EncryptWithString:[data objectForKey:@"userId"]];
                         NSDictionary *loginInfo = [[EaseMob sharedInstance].chatManager loginWithUsername:EMuser password:password error:&error];
                         if (!error && loginInfo) {
-                            [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
                             [Tools setValueForKey:@(YES) key:NOTIFICATION_HASLOGIN];
                             [Tools setValueForKey:self.userPhone.text key:@"phone"];
                             [Tools setValueForKey:password key:@"password"];
@@ -80,6 +79,7 @@
                             [hud hide:YES];
                             NSLog(@"登陆成功");
                             [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+                            [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
                         }else{
                             [self showError:error.description];
                         }

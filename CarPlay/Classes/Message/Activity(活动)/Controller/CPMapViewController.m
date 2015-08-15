@@ -16,6 +16,7 @@
 #import "GeocodeAnnotation.h"
 #import "CommonUtility.h"
 #import "CPMapSearchViewController.h"
+#import "CPAnnotationView.h"
 
 @interface CPMapViewController ()<UITextFieldDelegate,AMapSearchDelegate,MAMapViewDelegate, UIGestureRecognizerDelegate>
 /**
@@ -146,7 +147,7 @@
     searchBar.textColor = [Tools getColor:@"aab2bd"];
     searchBar.placeholder = @"请输入目的地";
     searchBar.rightViewMode = UITextFieldViewModeAlways;
-    searchBar.frame = CGRectMake(10, 5, kScreenWidth - 20, 35);
+    searchBar.frame = CGRectMake(40, 2, kScreenWidth - 50, 35);
     [self.navigationController.navigationBar addSubview:searchBar];
     searchBar.delegate = self;
     self.searchBar = searchBar;
@@ -195,7 +196,7 @@ updatingLocation:(BOOL)updatingLocation
        MAAnnotationView *view = [self.mapView viewForAnnotation:annotation];
         CGRect annitationRect = [view convertRect:view.bounds toView:[UIApplication sharedApplication].keyWindow];
         if (CGRectContainsPoint(annitationRect, touchPoint)) {
-                  return;
+            return;
 //            GeocodeAnnotation *anno = (GeocodeAnnotation *)view.annotation;
 //            anno.icon = @"定位";
 //            
@@ -434,10 +435,10 @@ updatingLocation:(BOOL)updatingLocation
     if ([annotation isKindOfClass:[GeocodeAnnotation class]])
     {
         static NSString *reuseIndetifier = @"annotationReuseIndetifier";
-        MAAnnotationView *annotationView = (MAAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
+        CPAnnotationView *annotationView = (CPAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
         if (annotationView == nil)
         {
-            annotationView = [[MAAnnotationView alloc] initWithAnnotation:annotation
+            annotationView = [[CPAnnotationView alloc] initWithAnnotation:annotation
                                                           reuseIdentifier:reuseIndetifier];
             annotationView.canShowCallout = YES;
             GeocodeAnnotation *anno = (GeocodeAnnotation *)annotation;
@@ -489,6 +490,7 @@ updatingLocation:(BOOL)updatingLocation
     annotation.title = model.location;
     annotation.subtitle = model.address;
     [self.mapView addAnnotation:annotation];
+    
     [self.mapView setCenterCoordinate:annotation.coordinate animated:YES];
     
     [self setToolBarViewWithModel:model];
@@ -617,20 +619,8 @@ updatingLocation:(BOOL)updatingLocation
 
 - (void)mapView:(MAMapView *)mapView didSelectAnnotationView:(MAAnnotationView *)view
 {
-    
     GeocodeAnnotation *anno = (GeocodeAnnotation *)view.annotation;
-    if ([anno isKindOfClass:[GeocodeAnnotation class]]) {
-        
-        anno.icon = @"定位";
-        view.image = [UIImage imageNamed:@"定位"];
-        if (anno != self.lastAnnotation) {
-            [mapView removeAnnotation:self.lastAnnotation];
-            self.lastAnnotation.icon = @"定位蓝";
-            [mapView addAnnotation:self.lastAnnotation];
-            self.lastAnnotation = anno;
-        }
-        
-    }
+
     [self setToolBarViewWithAnnotation:anno];
 }
 

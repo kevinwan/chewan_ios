@@ -25,7 +25,8 @@
     self.cancelButton.titleLabel.font = [AppAppearance titleFont];
     self.cancelButton.layer.cornerRadius = 3;
     [self.cancelButton clipsToBounds];
-    
+    self.layer.cornerRadius = 3;
+    self.layer.masksToBounds = YES;
 
 }
 

@@ -7,7 +7,7 @@
 //
 #define ZYToobarHeight 40
 #import "ZYPickView.h"
-#import "WMCustomDatePicker.h"
+#import "UUDatePicker.h"
 
 @interface ZYPickView ()<UIPickerViewDelegate,UIPickerViewDataSource>
 @property(nonatomic,copy)NSString *plistName;
@@ -18,7 +18,7 @@
 @property(nonatomic,strong)NSDictionary *levelTwoDic;
 @property(nonatomic,strong)UIToolbar *toolbar;
 @property(nonatomic,strong)UIPickerView *pickerView;
-@property(nonatomic,strong)WMCustomDatePicker *datePicker;
+@property(nonatomic,strong)UUDatePicker *datePicker;
 @property(nonatomic,assign)NSDate *defaulDate;
 @property(nonatomic,assign)BOOL isHaveNavControler;
 @property(nonatomic,assign)NSInteger pickeviewHeight;
@@ -149,8 +149,9 @@
 
 -(void)setUpDatePickerWithdatePickerMode:(UIDatePickerMode)datePickerMode{
     
-    WMCustomDatePicker *datePicker  = [[WMCustomDatePicker alloc] init];
-    datePicker.datePickerStyle = WMDateStyle_YearMonthDayHourMinute;
+    UUDatePicker *datePicker  = [[UUDatePicker alloc] init];
+    datePicker.datePickerStyle = UUDateStyle_YearMonthDayHourMinute;
+    datePicker.minLimitDate = [NSDate date];
     datePicker.frame = CGRectMake(0, ZYToobarHeight, kScreenWidth, 216);
 //    datePicker.minLimitDate = [NSDate date];
 //    datePicker.tintColor = [UIColor blackColor];

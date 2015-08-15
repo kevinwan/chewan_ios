@@ -17,6 +17,8 @@
 #import <MJExtension.h>
 #import "ZYNetWorkTool.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "CPTaDetailsController.h"
+
 
 
 @interface MembersController () <UITableViewDataSource,UITableViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDelegate>
@@ -27,22 +29,21 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *getButton;
 @property (weak, nonatomic) IBOutlet UIButton *outButton;
-//xib
-@property (weak, nonatomic) IBOutlet UIView *carxibYesView;
-@property (weak, nonatomic) IBOutlet UIView *carxibNoVIew;
-@property (weak, nonatomic) IBOutlet UITextField *carxibTextFeild;
-@property (nonatomic, strong) NSMutableArray *pickerArray;
-
-
-//遮盖
-@property (nonatomic, strong) UIButton *cover;
-@property (nonatomic, strong) UIView *carView;
 
 @property (nonatomic, strong) NSMutableArray *membersArray;
 @property (nonatomic, strong) NSMutableArray *carsArray;
 @property (nonatomic, assign) BOOL member;
 @property (nonatomic, copy) NSString *userId;
 @property (nonatomic, copy) NSString *token;
+//遮盖
+@property (nonatomic, strong) UIButton *cover;
+@property (nonatomic, strong) UIView *carView;
+@property (nonatomic, strong) UITextField *carxibTextFeild;
+@property (nonatomic, strong) UIButton *yesButton;
+@property (nonatomic, strong) UIButton *noButton;
+@property (nonatomic, strong) UIButton *btn;
+@property (nonatomic, strong) NSMutableArray *pickerArray;
+@property (nonatomic, strong) NSString *createrId;
 @end
 
 @implementation MembersController
@@ -51,10 +52,21 @@
     [super viewDidLoad];
     self.navigationItem.title = @"参与成员";
     [self setupFontAndColor];
-    [self loadMessage];
+    [self setUpRefresh];
+    [self.memberTableView.header beginRefreshing];
+    self.memberTableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
+}
+- (void)setUpRefresh {
+    __weak typeof(self) weakSelf = self;
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakSelf loadMessage];
+    }];
+    self.memberTableView.header = header;
+    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMessage)];
+    [footer setTitle:@"" forState: MJRefreshStateIdle];
+    self.memberTableView.footer = footer;
     
 }
-
 - (void) setupFontAndColor {
     
     self.seatLabel.font = [AppAppearance textLargeFont];
@@ -99,7 +111,9 @@
             NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"共%@个座位,还剩下%@个座位",responseObject[@"data"][@"totalSeat"],responseObject[@"data"][@"availableSeat"]]];
             [str addAttribute:NSForegroundColorAttributeName value:[AppAppearance redColor] range:NSMakeRange(str.length -4, 2)];
             self.seatLabel.attributedText = str;
+            [self.membersArray removeAllObjects];
             [self.membersArray addObjectsFromArray:memberModel];
+            [self.carsArray removeAllObjects];
             [self.carsArray addObjectsFromArray:carModel];
             [self.memberTableView reloadData];
             //判断下是否是成员
@@ -119,19 +133,22 @@
                 self.outButton.hidden = YES;
                 self.addButton.hidden = NO;
             }
-            
+            [self.memberTableView.header endRefreshing];
+            [self.memberTableView.footer endRefreshing];
         } else {
             [self.view alertError:responseObject];
         }
             } failure:^(NSError *error) {
                 [self.view alertError:error];
+                [self.memberTableView.header endRefreshing];
+                [self.memberTableView.footer endRefreshing];
     }];
     
     
 }
 
-//我也要加入
-- (IBAction)carxibButtonClick:(UIButton *)sender {
+//提交座位
+- (void)offerSeatButton {
     NSString *userId = self.userId;
     NSString *token = self.token;
     NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/join?userId=%@&token=%@",self.activityId,userId,token];
@@ -319,8 +336,23 @@
         memberCell *cell = [tableView dequeueReusableCellWithIdentifier:@"membercell"];
         cell.models = self.membersArray[indexPath.row - self.carsArray.count];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.createrId = cell.models.userId;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapIconImage)];
+        [cell.memberIconImageView addGestureRecognizer:tap];
+
         return cell;
     }
+}
+- (void)tapIconImage{
+    SQLog(@"123");
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil];
+    
+    CPTaDetailsController *taViewController = sb.instantiateInitialViewController;
+    taViewController.targetUserId = self.createrId;
+    
+    [self.navigationController pushViewController:taViewController animated:YES];
+    
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -344,9 +376,7 @@
 #pragma mark - 我也要加入
 //点击加入按钮
 - (IBAction)addButtonClick:(UIButton *)sender {
-  
-
-    NSString *urlStr = [NSString stringWithFormat:@"v1/user/%@/seats?token=%@",self.userId,self.token];
+   NSString *urlStr = [NSString stringWithFormat:@"v1/user/%@/seats?token=%@&activityId=%@",self.userId,self.token,self.activityId];
     //主车提供后台返回的车 非车主最多提供两辆车
     [ZYNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
         if ([responseObject operationSuccess]) {
@@ -368,10 +398,16 @@
                 self.carView = carView;
                 [self.view.window addSubview:carView];
                 //注意加载之后才有xib
-                UITapGestureRecognizer *tapYes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapYes)];
-                [self.carxibYesView addGestureRecognizer:tapYes];
-                UITapGestureRecognizer *tapNo = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapNo)];
-                [self.carxibNoVIew addGestureRecognizer:tapNo];
+                UIButton *noButton = (UIButton *)[carView viewWithTag:1000];
+                self.noButton = noButton;
+                UIButton *yeButton = (UIButton *)[carView viewWithTag:2000];
+                self.yesButton = yeButton;
+                UIButton * offerButton = (UIButton *)[carView viewWithTag:3000];
+                UITextField * carxibTextFeild = (UITextField *)[carView viewWithTag:4000];
+                self.carxibTextFeild = carxibTextFeild;
+                UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
+                [carView addGestureRecognizer:tap];
+                [offerButton addTarget:self action:@selector(offerSeatButton) forControlEvents:UIControlEventTouchUpInside];
                 NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
                 int maxSeat = [[formatter stringFromNumber:responseObject[@"data"][@"maxValue"]] intValue];
                 int minSeat = [[formatter stringFromNumber:responseObject[@"data"][@"minValue"]] intValue];
@@ -387,7 +423,7 @@
                 self.carxibTextFeild.delegate = self;
                 self.carxibTextFeild.font = [AppAppearance textMediumFont];
                 self.carxibTextFeild.textColor = [AppAppearance textDarkColor];
-                [self tapYes];
+                [self tap:yeButton];
 
             } else {
                 NSString *userId = self.userId;
@@ -431,17 +467,27 @@
     self.carxibTextFeild.text = [NSString stringWithFormat:@"%@",self.pickerArray[row]];
 }
 
-
-- (void)tapYes {
+- (void)tap:(UIButton *)btn{
+    btn = self.btn;
+    if (btn == self.yesButton) {
+        self.yesButton.selected = YES;
+        self.noButton.selected = NO;
+        self.carxibTextFeild.enabled = YES;
+        [self.carxibTextFeild becomeFirstResponder];
+        self.btn = self.noButton;
+    } else {
+        self.noButton.selected = YES;
+        self.yesButton.selected = NO;
+        self.carxibTextFeild.enabled = NO;
+        [self.carxibTextFeild resignFirstResponder];
+        self.carxibTextFeild.text = nil;
+        self.btn = self.yesButton;
+    }
     
-    self.carxibTextFeild.enabled = YES;
-    [self.carxibTextFeild becomeFirstResponder];
+    
+
 }
-- (void)tapNo {
-    self.carxibTextFeild.enabled = NO;
-    [self.carxibTextFeild resignFirstResponder];
-    self.carxibTextFeild.text = nil;
-}
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     // 这两个都是限制6位就不区分了

@@ -40,7 +40,7 @@ static CGFloat const kBounceValue = 20.0f;
     if (screenW > 320) {
         self.carName.preferredMaxLayoutWidth = 140;
     } else {
-        self.carName.preferredMaxLayoutWidth = 90;
+        self.carName.preferredMaxLayoutWidth = 70;
     }
     self.pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(pan:)];
     [self.mycontentView addGestureRecognizer:self.pan];

@@ -54,7 +54,9 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.footer.hidden = YES;
     ZYJumpToLoginView
-    [self addBottomTimeLine];
+    if (CPIsLogin) {
+        [self addBottomTimeLine];
+    }
     [self reRefreshData];
     
 }
@@ -84,7 +86,7 @@
 
 - (void)reRefreshData
 {
-    if (self.timeLine == nil) {
+    if (self.timeLine == nil && CPIsLogin) {
         [self addBottomTimeLine];
     }
     [self showLoading];
@@ -151,7 +153,9 @@
 
 - (void)dealloc
 {
-    [self.tableView removeObserver:self forKeyPath:@"footer.state"];
+    if (self.timeLine) {
+        [self.tableView removeObserver:self forKeyPath:@"footer.state"];
+    }
 }
 
 #pragma mark - Table view data source

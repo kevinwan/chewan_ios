@@ -32,6 +32,7 @@
         self.leftView = searchIcon;
         self.leftViewMode = UITextFieldViewModeAlways;
         self.clearButtonMode = UITextFieldViewModeWhileEditing;
+        
         UIButton *clearBtn = [[UIButton alloc] init];
         [clearBtn setImage:[UIImage imageNamed:@"取消"] forState:UIControlStateNormal];
         [clearBtn addTarget:self action:@selector(clearText) forControlEvents:UIControlEventTouchUpInside];
@@ -39,7 +40,6 @@
         clearBtn.height = 30;
         self.rightView = clearBtn;
         self.rightViewMode = UITextFieldViewModeWhileEditing;
-        
         self.delegate = self;
     }
     return self;
