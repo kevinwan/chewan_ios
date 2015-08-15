@@ -99,8 +99,8 @@ static NSString *kGroupName = @"GroupName";
 - (void)didUpdateConversationList:(NSArray *)conversationList
 {
     [self setupUnreadMessageCount];
-    CPMessageController *CPMessageVC = self.childViewControllers[1];
-    [CPMessageVC refreshDataSource];
+    CPMessageController *CPMessageVc = (CPMessageController *)[self.childViewControllers[1] topViewController];
+    [CPMessageVc  refreshDataSource];
 }
 
 // 未读消息数量变化回调
