@@ -74,6 +74,7 @@
 - (void)reRefreshData
 {
     [self showLoading];
+    self.ignore = 0;
     [self loadDataWithParam:0];
 }
 
@@ -163,6 +164,14 @@
 {
     CPTaDetailsController *vc = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil].instantiateInitialViewController;
     vc.targetUserId = notify.userInfo[CPClickUserIconInfo];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CPTaDetailsController *vc = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil].instantiateInitialViewController;
+    CPOrganizer *orz = self.datas[indexPath.row];
+    vc.targetUserId = orz.userId;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

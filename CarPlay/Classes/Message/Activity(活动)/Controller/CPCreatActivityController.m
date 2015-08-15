@@ -490,11 +490,7 @@ typedef enum {
         return 0;
     }
     NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-    if ([dateStr contains:dateStr]) {
-        fmt.dateFormat = @"yyyy年MM月dd日 HH:mm";
-    }else{
-        fmt.dateFormat = @"yyyy年MM月dd日";
-    }
+    fmt.dateFormat = @"yyyy年MM月dd日 HH:mm";
     NSDate *date = [fmt dateFromString:dateStr];
     return date.timeIntervalSince1970 * 1000;
 }
