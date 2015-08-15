@@ -202,7 +202,6 @@
         [self disMiss];
         [self.tableView.footer endRefreshing];
         [self.tableView.header endRefreshing];
-        DLog(@"%@",responseObject);
         if (CPSuccess) {
             
             if (self.ignore == 0) {

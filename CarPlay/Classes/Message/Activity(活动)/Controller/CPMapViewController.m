@@ -276,7 +276,8 @@ updatingLocation:(BOOL)updatingLocation
         
         [SVProgressHUD dismiss];
         
-        if (request.userRequest) {
+        if (request.userRequest && !self.orientationSuccess) {
+            self.orientationSuccess = YES;
             CPLocationModel *model = [[CPLocationModel alloc] init];
             
             AMapPOI *poi = [response.pois firstObject];
@@ -296,14 +297,11 @@ updatingLocation:(BOOL)updatingLocation
             if (model.city.length == 0) {
                 model.city = poi.province;
             }
-    
-            MAUserLocation *userlocation = [[MAUserLocation alloc] init];
 
-            userlocation.coordinate = CLLocationCoordinate2DMake(poi.location.latitude, poi.location.longitude);
-            userlocation.title = model.location;
-            userlocation.subtitle = model.address;
-            [self.mapView addAnnotation:userlocation];
-            [self.mapView setCenterCoordinate:userlocation.coordinate animated:YES];
+            self.userLocation.coordinate = CLLocationCoordinate2DMake(poi.location.latitude, poi.location.longitude);
+            self.userLocation.title = model.location;
+            self.userLocation.subtitle = model.address;
+            [self.mapView setCenterCoordinate:self.userLocation.coordinate animated:YES];
             
             [self setToolBarViewWithModel:model];
             
@@ -683,6 +681,9 @@ updatingLocation:(BOOL)updatingLocation
 {
     GeocodeAnnotation *anno = (GeocodeAnnotation *)view.annotation;
 
+    if (![anno isKindOfClass:[GeocodeAnnotation class]]) {
+        [self removeAnnotaionNoSelf];
+    }
     [self setToolBarViewWithAnnotation:anno];
 }
 

@@ -192,7 +192,6 @@ typedef enum {
     [self labelWithRow:4].text = startStr;
     
     if (self.currentModel.end > 0) {
-        fmt.dateFormat = @"yyyy年MM月dd HH:mm";
         NSString *endStr = [fmt stringFromDate:[NSDate dateWithTimeIntervalSince1970:self.currentModel.end / 1000]];
         [self labelWithRow:5].text = endStr;
     }
@@ -457,11 +456,7 @@ typedef enum {
         return 0;
     }
     NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-    if ([dateStr contains:dateStr]) {
-        fmt.dateFormat = @"yyyy年MM月dd日 HH:mm";
-    }else{
-        fmt.dateFormat = @"yyyy年MM月dd日";
-    }
+    fmt.dateFormat = @"yyyy年MM月dd日 HH:mm";
     NSDate *date = [fmt dateFromString:dateStr];
     return date.timeIntervalSince1970 * 1000;
 }
