@@ -111,7 +111,7 @@
             }
 
             if (self.datas.count == 0) {
-                [self showNoSubscribe];
+                [self showNoData];
             }
             
         }else if (self.datas.count == 0){
@@ -138,7 +138,7 @@
             if (self.datas.count) {
                 [self.tableView reloadData];
             }else{
-                [self showNoSubscribe];
+                [self showNoData];
             }
         });
     }

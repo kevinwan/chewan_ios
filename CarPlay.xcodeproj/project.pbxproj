@@ -259,6 +259,7 @@
 		E372D85B1B62176C00B4FC5C /* MJNIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = E372D85A1B62176C00B4FC5C /* MJNIndexView.m */; };
 		E379E2E61B5DEC23001869AA /* CPEditImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E379E2E51B5DEC23001869AA /* CPEditImageView.m */; };
 		E38A5EA41B78847900B068D8 /* ZYTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E38A5EA31B78847900B068D8 /* ZYTabBar.m */; };
+		E3A61B191B7ED06200B641E0 /* CPModelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A61B181B7ED06200B641E0 /* CPModelButton.m */; };
 		E3AE58C61B57E08800D8F0CA /* ZYNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AE58C31B57E08800D8F0CA /* ZYNetWorkManager.m */; };
 		E3AE58C71B57E08800D8F0CA /* ZYNetWorkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AE58C51B57E08800D8F0CA /* ZYNetWorkTool.m */; };
 		E3B127791B54D9C2005B1174 /* CPChatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B127781B54D9C2005B1174 /* CPChatButton.m */; };
@@ -814,6 +815,8 @@
 		E38A5EA21B78847900B068D8 /* ZYTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYTabBar.h; sourceTree = "<group>"; };
 		E38A5EA31B78847900B068D8 /* ZYTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYTabBar.m; sourceTree = "<group>"; };
 		E39435DB1B5CE4E100AF91BF /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		E3A61B171B7ED06200B641E0 /* CPModelButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPModelButton.h; sourceTree = "<group>"; };
+		E3A61B181B7ED06200B641E0 /* CPModelButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPModelButton.m; sourceTree = "<group>"; };
 		E3AE58C21B57E08800D8F0CA /* ZYNetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYNetWorkManager.h; sourceTree = "<group>"; };
 		E3AE58C31B57E08800D8F0CA /* ZYNetWorkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYNetWorkManager.m; sourceTree = "<group>"; };
 		E3AE58C41B57E08800D8F0CA /* ZYNetWorkTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYNetWorkTool.h; sourceTree = "<group>"; };
@@ -2055,6 +2058,8 @@
 				E35B04751B566366002C6655 /* CPPayButton.m */,
 				E35B04771B568761002C6655 /* CPMoreButton.h */,
 				E35B04781B568761002C6655 /* CPMoreButton.m */,
+				E3A61B171B7ED06200B641E0 /* CPModelButton.h */,
+				E3A61B181B7ED06200B641E0 /* CPModelButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2769,6 +2774,7 @@
 				E35B046E1B565532002C6655 /* MJPhotoBrowser.m in Sources */,
 				A57581CC1B6789D500A5E681 /* members.m in Sources */,
 				E36AFE631B579ECD0081F499 /* ZHAppDelegate.m in Sources */,
+				E3A61B191B7ED06200B641E0 /* CPModelButton.m in Sources */,
 				6B6493941B4D04E500C197D2 /* Tools.m in Sources */,
 				E372D8381B6216C100B4FC5C /* CustomSlideCell.m in Sources */,
 				6BCF660D1B6208C700358190 /* CPActiveUser.m in Sources */,

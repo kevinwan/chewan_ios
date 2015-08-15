@@ -147,22 +147,22 @@
 
 - (void)showNoData
 {
-    [self tipViewWithIcon:@"暂无参与" title:@"暂时没有任何数据" subTitle:@"刷新一下试试吧" buttonTitle:@"重新加载" isShow:YES];
+    [self tipViewWithIcon:@"暂无关注" title:@"" subTitle:@"暂无更多数据,刷新一下试试吧" buttonTitle:@"重新加载" isShow:YES];
 }
 
 - (void)showNoPublish
 {
-    [self tipViewWithIcon:@"暂无发布" title:@"暂时没有任何发布" subTitle:@"赶紧去添加发布吧" buttonTitle:@"马上去发布" isShow:YES];
+    [self tipViewWithIcon:@"暂无发布" title:@"" subTitle:@"还没有发布任何活动,赶紧添加吧" buttonTitle:@"马上去发布" isShow:YES];
 }
 
 - (void)showNoSubscribe
 {
-    [self tipViewWithIcon:@"暂无关注" title:@"暂时没有任何收藏" subTitle:@"赶紧去收藏吧" buttonTitle:nil isShow:NO];
+    [self tipViewWithIcon:@"暂无关注" title:@"" subTitle:@"还没有添加任何收藏" buttonTitle:nil isShow:NO];
 }
 
 - (void)showNoJoin
 {
-    [self tipViewWithIcon:@"暂无参与" title:@"暂时没有任何参与" subTitle:@"赶紧去参与吧" buttonTitle:nil isShow:NO];
+    [self tipViewWithIcon:@"暂无参与" title:@"" subTitle:@"还没有参与任何活动,赶紧去参与吧" buttonTitle:nil isShow:NO];
 }
 
 /**
@@ -180,17 +180,24 @@
     UILabel *tipLabel = (UILabel *)[self.tipView viewWithTag:2];
     tipLabel.text = title;
     
+    
     UILabel *subTipLabel = (UILabel *)[self.tipView viewWithTag:3];
+    if (title.length == 0) {
+        subTipLabel.y = tipLabel.y;
+    }
     subTipLabel.text = subTitle;
     
     UIButton *button = (UIButton *)[self.tipView viewWithTag:4];
+    if (title.length == 0) {
+        button.y = subTipLabel.bottom + 20;
+    }
     if (show) {
         button.hidden = NO;
     }else{
         button.hidden = YES;
     }
     
-    if ([title contains:@"发布"]) {
+    if ([subTitle contains:@"发布"]) {
         [button removeTarget:self action:@selector(reRefresh) forControlEvents:UIControlEventTouchUpInside];
         [button addTarget:self action:@selector(createActivity) forControlEvents:UIControlEventTouchUpInside];
     }else{
