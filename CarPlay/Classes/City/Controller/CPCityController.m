@@ -151,6 +151,9 @@
     // 设置顶部按钮
     [self.hotBtn setHighlighted:NO];
     
+    // 新手引导
+    [CPGuideView showGuideViewWithImageName:@"homeGuide"];
+    
     // 获取当前经纬度
     [self getLongitudeAndLatitude];
     
