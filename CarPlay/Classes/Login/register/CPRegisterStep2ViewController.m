@@ -179,7 +179,10 @@
     }
     
     if (indexPath.row==2) {
-        NSDate *now = [NSDate date];
+        NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+        NSString *str = @"1990年01月01号";
+        fmt.dateFormat = @"yyyy年MM月dd号";
+        NSDate *now = [fmt dateFromString:str];
         _pickview=[[ZHPickView alloc] initDatePickWithDate:now datePickerMode:UIDatePickerModeDate isHaveNavControler:NO];
         _pickview.delegate=self;
         [_pickview show];
