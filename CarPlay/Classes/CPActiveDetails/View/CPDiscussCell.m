@@ -74,7 +74,29 @@
     self.publishTime.text = _discussStatus.publishTimeStr;
     
     // 正文
-    self.comment.text = _discussStatus.comment;
+    if (discussStatus.replyUserName != nil && ![discussStatus.replyUserName isEqualToString:@""]) {
+        
+        
+        // 设置"回复"字体颜色
+        NSMutableAttributedString *replyFont = [[NSMutableAttributedString alloc] initWithString:@"回复" attributes:@{NSForegroundColorAttributeName:[Tools getColor:@"434A54"]}];
+        
+        // 设置被回复人昵称的颜色
+        NSAttributedString *nicknameFont = [[NSAttributedString alloc] initWithString:discussStatus.replyUserName attributes:@{NSForegroundColorAttributeName:[Tools getColor:@"5d9beb"]}];
+        
+        // 设置回复内容颜色
+        NSAttributedString *commentFont = [[NSAttributedString alloc] initWithString:discussStatus.comment attributes:@{NSForegroundColorAttributeName:[Tools getColor:@"434A54"]}];
+        
+        // 设置冒号
+        NSAttributedString *font = [[NSAttributedString alloc] initWithString:@"：" attributes:@{NSForegroundColorAttributeName:[Tools getColor:@"434A54"]}];
+        
+        [replyFont appendAttributedString:nicknameFont];
+        [replyFont appendAttributedString:font];
+        [replyFont appendAttributedString:commentFont];
+        [self.comment setAttributedText:replyFont];
+    }else{
+        self.comment.text = discussStatus.comment;
+    }
+    
   
 }
 

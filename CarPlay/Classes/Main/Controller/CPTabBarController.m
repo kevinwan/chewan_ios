@@ -99,7 +99,8 @@ static NSString *kGroupName = @"GroupName";
 - (void)didUpdateConversationList:(NSArray *)conversationList
 {
     [self setupUnreadMessageCount];
-//    [_chatListVC refreshDataSource];
+    CPMessageController *CPMessageVC = self.childViewControllers[1];
+    [CPMessageVC refreshDataSource];
 }
 
 // 未读消息数量变化回调
@@ -183,21 +184,21 @@ static NSString *kGroupName = @"GroupName";
                 break;
             case eMessageBodyType_Image:
             {
-                messageStr = NSLocalizedString(@"message.image", @"Image");
+                messageStr = @"图片";
             }
                 break;
             case eMessageBodyType_Location:
             {
-                messageStr = NSLocalizedString(@"message.location", @"Location");
+                messageStr = @"位置";
             }
                 break;
             case eMessageBodyType_Voice:
             {
-                messageStr = NSLocalizedString(@"message.voice", @"Voice");
+                messageStr = @"语音";
             }
                 break;
             case eMessageBodyType_Video:{
-                messageStr = NSLocalizedString(@"message.video", @"Video");
+                messageStr = @"视频";
             }
                 break;
             default:

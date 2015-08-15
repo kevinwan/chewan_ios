@@ -33,6 +33,9 @@
 // 用户token
 @property (nonatomic,copy) NSString *token;
 
+// 记录被回复人ID
+@property (nonatomic,copy) NSString *byReplyId;
+
 // tableView
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -56,9 +59,6 @@
 
 // 发送按钮点击
 - (IBAction)sendClick:(id)sender;
-
-// 要发送的信息
-@property (weak, nonatomic) IBOutlet UITextField *sendText;
 
 // 缓存cell高度（线程安全、内存紧张时会自动释放、不会拷贝key）
 @property (nonatomic,strong) NSCache *rowHeightCache;
@@ -99,6 +99,9 @@
     
     // 设置标题
     self.title = @"活动详情";
+    
+    // 新手引导
+    [CPGuideView showGuideViewWithImageName:@"detailGuide"];
     
     // 发送按钮切圆
     self.sendBtn.layer.cornerRadius = 3;
@@ -341,11 +344,59 @@
 
 #pragma mark -数据源方法
 
+//- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    
+//}
+
+//- (UITableViewCellEditingStyle)tableView: (UITableView *)tableView editingStyleForRowAtIndexPath: (NSIndexPath *)indexPath{
+//    
+//}
+
+// cell滑动删除代理
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        // 删除tableview的row对应的后台数据
+        NSString *deleteId = [self.discussStatus[indexPath.row] commentId];
+        NSArray *deleteIdArray = [NSArray arrayWithObject:deleteId];
+        [self deleteDiscussWithId:deleteIdArray];
+        
+        // 删除tableview的row的前台样式
+        [self.discussStatus removeObjectAtIndex:indexPath.row];
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+    
+    
+    
+}
+
+// 调用删除评论接口方法
+- (void)deleteDiscussWithId:(NSArray *)deleteIdArray{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    parameters[@"comments"] = deleteIdArray;
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    NSString *postUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/comment/remove?userId=%@&token=%@",self.userId,self.token];
+    
+    [manager POST:postUrl parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        //
+        NSLog(@"删除成功---%@",responseObject[@"errmsg"]);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        //
+    }];
+    
+}
+
+// 返回cell个数代理
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 
     return self.discussStatus.count;
 }
 
+// 创建cell代理
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     CPDiscussCell *cell = [tableView dequeueReusableCellWithIdentifier:[CPDiscussCell identifier]];
@@ -354,6 +405,7 @@
   
 }
 
+// cell高度代理
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
      // 取出对应行模型
@@ -383,19 +435,25 @@
 // 点击cell弹出回复框
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     // 文本框成为第一响应者
-//    [self.inputView becomeFirstResponder];
-//    
-//    CPDiscussStatus *disStatus = self.discussStatus[indexPath.row];
-//    
-//    NSString *phStr = [NSString stringWithFormat:@"回复%@：",disStatus.replyUserName];
-//    
-//    self.inputView.placeholder = phStr;
+    [self.inputView becomeFirstResponder];
+    
+    // 获取选中对象
+    CPDiscussStatus *disStatus = self.discussStatus[indexPath.row];
+    
+    // 修改输入框占位文字
+    NSString *phStr = [NSString stringWithFormat:@"回复%@：",disStatus.nickname];
+    self.inputView.placeholder = phStr;
+    
+    // 记录被回复人Id
+    self.byReplyId = disStatus.userId;
+
     
 }
 
 // 当开始拖拽tableview表格的时候调用
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     
+    self.inputView.placeholder = @"给楼主留个言...";
     //退出键盘
     [self.view endEditing:YES];
 }
@@ -405,21 +463,29 @@
 // 点击发送按钮调用
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
-    // 发送评论
-    [self sendMessage];
+    // 如果是评论活动
+    if ([self.inputView.placeholder isEqualToString:@"给楼主留个言..."]) {
+        // 发送评论
+        [self sendMessageWithReplyUserId:nil];
+    }else{
+        // 如果是回复评论
+        [self sendMessageWithReplyUserId:self.byReplyId];
+    }
     
+    self.inputView.placeholder = @"给楼主留个言...";
     return YES;
 }
 
 // 发送事件
-- (void)sendMessage{
+- (void)sendMessageWithReplyUserId:(NSString *)replyUserId{
     
     if (!CPUnLogin) {
         // 封装请求参数
         NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-        
-        
-        parameters[@"comment"] = self.sendText.text;
+        parameters[@"comment"] = self.inputView.text;
+        if (replyUserId) {
+            parameters[@"replyUserId"] = replyUserId;
+        }
         
         // 获取网络访问者
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -431,8 +497,10 @@
         
         [manager POST:postUrl parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
             
+            NSLog(@"haha%@",responseObject[@"errmsg"]);
+            
             // 清除文本框文字
-            self.sendText.text = @"";
+            self.inputView.text = @"";
             
             // 弹出提示信息
             [SVProgressHUD showInfoWithStatus:@"发布评论成功"];
@@ -485,13 +553,7 @@
     return _discussStatus;
 }
 
-// 上拉刷新条数
-- (NSInteger)ignoreNum{
-    if (!_ignoreNum) {
-        _ignoreNum = CPPageNum;
-    }
-    return _ignoreNum;
-}
+
 
 // 点击小头像方法
 - (void)tapIconsView {
@@ -736,7 +798,15 @@
 
 // 发送按钮点击
 - (IBAction)sendClick:(id)sender {
-    [self sendMessage];
+    // 如果是评论活动
+    if ([self.inputView.placeholder isEqualToString:@"给楼主留个言..."]) {
+        // 发送评论
+        [self sendMessageWithReplyUserId:nil];
+    }else{
+        // 如果是回复评论
+        [self sendMessageWithReplyUserId:self.byReplyId];
+    }
+    self.inputView.placeholder = @"给楼主留个言...";
 }
 
 @end

@@ -92,6 +92,9 @@
     
     // 目的地
     self.location.preferredMaxLayoutWidth = [UIScreen mainScreen].bounds.size.width / 2 - 20;
+    
+    // 座位数
+    self.seating.preferredMaxLayoutWidth = [UIScreen mainScreen].bounds.size.width - 20;
 }
 
 // 根据数据获取高度
