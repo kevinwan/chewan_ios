@@ -163,7 +163,6 @@ updatingLocation:(BOOL)updatingLocation
 {
     if(updatingLocation)
     {
-        
         self.userLocation = userLocation;
         if (self.orientationSuccess == NO && self.forValue== nil) {
 //            [self.mapView setCenterCoordinate:userLocation.coordinate animated:YES];
@@ -304,8 +303,6 @@ updatingLocation:(BOOL)updatingLocation
             [self.mapView setCenterCoordinate:self.userLocation.coordinate animated:YES];
             
             [self setToolBarViewWithModel:model];
-            
-            self.orientationSuccess = YES;
             
             DLog(@"laile ");
             
