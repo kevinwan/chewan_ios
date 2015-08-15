@@ -11,6 +11,7 @@
 @interface CPTaNoData ()
 @property (weak, nonatomic) IBOutlet UIImageView *showPic;
 
+@property (weak, nonatomic) IBOutlet UILabel *showTitle;
 @end
 
 @implementation CPTaNoData
@@ -19,6 +20,12 @@
 - (void)setPictureName:(NSString *)pictureName{
     _pictureName = pictureName;
     self.showPic.image = [UIImage imageNamed:pictureName];
+}
+
+// 设置显示文字
+- (void)setTitleName:(NSString *)titleName{
+    _titleName = titleName;
+    self.showTitle.text = titleName;
 }
 
 + (CPTaNoData *)footerView{

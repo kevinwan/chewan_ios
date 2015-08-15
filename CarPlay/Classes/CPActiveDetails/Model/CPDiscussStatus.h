@@ -38,5 +38,8 @@
 // 评论者ID
 @property (nonatomic,copy) NSString *userId;
 
+// 评论ID
+@property (nonatomic,copy) NSString *commentId;
+
 
 @end

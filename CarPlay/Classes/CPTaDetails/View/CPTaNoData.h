@@ -12,6 +12,8 @@
 
 @property (nonatomic,copy) NSString *pictureName;
 
+@property (nonatomic,copy) NSString *titleName;
+
 + (CPTaNoData *)footerView;
 
 @end

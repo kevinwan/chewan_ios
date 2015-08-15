@@ -581,13 +581,7 @@
     return _token;
 }
 
-// 上拉刷新条数
-- (NSInteger)ignoreNum{
-    if (!_ignoreNum) {
-        _ignoreNum = CPPageNum;
-    }
-    return _ignoreNum;
-}
+
 
 - (NSMutableArray *)status{
     if (!_status) {

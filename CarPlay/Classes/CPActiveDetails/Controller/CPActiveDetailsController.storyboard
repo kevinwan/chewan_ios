@@ -76,28 +76,21 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B0f-R5-sxe" id="mwD-XK-XpF">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="对话" translatesAutoresizingMaskIntoConstraints="NO" id="4UE-jq-1nJ">
-                                                    <rect key="frame" x="10" y="16" width="10" height="10"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="10" id="Kbo-66-xrR"/>
-                                                        <constraint firstAttribute="width" constant="10" id="Mhp-tY-2mN"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wDi-Wc-du4" userLabel="头像">
-                                                    <rect key="frame" x="30" y="10" width="25" height="25"/>
+                                                    <rect key="frame" x="10" y="10" width="25" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="n11-mi-ZTa"/>
                                                         <constraint firstAttribute="width" constant="25" id="zK8-Ub-cGb"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJK-xv-hOJ" userLabel="昵称">
-                                                    <rect key="frame" x="65" y="8" width="35.5" height="17"/>
+                                                    <rect key="frame" x="45" y="8" width="35.5" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.36470588235294116" green="0.60784313725490191" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i0Y-nv-P4Y" userLabel="性别和年龄">
-                                                    <rect key="frame" x="107.5" y="11" width="25" height="12"/>
+                                                    <rect key="frame" x="87.5" y="11" width="25" height="12"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="25" id="NX6-4b-RMD"/>
                                                         <constraint firstAttribute="height" constant="12" id="Yke-kt-ajU"/>
@@ -123,7 +116,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hr8-Zi-cNj" userLabel="正文">
-                                                    <rect key="frame" x="65" y="34" width="35.5" height="17"/>
+                                                    <rect key="frame" x="45" y="34" width="35.5" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.2627450980392157" green="0.29019607843137252" blue="0.32941176470588235" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -131,14 +124,12 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="wDi-Wc-du4" firstAttribute="top" secondItem="mwD-XK-XpF" secondAttribute="top" constant="10" id="22e-Ac-CDx"/>
-                                                <constraint firstItem="4UE-jq-1nJ" firstAttribute="leading" secondItem="mwD-XK-XpF" secondAttribute="leading" constant="10" id="8uU-jf-PwK"/>
                                                 <constraint firstAttribute="trailing" secondItem="3q6-IT-EYA" secondAttribute="trailing" constant="10" id="MS1-Bg-c2D"/>
                                                 <constraint firstItem="hr8-Zi-cNj" firstAttribute="leading" secondItem="wDi-Wc-du4" secondAttribute="trailing" constant="10" id="OHW-i2-dfw"/>
                                                 <constraint firstItem="hr8-Zi-cNj" firstAttribute="top" secondItem="TJK-xv-hOJ" secondAttribute="bottom" constant="9" id="OZe-3o-bGm"/>
                                                 <constraint firstItem="i0Y-nv-P4Y" firstAttribute="leading" secondItem="TJK-xv-hOJ" secondAttribute="trailing" constant="7" id="RrL-5F-yhs"/>
-                                                <constraint firstItem="wDi-Wc-du4" firstAttribute="leading" secondItem="4UE-jq-1nJ" secondAttribute="trailing" constant="10" id="WAX-68-uuC"/>
+                                                <constraint firstItem="wDi-Wc-du4" firstAttribute="leading" secondItem="mwD-XK-XpF" secondAttribute="leading" constant="10" id="bMr-jL-nV0"/>
                                                 <constraint firstItem="3q6-IT-EYA" firstAttribute="top" secondItem="mwD-XK-XpF" secondAttribute="top" constant="11" id="e1R-I7-e75"/>
-                                                <constraint firstItem="4UE-jq-1nJ" firstAttribute="top" secondItem="mwD-XK-XpF" secondAttribute="top" constant="16" id="eTN-bk-Wkc"/>
                                                 <constraint firstItem="3q6-IT-EYA" firstAttribute="leading" secondItem="CmZ-ye-XhQ" secondAttribute="trailing" constant="4" id="exl-Pf-2TQ"/>
                                                 <constraint firstItem="TJK-xv-hOJ" firstAttribute="top" secondItem="mwD-XK-XpF" secondAttribute="top" constant="8" id="tai-N1-yeF"/>
                                                 <constraint firstItem="TJK-xv-hOJ" firstAttribute="leading" secondItem="wDi-Wc-du4" secondAttribute="trailing" constant="10" id="u7O-uj-liK"/>
@@ -190,7 +181,6 @@
                         <outlet property="editorActiveBtn" destination="NE3-PY-oot" id="UcP-m4-gyx"/>
                         <outlet property="inputView" destination="DVq-8z-gPF" id="kXV-vt-5qg"/>
                         <outlet property="sendBtn" destination="KeV-U4-eRl" id="9os-BE-ulS"/>
-                        <outlet property="sendText" destination="DVq-8z-gPF" id="hGj-4f-fWR"/>
                         <outlet property="tableView" destination="nHk-l9-2bE" id="JeM-uT-v70"/>
                         <outlet property="topConstraint" destination="vpP-6M-gLT" id="w2I-uQ-mgG"/>
                     </connections>
@@ -202,7 +192,6 @@
     </scenes>
     <resources>
         <image name="女-1" width="32" height="14"/>
-        <image name="对话" width="12" height="12"/>
         <image name="时间" width="12" height="12"/>
     </resources>
 </document>

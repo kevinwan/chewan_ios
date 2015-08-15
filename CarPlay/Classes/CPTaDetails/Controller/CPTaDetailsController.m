@@ -52,10 +52,12 @@
     // 页面标题
     self.title = @"TA的详情";
     
-
-    
     // 上拉下拉刷新
     [self topAndBottomRefresh];
+    
+//    CPTaNoData *noData = [CPTaNoData footerView];
+//    self.tableView.tableFooterView = noData;
+//    self.tableView.tableFooterView = nil;
     
 }
 
@@ -179,15 +181,22 @@
         NSArray *taPubArr = responseObject[@"data"];
         
         // 如果返回数据为空，则显示无数据footerView
-//        if (taPubArr == nil) {
-//            CPTaNoData *noData = [CPTaNoData footerView];
-//            if ([selectStr isEqualToString:@"post"]) {
-//                noData.pictureName = @"暂无发布";
-//            }else{
-//                noData.pictureName = @"暂无关注";
-//            }
-//            self.tableView.tableFooterView = noData;
-//        }
+        if (taPubArr.count == 0) {
+            CPTaNoData *noData = [CPTaNoData footerView];
+            if ([selectStr isEqualToString:@"post"]) {
+                noData.pictureName = @"暂无发布";
+                noData.titleName = @"他还没有发布活动噢~";
+            }else if([selectStr isEqualToString:@"subscribe"]){
+                noData.pictureName = @"暂无关注";
+                noData.titleName = @"他还没有收藏活动噢~";
+            }else{
+                noData.pictureName = @"暂无参与";
+                noData.titleName = @"他还没有参与活动噢~";
+            }
+            self.tableView.tableFooterView = noData;
+        }else{
+            self.tableView.tableFooterView = nil;
+        }
         
         // 字典数组转模型数组
         NSArray *models = [CPTaPublishStatus objectArrayWithKeyValuesArray:taPubArr];
