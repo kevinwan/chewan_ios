@@ -90,74 +90,74 @@
 
 - (IBAction)nextBtnClick:(id)sender {
     
-//    CPRegisterStep2ViewController *CPRegisterStep2VC=[[CPRegisterStep2ViewController alloc]init];
-//    CPRegisterStep2VC.title=@"注册";
-//    [Tools setValueForKey:self.userPhone.text key:@"phone"];
-//    NSString *password=[Tools md5EncryptWithString:self.password.text];
-//    [Tools setValueForKey:password key:@"password"];
-//    [Tools setValueForKey:self.identifyingCodeTextField.text key:@"code"];
-//    [self.navigationController pushViewController:CPRegisterStep2VC animated:YES];
+    CPRegisterStep2ViewController *CPRegisterStep2VC=[[CPRegisterStep2ViewController alloc]init];
+    CPRegisterStep2VC.title=@"注册";
+    [Tools setValueForKey:self.userPhone.text key:@"phone"];
+    NSString *password=[Tools md5EncryptWithString:self.password.text];
+    [Tools setValueForKey:password key:@"password"];
+    [Tools setValueForKey:self.identifyingCodeTextField.text key:@"code"];
+    [self.navigationController pushViewController:CPRegisterStep2VC animated:YES];
     
-    if (agreeTheServiceTerms) {
-        if ([Tools isValidateMobile:self.userPhone.text]) {
-            if ([Tools isValidatePwd:self.password.text]) {
-                if ([self.identifyingCodeTextField.text length]==4) {
-                    MBProgressHUD *hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                    hud.color = [UIColor clearColor];
-                    hud.labelText=@"加载中…";
-                    hud.dimBackground=NO;
-                    NSDictionary *para=[NSDictionary dictionaryWithObjectsAndKeys:self.identifyingCodeTextField.text,@"code",nil];
-                    [ZYNetWorkTool postJsonWithUrl:[[NSString alloc]initWithFormat:@"v1/phone/%@/verification",self.userPhone.text] params:para success:^(id responseObject) {
-                        [hud hide:YES];
-                        NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
-                        NSString *state=[numberFormatter stringFromNumber:[responseObject objectForKey:@"result"]];
-                        if (![state isEqualToString:@"0"]) {
-                            NSString *errmsg =[responseObject objectForKey:@"errmsg"];
-                            [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-                        }else{
-                            CPRegisterStep2ViewController *CPRegisterStep2VC=[[CPRegisterStep2ViewController alloc]init];
-                            CPRegisterStep2VC.title=@"注册";
-                            [Tools setValueForKey:self.userPhone.text key:@"phone"];
-                             NSString *password=[Tools md5EncryptWithString:self.password.text];
-                            [Tools setValueForKey:password key:@"password"];
-                            [Tools setValueForKey:self.identifyingCodeTextField.text key:@"code"];
-                            [self.navigationController pushViewController:CPRegisterStep2VC animated:YES];
-                        }
-                    } failed:^(NSError *error) {
-                        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-                    }];
-                }else{
-                    if ([self.identifyingCodeTextField.text length]==0) {
-                        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请输入验证码" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                        [alert show];
-                    }else{
-                        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"验证码为4位数字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                        [alert show];
-                    }
-                }
-            }else{
-                if([self.password.text length]==0){
-                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请输入由6-15位数字或者字母组成的密码" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                    [alert show];
-                }else{
-                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"密码由6-15位数字或者字母组成" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                    [alert show];
-                }
-            }
-        }else{
-            if ([self.userPhone.text length]==0) {
-                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请输入手机号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [alert show];
-            }else{
-                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请正确输入手机号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [alert show];
-            }
-        }
-        
-    }else{
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您尚未同意车玩服务条款" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alert show];
-        }
+//    if (agreeTheServiceTerms) {
+//        if ([Tools isValidateMobile:self.userPhone.text]) {
+//            if ([Tools isValidatePwd:self.password.text]) {
+//                if ([self.identifyingCodeTextField.text length]==4) {
+//                    MBProgressHUD *hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//                    hud.color = [UIColor clearColor];
+//                    hud.labelText=@"加载中…";
+//                    hud.dimBackground=NO;
+//                    NSDictionary *para=[NSDictionary dictionaryWithObjectsAndKeys:self.identifyingCodeTextField.text,@"code",nil];
+//                    [ZYNetWorkTool postJsonWithUrl:[[NSString alloc]initWithFormat:@"v1/phone/%@/verification",self.userPhone.text] params:para success:^(id responseObject) {
+//                        [hud hide:YES];
+//                        NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
+//                        NSString *state=[numberFormatter stringFromNumber:[responseObject objectForKey:@"result"]];
+//                        if (![state isEqualToString:@"0"]) {
+//                            NSString *errmsg =[responseObject objectForKey:@"errmsg"];
+//                            [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+//                        }else{
+//                            CPRegisterStep2ViewController *CPRegisterStep2VC=[[CPRegisterStep2ViewController alloc]init];
+//                            CPRegisterStep2VC.title=@"注册";
+//                            [Tools setValueForKey:self.userPhone.text key:@"phone"];
+//                             NSString *password=[Tools md5EncryptWithString:self.password.text];
+//                            [Tools setValueForKey:password key:@"password"];
+//                            [Tools setValueForKey:self.identifyingCodeTextField.text key:@"code"];
+//                            [self.navigationController pushViewController:CPRegisterStep2VC animated:YES];
+//                        }
+//                    } failed:^(NSError *error) {
+//                        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+//                    }];
+//                }else{
+//                    if ([self.identifyingCodeTextField.text length]==0) {
+//                        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请输入验证码" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//                        [alert show];
+//                    }else{
+//                        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"验证码为4位数字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//                        [alert show];
+//                    }
+//                }
+//            }else{
+//                if([self.password.text length]==0){
+//                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请输入由6-15位数字或者字母组成的密码" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//                    [alert show];
+//                }else{
+//                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"密码由6-15位数字或者字母组成" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//                    [alert show];
+//                }
+//            }
+//        }else{
+//            if ([self.userPhone.text length]==0) {
+//                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请输入手机号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//                [alert show];
+//            }else{
+//                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请正确输入手机号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//                [alert show];
+//            }
+//        }
+//        
+//    }else{
+//        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您尚未同意车玩服务条款" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//        [alert show];
+//        }
 }
 //获取验证码按钮倒计时
 -(void)startTime{
