@@ -234,6 +234,7 @@
 
 - (void)createActivity
 {
+    self.tableView.scrollEnabled = YES;
     // 子类实现方法,跳转至创建活动界面
 }
 

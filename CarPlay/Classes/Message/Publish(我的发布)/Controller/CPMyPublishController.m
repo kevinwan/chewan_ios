@@ -121,6 +121,7 @@
                 [self.frameModels removeAllObjects];
             }
             if (arr.count) {
+                self.timeLine.hidden = NO;
                 for (int i = 0; i < arr.count; i++) {
                     CPMyPublishFrameModel *frameModel = [[CPMyPublishFrameModel alloc] init];
                     frameModel.model = arr[i];
@@ -133,6 +134,7 @@
                 }
             }
             if (self.frameModels.count == 0) {
+                self.timeLine.hidden = YES;
                 [self showNoPublish];
             }
         }else{

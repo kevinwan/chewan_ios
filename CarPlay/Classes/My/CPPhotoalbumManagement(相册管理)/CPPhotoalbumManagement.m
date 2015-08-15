@@ -27,6 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [CPGuideView showGuideViewWithImageName:@"photoGuide"];
     _allPhotoIds=[[NSMutableArray alloc]init];
     [self loadPhotos:_albumPhotos];
     self.photoWH = (kScreenWidth - 50) / 4;

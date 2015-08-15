@@ -9,7 +9,7 @@
 #import "ZYSearchBar.h"
 
 @interface ZYSearchBar ()<UITextFieldDelegate>
-
+@property (nonatomic, weak) UIButton *clearBtn;
 @end
 
 @implementation ZYSearchBar
@@ -31,7 +31,6 @@
         searchIcon.contentMode = UIViewContentModeCenter;
         self.leftView = searchIcon;
         self.leftViewMode = UITextFieldViewModeAlways;
-        self.clearButtonMode = UITextFieldViewModeWhileEditing;
         
         UIButton *clearBtn = [[UIButton alloc] init];
         [clearBtn setImage:[UIImage imageNamed:@"取消"] forState:UIControlStateNormal];
@@ -39,8 +38,9 @@
         clearBtn.width = 30;
         clearBtn.height = 30;
         self.rightView = clearBtn;
-        self.rightViewMode = UITextFieldViewModeWhileEditing;
-        self.delegate = self;
+        self.rightView.hidden = YES;
+        self.rightViewMode = UITextFieldViewModeAlways;
+        [self addTarget:self action:@selector(textChange:) forControlEvents:UIControlEventEditingChanged];
     }
     return self;
 }
@@ -52,7 +52,29 @@
 
 - (void)clearText
 {
+    self.placeholder = nil;
     self.text = nil;
+    self.rightView.hidden = YES;
+    [CPNotificationCenter postNotificationName:@"ClearText" object:nil];
+}
+
+- (void)textChange:(UITextField *)field
+{
+    if (field.text.length) {
+        self.rightView.hidden = NO;
+    }else{
+        self.rightView.hidden = YES;
+    }
+}
+
+- (void)setText:(NSString *)text
+{
+    [super setText:text];
+    if (text.length) {
+        self.rightView.hidden = NO;
+    }else{
+        self.rightView.hidden = YES;
+    }
 }
 
 @end
