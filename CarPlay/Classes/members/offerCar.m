@@ -49,7 +49,7 @@
     [self.carxibButton setBackgroundColor:[AppAppearance greenColor]];
     self.carxibButton.layer.cornerRadius = 3;
     [self.carxibButton clipsToBounds];
-    self.layer.cornerRadius = 6;
+    self.layer.cornerRadius = 3;
     self.layer.masksToBounds = YES;
 }
 

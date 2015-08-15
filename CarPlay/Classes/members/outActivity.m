@@ -28,6 +28,8 @@
     [self.sureButton setBackgroundColor:[AppAppearance greenColor]];
     self.sureButton.layer.cornerRadius = 3;
     self.sureButton.layer.masksToBounds = YES;
+    self.layer.cornerRadius = 3;
+    self.layer.masksToBounds = YES;
 
 }
 
