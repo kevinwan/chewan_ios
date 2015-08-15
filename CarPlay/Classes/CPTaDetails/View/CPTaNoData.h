@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+typedef void(^PublishRightNow)();
 
 @interface CPTaNoData : UIView
 
@@ -15,6 +16,9 @@
 @property (nonatomic,copy) NSString *titleName;
 
 @property (nonatomic,assign) BOOL isShowBtn;
+
+// 发布活动代理
+@property (nonatomic,copy) PublishRightNow publishRightNow;
 
 + (CPTaNoData *)footerView;
 

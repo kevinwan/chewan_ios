@@ -174,32 +174,8 @@
     // 发送请求
     [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
         
-     
-
-        
         // 去出他发布的数据
         NSArray *taPubArr = responseObject[@"data"];
-        
-        // 如果返回数据为空，则显示无数据footerView
-        if (taPubArr.count == 0) {
-            CPTaNoData *noData = [CPTaNoData footerView];
-            if ([selectStr isEqualToString:@"post"]) {
-                noData.pictureName = @"暂无发布";
-                noData.titleName = @"他还没有发布活动噢~";
-                noData.isShowBtn = NO;
-            }else if([selectStr isEqualToString:@"subscribe"]){
-                noData.pictureName = @"暂无关注";
-                noData.titleName = @"他还没有收藏活动噢~";
-                noData.isShowBtn = YES;
-            }else{
-                noData.pictureName = @"暂无参与";
-                noData.titleName = @"他还没有参与活动噢~";
-                noData.isShowBtn = NO;
-            }
-            self.tableView.tableFooterView = noData;
-        }else{
-            self.tableView.tableFooterView = nil;
-        }
         
         // 字典数组转模型数组
         NSArray *models = [CPTaPublishStatus objectArrayWithKeyValuesArray:taPubArr];
@@ -209,6 +185,33 @@
             [self.taPubStatus addObjectsFromArray:models];
         }else{
             [self.taPubStatus addObjectsFromArray:models];
+        }
+        
+        // 如果返回数据为空，则显示无数据footerView
+        if (self.taPubStatus.count == 0) {
+            CPTaNoData *noData = [CPTaNoData footerView];
+            __weak typeof(self) weakSelf = self;
+            noData.publishRightNow = ^{
+                UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPCreatActivityController" bundle:nil];
+                
+                [weakSelf.navigationController pushViewController:sb.instantiateInitialViewController animated:YES];
+            };
+            if ([selectStr isEqualToString:@"post"]) {
+                noData.pictureName = @"暂无发布";
+                noData.titleName = @"他还没有发布活动噢~";
+                noData.isShowBtn = YES;
+            }else if([selectStr isEqualToString:@"subscribe"]){
+                noData.pictureName = @"暂无关注";
+                noData.titleName = @"他还没有收藏活动噢~";
+                noData.isShowBtn = NO;
+            }else{
+                noData.pictureName = @"暂无参与";
+                noData.titleName = @"他还没有参与活动噢~";
+                noData.isShowBtn = NO;
+            }
+            self.tableView.tableFooterView = noData;
+        }else{
+            self.tableView.tableFooterView = nil;
         }
         
         // 刷新tableview

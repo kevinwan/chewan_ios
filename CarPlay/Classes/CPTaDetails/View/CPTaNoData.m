@@ -8,12 +8,19 @@
 
 #import "CPTaNoData.h"
 
+
 @interface CPTaNoData ()
+
+// 图片
 @property (weak, nonatomic) IBOutlet UIImageView *showPic;
 
+// 文字
 @property (weak, nonatomic) IBOutlet UILabel *showTitle;
 
+// 按钮
 @property (weak, nonatomic) IBOutlet UIButton *showButton;
+
+
 
 - (IBAction)publishActive;
 
@@ -57,9 +64,10 @@
         [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
         
     }else{
-        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPCreatActivityController" bundle:nil];
         
-//        [self.navigationController pushViewController:sb.instantiateInitialViewController animated:YES];
+        if (self.publishRightNow != nil) {
+            self.publishRightNow();
+        }
         
     }
 }
