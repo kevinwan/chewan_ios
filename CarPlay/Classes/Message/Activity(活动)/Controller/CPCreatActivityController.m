@@ -165,22 +165,26 @@ typedef enum {
     if (CPUnLogin){
         return;
     }
-    NSString *userId = [Tools getValueFromKey:@"userId"];
-    NSString *url = [NSString stringWithFormat:@"v1/user/%@/seats",userId];
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    NSString *token = [Tools getValueFromKey:@"token"];
-    if (token){
-        params[@"token"] = [Tools getValueFromKey:@"token"];
-    }
-    [ZYNetWorkTool getWithUrl:url params:params success:^(id responseObject) {
-        if (CPSuccess){
-            // 更改seat的座位
-            [self changeSeatWithResult:responseObject[@"data"]];
-            
+    if ([[self labelWithRow:7].text isEqualToString:@"个数"] || [[self labelWithRow:7].text isEqualToString:@"人数"]) {
+        NSString *userId = [Tools getValueFromKey:@"userId"];
+        NSString *url = [NSString stringWithFormat:@"v1/user/%@/seats",userId];
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        NSString *token = [Tools getValueFromKey:@"token"];
+        if (token){
+            params[@"token"] = [Tools getValueFromKey:@"token"];
         }
-    } failure:^(NSError *error) {
-        [SVProgressHUD showInfoWithStatus:@"加载空座数失败"];
-    }];
+        [ZYNetWorkTool getWithUrl:url params:params success:^(id responseObject) {
+            if (CPSuccess){
+                // 更改seat的座位
+                [self changeSeatWithResult:responseObject[@"data"]];
+                
+            }
+        } failure:^(NSError *error) {
+            [SVProgressHUD showInfoWithStatus:@"加载空座数失败"];
+        }];
+
+    }
+    
 }
 
 - (void)changeSeatWithResult:(NSDictionary *)result

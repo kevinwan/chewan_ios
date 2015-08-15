@@ -86,15 +86,24 @@
     }
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [CPNotificationCenter addObserver:self selector:@selector(clearText) name:@"ClearText" object:nil];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
     [self.searchBar becomeFirstResponder];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    [CPNotificationCenter removeObserver:self];
     [self.titileView removeFromSuperview];
 }
 
@@ -105,11 +114,21 @@
     [self searchTipsWithKey:searchBar.text];
 }
 
+- (void)clearText
+{
+    // 清空数组, 刷新表格
+    [self.tips removeAllObjects];
+    [self.tableView reloadData];
+}
+
 /* 输入提示 搜索.*/
 - (void)searchTipsWithKey:(NSString *)key
 {
     if (key.length == 0)
     {
+        // 清空数组, 刷新表格
+        [self.tips removeAllObjects];
+        [self.tableView reloadData];
         return;
     }
     

@@ -260,6 +260,7 @@
 		E379E2E61B5DEC23001869AA /* CPEditImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E379E2E51B5DEC23001869AA /* CPEditImageView.m */; };
 		E38A5EA41B78847900B068D8 /* ZYTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E38A5EA31B78847900B068D8 /* ZYTabBar.m */; };
 		E3A61B191B7ED06200B641E0 /* CPModelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A61B181B7ED06200B641E0 /* CPModelButton.m */; };
+		E3A61B1C1B7EEC8B00B641E0 /* CPMapPlaceSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A61B1B1B7EEC8B00B641E0 /* CPMapPlaceSearchRequest.m */; };
 		E3AE58C61B57E08800D8F0CA /* ZYNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AE58C31B57E08800D8F0CA /* ZYNetWorkManager.m */; };
 		E3AE58C71B57E08800D8F0CA /* ZYNetWorkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AE58C51B57E08800D8F0CA /* ZYNetWorkTool.m */; };
 		E3B127791B54D9C2005B1174 /* CPChatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B127781B54D9C2005B1174 /* CPChatButton.m */; };
@@ -817,6 +818,8 @@
 		E39435DB1B5CE4E100AF91BF /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		E3A61B171B7ED06200B641E0 /* CPModelButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPModelButton.h; sourceTree = "<group>"; };
 		E3A61B181B7ED06200B641E0 /* CPModelButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPModelButton.m; sourceTree = "<group>"; };
+		E3A61B1A1B7EEC8B00B641E0 /* CPMapPlaceSearchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMapPlaceSearchRequest.h; sourceTree = "<group>"; };
+		E3A61B1B1B7EEC8B00B641E0 /* CPMapPlaceSearchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMapPlaceSearchRequest.m; sourceTree = "<group>"; };
 		E3AE58C21B57E08800D8F0CA /* ZYNetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYNetWorkManager.h; sourceTree = "<group>"; };
 		E3AE58C31B57E08800D8F0CA /* ZYNetWorkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYNetWorkManager.m; sourceTree = "<group>"; };
 		E3AE58C41B57E08800D8F0CA /* ZYNetWorkTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYNetWorkTool.h; sourceTree = "<group>"; };
@@ -1985,6 +1988,8 @@
 				E3E315031B5E551A00FB0B55 /* CPActivityApplyModel.m */,
 				E3C611471B5F328C00B7E73A /* CPCreatActivityModel.h */,
 				E3C611481B5F328C00B7E73A /* CPCreatActivityModel.m */,
+				E3A61B1A1B7EEC8B00B641E0 /* CPMapPlaceSearchRequest.h */,
+				E3A61B1B1B7EEC8B00B641E0 /* CPMapPlaceSearchRequest.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2740,6 +2745,7 @@
 				E36C96251B53C77600D3EDBB /* CPSubscribePersonController.m in Sources */,
 				E3E104A71B675C910049CA4A /* RegexKitLite.m in Sources */,
 				6BC8A3EF1B6A4DB700B199F2 /* CPTaPicCell.m in Sources */,
+				E3A61B1C1B7EEC8B00B641E0 /* CPMapPlaceSearchRequest.m in Sources */,
 				E3CE35A01B59E7FC008434B5 /* XLFormViewController.m in Sources */,
 				E3C611521B5F4A6C00B7E73A /* ZYSearchBar.m in Sources */,
 				A575820D1B6789E500A5E681 /* NSObject+SMFoundation.m in Sources */,
