@@ -69,6 +69,9 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US"];
     formatter.dateFormat = @"yyyy-MM-dd HH:mm";
+    if (_end == 0) {
+        return @"不确定";
+    }
     // 将时间戳转换为NSDate
     NSDate *endDate = [NSDate dateWithTimeIntervalSince1970:_end / 1000];
     // 返回活动时间字符串
