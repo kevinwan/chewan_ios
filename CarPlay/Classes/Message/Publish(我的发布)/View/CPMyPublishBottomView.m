@@ -81,6 +81,7 @@
 
     
     CPChatButton *chatBtn = [CPChatButton buttonWithType:UIButtonTypeCustom];
+    [chatBtn addTarget:self action:@selector(memberManage) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:chatBtn];
     self.chatBtn = chatBtn;
     
@@ -185,8 +186,21 @@
     }
     [self.moreBtn setTitle:[NSString stringWithFormat:@"%zd",self.model.members.count] forState:UIControlStateNormal];
     
-    [self.chatBtn showGameOver];
+    if (self.model.isOver){
+        [self.chatBtn showGameOver];
+    }else{
+        [self.chatBtn showManageMember];
+    }
+    
     [self setNeedsLayout];
+}
+
+/**
+ *  点击了成员管理
+ */
+- (void)memberManage
+{
+//    CPNotificationCenter postNotificationName:<#(NSString *)#> object:<#(id)#>
 }
 
 @end

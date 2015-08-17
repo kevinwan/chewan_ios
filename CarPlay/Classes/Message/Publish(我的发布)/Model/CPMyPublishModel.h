@@ -43,4 +43,6 @@
 
 @property (nonatomic, strong) CPOrganizer *organizer;
 
+@property (nonatomic, assign) NSInteger isOver;
+
 @end

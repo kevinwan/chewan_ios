@@ -64,6 +64,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
     self.ignore = 0;
     [self reRefreshData];
 }
@@ -86,9 +87,7 @@
 
 - (void)reRefreshData
 {
-    if (self.timeLine == nil && CPIsLogin) {
-        [self addBottomTimeLine];
-    }
+    self.timeLine.hidden = YES;
     [self showLoading];
     [self loadDataWithParams:0];
 }
@@ -215,6 +214,29 @@
         CGFloat keyWindowY = [self.view convertPoint:CGPointMake(0 , self.tableView.contentSize.height)toView:[UIApplication sharedApplication].keyWindow].y;
         self.timeLine.height = kScreenHeight - keyWindowY;
     }
+}
+
+- (void)memerManage:(NSNotification *)notify
+{
+    
+    //根据isOrganizer判断进入那个界面
+//    if (model.isOrganizer == 1) {
+//        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MembersManage" bundle:nil];
+//        
+//        MembersManageController * vc = sb.instantiateInitialViewController;
+//        vc.activityId = model.activityId;
+//        [self.navigationController pushViewController:vc animated:YES];
+//        
+//    } else if (model.isMember == 1){
+//        
+//        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Members" bundle:nil];
+//        MembersController * vc = sb.instantiateInitialViewController;
+//        vc.activityId = model.activityId;
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }else { // 申请中
+//        
+//        if (model.isMember == 2) return;
+
 }
 
 @end

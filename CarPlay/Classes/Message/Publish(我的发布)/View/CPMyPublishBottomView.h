@@ -7,6 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+
+#define MyPublishToPlayNotify @"MyPublishToPlayNotify"
+#define MyPublishToPlayInfo @"MyPublishToPlayInfo"
+
 @class CPMyPublishModel;
 
 @interface CPMyPublishBottomView : UIView

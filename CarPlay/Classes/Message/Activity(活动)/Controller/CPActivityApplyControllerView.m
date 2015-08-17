@@ -185,7 +185,6 @@
 
 - (void)loadDataWithParam:(NSInteger)ignore
 {
-    
     NSString *userId = [Tools getValueFromKey:@"userId"];
     NSString *token = [Tools getValueFromKey:@"token"];
     if (! userId.length) {
