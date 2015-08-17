@@ -51,23 +51,6 @@
                         </mask>
                     </variation>
                 </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="验证码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RhT-VM-Lfx">
-                    <rect key="frame" x="10" y="63" width="200" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="Hga-8J-RNJ"/>
-                        <constraint firstAttribute="height" constant="30" id="Sv4-cn-7Ys"/>
-                        <constraint firstAttribute="width" constant="200" id="kSj-7e-pKJ"/>
-                        <constraint firstAttribute="width" constant="120" id="sg7-ty-yTg"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <textInputTraits key="textInputTraits"/>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="Sv4-cn-7Ys"/>
-                            <exclude reference="sg7-ty-yTg"/>
-                        </mask>
-                    </variation>
-                </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8a-iP-ueU">
                     <rect key="frame" x="0.0" y="104" width="320" height="1"/>
                     <color key="backgroundColor" red="0.89411764709999997" green="0.90196078430000004" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -90,20 +73,12 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="LjA-DQ-aSd"/>
                         <constraint firstAttribute="width" constant="83" id="iS7-br-4uk"/>
-                        <constraint firstAttribute="height" constant="30" id="pa6-uX-uA9"/>
-                        <constraint firstAttribute="width" constant="83" id="zhZ-uc-yMX"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal" title="获取验证码">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="pa6-uX-uA9"/>
-                            <exclude reference="zhZ-uc-yMX"/>
-                        </mask>
-                    </variation>
                     <connections>
                         <action selector="getIdentifyingCodeClick:" destination="-1" eventType="touchUpInside" id="vUN-3f-SUX"/>
                     </connections>
@@ -222,6 +197,24 @@
                         <action selector="nextBtnClick:" destination="-1" eventType="touchUpInside" id="B7o-6w-SsM"/>
                     </connections>
                 </button>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="验证码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RhT-VM-Lfx">
+                    <rect key="frame" x="10" y="63" width="214" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="Hga-8J-RNJ"/>
+                        <constraint firstAttribute="height" constant="30" id="Sv4-cn-7Ys"/>
+                        <constraint firstAttribute="width" constant="200" id="kSj-7e-pKJ"/>
+                        <constraint firstAttribute="width" constant="120" id="sg7-ty-yTg"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Sv4-cn-7Ys"/>
+                            <exclude reference="kSj-7e-pKJ"/>
+                            <exclude reference="sg7-ty-yTg"/>
+                        </mask>
+                    </variation>
+                </textField>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -254,6 +247,7 @@
                 <constraint firstItem="RhT-VM-Lfx" firstAttribute="top" secondItem="A6h-Xu-bqu" secondAttribute="bottom" constant="11" id="cyk-fg-q0X"/>
                 <constraint firstItem="qfV-9C-goZ" firstAttribute="top" secondItem="FsJ-ZL-DV4" secondAttribute="bottom" id="g3c-N3-H05"/>
                 <constraint firstItem="DAq-UQ-hgD" firstAttribute="top" secondItem="aUu-I3-FrZ" secondAttribute="bottom" constant="20" id="g7x-Ni-y1O"/>
+                <constraint firstItem="ibc-Xp-M40" firstAttribute="leading" secondItem="RhT-VM-Lfx" secondAttribute="trailing" constant="3" id="jBr-Ay-H4R"/>
                 <constraint firstItem="m8a-iP-ueU" firstAttribute="top" secondItem="ibc-Xp-M40" secondAttribute="bottom" constant="11" id="mCs-0z-7xF"/>
                 <constraint firstItem="DAq-UQ-hgD" firstAttribute="top" secondItem="aUu-I3-FrZ" secondAttribute="bottom" constant="20" id="n7f-Mr-rMP"/>
                 <constraint firstItem="VeX-cT-1GG" firstAttribute="top" secondItem="m8a-iP-ueU" secondAttribute="bottom" constant="11" id="pe7-yW-TUI"/>

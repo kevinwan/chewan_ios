@@ -10,5 +10,6 @@
 
 @interface CPEditUsernameViewController : BaseViewController
 @property (weak, nonatomic) IBOutlet UITextField *nicknameLable;
-
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headHeight;
+@property (weak, nonatomic) NSString *fromEdit;
 @end
