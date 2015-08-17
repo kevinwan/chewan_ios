@@ -27,6 +27,11 @@ static NSString *kGroupName = @"GroupName";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UIView *v = [[UIView alloc] initWithFrame:self.tabBar.bounds];  
+    v.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"bt_bg"]];
+    [self.tabBar insertSubview:v atIndex:0];
+
+    
     // 同城
     [self addChildVCWithSBName:@"CPCityController" title:@"同城" norImageName:@"同城" selectedImageName:@"同城选中"];
     // 消息
@@ -38,6 +43,7 @@ static NSString *kGroupName = @"GroupName";
     [[EaseMob sharedInstance].chatManager addDelegate:self delegateQueue:nil];
     
     [self setupUnreadMessageCount];
+     [self.tabBar setBackgroundImage:[UIImage imageNamed:@"消息选中"]];
 }
 
 - (void)addChildVCWithClass:(Class)class title:(NSString *)title norImageName:(NSString *)norImageName selectedImageName:(NSString *)selectedImageName{
@@ -68,6 +74,7 @@ static NSString *kGroupName = @"GroupName";
     vc.tabBarItem.selectedImage = selectedImage;
     //设置tabBar标题颜色 也可在storyboard中设置
     self.tabBar.tintColor = [Tools getColor:@"48d1d5"];
+    
     
     // 设置随机色
 //    vc.view.backgroundColor = CPRandomColor;
