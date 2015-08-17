@@ -505,7 +505,7 @@
         <image name="地点" width="13" height="13"/>
         <image name="女-1" width="32" height="14"/>
         <image name="开始时间" width="18" height="18"/>
-        <image name="时间" width="12" height="12"/>
+        <image name="时间" width="13" height="13"/>
         <image name="顶部背景" width="13" height="13"/>
         <image name="首页筛选" width="27" height="27"/>
     </resources>

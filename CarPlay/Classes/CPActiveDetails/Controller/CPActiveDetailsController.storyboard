@@ -85,13 +85,13 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJK-xv-hOJ" userLabel="昵称">
-                                                    <rect key="frame" x="45" y="8" width="35.5" height="17"/>
+                                                    <rect key="frame" x="45" y="12" width="35.5" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.36470588235294116" green="0.60784313725490191" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i0Y-nv-P4Y" userLabel="性别和年龄">
-                                                    <rect key="frame" x="87.5" y="11" width="25" height="12"/>
+                                                    <rect key="frame" x="87.5" y="14" width="25" height="12"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="25" id="NX6-4b-RMD"/>
                                                         <constraint firstAttribute="height" constant="12" id="Yke-kt-ajU"/>
@@ -104,20 +104,20 @@
                                                     </state>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1小时前" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3q6-IT-EYA" userLabel="发布时间">
-                                                    <rect key="frame" x="274" y="11" width="36" height="12"/>
+                                                    <rect key="frame" x="274" y="13" width="36" height="12"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" red="0.66666666666666663" green="0.69803921568627447" blue="0.74117647058823533" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="时间" translatesAutoresizingMaskIntoConstraints="NO" id="CmZ-ye-XhQ">
-                                                    <rect key="frame" x="260" y="12" width="10" height="10"/>
+                                                    <rect key="frame" x="260" y="14" width="10" height="10"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="10" id="BFI-KA-2qJ"/>
                                                         <constraint firstAttribute="height" constant="10" id="VZ7-tX-shG"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hr8-Zi-cNj" userLabel="正文">
-                                                    <rect key="frame" x="45" y="34" width="35.5" height="17"/>
+                                                    <rect key="frame" x="45" y="38" width="35.5" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.2627450980392157" green="0.29019607843137252" blue="0.32941176470588235" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -130,12 +130,12 @@
                                                 <constraint firstItem="hr8-Zi-cNj" firstAttribute="top" secondItem="TJK-xv-hOJ" secondAttribute="bottom" constant="9" id="OZe-3o-bGm"/>
                                                 <constraint firstItem="i0Y-nv-P4Y" firstAttribute="leading" secondItem="TJK-xv-hOJ" secondAttribute="trailing" constant="7" id="RrL-5F-yhs"/>
                                                 <constraint firstItem="wDi-Wc-du4" firstAttribute="leading" secondItem="mwD-XK-XpF" secondAttribute="leading" constant="10" id="bMr-jL-nV0"/>
-                                                <constraint firstItem="3q6-IT-EYA" firstAttribute="top" secondItem="mwD-XK-XpF" secondAttribute="top" constant="11" id="e1R-I7-e75"/>
+                                                <constraint firstItem="3q6-IT-EYA" firstAttribute="top" secondItem="mwD-XK-XpF" secondAttribute="top" constant="13" id="e1R-I7-e75"/>
                                                 <constraint firstItem="3q6-IT-EYA" firstAttribute="leading" secondItem="CmZ-ye-XhQ" secondAttribute="trailing" constant="4" id="exl-Pf-2TQ"/>
-                                                <constraint firstItem="TJK-xv-hOJ" firstAttribute="top" secondItem="mwD-XK-XpF" secondAttribute="top" constant="8" id="tai-N1-yeF"/>
+                                                <constraint firstItem="TJK-xv-hOJ" firstAttribute="top" secondItem="mwD-XK-XpF" secondAttribute="top" constant="12" id="tai-N1-yeF"/>
                                                 <constraint firstItem="TJK-xv-hOJ" firstAttribute="leading" secondItem="wDi-Wc-du4" secondAttribute="trailing" constant="10" id="u7O-uj-liK"/>
-                                                <constraint firstItem="i0Y-nv-P4Y" firstAttribute="top" secondItem="mwD-XK-XpF" secondAttribute="top" constant="11" id="wmu-Ff-hfD"/>
-                                                <constraint firstItem="CmZ-ye-XhQ" firstAttribute="top" secondItem="mwD-XK-XpF" secondAttribute="top" constant="12" id="zOM-Mg-Bli"/>
+                                                <constraint firstItem="i0Y-nv-P4Y" firstAttribute="top" secondItem="mwD-XK-XpF" secondAttribute="top" constant="14" id="wmu-Ff-hfD"/>
+                                                <constraint firstItem="CmZ-ye-XhQ" firstAttribute="top" secondItem="mwD-XK-XpF" secondAttribute="top" constant="14" id="zOM-Mg-Bli"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.96078431372549022" green="0.96862745098039216" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
@@ -193,6 +193,6 @@
     </scenes>
     <resources>
         <image name="女-1" width="32" height="14"/>
-        <image name="时间" width="12" height="12"/>
+        <image name="时间" width="13" height="13"/>
     </resources>
 </document>

@@ -224,7 +224,7 @@
                 noData.titleName = @"他还没有发布活动噢~";
                 noData.isShowBtn = YES;
             }else if([selectStr isEqualToString:@"subscribe"]){
-                noData.pictureName = @"暂无关注";
+                noData.pictureName = @"暂无收藏";
                 noData.titleName = @"他还没有收藏活动噢~";
                 noData.isShowBtn = NO;
             }else{

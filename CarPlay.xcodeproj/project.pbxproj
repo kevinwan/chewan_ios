@@ -44,6 +44,8 @@
 		6B6493901B4D04E100C197D2 /* CPNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B64938F1B4D04E100C197D2 /* CPNetWork.m */; };
 		6B6493941B4D04E500C197D2 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493931B4D04E500C197D2 /* Tools.m */; };
 		6B6493D91B4FABC900C197D2 /* CPNetworkVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493D81B4FABC900C197D2 /* CPNetworkVO.m */; };
+		6B82E62E1B81A64A0097ECE7 /* CPOfficialActivityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B82E62D1B81A64A0097ECE7 /* CPOfficialActivityCell.xib */; };
+		6B82E6311B81AB7C0097ECE7 /* CPOfficialActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B82E6301B81AB7C0097ECE7 /* CPOfficialActivityCell.m */; };
 		6B97110D1B7DF5E700EA0F09 /* ChatSendHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9711081B7DF5E700EA0F09 /* ChatSendHelper.m */; };
 		6B97110E1B7DF5E700EA0F09 /* ChatViewController+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97110A1B7DF5E700EA0F09 /* ChatViewController+Category.m */; };
 		6B97110F1B7DF5E700EA0F09 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97110C1B7DF5E700EA0F09 /* ChatViewController.m */; };
@@ -464,6 +466,9 @@
 		6B6493931B4D04E500C197D2 /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
 		6B6493D71B4FABC900C197D2 /* CPNetworkVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNetworkVO.h; sourceTree = "<group>"; };
 		6B6493D81B4FABC900C197D2 /* CPNetworkVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNetworkVO.m; sourceTree = "<group>"; };
+		6B82E62D1B81A64A0097ECE7 /* CPOfficialActivityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPOfficialActivityCell.xib; sourceTree = "<group>"; };
+		6B82E62F1B81AB7C0097ECE7 /* CPOfficialActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPOfficialActivityCell.h; sourceTree = "<group>"; };
+		6B82E6301B81AB7C0097ECE7 /* CPOfficialActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPOfficialActivityCell.m; sourceTree = "<group>"; };
 		6B9711071B7DF5E700EA0F09 /* ChatSendHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatSendHelper.h; sourceTree = "<group>"; };
 		6B9711081B7DF5E700EA0F09 /* ChatSendHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatSendHelper.m; sourceTree = "<group>"; };
 		6B9711091B7DF5E700EA0F09 /* ChatViewController+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChatViewController+Category.h"; sourceTree = "<group>"; };
@@ -1399,6 +1404,9 @@
 				6B5F9B6B1B5D29FE00F9D1E8 /* CPHomeStatusCell.m */,
 				6BCB13361B745B6F00CE6AEC /* CPTopButton.h */,
 				6BCB13371B745B6F00CE6AEC /* CPTopButton.m */,
+				6B82E62F1B81AB7C0097ECE7 /* CPOfficialActivityCell.h */,
+				6B82E6301B81AB7C0097ECE7 /* CPOfficialActivityCell.m */,
+				6B82E62D1B81A64A0097ECE7 /* CPOfficialActivityCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2858,6 +2866,7 @@
 				6B9CFD5E1B6CAD8200EF167D /* CPHowToPlayViewController.xib in Resources */,
 				E3CE35B21B59E7FC008434B5 /* XLForm.bundle in Resources */,
 				E372D8521B6216E800B4FC5C /* CPMyController.storyboard in Resources */,
+				6B82E62E1B81A64A0097ECE7 /* CPOfficialActivityCell.xib in Resources */,
 				6B9CFD761B71D95200EF167D /* CPAbout.storyboard in Resources */,
 				E372D8351B6216C100B4FC5C /* CPBrandModelViewController.xib in Resources */,
 				E372D8461B6216C100B4FC5C /* serviceTermsViewController.xib in Resources */,
@@ -3071,6 +3080,7 @@
 				E372D8381B6216C100B4FC5C /* CustomSlideCell.m in Sources */,
 				6BCF660D1B6208C700358190 /* CPActiveUser.m in Sources */,
 				6B97114D1B7DF60C00EA0F09 /* EMChatViewCell.m in Sources */,
+				6B82E6311B81AB7C0097ECE7 /* CPOfficialActivityCell.m in Sources */,
 				6B97116A1B7DF74200EA0F09 /* UIViewController+DismissKeyboard.m in Sources */,
 				A57582171B6789E500A5E681 /* UIImageView+SMFoundation.m in Sources */,
 				E36CC9641B6C7DA400380E53 /* LineDashPolyline.m in Sources */,
