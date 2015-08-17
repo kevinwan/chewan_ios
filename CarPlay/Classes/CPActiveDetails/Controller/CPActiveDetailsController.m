@@ -647,6 +647,8 @@
                             self.noButton = noButton;
                             UIButton *yeButton = (UIButton *)[carView viewWithTag:2000];
                             self.yesButton = yeButton;
+                            [noButton addTarget:self action:@selector(tap) forControlEvents:UIControlEventTouchUpInside];
+                            [yeButton addTarget:self action:@selector(tap) forControlEvents:UIControlEventTouchUpInside];
                             UIButton * offerButton = (UIButton *)[carView viewWithTag:3000];
                             UITextField * carxibTextFeild = (UITextField *)[carView viewWithTag:4000];
                             self.carxibTextFeild = carxibTextFeild;

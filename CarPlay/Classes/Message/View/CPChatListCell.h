@@ -7,6 +7,7 @@
 //
 
 #import "ZYTableViewCell.h"
+#import "CPHomeMsgModel.h"
 
 @interface CPChatListCell : ZYTableViewCell
 @property (weak, nonatomic) IBOutlet UIButton *iconView;
@@ -17,4 +18,5 @@
 @property (nonatomic, strong) UILabel *redUnreadLabelPoint;
 @property (nonatomic, strong) UILabel *unreadLabel;
 @property (nonatomic, assign) BOOL showUnreadCount;
+@property (nonatomic, strong) CPHomeMsgModel *model;
 @end

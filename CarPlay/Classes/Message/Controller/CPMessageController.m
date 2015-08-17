@@ -19,6 +19,7 @@
 #import "ConvertToCommonEmoticonsHelper.h"
 #import "RobotManager.h"
 #import "CPChatListCell.h"
+#import "CPHomeMsgModel.h"
 
 typedef enum {
     CPMessageOptionMsg, // 新留言消息
@@ -35,11 +36,38 @@ typedef enum {
 @property (nonatomic, strong) NSTimer *timer;
 
 
-@property (strong, nonatomic) NSMutableArray *dataSource;
-@property (nonatomic, strong) UIView *networkStateView;
+@property (strong, nonatomic) NSMutableArray        *dataSource;
+@property (nonatomic, strong) UIView                *networkStateView;
+@property (nonatomic, strong) NSMutableArray *datas;
 @end
 
 @implementation CPMessageController
+
+- (NSMutableArray *)datas
+{
+    if (_datas == nil) {
+        _datas = [[NSMutableArray alloc] init];
+        
+        
+        CPHomeMsgModel *model = [[CPHomeMsgModel alloc] init];
+        model.title = @"新的留言";
+        model.icon = @"新的评论";
+        model.content = @"暂无留言";
+        model.timeStr = @"";
+        model.isShowUnread = NO;
+        
+        CPHomeMsgModel *activityModel = [[CPHomeMsgModel alloc] init];
+        activityModel.title = @"活动消息";
+        activityModel.icon = @"参与申请";
+        activityModel.content = @"暂无消息";
+        activityModel.timeStr = @"";
+        activityModel.isShowUnread = NO;
+        
+        [_datas addObject:model];
+        [_datas addObject:activityModel];
+    }
+    return _datas;
+}
 
 - (NSTimer *)timer
 {
@@ -89,9 +117,9 @@ typedef enum {
     NSString *url = [NSString stringWithFormat:@"v1/user/%@/message/count?token=%@", userid, token];
     
     [ZYNetWorkTool getWithUrl:url params:nil success:^(id responseObject) {
+        DLog(@"%@",responseObject);
         [self.tableView.header endRefreshing];
         if (CPSuccess) {
-            
             NSDictionary *comment = responseObject[@"data"][@"comment"];
             
             NSDictionary *application = responseObject[@"data"][@"application"];
@@ -99,24 +127,31 @@ typedef enum {
 
             NSUInteger newMsgCount = [comment[@"count"] intValue];
             NSUInteger activityApplyCount = [application[@"count"] intValue];
+            
+            CPHomeMsgModel *model = self.datas[0];
             if (newMsgCount > 0) {
-                self.leaveNewMsgNumber.hidden = NO;
-                self.leaveNewMsgNumber.badgeValue = [NSString stringWithFormat:@"%zd",newMsgCount];
-                
-                self.leaveMsgLabel.text = comment[@"content"];
+                model.content = comment[@"content"];
+                model.createTime = [comment[@"createTime"] longLongValue];
+                model.unreadCount = [NSString stringWithFormat:@"%zd",newMsgCount];
+                model.isShowUnread = YES;
+            }else{
+                model.isShowUnread = NO;
             }
+            
+            CPHomeMsgModel *activityModel = self.datas[1];
             
             if (activityApplyCount > 0) {
-                self.activityApplyNewMsgNumber.hidden = NO;
-                self.activityApplyNewMsgNumber.badgeValue = [NSString stringWithFormat:@"%zd", activityApplyCount];
-                NSString *text = [application[@"content"] stringByAppendingString:@"活动"];
-                NSAttributedString *activityName = [[NSAttributedString alloc] initWithString:text attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"48d1d5"]}];
-                
-                NSMutableAttributedString *msg = [[NSMutableAttributedString alloc] initWithString:@"您已成功加入"];
-                [msg appendAttributedString:activityName];
-                self.activityApplyMsgLabel.attributedText = msg;
+            
+                activityModel.content = application[@"content"];
+                activityModel.unreadCount = [NSString stringWithFormat:@"%zd",activityApplyCount];
+                activityModel.createTime = [application[@"createTime"] longLongValue];
+                activityModel.isShowUnread = YES;
+            }else{
+                activityModel.isShowUnread = NO;
             }
             
+            
+            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0],[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
             if (activityApplyCount + newMsgCount > 0) {
                 
                 self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%zd", activityApplyCount + newMsgCount];
@@ -141,30 +176,25 @@ typedef enum {
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
     if (indexPath.row == 1) {
         
-        self.activityApplyNewMsgNumber.badgeValue = @"0";
-        self.activityApplyNewMsgNumber.hidden = YES;
-        self.activityApplyMsgLabel.text = @"暂无消息";
-        
-        if (self.leaveNewMsgNumber.badgeValue.integerValue > 0) {
-            self.tabBarItem.badgeValue = self.leaveNewMsgNumber.badgeValue;
-        }else{
-            self.tabBarItem.badgeValue = nil;
-        }
-        CPActivityApplyControllerView *vc = [UIStoryboard storyboardWithName:@"CPActivityApplyControllerView" bundle:nil].instantiateInitialViewController;
+                CPActivityApplyControllerView *vc = [UIStoryboard storyboardWithName:@"CPActivityApplyControllerView" bundle:nil].instantiateInitialViewController;
         [self.navigationController pushViewController:vc animated:YES];
-    }else if(indexPath.row == 0){
-        self.leaveNewMsgNumber.badgeValue = @"0";
         
-        if (self.activityApplyNewMsgNumber.badgeValue.integerValue > 0) {
-            self.tabBarItem.badgeValue = self.activityApplyNewMsgNumber.badgeValue;
-        }else{
-            self.tabBarItem.badgeValue = nil;
-        }
-        self.leaveNewMsgNumber.hidden = YES;
-        self.leaveMsgLabel.text = @"暂无留言";
-        CPNewMessageController *newMsgVc = [UIStoryboard storyboardWithName:@"CPNewMessageController" bundle:nil].instantiateInitialViewController;
+        CPHomeMsgModel *model = self.datas[1];
+        model.unreadCount = @"";
+        model.isShowUnread = NO;
+        model.content = @"暂无消息";
+        model.createTime = 0;
+        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+    }else if (indexPath.row == 0){      CPNewMessageController *newMsgVc = [UIStoryboard storyboardWithName:@"CPNewMessageController" bundle:nil].instantiateInitialViewController;
         [self.navigationController pushViewController:newMsgVc animated:YES];
-    }else{
+        
+        CPHomeMsgModel *model = self.datas[0];
+        model.unreadCount = @"";
+        model.isShowUnread = NO;
+        model.content = @"暂无留言";
+        model.createTime = 0;
+        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+    }else{ // 小🐂的群聊天
         
     }
 }
@@ -322,22 +352,11 @@ typedef enum {
 {
     static NSString *identify = @"ChatListCell";
     CPChatListCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
-    if (!cell) {
-        cell = [[CPChatListCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identify];
-    }
-    if (indexPath.row == 0) {
-        [cell.iconView setImage:[UIImage imageNamed:@"新的评论"] forState:UIControlStateNormal];
-        cell.titleNameLabel.text = @"新的留言";
-        cell.msgLabel.text = @"暂无留言";
-        cell.unreadLabel.text = @"2";
-    }else if(indexPath.row == 1){
-        [cell.iconView setImage:[UIImage imageNamed:@"参与申请"] forState:UIControlStateNormal];
-        cell.titleNameLabel.text = @"活动消息";
-        cell.msgLabel.text = @"暂无消息";
-        cell.showUnreadCount = YES;
-    }else{
-        
-    }
+    
+    cell.model = self.datas[indexPath.row];
+//    if (!cell) {
+//        cell = [[CPChatListCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identify];
+//    }
     return cell;
 }
 
@@ -346,7 +365,7 @@ typedef enum {
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 2;
+    return self.datas.count;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
