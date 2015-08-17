@@ -102,16 +102,12 @@
     
     self.navigationItem.title = @"新的留言";
     
-    [CPGuideView showGuideViewWithImageName:@"msgGuide"];
     
     self.tableView.allowsSelectionDuringEditing = YES;
     
     self.tableView.tableFooterView = [[UIView alloc] init];
 
-    
-    [CPNotificationCenter addObserver:self selector:@selector(tableViewEdit:) name:CPNewMsgEditNotifycation object:nil];
-    [CPNotificationCenter addObserver:self selector:@selector(userIconClick:) name:CPClickUserIconNotification object:nil];
-    __weak typeof(self) weakSelf = self;
+        __weak typeof(self) weakSelf = self;
     self.tableView.header = [CPRefreshHeader headerWithRefreshingBlock:^{
         weakSelf.ignore = 0;
         [weakSelf loadDataWithParam:0];
@@ -126,6 +122,26 @@
     ZYJumpToLoginView // 跳转到登录页面
     [self reRefreshData];
     
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if (CPIsLogin) { // 如果登录了进行引导页展示
+        [CPGuideView showGuideViewWithImageName:@"msgGuide"];
+    }
+    
+    [CPNotificationCenter addObserver:self selector:@selector(tableViewEdit:) name:CPNewMsgEditNotifycation object:nil];
+    [CPNotificationCenter addObserver:self selector:@selector(userIconClick:) name:CPClickUserIconNotification object:nil];
+
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [CPNotificationCenter removeObserver:self];
 }
 
 - (void)reRefreshData
@@ -196,11 +212,6 @@
         [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
         [self setEditing:YES animated:YES];
     }
-}
-
-- (void)dealloc
-{
-    [CPNotificationCenter removeObserver:self];
 }
 
 #pragma mark - Table view data source

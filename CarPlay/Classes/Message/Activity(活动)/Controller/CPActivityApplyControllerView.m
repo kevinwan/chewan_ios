@@ -140,11 +140,7 @@
     self.tableView.allowsSelectionDuringEditing = YES;
     
     self.tableView.tableFooterView = [[UIView alloc] init];
-    
-    
-    [CPNotificationCenter addObserver:self selector:@selector(tableViewEdit:) name:CPNewActivityMsgEditNotifycation object:nil];
-    [CPNotificationCenter addObserver:self selector:@selector(userIconClick:) name:CPClickUserIconNotification object:nil];
-    [CPNotificationCenter addObserver:self selector:@selector(agreeBtnClick:) name:CPActivityApplyNotification object:nil];
+
     __weak typeof(self) weakSelf = self;
     self.tableView.header = [CPRefreshHeader headerWithRefreshingBlock:^{
         weakSelf.ignore = 0;
@@ -159,6 +155,26 @@
     self.tableView.footer.hidden = YES;
     ZYJumpToLoginView // 跳转到登录页面
     [self reRefreshData];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    
+    [CPNotificationCenter addObserver:self selector:@selector(tableViewEdit:) name:CPNewActivityMsgEditNotifycation object:nil];
+    [CPNotificationCenter addObserver:self selector:@selector(userIconClick:) name:CPClickUserIconNotification object:nil];
+    [CPNotificationCenter addObserver:self selector:@selector(agreeBtnClick:) name:CPActivityApplyNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [CPNotificationCenter removeObserver:self];
+    if (_coverView) {
+        _coverView.hidden = YES;
+    }
 }
 
 - (void)reRefreshData
@@ -186,7 +202,6 @@
         [self disMiss];
         [self.tableView.footer endRefreshing];
         [self.tableView.header endRefreshing];
-        DLog(@"%@",responseObject);
         if (CPSuccess) {
             
             if (self.ignore == 0) {
@@ -402,14 +417,6 @@
 - (void)buttonClick
 {
     self.coverView.hidden = YES;
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    if (_coverView) {
-        _coverView.hidden = YES;
-    }
 }
 
 @end

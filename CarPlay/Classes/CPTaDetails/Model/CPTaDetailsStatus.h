@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface CPTaDetailsStatus : NSObject
 
 // 年龄
@@ -51,6 +52,9 @@
 
 // 用户id
 @property (nonatomic,copy) NSString *userId;
+
+
+
 
 
 @end

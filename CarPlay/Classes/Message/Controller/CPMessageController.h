@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface CPMessageController : ZYTableViewController
+- (void)refreshDataSource;
 
+- (void)isConnect:(BOOL)isConnect;
+- (void)networkChanged:(EMConnectionState)connectionState;
 @end

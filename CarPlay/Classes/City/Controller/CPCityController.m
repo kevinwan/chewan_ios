@@ -151,6 +151,9 @@
     // 设置顶部按钮
     [self.hotBtn setHighlighted:NO];
     
+    // 新手引导
+    [CPGuideView showGuideViewWithImageName:@"homeGuide"];
+    
     // 获取当前经纬度
     [self getLongitudeAndLatitude];
     
@@ -397,7 +400,7 @@
             
             // 1.创建图片浏览器
             MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
-             NSArray *urls = [status.cover valueForKeyPath:@"thumbnail_pic"];
+             NSArray *urls = [status.cover valueForKeyPath:@"original_pic"];
             // 2.设置图片浏览器显示的所有图片
             NSMutableArray *photos = [NSMutableArray array];
             NSUInteger count = urls.count;
@@ -419,9 +422,7 @@
             
             // 3.显示浏览器
             [browser show];
-            
-
-            
+                        
         };
     }
     

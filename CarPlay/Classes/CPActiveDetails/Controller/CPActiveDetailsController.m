@@ -100,6 +100,9 @@
     // 设置标题
     self.title = @"活动详情";
     
+    // 新手引导
+    [CPGuideView showGuideViewWithImageName:@"detailGuide"];
+    
     // 发送按钮切圆
     self.sendBtn.layer.cornerRadius = 3;
     self.sendBtn.layer.masksToBounds = YES;

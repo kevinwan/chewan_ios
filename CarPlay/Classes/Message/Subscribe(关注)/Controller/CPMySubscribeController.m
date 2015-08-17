@@ -417,7 +417,6 @@
 - (void)coverClick {
     [_cover removeFromSuperview];
     _cover = nil;
-    
     [_carView removeFromSuperview];
     _carView = nil;
 }

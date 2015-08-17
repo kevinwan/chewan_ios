@@ -15,6 +15,8 @@
 #import "CPTaPublishCell.h"
 #import "CPTaDetailsHead.h"
 #import "CPTaNoData.h"
+#import "CPHomeStatusCell.h"
+#import "CPHomeStatus.h"
 
 @interface CPTaDetailsController ()
 
@@ -35,6 +37,10 @@
 
 // 缓存cell高度（线程安全、内存紧张时会自动释放、不会拷贝key）
 @property (nonatomic,strong) NSCache *rowHeightCache;
+@property (nonatomic,strong) NSCache *otherRowHeightCache;
+
+// 三种状态
+@property (nonatomic,copy) NSString *threeStates;
 
 @end
 
@@ -55,9 +61,6 @@
     // 上拉下拉刷新
     [self topAndBottomRefresh];
     
-//    CPTaNoData *noData = [CPTaNoData footerView];
-//    self.tableView.tableFooterView = noData;
-//    self.tableView.tableFooterView = nil;
     
 }
 
@@ -95,13 +98,28 @@
     
     // 刷新他的详情
     [self setupLoadTaStatus];
-    [self setupLoadTaPublishStatusWithIgnore:0 SelectStr:@"post"];
+    
+    if ([self.threeStates isEqualToString:@"post"]) {
+        [self setupLoadTaPublishStatusWithIgnore:0 SelectStr:@"post"];
+    }else if ([self.threeStates isEqualToString:@"join"]){
+        [self setupLoadTaPublishStatusWithIgnore:0 SelectStr:@"join"];
+    }else{
+        [self setupLoadTaPublishStatusWithIgnore:0 SelectStr:@"subscribe"];
+    }
+    
 }
 
 // 上滑
 - (void)upglideLoadData{
     self.ignoreNum += CPPageNum;
-    [self setupLoadTaPublishStatusWithIgnore:self.ignoreNum SelectStr:@"post"];
+    
+    if ([self.threeStates isEqualToString:@"post"]) {
+        [self setupLoadTaPublishStatusWithIgnore:self.ignoreNum SelectStr:@"post"];
+    }else if ([self.threeStates isEqualToString:@"join"]){
+        [self setupLoadTaPublishStatusWithIgnore:self.ignoreNum SelectStr:@"join"];
+    }else{
+        [self setupLoadTaPublishStatusWithIgnore:self.ignoreNum SelectStr:@"subscribe"];
+    }
 }
 
 - (void)setupLoadHeadView{
@@ -155,6 +173,9 @@
 
 // 加载他的详情发布
 - (void)setupLoadTaPublishStatusWithIgnore:(NSInteger)ignore SelectStr:(NSString *)selectStr{
+    
+    self.threeStates = selectStr;
+    
     // 设置请求参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     parameters[@"ignore"] = @(ignore);
@@ -174,29 +195,10 @@
     // 发送请求
     [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
         
-     
-
-        
         // 去出他发布的数据
         NSArray *taPubArr = responseObject[@"data"];
         
-        // 如果返回数据为空，则显示无数据footerView
-        if (taPubArr.count == 0) {
-            CPTaNoData *noData = [CPTaNoData footerView];
-            if ([selectStr isEqualToString:@"post"]) {
-                noData.pictureName = @"暂无发布";
-                noData.titleName = @"他还没有发布活动噢~";
-            }else if([selectStr isEqualToString:@"subscribe"]){
-                noData.pictureName = @"暂无关注";
-                noData.titleName = @"他还没有收藏活动噢~";
-            }else{
-                noData.pictureName = @"暂无参与";
-                noData.titleName = @"他还没有参与活动噢~";
-            }
-            self.tableView.tableFooterView = noData;
-        }else{
-            self.tableView.tableFooterView = nil;
-        }
+        NSLog(@"%@",responseObject[@"data"]);
         
         // 字典数组转模型数组
         NSArray *models = [CPTaPublishStatus objectArrayWithKeyValuesArray:taPubArr];
@@ -206,6 +208,33 @@
             [self.taPubStatus addObjectsFromArray:models];
         }else{
             [self.taPubStatus addObjectsFromArray:models];
+        }
+        
+        // 如果返回数据为空，则显示无数据footerView
+        if (self.taPubStatus.count == 0) {
+            CPTaNoData *noData = [CPTaNoData footerView];
+            __weak typeof(self) weakSelf = self;
+            noData.publishRightNow = ^{
+                UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPCreatActivityController" bundle:nil];
+                
+                [weakSelf.navigationController pushViewController:sb.instantiateInitialViewController animated:YES];
+            };
+            if ([selectStr isEqualToString:@"post"]) {
+                noData.pictureName = @"暂无发布";
+                noData.titleName = @"他还没有发布活动噢~";
+                noData.isShowBtn = YES;
+            }else if([selectStr isEqualToString:@"subscribe"]){
+                noData.pictureName = @"暂无关注";
+                noData.titleName = @"他还没有收藏活动噢~";
+                noData.isShowBtn = NO;
+            }else{
+                noData.pictureName = @"暂无参与";
+                noData.titleName = @"他还没有参与活动噢~";
+                noData.isShowBtn = NO;
+            }
+            self.tableView.tableFooterView = noData;
+        }else{
+            self.tableView.tableFooterView = nil;
         }
         
         // 刷新tableview
@@ -231,52 +260,102 @@
     return self.taPubStatus.count;
 }
 
-
+// 创建cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
-    // 创建cell
-    CPTaPublishCell *cell = [tableView dequeueReusableCellWithIdentifier:[CPTaPublishCell identifier]];
-    
-    // 第一行处理
-    if (indexPath.row == 0) {
-        cell.isFirst = YES;
-    }else{
-        cell.isFirst = NO;
-    }
-    
-    // 设置数据
-    cell.publishStatus = self.taPubStatus[indexPath.row];
-    
 
-    return cell;
+    if ([self.threeStates isEqualToString:@"post"]) {
+        // 创建cell
+        CPTaPublishCell *cell = [tableView dequeueReusableCellWithIdentifier:[CPTaPublishCell identifier]];
+        
+        //第一行处理
+        if (indexPath.row == 0) {
+            cell.isFirst = YES;
+        }else{
+            cell.isFirst = NO;
+        }
+        
+        // 设置数据
+        cell.publishStatus = self.taPubStatus[indexPath.row];
+        
+        return cell;
+    }else{
+        CPHomeStatusCell *cell = [tableView dequeueReusableCellWithIdentifier:[CPHomeStatusCell identifier]];
+    
+    
+        cell.status = self.taPubStatus[indexPath.row];
+        
+        return cell;
+    }
     
 }
 
 
+
+
+// 计算cell行高
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     // 取出对应行模型
     CPTaPublishStatus *status = self.taPubStatus[indexPath.row];
     
     // 先从缓存中获取高度，没有才计算
-    NSNumber *rowHeight = [self.rowHeightCache objectForKey:status.activityId];
-    CGFloat cellHeight = [rowHeight doubleValue];
-    
-    if (rowHeight == nil) {
-        // 取出cell
-        CPTaPublishCell *cell = [tableView dequeueReusableCellWithIdentifier:[CPTaPublishCell identifier]];
+    if ([self.threeStates isEqualToString:@"post"]) {
+        NSNumber *rowHeight = [self.rowHeightCache objectForKey:status.activityId];
+        CGFloat cellHeight = [rowHeight doubleValue];
         
-        // 获取高度
-        cellHeight = [cell cellHeightWithTaPublishStatus:status];
+        if (rowHeight == nil) {
+            
+            // 取出cell
+            CPTaPublishCell *cell = [tableView dequeueReusableCellWithIdentifier:[CPTaPublishCell identifier]];
+            
+            // 获取高度
+            cellHeight = [cell cellHeightWithTaPublishStatus:status];
+            
+            // 缓存每一行的高度
+            [self.rowHeightCache setObject:@(cellHeight) forKey:status.activityId];
+        }
         
-        // 缓存每一行的高度
-        [self.rowHeightCache setObject:@(cellHeight) forKey:status.activityId];
+        // 设置高度
+        return cellHeight;
+
+    }else{
         
+        NSNumber *rowHeight = [self.otherRowHeightCache objectForKey:status.activityId];
+        CGFloat cellHeight = [rowHeight doubleValue];
+        
+        if (rowHeight == nil) {
+            
+            // 取出cell
+            CPHomeStatusCell *cell = [tableView dequeueReusableCellWithIdentifier:[CPHomeStatusCell identifier]];
+            
+            CPHomeStatus *homeStatus = [[CPHomeStatus alloc] init];
+            homeStatus.activityId = status.activityId;
+            homeStatus.introduction = status.introduction;
+            homeStatus.publishTime = status.publishTime;
+            homeStatus.start = status.start;
+            homeStatus.location = status.location;
+            homeStatus.totalSeat = status.totalSeat;
+            homeStatus.holdingSeat = status.holdingSeat;
+            homeStatus.pay = status.pay;
+            homeStatus.type = status.type;
+            homeStatus.isOrganizer = status.isOrganizer;
+            homeStatus.isMember = status.isMember;
+            homeStatus.organizer = status.organizer;
+            homeStatus.cover = status.cover;
+            homeStatus.members = status.members;
+
+            // 获取高度
+            cellHeight = [cell cellHeightWithStatus:homeStatus];
+            
+            // 缓存每一行的高度
+            [self.otherRowHeightCache setObject:@(cellHeight) forKey:status.activityId];
+        }
+        
+        // 设置高度
+        return cellHeight;
+
     }
-    
-    // 设置高度
-    return cellHeight;
     
 }
 
@@ -319,5 +398,12 @@
     return _taPubStatus;
 }
 
+// 三种状态
+- (NSString *)threeStates{
+    if (!_threeStates) {
+        _threeStates = @"post";
+    }
+    return _threeStates;
+}
 
 @end

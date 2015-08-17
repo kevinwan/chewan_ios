@@ -306,7 +306,7 @@
 //                return 50.;
 //            }
         case UUDateStyle_YearMonthDayHourMinute:{
-            if (component==0) return 60.;
+            if (component==0) return 58.;
             if (component==1) return 65.;
             if (component==2) return 30.;
             if (component==3) return 50.;
