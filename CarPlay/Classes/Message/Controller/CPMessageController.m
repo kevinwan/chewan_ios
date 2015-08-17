@@ -24,7 +24,7 @@ typedef enum {
     CPMessageOptionActivity // 参与活动信息
 }CPMessageOption;
 
-@interface CPMessageController ()<IChatManagerDelegate>
+@interface CPMessageController ()<IChatManagerDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet CPBadgeView *leaveNewMsgNumber;
 
 @property (weak, nonatomic) IBOutlet CPBadgeView *activityApplyNewMsgNumber;
@@ -317,19 +317,37 @@ typedef enum {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *ID = @"cell";
-    UITableViewCell *cell;
-    if (indexPath.row > 1) {
-        cell = [tableView dequeueReusableCellWithIdentifier:ID];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
-            cell.textLabel.text = @"xingbuxing";
-        }
-        return cell;
-    }else{
-        cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
-        return cell;
+    static NSString *identify = @"chatListCell";
+    ChatListCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
+    if (!cell) {
+        cell = [[ChatListCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identify];
     }
+    if (indexPath.row == 0) {
+        cell.placeholderImage=[UIImage imageNamed:@"新的评论"];
+        cell.name = @"新的留言";
+        cell.detailMsg = @"暂无留言";
+        cell.unreadCount = 2;
+    }else if(indexPath.row == 1){
+        cell.placeholderImage = [UIImage imageNamed:@"参与申请"];
+        cell.name = @"活动消息";
+        cell.detailMsg = @"暂无消息";
+        cell.showUnreadCount = YES;
+    }else{
+        
+    }
+    return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 70.0f;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 2;
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
 }
 
 @end

@@ -152,25 +152,32 @@
                 if ([Tools getValueFromKey:@"modelName"]) {
                     NSString *path=[[NSString alloc]initWithFormat:@"v1/user/%@/authentication?token=%@",[Tools getValueFromKey:@"userId"],[Tools getValueFromKey:@"token"]];
                     NSDictionary *para=[NSDictionary dictionaryWithObjectsAndKeys:[Tools getValueFromKey:@"brandName"],@"carBrand",[Tools getValueFromKey:@"brandUrl"],@"carBrandLogo",[Tools getValueFromKey:@"modelName"],@"carModel",@(drivingExperience),@"drivingExperience",[Tools getValueFromKey:@"slug"],@"slug",nil];
-                    MBProgressHUD *hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                    hud.color = [UIColor clearColor];
-                    hud.labelText=@"加载中…";
-                    hud.dimBackground=YES;
+                   [self showLoading];
                     [ZYNetWorkTool postJsonWithUrl:path params:para success:^(id responseObject) {
-                        [hud hide:YES];
                         NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
                         NSString *state=[numberFormatter stringFromNumber:[responseObject objectForKey:@"result"]];
+                        [self disMiss];
                         if (CPSuccess) {
                              [[[UIAlertView alloc]initWithTitle:@"提示" message:@"您的认证提交成功，我们会尽快审核!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                             if (_fromMy && [_fromMy isEqualToString:@"1"]) {
-                                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+                                EMError *error = nil;
+                                NSString *EMuser=[Tools md5EncryptWithString:[Tools getValueFromKey:@"userId"]];
+                                NSDictionary *loginInfo = [[EaseMob sharedInstance].chatManager loginWithUsername:EMuser password:[Tools getValueFromKey:@"password"] error:&error];
+                                if (!error && loginInfo) {
+                                    [Tools setValueForKey:@(YES) key:NOTIFICATION_HASLOGIN];
+                                    [Tools setValueForKey:[Tools getValueFromKey:@"password"] key:@"password"];
+                                    [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+                                    [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+                                }else{
+                                    [self showError:error.description];
+                                }
                             }
                         }else{
                             [[[UIAlertView alloc]initWithTitle:@"提示" message:@"提交失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                         }
                     } failed:^(NSError *error) {
-                        [hud hide:YES];
                         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                        [self disMiss];
                     }];
                 }else{
                     [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请选择您的爱车型号!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
@@ -264,7 +271,17 @@
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==1) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+        EMError *error = nil;
+        NSString *EMuser=[Tools md5EncryptWithString:[Tools getValueFromKey:@"userId"]];
+        NSDictionary *loginInfo = [[EaseMob sharedInstance].chatManager loginWithUsername:EMuser password:[Tools getValueFromKey:@"password"] error:&error];
+        if (!error && loginInfo) {
+            [Tools setValueForKey:@(YES) key:NOTIFICATION_HASLOGIN];
+            [Tools setValueForKey:[Tools getValueFromKey:@"password"] key:@"password"];
+            [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+            [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+        }else{
+            [self showError:error.description];
+        }
     }
 }
 
