@@ -121,7 +121,7 @@
 -(instancetype)initPickviewWithArray:(NSArray *)array isHaveNavControler:(BOOL)isHaveNavControler{
     self=[super init];
     if (self) {
-        self.plistArray=array;
+        self.plistArray=[NSArray arrayWithArray: array];
         [self setArrayClass:array];
         [self setUpPickView];
         [self setFrameWith:isHaveNavControler];
@@ -533,7 +533,7 @@
     }];
 }
 -(void)show{
-    
+
     [[UIApplication sharedApplication].windows.lastObject addSubview:self];
     
 }
