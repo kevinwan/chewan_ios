@@ -278,6 +278,12 @@
             [self.discussStatus addObjectsFromArray:models];
         }
         
+        // 如果没有评论数据，则不显示分隔线
+        if (self.discussStatus.count == 0) {
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        }else{
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        }
         
         // 刷新界面
         [self.tableView reloadData];
