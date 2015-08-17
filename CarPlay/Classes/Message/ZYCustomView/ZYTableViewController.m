@@ -147,7 +147,7 @@
 
 - (void)showNoData
 {
-    [self tipViewWithIcon:@"暂无关注" title:@"" subTitle:@"暂无更多数据,刷新一下试试吧" buttonTitle:@"重新加载" isShow:YES];
+    [self tipViewWithIcon:@"暂无发布" title:@"" subTitle:@"暂无更多数据,刷新一下试试吧" buttonTitle:@"重新加载" isShow:YES];
 }
 
 - (void)showNoPublish
@@ -157,7 +157,7 @@
 
 - (void)showNoSubscribe
 {
-    [self tipViewWithIcon:@"暂无关注" title:@"" subTitle:@"还没有添加任何收藏" buttonTitle:nil isShow:NO];
+    [self tipViewWithIcon:@"暂无收藏" title:@"" subTitle:@"还没有添加任何收藏" buttonTitle:nil isShow:NO];
 }
 
 - (void)showNoJoin

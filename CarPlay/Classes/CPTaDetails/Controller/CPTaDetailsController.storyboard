@@ -33,9 +33,9 @@
                                                 <constraint firstAttribute="width" constant="5" id="lvd-zi-gHb"/>
                                             </constraints>
                                         </view>
-                                        <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XuG-O0-spQ" userLabel="底部时间线">
-                                            <rect key="frame" x="54" y="26" width="1" height="214.5"/>
-                                            <color key="backgroundColor" red="0.90196078431372551" green="0.9137254901960784" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XuG-O0-spQ" userLabel="底部时间线">
+                                            <rect key="frame" x="54" y="27" width="1" height="213.5"/>
+                                            <color key="backgroundColor" red="0.90588235294117647" green="0.91764705882352937" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="1" id="VYD-Ma-WV0"/>
                                             </constraints>
@@ -83,13 +83,18 @@
                                                 <outlet property="delegate" destination="rMf-ab-OnW" id="524-YS-ai8"/>
                                             </connections>
                                         </collectionView>
-                                        <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4t4-L9-3gI" userLabel="顶部时间线">
-                                            <rect key="frame" x="54" y="0.0" width="1" height="23"/>
-                                            <color key="backgroundColor" red="0.90196078431372551" green="0.9137254901960784" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4t4-L9-3gI" userLabel="顶部时间线">
+                                            <rect key="frame" x="54" y="0.0" width="1" height="22"/>
+                                            <color key="backgroundColor" red="0.90588235294117647" green="0.91764705882352937" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="1" id="cIL-tP-nFY"/>
                                                 <constraint firstAttribute="height" constant="23" id="jkf-K0-gRV"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="jkf-K0-gRV"/>
+                                                </mask>
+                                            </variation>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4c1-hC-CWq" userLabel="时间">
                                             <rect key="frame" x="87" y="131" width="30.5" height="13.5"/>
@@ -224,10 +229,11 @@
                                         <constraint firstItem="4t4-L9-3gI" firstAttribute="leading" secondItem="BEI-Yl-EMC" secondAttribute="leading" constant="54" id="DdA-ua-thG"/>
                                         <constraint firstItem="62B-Ec-bhE" firstAttribute="top" secondItem="JQL-p9-VZq" secondAttribute="bottom" constant="8" id="F0u-Lu-LIS"/>
                                         <constraint firstItem="JgM-Oh-4MG" firstAttribute="centerX" secondItem="XuG-O0-spQ" secondAttribute="centerX" id="Fwa-Mf-TLE"/>
+                                        <constraint firstItem="JgM-Oh-4MG" firstAttribute="top" secondItem="4t4-L9-3gI" secondAttribute="bottom" id="IjN-Rg-waF"/>
                                         <constraint firstItem="fFr-tG-H5r" firstAttribute="leading" secondItem="Otz-c6-vkr" secondAttribute="leading" id="JJV-w5-myY"/>
                                         <constraint firstItem="JgM-Oh-4MG" firstAttribute="centerX" secondItem="4t4-L9-3gI" secondAttribute="centerX" id="M3g-mI-Ck0"/>
                                         <constraint firstItem="wDM-Kv-2z8" firstAttribute="top" secondItem="fFr-tG-H5r" secondAttribute="bottom" constant="8" id="Mcx-Yc-04p"/>
-                                        <constraint firstItem="XuG-O0-spQ" firstAttribute="top" secondItem="JgM-Oh-4MG" secondAttribute="bottom" constant="-1" id="Ml7-m4-4HJ"/>
+                                        <constraint firstItem="XuG-O0-spQ" firstAttribute="top" secondItem="JgM-Oh-4MG" secondAttribute="bottom" id="Ml7-m4-4HJ"/>
                                         <constraint firstAttribute="trailing" secondItem="rUi-Hf-NQn" secondAttribute="trailing" constant="10" id="NOr-c6-hWt"/>
                                         <constraint firstItem="iWW-gI-Nnf" firstAttribute="leading" secondItem="62B-Ec-bhE" secondAttribute="trailing" constant="5" id="PTp-gq-6yR"/>
                                         <constraint firstItem="Otz-c6-vkr" firstAttribute="leading" secondItem="JgM-Oh-4MG" secondAttribute="trailing" constant="11" id="RC9-z2-z7g"/>
@@ -441,8 +447,8 @@
                                                                         </constraints>
                                                                         <variation key="default">
                                                                             <mask key="constraints">
-                                                                                <exclude reference="KI2-0F-nMm"/>
                                                                                 <exclude reference="H7N-G9-Xdt"/>
+                                                                                <exclude reference="KI2-0F-nMm"/>
                                                                             </mask>
                                                                         </variation>
                                                                     </imageView>

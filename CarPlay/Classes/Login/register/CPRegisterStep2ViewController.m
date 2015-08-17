@@ -418,9 +418,7 @@
                 NSDictionary *data=[responseObject objectForKey:@"data"];
                 [Tools setValueForKey:[data objectForKey:@"userId"] key:@"userId"];
                 [Tools setValueForKey:[data objectForKey:@"token"] key:@"token"];
-                [Tools setValueForKey:nil key:@"phone"];
-                [Tools setValueForKey:nil key:@"password"];
-                [Tools setValueForKey:nil key:@"code"];
+                
                 CarOwnersCertificationViewController *CarOwnersCertificationVC=[[CarOwnersCertificationViewController alloc]init];
                 CarOwnersCertificationVC.fromMy=@"1";
                 CarOwnersCertificationVC.title=@"车主认证";

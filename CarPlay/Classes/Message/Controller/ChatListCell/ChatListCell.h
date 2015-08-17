@@ -12,13 +12,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChatListCell : UITableViewCell
+@interface ChatListCell : ZYTableViewCell
 @property (nonatomic, strong) NSURL *imageURL;
 @property (nonatomic, strong) UIImage *placeholderImage;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *detailMsg;
 @property (nonatomic, strong) NSString *time;
 @property (nonatomic) NSInteger unreadCount;
+@property (nonatomic, assign) BOOL showUnreadCount;
 
 +(CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath;

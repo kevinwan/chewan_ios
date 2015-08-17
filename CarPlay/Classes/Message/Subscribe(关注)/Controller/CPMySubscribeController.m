@@ -238,6 +238,8 @@
         [self.navigationController pushViewController:vc animated:YES];
     }else { // 申请中
         
+        if (model.isMember == 2) return;
+        
         NSString *userId = [Tools getValueFromKey:@"userId"];
         NSString *token = [Tools getValueFromKey:@"token"];
         NSString *urlStr = [NSString stringWithFormat:@"v1/user/%@/seats?token=%@&activityId=%@",userId,token,self.activeId];

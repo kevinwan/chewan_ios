@@ -15,6 +15,7 @@
 @interface CPSettingTableViewController ()<UIAlertViewDelegate>
 {
     NSArray *titleArray;
+    UIActivityIndicatorView *activityIndicator;
 }
 @end
 
@@ -27,6 +28,9 @@
     titleArray=[[NSArray alloc]initWithObjects:@"清理缓存",@"喜欢我们打分鼓励",@"关于我们",@"版本介绍",@"当前版本", nil];
     self.loginOutBtn.layer.cornerRadius=3.0;
     self.loginOutBtn.layer.masksToBounds=YES;
+    activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.color = [UIColor grayColor];
+    [activityIndicator setHidesWhenStopped:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -61,26 +65,28 @@
     if (indexPath.row==0) {
         float totalSize = [[SDImageCache sharedImageCache] getSize];
         cell.valueLable.text=[[NSString alloc]initWithFormat:@"%.2fM",totalSize/1024/1024];
+        UIFont *font = [UIFont systemFontOfSize:16.0f];
+        //设置一个行高上限
+        CGSize size = CGSizeMake(SCREEN_WIDTH,20);
+        //计算实际frame大小，并将label的frame变成实际大小
+        CGSize labelsize = [[titleArray objectAtIndex:indexPath.row] sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
+        cell.titleLableWidth.constant=labelsize.width;
+        activityIndicator.center=CGPointMake(cell.titleLable.left+labelsize.width+20, 26.0f);
+        [cell addSubview:activityIndicator];
     }
-//    if (indexPath.row==3) {
-//        UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(0, 51, SCREEN_WIDTH, 1)];
-//        label.backgroundColor=[Tools getColor:@""];
-//        
-//        [cell addSubview:label];
-//    }
-    
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row==0) {
-    
+            [activityIndicator startAnimating];
             [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
                 [self.tableView reloadData];
-                [SVProgressHUD showSuccessWithStatus:@"清理成功"];
+                [SVProgressHUD showImage:[UIImage imageNamed:@"清理成功"] status:@"清理成功"];
+                
+                [activityIndicator stopAnimating];
             }];
-      
     }else if (indexPath.row==1){
         
     }else if (indexPath.row == 2){

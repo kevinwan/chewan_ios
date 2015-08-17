@@ -17,5 +17,5 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *valueLableRight;
 @property (weak, nonatomic) IBOutlet UIImageView *arrow;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *carBrandLogoImgRight;
-
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleLableWidth;
 @end

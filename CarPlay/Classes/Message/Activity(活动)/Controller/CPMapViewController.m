@@ -26,9 +26,7 @@
 @property (nonatomic ,strong) CLGeocoder *geocoder;
 
 @property (nonatomic, weak) ZYSearchBar *searchBar;
-@property (nonatomic, strong) UITableView *resultTableView;
 @property (nonatomic, assign) BOOL orientationSuccess;
-@property (nonatomic, strong) MAUserLocation *userLocation;
 @property (nonatomic, strong) CPLocationModel *selectLocation;
 @property (nonatomic, strong) UIView *descLocationView;
 @property (nonatomic, strong) AMapSearchAPI *searchApi;
@@ -36,7 +34,6 @@
 @property (nonatomic, assign) BOOL isReturn;
 @property (nonatomic, copy) NSString *selectName;
 @property (nonatomic, strong) MAMapView *mapView;
-@property (nonatomic, strong) GeocodeAnnotation *lastAnnotation;
 @end
 
 @implementation CPMapViewController
@@ -104,26 +101,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"选择活动地点";
-    self.view.backgroundColor = [UIColor whiteColor];
-    _mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
-    _mapView.zoomLevel = 17;
-    _mapView.delegate = self;
-    [_mapView setUserTrackingMode:MAUserTrackingModeFollow];
-    
-    [self.view addSubview:_mapView];
-
+    // 1. 初始化子控件
     [self setUpSubView];
     
-    UITapGestureRecognizer *mTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPress:)];
-    mTap.delegate = self;
-    [self.mapView addGestureRecognizer:mTap];
+    // 2. 初始化mapView
+    [self setUpMapView];
+    
     
     // 如果有值意味着修改位置 需要显示上一次的位置
     if (self.forValue) {
         CPLocationModel *model = (CPLocationModel *)self.forValue;
         GeocodeAnnotation *annotation = [[GeocodeAnnotation alloc] init];
-        annotation.icon = @"定位蓝";
         annotation.coordinate = CLLocationCoordinate2DMake(model.latitude.doubleValue, model.longitude.doubleValue);
         annotation.title = model.location;
         annotation.subtitle = model.address;
@@ -136,6 +124,7 @@
         [self.mapView setCenterCoordinate:center animated:YES];
         [self setToolBarViewWithAnnotation:annotation];
     }
+
 }
 
 /**
@@ -143,6 +132,8 @@
  */
 - (void)setUpSubView
 {
+    self.navigationItem.title = @"选择活动地点";
+    self.view.backgroundColor = [UIColor whiteColor];
     
     ZYSearchBar *searchBar = [[ZYSearchBar alloc] init];
     searchBar.textColor = [Tools getColor:@"aab2bd"];
@@ -153,63 +144,34 @@
     self.searchBar = searchBar;
 }
 
+/**
+ *  初始化mapView
+ */
+- (void)setUpMapView
+{
+    _mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
+    _mapView.delegate = self;
+    [self.view addSubview:_mapView];
+    
+    self.mapView.visibleMapRect = MAMapRectMake(220880104, 101476980, 272496, 466656);
+    self.mapView.zoomLevel = 17;
+    
+    UITapGestureRecognizer *mTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPress:)];
+    mTap.delegate = self;
+    [self.mapView addGestureRecognizer:mTap];
+    self.mapView.userTrackingMode = MAUserTrackingModeFollow;
+}
+
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
     return YES;
 }
 
--(void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation
-updatingLocation:(BOOL)updatingLocation
-{
-    if(updatingLocation)
-    {
-        
-        self.userLocation = userLocation;
-        if (self.orientationSuccess == NO && self.forValue== nil) {
-//            [self.mapView setCenterCoordinate:userLocation.coordinate animated:YES];
-//            GeocodeAnnotation *userAnno = [[GeocodeAnnotation alloc] init];
-//            userAnno.coordinate = userLocation.coordinate;
-//            // 利用反地理编码获取位置之后设置标题
-//            [SVProgressHUD showWithStatus:@"加载中"];
-//            
-//            //构造AMapPlaceSearchRequest对象，配置关键字搜索参数
-            CPMapPlaceSearchRequest *poiRequest = [[CPMapPlaceSearchRequest alloc] init];
-            poiRequest.searchType = AMapSearchType_PlaceAround;
-            poiRequest.location = [AMapGeoPoint locationWithLatitude:userLocation.coordinate.latitude longitude:userLocation.coordinate.longitude];
-            poiRequest.userRequest = YES;
-            // types属性表示限定搜索POI的类别，默认为：餐饮服务、商务住宅、生活服务
-            // POI的类型共分为20种大类别，分别为：
-            // 汽车服务、汽车销售、汽车维修、摩托车服务、餐饮服务、购物服务、生活服务、体育休闲服务、
-            // 医疗保健服务、住宿服务、风景名胜、商务住宅、政府机构及社会团体、科教文化服务、
-            // 交通设施服务、金融保险服务、公司企业、道路附属设施、地名地址信息、公共设施
-            poiRequest.requireExtension = YES;
-            
-            //发起POI搜索
-            [self.searchApi AMapPlaceSearch: poiRequest];
-
-//            
-//            userAnno.title = @"我的位置";
-//            
-//            NSLog(@"%@",userLocation.subtitle);
-//            
-//            if (userAnno.subtitle.length) {
-//                userAnno.subtitle = userLocation.subtitle;
-//            }else{
-//                userAnno.subtitle = @"未知";
-//            }
-//            self.orientationSuccess = YES;
-        }
-    }
-}
 #pragma mark - 处理按钮点击
 
 - (void)tapPress:(UIGestureRecognizer*)gestureRecognizer {
     
     [self.searchBar resignFirstResponder];
-    
-//    if (gestureRecognizer.view == self.mapView) {
-//        self.descLocationView.hidden = YES;
-//    }
     
     CGPoint touchPoint = [gestureRecognizer locationInView:self.mapView];//这里touchPoint是点击的某点在地图控件中的位置
     
@@ -220,23 +182,6 @@ updatingLocation:(BOOL)updatingLocation
         CGRect annitationRect = [view convertRect:view.bounds toView:[UIApplication sharedApplication].keyWindow];
         if (CGRectContainsPoint(annitationRect, touchPoint)) {
             return;
-//            GeocodeAnnotation *anno = (GeocodeAnnotation *)view.annotation;
-//            anno.icon = @"定位";
-//            
-//            if (anno != self.lastAnnotation) {
-//                self.lastAnnotation.icon = @"定位蓝";
-//                [self.mapView removeAnnotation:self.lastAnnotation];
-//                [self.mapView addAnnotation:self.lastAnnotation];
-//                
-//                [self.mapView addAnnotation:anno];
-//                [self.mapView removeAnnotation:anno];
-//                [self.mapView addAnnotation:anno];
-//                self.lastAnnotation = anno;
-//            }
-//            
-//            
-//            [self setToolBarViewWithAnnotation:anno];
-      
         }
     }
     
@@ -274,47 +219,11 @@ updatingLocation:(BOOL)updatingLocation
     }
     if (request.location) { // 点击空白区域时触发
         
+        [self setToolBarViewWithMapPlaceSearchResponse:response];
+        
         [SVProgressHUD dismiss];
         
-        if (request.userRequest && !self.orientationSuccess) {
-            self.orientationSuccess = YES;
-            CPLocationModel *model = [[CPLocationModel alloc] init];
-            
-            AMapPOI *poi = [response.pois firstObject];
-            
-            model.location = poi.name;
-            model.latitude = @(poi.location.latitude);
-            model.longitude = @(poi.location.longitude);
-            model.city = poi.city;
-            model.district = poi.district;
-            
-            if ([poi.province isEqualToString:poi.city]){
-                model.address = [NSString stringWithFormat:@"%@%@%@",poi.city, poi.district,poi.name];
-            }else{
-                model.address = [NSString stringWithFormat:@"%@%@%@%@",poi.province, poi.city, poi.district,poi.name];
-            }
-            
-            if (model.city.length == 0) {
-                model.city = poi.province;
-            }
-
-            self.userLocation.coordinate = CLLocationCoordinate2DMake(poi.location.latitude, poi.location.longitude);
-            self.userLocation.title = model.location;
-            self.userLocation.subtitle = model.address;
-            [self.mapView setCenterCoordinate:self.userLocation.coordinate animated:YES];
-            
-            [self setToolBarViewWithModel:model];
-            
-            self.orientationSuccess = YES;
-            
-            DLog(@"laile ");
-            
-        }else{
-            [self setToolBarViewWithMapPlaceSearchResponse:response];
-        }
-        
     }else{
-        DLog(@"wocao");
         // 多个搜索结果
         [self showInfo:[NSString stringWithFormat:@"共找到%zd条符合条件的地点",response.pois.count]];
         self.descLocationView.hidden = YES;
@@ -349,7 +258,7 @@ updatingLocation:(BOOL)updatingLocation
         /* 如果有多个结果, 设置地图使所有的annotation都可见. */
         else
         {
-            [self.mapView showAnnotations:poiAnnotations animated:YES];
+            [self.mapView showAnnotations:poiAnnotations animated:NO];
         }
 
     }
@@ -361,27 +270,13 @@ updatingLocation:(BOOL)updatingLocation
     [self showError:@"加载失败"];
 }
 
+// 移除除了自己位置之外的点
 - (void)removeAnnotaionNoSelf
 {
     for (GeocodeAnnotation *anno in self.mapView.annotations){
         if ([anno isKindOfClass:[GeocodeAnnotation class]]) {
             [self.mapView removeAnnotation:anno];
         }
-    }
-    self.lastAnnotation = nil;
-}
-
-- (void)inputTextDidChange:(ZYSearchBar *)searchBar{
-    if (self.descLocationView.hidden == NO) {
-        self.descLocationView.hidden = YES;
-    }
-    if (searchBar.text.length) {
-        if (self.resultTableView.hidden == YES) {
-            self.resultTableView.hidden = NO;
-        }
-        [self searchTipsWithKey:searchBar.text];
-    }else{
-        self.resultTableView.hidden = YES;
     }
 }
 
@@ -482,7 +377,6 @@ updatingLocation:(BOOL)updatingLocation
         // 不需要返回的请求
         GeocodeAnnotation *geocodeAnnotation = [[GeocodeAnnotation alloc] initWithGeocode:response.geocodes.firstObject];
         geocodeAnnotation.title = self.selectName;
-        geocodeAnnotation.icon = @"定位蓝";
         [self.mapView addAnnotation:geocodeAnnotation];
         
         [self.mapView setCenterCoordinate:geocodeAnnotation.coordinate animated:YES];
@@ -543,8 +437,8 @@ updatingLocation:(BOOL)updatingLocation
     }
     
     [self removeAnnotaionNoSelf];
+    
     GeocodeAnnotation *annotation = [[GeocodeAnnotation alloc] init];
-    annotation.icon = @"定位蓝";
     annotation.coordinate = CLLocationCoordinate2DMake(poi.location.latitude, poi.location.longitude);
     annotation.title = model.location;
     annotation.subtitle = model.address;
@@ -561,7 +455,7 @@ updatingLocation:(BOOL)updatingLocation
  *
  *  @param model
  */
-- (void)setToolBarViewWithAnnotation:(GeocodeAnnotation *)annotation
+- (void)setToolBarViewWithAnnotation:(id<MAAnnotation>)annotation
 {
     CPLocationModel *model = [[CPLocationModel alloc] init];
     model.latitude = @(annotation.coordinate.latitude);
@@ -611,19 +505,6 @@ updatingLocation:(BOOL)updatingLocation
     [super viewWillDisappear:animated];
     self.searchBar.hidden = YES;
     [SVProgressHUD dismiss];
-}
-
-/**
- *  当缩放过大时,返回原来的缩放比例
- *
- *  @param mapView  mapView description
- *  @param animated
- */
-- (void)mapView:(MAMapView *)mapView regionDidChangeAnimated:(BOOL)animated
-{
-    if (mapView.zoomLevel > 18.8) {
-        [mapView setZoomLevel:18.8 animated:YES];
-    }
 }
 
 /**
@@ -679,12 +560,9 @@ updatingLocation:(BOOL)updatingLocation
 
 - (void)mapView:(MAMapView *)mapView didSelectAnnotationView:(MAAnnotationView *)view
 {
-    GeocodeAnnotation *anno = (GeocodeAnnotation *)view.annotation;
-
-    if (![anno isKindOfClass:[GeocodeAnnotation class]]) {
-        [self removeAnnotaionNoSelf];
-    }
-    [self setToolBarViewWithAnnotation:anno];
+    if ([view.annotation isKindOfClass:[MAUserLocation class]])
+        return;
+    [self setToolBarViewWithAnnotation:view.annotation];
 }
 
 @end

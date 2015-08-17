@@ -76,6 +76,7 @@
                 <outlet property="carBrandLogoImgRight" destination="Epz-kQ-8eS" id="g9h-fh-5VH"/>
                 <outlet property="icon" destination="1fz-tn-Kk8" id="5MU-Mc-Hj9"/>
                 <outlet property="titleLable" destination="wFv-ge-Eir" id="Sj3-ja-h96"/>
+                <outlet property="titleLableWidth" destination="oyg-yk-xUU" id="AGe-ni-J6g"/>
                 <outlet property="valueLable" destination="bv6-Wt-KRp" id="3sI-2d-ZTM"/>
                 <outlet property="valueLableRight" destination="Y8O-Bm-al9" id="DLR-pE-24Z"/>
                 <outlet property="valueLableW" destination="ZSg-CO-bWW" id="mzQ-OO-myI"/>

@@ -47,10 +47,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="时间" translatesAutoresizingMaskIntoConstraints="NO" id="kTz-Wg-wQD" userLabel="时间图片">
-                    <rect key="frame" x="316" y="25" width="15" height="15"/>
+                    <rect key="frame" x="319" y="25" width="12" height="12"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="15" id="gJj-qg-PmP"/>
-                        <constraint firstAttribute="width" constant="15" id="skc-rn-5IV"/>
+                        <constraint firstAttribute="height" constant="12" id="gJj-qg-PmP"/>
+                        <constraint firstAttribute="width" constant="12" id="skc-rn-5IV"/>
                     </constraints>
                 </imageView>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="tAX-A5-dg7" userLabel="配图组">
@@ -346,7 +346,7 @@
     </objects>
     <resources>
         <image name="女-1" width="32" height="14"/>
-        <image name="时间" width="12" height="12"/>
+        <image name="时间" width="13" height="13"/>
         <image name="默认头像" width="52" height="52"/>
     </resources>
 </document>

@@ -18,6 +18,7 @@
 #import "ChatViewController.h"
 #import "ConvertToCommonEmoticonsHelper.h"
 #import "RobotManager.h"
+#import "CPChatListCell.h"
 
 typedef enum {
     CPMessageOptionMsg, // 新留言消息
@@ -25,11 +26,11 @@ typedef enum {
 }CPMessageOption;
 
 @interface CPMessageController ()<IChatManagerDelegate>
-@property (weak, nonatomic) IBOutlet CPBadgeView *leaveNewMsgNumber;
+@property (weak, nonatomic) CPBadgeView *leaveNewMsgNumber;
 
-@property (weak, nonatomic) IBOutlet CPBadgeView *activityApplyNewMsgNumber;
-@property (weak, nonatomic) IBOutlet UILabel *leaveMsgLabel;
-@property (weak, nonatomic) IBOutlet UILabel *activityApplyMsgLabel;
+@property (weak, nonatomic)  CPBadgeView *activityApplyNewMsgNumber;
+@property (weak, nonatomic) UILabel *leaveMsgLabel;
+@property (weak, nonatomic)  UILabel *activityApplyMsgLabel;
 
 @property (nonatomic, strong) NSTimer *timer;
 
@@ -313,6 +314,41 @@ typedef enum {
 // 根据环信id得到要显示用户名，如果返回nil，则默认显示环信id
 - (NSString *)nickNameWithChatter:(NSString *)chatter{
     return chatter;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *identify = @"ChatListCell";
+    CPChatListCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
+    if (!cell) {
+        cell = [[CPChatListCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identify];
+    }
+    if (indexPath.row == 0) {
+        [cell.iconView setImage:[UIImage imageNamed:@"新的评论"] forState:UIControlStateNormal];
+        cell.titleNameLabel.text = @"新的留言";
+        cell.msgLabel.text = @"暂无留言";
+        cell.unreadLabel.text = @"2";
+    }else if(indexPath.row == 1){
+        [cell.iconView setImage:[UIImage imageNamed:@"参与申请"] forState:UIControlStateNormal];
+        cell.titleNameLabel.text = @"活动消息";
+        cell.msgLabel.text = @"暂无消息";
+        cell.showUnreadCount = YES;
+    }else{
+        
+    }
+    return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 70.0f;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 2;
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
 }
 
 @end

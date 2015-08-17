@@ -194,6 +194,8 @@ typedef enum {
     if (self.currentModel.end > 0) {
         NSString *endStr = [fmt stringFromDate:[NSDate dateWithTimeIntervalSince1970:self.currentModel.end / 1000]];
         [self labelWithRow:5].text = endStr;
+    }else{
+        [self labelWithRow:5].text = @"不确定";
     }
     
     [self labelWithRow:6].text = self.currentModel.pay;

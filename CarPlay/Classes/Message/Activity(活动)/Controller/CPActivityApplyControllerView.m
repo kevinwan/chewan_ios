@@ -161,7 +161,6 @@
 {
     [super viewWillAppear:animated];
     
-    
     [CPNotificationCenter addObserver:self selector:@selector(tableViewEdit:) name:CPNewActivityMsgEditNotifycation object:nil];
     [CPNotificationCenter addObserver:self selector:@selector(userIconClick:) name:CPClickUserIconNotification object:nil];
     [CPNotificationCenter addObserver:self selector:@selector(agreeBtnClick:) name:CPActivityApplyNotification object:nil];
@@ -172,6 +171,7 @@
     [super viewWillDisappear:animated];
     
     [CPNotificationCenter removeObserver:self];
+    
     if (_coverView) {
         _coverView.hidden = YES;
     }
@@ -185,7 +185,6 @@
 
 - (void)loadDataWithParam:(NSInteger)ignore
 {
-    
     NSString *userId = [Tools getValueFromKey:@"userId"];
     NSString *token = [Tools getValueFromKey:@"token"];
     if (! userId.length) {
@@ -258,11 +257,6 @@
         [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
         [self setEditing:YES animated:YES];
     }
-}
-
-- (void)dealloc
-{
-    [CPNotificationCenter removeObserver:self];
 }
 
 #pragma mark - Table view data source
