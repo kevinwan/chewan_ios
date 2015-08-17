@@ -946,6 +946,7 @@
     
     [_carView removeFromSuperview];
     _carView = nil;
+
 }
 #pragma mark - lazy
 - (NSMutableArray *)pickerArray {
