@@ -35,8 +35,8 @@ typedef enum {
 @property (nonatomic, strong) NSTimer *timer;
 
 
-@property (strong, nonatomic) NSMutableArray        *dataSource;
-@property (nonatomic, strong) UIView                *networkStateView;
+@property (strong, nonatomic) NSMutableArray *dataSource;
+@property (nonatomic, strong) UIView *networkStateView;
 @end
 
 @implementation CPMessageController
@@ -152,7 +152,7 @@ typedef enum {
         }
         CPActivityApplyControllerView *vc = [UIStoryboard storyboardWithName:@"CPActivityApplyControllerView" bundle:nil].instantiateInitialViewController;
         [self.navigationController pushViewController:vc animated:YES];
-    }else{
+    }else if(indexPath.row == 0){
         self.leaveNewMsgNumber.badgeValue = @"0";
         
         if (self.activityApplyNewMsgNumber.badgeValue.integerValue > 0) {
@@ -164,6 +164,8 @@ typedef enum {
         self.leaveMsgLabel.text = @"暂无留言";
         CPNewMessageController *newMsgVc = [UIStoryboard storyboardWithName:@"CPNewMessageController" bundle:nil].instantiateInitialViewController;
         [self.navigationController pushViewController:newMsgVc animated:YES];
+    }else{
+        
     }
 }
 
