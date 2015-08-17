@@ -24,7 +24,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V6V-cd-t2O" userLabel="我也要加入">
-                                <rect key="frame" x="10" y="582" width="355" height="40"/>
+                                <rect key="frame" x="10" y="597" width="355" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="kRH-nR-50F"/>
                                 </constraints>
@@ -36,7 +36,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="76" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7HR-PL-CIt">
-                                <rect key="frame" x="0.0" y="51" width="375" height="510.5"/>
+                                <rect key="frame" x="0.0" y="51" width="375" height="525.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="carcell" rowHeight="52" id="ifZ-2n-L5f" customClass="carCell">
@@ -300,7 +300,7 @@
                                 </connections>
                             </tableView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9VU-FF-OLY" userLabel="退出活动">
-                                <rect key="frame" x="10" y="582" width="355" height="40"/>
+                                <rect key="frame" x="10" y="597" width="355" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="bCv-mV-1eF"/>
                                 </constraints>
@@ -319,7 +319,7 @@
                             <constraint firstAttribute="trailing" secondItem="7HR-PL-CIt" secondAttribute="trailing" id="GIa-fg-2bf"/>
                             <constraint firstItem="V6V-cd-t2O" firstAttribute="top" secondItem="7HR-PL-CIt" secondAttribute="bottom" constant="20" id="Kel-bx-dso"/>
                             <constraint firstItem="9VU-FF-OLY" firstAttribute="top" secondItem="7HR-PL-CIt" secondAttribute="bottom" constant="20" id="L10-iz-4qx"/>
-                            <constraint firstItem="Wav-TW-g1q" firstAttribute="top" secondItem="V6V-cd-t2O" secondAttribute="bottom" constant="45" id="Lag-3g-g1D"/>
+                            <constraint firstItem="Wav-TW-g1q" firstAttribute="top" secondItem="V6V-cd-t2O" secondAttribute="bottom" constant="30" id="Lag-3g-g1D"/>
                             <constraint firstItem="dL5-7y-foD" firstAttribute="top" secondItem="ksR-pt-Kl9" secondAttribute="bottom" constant="14" id="OV8-WG-a7o"/>
                             <constraint firstAttribute="centerX" secondItem="dL5-7y-foD" secondAttribute="centerX" id="PQK-7h-OGk"/>
                             <constraint firstItem="V6V-cd-t2O" firstAttribute="leading" secondItem="VAs-hO-U8d" secondAttribute="leading" constant="10" id="PTi-2g-lnN"/>
