@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+
+#define MyPublishToPlayNotify @"MyPublishToPlayNotify"
+#define MyPublishToPlayInfo   @"MyPublishToPlayInfo"
+
+#define MyJoinPersonNotify    @"MyJoinPersonNotify"
+#define MyJoinPersonInfo      @"MyJoinPersonInfo"
+
 #define TimeStampFont     [UIFont systemFontOfSize:16]
 #define contentFont     [UIFont systemFontOfSize:16]
 @class CPOrganizer;
@@ -44,5 +51,7 @@
 @property (nonatomic, strong) CPOrganizer *organizer;
 
 @property (nonatomic, assign) NSInteger isOver;
+
+@property (nonatomic, assign) NSUInteger row;
 
 @end

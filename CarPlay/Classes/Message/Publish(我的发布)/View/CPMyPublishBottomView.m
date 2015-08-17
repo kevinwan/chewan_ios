@@ -75,6 +75,7 @@
     
     // 添加底部区域
     UIImageView *bottomView = [[UIImageView alloc] init];
+    bottomView.userInteractionEnabled = YES;
     bottomView.image = [UIImage imageNamed:@"头像列表背景"];
     [self addSubview:bottomView];
     self.bottomView = bottomView;
@@ -86,11 +87,13 @@
     self.chatBtn = chatBtn;
     
     CPMoreButton *moreBtn = [CPMoreButton buttonWithType:UIButtonTypeCustom];
+    [moreBtn addTarget:self action:@selector(joinPersonClick) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:moreBtn];
     self.moreBtn = moreBtn;
     
     for (int i = 0; i < KPersonNum; i++) {
         CPIconButton *btn = [CPIconButton buttonWithType:UIButtonTypeCustom];
+        [btn addTarget:self action:@selector(joinPersonClick) forControlEvents:UIControlEventTouchUpInside];
         btn.tag = i + 1;
         [bottomView addSubview:btn];
     }
@@ -200,7 +203,12 @@
  */
 - (void)memberManage
 {
-//    CPNotificationCenter postNotificationName:<#(NSString *)#> object:<#(id)#>
+    [CPNotificationCenter postNotificationName:MyPublishToPlayNotify object:nil userInfo:@{ MyPublishToPlayInfo : @(self.model.row)}];
+}
+
+- (void)joinPersonClick
+{
+    [CPNotificationCenter postNotificationName:MyJoinPersonNotify object:nil userInfo:@{MyJoinPersonNotify : @(self.model.row)}];
 }
 
 @end

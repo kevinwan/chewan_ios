@@ -299,6 +299,8 @@
 		E3C14F4E1B81815F006A0F52 /* MJPhotoProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C14F451B81815F006A0F52 /* MJPhotoProgressView.m */; };
 		E3C14F4F1B81815F006A0F52 /* MJPhotoToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C14F471B81815F006A0F52 /* MJPhotoToolbar.m */; };
 		E3C14F501B81815F006A0F52 /* MJPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C14F491B81815F006A0F52 /* MJPhotoView.m */; };
+		E3C14F531B81D6BE006A0F52 /* CPBadgeIconButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C14F521B81D6BE006A0F52 /* CPBadgeIconButton.m */; };
+		E3C14F561B81D7E9006A0F52 /* CPChatListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C14F551B81D7E9006A0F52 /* CPChatListCell.m */; };
 		E3C611491B5F328C00B7E73A /* CPCreatActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C611481B5F328C00B7E73A /* CPCreatActivityModel.m */; };
 		E3C6114C1B5F363900B7E73A /* CPNetWorkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C6114B1B5F363900B7E73A /* CPNetWorkTool.m */; };
 		E3C6114F1B5F498600B7E73A /* CPLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C6114E1B5F498600B7E73A /* CPLocationModel.m */; };
@@ -928,6 +930,10 @@
 		E3C14F471B81815F006A0F52 /* MJPhotoToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoToolbar.m; sourceTree = "<group>"; };
 		E3C14F481B81815F006A0F52 /* MJPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoView.h; sourceTree = "<group>"; };
 		E3C14F491B81815F006A0F52 /* MJPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoView.m; sourceTree = "<group>"; };
+		E3C14F511B81D6BE006A0F52 /* CPBadgeIconButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPBadgeIconButton.h; sourceTree = "<group>"; };
+		E3C14F521B81D6BE006A0F52 /* CPBadgeIconButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPBadgeIconButton.m; sourceTree = "<group>"; };
+		E3C14F541B81D7E9006A0F52 /* CPChatListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPChatListCell.h; sourceTree = "<group>"; };
+		E3C14F551B81D7E9006A0F52 /* CPChatListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPChatListCell.m; sourceTree = "<group>"; };
 		E3C611471B5F328C00B7E73A /* CPCreatActivityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCreatActivityModel.h; sourceTree = "<group>"; };
 		E3C611481B5F328C00B7E73A /* CPCreatActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCreatActivityModel.m; sourceTree = "<group>"; };
 		E3C6114A1B5F363900B7E73A /* CPNetWorkTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNetWorkTool.h; sourceTree = "<group>"; };
@@ -2728,6 +2734,10 @@
 				E338A7471B7099CE00E706C2 /* CPRefreshFooter.m */,
 				E30A68C81B7DD64100EB3D23 /* CPGuideView.h */,
 				E30A68C91B7DD64100EB3D23 /* CPGuideView.m */,
+				E3C14F511B81D6BE006A0F52 /* CPBadgeIconButton.h */,
+				E3C14F521B81D6BE006A0F52 /* CPBadgeIconButton.m */,
+				E3C14F541B81D7E9006A0F52 /* CPChatListCell.h */,
+				E3C14F551B81D7E9006A0F52 /* CPChatListCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2972,6 +2982,7 @@
 				6B97110E1B7DF5E700EA0F09 /* ChatViewController+Category.m in Sources */,
 				6B01284F1B7A209200B7A11F /* CPTaNoData.m in Sources */,
 				E3CE35B01B59E7FC008434B5 /* XLFormValidator.m in Sources */,
+				E3C14F561B81D7E9006A0F52 /* CPChatListCell.m in Sources */,
 				E36AFE661B579F0E0081F499 /* ZHPickView.h in Sources */,
 				6B9711771B7DFAA700EA0F09 /* Emoji.m in Sources */,
 				6B97114E1B7DF60C00EA0F09 /* MessageModel.m in Sources */,
@@ -3224,6 +3235,7 @@
 				E372D85B1B62176C00B4FC5C /* MJNIndexView.m in Sources */,
 				E3CE371F1B5A232D008434B5 /* CPCreatActivityCell.m in Sources */,
 				E372D82C1B6216C100B4FC5C /* CPForgetPasswordViewController.m in Sources */,
+				E3C14F531B81D6BE006A0F52 /* CPBadgeIconButton.m in Sources */,
 				6BC8A3E61B6A4DB700B199F2 /* CPTaDetailsController.m in Sources */,
 				A57581C51B6789D500A5E681 /* carCell.m in Sources */,
 				A57581A81B6789C500A5E681 /* downSeat.m in Sources */,
