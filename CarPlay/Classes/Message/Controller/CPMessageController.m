@@ -315,4 +315,21 @@ typedef enum {
     return chatter;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *ID = @"cell";
+    UITableViewCell *cell;
+    if (indexPath.row > 1) {
+        cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+            cell.textLabel.text = @"xingbuxing";
+        }
+        return cell;
+    }else{
+        cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+        return cell;
+    }
+}
+
 @end

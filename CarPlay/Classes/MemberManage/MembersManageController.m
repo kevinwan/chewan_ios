@@ -53,6 +53,7 @@
 @implementation MembersManageController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [CPGuideView showGuideViewWithImageName:@"memberGuide"];
     UIFont *font = [UIFont systemFontOfSize:17];
      self.navigationItem.title = @"成员管理";
     [self setupFontAndColor];
