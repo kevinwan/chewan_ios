@@ -70,7 +70,6 @@
         photo.url = [NSURL URLWithString:pic.bmiddle_pic];
         // 设置来源于哪一个UIImageView
         photo.srcImageView = self.subviews[i];
-        photo.contentMode = [self.subviews[i] contentMode];
         [photos addObject:photo];
     }
     browser.photos = photos;
