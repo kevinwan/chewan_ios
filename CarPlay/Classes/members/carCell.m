@@ -36,11 +36,10 @@ static CGFloat const kBounceValue = 20.0f;
 - (void)awakeFromNib {
     self.carName.font = [AppAppearance textLargeFont];
     self.carName.textColor = [AppAppearance textDarkColor];
-    CGFloat screenW = [UIScreen mainScreen].bounds.size.width;
-    if (screenW > 320) {
-        self.carName.preferredMaxLayoutWidth = 140;
-    } else {
-        self.carName.preferredMaxLayoutWidth = 70;
+    self.carName.preferredMaxLayoutWidth = 70;
+    [self layoutIfNeeded];
+    if (self.carName.height > 17) {
+        self.carName.font = [UIFont systemFontOfSize:14];
     }
     self.pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(pan:)];
     [self.mycontentView addGestureRecognizer:self.pan];
