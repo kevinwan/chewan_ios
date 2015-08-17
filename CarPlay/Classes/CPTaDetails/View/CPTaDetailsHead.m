@@ -114,6 +114,7 @@
     
     // 取出图片总数
     self.photoCount = taStatus.albumPhotos.count;
+    
     // 设置图片轮播器
     [self setPicPlay];
     
@@ -303,7 +304,6 @@
         // 设置图片显示格式
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         
-        
         // 设置frame
         imageView.frame = CGRectMake(0, 0, imageW, imageH);
         
@@ -319,7 +319,6 @@
         
         // 设置图片显示格式
         imageView.contentMode = UIViewContentModeScaleAspectFill;
-     
         
         // 设置frame
         CGFloat imageX = i * imageW;
@@ -436,7 +435,7 @@
 }
 
 
-// 发布按钮点击事件
+// ta发布按钮点击事件
 - (IBAction)taPublishClick:(id)sender {
     // 设置底部线颜色
     self.publishView.backgroundColor = [Tools getColor:@"fc6e51"];
@@ -461,7 +460,7 @@
     
 }
 
-// 关注按钮点击事件
+// ta关注按钮点击事件
 - (IBAction)taCareClick:(id)sender {
     // 设置底部线颜色
     self.publishView.backgroundColor = [Tools getColor:@"e6e9ed"];
@@ -483,7 +482,7 @@
     
 }
 
-// 参与按钮点击事件
+// ta参与按钮点击事件
 - (IBAction)taJoinClick:(id)sender {
     // 设置底部线颜色
     self.publishView.backgroundColor = [Tools getColor:@"e6e9ed"];
