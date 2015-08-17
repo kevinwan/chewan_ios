@@ -16,8 +16,9 @@
 #import "MembersManageController.h"
 #import "MembersController.h"
 #import "CPModelButton.h"
+#import "ZHPickView.h"
 
-@interface CPMySubscribeController () <UIPickerViewDataSource,UIPickerViewDelegate,UITextFieldDelegate>
+@interface CPMySubscribeController () <ZHPickViewDelegate>
 @property (nonatomic, strong) NSMutableArray *frameModels;
 @property (nonatomic, strong) NSString *activeId;
 //遮盖
@@ -26,8 +27,11 @@
 @property (nonatomic, strong) UITextField *carxibTextFeild;
 @property (nonatomic, strong) UIButton *yesButton;
 @property (nonatomic, strong) UIButton *noButton;
-@property (nonatomic, strong) UIButton *btn;
 @property (nonatomic, strong) NSMutableArray *pickerArray;
+@property (nonatomic, assign) BOOL tapYes;
+@property (nonatomic, strong) ZHPickView *picker;
+
+
 @end
 
 @implementation CPMySubscribeController
@@ -266,7 +270,7 @@
                     offerButton.model = model;
                     UITextField * carxibTextFeild = (UITextField *)[carView viewWithTag:4000];
                     self.carxibTextFeild = carxibTextFeild;
-                    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
+                    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];
                     [carView addGestureRecognizer:tap];
                     [offerButton addTarget:self action:@selector(offerSeatButton:) forControlEvents:UIControlEventTouchUpInside];
                     NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
@@ -277,14 +281,11 @@
                         NSString *seat = [NSString stringWithFormat:@"%tu",i];
                         [self.pickerArray addObject:seat];
                     }
-                    UIPickerView *picker = [[UIPickerView alloc]init];
+                    ZHPickView *picker = [[ZHPickView alloc]initPickviewWithArray:self.pickerArray isHaveNavControler:NO];
                     picker.delegate = self;
-                    picker.dataSource = self;
-                    self.carxibTextFeild.inputView = picker;
-                    self.carxibTextFeild.delegate = self;
+                    self.picker = picker;
                     self.carxibTextFeild.font = [AppAppearance textMediumFont];
                     self.carxibTextFeild.textColor = [AppAppearance textDarkColor];
-                    [self tap:yeButton];
                 } else {
                     NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/join",self.activeId];
                     [CPNetWorkTool postJsonWithUrl:urlStr params:nil success:^(id responseObject) {
@@ -375,50 +376,69 @@
 }
 
 
+#pragma mark - ZHPickViewDelegate
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
-    return 1;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return self.pickerArray.count;
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return self.pickerArray[row];
-}
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    self.carxibTextFeild.text = [NSString stringWithFormat:@"%@",self.pickerArray[row]];
+- (void)toobarDonBtnHaveClick:(ZHPickView *)pickView resultString:(NSString *)resultString {
+    
+    self.carxibTextFeild.text = resultString;
+    
 }
 
 
-- (void)tap:(UIButton *)btn{
-    btn = self.btn;
-    if (btn == self.yesButton) {
-        self.btn = self.noButton;
+
+- (void)tap{
+    
+    if (!self.tapYes) {
+        
+        [self.picker show];
+        
+        self.picker.y = kScreenHeight - 256;
+        
         self.yesButton.selected = YES;
+        
         self.noButton.selected = NO;
-        self.carxibTextFeild.enabled = YES;
-        [self.carxibTextFeild becomeFirstResponder];
+        
+        self.tapYes = YES;
+        
     } else {
-        self.btn = self.yesButton;
-        self.noButton.selected = YES;
+        
+        [self.picker remove];
+        
         self.yesButton.selected = NO;
-        self.carxibTextFeild.enabled = NO;
-        [self.carxibTextFeild resignFirstResponder];
-        self.carxibTextFeild.text = nil;
+        
+        self.noButton.selected = YES;
+        
+        self.tapYes = NO;
+        
     }
     
     
     
 }
 
+- (void)dealloc
+
+{
+    
+    [CPNotificationCenter removeObserver:self];
+    
+    if (self.picker) {
+        
+        [self.picker removeFromSuperview];
+        
+    }
+    
+}
+
+
+
 - (void)coverClick {
     [_cover removeFromSuperview];
     _cover = nil;
     [_carView removeFromSuperview];
     _carView = nil;
+    [_picker removeFromSuperview];
+    _picker = nil;
 }
 
 #pragma mark - lazy
