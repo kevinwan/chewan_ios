@@ -15,7 +15,7 @@
 //#import "UIImageView+EMWebCache.h"
 
 @interface ChatListCell (){
-    UILabel *_timeLabel;
+//    UILabel *_timeLabel;
     UILabel *_unreadLabel;
     UILabel *_detailLabel;
     UIView *_lineView;
@@ -31,10 +31,10 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(240, 7, 80, 16)];
-        _timeLabel.font = [UIFont systemFontOfSize:13];
-        _timeLabel.backgroundColor = [UIColor clearColor];
-        [self.contentView addSubview:_timeLabel];
+//        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(240, 7, 80, 16)];
+//        _timeLabel.font = [UIFont systemFontOfSize:13];
+//        _timeLabel.backgroundColor = [UIColor clearColor];
+//        [self.contentView addSubview:_timeLabel];
         
         _unreadLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 0, 20, 20)];
         _unreadLabel.backgroundColor = [UIColor redColor];
@@ -89,10 +89,11 @@
     self.imageView.frame = CGRectMake(10, 7, 45, 45);
     
     self.textLabel.text = _name;
+    self.textLabel.textColor = [Tools getColor:@"434a54"];
     self.textLabel.frame = CGRectMake(65, 7, 175, 20);
     
     _detailLabel.text = _detailMsg;
-    _timeLabel.text = _time;
+//    _timeLabel.text = _time;
     if (_unreadCount > 0) {
         if (_unreadCount < 9) {
             _unreadLabel.font = [UIFont systemFontOfSize:13];
@@ -120,6 +121,6 @@
 
 +(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    return 70;
 }
 @end

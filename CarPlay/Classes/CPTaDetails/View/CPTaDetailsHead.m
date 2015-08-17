@@ -197,6 +197,11 @@
     // 设置参与
     [self setJoinBtn:[Tools getColor:@"aab2bd"]];
     
+    // 设置关注按钮
+    if ([taStatus.isSubscribed isEqualToString:@"1"]) {
+        [self.care setTitle:@"已关注" forState:UIControlStateNormal];
+    }
+    
     
 }
 

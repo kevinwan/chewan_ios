@@ -225,7 +225,11 @@
         if (self.activeStatus.isOrganizer) {
             self.editorActiveBtn.title = @"编辑活动";
         }else{
-            [self.editorActiveBtn setTitle:@"收藏"];
+            if (self.activeStatus.isSubscribed) {
+                self.editorActiveBtn.title = @"已收藏";
+            }else{
+                self.editorActiveBtn.title = @"收藏";
+            }
         }
         
         
@@ -464,6 +468,7 @@
 }
 
 
+
 #pragma mark - 文本框代理
 // 点击发送按钮调用
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -692,7 +697,7 @@
 
 // 编辑活动按钮
 - (IBAction)editorActive:(id)sender {
-    if ([self.editorActiveBtn.title isEqualToString:@"关注"]) {
+    if (![self.editorActiveBtn.title isEqualToString:@"编辑活动"]) {
         NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
         
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -701,9 +706,9 @@
         NSString *postUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/activity/%@/subscribe?userId=%@&token=%@",self.activeId,self.userId,self.token];
         
         [manager POST:postUrl parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-            //
-//            NSLog(@"msg = %@",responseObject[@"errmsg"]);
-//            NSLog(@"关注成功");
+ 
+            self.editorActiveBtn.title = @"已收藏";
+        
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             //
         }];

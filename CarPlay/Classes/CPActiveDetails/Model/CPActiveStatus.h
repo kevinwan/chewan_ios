@@ -52,6 +52,9 @@
 /** 是否为活动成员 */
 @property (nonatomic,assign) NSInteger isMember;
 
+// 是否已收藏
+@property (nonatomic,assign) NSInteger isSubscribed;
+
 /** 活动配图地址。多图时返回多图链接。无配图返回“[]” */
 @property (nonatomic, strong) NSArray *cover;
 
