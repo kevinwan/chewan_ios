@@ -179,7 +179,7 @@ updatingLocation:(BOOL)updatingLocation
         //
         //            //构造AMapPlaceSearchRequest对象，配置关键字搜索参数
         CPMapPlaceSearchRequest *poiRequest = [[CPMapPlaceSearchRequest alloc] init];
-        poiRequest.searchType = AMapSearchType_PlaceAround;
+        poiRequest.searchType = AMapSearchType_ReGeocode;
         poiRequest.location = [AMapGeoPoint locationWithLatitude:userLocation.coordinate.latitude longitude:userLocation.coordinate.longitude];
         poiRequest.userRequest = YES;
         // types属性表示限定搜索POI的类别，默认为：餐饮服务、商务住宅、生活服务
