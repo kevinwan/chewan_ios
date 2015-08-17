@@ -74,7 +74,7 @@
     self.timeStampLabel = timeStampLabel;
     
     UIView *timeLine = [[UIView alloc] init];
-    timeLine.backgroundColor = CPColor(200, 200, 200, 0.5);
+    timeLine.backgroundColor = [Tools getColor:@"e7eaee"];
     [self.contentView addSubview:timeLine];
     self.timeLine = timeLine;
     

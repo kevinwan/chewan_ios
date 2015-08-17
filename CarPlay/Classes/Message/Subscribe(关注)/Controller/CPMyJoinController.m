@@ -204,8 +204,9 @@
         vc.activityId = model.activityId;
         [self.navigationController pushViewController:vc animated:YES];
         
-    } else  { // 已加入
-        
+    } else if (model.isMember == 2){
+        // 已加入
+    }else{
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Members" bundle:nil];
         MembersController * vc = sb.instantiateInitialViewController;
         vc.activityId = model.activityId;

@@ -12,7 +12,6 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
-    DLog(@"...sdfjaklsdfj");
     if (selected){
         self.image = [UIImage imageNamed:@"定位"];
     }else{

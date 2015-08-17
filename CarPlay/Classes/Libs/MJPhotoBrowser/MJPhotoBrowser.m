@@ -249,8 +249,7 @@
     // 移除工具条
     [self.toolbar removeFromSuperview];
     
-    [UIView animateWithDuration:0.25 animations:^{
-        self.view.frame = CGRectMake(10, 15, kScreenWidth - 20, kScreenHeight - 30);
+    [UIView animateWithDuration:0.35 animations:^{
         self.view.alpha = 0.0;
     } completion:^(BOOL finished) {
         [self.view removeFromSuperview];

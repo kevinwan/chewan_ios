@@ -64,8 +64,19 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    [CPNotificationCenter addObserver:self selector:@selector(memberManage:) name:MyPublishToPlayNotify object:nil];
+    
+    [CPNotificationCenter addObserver:self selector:@selector(joinPerson:) name:MyJoinPersonNotify object:nil];
     self.ignore = 0;
     [self reRefreshData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [CPNotificationCenter removeObserver:self];
 }
 
 /**
@@ -74,7 +85,7 @@
 - (void)addBottomTimeLine
 {
     UIView *timeLine = [UIView new];
-    timeLine.backgroundColor = CPColor(200, 200, 200, 0.5);;
+    timeLine.backgroundColor = [Tools getColor:@"e7eaee"];
     timeLine.width = 1;
     timeLine.x = 55;
     [self.tableView insertSubview:timeLine atIndex:0];
@@ -86,9 +97,7 @@
 
 - (void)reRefreshData
 {
-    if (self.timeLine == nil && CPIsLogin) {
-        [self addBottomTimeLine];
-    }
+    self.timeLine.hidden = YES;
     [self showLoading];
     [self loadDataWithParams:0];
 }
@@ -170,7 +179,9 @@
 {
     CPMyPublishCell *cell = [CPMyPublishCell cellWithTableView:tableView];
     cell.indexPath = indexPath;
-    cell.frameModel = self.frameModels[indexPath.row];
+    CPMyPublishFrameModel *frameModel = self.frameModels[indexPath.row];
+    frameModel.model.row = indexPath.row;
+    cell.frameModel = frameModel;
     return cell;
 }
 
@@ -215,6 +226,36 @@
         CGFloat keyWindowY = [self.view convertPoint:CGPointMake(0 , self.tableView.contentSize.height)toView:[UIApplication sharedApplication].keyWindow].y;
         self.timeLine.height = kScreenHeight - keyWindowY;
     }
+}
+
+- (void)memberManage:(NSNotification *)notify
+{
+    
+    //根据isOrganizer判断进入那个界面
+  
+    NSInteger row = [notify.userInfo[MyPublishToPlayInfo] integerValue];
+    CPMyPublishFrameModel *model = self.frameModels[row];
+    
+    if (model.model.isOver) return;
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MembersManage" bundle:nil];
+    
+    MembersManageController * vc = sb.instantiateInitialViewController;
+    vc.activityId = model.model.activityId;
+    
+    [self.navigationController pushViewController:vc animated:YES];
+
+}
+
+- (void)joinPerson:(NSNotification *)notify
+{
+    NSInteger row = [notify.userInfo[MyJoinPersonInfo] integerValue];
+    CPMyPublishFrameModel *model = self.frameModels[row];
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MembersManage" bundle:nil];
+    
+    MembersManageController * vc = sb.instantiateInitialViewController;
+    vc.activityId = model.model.activityId;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end
