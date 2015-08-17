@@ -26,6 +26,12 @@
     }
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    if (_fromEdit && [_fromEdit isEqual:@"1"]) {
+//        _headHeight = _headHeight+62.0;
+    }
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
