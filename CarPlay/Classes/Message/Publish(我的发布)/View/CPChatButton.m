@@ -70,4 +70,11 @@
     [self setTitle:@"我要去玩" forState:UIControlStateNormal];
 }
 
+- (void)showGameOver
+{
+    [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.backgroundColor = [Tools getColor:@"ccd1d9"];
+    [self setTitle:@"已结束" forState:UIControlStateNormal];
+}
+
 @end

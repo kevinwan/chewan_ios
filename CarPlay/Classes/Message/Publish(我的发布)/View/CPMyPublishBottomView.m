@@ -81,7 +81,6 @@
 
     
     CPChatButton *chatBtn = [CPChatButton buttonWithType:UIButtonTypeCustom];
-    chatBtn.hidden = YES;
     [bottomView addSubview:chatBtn];
     self.chatBtn = chatBtn;
     
@@ -185,6 +184,8 @@
         }
     }
     [self.moreBtn setTitle:[NSString stringWithFormat:@"%zd",self.model.members.count] forState:UIControlStateNormal];
+    
+    [self.chatBtn showGameOver];
     [self setNeedsLayout];
 }
 
