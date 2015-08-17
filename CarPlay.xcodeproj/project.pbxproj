@@ -303,6 +303,7 @@
 		E3C14F501B81815F006A0F52 /* MJPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C14F491B81815F006A0F52 /* MJPhotoView.m */; };
 		E3C14F531B81D6BE006A0F52 /* CPBadgeIconButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C14F521B81D6BE006A0F52 /* CPBadgeIconButton.m */; };
 		E3C14F561B81D7E9006A0F52 /* CPChatListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C14F551B81D7E9006A0F52 /* CPChatListCell.m */; };
+		E3C14F591B81E211006A0F52 /* CPHomeMsgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C14F581B81E211006A0F52 /* CPHomeMsgModel.m */; };
 		E3C611491B5F328C00B7E73A /* CPCreatActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C611481B5F328C00B7E73A /* CPCreatActivityModel.m */; };
 		E3C6114C1B5F363900B7E73A /* CPNetWorkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C6114B1B5F363900B7E73A /* CPNetWorkTool.m */; };
 		E3C6114F1B5F498600B7E73A /* CPLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C6114E1B5F498600B7E73A /* CPLocationModel.m */; };
@@ -939,6 +940,8 @@
 		E3C14F521B81D6BE006A0F52 /* CPBadgeIconButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPBadgeIconButton.m; sourceTree = "<group>"; };
 		E3C14F541B81D7E9006A0F52 /* CPChatListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPChatListCell.h; sourceTree = "<group>"; };
 		E3C14F551B81D7E9006A0F52 /* CPChatListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPChatListCell.m; sourceTree = "<group>"; };
+		E3C14F571B81E211006A0F52 /* CPHomeMsgModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPHomeMsgModel.h; path = CarPlay/Classes/Message/View/CPHomeMsgModel.h; sourceTree = SOURCE_ROOT; };
+		E3C14F581B81E211006A0F52 /* CPHomeMsgModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CPHomeMsgModel.m; path = CarPlay/Classes/Message/View/CPHomeMsgModel.m; sourceTree = SOURCE_ROOT; };
 		E3C611471B5F328C00B7E73A /* CPCreatActivityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCreatActivityModel.h; sourceTree = "<group>"; };
 		E3C611481B5F328C00B7E73A /* CPCreatActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCreatActivityModel.m; sourceTree = "<group>"; };
 		E3C6114A1B5F363900B7E73A /* CPNetWorkTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNetWorkTool.h; sourceTree = "<group>"; };
@@ -2720,6 +2723,8 @@
 			children = (
 				E3CE02771B6885BB00808698 /* CPNewMsgModel.h */,
 				E3CE02781B6885BB00808698 /* CPNewMsgModel.m */,
+				E3C14F571B81E211006A0F52 /* CPHomeMsgModel.h */,
+				E3C14F581B81E211006A0F52 /* CPHomeMsgModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3210,6 +3215,7 @@
 				E3CE35941B59E7FC008434B5 /* XLFormInlineSelectorCell.m in Sources */,
 				E3CE35A81B59E7FC008434B5 /* NSString+XLFormAdditions.m in Sources */,
 				E3CE35A21B59E7FC008434B5 /* XLFormRowDescriptor.m in Sources */,
+				E3C14F591B81E211006A0F52 /* CPHomeMsgModel.m in Sources */,
 				E3AE58C61B57E08800D8F0CA /* ZYNetWorkManager.m in Sources */,
 				A575821C1B6789E500A5E681 /* UIView+SMFoundation.m in Sources */,
 				6B97114B1B7DF60C00EA0F09 /* EMChatTimeCell.m in Sources */,

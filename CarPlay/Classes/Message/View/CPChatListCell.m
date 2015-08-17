@@ -46,4 +46,24 @@
     }
 }
 
+- (void)setModel:(CPHomeMsgModel *)model
+{
+    _model = model;
+    
+    if (model.createTime) {
+        self.timeLabel.text = model.timeStr;
+    }else{
+        self.timeLabel.text = @"";
+    }
+    self.msgLabel.text = model.content;
+    if (model.isShowUnread) {
+        self.unreadLabel.hidden = NO;
+        self.unreadLabel.text = model.unreadCount;
+    }else{
+        self.unreadLabel.hidden = YES;
+    }
+    self.titleNameLabel.text = model.title;
+    [self.iconView setImage:[UIImage imageNamed:model.icon] forState:UIControlStateNormal];
+}
+
 @end
