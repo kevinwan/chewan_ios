@@ -246,7 +246,7 @@ typedef enum {
         model.createTime = 0;
         [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
     }else{ // 小🐂的群聊天
-        EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
+        EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row-2];
         ChatViewController *chatController;
         NSString *title = conversation.chatter;
         if (conversation.conversationType != eConversationTypeChat) {
@@ -446,7 +446,7 @@ typedef enum {
     if (indexPath.row<2) {
         cell.model = self.datas[indexPath.row];
     }else{
-        EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
+        EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row-2];
         cell.titleNameLabel.text = conversation.chatter;
         cell.msgLabel.text = [self subTitleMessageByConversation:conversation];
         cell.timeLabel.text = [self lastMessageTimeByConversation:conversation];
