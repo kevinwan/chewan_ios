@@ -8,6 +8,15 @@
 
 #import "CPOfficialActivityCell.h"
 
+// 活动标题字体
+#define ActiveTitleFont [UIFont systemFontOfSize:16]
+
+// 活动截止时间字体
+#define ActiveEndTimeFont [UIFont systemFontOfSize:12]
+
+// 活动正文字体
+#define ActiveContentFont [UIFont systemFontOfSize:14]
+
 @interface CPOfficialActivityCell ()<UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -24,6 +33,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    
 }
 
 
@@ -32,11 +42,11 @@
 }
 
 
-- (void)setHomeStatus:(CPHomeStatus *)homeStatus{
-    _homeStatus = homeStatus;
+- (void)setHomeStatus:(NSArray *)activeStatus{
+    _activeStatus = activeStatus;
     
     // 设置图片总数
-//    self.photoCount = homeStatus.photoCount;
+    self.photoCount = activeStatus.count;
     
     // 设置图片轮播器
     [self setPicPlay];
@@ -55,29 +65,11 @@
     CGFloat imageY = 0;
     
     // 1.添加图片到scrollView中
-    if (self.photoCount == 0) {
-        [self removeTimer];
-        UIImageView *imageView = [[UIImageView alloc] init];
-        
-        // 设置图片显示格式
-        imageView.contentMode = UIViewContentModeScaleAspectFill;
-        
-        // 设置frame
-        imageView.frame = CGRectMake(0, 0, imageW, imageH);
-        
-        // 设置图片
-        imageView.image = [UIImage imageNamed:@"myBackground"];
-        
-        [self.scrollView addSubview:imageView];
-        
-    }
-    
     for (int i = 0; i<self.photoCount; i++) {
         UIImageView *imageView = [[UIImageView alloc] init];
         
         // 设置图片显示格式
         imageView.contentMode = UIViewContentModeScaleAspectFill;
-        
         
         // 设置frame
         CGFloat imageX = i * imageW;
@@ -110,6 +102,36 @@
     
     
 }
+
+
+- (void)setupSubviewFrameWithStatus:()status{
+    
+    // 活动标题
+    UILabel *titleLabel = [[UILabel alloc] init];
+    
+    
+    
+    // 活动内容
+    
+    
+    // 截止时间
+    
+    
+    // 截止时间内容
+    
+    
+    // 活动icon
+    
+    
+    
+    
+}
+
+
+
+
+
+
 
 /**
  *  添加定时器
