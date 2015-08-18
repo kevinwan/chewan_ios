@@ -27,8 +27,8 @@ PODS:
   - INTULocationManager (4.0.0)
   - Masonry (0.6.2)
   - MBProgressHUD (0.9.1)
-  - MJExtension (2.5.6)
-  - MJRefresh (2.4.5)
+  - MJExtension (2.5.7)
+  - MJRefresh (2.4.7)
   - MWPhotoBrowser (2.1.1):
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
@@ -78,8 +78,8 @@ SPEC CHECKSUMS:
   INTULocationManager: 754f2800415378b7bb2c07be103449e1f6a2cc70
   Masonry: 362e8a1cc0beada4a4c4832d5e863da2a51533be
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
-  MJExtension: 5ea3e326162ccc07c60afe8cc36c936bba20d0d5
-  MJRefresh: 8f022877bfcb4132ce260422eee6835dce896edb
+  MJExtension: 2650b64a34ace8d2aa9410d1d17244917032f37a
+  MJRefresh: 6eb2f61338f89f64fd628fd43debcf479381ff59
   MWPhotoBrowser: ba0d0c09ffda3a7ea10093518738c502c1c7141c
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1

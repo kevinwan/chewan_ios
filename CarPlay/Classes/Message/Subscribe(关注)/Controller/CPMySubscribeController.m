@@ -113,7 +113,6 @@
                     frameModel.model = model;
                     [self.frameModels addObject:frameModel];
                 }
-
                 [self.tableView reloadData];
             }else{
                 if (self.frameModels.count > 0) {
@@ -167,11 +166,6 @@
     frameModel.model.row = indexPath.row;
     cell.frameModel = frameModel;
     return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 100;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
