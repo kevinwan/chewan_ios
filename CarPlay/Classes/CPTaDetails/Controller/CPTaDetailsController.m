@@ -361,9 +361,9 @@
 
 
 // 预估每一行cell的高度，可提高性能（只计算可是区域的cell）
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 200;
-}
+//- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return 200;
+//}
 
 #pragma mark - lazy(懒加载)
 

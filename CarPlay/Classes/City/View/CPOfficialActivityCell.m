@@ -22,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 // 图片总数
-@property (nonatomic,assign) NSInteger photoCount;
+//@property (nonatomic,assign) NSInteger photoCount;
 
 // 定时器
 @property (nonatomic, strong) NSTimer *timer;
@@ -45,16 +45,16 @@
 - (void)setHomeStatus:(NSArray *)activeStatus{
     _activeStatus = activeStatus;
     
-    // 设置图片总数
-    self.photoCount = activeStatus.count;
+//    // 设置图片总数
+//    self.photoCount = activeStatus.count;
     
     // 设置图片轮播器
-    [self setPicPlay];
+    [self setPicPlayWithStatus:activeStatus];
     
 }
 
 // 设置图片轮播器
-- (void)setPicPlay{
+- (void)setPicPlayWithStatus:(NSArray *)activeStatus{
     
     // 添加定时器(每隔2秒调用一次self 的nextImage方法)
     [self addTimer];
@@ -65,7 +65,7 @@
     CGFloat imageY = 0;
     
     // 1.添加图片到scrollView中
-    for (int i = 0; i<self.photoCount; i++) {
+    for (int i = 0; i<activeStatus.count; i++) {
         UIImageView *imageView = [[UIImageView alloc] init];
         
         // 设置图片显示格式
@@ -76,17 +76,15 @@
         imageView.frame = CGRectMake(imageX, imageY, imageW, imageH);
         
         // 设置图片
-//        CPTaPhoto *taPhoto = self.taStatus.albumPhotos[i];
-//        NSURL *url = [NSURL URLWithString:taPhoto.thumbnail_pic];
-        
-        
+//        NSURL *url = [NSURL URLWithString:];
+            
 //        [imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"默认头像"]];
         
         [self.scrollView addSubview:imageView];
     }
     
     // 2.设置内容尺寸
-    CGFloat contentW = self.photoCount * imageW;
+    CGFloat contentW = activeStatus.count * imageW;
     self.scrollView.contentSize = CGSizeMake(contentW, 0);
     
     // 3.隐藏水平滚动条

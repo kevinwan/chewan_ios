@@ -27,6 +27,7 @@
 #import "CPRefreshHeader.h"
 #import "CPRefreshFooter.h"
 #import "ZHPickView.h"
+#import "CPOfficialActivity.h"
 
 @interface CPCityController ()<UITableViewDataSource,UITableViewDelegate,CPSelectViewDelegate,ZHPickViewDelegate>
 
@@ -148,6 +149,9 @@
     // 加载活动数据
     [self setupLoadStatusWithIgnore:0 Key:self.selectMark SelectModel:nil];
     
+    // 加载官方活动数据
+    [self setupOfficialActivity];
+    
     // 上拉下拉刷新
     [self topAndBottomRefresh];
 
@@ -250,6 +254,9 @@
     [self setupLoadStatusWithIgnore:self.ignoreNum Key:self.selectMark SelectModel:nil];
 }
 
+
+
+#pragma mark - 加载网络数据
 
 // 加载活动数据
 - (void)setupLoadStatusWithIgnore:(NSInteger)ignore Key:(NSString *)key SelectModel:(CPSelectViewModel *)selectModel{
@@ -355,6 +362,37 @@
     }];
     
 }
+
+
+// 加载官方活动数据
+- (void)setupOfficialActivity{
+    
+    // 获取网络管理者
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    // 发送请求
+    [manager GET:@"http://cwapi.gongpingjia.com/v1/official/activity/list" parameters:nil success:^(NSURLSessionDataTask * task, id responseObject) {
+        
+        // 取出活动数据
+        NSArray *dicts = responseObject[@"data"];
+        NSLog(@"%@",responseObject[@"data"]);
+ 
+        // 转换为模型数组
+        NSArray *models = [CPOfficialActivity objectArrayWithKeyValuesArray:dicts];
+        
+        // 刷新表格
+//        [self.tableView reloadData];
+        
+    
+        
+    } failure:^(NSURLSessionDataTask * task, NSError * error) {
+        //        [SVProgressHUD showWithStatus:@"获取用户信息失败"];
+    }];
+}
+
+
+
+
 
 
 
@@ -500,9 +538,9 @@
 }
 
 // 预估每一行cell的高度，可提高性能（只计算可是区域的cell）
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 200;
-}
+//- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return 200;
+//}
 
 #pragma mark - MWPhotoBrowserDelegate
 //- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
@@ -557,7 +595,7 @@
         [_coverBtn addTarget:self action:@selector(coverBtnClick) forControlEvents:UIControlEventTouchUpInside];
         _coverBtn.backgroundColor = RGBACOLOR(0, 0, 0, 0.5);
         _coverBtn.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight - 64);
-        [[UIApplication sharedApplication].keyWindow addSubview:_coverBtn];
+        [[UIApplication sharedApplication].windows.lastObject addSubview:_coverBtn];
         _coverBtn.hidden = YES;
     }
     return _coverBtn;

@@ -40,6 +40,7 @@
 		6B5F9B721B5D29FE00F9D1E8 /* CPHomeIconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5F9B671B5D29FE00F9D1E8 /* CPHomeIconCell.m */; };
 		6B5F9B731B5D29FE00F9D1E8 /* CPHomePicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5F9B691B5D29FE00F9D1E8 /* CPHomePicCell.m */; };
 		6B5F9B741B5D29FE00F9D1E8 /* CPHomeStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5F9B6B1B5D29FE00F9D1E8 /* CPHomeStatusCell.m */; };
+		6B62D12B1B83052A001F2A5B /* CPOfficialActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B62D12A1B83052A001F2A5B /* CPOfficialActivity.m */; };
 		6B64938C1B4D04BE00C197D2 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B64938B1B4D04BE00C197D2 /* BaseViewController.m */; };
 		6B6493901B4D04E100C197D2 /* CPNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B64938F1B4D04E100C197D2 /* CPNetWork.m */; };
 		6B6493941B4D04E500C197D2 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493931B4D04E500C197D2 /* Tools.m */; };
@@ -461,6 +462,8 @@
 		6B5F9B691B5D29FE00F9D1E8 /* CPHomePicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomePicCell.m; sourceTree = "<group>"; };
 		6B5F9B6A1B5D29FE00F9D1E8 /* CPHomeStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHomeStatusCell.h; sourceTree = "<group>"; };
 		6B5F9B6B1B5D29FE00F9D1E8 /* CPHomeStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHomeStatusCell.m; sourceTree = "<group>"; };
+		6B62D1291B83052A001F2A5B /* CPOfficialActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPOfficialActivity.h; sourceTree = "<group>"; };
+		6B62D12A1B83052A001F2A5B /* CPOfficialActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPOfficialActivity.m; sourceTree = "<group>"; };
 		6B64938A1B4D04BE00C197D2 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		6B64938B1B4D04BE00C197D2 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		6B64938E1B4D04E100C197D2 /* CPNetWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNetWork.h; sourceTree = "<group>"; };
@@ -1398,6 +1401,8 @@
 				6B5F9B601B5D29FE00F9D1E8 /* CPHomePhoto.m */,
 				6B5F9B631B5D29FE00F9D1E8 /* CPHomeUser.h */,
 				6B5F9B641B5D29FE00F9D1E8 /* CPHomeUser.m */,
+				6B62D1291B83052A001F2A5B /* CPOfficialActivity.h */,
+				6B62D12A1B83052A001F2A5B /* CPOfficialActivity.m */,
 			);
 			path = Mode;
 			sourceTree = "<group>";
@@ -3235,6 +3240,7 @@
 				E372D8451B6216C100B4FC5C /* serviceTermsViewController.m in Sources */,
 				A57581AA1B6789C500A5E681 /* memberManageCell.m in Sources */,
 				E372D82E1B6216C100B4FC5C /* CPNewPassWordViewController.m in Sources */,
+				6B62D12B1B83052A001F2A5B /* CPOfficialActivity.m in Sources */,
 				E3C611491B5F328C00B7E73A /* CPCreatActivityModel.m in Sources */,
 				E3CE35901B59E7FC008434B5 /* XLFormButtonCell.m in Sources */,
 				E310BF6B1B7DE69500750BF4 /* ChatListCell.m in Sources */,

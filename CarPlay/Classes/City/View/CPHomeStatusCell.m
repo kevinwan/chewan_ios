@@ -100,8 +100,6 @@
     
     _status = status;
     
-  
-    
     CPHomeUser *user = _status.organizer;
     
     // 头像
@@ -145,8 +143,6 @@
         [self.genderAndAge setBackgroundImage:[UIImage imageNamed:@"女-1"] forState:UIControlStateNormal];
     }
     
-  
-    
     // 车标
     if (user.carBrandLogo == nil || [user.carBrandLogo isEqualToString:@""]) {
         
@@ -154,8 +150,7 @@
     }else{
         self.carBrandLogo.hidden = NO;
         NSURL *urlCarBrandLogo = [NSURL URLWithString:user.carBrandLogo];
-        [self.carBrandLogo sd_setImageWithURL:urlCarBrandLogo placeholderImage:[UIImage imageNamed:@"默认头像"]];
-        
+        [self.carBrandLogo sd_setImageWithURL:urlCarBrandLogo placeholderImage:[UIImage imageNamed:@"默认头像"]];   
         
     }
     
