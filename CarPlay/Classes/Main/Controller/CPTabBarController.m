@@ -26,13 +26,10 @@ static NSString *kGroupName = @"GroupName";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-  
-//    UIView *v = [[UIView alloc] initWithFrame:self.tabBar.bounds];  
-//    v.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"bt_bg"]];
-//    [self.tabBar insertSubview:v atIndex:0];
     
-//     [[UITabBar appearance] setBackgroundImage:[UIImage imageNamed:@"bt_bg"]];
-
+    UIView *v = [[UIView alloc] initWithFrame:self.tabBar.bounds];  
+    v.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"bt_bg"]];
+    [self.tabBar insertSubview:v atIndex:0];
     
     // 同城
     [self addChildVCWithSBName:@"CPCityController" title:@"同城" norImageName:@"同城" selectedImageName:@"同城选中"];
@@ -45,6 +42,7 @@ static NSString *kGroupName = @"GroupName";
     [[EaseMob sharedInstance].chatManager addDelegate:self delegateQueue:nil];
     
     [self setupUnreadMessageCount];
+     [self.tabBar setBackgroundImage:[UIImage imageNamed:@"消息选中"]];
 }
 
 - (void)addChildVCWithClass:(Class)class title:(NSString *)title norImageName:(NSString *)norImageName selectedImageName:(NSString *)selectedImageName{
