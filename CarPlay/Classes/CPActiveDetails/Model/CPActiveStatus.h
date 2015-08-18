@@ -79,4 +79,7 @@
 /** 座位数*/
 @property (nonatomic, copy) NSString *seatInfo;
 
+/** 地址*/
+@property (nonatomic, copy) NSString *address;
+
 @end

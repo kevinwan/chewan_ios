@@ -141,6 +141,15 @@
     return NSStringFromCGRect(self.frame);
 }
 
+- (UIImage *)captureImage
+{
+    UIGraphicsBeginImageContextWithOptions(self.bounds.size, YES, 0.0);
+    [self.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
+}
+
 #pragma mark Factory & Initializer Methods
 
 /**

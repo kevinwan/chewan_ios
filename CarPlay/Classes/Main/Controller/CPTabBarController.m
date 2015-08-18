@@ -27,9 +27,9 @@ static NSString *kGroupName = @"GroupName";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIView *v = [[UIView alloc] initWithFrame:self.tabBar.bounds];  
-    v.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"bt_bg"]];
-    [self.tabBar insertSubview:v atIndex:0];
+//    UIView *v = [[UIView alloc] initWithFrame:self.tabBar.bounds];  
+//    v.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"bt_bg"]];
+//    [self.tabBar insertSubview:v atIndex:0];
     
     // 同城
     [self addChildVCWithSBName:@"CPCityController" title:@"同城" norImageName:@"同城" selectedImageName:@"同城选中"];
