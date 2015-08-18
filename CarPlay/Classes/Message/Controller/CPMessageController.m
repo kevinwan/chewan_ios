@@ -26,7 +26,7 @@ typedef enum {
     CPMessageOptionActivity // 参与活动信息
 }CPMessageOption;
 
-@interface CPMessageController ()<IChatManagerDelegate>
+@interface CPMessageController ()<IChatManagerDelegate,ChatViewControllerDelegate>
 @property (weak, nonatomic) CPBadgeView *leaveNewMsgNumber;
 
 @property (weak, nonatomic)  CPBadgeView *activityApplyNewMsgNumber;
@@ -36,8 +36,8 @@ typedef enum {
 @property (nonatomic, strong) NSTimer *timer;
 
 
-@property (strong, nonatomic) NSMutableArray        *dataSource;
-@property (nonatomic, strong) UIView                *networkStateView;
+@property (strong, nonatomic) NSMutableArray *dataSource;
+@property (nonatomic, strong) UIView *networkStateView;
 @property (nonatomic, strong) NSMutableArray *datas;
 @end
 
@@ -88,6 +88,9 @@ typedef enum {
     self.tableView.header = [CPRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
     if (CPIsLogin){
         [self timer];
+        [[EaseMob sharedInstance].chatManager loadAllConversationsFromDatabaseWithAppend2Chat:NO];
+        [self removeEmptyConversationsFromDB];
+        [self unregisterNotifications];
     }
 }
 
@@ -103,6 +106,12 @@ typedef enum {
         }
     }
     
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self unregisterNotifications];
 }
 
 - (void)loadData
@@ -171,6 +180,48 @@ typedef enum {
     // Dispose of any resources that can be recreated.
 }
 
+- (void)removeEmptyConversationsFromDB
+{
+    NSArray *conversations = [[EaseMob sharedInstance].chatManager conversations];
+    NSMutableArray *needRemoveConversations;
+    for (EMConversation *conversation in conversations) {
+        if (!conversation.latestMessage || (conversation.conversationType == eConversationTypeChatRoom)) {
+            if (!needRemoveConversations) {
+                needRemoveConversations = [[NSMutableArray alloc] initWithCapacity:0];
+            }
+            
+            [needRemoveConversations addObject:conversation.chatter];
+        }
+    }
+    
+    if (needRemoveConversations && needRemoveConversations.count > 0) {
+        [[EaseMob sharedInstance].chatManager removeConversationsByChatters:needRemoveConversations
+                                                             deleteMessages:YES
+                                                                append2Chat:NO];
+    }
+}
+
+- (void)removeChatroomConversationsFromDB
+{
+    NSArray *conversations = [[EaseMob sharedInstance].chatManager conversations];
+    NSMutableArray *needRemoveConversations;
+    for (EMConversation *conversation in conversations) {
+        if (conversation.conversationType == eConversationTypeChatRoom) {
+            if (!needRemoveConversations) {
+                needRemoveConversations = [[NSMutableArray alloc] initWithCapacity:0];
+            }
+            
+            [needRemoveConversations addObject:conversation.chatter];
+        }
+    }
+    
+    if (needRemoveConversations && needRemoveConversations.count > 0) {
+        [[EaseMob sharedInstance].chatManager removeConversationsByChatters:needRemoveConversations
+                                                             deleteMessages:YES
+                                                                append2Chat:NO];
+    }
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
@@ -195,12 +246,52 @@ typedef enum {
         model.createTime = 0;
         [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
     }else{ // 小🐂的群聊天
+        EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row-2];
+        ChatViewController *chatController;
+        NSString *title = conversation.chatter;
+        if (conversation.conversationType != eConversationTypeChat) {
+            if ([[conversation.ext objectForKey:@"groupSubject"] length])
+            {
+                title = [conversation.ext objectForKey:@"groupSubject"];
+            }
+            else
+            {
+                NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
+                for (EMGroup *group in groupArray) {
+                    if ([group.groupId isEqualToString:conversation.chatter]) {
+                        title = group.groupSubject;
+                        break;
+                    }
+                }
+            }
+        }
         
+        NSString *chatter = conversation.chatter;
+        chatController = [[ChatViewController alloc] initWithChatter:chatter conversationType:conversation.conversationType];
+        chatController.delelgate = self;
+        chatController.title = title;
+        if ([[RobotManager sharedInstance] getRobotNickWithUsername:chatter]) {
+            chatController.title = [[RobotManager sharedInstance] getRobotNickWithUsername:chatter];
+        }
+        [self.navigationController pushViewController:chatController animated:YES];
     }
 }
 
-#pragma mark - public
+#pragma mark - registerNotifications
+-(void)registerNotifications{
+    [self unregisterNotifications];
+    [[EaseMob sharedInstance].chatManager addDelegate:self delegateQueue:nil];
+}
 
+-(void)unregisterNotifications{
+    [[EaseMob sharedInstance].chatManager removeDelegate:self];
+}
+
+- (void)dealloc{
+    [self unregisterNotifications];
+}
+
+#pragma mark - public
 -(void)refreshDataSource
 {
     self.dataSource = [self loadDataSource];
@@ -352,11 +443,18 @@ typedef enum {
 {
     static NSString *identify = @"ChatListCell";
     CPChatListCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
-    
-    cell.model = self.datas[indexPath.row];
-//    if (!cell) {
-//        cell = [[CPChatListCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identify];
-//    }
+    if (indexPath.row<2) {
+        cell.model = self.datas[indexPath.row];
+    }else{
+        EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row-2];
+        cell.titleNameLabel.text = conversation.chatter;
+        cell.msgLabel.text = [self subTitleMessageByConversation:conversation];
+        cell.timeLabel.text = [self lastMessageTimeByConversation:conversation];
+        if ([self unreadMessageCountByConversation:conversation]>0) {
+            cell.showUnreadCount = YES;
+        }
+        [cell.iconView setImage:[UIImage imageNamed:@"群聊默认"] forState:UIControlStateNormal];
+    }
     return cell;
 }
 
@@ -365,7 +463,7 @@ typedef enum {
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.datas.count;
+    return self.datas.count+self.dataSource.count;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

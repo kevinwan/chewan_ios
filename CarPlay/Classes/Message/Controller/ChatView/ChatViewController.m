@@ -170,9 +170,9 @@
     //注册为SDK的ChatManager的delegate
     [[EaseMob sharedInstance].chatManager addDelegate:self delegateQueue:nil];
     
-    [[EaseMob sharedInstance].callManager removeDelegate:self];
-    // 注册为Call的Delegate
-    [[EaseMob sharedInstance].callManager addDelegate:self delegateQueue:nil];
+//    [[EaseMob sharedInstance].callManager removeDelegate:self];
+//    // 注册为Call的Delegate
+//    [[EaseMob sharedInstance].callManager addDelegate:self delegateQueue:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeAllMessages:) name:@"RemoveAllMessages" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exitGroup) name:@"ExitGroup" object:nil];
