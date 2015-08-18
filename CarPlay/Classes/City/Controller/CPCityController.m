@@ -197,7 +197,9 @@
         for (CLPlacemark *placemark in placemarks) {
 
             self.myCity = placemark.locality;
-
+            // 将城市存入缓存中
+            [CPUserDefaults setObject:self.myCity forKey:@"CPUserCity"];
+            [CPUserDefaults synchronize];
         }
 //        NSLog(@"%@",self.myCity);
         
