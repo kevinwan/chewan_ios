@@ -62,7 +62,6 @@ NSString *const kRouterEventChatCellBubbleTapEventName = @"kRouterEventChatCellB
 {
     return 30;
 }
-
 - (void)bubbleViewPressed:(id)sender
 {
     [self routerEventWithName:kRouterEventChatCellBubbleTapEventName userInfo:@{KMESSAGEKEY:self.model}];
