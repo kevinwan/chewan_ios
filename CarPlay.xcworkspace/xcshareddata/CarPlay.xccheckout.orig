@@ -5,7 +5,11 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
+<<<<<<< HEAD
 	<string>945E49A0-2D2F-4F56-8F61-44AF9E7D7F8D</string>
+=======
+	<string>408E9678-DC63-49A2-BDF0-202BBFBDB634</string>
+>>>>>>> aa998b69ee31202229b96f12cff05d64d112bc9a
 	<key>IDESourceControlProjectName</key>
 	<string>CarPlay</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>

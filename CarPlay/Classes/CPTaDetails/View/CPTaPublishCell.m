@@ -191,7 +191,7 @@
     [self layoutIfNeeded];
     
     // 返回cell高度，就是底部view的最大高度
-    return CGRectGetMaxY(self.bottomIconList.frame);
+    return CGRectGetMaxY(self.bottomIconList.frame) + 10;
 }
 
 
