@@ -33,13 +33,11 @@ static CGFloat const kBounceValue = 20.0f;
 @implementation carManageCell
 
 - (void)awakeFromNib {
-    self.carName.font = [AppAppearance textLargeFont];
+//    self.carName.font = [AppAppearance textLargeFont];
     self.carName.textColor = [AppAppearance textDarkColor];
     self.carName.preferredMaxLayoutWidth = 70;
-    [self layoutIfNeeded];
-    if (self.carName.height > 17) {
-        self.carName.font = [UIFont systemFontOfSize:14];
-    }
+    self.carName.adjustsFontSizeToFitWidth = YES;
+    self.carName.minimumFontSize = 10;
     self.pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(pan:)];
     [self.mycontentView addGestureRecognizer:self.pan];
     //设置手势代理
