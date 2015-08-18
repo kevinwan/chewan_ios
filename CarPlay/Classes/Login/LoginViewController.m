@@ -12,7 +12,8 @@
 #import "CPMySubscribeModel.h"
 
 @interface LoginViewController ()
-
+@property (nonatomic, strong) UIBarButtonItem *rightItem;
+@property (nonatomic, strong) UIBarButtonItem *leftItem;
 @end
 
 @implementation LoginViewController
@@ -21,27 +22,35 @@
     [super viewDidLoad];
     self.loginBtn.layer.cornerRadius=3.0;
     self.loginBtn.layer.masksToBounds=YES;
-    [self.userPhone setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
-    [self.password setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+    self.navigationItem.title=@"登录";
+    self.navigationItem.rightBarButtonItem = self.rightItem;
+    self.navigationItem.leftBarButtonItem = self.leftItem;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
 //     设置navigationBar透明的背景颜色，达到透明的效果BIGIN
-     self.navigationController.navigationBarHidden=YES;
-    self.navigationController.navigationBar.translucent=YES;
-//       设置navigationBar透明的背景颜色，达到透明的效果END
-   
-}
-
--(void)viewWillDisappear:(BOOL)animated{
-    //     设置navigationBar透明的背景颜色，达到透明的效果BIGIN
-    self.navigationController.navigationBarHidden=NO;
     self.navigationController.navigationBar.translucent=NO;
-    //       设置navigationBar透明的背景颜色，达到透明的效果END
+//       设置navigationBar透明的背景颜色，达到透明的效果END
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (UIBarButtonItem *)rightItem
+{
+    if (_rightItem == nil) {
+        _rightItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"注册" target:self action:@selector(registerBtnClick:)];
+    }
+    return _rightItem;
+}
+
+-(UIBarButtonItem *)leftItem
+{
+    if (_leftItem == nil) {
+        _leftItem = [UIBarButtonItem itemWithNorImage:@"返回" higImage:nil title:nil target:self action:@selector(changeRootController:)];
+    }
+    return _leftItem;
 }
 
 - (IBAction)loginBtnClick:(id)sender {
@@ -110,9 +119,23 @@
     [self.navigationController pushViewController:CPForgetPasswordVC animated:YES];
 }
 
-- (IBAction)registerBtnClick:(id)sender {
+- (void)registerBtnClick:(id)sender {
     registerViewController *registerVC=[[registerViewController alloc]init];
     registerVC.title=@"注册";
     [self.navigationController pushViewController:registerVC animated:YES];
+}
+
+- (IBAction)WeChatLoginClick:(id)sender {
+}
+
+- (IBAction)QQLoginClick:(id)sender {
+}
+
+- (IBAction)sinaWeiboLoginClick:(id)sender {
+}
+
+-(void)changeRootController:(id)sender
+{
+    [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_ROOTCONTROLLERCHANGETOTAB object:nil];
 }
 @end

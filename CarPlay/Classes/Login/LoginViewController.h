@@ -15,5 +15,8 @@
 - (IBAction)loginBtnClick:(id)sender;
 - (IBAction)forgetPassword:(id)sender;
 - (IBAction)registerBtnClick:(id)sender;
+- (IBAction)WeChatLoginClick:(id)sender;
+- (IBAction)QQLoginClick:(id)sender;
+- (IBAction)sinaWeiboLoginClick:(id)sender;
 
 @end
