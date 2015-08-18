@@ -18,7 +18,12 @@
         self.stateLabel.textColor = [Tools getColor:@"aab2bd"];
         [self setTitle:@"加载中..." forState:MJRefreshStateRefreshing];
         [self setTitle:@"无更多数据" forState:MJRefreshStateNoMoreData];
+//        self.ignoredScrollViewContentInsetBottom = 30;
+        self.automaticallyRefresh = YES;
+        self.automaticallyHidden = YES;
     }
     return self;
 }
+
+
 @end

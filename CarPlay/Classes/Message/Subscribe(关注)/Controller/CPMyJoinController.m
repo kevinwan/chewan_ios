@@ -109,7 +109,6 @@
                     [self.datas addObject:frameModel];
                 }
                 [self.tableView reloadData];
-
             }else{
                 if (self.datas.count) {
                     [self.tableView.footer noticeNoMoreData];
@@ -146,11 +145,6 @@
     cell.frameModel = frameModel;
     return cell;
     
-}
-
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 100;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
