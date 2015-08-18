@@ -61,6 +61,9 @@ typedef void(^ALConstraintsBlock)(void);    // a block of method calls to the UI
 
 - (CGFloat)centerYInSelf;
 
+#pragma mark - 截图方法
+- (UIImage *)captureImage;
+
 #pragma mark 初始化view去除autoresizing
 /** Creates and returns a new view that does not convert the autoresizing mask into constraints. */
 + (instancetype)newAutoLayoutView;

@@ -14,7 +14,6 @@
 #import "CPLocationModel.h"
 #import <AMap2DMap/MAMapKit.h>
 #import "GeocodeAnnotation.h"
-#import "CommonUtility.h"
 #import "CPMapSearchViewController.h"
 #import "CPAnnotationView.h"
 #import "CPMapPlaceSearchRequest.h"
@@ -106,7 +105,6 @@
     
     // 2. 初始化mapView
     [self setUpMapView];
-    
     
     // 如果有值意味着修改位置 需要显示上一次的位置
     if (self.forValue) {
@@ -498,12 +496,14 @@
 {
     [super viewWillAppear:animated];
     self.searchBar.hidden = NO;
+    self.mapView.userTrackingMode = MAUserTrackingModeFollow;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     self.searchBar.hidden = YES;
+    self.mapView.userTrackingMode = MAUserTrackingModeNone;
     [SVProgressHUD dismiss];
 }
 
@@ -530,7 +530,7 @@
             request.searchType          = AMapSearchType_PlaceKeyword;
             request.keywords            = searchText;
             request.requireExtension    = YES;
-            [self showLoading];
+            [weakSelf showLoading];
             [weakSelf.searchApi AMapPlaceSearch:request];
         }
     };
@@ -539,7 +539,6 @@
 
             weakSelf.selectName = tip.name;
             NSString *key = [NSString stringWithFormat:@"%@%@", tip.district, tip.name];
-        DLog(@"%@",tip.name);
             [weakSelf clearAndSearchGeocodeWithKey:key adcode:tip.adcode];
         
             weakSelf.searchBar.placeholder = tip.name;
@@ -563,6 +562,13 @@
     if ([view.annotation isKindOfClass:[MAUserLocation class]])
         return;
     [self setToolBarViewWithAnnotation:view.annotation];
+}
+
+- (void)dealloc
+{
+    _mapView.userTrackingMode = MAUserTrackingModeNone;
+    _mapView = nil;
+    _searchApi = nil;
 }
 
 @end

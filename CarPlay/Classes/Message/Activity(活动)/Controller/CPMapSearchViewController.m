@@ -134,6 +134,11 @@
     
     AMapInputTipsSearchRequest *tips = [[AMapInputTipsSearchRequest alloc] init];
     tips.keywords = key;
+    
+    NSString *city = [CPUserDefaults objectForKey:@"CPUserCity"];
+    if (city.length) {
+        tips.city = @[city];
+    }
     [self.searchApi AMapInputTipsSearch:tips];
 }
 
@@ -213,6 +218,12 @@
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     [self.searchBar resignFirstResponder];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self searchBtnClick];
+    return YES;
 }
 
 @end

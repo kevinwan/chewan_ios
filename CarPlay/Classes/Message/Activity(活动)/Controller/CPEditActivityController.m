@@ -875,7 +875,7 @@ typedef enum {
     }
     
     [SVProgressHUD showWithStatus:@"保存中"];
-
+    button.userInteractionEnabled = NO;
     for (UIView *subView in self.photoView.subviews) {
         if ([subView isKindOfClass:[CPEditImageView class]]) {
             CPEditImageView *imageView = (CPEditImageView *)subView;
@@ -904,6 +904,7 @@ typedef enum {
                     
                 } failure:^(NSError *error) {
                     [SVProgressHUD showErrorWithStatus:@"上传失败"];
+                    self.saveBtn.userInteractionEnabled = YES;
                 }];
 
             }
@@ -936,7 +937,7 @@ typedef enum {
     params[@"pay"] = self.currentModel.pay;
     NSString *url = [NSString stringWithFormat:@"v1/activity/%@/info",self.currentModel.activityId];
     [CPNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
-        
+        self.saveBtn.userInteractionEnabled = YES;
         if (CPSuccess){
             [SVProgressHUD showSuccessWithStatus:@"修改成功"];
         }else{
@@ -944,6 +945,7 @@ typedef enum {
         }
     } failed:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:@"修改失败"];
+        self.saveBtn.userInteractionEnabled = YES;
     }];
     
 }

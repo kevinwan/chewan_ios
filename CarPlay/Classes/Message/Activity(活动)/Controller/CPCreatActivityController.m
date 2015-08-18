@@ -878,6 +878,7 @@ typedef enum {
     }
     
     [SVProgressHUD showWithStatus:@"创建中"];
+    button.userInteractionEnabled = NO;
     for (UIView *subView in self.photoView.subviews) {
         if ([subView isKindOfClass:[CPEditImageView class]]) {
             CPEditImageView *imageView = (CPEditImageView *)subView;
@@ -896,10 +897,12 @@ typedef enum {
                     }
                 }else{
                     [self showError:@"创建失败"];
+                    button.userInteractionEnabled = YES;
                 }
                 
             } failure:^(NSError *error) {
                 [self showError:@"创建失败"];
+                button.userInteractionEnabled = YES;
             }];
         }
     }
@@ -922,6 +925,7 @@ typedef enum {
         if (CPSuccess){
             [self showSuccess:@"创建成功"];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                button.userInteractionEnabled = YES;
                 if (button.tag == CreateActivityNone) {
                     // 跳转到活动详情界面
                     CPActiveDetailsController *activityDetailVc = [UIStoryboard storyboardWithName:@"CPActiveDetailsController" bundle:nil ].instantiateInitialViewController;;
@@ -940,9 +944,11 @@ typedef enum {
             });
         }else{
             [self showError:@"创建失败"];
+            button.userInteractionEnabled = YES;
         }
     } failed:^(NSError *error) {
         [self showError:@"创建失败"];
+        button.userInteractionEnabled = YES;
     }];
 }
 
