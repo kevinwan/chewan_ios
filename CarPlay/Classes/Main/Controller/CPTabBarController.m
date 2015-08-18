@@ -11,6 +11,7 @@
 #import "CPMessageController.h"
 #import "CPMyController.h"
 #import "EMCDDeviceManager.h"
+#import "LoginViewController.h"
 
 //两次提示的默认间隔
 static const CGFloat kDefaultPlaySoundInterval = 3.0;
@@ -107,6 +108,28 @@ static NSString *kGroupName = @"GroupName";
     [self setupUnreadMessageCount];
     CPMessageController *CPMessageVc = (CPMessageController *)[self.childViewControllers[1] topViewController];
     [CPMessageVc  refreshDataSource];
+}
+
+- (void)didLoginFromOtherDevice
+{
+    [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:NO completion:^(NSDictionary *info, EMError *error) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您的账号从其他设备上登录，请重新登录" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        alertView.tag = 100;
+        [alertView show];
+        
+        EMError *error1 = nil;
+        NSDictionary *info1 = [[EaseMob sharedInstance].chatManager logoffWithUnbindDeviceToken:NO error:&error];
+        if (!error1 && info1) {
+            [Tools setValueForKey:@(NO) key:NOTIFICATION_HASLOGIN];
+            [Tools setValueForKey:nil key:@"userId"];
+            LoginViewController *loginVC=[[LoginViewController alloc]init];
+            UINavigationController *nav1 = [[UINavigationController alloc] initWithRootViewController:loginVC];
+            self.view.window.rootViewController=nav1;
+            [self.view.window makeKeyAndVisible];
+        }else{
+            [self showError:error1.description];
+        }
+    } onQueue:nil];
 }
 
 // 未读消息数量变化回调
@@ -268,16 +291,18 @@ static NSString *kGroupName = @"GroupName";
 - (void)didLoginWithInfo:(NSDictionary *)loginInfo error:(EMError *)error
 {
     if (error) {
-        NSString *hintText = NSLocalizedString(@"reconnection.retry", @"Fail to log in your account, is try again... \nclick 'logout' button to jump to the login page \nclick 'continue to wait for' button for reconnection successful");
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"prompt", @"Prompt")
-                                                            message:hintText
-                                                           delegate:self
-                                                  cancelButtonTitle:NSLocalizedString(@"reconnection.wait", @"continue to wait")
-                                                  otherButtonTitles:NSLocalizedString(@"logout", @"Logout"),
-                                  nil];
-        alertView.tag = 99;
-        [alertView show];
-//        [_chatListVC isConnect:NO];
+//        NSString *hintText = NSLocalizedString(@"reconnection.retry", @"Fail to log in your account, is try again... \nclick 'logout' button to jump to the login page \nclick 'continue to wait for' button for reconnection successful");
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"prompt", @"Prompt")
+//                                                            message:hintText
+//                                                           delegate:self
+//                                                  cancelButtonTitle:NSLocalizedString(@"reconnection.wait", @"continue to wait")
+//                                                  otherButtonTitles:NSLocalizedString(@"logout", @"Logout"),
+//                                  nil];
+//        alertView.tag = 99;
+//        [alertView show];
+          CPMessageController *CPMessageVc = (CPMessageController *)[self.childViewControllers[1] topViewController];
+        [CPMessageVc isConnect:NO];
+         [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
     }
 }
 
