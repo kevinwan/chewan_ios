@@ -12,7 +12,7 @@
 @interface CPOfficialActivityCell : UITableViewCell
 
 // 存储官方cell数据
-@property (nonatomic,strong) CPHomeStatus *homeStatus;
+@property (nonatomic,strong) NSArray *activeStatus;
 
 // 主动加载cell方法
 + (instancetype)officialActivityCell;
