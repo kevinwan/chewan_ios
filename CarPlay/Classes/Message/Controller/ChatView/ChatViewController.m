@@ -159,7 +159,7 @@
     [super viewDidLoad];
     [self registerBecomeActive];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = RGBACOLOR(248, 248, 248, 1);
+    self.view.backgroundColor = [UIColor whiteColor];
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
         self.edgesForExtendedLayout =  UIRectEdgeNone;
     }
@@ -223,11 +223,11 @@
 
 - (void)setupBarButtonItem
 {
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    [self.navigationItem setLeftBarButtonItem:backItem];
+//    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+//    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+//    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+//    [self.navigationItem setLeftBarButtonItem:backItem];
     
     if (self.isChatGroup) {
         UIButton *detailButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
@@ -401,10 +401,9 @@
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.backgroundColor = RGBACOLOR(248, 248, 248, 1);
         _tableView.tableFooterView = [[UIView alloc] init];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        
+        _tableView.backgroundColor = [UIColor whiteColor];
         UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
         lpgr.minimumPressDuration = .5;
         [_tableView addGestureRecognizer:lpgr];
@@ -476,6 +475,7 @@
     if (indexPath.row < [self.dataSource count]) {
         id obj = [self.dataSource objectAtIndex:indexPath.row];
         if ([obj isKindOfClass:[NSString class]]) {
+            DLog(@"%@=====",obj);
             EMChatTimeCell *timeCell = (EMChatTimeCell *)[tableView dequeueReusableCellWithIdentifier:@"MessageCellTime"];
             if (timeCell == nil) {
                 timeCell = [[EMChatTimeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MessageCellTime"];
