@@ -110,6 +110,11 @@ NSString *const kRouterEventTextURLTapEventName = @"kRouterEventTextURLTapEventN
         }
     } else {
         _urlMatches = [_detector matchesInString:self.model.content options:0 range:NSMakeRange(0, self.model.content.length)];
+        if (self.model.isSender) {
+            _textLabel.textColor = [UIColor whiteColor];
+        }else{
+            _textLabel.textColor = [Tools getColor:@"434a54"];
+        }
     }
     NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc]
                                                     initWithString:self.model.content];

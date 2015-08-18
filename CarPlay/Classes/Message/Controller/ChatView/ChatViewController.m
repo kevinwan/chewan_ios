@@ -489,6 +489,7 @@
         }
         else{
             MessageModel *model = (MessageModel *)obj;
+            DLog(@"%@0000000000000%@",model.nickName,model.username);
             NSString *cellIdentifier = [EMChatViewCell cellIdentifierForMessageModel:model];
             EMChatViewCell *cell = (EMChatViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
             if (cell == nil) {
