@@ -38,7 +38,7 @@
 #define KPageCount 20
 #define KHintAdjustY    50
 
-@interface ChatViewController ()<UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, IChatManagerDelegate, DXChatBarMoreViewDelegate, DXMessageToolBarDelegate, LocationViewDelegate, EMCDDeviceManagerDelegate,EMCallManagerDelegate>
+@interface ChatViewController ()<UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, IChatManagerDelegate, DXChatBarMoreViewDelegate, DXMessageToolBarDelegate, LocationViewDelegate, EMCDDeviceManagerDelegate>
 {
     UIMenuController *_menuController;
     UIMenuItem *_copyMenuItem;
@@ -176,7 +176,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeAllMessages:) name:@"RemoveAllMessages" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exitGroup) name:@"ExitGroup" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(insertCallMessage:) name:@"insertCallMessage" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(insertCallMessage:) name:@"insertCallMessage" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground) name:@"applicationDidEnterBackground" object:nil];
     
     _messageQueue = dispatch_queue_create("easemob.com", NULL);
@@ -197,9 +197,9 @@
     //通过会话管理者获取已收发消息
     long long timestamp = [[NSDate date] timeIntervalSince1970] * 1000 + 1;
     [self loadMoreMessagesFrom:timestamp count:KPageCount append:NO];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleCallNotification:) name:@"callOutWithChatter" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleCallNotification:) name:@"callControllerClose" object:nil];
+//    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleCallNotification:) name:@"callOutWithChatter" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleCallNotification:) name:@"callControllerClose" object:nil];
     
     if (_conversationType == eConversationTypeChatRoom)
     {
@@ -207,19 +207,19 @@
     }
 }
 
-- (void)handleCallNotification:(NSNotification *)notification
-{
-    id object = notification.object;
-    if ([object isKindOfClass:[NSDictionary class]]) {
-        //开始call
-        self.isInvisible = YES;
-    }
-    else
-    {
-        //结束call
-        self.isInvisible = NO;
-    }
-}
+//- (void)handleCallNotification:(NSNotification *)notification
+//{
+//    id object = notification.object;
+//    if ([object isKindOfClass:[NSDictionary class]]) {
+//        //开始call
+//        self.isInvisible = YES;
+//    }
+//    else
+//    {
+//        //结束call
+//        self.isInvisible = NO;
+//    }
+//}
 
 - (void)setupBarButtonItem
 {
@@ -288,7 +288,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 #warning 以下第一行代码必须写，将self从ChatManager的代理中移除
     [[EaseMob sharedInstance].chatManager removeDelegate:self];
-    [[EaseMob sharedInstance].callManager removeDelegate:self];
+//    [[EaseMob sharedInstance].callManager removeDelegate:self];
     if (_conversation.conversationType == eConversationTypeChatRoom && !_isKicked)
     {
         //退出聊天室，删除会话
@@ -1087,20 +1087,20 @@
     [self.navigationController pushViewController:locationController animated:YES];
 }
 
-- (void)moreViewAudioCallAction:(DXChatBarMoreView *)moreView
-{
-    // 隐藏键盘
-    [self keyBoardHidden];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"callOutWithChatter" object:@{@"chatter":self.chatter, @"type":[NSNumber numberWithInt:eCallSessionTypeAudio]}];
-}
-
-- (void)moreViewVideoCallAction:(DXChatBarMoreView *)moreView
-{
-    // 隐藏键盘
-    [self keyBoardHidden];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"callOutWithChatter" object:@{@"chatter":self.chatter, @"type":[NSNumber numberWithInt:eCallSessionTypeVideo]}];
-}
-
+//- (void)moreViewAudioCallAction:(DXChatBarMoreView *)moreView
+//{
+//    // 隐藏键盘
+//    [self keyBoardHidden];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"callOutWithChatter" object:@{@"chatter":self.chatter, @"type":[NSNumber numberWithInt:eCallSessionTypeAudio]}];
+//}
+//
+//- (void)moreViewVideoCallAction:(DXChatBarMoreView *)moreView
+//{
+//    // 隐藏键盘
+//    [self keyBoardHidden];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"callOutWithChatter" object:@{@"chatter":self.chatter, @"type":[NSNumber numberWithInt:eCallSessionTypeVideo]}];
+//}
+//
 #pragma mark - LocationViewDelegate
 
 -(void)sendLocationLatitude:(double)latitude longitude:(double)longitude andAddress:(NSString *)address
@@ -1585,15 +1585,15 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)insertCallMessage:(NSNotification *)notification
-{
-    id object = notification.object;
-    if (object) {
-        EMMessage *message = (EMMessage *)object;
-        [self addMessage:message];
-        [[EaseMob sharedInstance].chatManager insertMessageToDB:message append2Chat:YES];
-    }
-}
+//- (void)insertCallMessage:(NSNotification *)notification
+//{
+//    id object = notification.object;
+//    if (object) {
+//        EMMessage *message = (EMMessage *)object;
+//        [self addMessage:message];
+//        [[EaseMob sharedInstance].chatManager insertMessageToDB:message append2Chat:YES];
+//    }
+//}
 
 - (void)applicationDidEnterBackground
 {
@@ -1781,14 +1781,14 @@
 
 #pragma mark - ICallManagerDelegate
 
-- (void)callSessionStatusChanged:(EMCallSession *)callSession changeReason:(EMCallStatusChangedReason)reason error:(EMError *)error
-{
-    if (reason == eCallReasonNull) {
-        if ([[EMCDDeviceManager sharedInstance] isPlaying]) {
-            [self stopAudioPlayingWithChangeCategory:NO];
-        }
-    }
-}
+//- (void)callSessionStatusChanged:(EMCallSession *)callSession changeReason:(EMCallStatusChangedReason)reason error:(EMError *)error
+//{
+//    if (reason == eCallReasonNull) {
+//        if ([[EMCDDeviceManager sharedInstance] isPlaying]) {
+//            [self stopAudioPlayingWithChangeCategory:NO];
+//        }
+//    }
+//}
 
 #pragma mark - 创建带附件的消息体和批量导入消息的示例
 //- (void)loadMessage

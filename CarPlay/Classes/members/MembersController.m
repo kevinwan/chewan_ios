@@ -60,14 +60,12 @@
 }
 - (void)setUpRefresh {
     __weak typeof(self) weakSelf = self;
-    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.memberTableView.header = [CPRefreshHeader headerWithRefreshingBlock:^{
         [weakSelf loadMessage];
     }];
-    self.memberTableView.header = header;
-    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMessage)];
-    [footer setTitle:@"" forState: MJRefreshStateIdle];
-    self.memberTableView.footer = footer;
-    
+    self.memberTableView.footer = [CPRefreshFooter  footerWithRefreshingBlock:^{
+       [weakSelf loadMessage];
+    }];
 }
 - (void) setupFontAndColor {
     

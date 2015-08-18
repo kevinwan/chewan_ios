@@ -110,7 +110,7 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==1) {
         EMError *error = nil;
-        NSDictionary *info = [[EaseMob sharedInstance].chatManager logoffWithUnbindDeviceToken:YES/NO error:&error];
+        NSDictionary *info = [[EaseMob sharedInstance].chatManager logoffWithUnbindDeviceToken:YES error:&error];
         if (!error && info) {
             LoginViewController *loginVC=[[LoginViewController alloc]init];
             [Tools setValueForKey:@(NO) key:NOTIFICATION_HASLOGIN];
