@@ -50,6 +50,16 @@
 				<string>QQ41D8CFC7</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>xl</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>sina.55a34ed367e58e6efc00285d</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>

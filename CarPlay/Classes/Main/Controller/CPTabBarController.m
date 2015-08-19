@@ -259,13 +259,13 @@ static NSString *kGroupName = @"GroupName";
         notification.alertBody = [NSString stringWithFormat:@"%@:%@", title, messageStr];
     }
     else{
-        notification.alertBody = NSLocalizedString(@"receiveMessage", @"you have a new message");
+        notification.alertBody = @"您收到一条消息";
     }
     
 #warning 去掉注释会显示[本地]开头, 方便在开发中区分是否为本地推送
     //notification.alertBody = [[NSString alloc] initWithFormat:@"[本地]%@", notification.alertBody];
     
-    notification.alertAction = NSLocalizedString(@"open", @"Open");
+    notification.alertAction = @"打开";
     notification.timeZone = [NSTimeZone defaultTimeZone];
     NSTimeInterval timeInterval = [[NSDate date] timeIntervalSinceDate:self.lastPlaySoundDate];
     if (timeInterval < kDefaultPlaySoundInterval) {
