@@ -40,7 +40,7 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
     [super layoutSubviews];
     
     CGRect bubbleFrame = _bubbleView.frame;
-    bubbleFrame.origin.y = self.headImageView.frame.origin.y + 20;
+    bubbleFrame.origin.y = self.headImageView.y + 11;
     if (self.messageModel.isSender) {
    
         // 菊花状态 （因不确定菊花具体位置，要在子类中实现位置的修改）
@@ -101,7 +101,7 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
     else{
         bubbleFrame.origin.x = HEAD_PADDING * 2 + HEAD_SIZE;
         if (self.messageModel.messageType != eMessageTypeChat) {
-            bubbleFrame.origin.y = NAME_LABEL_HEIGHT + NAME_LABEL_PADDING;
+            bubbleFrame.origin.y = self.nameLabel.bottom + 5;
         }
         _bubbleView.frame = bubbleFrame;
     }
@@ -112,7 +112,7 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
     [super setMessageModel:model];
     
     if (model.messageType != eMessageTypeChat) {
-        _nameLabel.text = model.nickName;
+        _nameLabel.text = @"你猜我多大啦";
         _nameLabel.hidden = model.isSender;
     }
     

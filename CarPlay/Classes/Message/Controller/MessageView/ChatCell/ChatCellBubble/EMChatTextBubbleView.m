@@ -332,7 +332,8 @@ NSString *const kRouterEventTextURLTapEventName = @"kRouterEventTextURLTapEventN
                           constrainedToSize:textBlockMinSize
                               lineBreakMode:[self textLabelLineBreakModel]];
     }
-    return 2 * BUBBLE_VIEW_PADDING + size.height;
+    return size.height;
+//    return 2 * BUBBLE_VIEW_PADDING + size.height;
 }
 
 +(UIFont *)textLabelFont
