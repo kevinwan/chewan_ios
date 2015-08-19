@@ -261,7 +261,7 @@
     }
     
     if (reason == eGroupLeaveReason_BeRemoved) {
-        str = [NSString stringWithFormat:NSLocalizedString(@"group.beKicked", @"you have been kicked out from the group of \'%@\'"), tmpStr];
+        str = [NSString stringWithFormat:@"您已经被踢出\'%@\'", tmpStr];
     }
 //    if (str.length > 0) {
 //        TTAlertNoTitle(str);
@@ -274,9 +274,9 @@
                                       reason:(NSString *)reason
                                        error:(EMError *)error{
     if (!reason || reason.length == 0) {
-        reason = [NSString stringWithFormat:NSLocalizedString(@"group.beRefusedToJoin", @"be refused to join the group\'%@\'"), groupname];
+        reason = [NSString stringWithFormat:@"\'%@\'拒绝您的加入", groupname];
     }
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"prompt", @"Prompt") message:reason delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", @"OK") otherButtonTitles:nil, nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:reason delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
     [alertView show];
 }
 
@@ -355,12 +355,12 @@
                                                         options:NSJSONWritingPrettyPrinted error:&parseError];
     NSString *str =  [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"apns.content", @"Apns content")
-//                                                    message:str
-//                                                   delegate:nil
-//                                          cancelButtonTitle:NSLocalizedString(@"ok", @"OK")
-//                                          otherButtonTitles:nil];
-//    [alert show];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"apns.content", @"Apns content")
+                                                    message:str
+                                                   delegate:nil
+                                          cancelButtonTitle:NSLocalizedString(@"ok", @"OK")
+                                          otherButtonTitles:nil];
+    [alert show];
 
 }
 

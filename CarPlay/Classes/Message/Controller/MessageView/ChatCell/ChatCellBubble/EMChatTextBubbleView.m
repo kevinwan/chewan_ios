@@ -110,6 +110,11 @@ NSString *const kRouterEventTextURLTapEventName = @"kRouterEventTextURLTapEventN
         }
     } else {
         _urlMatches = [_detector matchesInString:self.model.content options:0 range:NSMakeRange(0, self.model.content.length)];
+        if (self.model.isSender) {
+            _textLabel.textColor = [UIColor whiteColor];
+        }else{
+            _textLabel.textColor = [Tools getColor:@"434a54"];
+        }
     }
     NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc]
                                                     initWithString:self.model.content];
@@ -327,7 +332,8 @@ NSString *const kRouterEventTextURLTapEventName = @"kRouterEventTextURLTapEventN
                           constrainedToSize:textBlockMinSize
                               lineBreakMode:[self textLabelLineBreakModel]];
     }
-    return 2 * BUBBLE_VIEW_PADDING + size.height;
+    return size.height;
+//    return 2 * BUBBLE_VIEW_PADDING + size.height;
 }
 
 +(UIFont *)textLabelFont

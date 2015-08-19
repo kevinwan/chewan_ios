@@ -35,11 +35,12 @@
     self.photoViewHeight = self.photoWH + 20;
     UIButton *addPhotoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     addPhotoBtn.tag = 9;
-    addPhotoBtn.frame = CGRectMake(10, 76, self.photoWH, self.photoWH);
+    addPhotoBtn.frame = CGRectMake(10, 14, self.photoWH, self.photoWH);
     [addPhotoBtn setBackgroundColor:[Tools getColor:@"ccd1d9"]];
     [addPhotoBtn setImage:[UIImage imageNamed:@"大相机"] forState:UIControlStateNormal];
     [addPhotoBtn addTarget:self action:@selector(addPhoto) forControlEvents:UIControlEventTouchUpInside];
     [_photoView addSubview:addPhotoBtn];
+    self.navigationController.navigationBar.translucent=NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -339,7 +340,7 @@
     for (int i = 0; i < count; i++) {
         UIView *subView = self.photoView.subviews[i];
         subView.x = 10 + (i % 4) * (10 + imgW);
-        subView.y = 76 + (i / 4) * (10 + imgH);
+        subView.y = 14 + (i / 4) * (10 + imgH);
         subView.width = imgW;
         subView.height = imgH;
     }

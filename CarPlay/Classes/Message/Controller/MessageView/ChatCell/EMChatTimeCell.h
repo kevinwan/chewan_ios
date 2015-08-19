@@ -14,4 +14,9 @@
 
 @interface EMChatTimeCell : UITableViewCell
 
+/**
+ *  显示时间的label
+ */
+@property (nonatomic, strong) UILabel *timeLabel;
+
 @end

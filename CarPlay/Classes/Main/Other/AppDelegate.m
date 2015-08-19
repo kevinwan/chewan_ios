@@ -35,6 +35,11 @@
                                                  name:NOTIFICATION_LOGINCHANGE
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(rootControllerChangeToTab:)
+                                                 name:NOTIFICATION_ROOTCONTROLLERCHANGETOTAB
+                                               object:nil];
+    
     [MAMapServices sharedServices].apiKey = GaoDeAppKey;
     [SVProgressHUD setBackgroundColor:RGBACOLOR(0, 0, 0, 0.8)];
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
@@ -114,6 +119,13 @@
     }else{//登陆失败加载登陆页面控制器
         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"您还没有登陆是否登录？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"登陆", nil] show];
     }
+}
+
+//改变跟控制器为TAB，主要用户退出登录页面
+-(void)rootControllerChangeToTab:(NSNotification *)notificatoin
+{
+    self.window.rootViewController = _tabVc;
+    [self.window makeKeyAndVisible];
 }
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application

@@ -10,9 +10,12 @@
 #import "CPForgetPasswordViewController.h"
 #import "registerViewController.h"
 #import "CPMySubscribeModel.h"
+#import "UMSocial.h"
+#import "CPRegisterStep2ViewController.h"
 
 @interface LoginViewController ()
-
+@property (nonatomic, strong) UIBarButtonItem *rightItem;
+@property (nonatomic, strong) UIBarButtonItem *leftItem;
 @end
 
 @implementation LoginViewController
@@ -21,27 +24,35 @@
     [super viewDidLoad];
     self.loginBtn.layer.cornerRadius=3.0;
     self.loginBtn.layer.masksToBounds=YES;
-    [self.userPhone setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
-    [self.password setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+    self.navigationItem.title=@"登录";
+    self.navigationItem.rightBarButtonItem = self.rightItem;
+    self.navigationItem.leftBarButtonItem = self.leftItem;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
 //     设置navigationBar透明的背景颜色，达到透明的效果BIGIN
-     self.navigationController.navigationBarHidden=YES;
-    self.navigationController.navigationBar.translucent=YES;
-//       设置navigationBar透明的背景颜色，达到透明的效果END
-   
-}
-
--(void)viewWillDisappear:(BOOL)animated{
-    //     设置navigationBar透明的背景颜色，达到透明的效果BIGIN
-    self.navigationController.navigationBarHidden=NO;
     self.navigationController.navigationBar.translucent=NO;
-    //       设置navigationBar透明的背景颜色，达到透明的效果END
+//       设置navigationBar透明的背景颜色，达到透明的效果END
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (UIBarButtonItem *)rightItem
+{
+    if (_rightItem == nil) {
+        _rightItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"注册" target:self action:@selector(registerBtnClick:)];
+    }
+    return _rightItem;
+}
+
+-(UIBarButtonItem *)leftItem
+{
+    if (_leftItem == nil) {
+        _leftItem = [UIBarButtonItem itemWithNorImage:@"返回" higImage:nil title:nil target:self action:@selector(changeRootController:)];
+    }
+    return _leftItem;
 }
 
 - (IBAction)loginBtnClick:(id)sender {
@@ -110,9 +121,115 @@
     [self.navigationController pushViewController:CPForgetPasswordVC animated:YES];
 }
 
-- (IBAction)registerBtnClick:(id)sender {
+- (void)registerBtnClick:(id)sender {
     registerViewController *registerVC=[[registerViewController alloc]init];
     registerVC.title=@"注册";
     [self.navigationController pushViewController:registerVC animated:YES];
+}
+
+- (IBAction)WeChatLoginClick:(id)sender {
+    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToWechatSession];
+    
+    snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
+        
+        if (response.responseCode == UMSResponseCodeSuccess) {
+            
+            UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary]valueForKey:UMShareToWechatSession];
+//            SQLog(@"username is %@, uid is %@, token is %@ url is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL);
+            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+            dict[@"uid"] = snsAccount.usid;
+            dict[@"username"] = snsAccount.userName;
+            dict[@"url"] = snsAccount.iconURL;
+            dict[@"channel"] = @"wechat";
+            NSString *sign = [NSString stringWithFormat:@"%@wechatcom.gongpingjia.carplay",snsAccount.usid];
+            dict[@"sign"] = [Tools md5EncryptWithString:sign];
+            [self loginWithDict:dict];
+            
+        }
+    });
+
+}
+
+- (IBAction)QQLoginClick:(id)sender {
+    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToQQ];
+    
+    snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
+        
+        //          获取微博用户名、uid、token等
+        
+        if (response.responseCode == UMSResponseCodeSuccess) {
+            
+            UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:UMShareToQQ];
+            
+//            NSLog(@"username is %@, uid is %@, token is %@ url is %@ openId is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL,snsAccount.openId);
+            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+            dict[@"uid"] = snsAccount.usid;
+            dict[@"username"] = snsAccount.userName;
+            dict[@"url"] = snsAccount.iconURL;
+            dict[@"channel"] = @"wechat";
+            NSString *sign = [NSString stringWithFormat:@"%@wechatcom.gongpingjia.carplay",snsAccount.usid];
+            dict[@"sign"] = [Tools md5EncryptWithString:sign];
+            [self loginWithDict:dict];
+            
+        }});
+
+}
+
+- (IBAction)sinaWeiboLoginClick:(id)sender {
+    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToSina];
+    
+    snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
+        
+        //          获取微博用户名、uid、token等
+        
+        if (response.responseCode == UMSResponseCodeSuccess) {
+            
+            UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:UMShareToSina];
+            
+//            NSLog(@"username is %@, uid is %@, token is %@ url is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL);
+            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+            dict[@"uid"] = snsAccount.usid;
+            dict[@"username"] = snsAccount.userName;
+            dict[@"url"] = snsAccount.iconURL;
+            dict[@"channel"] = @"wechat";
+            NSString *sign = [NSString stringWithFormat:@"%@wechatcom.gongpingjia.carplay",snsAccount.usid];
+            dict[@"sign"] = [Tools md5EncryptWithString:sign];
+            [self loginWithDict:dict];
+            
+        }});
+    
+}
+//三方登录
+- (void)loginWithDict:(NSDictionary *)dict {
+    NSString *urlStr = @"v1/sns/login";
+    [ZYNetWorkTool postJsonWithUrl:urlStr params:dict success:^(id responseObject) {
+        SQLog(@"%@",responseObject);
+        if ([responseObject operationSuccess]) {
+            NSDictionary *data=[responseObject objectForKey:@"data"];
+            if ([data objectForKey:@"userId"]) {
+                [Tools setValueForKey:[data objectForKey:@"token"] key:@"token"];
+                [Tools setValueForKey:[data objectForKey:@"userId"] key:@"userId"];
+                //这里要处理环信登录
+                
+                [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+            } else {
+                CPRegisterStep2ViewController *vc = [[CPRegisterStep2ViewController alloc]init];
+                vc.snsUid = data[@"snsUid"];
+                vc.snsChannel = data[@"snsChannel"];
+                vc.snsUserName = data[@"snsUserName"];
+                vc.photoUrl = data[@"photoUrl"];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            
+        } else {
+            [self.view alert:responseObject];
+        }
+    } failed:^(NSError *error) {
+        [self.view alertError:error];
+    }];
+}
+-(void)changeRootController:(id)sender
+{
+    [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_ROOTCONTROLLERCHANGETOTAB object:nil];
 }
 @end

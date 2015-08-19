@@ -32,6 +32,7 @@ NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadIm
             originX = self.bounds.size.width - HEAD_SIZE - HEAD_PADDING;
         }
         _headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(originX, CELLPADDING, HEAD_SIZE, HEAD_SIZE)];
+        _headImageView.contentMode = UIViewContentModeScaleAspectFill;
         [_headImageView addGestureRecognizer:tap];
         _headImageView.userInteractionEnabled = YES;
         _headImageView.multipleTouchEnabled = YES;
@@ -40,9 +41,9 @@ NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadIm
         
         _nameLabel = [[UILabel alloc] init];
         _nameLabel.backgroundColor = [UIColor clearColor];
-        _nameLabel.textColor = [UIColor grayColor];
+        _nameLabel.textColor = [Tools getColor:@"aab2bd"];
         _nameLabel.textAlignment = NSTextAlignmentLeft;
-        _nameLabel.font = [UIFont systemFontOfSize:12];
+        _nameLabel.font = [UIFont systemFontOfSize:10];
         [self.contentView addSubview:_nameLabel];
         
         [self setupSubviewsForMessageModel:model];
@@ -57,11 +58,13 @@ NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadIm
     CGRect frame = _headImageView.frame;
     frame.origin.x = _messageModel.isSender ? (self.bounds.size.width - _headImageView.frame.size.width - HEAD_PADDING) : HEAD_PADDING;
     _headImageView.frame = frame;
-
+    _headImageView.layer.cornerRadius = 25;
+    _headImageView.clipsToBounds = YES;
+    
     [_nameLabel sizeToFit];
     frame = _nameLabel.frame;
     frame.origin.x = HEAD_PADDING * 2 + CGRectGetWidth(_headImageView.frame) + NAME_LABEL_PADDING;
-    frame.origin.y = CGRectGetMinY(_headImageView.frame);
+    frame.origin.y = CGRectGetMinY(_headImageView.frame) + 1;
     frame.size.width = NAME_LABEL_WIDTH;
     _nameLabel.frame = frame;
 }
@@ -81,7 +84,7 @@ NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadIm
     
     _nameLabel.hidden = (messageModel.messageType == eMessageTypeChat);
     
-    UIImage *placeholderImage = [UIImage imageNamed:@"chatListCellHead"];
+    UIImage *placeholderImage = [UIImage imageNamed:@"placeholderImage"];
     [self.headImageView sd_setImageWithURL:_messageModel.headImageURL placeholderImage:placeholderImage];
 }
 

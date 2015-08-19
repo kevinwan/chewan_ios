@@ -18,14 +18,19 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
+        UILabel *timeLabel = [[UILabel alloc] init];
+        [self.contentView addSubview:timeLabel];
+        self.timeLabel = timeLabel;
+        
+        self.backgroundColor = [UIColor clearColor];
+        self.timeLabel.backgroundColor = [Tools getColor:@"e6e6e6"];
+        self.timeLabel.textAlignment = NSTextAlignmentCenter;
+        self.timeLabel.font = [UIFont systemFontOfSize:10];
+        self.timeLabel.textColor = [Tools getColor:@"ffffff"];
+        self.timeLabel.layer.cornerRadius = 9.5;
+        self.timeLabel.clipsToBounds = YES;
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    self.backgroundColor = [UIColor redColor];
-    self.textLabel.backgroundColor = [UIColor clearColor];
-    self.textLabel.textAlignment = NSTextAlignmentCenter;
-    self.textLabel.font = [UIFont systemFontOfSize:14];
-    self.textLabel.textColor = [UIColor grayColor];
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return self;
 }
@@ -33,13 +38,15 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state
 }
 
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    
+    [self.timeLabel sizeToFit];
+    self.timeLabel.width += 20;
+    self.timeLabel.height = 19;
+    self.timeLabel.centerX = self.centerXInSelf;
+    self.timeLabel.y = self.centerYInSelf;
 }
 @end
