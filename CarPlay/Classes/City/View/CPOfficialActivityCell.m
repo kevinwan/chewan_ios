@@ -70,8 +70,7 @@
 // 设置图片轮播器
 - (void)setPicPlayWithStatus:(NSArray *)activeStatus{
     
-    // 添加定时器(每隔2秒调用一次self 的nextImage方法)
-    [self addTimer];
+    [self removeTimer];
     
     // 0.一些固定的尺寸参数
     CGFloat imageW = [UIScreen mainScreen].bounds.size.width;
@@ -179,7 +178,8 @@
     self.scrollView.pagingEnabled = YES;
     self.scrollView.delegate = self;
  
-    
+    // 添加定时器(每隔2秒调用一次self 的nextImage方法)
+    [self addTimer];
 }
 
 
@@ -237,6 +237,8 @@
     // 停止定时器(一旦定时器停止了,就不能再使用)
     [self removeTimer];
 }
+
+
 
 /**
  *  停止拖拽的时候调用
