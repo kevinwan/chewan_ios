@@ -355,12 +355,12 @@
                                                         options:NSJSONWritingPrettyPrinted error:&parseError];
     NSString *str =  [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"apns.content", @"Apns content")
-//                                                    message:str
-//                                                   delegate:nil
-//                                          cancelButtonTitle:NSLocalizedString(@"ok", @"OK")
-//                                          otherButtonTitles:nil];
-//    [alert show];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"apns.content", @"Apns content")
+                                                    message:str
+                                                   delegate:nil
+                                          cancelButtonTitle:NSLocalizedString(@"ok", @"OK")
+                                          otherButtonTitles:nil];
+    [alert show];
 
 }
 
