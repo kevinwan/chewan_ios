@@ -98,8 +98,7 @@
         
         // 蒙版
         UIView *maskView = [[UIView alloc] init];
-        maskView.backgroundColor = [UIColor blackColor];
-        maskView.alpha = 0.5;
+        maskView.backgroundColor = RGBACOLOR(0, 0, 0, 0.5);
         maskView.frame = CGRectMake(0, 89, [UIScreen mainScreen].bounds.size.width,62.5);
         [imageView addSubview:maskView];
         
@@ -113,7 +112,7 @@
         titleLabel.y = 3;
         [titleLabel sizeToFit];
         [maskView addSubview:titleLabel];
-        titleLabel.alpha = 1;
+ 
         
         // 截止时间内容
         UILabel *endTimeLabel = [[UILabel alloc] init];
@@ -178,7 +177,7 @@
     self.scrollView.pagingEnabled = YES;
     self.scrollView.delegate = self;
  
-    // 添加定时器(每隔2秒调用一次self 的nextImage方法)
+    // 添加定时器(每隔5秒调用一次self 的nextImage方法)
     [self addTimer];
 }
 
@@ -189,7 +188,7 @@
  */
 - (void)addTimer
 {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(nextImage) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0f target:self selector:@selector(nextImage) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
 
