@@ -118,4 +118,10 @@
 @property (nonatomic, assign) NSInteger birthMonth;
 
 @property (nonatomic, assign) NSInteger birthDay;
+
+@property (nonatomic, copy) NSString *snsUserName;
+
+@property (nonatomic, copy) NSString *snsChannel;
+
+@property (nonatomic, copy) NSString *snsUid;
 @end

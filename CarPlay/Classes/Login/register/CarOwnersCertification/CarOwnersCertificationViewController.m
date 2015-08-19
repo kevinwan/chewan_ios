@@ -162,10 +162,16 @@
                             if (_fromMy && [_fromMy isEqualToString:@"1"]) {
                                 EMError *error = nil;
                                 NSString *EMuser=[Tools md5EncryptWithString:[Tools getValueFromKey:@"userId"]];
-                                NSDictionary *loginInfo = [[EaseMob sharedInstance].chatManager loginWithUsername:EMuser password:[Tools getValueFromKey:@"password"] error:&error];
+                                NSString *password=[Tools getValueFromKey:@"password"];
+                                if ([Tools getValueFromKey:@"LoginFrom3Party"]) {
+                                    NSDictionary *dict=[Tools getValueFromKey:THIRDPARTYLOGINACCOUNT];
+                                    password =dict[@"sign"];
+                                }
+                                
+                                NSDictionary *loginInfo = [[EaseMob sharedInstance].chatManager loginWithUsername:EMuser password:password error:&error];
                                 if (!error && loginInfo) {
                                     [Tools setValueForKey:@(YES) key:NOTIFICATION_HASLOGIN];
-                                    [Tools setValueForKey:[Tools getValueFromKey:@"password"] key:@"password"];
+                                    [Tools setValueForKey:password key:@"password"];
                                     [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
                                     [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
                                 }else{
@@ -273,7 +279,12 @@
     if (buttonIndex==1) {
         EMError *error = nil;
         NSString *EMuser=[Tools md5EncryptWithString:[Tools getValueFromKey:@"userId"]];
-        NSDictionary *loginInfo = [[EaseMob sharedInstance].chatManager loginWithUsername:EMuser password:[Tools getValueFromKey:@"password"] error:&error];
+        NSString *password = [Tools getValueFromKey:@"password"];
+        if ([Tools getValueFromKey:@"LoginFrom3Party"]) {
+            NSDictionary *dict=[Tools getValueFromKey:THIRDPARTYLOGINACCOUNT];
+            password =dict[@"sign"];
+        }
+        NSDictionary *loginInfo = [[EaseMob sharedInstance].chatManager loginWithUsername:EMuser password:password error:&error];
         if (!error && loginInfo) {
             [Tools setValueForKey:@(YES) key:NOTIFICATION_HASLOGIN];
             [Tools setValueForKey:[Tools getValueFromKey:@"password"] key:@"password"];

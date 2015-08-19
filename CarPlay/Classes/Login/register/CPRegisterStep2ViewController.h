@@ -25,4 +25,5 @@
 @property (nonatomic, strong) NSString *snsUserName;
 @property (nonatomic, strong) NSString *snsChannel;
 @property (nonatomic, strong) NSString *photoUrl;
+@property (nonatomic, strong) NSString *photoId;
 @end

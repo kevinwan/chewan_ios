@@ -58,10 +58,7 @@
 - (IBAction)loginBtnClick:(id)sender {
     if (self.userPhone.text && ![self.userPhone.text isEqualToString:@""]) {
         if ([Tools isValidateMobile:self.userPhone.text]) {
-            MBProgressHUD *hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
-            hud.color = [UIColor clearColor];
-            hud.labelText=@"加载中…";
-            hud.dimBackground=NO;
+            [self showLoading];
             NSString *password=[Tools md5EncryptWithString:self.password.text];
             NSDictionary *para=[NSDictionary dictionaryWithObjectsAndKeys:self.userPhone.text,@"phone",password,@"password", nil];
             
@@ -87,22 +84,23 @@
                             CPOrganizer *organizer= [CPOrganizer objectWithKeyValues:data];
                             NSString *fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"userId"]];
                             [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
-                            [hud hide:YES];
+                            [self disMiss];
                             [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+                            [Tools setValueForKey:@(NO) key:@"LoginFrom3Party"];
                             [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
                         }else{
                             [self showError:error.description];
-                            [hud hide:YES];
+                            [self disMiss];
                         }
                     }
                 }else{
                     NSString *errmsg =[responseObject objectForKey:@"errmsg"];
                     [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-                    [hud hide:YES];
+                    [self disMiss];
                 }
             }failed:^(NSError *error){
                 [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-                [hud hide:YES];
+                [self disMiss];
             }];
             
         }else{
@@ -207,17 +205,46 @@
         if ([responseObject operationSuccess]) {
             NSDictionary *data=[responseObject objectForKey:@"data"];
             if ([data objectForKey:@"userId"]) {
-                [Tools setValueForKey:[data objectForKey:@"token"] key:@"token"];
-                [Tools setValueForKey:[data objectForKey:@"userId"] key:@"userId"];
                 //这里要处理环信登录
-                
-                [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+                EMError *error = nil;
+                NSString *EMuser=[Tools md5EncryptWithString:[data objectForKey:@"userId"]];
+                NSDictionary *loginInfo = [[EaseMob sharedInstance].chatManager loginWithUsername:EMuser password:dict[@"sign"] error:&error];
+                if (!error && loginInfo) {
+                    [Tools setValueForKey:@(YES) key:NOTIFICATION_HASLOGIN];
+                    [Tools setValueForKey:[data objectForKey:@"token"] key:@"token"];
+                    [Tools setValueForKey:[data objectForKey:@"userId"] key:@"userId"];
+                    
+                    CPOrganizer *organizer= [CPOrganizer objectWithKeyValues:data];
+                    NSString *fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"userId"]];
+                    [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
+                    [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+                    
+                    [Tools setValueForKey:dict key:THIRDPARTYLOGINACCOUNT];
+                    [Tools setValueForKey:@(YES) key:@"LoginFrom3Party"];
+                    [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+                }else{
+                    [self showError:error.description];
+                }
             } else {
                 CPRegisterStep2ViewController *vc = [[CPRegisterStep2ViewController alloc]init];
+                vc.title=@"注册";
                 vc.snsUid = data[@"snsUid"];
                 vc.snsChannel = data[@"snsChannel"];
                 vc.snsUserName = data[@"snsUserName"];
                 vc.photoUrl = data[@"photoUrl"];
+                vc.photoId = data[@"photoId"];
+                
+                CPOrganizer *organizer= [CPOrganizer objectWithKeyValues:data];
+                organizer.headImgId = data[@"photoId"];
+                organizer.headImgUrl = data[@"photoUrl"];
+                organizer.gender = @"男";
+                organizer.nickname = data[@"snsUserName"];
+                NSString *fileName=[[NSString alloc]initWithFormat:@"%@.data",data[@"snsUid"]];
+                [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
+                
+                
+                [Tools setValueForKey:dict key:THIRDPARTYLOGINACCOUNT];
+                [Tools setValueForKey:@(YES) key:@"LoginFrom3Party"];
                 [self.navigationController pushViewController:vc animated:YES];
             }
             
