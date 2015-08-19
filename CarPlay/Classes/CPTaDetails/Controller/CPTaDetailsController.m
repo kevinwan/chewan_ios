@@ -49,6 +49,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // 加载提醒
+    [self showLoading];
+    
     // 加载他的详情页面数据
     [self setupLoadTaStatus];
     
@@ -132,6 +135,7 @@
     self.tableView.tableHeaderView = head;
 }
 
+#pragma mark - 加载网络数据
 
 // 加载他的详情页面数据
 - (void)setupLoadTaStatus{
@@ -146,27 +150,46 @@
         parameters[@"token"] = self.token;
     }
     
-    
-    // 获取网络访问者
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+ 
+//    // 获取网络访问者
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     NSString *getUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/user/%@/info",self.targetUserId];
     
     
-    // 发送请求
-    [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
+//    // 发送请求
+//    [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
+//        
+//        
+//        // 字典转模型
+//        self.taStatus = [CPTaDetailsStatus objectWithKeyValues:responseObject[@"data"]];
+//        
+//        // 加载headview
+//        [self setupLoadHeadView];
+//        
+//        [self.tableView reloadData];
+//    } failure:^(NSURLSessionDataTask * task, NSError * error) {
+//        //
+//    }];
+    
+    [ZYNetWorkTool getWithUrl:getUrl params:parameters success:^(id responseObject) {
+        [self disMiss];
+        if (CPSuccess) {
+            // 字典转模型
+            self.taStatus = [CPTaDetailsStatus objectWithKeyValues:responseObject[@"data"]];
+            
+            // 加载headview
+            [self setupLoadHeadView];
+            
+            [self.tableView reloadData];
+        }
         
         
-        // 字典转模型
-        self.taStatus = [CPTaDetailsStatus objectWithKeyValues:responseObject[@"data"]];
-        
-        // 加载headview
-        [self setupLoadHeadView];
-        
-        [self.tableView reloadData];
-    } failure:^(NSURLSessionDataTask * task, NSError * error) {
-        //
+    } failure:^(NSError *error) {
+        [self showError:@"加载失败"];
     }];
+    
+    
     
 }
 
@@ -187,69 +210,138 @@
         parameters[@"token"] = self.token;
     }
     
-    // 获取网络访问者
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    // 获取网络访问者
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     NSString *getUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/user/%@/%@",self.targetUserId,selectStr];
     
-    // 发送请求
-    [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
+//    // 发送请求
+//    [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
+//        
+//        // 去出他发布的数据
+//        NSArray *taPubArr = responseObject[@"data"];
+//        
+//        NSLog(@"%@",responseObject[@"data"]);
+//        
+//        // 字典数组转模型数组
+//        NSArray *models = [CPTaPublishStatus objectArrayWithKeyValuesArray:taPubArr];
+//        
+//        if (!ignore) {
+//            [self.taPubStatus removeAllObjects];
+//            [self.taPubStatus addObjectsFromArray:models];
+//        }else{
+//            [self.taPubStatus addObjectsFromArray:models];
+//        }
+//        
+//        // 如果返回数据为空，则显示无数据footerView
+//        if (self.taPubStatus.count == 0) {
+//            CPTaNoData *noData = [CPTaNoData footerView];
+//            __weak typeof(self) weakSelf = self;
+//            noData.publishRightNow = ^{
+//                UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPCreatActivityController" bundle:nil];
+//                
+//                [weakSelf.navigationController pushViewController:sb.instantiateInitialViewController animated:YES];
+//            };
+//            if ([selectStr isEqualToString:@"post"]) {
+//                noData.pictureName = @"暂无发布";
+//                noData.titleName = @"他还没有发布活动噢~";
+//                noData.isShowBtn = YES;
+//            }else if([selectStr isEqualToString:@"subscribe"]){
+//                noData.pictureName = @"暂无收藏";
+//                noData.titleName = @"他还没有收藏活动噢~";
+//                noData.isShowBtn = NO;
+//            }else{
+//                noData.pictureName = @"暂无参与";
+//                noData.titleName = @"他还没有参与活动噢~";
+//                noData.isShowBtn = NO;
+//            }
+//            self.tableView.tableFooterView = noData;
+//        }else{
+//            self.tableView.tableFooterView = nil;
+//        }
+//        
+//        // 刷新tableview
+//        [self.tableView reloadData];
+//        
+//        
+//        // 关闭下拉刷新
+//        [self.tableView.header endRefreshing];
+//        
+//        // 关闭上拉刷新
+//        [self.tableView.footer endRefreshing];
+//
+//    } failure:^(NSURLSessionDataTask * task, NSError * error) {
+//        //
+//    }];
+    
+    
+    
+    [ZYNetWorkTool getWithUrl:getUrl params:parameters success:^(id responseObject) {
         
-        // 去出他发布的数据
-        NSArray *taPubArr = responseObject[@"data"];
-        
-        NSLog(@"%@",responseObject[@"data"]);
-        
-        // 字典数组转模型数组
-        NSArray *models = [CPTaPublishStatus objectArrayWithKeyValuesArray:taPubArr];
-        
-        if (!ignore) {
-            [self.taPubStatus removeAllObjects];
-            [self.taPubStatus addObjectsFromArray:models];
-        }else{
-            [self.taPubStatus addObjectsFromArray:models];
-        }
-        
-        // 如果返回数据为空，则显示无数据footerView
-        if (self.taPubStatus.count == 0) {
-            CPTaNoData *noData = [CPTaNoData footerView];
-            __weak typeof(self) weakSelf = self;
-            noData.publishRightNow = ^{
-                UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPCreatActivityController" bundle:nil];
-                
-                [weakSelf.navigationController pushViewController:sb.instantiateInitialViewController animated:YES];
-            };
-            if ([selectStr isEqualToString:@"post"]) {
-                noData.pictureName = @"暂无发布";
-                noData.titleName = @"他还没有发布活动噢~";
-                noData.isShowBtn = YES;
-            }else if([selectStr isEqualToString:@"subscribe"]){
-                noData.pictureName = @"暂无收藏";
-                noData.titleName = @"他还没有收藏活动噢~";
-                noData.isShowBtn = NO;
+        if (CPSuccess) {
+            // 去出他发布的数据
+            NSArray *taPubArr = responseObject[@"data"];
+            
+            NSLog(@"%@",responseObject[@"data"]);
+            
+            // 字典数组转模型数组
+            NSArray *models = [CPTaPublishStatus objectArrayWithKeyValuesArray:taPubArr];
+            
+            if (!ignore) {
+                [self.taPubStatus removeAllObjects];
+                [self.taPubStatus addObjectsFromArray:models];
             }else{
-                noData.pictureName = @"暂无参与";
-                noData.titleName = @"他还没有参与活动噢~";
-                noData.isShowBtn = NO;
+                [self.taPubStatus addObjectsFromArray:models];
             }
-            self.tableView.tableFooterView = noData;
-        }else{
-            self.tableView.tableFooterView = nil;
+            
+            // 如果返回数据为空，则显示无数据footerView
+            if (self.taPubStatus.count == 0) {
+                CPTaNoData *noData = [CPTaNoData footerView];
+                __weak typeof(self) weakSelf = self;
+                noData.publishRightNow = ^{
+                    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPCreatActivityController" bundle:nil];
+                    
+                    [weakSelf.navigationController pushViewController:sb.instantiateInitialViewController animated:YES];
+                };
+                if ([selectStr isEqualToString:@"post"]) {
+                    noData.pictureName = @"暂无发布";
+                    noData.titleName = @"他还没有发布活动噢~";
+                    noData.isShowBtn = YES;
+                }else if([selectStr isEqualToString:@"subscribe"]){
+                    noData.pictureName = @"暂无收藏";
+                    noData.titleName = @"他还没有收藏活动噢~";
+                    noData.isShowBtn = NO;
+                }else{
+                    noData.pictureName = @"暂无参与";
+                    noData.titleName = @"他还没有参与活动噢~";
+                    noData.isShowBtn = NO;
+                }
+                self.tableView.tableFooterView = noData;
+            }else{
+                self.tableView.tableFooterView = nil;
+            }
+            
+            // 刷新tableview
+            [self.tableView reloadData];
+            
+            // 关闭下拉刷新
+            [self.tableView.header endRefreshing];
+            
+            // 关闭上拉刷新
+            [self.tableView.footer endRefreshing];
         }
         
-        // 刷新tableview
-        [self.tableView reloadData];
+    } failure:^(NSError *error) {
         
-        
-        // 关闭下拉刷新
-        [self.tableView.header endRefreshing];
-        
-        // 关闭上拉刷新
-        [self.tableView.footer endRefreshing];
-
-    } failure:^(NSURLSessionDataTask * task, NSError * error) {
-        //
     }];
+    
+    
+    
+    
+    
+    
+    
+    
 }
 
 

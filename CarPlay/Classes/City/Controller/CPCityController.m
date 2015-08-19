@@ -150,6 +150,9 @@
     // 导航栏筛选
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithNorImage:@"首页筛选" higImage:@"" title:nil target:self action:@selector(select:)];
     
+    // 加载中提醒
+    [self showLoading];
+    
     // 加载活动数据
     [self setupLoadStatusWithIgnore:0 Key:self.selectMark SelectModel:nil];
     
@@ -334,42 +337,84 @@
     
     
     // 获取网络管理者
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
-    // 发送请求
-    [manager GET:@"http://cwapi.gongpingjia.com/v1/activity/list" parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
-        
-        // 取出活动数据
-        NSArray *dicts = responseObject[@"data"];
+//    // 发送请求
+//    [manager GET:@"http://cwapi.gongpingjia.com/v1/activity/list" parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
+//        
+//        // 取出活动数据
+//        NSArray *dicts = responseObject[@"data"];
+//    
+//        
+//        // 转换为模型数组
+//       NSArray *models = [CPHomeStatus objectArrayWithKeyValuesArray:dicts];
+//        
+//        if (!ignore) {
+//            [self.status removeAllObjects];
+//            [self.status addObjectsFromArray:models];
+//        }else{
+//            [self.status addObjectsFromArray:models];
+//        }
+//        
+//        
+//        // 刷新表格
+//        [self.tableView reloadData];
+//        
+//        // 只有上拉或者第一次加载数据才会获取官方活动数据
+//        if (ignore == 0 && self.status.count) {
+//            [self setupOfficialActivity];
+//        }
+//        
+//        // 关闭下拉刷新栏
+//        [self.tableView.header endRefreshing];
+//        // 关闭上拉刷新栏
+//        [self.tableView.footer endRefreshing];
+//        
+//    } failure:^(NSURLSessionDataTask * task, NSError * error) {
+////        [SVProgressHUD showWithStatus:@"获取用户信息失败"];
+//    }];
     
-        
-        // 转换为模型数组
-       NSArray *models = [CPHomeStatus objectArrayWithKeyValuesArray:dicts];
-        
-        if (!ignore) {
-            [self.status removeAllObjects];
-            [self.status addObjectsFromArray:models];
-        }else{
-            [self.status addObjectsFromArray:models];
+    
+    [ZYNetWorkTool getWithUrl:@"http://cwapi.gongpingjia.com/v1/activity/list" params:parameters success:^(id responseObject) {
+        [self disMiss];
+        if (CPSuccess) {
+            
+            // 取出活动数据
+            NSArray *dicts = responseObject[@"data"];
+            
+            // 转换为模型数组
+            NSArray *models = [CPHomeStatus objectArrayWithKeyValuesArray:dicts];
+            
+            if (!ignore) {
+                [self.status removeAllObjects];
+                [self.status addObjectsFromArray:models];
+            }else{
+                [self.status addObjectsFromArray:models];
+            }
+            
+            
+            // 刷新表格
+            [self.tableView reloadData];
+            
+            // 只有上拉或者第一次加载数据才会获取官方活动数据
+            if (ignore == 0 && self.status.count) {
+                [self setupOfficialActivity];
+            }
+            
+            // 关闭下拉刷新栏
+            [self.tableView.header endRefreshing];
+            // 关闭上拉刷新栏
+            [self.tableView.footer endRefreshing];
+            
         }
         
-        
-        // 刷新表格
-        [self.tableView reloadData];
-        
-        // 只有上拉或者第一次加载数据才会获取官方活动数据
-        if (ignore == 0 && self.status.count) {
-            [self setupOfficialActivity];
-        }
-        
-        // 关闭下拉刷新栏
-        [self.tableView.header endRefreshing];
-        // 关闭上拉刷新栏
-        [self.tableView.footer endRefreshing];
-        
-    } failure:^(NSURLSessionDataTask * task, NSError * error) {
-//        [SVProgressHUD showWithStatus:@"获取用户信息失败"];
+
+    } failure:^(NSError *error) {
+        [self showError:@"获取活动数据失败"];
     }];
+    
+    
+    
     
 }
 
@@ -378,12 +423,37 @@
 - (void)setupOfficialActivity{
     
     self.twoCellHeight = 0;
-    // 获取网络管理者
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    // 获取网络管理者
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    
+//    // 发送请求
+//    [manager GET:@"http://cwapi.gongpingjia.com/v1/official/activity/list" parameters:nil success:^(NSURLSessionDataTask * task, id responseObject) {
+//        
+//        if (CPSuccess) {
+//            
+//            // 取出活动数据
+//            NSArray *dicts = responseObject[@"data"];
+//            
+//            if (dicts.count) {
+//                // 转换为模型数组
+//                NSArray *models = [CPOfficialActivity objectArrayWithKeyValuesArray:dicts];
+//                
+//                self.activeStatus = models;
+//                
+//                // 数据拼接
+//                [self.status insertObject:self.activeStatus atIndex:1];
+//                self.twoCellHeight = 150;
+//            }
+//            // 刷新表格
+//            [self.tableView reloadData];
+//        }
+//        
+//    } failure:^(NSURLSessionDataTask * task, NSError * error) {
+//        //        [SVProgressHUD showWithStatus:@"获取用户信息失败"];
+//    }];
     
-    // 发送请求
-    [manager GET:@"http://cwapi.gongpingjia.com/v1/official/activity/list" parameters:nil success:^(NSURLSessionDataTask * task, id responseObject) {
-        
+    
+    [ZYNetWorkTool getWithUrl:@"http://cwapi.gongpingjia.com/v1/official/activity/list" params:nil success:^(id responseObject) {
         if (CPSuccess) {
             
             // 取出活动数据
@@ -402,10 +472,12 @@
             // 刷新表格
             [self.tableView reloadData];
         }
-        
-    } failure:^(NSURLSessionDataTask * task, NSError * error) {
-        //        [SVProgressHUD showWithStatus:@"获取用户信息失败"];
+    } failure:^(NSError *error) {
+        //
     }];
+    
+    
+    
 }
 
 

@@ -90,6 +90,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // 加载信息框
+    [self showLoading];
+    
     // 加载网络Api数据
     [self loadApiData];
     
@@ -204,45 +207,84 @@
     }
     
     // 获取网络管理者
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     // get地址
     NSString *getUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/activity/%@/info",self.activeId];
     
-    // 发送请求
-    [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
+//    // 发送请求
+//    [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
+//        
+//        
+//        NSDictionary *dicts = responseObject[@"data"];
+//        
+//        // 取出活动数据
+//        self.activeStatus = [CPActiveStatus objectWithKeyValues:dicts];
+//        
+//        // 取出被访问者的id
+//        self.createrId = self.activeStatus.organizer.userId;
+//        
+//        // 设置编辑活动按钮
+//        if (self.activeStatus.isOrganizer) {
+//            self.editorActiveBtn.title = @"编辑活动";
+//        }else{
+//            if (self.activeStatus.isSubscribed) {
+//                self.editorActiveBtn.title = @"已收藏";
+//            }else{
+//                self.editorActiveBtn.title = @"收藏";
+//            }
+//        }
+//        
+//        
+//        // 加载headview
+//        [self loadHeadView];
+//
+//        // 刷新表格
+//        [self.tableView reloadData];
+//        
+//        
+//    } failure:^(NSURLSessionDataTask * task, NSError * error) {
+//       
+//    }];
+    
+    
+    
+    [ZYNetWorkTool getWithUrl:getUrl params:parameters success:^(id responseObject) {
+        [self disMiss];
         
-        
-        NSDictionary *dicts = responseObject[@"data"];
-        
-        // 取出活动数据
-        self.activeStatus = [CPActiveStatus objectWithKeyValues:dicts];
-        
-        // 取出被访问者的id
-        self.createrId = self.activeStatus.organizer.userId;
-        
-        // 设置编辑活动按钮
-        if (self.activeStatus.isOrganizer) {
-            self.editorActiveBtn.title = @"编辑活动";
-        }else{
-            if (self.activeStatus.isSubscribed) {
-                self.editorActiveBtn.title = @"已收藏";
+        if (CPSuccess) {
+            NSDictionary *dicts = responseObject[@"data"];
+            
+            // 取出活动数据
+            self.activeStatus = [CPActiveStatus objectWithKeyValues:dicts];
+            
+            // 取出被访问者的id
+            self.createrId = self.activeStatus.organizer.userId;
+            
+            // 设置编辑活动按钮
+            if (self.activeStatus.isOrganizer) {
+                self.editorActiveBtn.title = @"编辑活动";
             }else{
-                self.editorActiveBtn.title = @"收藏";
+                if (self.activeStatus.isSubscribed) {
+                    self.editorActiveBtn.title = @"已收藏";
+                }else{
+                    self.editorActiveBtn.title = @"收藏";
+                }
             }
+            
+            // 加载headview
+            [self loadHeadView];
+            
+            // 刷新表格
+            [self.tableView reloadData];
         }
         
-        
-        // 加载headview
-        [self loadHeadView];
 
-        // 刷新表格
-        [self.tableView reloadData];
-        
-        
-    } failure:^(NSURLSessionDataTask * task, NSError * error) {
-       
+    } failure:^(NSError *error) {
+        [self showError:@"加载失败"];
     }];
+    
+    
 }
 
 
@@ -262,13 +304,45 @@
     
     
     // 获取网络访问者
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     NSString *getUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/activity/%@/comment",self.activeId];
     
-    // 发送请求
-    [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
-        
+//    // 发送请求
+//    [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
+//        
+//        NSArray *models = [CPDiscussStatus objectArrayWithKeyValuesArray:responseObject[@"data"]];
+//        
+//        if (!ignore) {
+//            [self.discussStatus removeAllObjects];
+//            [self.discussStatus addObjectsFromArray:models];
+//        }else{
+//            [self.discussStatus addObjectsFromArray:models];
+//        }
+//        
+//        // 如果没有评论数据，则不显示分隔线
+//        if (self.discussStatus.count == 0) {
+//            self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//        }else{
+//            self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+//        }
+//        
+//        // 刷新界面
+//        [self.tableView reloadData];
+//        
+//        // 关闭下拉刷新
+//        [self.tableView.header endRefreshing];
+//        
+//        // 关闭上拉刷新
+//        [self.tableView.footer endRefreshing];
+//        
+//    } failure:^(NSURLSessionDataTask * task, NSError * error) {
+//        [SVProgressHUD showErrorWithStatus:@"获取评论失败"];
+//    }];
+    
+    
+    
+    [ZYNetWorkTool getWithUrl:getUrl params:parameters success:^(id responseObject) {
         NSArray *models = [CPDiscussStatus objectArrayWithKeyValuesArray:responseObject[@"data"]];
         
         if (!ignore) {
@@ -294,9 +368,11 @@
         // 关闭上拉刷新
         [self.tableView.footer endRefreshing];
         
-    } failure:^(NSURLSessionDataTask * task, NSError * error) {
-        [SVProgressHUD showErrorWithStatus:@"获取评论失败"];
+    } failure:^(NSError *error) {
+       
     }];
+    
+    
     
 }
 
@@ -391,17 +467,28 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     parameters[@"comments"] = deleteIdArray;
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    manager.requestSerializer = [AFJSONRequestSerializer serializer];
     
     NSString *postUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/comment/remove?userId=%@&token=%@",self.userId,self.token];
     
-    [manager POST:postUrl parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-        //
-        NSLog(@"删除成功---%@",responseObject[@"errmsg"]);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        //
+//    [manager POST:postUrl parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+//        //
+//        NSLog(@"删除成功---%@",responseObject[@"errmsg"]);
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        //
+//    }];
+    
+    
+    [ZYNetWorkTool postJsonWithUrl:postUrl params:parameters success:^(id responseObject) {
+        if (CPSuccess) {
+            [self showSuccess:@"删除成功"];
+        }
+    } failed:^(NSError *error) {
+        [self showError:@"删除失败"];
     }];
+    
+    
     
 }
 
@@ -503,42 +590,59 @@
             parameters[@"replyUserId"] = replyUserId;
         }
         
-        // 获取网络访问者
-        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-        // 传递参数格式为josn
-        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+//        // 获取网络访问者
+//        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//        // 传递参数格式为josn
+//        manager.requestSerializer = [AFJSONRequestSerializer serializer];
         
         // post地址
         NSString *postUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/activity/%@/comment?userId=%@&token=%@",self.activeId,self.userId,self.token];
         
-        [manager POST:postUrl parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+//        [manager POST:postUrl parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+//            
+//            NSLog(@"haha%@",responseObject[@"errmsg"]);
+//            
+//            // 清除文本框文字
+//            self.inputView.text = @"";
+//            
+//            // 弹出提示信息
+//            [SVProgressHUD showInfoWithStatus:@"发布评论成功"];
+//            
+//            //退出键盘
+//            [self.view endEditing:YES];
+//            
+//            // 重新获取数据
+//            [self loadDiscussDataWithIgnore:0];
+//            
+//            
+//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//            [SVProgressHUD showErrorWithStatus:@"发送失败"];
+//        }];
+//        
+        
+        
+        [ZYNetWorkTool postJsonWithUrl:postUrl params:parameters success:^(id responseObject) {
             
-            NSLog(@"haha%@",responseObject[@"errmsg"]);
-            
-            // 清除文本框文字
-            self.inputView.text = @"";
-            
-            // 弹出提示信息
-            [SVProgressHUD showInfoWithStatus:@"发布评论成功"];
-            
-            //退出键盘
-            [self.view endEditing:YES];
-            
-            // 重新获取数据
-            [self loadDiscussDataWithIgnore:0];
-            
-            
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            [SVProgressHUD showErrorWithStatus:@"发送失败"];
+            if (CPSuccess) {
+                // 清除文本框文字
+                self.inputView.text = @"";
+                
+                //退出键盘
+                [self.view endEditing:YES];
+                
+                // 重新获取数据
+                [self loadDiscussDataWithIgnore:0];
+            }
+ 
+        } failed:^(NSError *error) {
+            [self showError:@"发送失败"];
         }];
+        
 
     }else{
         // 未登录跳到登录页面
         [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
     }
-    
-    
-    
     
 }
 
