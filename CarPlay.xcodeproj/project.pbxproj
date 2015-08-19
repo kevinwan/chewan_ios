@@ -203,6 +203,7 @@
 		A575821C1B6789E500A5E681 /* UIView+SMFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = A57582031B6789E500A5E681 /* UIView+SMFoundation.m */; };
 		A575821D1B6789E500A5E681 /* UIView+Dealer.m in Sources */ = {isa = PBXBuildFile; fileRef = A57582051B6789E500A5E681 /* UIView+Dealer.m */; };
 		A5F515791B71E53100690802 /* NSString+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F515781B71E53100690802 /* NSString+Size.m */; };
+		A5FC9AFB1B83458000E41A7C /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FC9AFA1B83458000E41A7C /* NSString+Hash.m */; };
 		AD5690C45A77A4D82E40CA3F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E1F11B43C6536981B4E2558 /* libPods.a */; };
 		E30A68CA1B7DD64100EB3D23 /* CPGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = E30A68C91B7DD64100EB3D23 /* CPGuideView.m */; };
 		E30BD57E1B54EBEB00FD9030 /* CPMySubscribeController.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD57D1B54EBEB00FD9030 /* CPMySubscribeController.m */; };
@@ -732,6 +733,8 @@
 		A57582051B6789E500A5E681 /* UIView+Dealer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Dealer.m"; sourceTree = "<group>"; };
 		A5F515771B71E53100690802 /* NSString+Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Size.h"; sourceTree = "<group>"; };
 		A5F515781B71E53100690802 /* NSString+Size.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Size.m"; sourceTree = "<group>"; };
+		A5FC9AF91B83458000E41A7C /* NSString+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hash.h"; sourceTree = "<group>"; };
+		A5FC9AFA1B83458000E41A7C /* NSString+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hash.m"; sourceTree = "<group>"; };
 		E30A68C81B7DD64100EB3D23 /* CPGuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPGuideView.h; sourceTree = "<group>"; };
 		E30A68C91B7DD64100EB3D23 /* CPGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPGuideView.m; sourceTree = "<group>"; };
 		E30BD57C1B54EBEB00FD9030 /* CPMySubscribeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMySubscribeController.h; sourceTree = "<group>"; };
@@ -1933,6 +1936,8 @@
 		A57581D21B6789E400A5E681 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				A5FC9AF91B83458000E41A7C /* NSString+Hash.h */,
+				A5FC9AFA1B83458000E41A7C /* NSString+Hash.m */,
 				A5F515771B71E53100690802 /* NSString+Size.h */,
 				A5F515781B71E53100690802 /* NSString+Size.m */,
 				A57581D31B6789E400A5E681 /* AppAppearance.h */,
@@ -2901,6 +2906,7 @@
 				E3CE353A1B59E1C0008434B5 /* CPEditActivityController.m in Sources */,
 				6B512FCD1B7CC20500258CA0 /* CPCarAuthoFailedController.m in Sources */,
 				A575820A1B6789E500A5E681 /* NSDictionary+SMFoundation.m in Sources */,
+				A5FC9AFB1B83458000E41A7C /* NSString+Hash.m in Sources */,
 				E30BD5971B54FD6E00FD9030 /* ZYNavigationController.m in Sources */,
 				6BC8A3F01B6A4DB700B199F2 /* CPTaPublishCell.m in Sources */,
 				6B9711461B7DF60C00EA0F09 /* EMChatBaseBubbleView.m in Sources */,
