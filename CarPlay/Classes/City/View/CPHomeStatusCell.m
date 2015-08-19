@@ -98,6 +98,10 @@
 
 - (void)setStatus:(CPHomeStatus *)status{
     
+    if ([status isKindOfClass:[NSArray class]]) {
+        return;
+    }
+    
     _status = status;
     
     CPHomeUser *user = _status.organizer;
