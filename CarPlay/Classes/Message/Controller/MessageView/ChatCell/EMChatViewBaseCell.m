@@ -32,6 +32,7 @@ NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadIm
             originX = self.bounds.size.width - HEAD_SIZE - HEAD_PADDING;
         }
         _headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(originX, CELLPADDING, HEAD_SIZE, HEAD_SIZE)];
+        _headImageView.contentMode = UIViewContentModeScaleAspectFill;
         [_headImageView addGestureRecognizer:tap];
         _headImageView.userInteractionEnabled = YES;
         _headImageView.multipleTouchEnabled = YES;
@@ -57,7 +58,8 @@ NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadIm
     CGRect frame = _headImageView.frame;
     frame.origin.x = _messageModel.isSender ? (self.bounds.size.width - _headImageView.frame.size.width - HEAD_PADDING) : HEAD_PADDING;
     _headImageView.frame = frame;
-
+    _headImageView.layer.cornerRadius = 25;
+    _headImageView.clipsToBounds = YES;
     [_nameLabel sizeToFit];
     frame = _nameLabel.frame;
     frame.origin.x = HEAD_PADDING * 2 + CGRectGetWidth(_headImageView.frame) + NAME_LABEL_PADDING;

@@ -217,6 +217,10 @@
 		E310BF711B7DF7BB00750BF4 /* UUDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E310BF6E1B7DF7BB00750BF4 /* UUDatePicker.m */; };
 		E310BF721B7DF7BB00750BF4 /* UUDatePicker_DateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E310BF701B7DF7BB00750BF4 /* UUDatePicker_DateModel.m */; };
 		E310BF751B7E154200750BF4 /* CPAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E310BF741B7E154200750BF4 /* CPAnnotationView.m */; };
+		E31B087D1B8418BA008DA1D4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E31B08741B8418BA008DA1D4 /* InfoPlist.strings */; };
+		E31B087E1B8418BA008DA1D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E31B08761B8418BA008DA1D4 /* Localizable.strings */; };
+		E31B087F1B8418BA008DA1D4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E31B08791B8418BA008DA1D4 /* InfoPlist.strings */; };
+		E31B08801B8418BA008DA1D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E31B087B1B8418BA008DA1D4 /* Localizable.strings */; };
 		E328F0671B621DA700A20DCE /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = E328F0661B621DA700A20DCE /* city.plist */; };
 		E328F0691B621E1C00A20DCE /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = E328F0681B621E1C00A20DCE /* area.plist */; };
 		E3292A281B6A50700023677F /* CPSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3292A261B6A50700023677F /* CPSelectView.m */; };
@@ -759,6 +763,10 @@
 		E310BF701B7DF7BB00750BF4 /* UUDatePicker_DateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUDatePicker_DateModel.m; sourceTree = "<group>"; };
 		E310BF731B7E154200750BF4 /* CPAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnnotationView.h; sourceTree = "<group>"; };
 		E310BF741B7E154200750BF4 /* CPAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAnnotationView.m; sourceTree = "<group>"; };
+		E31B08751B8418BA008DA1D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
+		E31B08771B8418BA008DA1D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
+		E31B087A1B8418BA008DA1D4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = InfoPlist.strings; sourceTree = "<group>"; };
+		E31B087C1B8418BA008DA1D4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = Localizable.strings; sourceTree = "<group>"; };
 		E328F0661B621DA700A20DCE /* city.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
 		E328F0681B621E1C00A20DCE /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		E3292A251B6A50700023677F /* CPSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSelectView.h; sourceTree = "<group>"; };
@@ -1067,6 +1075,8 @@
 		6B4959CB1B33A23900DB63EA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E31B08731B8418BA008DA1D4 /* en.lproj */,
+				E31B08781B8418BA008DA1D4 /* zh-Hans.lproj */,
 				E328F0681B621E1C00A20DCE /* area.plist */,
 				E328F0661B621DA700A20DCE /* city.plist */,
 				E372D8551B62171E00B4FC5C /* macro.h */,
@@ -2045,6 +2055,24 @@
 			path = UUDatePicker_Block;
 			sourceTree = "<group>";
 		};
+		E31B08731B8418BA008DA1D4 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				E31B08741B8418BA008DA1D4 /* InfoPlist.strings */,
+				E31B08761B8418BA008DA1D4 /* Localizable.strings */,
+			);
+			path = en.lproj;
+			sourceTree = "<group>";
+		};
+		E31B08781B8418BA008DA1D4 /* zh-Hans.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				E31B08791B8418BA008DA1D4 /* InfoPlist.strings */,
+				E31B087B1B8418BA008DA1D4 /* Localizable.strings */,
+			);
+			path = "zh-Hans.lproj";
+			sourceTree = "<group>";
+		};
 		E35E6FC11B54AF96001212D6 /* Publish(我的发布) */ = {
 			isa = PBXGroup;
 			children = (
@@ -2667,9 +2695,12 @@
 				A575817A1B67871300A5E681 /* UMSCommentDetailController.xib in Resources */,
 				6B4EF15E1B4036EE00292BD4 /* Main.storyboard in Resources */,
 				E36C961C1B53BA6B00D3EDBB /* CPActivityApplyControllerView.storyboard in Resources */,
+				E31B087F1B8418BA008DA1D4 /* InfoPlist.strings in Resources */,
 				A57581A91B6789C500A5E681 /* downSeat.xib in Resources */,
 				E372D83E1B6216C100B4FC5C /* CPRegisterCellsTableViewCell2.xib in Resources */,
+				E31B087D1B8418BA008DA1D4 /* InfoPlist.strings in Resources */,
 				6B9CFD7B1B71EA8200EF167D /* CPVersionIntroduction.storyboard in Resources */,
+				E31B087E1B8418BA008DA1D4 /* Localizable.strings in Resources */,
 				E372D8441B6216C100B4FC5C /* registerViewController.xib in Resources */,
 				E3292A291B6A50700023677F /* CPSelectView.xib in Resources */,
 				A57581C91B6789D500A5E681 /* Members.storyboard in Resources */,
@@ -2688,6 +2719,7 @@
 				6BCB875C1B7995520012D035 /* CPNoNet.xib in Resources */,
 				A575817F1B67871300A5E681 /* UMSLoginViewController.xib in Resources */,
 				A575818B1B67871300A5E681 /* UMSocialSDKResourcesNew.bundle in Resources */,
+				E31B08801B8418BA008DA1D4 /* Localizable.strings in Resources */,
 				A57581CF1B6789D500A5E681 /* offerCar.xib in Resources */,
 				E372D8331B6216C100B4FC5C /* CarOwnersCertificationViewController.xib in Resources */,
 				E3EEDFF61B53951D00595333 /* CPNewMessageController.storyboard in Resources */,
@@ -3024,6 +3056,38 @@
 				A57581761B67871300A5E681 /* zh-Hans */,
 			);
 			name = UMSocialLocalizable.strings;
+			sourceTree = "<group>";
+		};
+		E31B08741B8418BA008DA1D4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E31B08751B8418BA008DA1D4 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E31B08761B8418BA008DA1D4 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E31B08771B8418BA008DA1D4 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		E31B08791B8418BA008DA1D4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E31B087A1B8418BA008DA1D4 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E31B087B1B8418BA008DA1D4 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E31B087C1B8418BA008DA1D4 /* zh-Hans */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
