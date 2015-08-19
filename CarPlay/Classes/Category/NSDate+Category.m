@@ -104,8 +104,9 @@
             dateFormatter = [NSDateFormatter dateFormatterWithFormat:@"yyyy-MM-dd HH:mm"];
         }
     }
-    
+    DLog(@"格式化%@",dateFormatter.dateFormat);
     ret = [dateFormatter stringFromDate:self];
+    DLog(@"格式化之后的时间%@",ret);
     return ret;
 }
 
