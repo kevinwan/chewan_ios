@@ -80,6 +80,8 @@
 #define NOTIFICATION_LOGINCHANGE @"loginStatusChange"
 #define NOTIFICATION_ROOTCONTROLLERCHANGETOTAB @"rootControllerChangeToTab"
 #define NOTIFICATION_HASLOGIN @"hasLogin"
+#define THIRDPARTYLOGINACCOUNT @"3partyLoginAccount"
+
 //宏定义属性
 #define Property(s) @property (nonatomic,copy)NSString *s
 
