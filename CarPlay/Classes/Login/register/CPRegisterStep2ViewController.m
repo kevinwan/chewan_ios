@@ -24,6 +24,7 @@
     int birthDay;
     NSString *fileName;
     CPOrganizer *organizer;
+    NSDictionary *thirdPartyLoginDic;
 }
 @end
 
@@ -32,6 +33,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"phone"]];
+    if (_snsUid) {
+        thirdPartyLoginDic = [Tools getValueFromKey:THIRDPARTYLOGINACCOUNT];
+        fileName=[[NSString alloc]initWithFormat:@"%@.data",_snsUid];
+    }
     photoId=[[NSString alloc]init];
     self.nextStepBtn.layer.cornerRadius=3.0;
     self.nextStepBtn.layer.masksToBounds=YES;
@@ -59,6 +64,11 @@
         organizer = [[CPOrganizer alloc]init];
         organizer.gender=@"男";
     }
+//    if (thirdPartyLoginDic) {
+//        NSURL *url=[[NSURL alloc]initWithString:thirdPartyLoginDic[@"url"]];
+//        [self.userIconBtn sd_setImageWithURL:url forState:UIControlStateNormal];
+//    }
+    
     [self.tableView reloadData];
 }
 
@@ -105,6 +115,9 @@
         }
         if (organizer) {
             cell1.cellContent.text=organizer.nickname;
+        }
+        if (thirdPartyLoginDic) {
+            cell1.cellContent.text=thirdPartyLoginDic[@"username"];
         }
         cell=cell1;
     }else{
@@ -402,6 +415,10 @@
         NSString *password=[Tools getValueFromKey:@"password"];
         NSString *code=[Tools getValueFromKey:@"code"];
         NSDictionary *para=[NSDictionary dictionaryWithObjectsAndKeys:phone,@"phone",password,@"password",code,@"code",organizer.nickname,@"nickname",organizer.gender,@"gender",organizer.province,@"province",organizer.city,@"city",organizer.district,@"district",organizer.headImgId,@"photo",@(organizer.brithYear),@"birthYear",@(organizer.birthMonth),@"birthMonth",@(organizer.birthDay),@"birthDay",nil];
+        
+        if (_snsChannel && _snsUid && _snsUserName) {
+            para=[NSDictionary dictionaryWithObjectsAndKeys:_snsUid,@"snsUid",_snsUserName,@"snsUserName",_snsChannel,@"snsChannel",organizer.nickname ? organizer.nickname:@"",@"nickname",organizer.gender,@"gender",organizer.province,@"province",organizer.city,@"city",organizer.district,@"district",organizer.headImgId,@"photo",@(organizer.brithYear),@"birthYear",@(organizer.birthMonth),@"birthMonth",@(organizer.birthDay),@"birthDay",nil];
+        }
         
         MBProgressHUD *hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.color = [UIColor clearColor];
