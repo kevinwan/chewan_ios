@@ -56,7 +56,7 @@ NSString *const kRouterEventImageBubbleTapEventName = @"kRouterEventImageBubbleT
     [super layoutSubviews];
     
     CGRect frame = self.bounds;
-    frame.size.width -= (BUBBLE_ARROW_WIDTH + 2);
+    frame.size.width -= BUBBLE_ARROW_WIDTH;
     frame = CGRectInset(frame, ImageViewMargin, ImageViewMargin);
     if (self.model.isSender) {
         frame.origin.x = ImageViewMargin;
@@ -77,7 +77,7 @@ NSString *const kRouterEventImageBubbleTapEventName = @"kRouterEventImageBubbleT
     if (!image) {
         image = _model.image;
         if (!image) {
-            [self.imageView sd_setImageWithURL:_model.imageRemoteURL placeholderImage:[UIImage imageNamed:@"imageDownloadFail.png"]];
+            [self.imageView sd_setImageWithURL:_model.imageRemoteURL placeholderImage:[UIImage imageNamed:@"imageplace"]];
         } else {
              self.imageView.image = image;
         }

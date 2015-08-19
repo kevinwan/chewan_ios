@@ -46,24 +46,18 @@ NSString *const kRouterEventLocationBubbleTapEventName = @"kRouterEventLocationB
     CGSize addressSize = [self.model.address sizeWithFont:_addressLabel.font constrainedToSize:textBlockMinSize lineBreakMode:NSLineBreakByCharWrapping];
     CGFloat width = addressSize.width < LOCATION_IMAGEVIEW_SIZE ? LOCATION_IMAGEVIEW_SIZE : addressSize.width;
     
-    return CGSizeMake(width + BUBBLE_VIEW_PADDING * 2 + BUBBLE_ARROW_WIDTH, 2 * BUBBLE_VIEW_PADDING + LOCATION_IMAGEVIEW_SIZE);
+    return CGSizeMake(LOCATION_IMAGEVIEW_SIZE + LOCATION_Margin * 2 + BUBBLE_ARROW_WIDTH, 2 * LOCATION_Margin + LOCATION_IMAGEVIEW_SIZE);
 }
 
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    
-    CGRect frame = self.bounds;
-    frame.size.width -= BUBBLE_ARROW_WIDTH;
-    frame = CGRectInset(frame, BUBBLE_VIEW_PADDING, BUBBLE_VIEW_PADDING);
+    _locationImageView.y = LOCATION_Margin;
     if (self.model.isSender) {
-        frame.origin.x = BUBBLE_VIEW_PADDING;
+        _locationImageView.x = LOCATION_Margin;
     }else{
-        frame.origin.x = BUBBLE_VIEW_PADDING + BUBBLE_ARROW_WIDTH;
+        _locationImageView.x = LOCATION_Margin + BUBBLE_ARROW_WIDTH;
     }
-    
-    frame.origin.y = BUBBLE_VIEW_PADDING;
-    [self.locationImageView setFrame:frame];
     _addressLabel.frame = CGRectMake(5, self.locationImageView.frame.size.height - 30, self.locationImageView.frame.size.width - 10, 25);
 }
 
@@ -86,6 +80,6 @@ NSString *const kRouterEventLocationBubbleTapEventName = @"kRouterEventLocationB
 
 +(CGFloat)heightForBubbleWithObject:(MessageModel *)object
 {
-    return 2 * BUBBLE_VIEW_PADDING + LOCATION_IMAGEVIEW_SIZE;
+    return 2 * LOCATION_Margin + LOCATION_IMAGEVIEW_SIZE;
 }
 @end

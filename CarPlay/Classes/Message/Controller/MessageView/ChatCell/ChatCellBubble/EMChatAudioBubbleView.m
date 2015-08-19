@@ -33,10 +33,11 @@ NSString *const kRouterEventAudioBubbleTapEventName = @"kRouterEventAudioBubbleT
         _animationImageView.animationDuration = ANIMATION_IMAGEVIEW_SPEED;
         [self addSubview:_animationImageView];
         
-        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ANIMATION_TIME_LABEL_WIDHT, ANIMATION_TIME_LABEL_HEIGHT)];
+//        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ANIMATION_TIME_LABEL_WIDHT, ANIMATION_TIME_LABEL_HEIGHT)];
+        _timeLabel = [UILabel new];
         _timeLabel.font = [UIFont boldSystemFontOfSize:ANIMATION_TIME_LABEL_FONT_SIZE];
         _timeLabel.textAlignment = NSTextAlignmentCenter;
-        _timeLabel.textColor = [UIColor grayColor];
+        _timeLabel.textColor = [Tools getColor:@"aab2bd"];
         _timeLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:_timeLabel];
         
@@ -54,7 +55,14 @@ NSString *const kRouterEventAudioBubbleTapEventName = @"kRouterEventAudioBubbleT
 
 -(CGSize)sizeThatFits:(CGSize)size
 {
-    CGFloat width = BUBBLE_VIEW_PADDING*2 + BUBBLE_ARROW_WIDTH + ANIMATION_TIME_LABEL_WIDHT +ANIMATION_TIME_IMAGEVIEW_PADDING + ANIMATION_IMAGEVIEW_SIZE;
+    CGFloat scale = (kScreenWidth - 200) / 60.0;
+//    CGFloat width = BUBBLE_VIEW_PADDING*2 + BUBBLE_ARROW_WIDTH + ANIMATION_TIME_LABEL_WIDHT +ANIMATION_TIME_IMAGEVIEW_PADDING + ANIMATION_IMAGEVIEW_SIZE;
+    CGFloat width = 0;
+    if (self.model.time < 60.0){
+        width  = 50 + self.model.time * scale;
+    }else{
+        width = kScreenWidth - 200;
+    }
     
     CGFloat maxHeight = MAX(ANIMATION_IMAGEVIEW_SIZE, ANIMATION_TIME_LABEL_HEIGHT);
     CGFloat height = BUBBLE_VIEW_PADDING*2 + maxHeight;
@@ -66,33 +74,35 @@ NSString *const kRouterEventAudioBubbleTapEventName = @"kRouterEventAudioBubbleT
     [super layoutSubviews];
     
     CGRect frame = _animationImageView.frame;
+    
+    [_timeLabel sizeToFit];
     if (self.model.isSender) {
         frame.origin.x = self.frame.size.width - BUBBLE_ARROW_WIDTH - frame.size.width - BUBBLE_VIEW_PADDING;
         frame.origin.y = self.frame.size.height / 2 - frame.size.height / 2;
         _animationImageView.frame = frame;
         
-        frame = _timeLabel.frame;
-        frame.origin.x = _animationImageView.frame.origin.x - ANIMATION_TIME_IMAGEVIEW_PADDING - ANIMATION_TIME_LABEL_WIDHT;
-        frame.origin.y = _animationImageView.center.y - frame.size.height / 2;
-        _timeLabel.frame = frame;
+        _timeLabel.x = - _timeLabel.width - 10;
 
     }
     else {
+        _timeLabel.x = self.width + 10;
         _animationImageView.image = [UIImage imageNamed:RECEIVER_ANIMATION_IMAGEVIEW_IMAGE_02];
         
         frame.origin.x = BUBBLE_ARROW_WIDTH + BUBBLE_VIEW_PADDING;
         frame.origin.y = self.frame.size.height / 2 - frame.size.height / 2;
         _animationImageView.frame = frame;
         
-        frame = _timeLabel.frame;
+        frame = CGRectMake(0, 0, ANIMATION_TIME_LABEL_WIDHT, ANIMATION_TIME_LABEL_HEIGHT);
         frame.origin.x = ANIMATION_TIME_IMAGEVIEW_PADDING + BUBBLE_ARROW_WIDTH + _animationImageView.frame.size.width + _animationImageView.frame.origin.x;
         frame.origin.y = _animationImageView.center.y - frame.size.height / 2;
-        _timeLabel.frame = frame;
+//        _timeLabel.frame = frame;
         frame.origin.x += frame.size.width - _isReadView.frame.size.width / 2;
         frame.origin.y = - _isReadView.frame.size.height / 2;
         frame.size = _isReadView.frame.size;
         _isReadView.frame = frame;
     }
+    
+    _timeLabel.centerY = _animationImageView.centerYInSuper;
 }
 
 #pragma mark - setter
@@ -102,14 +112,13 @@ NSString *const kRouterEventAudioBubbleTapEventName = @"kRouterEventAudioBubbleT
     [super setModel:model];
     
     if (self.model.time) {
-        _timeLabel.text = [NSString stringWithFormat:@"%d'",(int)self.model.time];
+        _timeLabel.text = [NSString stringWithFormat:@"%d\"",(int)self.model.time];
     }
     
     if (self.model.isSender) {
         [_isReadView setHidden:YES];
         _animationImageView.image = [UIImage imageNamed:SENDER_ANIMATION_IMAGEVIEW_IMAGE_02];
         _animationImageView.animationImages = _senderAnimationImages;
-        _timeLabel.textColor = [UIColor whiteColor];
     }
     else{
         if (model.isPlayed) {
@@ -119,7 +128,6 @@ NSString *const kRouterEventAudioBubbleTapEventName = @"kRouterEventAudioBubbleT
         }
 
         _animationImageView.image = [UIImage imageNamed:RECEIVER_ANIMATION_IMAGEVIEW_IMAGE_02];
-        _timeLabel.textColor = [Tools getColor:@"aab2bd"];
         _animationImageView.animationImages = _recevierAnimationImages;
     }
     
