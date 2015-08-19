@@ -43,7 +43,7 @@ static NSString *kGroupName = @"GroupName";
     [[EaseMob sharedInstance].chatManager addDelegate:self delegateQueue:nil];
     
     [self setupUnreadMessageCount];
-     [self.tabBar setBackgroundImage:[UIImage imageNamed:@"消息选中"]];
+ 
 }
 
 - (void)addChildVCWithClass:(Class)class title:(NSString *)title norImageName:(NSString *)norImageName selectedImageName:(NSString *)selectedImageName{

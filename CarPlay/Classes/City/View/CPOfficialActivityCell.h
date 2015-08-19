@@ -17,4 +17,6 @@
 // 主动加载cell方法
 + (instancetype)officialActivityCell;
 
++ (instancetype)cellWithTableView:(UITableView *)tableView;
+
 @end

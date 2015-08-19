@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface CPOfficialActivity : NSObject
 
 // 官方活动的id
