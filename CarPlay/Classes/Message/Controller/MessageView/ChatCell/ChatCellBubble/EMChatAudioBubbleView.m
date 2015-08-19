@@ -33,7 +33,6 @@ NSString *const kRouterEventAudioBubbleTapEventName = @"kRouterEventAudioBubbleT
         _animationImageView.animationDuration = ANIMATION_IMAGEVIEW_SPEED;
         [self addSubview:_animationImageView];
         
-//        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ANIMATION_TIME_LABEL_WIDHT, ANIMATION_TIME_LABEL_HEIGHT)];
         _timeLabel = [UILabel new];
         _timeLabel.font = [UIFont boldSystemFontOfSize:ANIMATION_TIME_LABEL_FONT_SIZE];
         _timeLabel.textAlignment = NSTextAlignmentCenter;
@@ -53,14 +52,21 @@ NSString *const kRouterEventAudioBubbleTapEventName = @"kRouterEventAudioBubbleT
     return self;
 }
 
--(CGSize)sizeThatFits:(CGSize)size
+/**
+ *  调用sizetoFit时会触发
+ *
+ *  @param size 原来的size
+ *
+ */
+- (CGSize)sizeThatFits:(CGSize)size
 {
     CGFloat scale = (kScreenWidth - 200) / 60.0;
-//    CGFloat width = BUBBLE_VIEW_PADDING*2 + BUBBLE_ARROW_WIDTH + ANIMATION_TIME_LABEL_WIDHT +ANIMATION_TIME_IMAGEVIEW_PADDING + ANIMATION_IMAGEVIEW_SIZE;
     CGFloat width = 0;
+    
+    // 如果录音时间小于60秒按照比例显示气泡的宽度
     if (self.model.time < 60.0){
         width  = 50 + self.model.time * scale;
-    }else{
+    }else{ // 否则显示最长的宽度
         width = kScreenWidth - 200;
     }
     
@@ -72,14 +78,11 @@ NSString *const kRouterEventAudioBubbleTapEventName = @"kRouterEventAudioBubbleT
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    
-    CGRect frame = _animationImageView.frame;
-    
+
     [_timeLabel sizeToFit];
     if (self.model.isSender) {
-        frame.origin.x = self.frame.size.width - BUBBLE_ARROW_WIDTH - frame.size.width - BUBBLE_VIEW_PADDING;
-        frame.origin.y = self.frame.size.height / 2 - frame.size.height / 2;
-        _animationImageView.frame = frame;
+        _animationImageView.x = self.width - BUBBLE_ARROW_WIDTH - _animationImageView.width - BUBBLE_VIEW_PADDING;
+        _animationImageView.y = self.height * 0.5 - _animationImageView.height * 0.5;
         
         _timeLabel.x = - _timeLabel.width - 10;
 
@@ -88,20 +91,16 @@ NSString *const kRouterEventAudioBubbleTapEventName = @"kRouterEventAudioBubbleT
         _timeLabel.x = self.width + 10;
         _animationImageView.image = [UIImage imageNamed:RECEIVER_ANIMATION_IMAGEVIEW_IMAGE_02];
         
-        frame.origin.x = BUBBLE_ARROW_WIDTH + BUBBLE_VIEW_PADDING;
-        frame.origin.y = self.frame.size.height / 2 - frame.size.height / 2;
-        _animationImageView.frame = frame;
+        _animationImageView.x = BUBBLE_ARROW_WIDTH + BUBBLE_VIEW_PADDING;
+        _animationImageView.y = self.height * 0.5 - _animationImageView.height * 0.5;
         
-        frame = CGRectMake(0, 0, ANIMATION_TIME_LABEL_WIDHT, ANIMATION_TIME_LABEL_HEIGHT);
-        frame.origin.x = ANIMATION_TIME_IMAGEVIEW_PADDING + BUBBLE_ARROW_WIDTH + _animationImageView.frame.size.width + _animationImageView.frame.origin.x;
-        frame.origin.y = _animationImageView.center.y - frame.size.height / 2;
-//        _timeLabel.frame = frame;
-        frame.origin.x += frame.size.width - _isReadView.frame.size.width / 2;
-        frame.origin.y = - _isReadView.frame.size.height / 2;
-        frame.size = _isReadView.frame.size;
-        _isReadView.frame = frame;
+        // 设置红点的位置
+        _isReadView.x = self.width + 5;
+        _isReadView.y = self.y - 3;
+        _isReadView.size = CGSizeMake(10, 10);
     }
     
+    // 录音时间的位置居中
     _timeLabel.centerY = _animationImageView.centerYInSuper;
 }
 
