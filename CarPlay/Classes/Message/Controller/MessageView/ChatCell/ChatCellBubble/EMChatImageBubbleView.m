@@ -48,7 +48,7 @@ NSString *const kRouterEventImageBubbleTapEventName = @"kRouterEventImageBubbleT
         retSize.height = MAX_SIZE;
     }
     
-    return CGSizeMake(retSize.width + BUBBLE_VIEW_PADDING * 2 + BUBBLE_ARROW_WIDTH, 2 * BUBBLE_VIEW_PADDING + retSize.height);
+    return CGSizeMake(retSize.width + ImageViewMargin * 2 + ImageViewMargin, 2 * ImageViewMargin + retSize.height);
 }
 
 -(void)layoutSubviews
@@ -57,14 +57,13 @@ NSString *const kRouterEventImageBubbleTapEventName = @"kRouterEventImageBubbleT
     
     CGRect frame = self.bounds;
     frame.size.width -= BUBBLE_ARROW_WIDTH;
-    frame = CGRectInset(frame, BUBBLE_VIEW_PADDING, BUBBLE_VIEW_PADDING);
+    frame = CGRectInset(frame, ImageViewMargin, ImageViewMargin);
     if (self.model.isSender) {
-        frame.origin.x = BUBBLE_VIEW_PADDING;
+        frame.origin.x = ImageViewMargin;
     }else{
-        frame.origin.x = BUBBLE_VIEW_PADDING + BUBBLE_ARROW_WIDTH;
+        frame.origin.x = ImageViewMargin + BUBBLE_ARROW_WIDTH;
     }
-    
-    frame.origin.y = BUBBLE_VIEW_PADDING;
+    frame.origin.y = ImageViewMargin;
     [self.imageView setFrame:frame];
 }
 
@@ -78,7 +77,7 @@ NSString *const kRouterEventImageBubbleTapEventName = @"kRouterEventImageBubbleT
     if (!image) {
         image = _model.image;
         if (!image) {
-            [self.imageView sd_setImageWithURL:_model.imageRemoteURL placeholderImage:[UIImage imageNamed:@"imageDownloadFail.png"]];
+            [self.imageView sd_setImageWithURL:_model.imageRemoteURL placeholderImage:[UIImage imageNamed:@"imageplace"]];
         } else {
              self.imageView.image = image;
         }
@@ -111,7 +110,7 @@ NSString *const kRouterEventImageBubbleTapEventName = @"kRouterEventImageBubbleT
         retSize.width = width;
         retSize.height = MAX_SIZE;
     }
-    return 2 * BUBBLE_VIEW_PADDING + retSize.height;
+    return 2 * ImageViewMargin + retSize.height;
 }
 
 @end

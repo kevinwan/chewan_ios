@@ -28,6 +28,7 @@
 #import "CPRefreshFooter.h"
 #import "ZHPickView.h"
 #import "CPOfficialActivity.h"
+#import "CPOfficialActivityCell.h"
 
 @interface CPCityController ()<UITableViewDataSource,UITableViewDelegate,CPSelectViewDelegate,ZHPickViewDelegate>
 
@@ -67,6 +68,9 @@
 
 // 存储所有活动数据
 @property (nonatomic,strong) NSMutableArray *status;
+
+// 存储官方活动数据
+@property (nonatomic,strong) NSArray *activeStatus;
 
 // 存储所有需要显示的图片对象
 //@property (nonatomic, strong) NSMutableArray *photos;
@@ -124,7 +128,7 @@
 @property (nonatomic, strong) UIButton *noButton;
 @property (nonatomic, assign) BOOL tapYes;
 @property (nonatomic, strong) ZHPickView *picker;
-
+@property (nonatomic, assign) CGFloat twoCellHeight;
 @end
 
 @implementation CPCityController
@@ -149,8 +153,6 @@
     // 加载活动数据
     [self setupLoadStatusWithIgnore:0 Key:self.selectMark SelectModel:nil];
     
-    // 加载官方活动数据
-    [self setupOfficialActivity];
     
     // 上拉下拉刷新
     [self topAndBottomRefresh];
@@ -205,7 +207,6 @@
             [CPUserDefaults setObject:self.myCity forKey:@"CPUserCity"];
             [CPUserDefaults synchronize];
         }
-//        NSLog(@"%@",self.myCity);
         
 
     }];
@@ -243,6 +244,8 @@
 
 // 下拉刷新
 - (void)dropDownLoadData{
+    // 官方活动数据清空
+    self.activeStatus = nil;
     // 计数清零
     self.ignoreNum = 0;
     [self setupLoadStatusWithIgnore:0 Key:self.selectMark SelectModel:nil];
@@ -250,6 +253,8 @@
 
 // 上滑
 - (void)upglideLoadData{
+    // 官方活动数据清空
+//    self.activeStatus = nil;
     self.ignoreNum += CPPageNum;
     [self setupLoadStatusWithIgnore:self.ignoreNum Key:self.selectMark SelectModel:nil];
 }
@@ -347,10 +352,15 @@
         }else{
             [self.status addObjectsFromArray:models];
         }
-
+        
         
         // 刷新表格
         [self.tableView reloadData];
+        
+        // 只有上拉或者第一次加载数据才会获取官方活动数据
+        if (ignore == 0 && self.status.count) {
+            [self setupOfficialActivity];
+        }
         
         // 关闭下拉刷新栏
         [self.tableView.header endRefreshing];
@@ -367,23 +377,31 @@
 // 加载官方活动数据
 - (void)setupOfficialActivity{
     
+    self.twoCellHeight = 0;
     // 获取网络管理者
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     // 发送请求
     [manager GET:@"http://cwapi.gongpingjia.com/v1/official/activity/list" parameters:nil success:^(NSURLSessionDataTask * task, id responseObject) {
         
-        // 取出活动数据
-        NSArray *dicts = responseObject[@"data"];
-        NSLog(@"%@",responseObject[@"data"]);
- 
-        // 转换为模型数组
-        NSArray *models = [CPOfficialActivity objectArrayWithKeyValuesArray:dicts];
-        
-        // 刷新表格
-//        [self.tableView reloadData];
-        
-    
+        if (CPSuccess) {
+            
+            // 取出活动数据
+            NSArray *dicts = responseObject[@"data"];
+            
+            if (dicts.count) {
+                // 转换为模型数组
+                NSArray *models = [CPOfficialActivity objectArrayWithKeyValuesArray:dicts];
+                
+                self.activeStatus = models;
+                
+                // 数据拼接
+                [self.status insertObject:self.activeStatus atIndex:1];
+                self.twoCellHeight = 150;
+            }
+            // 刷新表格
+            [self.tableView reloadData];
+        }
         
     } failure:^(NSURLSessionDataTask * task, NSError * error) {
         //        [SVProgressHUD showWithStatus:@"获取用户信息失败"];
@@ -407,150 +425,131 @@
 // 3
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    // 创建cell
-    CPHomeStatusCell *cell = [tableView dequeueReusableCellWithIdentifier:[CPHomeStatusCell identifier]];
+    id activeStatus = self.status[indexPath.row];
     
-    // 设置数据
-    cell.status = self.status[indexPath.row];
-    //绑定tag
-    cell.myPlay.tag = indexPath.row;
-    
-    // 弹出图片浏览器
-    if (cell.pictureDidSelected == nil) {
-//        __weak typeof(self) weakSelf = self;
-        cell.pictureDidSelected = ^(CPHomeStatus *status,NSIndexPath *path, NSArray *srcView){
-            
-//            // 清空photos中的数据
-//            [self.photos removeAllObjects];
-//            
-//            // 初始化所有数据
-//            NSArray *urls = [status.cover valueForKeyPath:@"thumbnail_pic"];
-//            
-//            for (int i = 0; i < urls.count; ++i) {
-//                NSURL *url = [NSURL URLWithString:urls[i]];
-//                MWPhoto *photo = [MWPhoto photoWithURL:url];
-//                [self.photos addObject:photo];
-//            }
-//            
-//            // 创建浏览器
-//            MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:weakSelf];
-//            [browser setCurrentPhotoIndex:path.item];
-//            
-//            // 显示浏览器
-//            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:browser];
-//            [weakSelf presentViewController:nav animated:YES completion:nil];
-            
-            
-            // 1.创建图片浏览器
-            MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
-             NSArray *urls = [status.cover valueForKeyPath:@"original_pic"];
-            // 2.设置图片浏览器显示的所有图片
-            NSMutableArray *photos = [NSMutableArray array];
-            NSUInteger count = urls.count;
-            for (int i = 0; i<count; i++) {
-              
-                MJPhoto *photo = [[MJPhoto alloc] init];
-                // 设置图片的路径
-                photo.url = [NSURL URLWithString:urls[i]];
-                // 设置来源于哪一个UIImageView
-//                NSLog(@"weit == %@",[srcView[i] frameStr]);
-
-                photo.srcImageView = srcView[i];
-                [photos addObject:photo];
-            }
-            browser.photos = photos;
-            
-            // 3.设置默认显示的图片索引
-            browser.currentPhotoIndex = path.item;
-            
-            // 3.显示浏览器
-            [browser show];
-                        
-        };
-    }
-    
-    //弹出成员列表 防止单元格重用 先判断
-    if (cell.tapIcons == nil) {
-        __weak typeof(self) weakSelf = self;
-        cell.tapIcons = ^(CPHomeStatus *status) {
-            [SVProgressHUD showWithStatus:@"努力加载中"];
-            //登陆状态下可点 拿出创建者字段,非登陆 自动跳转登陆界面
-            NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/info",status.activityId];
-            SQLog(@"%@",status.activityId);
-            [CPNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
-                [weakSelf disMiss];
-                if ([responseObject operationSuccess]) {
-                    NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
-                    NSString *strOrganizer = [formatter stringFromNumber:responseObject[@"data"][@"isOrganizer"]];
-                    if ([strOrganizer isEqualToString:@"1"]) {
-                        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MembersManage" bundle:nil];
-                        
-                        MembersManageController * vc = sb.instantiateInitialViewController;
-                        vc.activityId = status.activityId;
-                        [weakSelf.navigationController pushViewController:vc animated:YES];
-                        
-                    } else  {
-                        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Members" bundle:nil];
-                        MembersController * vc = sb.instantiateInitialViewController;
-                        vc.activityId = status.activityId;
-                        [weakSelf.navigationController pushViewController:vc animated:YES];
-                    }
-                    
-                } else {
-                    [self.view alertError:responseObject];
-                }
-            } failure:^(NSError *error) {
-                [self.view alertError:error];
-            }];
-
+    if ([activeStatus isKindOfClass:[CPHomeStatus class]]) {
+        // 创建cell
+        CPHomeStatusCell *cell = [tableView dequeueReusableCellWithIdentifier:[CPHomeStatusCell identifier]];
         
-        };
+        // 设置数据
+        cell.status = self.status[indexPath.row];
+        //绑定tag
+        cell.myPlay.tag = indexPath.row;
+        
+        // 弹出图片浏览器
+        if (cell.pictureDidSelected == nil) {
+            //        __weak typeof(self) weakSelf = self;
+            cell.pictureDidSelected = ^(CPHomeStatus *status,NSIndexPath *path, NSArray *srcView){
+                
+                
+                // 1.创建图片浏览器
+                MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+                NSArray *urls = [status.cover valueForKeyPath:@"original_pic"];
+                // 2.设置图片浏览器显示的所有图片
+                NSMutableArray *photos = [NSMutableArray array];
+                NSUInteger count = urls.count;
+                for (int i = 0; i<count; i++) {
+                    
+                    MJPhoto *photo = [[MJPhoto alloc] init];
+                    // 设置图片的路径
+                    photo.url = [NSURL URLWithString:urls[i]];
+                    // 设置来源于哪一个UIImageView
+                    photo.srcImageView = srcView[i];
+                    [photos addObject:photo];
+                }
+                browser.photos = photos;
+                
+                // 3.设置默认显示的图片索引
+                browser.currentPhotoIndex = path.item;
+                
+                // 3.显示浏览器
+                [browser show];
+                
+            };
+        }
+        
+        //弹出成员列表 防止单元格重用 先判断
+        if (cell.tapIcons == nil) {
+            __weak typeof(self) weakSelf = self;
+            cell.tapIcons = ^(CPHomeStatus *status) {
+                [SVProgressHUD showWithStatus:@"努力加载中"];
+                //登陆状态下可点 拿出创建者字段,非登陆 自动跳转登陆界面
+                NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/info",status.activityId];
+                SQLog(@"%@",status.activityId);
+                [CPNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
+                    [weakSelf disMiss];
+                    if ([responseObject operationSuccess]) {
+                        NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
+                        NSString *strOrganizer = [formatter stringFromNumber:responseObject[@"data"][@"isOrganizer"]];
+                        if ([strOrganizer isEqualToString:@"1"]) {
+                            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MembersManage" bundle:nil];
+                            
+                            MembersManageController * vc = sb.instantiateInitialViewController;
+                            vc.activityId = status.activityId;
+                            [weakSelf.navigationController pushViewController:vc animated:YES];
+                            
+                        } else  {
+                            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Members" bundle:nil];
+                            MembersController * vc = sb.instantiateInitialViewController;
+                            vc.activityId = status.activityId;
+                            [weakSelf.navigationController pushViewController:vc animated:YES];
+                        }
+                        
+                    } else {
+                        [self.view alertError:responseObject];
+                    }
+                } failure:^(NSError *error) {
+                    [self.view alertError:error];
+                }];
+                
+                
+            };
+        }
+        
+        return cell;
+
+    }else{
+        CPOfficialActivityCell *cell = [CPOfficialActivityCell cellWithTableView:tableView];
+        cell.activeStatus = activeStatus;
+        return cell;
     }
     
-    return cell;
 }
 
 // 2
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     // 取出对应行模型
-    CPHomeStatus *status = self.status[indexPath.row];
-    
-    // 先从缓存中获取高度，没有才计算
-    NSNumber *rowHeight = [self.rowHeightCache objectForKey:status.activityId];
-    
-    CGFloat cellHeight = [rowHeight doubleValue];
-    
-    if (rowHeight == nil) {
-        // 取出cell
-        CPHomeStatusCell *cell = [tableView dequeueReusableCellWithIdentifier:[CPHomeStatusCell identifier]];
+    id status = self.status[indexPath.row];
+    if ([status isKindOfClass:[CPHomeStatus class]]) {
+        // 先从缓存中获取高度，没有才计算
+        NSNumber *rowHeight = [self.rowHeightCache objectForKey:[status activityId]];
         
-        // 获取高度
-        cellHeight = [cell cellHeightWithStatus:status];
+        CGFloat cellHeight = [rowHeight doubleValue];
         
-        // 缓存每一行的高度
-        [self.rowHeightCache setObject:@(cellHeight) forKey:status.activityId];
+        if (rowHeight == nil) {
+            // 取出cell
+            CPHomeStatusCell *cell = [tableView dequeueReusableCellWithIdentifier:[CPHomeStatusCell identifier]];
+            
+            // 获取高度
+            cellHeight = [cell cellHeightWithStatus:status];
+            
+            // 缓存每一行的高度
+            [self.rowHeightCache setObject:@(cellHeight) forKey:[status activityId]];
+            
+        }
+        
+        // 设置高度
+        return cellHeight;
 
+    }else {
+        return self.twoCellHeight;
     }
-    
-    // 设置高度
-    return cellHeight;
 }
 
 // 预估每一行cell的高度，可提高性能（只计算可是区域的cell）
 //- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
 //    return 200;
-//}
-
-#pragma mark - MWPhotoBrowserDelegate
-//- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
-//    return self.photos.count;
-//}
-//
-//- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
-//    if (index < self.photos.count)
-//        return [self.photos objectAtIndex:index];
-//    return nil;
 //}
 
 
@@ -729,14 +728,9 @@
     self.lastestConstraint.constant = 1;
     
     // 获取经纬度和城市
-//    [self getLongitudeAndLatitude];
     [self setupLoadStatusWithIgnore:0 Key:@"nearby" SelectModel:nil];
-//     NSLog(@"self.myCity=%@ %f %f",self.myCity,self.latitude,self.longitude);
     
-    
-    self.selectMark = @"nearby";
-    
-    
+    self.selectMark = @"nearby"; 
   
 }
 

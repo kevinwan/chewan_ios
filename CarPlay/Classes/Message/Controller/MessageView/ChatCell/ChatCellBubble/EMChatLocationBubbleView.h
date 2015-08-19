@@ -13,6 +13,7 @@
 #import <UIKit/UIKit.h>
 #import "EMChatBaseBubbleView.h"
 
+#define LOCATION_Margin 3
 #define LOCATION_IMAGE @"chat_location_preview" // 显示的地图图片
 #define LOCATION_IMAGEVIEW_SIZE 95 // 地图图片大小
 

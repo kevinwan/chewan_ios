@@ -476,15 +476,12 @@
     if (indexPath.row < [self.dataSource count]) {
         id obj = [self.dataSource objectAtIndex:indexPath.row];
         if ([obj isKindOfClass:[NSString class]]) {
-            DLog(@"%@=====",obj);
             EMChatTimeCell *timeCell = (EMChatTimeCell *)[tableView dequeueReusableCellWithIdentifier:@"MessageCellTime"];
             if (timeCell == nil) {
                 timeCell = [[EMChatTimeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MessageCellTime"];
-                timeCell.backgroundColor = [UIColor clearColor];
-                timeCell.selectionStyle = UITableViewCellSelectionStyleNone;
             }
             
-            timeCell.textLabel.text = (NSString *)obj;
+            timeCell.timeLabel.text = (NSString *)obj;
             
             return timeCell;
         }
