@@ -285,6 +285,8 @@ typedef enum {
             
             [weakSelf.pickView removeFromSuperview];
             weakSelf.pickView  = [[ZYPickView alloc] initDatePickWithDate:[NSDate date] datePickerMode:UIDatePickerModeTime isHaveNavControler:NO];
+            NSTimeInterval time = [NSDate date].timeIntervalSince1970 - 300;
+            weakSelf.pickView.datePicker.minLimitDate = [NSDate dateWithTimeIntervalSince1970:time];
             weakSelf.pickView.tag = ActivityCreateStart;
             weakSelf.pickView.row = 4;
             weakSelf.pickView.delegate = weakSelf;

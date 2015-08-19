@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @class ZYPickView;
+#import "UUDatePicker.h"
 
 @protocol ZYPickViewDelegate <NSObject>
 
@@ -17,6 +18,7 @@
 
 @interface ZYPickView : UIView
 
+@property(nonatomic,strong)UUDatePicker *datePicker;
 @property (nonatomic, assign) NSUInteger row;
 @property(nonatomic,weak) id<ZYPickViewDelegate> delegate;
 

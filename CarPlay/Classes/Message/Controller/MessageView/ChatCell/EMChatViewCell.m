@@ -41,7 +41,7 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
     
     CGRect bubbleFrame = _bubbleView.frame;
     bubbleFrame.origin.y = self.headImageView.y + 11;
-    if (self.messageModel.isSender) {
+    if (self.messageModel.isSender) { // 如果是自己发送的
    
         // 菊花状态 （因不确定菊花具体位置，要在子类中实现位置的修改）
         _hasRead.hidden = YES;
@@ -82,8 +82,7 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
                 break;
         }
         
-        bubbleFrame.origin.x = self.headImageView.frame.origin.x - bubbleFrame.size.width - HEAD_PADDING;
-        _bubbleView.frame = bubbleFrame;
+        _bubbleView.x = self.headImageView.x - bubbleFrame.size.width - 8;
 
         CGRect frame = self.activityView.frame;
         if (_hasRead.hidden)
@@ -94,8 +93,9 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
         {
             frame.size.width = _hasRead.frame.size.width;
         }
+        // 保持在右下脚
         frame.origin.x = bubbleFrame.origin.x - frame.size.width - ACTIVTIYVIEW_BUBBLE_PADDING;
-//        frame.origin.y = _bubbleView.center.y - frame.size.height / 2;
+        frame.origin.y = _bubbleView.bottom - frame.size.height - ACTIVTIYVIEW_BUBBLE_PADDING;
         self.activityView.frame = frame;
     }
     else{

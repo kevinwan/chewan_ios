@@ -358,7 +358,7 @@
         [self.tableView reloadData];
         
         // 只有上拉或者第一次加载数据才会获取官方活动数据
-        if (ignore == 0) {
+        if (ignore == 0 && self.status.count) {
             [self setupOfficialActivity];
         }
         
