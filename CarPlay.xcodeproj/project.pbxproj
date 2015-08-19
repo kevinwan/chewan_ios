@@ -203,6 +203,7 @@
 		A575821C1B6789E500A5E681 /* UIView+SMFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = A57582031B6789E500A5E681 /* UIView+SMFoundation.m */; };
 		A575821D1B6789E500A5E681 /* UIView+Dealer.m in Sources */ = {isa = PBXBuildFile; fileRef = A57582051B6789E500A5E681 /* UIView+Dealer.m */; };
 		A5F515791B71E53100690802 /* NSString+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F515781B71E53100690802 /* NSString+Size.m */; };
+		A5FC9AFB1B83458000E41A7C /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FC9AFA1B83458000E41A7C /* NSString+Hash.m */; };
 		AD5690C45A77A4D82E40CA3F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E1F11B43C6536981B4E2558 /* libPods.a */; };
 		E30A68CA1B7DD64100EB3D23 /* CPGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = E30A68C91B7DD64100EB3D23 /* CPGuideView.m */; };
 		E30BD57E1B54EBEB00FD9030 /* CPMySubscribeController.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD57D1B54EBEB00FD9030 /* CPMySubscribeController.m */; };
@@ -216,6 +217,10 @@
 		E310BF711B7DF7BB00750BF4 /* UUDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E310BF6E1B7DF7BB00750BF4 /* UUDatePicker.m */; };
 		E310BF721B7DF7BB00750BF4 /* UUDatePicker_DateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E310BF701B7DF7BB00750BF4 /* UUDatePicker_DateModel.m */; };
 		E310BF751B7E154200750BF4 /* CPAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E310BF741B7E154200750BF4 /* CPAnnotationView.m */; };
+		E31B087D1B8418BA008DA1D4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E31B08741B8418BA008DA1D4 /* InfoPlist.strings */; };
+		E31B087E1B8418BA008DA1D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E31B08761B8418BA008DA1D4 /* Localizable.strings */; };
+		E31B087F1B8418BA008DA1D4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E31B08791B8418BA008DA1D4 /* InfoPlist.strings */; };
+		E31B08801B8418BA008DA1D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E31B087B1B8418BA008DA1D4 /* Localizable.strings */; };
 		E328F0671B621DA700A20DCE /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = E328F0661B621DA700A20DCE /* city.plist */; };
 		E328F0691B621E1C00A20DCE /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = E328F0681B621E1C00A20DCE /* area.plist */; };
 		E3292A281B6A50700023677F /* CPSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3292A261B6A50700023677F /* CPSelectView.m */; };
@@ -732,6 +737,8 @@
 		A57582051B6789E500A5E681 /* UIView+Dealer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Dealer.m"; sourceTree = "<group>"; };
 		A5F515771B71E53100690802 /* NSString+Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Size.h"; sourceTree = "<group>"; };
 		A5F515781B71E53100690802 /* NSString+Size.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Size.m"; sourceTree = "<group>"; };
+		A5FC9AF91B83458000E41A7C /* NSString+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hash.h"; sourceTree = "<group>"; };
+		A5FC9AFA1B83458000E41A7C /* NSString+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hash.m"; sourceTree = "<group>"; };
 		E30A68C81B7DD64100EB3D23 /* CPGuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPGuideView.h; sourceTree = "<group>"; };
 		E30A68C91B7DD64100EB3D23 /* CPGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPGuideView.m; sourceTree = "<group>"; };
 		E30BD57C1B54EBEB00FD9030 /* CPMySubscribeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMySubscribeController.h; sourceTree = "<group>"; };
@@ -756,6 +763,10 @@
 		E310BF701B7DF7BB00750BF4 /* UUDatePicker_DateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUDatePicker_DateModel.m; sourceTree = "<group>"; };
 		E310BF731B7E154200750BF4 /* CPAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnnotationView.h; sourceTree = "<group>"; };
 		E310BF741B7E154200750BF4 /* CPAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAnnotationView.m; sourceTree = "<group>"; };
+		E31B08751B8418BA008DA1D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
+		E31B08771B8418BA008DA1D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
+		E31B087A1B8418BA008DA1D4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = InfoPlist.strings; sourceTree = "<group>"; };
+		E31B087C1B8418BA008DA1D4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = Localizable.strings; sourceTree = "<group>"; };
 		E328F0661B621DA700A20DCE /* city.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
 		E328F0681B621E1C00A20DCE /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		E3292A251B6A50700023677F /* CPSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSelectView.h; sourceTree = "<group>"; };
@@ -1064,6 +1075,8 @@
 		6B4959CB1B33A23900DB63EA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E31B08731B8418BA008DA1D4 /* en.lproj */,
+				E31B08781B8418BA008DA1D4 /* zh-Hans.lproj */,
 				E328F0681B621E1C00A20DCE /* area.plist */,
 				E328F0661B621DA700A20DCE /* city.plist */,
 				E372D8551B62171E00B4FC5C /* macro.h */,
@@ -1933,6 +1946,8 @@
 		A57581D21B6789E400A5E681 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				A5FC9AF91B83458000E41A7C /* NSString+Hash.h */,
+				A5FC9AFA1B83458000E41A7C /* NSString+Hash.m */,
 				A5F515771B71E53100690802 /* NSString+Size.h */,
 				A5F515781B71E53100690802 /* NSString+Size.m */,
 				A57581D31B6789E400A5E681 /* AppAppearance.h */,
@@ -2038,6 +2053,24 @@
 				E310BF701B7DF7BB00750BF4 /* UUDatePicker_DateModel.m */,
 			);
 			path = UUDatePicker_Block;
+			sourceTree = "<group>";
+		};
+		E31B08731B8418BA008DA1D4 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				E31B08741B8418BA008DA1D4 /* InfoPlist.strings */,
+				E31B08761B8418BA008DA1D4 /* Localizable.strings */,
+			);
+			path = en.lproj;
+			sourceTree = "<group>";
+		};
+		E31B08781B8418BA008DA1D4 /* zh-Hans.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				E31B08791B8418BA008DA1D4 /* InfoPlist.strings */,
+				E31B087B1B8418BA008DA1D4 /* Localizable.strings */,
+			);
+			path = "zh-Hans.lproj";
 			sourceTree = "<group>";
 		};
 		E35E6FC11B54AF96001212D6 /* Publish(我的发布) */ = {
@@ -2598,6 +2631,7 @@
 					};
 					6B4959E01B33A23900DB63EA = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = K89RQ3A2PQ;
 						TestTargetID = 6B4959C71B33A23900DB63EA;
 					};
 				};
@@ -2661,9 +2695,12 @@
 				A575817A1B67871300A5E681 /* UMSCommentDetailController.xib in Resources */,
 				6B4EF15E1B4036EE00292BD4 /* Main.storyboard in Resources */,
 				E36C961C1B53BA6B00D3EDBB /* CPActivityApplyControllerView.storyboard in Resources */,
+				E31B087F1B8418BA008DA1D4 /* InfoPlist.strings in Resources */,
 				A57581A91B6789C500A5E681 /* downSeat.xib in Resources */,
 				E372D83E1B6216C100B4FC5C /* CPRegisterCellsTableViewCell2.xib in Resources */,
+				E31B087D1B8418BA008DA1D4 /* InfoPlist.strings in Resources */,
 				6B9CFD7B1B71EA8200EF167D /* CPVersionIntroduction.storyboard in Resources */,
+				E31B087E1B8418BA008DA1D4 /* Localizable.strings in Resources */,
 				E372D8441B6216C100B4FC5C /* registerViewController.xib in Resources */,
 				E3292A291B6A50700023677F /* CPSelectView.xib in Resources */,
 				A57581C91B6789D500A5E681 /* Members.storyboard in Resources */,
@@ -2682,6 +2719,7 @@
 				6BCB875C1B7995520012D035 /* CPNoNet.xib in Resources */,
 				A575817F1B67871300A5E681 /* UMSLoginViewController.xib in Resources */,
 				A575818B1B67871300A5E681 /* UMSocialSDKResourcesNew.bundle in Resources */,
+				E31B08801B8418BA008DA1D4 /* Localizable.strings in Resources */,
 				A57581CF1B6789D500A5E681 /* offerCar.xib in Resources */,
 				E372D8331B6216C100B4FC5C /* CarOwnersCertificationViewController.xib in Resources */,
 				E3EEDFF61B53951D00595333 /* CPNewMessageController.storyboard in Resources */,
@@ -2900,6 +2938,7 @@
 				E3CE353A1B59E1C0008434B5 /* CPEditActivityController.m in Sources */,
 				6B512FCD1B7CC20500258CA0 /* CPCarAuthoFailedController.m in Sources */,
 				A575820A1B6789E500A5E681 /* NSDictionary+SMFoundation.m in Sources */,
+				A5FC9AFB1B83458000E41A7C /* NSString+Hash.m in Sources */,
 				E30BD5971B54FD6E00FD9030 /* ZYNavigationController.m in Sources */,
 				6BC8A3F01B6A4DB700B199F2 /* CPTaPublishCell.m in Sources */,
 				6B9711461B7DF60C00EA0F09 /* EMChatBaseBubbleView.m in Sources */,
@@ -3019,6 +3058,38 @@
 			name = UMSocialLocalizable.strings;
 			sourceTree = "<group>";
 		};
+		E31B08741B8418BA008DA1D4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E31B08751B8418BA008DA1D4 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E31B08761B8418BA008DA1D4 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E31B08771B8418BA008DA1D4 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		E31B08791B8418BA008DA1D4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E31B087A1B8418BA008DA1D4 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E31B087B1B8418BA008DA1D4 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E31B087C1B8418BA008DA1D4 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -3061,6 +3132,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -3097,6 +3169,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3170,6 +3243,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -3181,6 +3256,7 @@
 				INFOPLIST_FILE = CarPlayTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CarPlay.app/CarPlay";
 			};
 			name = Debug;
@@ -3189,6 +3265,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -3196,6 +3274,7 @@
 				INFOPLIST_FILE = CarPlayTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CarPlay.app/CarPlay";
 			};
 			name = Release;

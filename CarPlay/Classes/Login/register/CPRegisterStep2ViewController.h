@@ -21,4 +21,8 @@
 
 @property(nonatomic,strong)ZHPickView *pickview;
 @property(nonatomic,strong)NSIndexPath *indexPath;
+@property (nonatomic, strong) NSString *snsUid;
+@property (nonatomic, strong) NSString *snsUserName;
+@property (nonatomic, strong) NSString *snsChannel;
+@property (nonatomic, strong) NSString *photoUrl;
 @end
