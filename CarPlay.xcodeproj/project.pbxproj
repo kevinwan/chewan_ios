@@ -302,6 +302,9 @@
 		E3B127791B54D9C2005B1174 /* CPChatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B127781B54D9C2005B1174 /* CPChatButton.m */; };
 		E3B1277B1B54DECB005B1174 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3B1277A1B54DECB005B1174 /* Images.xcassets */; };
 		E3B1277E1B54E19B005B1174 /* CPIconButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B1277D1B54E19B005B1174 /* CPIconButton.m */; };
+		E3BEAB251B859FB4004B5FD8 /* CPChatGroupDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BEAB241B859FB4004B5FD8 /* CPChatGroupDetailController.m */; };
+		E3BEAB271B859FCD004B5FD8 /* CPChatGroupDetailController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3BEAB261B859FCD004B5FD8 /* CPChatGroupDetailController.storyboard */; };
+		E3BEAB2A1B85B3CA004B5FD8 /* CPOrganizerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BEAB291B85B3CA004B5FD8 /* CPOrganizerButton.m */; };
 		E3C14F4A1B81815F006A0F52 /* MJPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C14F3E1B81815F006A0F52 /* MJPhoto.m */; };
 		E3C14F4B1B81815F006A0F52 /* MJPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E3C14F3F1B81815F006A0F52 /* MJPhotoBrowser.bundle */; };
 		E3C14F4C1B81815F006A0F52 /* MJPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C14F411B81815F006A0F52 /* MJPhotoBrowser.m */; };
@@ -907,6 +910,11 @@
 		E3B1277A1B54DECB005B1174 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E3B1277C1B54E19B005B1174 /* CPIconButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPIconButton.h; sourceTree = "<group>"; };
 		E3B1277D1B54E19B005B1174 /* CPIconButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPIconButton.m; sourceTree = "<group>"; };
+		E3BEAB231B859FB4004B5FD8 /* CPChatGroupDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPChatGroupDetailController.h; sourceTree = "<group>"; };
+		E3BEAB241B859FB4004B5FD8 /* CPChatGroupDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPChatGroupDetailController.m; sourceTree = "<group>"; };
+		E3BEAB261B859FCD004B5FD8 /* CPChatGroupDetailController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPChatGroupDetailController.storyboard; sourceTree = "<group>"; };
+		E3BEAB281B85B3CA004B5FD8 /* CPOrganizerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPOrganizerButton.h; sourceTree = "<group>"; };
+		E3BEAB291B85B3CA004B5FD8 /* CPOrganizerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPOrganizerButton.m; sourceTree = "<group>"; };
 		E3C14F3D1B81815F006A0F52 /* MJPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhoto.h; sourceTree = "<group>"; };
 		E3C14F3E1B81815F006A0F52 /* MJPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhoto.m; sourceTree = "<group>"; };
 		E3C14F3F1B81815F006A0F52 /* MJPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJPhotoBrowser.bundle; sourceTree = "<group>"; };
@@ -2510,6 +2518,9 @@
 				E3EEDFEA1B53951D00595333 /* CPNewMessageController.h */,
 				E3EEDFEB1B53951D00595333 /* CPNewMessageController.m */,
 				E3EEDFEC1B53951D00595333 /* CPNewMessageController.storyboard */,
+				E3BEAB231B859FB4004B5FD8 /* CPChatGroupDetailController.h */,
+				E3BEAB241B859FB4004B5FD8 /* CPChatGroupDetailController.m */,
+				E3BEAB261B859FCD004B5FD8 /* CPChatGroupDetailController.storyboard */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2547,6 +2558,8 @@
 				E3C14F521B81D6BE006A0F52 /* CPBadgeIconButton.m */,
 				E3C14F541B81D7E9006A0F52 /* CPChatListCell.h */,
 				E3C14F551B81D7E9006A0F52 /* CPChatListCell.m */,
+				E3BEAB281B85B3CA004B5FD8 /* CPOrganizerButton.h */,
+				E3BEAB291B85B3CA004B5FD8 /* CPOrganizerButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2706,6 +2719,7 @@
 				6B4EF15E1B4036EE00292BD4 /* Main.storyboard in Resources */,
 				E36C961C1B53BA6B00D3EDBB /* CPActivityApplyControllerView.storyboard in Resources */,
 				E31B087F1B8418BA008DA1D4 /* InfoPlist.strings in Resources */,
+				E3BEAB271B859FCD004B5FD8 /* CPChatGroupDetailController.storyboard in Resources */,
 				A57581A91B6789C500A5E681 /* downSeat.xib in Resources */,
 				E372D83E1B6216C100B4FC5C /* CPRegisterCellsTableViewCell2.xib in Resources */,
 				E31B087D1B8418BA008DA1D4 /* InfoPlist.strings in Resources */,
@@ -2899,6 +2913,7 @@
 				E35E6FD01B54B0EC001212D6 /* CPMyPublishFrameModel.m in Sources */,
 				E35E6FCD1B54B0D9001212D6 /* CPMyPublishModel.m in Sources */,
 				6B4EF1681B403A5D00292BD4 /* UIBarButtonItem+Extension.m in Sources */,
+				E3BEAB2A1B85B3CA004B5FD8 /* CPOrganizerButton.m in Sources */,
 				6B512FA61B7C504400258CA0 /* EMCDDeviceManager+Media.m in Sources */,
 				6B512FB11B7C522200258CA0 /* EMVoiceConverter.mm in Sources */,
 				E372D8301B6216C100B4FC5C /* LoginViewController.m in Sources */,
@@ -2920,6 +2935,7 @@
 				A57582111B6789E500A5E681 /* SMBlock.m in Sources */,
 				A575820F1B6789E500A5E681 /* NSTimer+SMFoundation.m in Sources */,
 				6BCF660F1B6208C700358190 /* CPActiveDetailsHead.m in Sources */,
+				E3BEAB251B859FB4004B5FD8 /* CPChatGroupDetailController.m in Sources */,
 				6B512FCE1B7CC20500258CA0 /* CPMapSearchViewController.m in Sources */,
 				E36C962D1B53CA2300D3EDBB /* CPSubscribeCell.m in Sources */,
 				E372D8391B6216C100B4FC5C /* CPEditUsernameViewController.m in Sources */,
