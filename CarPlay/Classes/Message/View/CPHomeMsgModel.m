@@ -24,6 +24,10 @@
  */
 - (void)setContentAttrText
 {
+    if ([_content isEqualToString:@"暂无消息"]) {
+        _contentAttr = [[NSAttributedString alloc] initWithString:@"暂无消息"];
+        return;
+    }
     NSAttributedString *head;
     NSAttributedString *middle = [[NSAttributedString alloc] initWithString:_content attributes:@{NSForegroundColorAttributeName :[Tools getColor:@"48d1d5"]}];
     NSAttributedString *footer;
@@ -59,6 +63,8 @@
     
     if (_type.length) {
         [self setContentAttrText];
+    }else{
+        _contentAttr = [[NSAttributedString alloc] initWithString:_content];
     }
 }
 
