@@ -188,6 +188,12 @@
     }else{
         [self.chatBtn showToPlay];
     }
+    if (self.model.isOver == 1 || self.model.isMember == 2){
+        self.chatBtn.userInteractionEnabled = NO;
+        [self.chatBtn showGameOver];
+    }else{
+        self.chatBtn.userInteractionEnabled = NO;
+    }
     
     [self setNeedsLayout];
 }

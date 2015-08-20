@@ -190,8 +190,10 @@
     [self.moreBtn setTitle:[NSString stringWithFormat:@"%zd",self.model.members.count] forState:UIControlStateNormal];
     
     if (self.model.isOver){
+        self.chatBtn.userInteractionEnabled = NO;
         [self.chatBtn showGameOver];
     }else{
+        self.chatBtn.userInteractionEnabled = YES;
         [self.chatBtn showManageMember];
     }
     

@@ -852,11 +852,11 @@ typedef enum {
         return;
     }
     
-    if (self.currentModel.start == 0){
+    if (self.currentModel.start <= 0){
         [SVProgressHUD showInfoWithStatus:@"请选择开始时间"];
         return;
     }
-    if (self.currentModel.end) {
+    if (self.currentModel.end > 0) {
         NSDate *startDate = [NSDate dateWithTimeIntervalSince1970:self.currentModel.start];
         NSDate *endDate = [NSDate dateWithTimeIntervalSince1970:self.currentModel.end];
         if([startDate compare:endDate] == NSOrderedDescending){
