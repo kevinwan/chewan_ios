@@ -80,7 +80,8 @@
                             [Tools setValueForKey:@(YES) key:NOTIFICATION_HASLOGIN];
                             [Tools setValueForKey:self.userPhone.text key:@"phone"];
                             [Tools setValueForKey:password key:@"password"];
-                            
+                            [Tools setValueForKey:data[@"nickname"] key:@"nickName"];
+                            [Tools setValueForKey:data[@"photo"] key:@"headUrl"];
                             CPOrganizer *organizer= [CPOrganizer objectWithKeyValues:data];
                             NSString *fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"userId"]];
                             [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];

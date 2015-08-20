@@ -104,7 +104,6 @@
     
     return self;
 }
-
 - (BOOL)isChatGroup
 {
     return _conversationType != eConversationTypeChat;
