@@ -327,9 +327,12 @@
         [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
     }
     
-    
-    
-    
-    
 }
+
+// headview点击
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self routerEventWithName:@"" userInfo:nil];
+}
+
 @end
