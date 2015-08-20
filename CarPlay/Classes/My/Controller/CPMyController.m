@@ -281,6 +281,7 @@
                 CPOrganizer *organizer1= [CPOrganizer objectWithKeyValues:data];
                 organizer = organizer1;
                 NSString *fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"userId"]];
+                organizer.headImgUrl = data[@"photo"];
                 [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
                 [self loadUserData];
                 [self.tableView reloadData];
