@@ -74,9 +74,8 @@
         NSString *state=[numberFormatter stringFromNumber:[responseObject objectForKey:@"result"]];
         if ([state isEqualToString:@"0"]) {
             if ([paras objectForKey:@"nickname"]) {
-                [Tools setValueForKey:[paras objectForKey:@"nickname"] key:@"nickname"];
+                [Tools setValueForKey:[paras objectForKey:@"nickname"] key:@"nickName"];
             }
-          
             
             organizer.nickname = self.nicknameLable.text;
            NSString *fileName1=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"userId"]];

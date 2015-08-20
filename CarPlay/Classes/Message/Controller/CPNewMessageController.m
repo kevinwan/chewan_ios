@@ -20,6 +20,7 @@
 #import "AppAppearance.h"
 #import "CPTaDetailsController.h"
 #import "CPActiveDetailsController.h"
+#import "CPChatGroupDetailController.h"
 
 @interface CPNewMessageController ()
 
@@ -122,6 +123,13 @@
     ZYJumpToLoginView // 跳转到登录页面
     [self reRefreshData];
     
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"haah" target:self action:@selector(haha)];
+}
+
+- (void)haha
+{
+    CPChatGroupDetailController *vc = [UIStoryboard storyboardWithName:@"CPChatGroupDetailController" bundle:nil].instantiateInitialViewController;;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated

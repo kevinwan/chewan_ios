@@ -1665,9 +1665,10 @@
 -(void)sendTextMessage:(NSString *)textMessage
 {
     NSDictionary *ext = nil;
-    if (_isRobot) {
-        ext = @{kRobot_Message_Ext:[NSNumber numberWithBool:YES]};
-    }
+//    if (_isRobot) {
+//        ext = @{kRobot_Message_Ext:[NSNumber numberWithBool:YES]};
+//    }
+    ext = @{@"nickName":[Tools getValueFromKey:@"nickName"],@"headUrl":[Tools getValueFromKey:@"headUrl"]};
     EMMessage *tempMessage = [ChatSendHelper sendTextMessageWithString:textMessage
                                                             toUsername:_conversation.chatter
                                                            messageType:[self messageType]
@@ -1679,9 +1680,10 @@
 -(void)sendImageMessage:(UIImage *)image
 {
     NSDictionary *ext = nil;
-    if (_isRobot) {
-        ext = @{kRobot_Message_Ext:[NSNumber numberWithBool:YES]};
-    }
+//    if (_isRobot) {
+//        ext = @{kRobot_Message_Ext:[NSNumber numberWithBool:YES]};
+//    }
+    ext = @{@"nickName":[Tools getValueFromKey:@"nickName"],@"headUrl":[Tools getValueFromKey:@"headUrl"]};
     EMMessage *tempMessage = [ChatSendHelper sendImageMessageWithImage:image
                                                             toUsername:_conversation.chatter
                                                            messageType:[self messageType]
@@ -1693,9 +1695,10 @@
 -(void)sendAudioMessage:(EMChatVoice *)voice
 {
     NSDictionary *ext = nil;
-    if (_isRobot) {
-        ext = @{kRobot_Message_Ext:[NSNumber numberWithBool:YES]};
-    }
+//    if (_isRobot) {
+//        ext = @{kRobot_Message_Ext:[NSNumber numberWithBool:YES]};
+//    }
+    ext = @{@"nickName":[Tools getValueFromKey:@"nickName"],@"headUrl":[Tools getValueFromKey:@"headUrl"]};
     EMMessage *tempMessage = [ChatSendHelper sendVoice:voice
                                             toUsername:_conversation.chatter
                                            messageType:[self messageType]
@@ -1706,9 +1709,10 @@
 -(void)sendVideoMessage:(EMChatVideo *)video
 {
     NSDictionary *ext = nil;
-    if (_isRobot) {
-        ext = @{kRobot_Message_Ext:[NSNumber numberWithBool:YES]};
-    }
+//    if (_isRobot) {
+//        ext = @{kRobot_Message_Ext:[NSNumber numberWithBool:YES]};
+//    }
+    ext = @{@"nickName":[Tools getValueFromKey:@"nickName"],@"headUrl":[Tools getValueFromKey:@"headUrl"]};
     EMMessage *tempMessage = [ChatSendHelper sendVideo:video
                                             toUsername:_conversation.chatter
                                            messageType:[self messageType]
