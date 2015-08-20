@@ -125,6 +125,8 @@
         });
         [self.tableView.header endRefreshing];
         [self.tableView.footer endRefreshing];
+        [self.datas removeAllObjects];
+        [self.tableView reloadData];
         [self showNetWorkOutTime];
     }];
 }

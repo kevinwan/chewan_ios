@@ -60,6 +60,7 @@ typedef enum {
         activityModel.title = @"活动消息";
         activityModel.icon = @"参与申请";
         activityModel.content = @"暂无消息";
+        activityModel.type = @"";
         activityModel.timeStr = @"";
         activityModel.isShowUnread = NO;
         
@@ -152,6 +153,7 @@ typedef enum {
             if (activityApplyCount > 0) {
             
                 activityModel.content = application[@"content"];
+                activityModel.type = application[@"type"];
                 activityModel.unreadCount = [NSString stringWithFormat:@"%zd",activityApplyCount];
                 activityModel.createTime = [application[@"createTime"] longLongValue];
                 activityModel.isShowUnread = YES;
@@ -232,6 +234,7 @@ typedef enum {
         
         CPHomeMsgModel *model = self.datas[1];
         model.unreadCount = @"";
+        model.type = @"";
         model.isShowUnread = NO;
         model.content = @"暂无消息";
         model.createTime = 0;

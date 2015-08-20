@@ -133,6 +133,8 @@
         });
         [self.tableView.footer endRefreshing];
         [self.tableView.header endRefreshing];
+        [self.frameModels removeAllObjects];
+        [self.tableView reloadData];
         [self showNetWorkOutTime];
     }];
 

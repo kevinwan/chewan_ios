@@ -221,6 +221,8 @@
 		E31B087E1B8418BA008DA1D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E31B08761B8418BA008DA1D4 /* Localizable.strings */; };
 		E31B087F1B8418BA008DA1D4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E31B08791B8418BA008DA1D4 /* InfoPlist.strings */; };
 		E31B08801B8418BA008DA1D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E31B087B1B8418BA008DA1D4 /* Localizable.strings */; };
+		E31B08BB1B84B1C6008DA1D4 /* XMNetWorkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E31B08BA1B84B1C6008DA1D4 /* XMNetWorkTool.m */; };
+		E31B08BE1B84B227008DA1D4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E31B08BD1B84B227008DA1D4 /* Reachability.m */; };
 		E328F0671B621DA700A20DCE /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = E328F0661B621DA700A20DCE /* city.plist */; };
 		E328F0691B621E1C00A20DCE /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = E328F0681B621E1C00A20DCE /* area.plist */; };
 		E3292A281B6A50700023677F /* CPSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3292A261B6A50700023677F /* CPSelectView.m */; };
@@ -767,6 +769,10 @@
 		E31B08771B8418BA008DA1D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		E31B087A1B8418BA008DA1D4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = InfoPlist.strings; sourceTree = "<group>"; };
 		E31B087C1B8418BA008DA1D4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = Localizable.strings; sourceTree = "<group>"; };
+		E31B08B91B84B1C6008DA1D4 /* XMNetWorkTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMNetWorkTool.h; sourceTree = "<group>"; };
+		E31B08BA1B84B1C6008DA1D4 /* XMNetWorkTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMNetWorkTool.m; sourceTree = "<group>"; };
+		E31B08BC1B84B227008DA1D4 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		E31B08BD1B84B227008DA1D4 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		E328F0661B621DA700A20DCE /* city.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
 		E328F0681B621E1C00A20DCE /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		E3292A251B6A50700023677F /* CPSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSelectView.h; sourceTree = "<group>"; };
@@ -2409,6 +2415,10 @@
 		E3AE58C11B57E08800D8F0CA /* ZYNetWorkTool */ = {
 			isa = PBXGroup;
 			children = (
+				E31B08BC1B84B227008DA1D4 /* Reachability.h */,
+				E31B08BD1B84B227008DA1D4 /* Reachability.m */,
+				E31B08B91B84B1C6008DA1D4 /* XMNetWorkTool.h */,
+				E31B08BA1B84B1C6008DA1D4 /* XMNetWorkTool.m */,
 				E3AE58C21B57E08800D8F0CA /* ZYNetWorkManager.h */,
 				E3AE58C31B57E08800D8F0CA /* ZYNetWorkManager.m */,
 				E3AE58C41B57E08800D8F0CA /* ZYNetWorkTool.h */,
@@ -2823,6 +2833,7 @@
 				E3EEDFF81B53951D00595333 /* CPNewMessageCell.m in Sources */,
 				A57581CE1B6789D500A5E681 /* offerCar.m in Sources */,
 				E3E4FBEA1B744F7A00E6E5F1 /* ZYTableViewCell.m in Sources */,
+				E31B08BE1B84B227008DA1D4 /* Reachability.m in Sources */,
 				E3E1DBFD1B5C8CFB00386B18 /* ZYPickView.m in Sources */,
 				E3D879421B575EC200228356 /* CPTopViewButton.m in Sources */,
 				6B512FAA1B7C504400258CA0 /* EMCDDeviceManagerBase.m in Sources */,
@@ -2952,6 +2963,7 @@
 				A57582141B6789E500A5E681 /* UIButton+SMFoundation.m in Sources */,
 				6B9711471B7DF60C00EA0F09 /* EMChatImageBubbleView.m in Sources */,
 				6B9CFD631B6CADD400EF167D /* CPHowtoPlayCell.m in Sources */,
+				E31B08BB1B84B1C6008DA1D4 /* XMNetWorkTool.m in Sources */,
 				E36C961F1B53BB2800D3EDBB /* CPActivityApplyCell.m in Sources */,
 				E338A7451B70540C00E706C2 /* CPRefreshHeader.m in Sources */,
 				6B5F9B721B5D29FE00F9D1E8 /* CPHomeIconCell.m in Sources */,

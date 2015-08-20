@@ -98,9 +98,9 @@
 
 - (void)setStatus:(CPHomeStatus *)status{
     
-    if ([status isKindOfClass:[NSArray class]]) {
-        return;
-    }
+//    if ([status isKindOfClass:[NSArray class]]) {
+//        return;
+//    }
     
     _status = status;
     
@@ -374,11 +374,14 @@
         CPHomeIconCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[CPHomeIconCell identifier] forIndexPath:indexPath];
         
         // 获取对应图片模型
-        CPHomeMember *photo = self.status.members[indexPath.item];
-        photo.currentMember = indexPath.item + 1;
+        CPHomeMember *member = self.status.members[indexPath.item];
+        
+        if (self.status.members.count == indexPath.item + 1) {
+            member.currentMember = indexPath.item;
+        }
         
         // 设置数据
-        cell.homeMember = photo;
+        cell.homeMember = member;
         
         // 返回cell
         return cell;
