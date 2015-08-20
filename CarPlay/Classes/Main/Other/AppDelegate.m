@@ -27,38 +27,13 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
     // 启动时隐藏状态栏,设置白色的状态栏
     [application setStatusBarHidden:NO];
     application.statusBarStyle = UIStatusBarStyleLightContent;
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(loginStateChange:)
-                                                 name:NOTIFICATION_LOGINCHANGE
-                                               object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(rootControllerChangeToTab:)
-                                                 name:NOTIFICATION_ROOTCONTROLLERCHANGETOTAB
-                                               object:nil];
-    
-    [MAMapServices sharedServices].apiKey = GaoDeAppKey;
-    [SVProgressHUD setBackgroundColor:RGBACOLOR(0, 0, 0, 0.8)];
-    [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
-    // 开始监控网络状态
-    [self startMonitoringNetWork];
-    _tabVc = [[CPTabBarController alloc] init];
-    
-    UIView *bgView = [[UIView alloc] initWithFrame:_tabVc.tabBar.bounds];
-    bgView.backgroundColor = [UIColor whiteColor];
-    [_tabVc.tabBar insertSubview:bgView atIndex:0];
-    _tabVc.tabBar.opaque = YES;
-    
-    [UMSocialData setAppKey:kCheWanAppID];
-    // 微信分享
-    [UMSocialWechatHandler setWXAppId:kWeiXinAppID appSecret:kWeiXinAppSecret url:nil];
-    //QQ登录
-    [UMSocialQQHandler setQQWithAppId:@"1104728007" appKey:@"61BpHk8GQwH6FuCs" url:@"http://www.umeng.com/social"];
-//    统计分析  nil默认渠道为appStore
-    [MobClick startWithAppkey:kCheWanAppID reportPolicy:BATCH   channelId:nil];
+    // 进行一些参数配置
+    [self setAllConfig];
     
 //    [[EaseMob sharedInstance] registerSDKWithAppKey:@"gongpingjia#chewantest" apnsCertName:@"carPlayApns"];
 //    [[EaseMob sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
@@ -82,9 +57,51 @@
         [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:versionKey];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
+    
+    // 加载未读的消息树
     [self loadUnReadData];
+    
     return YES;
 }
+
+
+/**
+ *  进行一些全局的配置
+ */
+- (void)setAllConfig
+{
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loginStateChange:)
+                                                 name:NOTIFICATION_LOGINCHANGE
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(rootControllerChangeToTab:)
+                                                 name:NOTIFICATION_ROOTCONTROLLERCHANGETOTAB
+                                               object:nil];
+    
+    [MAMapServices sharedServices].apiKey = GaoDeAppKey;
+    [SVProgressHUD setBackgroundColor:RGBACOLOR(0, 0, 0, 0.8)];
+    [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
+    
+    _tabVc = [[CPTabBarController alloc] init];
+    
+    UIView *bgView = [[UIView alloc] initWithFrame:_tabVc.tabBar.bounds];
+    bgView.backgroundColor = [UIColor whiteColor];
+    [_tabVc.tabBar insertSubview:bgView atIndex:0];
+    _tabVc.tabBar.opaque = YES;
+    
+    [UMSocialData setAppKey:kCheWanAppID];
+    // 微信分享
+    [UMSocialWechatHandler setWXAppId:kWeiXinAppID appSecret:kWeiXinAppSecret url:nil];
+    //QQ登录
+    [UMSocialQQHandler setQQWithAppId:@"1104728007" appKey:@"61BpHk8GQwH6FuCs" url:@"http://www.umeng.com/social"];
+    //    统计分析  nil默认渠道为appStore
+    [MobClick startWithAppkey:kCheWanAppID reportPolicy:BATCH   channelId:nil];
+
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -133,24 +150,6 @@
     // 清空图片缓存
     [[SDWebImageManager sharedManager].imageCache clearMemory];
     [[SDWebImageManager sharedManager].imageCache clearDisk];
-}
-
-- (void)startMonitoringNetWork
-{
-    NSURL *baseURL = [NSURL URLWithString:BASE_URL];
-    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:baseURL];
-    [manager.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        
-        if (status == AFNetworkReachabilityStatusNotReachable){
-            [CPUserDefaults setBool:YES forKey:CPNetWorkStatus];
-            [CPUserDefaults synchronize];
-        }else{
-            [CPUserDefaults setBool:NO forKey:CPNetWorkStatus];
-            [CPUserDefaults synchronize];
-        }
-    }];
-    
-    [manager.reachabilityManager startMonitoring];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{

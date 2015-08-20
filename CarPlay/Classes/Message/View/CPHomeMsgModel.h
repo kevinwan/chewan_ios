@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface CPHomeMsgModel : NSObject
+@property (nonatomic, copy) NSString *type;
 @property (nonatomic, copy) NSString *content;
 @property (nonatomic, copy) NSAttributedString *contentAttr;
 @property (nonatomic, copy) NSString *title;

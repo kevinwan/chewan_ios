@@ -158,6 +158,8 @@
         });
         [self.tableView.header endRefreshing];
         [self.tableView.footer endRefreshing];
+        [self.frameModels removeAllObjects];
+        [self.tableView reloadData];
         [self showNetWorkOutTime];
     }];
 
