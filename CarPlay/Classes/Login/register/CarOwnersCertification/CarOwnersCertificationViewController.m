@@ -172,6 +172,7 @@
                                 if (!error && loginInfo) {
                                     [Tools setValueForKey:@(YES) key:NOTIFICATION_HASLOGIN];
                                     [Tools setValueForKey:password key:@"password"];
+                                    
                                     [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
                                     [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
                                 }else{
