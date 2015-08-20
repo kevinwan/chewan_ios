@@ -39,6 +39,7 @@
         [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
     }else{
         organizer=[NSKeyedUnarchiver unarchiveObjectWithFile:CPDocmentPath(fileName)];
+        [self.tableView reloadData];
     }
 }
 
@@ -82,8 +83,8 @@
         if (cell == nil) {
             cell = [[[NSBundle mainBundle] loadNibNamed:@"CPEditHeadIconCell" owner:nil options:nil] lastObject];
         }
-        if ([Tools getValueFromKey:@"photoUrl"]) {
-            NSURL *url=[[NSURL alloc]initWithString:[Tools getValueFromKey:@"photoUrl"]];
+        if (organizer.photo) {
+            NSURL *url=[[NSURL alloc]initWithString:organizer.photo];
             [cell.headIcon sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"morenHeadBtnImg"]];
         }
         
@@ -140,6 +141,7 @@
     }else if (indexPath.row==1) {
         CPEditUsernameViewController *CPEditUsernameVC=[[CPEditUsernameViewController alloc]init];
         CPEditUsernameVC.title=@"昵称";
+        CPEditUsernameVC.organizer = organizer;
         [self.navigationController pushViewController:CPEditUsernameVC animated:YES];
         //        [self presentViewController:CPEditUsernameVC animated:YES completion:nil];
     }else{
@@ -233,6 +235,7 @@
             NSDictionary *data=[responseObject objectForKey:@"data"];
             [Tools setValueForKey:[data objectForKey:@"photoId"] key:@"photoId"];
             [Tools setValueForKey:[data objectForKey:@"photoUrl"] key:@"photoUrl"];
+            [Tools setValueForKey:data[@"photoUrl"] key:@"headUrl"];
             [self.tableView reloadData];
         }else{
             [[[UIAlertView alloc]initWithTitle:@"提示" message:@"上传失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
@@ -284,29 +287,25 @@
         NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
         NSString *state=[numberFormatter stringFromNumber:[responseObject objectForKey:@"result"]];
         if ([state isEqualToString:@"0"]) {
-            if ([paras objectForKey:@"nickname"]) {
-                [Tools setValueForKey:[paras objectForKey:@"nickname"] key:@"nickname"];
-            }
-            
-            if ([paras objectForKey:@"gender"]) {
-                [Tools setValueForKey:[paras objectForKey:@"gender"] key:@"gender"];
-            }
+
             
             if ([paras objectForKey:@"drivingExperience"]) {
-                [Tools setValueForKey:[paras objectForKey:@"drivingExperience"] key:@"drivingExperience"];
+                organizer.drivingExperience =[paras[@"drivingExperience"] integerValue];
             }
-            
+
             if ([paras objectForKey:@"province"]) {
-                [Tools setValueForKey:[paras objectForKey:@"province"] key:@"province"];
+                organizer.province = paras[@"province"];
             }
             
             if ([paras objectForKey:@"city"]) {
-                [Tools setValueForKey:[paras objectForKey:@"city"] key:@"city"];
+                organizer.city = paras[@"city"];
             }
             
             if ([paras objectForKey:@"district"]) {
-                [Tools setValueForKey:[paras objectForKey:@"district"] key:@"district"];
+                organizer.district = paras[@"district"];
             }
+
+            [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
             [self.tableView reloadData];
         }else{
             [[[UIAlertView alloc]initWithTitle:@"提示" message:@"上传失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];

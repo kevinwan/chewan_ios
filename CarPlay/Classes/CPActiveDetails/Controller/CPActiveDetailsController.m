@@ -912,4 +912,10 @@
     self.inputView.placeholder = @"给楼主留个言...";
 }
 
+// 处理headview点击事件
+- (void)routerEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userInfo
+{
+    [self.inputView resignFirstResponder];
+}
+
 @end

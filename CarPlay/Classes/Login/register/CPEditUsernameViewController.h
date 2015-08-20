@@ -7,9 +7,11 @@
 //
 
 #import "BaseViewController.h"
+#import "CPMySubscribeModel.h"
 
 @interface CPEditUsernameViewController : BaseViewController
 @property (weak, nonatomic) IBOutlet UITextField *nicknameLable;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *headHeight;
 @property (weak, nonatomic) NSString *fromEdit;
+@property (weak, nonatomic) CPOrganizer *organizer;
 @end
