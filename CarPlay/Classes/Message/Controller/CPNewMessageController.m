@@ -198,6 +198,8 @@
         });
         [self.tableView.header endRefreshing];
         [self.tableView.footer endRefreshing];
+        [self.items removeAllObjects];
+        [self.tableView reloadData];
         [self showNetWorkOutTime];
     }];
 }

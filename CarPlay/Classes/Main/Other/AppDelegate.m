@@ -44,7 +44,9 @@
     [SVProgressHUD setBackgroundColor:RGBACOLOR(0, 0, 0, 0.8)];
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
     // 开始监控网络状态
-    [self startMonitoringNetWork];
+//    [self startMonitoringNetWork];
+    BOOL isReach = [[AFNetworkReachabilityManager managerForDomain:@"http://www.baidu.com"] networkReachabilityStatus];
+    DLog(@"%zdsssssss",isReach);
     _tabVc = [[CPTabBarController alloc] init];
     
     UIView *bgView = [[UIView alloc] initWithFrame:_tabVc.tabBar.bounds];
@@ -83,6 +85,7 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     [self loadUnReadData];
+    DLog(@"iiiiiii%zd",CPNoNetWork);
     return YES;
 }
 - (void)applicationWillResignActive:(UIApplication *)application {

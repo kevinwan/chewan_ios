@@ -130,7 +130,7 @@ typedef enum _playSoundMode {
 // exception macros
 #define NOT_IMPLEMENTED_EXCEPTION   @"NOT_IMPLEMENTED_EXCEPTION"
 #define CPNetWorkStatus @"CPNetWorkStatus"
-#define CPNoNetWork ([CPUserDefaults boolForKey:CPNetWorkStatus])
+#define CPNoNetWork ([XMNetWorkTool isReachable])
 #define CPReRefreshNotification @"CPReRefreshNotification"
 #define CPClickUserIconNotification @"CPClickUserIconNotification"
 #define CPClickUserIconInfo @"CPClickUserIconInfo"

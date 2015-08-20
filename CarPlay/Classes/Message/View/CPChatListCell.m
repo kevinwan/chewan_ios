@@ -55,7 +55,7 @@
     }else{
         self.timeLabel.text = @"";
     }
-    self.msgLabel.text = model.content;
+    self.msgLabel.attributedText = model.contentAttr;
     if (model.isShowUnread) {
         self.unreadLabel.hidden = NO;
         self.unreadLabel.text = model.unreadCount;
