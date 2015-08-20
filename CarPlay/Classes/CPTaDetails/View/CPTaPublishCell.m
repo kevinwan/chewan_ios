@@ -170,11 +170,12 @@
         
         // 赋值
         cell.taPhoto = self.publishStatus.cover[indexPath.item];
-        
+        NSLog(@"%ld",indexPath.item);
         return cell;
     }else{
         CPTaIconCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[CPTaIconCell identifier] forIndexPath:indexPath];
         cell.taMember = self.publishStatus.members[indexPath.item];
+//        NSLog(@"对象%@---个数%ld",cell.taMember,indexPath.item);
         return cell;
     } 
     
