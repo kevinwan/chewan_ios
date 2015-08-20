@@ -235,6 +235,7 @@
             NSDictionary *data=[responseObject objectForKey:@"data"];
             [Tools setValueForKey:[data objectForKey:@"photoId"] key:@"photoId"];
             [Tools setValueForKey:[data objectForKey:@"photoUrl"] key:@"photoUrl"];
+            [Tools setValueForKey:data[@"photoUrl"] key:@"headUrl"];
             [self.tableView reloadData];
         }else{
             [[[UIAlertView alloc]initWithTitle:@"提示" message:@"上传失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
