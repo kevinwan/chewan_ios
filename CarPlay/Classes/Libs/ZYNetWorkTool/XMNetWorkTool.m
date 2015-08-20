@@ -14,7 +14,7 @@
 + (XMNetworkStatus) isConnectionAvailable
 {
     XMNetworkStatus netWorkStatus;
-    Reachability *reach = [Reachability reachabilityWithHostName:@"http://www.baidu.com"];
+    Reachability *reach = [Reachability reachabilityWithHostName:@"www.baidu.com"];
     switch ([reach currentReachabilityStatus]) {
         case NotReachable:
             netWorkStatus = XMNetworkNotReachable;
@@ -33,7 +33,7 @@
     return netWorkStatus;
 }
 
-+ (BOOL)isReachable
++ (BOOL)isNoNetWork
 {
     return (XMNetworkNotReachable == [self isConnectionAvailable]);
 }

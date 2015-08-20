@@ -24,7 +24,7 @@ typedef enum XMNetworkStatus {
 /**
  *  网络是否可用
  */
-+ (BOOL)isReachable;
++ (BOOL)isNoNetWork;
 /**
  *  是不是WIFI
  */
