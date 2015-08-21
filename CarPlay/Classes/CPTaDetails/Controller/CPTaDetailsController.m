@@ -411,6 +411,79 @@
     
         cell.status = self.taPubStatus[indexPath.row];
         
+        //绑定tag
+        cell.myPlay.tag = indexPath.row;
+        
+        // 弹出图片浏览器
+        if (cell.pictureDidSelected == nil) {
+            //        __weak typeof(self) weakSelf = self;
+            cell.pictureDidSelected = ^(CPHomeStatus *status,NSIndexPath *path, NSArray *srcView){
+                
+                
+                // 1.创建图片浏览器
+                MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+                NSArray *urls = [status.cover valueForKeyPath:@"original_pic"];
+                // 2.设置图片浏览器显示的所有图片
+                NSMutableArray *photos = [NSMutableArray array];
+                NSUInteger count = urls.count;
+                for (int i = 0; i<count; i++) {
+                    
+                    MJPhoto *photo = [[MJPhoto alloc] init];
+                    // 设置图片的路径
+                    photo.url = [NSURL URLWithString:urls[i]];
+                    // 设置来源于哪一个UIImageView
+                    photo.srcImageView = srcView[i];
+                    [photos addObject:photo];
+                }
+                browser.photos = photos;
+                
+                // 3.设置默认显示的图片索引
+                browser.currentPhotoIndex = path.item;
+                
+                // 3.显示浏览器
+                [browser show];
+                
+            };
+        }
+        
+        //弹出成员列表 防止单元格重用 先判断
+        if (cell.tapIcons == nil) {
+            __weak typeof(self) weakSelf = self;
+            cell.tapIcons = ^(CPHomeStatus *status) {
+                [SVProgressHUD showWithStatus:@"努力加载中"];
+                //登陆状态下可点 拿出创建者字段,非登陆 自动跳转登陆界面
+                NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/info",status.activityId];
+                SQLog(@"%@",status.activityId);
+                [CPNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
+                    [weakSelf disMiss];
+                    if ([responseObject operationSuccess]) {
+                        NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
+                        NSString *strOrganizer = [formatter stringFromNumber:responseObject[@"data"][@"isOrganizer"]];
+                        if ([strOrganizer isEqualToString:@"1"]) {
+                            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MembersManage" bundle:nil];
+                            
+                            MembersManageController * vc = sb.instantiateInitialViewController;
+                            vc.activityId = status.activityId;
+                            [weakSelf.navigationController pushViewController:vc animated:YES];
+                            
+                        } else  {
+                            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Members" bundle:nil];
+                            MembersController * vc = sb.instantiateInitialViewController;
+                            vc.activityId = status.activityId;
+                            [weakSelf.navigationController pushViewController:vc animated:YES];
+                        }
+                        
+                    } else {
+                        [self.view alertError:responseObject];
+                    }
+                } failure:^(NSError *error) {
+                    [self.view alertError:error];
+                }];
+                
+                
+            };
+        }
+        
         return cell;
     }
     
