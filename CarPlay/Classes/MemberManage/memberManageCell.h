@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "members.h"
-@interface memberManageCell : UITableViewCell
+#import <SWTableViewCell.h>
+@interface memberManageCell : SWTableViewCell
 @property (nonatomic, strong) members *models;
-@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
-@property (weak, nonatomic) IBOutlet UIImageView *memberIconImageView;
+
+@property (weak, nonatomic) IBOutlet UIButton *memberIconButton;
+
 @end
