@@ -27,7 +27,7 @@
 #import "NSMutableArray+CPUtilityButtons.h"
 #import "CPModelButton.h"
 #import <SDWebImage/UIButton+WebCache.h>
-
+#import "ChatViewController.h"
 
 
 
@@ -507,7 +507,20 @@
 }
 //开始畅聊
 - (IBAction)begainChatButtonDIdCLick:(UIButton *)sender {
+    ChatViewController *chatController;
     
+    chatController = [[ChatViewController alloc] initWithChatter:self.chatGroupId conversationType:eConversationTypeGroupChat];
+//    chatController.title = self.act;
+    
+    EMError *error = nil;
+    EMGroup *group = [[EaseMob sharedInstance].chatManager fetchGroupInfo:self.chatGroupId error:&error];
+    if (group) {
+        chatController.group = group;
+        [self.navigationController pushViewController:chatController animated:YES];
+    }else{
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"提示" message:@"网络错误，请稍候再试" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
+    }
 }
 
 #pragma mark - lazy
