@@ -312,6 +312,34 @@
     
 }
 
+
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (collectionView == self.picColView) {
+        if (self.pictureDidSelected != nil) {
+            // 获取每一个cell里的所有配图
+            NSMutableArray *imgArr = [NSMutableArray array];
+            NSUInteger count = [self collectionView:collectionView numberOfItemsInSection:0];
+            
+            for (int i = 0; i < count; i++) {
+                NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:0];
+                
+                CPActivePicCell *cell = (CPActivePicCell *)[self collectionView:collectionView cellForItemAtIndexPath:path];
+                cell.pictureView.frame = cell.frame;
+                [imgArr addObject:cell.pictureView];
+            }
+            
+            
+            self.pictureDidSelected(self.activeStatus,indexPath, imgArr);
+        }
+    }
+    
+}
+
+
+
+
 // 点击头像跳转到他的详情页
 - (IBAction)iconBtnClick:(id)sender {
     // 判断是否已登录
