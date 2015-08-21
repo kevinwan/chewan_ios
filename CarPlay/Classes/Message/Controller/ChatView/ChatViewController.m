@@ -1106,9 +1106,7 @@
 -(void)sendLocationLatitude:(double)latitude longitude:(double)longitude andAddress:(NSString *)address
 {
     NSDictionary *ext = nil;
-    if (_isRobot) {
-        ext = @{kRobot_Message_Ext:[NSNumber numberWithBool:YES]};
-    }
+    ext = @{@"nickName":[Tools getValueFromKey:@"nickName"],@"headUrl":[Tools getValueFromKey:@"headUrl"]};
     EMMessage *locationMessage = [ChatSendHelper sendLocationLatitude:latitude longitude:longitude address:address toUsername:_conversation.chatter messageType:[self messageType] requireEncryption:NO ext:ext];
     [self addMessage:locationMessage];
 }
