@@ -12,8 +12,6 @@
 
 @interface CPTaPicCell ()
 
-// 配图
-@property (weak, nonatomic) IBOutlet UIImageView *pictureView;
 
 @end
 

@@ -9,10 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "CPTaPublishStatus.h"
 
+
+typedef void (^TaPictureDidSelected)(CPTaPublishStatus *status,NSIndexPath *path, NSArray *srcView);
+
 @interface CPTaPublishCell : UITableViewCell
 
 @property (nonatomic,strong) CPTaPublishStatus *publishStatus;
 @property (nonatomic,assign) BOOL isFirst;
+
+@property (nonatomic,copy) TaPictureDidSelected taPictureDidSelected;
 
 + (NSString *)identifier;
 
