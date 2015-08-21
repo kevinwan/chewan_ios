@@ -15,5 +15,6 @@
 @property (nonatomic, copy) NSString *carBrandLogo;
 @property (nonatomic, copy) NSString *carModel;
 @property (nonatomic, copy) NSArray *users;
+@property (nonatomic, copy) NSString *chatGroupId;
 
 @end

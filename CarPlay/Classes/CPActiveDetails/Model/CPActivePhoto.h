@@ -13,4 +13,6 @@
 /** 缩略图 */
 @property (nonatomic, copy) NSString *thumbnail_pic;
 
+// 原图
+@property (nonatomic, copy) NSString *original_pic;
 @end

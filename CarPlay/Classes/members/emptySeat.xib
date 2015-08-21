@@ -36,7 +36,7 @@
                         <action selector="cancelSeatButton:" destination="-1" eventType="touchUpInside" id="bQl-2J-6eL"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gIo-DH-pbi">
+                <button opaque="NO" tag="1000" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gIo-DH-pbi" customClass="CPModelButton">
                     <rect key="frame" x="145" y="133" width="125" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="125" id="mLR-ye-QqC"/>

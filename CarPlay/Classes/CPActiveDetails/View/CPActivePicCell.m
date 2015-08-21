@@ -11,7 +11,7 @@
 #import "CPActivePhoto.h"
 
 @interface CPActivePicCell()
-@property (nonatomic,strong) UIImageView *pictureView;
+
 @end
 
 @implementation CPActivePicCell

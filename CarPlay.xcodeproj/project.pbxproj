@@ -131,6 +131,16 @@
 		6BCF66111B6208C700358190 /* CPActiveIconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCF66031B6208C700358190 /* CPActiveIconCell.m */; };
 		6BCF66121B6208C700358190 /* CPActivePicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCF66051B6208C700358190 /* CPActivePicCell.m */; };
 		6BCF66131B6208C700358190 /* CPDiscussCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCF66071B6208C700358190 /* CPDiscussCell.m */; };
+		A51EBB421B86EBAD001A8138 /* carCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A51EBB3A1B86EBAD001A8138 /* carCell.m */; };
+		A51EBB431B86EBAD001A8138 /* memberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A51EBB3C1B86EBAD001A8138 /* memberCell.m */; };
+		A51EBB441B86EBAD001A8138 /* emptySeat.xib in Resources */ = {isa = PBXBuildFile; fileRef = A51EBB3D1B86EBAD001A8138 /* emptySeat.xib */; };
+		A51EBB451B86EBAD001A8138 /* Members.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A51EBB3E1B86EBAD001A8138 /* Members.storyboard */; };
+		A51EBB461B86EBAD001A8138 /* MembersController.m in Sources */ = {isa = PBXBuildFile; fileRef = A51EBB401B86EBAD001A8138 /* MembersController.m */; };
+		A51EBB4A1B86EC1A001A8138 /* NSMutableArray+CPUtilityButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = A51EBB491B86EC1A001A8138 /* NSMutableArray+CPUtilityButtons.m */; };
+		A51EBB5E1B86EDFB001A8138 /* carManageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A51EBB581B86EDFB001A8138 /* carManageCell.m */; };
+		A51EBB5F1B86EDFB001A8138 /* memberManageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A51EBB5A1B86EDFB001A8138 /* memberManageCell.m */; };
+		A51EBB601B86EDFB001A8138 /* MembersManage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A51EBB5B1B86EDFB001A8138 /* MembersManage.storyboard */; };
+		A51EBB611B86EDFB001A8138 /* MembersManageController.m in Sources */ = {isa = PBXBuildFile; fileRef = A51EBB5D1B86EDFB001A8138 /* MembersManageController.m */; };
 		A57581771B67871300A5E681 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A575813F1B67871300A5E681 /* UMSocialLocalizable.strings */; };
 		A57581781B67871300A5E681 /* libUMSocial_Sdk_4.2.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A575814D1B67871300A5E681 /* libUMSocial_Sdk_4.2.3.a */; };
 		A57581791B67871300A5E681 /* libUMSocial_Sdk_Comment_4.2.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A575814E1B67871300A5E681 /* libUMSocial_Sdk_Comment_4.2.3.a */; };
@@ -160,18 +170,9 @@
 		A57581971B6787BF00A5E681 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A57581961B6787BF00A5E681 /* libiconv.dylib */; };
 		A57581991B6787CA00A5E681 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A57581981B6787CA00A5E681 /* Security.framework */; };
 		A575819B1B6787D600A5E681 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A575819A1B6787D600A5E681 /* SystemConfiguration.framework */; };
-		A57581A71B6789C500A5E681 /* carManageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A575819E1B6789C500A5E681 /* carManageCell.m */; };
 		A57581A81B6789C500A5E681 /* downSeat.m in Sources */ = {isa = PBXBuildFile; fileRef = A57581A01B6789C500A5E681 /* downSeat.m */; };
 		A57581A91B6789C500A5E681 /* downSeat.xib in Resources */ = {isa = PBXBuildFile; fileRef = A57581A11B6789C500A5E681 /* downSeat.xib */; };
-		A57581AA1B6789C500A5E681 /* memberManageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A57581A31B6789C500A5E681 /* memberManageCell.m */; };
-		A57581AB1B6789C500A5E681 /* MembersManage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A57581A41B6789C500A5E681 /* MembersManage.storyboard */; };
-		A57581AC1B6789C500A5E681 /* MembersManageController.m in Sources */ = {isa = PBXBuildFile; fileRef = A57581A61B6789C500A5E681 /* MembersManageController.m */; };
-		A57581C51B6789D500A5E681 /* carCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A57581AF1B6789D500A5E681 /* carCell.m */; };
 		A57581C61B6789D500A5E681 /* emptySeat.m in Sources */ = {isa = PBXBuildFile; fileRef = A57581B11B6789D500A5E681 /* emptySeat.m */; };
-		A57581C71B6789D500A5E681 /* emptySeat.xib in Resources */ = {isa = PBXBuildFile; fileRef = A57581B21B6789D500A5E681 /* emptySeat.xib */; };
-		A57581C81B6789D500A5E681 /* memberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A57581B41B6789D500A5E681 /* memberCell.m */; };
-		A57581C91B6789D500A5E681 /* Members.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A57581B51B6789D500A5E681 /* Members.storyboard */; };
-		A57581CA1B6789D500A5E681 /* MembersController.m in Sources */ = {isa = PBXBuildFile; fileRef = A57581B71B6789D500A5E681 /* MembersController.m */; };
 		A57581CB1B6789D500A5E681 /* cars.m in Sources */ = {isa = PBXBuildFile; fileRef = A57581BA1B6789D500A5E681 /* cars.m */; };
 		A57581CC1B6789D500A5E681 /* members.m in Sources */ = {isa = PBXBuildFile; fileRef = A57581BC1B6789D500A5E681 /* members.m */; };
 		A57581CD1B6789D500A5E681 /* users.m in Sources */ = {isa = PBXBuildFile; fileRef = A57581BE1B6789D500A5E681 /* users.m */; };
@@ -377,7 +378,6 @@
 		6B4EF1461B4036EE00292BD4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		6B4EF1491B4036EE00292BD4 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6B4EF14B1B4036EE00292BD4 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		6B4EF1651B4037DB00292BD4 /* CP_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CP_Prefix.pch; sourceTree = "<group>"; };
 		6B4EF1661B403A5D00292BD4 /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
 		6B4EF1671B403A5D00292BD4 /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
 		6B512F921B7C503800258CA0 /* EMCDDeviceManagerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EMCDDeviceManagerDelegate.h; sourceTree = "<group>"; };
@@ -603,6 +603,24 @@
 		6BCF66061B6208C700358190 /* CPDiscussCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPDiscussCell.h; sourceTree = "<group>"; };
 		6BCF66071B6208C700358190 /* CPDiscussCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPDiscussCell.m; sourceTree = "<group>"; };
 		8D517A33E680C9B10E7DB410 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		A51EBB391B86EBAD001A8138 /* carCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = carCell.h; sourceTree = "<group>"; };
+		A51EBB3A1B86EBAD001A8138 /* carCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = carCell.m; sourceTree = "<group>"; };
+		A51EBB3B1B86EBAD001A8138 /* memberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memberCell.h; sourceTree = "<group>"; };
+		A51EBB3C1B86EBAD001A8138 /* memberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = memberCell.m; sourceTree = "<group>"; };
+		A51EBB3D1B86EBAD001A8138 /* emptySeat.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = emptySeat.xib; sourceTree = "<group>"; };
+		A51EBB3E1B86EBAD001A8138 /* Members.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Members.storyboard; sourceTree = "<group>"; };
+		A51EBB3F1B86EBAD001A8138 /* MembersController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MembersController.h; sourceTree = "<group>"; };
+		A51EBB401B86EBAD001A8138 /* MembersController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MembersController.m; sourceTree = "<group>"; };
+		A51EBB481B86EC1A001A8138 /* NSMutableArray+CPUtilityButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+CPUtilityButtons.h"; sourceTree = "<group>"; };
+		A51EBB491B86EC1A001A8138 /* NSMutableArray+CPUtilityButtons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+CPUtilityButtons.m"; sourceTree = "<group>"; };
+		A51EBB571B86EDFB001A8138 /* carManageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = carManageCell.h; sourceTree = "<group>"; };
+		A51EBB581B86EDFB001A8138 /* carManageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = carManageCell.m; sourceTree = "<group>"; };
+		A51EBB591B86EDFB001A8138 /* memberManageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memberManageCell.h; sourceTree = "<group>"; };
+		A51EBB5A1B86EDFB001A8138 /* memberManageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = memberManageCell.m; sourceTree = "<group>"; };
+		A51EBB5B1B86EDFB001A8138 /* MembersManage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MembersManage.storyboard; sourceTree = "<group>"; };
+		A51EBB5C1B86EDFB001A8138 /* MembersManageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MembersManageController.h; sourceTree = "<group>"; };
+		A51EBB5D1B86EDFB001A8138 /* MembersManageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MembersManageController.m; sourceTree = "<group>"; };
+		A51EBB621B86EE7F001A8138 /* CP_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CP_Prefix.pch; sourceTree = "<group>"; };
 		A57581401B67871300A5E681 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
 		A57581421B67871300A5E681 /* UMSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocial.h; sourceTree = "<group>"; };
 		A57581431B67871300A5E681 /* UMSocialAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialAccountManager.h; sourceTree = "<group>"; };
@@ -659,26 +677,11 @@
 		A57581961B6787BF00A5E681 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		A57581981B6787CA00A5E681 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A575819A1B6787D600A5E681 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		A575819D1B6789C500A5E681 /* carManageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = carManageCell.h; sourceTree = "<group>"; };
-		A575819E1B6789C500A5E681 /* carManageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = carManageCell.m; sourceTree = "<group>"; };
 		A575819F1B6789C500A5E681 /* downSeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = downSeat.h; sourceTree = "<group>"; };
 		A57581A01B6789C500A5E681 /* downSeat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = downSeat.m; sourceTree = "<group>"; };
 		A57581A11B6789C500A5E681 /* downSeat.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = downSeat.xib; sourceTree = "<group>"; };
-		A57581A21B6789C500A5E681 /* memberManageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memberManageCell.h; sourceTree = "<group>"; };
-		A57581A31B6789C500A5E681 /* memberManageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = memberManageCell.m; sourceTree = "<group>"; };
-		A57581A41B6789C500A5E681 /* MembersManage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MembersManage.storyboard; sourceTree = "<group>"; };
-		A57581A51B6789C500A5E681 /* MembersManageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MembersManageController.h; sourceTree = "<group>"; };
-		A57581A61B6789C500A5E681 /* MembersManageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MembersManageController.m; sourceTree = "<group>"; };
-		A57581AE1B6789D500A5E681 /* carCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = carCell.h; sourceTree = "<group>"; };
-		A57581AF1B6789D500A5E681 /* carCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = carCell.m; sourceTree = "<group>"; };
 		A57581B01B6789D500A5E681 /* emptySeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = emptySeat.h; sourceTree = "<group>"; };
 		A57581B11B6789D500A5E681 /* emptySeat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = emptySeat.m; sourceTree = "<group>"; };
-		A57581B21B6789D500A5E681 /* emptySeat.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = emptySeat.xib; sourceTree = "<group>"; };
-		A57581B31B6789D500A5E681 /* memberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memberCell.h; sourceTree = "<group>"; };
-		A57581B41B6789D500A5E681 /* memberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = memberCell.m; sourceTree = "<group>"; };
-		A57581B51B6789D500A5E681 /* Members.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Members.storyboard; sourceTree = "<group>"; };
-		A57581B61B6789D500A5E681 /* MembersController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MembersController.h; sourceTree = "<group>"; };
-		A57581B71B6789D500A5E681 /* MembersController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MembersController.m; sourceTree = "<group>"; };
 		A57581B91B6789D500A5E681 /* cars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cars.h; sourceTree = "<group>"; };
 		A57581BA1B6789D500A5E681 /* cars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cars.m; sourceTree = "<group>"; };
 		A57581BB1B6789D500A5E681 /* members.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = members.h; sourceTree = "<group>"; };
@@ -1099,7 +1102,7 @@
 				E372D8551B62171E00B4FC5C /* macro.h */,
 				E3B1277A1B54DECB005B1174 /* Images.xcassets */,
 				6B4959CC1B33A23900DB63EA /* Info.plist */,
-				6B4EF1651B4037DB00292BD4 /* CP_Prefix.pch */,
+				A51EBB621B86EE7F001A8138 /* CP_Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1909,16 +1912,18 @@
 		A575819C1B6789C500A5E681 /* MemberManage */ = {
 			isa = PBXGroup;
 			children = (
-				A575819D1B6789C500A5E681 /* carManageCell.h */,
-				A575819E1B6789C500A5E681 /* carManageCell.m */,
+				A51EBB571B86EDFB001A8138 /* carManageCell.h */,
+				A51EBB581B86EDFB001A8138 /* carManageCell.m */,
+				A51EBB591B86EDFB001A8138 /* memberManageCell.h */,
+				A51EBB5A1B86EDFB001A8138 /* memberManageCell.m */,
+				A51EBB5B1B86EDFB001A8138 /* MembersManage.storyboard */,
+				A51EBB5C1B86EDFB001A8138 /* MembersManageController.h */,
+				A51EBB5D1B86EDFB001A8138 /* MembersManageController.m */,
+				A51EBB481B86EC1A001A8138 /* NSMutableArray+CPUtilityButtons.h */,
+				A51EBB491B86EC1A001A8138 /* NSMutableArray+CPUtilityButtons.m */,
 				A575819F1B6789C500A5E681 /* downSeat.h */,
 				A57581A01B6789C500A5E681 /* downSeat.m */,
 				A57581A11B6789C500A5E681 /* downSeat.xib */,
-				A57581A21B6789C500A5E681 /* memberManageCell.h */,
-				A57581A31B6789C500A5E681 /* memberManageCell.m */,
-				A57581A41B6789C500A5E681 /* MembersManage.storyboard */,
-				A57581A51B6789C500A5E681 /* MembersManageController.h */,
-				A57581A61B6789C500A5E681 /* MembersManageController.m */,
 			);
 			path = MemberManage;
 			sourceTree = "<group>";
@@ -1926,16 +1931,16 @@
 		A57581AD1B6789D500A5E681 /* Members */ = {
 			isa = PBXGroup;
 			children = (
-				A57581AE1B6789D500A5E681 /* carCell.h */,
-				A57581AF1B6789D500A5E681 /* carCell.m */,
+				A51EBB391B86EBAD001A8138 /* carCell.h */,
+				A51EBB3A1B86EBAD001A8138 /* carCell.m */,
+				A51EBB3B1B86EBAD001A8138 /* memberCell.h */,
+				A51EBB3C1B86EBAD001A8138 /* memberCell.m */,
+				A51EBB3D1B86EBAD001A8138 /* emptySeat.xib */,
+				A51EBB3E1B86EBAD001A8138 /* Members.storyboard */,
+				A51EBB3F1B86EBAD001A8138 /* MembersController.h */,
+				A51EBB401B86EBAD001A8138 /* MembersController.m */,
 				A57581B01B6789D500A5E681 /* emptySeat.h */,
 				A57581B11B6789D500A5E681 /* emptySeat.m */,
-				A57581B21B6789D500A5E681 /* emptySeat.xib */,
-				A57581B31B6789D500A5E681 /* memberCell.h */,
-				A57581B41B6789D500A5E681 /* memberCell.m */,
-				A57581B51B6789D500A5E681 /* Members.storyboard */,
-				A57581B61B6789D500A5E681 /* MembersController.h */,
-				A57581B71B6789D500A5E681 /* MembersController.m */,
 				A57581B81B6789D500A5E681 /* Models */,
 				A57581BF1B6789D500A5E681 /* offerCar.h */,
 				A57581C01B6789D500A5E681 /* offerCar.m */,
@@ -2706,13 +2711,13 @@
 				E372D8421B6216C100B4FC5C /* CPRegisterStep2ViewController.xib in Resources */,
 				A57581811B67871300A5E681 /* UMSShareListController.xib in Resources */,
 				6BCF66101B6208C700358190 /* CPActiveDetailsHead.xib in Resources */,
-				A57581C71B6789D500A5E681 /* emptySeat.xib in Resources */,
 				A575817B1B67871300A5E681 /* UMSCommentInputController.xib in Resources */,
 				A575817D1B67871300A5E681 /* UMShareEditViewController.xib in Resources */,
 				6B5F9B6D1B5D29FE00F9D1E8 /* CPCityController.storyboard in Resources */,
 				A57581801B67871300A5E681 /* UMSnsAccountViewController.xib in Resources */,
 				E372D82F1B6216C100B4FC5C /* CPNewPassWordViewController.xib in Resources */,
 				6BB09AA21B675BF100E0D77D /* CPEditHeadIconCell.xib in Resources */,
+				A51EBB601B86EDFB001A8138 /* MembersManage.storyboard in Resources */,
 				E3FCDD4F1B5E491400F9C379 /* CPEditActivityController.storyboard in Resources */,
 				E36C96271B53C78200D3EDBB /* CPSubscribePersonController.storyboard in Resources */,
 				A57581851B67871300A5E681 /* WeiboSDK.bundle in Resources */,
@@ -2725,6 +2730,7 @@
 				E36C961C1B53BA6B00D3EDBB /* CPActivityApplyControllerView.storyboard in Resources */,
 				E31B087F1B8418BA008DA1D4 /* InfoPlist.strings in Resources */,
 				E3BEAB271B859FCD004B5FD8 /* CPChatGroupDetailController.storyboard in Resources */,
+				A51EBB451B86EBAD001A8138 /* Members.storyboard in Resources */,
 				A57581A91B6789C500A5E681 /* downSeat.xib in Resources */,
 				E372D83E1B6216C100B4FC5C /* CPRegisterCellsTableViewCell2.xib in Resources */,
 				E31B087D1B8418BA008DA1D4 /* InfoPlist.strings in Resources */,
@@ -2732,7 +2738,6 @@
 				E31B087E1B8418BA008DA1D4 /* Localizable.strings in Resources */,
 				E372D8441B6216C100B4FC5C /* registerViewController.xib in Resources */,
 				E3292A291B6A50700023677F /* CPSelectView.xib in Resources */,
-				A57581C91B6789D500A5E681 /* Members.storyboard in Resources */,
 				6BC8A3ED1B6A4DB700B199F2 /* CPTaDetailsHead.xib in Resources */,
 				E372D8401B6216C100B4FC5C /* CPRegisterCellsTableViewCell3.xib in Resources */,
 				6BB09A841B66650C00E0D77D /* CPMyBaseCell.xib in Resources */,
@@ -2741,6 +2746,7 @@
 				E372D82D1B6216C100B4FC5C /* CPForgetPasswordViewController.xib in Resources */,
 				A57581881B67871300A5E681 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				A575817E1B67871300A5E681 /* UMShareEditViewControlleriPad.xib in Resources */,
+				A51EBB441B86EBAD001A8138 /* emptySeat.xib in Resources */,
 				6B9CFD6C1B6CBED500EF167D /* CPFeedbackViewController.storyboard in Resources */,
 				E372D83A1B6216C100B4FC5C /* CPEditUsernameViewController.xib in Resources */,
 				A57581771B67871300A5E681 /* UMSocialLocalizable.strings in Resources */,
@@ -2752,7 +2758,6 @@
 				A57581CF1B6789D500A5E681 /* offerCar.xib in Resources */,
 				E372D8331B6216C100B4FC5C /* CarOwnersCertificationViewController.xib in Resources */,
 				E3EEDFF61B53951D00595333 /* CPNewMessageController.storyboard in Resources */,
-				A57581AB1B6789C500A5E681 /* MembersManage.storyboard in Resources */,
 				E372D83C1B6216C100B4FC5C /* CPRegisterCellsTableViewCell1.xib in Resources */,
 				6BB09A9C1B675A3E00E0D77D /* CPEditInfoTableViewController.xib in Resources */,
 				E328F0671B621DA700A20DCE /* city.plist in Resources */,
@@ -2818,6 +2823,7 @@
 				E36AFE661B579F0E0081F499 /* ZHPickView.h in Sources */,
 				6B9711771B7DFAA700EA0F09 /* Emoji.m in Sources */,
 				6B97114E1B7DF60C00EA0F09 /* MessageModel.m in Sources */,
+				A51EBB611B86EDFB001A8138 /* MembersManageController.m in Sources */,
 				6B9711661B7DF74200EA0F09 /* NSDateFormatter+Category.m in Sources */,
 				A57582071B6789E500A5E681 /* NSDictionary+Dealer.m in Sources */,
 				E36CC95E1B6C7D8B00380E53 /* CommonUtility.m in Sources */,
@@ -2837,7 +2843,6 @@
 				E30BD5891B54EC4A00FD9030 /* CPMySubscribeFrameModel.m in Sources */,
 				6BCF660A1B6208C700358190 /* CPActiveMember.m in Sources */,
 				E372D8571B62172400B4FC5C /* AppDelegate.m in Sources */,
-				A57581CA1B6789D500A5E681 /* MembersController.m in Sources */,
 				6B512FA41B7C504400258CA0 /* EMAudioPlayerUtil.m in Sources */,
 				E3E1DC001B5CA87C00386B18 /* CPReturnValueControllerView.m in Sources */,
 				E35B04281B5645BC002C6655 /* HMStatusPhotoView.m in Sources */,
@@ -2867,14 +2872,15 @@
 				E3A61B1C1B7EEC8B00B641E0 /* CPMapPlaceSearchRequest.m in Sources */,
 				E3C611521B5F4A6C00B7E73A /* ZYSearchBar.m in Sources */,
 				A575820D1B6789E500A5E681 /* NSObject+SMFoundation.m in Sources */,
+				A51EBB461B86EBAD001A8138 /* MembersController.m in Sources */,
 				6B5F9B711B5D29FE00F9D1E8 /* CPHomeUser.m in Sources */,
 				6B9711401B7DF60C00EA0F09 /* DXMessageToolBar.m in Sources */,
 				E30A68CA1B7DD64100EB3D23 /* CPGuideView.m in Sources */,
 				6B512FB71B7C522E00258CA0 /* wav.mm in Sources */,
 				6BCF66111B6208C700358190 /* CPActiveIconCell.m in Sources */,
+				A51EBB5E1B86EDFB001A8138 /* carManageCell.m in Sources */,
 				6BCF660B1B6208C700358190 /* CPActivePhoto.m in Sources */,
 				E3EEDFF71B53951D00595333 /* CPBadgeView.m in Sources */,
-				A57581A71B6789C500A5E681 /* carManageCell.m in Sources */,
 				6B5F9B6C1B5D29FE00F9D1E8 /* CPCityController.m in Sources */,
 				A57581C61B6789D500A5E681 /* emptySeat.m in Sources */,
 				A575821A1B6789E500A5E681 /* UITextField+SMFoundation.m in Sources */,
@@ -2884,6 +2890,7 @@
 				6B97114A1B7DF60C00EA0F09 /* EMChatVideoBubbleView.m in Sources */,
 				E310BF711B7DF7BB00750BF4 /* UUDatePicker.m in Sources */,
 				6B4EF15D1B4036EE00292BD4 /* CPTabBarController.m in Sources */,
+				A51EBB5F1B86EDFB001A8138 /* memberManageCell.m in Sources */,
 				6BCB87621B79A0FF0012D035 /* CPNoNet.m in Sources */,
 				E3EEDFF51B53951D00595333 /* CPNewMessageController.m in Sources */,
 				E3CE37251B5A4085008434B5 /* CPActivityNameController.m in Sources */,
@@ -2895,6 +2902,7 @@
 				A57582131B6789E500A5E681 /* UIBarButtonItem+SMFoundation.m in Sources */,
 				6B5F9B731B5D29FE00F9D1E8 /* CPHomePicCell.m in Sources */,
 				6BCF660C1B6208C700358190 /* CPActiveStatus.m in Sources */,
+				A51EBB431B86EBAD001A8138 /* memberCell.m in Sources */,
 				6B9711571B7DF63F00EA0F09 /* RobotManager.m in Sources */,
 				6B9CFD691B6CB54C00EF167D /* CPHowToPlayInfoViewController.m in Sources */,
 				A57582081B6789E500A5E681 /* NSArray+SMFoundation.m in Sources */,
@@ -2910,6 +2918,7 @@
 				6B82E6311B81AB7C0097ECE7 /* CPOfficialActivityCell.m in Sources */,
 				6B97116A1B7DF74200EA0F09 /* UIViewController+DismissKeyboard.m in Sources */,
 				A57582171B6789E500A5E681 /* UIImageView+SMFoundation.m in Sources */,
+				A51EBB421B86EBAD001A8138 /* carCell.m in Sources */,
 				E36CC9641B6C7DA400380E53 /* LineDashPolyline.m in Sources */,
 				6B64938C1B4D04BE00C197D2 /* BaseViewController.m in Sources */,
 				6BC8A3E91B6A4DB700B199F2 /* CPTaMember.m in Sources */,
@@ -2956,7 +2965,6 @@
 				E3CE02791B6885BB00808698 /* CPNewMsgModel.m in Sources */,
 				6B512FB61B7C522E00258CA0 /* amrFileCodec.mm in Sources */,
 				E3C14F4A1B81815F006A0F52 /* MJPhoto.m in Sources */,
-				A57581C81B6789D500A5E681 /* memberCell.m in Sources */,
 				E3CFB1571B7213580058B8C3 /* ZYSegment.m in Sources */,
 				6B9711781B7DFAA700EA0F09 /* EmojiEmoticons.m in Sources */,
 				6BB09A831B66650C00E0D77D /* CPMyBaseCell.m in Sources */,
@@ -2981,6 +2989,7 @@
 				E372D8321B6216C100B4FC5C /* CarOwnersCertificationViewController.m in Sources */,
 				E33BAE841B58DC110021DED6 /* NSDate+Extension.m in Sources */,
 				E3C14F4C1B81815F006A0F52 /* MJPhotoBrowser.m in Sources */,
+				A51EBB4A1B86EC1A001A8138 /* NSMutableArray+CPUtilityButtons.m in Sources */,
 				E3CE02761B68671800808698 /* UIViewController+ZY.m in Sources */,
 				A57582141B6789E500A5E681 /* UIButton+SMFoundation.m in Sources */,
 				6B9711471B7DF60C00EA0F09 /* EMChatImageBubbleView.m in Sources */,
@@ -3029,13 +3038,11 @@
 				E35B04271B5645BC002C6655 /* HMStatusPhotosView.m in Sources */,
 				E3EEE0051B53952E00595333 /* UIView+Extension.m in Sources */,
 				E372D8451B6216C100B4FC5C /* serviceTermsViewController.m in Sources */,
-				A57581AA1B6789C500A5E681 /* memberManageCell.m in Sources */,
 				E372D82E1B6216C100B4FC5C /* CPNewPassWordViewController.m in Sources */,
 				6B62D12B1B83052A001F2A5B /* CPOfficialActivity.m in Sources */,
 				E3C611491B5F328C00B7E73A /* CPCreatActivityModel.m in Sources */,
 				E310BF6B1B7DE69500750BF4 /* ChatListCell.m in Sources */,
 				6B512FC41B7C70F400258CA0 /* AppDelegate+EaseMob.m in Sources */,
-				A57581AC1B6789C500A5E681 /* MembersManageController.m in Sources */,
 				E35E6FCA1B54B076001212D6 /* CPMyPublishCell.m in Sources */,
 				E338A7481B7099CE00E706C2 /* CPRefreshFooter.m in Sources */,
 				E3B127791B54D9C2005B1174 /* CPChatButton.m in Sources */,
@@ -3047,7 +3054,6 @@
 				E372D82C1B6216C100B4FC5C /* CPForgetPasswordViewController.m in Sources */,
 				E3C14F531B81D6BE006A0F52 /* CPBadgeIconButton.m in Sources */,
 				6BC8A3E61B6A4DB700B199F2 /* CPTaDetailsController.m in Sources */,
-				A57581C51B6789D500A5E681 /* carCell.m in Sources */,
 				A57581A81B6789C500A5E681 /* downSeat.m in Sources */,
 				E3FCDD4A1B5E34E200F9C379 /* CPAnnotation.m in Sources */,
 				E372D8431B6216C100B4FC5C /* registerViewController.m in Sources */,

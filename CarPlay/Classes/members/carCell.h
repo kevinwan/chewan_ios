@@ -8,13 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "cars.h"
-@interface carCell : UITableViewCell
+@interface carCell : SWTableViewCell
 @property (weak, nonatomic) IBOutlet UIButton *seatMain;
 @property (weak, nonatomic) IBOutlet UIButton *seatone;
 @property (weak, nonatomic) IBOutlet UIButton *seatTwo;
 @property (weak, nonatomic) IBOutlet UIButton *seatThree;
-@property (weak, nonatomic) IBOutlet UIButton *seatLastOne;
-@property (weak, nonatomic) IBOutlet UIButton *seatLastTwo;
-@property (weak, nonatomic) IBOutlet UIButton *seatLastThree;
+@property (nonatomic, strong) NSString *totalSeat;
 @property (nonatomic, strong) cars *models;
+//@property (nonatomic, strong) UIButton *subButton;
 @end

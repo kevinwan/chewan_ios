@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "UIResponder+Router.h"
+#import "CPActiveStatus.h"
 
+
+
+typedef void (^PictureDidSelected)(CPActiveStatus *status,NSIndexPath *path, NSArray *srcView);
 typedef void(^GoTaDetails)();
 
 
@@ -18,6 +22,7 @@ typedef void(^GoTaDetails)();
 
 // 回调函数
 @property (nonatomic,copy) GoTaDetails goTaDetails;
+@property (nonatomic,copy) PictureDidSelected pictureDidSelected;
 
 // 活动详情
 @property (nonatomic,strong) CPActiveStatus *activeStatus;
