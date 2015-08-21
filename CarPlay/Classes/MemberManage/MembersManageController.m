@@ -40,6 +40,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *ageButton;
 @property (weak, nonatomic) IBOutlet UIImageView *iconImage;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *begainChatButton;
 //遮盖
 @property (nonatomic, strong) UIButton *cover;
 @property (nonatomic, strong) UIView *carView;
@@ -54,6 +55,7 @@
 @property (nonatomic, copy) NSString *shareContent;
 @property (nonatomic, copy) NSString *imgUrl;
 @property (nonatomic, strong) UIButton *subButton;
+@property (nonatomic, strong) NSString *chatGroupId;
 @end
 
 @implementation MembersManageController
@@ -98,6 +100,12 @@
 
 - (void) setupFontAndColor {
     self.memberTableView.separatorColor = [AppAppearance lineColor];
+    [self.begainChatButton setTitle:@"开始畅聊" forState:UIControlStateNormal];
+    [self.begainChatButton setTitleColor:[AppAppearance titleColor] forState:UIControlStateNormal];
+    [self.begainChatButton setBackgroundColor:[AppAppearance greenColor]];
+    self.begainChatButton.layer.cornerRadius = 3;
+    [self.begainChatButton clipsToBounds];
+
 }
 
 //加载成员信息和car信息
@@ -127,6 +135,8 @@
             self.shareTitle = responseObject[@"data"][@"shareTitle"];
             self.shareUrl = responseObject[@"data"][@"shareUrl"];
             self.imgUrl = responseObject[@"data"][@"imgUrl"];
+            self.chatGroupId = responseObject[@"data"][@"chatGroupId"];
+
             [self.membersArray removeAllObjects];
             [self.membersArray addObjectsFromArray:memberModel];
             [self.carsArray removeAllObjects];
@@ -494,6 +504,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+//开始畅聊
+- (IBAction)begainChatButtonDIdCLick:(UIButton *)sender {
+    
 }
 
 #pragma mark - lazy

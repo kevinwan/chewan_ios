@@ -88,7 +88,7 @@
     [self.outButton setBackgroundColor:[AppAppearance redColor]];
     self.outButton.layer.cornerRadius = 3;
     [self.outButton clipsToBounds];
-    [self.beginChatButton setTitle:@"开始群聊" forState:UIControlStateNormal];
+    [self.beginChatButton setTitle:@"开始畅聊" forState:UIControlStateNormal];
     [self.beginChatButton setTitleColor:[AppAppearance titleColor] forState:UIControlStateNormal];
     [self.beginChatButton setBackgroundColor:[AppAppearance greenColor]];
     self.beginChatButton.layer.cornerRadius = 3;
@@ -284,7 +284,7 @@
     self.subButton = sub;
 //    [(carCell *)cell setSubButton:sub];
     SQLog(@"%@",sub);
-    if ([button imageForState:UIControlStateNormal]!= nil) {
+    if ([sub imageForState:UIControlStateNormal]!= nil) {
         [self.view alert:@"此座位已有人"];
         return;
     }
