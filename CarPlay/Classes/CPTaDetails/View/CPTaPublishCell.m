@@ -111,8 +111,8 @@
     
     
     // 刷新，collectionView数据清零
-    [self.picColView reloadData];
-    [self.iconColView reloadData];
+//    [self.picColView reloadData];
+//    [self.iconColView reloadData];
     
     // 测试
 //    NSLog(@"%@",self.bottomIconList);
@@ -159,7 +159,7 @@
     if (collectionView == self.picColView) {
         return self.publishStatus.cover.count;
     }else{
-        return self.publishStatus.members.count;
+        return self.publishStatus.membersCount;
     }
 }
 
@@ -170,7 +170,6 @@
         
         // 赋值
         cell.taPhoto = self.publishStatus.cover[indexPath.item];
-        NSLog(@"%ld",indexPath.item);
         return cell;
     }else{
         CPTaIconCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[CPTaIconCell identifier] forIndexPath:indexPath];
