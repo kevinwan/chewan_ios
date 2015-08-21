@@ -151,17 +151,17 @@ static NSString *kGroupName = @"GroupName";
     for (EMConversation *conversation in conversations) {
         unreadCount += conversation.unreadMessagesCount;
     }
-    UIViewController *vc = self.childViewControllers[1];
-    NSInteger badgeValue = [vc.tabBarItem.badgeValue integerValue] + unreadCount;
+//    UIViewController *vc = self.childViewControllers[1];
+//    NSInteger badgeValue = [vc.tabBarItem.badgeValue integerValue] + unreadCount;
     
-    if (badgeValue > 0) {
-        vc.tabBarItem.badgeValue = [NSString stringWithFormat:@"%i",(int)badgeValue];
+    if (unreadCount > 0) {
+        [self.tabBar showBadgeOnItemIndex:1];
     }else{
-        vc.tabBarItem.badgeValue = nil;
+        [self.tabBar hideBadgeOnItemIndex:1];
     }
     
-    UIApplication *application = [UIApplication sharedApplication];
-    [application setApplicationIconBadgeNumber:unreadCount];
+//    UIApplication *application = [UIApplication sharedApplication];
+//    [application setApplicationIconBadgeNumber:unreadCount];
 }
 - (void)didReceiveMessage:(EMMessage *)message{
     BOOL needShowNotification = (message.messageType != eMessageTypeChat) ? [self needShowNotification:message.conversationChatter] : YES;

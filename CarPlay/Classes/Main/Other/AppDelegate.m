@@ -183,9 +183,10 @@
 //            UITabBarController *tabVc = (UITabBarController *)[UIApplication sharedApplication].keyWindow.rootViewController;
             UIViewController *vc = _tabVc.childViewControllers[1];
             if (newMsgCount + activityApplyCount > 0) {
-            vc.tabBarItem.badgeValue = [NSString stringWithFormat:@"%zd",newMsgCount+ activityApplyCount];
+//            vc.tabBarItem.badgeValue = [NSString stringWithFormat:@"%zd",newMsgCount+ activityApplyCount];
+                [_tabVc.tabBar showBadgeOnItemIndex:1];
             }else{
-                vc.tabBarItem.badgeValue = nil;
+                [_tabVc.tabBar hideBadgeOnItemIndex:1];
             }
         
         }

@@ -136,6 +136,7 @@
             self.shareUrl = responseObject[@"data"][@"shareUrl"];
             self.imgUrl = responseObject[@"data"][@"imgUrl"];
             self.chatGroupId = responseObject[@"data"][@"chatGroupId"];
+            self.activityTitle = responseObject[@"data"][@"title"];
 
             [self.membersArray removeAllObjects];
             [self.membersArray addObjectsFromArray:memberModel];
@@ -510,7 +511,7 @@
     ChatViewController *chatController;
     
     chatController = [[ChatViewController alloc] initWithChatter:self.chatGroupId conversationType:eConversationTypeGroupChat];
-//    chatController.title = self.act;
+    chatController.title = self.activityTitle;
     
     EMError *error = nil;
     EMGroup *group = [[EaseMob sharedInstance].chatManager fetchGroupInfo:self.chatGroupId error:&error];
