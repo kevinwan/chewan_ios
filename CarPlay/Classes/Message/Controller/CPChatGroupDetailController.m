@@ -107,12 +107,24 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.row == 0 && self.activityId) {
-        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Members" bundle:nil];
         
-        MembersController * vc = sb.instantiateInitialViewController;
-        vc.activityId = self.activityId;
-        
-        [self.navigationController pushViewController:vc animated:YES];
+        if (self.isOrganizer) { // 如果是组织者
+            
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MembersManage" bundle:nil];
+            
+            MembersManageController * vc = sb.instantiateInitialViewController;
+            vc.activityId = self.activityId;
+            [self.navigationController pushViewController:vc animated:YES];
+            
+        }else{ // 如果只是成员
+            
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Members" bundle:nil];
+            
+            MembersController * vc = sb.instantiateInitialViewController;
+            vc.activityId = self.activityId;
+            
+            [self.navigationController pushViewController:vc animated:YES];
+        }
 
     }
 }
