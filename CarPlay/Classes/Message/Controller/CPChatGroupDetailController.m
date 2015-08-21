@@ -107,9 +107,9 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.row == 0 && self.activityId) {
-        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MembersManage" bundle:nil];
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Members" bundle:nil];
         
-        MembersManageController * vc = sb.instantiateInitialViewController;
+        MembersController * vc = sb.instantiateInitialViewController;
         vc.activityId = self.activityId;
         
         [self.navigationController pushViewController:vc animated:YES];
