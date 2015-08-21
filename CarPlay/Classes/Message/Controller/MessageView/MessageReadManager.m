@@ -13,6 +13,7 @@
 #import "MessageReadManager.h"
 //#import "UIImageView+EMWebCache.h"
 #import "EMCDDeviceManager.h"
+#import "ZYNavigationController.h"
 
 static MessageReadManager *detailInstance = nil;
 
@@ -83,7 +84,7 @@ static MessageReadManager *detailInstance = nil;
 - (UINavigationController *)photoNavigationController
 {
     if (_photoNavigationController == nil) {
-        _photoNavigationController = [[UINavigationController alloc] initWithRootViewController:self.photoBrowser];
+        _photoNavigationController = [[ZYNavigationController alloc] initWithRootViewController:self.photoBrowser];
         _photoNavigationController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     }
     

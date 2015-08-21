@@ -264,6 +264,9 @@
     imageView.contentMode=UIViewContentModeScaleToFill;
     [self.scrollView addSubview:imageView];
     
+    UITapGestureRecognizer *singleTap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(photopress:)];
+    [self.scrollView addGestureRecognizer:singleTap2];
+    
     // 分页控件，本质上和scrollView没有任何关系，是两个独立的控件
     _pageControl = [[UIPageControl alloc] init];
 }
@@ -330,8 +333,6 @@
                     [self.scrollView addSubview:imageView];
                 }
                 self.scrollView.delegate=self;
-                UITapGestureRecognizer *singleTap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(photopress:)];
-                [self.scrollView addGestureRecognizer:singleTap2];
                  _scrollView.contentSize = CGSizeMake(SCREEN_WIDTH*[albumPhotos count], 190);
             }
             
