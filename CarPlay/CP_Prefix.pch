@@ -73,4 +73,5 @@
 #import "MembersManageController.h"
 #import "CPGuideView.h" // 新手引导的View
 #import "XMNetWorkTool.h"
+#import "UITabBar+Extension.h"
 #endif
