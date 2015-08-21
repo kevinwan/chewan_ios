@@ -33,6 +33,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *getButton;
 @property (weak, nonatomic) IBOutlet UIButton *outButton;
+@property (weak, nonatomic) IBOutlet UIButton *beginChatButton;
 
 @property (nonatomic, strong) NSMutableArray *membersArray;
 @property (nonatomic, strong) NSMutableArray *carsArray;
@@ -50,6 +51,7 @@
 @property (nonatomic, strong) NSString *createrId;
 @property (nonatomic, strong) ZHPickView *picker;
 @property (nonatomic, strong) UIButton *subButton;
+@property (nonatomic, strong) NSString *chatGroupId;
 @end
 
 @implementation MembersController
@@ -86,6 +88,11 @@
     [self.outButton setBackgroundColor:[AppAppearance redColor]];
     self.outButton.layer.cornerRadius = 3;
     [self.outButton clipsToBounds];
+    [self.beginChatButton setTitle:@"开始群聊" forState:UIControlStateNormal];
+    [self.beginChatButton setTitleColor:[AppAppearance titleColor] forState:UIControlStateNormal];
+    [self.beginChatButton setBackgroundColor:[AppAppearance greenColor]];
+    self.beginChatButton.layer.cornerRadius = 3;
+    [self.beginChatButton clipsToBounds];
     //改tableView的线的颜色
     self.memberTableView.separatorColor = [AppAppearance lineColor];
 }
@@ -113,6 +120,8 @@
             NSArray *memberModel = [members objectArrayWithKeyValuesArray:responseObject[@"data"][@"members"]];
             NSArray *carModel = [cars objectArrayWithKeyValuesArray:responseObject[@"data"][@"cars"]];
             NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"共%@个座位,还剩下%@个座位",responseObject[@"data"][@"totalSeat"],responseObject[@"data"][@"availableSeat"]]];
+            self.chatGroupId = responseObject[@"data"][@"chatGroupId"];
+            SQLog(@"%@",self.chatGroupId);
             [str addAttribute:NSForegroundColorAttributeName value:[AppAppearance redColor] range:NSMakeRange(str.length -4, 2)];
             self.seatLabel.attributedText = str;
             [self.membersArray removeAllObjects];
@@ -132,9 +141,11 @@
             if (self.member) {
                 //如果是成员 打开退出活动按钮
                 self.outButton.hidden = NO;
+                self.beginChatButton.hidden = NO;
                 self.addButton.hidden = YES;
             } else  {
                 self.outButton.hidden = YES;
+                self.beginChatButton.hidden = YES;
                 self.addButton.hidden = NO;
             }
             [self.memberTableView.header endRefreshing];
@@ -589,6 +600,11 @@
         [self.picker removeFromSuperview];
     }
 }
+//开始群聊
+- (IBAction)beginChatButonDidClick:(UIButton *)sender {
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
