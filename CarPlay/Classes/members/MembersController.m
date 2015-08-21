@@ -604,7 +604,7 @@
 - (IBAction)beginChatButonDidClick:(UIButton *)sender {
     ChatViewController *chatController;
 
-    chatController = [[ChatViewController alloc] initWithChatter:@"测试" conversationType:eConversationTypeGroupChat];
+    chatController = [[ChatViewController alloc] initWithChatter:self.chatGroupId conversationType:eConversationTypeGroupChat];
     chatController.delelgate = self;
     chatController.title = @"测试";
  
