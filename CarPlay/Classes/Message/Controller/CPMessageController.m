@@ -164,11 +164,9 @@ typedef enum {
             
             [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0],[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
             if (activityApplyCount + newMsgCount > 0) {
-                
-                self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%zd", activityApplyCount + newMsgCount];
+                [self.tabBarController.tabBar showBadgeOnItemIndex:1];
             }else{
-                
-                self.tabBarItem.badgeValue = nil;
+                [self.tabBarController.tabBar hideBadgeOnItemIndex:1];
             }
             
         }
@@ -460,7 +458,25 @@ typedef enum {
         cell.model = self.datas[indexPath.row];
     }else{
         EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row-2];
-        cell.titleNameLabel.text = conversation.chatter;
+
+        NSString *title = conversation.chatter;
+        if (conversation.conversationType != eConversationTypeChat) {
+            if ([[conversation.ext objectForKey:@"groupSubject"] length])
+            {
+                title = [conversation.ext objectForKey:@"groupSubject"];
+            }
+            else
+            {
+                NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
+                for (EMGroup *group in groupArray) {
+                    if ([group.groupId isEqualToString:conversation.chatter]) {
+                        title = group.groupSubject;
+                        break;
+                    }
+                }
+            }
+        }
+        cell.titleNameLabel.text = title;
         cell.msgLabel.text = [self subTitleMessageByConversation:conversation];
         cell.timeLabel.text = [self lastMessageTimeByConversation:conversation];
         if ([self unreadMessageCountByConversation:conversation]>0) {
