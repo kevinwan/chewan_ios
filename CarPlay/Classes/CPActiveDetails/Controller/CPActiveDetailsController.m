@@ -22,6 +22,8 @@
 #import "NSDictionary+Dealer.h"
 #import "AppAppearance.h"
 #import "ZHPickView.h"
+#import "MJPhotoBrowser.h"
+#import "MJPhoto.h"
 
 @interface CPActiveDetailsController ()<UITableViewDataSource,UITableViewDelegate,ZHPickViewDelegate,UITextFieldDelegate>
 
@@ -177,6 +179,37 @@
             
             [weakSelf.navigationController pushViewController:taViewController animated:YES];
 
+        };
+    }
+    // 弹出图片浏览器
+    if (headView.pictureDidSelected == nil) {
+        //        __weak typeof(self) weakSelf = self;
+        headView.pictureDidSelected = ^(CPActiveStatus *status,NSIndexPath *path, NSArray *srcView){
+            
+            
+            // 1.创建图片浏览器
+            MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+            NSArray *urls = [status.cover valueForKeyPath:@"original_pic"];
+            // 2.设置图片浏览器显示的所有图片
+            NSMutableArray *photos = [NSMutableArray array];
+            NSUInteger count = urls.count;
+            for (int i = 0; i<count; i++) {
+                
+                MJPhoto *photo = [[MJPhoto alloc] init];
+                // 设置图片的路径
+                photo.url = [NSURL URLWithString:urls[i]];
+                // 设置来源于哪一个UIImageView
+                photo.srcImageView = srcView[i];
+                [photos addObject:photo];
+            }
+            browser.photos = photos;
+            
+            // 3.设置默认显示的图片索引
+            browser.currentPhotoIndex = path.item;
+            
+            // 3.显示浏览器
+            [browser show];
+            
         };
     }
     

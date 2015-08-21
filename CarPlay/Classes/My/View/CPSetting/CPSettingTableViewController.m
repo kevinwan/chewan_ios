@@ -10,6 +10,7 @@
 #import "CPMyBaseCell.h"
 #import "LoginViewController.h"
 #import "CPAbout.h"
+#import "ZYNavigationController.h"
 #import "CPVersionIntroduction.h"
 
 @interface CPSettingTableViewController ()<UIAlertViewDelegate>
@@ -114,7 +115,7 @@
         if (!error && info) {
             LoginViewController *loginVC=[[LoginViewController alloc]init];
             [Tools setValueForKey:@(NO) key:NOTIFICATION_HASLOGIN];
-            UINavigationController* nav1 = [[UINavigationController alloc] initWithRootViewController:loginVC];
+            ZYNavigationController* nav1 = [[ZYNavigationController alloc] initWithRootViewController:loginVC];
             self.view.window.rootViewController=nav1;
             [self.view.window makeKeyAndVisible];
         }else{

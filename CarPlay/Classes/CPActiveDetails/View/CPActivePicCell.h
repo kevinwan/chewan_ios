@@ -10,7 +10,7 @@
 @class CPActivePhoto;
 
 @interface CPActivePicCell : UICollectionViewCell
-
+@property (nonatomic,strong) UIImageView *pictureView;
 @property (nonatomic,strong) CPActivePhoto *activePhoto;
 
 // 获取当前cell重用标示符

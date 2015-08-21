@@ -12,7 +12,7 @@
 
 #import "DXChatBarMoreView.h"
 
-#define CHAT_BUTTON_SIZE 50
+#define CHAT_BUTTON_SIZE (self.frame.size.width - 119) / 4
 #define INSETS 8
 
 @implementation DXChatBarMoreView
@@ -30,28 +30,28 @@
 - (void)setupSubviewsForType:(ChatMoreType)type
 {
     self.backgroundColor = [UIColor clearColor];
-    CGFloat insets = (self.frame.size.width - 4 * CHAT_BUTTON_SIZE) / 5;
+    CGFloat insets = (self.frame.size.width - 119) / 3;
     
     _photoButton =[UIButton buttonWithType:UIButtonTypeCustom];
-    [_photoButton setFrame:CGRectMake(insets, 10, CHAT_BUTTON_SIZE , CHAT_BUTTON_SIZE)];
+    [_photoButton setFrame:CGRectMake(25, 15, CHAT_BUTTON_SIZE , CHAT_BUTTON_SIZE)];
     [_photoButton setImage:[UIImage imageNamed:@"chatBar_colorMore_photo"] forState:UIControlStateNormal];
     [_photoButton setImage:[UIImage imageNamed:@"chatBar_colorMore_photoSelected"] forState:UIControlStateHighlighted];
     [_photoButton addTarget:self action:@selector(photoAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_photoButton];
     
-    _locationButton =[UIButton buttonWithType:UIButtonTypeCustom];
-    [_locationButton setFrame:CGRectMake(insets * 2 + CHAT_BUTTON_SIZE, 10, CHAT_BUTTON_SIZE , CHAT_BUTTON_SIZE)];
-    [_locationButton setImage:[UIImage imageNamed:@"chatBar_colorMore_location"] forState:UIControlStateNormal];
-    [_locationButton setImage:[UIImage imageNamed:@"chatBar_colorMore_locationSelected"] forState:UIControlStateHighlighted];
-    [_locationButton addTarget:self action:@selector(locationAction) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:_locationButton];
-    
     _takePicButton =[UIButton buttonWithType:UIButtonTypeCustom];
-    [_takePicButton setFrame:CGRectMake(insets * 3 + CHAT_BUTTON_SIZE * 2, 10, CHAT_BUTTON_SIZE , CHAT_BUTTON_SIZE)];
+    [_takePicButton setFrame:CGRectMake(48 + CHAT_BUTTON_SIZE, 15, CHAT_BUTTON_SIZE , CHAT_BUTTON_SIZE)];
     [_takePicButton setImage:[UIImage imageNamed:@"chatBar_colorMore_camera"] forState:UIControlStateNormal];
     [_takePicButton setImage:[UIImage imageNamed:@"chatBar_colorMore_cameraSelected"] forState:UIControlStateHighlighted];
     [_takePicButton addTarget:self action:@selector(takePicAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_takePicButton];
+    
+    _locationButton =[UIButton buttonWithType:UIButtonTypeCustom];
+    [_locationButton setFrame:CGRectMake(71 + CHAT_BUTTON_SIZE* 2, 15, CHAT_BUTTON_SIZE , CHAT_BUTTON_SIZE)];
+    [_locationButton setImage:[UIImage imageNamed:@"chatBar_colorMore_location"] forState:UIControlStateNormal];
+    [_locationButton setImage:[UIImage imageNamed:@"chatBar_colorMore_locationSelected"] forState:UIControlStateHighlighted];
+    [_locationButton addTarget:self action:@selector(locationAction) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:_locationButton];
 
     CGRect frame = self.frame;
     if (type == ChatMoreTypeChat) {
@@ -72,7 +72,7 @@
     }
     else if (type == ChatMoreTypeGroupChat)
     {
-        frame.size.height = 80;
+        frame.size.height = 97;
     }
     self.frame = frame;
 }
