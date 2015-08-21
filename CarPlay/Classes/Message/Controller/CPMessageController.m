@@ -252,6 +252,7 @@ typedef enum {
         EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row-2];
         ChatViewController *chatController;
         NSString *title = conversation.chatter;
+        NSString *groupId = @"";
         if (conversation.conversationType != eConversationTypeChat) {
             if ([[conversation.ext objectForKey:@"groupSubject"] length])
             {
@@ -263,6 +264,7 @@ typedef enum {
                 for (EMGroup *group in groupArray) {
                     if ([group.groupId isEqualToString:conversation.chatter]) {
                         title = group.groupSubject;
+                        groupId = group.groupId;
                         break;
                     }
                 }
@@ -276,7 +278,15 @@ typedef enum {
         if ([[RobotManager sharedInstance] getRobotNickWithUsername:chatter]) {
             chatController.title = [[RobotManager sharedInstance] getRobotNickWithUsername:chatter];
         }
-        [self.navigationController pushViewController:chatController animated:YES];
+        EMError *error = nil;
+        EMGroup *group = [[EaseMob sharedInstance].chatManager fetchGroupInfo:groupId error:&error];
+        if (group) {
+            chatController.group = group;
+            [self.navigationController pushViewController:chatController animated:YES];
+        }else{
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"提示" message:@"网络错误，请稍候再试" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
+        }
     }
 }
 
