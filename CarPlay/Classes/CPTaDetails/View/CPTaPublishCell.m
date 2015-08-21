@@ -33,10 +33,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *pay;
 
 // 配图列表
-@property (weak, nonatomic) IBOutlet UICollectionView *pictureView;
+@property (weak, nonatomic) IBOutlet UICollectionView *picColView;
 
 // 头像列表
-@property (weak, nonatomic) IBOutlet UICollectionView *iconView;
+@property (weak, nonatomic) IBOutlet UICollectionView *iconColView;
 
 // 聊天
 @property (weak, nonatomic) IBOutlet UIButton *talk;
@@ -111,8 +111,8 @@
     
     
     // 刷新，collectionView数据清零
-    [self.pictureView reloadData];
-    [self.iconView reloadData];
+    [self.picColView reloadData];
+    [self.iconColView reloadData];
     
     // 测试
 //    NSLog(@"%@",self.bottomIconList);
@@ -156,7 +156,7 @@
 #pragma mark - collectionView数据源方法
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    if (collectionView == self.pictureView) {
+    if (collectionView == self.picColView) {
         return self.publishStatus.cover.count;
     }else{
         return self.publishStatus.members.count;
@@ -164,7 +164,7 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    if (collectionView == self.pictureView) {
+    if (collectionView == self.picColView) {
         // 创建cell
         CPTaPicCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[CPTaPicCell identifier] forIndexPath:indexPath];
         
@@ -181,6 +181,27 @@
     
 }
 
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    if (collectionView == self.picColView) {
+        if (self.taPictureDidSelected != nil) {
+            // 获取每一个cell里的所有配图
+            NSMutableArray *imgArr = [NSMutableArray array];
+            NSUInteger count = [self collectionView:collectionView numberOfItemsInSection:0];
+            
+            for (int i = 0; i < count; i++) {
+                NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:0];
+                
+                CPTaPicCell *cell = (CPTaPicCell *)[self collectionView:collectionView cellForItemAtIndexPath:path];
+                cell.pictureView.frame = cell.frame;
+                [imgArr addObject:cell.pictureView];
+            }
+                 
+            
+            self.taPictureDidSelected(self.publishStatus,indexPath, imgArr);
+        }
+    }
+}
 
 // 计算cell高度
 - (CGFloat)cellHeightWithTaPublishStatus:(CPTaPublishStatus *)publishStatus{

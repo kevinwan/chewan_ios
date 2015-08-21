@@ -10,6 +10,8 @@
 #import "CPTaPhoto.h"
 
 @interface CPTaPicCell : UICollectionViewCell
+// 配图
+@property (weak, nonatomic) IBOutlet UIImageView *pictureView;
 
 // 接受图片
 @property (nonatomic,strong) CPTaPhoto *taPhoto;
