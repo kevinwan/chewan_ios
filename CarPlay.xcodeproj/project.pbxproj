@@ -213,6 +213,7 @@
 		E30BD5901B54ECCC00FD9030 /* CPMySubscribeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD58E1B54ECCC00FD9030 /* CPMySubscribeCell.m */; };
 		E30BD5941B54FCC600FD9030 /* ZYNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5931B54FCC600FD9030 /* ZYNavigationBar.m */; };
 		E30BD5971B54FD6E00FD9030 /* ZYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5961B54FD6E00FD9030 /* ZYNavigationController.m */; };
+		E30C80B01B86DBB30061C642 /* UITabBar+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E30C80AF1B86DBB30061C642 /* UITabBar+Extension.m */; };
 		E310BF6B1B7DE69500750BF4 /* ChatListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E310BF6A1B7DE69500750BF4 /* ChatListCell.m */; };
 		E310BF711B7DF7BB00750BF4 /* UUDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E310BF6E1B7DF7BB00750BF4 /* UUDatePicker.m */; };
 		E310BF721B7DF7BB00750BF4 /* UUDatePicker_DateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E310BF701B7DF7BB00750BF4 /* UUDatePicker_DateModel.m */; };
@@ -760,6 +761,8 @@
 		E30BD5931B54FCC600FD9030 /* ZYNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYNavigationBar.m; sourceTree = "<group>"; };
 		E30BD5951B54FD6E00FD9030 /* ZYNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYNavigationController.h; sourceTree = "<group>"; };
 		E30BD5961B54FD6E00FD9030 /* ZYNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYNavigationController.m; sourceTree = "<group>"; };
+		E30C80AE1B86DBB30061C642 /* UITabBar+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBar+Extension.h"; sourceTree = "<group>"; };
+		E30C80AF1B86DBB30061C642 /* UITabBar+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+Extension.m"; sourceTree = "<group>"; };
 		E310BF691B7DE69500750BF4 /* ChatListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListCell.h; sourceTree = "<group>"; };
 		E310BF6A1B7DE69500750BF4 /* ChatListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListCell.m; sourceTree = "<group>"; };
 		E310BF6D1B7DF7BB00750BF4 /* UUDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUDatePicker.h; sourceTree = "<group>"; };
@@ -2577,6 +2580,8 @@
 				E3EEDFFF1B53952E00595333 /* UIImage+Extension.m */,
 				E3EEE0001B53952E00595333 /* UIView+Extension.h */,
 				E3EEE0011B53952E00595333 /* UIView+Extension.m */,
+				E30C80AE1B86DBB30061C642 /* UITabBar+Extension.h */,
+				E30C80AF1B86DBB30061C642 /* UITabBar+Extension.m */,
 			);
 			path = Categarys;
 			sourceTree = "<group>";
@@ -2845,6 +2850,7 @@
 				6BC8A3E81B6A4DB700B199F2 /* CPTaDetailsStatus.m in Sources */,
 				E35B042B1B56460C002C6655 /* HMPhoto.m in Sources */,
 				E3EEDFF81B53951D00595333 /* CPNewMessageCell.m in Sources */,
+				E30C80B01B86DBB30061C642 /* UITabBar+Extension.m in Sources */,
 				A57581CE1B6789D500A5E681 /* offerCar.m in Sources */,
 				E3E4FBEA1B744F7A00E6E5F1 /* ZYTableViewCell.m in Sources */,
 				E31B08BE1B84B227008DA1D4 /* Reachability.m in Sources */,

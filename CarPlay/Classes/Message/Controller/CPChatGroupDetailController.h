@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CPChatGroupDetailController : ZYTableViewController
-
+@property (nonatomic, copy) NSString *activityId;
 @end
