@@ -92,13 +92,13 @@ NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadIm
 
 -(void)headImagePressed:(id)sender
 {
-    [super routerEventWithName:kRouterEventChatHeadImageTapEventName userInfo:@{KMESSAGEKEY:self.messageModel}];
+    [self routerEventWithName:kRouterEventChatHeadImageTapEventName userInfo:@{KMESSAGEKEY:self.messageModel}];
 }
 
-- (void)routerEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userInfo
-{
-    [super routerEventWithName:eventName userInfo:userInfo];
-}
+//- (void)routerEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userInfo
+//{
+//    [super routerEventWithName:eventName userInfo:userInfo];
+//}
 
 #pragma mark - public
 
