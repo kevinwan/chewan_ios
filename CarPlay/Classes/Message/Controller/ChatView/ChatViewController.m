@@ -36,6 +36,7 @@
 #import "EMCDDeviceManagerDelegate.h"
 #import "RobotManager.h"
 #import "CPChatGroupDetailController.h"
+#import "CPTaDetailsController.h"
 #define KPageCount 20
 #define KHintAdjustY    50
 
@@ -630,6 +631,22 @@
         [self chatVideoCellPressed:model];
     }else if ([eventName isEqualToString:kRouterEventMenuTapEventName]) {
         [self sendTextMessage:[userInfo objectForKey:@"text"]];
+    }else if ([eventName isEqualToString:kRouterEventChatHeadImageTapEventName]){
+        [self headViewClick:model];
+    }
+}
+
+// 头像被点击
+- (void)headViewClick:(MessageModel *)model
+{
+    NSString *userId = model.message.ext[@"userId"];
+    NSString *localUserId = [Tools getValueFromKey:@"userId"];
+    if ([userId isEqualToString:localUserId]) {
+        
+    }else{
+        CPTaDetailsController *vc = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil].instantiateInitialViewController;
+        vc.targetUserId = userId;
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

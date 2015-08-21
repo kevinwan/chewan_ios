@@ -96,7 +96,7 @@ NSString *const kRouterEventAudioBubbleTapEventName = @"kRouterEventAudioBubbleT
         
         // 设置红点的位置
         _isReadView.x = self.width + 5;
-        _isReadView.y = self.y - 3;
+        _isReadView.y = - 2;
         _isReadView.size = CGSizeMake(10, 10);
     }
     
