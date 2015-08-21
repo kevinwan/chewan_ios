@@ -7,6 +7,7 @@
 //  自定义按钮显示头像和label
 
 #import "CPOrganizerButton.h"
+#import "UIButton+WebCache.h"
 
 @implementation CPOrganizerButton
 
@@ -35,6 +36,8 @@
     self.titleLabel.font = [UIFont systemFontOfSize:16];
     [self setTitleColor:[Tools getColor:@"656C78"] forState:UIControlStateNormal];
     self.contentMode = UIViewContentModeRight;
+    self.imageView.layer.cornerRadius = 12.5;
+    self.imageView.clipsToBounds = YES;
 }
 
 /**
@@ -50,11 +53,10 @@
 - (CGRect)titleRectForContentRect:(CGRect)contentRect
 {
     CGFloat witdh = [self.name sizeWithFont:[UIFont systemFontOfSize:16]].width + 2;
-    CGFloat height = [self.name sizeWithFont:[UIFont systemFontOfSize:16]].height + 2;
     CGFloat titleX = contentRect.size.width - witdh;
-    CGFloat titleY = (contentRect.size.height - height) * 0.5;
+    CGFloat titleY = 0;
     CGFloat titleW = witdh;
-    CGFloat titleH = height;
+    CGFloat titleH = 25;
     return CGRectMake(titleX, titleY, titleW, titleH);
 }
 
@@ -62,12 +64,14 @@
 {
     _name = [name copy];
     [self setTitle:name forState:UIControlStateNormal];
+    [self setNeedsLayout];
 }
 
 - (void)setIcon:(NSString *)icon
 {
     _icon = [icon copy];
-    [self setImage:[UIImage imageNamed:icon] forState:UIControlStateNormal];
+    [self sd_setImageWithURL:[NSURL URLWithString:icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
+    [self setNeedsLayout];
 }
 
 @end

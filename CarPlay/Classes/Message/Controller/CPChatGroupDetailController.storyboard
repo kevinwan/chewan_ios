@@ -130,9 +130,10 @@
                                                     </constraints>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tg3-2B-dyy" customClass="CPOrganizerButton">
-                                                    <rect key="frame" x="94" y="12.5" width="244" height="25"/>
+                                                    <rect key="frame" x="156" y="12.5" width="185" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="ZA0-Si-Zsx"/>
+                                                        <constraint firstAttribute="width" constant="185" id="g89-fB-TsO"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <inset key="titleEdgeInsets" minX="25" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -144,13 +145,12 @@
                                             <constraints>
                                                 <constraint firstItem="sPo-GR-9In" firstAttribute="top" secondItem="deJ-PJ-071" secondAttribute="top" constant="16" id="8zE-GL-ea8"/>
                                                 <constraint firstAttribute="trailing" secondItem="sPo-GR-9In" secondAttribute="trailing" constant="10" id="Cmj-gU-tIg"/>
-                                                <constraint firstItem="Tg3-2B-dyy" firstAttribute="leading" secondItem="5hB-Hw-lMM" secondAttribute="trailing" constant="10" id="EQo-mD-iLI"/>
                                                 <constraint firstItem="5hB-Hw-lMM" firstAttribute="centerY" secondItem="I8E-MW-Bb9" secondAttribute="centerY" id="GIu-8n-3Tj"/>
                                                 <constraint firstItem="I8E-MW-Bb9" firstAttribute="leading" secondItem="deJ-PJ-071" secondAttribute="leading" constant="10" id="L33-sx-oco"/>
                                                 <constraint firstItem="Tg3-2B-dyy" firstAttribute="centerY" secondItem="5hB-Hw-lMM" secondAttribute="centerY" id="ega-3D-x94"/>
                                                 <constraint firstItem="I8E-MW-Bb9" firstAttribute="top" secondItem="deJ-PJ-071" secondAttribute="top" constant="16" id="udC-jK-Awa"/>
                                                 <constraint firstItem="5hB-Hw-lMM" firstAttribute="leading" secondItem="I8E-MW-Bb9" secondAttribute="trailing" constant="8" id="zLb-KO-3EU"/>
-                                                <constraint firstItem="sPo-GR-9In" firstAttribute="leading" secondItem="Tg3-2B-dyy" secondAttribute="trailing" constant="10" id="zhy-rh-yKW"/>
+                                                <constraint firstItem="sPo-GR-9In" firstAttribute="leading" secondItem="Tg3-2B-dyy" secondAttribute="trailing" constant="7" id="zhy-rh-yKW"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
