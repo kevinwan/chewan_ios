@@ -74,4 +74,5 @@
 #import "CPGuideView.h" // 新手引导的View
 #import "XMNetWorkTool.h"
 #import "UITabBar+Extension.h"
+#import <SWTableViewCell.h>
 #endif
