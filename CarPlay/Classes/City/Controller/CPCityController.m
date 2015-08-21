@@ -508,9 +508,6 @@
         //绑定tag
         cell.myPlay.tag = indexPath.row;
         
-        // 是否为他的详情页
-        cell.isTaDetailPage = NO;
-        
         // 弹出图片浏览器
         if (cell.pictureDidSelected == nil) {
             //        __weak typeof(self) weakSelf = self;
