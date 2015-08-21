@@ -10,22 +10,16 @@
 #import "AppAppearance.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <SDWebImage/UIButton+WebCache.h>
-//手势需要
-static CGFloat const kBounceValue = 20.0f;
-@interface memberManageCell ()<UIGestureRecognizerDelegate>
+
+
+@interface memberManageCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *subTitleLabel;
 
 @property (weak, nonatomic) IBOutlet UIImageView *carLogImageView;
 @property (weak, nonatomic) IBOutlet UIButton *ageButton;
-@property (weak, nonatomic) IBOutlet UIView *mycontentView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftConstraint;
-@property (nonatomic, strong) UIPanGestureRecognizer *pan;
-@property (nonatomic, assign) CGPoint startPoint;
-@property (nonatomic, assign) CGPoint currentPoint;
-@property (nonatomic, assign) CGFloat startingRightLayoutConstraintConstant;
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *subTitleLabelX;
 
 @end
@@ -38,21 +32,16 @@ static CGFloat const kBounceValue = 20.0f;
     self.titleLabel.textColor = [AppAppearance textDarkColor];
     self.subTitleLabel.font = [AppAppearance textMediumFont];
     self.subTitleLabel.textColor = [AppAppearance textMediumColor];
-    self.memberIconImageView.layer.cornerRadius = 25;
-    self.memberIconImageView.clipsToBounds = YES;
-    [self.deleteButton setBackgroundColor:[AppAppearance redColor]];
-    [self.deleteButton setTitleColor:[AppAppearance titleColor] forState:UIControlStateNormal];
-    self.pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(pan:)];
-    [self.mycontentView addGestureRecognizer:self.pan];
-    //设置手势代理
-    self.pan.delegate = self;
+    self.memberIconButton.layer.cornerRadius = 25;
+    self.memberIconButton.clipsToBounds = YES;
+
     
 }
 
 - (void)setModels:(members *)models {
     _models = models;
     self.titleLabel.text = _models.nickname;
-    [self.memberIconImageView sd_setImageWithURL:[NSURL URLWithString:_models.photo]];
+    [self.memberIconButton sd_setBackgroundImageWithURL:[NSURL URLWithString:_models.photo] forState:UIControlStateNormal];
     [self.carLogImageView sd_setImageWithURL:[NSURL URLWithString:_models.carBrandLogo]];
     [self.ageButton setTitle:[NSString stringWithFormat:@"%@",_models.age] forState:UIControlStateNormal];
     UIImage *ageimage = nil;
@@ -84,139 +73,9 @@ static CGFloat const kBounceValue = 20.0f;
     
 }
 
-#pragma mark - 手势相关
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIPanGestureRecognizer *)otherGestureRecognizer {
-    return YES;
-}
-
-- (void)updateConstraintsIfNeeded:(BOOL)animated completion:(void(^)(BOOL finished))completion {
-    float duration = 0;
-    if (animated) {
-        duration = 0.1;
-    }
-    [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        [self layoutIfNeeded];
-    } completion:completion];
-}
-- (void)resetConstraintContstantsToZero:(BOOL)animated notifyDelegateDidClose:(BOOL)endEditing {
-    if (self.startingRightLayoutConstraintConstant == 0 && self.rightConstraint.constant == 0) {
-        return;
-    }
-    self.rightConstraint.constant = -kBounceValue;
-    self.leftConstraint.constant = kBounceValue;
-    [self updateConstraintsIfNeeded:animated completion:^(BOOL finished) {
-        self.rightConstraint.constant = 0;
-        self.leftConstraint.constant = 0;
-        [self updateConstraintsIfNeeded:animated completion:^(BOOL finished) {
-            self.startingRightLayoutConstraintConstant = self.rightConstraint.constant;
-        }];
-    }];
-}
-
-- (void)setConstraintsToShowAllButtons:(BOOL)animated notifyDelegateDidOpen:(BOOL)notifyDelegate {
-    if (self.startingRightLayoutConstraintConstant == [self buttonTotalWidth] && self.rightConstraint.constant == [self buttonTotalWidth]) {
-        return;
-    }
-    self.leftConstraint.constant = - [self buttonTotalWidth]-kBounceValue;
-    self.rightConstraint.constant = [self buttonTotalWidth] +kBounceValue;
-    [self updateConstraintsIfNeeded:animated completion:^(BOOL finished) {
-        self.leftConstraint.constant = -[self buttonTotalWidth];
-        self.rightConstraint.constant = [self buttonTotalWidth];
-        [self updateConstraintsIfNeeded:animated completion:^(BOOL finished) {
-            self.startingRightLayoutConstraintConstant = self.rightConstraint.constant;
-        }];
-    }];
-
-}
-- (void)pan:(UIPanGestureRecognizer *)pan {
-    switch (pan.state) {
-        case UIGestureRecognizerStateBegan:
-            self.startPoint = [pan translationInView:self.mycontentView];
-            break;
-        case UIGestureRecognizerStateChanged:
-           self.currentPoint = [pan translationInView:self.mycontentView];
-            CGFloat  deltaX = self.currentPoint.x - self.startPoint.x;
-            BOOL panningLeft = NO;
-            if (self.currentPoint.x < self.startPoint.x) {
-                panningLeft = YES;
-            }
-            if (self.startingRightLayoutConstraintConstant == 0) {
-                if (!panningLeft) {
-                    CGFloat constant = MAX(-deltaX, 0);
-                    if (constant == 0) {
-                        [self resetConstraintContstantsToZero:YES notifyDelegateDidClose:NO];
-                    } else {
-                        self.rightConstraint.constant = constant;
-                    }
-                } else {
-                    CGFloat constant = MIN(-deltaX, [self buttonTotalWidth]);
-                    if (constant == [self buttonTotalWidth]) {
-                        [self setConstraintsToShowAllButtons:YES notifyDelegateDidOpen:NO];
-                    } else {
-                        self.rightConstraint.constant = constant;
-                    }
-                
-                }
-            } else {
-                CGFloat adjustment = self.startingRightLayoutConstraintConstant - deltaX;
-                if (!panningLeft) {
-                    CGFloat constant = MAX(adjustment, 0);
-                    if (constant == 0) {
-                        [self resetConstraintContstantsToZero:YES notifyDelegateDidClose:NO];
-                    } else {
-                        self.rightConstraint.constant = constant;
-                    }
-                } else {
-                    CGFloat constant = MIN(adjustment, [self buttonTotalWidth]);
-                    if (constant == [self buttonTotalWidth]) {
-                        [self setConstraintsToShowAllButtons:YES notifyDelegateDidOpen:NO];
-                    } else {
-                        self.rightConstraint.constant = constant;
-                    }
-                
-                }
-            
-            }
-            self.leftConstraint.constant = -self.rightConstraint.constant;
-            break;
-            
-        case UIGestureRecognizerStateEnded:
-            if (self.startingRightLayoutConstraintConstant == 0) {
-                CGFloat halfofButtonOne = CGRectGetWidth(self.deleteButton.frame);
-                if (self.rightConstraint.constant >= halfofButtonOne) {
-                    [self setConstraintsToShowAllButtons:YES notifyDelegateDidOpen:YES];
-                } else {
-                    [self resetConstraintContstantsToZero:YES notifyDelegateDidClose:YES];
-                }
-            }
-            break;
-        case UIGestureRecognizerStateCancelled:
-            if (self.startingRightLayoutConstraintConstant == 0) {
-                [self resetConstraintContstantsToZero:YES notifyDelegateDidClose:YES];
-            } else {
-                [self setConstraintsToShowAllButtons:YES notifyDelegateDidOpen:YES];
-            }
-            break;
-            
-        default:
-            break;
-    }
-
-}
-//获取总共的宽度
-- (CGFloat)buttonTotalWidth {
-    return CGRectGetWidth(self.frame) - CGRectGetMinX(self.deleteButton.frame);
-}
-
-#pragma mark - 手势相关
 
 
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
-}
 
 @end

@@ -10,4 +10,6 @@
 
 @interface CPModelButton : UIButton
 @property (nonatomic, assign) id model;
+@property (nonatomic, strong) NSIndexPath *path;
+@property (nonatomic, assign) NSInteger index;
 @end

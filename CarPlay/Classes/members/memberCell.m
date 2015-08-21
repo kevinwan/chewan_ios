@@ -9,6 +9,7 @@
 #import "memberCell.h"
 #import "AppAppearance.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <SDWebImage/UIButton+WebCache.h>
 
 
 @interface memberCell ()
@@ -33,14 +34,14 @@
     self.titleLabel.textColor = [AppAppearance textDarkColor];
     self.subTitleLabel.font = [AppAppearance textMediumFont];
     self.subTitleLabel.textColor = [AppAppearance textMediumColor];
-    self.memberIconImageView.layer.cornerRadius = 25;
-    self.memberIconImageView.clipsToBounds = YES;
+    self.memberIconButton.layer.cornerRadius = 25;
+    self.memberIconButton.clipsToBounds = YES;
     
 }
 - (void)setModels:(members *)models {
     _models = models;
     self.titleLabel.text = _models.nickname;
-    [self.memberIconImageView sd_setImageWithURL:[NSURL URLWithString:_models.photo]];
+    [self.memberIconButton sd_setBackgroundImageWithURL:[NSURL URLWithString:_models.photo] forState:UIControlStateNormal];
     [self.carLogImageView sd_setImageWithURL:[NSURL URLWithString:_models.carBrandLogo]];
     [self.ageButton setTitle:[NSString stringWithFormat:@"%@",_models.age] forState:UIControlStateNormal];
     UIImage *ageimage = nil;

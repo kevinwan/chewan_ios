@@ -22,10 +22,16 @@
 #import "UMSocial.h"
 #import "UMSocialData.h"
 #import "CPTaDetailsController.h"
+#import <SWTableViewCell.h>
+#import <SWUtilityButtonView.h>
+#import "NSMutableArray+CPUtilityButtons.h"
+#import "CPModelButton.h"
+#import <SDWebImage/UIButton+WebCache.h>
 
 
 
-@interface MembersManageController () <UITableViewDataSource,UITableViewDelegate>
+
+@interface MembersManageController () <UITableViewDataSource,UITableViewDelegate,SWTableViewCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *memberTableView;
 
@@ -47,7 +53,7 @@
 @property (nonatomic, copy) NSString *shareTitle;
 @property (nonatomic, copy) NSString *shareContent;
 @property (nonatomic, copy) NSString *imgUrl;
-@property (nonatomic, strong) NSString *createrId;
+@property (nonatomic, strong) UIButton *subButton;
 @end
 
 @implementation MembersManageController
@@ -61,6 +67,7 @@
     [self setUpRefresh];
     [self.memberTableView.header beginRefreshing];
     self.memberTableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
+
 }
 - (void)setUpRefresh {
     __weak typeof(self) weakSelf = self;
@@ -92,30 +99,7 @@
 - (void) setupFontAndColor {
     self.memberTableView.separatorColor = [AppAppearance lineColor];
 }
-//管理 删除参与者
-- (IBAction)memberCellDelete:(UIButton *)sender {
-    [self.view showWait];
-    NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/member/remove?userId=%@&token=%@",self.activityId,self.userId,self.token];
-    SQLog(@"%tu",sender.tag);
-    members *TapMember = self.membersArray[sender.tag];
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"member"] = TapMember.userId;
-    [ZYNetWorkTool postJsonWithUrl:urlStr params:params success:^(id responseObject) {
-        [self.view hideWait];
-        if ([responseObject operationSuccess]) {
-            //把相关座位也要删除
-            [self.carsArray removeAllObjects];
-            [self.membersArray removeAllObjects];
-            [self loadMessage];
-            [self.view alert:@"删除成功"];
-        } else {
-            [self.view alertError:responseObject];
-        }
-    } failed:^(NSError *error) {
-        [self.view alertError:error];
-    }];
 
-}
 //加载成员信息和car信息
 - (void)loadMessage {
     //示例参数@"http://cwapi.gongpingjia.com/v1"
@@ -199,23 +183,17 @@
     //获取car
     cars *car = self.carsArray[sender.tag % 1000];
     NSString *seatIndex = nil;
-    if (sender.tag <= 1000) {
+    if (sender.tag <  2000) {
+        seatIndex = @"0";
+    }
+    else if (sender.tag < 3000) {
         seatIndex = @"1";
     }
-    else if (sender.tag <=2000) {
+    else if (sender.tag < 4000) {
         seatIndex = @"2";
     }
-    else if (sender.tag <=3000) {
+    else if (sender.tag < 5000) {
         seatIndex = @"3";
-    }
-    else if (sender.tag <=4000) {
-        seatIndex = @"4";
-    }
-    else if (sender.tag <=5000) {
-        seatIndex = @"5";
-    }
-    else if (sender.tag <=6000) {
-        seatIndex = @"6";
     }
     SQLog(@"%@",seatIndex);
     NSArray *usersArray = car.users;
@@ -254,11 +232,11 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"member"] = self.tapUserID;
     [self.view showWait];
-    //图片置空
-    [b setImage:nil forState:UIControlStateNormal];
     [ZYNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
         [self.view hideWait];
         if ([responseObject operationSuccess]) {
+            //图片置空
+            [b setImage:nil forState:UIControlStateNormal];
             //从新加载信息
             NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/members?userId=%@&token=%@",self.activityId,self.userId,self.token];
             [ZYNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
@@ -287,48 +265,214 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.membersArray.count + self.carsArray.count;
+    return self.carsArray.count + self.membersArray.count;
 }
 
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    SQLog(@"%@",self.carsArray);
     if (indexPath.row < self.carsArray.count) {
         carManageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"carcell"];
-        cell.models = self.carsArray[indexPath.row];
+        cars *models = self.carsArray[indexPath.row];
+        cell.models = models;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.seatone.tag = indexPath.row + 1000;
-        cell.seatTwo.tag = indexPath.row +2000;
-        cell.seatThree.tag = indexPath.row +3000;
-        cell.seatLastThree.tag = indexPath.row +4000;
-        cell.seatLastTwo.tag = indexPath.row + 5000;
-        cell.seatLastOne.tag = indexPath.row + 6000;
+        cell.seatMain.tag = indexPath.row +1000;
+        cell.seatone.tag = indexPath.row +2000;
+        cell.seatTwo.tag = indexPath.row + 3000;
+        cell.seatThree.tag = indexPath.row + 4000;
+        [cell setRightUtilityButtons:[self carRightButtons:[cell.totalSeat intValue] - 4] WithButtonWidth:45];
+        cell.delegate = self;
+//        SWUtilityButtonView *buttonView = [cell valueForKey:@"rightUtilityButtonsView"];
+        NSArray *userArray = models.users;
+        for (users *user in userArray ) {
+            SQLog(@"%@",user.seatIndex);
+            if ([user.seatIndex intValue] >= 4 ) {
+                if ([user.seatIndex intValue] == 4) {
+                    UIButton *subButton = (UIButton *)[cell.rightUtilityButtons[0] viewWithTag:1000];
+                    [subButton sd_setImageWithURL:[NSURL URLWithString:user.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"member_seatIcon"]];
+                    [subButton setBackgroundImage:[UIImage imageNamed:@"member_mainSeat"] forState:UIControlStateNormal];
+                }
+                if ([user.seatIndex intValue] == 5) {
+                    UIButton *subButton = (UIButton *)[cell.rightUtilityButtons[1] viewWithTag:1000];
+                    [subButton sd_setImageWithURL:[NSURL URLWithString:user.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"member_seatIcon"]];
+                    [subButton setBackgroundImage:[UIImage imageNamed:@"member_mainSeat"] forState:UIControlStateNormal];
+                }
+                if ([user.seatIndex intValue] == 6) {
+                    UIButton *subButton = (UIButton *)[cell.rightUtilityButtons[2] viewWithTag:1000];
+                    [subButton sd_setImageWithURL:[NSURL URLWithString:user.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"member_seatIcon"]];
+                    [subButton setBackgroundImage:[UIImage imageNamed:@"member_mainSeat"] forState:UIControlStateNormal];
+                }
+                
+            }
+        }
         return cell;
         
     } else {
 
         memberManageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"membercell"];
         cell.models = self.membersArray[indexPath.row - self.carsArray.count];
-        self.createrId = cell.models.userId;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.deleteButton.tag = indexPath.row - self.carsArray.count;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapIconImage)];
-        [cell.memberIconImageView addGestureRecognizer:tap];
+        cell.memberIconButton.tag = indexPath.row - self.carsArray.count;
+        cell.delegate = self;
+        [cell setRightUtilityButtons:[self memberRightButtons] WithButtonWidth:60];
+        
         return cell;
     }
    
 }
-- (void)tapIconImage{
-    SQLog(@"123");
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil];
-    
-    CPTaDetailsController *taViewController = sb.instantiateInitialViewController;
-    taViewController.targetUserId = self.createrId;
-    
-    [self.navigationController pushViewController:taViewController animated:YES];
-    
+//SWTableViewCellDelegate
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index {
+    if ([cell isKindOfClass:[memberManageCell class]]) {
+        NSIndexPath *cellIndexPath = [self.memberTableView indexPathForCell:cell];
+        SQLog(@"%tu",cellIndexPath.row);
+        [self.view showWait];
+        NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/member/remove?userId=%@&token=%@",self.activityId,self.userId,self.token];
+        members *TapMember = self.membersArray[cellIndexPath.row - self.carsArray.count];
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        params[@"member"] = TapMember.userId;
+        [ZYNetWorkTool postJsonWithUrl:urlStr params:params success:^(id responseObject) {
+            [self.view hideWait];
+            if ([responseObject operationSuccess]) {
+                //把相关座位也要删除
+                [self.carsArray removeAllObjects];
+                [self.membersArray removeAllObjects];
+                [self loadMessage];
+                [self.view alert:@"删除成功"];
+            } else {
+                [self.view alertError:responseObject];
+            }
+        } failed:^(NSError *error) {
+            [self.view alertError:error];
+        }];
+    }  else {
+        //点击座位
+        NSIndexPath *cellIndexPath = [self.memberTableView indexPathForCell:cell];
+        UIButton *button = cell.rightUtilityButtons[index];
+        UIButton *sub = (UIButton *)[button viewWithTag:1000];
+        self.subButton = sub;
+        if ([sub imageForState:UIControlStateNormal] == nil) {
+            [self.view alert:@"该座位为空座"];
+            return;
+        }
+        // 遮盖
+        UIButton *cover = [[UIButton alloc] init];
+        self.cover = cover;
+        cover.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.2];
+        [cover addTarget:self action:@selector(coverClick) forControlEvents:UIControlEventTouchUpInside];
+        cover.frame = [UIScreen mainScreen].bounds;
+        [self.view.window addSubview:cover];
+        UIView *carView = [[[NSBundle mainBundle]loadNibNamed:@"downSeat" owner:self options:nil]lastObject];
+        CGFloat carViewX = self.view.window.center.x;
+        CGFloat carViewY = self.view.window.center.y - 100;
+        carView.center = CGPointMake(carViewX, carViewY);
+        //拉下座位按钮
+         UIButton *downButton = (UIButton *)[carView viewWithTag:1000];
+        [downButton addTarget:self action:@selector(downButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
+        self.downButton.backgroundColor = [AppAppearance greenColor];
+        [self.downButton setTitleColor:[AppAppearance titleColor] forState:UIControlStateNormal];
+        self.downButton.titleLabel.font = [AppAppearance titleFont];
+        self.downButton.layer.cornerRadius = 3;
+        [self.downButton clipsToBounds];
+        self.carView = carView;
+        self.nameLabel.font = [AppAppearance textLargeFont];
+        self.nameLabel.textColor = [AppAppearance textDarkColor];
+        [self.ageButton setTitleColor:[AppAppearance titleColor] forState:UIControlStateNormal];
+        self.ageButton.titleLabel.font = [UIFont systemFontOfSize:11];
+        [self.ageButton setBackgroundImage:[UIImage imageNamed:@"man"] forState:UIControlStateNormal];
+        self.ageButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+        self.ageButton.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 3);
+        //获取座位的tag
+//        self.downButton.tag = sender.tag;
+        //获取car
+        cars *car = self.carsArray[cellIndexPath.row];
+        NSString *seatIndex = [NSString stringWithFormat:@"%tu",index + 4];
+        SQLog(@"%@",seatIndex);
+        NSArray *usersArray = car.users;
+        users *tapUser = nil;
+        for (users *user in usersArray) {
+            if ([user.seatIndex isEqualToString:seatIndex]) {
+                //通过seatIndex获取user
+                tapUser = user;
+                break;
+            }
+        }
+        //获取点击人得userID
+        self.tapUserID = tapUser.userId;
+        [self.ageButton setTitle:tapUser.age forState:UIControlStateNormal];
+        if ([tapUser.gender isEqualToString:@"男"]) {
+            [self.ageButton setBackgroundImage:[UIImage imageNamed:@"member_man"] forState:UIControlStateNormal];
+        } else {
+            [self.ageButton setBackgroundImage:[UIImage imageNamed:@"member_women"] forState:UIControlStateNormal];
+        }
+        [self.iconImage sd_setImageWithURL:[NSURL URLWithString:tapUser.photo]];
+        self.iconImage.layer.cornerRadius = 31.5;
+        self.iconImage.layer.masksToBounds = YES;
+        self.nameLabel.text = [NSString stringWithFormat:@"%@",tapUser.nickname];
+        
+        [self.view.window addSubview:carView];
+        
+
+    }
+
 }
+//点击拉下座位
+- (void)downButtonDidClick{
+    
+    [self coverClick];
+    NSString *url = [NSString stringWithFormat:@"v1/activity/%@/seat/return?userId=%@&token=%@",self.activityId,self.userId,self.token];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"member"] = self.tapUserID;
+    [self.view showWait];
+    [ZYNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
+        [self.view hideWait];
+        if ([responseObject operationSuccess]) {
+            //图片置空
+            [self.subButton setImage:nil forState:UIControlStateNormal];
+            //从新加载信息
+            NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/members?userId=%@&token=%@",self.activityId,self.userId,self.token];
+            [ZYNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
+                if ([responseObject operationSuccess]) {
+                    NSArray *carModel = [cars objectArrayWithKeyValuesArray:responseObject[@"data"][@"cars"]];
+                    //将车数组里面全部数据删除从新加载
+                    [self.carsArray removeAllObjects];
+                    [self.carsArray addObjectsFromArray:carModel];
+                    [self.memberTableView reloadData];
+                }
+            } failure:^(NSError *error) {
+                [self.view alertError:error];
+            }];
+        } else {
+            [self.view alertError:responseObject];
+        }
+    } failed:^(NSError *error) {
+        [self.view alertError:error];
+    }];
+
+}
+- (NSArray *)carRightButtons:(int)seatNumber
+{
+    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
+    for (int  i = 0; i<seatNumber; i++) {
+        [rightUtilityButtons sw_addUtilityButton];
+    }
+    
+    return rightUtilityButtons;
+}
+- (NSArray *)memberRightButtons {
+    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
+    [rightUtilityButtons sw_addUtilityButtonWithColor:
+     [AppAppearance redColor] title:@"删除"];
+    return rightUtilityButtons;
+}
+- (IBAction)tapIconButton:(UIButton *)sender {
+    members *member = self.membersArray[sender.tag];
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil];
+
+    CPTaDetailsController *taViewController = sb.instantiateInitialViewController;
+    taViewController.targetUserId = member.userId;
+
+    [self.navigationController pushViewController:taViewController animated:YES];
+
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row < self.carsArray.count) {
         return 52;
