@@ -192,7 +192,7 @@
         self.chatBtn.userInteractionEnabled = NO;
         [self.chatBtn showGameOver];
     }else{
-        self.chatBtn.userInteractionEnabled = NO;
+        self.chatBtn.userInteractionEnabled = YES;
     }
     
     [self setNeedsLayout];

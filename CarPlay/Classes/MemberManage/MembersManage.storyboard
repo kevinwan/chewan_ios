@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="76" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7HR-PL-CIt">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="577"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="carcell" rowHeight="52" id="ifZ-2n-L5f" customClass="carManageCell">
@@ -140,7 +140,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zXH-gr-hol" userLabel="carLog">
-                                                    <rect key="frame" x="70" y="41.5" width="14" height="14"/>
+                                                    <rect key="frame" x="70" y="41" width="14" height="14"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="14" id="8W5-mK-GmK"/>
                                                         <constraint firstAttribute="width" constant="14" id="ghY-W2-hDD"/>
@@ -207,23 +207,41 @@
                                     <outlet property="delegate" destination="hz3-no-j1b" id="g0f-Tl-UP6"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQl-ev-kRx" userLabel="开始畅聊">
+                                <rect key="frame" x="10" y="597" width="355" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="WwK-5N-gvz"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="begainChatButtonDIdCLick:" destination="hz3-no-j1b" eventType="touchUpInside" id="LrV-VW-HpZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Wav-TW-g1q" firstAttribute="top" secondItem="hQl-ev-kRx" secondAttribute="bottom" constant="30" id="0DF-jr-BZx"/>
+                            <constraint firstItem="hQl-ev-kRx" firstAttribute="leading" secondItem="VAs-hO-U8d" secondAttribute="leading" constant="10" id="2NF-RX-RSM"/>
                             <constraint firstItem="Wav-TW-g1q" firstAttribute="top" secondItem="7HR-PL-CIt" secondAttribute="bottom" id="BrH-fP-u4e"/>
                             <constraint firstAttribute="trailing" secondItem="7HR-PL-CIt" secondAttribute="trailing" id="GIa-fg-2bf"/>
                             <constraint firstItem="7HR-PL-CIt" firstAttribute="top" secondItem="ksR-pt-Kl9" secondAttribute="bottom" id="J7k-wU-zQ5"/>
                             <constraint firstItem="7HR-PL-CIt" firstAttribute="top" secondItem="VAs-hO-U8d" secondAttribute="top" id="Tkg-gv-yLa"/>
+                            <constraint firstItem="hQl-ev-kRx" firstAttribute="top" secondItem="7HR-PL-CIt" secondAttribute="bottom" constant="20" id="ZUy-uH-hjV"/>
                             <constraint firstItem="7HR-PL-CIt" firstAttribute="leading" secondItem="VAs-hO-U8d" secondAttribute="leading" id="vdH-93-9Gw"/>
+                            <constraint firstAttribute="trailing" secondItem="hQl-ev-kRx" secondAttribute="trailing" constant="10" id="xGC-zA-KUx"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="J7k-wU-zQ5"/>
+                                <exclude reference="BrH-fP-u4e"/>
                             </mask>
                         </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="begainChatButton" destination="hQl-ev-kRx" id="Fa3-JT-f1O"/>
                         <outlet property="memberTableView" destination="7HR-PL-CIt" id="RfE-Ap-7gP"/>
                     </connections>
                 </viewController>
