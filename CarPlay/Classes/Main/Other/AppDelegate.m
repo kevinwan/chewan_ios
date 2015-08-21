@@ -15,6 +15,7 @@
 #import "UMSocialQQHandler.h"
 #import "CPNewfeatureViewController.h"
 #import "AppDelegate+EaseMob.h"
+#import "ZYNavigationController.h"
 #import <MobClick.h>
 #define kCheWanAppID @"55a34ed367e58e6efc00285d"
 #define kWeiXinAppID @"wx4c127cf07bd7d80b"
@@ -155,7 +156,7 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==1) {
         LoginViewController *loginVC=[[LoginViewController alloc]init];
-        UINavigationController* nav1 = [[UINavigationController alloc] initWithRootViewController:loginVC];
+        ZYNavigationController* nav1 = [[ZYNavigationController alloc] initWithRootViewController:loginVC];
         self.window.rootViewController=nav1;
         [self.window makeKeyAndVisible];
     }

@@ -8,7 +8,7 @@
 
 #import "BaseViewController.h"
 
-@interface registerViewController : BaseViewController
+@interface registerViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITextField *userPhone;
 @property (weak, nonatomic) IBOutlet UITextField *identifyingCodeTextField;
 @property (weak, nonatomic) IBOutlet UIButton *getIdentifyingCode;
