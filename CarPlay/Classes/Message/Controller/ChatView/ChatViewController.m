@@ -35,6 +35,7 @@
 #import "EMCDDeviceManager.h"
 #import "EMCDDeviceManagerDelegate.h"
 #import "RobotManager.h"
+#import "CPChatGroupDetailController.h"
 #define KPageCount 20
 #define KHintAdjustY    50
 
@@ -204,6 +205,7 @@
     {
         [self joinChatroom:_chatter];
     }
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"管理" target:self action:@selector(groupInfo)];
 }
 
 //- (void)handleCallNotification:(NSNotification *)notification
@@ -1779,6 +1781,14 @@
         [self showHint:[NSString stringWithFormat:NSLocalizedString(@"chatroom.remove", @"be removed from chatroom\'%@\'"), chatroom.chatroomId] yOffset:-frame.size.height + KHintAdjustY];
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+
+- (void)groupInfo
+{
+    CPChatGroupDetailController *vc = [UIStoryboard storyboardWithName:@"CPChatGroupDetailController" bundle:nil].instantiateInitialViewController;
+    NSString *groupDesc=_group.groupDescription;
+    vc.activityId = [groupDesc stringByReplacingOccurrencesOfString:@"_" withString:@"-"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - ICallManagerDelegate

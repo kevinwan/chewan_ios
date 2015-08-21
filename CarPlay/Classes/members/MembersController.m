@@ -22,10 +22,10 @@
 #import "NSMutableArray+CPUtilityButtons.h"
 #import "CPModelButton.h"
 #import <SDWebImage/UIButton+WebCache.h>
+#import "ChatViewController.h"
 
 
-
-@interface MembersController () <UITableViewDataSource,UITableViewDelegate,ZHPickViewDelegate,SWTableViewCellDelegate>
+@interface MembersController () <UITableViewDataSource,UITableViewDelegate,ZHPickViewDelegate,SWTableViewCellDelegate,ChatViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *memberTableView;
 @property (weak, nonatomic) IBOutlet UILabel *seatLabel;
@@ -602,7 +602,21 @@
 }
 //开始群聊
 - (IBAction)beginChatButonDidClick:(UIButton *)sender {
-    
+    ChatViewController *chatController;
+
+    chatController = [[ChatViewController alloc] initWithChatter:self.chatGroupId conversationType:eConversationTypeGroupChat];
+    chatController.delelgate = self;
+    chatController.title = @"测试";
+ 
+    EMError *error = nil;
+    EMGroup *group = [[EaseMob sharedInstance].chatManager fetchGroupInfo:self.chatGroupId error:&error];
+    if (group) {
+        chatController.group = group;
+        [self.navigationController pushViewController:chatController animated:YES];
+    }else{
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"提示" message:@"网络错误，请稍候再试" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

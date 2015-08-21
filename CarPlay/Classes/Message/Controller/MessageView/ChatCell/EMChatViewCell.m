@@ -112,6 +112,8 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
     if (model.messageType != eMessageTypeChat) {
         _nameLabel.text = model.message.ext[@"nickName"];
         _nameLabel.hidden = model.isSender;
+        NSURL *url=[[NSURL alloc]initWithString:model.message.ext[@"headUrl"]];
+        [self.headImageView sd_setImageWithURL:url];
     }
     
     _bubbleView.model = self.messageModel;

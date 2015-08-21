@@ -406,6 +406,9 @@
         
         return cell;
     }else{
+        
+        // 创建首页cell
+        
         CPHomeStatusCell *cell = [tableView dequeueReusableCellWithIdentifier:[CPHomeStatusCell identifier]];
     
     
@@ -414,9 +417,9 @@
         //绑定tag
         cell.myPlay.tag = indexPath.row;
         
+        
         // 弹出图片浏览器
         if (cell.pictureDidSelected == nil) {
-            //        __weak typeof(self) weakSelf = self;
             cell.pictureDidSelected = ^(CPHomeStatus *status,NSIndexPath *path, NSArray *srcView){
                 
                 
@@ -557,6 +560,7 @@
     }
     
 }
+
 
 
 // 预估每一行cell的高度，可提高性能（只计算可是区域的cell）

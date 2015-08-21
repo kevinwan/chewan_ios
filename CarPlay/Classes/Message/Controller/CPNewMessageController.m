@@ -123,16 +123,7 @@
     ZYJumpToLoginView // 跳转到登录页面
     [self reRefreshData];
     
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"haah" target:self action:@selector(haha)];
 }
-
-- (void)haha
-{
-    CPChatGroupDetailController *vc = [UIStoryboard storyboardWithName:@"CPChatGroupDetailController" bundle:nil].instantiateInitialViewController;
-    vc.activityId = @"208b6171-1261-4742-a836-b197c4c5e011";
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

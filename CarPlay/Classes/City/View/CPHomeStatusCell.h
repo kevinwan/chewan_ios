@@ -19,6 +19,8 @@ typedef void (^tapIcons)(CPHomeStatus *status);
 @property (weak, nonatomic) IBOutlet UICollectionView *iconView;
 @property (nonatomic,strong) CPHomeStatus *status;
 
+
+
 + (NSString *)identifier;
 
 // 返回每一行有多高

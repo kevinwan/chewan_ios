@@ -473,7 +473,7 @@
             [self.tableView reloadData];
         }
     } failure:^(NSError *error) {
-        //
+        
     }];
     
     
@@ -862,7 +862,8 @@
         self.coverBtn.hidden = YES;
     }
 }
-//点击我要玩
+
+// 点击我要玩
 - (IBAction)goToPlay:(UIButton *)sender {
     
     [SVProgressHUD showWithStatus:@"努力加载中"];
