@@ -128,7 +128,8 @@
 
 - (void)haha
 {
-    CPChatGroupDetailController *vc = [UIStoryboard storyboardWithName:@"CPChatGroupDetailController" bundle:nil].instantiateInitialViewController;;
+    CPChatGroupDetailController *vc = [UIStoryboard storyboardWithName:@"CPChatGroupDetailController" bundle:nil].instantiateInitialViewController;
+    vc.activityId = @"208b6171-1261-4742-a836-b197c4c5e011";
     [self.navigationController pushViewController:vc animated:YES];
 }
 
