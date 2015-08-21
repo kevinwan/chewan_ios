@@ -65,6 +65,9 @@
 // 是组织者
 @property (nonatomic, assign) NSInteger isOrganizer;
 
+// 是否结束
+@property (nonatomic, assign) NSInteger isOver;
+
 @end
 
 @interface CPOrganizer : NSObject

@@ -11,6 +11,7 @@
 
 typedef void (^PictureDidSelected)(CPHomeStatus *status,NSIndexPath *path, NSArray *srcView);
 typedef void (^tapIcons)(CPHomeStatus *status);
+
 @interface CPHomeStatusCell : UITableViewCell
 // 我要去玩
 @property (weak, nonatomic) IBOutlet UIButton *myPlay;

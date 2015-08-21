@@ -274,19 +274,6 @@
     [self.pictureView reloadData];
     [self.iconView reloadData];
     
-//    NSLog(@"--%@",self.iconView.subviews);
-//    for (int i=0; i<self.iconView.subviews.count; i++) {
-//        
-//        UIView *image = self.iconView.subviews[i];
-//        
-//        NSLog(@"++%@",image.subviews);
-//        for (int i=0; i < image.subviews.count; i++) {
-//            if ([image.subviews[i] isKindOfClass:[UIButton class]]) {
-//                UIView *view = image.subviews[i];
-//                [view removeFromSuperview];
-//            }
-//        }
-//    }
     
 }
 
@@ -376,9 +363,9 @@
         // 获取对应图片模型
         CPHomeMember *member = self.status.members[indexPath.item];
         
-        if (self.status.members.count == indexPath.item + 1) {
-            member.currentMember = indexPath.item;
-        }
+//        if (self.status.members.count == indexPath.item + 1) {
+//            member.currentMember = indexPath.item;
+//        }
         
         // 设置数据
         cell.homeMember = member;
