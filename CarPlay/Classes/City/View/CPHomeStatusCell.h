@@ -19,8 +19,7 @@ typedef void (^tapIcons)(CPHomeStatus *status);
 @property (weak, nonatomic) IBOutlet UICollectionView *iconView;
 @property (nonatomic,strong) CPHomeStatus *status;
 
-// 首页为yes，其他no
-@property (nonatomic,assign) BOOL isTaDetailPage;
+
 
 + (NSString *)identifier;
 
