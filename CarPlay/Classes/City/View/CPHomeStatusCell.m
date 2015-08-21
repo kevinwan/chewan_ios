@@ -119,6 +119,20 @@
     self.myPlay.layer.masksToBounds = YES;
     
     [self.myPlay setBackgroundColor:[Tools getColor:@"fc6e51"]];
+    
+//    if (self.isTaDetailPage) {
+//        if (self.status.isOver) {
+//            [self.myPlay setTitle:@"已结束" forState:UIControlStateNormal];
+//            [self.myPlay setBackgroundColor:[Tools getColor:@"ccd1d9"]];
+//
+//        }else{
+//            [self.myPlay setTitle:@"我要去玩" forState:UIControlStateNormal];
+//
+//        }
+//    }else{
+//        
+//    }
+    
     if (self.status.isOrganizer) {
         [self.myPlay setTitle:@"成员管理" forState:UIControlStateNormal];
     }else if (self.status.isMember){
@@ -131,6 +145,11 @@
         
     }else{
         [self.myPlay setTitle:@"我要去玩" forState:UIControlStateNormal];
+    }
+    
+    if (self.status.isOver) {
+        [self.myPlay setTitle:@"已结束" forState:UIControlStateNormal];
+        [self.myPlay setBackgroundColor:[Tools getColor:@"ccd1d9"]];
     }
     
     // 昵称

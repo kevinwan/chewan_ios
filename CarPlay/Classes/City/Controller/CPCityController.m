@@ -473,7 +473,7 @@
             [self.tableView reloadData];
         }
     } failure:^(NSError *error) {
-        //
+        
     }];
     
     
@@ -507,6 +507,9 @@
         cell.status = self.status[indexPath.row];
         //绑定tag
         cell.myPlay.tag = indexPath.row;
+        
+        // 是否为他的详情页
+        cell.isTaDetailPage = NO;
         
         // 弹出图片浏览器
         if (cell.pictureDidSelected == nil) {
@@ -862,7 +865,8 @@
         self.coverBtn.hidden = YES;
     }
 }
-//点击我要玩
+
+// 点击我要玩
 - (IBAction)goToPlay:(UIButton *)sender {
     
     [SVProgressHUD showWithStatus:@"努力加载中"];

@@ -66,6 +66,8 @@
 /** 是否为活动成员 */
 @property (nonatomic,assign) NSInteger isMember;
 
+/** 是否已结束 */
+@property (nonatomic,assign) NSInteger isOver;
 
 /** 活动作者的用户信息字段 */
 @property (nonatomic, strong) CPHomeUser *organizer;
