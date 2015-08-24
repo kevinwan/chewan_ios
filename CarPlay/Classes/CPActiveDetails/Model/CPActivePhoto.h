@@ -15,4 +15,8 @@
 
 // 原图
 @property (nonatomic, copy) NSString *original_pic;
+
+// coverId
+@property (nonatomic,copy) NSString *coverId;
+
 @end
