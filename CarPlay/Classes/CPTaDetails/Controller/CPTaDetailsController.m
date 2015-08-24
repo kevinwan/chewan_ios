@@ -328,9 +328,17 @@
             
             // 关闭下拉刷新
             [self.tableView.header endRefreshing];
-            
             // 关闭上拉刷新
             [self.tableView.footer endRefreshing];
+            
+            // 重置底部上拉或者点击加载更多
+            if (ignore == 0) {
+                [self.tableView.footer resetNoMoreData];
+            }
+            // 设置无更多数据
+            if (models.count == 0) {
+                [self.tableView.footer noticeNoMoreData];
+            }
         }
         
     } failure:^(NSError *error) {
