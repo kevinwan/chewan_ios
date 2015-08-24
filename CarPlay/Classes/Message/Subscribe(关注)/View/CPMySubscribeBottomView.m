@@ -126,17 +126,20 @@
     self.bottomView.frame = CGRectMake(0, topViewH, self.width, 39);
     
     self.chatBtn.x = self.width - self.chatBtn.width - 10;
-    self.chatBtn.y = (bottomViewH - self.chatBtn.height) * 0.5;
+//    self.chatBtn.y = (bottomViewH - self.chatBtn.height) * 0.5;
+    self.chatBtn.centerY = self.bottomView.centerYInSelf + 1.3;
     
     CGFloat personBtnStartX = 5;
     CGFloat personBtnH = bottomViewH - 14;
-    CGFloat personBtnY = (bottomViewH - personBtnH) * 0.5;
+//    CGFloat personBtnY = (bottomViewH - personBtnH) * 0.5 + 1.3;
+    CGFloat personBtnY = 0;
     CGFloat personBtnW = personBtnH;
     
     for (int i = 0; i < KPersonNum; i ++) {
        UIView *btn = [self.bottomView viewWithTag:i + 1];
         CGFloat btnX = personBtnStartX + i * (personBtnW + 5);
         btn.frame = CGRectMake(btnX, personBtnY, personBtnW, personBtnH);
+        btn.centerY = self.chatBtn.centerYInSuper;
     }
     
     count = self.model.members.count > 4 ? 4 : self.model.members.count;
@@ -144,7 +147,7 @@
     self.moreBtn.width = personBtnW;
     self.moreBtn.height = personBtnH;
     self.moreBtn.x = personBtnStartX + count  * (personBtnW + 5);
-    self.moreBtn.y = personBtnY;
+    self.moreBtn.centerY = self.chatBtn.centerYInSuper;
 
     
 }
@@ -188,11 +191,15 @@
     }else{
         [self.chatBtn showToPlay];
     }
+    
     if (self.model.isOver == 1 || self.model.isMember == 2){
         self.chatBtn.userInteractionEnabled = NO;
-        [self.chatBtn showGameOver];
     }else{
         self.chatBtn.userInteractionEnabled = YES;
+    }
+    
+    if (self.model.isOver == 1){
+        [self.chatBtn showGameOver];
     }
     
     [self setNeedsLayout];
