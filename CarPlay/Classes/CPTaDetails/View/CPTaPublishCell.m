@@ -111,8 +111,8 @@
     
     
     // 刷新，collectionView数据清零
-//    [self.picColView reloadData];
-//    [self.iconColView reloadData];
+    [self.picColView reloadData];
+    [self.iconColView reloadData];
     
     // 测试
 //    NSLog(@"%@",self.bottomIconList);

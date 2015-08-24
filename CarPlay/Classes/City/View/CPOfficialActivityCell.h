@@ -9,10 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "CPHomeStatus.h"
 
+typedef void(^OfficialDetails)(NSUInteger tag);
+
 @interface CPOfficialActivityCell : UITableViewCell
 
 // 存储官方cell数据
 @property (nonatomic,strong) NSArray *activeStatus;
+
+// 官方活动点击
+@property (nonatomic,copy) OfficialDetails officialDetails;
 
 // 主动加载cell方法
 + (instancetype)officialActivityCell;

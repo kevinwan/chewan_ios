@@ -85,6 +85,7 @@
         
         // 创建图片容器
         UIImageView *imageView = [[UIImageView alloc] init];
+        imageView.tag = i;
         // 设置图片显示格式
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         // 设置frame
@@ -93,7 +94,13 @@
         // 设置图片
         NSURL *url = [NSURL URLWithString:activeStu.cover];
         [imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"默认头像"]];
+        // 设置图片容器可以交互
+        imageView.userInteractionEnabled = YES;
         
+        
+        // 添加图片点击手势
+        UITapGestureRecognizer *singleClick = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageClick:)];
+        [imageView addGestureRecognizer:singleClick];
         
         
         // 蒙版
@@ -181,6 +188,13 @@
     [self addTimer];
 }
 
+
+// 官方活动点击
+- (void)imageClick:(UITapGestureRecognizer *)sender{
+    if (self.officialDetails != nil) {
+        self.officialDetails(sender.view.tag);
+    }
+}
 
 
 /**
