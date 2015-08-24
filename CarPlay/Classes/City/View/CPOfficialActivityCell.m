@@ -135,7 +135,7 @@
         // 截止时间
         UILabel *endLabel = [[UILabel alloc] init];
         endLabel.textColor = [UIColor whiteColor];
-        endLabel.text = @"截止时间：";
+        endLabel.text = @"报名截止：";
         endLabel.font = ActiveEndTimeFont;
         endLabel.y = endTimeLabel.y;
         [endLabel sizeToFit];
