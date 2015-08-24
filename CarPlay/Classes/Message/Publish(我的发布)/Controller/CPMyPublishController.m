@@ -118,6 +118,7 @@
     }
     NSString *url = [NSString stringWithFormat:@"v1/user/%@/post",self.hisUserId];
     [CPNetWorkTool getWithUrl:url params:@{@"ignore" : @(ignore)} success:^(NSDictionary *responseObject) {
+        DLog(@"%@",responseObject[@"data"]);
         [self disMiss];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.tableView.footer.hidden = NO;
