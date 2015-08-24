@@ -228,6 +228,9 @@
 //    self.pageControl.currentPage = page;
 }
 
+
+
+
 /**
  *  开始拖拽的时候调用
  */
