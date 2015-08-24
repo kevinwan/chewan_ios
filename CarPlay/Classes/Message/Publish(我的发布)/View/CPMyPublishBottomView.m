@@ -161,10 +161,11 @@
         btn.centerY = self.chatBtn.centerYInSuper;
     }
     NSUInteger count = self.model.members.count > KPersonNum? KPersonNum : self.model.members.count;
-    self.moreBtn.x = personBtnStartX + count * (personBtnW + 5);
-    self.moreBtn.centerY = self.chatBtn.centerYInSuper;
+
     self.moreBtn.width = personBtnW;
     self.moreBtn.height = personBtnH;
+    self.moreBtn.x = personBtnStartX + count * (personBtnW + 5);
+    self.moreBtn.centerY = self.chatBtn.centerYInSuper;
 }
 
 - (void)setModel:(CPMyPublishModel *)model

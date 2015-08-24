@@ -108,6 +108,7 @@ static LocationViewController *defaultLocation = nil;
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    [self disMiss];
 }
 
 #pragma mark - class methods
