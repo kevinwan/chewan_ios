@@ -401,6 +401,15 @@
         // 关闭上拉刷新
         [self.tableView.footer endRefreshing];
         
+        // 重置底部上拉或者点击加载更多
+        if (ignore == 0) {
+            [self.tableView.footer resetNoMoreData];
+        }
+        // 设置无更多数据
+        if (models.count == 0) {
+            [self.tableView.footer noticeNoMoreData];
+        }
+        
     } failure:^(NSError *error) {
        
     }];
@@ -581,13 +590,16 @@
     
     // 记录被回复人Id
     self.byReplyId = disStatus.userId;
-
     
 }
 
 // 当开始拖拽tableview表格的时候调用
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     
+    // 拖拽取消cell选中状态
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    // 清空记录id
+    self.byReplyId = nil;
     self.inputView.placeholder = @"给楼主留个言...";
     //退出键盘
     [self.view endEditing:YES];
@@ -948,6 +960,11 @@
 // 处理headview点击事件
 - (void)routerEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userInfo
 {
+    // 拖拽取消cell选中状态
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    // 清空记录id
+    self.byReplyId = nil;
+    self.inputView.placeholder = @"给楼主留个言...";
     [self.inputView resignFirstResponder];
 }
 

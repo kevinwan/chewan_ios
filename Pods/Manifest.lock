@@ -23,11 +23,11 @@ PODS:
   - AMap2DMap (2.6.0)
   - AMapSearch (2.6.0)
   - DACircularProgress (2.3.1)
-  - EaseMobSDK (2.1.9)
+  - EaseMobSDK (2.2.0)
   - INTULocationManager (4.0.0)
   - Masonry (0.6.2)
   - MBProgressHUD (0.9.1)
-  - MJExtension (2.5.7)
+  - MJExtension (2.5.8)
   - MJRefresh (2.4.7)
   - MWPhotoBrowser (2.1.1):
     - DACircularProgress (~> 2.3)
@@ -68,7 +68,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   EaseMobSDK:
-    :commit: 4ec299391d5072fe27a548b190c9b77d9fe58c5b
+    :commit: 9eff44c21ab3602aef66eedb0295f688953e5e00
     :git: https://github.com/easemob/sdk-ios-cocoapods.git
 
 SPEC CHECKSUMS:
@@ -76,11 +76,11 @@ SPEC CHECKSUMS:
   AMap2DMap: b5ce82581ca53b71a0136da858f7ef04db1ffc59
   AMapSearch: 0ea3101eec4b9f500b53e33dcda30d343d41613b
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
-  EaseMobSDK: cc8415cb99a65debf4711fa2c9c349fd5c843299
+  EaseMobSDK: e0c1e3d00e95e0e2d54dd58313b52eaed74cc6df
   INTULocationManager: 754f2800415378b7bb2c07be103449e1f6a2cc70
   Masonry: 362e8a1cc0beada4a4c4832d5e863da2a51533be
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
-  MJExtension: 2650b64a34ace8d2aa9410d1d17244917032f37a
+  MJExtension: e6f30c738b7618552ee5563fcf4eadf552f997e0
   MJRefresh: 6eb2f61338f89f64fd628fd43debcf479381ff59
   MWPhotoBrowser: ba0d0c09ffda3a7ea10093518738c502c1c7141c
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84

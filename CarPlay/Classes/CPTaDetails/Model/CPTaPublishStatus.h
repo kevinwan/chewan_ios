@@ -26,6 +26,9 @@
 // 成员头像
 @property (nonatomic,strong) NSArray *members;
 
+// 参与成员个数
+@property (nonatomic, assign) NSUInteger membersCount;
+
 // 付费方式
 @property (nonatomic,copy) NSString *pay;
 

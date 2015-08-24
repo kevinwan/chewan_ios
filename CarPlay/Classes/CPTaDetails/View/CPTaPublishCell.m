@@ -159,7 +159,7 @@
     if (collectionView == self.picColView) {
         return self.publishStatus.cover.count;
     }else{
-        return self.publishStatus.members.count;
+        return self.publishStatus.membersCount;
     }
 }
 
@@ -170,7 +170,6 @@
         
         // 赋值
         cell.taPhoto = self.publishStatus.cover[indexPath.item];
-        NSLog(@"%ld",indexPath.item);
         return cell;
     }else{
         CPTaIconCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[CPTaIconCell identifier] forIndexPath:indexPath];

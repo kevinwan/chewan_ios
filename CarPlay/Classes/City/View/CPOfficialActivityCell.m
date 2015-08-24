@@ -85,6 +85,7 @@
         
         // 创建图片容器
         UIImageView *imageView = [[UIImageView alloc] init];
+        imageView.tag = i;
         // 设置图片显示格式
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         // 设置frame
@@ -93,7 +94,13 @@
         // 设置图片
         NSURL *url = [NSURL URLWithString:activeStu.cover];
         [imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"默认头像"]];
+        // 设置图片容器可以交互
+        imageView.userInteractionEnabled = YES;
         
+        
+        // 添加图片点击手势
+        UITapGestureRecognizer *singleClick = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageClick:)];
+        [imageView addGestureRecognizer:singleClick];
         
         
         // 蒙版
@@ -128,7 +135,7 @@
         // 截止时间
         UILabel *endLabel = [[UILabel alloc] init];
         endLabel.textColor = [UIColor whiteColor];
-        endLabel.text = @"截止时间：";
+        endLabel.text = @"报名截止：";
         endLabel.font = ActiveEndTimeFont;
         endLabel.y = endTimeLabel.y;
         [endLabel sizeToFit];
@@ -159,7 +166,7 @@
         logoImageView.layer.cornerRadius = 25;
         logoImageView.layer.masksToBounds = YES;
         NSURL *logoUrl = [NSURL URLWithString:activeStu.logo];
-        [logoImageView sd_setImageWithURL:logoUrl placeholderImage:[UIImage imageNamed:@"默认头像"]];
+        [logoImageView sd_setImageWithURL:logoUrl placeholderImage:[UIImage imageNamed:@"imageplace"]];
         logoImageView.frame = CGRectMake(10, 59, 50, 50);
         [imageView addSubview:logoImageView];
         
@@ -181,6 +188,13 @@
     [self addTimer];
 }
 
+
+// 官方活动点击
+- (void)imageClick:(UITapGestureRecognizer *)sender{
+    if (self.officialDetails != nil) {
+        self.officialDetails(sender.view.tag);
+    }
+}
 
 
 /**
@@ -227,6 +241,9 @@
 //    int page = (scrollView.contentOffset.x + scrollW * 0.5) / scrollW;
 //    self.pageControl.currentPage = page;
 }
+
+
+
 
 /**
  *  开始拖拽的时候调用

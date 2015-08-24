@@ -36,9 +36,21 @@
     self.iconView.layer.cornerRadius = 12.5;
     self.iconView.layer.masksToBounds = YES;
     
+    // 添加按钮后取出头像图片
+    if ([homeMember.photo isEqualToString:@"用户小头像底片"]) {
+        self.countBtn.hidden = NO;
+        self.iconView.image = [UIImage imageNamed:homeMember.photo];
+        NSString *iconCount = [NSString stringWithFormat:@"%@",@(homeMember.membersCount)];
+        [self.countBtn setTitle:iconCount forState:UIControlStateNormal];
+        [self.iconView addSubview:self.countBtn];
+    }else{
+        
+        NSURL *url = [NSURL URLWithString:_homeMember.photo];
+        [self.iconView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"默认头像"]];
+        //        [self.countBtn removeFromSuperview];
+        self.countBtn.hidden = YES;
+    }
     
-    NSURL *url = [NSURL URLWithString:_homeMember.photo];
-    [self.iconView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"默认头像"]];
     
 //    if ([homeMember.photo isEqualToString:@"用户小头像底片"]) {
 //
@@ -48,18 +60,7 @@
 //    
 //    }
     
-    
-    // 添加按钮后取出头像图片
-    if ([homeMember.photo isEqualToString:@"用户小头像底片"]) {
-        self.countBtn.hidden = NO;
-        self.iconView.image = [UIImage imageNamed:homeMember.photo];
-        NSString *iconCount = [NSString stringWithFormat:@"%@",@(homeMember.membersCount)];
-        [self.countBtn setTitle:iconCount forState:UIControlStateNormal];
-        [self.iconView addSubview:self.countBtn];   
-    }else{
-//        [self.countBtn removeFromSuperview];
-        self.countBtn.hidden = YES;
-    }
+
    
     
    

@@ -149,7 +149,7 @@
     }else{
         self.carIcon.hidden = NO;
         NSURL *urlCarBrandLogo = [NSURL URLWithString:user.carBrandLogo];
-        [self.carIcon sd_setImageWithURL:urlCarBrandLogo placeholderImage:[UIImage imageNamed:@"默认头像"]];
+        [self.carIcon sd_setImageWithURL:urlCarBrandLogo placeholderImage:[UIImage imageNamed:@"imageplace"]];
         
     }
   
