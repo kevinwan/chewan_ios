@@ -18,8 +18,6 @@
 #define kScreenScale                ([UIScreen instancesRespondToSelector:@selector(scale)]?[[UIScreen mainScreen] scale]:(1.0f))
 #define kIntegerScreenScale         (NSInteger)kScreenScale
 
-#define kScreenWidth                ([[UIScreen mainScreen] applicationFrame].size.width)
-#define kScreenHeight                ([[UIScreen mainScreen] applicationFrame].size.height)
 #define kStatusBarMaxY              CGRectGetMaxY([[UIApplication sharedApplication] statusBarFrame])
 
 #define kUserInterfaceIdiomIsPhone  (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)

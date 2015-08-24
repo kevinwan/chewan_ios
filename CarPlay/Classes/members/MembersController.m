@@ -88,7 +88,7 @@
     [self.outButton setBackgroundColor:[AppAppearance redColor]];
     self.outButton.layer.cornerRadius = 3;
     [self.outButton clipsToBounds];
-    [self.beginChatButton setTitle:@"开始群聊" forState:UIControlStateNormal];
+    [self.beginChatButton setTitle:@"开始畅聊" forState:UIControlStateNormal];
     [self.beginChatButton setTitleColor:[AppAppearance titleColor] forState:UIControlStateNormal];
     [self.beginChatButton setBackgroundColor:[AppAppearance greenColor]];
     self.beginChatButton.layer.cornerRadius = 3;
@@ -121,6 +121,7 @@
             NSArray *carModel = [cars objectArrayWithKeyValuesArray:responseObject[@"data"][@"cars"]];
             NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"共%@个座位,还剩下%@个座位",responseObject[@"data"][@"totalSeat"],responseObject[@"data"][@"availableSeat"]]];
             self.chatGroupId = responseObject[@"data"][@"chatGroupId"];
+            self.activityTitle = responseObject[@"data"][@"title"];
             SQLog(@"%@",self.chatGroupId);
             [str addAttribute:NSForegroundColorAttributeName value:[AppAppearance redColor] range:NSMakeRange(str.length -4, 2)];
             self.seatLabel.attributedText = str;
@@ -284,7 +285,7 @@
     self.subButton = sub;
 //    [(carCell *)cell setSubButton:sub];
     SQLog(@"%@",sub);
-    if ([button imageForState:UIControlStateNormal]!= nil) {
+    if ([sub imageForState:UIControlStateNormal]!= nil) {
         [self.view alert:@"此座位已有人"];
         return;
     }
@@ -604,9 +605,9 @@
 - (IBAction)beginChatButonDidClick:(UIButton *)sender {
     ChatViewController *chatController;
 
-    chatController = [[ChatViewController alloc] initWithChatter:@"测试" conversationType:eConversationTypeGroupChat];
+    chatController = [[ChatViewController alloc] initWithChatter:self.chatGroupId conversationType:eConversationTypeGroupChat];
     chatController.delelgate = self;
-    chatController.title = @"测试";
+    chatController.title = self.activityTitle;
  
     EMError *error = nil;
     EMGroup *group = [[EaseMob sharedInstance].chatManager fetchGroupInfo:self.chatGroupId error:&error];

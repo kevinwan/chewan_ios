@@ -11,5 +11,6 @@
 @interface MembersController : UIViewController
 
 @property (nonatomic, copy) NSString *activityId;
+@property (nonatomic, strong) NSString *activityTitle;
 @end
 

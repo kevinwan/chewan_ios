@@ -36,6 +36,7 @@
 #import "EMCDDeviceManagerDelegate.h"
 #import "RobotManager.h"
 #import "CPChatGroupDetailController.h"
+#import "CPTaDetailsController.h"
 #define KPageCount 20
 #define KHintAdjustY    50
 
@@ -630,6 +631,22 @@
         [self chatVideoCellPressed:model];
     }else if ([eventName isEqualToString:kRouterEventMenuTapEventName]) {
         [self sendTextMessage:[userInfo objectForKey:@"text"]];
+    }else if ([eventName isEqualToString:kRouterEventChatHeadImageTapEventName]){
+        [self headViewClick:model];
+    }
+}
+
+// 头像被点击
+- (void)headViewClick:(MessageModel *)model
+{
+    NSString *userId = model.message.ext[@"userId"];
+    NSString *localUserId = [Tools getValueFromKey:@"userId"];
+    if ([userId isEqualToString:localUserId]) {
+        
+    }else{
+        CPTaDetailsController *vc = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil].instantiateInitialViewController;
+        vc.targetUserId = userId;
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
@@ -1106,9 +1123,7 @@
 -(void)sendLocationLatitude:(double)latitude longitude:(double)longitude andAddress:(NSString *)address
 {
     NSDictionary *ext = nil;
-    if (_isRobot) {
-        ext = @{kRobot_Message_Ext:[NSNumber numberWithBool:YES]};
-    }
+    ext = @{@"nickName":[Tools getValueFromKey:@"nickName"],@"headUrl":[Tools getValueFromKey:@"headUrl"],@"userId":[Tools getValueFromKey:@"userId"]};
     EMMessage *locationMessage = [ChatSendHelper sendLocationLatitude:latitude longitude:longitude address:address toUsername:_conversation.chatter messageType:[self messageType] requireEncryption:NO ext:ext];
     [self addMessage:locationMessage];
 }
@@ -1670,7 +1685,7 @@
 //    if (_isRobot) {
 //        ext = @{kRobot_Message_Ext:[NSNumber numberWithBool:YES]};
 //    }
-    ext = @{@"nickName":[Tools getValueFromKey:@"nickName"],@"headUrl":[Tools getValueFromKey:@"headUrl"]};
+    ext = @{@"nickName":[Tools getValueFromKey:@"nickName"],@"headUrl":[Tools getValueFromKey:@"headUrl"],@"userId":[Tools getValueFromKey:@"userId"]};
     EMMessage *tempMessage = [ChatSendHelper sendTextMessageWithString:textMessage
                                                             toUsername:_conversation.chatter
                                                            messageType:[self messageType]
@@ -1685,7 +1700,7 @@
 //    if (_isRobot) {
 //        ext = @{kRobot_Message_Ext:[NSNumber numberWithBool:YES]};
 //    }
-    ext = @{@"nickName":[Tools getValueFromKey:@"nickName"],@"headUrl":[Tools getValueFromKey:@"headUrl"]};
+    ext = @{@"nickName":[Tools getValueFromKey:@"nickName"],@"headUrl":[Tools getValueFromKey:@"headUrl"],@"userId":[Tools getValueFromKey:@"userId"]};
     EMMessage *tempMessage = [ChatSendHelper sendImageMessageWithImage:image
                                                             toUsername:_conversation.chatter
                                                            messageType:[self messageType]
@@ -1700,7 +1715,7 @@
 //    if (_isRobot) {
 //        ext = @{kRobot_Message_Ext:[NSNumber numberWithBool:YES]};
 //    }
-    ext = @{@"nickName":[Tools getValueFromKey:@"nickName"],@"headUrl":[Tools getValueFromKey:@"headUrl"]};
+    ext = @{@"nickName":[Tools getValueFromKey:@"nickName"],@"headUrl":[Tools getValueFromKey:@"headUrl"],@"userId":[Tools getValueFromKey:@"userId"]};
     EMMessage *tempMessage = [ChatSendHelper sendVoice:voice
                                             toUsername:_conversation.chatter
                                            messageType:[self messageType]
@@ -1714,7 +1729,7 @@
 //    if (_isRobot) {
 //        ext = @{kRobot_Message_Ext:[NSNumber numberWithBool:YES]};
 //    }
-    ext = @{@"nickName":[Tools getValueFromKey:@"nickName"],@"headUrl":[Tools getValueFromKey:@"headUrl"]};
+    ext = @{@"nickName":[Tools getValueFromKey:@"nickName"],@"headUrl":[Tools getValueFromKey:@"headUrl"],@"userId":[Tools getValueFromKey:@"userId"]};
     EMMessage *tempMessage = [ChatSendHelper sendVideo:video
                                             toUsername:_conversation.chatter
                                            messageType:[self messageType]
