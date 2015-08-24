@@ -33,10 +33,11 @@
 - (UIButton *)coverView
 {
     if (_coverView == nil) {
-        _coverView = [[UIButton alloc] initWithFrame:self.view.bounds];
+        _coverView = [[UIButton alloc] initWithFrame:[UIScreen mainScreen].bounds];
         _coverView.backgroundColor = RGBACOLOR(0, 0, 0, 0.5);
         
         UIView *bgView = [UIView new];
+        bgView.backgroundColor = [UIColor whiteColor];
         bgView.width = kScreenWidth - 30;
         bgView.height = 136;
         bgView.centerX = kScreenWidth * 0.5;
@@ -59,7 +60,7 @@
         [msgLabel sizeToFit];
         msgLabel.centerX = bgView.centerXInSelf;
         msgLabel.y = 12.5 + titleLabel.bottom;
-        [msgLabel addSubview:msgLabel];
+        [bgView addSubview:msgLabel];
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         [button setTitle:@"我知道了" forState:UIControlStateNormal];
@@ -73,7 +74,7 @@
         button.layer.cornerRadius = 3;
         button.clipsToBounds = YES;
         [button addTarget:self action:@selector(buttonClick) forControlEvents:UIControlEventTouchUpInside];
-        [_coverView addSubview:button];
+        [bgView addSubview:button];
         _coverView.hidden = NO;
         [[UIApplication sharedApplication].windows.lastObject addSubview:_coverView];
     }
