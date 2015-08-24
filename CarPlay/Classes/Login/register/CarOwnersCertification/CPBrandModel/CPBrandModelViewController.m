@@ -49,9 +49,9 @@
 //    }
     
     sortedBrandData=[[NSMutableDictionary alloc]init];
-    if (!_fromMy || ![_fromMy isEqualToString:@"1"]) {
-        self.brandTableView.contentInset=UIEdgeInsetsMake(64, 0, 0, 0);
-    }
+//    if (!_fromMy || ![_fromMy isEqualToString:@"1"]) {
+//        self.brandTableView.contentInset=UIEdgeInsetsMake(64, 0, 0, 0);
+//    }
     //隐藏视图
     self.modelSlideView = [UIView new];
     _modelSlideView.hidden = YES;
@@ -63,11 +63,11 @@
 //    [_modelSlideView setFrame:CGRectMake(60.0f, 0, SCREEN_WIDTH-60.0f,SCREEN_HEIGHT)];
     
     // 第三方控件视图我就不修改了
-    if (!_fromMy || ![_fromMy isEqualToString:@"1"]) {
-        self.indexView = [[MJNIndexView alloc] initWithFrame:CGRectMake(0, 60, SCREEN_WIDTH, SCREEN_HEIGHT - 60)];
-    }else{
-        self.indexView = [[MJNIndexView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    }
+//    if (!_fromMy || ![_fromMy isEqualToString:@"1"]) {
+//        self.indexView = [[MJNIndexView alloc] initWithFrame:CGRectMake(0, 60, SCREEN_WIDTH, SCREEN_HEIGHT - 60)];
+//    }else{
+        self.indexView = [[MJNIndexView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
+//    }
     _indexView.dataSource = self;
     _indexView.fontColor = [Tools getColor:@"aab2bd"];
     _indexView.font = [UIFont systemFontOfSize:11.0f];
@@ -92,11 +92,11 @@
 //    [_modelTableView mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.edges.equalTo(_modelSlideView).with.insets(UIEdgeInsetsMake(66.0f, 0.5f, 0.0f, 0.0f));
 //    }];
-    if (!_fromMy || ![_fromMy isEqualToString:@"1"]) {
-        self.modelTableView.frame=CGRectMake(60, 64, SCREEN_WIDTH-60, SCREEN_HEIGHT-64);
-    }else{
+//    if (!_fromMy || ![_fromMy isEqualToString:@"1"]) {
+//        self.modelTableView.frame=CGRectMake(60, 64, SCREEN_WIDTH-60, SCREEN_HEIGHT-64);
+//    }else{
         self.modelTableView.frame=CGRectMake(60, 0, SCREEN_WIDTH-60, SCREEN_HEIGHT);
-    }
+//    }
     // 清扫手势
     UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipes:)];
     swipeGesture.numberOfTouchesRequired = 1;
@@ -104,6 +104,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBar.translucent=NO;
     [self getData];
 }
 

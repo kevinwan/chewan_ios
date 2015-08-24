@@ -39,6 +39,10 @@
 -(void)viewWillAppear:(BOOL)animated{
     if ([Tools getValueFromKey:@"userId"]) {
         [self.tableView reloadData];
+        if (_organizer && _organizer.drivingLicensePhoto) {
+            NSURL *url=[[NSURL alloc]initWithString:_organizer.drivingLicensePhoto];
+            [self.imageBtn sd_setImageWithURL:url];
+        }
     }else{
         [self.tableView removeFromSuperview];
         [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
@@ -78,14 +82,14 @@
         [cell addSubview:cellTopSeparator];
         cell.cellTitle.text=@"驾龄";
         cell.textLabel.textColor=[Tools getColor:@"aab2bd"];
-        if ([Tools getValueFromKey:@"drivingExperience"]) {
-            cell.cellContent.text=[[NSString alloc]initWithFormat:@"%@年",[Tools getValueFromKey:@"drivingExperience"]];
+        if (_organizer.drivingExperience) {
+            cell.cellContent.text=[[NSString alloc]initWithFormat:@"%ld年",(long)_organizer.drivingExperience];
         }
     }else{
         cell.cellTitle.text=@"车型品牌";
         cell.textLabel.textColor=[Tools getColor:@"aab2bd"];
-        if ([Tools getValueFromKey:@"modelName"]) {
-            NSString *detailText=[[NSString alloc]initWithFormat:@"%@",[Tools getValueFromKey:@"modelName"]];
+        if (_organizer.carModel) {
+            NSString *detailText=[[NSString alloc]initWithFormat:@"%@",_organizer.carModel];
             cell.cellContent.text=detailText;
         }
     }

@@ -125,17 +125,17 @@
 }
 
 #pragma mark - private
-//登陆状态改变
+//登录状态改变
 -(void)loginStateChange:(NSNotification *)notification
 {
     BOOL isAutoLogin = [[[EaseMob sharedInstance] chatManager] isAutoLoginEnabled];
     BOOL loginSuccess = [notification.object boolValue];
-    if ((isAutoLogin || loginSuccess) && [Tools getValueFromKey:@"userId"]) {//登陆成功加载主窗口控制器
+    if ((isAutoLogin || loginSuccess) && [Tools getValueFromKey:@"userId"]) {//登录成功加载主窗口控制器
         //加载申请通知的数据
         self.window.rootViewController = _tabVc;
         [self.window makeKeyAndVisible];
-    }else{//登陆失败加载登陆页面控制器
-        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"您还没有登陆是否登录？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"登陆", nil] show];
+    }else{//登录失败加载登录页面控制器
+        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"您还没有登录是否登录？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"登录", nil] show];
     }
 }
 

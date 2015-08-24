@@ -106,7 +106,8 @@ typedef enum {
             [self timer];
         }
     }
-    
+    [self refreshDataSource];
+    [self registerNotifications];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -497,6 +498,18 @@ typedef enum {
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
+}
+
+#pragma mark - IChatMangerDelegate
+
+-(void)didUnreadMessagesCountChanged
+{
+    [self refreshDataSource];
+}
+
+- (void)didUpdateGroupList:(NSArray *)allGroups error:(EMError *)error
+{
+    [self refreshDataSource];
 }
 
 @end

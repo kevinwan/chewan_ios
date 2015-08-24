@@ -21,6 +21,7 @@
     int birthDay;
     CPOrganizer *organizer;
     NSString *fileName;
+    UIImage *editedImage;
 }
 @end
 
@@ -206,7 +207,7 @@
 
 #pragma PickerController
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    UIImage *editedImage=[info objectForKey:UIImagePickerControllerEditedImage];
+    editedImage=[info objectForKey:UIImagePickerControllerEditedImage];
 //    NSIndexPath *index = [NSIndexPath indexPathForRow:0 inSection:0];
     
 //    CPEditHeadIconCell *cell=(CPEditHeadIconCell *)[self.tableView cellForRowAtIndexPath:index];
@@ -232,11 +233,17 @@
         NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
         NSString *state=[numberFormatter stringFromNumber:[responseObject objectForKey:@"result"]];
         if ([state isEqualToString:@"0"]) {
+            NSIndexPath *indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
+            CPEditHeadIconCell *cell=(CPEditHeadIconCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+            [cell.headIcon setImage:editedImage];
             NSDictionary *data=[responseObject objectForKey:@"data"];
             [Tools setValueForKey:[data objectForKey:@"photoId"] key:@"photoId"];
             [Tools setValueForKey:[data objectForKey:@"photoUrl"] key:@"photoUrl"];
             [Tools setValueForKey:data[@"photoUrl"] key:@"headUrl"];
-            [self.tableView reloadData];
+            organizer.headImgUrl = [data objectForKey:@"photoUrl"];
+            organizer.headImgId = data[@"photoId"];
+            organizer.photo = data[@"photoUrl"];
+            [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
         }else{
             [[[UIAlertView alloc]initWithTitle:@"提示" message:@"上传失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
         }

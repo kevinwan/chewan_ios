@@ -115,6 +115,7 @@
         if (!error && info) {
             LoginViewController *loginVC=[[LoginViewController alloc]init];
             [Tools setValueForKey:@(NO) key:NOTIFICATION_HASLOGIN];
+            [Tools setValueForKey:@(NO) key:@"LoginFrom3Party"];
             ZYNavigationController* nav1 = [[ZYNavigationController alloc] initWithRootViewController:loginVC];
             self.view.window.rootViewController=nav1;
             [self.view.window makeKeyAndVisible];

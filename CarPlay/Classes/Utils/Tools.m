@@ -53,7 +53,7 @@
 
 +(BOOL) isValidateMobile:(NSString *)mobile
 {
-    NSString *phoneRegex = @"^((13[0-9])|(15[^4,\\D])|(18[0,0-9]))\\d{8}$";
+    NSString *phoneRegex = @"^((13[0-9])|(15[^4,\\D])|(17[0,0-9])|(18[0,0-9]))\\d{8}$";
     NSPredicate *phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",phoneRegex];
     return [phoneTest evaluateWithObject:mobile];
 }
@@ -75,6 +75,12 @@
     NSPredicate *pwdTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", pwdRegex];
     
     return [pwdTest evaluateWithObject:pwd];
+}
+
++(BOOL)isValidateIdentityCode : (NSString *)identityCode{
+    NSString *identityCodeRegex = @"^\\d{4}$";
+    NSPredicate *identityCodeTest =[NSPredicate predicateWithFormat:@"SELF MATCHES %@", identityCodeRegex];
+    return [identityCodeTest evaluateWithObject:identityCode];
 }
 
 //身份证号

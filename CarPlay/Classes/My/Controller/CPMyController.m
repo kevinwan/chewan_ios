@@ -69,6 +69,9 @@
     if ([Tools getValueFromKey:@"userId"]) {
         self.unLoginStatusView.hidden=YES;
         [self getData];
+    }else{
+        organizer=[[CPOrganizer alloc]init];
+        [self loadUserData];
     }
 }
 
@@ -132,12 +135,12 @@
             CarOwnersCertificationViewController *CarOwnersCertificationVC=[[CarOwnersCertificationViewController alloc]init];
             CarOwnersCertificationVC.fromMy=@"0";
             CarOwnersCertificationVC.title=@"车主认证";
-            
+            CarOwnersCertificationVC.organizer = organizer;
             [self.navigationController pushViewController:CarOwnersCertificationVC animated:YES];
         }
     }else if (indexPath.row==2){
         CPHowToPlayViewController *CPHowToPlayVC=[[CPHowToPlayViewController alloc]init];
-        CPHowToPlayVC.title=@"玩转玩车";
+        CPHowToPlayVC.title=@"玩转车玩";
         [self.navigationController pushViewController:CPHowToPlayVC animated:YES];
     }else if (indexPath.row==3){
         CPFeedbackViewController *CPFeedbackVC=[[CPFeedbackViewController alloc]init];

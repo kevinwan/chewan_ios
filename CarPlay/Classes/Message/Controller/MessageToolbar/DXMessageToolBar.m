@@ -279,6 +279,10 @@
     CGFloat allButtonWidth = 0.0;
     CGFloat textViewLeftMargin = 6.0;
     
+    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, .5)];
+    label.backgroundColor=[Tools getColor:@"c3c3c5"];
+    [self addSubview:label];
+    
     //转变输入样式
     self.styleChangeButton = [[UIButton alloc] initWithFrame:CGRectMake(kHorizontalPadding, kVerticalPadding, kInputTextViewMinHeight, kInputTextViewMinHeight)];
     self.styleChangeButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
@@ -359,6 +363,10 @@
     if (!self.recordView) {
         self.recordView = [[DXRecordView alloc] initWithFrame:CGRectMake(90, 130, 140, 140)];
     }
+    
+    UILabel *buttomlabel=[[UILabel alloc]initWithFrame:CGRectMake(0, self.height-0.5, SCREEN_WIDTH, .5)];
+    buttomlabel.backgroundColor=[Tools getColor:@"c3c3c5"];
+    [self addSubview:buttomlabel];
     
     [self.toolbarView addSubview:self.styleChangeButton];
     [self.toolbarView addSubview:self.moreButton];

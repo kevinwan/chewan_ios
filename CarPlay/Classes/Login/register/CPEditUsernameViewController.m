@@ -9,7 +9,7 @@
 #import "CPEditUsernameViewController.h"
 #import "CPMySubscribeModel.h"
 
-@interface CPEditUsernameViewController ()
+@interface CPEditUsernameViewController ()<UITextFieldDelegate>
 {
     CPOrganizer *organizer;
 }
@@ -21,11 +21,15 @@
     [super viewDidLoad];
     self.navigationController.navigationBar.translucent=NO;
     [self setRightBarWithText:@"保存"];
+    [_nicknameLable addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     
     NSString *fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"phone"]];
+    if (_thirdPartyAccount) {
+        fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:_thirdPartyAccount[@"uid"]]];
+    }
     if (!_organizer && [NSKeyedUnarchiver unarchiveObjectWithFile:fileName]) {
          organizer= [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
         
@@ -51,6 +55,8 @@
             if (_organizer) {
                 NSDictionary *para=[[NSDictionary alloc]initWithObjectsAndKeys:self.nicknameLable.text,@"nickname", nil];
                 [self updataUserInfo:para];
+            }else{
+                [self.navigationController popViewControllerAnimated:YES];
             }
         }else{
             CPOrganizer *organizer=[[CPOrganizer alloc]init];
@@ -89,6 +95,16 @@
         [self disMiss];
         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
     }];
+}
+
+
+- (void)textFieldDidChange:(UITextField *)textField
+{
+    if (textField == _nicknameLable) {
+        if (textField.text.length > 7) {
+            textField.text = [textField.text substringToIndex:7];
+        }
+    }
 }
 
 @end
