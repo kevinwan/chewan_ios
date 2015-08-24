@@ -166,7 +166,7 @@
         logoImageView.layer.cornerRadius = 25;
         logoImageView.layer.masksToBounds = YES;
         NSURL *logoUrl = [NSURL URLWithString:activeStu.logo];
-        [logoImageView sd_setImageWithURL:logoUrl placeholderImage:[UIImage imageNamed:@"默认头像"]];
+        [logoImageView sd_setImageWithURL:logoUrl placeholderImage:[UIImage imageNamed:@"imageplace"]];
         logoImageView.frame = CGRectMake(10, 59, 50, 50);
         [imageView addSubview:logoImageView];
         
