@@ -106,7 +106,8 @@ static NSString *kGroupName = @"GroupName";
 - (void)didUpdateConversationList:(NSArray *)conversationList
 {
     [self setupUnreadMessageCount];
-    CPMessageController *CPMessageVc = (CPMessageController *)[self.childViewControllers[1] topViewController];
+    UINavigationController *navVc = self.childViewControllers[1];
+    CPMessageController *CPMessageVc = navVc.childViewControllers[0];
     [CPMessageVc  refreshDataSource];
 }
 
@@ -286,7 +287,7 @@ static NSString *kGroupName = @"GroupName";
     //    application.applicationIconBadgeNumber += 1;
 }
 
-#pragma mark - IChatManagerDelegate 登陆回调（主要用于监听自动登录是否成功）
+#pragma mark - IChatManagerDelegate 登录回调（主要用于监听自动登录是否成功）
 
 - (void)didLoginWithInfo:(NSDictionary *)loginInfo error:(EMError *)error
 {

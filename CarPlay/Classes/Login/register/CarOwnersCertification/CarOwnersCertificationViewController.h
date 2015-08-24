@@ -8,6 +8,7 @@
 
 #import "BaseViewController.h"
 #import "ZHPickView.h"
+#import "CPMySubscribeModel.h"
 
 @interface CarOwnersCertificationViewController : BaseViewController
 @property (weak, nonatomic) IBOutlet UIImageView *imageBtn;
@@ -18,4 +19,5 @@
 - (IBAction)nextBtnClick:(id)sender;
 @property(nonatomic,strong)ZHPickView *pickview;
 @property(nonatomic,strong)NSString *fromMy;
+@property(nonatomic,strong) CPOrganizer *organizer;
 @end

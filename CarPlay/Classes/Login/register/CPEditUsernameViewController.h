@@ -14,4 +14,5 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *headHeight;
 @property (weak, nonatomic) NSString *fromEdit;
 @property (weak, nonatomic) CPOrganizer *organizer;
+@property (weak, nonatomic) NSDictionary *thirdPartyAccount;
 @end

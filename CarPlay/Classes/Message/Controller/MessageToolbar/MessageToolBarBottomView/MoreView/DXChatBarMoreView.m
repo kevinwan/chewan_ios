@@ -29,7 +29,7 @@
 
 - (void)setupSubviewsForType:(ChatMoreType)type
 {
-    self.backgroundColor = [UIColor clearColor];
+    self.backgroundColor = [UIColor whiteColor];
     CGFloat insets = (self.frame.size.width - 119) / 3;
     
     _photoButton =[UIButton buttonWithType:UIButtonTypeCustom];

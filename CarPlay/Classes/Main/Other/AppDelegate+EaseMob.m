@@ -217,7 +217,7 @@
 {
     UIAlertView *alertView = nil;
     if (error) {
-        //发送自动登陆状态通知
+        //发送自动登录状态通知
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGINCHANGE object:@NO];
     }
     else{
@@ -235,7 +235,7 @@
 {
     UIAlertView *alertView = nil;
     if (error) {
-        //发送自动登陆状态通知
+        //发送自动登录状态通知
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGINCHANGE object:@NO];
     }
     else{
@@ -316,19 +316,19 @@
 - (void)didAcceptInvitationFromGroup:(EMGroup *)group
                                error:(EMError *)error
 {
-    if(error)
-    {
-        return;
-    }
-    
-    NSString *groupTag = group.groupSubject;
-    if ([groupTag length] == 0) {
-        groupTag = group.groupId;
-    }
-    
-    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"group.agreedAndJoined", @"agreed and joined the group of \'%@\'"), groupTag];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"prompt", @"Prompt") message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", @"OK") otherButtonTitles:nil, nil];
-    [alertView show];
+//    if(error)
+//    {
+//        return;
+//    }
+//    
+//    NSString *groupTag = group.groupSubject;
+//    if ([groupTag length] == 0) {
+//        groupTag = group.groupId;
+//    }
+//    
+//    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"group.agreedAndJoined", @"agreed and joined the group of \'%@\'"), groupTag];
+//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"prompt", @"Prompt") message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", @"OK") otherButtonTitles:nil, nil];
+//    [alertView show];
 }
 
 

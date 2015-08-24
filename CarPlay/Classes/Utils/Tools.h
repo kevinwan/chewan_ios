@@ -21,6 +21,7 @@
 +(BOOL)isValidateEmail:(NSString *)email;
 +(BOOL)isValidatePwd:(NSString *)pwd;
 + (BOOL) isValidateIdentityCard: (NSString *)identityCard;
++(BOOL)isValidateIdentityCode : (NSString *)identityCode;
 +(UIButton*)CreateButtonWithTitle:(NSString*)title;
 +(UITextField*)createTextFiedLeftView:(NSString*)imageName andPlaceholder:(NSString*)placeholder;
 

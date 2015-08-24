@@ -39,7 +39,6 @@
 - (IBAction)getIdentifyingCodeBtnClick:(id)sender {
     if (self.phoneLable.text && ![self.phoneLable.text isEqualToString:@""]) {
         if ([Tools isValidateMobile:self.phoneLable.text]) {
-            [self startTime];
             MBProgressHUD *hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
             hud.color = [UIColor clearColor];
             hud.labelText=@"加载中…";
@@ -55,6 +54,7 @@
                     [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                     [hud hide:YES];
                 }else{
+                    [self startTime];
                     gotIdentifyingCode=YES;
                 }
             } failure:^(NSError *error) {
@@ -77,11 +77,30 @@
     if (self.phoneLable.text && ![self.phoneLable.text isEqualToString:@""]) {
         if ([Tools isValidateMobile:self.phoneLable.text]) {
             if (self.identifyingCodeTextField.text && ![self.identifyingCodeTextField.text isEqualToString:@""]) {
-                CPNewPassWordViewController *CPNewPassWordVC=[[CPNewPassWordViewController alloc]init];
-                CPNewPassWordVC.pwd=self.identifyingCodeTextField.text;
-                CPNewPassWordVC.phone=self.phoneLable.text;
-                CPNewPassWordVC.title=@"找回密码";
-                [self.navigationController pushViewController:CPNewPassWordVC animated:YES];
+                if ([Tools isValidateIdentityCode:self.identifyingCodeTextField.text]) {
+                    [self showLoading];
+                    NSDictionary *para=[NSDictionary dictionaryWithObjectsAndKeys:self.identifyingCodeTextField.text,@"code",nil];
+                    [ZYNetWorkTool postJsonWithUrl:[[NSString alloc]initWithFormat:@"v1/phone/%@/verification",self.phoneLable.text] params:para success:^(id responseObject) {
+                        if (CPSuccess) {
+                            CPNewPassWordViewController *CPNewPassWordVC=[[CPNewPassWordViewController alloc]init];
+                            [self disMiss];
+                            CPNewPassWordVC.pwd=self.identifyingCodeTextField.text;
+                            CPNewPassWordVC.phone=self.phoneLable.text;
+                            CPNewPassWordVC.title=@"找回密码";
+                            [self.navigationController pushViewController:CPNewPassWordVC animated:YES];
+                        }else{
+                            [self disMiss];
+                            NSString *errmsg =[responseObject objectForKey:@"errmsg"];
+                            [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                        }
+                    } failed:^(NSError *error) {
+                        [self disMiss];
+                        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                    }];
+                }else{
+                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"验证码为4位数字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alert show];
+                }
             }else{
                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请输入验证码" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alert show];

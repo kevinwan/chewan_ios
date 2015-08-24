@@ -113,12 +113,14 @@
         if (cell1 == nil) {
             cell1 = [[[NSBundle mainBundle] loadNibNamed:@"CPRegisterCellsTableViewCell1" owner:nil options:nil] lastObject];
         }
-        if (organizer) {
-            cell1.cellContent.text=organizer.nickname;
-        }
         if (thirdPartyLoginDic) {
             cell1.cellContent.text=thirdPartyLoginDic[@"username"];
         }
+        
+        if (organizer && [Tools isEmptyOrNull:organizer.nickname]) {
+            cell1.cellContent.text=organizer.nickname;
+        }
+        
         cell=cell1;
     }else{
         CPRegisterCellsTableViewCell3 *cell3=[tableView dequeueReusableCellWithIdentifier:CPRegisterCellsTableViewCell3Identifier];
@@ -208,6 +210,9 @@
     if (indexPath.row==1) {
         CPEditUsernameViewController *CPEditUsernameVC=[[CPEditUsernameViewController alloc]init];
         CPEditUsernameVC.title=@"昵称";
+        if (thirdPartyLoginDic) {
+            CPEditUsernameVC.thirdPartyAccount=thirdPartyLoginDic;
+        }
         [self.navigationController pushViewController:CPEditUsernameVC animated:YES];
     }
 }

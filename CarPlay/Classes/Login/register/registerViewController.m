@@ -28,6 +28,11 @@
     self.nextBtn.layer.cornerRadius=3.0;
     self.nextBtn.layer.masksToBounds=YES;
     agreeTheServiceTerms=YES;
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
+    //设置成NO表示当前控件响应后会传播到其他控件上，默认为YES。
+    tapGestureRecognizer.cancelsTouchesInView = NO;
+    //将触摸事件添加到当前view
+    [self.view addGestureRecognizer:tapGestureRecognizer];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -43,7 +48,6 @@
 - (IBAction)getIdentifyingCodeClick:(id)sender {
     if (self.userPhone.text && ![self.userPhone.text isEqualToString:@""]) {
         if ([Tools isValidateMobile:self.userPhone.text]) {
-            [self startTime];
             MBProgressHUD *hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
             hud.color = [UIColor clearColor];
             hud.labelText=@"加载中…";
@@ -56,9 +60,12 @@
                 if (![state isEqualToString:@"0"]) {
                     NSString *errmsg =[responseObject objectForKey:@"errmsg"];
                     [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                }else{
+                    [self startTime];
                 }
             } failure:^(NSError *error) {
                 [hud hide:YES];
+                
                 [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                 
             }];
@@ -191,6 +198,11 @@
     });
     dispatch_resume(_timer);
     
+}
+
+//    点击其他地方隐藏键盘
+-(void)keyboardHide:(UITapGestureRecognizer*)tap{
+    [self.view endEditing:YES];
 }
 
 @end

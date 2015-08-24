@@ -71,7 +71,7 @@
     }];
     
     self.tableView.footer.hidden = YES;
-    ZYJumpToLoginView // 跳转到登陆界面
+    ZYJumpToLoginView // 跳转到登录界面
     [self reRefreshData];
 }
 

@@ -127,4 +127,6 @@
 @property (nonatomic, copy) NSString *snsChannel;
 
 @property (nonatomic, copy) NSString *snsUid;
+
+@property (nonatomic, copy) NSString *drivingLicensePhoto;
 @end

@@ -740,7 +740,7 @@
 // 我要去玩按钮点击事件
 - (IBAction)GotoPlayButtonDidClick:(UIButton *)sender {
     [SVProgressHUD showWithStatus:@"努力加载中"];
-    //登陆状态下可点 拿出创建者字段,非登陆 自动跳转登陆界面
+    //登录状态下可点 拿出创建者字段,非登录 自动跳转登录界面
     NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/info",self.activeId];
     [CPNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
         [self disMiss];

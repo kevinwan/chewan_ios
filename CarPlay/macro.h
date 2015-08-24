@@ -76,7 +76,7 @@
 
 //******************************************************
 
-//登陆状态改变
+//登录状态改变
 #define NOTIFICATION_LOGINCHANGE @"loginStatusChange"
 #define NOTIFICATION_ROOTCONTROLLERCHANGETOTAB @"rootControllerChangeToTab"
 #define NOTIFICATION_HASLOGIN @"hasLogin"

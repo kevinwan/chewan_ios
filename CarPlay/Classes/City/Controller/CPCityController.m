@@ -556,7 +556,7 @@
             __weak typeof(self) weakSelf = self;
             cell.tapIcons = ^(CPHomeStatus *status) {
                 [SVProgressHUD showWithStatus:@"努力加载中"];
-                //登陆状态下可点 拿出创建者字段,非登陆 自动跳转登陆界面
+                //登录状态下可点 拿出创建者字段,非登录 自动跳转登录界面
                 NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/info",status.activityId];
                 SQLog(@"%@",status.activityId);
                 [CPNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
@@ -890,7 +890,7 @@
     CPHomeStatus *model = self.status[sender.tag];
     NSString *activeId = model.activityId;
     self.activeId = activeId;
-    //登陆状态下可点 拿出创建者字段,非登陆 自动跳转登陆界面
+    //登录状态下可点 拿出创建者字段,非登录 自动跳转登录界面
     NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/info",self.activeId];
     [CPNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
         [self disMiss];
