@@ -590,13 +590,16 @@
     
     // 记录被回复人Id
     self.byReplyId = disStatus.userId;
-
     
 }
 
 // 当开始拖拽tableview表格的时候调用
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     
+    // 拖拽取消cell选中状态
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    // 清空记录id
+    self.byReplyId = nil;
     self.inputView.placeholder = @"给楼主留个言...";
     //退出键盘
     [self.view endEditing:YES];
@@ -957,6 +960,11 @@
 // 处理headview点击事件
 - (void)routerEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userInfo
 {
+    // 拖拽取消cell选中状态
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    // 清空记录id
+    self.byReplyId = nil;
+    self.inputView.placeholder = @"给楼主留个言...";
     [self.inputView resignFirstResponder];
 }
 
