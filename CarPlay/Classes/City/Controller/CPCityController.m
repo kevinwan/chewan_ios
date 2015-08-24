@@ -581,7 +581,16 @@
         return cell;
 
     }else{
+        __weak typeof(self) weakSelf = self;
         CPOfficialActivityCell *cell = [CPOfficialActivityCell cellWithTableView:tableView];
+        cell.officialDetails = ^(NSUInteger tag){
+            // 取出对象
+            CPOfficialActivity *activeStu = activeStatus[tag];
+            NSString *activityId = activeStu.activityId;
+            CPActiveDetailsController *activeDetails = [UIStoryboard storyboardWithName:@"CPActiveDetailsController" bundle:nil].instantiateInitialViewController;
+            activeDetails.activeId = activityId;
+            [weakSelf.navigationController pushViewController:activeDetails animated:YES];
+        };
         cell.activeStatus = activeStatus;
         return cell;
     }
