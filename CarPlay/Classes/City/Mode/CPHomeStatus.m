@@ -12,6 +12,7 @@
 #import "CPHomeMember.h"
 
 
+#define MaxMemberCount 4
 @implementation CPHomeStatus
 
 // 数组转模型
@@ -20,28 +21,40 @@
 }
 
 - (void)setMembers:(NSArray *)members{
-    NSInteger count = members.count;
+    _membersCount = members.count;
     
-    if (members.count < 5) {
-        // 临时头像列表
-        NSMutableArray *tempMembers = [NSMutableArray arrayWithArray:members];
-        CPHomeMember *homeMember = [[CPHomeMember alloc] init];
-        homeMember.membersCount = count;
-        homeMember.photo = @"用户小头像底片";
-        [tempMembers addObject:homeMember];
-        _members = tempMembers;
-    }
+    NSInteger count = members.count > MaxMemberCount ? MaxMemberCount : members.count;
+    NSMutableArray *tempMembers = [NSMutableArray arrayWithArray:[members subarrayWithRange:NSMakeRange(0, count)]];
     
-    if (members.count >= 5) {
-        // 临时头像列表
-        NSMutableArray *tempMembers = [NSMutableArray arrayWithArray:[members subarrayWithRange:NSMakeRange(0, 4)]];
-        CPHomeMember *homeMember = [[CPHomeMember alloc] init];
-        homeMember.membersCount = members.count;
-        homeMember.photo = @"用户小头像底片";
-        [tempMembers addObject:homeMember];
-        _members = tempMembers;
-        
-    }
+    CPHomeMember *homeMember = [[CPHomeMember alloc] init];
+    homeMember.membersCount = _membersCount;
+    homeMember.photo = @"用户小头像底片";
+    [tempMembers addObject:homeMember];
+    _members = tempMembers;
+    _membersCount = tempMembers.count;
+    
+//    NSInteger count = members.count;
+//    
+//    if (members.count < 5) {
+//        // 临时头像列表
+//        NSMutableArray *tempMembers = [NSMutableArray arrayWithArray:members];
+//        CPHomeMember *homeMember = [[CPHomeMember alloc] init];
+//        homeMember.membersCount = count;
+//        homeMember.photo = @"用户小头像底片";
+//        [tempMembers addObject:homeMember];
+//        _members = tempMembers;
+//    }
+//    
+//    if (members.count >= 5) {
+//        // 临时头像列表
+//        NSMutableArray *tempMembers = [NSMutableArray arrayWithArray:[members subarrayWithRange:NSMakeRange(0, 4)]];
+//        CPHomeMember *homeMember = [[CPHomeMember alloc] init];
+//        homeMember.membersCount = members.count;
+//        homeMember.photo = @"用户小头像底片";
+//        [tempMembers addObject:homeMember];
+//        _members = tempMembers;
+//        
+//    }
     
 }
 

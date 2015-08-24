@@ -330,7 +330,7 @@
         return self.status.cover.count;
     }else
     {
-        return self.status.members.count;
+        return self.status.membersCount;
     }
     
 }
