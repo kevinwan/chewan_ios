@@ -308,7 +308,7 @@
                 if ([selectStr isEqualToString:@"post"]) {
                     noData.pictureName = @"暂无发布";
                     noData.titleName = @"他还没有发布活动噢~";
-                    noData.isShowBtn = YES;
+                    noData.isShowBtn = NO;
                 }else if([selectStr isEqualToString:@"subscribe"]){
                     noData.pictureName = @"暂无收藏";
                     noData.titleName = @"他还没有收藏活动噢~";
