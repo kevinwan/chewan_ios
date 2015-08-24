@@ -32,7 +32,7 @@
     
     
     NSURL *url = [NSURL URLWithString:_homePhoto.thumbnail_pic];
-    [self.pictureView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"默认头像"]];
+    [self.pictureView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"imageplace"]];
     
 }
 

@@ -162,7 +162,7 @@
     }else{
         self.carBrandLogo.hidden = NO;
         NSURL *urlCarBrandLogo = [NSURL URLWithString:user.carBrandLogo];
-        [self.carBrandLogo sd_setImageWithURL:urlCarBrandLogo placeholderImage:[UIImage imageNamed:@"默认头像"]];   
+        [self.carBrandLogo sd_setImageWithURL:urlCarBrandLogo placeholderImage:[UIImage imageNamed:@"imageplace"]];
         
     }
     
@@ -330,7 +330,7 @@
         return self.status.cover.count;
     }else
     {
-        return self.status.members.count;
+        return self.status.membersCount;
     }
     
 }

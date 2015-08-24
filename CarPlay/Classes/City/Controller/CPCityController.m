@@ -240,7 +240,7 @@
     footer.stateLabel.textColor = [Tools getColor:@"aab2bd"];
     [footer setTitle:@"加载中..." forState:MJRefreshStateRefreshing];
     [footer setTitle:@"无更多数据" forState:MJRefreshStateNoMoreData];
-
+    
     self.tableView.footer = footer;
 
 }
@@ -385,6 +385,8 @@
             // 转换为模型数组
             NSArray *models = [CPHomeStatus objectArrayWithKeyValuesArray:dicts];
             
+          
+            
             if (!ignore) {
                 [self.status removeAllObjects];
                 [self.status addObjectsFromArray:models];
@@ -400,11 +402,20 @@
             if (ignore == 0 && self.status.count) {
                 [self setupOfficialActivity];
             }
-            
+           
             // 关闭下拉刷新栏
             [self.tableView.header endRefreshing];
             // 关闭上拉刷新栏
             [self.tableView.footer endRefreshing];
+            
+            // 重置底部上拉或者点击加载更多
+            if (ignore == 0) {
+                [self.tableView.footer resetNoMoreData];
+            }
+            // 设置无更多数据
+            if (models.count == 0) {
+                [self.tableView.footer noticeNoMoreData];
+            }
             
         }
         

@@ -22,17 +22,19 @@
 
 - (void)setMembers:(NSArray *)members{
     
+    
     _membersCount = members.count;
     NSInteger count = members.count > MaxMemberCount ? MaxMemberCount : members.count;
     NSMutableArray *tempMembers = [NSMutableArray arrayWithArray:[members subarrayWithRange:NSMakeRange(0, count)]];
     
     CPHomeMember *homeMember = [[CPHomeMember alloc] init];
-    homeMember.membersCount = count;
+    homeMember.membersCount = _membersCount;
     homeMember.photo = @"用户小头像底片";
     [tempMembers addObject:homeMember];
     _members = tempMembers;
+    _membersCount = tempMembers.count;
     
-//    return;
+
 //    if (members.count < 5) {
 //        // 临时头像列表
 //        NSMutableArray *tempMembers = [NSMutableArray arrayWithArray:members];
@@ -48,7 +50,31 @@
 //        _members = tempMembers;
 //        
 //    }
+    
+    
+//    NSInteger count = members.count;
 //    
+//    if (members.count < 5) {
+//        // 临时头像列表
+//        NSMutableArray *tempMembers = [NSMutableArray arrayWithArray:members];
+//        CPHomeMember *homeMember = [[CPHomeMember alloc] init];
+//        homeMember.membersCount = count;
+//        homeMember.photo = @"用户小头像底片";
+//        [tempMembers addObject:homeMember];
+//        _members = tempMembers;
+//    }
+//    
+//    if (members.count >= 5) {
+//        // 临时头像列表
+//        NSMutableArray *tempMembers = [NSMutableArray arrayWithArray:[members subarrayWithRange:NSMakeRange(0, 4)]];
+//        CPHomeMember *homeMember = [[CPHomeMember alloc] init];
+//        homeMember.membersCount = members.count;
+//        homeMember.photo = @"用户小头像底片";
+//        [tempMembers addObject:homeMember];
+//        _members = tempMembers;
+//        
+//    }
+   
 }
 
 

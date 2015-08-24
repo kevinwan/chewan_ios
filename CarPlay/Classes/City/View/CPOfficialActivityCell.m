@@ -135,7 +135,7 @@
         // 截止时间
         UILabel *endLabel = [[UILabel alloc] init];
         endLabel.textColor = [UIColor whiteColor];
-        endLabel.text = @"截止时间：";
+        endLabel.text = @"报名截止：";
         endLabel.font = ActiveEndTimeFont;
         endLabel.y = endTimeLabel.y;
         [endLabel sizeToFit];
@@ -166,7 +166,7 @@
         logoImageView.layer.cornerRadius = 25;
         logoImageView.layer.masksToBounds = YES;
         NSURL *logoUrl = [NSURL URLWithString:activeStu.logo];
-        [logoImageView sd_setImageWithURL:logoUrl placeholderImage:[UIImage imageNamed:@"默认头像"]];
+        [logoImageView sd_setImageWithURL:logoUrl placeholderImage:[UIImage imageNamed:@"imageplace"]];
         logoImageView.frame = CGRectMake(10, 59, 50, 50);
         [imageView addSubview:logoImageView];
         

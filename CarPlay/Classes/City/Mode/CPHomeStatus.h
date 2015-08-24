@@ -65,4 +65,7 @@
 /** 头像配图地址。多图时返回多图链接。无配图返回“[]” */
 @property (nonatomic, strong) NSArray *members;
 
+/** 参与成员的个数 */
+@property (nonatomic, assign) NSUInteger membersCount;
+
 @end

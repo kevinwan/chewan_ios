@@ -143,7 +143,7 @@
     }else{
         self.carBrandLogo.hidden = NO;
         NSURL *urlCarBrandLogo = [NSURL URLWithString:taStatus.carBrandLogo];
-        [self.carBrandLogo sd_setImageWithURL:urlCarBrandLogo placeholderImage:[UIImage imageNamed:@"默认头像"]];
+        [self.carBrandLogo sd_setImageWithURL:urlCarBrandLogo placeholderImage:[UIImage imageNamed:@"imageplace"]];
         
     }
     
@@ -329,7 +329,7 @@
         NSURL *url = [NSURL URLWithString:taPhoto.thumbnail_pic];
         
         
-        [imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"默认头像"]];
+        [imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"imageplace"]];
         
         [self.scrollView addSubview:imageView];
     }
