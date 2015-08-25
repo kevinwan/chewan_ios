@@ -57,7 +57,6 @@
     if (CPIsLogin) {
         [self addBottomTimeLine];
     }
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -67,7 +66,7 @@
     [CPNotificationCenter addObserver:self selector:@selector(memberManage:) name:MyPublishToPlayNotify object:nil];
     
     [CPNotificationCenter addObserver:self selector:@selector(joinPerson:) name:MyJoinPersonNotify object:nil];
-    
+
     [self reRefreshData];
 }
 
