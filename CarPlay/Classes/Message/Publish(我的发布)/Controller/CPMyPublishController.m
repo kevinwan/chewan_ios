@@ -57,7 +57,6 @@
     if (CPIsLogin) {
         [self addBottomTimeLine];
     }
-    [self reRefreshData];
     
 }
 
@@ -68,7 +67,7 @@
     [CPNotificationCenter addObserver:self selector:@selector(memberManage:) name:MyPublishToPlayNotify object:nil];
     
     [CPNotificationCenter addObserver:self selector:@selector(joinPerson:) name:MyJoinPersonNotify object:nil];
-    self.ignore = 0;
+    
     [self reRefreshData];
 }
 
@@ -98,8 +97,10 @@
 - (void)reRefreshData
 {
     self.timeLine.hidden = YES;
-    [self showLoading];
-    [self loadDataWithParams:0];
+    if (self.frameModels.count == 0) {
+        [self showLoading];
+        [self loadDataWithParams:0];
+    }
 }
 
 - (void)createActivity
