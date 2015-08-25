@@ -923,6 +923,7 @@
         self.yesButton.selected = NO;
         self.noButton.selected = YES;
         self.tapYes = NO;
+        self.carxibTextFeild.text = nil;
     }
     
 }
