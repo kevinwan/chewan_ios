@@ -250,7 +250,7 @@
             }
             
         } else {
-            [self.view alert:responseObject];
+            [self.view alert:responseObject[@"errmsg"]];
         }
     } failed:^(NSError *error) {
         [self.view alertError:error];

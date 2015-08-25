@@ -240,7 +240,7 @@
 "message.downloadingAudio" = "正在下载语音，稍后点击";
 "message.downloadingVideo" = "正在获取视频...";
 "message.videoFail" = "视频获取失败!";
-"message.downloadingImage" = "正在获取大图...";
+"message.downloadingImage" = "加载中...";
 "message.imageFail" = "大图获取失败!";
 "message.thumImageFail" = "缩略图获取失败!";
 "message.simulatorNotSupportCamera" = "模拟器不支持拍照";

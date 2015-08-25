@@ -428,7 +428,7 @@
         if (![Tools isEmptyOrNull:self.contentTextView.text] && ![self.contentTextView.text isEqualToString:@"请简要描述你的问题和意见"]) {
             if (_imgs.count) {
                 for (int i = 0; i < _imgs.count; i++) {
-                    CPHttpFile *imageFile = [CPHttpFile fileWithName:@"a1.jpg" data:UIImageJPEGRepresentation(_imgs[i], 0.4) mimeType:@"image/jpeg" filename:@"a1.jpg"];
+                    ZYHttpFile *imageFile = [ZYHttpFile fileWithName:@"a1.jpg" data:UIImageJPEGRepresentation(_imgs[i], 0.4) mimeType:@"image/jpeg" filename:@"a1.jpg"];
                     [ZYNetWorkTool postFileWithUrl:@"v1/feedback/upload" params:nil files:@[imageFile] success:^(id responseObject) {
                         if (CPSuccess) {
                             NSDictionary *data=[responseObject objectForKey:@"data"];

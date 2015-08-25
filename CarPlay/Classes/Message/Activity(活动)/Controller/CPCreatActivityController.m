@@ -901,7 +901,7 @@ typedef enum {
         if ([subView isKindOfClass:[CPEditImageView class]]) {
             CPEditImageView *imageView = (CPEditImageView *)subView;
             
-            CPHttpFile *imageFile = [CPHttpFile fileWithName:@"cover.jpg" data:UIImageJPEGRepresentation(imageView.image, 0.4) mimeType:@"image/jpeg" filename:@"cover.jpg"];
+            ZYHttpFile *imageFile = [ZYHttpFile fileWithName:@"cover.jpg" data:UIImageJPEGRepresentation(imageView.image, 0.4) mimeType:@"image/jpeg" filename:@"cover.jpg"];
             
             [CPNetWorkTool postFileWithUrl:@"v1/activity/cover/upload" params:nil files:@[imageFile] success:^(id responseObject) {
                 if (CPSuccess) {

@@ -118,7 +118,6 @@
     }
     NSString *url = [NSString stringWithFormat:@"v1/user/%@/post",self.hisUserId];
     [CPNetWorkTool getWithUrl:url params:@{@"ignore" : @(ignore)} success:^(NSDictionary *responseObject) {
-        DLog(@"%@",responseObject[@"data"]);
         [self disMiss];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.tableView.footer.hidden = NO;
@@ -132,6 +131,7 @@
             }
             if (arr.count) {
                 self.timeLine.hidden = NO;
+                self.tableView.scrollEnabled = YES;
                 for (int i = 0; i < arr.count; i++) {
                     CPMyPublishFrameModel *frameModel = [[CPMyPublishFrameModel alloc] init];
                     frameModel.model = arr[i];
