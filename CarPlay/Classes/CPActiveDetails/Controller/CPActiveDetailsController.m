@@ -545,6 +545,21 @@
     
     CPDiscussCell *cell = [tableView dequeueReusableCellWithIdentifier:[CPDiscussCell identifier]];
     cell.discussStatus = self.discussStatus[indexPath.row];
+    
+    
+    if (cell.goTaDetails == nil) {
+        __weak typeof(self) weakSelf = self;
+        
+        cell.goTaDetails = ^{
+      
+            CPTaDetailsController *taViewController = [[UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil] instantiateInitialViewController];
+            
+            taViewController.targetUserId = [self.discussStatus[indexPath.row] userId];
+
+            [weakSelf.navigationController pushViewController:taViewController animated:YES];
+        };
+    }
+    
     return cell;
   
 }
@@ -695,17 +710,13 @@
 #pragma mark - lazy(懒加载)
 // 用户id
 - (NSString *)userId{
-    if (!_userId) {
-        _userId = [Tools getValueFromKey:@"userId"];
-    }
+    _userId = [Tools getValueFromKey:@"userId"];
     return _userId;
 }
 
 // 用户token
 - (NSString *)token{
-    if (!_token) {
-        _token = [Tools getValueFromKey:@"token"];
-    }
+    _token = [Tools getValueFromKey:@"token"];
     return _token;
     
 }

@@ -8,12 +8,18 @@
 
 #import "CPDiscussCell.h"
 #import "UIImageView+WebCache.h"
+#import "UIButton+WebCache.h"
 
 
 @interface CPDiscussCell()
 
 // 头像
-@property (weak, nonatomic) IBOutlet UIImageView *photo;
+//@property (weak, nonatomic) IBOutlet UIImageView *photo;
+
+@property (weak, nonatomic) IBOutlet UIButton *photo;
+
+- (IBAction)photoClick;
+
 
 // 昵称
 @property (weak, nonatomic) IBOutlet UILabel *nickname;
@@ -53,7 +59,7 @@
     self.photo.layer.masksToBounds = YES;
     
     NSURL *photoUrl = [NSURL URLWithString:_discussStatus.photo];
-    [self.photo sd_setImageWithURL:photoUrl placeholderImage:[UIImage imageNamed:@"默认头像"]];
+    [self.photo sd_setImageWithURL:photoUrl forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"默认头像"]];
     
     // 昵称
     self.nickname.text = _discussStatus.nickname;
@@ -115,4 +121,18 @@
 }
 
 
+- (IBAction)photoClick {
+    // 判断是否已登录
+    if (!CPUnLogin) {
+        
+        // 已登录通知控制器跳到他的详情页面
+        if (self.goTaDetails != nil) {
+            self.goTaDetails();
+        }
+    }else{
+        
+        // 未登录跳到登录页面
+        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+    }
+}
 @end

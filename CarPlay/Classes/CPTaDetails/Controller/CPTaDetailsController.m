@@ -558,19 +558,16 @@
     return _rowHeightCache;
 }
 
-// 用户id
-- (NSString *)userId{
-    if (!_userId) {
-        _userId = [Tools getValueFromKey:@"userId"];
-    }
+// 用户userId
+- (NSString *)userId
+{
+    _userId = [Tools getValueFromKey:@"userId"];
     return _userId;
 }
 
 // 用户token
 - (NSString *)token{
-    if (!_token) {
-        _token = [Tools getValueFromKey:@"token"];
-    }
+    _token = [Tools getValueFromKey:@"token"];
     return _token;
 }
 
