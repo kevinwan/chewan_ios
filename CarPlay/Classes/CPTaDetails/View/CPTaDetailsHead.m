@@ -331,6 +331,10 @@
         
         [imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"imageplace"]];
         
+        // 添加图片点击手势
+        UITapGestureRecognizer *singleClick = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageClick:)];
+        [imageView addGestureRecognizer:singleClick];
+        
         [self.scrollView addSubview:imageView];
     }
     
@@ -349,6 +353,14 @@
     self.pageControl.numberOfPages = self.photoCount;
     
    
+}
+
+
+// 他的详情背景图点击
+- (void)imageClick:(UITapGestureRecognizer *)sender{
+    if (self.taDetails != nil) {
+        self.taDetails(sender.view.tag);
+    }
 }
 
 
