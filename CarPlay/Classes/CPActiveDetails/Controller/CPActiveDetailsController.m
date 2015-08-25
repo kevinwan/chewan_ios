@@ -545,6 +545,27 @@
     
     CPDiscussCell *cell = [tableView dequeueReusableCellWithIdentifier:[CPDiscussCell identifier]];
     cell.discussStatus = self.discussStatus[indexPath.row];
+    
+    
+    if (cell.goTaDetails == nil) {
+        __weak typeof(self) weakSelf = self;
+        
+        cell.goTaDetails = ^{
+//            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil];
+//
+//            CPTaDetailsController *taViewController = sb.instantiateInitialViewController;
+            
+            
+            CPTaDetailsController *taViewController = [[UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil] instantiateInitialViewController];
+            
+            
+            
+            taViewController.targetUserId = weakSelf.createrId;
+
+            [weakSelf.navigationController pushViewController:taViewController animated:YES];
+        };
+    }
+    
     return cell;
   
 }

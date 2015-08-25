@@ -120,7 +120,6 @@
     
     [self.myPlay setBackgroundColor:[Tools getColor:@"fc6e51"]];
     
-
     
     if (self.status.isOrganizer) {
         [self.myPlay setTitle:@"成员管理" forState:UIControlStateNormal];

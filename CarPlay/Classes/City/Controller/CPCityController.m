@@ -132,6 +132,9 @@
 @end
 
 @implementation CPCityController
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -284,6 +287,8 @@
     parameters[@"longitude"] = [NSString stringWithFormat:@"%f",self.longitude];
     parameters[@"latitude"] = [NSString stringWithFormat:@"%f",self.latitude];
 
+    NSLog(@"userID= %@",self.userId);
+    
 
     if (self.userId != nil) {
         parameters[@"userId"] = self.userId;
@@ -385,7 +390,6 @@
             // 转换为模型数组
             NSArray *models = [CPHomeStatus objectArrayWithKeyValuesArray:dicts];
             
-          
             
             if (!ignore) {
                 [self.status removeAllObjects];
@@ -700,19 +704,16 @@
     return _rowHeightCache;
 }
 
-// 用户id
-- (NSString *)userId{
-    if (!_userId) {
-       _userId = [Tools getValueFromKey:@"userId"];
-    }
+// 用户userId
+- (NSString *)userId
+{
+    _userId = [Tools getValueFromKey:@"userId"];
     return _userId;
 }
 
 // 用户token
 - (NSString *)token{
-    if (!_token) {
-        _token = [Tools getValueFromKey:@"token"];
-    }
+    _token = [Tools getValueFromKey:@"token"];
     return _token;
 }
 
