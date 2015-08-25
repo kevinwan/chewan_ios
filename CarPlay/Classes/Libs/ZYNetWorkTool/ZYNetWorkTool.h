@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^success)(id responseObject);
+typedef void(^failed)(NSError *error);
 
 @interface ZYNetWorkTool : NSObject
 
@@ -20,7 +22,7 @@
  *  @param success 请求成功后的回调
  *  @param failure 请求失败后的回调
  */
-+ (void)postWithUrl:(NSString *)url params:(id)params success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
++ (void)postWithUrl:(NSString *)url params:(id)params success:(success)success failure:(failed)failure;
 
 /**
  *  get请求
@@ -30,7 +32,7 @@
  *  @param success 请求成功后的回调
  *  @param failure 请求失败后的回调
  */
-+ (void)getWithUrl:(NSString *)url params:(id)params success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
++ (void)getWithUrl:(NSString *)url params:(id)params success:(success)success failure:(failed)failure;
 
 /**
  *  json上传

@@ -192,7 +192,7 @@
         }
         NSString *path=[[NSString alloc]initWithFormat:@"v1/user/%@/album/upload?token=%@",[Tools getValueFromKey:@"userId"],[Tools getValueFromKey:@"token"]];
         for (int i = 0; i < arr.count; i++) {
-            CPHttpFile *imageFile = [CPHttpFile fileWithName:@"a1.jpg" data:UIImageJPEGRepresentation(arr[i], 0.4) mimeType:@"image/jpeg" filename:@"a1.jpg"];
+            ZYHttpFile *imageFile = [ZYHttpFile fileWithName:@"a1.jpg" data:UIImageJPEGRepresentation(arr[i], 0.4) mimeType:@"image/jpeg" filename:@"a1.jpg"];
             
             [ZYNetWorkTool postFileWithUrl:path params:nil files:@[imageFile] success:^(id responseObject) {
                 if (CPSuccess) {
