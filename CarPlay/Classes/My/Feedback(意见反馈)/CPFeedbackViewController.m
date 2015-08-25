@@ -200,7 +200,7 @@
 {
     UIImage *portraitImg = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
     [self addPhoto:@[portraitImg]];
-    [_imgs addObject:@[portraitImg]];
+    [_imgs addObject:portraitImg];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -425,6 +425,7 @@
 }
 
 -(void)submit{
+    self.navigationItem.rightBarButtonItem.enabled=NO;
         if (![Tools isEmptyOrNull:self.contentTextView.text] && ![self.contentTextView.text isEqualToString:@"请简要描述你的问题和意见"]) {
             if (_imgs.count) {
                 for (int i = 0; i < _imgs.count; i++) {
@@ -436,6 +437,7 @@
                             if (i == _imgs.count-1) {
                                 NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:photoIds,@"photos",self.contentTextView.text,@"content",[Tools getValueFromKey:@"userId"],@"userId",[Tools getValueFromKey:@"token"],@"token", nil];
                                 [ZYNetWorkTool postJsonWithUrl:@"v1/feedback/submit" params:params success:^(id responseObject) {
+                                    self.navigationItem.rightBarButtonItem.enabled=YES;
                                     if (CPSuccess) {
                                         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"感谢您的反馈" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
                                         [alertView show];
@@ -444,14 +446,17 @@
                                         [self showError:responseObject[@"errmsg"]];
                                     }
                                 } failed:^(NSError *error) {
+                                    self.navigationItem.rightBarButtonItem.enabled=YES;
                                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您的反馈提交失败，请稍后再试" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
                                     [alertView show];
                                 }];
                             }
                         }else{
+                            self.navigationItem.rightBarButtonItem.enabled=YES;
                             [self showError:responseObject[@"errmsg"]];
                         }
                     } failure:^(NSError *error) {
+                        self.navigationItem.rightBarButtonItem.enabled=YES;
                         [self showError:@"照片上传失败"];
                     }];
                 }
@@ -460,18 +465,22 @@
                 NSLog(@"%@",params);
                 [ZYNetWorkTool postJsonWithUrl:@"v1/feedback/submit" params:params success:^(id responseObject) {
                     if (CPSuccess) {
+                        self.navigationItem.rightBarButtonItem.enabled=YES;
                         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"感谢您的反馈" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
                         [alertView show];
                         [self.navigationController popViewControllerAnimated:YES];
                     }else{
+                        self.navigationItem.rightBarButtonItem.enabled=YES;
                         [self showError:responseObject[@"errmsg"]];
                     }
                 } failed:^(NSError *error) {
+                    self.navigationItem.rightBarButtonItem.enabled=YES;
                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您的反馈提交失败，请稍后再试" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
                     [alertView show];
                 }];
             }
         }else{
+            self.navigationItem.rightBarButtonItem.enabled=YES;
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请简要描述你的问题和意见" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
             [alertView show];
         }

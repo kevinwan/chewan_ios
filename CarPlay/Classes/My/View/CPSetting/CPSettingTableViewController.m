@@ -12,6 +12,7 @@
 #import "CPAbout.h"
 #import "ZYNavigationController.h"
 #import "CPVersionIntroduction.h"
+#import "CPMySubscribeModel.h"
 
 @interface CPSettingTableViewController ()<UIAlertViewDelegate>
 {
@@ -101,7 +102,6 @@
 
 - (IBAction)loginOutBtnClick:(id)sender {
     if ([Tools getValueFromKey:@"userId"]) {
-        [Tools setValueForKey:nil key:@"userId"];
         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"是否注销当前账号？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"注销", nil] show];
     }else{
         [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
@@ -110,18 +110,43 @@
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==1) {
-        EMError *error = nil;
-        NSDictionary *info = [[EaseMob sharedInstance].chatManager logoffWithUnbindDeviceToken:YES error:&error];
-        if (!error && info) {
-            LoginViewController *loginVC=[[LoginViewController alloc]init];
-            [Tools setValueForKey:@(NO) key:NOTIFICATION_HASLOGIN];
-            [Tools setValueForKey:@(NO) key:@"LoginFrom3Party"];
-            ZYNavigationController* nav1 = [[ZYNavigationController alloc] initWithRootViewController:loginVC];
-            self.view.window.rootViewController=nav1;
-            [self.view.window makeKeyAndVisible];
-        }else{
-            [self showError:error.description];
-        }
+//        EMError *error = nil;
+//        NSDictionary *info = [[EaseMob sharedInstance].chatManager logoffWithUnbindDeviceToken:YES error:&error];
+//        if (!error && info) {
+//            LoginViewController *loginVC=[[LoginViewController alloc]init];
+//            [Tools setValueForKey:@(NO) key:NOTIFICATION_HASLOGIN];
+//            [Tools setValueForKey:@(NO) key:@"LoginFrom3Party"];
+//            [Tools setValueForKey:nil key:@"userId"];
+//            [Tools setValueForKey:nil key:THIRDPARTYLOGINACCOUNT];
+//            ZYNavigationController* nav1 = [[ZYNavigationController alloc] initWithRootViewController:loginVC];
+//            self.view.window.rootViewController=nav1;
+//            [self.view.window makeKeyAndVisible];
+//        }else{
+//            [self showError:error.description];
+//        }
+        
+        [[EaseMob sharedInstance].chatManager asyncLogoffWithCompletion:^(NSDictionary *info, EMError *error) {
+            if (error) {
+                [self showError:error.description];
+            }
+            else{
+                [Tools setValueForKey:@(NO) key:NOTIFICATION_HASLOGIN];
+                [Tools setValueForKey:@(NO) key:@"LoginFrom3Party"];
+                NSString *fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"userId"]];
+                CPOrganizer *organizer=[[CPOrganizer alloc]init];
+                [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
+                [Tools setValueForKey:nil key:@"userId"];
+                [Tools setValueForKey:nil key:@"token"];
+                [Tools setValueForKey:nil key:THIRDPARTYLOGINACCOUNT];
+                [Tools setValueForKey:nil key:@"nickName"];
+                [Tools setValueForKey:nil key:@"headUrl"];
+                LoginViewController *loginVC=[[LoginViewController alloc]init];
+                ZYNavigationController* nav1 = [[ZYNavigationController alloc] initWithRootViewController:loginVC];
+                self.view.window.rootViewController=nav1;
+                [self.view.window makeKeyAndVisible];
+            }
+        } onQueue:nil];
+        
     }
 }
 

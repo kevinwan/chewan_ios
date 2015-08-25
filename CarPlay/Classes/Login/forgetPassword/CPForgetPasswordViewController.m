@@ -79,7 +79,7 @@
             if (self.identifyingCodeTextField.text && ![self.identifyingCodeTextField.text isEqualToString:@""]) {
                 if ([Tools isValidateIdentityCode:self.identifyingCodeTextField.text]) {
                     [self showLoading];
-                    NSDictionary *para=[NSDictionary dictionaryWithObjectsAndKeys:self.identifyingCodeTextField.text,@"code",nil];
+                    NSDictionary *para=[NSDictionary dictionaryWithObjectsAndKeys:self.identifyingCodeTextField.text,@"code",@(1),@"type",nil];
                     [ZYNetWorkTool postJsonWithUrl:[[NSString alloc]initWithFormat:@"v1/phone/%@/verification",self.phoneLable.text] params:para success:^(id responseObject) {
                         if (CPSuccess) {
                             CPNewPassWordViewController *CPNewPassWordVC=[[CPNewPassWordViewController alloc]init];

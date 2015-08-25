@@ -9,7 +9,7 @@
 #import "CPBrandModelViewController.h"
 #import "CustomBrandCell.h"
 #import "CustomSlideCell.h"
-
+#import "CPMySubscribeModel.h"
 #import "MJNIndexView.h"
 #import "CustomSectionView.h"
 
@@ -20,6 +20,7 @@
     NSMutableDictionary *sortedBrandData;
     NSString *currentBrandName;
     NSString *currentBrandUrl;
+    CPOrganizer *organizer;
 }
 
 @end
@@ -105,6 +106,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBar.translucent=NO;
+    organizer = [NSKeyedUnarchiver unarchiveObjectWithFile:CPDocmentPath(_fileName)];
     [self getData];
 }
 
@@ -266,7 +268,9 @@
         [Tools setValueForKey:modelName key:@"modelName"];
         NSString *slug=[[modelArray objectAtIndex:indexPath.row] objectForKey:@"slug"];
         [Tools setValueForKey:slug key:@"slug"];
-        
+        organizer.carModel = modelName;
+        organizer.slug = slug;
+        [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(_fileName)];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

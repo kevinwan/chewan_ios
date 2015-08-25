@@ -214,6 +214,9 @@
                     [Tools setValueForKey:@(YES) key:NOTIFICATION_HASLOGIN];
                     [Tools setValueForKey:[data objectForKey:@"token"] key:@"token"];
                     [Tools setValueForKey:[data objectForKey:@"userId"] key:@"userId"];
+                    [Tools setValueForKey:data[@"nickname"] key:@"nickName"];
+                    [Tools setValueForKey:data[@"photo"] key:@"headUrl"];
+                    
                     
                     CPOrganizer *organizer= [CPOrganizer objectWithKeyValues:data];
                     NSString *fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"userId"]];
@@ -250,7 +253,7 @@
             }
             
         } else {
-            [self.view alert:responseObject];
+            [self.view alert:responseObject[@"errmsg"]];
         }
     } failed:^(NSError *error) {
         [self.view alertError:error];
