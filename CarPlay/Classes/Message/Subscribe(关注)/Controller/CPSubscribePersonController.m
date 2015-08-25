@@ -46,7 +46,6 @@
     
     self.tableView.footer.hidden = YES;
     ZYJumpToLoginView
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -61,10 +60,6 @@
     
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -73,9 +68,10 @@
 
 - (void)reRefreshData
 {
-    [self showLoading];
-    self.ignore = 0;
-    [self loadDataWithParam:0];
+    if (self.datas.count == 0) {
+        [self showLoading];
+        [self loadDataWithParam:0];
+    }
 }
 
 - (void)loadDataWithParam:(NSInteger)ignore

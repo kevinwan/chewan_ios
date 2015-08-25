@@ -72,13 +72,14 @@
     
     self.tableView.footer.hidden = YES;
     ZYJumpToLoginView // 跳转到登录界面
-    [self reRefreshData];
 }
 
 - (void)reRefreshData
 {
-    [self showLoading];
-    [self loadDataWithParam:0];
+    if (self.frameModels.count == 0) {        
+        [self showLoading];
+        [self loadDataWithParam:0];
+    }
 }
 
 - (void)loadDataWithParam:(NSInteger)ignore
@@ -147,6 +148,8 @@
     [CPNotificationCenter addObserver:self selector:@selector(userIconClick:) name:CPClickUserIconNotification object:nil];
     [CPNotificationCenter addObserver:self selector:@selector(toPlayButtonClick:) name:ChatButtonClickNotifyCation object:nil];
     [CPNotificationCenter addObserver:self selector:@selector(joinPersonButtonClick:) name:JoinPersonClickNotifyCation object:nil];
+    
+    [self reRefreshData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
