@@ -128,7 +128,7 @@
             [self.myPlay setTitle:@"已加入" forState:UIControlStateNormal];
         }else if(self.status.isMember == 2){
             [self.myPlay setTitle:@"申请中" forState:UIControlStateNormal];
-            [self.myPlay setBackgroundColor:[Tools getColor:@"ccd1d9"]];
+            [self.myPlay setBackgroundColor:[Tools getColor:@"ccd1d9"]];  
         }
         
     }else{

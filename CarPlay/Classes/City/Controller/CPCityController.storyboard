@@ -461,6 +461,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="3ir-IQ-7yV" firstAttribute="top" secondItem="9RT-14-glf" secondAttribute="bottom" id="8aA-Ql-vsg"/>
+                            <constraint firstItem="30K-bk-WzG" firstAttribute="top" secondItem="Dqd-qO-u3X" secondAttribute="topMargin" constant="64" id="LDu-LS-P5j"/>
                             <constraint firstItem="30K-bk-WzG" firstAttribute="top" secondItem="Dqd-qO-u3X" secondAttribute="topMargin" constant="64" id="LzG-IG-v68"/>
                             <constraint firstAttribute="trailing" secondItem="9RT-14-glf" secondAttribute="trailing" id="OFF-R2-uU2"/>
                             <constraint firstItem="30K-bk-WzG" firstAttribute="top" secondItem="2Wt-3o-gjc" secondAttribute="bottom" id="UDM-0E-9fI"/>
@@ -473,6 +474,7 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="LzG-IG-v68"/>
+                                <exclude reference="UDM-0E-9fI"/>
                                 <exclude reference="aOG-pj-VcR"/>
                             </mask>
                         </variation>

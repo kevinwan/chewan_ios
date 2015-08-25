@@ -111,7 +111,7 @@
         return CGRectGetMaxY(self.bottomView.frame) + 50;
     }else{
         return CGRectGetMaxY(self.bottomView.frame);
-    }  
+    }
     
 }
 

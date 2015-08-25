@@ -173,7 +173,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fO5-eG-bVl">
-                        <barButtonItem key="rightBarButtonItem" title="收藏" id="NE3-PY-oot">
+                        <barButtonItem key="rightBarButtonItem" id="NE3-PY-oot">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="editorActive:" destination="eal-5W-NNS" id="Gxp-iq-lHn"/>
