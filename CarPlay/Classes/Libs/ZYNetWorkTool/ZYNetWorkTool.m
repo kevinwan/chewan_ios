@@ -196,38 +196,19 @@
     mgr.requestSerializer.timeoutInterval = 40;
     
     BOOL isThirdLogin = [CPUserDefaults boolForKey:LoginFrom3Party];
-    DLog(@"isthirdLogin%zd",isThirdLogin);
+    DLog(@"isthirdLogin ---------------------------%zd",isThirdLogin);
 
     if (isThirdLogin) {
         NSDictionary *dict = [Tools getValueFromKey:THIRDPARTYLOGINACCOUNT];
         NSString *urlStr = @"v1/sns/login";
         [mgr POST:urlStr parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
             if ([responseObject operationSuccess]) {
-                DLog(@"token过期三方登陆修复");
                 NSDictionary *data=[responseObject objectForKey:@"data"];
-                if ([data objectForKey:@"userId"]) {
-                    //这里要处理环信登录
-                    EMError *error = nil;
-                    NSString *EMuser=[Tools md5EncryptWithString:[data objectForKey:@"userId"]];
-                    NSDictionary *loginInfo = [[EaseMob sharedInstance].chatManager loginWithUsername:EMuser password:dict[@"sign"] error:&error];
-                    if (!error && loginInfo) {
-                        [Tools setValueForKey:@(YES) key:NOTIFICATION_HASLOGIN];
-                        [Tools setValueForKey:[data objectForKey:@"token"] key:@"token"];
-                        [Tools setValueForKey:[data objectForKey:@"userId"] key:@"userId"];
-                        
-                        CPOrganizer *organizer= [CPOrganizer objectWithKeyValues:data];
-                        NSString *fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"userId"]];
-                        [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
-                        [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
-                        
-                        [Tools setValueForKey:dict key:THIRDPARTYLOGINACCOUNT];
-                        [Tools setValueForKey:@(YES) key:@"LoginFrom3Party"];
-                        if (success) {
-                            success();
-                        }
-                    }
+                [Tools setValueForKey:[data objectForKey:@"token"] key:@"token"];
+                DLog(@"三方登录复活啦============");
+                if (success) {
+                    success();
                 }
-                
             }
 
         } failure:^(AFHTTPRequestOperation *operation, NSError * error) {
@@ -235,6 +216,7 @@
                 failed(error);
             }
         }];
+        return;
     }
     
     
