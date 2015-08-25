@@ -67,7 +67,7 @@
         
         MJPhoto *photo = [[MJPhoto alloc] init];
         // 设置图片的路径
-        photo.url = [NSURL URLWithString:pic.bmiddle_pic];
+        photo.url = [NSURL URLWithString:pic.original_pic];
         // 设置来源于哪一个UIImageView
         photo.srcImageView = self.subviews[i];
         [photos addObject:photo];

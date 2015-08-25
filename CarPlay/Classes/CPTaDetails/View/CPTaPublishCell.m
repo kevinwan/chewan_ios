@@ -39,7 +39,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *iconColView;
 
 // 聊天
-@property (weak, nonatomic) IBOutlet UIButton *talk;
+@property (weak, nonatomic) IBOutlet UIButton *myPlay;
 
 
 // 配图容器高度
@@ -73,8 +73,25 @@
     // 发布时间
     self.publishDate.text = publishStatus.publishDate;
     
-    // 聊天（暂时隐藏）
-    self.talk.hidden = YES;
+    // 我要去玩
+    self.myPlay.layer.cornerRadius = 12.5;
+    self.myPlay.layer.masksToBounds = YES;
+    
+    [self.myPlay setBackgroundColor:[Tools getColor:@"fc6e51"]];
+    if (publishStatus.isOrganizer) {
+        [self.myPlay setTitle:@"成员管理" forState:UIControlStateNormal];
+    }else if (publishStatus.isMember){
+        if (publishStatus.isMember == 1) {
+            [self.myPlay setTitle:@"已加入" forState:UIControlStateNormal];
+        }else if (publishStatus.isMember == 2){
+            [self.myPlay setTitle:@"申请中" forState:UIControlStateNormal];
+            [self.myPlay setBackgroundColor:[Tools getColor:@"ccd1d9"]];
+        }
+        
+    }else{
+        [self.myPlay setTitle:@"我要去玩" forState:UIControlStateNormal];
+    }
+    
     
     // 时间点
     // 切圆
@@ -114,8 +131,7 @@
     [self.picColView reloadData];
     [self.iconColView reloadData];
     
-    // 测试
-//    NSLog(@"%@",self.bottomIconList);
+
 
 }
 

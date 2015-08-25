@@ -8,7 +8,8 @@
 #import "ZYNetWorkTool.h"
 #import "AFNetworking.h"
 #import "ZYNetWorkManager.h"
-
+#import "CPMySubscribeModel.h"
+#define LoginFrom3Party @"LoginFrom3Party"
 @implementation ZYNetWorkTool
 
 + (void)postWithUrl:(NSString *)url params:(id)params success:(void (^)(id))success failure:(void (^)(NSError *))failure
@@ -21,41 +22,24 @@
     [mgr POST:url parameters:params
       success:^(AFHTTPRequestOperation *operation, id responseObject) {
           if ([responseObject[@"result"] intValue] && [responseObject[@"errmsg"] contains:@"口令已过期"]) {
-              // 重新发出登录请求
-              NSString *phone = [Tools getValueFromKey:@"phone"];
-              NSString *password = [Tools getValueFromKey:@"password"];
-              mgr.requestSerializer = [AFJSONRequestSerializer serializer];
-              NSString *url = [BASE_URL stringByAppendingString:@"v1/user/login"];
-              [mgr POST:url parameters:@{@"phone" : phone, @"password" : password } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                  if (CPSuccess) {
-                      // 重新设置token
-                      [Tools setValueForKey:[responseObject[@"data"] objectForKey:@"token"] key:@"token"];
-                      mgr.requestSerializer = [AFHTTPRequestSerializer serializer];
-                      
-                      [mgr POST:url parameters:params
-                        success:^(AFHTTPRequestOperation *operation, id responseObject)  {
-                            if (success) {
-                                success(responseObject);
-                            }
-                        }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                            if (failure) {
-                                failure(error);
-                            }
-                        }];
-                      
-                  }
-                  else{
-                      if (failure) {
-                          [SVProgressHUD dismiss];
-                          failure([NSError errorWithDomain:@"登录失败" code:111 userInfo:nil]);
-                      }
-                  }
-              } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                  if (failure) {
-                      failure(error);
-                  }
-              }];
-          }else{
+                [self reLoginWithSuccess:^{
+                    mgr.requestSerializer = [AFHTTPRequestSerializer serializer];
+                    mgr.requestSerializer.timeoutInterval = 40;
+                    [mgr POST:url parameters:params success:^(AFHTTPRequestOperation * operation, id responseObject) {
+                        if (success) {
+                            success(responseObject);
+                        }
+                    } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
+                        if (failure) {
+                            failure(error);
+                        }
+                    }];
+                } failed:^(NSError *error) {
+                    if (failure) {
+                        failure(error);
+                    }
+                }];
+              }else{
               if (success) {
                   success(responseObject);
               }
@@ -78,36 +62,20 @@
     [mgr GET:url parameters:params
      success:^(AFHTTPRequestOperation *operation, id responseObject) {
          if ([responseObject[@"result"] intValue] && [responseObject[@"errmsg"] contains:@"口令已过期"]) {
-             // 重新发出登录请求
-             NSString *phone = [Tools getValueFromKey:@"phone"];
-             NSString *password = [Tools getValueFromKey:@"password"];
-             mgr.requestSerializer = [AFJSONRequestSerializer serializer];
-             NSString *url = [BASE_URL stringByAppendingString:@"v1/user/login"];
-             [mgr POST:url parameters:@{@"phone" : phone, @"password" : password } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                 if (CPSuccess) {
-                     // 重新设置token
-                     [Tools setValueForKey:[responseObject[@"data"] objectForKey:@"token"] key:@"token"];
-                     mgr.requestSerializer = [AFHTTPRequestSerializer serializer];
-                     
-                     [mgr GET:url parameters:params
-                      success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                          if (success) {
-                              success(responseObject);
-                          }
-                      }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                          if (failure) {
-                              failure(error);
-                          }
-                      }];
-                     
-                 }
-                 else{
-                     if (failure) {
-                         [SVProgressHUD dismiss];
-                         failure([NSError errorWithDomain:@"登录失败" code:111 userInfo:nil]);
+             [self reLoginWithSuccess:^{
+                 
+                 mgr.requestSerializer = [AFHTTPRequestSerializer serializer];
+                 mgr.requestSerializer.timeoutInterval = 40;
+                 [mgr GET:url parameters:params success:^(AFHTTPRequestOperation * operation, id responseObject) {
+                     if (success) {
+                         success(responseObject);
                      }
-                 }
-             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                 } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
+                     if (failure) {
+                         failure(error);
+                     }
+                 }];
+             } failed:^(NSError *error) {
                  if (failure) {
                      failure(error);
                  }
@@ -138,35 +106,21 @@
     
     [mgr POST:url parameters:jsonDict success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([responseObject[@"result"] intValue] && [responseObject[@"errmsg"] contains:@"口令已过期"]) {
-            // 重新发出登录请求
-            NSString *phone = [Tools getValueFromKey:@"phone"];
-            NSString *password = [Tools getValueFromKey:@"password"];
-            mgr.requestSerializer = [AFJSONRequestSerializer serializer];
-            NSString *url = [BASE_URL stringByAppendingString:@"v1/user/login"];
-            [mgr POST:url parameters:@{@"phone" : phone, @"password" : password } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                if (CPSuccess) {
-                    // 重新设置token
-                    [Tools setValueForKey:[responseObject[@"data"] objectForKey:@"token"] key:@"token"];
-                    mgr.requestSerializer = [AFJSONRequestSerializer serializer];
-                    
-                    [mgr POST:url parameters:jsonDict success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                        if (success) {
-                            success(responseObject);
-                        }
-                    }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                        if (failure) {
-                            failure(error);
-                        }
-                    }];
-                    
-                }
-                else{
-                    if (failure) {
-                        [SVProgressHUD dismiss];
-                        failure([NSError errorWithDomain:@"登录失败" code:111 userInfo:nil]);
+            [self reLoginWithSuccess:^{
+                // 请求类型为json
+                mgr.requestSerializer = [AFJSONRequestSerializer serializer];
+                
+                mgr.requestSerializer.timeoutInterval = 40;
+                [mgr POST:url parameters:jsonDict success:^(AFHTTPRequestOperation * operation, id responseObject) {
+                    if (success) {
+                        success(responseObject);
                     }
-                }
-            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
+                    if (failure) {
+                        failure(error);
+                    }
+                }];
+            } failed:^(NSError *error) {
                 if (failure) {
                     failure(error);
                 }
@@ -196,38 +150,24 @@
         }
     } success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         if ([responseObject[@"result"] intValue] && [responseObject[@"errmsg"] contains:@"口令已过期"]) {
-            // 重新发出登录请求
-            NSString *phone = [Tools getValueFromKey:@"phone"];
-            NSString *password = [Tools getValueFromKey:@"password"];
-            mgr.requestSerializer = [AFJSONRequestSerializer serializer];
-            NSString *url = [BASE_URL stringByAppendingString:@"v1/user/login"];
-            [mgr POST:url parameters:@{@"phone" : phone, @"password" : password } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                if (CPSuccess) {
-                    // 重新设置token
-                    [Tools setValueForKey:[responseObject[@"data"] objectForKey:@"token"] key:@"token"];
-                    mgr.requestSerializer = [AFHTTPRequestSerializer serializer];
-                    
-                    [mgr POST:url parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-                        for (ZYHttpFile *file in files) {
-                            [formData appendPartWithFileData:file.data name:file.name fileName:file.filename mimeType:file.mimeType];
-                        }
-                    } success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
-                        if (success) {
-                            success(responseObject);
-                        }
-                    }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                        if (failure) {
-                            failure(error);
-                        }
-                    }];
-                }
-                else{
-                    if (failure) {
-                        [SVProgressHUD dismiss];
-                        failure([NSError errorWithDomain:@"登录失败" code:111 userInfo:nil]);
+            [self reLoginWithSuccess:^{
+                
+                mgr.requestSerializer = [AFHTTPRequestSerializer serializer];
+                mgr.requestSerializer.timeoutInterval = 40;
+                [mgr POST:url parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                    for (ZYHttpFile *file in files) {
+                        [formData appendPartWithFileData:file.data name:file.name fileName:file.filename mimeType:file.mimeType];
                     }
-                }
-            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                }success:^(AFHTTPRequestOperation * operation, id responseObject) {
+                    if (success) {
+                        success(responseObject);
+                    }
+                } failure:^(AFHTTPRequestOperation * operation, NSError * error) {
+                    if (failure) {
+                        failure(error);
+                    }
+                }];
+            } failed:^(NSError *error) {
                 if (failure) {
                     failure(error);
                 }
@@ -240,6 +180,63 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if (failure) {
             failure(error);
+        }
+    }];
+}
+
+/**
+ *  重新登录的私有方法
+ */
++ (void)reLoginWithSuccess:(void (^)())success failed:(failed)failed
+{
+    DLog(@"token过期了");
+    ZYNetWorkManager *mgr = [ZYNetWorkManager sharedInstances];
+    
+    mgr.requestSerializer = [AFJSONRequestSerializer serializer];
+    mgr.requestSerializer.timeoutInterval = 40;
+    
+    BOOL isThirdLogin = [CPUserDefaults boolForKey:LoginFrom3Party];
+    DLog(@"isthirdLogin ---------------------------%zd",isThirdLogin);
+
+    if (isThirdLogin) {
+        NSDictionary *dict = [Tools getValueFromKey:THIRDPARTYLOGINACCOUNT];
+        NSString *urlStr = @"v1/sns/login";
+        [mgr POST:urlStr parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            if ([responseObject operationSuccess]) {
+                NSDictionary *data=[responseObject objectForKey:@"data"];
+                [Tools setValueForKey:[data objectForKey:@"token"] key:@"token"];
+                DLog(@"三方登录复活啦============");
+                if (success) {
+                    success();
+                }
+            }
+
+        } failure:^(AFHTTPRequestOperation *operation, NSError * error) {
+            if (failed) {
+                failed(error);
+            }
+        }];
+        return;
+    }
+    
+    
+    // 2. 如果是普通登录
+    NSString *phone = [Tools getValueFromKey:@"phone"];
+    NSString *password = [Tools getValueFromKey:@"password"];
+
+    NSString *url = @"v1/user/login";
+    [mgr POST:url parameters:@{@"phone" : phone, @"password" : password } success:^(AFHTTPRequestOperation * operation, id responseObject) {
+        if (CPSuccess) {
+            DLog(@"token过期普通登录修复");
+            // 重新设置token
+            [Tools setValueForKey:[responseObject[@"data"] objectForKey:@"token"] key:@"token"];
+            if (success){
+                success();
+            }
+        }
+    } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
+        if (failed) {
+            failed(error);
         }
     }];
 }

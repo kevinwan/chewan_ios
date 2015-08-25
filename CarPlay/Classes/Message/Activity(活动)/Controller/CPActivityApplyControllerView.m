@@ -155,7 +155,6 @@
     
     self.tableView.footer.hidden = YES;
     ZYJumpToLoginView // 跳转到登录页面
-    [self reRefreshData];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -165,6 +164,8 @@
     [CPNotificationCenter addObserver:self selector:@selector(tableViewEdit:) name:CPNewActivityMsgEditNotifycation object:nil];
     [CPNotificationCenter addObserver:self selector:@selector(userIconClick:) name:CPClickUserIconNotification object:nil];
     [CPNotificationCenter addObserver:self selector:@selector(agreeBtnClick:) name:CPActivityApplyNotification object:nil];
+    
+    [self reRefreshData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -180,8 +181,10 @@
 
 - (void)reRefreshData
 {
-    [self showLoading];
-    [self loadDataWithParam:0];
+    if (self.datas.count == 0) {        
+        [self showLoading];
+        [self loadDataWithParam:0];
+    }
 }
 
 - (void)loadDataWithParam:(NSInteger)ignore

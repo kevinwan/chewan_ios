@@ -93,7 +93,7 @@
         imageView.frame = CGRectMake(imageX, imageY, imageW, imageH);
         // 设置图片
         NSURL *url = [NSURL URLWithString:activeStu.cover];
-        [imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"默认头像"]];
+        [imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"imageplace"]];
         // 设置图片容器可以交互
         imageView.userInteractionEnabled = YES;
         

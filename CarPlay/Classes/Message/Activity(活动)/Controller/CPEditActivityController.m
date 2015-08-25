@@ -18,6 +18,7 @@
 #import "CPLocationModel.h"
 #import "NSDate+Extension.h"
 #import "RegexKitLite.h"
+#import "MJPhotoBrowser.h"
 #define PhotoViewMargin 6
 #define PickerViewHeght 256
 #define maxCount 9
@@ -41,7 +42,6 @@ typedef enum {
 @property (nonatomic, assign) CGFloat nameLableHeight;
 @property (nonatomic, strong) UIView *photoView;
 @property (nonatomic, assign) CGFloat photoWH;
-@property (nonatomic, assign) NSUInteger picIndex;
 @property (weak, nonatomic) IBOutlet UIButton *saveBtn;
 @property (nonatomic, assign) CGPoint currentOffset;
 @property (nonatomic, strong) NSMutableArray *editPhotoViews;
@@ -145,7 +145,6 @@ typedef enum {
     self.saveBtn.layer.cornerRadius = 3;
     self.saveBtn.clipsToBounds = YES;
     self.currentOffset = CGPointMake(0, -64);
-    self.picIndex = 10;
     self.locationLabelWitdh.constant = kScreenWidth - 175;
     
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
@@ -600,7 +599,7 @@ typedef enum {
         [self.photoView.subviews.lastObject setHidden:YES];
     }
     [SVProgressHUD showWithStatus:@"加载中"];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [SVProgressHUD dismiss];
         [self dismissViewControllerAnimated:YES completion:nil];
     });
@@ -657,7 +656,6 @@ typedef enum {
     for (int i = 0; i < arr.count; i++) {
         CPEditImageView *imageView = [[CPEditImageView alloc] init];
         imageView.image = arr[i];
-        imageView.tag = self.picIndex++;
         UILongPressGestureRecognizer *longPressGes = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
         [imageView addGestureRecognizer:longPressGes];
         
@@ -679,9 +677,9 @@ typedef enum {
     for (int i = 0; i < arr.count; i++) {
         CPEditImageView *imageView = [[CPEditImageView alloc] init];
         [imageView sd_setImageWithURL:[NSURL URLWithString:arr[i][@"thumbnail_pic"]] placeholderImage:[UIImage imageNamed:@"imageplace"]];
-        imageView.tag = self.picIndex++;
         imageView.url = arr[i][@"thumbnail_pic"];
         imageView.coverId = arr[i][@"coverId"];
+        imageView.orginUrl = arr[i][@"original_pic"];
         
         UILongPressGestureRecognizer *longPressGes = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
         [imageView addGestureRecognizer:longPressGes];
@@ -713,6 +711,29 @@ typedef enum {
 {
     if (self.imageEditing) {
         [self dealImageViewTapWithRecognizer:recognizer];
+    }else{ // 不是编辑模式
+        
+        if (![recognizer.view isKindOfClass:[CPEditImageView class]]) {
+            return;
+        }
+        MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+        browser.currentPhotoIndex = recognizer.view.tag - 20;
+        NSMutableArray *photos = [NSMutableArray array];
+        for (int i = 0; i < self.photoView.subviews.count - 1; i ++) {
+            CPEditImageView *imageView = (CPEditImageView *)[self.photoView viewWithTag:i + 20];
+            MJPhoto *photo = [[MJPhoto alloc] init];
+
+            if (imageView.orginUrl.length) {
+                photo.url = [NSURL URLWithString:imageView.orginUrl];
+            }else{
+                 photo.image = imageView.image;
+            }
+            
+            photo.srcImageView = imageView;
+            [photos addObject:photo];
+        }
+        browser.photos = photos;
+        [browser show];
     }
 }
 
@@ -752,6 +773,7 @@ typedef enum {
     NSUInteger count = self.photoView.subviews.count;
     for (int i = 0; i < count; i++) {
         UIView *subView = self.photoView.subviews[i];
+        subView.tag = i + 20;
         subView.x = 10 + (i % 4) * (PhotoViewMargin + imgW);
         subView.y = PhotoViewMargin + (i / 4) * (PhotoViewMargin + imgH);
         subView.width = imgW;
@@ -808,6 +830,7 @@ typedef enum {
     if (self.photoView.subviews.count < 10) {
         [self.photoView.subviews.lastObject setHidden:NO];
     }
+    self.imageEditing = NO;
 }
 
 /**
@@ -888,7 +911,7 @@ typedef enum {
                 }
 
             }else{
-                CPHttpFile *imageFile = [CPHttpFile fileWithName:@"cover.jpg" data:UIImageJPEGRepresentation(imageView.image, 0.4) mimeType:@"image/jpeg" filename:@"cover.jpg"];
+                ZYHttpFile *imageFile = [ZYHttpFile fileWithName:@"cover.jpg" data:UIImageJPEGRepresentation(imageView.image, 0.4) mimeType:@"image/jpeg" filename:@"cover.jpg"];
                 
                 [CPNetWorkTool postFileWithUrl:@"v1/activity/cover/upload" params:nil files:@[imageFile] success:^(id responseObject) {
                     if (CPSuccess) {

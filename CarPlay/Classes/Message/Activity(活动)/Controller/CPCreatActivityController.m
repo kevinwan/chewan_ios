@@ -20,6 +20,7 @@
 #import "UMSocial.h"
 #import "UMSocialData.h"
 #import "CPActiveDetailsController.h"
+#import "MJPhotoBrowser.h"
 
 #define PhotoViewMargin 6
 #define PickerViewHeght 256
@@ -48,7 +49,6 @@ typedef enum {
 @property (nonatomic, assign) CGFloat nameLableHeight;
 @property (nonatomic, strong) UIView *photoView;
 @property (nonatomic, assign) CGFloat photoWH;
-@property (nonatomic, assign) NSUInteger picIndex;
 @property (weak, nonatomic) IBOutlet UIButton *finishBtn;
 @property (weak, nonatomic) IBOutlet UIButton *finishToFriend;
 @property (nonatomic, assign) CGPoint currentOffset;
@@ -142,7 +142,6 @@ typedef enum {
     self.finishToFriend.layer.cornerRadius = 3;
     self.finishToFriend.clipsToBounds = YES;
     self.currentOffset = CGPointMake(0, -64);
-    self.picIndex = 10;
     self.locationLabelWitdh.constant = kScreenWidth - 175;
     
     
@@ -262,7 +261,6 @@ typedef enum {
     self.photoView = photoView;
     
     UIButton *addPhotoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    addPhotoBtn.tag = 9;
     addPhotoBtn.frame = CGRectMake(10, 10, self.photoWH, self.photoWH);
     [addPhotoBtn setBackgroundColor:[Tools getColor:@"ccd1d9"]];
     [addPhotoBtn setImage:[UIImage imageNamed:@"大相机"] forState:UIControlStateNormal];
@@ -622,7 +620,7 @@ typedef enum {
         [self.photoView.subviews.lastObject setHidden:YES];
     }
     [SVProgressHUD showWithStatus:@"加载中"];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [SVProgressHUD dismiss];
         [self dismissViewControllerAnimated:YES completion:nil];
     });
@@ -682,7 +680,6 @@ typedef enum {
     for (int i = 0; i < arr.count; i++) {
         CPEditImageView *imageView = [[CPEditImageView alloc] init];
         imageView.image = arr[i];
-        imageView.tag = self.picIndex++;
         UILongPressGestureRecognizer *longPressGes = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
         [imageView addGestureRecognizer:longPressGes];
         
@@ -712,6 +709,24 @@ typedef enum {
 {
     if (self.imageEditing) {
         [self dealImageViewTapWithRecognizer:recognizer];
+    }else{
+        
+        if (![recognizer.view isKindOfClass:[CPEditImageView class]]) {
+            return;
+        }
+        
+        MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+        browser.currentPhotoIndex = recognizer.view.tag - 20;
+        NSMutableArray *photos = [NSMutableArray array];
+        for (int i = 0; i < self.photoView.subviews.count - 1; i ++) {
+            UIImageView *imageView = (UIImageView *)[self.photoView viewWithTag:i + 20];
+            MJPhoto *photo = [[MJPhoto alloc] init];
+            photo.srcImageView = imageView;
+            photo.image = imageView.image;
+            [photos addObject:photo];
+        }
+        browser.photos = photos;
+        [browser show];
     }
 }
 
@@ -751,6 +766,7 @@ typedef enum {
     NSUInteger count = self.photoView.subviews.count;
     for (int i = 0; i < count; i++) {
         UIView *subView = self.photoView.subviews[i];
+        subView.tag = i + 20;
         subView.x = 10 + (i % 4) * (PhotoViewMargin + imgW);
         subView.y = PhotoViewMargin + (i / 4) * (PhotoViewMargin + imgH);
         subView.width = imgW;
@@ -885,7 +901,7 @@ typedef enum {
         if ([subView isKindOfClass:[CPEditImageView class]]) {
             CPEditImageView *imageView = (CPEditImageView *)subView;
             
-            CPHttpFile *imageFile = [CPHttpFile fileWithName:@"cover.jpg" data:UIImageJPEGRepresentation(imageView.image, 0.4) mimeType:@"image/jpeg" filename:@"cover.jpg"];
+            ZYHttpFile *imageFile = [ZYHttpFile fileWithName:@"cover.jpg" data:UIImageJPEGRepresentation(imageView.image, 0.4) mimeType:@"image/jpeg" filename:@"cover.jpg"];
             
             [CPNetWorkTool postFileWithUrl:@"v1/activity/cover/upload" params:nil files:@[imageFile] success:^(id responseObject) {
                 if (CPSuccess) {

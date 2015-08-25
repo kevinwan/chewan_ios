@@ -123,7 +123,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rUi-Hf-NQn" userLabel="头像列表框">
-                                            <rect key="frame" x="68" y="174" width="242" height="39"/>
+                                            <rect key="frame" x="68" y="176" width="242" height="39"/>
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ppl-u3-gog" userLabel="头像列表">
                                                     <rect key="frame" x="10" y="7" width="145" height="25"/>
@@ -168,18 +168,24 @@
                                                         <outlet property="delegate" destination="rMf-ab-OnW" id="CEd-ae-TVl"/>
                                                     </connections>
                                                 </collectionView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="icI-XO-RaR">
-                                                    <rect key="frame" x="202" y="7" width="30" height="25"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="icI-XO-RaR" userLabel="我要去玩">
+                                                    <rect key="frame" x="162" y="7" width="70" height="25"/>
                                                     <color key="backgroundColor" red="0.98823529409999999" green="0.43137254899999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="width" constant="70" id="DZd-xJ-q8q"/>
                                                         <constraint firstAttribute="width" constant="30" id="Yee-Ni-xep"/>
                                                         <constraint firstAttribute="height" constant="25" id="xhA-XW-Gxn"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <state key="normal" title="聊天">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <state key="normal" title="我要去玩">
                                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="Yee-Ni-xep"/>
+                                                        </mask>
+                                                    </variation>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.96078431372549022" green="0.96862745098039216" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
@@ -213,7 +219,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWW-gI-Nnf" userLabel="地点">
-                                            <rect key="frame" x="87" y="152.5" width="30.5" height="13.5"/>
+                                            <rect key="frame" x="87" y="152" width="30.5" height="16"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.2627450980392157" green="0.29019607843137252" blue="0.32941176470588235" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -264,13 +270,13 @@
                                     <outlet property="iconColView" destination="Ppl-u3-gog" id="2QS-2o-erK"/>
                                     <outlet property="introduction" destination="Otz-c6-vkr" id="6kW-lq-6gI"/>
                                     <outlet property="location" destination="iWW-gI-Nnf" id="lHg-eY-KWF"/>
+                                    <outlet property="myPlay" destination="icI-XO-RaR" id="FdN-QK-rx8"/>
                                     <outlet property="pay" destination="l01-Ed-LLY" id="sYT-ET-vcB"/>
                                     <outlet property="picColView" destination="fFr-tG-H5r" id="X1A-MU-zKp"/>
                                     <outlet property="pictureViewHeight" destination="Ao8-bS-3fI" id="Nyb-sb-RCB"/>
                                     <outlet property="pictureViewWidth" destination="GC1-ew-VME" id="Reb-oV-M3e"/>
                                     <outlet property="publishDate" destination="1HH-Qc-XeY" id="DWb-bb-ROI"/>
                                     <outlet property="startDate" destination="4c1-hC-CWq" id="qMj-VO-xvk"/>
-                                    <outlet property="talk" destination="icI-XO-RaR" id="dzp-3d-G1z"/>
                                     <outlet property="timePoint" destination="JgM-Oh-4MG" id="Pzq-DH-wnM"/>
                                     <outlet property="topTimeLine" destination="4t4-L9-3gI" id="aNf-eN-3Hi"/>
                                 </connections>
@@ -313,7 +319,7 @@
                                             <color key="textColor" red="0.66666666669999997" green="0.69803921570000005" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="6E3B8BF9-6830-4C59-92C0-DD974CE0AE18" translatesAutoresizingMaskIntoConstraints="NO" id="AOs-GF-DVq" userLabel="时间图标">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="49EB155A-AB68-42AF-ACA1-645563EE5E2D" translatesAutoresizingMaskIntoConstraints="NO" id="AOs-GF-DVq" userLabel="时间图标">
                                             <rect key="frame" x="264" y="25" width="12" height="12"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="12" id="4dg-az-wm9"/>
@@ -498,7 +504,7 @@
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="-12" maxY="0.0"/>
-                                            <state key="normal" backgroundImage="98AF0AFE-92A0-4DC2-A102-C63DFF1FBAC6">
+                                            <state key="normal" backgroundImage="D1BB9AF9-8CB9-457F-B09D-24D2778074B9">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
@@ -509,7 +515,7 @@
                                                 <constraint firstAttribute="height" constant="14" id="sdt-15-bgJ"/>
                                             </constraints>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="20EBF0C5-0832-41B4-B866-1EA4F8ED41D2" translatesAutoresizingMaskIntoConstraints="NO" id="e7s-kM-DSM">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="4903A5CA-5B44-4C63-BEEF-A966AA22099B" translatesAutoresizingMaskIntoConstraints="NO" id="e7s-kM-DSM">
                                             <rect key="frame" x="261" y="187" width="14" height="14"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="14" id="fod-jN-v6X"/>
@@ -606,7 +612,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="20EBF0C5-0832-41B4-B866-1EA4F8ED41D2" width="13" height="13">
+        <image name="4903A5CA-5B44-4C63-BEEF-A966AA22099B" width="13" height="13">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -668,7 +674,7 @@ AwwMDB8MIww2DEEMSgxPDFcMWgxfDG4Mcgx5DIEMjgyTDJUMlwycDKQMpwysDLQMtwzJDMwM0QAAAAAA
 AAIBAAAAAAAAAEIAAAAAAAAAAAAAAAAAAAzTA
 </mutableData>
         </image>
-        <image name="6E3B8BF9-6830-4C59-92C0-DD974CE0AE18" width="13" height="13">
+        <image name="49EB155A-AB68-42AF-ACA1-645563EE5E2D" width="13" height="13">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -730,7 +736,7 @@ AwwMDB8MIww2DEEMSgxPDFcMWgxfDG4Mcgx5DIEMjgyTDJUMlwycDKQMpwysDLQMtwzJDMwM0QAAAAAA
 AAIBAAAAAAAAAEIAAAAAAAAAAAAAAAAAAAzTA
 </mutableData>
         </image>
-        <image name="98AF0AFE-92A0-4DC2-A102-C63DFF1FBAC6" width="32" height="14">
+        <image name="D1BB9AF9-8CB9-457F-B09D-24D2778074B9" width="32" height="14">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

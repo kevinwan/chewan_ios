@@ -299,7 +299,7 @@
                 self.editorActiveBtn.title = @"编辑活动";
             }else{
                 if (self.activeStatus.isSubscribed) {
-                    self.editorActiveBtn.title = @"已收藏";
+                    self.editorActiveBtn.title = @"取消收藏";
                 }else{
                     self.editorActiveBtn.title = @"收藏";
                 }
@@ -545,6 +545,21 @@
     
     CPDiscussCell *cell = [tableView dequeueReusableCellWithIdentifier:[CPDiscussCell identifier]];
     cell.discussStatus = self.discussStatus[indexPath.row];
+    
+    
+    if (cell.goTaDetails == nil) {
+        __weak typeof(self) weakSelf = self;
+        
+        cell.goTaDetails = ^{
+      
+            CPTaDetailsController *taViewController = [[UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil] instantiateInitialViewController];
+            
+            taViewController.targetUserId = [self.discussStatus[indexPath.row] userId];
+
+            [weakSelf.navigationController pushViewController:taViewController animated:YES];
+        };
+    }
+    
     return cell;
   
 }
@@ -695,17 +710,13 @@
 #pragma mark - lazy(懒加载)
 // 用户id
 - (NSString *)userId{
-    if (!_userId) {
-        _userId = [Tools getValueFromKey:@"userId"];
-    }
+    _userId = [Tools getValueFromKey:@"userId"];
     return _userId;
 }
 
 // 用户token
 - (NSString *)token{
-    if (!_token) {
-        _token = [Tools getValueFromKey:@"token"];
-    }
+    _token = [Tools getValueFromKey:@"token"];
     return _token;
     
 }
@@ -829,7 +840,6 @@
                                 [self.view alertError:error];
                             }];
                             
- 
                         
                         }
                         
@@ -839,7 +849,6 @@
                 } failure:^(NSError *error) {
                     [self.view alertError:error];
                 }];
-               
                 
             }
             
@@ -852,31 +861,46 @@
     }];
 }
 
-// 编辑活动按钮
+// 收藏活动按钮
 - (IBAction)editorActive:(id)sender {
-    if (![self.editorActiveBtn.title isEqualToString:@"编辑活动"]) {
-        NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-        
-        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-        manager.requestSerializer = [AFJSONRequestSerializer serializer];
-        
-        NSString *postUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/activity/%@/subscribe?userId=%@&token=%@",self.activeId,self.userId,self.token];
-        
-        [manager POST:postUrl parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
- 
-            self.editorActiveBtn.title = @"已收藏";
-        
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            //
-        }];
-        
-    }else{
-        CPEditActivityController *vc = [UIStoryboard storyboardWithName:@"CPEditActivityController" bundle:nil].instantiateInitialViewController;
-        vc.data = [self.activeStatus keyValues]; // 字典
-        [self.navigationController pushViewController:vc animated:YES];
-        
-    }
     
+    if (CPIsLogin) {
+        // 已登录情况
+        if (![self.editorActiveBtn.title isEqualToString:@"编辑活动"]) {
+            
+            if ([self.editorActiveBtn.title isEqualToString:@"收藏"]) {
+                // 显示为收藏时，点击做收藏操作，收藏改为取消收藏
+                NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+                NSString *postUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/activity/%@/subscribe?userId=%@&token=%@",self.activeId,self.userId,self.token];
+                
+                [ZYNetWorkTool postJsonWithUrl:postUrl params:parameters success:^(id responseObject) {
+                    if (CPSuccess) {
+                        self.editorActiveBtn.title = @"取消收藏";
+                    }
+                } failed:^(NSError *error) {
+                }];
+            }else{
+                // 显示为取消收藏时，点击做取消收藏操作，取消收藏改为收藏
+                NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+                NSString *postUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/activity/%@/unsubscribe?userId=%@&token=%@",self.activeId,self.userId,self.token];
+                
+                [ZYNetWorkTool postJsonWithUrl:postUrl params:parameters success:^(id responseObject) {
+                    if (CPSuccess) {
+                        self.editorActiveBtn.title = @"收藏";
+                    }
+                } failed:^(NSError *error) {
+                }];
+            }
+            
+        }else{
+            CPEditActivityController *vc = [UIStoryboard storyboardWithName:@"CPEditActivityController" bundle:nil].instantiateInitialViewController;
+            vc.data = [self.activeStatus keyValues]; // 字典
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }else{
+        // 未登录情况
+        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+    }
 }
 
 //点击提交
@@ -923,6 +947,7 @@
         self.yesButton.selected = NO;
         self.noButton.selected = YES;
         self.tapYes = NO;
+        self.carxibTextFeild.text = nil;
     }
     
 }

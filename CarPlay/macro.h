@@ -136,4 +136,16 @@ typedef enum _playSoundMode {
 #define CPClickUserIconNotification @"CPClickUserIconNotification"
 #define CPClickUserIconInfo @"CPClickUserIconInfo"
 #define CPPageNum 10
+
+#define CPAddObsver(methodName, noteName) [CPNotificationCenter addObserver:self selector:@selector(methodName) name:noteName object:nil]
+#define CPRemoveObsver [CPNotificationCenter removeObserver:self]
+#define Lazy(name) \
+- (id)name{\
+if (_##name == nil) {\
+objc_property_t t =  class_getProperty([self class], #name);\
+MJProperty *property = [MJProperty cachedPropertyWithProperty:t];\
+_##name = [property.type.typeClass new];\
+}\
+return _##name;\
+}
 @end

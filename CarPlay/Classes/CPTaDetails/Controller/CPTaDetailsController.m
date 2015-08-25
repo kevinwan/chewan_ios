@@ -19,6 +19,10 @@
 #import "CPHomeStatus.h"
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
+#import "CPActiveDetailsController.h"
+
+
+
 @interface CPTaDetailsController ()
 
 // 用户id
@@ -508,6 +512,37 @@
 }
 
 
+// 点击cell跳转界面
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if ([self.threeStates isEqualToString:@"post"]) {
+        // 获取活动详情storyboard中的控制器
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPActiveDetailsController" bundle:nil];
+        CPActiveDetailsController *ac = sb.instantiateInitialViewController;
+        
+        // 取出对应行模型
+        CPTaPublishStatus *status = self.taPubStatus[indexPath.row];
+        
+        ac.activeId = status.activityId;
+        
+        [self.navigationController pushViewController:ac animated:YES];
+    }
+    else{
+        // 获取活动详情storyboard中的控制器
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPActiveDetailsController" bundle:nil];
+        CPActiveDetailsController *ac = sb.instantiateInitialViewController;
+        
+        // 取出对应行模型
+        CPHomeStatus *status = self.taPubStatus[indexPath.row];
+        
+        ac.activeId = status.activityId;
+        
+        [self.navigationController pushViewController:ac animated:YES];
+    }
+    
+    
+}
+
 
 // 预估每一行cell的高度，可提高性能（只计算可是区域的cell）
 //- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -523,19 +558,16 @@
     return _rowHeightCache;
 }
 
-// 用户id
-- (NSString *)userId{
-    if (!_userId) {
-        _userId = [Tools getValueFromKey:@"userId"];
-    }
+// 用户userId
+- (NSString *)userId
+{
+    _userId = [Tools getValueFromKey:@"userId"];
     return _userId;
 }
 
 // 用户token
 - (NSString *)token{
-    if (!_token) {
-        _token = [Tools getValueFromKey:@"token"];
-    }
+    _token = [Tools getValueFromKey:@"token"];
     return _token;
 }
 

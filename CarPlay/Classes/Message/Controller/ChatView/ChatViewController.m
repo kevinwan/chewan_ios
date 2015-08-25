@@ -37,6 +37,7 @@
 #import "RobotManager.h"
 #import "CPChatGroupDetailController.h"
 #import "CPTaDetailsController.h"
+#import "MJPhotoBrowser.h"
 #define KPageCount 20
 #define KHintAdjustY    50
 
@@ -770,9 +771,19 @@
 {
     __weak ChatViewController *weakSelf = self;
     id <IChatManager> chatManager = [[EaseMob sharedInstance] chatManager];
+    MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+    browser.currentPhotoIndex = 0;
     if ([model.messageBody messageBodyType] == eMessageBodyType_Image) {
         EMImageMessageBody *imageBody = (EMImageMessageBody *)model.messageBody;
-        if (imageBody.thumbnailDownloadStatus == EMAttachmentDownloadSuccessed) {
+        if (imageBody.attachmentDownloadStatus == EMAttachmentDownloadSuccessed)
+        {
+           NSString *localPath = model.message == nil ? model.localPath : [[model.message.messageBodies firstObject] localPath];
+            MJPhoto *photo = [[MJPhoto alloc] init];
+            photo.image = [UIImage imageWithContentsOfFile:localPath];
+            browser.photos = @[photo];
+            [browser show];
+            
+            return;
             if (imageBody.attachmentDownloadStatus == EMAttachmentDownloadSuccessed)
             {
                 //发送已读回执
@@ -821,7 +832,13 @@
                 }
                 [weakSelf showHint:NSLocalizedString(@"message.imageFail", @"image for failure!")];
             } onQueue:nil];
-        }else{
+        }
+        else{
+            MJPhoto *photo = [[MJPhoto alloc] init];
+            photo.url = [NSURL URLWithString:imageBody.remotePath];
+            browser.photos = @[photo];
+            [browser show];
+            return;
             //获取缩略图
             [chatManager asyncFetchMessageThumbnail:model.message progress:nil completion:^(EMMessage *aMessage, EMError *error) {
                 if (!error) {

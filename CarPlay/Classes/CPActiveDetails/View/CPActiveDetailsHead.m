@@ -107,7 +107,11 @@
     [self layoutIfNeeded];
     
     // 获取高度
-    return CGRectGetMaxY(self.bottomView.frame);
+    if (iPhone5_JX) {
+        return CGRectGetMaxY(self.bottomView.frame) + 50;
+    }else{
+        return CGRectGetMaxY(self.bottomView.frame);
+    }
     
 }
 

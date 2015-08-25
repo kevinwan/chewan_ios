@@ -57,8 +57,6 @@
     if (CPIsLogin) {
         [self addBottomTimeLine];
     }
-    [self reRefreshData];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -68,7 +66,7 @@
     [CPNotificationCenter addObserver:self selector:@selector(memberManage:) name:MyPublishToPlayNotify object:nil];
     
     [CPNotificationCenter addObserver:self selector:@selector(joinPerson:) name:MyJoinPersonNotify object:nil];
-    self.ignore = 0;
+
     [self reRefreshData];
 }
 
@@ -98,8 +96,10 @@
 - (void)reRefreshData
 {
     self.timeLine.hidden = YES;
-    [self showLoading];
-    [self loadDataWithParams:0];
+    if (self.frameModels.count == 0) {
+        [self showLoading];
+        [self loadDataWithParams:0];
+    }
 }
 
 - (void)createActivity
@@ -131,6 +131,7 @@
             }
             if (arr.count) {
                 self.timeLine.hidden = NO;
+                self.tableView.scrollEnabled = YES;
                 for (int i = 0; i < arr.count; i++) {
                     CPMyPublishFrameModel *frameModel = [[CPMyPublishFrameModel alloc] init];
                     frameModel.model = arr[i];

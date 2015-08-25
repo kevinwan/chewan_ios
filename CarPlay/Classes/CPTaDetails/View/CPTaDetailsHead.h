@@ -7,6 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+
+
+typedef void(^TaDetails)(NSUInteger tag);
+
 #import "CPTaDetailsStatus.h"
 
 typedef void(^StatusSelected)(NSInteger ignore,NSString *selectStr);
@@ -17,6 +21,7 @@ typedef void(^StatusSelected)(NSInteger ignore,NSString *selectStr);
 
 // 回调函数
 @property (nonatomic,copy) StatusSelected statusSelected;
+@property (nonatomic,copy) TaDetails taDetails;
 
 // 创建headview
 + (instancetype)headView;
