@@ -201,7 +201,8 @@
     
     // 设置关注按钮
     if ([taStatus.isSubscribed isEqualToString:@"1"]) {
-        [self.care setTitle:@"已关注" forState:UIControlStateNormal];
+        [self.care setTitle:@"取消关注" forState:UIControlStateNormal];
+        [self.care setBackgroundColor:[Tools getColor:@"ccd1d9"]];
     }
     
     
@@ -541,23 +542,48 @@
 // 关注按钮点击事件
 - (IBAction)careBtnClick:(id)sender {
     
-    // 设置请求参数
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    parameters[@"targetUserId"] = self.taStatus.userId;
-    
-    // 获取网络访问者
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    
-    NSString *postUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/user/%@/listen?token=%@",self.userId,self.token];
-    
-    [manager POST:postUrl parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    if (CPIsLogin) {
+        // 用户已登录
         
-        [self.care setTitle:@"已关注" forState:UIControlStateNormal];
+        if ([self.care.titleLabel.text isEqualToString:@"关注"]) {
+            // 如果文字显示是关注
+            
+            // 设置请求参数
+            NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+            parameters[@"targetUserId"] = self.taStatus.userId;
+            
+            NSString *postUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/user/%@/listen?token=%@",self.userId,self.token];
+            
+            [ZYNetWorkTool postJsonWithUrl:postUrl params:parameters success:^(id responseObject) {
+                if (CPSuccess) {
+                    [self.care setTitle:@"取消关注" forState:UIControlStateNormal];
+                    [self.care setBackgroundColor:[Tools getColor:@"ccd1d9"]];
+                }
+            } failed:^(NSError *error) {
+            }];
+        }else{
+            // 如果文字显示是取消关注
+            
+            NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+            parameters[@"targetUserId"] = self.taStatus.userId;
+            
+            NSString *postUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/user/%@/unlisten?token=%@",self.userId,self.token];
+            
+            [ZYNetWorkTool postJsonWithUrl:postUrl params:parameters success:^(id responseObject) {
+                if (CPSuccess) {
+                    [self.care setTitle:@"关注" forState:UIControlStateNormal];
+                    [self.care setBackgroundColor:[Tools getColor:@"fc6e51"]];
+                }
+            } failed:^(NSError *error) {
+            }];
+        }
         
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        //
-    }];
+
+    }else{
+        // 未登录情况
+        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+    }
+    
     
 
 }
