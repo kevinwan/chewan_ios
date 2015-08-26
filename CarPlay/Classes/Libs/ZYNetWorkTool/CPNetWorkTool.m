@@ -13,22 +13,34 @@
 
 + (void)postWithUrl:(NSString *)url params:(id)params success:(void (^)(id))success failure:(void (^)(NSError *))failure
 {
-    [ZYNetWorkTool postWithUrl:[self dealUserIdTokenWithUrl:url] params:params success:success failure:failure];
+    NSString *sendUrl = [self dealUserIdTokenWithUrl:url];
+    if (sendUrl.length) {
+        [ZYNetWorkTool postWithUrl:sendUrl params:params success:success failure:failure];
+    }
 }
 
 + (void)getWithUrl:(NSString *)url params:(id)params success:(void (^)(id))success failure:(void (^)(NSError *))failure
 {
-    [ZYNetWorkTool getWithUrl:[self dealUserIdTokenWithUrl:url] params:params success:success failure:failure];
+    NSString *sendUrl = [self dealUserIdTokenWithUrl:url];
+    if (sendUrl.length) {
+        [ZYNetWorkTool getWithUrl:sendUrl params:params success:success failure:failure];
+    }
 }
 
 + (void)postJsonWithUrl:(NSString *)url params:(id)jsonDict success:(void (^)(id responseObject))success failed:(void (^)(NSError *error))failure
 {
-    [ZYNetWorkTool postJsonWithUrl:[self dealUserIdTokenWithUrl:url] params:jsonDict success:success failed:failure];
+    NSString *sendUrl = [self dealUserIdTokenWithUrl:url];
+    if (sendUrl.length) {
+        [ZYNetWorkTool postJsonWithUrl:sendUrl params:jsonDict success:success failed:failure];
+    }
 }
 
 + (void)postFileWithUrl:(NSString *)url params:(id)params files:(NSArray *)files success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
-    [ZYNetWorkTool postFileWithUrl:[self dealUserIdTokenWithUrl:url] params:params files:files success:success failure:failure];
+    NSString *sendUrl = [self dealUserIdTokenWithUrl:url];
+    if (sendUrl.length) {
+        [ZYNetWorkTool postFileWithUrl:sendUrl params:params files:files success:success failure:failure];
+    }
 }
 
 /**
