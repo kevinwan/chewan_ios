@@ -8,10 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "cars.h"
-typedef void (^seatClick)(UIButton *button);
 @interface carCell : SWTableViewCell
 @property (weak, nonatomic) IBOutlet UIScrollView *seatScrollView;
 @property (nonatomic, strong) NSString *totalSeat;
 @property (nonatomic, strong) cars *models;
-@property (nonatomic, copy) seatClick seatClick;
 @end

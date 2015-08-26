@@ -11,7 +11,6 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <SDWebImage/UIButton+WebCache.h>
 #import "users.h"
-static CGFloat const kBounceValue = 20.0f;
 @interface carCell () <UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *carLog;
 @property (weak, nonatomic) IBOutlet UILabel *carName;
@@ -26,6 +25,7 @@ static CGFloat const kBounceValue = 20.0f;
 - (void)awakeFromNib {
     self.carName.textColor = [AppAppearance textDarkColor];
     self.carName.preferredMaxLayoutWidth = 70;
+    self.carName.adjustsFontSizeToFitWidth = YES;
   
 }
 
