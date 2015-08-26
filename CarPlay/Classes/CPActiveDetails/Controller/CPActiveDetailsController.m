@@ -24,6 +24,7 @@
 #import "ZHPickView.h"
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
+#import "CPModelButton.h"
 
 @interface CPActiveDetailsController ()<UITableViewDataSource,UITableViewDelegate,ZHPickViewDelegate,UITextFieldDelegate>
 
@@ -779,6 +780,10 @@
                 vc.activityId = self.activeId;
                 [self.navigationController pushViewController:vc animated:YES];
             } else {
+                if ([strMember isEqualToString:@"2"]) {
+                    [self.view alert:@"之前已申请过参加该活动,请勿重复申请"];
+                    return ;
+                }
                 NSString *userId = [Tools getValueFromKey:@"userId"];
                 NSString *token = [Tools getValueFromKey:@"token"];
                 NSString *urlStr = [NSString stringWithFormat:@"v1/user/%@/seats?token=%@&activityId=%@",userId,token,self.activeId];
@@ -809,12 +814,13 @@
                             self.yesButton = yeButton;
                             [noButton addTarget:self action:@selector(tap) forControlEvents:UIControlEventTouchUpInside];
                             [yeButton addTarget:self action:@selector(tap) forControlEvents:UIControlEventTouchUpInside];
-                            UIButton * offerButton = (UIButton *)[carView viewWithTag:3000];
+                            CPModelButton * offerButton = (CPModelButton *)[carView viewWithTag:3000];
+                            offerButton.button = sender;
                             UITextField * carxibTextFeild = (UITextField *)[carView viewWithTag:4000];
                             self.carxibTextFeild = carxibTextFeild;
                             UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];
                             [carView addGestureRecognizer:tap];
-                            [offerButton addTarget:self action:@selector(offerSeatButton) forControlEvents:UIControlEventTouchUpInside];
+                            [offerButton addTarget:self action:@selector(offerSeatButton:) forControlEvents:UIControlEventTouchUpInside];
                             NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
                             int maxSeat = [[formatter stringFromNumber:responseObject[@"data"][@"maxValue"]] intValue];
                             int minSeat = [[formatter stringFromNumber:responseObject[@"data"][@"minValue"]] intValue];
@@ -833,6 +839,8 @@
                             [CPNetWorkTool postJsonWithUrl:urlStr params:nil success:^(id responseObject) {
                                 if ([responseObject operationSuccess]) {
                                     [self.view alert:@"请求成功,等待同意"];
+                                    [sender setTitle:@"申请中" forState:UIControlStateNormal];
+                                    [sender setBackgroundColor:[Tools getColor:@"ccd1d9"]];
                                 } else {
                                     [self.view alertError:responseObject];
                                 }
@@ -904,7 +912,7 @@
 }
 
 //点击提交
-- (void)offerSeatButton {
+- (void)offerSeatButton:(CPModelButton *)btn {
     
     NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/join",self.activeId];
     
@@ -920,6 +928,8 @@
     [CPNetWorkTool postJsonWithUrl:urlStr params:parameters success:^(id responseObject) {
         if ([responseObject operationSuccess]) {
             [self.view alert:@"请求成功,等待同意"];
+            [btn.button setTitle:@"申请中" forState:UIControlStateNormal];
+            [btn.button setBackgroundColor:[Tools getColor:@"ccd1d9"]];
         } else {
             [self.view alertError:responseObject];
         }
