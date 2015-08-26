@@ -350,6 +350,10 @@
             [self showSuccess:@"删除成功"];
             [self.items removeObjectsAtIndexes:indexSet];
             [self setEditing:NO animated:YES];
+            
+            if (self.items.count == 0){
+                [self showNoData];
+            }
         }else{
             [self showInfo:@"网络异常"];
         }
