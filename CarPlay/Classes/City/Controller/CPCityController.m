@@ -308,7 +308,7 @@
         }
         
         if (selectModel.province != nil) {
-            parameters[@"province"] = selectModel.gender;
+            parameters[@"province"] = selectModel.province;
         }else{
             parameters[@"province"] = @"";
         }
