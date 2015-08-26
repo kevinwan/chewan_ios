@@ -12,6 +12,7 @@
 @interface CPEditUsernameViewController ()<UITextFieldDelegate>
 {
     CPOrganizer *organizer;
+    NSString *fileName;
 }
 @end
 
@@ -26,12 +27,12 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     
-    NSString *fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"phone"]];
+    fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"phone"]];
     if (_thirdPartyAccount) {
-        fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:_thirdPartyAccount[@"uid"]]];
+        fileName=[[NSString alloc]initWithFormat:@"%@.data",_thirdPartyAccount[@"uid"]];
     }
-    if (!_organizer && [NSKeyedUnarchiver unarchiveObjectWithFile:fileName]) {
-         organizer= [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+    if (!_organizer && [NSKeyedUnarchiver unarchiveObjectWithFile:CPDocmentPath(fileName)]) {
+         organizer= [NSKeyedUnarchiver unarchiveObjectWithFile:CPDocmentPath(fileName)];
         
     }else if (_organizer){
         organizer= _organizer;
@@ -45,13 +46,11 @@
 }
 
 - (void)rightBarClick:(id)sender {
-    NSString *fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"phone"]];
-    
     if (![self.nicknameLable.text isEqualToString:@""]) {
         if ([NSKeyedUnarchiver unarchiveObjectWithFile:CPDocmentPath(fileName)]) {
-            CPOrganizer *organizer=[NSKeyedUnarchiver unarchiveObjectWithFile:CPDocmentPath(fileName)];
-            organizer.nickname=self.nicknameLable.text;
-            [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
+            CPOrganizer *organizer1=[NSKeyedUnarchiver unarchiveObjectWithFile:CPDocmentPath(fileName)];
+            organizer1.nickname=self.nicknameLable.text;
+            [NSKeyedArchiver archiveRootObject:organizer1 toFile:CPDocmentPath(fileName)];
             if (_organizer) {
                 NSDictionary *para=[[NSDictionary alloc]initWithObjectsAndKeys:self.nicknameLable.text,@"nickname", nil];
                 [self updataUserInfo:para];
@@ -89,7 +88,7 @@
             [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName1)];
             [self.navigationController popViewControllerAnimated:YES];
         }else{
-            [[[UIAlertView alloc]initWithTitle:@"提示" message:@"修改失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+            [[[UIAlertView alloc]initWithTitle:@"提示" message:responseObject[@"errmsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
         }
     } failed:^(NSError *error) {
         [self disMiss];

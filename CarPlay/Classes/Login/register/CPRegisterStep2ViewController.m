@@ -422,22 +422,21 @@
         NSString *password=[Tools getValueFromKey:@"password"];
         NSString *code=[Tools getValueFromKey:@"code"];
         NSDictionary *para=[NSDictionary dictionaryWithObjectsAndKeys:phone,@"phone",password,@"password",code,@"code",organizer.nickname,@"nickname",organizer.gender,@"gender",organizer.province,@"province",organizer.city,@"city",organizer.district,@"district",organizer.headImgId,@"photo",@(organizer.brithYear),@"birthYear",@(organizer.birthMonth),@"birthMonth",@(organizer.birthDay),@"birthDay",nil];
-        
+         [Tools setValueForKey:@(NO) key:@"LoginFrom3Party"];
         if (_snsChannel && _snsUid && _snsUserName) {
             para=[NSDictionary dictionaryWithObjectsAndKeys:_snsUid,@"snsUid",_snsUserName,@"snsUserName",_snsChannel,@"snsChannel",organizer.nickname ? organizer.nickname:@"",@"nickname",organizer.gender,@"gender",organizer.province,@"province",organizer.city,@"city",organizer.district,@"district",organizer.headImgId,@"photo",@(organizer.brithYear),@"birthYear",@(organizer.birthMonth),@"birthMonth",@(organizer.birthDay),@"birthDay",nil];
+             [Tools setValueForKey:@(YES) key:@"LoginFrom3Party"];
         }
         
-        MBProgressHUD *hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.color = [UIColor clearColor];
-        hud.labelText=@"加载中…";
-        hud.dimBackground=NO;
+        [self showLoading];
         [ZYNetWorkTool postJsonWithUrl:@"v1/user/register" params:para success:^(id responseObject) {
-            [hud hide:YES];
+            [self disMiss];
             NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
             NSString *state=[numberFormatter stringFromNumber:[responseObject objectForKey:@"result"]];
             if (![state isEqualToString:@"0"]) {
                 NSString *errmsg =[responseObject objectForKey:@"errmsg"];
                 [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                [Tools setValueForKey:@(NO) key:@"LoginFrom3Party"];
             }else{
                 NSDictionary *data=[responseObject objectForKey:@"data"];
                 [Tools setValueForKey:[data objectForKey:@"userId"] key:@"userId"];
@@ -452,7 +451,7 @@
                 [self.navigationController pushViewController:CarOwnersCertificationVC animated:YES];
             }
         } failed:^(NSError *error) {
-            [hud hide:YES];
+            [self disMiss];
             [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
         }];
     }

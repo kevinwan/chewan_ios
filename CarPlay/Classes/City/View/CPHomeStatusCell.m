@@ -14,7 +14,7 @@
 #import "CPHomeIconCell.h"
 #import "CPHomePhoto.h"
 #import "CPHomeMember.h"
-
+#import "UIResponder+Router.h"
 
 
 
@@ -88,6 +88,11 @@
     
     // 设置正文最大的宽度
     self.introduction.preferredMaxLayoutWidth = [UIScreen mainScreen].bounds.size.width - 75;
+    
+    // 头像添加单击手势
+    self.photo.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageClick:)];
+    [self.photo addGestureRecognizer:tap];
 }
 
 
@@ -112,6 +117,8 @@
     self.photo.layer.masksToBounds = YES;
     NSURL *urlPhoto = [NSURL URLWithString:user.photo];
     [self.photo sd_setImageWithURL:urlPhoto placeholderImage:[UIImage imageNamed:@"默认头像"]];
+    
+    
     
     
     // 我要去玩
@@ -283,6 +290,22 @@
     
     
 }
+
+
+//  头像点击
+- (void)imageClick:(UITapGestureRecognizer *)sender{
+    // 判断是否已登录
+    if (!CPUnLogin) {
+        // 已登录通知控制器跳到他的详情页面
+        [self routerEventWithName:@"IconClick" userInfo:@{@"status" : self.status}];
+        
+    }else{
+        
+        // 未登录跳到登录页面
+        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+    }
+}
+
 
 // 计算配图宽高
 - (CGSize)caclPictureViewSize{
