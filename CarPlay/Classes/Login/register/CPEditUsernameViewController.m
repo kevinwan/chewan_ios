@@ -64,7 +64,7 @@
             [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
             [self.navigationController popViewControllerAnimated:YES];
         }
-        
+        [Tools setValueForKey:self.nicknameLable.text key:@"nickName"];
     }else{
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请输入您的昵称" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alert show];

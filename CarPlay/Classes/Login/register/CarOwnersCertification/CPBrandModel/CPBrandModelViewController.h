@@ -18,5 +18,5 @@
 @property (nonatomic, strong) CustomSectionView *sectionView;
 @property (nonatomic, strong) NSMutableArray *indexPathNumberArray;
 @property (nonatomic, strong) NSString *fromMy;
-
+@property (nonatomic, strong) NSString *fileName;
 @end

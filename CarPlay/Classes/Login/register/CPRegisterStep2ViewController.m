@@ -57,9 +57,11 @@
 -(void)viewWillAppear:(BOOL)animated{
     
     organizer = [NSKeyedUnarchiver unarchiveObjectWithFile:CPDocmentPath(fileName)];
-    if (organizer && organizer.headImgUrl) {
-        NSURL *url=[[NSURL alloc]initWithString:organizer.headImgUrl];
-        [self.userIconBtn sd_setImageWithURL:url forState:UIControlStateNormal];
+    if (organizer) {
+        if ( organizer.headImgUrl) {
+            NSURL *url=[[NSURL alloc]initWithString:organizer.headImgUrl];
+            [self.userIconBtn sd_setImageWithURL:url forState:UIControlStateNormal];
+        }
     }else{
         organizer = [[CPOrganizer alloc]init];
         organizer.gender=@"男";
@@ -117,7 +119,7 @@
             cell1.cellContent.text=thirdPartyLoginDic[@"username"];
         }
         
-        if (organizer && [Tools isEmptyOrNull:organizer.nickname]) {
+        if (organizer && ![Tools isEmptyOrNull:organizer.nickname]) {
             cell1.cellContent.text=organizer.nickname;
         }
         
@@ -442,9 +444,10 @@
                 [Tools setValueForKey:[data objectForKey:@"token"] key:@"token"];
                 [Tools setValueForKey:organizer.nickname key:@"nickName"];
                 [Tools setValueForKey:organizer.headImgUrl key:@"headUrl"];
-                
+                [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
                 CarOwnersCertificationViewController *CarOwnersCertificationVC=[[CarOwnersCertificationViewController alloc]init];
                 CarOwnersCertificationVC.fromMy=@"1";
+                CarOwnersCertificationVC.fileName=fileName;
                 CarOwnersCertificationVC.title=@"车主认证";
                 [self.navigationController pushViewController:CarOwnersCertificationVC animated:YES];
             }

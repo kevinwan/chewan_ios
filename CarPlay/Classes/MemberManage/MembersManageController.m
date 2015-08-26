@@ -159,7 +159,7 @@
     
 }
 //点击座位
-- (IBAction)seatDIdClick:(UIButton *)sender {
+- (void)seatDidClick:(UIButton *)sender {
     SQLog(@"%tu",sender.tag);
     if ([sender imageForState:UIControlStateNormal] == nil) {
         [self.view alert:@"该座位为空座"];
@@ -205,6 +205,15 @@
     }
     else if (sender.tag < 5000) {
         seatIndex = @"3";
+    }
+    else if (sender.tag < 6000) {
+        seatIndex = @"4";
+    }
+    else if (sender.tag < 7000) {
+        seatIndex = @"5";
+    }
+    else if (sender.tag < 8000) {
+        seatIndex = @"6";
     }
     SQLog(@"%@",seatIndex);
     NSArray *usersArray = car.users;
@@ -285,35 +294,58 @@
         cars *models = self.carsArray[indexPath.row];
         cell.models = models;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.seatMain.tag = indexPath.row +1000;
-        cell.seatone.tag = indexPath.row +2000;
-        cell.seatTwo.tag = indexPath.row + 3000;
-        cell.seatThree.tag = indexPath.row + 4000;
-        [cell setRightUtilityButtons:[self carRightButtons:[cell.totalSeat intValue] - 4] WithButtonWidth:45];
-        cell.delegate = self;
-//        SWUtilityButtonView *buttonView = [cell valueForKey:@"rightUtilityButtonsView"];
-        NSArray *userArray = models.users;
-        for (users *user in userArray ) {
-            SQLog(@"%@",user.seatIndex);
-            if ([user.seatIndex intValue] >= 4 ) {
-                if ([user.seatIndex intValue] == 4) {
-                    UIButton *subButton = (UIButton *)[cell.rightUtilityButtons[0] viewWithTag:1000];
-                    [subButton sd_setImageWithURL:[NSURL URLWithString:user.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"member_seatIcon"]];
-                    [subButton setBackgroundImage:[UIImage imageNamed:@"member_mainSeat"] forState:UIControlStateNormal];
-                }
-                if ([user.seatIndex intValue] == 5) {
-                    UIButton *subButton = (UIButton *)[cell.rightUtilityButtons[1] viewWithTag:1000];
-                    [subButton sd_setImageWithURL:[NSURL URLWithString:user.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"member_seatIcon"]];
-                    [subButton setBackgroundImage:[UIImage imageNamed:@"member_mainSeat"] forState:UIControlStateNormal];
-                }
-                if ([user.seatIndex intValue] == 6) {
-                    UIButton *subButton = (UIButton *)[cell.rightUtilityButtons[2] viewWithTag:1000];
-                    [subButton sd_setImageWithURL:[NSURL URLWithString:user.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"member_seatIcon"]];
-                    [subButton setBackgroundImage:[UIImage imageNamed:@"member_mainSeat"] forState:UIControlStateNormal];
-                }
-                
-            }
+        //先清除button
+        for (UIButton *button in cell.seatScrollView.subviews) {
+            [button removeFromSuperview];
         }
+        [self setUpScrollView:cell.totalSeat :indexPath :cell.seatScrollView];
+        //显示座位的头像
+        UIButton *button = nil;
+        NSArray *userArray = models.users;
+        for (users *user in userArray) {
+            switch ([user.seatIndex intValue]) {
+                case 0:
+                    button = (UIButton *)[cell.seatScrollView viewWithTag:indexPath.row+ 1000];
+                    [button sd_setImageWithURL:[NSURL URLWithString:user.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"member_seatIcon"]];
+                    [self getBackImageOfButton:button];
+                    break;
+                case 1:
+                    button = (UIButton *)[cell.seatScrollView viewWithTag:indexPath.row+ 2000];
+                    [button sd_setImageWithURL:[NSURL URLWithString:user.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"member_seatIcon"]];
+                    [self getBackImageOfButton:button];
+                    break;
+                case 2:
+                    button = (UIButton *)[cell.seatScrollView viewWithTag:indexPath.row+ 3000];
+                    [button sd_setImageWithURL:[NSURL URLWithString:user.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"member_seatIcon"]];
+                    [self getBackImageOfButton:button];
+                    break;
+                case 3:
+                    button = (UIButton *)[cell.seatScrollView viewWithTag:indexPath.row+ 4000];
+                    [button sd_setImageWithURL:[NSURL URLWithString:user.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"member_seatIcon"]];
+                    [self getBackImageOfButton:button];
+                    break;
+                case 4:
+                    button = (UIButton *)[cell.seatScrollView viewWithTag:indexPath.row+ 5000];
+                    [button sd_setImageWithURL:[NSURL URLWithString:user.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"member_seatIcon"]];
+                    [self getBackImageOfButton:button];
+                    break;
+                case 5:
+                    button = (UIButton *)[cell.seatScrollView viewWithTag:indexPath.row+ 6000];
+                    [button sd_setImageWithURL:[NSURL URLWithString:user.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"member_seatIcon"]];
+                    [self getBackImageOfButton:button];
+                    break;
+                case 6:
+                    button = (UIButton *)[cell.seatScrollView viewWithTag:indexPath.row+ 7000];
+                    [button sd_setImageWithURL:[NSURL URLWithString:user.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"member_seatIcon"]];
+                    [self getBackImageOfButton:button];
+                    break;
+                    
+                default:
+                    break;
+            }
+            
+        }
+
         return cell;
         
     } else {
@@ -329,6 +361,50 @@
     }
    
 }
+- (void)getBackImageOfButton:(UIButton *)button {
+    if ([button imageForState:UIControlStateNormal]) {
+        [button setBackgroundImage:[UIImage imageNamed:@"member_mainSeat"] forState:UIControlStateNormal];
+    } else {
+        [button setBackgroundImage:[UIImage imageNamed:@"member_seat"] forState:UIControlStateNormal];
+    }
+    
+}
+
+//在ScrollView里面建立button
+- (void)setUpScrollView:(NSString *)totalSeat :(NSIndexPath *)path :(UIScrollView *) seatScrollView{
+    CGFloat buttonW = 30;
+    CGFloat buttonH = 30;
+    CGFloat buttonY = 11;
+    CGFloat magin = 15;
+    for (int i = 0; i<[totalSeat integerValue]; i++) {
+        // 创建图片容器
+        UIButton *button = [[UIButton alloc]init];
+        button.tag = path.row+1000*(i+1);
+        CGFloat buttonX = i*(magin +buttonW);
+        button.frame = CGRectMake(buttonX, buttonY, buttonW, buttonH);
+        // 设置背景图片
+        if ([button imageForState:UIControlStateNormal]) {
+            [button setBackgroundImage:[UIImage imageNamed:@"member_mainSeat"] forState:UIControlStateNormal];
+        } else {
+            [button setBackgroundImage:[UIImage imageNamed:@"member_seat"] forState:UIControlStateNormal];
+        }
+        //设置座位头像图片
+        button.imageView.layer.cornerRadius = 12;
+        [button clipsToBounds];
+        button.imageEdgeInsets = UIEdgeInsetsMake(-4, 3, 10, 3);
+        //一开始置空
+        [button setImage:nil forState:UIControlStateNormal];
+        //添加按钮事件
+        [button addTarget:self action:@selector(seatDidClick:) forControlEvents:UIControlEventTouchUpInside];
+        [seatScrollView addSubview:button];
+    }
+    CGFloat contentW = [totalSeat integerValue]*(magin +buttonW);
+    seatScrollView.contentSize = CGSizeMake(contentW, 0);
+    
+    // 3.隐藏水平滚动条
+    seatScrollView.showsHorizontalScrollIndicator = NO;
+}
+
 //SWTableViewCellDelegate
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index {
     if ([cell isKindOfClass:[memberManageCell class]]) {
@@ -353,120 +429,9 @@
         } failed:^(NSError *error) {
             [self.view alertError:error];
         }];
-    }  else {
-        //点击座位
-        NSIndexPath *cellIndexPath = [self.memberTableView indexPathForCell:cell];
-        UIButton *button = cell.rightUtilityButtons[index];
-        UIButton *sub = (UIButton *)[button viewWithTag:1000];
-        self.subButton = sub;
-        if ([sub imageForState:UIControlStateNormal] == nil) {
-            [self.view alert:@"该座位为空座"];
-            return;
-        }
-        // 遮盖
-        UIButton *cover = [[UIButton alloc] init];
-        self.cover = cover;
-        cover.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.2];
-        [cover addTarget:self action:@selector(coverClick) forControlEvents:UIControlEventTouchUpInside];
-        cover.frame = [UIScreen mainScreen].bounds;
-        [self.view.window addSubview:cover];
-        UIView *carView = [[[NSBundle mainBundle]loadNibNamed:@"downSeat" owner:self options:nil]lastObject];
-        CGFloat carViewX = self.view.window.center.x;
-        CGFloat carViewY = self.view.window.center.y - 100;
-        carView.center = CGPointMake(carViewX, carViewY);
-        //拉下座位按钮
-         UIButton *downButton = (UIButton *)[carView viewWithTag:1000];
-        [downButton addTarget:self action:@selector(downButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
-        self.downButton.backgroundColor = [AppAppearance greenColor];
-        [self.downButton setTitleColor:[AppAppearance titleColor] forState:UIControlStateNormal];
-        self.downButton.titleLabel.font = [AppAppearance titleFont];
-        self.downButton.layer.cornerRadius = 3;
-        [self.downButton clipsToBounds];
-        self.carView = carView;
-        self.nameLabel.font = [AppAppearance textLargeFont];
-        self.nameLabel.textColor = [AppAppearance textDarkColor];
-        [self.ageButton setTitleColor:[AppAppearance titleColor] forState:UIControlStateNormal];
-        self.ageButton.titleLabel.font = [UIFont systemFontOfSize:11];
-        [self.ageButton setBackgroundImage:[UIImage imageNamed:@"man"] forState:UIControlStateNormal];
-        self.ageButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-        self.ageButton.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 3);
-        //获取座位的tag
-//        self.downButton.tag = sender.tag;
-        //获取car
-        cars *car = self.carsArray[cellIndexPath.row];
-        NSString *seatIndex = [NSString stringWithFormat:@"%tu",index + 4];
-        SQLog(@"%@",seatIndex);
-        NSArray *usersArray = car.users;
-        users *tapUser = nil;
-        for (users *user in usersArray) {
-            if ([user.seatIndex isEqualToString:seatIndex]) {
-                //通过seatIndex获取user
-                tapUser = user;
-                break;
-            }
-        }
-        //获取点击人得userID
-        self.tapUserID = tapUser.userId;
-        [self.ageButton setTitle:tapUser.age forState:UIControlStateNormal];
-        if ([tapUser.gender isEqualToString:@"男"]) {
-            [self.ageButton setBackgroundImage:[UIImage imageNamed:@"member_man"] forState:UIControlStateNormal];
-        } else {
-            [self.ageButton setBackgroundImage:[UIImage imageNamed:@"member_women"] forState:UIControlStateNormal];
-        }
-        [self.iconImage sd_setImageWithURL:[NSURL URLWithString:tapUser.photo]];
-        self.iconImage.layer.cornerRadius = 31.5;
-        self.iconImage.layer.masksToBounds = YES;
-        self.nameLabel.text = [NSString stringWithFormat:@"%@",tapUser.nickname];
-        
-        [self.view.window addSubview:carView];
-        
-
     }
-
 }
 //点击拉下座位
-- (void)downButtonDidClick{
-    
-    [self coverClick];
-    NSString *url = [NSString stringWithFormat:@"v1/activity/%@/seat/return?userId=%@&token=%@",self.activityId,self.userId,self.token];
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"member"] = self.tapUserID;
-    [self.view showWait];
-    [ZYNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
-        [self.view hideWait];
-        if ([responseObject operationSuccess]) {
-            //图片置空
-            [self.subButton setImage:nil forState:UIControlStateNormal];
-            //从新加载信息
-            NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/members?userId=%@&token=%@",self.activityId,self.userId,self.token];
-            [ZYNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
-                if ([responseObject operationSuccess]) {
-                    NSArray *carModel = [cars objectArrayWithKeyValuesArray:responseObject[@"data"][@"cars"]];
-                    //将车数组里面全部数据删除从新加载
-                    [self.carsArray removeAllObjects];
-                    [self.carsArray addObjectsFromArray:carModel];
-                    [self.memberTableView reloadData];
-                }
-            } failure:^(NSError *error) {
-                [self.view alertError:error];
-            }];
-        } else {
-            [self.view alertError:responseObject];
-        }
-    } failed:^(NSError *error) {
-        [self.view alertError:error];
-    }];
-
-}
-- (NSArray *)carRightButtons:(int)seatNumber
-{
-    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
-    for (int  i = 0; i<seatNumber; i++) {
-        [rightUtilityButtons sw_addUtilityButton];
-    }
-    
-    return rightUtilityButtons;
-}
 - (NSArray *)memberRightButtons {
     NSMutableArray *rightUtilityButtons = [NSMutableArray new];
     [rightUtilityButtons sw_addUtilityButtonWithColor:

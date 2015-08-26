@@ -20,4 +20,5 @@
 @property(nonatomic,strong)ZHPickView *pickview;
 @property(nonatomic,strong)NSString *fromMy;
 @property(nonatomic,strong) CPOrganizer *organizer;
+@property(nonatomic,strong) NSString *fileName;
 @end

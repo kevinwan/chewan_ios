@@ -39,7 +39,8 @@
 -(void)viewWillAppear:(BOOL)animated{
     if ([Tools getValueFromKey:@"userId"]) {
         [self.tableView reloadData];
-        if (_organizer && _organizer.drivingLicensePhoto) {
+        _organizer = [NSKeyedUnarchiver unarchiveObjectWithFile:CPDocmentPath(_fileName)];
+        if (_organizer && ![Tools isEmptyOrNull:_organizer.drivingLicensePhoto]) {
             NSURL *url=[[NSURL alloc]initWithString:_organizer.drivingLicensePhoto];
             [self.imageBtn sd_setImageWithURL:url];
         }
@@ -105,6 +106,7 @@
             CPBrandModelVC.fromMy=_fromMy;
 //        }
         CPBrandModelVC.title=@"车型选择";
+        CPBrandModelVC.fileName=_fileName;
         [self.navigationController pushViewController:CPBrandModelVC animated:YES];
     }
     
@@ -197,7 +199,7 @@
                 [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请选择您的爱车品牌!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
             }
         }else{
-            [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请选择您爱车的车龄!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+            [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请选择您的驾龄!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
         }
     }else{
         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请上传您的行驶证!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];

@@ -29,6 +29,7 @@
     NSArray *titleArray;
     NSArray *iconArray;
     CPOrganizer *organizer;
+    NSString *fileName;
 }
 @end
 
@@ -36,6 +37,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"userId"]];
     data=[[NSDictionary alloc]init];
     organizer=[[CPOrganizer alloc]init];
     albumPhotos=[[NSArray alloc]init];
@@ -72,6 +74,7 @@
     }else{
         organizer=[[CPOrganizer alloc]init];
         [self loadUserData];
+        self.unLoginStatusView.hidden=NO;
     }
 }
 
@@ -135,7 +138,8 @@
             CarOwnersCertificationViewController *CarOwnersCertificationVC=[[CarOwnersCertificationViewController alloc]init];
             CarOwnersCertificationVC.fromMy=@"0";
             CarOwnersCertificationVC.title=@"车主认证";
-            CarOwnersCertificationVC.organizer = organizer;
+//            CarOwnersCertificationVC.organizer = organizer;
+            CarOwnersCertificationVC.fileName=fileName;
             [self.navigationController pushViewController:CarOwnersCertificationVC animated:YES];
         }
     }else if (indexPath.row==2){
@@ -286,7 +290,6 @@
             if (data) {
                 CPOrganizer *organizer1= [CPOrganizer objectWithKeyValues:data];
                 organizer = organizer1;
-                NSString *fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"userId"]];
                 organizer.headImgUrl = data[@"photo"];
                 [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
                 [self loadUserData];
@@ -296,7 +299,7 @@
             [self showError:responseObject[@"errmsg"]];
         }
     } failure:^(NSError *error) {
-        [self showError:@"获取个人信息失败"];
+        [self showError:@"获取个人信息失败,请检查手机网络"];
     }];
 }
 
@@ -359,12 +362,13 @@
             [self.userGenderImg setX:self.nameLable.right+7.0];
             [Tools setValueForKey:organizer.nickname key:@"nickname"];
         }
+        
     
         if (organizer.drivingExperience) {
             [Tools setValueForKey:@(organizer.drivingExperience) key:@"drivingExperience"];
         }
         
-        if (!organizer.isMan) {
+        if ([organizer.gender isEqualToString:@"女"]) {
             [self.userGenderImg setImage:[UIImage imageNamed:@"女-1"]];
         }
         
@@ -392,21 +396,29 @@
         }else if (organizer.isAuthenticated == 0){
             self.carModelAndDrivingExperience.text=@"未认证";
             [self.carModelAndDrivingExperience setX:self.carBrandLogoImg.left];
+            [self.carBrandLogoImg setImage:nil];
         }else if (organizer.isAuthenticated == 2){
             self.carModelAndDrivingExperience.text=@"认证审核中";
             [self.carModelAndDrivingExperience setX:self.carBrandLogoImg.left];
         }
         if (organizer.postNumber) {
             self.myReleaseCountLable.text=[[NSString alloc]initWithFormat:@"%zd",organizer.postNumber];
+        }else{
+            self.myReleaseCountLable.text=@"0";
         }
         
         if (organizer.subscribeNumber) {
             self.myPayAttentionToCountLable.text=[[NSString alloc]initWithFormat:@"%zd",organizer.subscribeNumber];
+        }else{
+            self.myPayAttentionToCountLable.text=@"0";
         }
         
         if (organizer.joinNumber) {
             self.myParticipateInCountLable.text=[[NSString alloc]initWithFormat:@"%zd",organizer.joinNumber];
+        }else{
+            self.myParticipateInCountLable.text=@"0";
         }
+        [self.tableView reloadData];
     }
 }
 

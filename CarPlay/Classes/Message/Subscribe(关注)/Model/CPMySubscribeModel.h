@@ -89,6 +89,8 @@
 
 @property (nonatomic, copy) NSString *carModel;
 
+@property (nonatomic, copy) NSString *slug;
+
 @property (nonatomic, assign) BOOL isMan;
 
 @property (nonatomic, copy) NSString *userId;
