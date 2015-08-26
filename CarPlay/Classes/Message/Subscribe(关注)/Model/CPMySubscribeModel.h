@@ -87,6 +87,8 @@
 
 @property (nonatomic, copy) NSString *carBrandLogo;
 
+@property (nonatomic, copy) NSString *carBrand;
+
 @property (nonatomic, copy) NSString *carModel;
 
 @property (nonatomic, copy) NSString *slug;

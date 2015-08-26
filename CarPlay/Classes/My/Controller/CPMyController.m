@@ -351,6 +351,8 @@
             NSURL *url = [[NSURL alloc]initWithString:organizer.photo];
             [Tools setValueForKey:organizer.photo key:@"photoUrl"];
             [self.userHeadImg sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"morenHeadBtnImg"]];
+        }else{
+            [self.userHeadImg setImage:[UIImage imageNamed:@"morenHeadBtnImg"]];
         }
         
         if (organizer.nickname) {
