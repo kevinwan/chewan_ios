@@ -29,6 +29,8 @@
 #import "ZHPickView.h"
 #import "CPOfficialActivity.h"
 #import "CPOfficialActivityCell.h"
+#import "CPTaDetailsController.h"
+#import "UIResponder+Router.h"
 
 @interface CPCityController ()<UITableViewDataSource,UITableViewDelegate,CPSelectViewDelegate,ZHPickViewDelegate>
 
@@ -612,6 +614,8 @@
     
 }
 
+
+
 // 2
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -663,6 +667,18 @@
  
     [self.navigationController pushViewController:ac animated:YES];
     
+}
+
+// 点击头像跳转
+- (void)routerEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userInfo
+{
+    if ([eventName isEqualToString:@"IconClick"]) {
+        CPHomeStatus *status = userInfo[@"status"];
+        CPTaDetailsController *taDetailsController = [[UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil] instantiateInitialViewController];
+        taDetailsController.targetUserId = status.organizer.userId;
+        
+        [self.navigationController pushViewController:taDetailsController animated:YES];
+    }
 }
 
 
