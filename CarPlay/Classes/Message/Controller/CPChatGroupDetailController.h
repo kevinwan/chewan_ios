@@ -13,7 +13,4 @@
 // 活动的id
 @property (nonatomic, copy) NSString *activityId;
 
-// 是不是活动的组织者
-@property (nonatomic, assign) BOOL isOrganizer;
-
 @end
