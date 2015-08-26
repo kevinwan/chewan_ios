@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-
 @class CPSelectView,CPSelectViewModel;
 // 点击确认和取消进行代理回调传值
 @protocol CPSelectViewDelegate <NSObject>
