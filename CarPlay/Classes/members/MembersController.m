@@ -112,10 +112,10 @@
         return;
     }
     self.token = token;
-    [self.view showWait];
+    [self showLoading];
     NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/members?userId=%@&token=%@",self.activityId,self.userId,self.token];
     [ZYNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
-        [self.view hideWait];
+        [self disMiss];
 //        SQLog(@"%@",responseObject);
         if ([responseObject operationSuccess]) {
             NSArray *memberModel = [members objectArrayWithKeyValuesArray:responseObject[@"data"][@"members"]];
@@ -257,9 +257,9 @@
         } else {
         params[@"carId"] = @"";
         }
-        [self.view showWait];
+        [self showLoading];
         [ZYNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
-            [self.view hideWait];
+            [self disMiss];
             if ([responseObject operationSuccess]) {
                 //从新加载信息
                 NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/members?userId=%@&token=%@",self.activityId,self.userId,self.token];
@@ -313,10 +313,10 @@
 //退出活动确定按钮
 - (IBAction)outActivitySureButton:(UIButton *)sender {
     [self coverClick];
-    [self.view showWait];
+    [self showLoading];
     NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/quit?userId=%@&token=%@",self.activityId,self.userId,self.token];
     [ZYNetWorkTool postWithUrl:urlStr params:nil success:^(id responseObject) {
-        [self.view hideWait];
+        [self disMiss];
         SQLog(@"%@",responseObject);
         if ([responseObject operationSuccess]) {
             [self.membersArray removeAllObjects];
@@ -488,7 +488,9 @@
 - (IBAction)addButtonClick:(UIButton *)sender {
    NSString *urlStr = [NSString stringWithFormat:@"v1/user/%@/seats?token=%@&activityId=%@",self.userId,self.token,self.activityId];
     //主车提供后台返回的车 非车主最多提供两辆车
+    [self showLoading];
     [ZYNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
+        [self disMiss];
         if ([responseObject operationSuccess]) {
             SQLog(@"%@",responseObject);
             NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];

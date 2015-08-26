@@ -123,10 +123,10 @@
             return;
         }
         self.token = token;
-    [self.view showWait];
+    [self showLoading];
     NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/members?userId=%@&token=%@",self.activityId,self.userId,self.token];
     [ZYNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
-        [self.view hideWait];
+        [self disMiss];
         SQLog(@"%@",responseObject);
         if ([responseObject operationSuccess]) {
             NSArray *memberModel = [members objectArrayWithKeyValuesArray:responseObject[@"data"][@"members"]];
@@ -251,9 +251,9 @@
     NSString *url = [NSString stringWithFormat:@"v1/activity/%@/seat/return?userId=%@&token=%@",self.activityId,self.userId,self.token];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"member"] = self.tapUserID;
-    [self.view showWait];
+    [self showLoading];
     [ZYNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
-        [self.view hideWait];
+        [self disMiss];
         if ([responseObject operationSuccess]) {
             //图片置空
             [b setImage:nil forState:UIControlStateNormal];
@@ -410,13 +410,13 @@
     if ([cell isKindOfClass:[memberManageCell class]]) {
         NSIndexPath *cellIndexPath = [self.memberTableView indexPathForCell:cell];
         SQLog(@"%tu",cellIndexPath.row);
-        [self.view showWait];
+        [self showLoading];
         NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/member/remove?userId=%@&token=%@",self.activityId,self.userId,self.token];
         members *TapMember = self.membersArray[cellIndexPath.row - self.carsArray.count];
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
         params[@"member"] = TapMember.userId;
         [ZYNetWorkTool postJsonWithUrl:urlStr params:params success:^(id responseObject) {
-            [self.view hideWait];
+            [self disMiss];
             if ([responseObject operationSuccess]) {
                 //把相关座位也要删除
                 [self.carsArray removeAllObjects];

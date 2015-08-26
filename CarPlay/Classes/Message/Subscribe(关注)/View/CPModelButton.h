@@ -12,4 +12,5 @@
 @property (nonatomic, assign) id model;
 @property (nonatomic, strong) NSIndexPath *path;
 @property (nonatomic, assign) NSInteger index;
+@property (nonatomic, strong) UIButton *button;
 @end
