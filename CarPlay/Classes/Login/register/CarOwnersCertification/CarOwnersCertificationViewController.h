@@ -21,4 +21,6 @@
 @property(nonatomic,strong)NSString *fromMy;
 @property(nonatomic,strong) CPOrganizer *organizer;
 @property(nonatomic,strong) NSString *fileName;
+@property(nonatomic,assign) NSInteger isAuthenticated;
+
 @end
