@@ -26,8 +26,6 @@
     self.carName.textColor = [AppAppearance textDarkColor];
     self.carName.preferredMaxLayoutWidth = 70;
     self.carName.adjustsFontSizeToFitWidth = YES;
-    self.carName.minimumFontSize = 10;
-    [self setupButton:@[self.seatMain,self.seatone, self.seatTwo,self.seatThree]];
     
 }
 //button需要设置imageView才美观
@@ -57,7 +55,6 @@
 - (void)setModels:(cars *)models {
     _models = models;
     //设置初始座位头像图片为nil
-    [self removeImageOfButton:@[self.seatMain,self.seatone, self.seatTwo,self.seatThree]];
     NSURL *url = [NSURL URLWithString:_models.carBrandLogo];
     if (_models.carBrandLogo.length) {
         [self.carLog sd_setImageWithURL:url];
@@ -72,40 +69,5 @@
     }
     self.carName.text = [NSString stringWithFormat:@"%@",_models.carModel];
     self.totalSeat = _models.totalSeat;
-    switch ([self.totalSeat intValue]) {
-        case 2:
-            self.seatThree.hidden  = YES;
-            self.seatTwo.hidden = YES;
-            break;
-        case 3:
-            self.seatThree.hidden  = YES;
-            break;
-        default:
-            break;
-    }
-    //显示座位的头像
-    NSArray *userArray = _models.users;
-    for (users *user in userArray) {
-        switch ([user.seatIndex intValue]) {
-            case 0:
-                [self.seatMain sd_setImageWithURL:[NSURL URLWithString:user.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"member_seatIcon"]];
-                break;
-            case 1:
-                [self.seatone sd_setImageWithURL:[NSURL URLWithString:user.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"member_seatIcon"]];
-                break;
-            case 2:
-                [self.seatTwo sd_setImageWithURL:[NSURL URLWithString:user.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"member_seatIcon"]];
-                break;
-            case 3:
-                [self.seatThree sd_setImageWithURL:[NSURL URLWithString:user.photo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"member_seatIcon"]];
-                break;
-                
-            default:
-                break;
-        }
-    }
-        [self getBackImageOfButton:@[self.seatMain,self.seatone, self.seatTwo,self.seatThree]];
 }
-
-
 @end
