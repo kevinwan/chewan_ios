@@ -29,6 +29,8 @@
 #import "ZHPickView.h"
 #import "CPOfficialActivity.h"
 #import "CPOfficialActivityCell.h"
+#import "CPTaDetailsController.h"
+#import "UIResponder+Router.h"
 
 @interface CPCityController ()<UITableViewDataSource,UITableViewDelegate,CPSelectViewDelegate,ZHPickViewDelegate>
 
@@ -119,6 +121,9 @@
 //活动ID
 @property (nonatomic, strong) NSString *activeId;
 
+// 筛选条件保存
+@property (nonatomic,strong) CPSelectViewModel *selectResult;
+
 // 遮盖
 @property (nonatomic, strong) UIButton *cover;
 @property (nonatomic, strong) UIView *carView;
@@ -146,7 +151,6 @@
             [weakSelf setupLoadStatusWithIgnore:0 Key:@"hot" SelectModel:nil];
             weakSelf.tableView.tableFooterView = nil;
         };
-        
         
         self.tableView.tableFooterView = cpNoNet;
     }
@@ -230,10 +234,7 @@
     header.automaticallyChangeAlpha = YES;
     header.stateLabel.textColor = [Tools getColor:@"aab2bd"];
     header.lastUpdatedTimeLabel.textColor = [Tools getColor:@"aab2bd"];
-    
     self.tableView.header = header;
-    
-    
     
     
     // 添加上拉刷新控件（底部）
@@ -243,7 +244,6 @@
     footer.stateLabel.textColor = [Tools getColor:@"aab2bd"];
     [footer setTitle:@"加载中..." forState:MJRefreshStateRefreshing];
     [footer setTitle:@"无更多数据" forState:MJRefreshStateNoMoreData];
-    
     self.tableView.footer = footer;
 
 }
@@ -254,7 +254,7 @@
     self.activeStatus = nil;
     // 计数清零
     self.ignoreNum = 0;
-    [self setupLoadStatusWithIgnore:0 Key:self.selectMark SelectModel:nil];
+    [self setupLoadStatusWithIgnore:0 Key:self.selectMark SelectModel:self.selectResult];
 }
 
 // 上滑
@@ -262,7 +262,7 @@
     // 官方活动数据清空
 //    self.activeStatus = nil;
     self.ignoreNum += CPPageNum;
-    [self setupLoadStatusWithIgnore:self.ignoreNum Key:self.selectMark SelectModel:nil];
+    [self setupLoadStatusWithIgnore:self.ignoreNum Key:self.selectMark SelectModel:self.selectResult];
 }
 
 
@@ -306,7 +306,7 @@
         }
         
         if (selectModel.province != nil) {
-            parameters[@"province"] = selectModel.gender;
+            parameters[@"province"] = selectModel.province;
         }else{
             parameters[@"province"] = @"";
         }
@@ -612,6 +612,8 @@
     
 }
 
+
+
 // 2
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -663,6 +665,18 @@
  
     [self.navigationController pushViewController:ac animated:YES];
     
+}
+
+// 点击头像跳转
+- (void)routerEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userInfo
+{
+    if ([eventName isEqualToString:@"IconClick"]) {
+        CPHomeStatus *status = userInfo[@"status"];
+        CPTaDetailsController *taDetailsController = [[UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil] instantiateInitialViewController];
+        taDetailsController.targetUserId = status.organizer.userId;
+        
+        [self.navigationController pushViewController:taDetailsController animated:YES];
+    }
 }
 
 
@@ -796,7 +810,7 @@
     
     self.myCity = @"";
     
-    [self setupLoadStatusWithIgnore:0 Key:@"hot" SelectModel:nil];
+    [self setupLoadStatusWithIgnore:0 Key:@"hot" SelectModel:self.selectResult];
     self.selectMark = @"hot";
     
     
@@ -821,7 +835,7 @@
     self.lastestConstraint.constant = 1;
     
     // 获取经纬度和城市
-    [self setupLoadStatusWithIgnore:0 Key:@"nearby" SelectModel:nil];
+    [self setupLoadStatusWithIgnore:0 Key:@"nearby" SelectModel:self.selectResult];
     
     self.selectMark = @"nearby"; 
   
@@ -847,7 +861,7 @@
     
     self.myCity = @"";
     
-    [self setupLoadStatusWithIgnore:0 Key:@"latest" SelectModel:nil];
+    [self setupLoadStatusWithIgnore:0 Key:@"latest" SelectModel:self.selectResult];
     self.selectMark = @"latest";
 }
 
@@ -866,6 +880,7 @@
     
     // 根据result中的参数 重新发送请求 刷新表格 reloadData
 //    NSLog(@"%@",[result keyValues]);
+    self.selectResult = result;
     
     [self setupLoadStatusWithIgnore:0 Key:@"hot" SelectModel:result];
 }

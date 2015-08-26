@@ -165,6 +165,10 @@
     [self tipViewWithIcon:@"暂无参与" title:@"" subTitle:@"还没有参与任何活动,赶紧去参与吧" buttonTitle:nil isShow:NO];
 }
 
+- (void)showNoSubscribePerson
+{
+    [self tipViewWithIcon:@"暂无关注" title:@"" subTitle:@"您还没有关注任何人" buttonTitle:nil isShow:NO];
+}
 /**
  *  设置提示信息
  *

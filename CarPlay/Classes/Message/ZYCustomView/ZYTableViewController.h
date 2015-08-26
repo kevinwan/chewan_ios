@@ -53,6 +53,11 @@
 - (void)showNoJoin;
 
 /**
+ *  显示没有关注任何人
+ */
+- (void)showNoSubscribePerson;
+
+/**
  *  重新刷新数据,点击重新加载按钮后调用,交由子类具体实现
  */
 - (void)reRefreshData;

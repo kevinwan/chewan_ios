@@ -392,6 +392,9 @@
             [self showSuccess:@"删除成功"];
             [self.datas removeObjectsAtIndexes:indexSet];
             [self setEditing:NO animated:YES];
+            if (self.datas.count == 0) {
+                [self showNoData];
+            }
         }else{
             [self showInfo:@"网络异常"];
         }

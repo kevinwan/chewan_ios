@@ -14,6 +14,7 @@
 
 + (void)postWithUrl:(NSString *)url params:(id)params success:(void (^)(id))success failure:(void (^)(NSError *))failure
 {
+    if (url.length == 0)return;
     // 1.创建一个请求管理者<单例不必考虑内存问题>
     ZYNetWorkManager *mgr = [ZYNetWorkManager sharedInstances];
     mgr.requestSerializer.timeoutInterval = 40;
@@ -54,6 +55,7 @@
 
 + (void)getWithUrl:(NSString *)url params:(id)params success:(void (^)(id))success failure:(void (^)(NSError *))failure
 {
+    if (url.length == 0)return;
     // 1.创建一个请求管理者
     ZYNetWorkManager *mgr = [ZYNetWorkManager sharedInstances];
     mgr.requestSerializer.timeoutInterval = 40;
@@ -95,6 +97,7 @@
 
 + (void)postJsonWithUrl:(NSString *)url params:(id)jsonDict success:(void (^)(id responseObject))success failed:(void (^)(NSError *error))failure
 {
+    if (url.length == 0)return;
     // 1.创建一个请求管理者
     ZYNetWorkManager *mgr = [ZYNetWorkManager sharedInstances];
     
@@ -139,6 +142,7 @@
 
 + (void)postFileWithUrl:(NSString *)url params:(id)params files:(NSArray *)files success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
+    if (url.length == 0)return;
     // 1.创建一个请求管理者
     ZYNetWorkManager *mgr = [ZYNetWorkManager sharedInstances];
     mgr.requestSerializer.timeoutInterval = 40;

@@ -438,6 +438,8 @@
         _imagePicker = [[UIImagePickerController alloc] init];
         _imagePicker.modalPresentationStyle= UIModalPresentationOverFullScreen;
         _imagePicker.delegate = self;
+        [_imagePicker.navigationBar setBarTintColor:[Tools getColor:@"48d1d5"]];
+        _imagePicker.navigationBar.tintColor = [UIColor whiteColor];
     }
     
     return _imagePicker;
@@ -773,81 +775,19 @@
     id <IChatManager> chatManager = [[EaseMob sharedInstance] chatManager];
     MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
     browser.currentPhotoIndex = 0;
+    MJPhoto *photo = [[MJPhoto alloc] init];
     if ([model.messageBody messageBodyType] == eMessageBodyType_Image) {
         EMImageMessageBody *imageBody = (EMImageMessageBody *)model.messageBody;
         if (imageBody.attachmentDownloadStatus == EMAttachmentDownloadSuccessed)
         {
-           NSString *localPath = model.message == nil ? model.localPath : [[model.message.messageBodies firstObject] localPath];
-            MJPhoto *photo = [[MJPhoto alloc] init];
+            NSString *localPath = model.message == nil ? model.localPath : [[model.message.messageBodies firstObject] localPath];
             photo.image = [UIImage imageWithContentsOfFile:localPath];
             browser.photos = @[photo];
             [browser show];
-            
-            return;
-            if (imageBody.attachmentDownloadStatus == EMAttachmentDownloadSuccessed)
-            {
-                //发送已读回执
-                if ([self shouldAckMessage:model.message read:YES])
-                {
-                    [self sendHasReadResponseForMessages:@[model.message]];
-                }
-                NSString *localPath = model.message == nil ? model.localPath : [[model.message.messageBodies firstObject] localPath];
-                if (localPath && localPath.length > 0) {
-                    UIImage *image = [UIImage imageWithContentsOfFile:localPath];
-                    self.isScrollToBottom = NO;
-                    if (image)
-                    {
-                        [self.messageReadManager showBrowserWithImages:@[image]];
-                    }
-                    else
-                    {
-                        NSLog(@"Read %@ failed!", localPath);
-                    }
-                    return ;
-                }
-            }
-            [weakSelf showHudInView:weakSelf.view hint:NSLocalizedString(@"message.downloadingImage", @"downloading a image...")];
-            [chatManager asyncFetchMessage:model.message progress:nil completion:^(EMMessage *aMessage, EMError *error) {
-                [weakSelf hideHud];
-                if (!error) {
-                    //发送已读回执
-                    if ([weakSelf shouldAckMessage:model.message read:YES])
-                    {
-                        [weakSelf sendHasReadResponseForMessages:@[model.message]];
-                    }
-                    NSString *localPath = aMessage == nil ? model.localPath : [[aMessage.messageBodies firstObject] localPath];
-                    if (localPath && localPath.length > 0) {
-                        UIImage *image = [UIImage imageWithContentsOfFile:localPath];
-                        weakSelf.isScrollToBottom = NO;
-                        if (image)
-                        {
-                            [weakSelf.messageReadManager showBrowserWithImages:@[image]];
-                        }
-                        else
-                        {
-                            NSLog(@"Read %@ failed!", localPath);
-                        }
-                        return ;
-                    }
-                }
-                [weakSelf showHint:NSLocalizedString(@"message.imageFail", @"image for failure!")];
-            } onQueue:nil];
-        }
-        else{
-            MJPhoto *photo = [[MJPhoto alloc] init];
+        }else{
             photo.url = [NSURL URLWithString:imageBody.remotePath];
             browser.photos = @[photo];
             [browser show];
-            return;
-            //获取缩略图
-            [chatManager asyncFetchMessageThumbnail:model.message progress:nil completion:^(EMMessage *aMessage, EMError *error) {
-                if (!error) {
-                    [weakSelf reloadTableViewDataWithMessage:model.message];
-                }else{
-                    [weakSelf showHint:NSLocalizedString(@"message.thumImageFail", @"thumbnail for failure!")];
-                }
-                
-            } onQueue:nil];
         }
     }else if ([model.messageBody messageBodyType] == eMessageBodyType_Video) {
         //获取缩略图
@@ -1092,8 +1032,17 @@
     // 弹出照片选择
     self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     self.imagePicker.mediaTypes = @[(NSString *)kUTTypeImage];
+    self.imagePicker.delegate = self;
     [self presentViewController:self.imagePicker animated:YES completion:NULL];
     self.isInvisible = YES;
+}
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    if (((UIImagePickerController *)navigationController).sourceType ==     UIImagePickerControllerSourceTypePhotoLibrary) {
+        
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    }
 }
 
 - (void)moreViewTakePicAction:(DXChatBarMoreView *)moreView
@@ -1227,6 +1176,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     NSString *mediaType = info[UIImagePickerControllerMediaType];
     if ([mediaType isEqualToString:(NSString *)kUTTypeMovie]) {
         NSURL *videoURL = info[UIImagePickerControllerMediaURL];
@@ -1260,6 +1210,8 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"isShowPicker"];
     [self.imagePicker dismissViewControllerAnimated:YES completion:nil];
     self.isInvisible = NO;

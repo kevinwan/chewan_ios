@@ -102,7 +102,7 @@ typedef enum {
 - (NSArray *)activivtyDatas
 {
     if (_activivtyDatas == nil) {
-        _activivtyDatas = @[@"代驾", @"吃饭", @"唱歌", @"拼车", @"旅行", @"看电影", @"运动"];
+        _activivtyDatas = @[@"吃饭", @"唱歌", @"看电影", @"周边游", @"运动", @"拼车", @"购物", @"亲子游"];
     }
     return _activivtyDatas;
 }
