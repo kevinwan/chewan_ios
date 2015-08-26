@@ -13,6 +13,7 @@
 
 + (void)postWithUrl:(NSString *)url params:(id)params success:(void (^)(id))success failure:(void (^)(NSError *))failure
 {
+    if (url.length == 0)return;
     NSString *sendUrl = [self dealUserIdTokenWithUrl:url];
     if (sendUrl.length) {
         [ZYNetWorkTool postWithUrl:sendUrl params:params success:success failure:failure];
@@ -21,6 +22,7 @@
 
 + (void)getWithUrl:(NSString *)url params:(id)params success:(void (^)(id))success failure:(void (^)(NSError *))failure
 {
+    if (url.length == 0)return;
     NSString *sendUrl = [self dealUserIdTokenWithUrl:url];
     if (sendUrl.length) {
         [ZYNetWorkTool getWithUrl:sendUrl params:params success:success failure:failure];
@@ -29,6 +31,7 @@
 
 + (void)postJsonWithUrl:(NSString *)url params:(id)jsonDict success:(void (^)(id responseObject))success failed:(void (^)(NSError *error))failure
 {
+    if (url.length == 0)return;
     NSString *sendUrl = [self dealUserIdTokenWithUrl:url];
     if (sendUrl.length) {
         [ZYNetWorkTool postJsonWithUrl:sendUrl params:jsonDict success:success failed:failure];
@@ -37,6 +40,7 @@
 
 + (void)postFileWithUrl:(NSString *)url params:(id)params files:(NSArray *)files success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
 {
+    if (url.length == 0)return;
     NSString *sendUrl = [self dealUserIdTokenWithUrl:url];
     if (sendUrl.length) {
         [ZYNetWorkTool postFileWithUrl:sendUrl params:params files:files success:success failure:failure];
