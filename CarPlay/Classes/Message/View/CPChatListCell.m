@@ -30,7 +30,7 @@
     _unreadLabel.font = [UIFont systemFontOfSize:11];
     _unreadLabel.layer.cornerRadius = 7.5;
     _unreadLabel.clipsToBounds = YES;
-    [self.contentView addSubview:_unreadLabel];
+//    [self.contentView addSubview:_unreadLabel];
 }
 
 - (void)setShowUnreadCount:(BOOL)showUnreadCount
@@ -42,7 +42,7 @@
         self.unreadLabel.hidden = YES;
     }else{
         self.redUnreadLabelPoint.hidden = YES;
-        self.unreadLabel.hidden = NO;
+//        self.unreadLabel.hidden = NO;
     }
 }
 

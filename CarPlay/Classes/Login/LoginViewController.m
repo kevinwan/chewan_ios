@@ -86,7 +86,13 @@
                             NSString *fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"userId"]];
                             [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
                             [self disMiss];
+                            //设置是否自动登录
                             [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+                            //获取数据库中数据
+                            [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
+                            //获取群组列表
+                            [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
+                            
                             [Tools setValueForKey:@(NO) key:@"LoginFrom3Party"];
                             [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
                         }else{
@@ -221,10 +227,17 @@
                     CPOrganizer *organizer= [CPOrganizer objectWithKeyValues:data];
                     NSString *fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"userId"]];
                     [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
-                    [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
                     
                     [Tools setValueForKey:dict key:THIRDPARTYLOGINACCOUNT];
                     [Tools setValueForKey:@(YES) key:@"LoginFrom3Party"];
+                    
+                    //设置是否自动登录
+                    [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+                    //获取数据库中数据
+                    [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
+                    //获取群组列表
+                    [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
+                    
                     [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
                 }else{
                     [self showError:error.description];

@@ -89,7 +89,7 @@ typedef enum {
     self.tableView.header = [CPRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
     if (CPIsLogin){
         [self timer];
-        [[EaseMob sharedInstance].chatManager loadAllConversationsFromDatabaseWithAppend2Chat:NO];
+//        [[EaseMob sharedInstance].chatManager loadAllConversationsFromDatabaseWithAppend2Chat:YES];
         [self removeEmptyConversationsFromDB];
         [self unregisterNotifications];
     }

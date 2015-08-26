@@ -177,7 +177,13 @@
                                     [Tools setValueForKey:@(YES) key:NOTIFICATION_HASLOGIN];
                                     [Tools setValueForKey:password key:@"password"];
                                     
+                                    //设置是否自动登录
                                     [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+                                    //获取数据库中数据
+                                    [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
+                                    //获取群组列表
+                                    [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
+                                    
                                     [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
                                 }else{
                                     [self showError:error.description];
@@ -295,7 +301,12 @@
         if (!error && loginInfo) {
             [Tools setValueForKey:@(YES) key:NOTIFICATION_HASLOGIN];
             [Tools setValueForKey:[Tools getValueFromKey:@"password"] key:@"password"];
+            //设置是否自动登录
             [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+            //获取数据库中数据
+            [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
+            //获取群组列表
+            [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
             [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
         }else{
             [self showError:error.description];
