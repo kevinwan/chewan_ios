@@ -496,14 +496,12 @@
 {
     [super viewWillAppear:animated];
     self.searchBar.hidden = NO;
-    self.mapView.userTrackingMode = MAUserTrackingModeFollow;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     self.searchBar.hidden = YES;
-    self.mapView.userTrackingMode = MAUserTrackingModeNone;
     [SVProgressHUD dismiss];
 }
 

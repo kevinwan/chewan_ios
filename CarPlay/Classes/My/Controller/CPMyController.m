@@ -134,12 +134,13 @@
         CPSubscribePersonController *vc = [UIStoryboard storyboardWithName:@"CPSubscribePersonController" bundle:nil].instantiateInitialViewController;
         [self.navigationController pushViewController:vc animated:YES];
     }else if (indexPath.row==1) {
-        if (!organizer.isAuthenticated == 1) {
+        if (organizer.isAuthenticated == 2 || organizer.isAuthenticated == 0) {
             CarOwnersCertificationViewController *CarOwnersCertificationVC=[[CarOwnersCertificationViewController alloc]init];
             CarOwnersCertificationVC.fromMy=@"0";
             CarOwnersCertificationVC.title=@"车主认证";
 //            CarOwnersCertificationVC.organizer = organizer;
             CarOwnersCertificationVC.fileName=fileName;
+            CarOwnersCertificationVC.isAuthenticated = organizer.isAuthenticated;
             [self.navigationController pushViewController:CarOwnersCertificationVC animated:YES];
         }
     }else if (indexPath.row==2){
