@@ -214,9 +214,10 @@
         };
     }
     
-    
+    headView.isOfficialActivity = self.isOfficialActivity;
     // 传递对象数据
     headView.activeStatus = self.activeStatus;
+    
     
     // 将创建好的headview加到tableview上
     self.tableView.tableHeaderView = headView;

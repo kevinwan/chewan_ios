@@ -43,6 +43,13 @@
 // 车型距离头像约束
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *carModelConstraint;
 
+// 昵称距离顶部距离
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *nicknameConstraint;
+
+// 发布时间距离顶部距离
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *publishTimeConstraint;
+
+
 // 开始时间
 @property (weak, nonatomic) IBOutlet UILabel *startTime;
 
@@ -147,6 +154,9 @@
     }
     
     
+    
+    
+    
     // 汽车图标
     if (user.carBrandLogo == nil || [user.carBrandLogo isEqualToString:@""]) {
         self.carIcon.hidden = YES;
@@ -237,6 +247,18 @@
     CGSize pictureViewSize = [self caclPictureViewSize];
     self.pictureViewHeight.constant = pictureViewSize.height;
     self.pictureViewWidth.constant = pictureViewSize.width;
+    
+    
+    // 是否为官方活动
+    if (self.isOfficialActivity) {
+        self.genderAndAge.hidden = YES;
+        self.carIcon.hidden = YES;
+        self.status.hidden = YES;
+        self.nicknameConstraint.constant = 33;
+        self.publishTimeConstraint.constant = 35;
+    }
+    
+    
     
 }
 

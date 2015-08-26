@@ -521,6 +521,7 @@
         return cell;
 
     }else{
+        // 官方活动 
         __weak typeof(self) weakSelf = self;
         CPOfficialActivityCell *cell = [CPOfficialActivityCell cellWithTableView:tableView];
         cell.officialDetails = ^(NSUInteger tag){
@@ -529,6 +530,7 @@
             NSString *activityId = activeStu.activityId;
             CPActiveDetailsController *activeDetails = [UIStoryboard storyboardWithName:@"CPActiveDetailsController" bundle:nil].instantiateInitialViewController;
             activeDetails.activeId = activityId;
+            activeDetails.isOfficialActivity = YES;
             [weakSelf.navigationController pushViewController:activeDetails animated:YES];
         };
         cell.activeStatus = activeStatus;
