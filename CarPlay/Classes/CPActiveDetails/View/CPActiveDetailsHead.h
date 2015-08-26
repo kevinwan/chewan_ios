@@ -20,6 +20,9 @@ typedef void(^GoTaDetails)();
 
 @interface CPActiveDetailsHead : UIView
 
+// 是否为官方活动
+@property (nonatomic,assign) BOOL isOfficialActivity;
+
 // 回调函数
 @property (nonatomic,copy) GoTaDetails goTaDetails;
 @property (nonatomic,copy) PictureDidSelected pictureDidSelected;
