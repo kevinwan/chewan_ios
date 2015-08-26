@@ -8,9 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-
-typedef void(^TaDetails)(NSUInteger tag);
-
 #import "CPTaDetailsStatus.h"
 
 typedef void(^StatusSelected)(NSInteger ignore,NSString *selectStr);

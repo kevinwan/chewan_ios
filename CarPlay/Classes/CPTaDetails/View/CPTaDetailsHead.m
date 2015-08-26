@@ -11,6 +11,7 @@
 #import "CPTaDetailsHead.h"
 #import "UIImageView+WebCache.h"
 #import "CPTaPhoto.h"
+#import "MJPhotoBrowser.h"
 
 @interface CPTaDetailsHead ()<UIScrollViewDelegate>
 
@@ -317,6 +318,10 @@
     for (int i = 0; i<self.photoCount; i++) {
         UIImageView *imageView = [[UIImageView alloc] init];
         
+        imageView.userInteractionEnabled = YES;
+        
+        imageView.tag = i + 10;
+        
         // 设置图片显示格式
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         
@@ -358,9 +363,24 @@
 
 // 他的详情背景图点击
 - (void)imageClick:(UITapGestureRecognizer *)sender{
-    if (self.taDetails != nil) {
-        self.taDetails(sender.view.tag);
+    
+    NSUInteger count = self.taStatus.albumPhotos.count;
+    
+    if (count) {
+        
+        MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+        browser.currentPhotoIndex = sender.view.tag - 10;
+        NSMutableArray *photos = [NSMutableArray array];
+        for (int i = 0; i < count; i ++) {
+            CPTaPhoto *taPhoto = self.taStatus.albumPhotos[i];
+            MJPhoto *photo = [MJPhoto new];
+            photo.url = [NSURL URLWithString:taPhoto.original_pic];
+            [photos addObject:photo];
+        }
+        browser.photos = photos;
+        [browser show];
     }
+    
 }
 
 
