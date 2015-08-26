@@ -160,13 +160,13 @@
             
             UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:UMShareToQQ];
             
-//            NSLog(@"username is %@, uid is %@, token is %@ url is %@ openId is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL,snsAccount.openId);
+            NSLog(@"username is %@, uid is %@, token is %@ url is %@ openId is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL,snsAccount.openId);
             NSMutableDictionary *dict = [NSMutableDictionary dictionary];
             dict[@"uid"] = snsAccount.usid;
             dict[@"username"] = snsAccount.userName;
             dict[@"url"] = snsAccount.iconURL;
-            dict[@"channel"] = @"wechat";
-            NSString *sign = [NSString stringWithFormat:@"%@wechatcom.gongpingjia.carplay",snsAccount.usid];
+            dict[@"channel"] = @"qq";
+            NSString *sign = [NSString stringWithFormat:@"%@qqcom.gongpingjia.carplay",snsAccount.usid];
             dict[@"sign"] = [Tools md5EncryptWithString:sign];
             [self loginWithDict:dict];
             
@@ -190,8 +190,8 @@
             dict[@"uid"] = snsAccount.usid;
             dict[@"username"] = snsAccount.userName;
             dict[@"url"] = snsAccount.iconURL;
-            dict[@"channel"] = @"wechat";
-            NSString *sign = [NSString stringWithFormat:@"%@wechatcom.gongpingjia.carplay",snsAccount.usid];
+            dict[@"channel"] = @"sinaWeibo";
+            NSString *sign = [NSString stringWithFormat:@"%@sinaWeibocom.gongpingjia.carplay",snsAccount.usid];
             dict[@"sign"] = [Tools md5EncryptWithString:sign];
             [self loginWithDict:dict];
             
