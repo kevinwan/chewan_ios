@@ -810,7 +810,7 @@
     
     self.myCity = @"";
     
-    [self setupLoadStatusWithIgnore:0 Key:@"hot" SelectModel:nil];
+    [self setupLoadStatusWithIgnore:0 Key:@"hot" SelectModel:self.selectResult];
     self.selectMark = @"hot";
     
     
@@ -835,7 +835,7 @@
     self.lastestConstraint.constant = 1;
     
     // 获取经纬度和城市
-    [self setupLoadStatusWithIgnore:0 Key:@"nearby" SelectModel:nil];
+    [self setupLoadStatusWithIgnore:0 Key:@"nearby" SelectModel:self.selectResult];
     
     self.selectMark = @"nearby"; 
   
@@ -861,7 +861,7 @@
     
     self.myCity = @"";
     
-    [self setupLoadStatusWithIgnore:0 Key:@"latest" SelectModel:nil];
+    [self setupLoadStatusWithIgnore:0 Key:@"latest" SelectModel:self.selectResult];
     self.selectMark = @"latest";
 }
 
