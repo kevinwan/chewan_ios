@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 @class CPHomeStatus;
 
+typedef void(^GoTaDetails)();
 typedef void (^PictureDidSelected)(CPHomeStatus *status,NSIndexPath *path, NSArray *srcView);
 typedef void (^tapIcons)(CPHomeStatus *status);
 
@@ -29,4 +30,5 @@ typedef void (^tapIcons)(CPHomeStatus *status);
 // 回调函数
 @property (nonatomic,copy) PictureDidSelected pictureDidSelected;
 @property (nonatomic, copy) tapIcons tapIcons;
+@property (nonatomic,copy) GoTaDetails goTaDetails;
 @end
