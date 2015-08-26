@@ -10,14 +10,7 @@
 
 @implementation ZYImagePickerController
 
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleLightContent;
-}
 
-- (void)viewDidLoad
-{
-    [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
-}
+
 
 @end

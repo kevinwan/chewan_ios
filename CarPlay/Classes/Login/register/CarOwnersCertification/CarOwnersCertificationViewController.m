@@ -23,7 +23,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     uploaded=NO;
-    drivingExperience=1;
     self.tableView.tableHeaderView=self.headView;
     self.tableView.tableFooterView=self.footView;
     self.nextBtn.layer.cornerRadius=3.0;
@@ -90,8 +89,7 @@
         cell.cellTitle.text=@"车型品牌";
         cell.textLabel.textColor=[Tools getColor:@"aab2bd"];
         if (_organizer.carModel) {
-            NSString *detailText=[[NSString alloc]initWithFormat:@"%@",_organizer.carModel];
-            cell.cellContent.text=detailText;
+            cell.cellContent.text=_organizer.carModel;
         }
     }
     return  cell;
@@ -153,11 +151,11 @@
 
 - (IBAction)nextBtnClick:(id)sender {
     if (uploaded) {
-        if (drivingExperience) {
-            if ([Tools getValueFromKey:@"brandName"]) {
-                if ([Tools getValueFromKey:@"modelName"]) {
+        if (_organizer.drivingExperience) {
+            if (_organizer.carBrand) {
+                if (_organizer.carModel) {
                     NSString *path=[[NSString alloc]initWithFormat:@"v1/user/%@/authentication?token=%@",[Tools getValueFromKey:@"userId"],[Tools getValueFromKey:@"token"]];
-                    NSDictionary *para=[NSDictionary dictionaryWithObjectsAndKeys:[Tools getValueFromKey:@"brandName"],@"carBrand",[Tools getValueFromKey:@"brandUrl"],@"carBrandLogo",[Tools getValueFromKey:@"modelName"],@"carModel",@(drivingExperience),@"drivingExperience",[Tools getValueFromKey:@"slug"],@"slug",nil];
+                    NSDictionary *para=[NSDictionary dictionaryWithObjectsAndKeys:_organizer.carBrand,@"carBrand",_organizer.carBrandLogo,@"carBrandLogo",_organizer.carModel,@"carModel",@(drivingExperience),@"drivingExperience",_organizer.slug,@"slug",nil];
                    [self showLoading];
                     [ZYNetWorkTool postJsonWithUrl:path params:para success:^(id responseObject) {
                         NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
@@ -169,7 +167,7 @@
                                 EMError *error = nil;
                                 NSString *EMuser=[Tools md5EncryptWithString:[Tools getValueFromKey:@"userId"]];
                                 NSString *password=[Tools getValueFromKey:@"password"];
-                                if ([Tools getValueFromKey:@"LoginFrom3Party"]) {
+                                if ([CPUserDefaults boolForKey:@"LoginFrom3Party"]) {
                                     NSDictionary *dict=[Tools getValueFromKey:THIRDPARTYLOGINACCOUNT];
                                     password =dict[@"sign"];
                                 }
@@ -219,6 +217,8 @@
     cell.cellContent.text=[[NSString alloc]initWithFormat:@"%@年",resultString];
     [Tools setValueForKey:resultString key:@"drivingExperience"];
     drivingExperience=[resultString intValue];
+    _organizer.drivingExperience=drivingExperience;
+    [NSKeyedArchiver archiveRootObject:_organizer toFile:CPDocmentPath(_fileName)];
 }
 
 #pragma actionSheetDelegate
@@ -287,7 +287,7 @@
         EMError *error = nil;
         NSString *EMuser=[Tools md5EncryptWithString:[Tools getValueFromKey:@"userId"]];
         NSString *password = [Tools getValueFromKey:@"password"];
-        if ([Tools getValueFromKey:@"LoginFrom3Party"]) {
+        if ([CPUserDefaults boolForKey:@"LoginFrom3Party"]) {
             NSDictionary *dict=[Tools getValueFromKey:THIRDPARTYLOGINACCOUNT];
             password =dict[@"sign"];
         }

@@ -270,6 +270,9 @@
         [Tools setValueForKey:slug key:@"slug"];
         organizer.carModel = modelName;
         organizer.slug = slug;
+        organizer.carBrand = currentBrandName;
+        organizer.carBrandLogo = currentBrandUrl;
+        
         [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(_fileName)];
         [self.navigationController popViewControllerAnimated:YES];
     }

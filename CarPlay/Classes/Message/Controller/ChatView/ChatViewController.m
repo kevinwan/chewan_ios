@@ -439,6 +439,7 @@
         _imagePicker.modalPresentationStyle= UIModalPresentationOverFullScreen;
         _imagePicker.delegate = self;
         [_imagePicker.navigationBar setBarTintColor:[Tools getColor:@"48d1d5"]];
+        _imagePicker.navigationBar.tintColor = [UIColor whiteColor];
     }
     
     return _imagePicker;
@@ -1031,8 +1032,17 @@
     // 弹出照片选择
     self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     self.imagePicker.mediaTypes = @[(NSString *)kUTTypeImage];
+    self.imagePicker.delegate = self;
     [self presentViewController:self.imagePicker animated:YES completion:NULL];
     self.isInvisible = YES;
+}
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    if (((UIImagePickerController *)navigationController).sourceType ==     UIImagePickerControllerSourceTypePhotoLibrary) {
+        
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    }
 }
 
 - (void)moreViewTakePicAction:(DXChatBarMoreView *)moreView
