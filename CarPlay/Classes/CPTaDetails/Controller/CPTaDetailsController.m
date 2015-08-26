@@ -20,6 +20,7 @@
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
 #import "CPActiveDetailsController.h"
+#import "UIResponder+Router.h"
 
 
 
@@ -289,11 +290,6 @@
     
     
     
-    
-    
-    
-    
-    
 }
 
 
@@ -542,6 +538,18 @@
     
     
 }
+
+// 点击头像跳转
+- (void)routerEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userInfo{
+    if ([eventName isEqualToString:@"IconClick"]) {
+        CPHomeStatus *status = userInfo[@"status"];
+        CPTaDetailsController *taDetailsController = [[UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil] instantiateInitialViewController];
+        taDetailsController.targetUserId = status.organizer.userId;
+        [self.navigationController pushViewController:taDetailsController animated:YES];
+        
+    }
+}
+
 
 
 // 预估每一行cell的高度，可提高性能（只计算可是区域的cell）
