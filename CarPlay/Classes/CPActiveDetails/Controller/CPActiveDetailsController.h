@@ -13,4 +13,7 @@
 // 存储活动ID
 @property (nonatomic,copy) NSString *activeId;
 
+// 是否为官方活动
+@property (nonatomic,assign) BOOL isOfficialActivity;
+
 @end

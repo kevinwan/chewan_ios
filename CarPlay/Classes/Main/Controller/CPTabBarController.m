@@ -153,16 +153,17 @@ static NSString *kGroupName = @"GroupName";
         unreadCount += conversation.unreadMessagesCount;
     }
 //    UIViewController *vc = self.childViewControllers[1];
-//    NSInteger badgeValue = [vc.tabBarItem.badgeValue integerValue] + unreadCount;
+    NSString *key=[[NSString alloc]initWithFormat:@"%@unreadMessageCount",[Tools getValueFromKey:@"userId"]];
+    if ([Tools getValueFromKey:key]) {
+        unreadCount +=[[Tools getValueFromKey:key] intValue];
+    }
     
     if (unreadCount > 0) {
         [self.tabBar showBadgeOnItemIndex:1];
     }else{
         [self.tabBar hideBadgeOnItemIndex:1];
     }
-    
-//    UIApplication *application = [UIApplication sharedApplication];
-//    [application setApplicationIconBadgeNumber:unreadCount];
+
 }
 - (void)didReceiveMessage:(EMMessage *)message{
     BOOL needShowNotification = (message.messageType != eMessageTypeChat) ? [self needShowNotification:message.conversationChatter] : YES;

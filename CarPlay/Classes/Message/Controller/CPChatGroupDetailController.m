@@ -29,6 +29,9 @@
 // 组织者的button
 @property (weak, nonatomic) IBOutlet CPOrganizerButton *organizerButton;
 
+// 是不是活动的组织者
+@property (nonatomic, assign) BOOL isOrganizer;
+
 @end
 
 @implementation CPChatGroupDetailController
@@ -38,11 +41,14 @@
     [super viewDidLoad];
     [self showLoading];
     NSString *url = [NSString stringWithFormat:@"v1/activity/%@/info",self.activityId];
-    [ZYNetWorkTool getWithUrl:url params:nil success:^(id responseObject) {
+    NSString *userId = [Tools getValueFromKey:@"userId"];
+    NSString *token = [Tools getValueFromKey:@"token"];
+    [ZYNetWorkTool getWithUrl:url params:@{@"userId" : userId, @"token" : token} success:^(id responseObject) {
         [self disMiss];
         
         if (CPSuccess) {
             CPMySubscribeModel *model = [CPMySubscribeModel objectWithKeyValues:responseObject[@"data"]];
+            self.isOrganizer = model.isOrganizer;
             self.introduceLabel.height = 50;
             self.introduceLabel.preferredMaxLayoutWidth = kScreenWidth - 20;
             CGFloat btnWH = 25;
@@ -96,7 +102,10 @@
     if (indexPath.row == 0) {
         return 87;
     }else if (indexPath.row == 1){
-        return self.introduceCellHeight;
+        if (self.introduceCellHeight){
+            return self.introduceCellHeight;
+        }
+        return 50;
     }else{
         return 50;
     }
