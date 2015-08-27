@@ -100,7 +100,7 @@
 - (void)textFieldDidChange:(UITextField *)textField
 {
     if (textField == _nicknameLable) {
-        if (textField.text.length > 7) {
+        if (textField.text.length > 8) {
             textField.text = [textField.text substringToIndex:7];
         }
     }

@@ -297,8 +297,8 @@ static NSString *kGroupName = @"GroupName";
     
     //发送通知
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-    //    UIApplication *application = [UIApplication sharedApplication];
-    //    application.applicationIconBadgeNumber += 1;
+    UIApplication *application = [UIApplication sharedApplication];
+    application.applicationIconBadgeNumber += 1;
 }
 
 #pragma mark - IChatManagerDelegate 登录回调（主要用于监听自动登录是否成功）
@@ -426,82 +426,35 @@ static NSString *kGroupName = @"GroupName";
     NSDictionary *userInfo = notification.userInfo;
     if (userInfo)
     {
-        if ([self.navigationController.topViewController isKindOfClass:[ChatViewController class]]) {
+        UINavigationController *nv=self.childViewControllers[1];
+        if ([nv.topViewController isKindOfClass:[ChatViewController class]]) {
             ChatViewController *chatController = (ChatViewController *)self.navigationController.topViewController;
             [chatController hideImagePicker];
         }
-        
-        NSArray *viewControllers = self.navigationController.viewControllers;
-        [viewControllers enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id obj, NSUInteger idx, BOOL *stop){
-            if (obj != self)
-            {
-                if (![obj isKindOfClass:[ChatViewController class]])
+        NSString *conversationChatter = userInfo[kConversationChatter];
+        ChatViewController *chatViewController = [[ChatViewController alloc] initWithChatter:conversationChatter conversationType:[userInfo[kMessageType] intValue]];
+            [nv popViewControllerAnimated:NO];
+            EMMessageType messageType = [userInfo[kMessageType] intValue];
+            chatViewController = [[ChatViewController alloc] initWithChatter:conversationChatter conversationType:[self conversationTypeFromMessageType:messageType]];
+            switch (messageType) {
+                case eMessageTypeGroupChat:
                 {
-                    [self.navigationController popViewControllerAnimated:NO];
-                }
-                else
-                {
-                    NSString *conversationChatter = userInfo[kConversationChatter];
-                    ChatViewController *chatViewController = (ChatViewController *)obj;
-                    if (![chatViewController.chatter isEqualToString:conversationChatter])
-                    {
-                        [self.navigationController popViewControllerAnimated:NO];
-                        EMMessageType messageType = [userInfo[kMessageType] intValue];
-                        chatViewController = [[ChatViewController alloc] initWithChatter:conversationChatter conversationType:[self conversationTypeFromMessageType:messageType]];
-                        switch (messageType) {
-                            case eMessageTypeGroupChat:
-                            {
-                                NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
-                                for (EMGroup *group in groupArray) {
-                                    if ([group.groupId isEqualToString:conversationChatter]) {
-                                        chatViewController.title = group.groupSubject;
-                                        break;
-                                    }
-                                }
-                            }
-                                break;
-                            default:
-                                chatViewController.title = conversationChatter;
-                                break;
-                        }
-                        [self.navigationController pushViewController:chatViewController animated:NO];
-                    }
-                    *stop= YES;
-                }
-            }
-            else
-            {
-                ChatViewController *chatViewController = (ChatViewController *)obj;
-                NSString *conversationChatter = userInfo[kConversationChatter];
-                EMMessageType messageType = [userInfo[kMessageType] intValue];
-                chatViewController = [[ChatViewController alloc] initWithChatter:conversationChatter conversationType:[self conversationTypeFromMessageType:messageType]];
-                switch (messageType) {
-                    case eMessageTypeGroupChat:
-                    {
-                        NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
-                        for (EMGroup *group in groupArray) {
-                            if ([group.groupId isEqualToString:conversationChatter]) {
-                                chatViewController.title = group.groupSubject;
-                                break;
-                            }
+                    NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
+                    for (EMGroup *group in groupArray) {
+                        if ([group.groupId isEqualToString:conversationChatter]) {
+                            chatViewController.title = group.groupSubject;
+                            break;
                         }
                     }
-                        break;
-                    default:
-                        chatViewController.title = conversationChatter;
-                        break;
                 }
-                [self.navigationController pushViewController:chatViewController animated:NO];
+                    break;
+                default:
+                    chatViewController.title = conversationChatter;
+                    break;
             }
-        }];
+            [self setSelectedIndex:1];
+            [self.childViewControllers[1] pushViewController:chatViewController animated:NO];
     }
-    else if (_messageController)
-    {
-        [self.navigationController popToViewController:self animated:NO];
-        [self setSelectedViewController:_messageController];
-//        [self setSelectedIndex:1];
-    }
-     [self setSelectedIndex:1];
 }
 
 - (EMConversationType)conversationTypeFromMessageType:(EMMessageType)type

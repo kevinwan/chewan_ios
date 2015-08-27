@@ -31,7 +31,7 @@
     if (self) {
         // Initialization code
         UIView *bgView = [[UIView alloc] initWithFrame:self.bounds];
-        bgView.backgroundColor = [UIColor grayColor];
+        bgView.backgroundColor = [UIColor blackColor];
         bgView.layer.cornerRadius = 5;
         bgView.layer.masksToBounds = YES;
         bgView.alpha = 0.8;
@@ -102,7 +102,9 @@
     voiceSound = [[EMCDDeviceManager sharedInstance] emPeekRecorderVoiceMeter];
     if (0 < voiceSound <= 0.2) {
         [_recordAnimationView setImage:[UIImage imageNamed:@"VoiceSearchFeedback001"]];
-    }else if (0.2<voiceSound<=0.4) {
+    }else if (0.2<voiceSound<=0.21) {
+        [_recordAnimationView setImage:[UIImage imageNamed:@"VoiceSearchFeedback001"]];
+    }else if (0.21<voiceSound<=0.4) {
         [_recordAnimationView setImage:[UIImage imageNamed:@"VoiceSearchFeedback002"]];
     }else if (0.4<voiceSound<=0.6) {
         [_recordAnimationView setImage:[UIImage imageNamed:@"VoiceSearchFeedback003"]];
