@@ -207,4 +207,18 @@
     return  [UMSocialSnsService handleOpenURL:url];
 }
 
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    if (_tabVc) {
+        [_tabVc jumpToChatList];
+    }
+}
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    if (_tabVc) {
+        [_tabVc didReceiveLocalNotification:notification];
+    }
+}
+
 @end
