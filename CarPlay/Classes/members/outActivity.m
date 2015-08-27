@@ -10,6 +10,7 @@
 #import "AppAppearance.h"
 @interface outActivity ()
 @property (weak, nonatomic) IBOutlet UILabel *outActivityLabel;
+@property (weak, nonatomic) IBOutlet UILabel *outActivityLabelTwo;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *sureButton;
 
@@ -20,6 +21,7 @@
 @implementation outActivity
 - (void)awakeFromNib {
     self.outActivityLabel.textColor = [AppAppearance labelPromptColor];
+    self.outActivityLabelTwo.textColor = [AppAppearance labelPromptColor];
     [self.cancelButton setTitleColor:[AppAppearance textDarkColor] forState:UIControlStateNormal];
     [self.cancelButton setBackgroundColor:[AppAppearance btnBackgroundColor]];
     self.cancelButton.layer.cornerRadius = 3;

@@ -55,7 +55,14 @@
     self.ageButton.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 3);
     [self.carLogImageView sd_setImageWithURL:[NSURL URLWithString:_models.carBrandLogo]];
     //将2个两个字变红
-    if (_models.carModel.length == 0) {
+    if ([_models.role isEqualToString:@"官方用户"]) {
+        NSMutableAttributedString *subTitle = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"提供%@个座位",_models.seat]];
+        [subTitle addAttribute:NSForegroundColorAttributeName value:[AppAppearance redColor] range:NSMakeRange(subTitle.length - 4, 2)];
+        self.ageButton.hidden = YES;
+        self.carLogImageView.hidden = YES;
+        self.subTitleLabel.attributedText = subTitle;
+        self.subTitleLabelX.constant = -14;
+    } else if (_models.carModel.length == 0) {
         self.subTitleLabel.text = @"带我飞~";
         self.subTitleLabelX.constant = -14;
     } else if (![_models.seat isEqualToString:@"0"]){
@@ -69,8 +76,6 @@
         self.subTitleLabelX.constant = 7;
     
     }
-  
-   
 }
 
 
