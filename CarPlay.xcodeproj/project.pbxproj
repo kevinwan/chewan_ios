@@ -226,7 +226,6 @@
 		E31B08BB1B84B1C6008DA1D4 /* XMNetWorkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E31B08BA1B84B1C6008DA1D4 /* XMNetWorkTool.m */; };
 		E31B08BE1B84B227008DA1D4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E31B08BD1B84B227008DA1D4 /* Reachability.m */; };
 		E328F0691B621E1C00A20DCE /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = E328F0681B621E1C00A20DCE /* area.plist */; };
-		E3292A281B6A50700023677F /* CPSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3292A261B6A50700023677F /* CPSelectView.m */; };
 		E3292A291B6A50700023677F /* CPSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3292A271B6A50700023677F /* CPSelectView.xib */; };
 		E338A7451B70540C00E706C2 /* CPRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = E338A7441B70540C00E706C2 /* CPRefreshHeader.m */; };
 		E338A7481B7099CE00E706C2 /* CPRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = E338A7471B7099CE00E706C2 /* CPRefreshFooter.m */; };
@@ -301,6 +300,10 @@
 		E3A61B191B7ED06200B641E0 /* CPModelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A61B181B7ED06200B641E0 /* CPModelButton.m */; };
 		E3A61B1C1B7EEC8B00B641E0 /* CPMapPlaceSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A61B1B1B7EEC8B00B641E0 /* CPMapPlaceSearchRequest.m */; };
 		E3A6B74A1B8D62820011E169 /* ZYImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A6B7491B8D62820011E169 /* ZYImagePickerController.m */; };
+		E3A8A1661B8EEF8000DB9B4D /* CPSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A8A1651B8EEF8000DB9B4D /* CPSelectView.m */; };
+		E3A8A16C1B8EEF9F00DB9B4D /* HZAreaPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A8A1681B8EEF9F00DB9B4D /* HZAreaPickerView.m */; };
+		E3A8A16D1B8EEF9F00DB9B4D /* HZLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A8A16A1B8EEF9F00DB9B4D /* HZLocation.m */; };
+		E3A8A16E1B8EEF9F00DB9B4D /* zycity.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3A8A16B1B8EEF9F00DB9B4D /* zycity.plist */; };
 		E3AE58C61B57E08800D8F0CA /* ZYNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AE58C31B57E08800D8F0CA /* ZYNetWorkManager.m */; };
 		E3B127791B54D9C2005B1174 /* CPChatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B127781B54D9C2005B1174 /* CPChatButton.m */; };
 		E3B1277B1B54DECB005B1174 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3B1277A1B54DECB005B1174 /* Images.xcassets */; };
@@ -783,8 +786,6 @@
 		E31B08BC1B84B227008DA1D4 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		E31B08BD1B84B227008DA1D4 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		E328F0681B621E1C00A20DCE /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
-		E3292A251B6A50700023677F /* CPSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSelectView.h; sourceTree = "<group>"; };
-		E3292A261B6A50700023677F /* CPSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSelectView.m; sourceTree = "<group>"; };
 		E3292A271B6A50700023677F /* CPSelectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPSelectView.xib; sourceTree = "<group>"; };
 		E338A7431B70540C00E706C2 /* CPRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRefreshHeader.h; sourceTree = "<group>"; };
 		E338A7441B70540C00E706C2 /* CPRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRefreshHeader.m; sourceTree = "<group>"; };
@@ -912,6 +913,13 @@
 		E3A61B1B1B7EEC8B00B641E0 /* CPMapPlaceSearchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMapPlaceSearchRequest.m; sourceTree = "<group>"; };
 		E3A6B7481B8D62820011E169 /* ZYImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYImagePickerController.h; sourceTree = "<group>"; };
 		E3A6B7491B8D62820011E169 /* ZYImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYImagePickerController.m; sourceTree = "<group>"; };
+		E3A8A1641B8EEF8000DB9B4D /* CPSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSelectView.h; sourceTree = "<group>"; };
+		E3A8A1651B8EEF8000DB9B4D /* CPSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSelectView.m; sourceTree = "<group>"; };
+		E3A8A1671B8EEF9F00DB9B4D /* HZAreaPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZAreaPickerView.h; sourceTree = "<group>"; };
+		E3A8A1681B8EEF9F00DB9B4D /* HZAreaPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZAreaPickerView.m; sourceTree = "<group>"; };
+		E3A8A1691B8EEF9F00DB9B4D /* HZLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZLocation.h; sourceTree = "<group>"; };
+		E3A8A16A1B8EEF9F00DB9B4D /* HZLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZLocation.m; sourceTree = "<group>"; };
+		E3A8A16B1B8EEF9F00DB9B4D /* zycity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = zycity.plist; sourceTree = "<group>"; };
 		E3AE58C21B57E08800D8F0CA /* ZYNetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYNetWorkManager.h; sourceTree = "<group>"; };
 		E3AE58C31B57E08800D8F0CA /* ZYNetWorkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYNetWorkManager.m; sourceTree = "<group>"; };
 		E3B127771B54D9C2005B1174 /* CPChatButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPChatButton.h; sourceTree = "<group>"; };
@@ -2419,8 +2427,13 @@
 		E38A5EA11B7879F500B068D8 /* CPSelectView(筛选) */ = {
 			isa = PBXGroup;
 			children = (
-				E3292A251B6A50700023677F /* CPSelectView.h */,
-				E3292A261B6A50700023677F /* CPSelectView.m */,
+				E3A8A1671B8EEF9F00DB9B4D /* HZAreaPickerView.h */,
+				E3A8A1681B8EEF9F00DB9B4D /* HZAreaPickerView.m */,
+				E3A8A1691B8EEF9F00DB9B4D /* HZLocation.h */,
+				E3A8A16A1B8EEF9F00DB9B4D /* HZLocation.m */,
+				E3A8A16B1B8EEF9F00DB9B4D /* zycity.plist */,
+				E3A8A1641B8EEF8000DB9B4D /* CPSelectView.h */,
+				E3A8A1651B8EEF8000DB9B4D /* CPSelectView.m */,
 				E3292A271B6A50700023677F /* CPSelectView.xib */,
 				E3CFB1521B72126A0058B8C3 /* ZYSegmentControl.h */,
 				E3CFB1531B72126A0058B8C3 /* ZYSegmentControl.m */,
@@ -2733,6 +2746,7 @@
 				A58FE4431B8D477F00EBE91D /* MembersManage.storyboard in Resources */,
 				A58FE43C1B8D46F400EBE91D /* Members.storyboard in Resources */,
 				E3BEAB271B859FCD004B5FD8 /* CPChatGroupDetailController.storyboard in Resources */,
+				E3A8A16E1B8EEF9F00DB9B4D /* zycity.plist in Resources */,
 				A57581A91B6789C500A5E681 /* downSeat.xib in Resources */,
 				E372D83E1B6216C100B4FC5C /* CPRegisterCellsTableViewCell2.xib in Resources */,
 				E31B087D1B8418BA008DA1D4 /* InfoPlist.strings in Resources */,
@@ -2832,6 +2846,7 @@
 				6BCF66121B6208C700358190 /* CPActivePicCell.m in Sources */,
 				E38A5EA41B78847900B068D8 /* ZYTabBar.m in Sources */,
 				E3C14F4E1B81815F006A0F52 /* MJPhotoProgressView.m in Sources */,
+				E3A8A16D1B8EEF9F00DB9B4D /* HZLocation.m in Sources */,
 				6BCB13381B745B6F00CE6AEC /* CPTopButton.m in Sources */,
 				A57582151B6789E500A5E681 /* UIColor+SMFoundation.m in Sources */,
 				E3C6114F1B5F498600B7E73A /* CPLocationModel.m in Sources */,
@@ -2854,6 +2869,7 @@
 				E3E315041B5E551A00FB0B55 /* CPActivityApplyModel.m in Sources */,
 				6BC8A3E81B6A4DB700B199F2 /* CPTaDetailsStatus.m in Sources */,
 				E35B042B1B56460C002C6655 /* HMPhoto.m in Sources */,
+				E3A8A1661B8EEF8000DB9B4D /* CPSelectView.m in Sources */,
 				E3EEDFF81B53951D00595333 /* CPNewMessageCell.m in Sources */,
 				E30C80B01B86DBB30061C642 /* UITabBar+Extension.m in Sources */,
 				A57581CE1B6789D500A5E681 /* offerCar.m in Sources */,
@@ -2982,6 +2998,7 @@
 				A5FC9AFB1B83458000E41A7C /* NSString+Hash.m in Sources */,
 				E30BD5971B54FD6E00FD9030 /* ZYNavigationController.m in Sources */,
 				6BC8A3F01B6A4DB700B199F2 /* CPTaPublishCell.m in Sources */,
+				E3A8A16C1B8EEF9F00DB9B4D /* HZAreaPickerView.m in Sources */,
 				6B9711461B7DF60C00EA0F09 /* EMChatBaseBubbleView.m in Sources */,
 				6B4EF1601B4036EE00292BD4 /* main.m in Sources */,
 				E35559A51B53A0CE00B200D0 /* CPSexView.m in Sources */,
@@ -3017,7 +3034,6 @@
 				A57581CD1B6789D500A5E681 /* users.m in Sources */,
 				E3C14F501B81815F006A0F52 /* MJPhotoView.m in Sources */,
 				E372D8341B6216C100B4FC5C /* CPBrandModelViewController.m in Sources */,
-				E3292A281B6A50700023677F /* CPSelectView.m in Sources */,
 				E36CC9611B6C7D9300380E53 /* GeocodeAnnotation.m in Sources */,
 				E36C96221B53BC2800D3EDBB /* CPActivityApplyButton.m in Sources */,
 				E35E6FD31B54B1DE001212D6 /* CPMyPublishBottomView.m in Sources */,
