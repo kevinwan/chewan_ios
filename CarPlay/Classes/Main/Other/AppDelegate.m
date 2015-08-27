@@ -178,15 +178,27 @@
             NSUInteger newMsgCount = [comment[@"count"] intValue];
             NSUInteger activityApplyCount = [application[@"count"] intValue];
             
-//            UITabBarController *tabVc = (UITabBarController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-//            UIViewController *vc = _tabVc.childViewControllers[1];
-            if (newMsgCount + activityApplyCount > 0) {
-//            vc.tabBarItem.badgeValue = [NSString stringWithFormat:@"%zd",newMsgCount+ activityApplyCount];
-                [_tabVc.tabBar showBadgeOnItemIndex:1];
-            }else{
-                [_tabVc.tabBar hideBadgeOnItemIndex:1];
+            NSString *unreadMsgKey = [[NSString alloc]initWithFormat:@"%@unreadMessageCount",[Tools getValueFromKey:@"userId"]];
+            
+            NSString *unread = [Tools getValueFromKey:unreadMsgKey];
+            
+            NSUInteger totalCount = newMsgCount + activityApplyCount;
+            
+            if (totalCount > 0) {
+                if (unread.intValue < 0) {
+                    [Tools setValueForKey:@(totalCount) key:unreadMsgKey];
+                    [_tabVc.tabBar showBadgeOnItemIndex:1];
+                }else{
+                    
+                    if (unread.intValue + totalCount  > 0) {
+                        
+                        [Tools setValueForKey:@(unread.intValue + totalCount) key:unreadMsgKey];
+                        [_tabVc.tabBar showBadgeOnItemIndex:1];
+                    }
+                }
+
             }
-        
+            
         }
     } failure:^(NSError *error) {
         

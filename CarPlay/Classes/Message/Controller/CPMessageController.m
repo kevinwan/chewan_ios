@@ -39,6 +39,8 @@ typedef enum {
 @property (strong, nonatomic) NSMutableArray *dataSource;
 @property (nonatomic, strong) UIView *networkStateView;
 @property (nonatomic, strong) NSMutableArray *datas;
+
+#define CPUnreadMsgKey [[NSString alloc]initWithFormat:@"%@unreadMessageCount",[Tools getValueFromKey:@"userId"]]
 @end
 
 @implementation CPMessageController
@@ -154,6 +156,18 @@ typedef enum {
                 model.createTime = [comment[@"createTime"] longLongValue];
                 model.unreadCount = [NSString stringWithFormat:@"%zd",newMsgCount];
                 model.isShowUnread = YES;
+                NSString *unread = [Tools getValueFromKey:CPUnreadMsgKey];
+                if (unread.intValue < 0) {
+                    [Tools setValueForKey:@(newMsgCount) key:CPUnreadMsgKey];
+                    [self.tabBarController.tabBar showBadgeOnItemIndex:1];
+                }else{
+                    
+                    if (unread.intValue + newMsgCount  > 0) {
+                        
+                        [Tools setValueForKey:[NSString stringWithFormat:@"%zd",unread.intValue + newMsgCount] key:CPUnreadMsgKey];
+                        [self.tabBarController.tabBar showBadgeOnItemIndex:1];
+                    }
+                }
             }else{
                 model.isShowUnread = NO;
             }
@@ -167,17 +181,25 @@ typedef enum {
                 activityModel.unreadCount = [NSString stringWithFormat:@"%zd",activityApplyCount];
                 activityModel.createTime = [application[@"createTime"] longLongValue];
                 activityModel.isShowUnread = YES;
+                NSString *unread = [Tools getValueFromKey:CPUnreadMsgKey];
+                if (unread.intValue < 0) {
+                    
+                    [Tools setValueForKey:@(activityApplyCount) key:CPUnreadMsgKey];
+                    [self.tabBarController.tabBar showBadgeOnItemIndex:1];
+                }else{
+                    
+                    if (unread.intValue + activityApplyCount  > 0) {
+                        
+                        [Tools setValueForKey:@(unread.intValue + activityApplyCount) key:CPUnreadMsgKey];
+                        [self.tabBarController.tabBar showBadgeOnItemIndex:1];
+                    }
+                }
             }else{
                 activityModel.isShowUnread = NO;
             }
             
             
             [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0],[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-            if (activityApplyCount + newMsgCount > 0) {
-                [self.tabBarController.tabBar showBadgeOnItemIndex:1];
-            }else{
-                [self.tabBarController.tabBar hideBadgeOnItemIndex:1];
-            }
             
         }
     } failure:^(NSError *error) {
@@ -241,6 +263,15 @@ typedef enum {
         [self.navigationController pushViewController:vc animated:YES];
         
         CPHomeMsgModel *model = self.datas[1];
+        NSString *unread = [Tools getValueFromKey:CPUnreadMsgKey];
+        if (unread.intValue - model.unreadCount.intValue > 0) {
+            
+            [Tools setValueForKey:@(unread.intValue - model.unreadCount.intValue) key:CPUnreadMsgKey];
+             [self.tabBarController.tabBar showBadgeOnItemIndex:1];
+        }else{
+            [Tools setValueForKey:@(0) key:CPUnreadMsgKey];
+                [self.tabBarController.tabBar hideBadgeOnItemIndex:1];
+        }
         model.unreadCount = @"";
         model.type = @"";
         model.isShowUnread = NO;
@@ -251,6 +282,16 @@ typedef enum {
         [self.navigationController pushViewController:newMsgVc animated:YES];
         
         CPHomeMsgModel *model = self.datas[0];
+        NSString *unread = [Tools getValueFromKey:CPUnreadMsgKey];
+        if (unread.intValue - model.unreadCount.intValue > 0) {
+            
+            [Tools setValueForKey:@(unread.intValue - model.unreadCount.intValue) key:CPUnreadMsgKey];
+            [self.tabBarController.tabBar showBadgeOnItemIndex:1];
+        }else{
+            [Tools setValueForKey:@(0) key:CPUnreadMsgKey];
+            [self.tabBarController.tabBar hideBadgeOnItemIndex:1];
+        }
+        
         model.unreadCount = @"";
         model.isShowUnread = NO;
         model.content = @"暂无留言";
@@ -422,7 +463,7 @@ typedef enum {
         id<IEMMessageBody> messageBody = lastMessage.messageBodies.lastObject;
         switch (messageBody.messageBodyType) {
             case eMessageBodyType_Image:{
-                ret = @"图片";
+                ret = @"[图片]";
             } break;
             case eMessageBodyType_Text:{
                 // 表情映射。
@@ -435,13 +476,13 @@ typedef enum {
                 }
             } break;
             case eMessageBodyType_Voice:{
-                ret = @"语音";
+                ret = @"[语音]";
             } break;
             case eMessageBodyType_Location: {
-                ret = @"位置";
+                ret = @"[位置]";
             } break;
             case eMessageBodyType_Video: {
-                ret = @"视频";
+                ret = @"[视频]";
             } break;
             default: {
             } break;

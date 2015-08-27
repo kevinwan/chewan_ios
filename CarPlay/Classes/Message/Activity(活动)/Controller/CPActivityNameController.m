@@ -8,7 +8,6 @@
 
 #import "CPActivityNameController.h"
 #import "NSString+Extension.h"
-#import "UILabel+ZY.h"
 
 @interface CPActivityNameController ()<UITextViewDelegate>
 @property (nonatomic, strong) UITextView *textF;
