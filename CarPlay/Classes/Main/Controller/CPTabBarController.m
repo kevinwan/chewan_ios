@@ -170,13 +170,13 @@ static NSString *kGroupName = @"GroupName";
     if ([Tools getValueFromKey:key]) {
         unreadCount +=[[Tools getValueFromKey:key] intValue];
     }
-    
+    [Tools setValueForKey:@(unreadCount) key:key];
     if (unreadCount > 0) {
         [self.tabBar showBadgeOnItemIndex:1];
     }else{
         [self.tabBar hideBadgeOnItemIndex:1];
     }
-
+    
 }
 - (void)didReceiveMessage:(EMMessage *)message{
     BOOL needShowNotification = (message.messageType != eMessageTypeChat) ? [self needShowNotification:message.conversationChatter] : YES;
