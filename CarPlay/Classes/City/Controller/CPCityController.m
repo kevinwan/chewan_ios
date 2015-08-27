@@ -276,7 +276,7 @@
     parameters[@"key"] = key;
     parameters[@"ignore"] = @(ignore);
     
-    if ([self.myCity isEqualToString:@""]) {
+    if (![self.myCity isEqualToString:@""]) {
         parameters[@"city"] = self.myCity;
     }else{
         parameters[@"city"] = @"";
@@ -286,7 +286,7 @@
     parameters[@"longitude"] = [NSString stringWithFormat:@"%f",self.longitude];
     parameters[@"latitude"] = [NSString stringWithFormat:@"%f",self.latitude];
 
-    NSLog(@"userID= %@",self.userId);
+//    NSLog(@"userID= %@",self.userId);
     
 
     if (self.userId != nil) {
