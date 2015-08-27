@@ -52,6 +52,9 @@
 /** 是否为活动成员 */
 @property (nonatomic,assign) NSInteger isMember;
 
+/** 是否被修改过 */
+@property (nonatomic,assign) NSInteger isModified;
+
 /** 是否已结束 */
 @property (nonatomic,assign) NSInteger isOver;
 
