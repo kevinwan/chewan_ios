@@ -25,6 +25,7 @@
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
 #import "CPModelButton.h"
+#import "CPActiveDetailsNoData.h"
 
 @interface CPActiveDetailsController ()<UITableViewDataSource,UITableViewDelegate,ZHPickViewDelegate,UITextFieldDelegate>
 
@@ -395,6 +396,15 @@
             self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         }else{
             self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        }
+        
+        
+        // 如果没有数据
+        if (self.discussStatus.count == 0) {
+            CPActiveDetailsNoData *noData = [CPActiveDetailsNoData footerView];
+            self.tableView.tableFooterView = noData;
+        }else{
+            self.tableView.tableFooterView = nil;
         }
         
         // 刷新界面

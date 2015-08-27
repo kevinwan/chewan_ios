@@ -32,6 +32,7 @@
 #import "CPTaDetailsController.h"
 #import "UIResponder+Router.h"
 #import "CPModelButton.h"
+#import "CPNoData.h"
 
 @interface CPCityController ()<UITableViewDataSource,UITableViewDelegate,CPSelectViewDelegate,ZHPickViewDelegate>
 
@@ -357,6 +358,14 @@
                 [self.status addObjectsFromArray:models];
             }else{
                 [self.status addObjectsFromArray:models];
+            }
+            
+            // 如果没有数据
+            if (self.status.count == 0) {
+                CPNoData *noData = [CPNoData footerView];
+                self.tableView.tableFooterView = noData;
+            }else{
+                self.tableView.tableFooterView = nil;
             }
             
             // 刷新表格
