@@ -225,7 +225,6 @@
 		E31B08801B8418BA008DA1D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E31B087B1B8418BA008DA1D4 /* Localizable.strings */; };
 		E31B08BB1B84B1C6008DA1D4 /* XMNetWorkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E31B08BA1B84B1C6008DA1D4 /* XMNetWorkTool.m */; };
 		E31B08BE1B84B227008DA1D4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E31B08BD1B84B227008DA1D4 /* Reachability.m */; };
-		E328F0671B621DA700A20DCE /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = E328F0661B621DA700A20DCE /* city.plist */; };
 		E328F0691B621E1C00A20DCE /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = E328F0681B621E1C00A20DCE /* area.plist */; };
 		E3292A281B6A50700023677F /* CPSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3292A261B6A50700023677F /* CPSelectView.m */; };
 		E3292A291B6A50700023677F /* CPSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3292A271B6A50700023677F /* CPSelectView.xib */; };
@@ -783,7 +782,6 @@
 		E31B08BA1B84B1C6008DA1D4 /* XMNetWorkTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMNetWorkTool.m; sourceTree = "<group>"; };
 		E31B08BC1B84B227008DA1D4 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		E31B08BD1B84B227008DA1D4 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		E328F0661B621DA700A20DCE /* city.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
 		E328F0681B621E1C00A20DCE /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		E3292A251B6A50700023677F /* CPSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSelectView.h; sourceTree = "<group>"; };
 		E3292A261B6A50700023677F /* CPSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSelectView.m; sourceTree = "<group>"; };
@@ -1101,7 +1099,6 @@
 				E31B08731B8418BA008DA1D4 /* en.lproj */,
 				E31B08781B8418BA008DA1D4 /* zh-Hans.lproj */,
 				E328F0681B621E1C00A20DCE /* area.plist */,
-				E328F0661B621DA700A20DCE /* city.plist */,
 				E372D8551B62171E00B4FC5C /* macro.h */,
 				E3B1277A1B54DECB005B1174 /* Images.xcassets */,
 				6B4959CC1B33A23900DB63EA /* Info.plist */,
@@ -2765,7 +2762,6 @@
 				E3EEDFF61B53951D00595333 /* CPNewMessageController.storyboard in Resources */,
 				E372D83C1B6216C100B4FC5C /* CPRegisterCellsTableViewCell1.xib in Resources */,
 				6BB09A9C1B675A3E00E0D77D /* CPEditInfoTableViewController.xib in Resources */,
-				E328F0671B621DA700A20DCE /* city.plist in Resources */,
 				E328F0691B621E1C00A20DCE /* area.plist in Resources */,
 				E3EEDFF41B53951D00595333 /* CPMessageController.storyboard in Resources */,
 				6B0128511B7A22AF00B7A11F /* CPTaNoData.xib in Resources */,

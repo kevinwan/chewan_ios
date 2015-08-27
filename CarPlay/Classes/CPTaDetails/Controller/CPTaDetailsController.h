@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPTaDetailsController : UITableViewController
+@interface CPTaDetailsController : UIViewController
 
 @property (nonatomic,copy) NSString *targetUserId;
 

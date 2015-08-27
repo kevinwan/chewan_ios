@@ -10,7 +10,7 @@
 #import "ZYPickView.h"
 #import "ZHPickView.h"
 #import "ZYSegmentControl.h"
-
+#define CPSelectModelPath CPDocmentPath([[Tools getValueFromKey:@"userId"] stringByAppendingString:@"CPSelectModel.data"])
 @interface CPSelectView ()<ZHPickViewDelegate>
 
 @property (nonatomic, strong) ZHPickView *pickerView;
@@ -74,6 +74,11 @@
 {
     [view addSubview:self];
     
+    if (CPIsLogin) {
+        
+        [self loadData];
+    }
+    
     [UIView animateWithDuration:0.25 animations:^{
         self.y = view.height - 360;
     }];
@@ -95,6 +100,50 @@
             completion();
         }
     }];
+}
+
+#pragma mark - 加载缓存数据
+- (void)loadData
+{
+    CPSelectViewModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:CPSelectModelPath];
+    if (model) {
+        
+        // 设置类型
+        if (model.type.length) {
+            [self.typeLabel setTitle:model.type forState:UIControlStateNormal];
+        }else{
+            [self.typeLabel setTitle:@"不限" forState:UIControlStateNormal];
+        }
+        
+        // 设置性别
+        if ([model.gender isEqualToString:@"男"]){
+            self.genderSeg.selectedSegmentIndex = 0;
+        }else if ([model.gender isEqualToString:@"女"]){
+            self.genderSeg.selectedSegmentIndex = 1;
+        }else{
+            self.genderSeg.selectedSegmentIndex = 2;
+        }
+        
+        
+        // 设置是否车主
+        if (model.authenticate == 1) {
+            self.authoCarSeg.selectedSegmentIndex = 0;
+        }else if (model.authenticate == 0){
+            self.authoCarSeg.selectedSegmentIndex = 1;
+        }else{
+            self.authoCarSeg.selectedSegmentIndex = 2;
+        }
+        
+        // 设置是否好车
+        if ([model.carLevel isEqualToString:@"normal"]) {
+            self.carLevelSeg.selectedSegmentIndex = 0;
+        }else if ([model.carLevel isEqualToString:@"good"]){
+            self.carLevelSeg.selectedSegmentIndex = 1;
+        }else{
+            self.carLevelSeg.selectedSegmentIndex = 2;
+        }
+        
+    }
 }
 
 #pragma mark - 处理点击细节
@@ -119,7 +168,7 @@
         [UIView animateWithDuration:0.25 animations:^{
             self.secondArrow.transform = CGAffineTransformRotate(self.secondArrow.transform, M_PI_2);
         }];
-        self.pickerView = [[ZHPickView alloc] initPickviewWithArray:@[@"代驾", @"吃饭", @"唱歌", @"拼车", @"旅行", @"看电影", @"运动", @"不限"] isHaveNavControler:NO];
+        self.pickerView = [[ZHPickView alloc] initPickviewWithArray:@[@"吃饭", @"唱歌", @"看电影", @"周边游", @"运动", @"拼车", @"购物", @"亲子游", @"不限"]isHaveNavControler:NO];
         [self.pickerView setTintColor:[Tools getColor:@"fc6e51"]];
         self.pickerView.tag = 2;
         self.pickerView.delegate = self;
@@ -177,6 +226,9 @@
         model.carLevel = @"good";
     }
     if ([self.delegate respondsToSelector:@selector(selectView:finishBtnClick:)]) {
+        
+        [NSKeyedArchiver archiveRootObject:model toFile:CPSelectModelPath];
+        
         [self.delegate selectView:self finishBtnClick:model];
     }
 }
@@ -221,6 +273,6 @@
     }
     return self;
 }
-
+MJCodingImplementation
 @end
 

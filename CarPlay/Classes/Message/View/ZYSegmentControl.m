@@ -61,7 +61,7 @@
     
     for (int i = 0; i < items.count; i++) {
         ZYSegment *button = [self addBtnWithTitle:items[i]];
-        if (i == 0) {
+        if (i == items.count - 1) {
             [self buttnClick:button];
         }
         button.tag = 20 + i;
@@ -134,6 +134,11 @@
 - (NSUInteger)selectedSegmentIndex
 {
     return self.lastSeg.tag - 20;
+}
+
+- (void)setSelectedSegmentIndex:(NSUInteger)selectedSegmentIndex
+{
+    [self buttnClick:(ZYSegment *)[self viewWithTag:selectedSegmentIndex + 20]];
 }
 
 @end
