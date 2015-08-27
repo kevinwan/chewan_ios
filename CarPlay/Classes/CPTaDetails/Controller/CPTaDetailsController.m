@@ -118,7 +118,7 @@
     self.ignoreNum = 0;
     
     // 刷新他的详情
-    [self setupLoadTaStatus];
+//    [self setupLoadTaStatus];
     
     if ([self.threeStates isEqualToString:@"post"]) {
         [self setupLoadTaPublishStatusWithIgnore:0 SelectStr:@"post"];
