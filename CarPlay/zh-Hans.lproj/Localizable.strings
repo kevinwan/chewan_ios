@@ -232,8 +232,8 @@
 "message.beginReceiveOffine" = "开始接收离线消息";
 "message.endReceiveOffine" = "离线消息接收成功";
 "message.toolBar.inputPlaceHolder" = "输入新消息";
-"message.toolBar.record.upCancel" = " 手指上滑，取消发送 ";
-"message.toolBar.record.loosenCancel" = " 松开手指，取消发送 ";
+"message.toolBar.record.upCancel" = "上滑取消";
+"message.toolBar.record.loosenCancel" = " 松开取消";
 "message.toolBar.record.touch" = "按住说话";
 "message.toolBar.record.send" = "松开发送";
 

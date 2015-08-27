@@ -207,7 +207,7 @@
     {
         [self joinChatroom:_chatter];
     }
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"管理" target:self action:@selector(groupInfo)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:@"管理" higImage:nil title:nil target:self action:@selector(groupInfo)];
 }
 
 //- (void)handleCallNotification:(NSNotification *)notification
@@ -425,7 +425,7 @@
         
         ChatMoreType type = self.isChatGroup == YES ? ChatMoreTypeGroupChat : ChatMoreTypeChat;
         _chatToolBar.moreView = [[DXChatBarMoreView alloc] initWithFrame:CGRectMake(0, (kVerticalPadding * 2 + kInputTextViewMinHeight), _chatToolBar.frame.size.width, 80) type:type];
-        _chatToolBar.moreView.backgroundColor = RGBACOLOR(240, 242, 247, 1);
+        _chatToolBar.moreView.backgroundColor = [UIColor whiteColor];
         _chatToolBar.moreView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     }
     
@@ -1162,10 +1162,10 @@
             voice.duration = aDuration;
             [weakSelf sendAudioMessage:voice];
         }else {
-            [weakSelf showHudInView:self.view hint:NSLocalizedString(@"media.timeShort", @"The recording time is too short")];
+            [self showError:@"录音时间太短"];
             weakSelf.chatToolBar.recordButton.enabled = NO;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [weakSelf hideHud];
+                [self disMiss];
                 weakSelf.chatToolBar.recordButton.enabled = YES;
             });
         }

@@ -186,7 +186,6 @@
             }else{
                 [_tabVc.tabBar hideBadgeOnItemIndex:1];
             }
-        
         }
     } failure:^(NSError *error) {
         
