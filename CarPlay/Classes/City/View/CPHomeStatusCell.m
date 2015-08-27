@@ -145,7 +145,7 @@
     if (self.status.isOver) {
         [self.myPlay setTitle:@"已结束" forState:UIControlStateNormal];
         [self.myPlay setBackgroundColor:[Tools getColor:@"ccd1d9"]];
-        
+        self.myPlay.userInteractionEnabled = NO;
     }
     
     // 昵称

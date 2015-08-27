@@ -221,6 +221,11 @@
         [self.myPlay setTitle:@"我要去玩" forState:UIControlStateNormal];
     }
  
+    if (activeStatus.isOver) {
+        [self.myPlay setTitle:@"已结束" forState:UIControlStateNormal];
+        [self.myPlay setBackgroundColor:[Tools getColor:@"ccd1d9"]];
+        self.myPlay.userInteractionEnabled = NO;
+    }
     
     // 发布时间
     self.publishTime.text = _activeStatus.publishTimeStr;
