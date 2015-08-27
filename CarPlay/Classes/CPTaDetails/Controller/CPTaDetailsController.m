@@ -644,18 +644,12 @@
                             NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
                             int maxSeat = [[formatter stringFromNumber:responseObject[@"data"][@"maxValue"]] intValue];
                             int minSeat = [[formatter stringFromNumber:responseObject[@"data"][@"minValue"]] intValue];
-//                            [self.pickerArray removeAllObjects];
-//                            for (int i = minSeat; i <= maxSeat; i++) {
-//                                NSString *seat = [NSString stringWithFormat:@"%tu",i];
-//                                [self.pickerArray addObject:seat];
-//                            }
-                            NSMutableArray *pickerArray = [NSMutableArray array];
+                            [self.pickerArray removeAllObjects];
                             for (int i = minSeat; i <= maxSeat; i++) {
-                            NSString *seat = [NSString stringWithFormat:@"%tu",i];
-                            [pickerArray addObject:seat];
-                        }
-                            
-                            ZHPickView *picker = [[ZHPickView alloc]initPickviewWithArray:pickerArray isHaveNavControler:NO];
+                                NSString *seat = [NSString stringWithFormat:@"%tu",i];
+                                [self.pickerArray addObject:seat];
+                            }
+                            ZHPickView *picker = [[ZHPickView alloc]initPickviewWithArray:self.pickerArray isHaveNavControler:NO];
                             picker.delegate = self;
                             self.picker = picker;
                             self.carxibTextFeild.font = [AppAppearance textMediumFont];
