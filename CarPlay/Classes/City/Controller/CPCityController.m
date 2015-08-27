@@ -311,12 +311,6 @@
             parameters[@"gender"] = @"";
         }
         
-        if (selectModel.province != nil) {
-            parameters[@"province"] = selectModel.province;
-        }else{
-            parameters[@"province"] = @"";
-        }
-        
         if (selectModel.city != nil) {
             parameters[@"city"] = selectModel.city;
         }else{
@@ -823,6 +817,7 @@
     if (self.coverBtn) {
         self.coverBtn.hidden = YES;
     }
+    [self.selectView removeFromSuperview];
 }
 
 // 点击我要玩
