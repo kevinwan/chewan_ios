@@ -27,6 +27,7 @@
 
 
 @interface CPTaDetailsController () <ZHPickViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *taTableView;
 
 // 用户id
 @property (nonatomic,copy) NSString *userId;
@@ -95,7 +96,7 @@
     header.stateLabel.textColor = [Tools getColor:@"aab2bd"];
     header.lastUpdatedTimeLabel.textColor = [Tools getColor:@"aab2bd"];
     
-    self.tableView.header = header;
+    self.taTableView.header = header;
     
     // 添加上拉刷新控件（底部）
     MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(upglideLoadData)];
@@ -106,7 +107,7 @@
     [footer setTitle:@"加载中..." forState:MJRefreshStateRefreshing];
     [footer setTitle:@"无更多数据" forState:MJRefreshStateNoMoreData];
     
-    self.tableView.footer = footer;
+    self.taTableView.footer = footer;
 }
 
 
@@ -149,7 +150,7 @@
     head.statusSelected = ^(NSInteger ignore,NSString *selectStr){
         [weakSelf setupLoadTaPublishStatusWithIgnore:ignore SelectStr:selectStr];
     };
-    self.tableView.tableHeaderView = head;
+    self.taTableView.tableHeaderView = head;
 }
 
 #pragma mark - 加载网络数据
@@ -198,7 +199,7 @@
             // 加载headview
             [self setupLoadHeadView];
             
-            [self.tableView reloadData];
+            [self.taTableView reloadData];
         }
         
         
@@ -272,26 +273,26 @@
                     noData.titleName = @"他还没有参与活动噢~";
                     noData.isShowBtn = NO;
                 }
-                self.tableView.tableFooterView = noData;
+                self.taTableView.tableFooterView = noData;
             }else{
-                self.tableView.tableFooterView = nil;
+                self.taTableView.tableFooterView = nil;
             }
             
             // 刷新tableview
-            [self.tableView reloadData];
+            [self.taTableView reloadData];
             
             // 关闭下拉刷新
-            [self.tableView.header endRefreshing];
+            [self.taTableView.header endRefreshing];
             // 关闭上拉刷新
-            [self.tableView.footer endRefreshing];
+            [self.taTableView.footer endRefreshing];
             
             // 重置底部上拉或者点击加载更多
             if (ignore == 0) {
-                [self.tableView.footer resetNoMoreData];
+                [self.taTableView.footer resetNoMoreData];
             }
             // 设置无更多数据
             if (models.count == 0) {
-                [self.tableView.footer noticeNoMoreData];
+                [self.taTableView.footer noticeNoMoreData];
             }
         }
         
@@ -619,13 +620,13 @@
                             cover.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.2];
                             [cover addTarget:self action:@selector(coverClick) forControlEvents:UIControlEventTouchUpInside];
                             cover.frame = [UIScreen mainScreen].bounds;
-                            [self.view addSubview:cover];
+                            [self.view.window addSubview:cover];
                             UIView *carView = [[[NSBundle mainBundle]loadNibNamed:@"offerCar" owner:self options:nil]lastObject];
                             CGFloat carViewX = self.view.window.center.x;
                             CGFloat carViewY = self.view.window.center.y - 100;
                             carView.center = CGPointMake(carViewX, carViewY);
                             self.carView = carView;
-                            [self.view addSubview:carView];
+                            [cover addSubview:carView];
                             //注意加载之后才有xib
                             UIButton *noButton = (UIButton *)[carView viewWithTag:1000];
                             self.noButton = noButton;
@@ -766,7 +767,12 @@
     }
     return _rowHeightCache;
 }
-
+- (NSMutableArray *)pickerArray {
+    if (!_pickerArray) {
+        _pickerArray = [[NSMutableArray alloc]init];
+    }
+    return _pickerArray;
+}
 // 用户userId
 - (NSString *)userId
 {
