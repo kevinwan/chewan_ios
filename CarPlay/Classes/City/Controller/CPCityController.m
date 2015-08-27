@@ -160,7 +160,7 @@
     [self showLoading];
     
     // 加载活动数据
-    [self setupLoadStatusWithIgnore:0 Key:self.selectMark SelectModel:nil];
+//    [self setupLoadStatusWithIgnore:0 Key:self.selectMark SelectModel:nil];
     
     
     // 上拉下拉刷新
@@ -174,7 +174,6 @@
     
     // 获取当前经纬度
     [self getLongitudeAndLatitude];
-    
   
 }
 
@@ -190,12 +189,14 @@
 
             self.longitude = currentLocation.coordinate.longitude;
             self.latitude = currentLocation.coordinate.latitude;
-            
+
+//            NSLog(@"%f",self.longitude);
+//            NSLog(@"%f",self.latitude);
             [self getAtCity];
 
         }else if(status ==  INTULocationStatusError)
         {
-                        NSLog(@"获取失败");
+            NSLog(@"获取经纬度失败");
         }
     }];
 }
@@ -210,13 +211,25 @@
     [self.geocoder reverseGeocodeLocation:cllocation completionHandler:^(NSArray *placemarks, NSError *error) {
 
         for (CLPlacemark *placemark in placemarks) {
-
-            self.myCity = placemark.locality;
+            //            self.myCity = placemark.locality;
+            
+            NSString *tempCityStr = placemark.locality;
+            if ([tempCityStr contains:@"市辖区"]) {
+                self.myCity = [tempCityStr stringByReplacingOccurrencesOfString:@"市辖区" withString:@""];
+            }else{
+               self.myCity = tempCityStr;
+            }
+            
+//            NSLog(@"%@",self.myCity);
+            
             // 将城市存入缓存中
             [CPUserDefaults setObject:self.myCity forKey:@"CPUserCity"];
             [CPUserDefaults synchronize];
         }
         
+        if (self.myCity) {
+            [self setupLoadStatusWithIgnore:0 Key:self.selectMark SelectModel:nil];
+        }
 
     }];
 }
@@ -276,18 +289,12 @@
     parameters[@"key"] = key;
     parameters[@"ignore"] = @(ignore);
     
-    if ([self.myCity isEqualToString:@""]) {
-        parameters[@"city"] = self.myCity;
-    }else{
-        parameters[@"city"] = @"";
-    }
+    parameters[@"city"] = self.myCity;
     
-   
     parameters[@"longitude"] = [NSString stringWithFormat:@"%f",self.longitude];
     parameters[@"latitude"] = [NSString stringWithFormat:@"%f",self.latitude];
 
-    NSLog(@"userID= %@",self.userId);
-    
+//    NSLog(@"userID= %@",self.userId);
 
     if (self.userId != nil) {
         parameters[@"userId"] = self.userId;
@@ -302,12 +309,6 @@
             parameters[@"gender"] = selectModel.gender;
         }else{
             parameters[@"gender"] = @"";
-        }
-        
-        if (selectModel.province != nil) {
-            parameters[@"province"] = selectModel.province;
-        }else{
-            parameters[@"province"] = @"";
         }
         
         if (selectModel.city != nil) {
@@ -419,11 +420,6 @@
     }];
     
 }
-
-
-
-
-
 
 
 #pragma mark - 数据源方法
@@ -735,7 +731,6 @@
     self.nearConstraint.constant = 1;
     self.lastestConstraint.constant = 1;
     
-    self.myCity = @"";
     
     [self setupLoadStatusWithIgnore:0 Key:@"hot" SelectModel:self.selectResult];
     self.selectMark = @"hot";
@@ -786,8 +781,6 @@
     self.nearConstraint.constant = 1;
     self.lastestConstraint.constant = 0;
     
-    self.myCity = @"";
-    
     [self setupLoadStatusWithIgnore:0 Key:@"latest" SelectModel:self.selectResult];
     self.selectMark = @"latest";
 }
@@ -824,6 +817,7 @@
     if (self.coverBtn) {
         self.coverBtn.hidden = YES;
     }
+    [self.selectView removeFromSuperview];
 }
 
 // 点击我要玩

@@ -118,4 +118,10 @@
     [UIImageJPEGRepresentation(self, quality) writeToFile:path atomically:atomically];
 }
 
++ (UIImage *)imageWithFileName:(NSString *)name
+{
+    NSData *data = [NSData dataWithContentsOfFile:CPDocmentPath(name)];
+    return [UIImage imageWithData:data];
+}
+
 @end

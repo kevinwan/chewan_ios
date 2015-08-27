@@ -18,4 +18,5 @@
 @property (nonatomic, copy) NSString *carBrandLogo;
 @property (nonatomic, copy) NSString *carModel;
 @property (nonatomic, copy) NSString *seat;
+@property (nonatomic, copy) NSString *role;
 @end

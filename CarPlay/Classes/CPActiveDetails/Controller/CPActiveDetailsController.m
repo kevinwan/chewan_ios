@@ -299,6 +299,9 @@
             // 设置编辑活动按钮
             if (self.activeStatus.isOrganizer) {
                 self.editorActiveBtn.title = @"编辑活动";
+                if(self.activeStatus.isModified){
+                    self.editorActiveBtn.title = @"";
+                }
             }else{
                 if (self.activeStatus.isSubscribed) {
                     self.editorActiveBtn.title = @"取消收藏";

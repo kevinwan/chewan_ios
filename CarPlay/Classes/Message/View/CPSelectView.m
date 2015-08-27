@@ -10,8 +10,9 @@
 #import "ZYPickView.h"
 #import "ZHPickView.h"
 #import "ZYSegmentControl.h"
-#define CPSelectModelPath CPDocmentPath([[Tools getValueFromKey:@"userId"] stringByAppendingString:@"CPSelectModel.data"])
-@interface CPSelectView ()<ZHPickViewDelegate>
+#import "HZAreaPickerView.h"
+#define CPSelectModelPath CPDocmentPath(@"CPSelectModel.data")
+@interface CPSelectView ()<ZHPickViewDelegate,HZAreaPickerDelegate>
 
 @property (nonatomic, strong) ZHPickView *pickerView;
 @property (weak, nonatomic) IBOutlet UIButton *areaLabel;
@@ -24,7 +25,8 @@
 @property (weak, nonatomic) IBOutlet ZYSegmentControl *genderSeg;
 @property (weak, nonatomic) IBOutlet ZYSegmentControl *authoCarSeg;
 @property (weak, nonatomic) IBOutlet ZYSegmentControl *carLevelSeg;
-
+@property (nonatomic, strong) HZAreaPickerView *areaPicker;
+@property (nonatomic, strong) CPSelectViewModel *model;
 @end
 
 
@@ -61,6 +63,8 @@
  */
 - (void)setUp
 {
+    
+    self.model = [[CPSelectViewModel alloc] init];
     self.width = kScreenWidth;
     self.height = 360;
     self.y = kScreenHeight;
@@ -74,10 +78,10 @@
 {
     [view addSubview:self];
     
-    if (CPIsLogin) {
-        
+//    if (CPIsLogin) {
+    
         [self loadData];
-    }
+//    }
     
     [UIView animateWithDuration:0.25 animations:^{
         self.y = view.height - 360;
@@ -89,6 +93,9 @@
     // 移除selectView的时候删除pickerView
     if (self.pickerView) {
         [self.pickerView removeFromSuperview];
+    }
+    if (self.areaPicker) {
+        [self.areaPicker removeFromWindow];
     }
     [UIView animateWithDuration:0.25 animations:^{
         self.y = kScreenHeight;
@@ -143,6 +150,13 @@
             self.carLevelSeg.selectedSegmentIndex = 2;
         }
         
+        // 设置用户筛选的位置
+        if (model.city.length == 0 && model.district.length == 0 ){
+            [self.areaLabel setTitle:@"不限" forState:UIControlStateNormal];
+        }else{
+            [self.areaLabel setTitle:[NSString stringWithFormat:@"%@ %@",model.city, model.district] forState:UIControlStateNormal];
+        }
+        
     }
 }
 
@@ -179,10 +193,9 @@
         [UIView animateWithDuration:0.25 animations:^{
             self.firstArrow.transform = CGAffineTransformRotate(self.secondArrow.transform, M_PI_2);
         }];
-        self.pickerView =[[ZHPickView alloc] initPickviewWithPlistName:@"city" isHaveNavControler:NO];
-        [self.pickerView setTintColor:[Tools getColor:@"fc6e51"]];
-        self.pickerView.delegate = self;
-        [self.pickerView show];
+        self.areaPicker =[[HZAreaPickerView alloc] init];
+        self.areaPicker.delegate = self;
+        [self.areaPicker showInView:[UIApplication sharedApplication].windows.lastObject];
     }
 }
 
@@ -194,42 +207,33 @@
 
 - (IBAction)confirmBtnClick:(id)sender {
     
-    CPSelectViewModel *model = [[CPSelectViewModel alloc] init];
     if (![self.typeLabel.titleLabel.text isEqualToString:@"不限"]){
-        model.type = self.typeLabel.titleLabel.text;
+        self.model.type = self.typeLabel.titleLabel.text;
     }
     
-    if (![self.areaLabel.titleLabel.text isEqualToString:@"不限"]) {
-        NSArray *subAddress = [self.areaLabel.titleLabel.text componentsSeparatedByString:@","];
-        if (subAddress.count == 3) {
-            model.province = subAddress[0];
-            model.city = subAddress[1];
-            model.district = [subAddress lastObject];
-        }
-    }
-   
     if (self.genderSeg.selectedSegmentIndex == 0) {
-        model.gender = @"男";
+        self.model.gender = @"男";
     }else if (self.genderSeg.selectedSegmentIndex == 1){
-        model.gender = @"女";
+        self.model.gender = @"女";
     }
     
     if (self.authoCarSeg.selectedSegmentIndex == 0) {
-        model.authenticate = 1;
+        self.model.authenticate = 1;
     }else if (self.authoCarSeg.selectedSegmentIndex == 1){
-        model.authenticate = 0;
+        self.model.authenticate = 0;
     }
     
     if (self.carLevelSeg.selectedSegmentIndex == 0) {
-        model.carLevel = @"normal";
+        self.model.carLevel = @"normal";
     }else if (self.carLevelSeg.selectedSegmentIndex == 1){
-        model.carLevel = @"good";
+        self.model.carLevel = @"good";
     }
+    
     if ([self.delegate respondsToSelector:@selector(selectView:finishBtnClick:)]) {
         
-        [NSKeyedArchiver archiveRootObject:model toFile:CPSelectModelPath];
+        [NSKeyedArchiver archiveRootObject:self.model toFile:CPSelectModelPath];
         
-        [self.delegate selectView:self finishBtnClick:model];
+        [self.delegate selectView:self finishBtnClick:self.model];
     }
 }
 
@@ -239,7 +243,12 @@
  */
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self.pickerView remove];
+    if (self.pickerView) {
+        [self.pickerView remove];
+    }
+    if (self.areaPicker) {
+        [self.areaPicker cancelPicker];
+    }
 }
 
 - (void)toobarDonBtnHaveClick:(ZYPickView *)pickView resultString:(NSString *)resultString
@@ -260,6 +269,73 @@
         self.firstArrow.transform = CGAffineTransformIdentity;
     }
     self.lastArrow = nil;
+}
+
+- (void)pickerCancle
+{
+    
+    self.firstArrow.transform = CGAffineTransformIdentity;
+    self.lastArrow = nil;
+}
+
+- (void)pickerDoneClick:(HZAreaPickerView *)pickerView
+{
+    
+    self.firstArrow.transform = CGAffineTransformIdentity;
+    self.lastArrow = nil;
+      self.model.district = @"";
+    self.model.city = @"不限";
+    
+    if (![pickerView.locate.state isEqualToString:@"不限"]) {
+      
+        if ([pickerView.locate.city isEqualToString:@"不限"]){
+            
+            if ([pickerView.locate.state isEqualToString:@"北京"]) {
+                self.model.city = @"北京市";
+            }else if ([pickerView.locate.state isEqualToString:@"上海"]){
+                
+                self.model.city = @"上海市";
+            }else if ([pickerView.locate.state isEqualToString:@"天津"]){
+                
+                self.model.city = @"天津市";
+            }else if ([pickerView.locate.state isEqualToString:@"重庆"]){
+                self.model.city = @"重庆市";
+            }
+            
+        }else{
+            if ([pickerView.locate.state isEqualToString:@"北京"]) {
+                self.model.city = @"北京市";
+                
+                self.model.district = [pickerView.locate.city stringByAppendingString:@"区"];
+            }else if ([pickerView.locate.state isEqualToString:@"上海"]){
+                
+                self.model.city = @"上海市";
+                
+                self.model.district = [pickerView.locate.city stringByAppendingString:@"区"];
+            }else if ([pickerView.locate.state isEqualToString:@"天津"]){
+                
+                self.model.city = @"天津市";
+                
+                self.model.district = [pickerView.locate.city stringByAppendingString:@"区"];
+            }else if ([pickerView.locate.state isEqualToString:@"重庆"]){
+                self.model.city = @"重庆市";
+                
+                self.model.district = [pickerView.locate.city stringByAppendingString:@"区"];
+            }else{
+                self.model.city = [pickerView.locate.city stringByAppendingString:@"市"];
+            }
+        }
+    }
+    
+    [self.areaLabel setTitle:[NSString stringWithFormat:@"%@ %@",self.model.city, self.model.district] forState:UIControlStateNormal];
+}
+
+- (void)removeFromSuperview
+{
+    [self.pickerView removeFromSuperview];
+    [self.areaPicker removeFromSuperview];
+    [super removeFromSuperview];
+    
 }
 
 @end

@@ -47,4 +47,13 @@
  */
 - (void)writeJpegToFile:(NSString *)path Quality:(CGFloat)quality atomically:(BOOL)atomically;
 
+/**
+ *  根据图片名称加载图片
+ *
+ *  @param name name
+ *
+ *  @return return value description
+ */
++ (UIImage *)imageWithFileName:(NSString *)name;
+
 @end

@@ -47,6 +47,9 @@
 		6B6493D91B4FABC900C197D2 /* CPNetworkVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493D81B4FABC900C197D2 /* CPNetworkVO.m */; };
 		6B82E62E1B81A64A0097ECE7 /* CPOfficialActivityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B82E62D1B81A64A0097ECE7 /* CPOfficialActivityCell.xib */; };
 		6B82E6311B81AB7C0097ECE7 /* CPOfficialActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B82E6301B81AB7C0097ECE7 /* CPOfficialActivityCell.m */; };
+		6B885D0D1B8EF0B400D73208 /* HZAreaPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B885D091B8EF0B400D73208 /* HZAreaPickerView.m */; };
+		6B885D0E1B8EF0B400D73208 /* HZLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B885D0B1B8EF0B400D73208 /* HZLocation.m */; };
+		6B885D0F1B8EF0B400D73208 /* zycity.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B885D0C1B8EF0B400D73208 /* zycity.plist */; };
 		6B97110D1B7DF5E700EA0F09 /* ChatSendHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9711081B7DF5E700EA0F09 /* ChatSendHelper.m */; };
 		6B97110E1B7DF5E700EA0F09 /* ChatViewController+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97110A1B7DF5E700EA0F09 /* ChatViewController+Category.m */; };
 		6B97110F1B7DF5E700EA0F09 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97110C1B7DF5E700EA0F09 /* ChatViewController.m */; };
@@ -301,6 +304,8 @@
 		E3A61B191B7ED06200B641E0 /* CPModelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A61B181B7ED06200B641E0 /* CPModelButton.m */; };
 		E3A61B1C1B7EEC8B00B641E0 /* CPMapPlaceSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A61B1B1B7EEC8B00B641E0 /* CPMapPlaceSearchRequest.m */; };
 		E3A6B74A1B8D62820011E169 /* ZYImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A6B7491B8D62820011E169 /* ZYImagePickerController.m */; };
+		E3A8A1711B8EF39C00DB9B4D /* CPCreatActivityModelTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A8A1701B8EF39C00DB9B4D /* CPCreatActivityModelTool.m */; };
+		E3A8A1741B8F155C00DB9B4D /* UILabel+ZY.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A8A1731B8F155C00DB9B4D /* UILabel+ZY.m */; };
 		E3AE58C61B57E08800D8F0CA /* ZYNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AE58C31B57E08800D8F0CA /* ZYNetWorkManager.m */; };
 		E3B127791B54D9C2005B1174 /* CPChatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B127781B54D9C2005B1174 /* CPChatButton.m */; };
 		E3B1277B1B54DECB005B1174 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3B1277A1B54DECB005B1174 /* Images.xcassets */; };
@@ -450,6 +455,11 @@
 		6B82E62D1B81A64A0097ECE7 /* CPOfficialActivityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPOfficialActivityCell.xib; sourceTree = "<group>"; };
 		6B82E62F1B81AB7C0097ECE7 /* CPOfficialActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPOfficialActivityCell.h; sourceTree = "<group>"; };
 		6B82E6301B81AB7C0097ECE7 /* CPOfficialActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPOfficialActivityCell.m; sourceTree = "<group>"; };
+		6B885D081B8EF0B400D73208 /* HZAreaPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZAreaPickerView.h; sourceTree = "<group>"; };
+		6B885D091B8EF0B400D73208 /* HZAreaPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZAreaPickerView.m; sourceTree = "<group>"; };
+		6B885D0A1B8EF0B400D73208 /* HZLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZLocation.h; sourceTree = "<group>"; };
+		6B885D0B1B8EF0B400D73208 /* HZLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZLocation.m; sourceTree = "<group>"; };
+		6B885D0C1B8EF0B400D73208 /* zycity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = zycity.plist; sourceTree = "<group>"; };
 		6B9711071B7DF5E700EA0F09 /* ChatSendHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatSendHelper.h; sourceTree = "<group>"; };
 		6B9711081B7DF5E700EA0F09 /* ChatSendHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatSendHelper.m; sourceTree = "<group>"; };
 		6B9711091B7DF5E700EA0F09 /* ChatViewController+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChatViewController+Category.h"; sourceTree = "<group>"; };
@@ -912,6 +922,10 @@
 		E3A61B1B1B7EEC8B00B641E0 /* CPMapPlaceSearchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMapPlaceSearchRequest.m; sourceTree = "<group>"; };
 		E3A6B7481B8D62820011E169 /* ZYImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYImagePickerController.h; sourceTree = "<group>"; };
 		E3A6B7491B8D62820011E169 /* ZYImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYImagePickerController.m; sourceTree = "<group>"; };
+		E3A8A16F1B8EF39C00DB9B4D /* CPCreatActivityModelTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCreatActivityModelTool.h; sourceTree = "<group>"; };
+		E3A8A1701B8EF39C00DB9B4D /* CPCreatActivityModelTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCreatActivityModelTool.m; sourceTree = "<group>"; };
+		E3A8A1721B8F155C00DB9B4D /* UILabel+ZY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+ZY.h"; sourceTree = "<group>"; };
+		E3A8A1731B8F155C00DB9B4D /* UILabel+ZY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+ZY.m"; sourceTree = "<group>"; };
 		E3AE58C21B57E08800D8F0CA /* ZYNetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYNetWorkManager.h; sourceTree = "<group>"; };
 		E3AE58C31B57E08800D8F0CA /* ZYNetWorkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYNetWorkManager.m; sourceTree = "<group>"; };
 		E3B127771B54D9C2005B1174 /* CPChatButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPChatButton.h; sourceTree = "<group>"; };
@@ -2196,6 +2210,8 @@
 				E3C611481B5F328C00B7E73A /* CPCreatActivityModel.m */,
 				E3A61B1A1B7EEC8B00B641E0 /* CPMapPlaceSearchRequest.h */,
 				E3A61B1B1B7EEC8B00B641E0 /* CPMapPlaceSearchRequest.m */,
+				E3A8A16F1B8EF39C00DB9B4D /* CPCreatActivityModelTool.h */,
+				E3A8A1701B8EF39C00DB9B4D /* CPCreatActivityModelTool.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2419,6 +2435,11 @@
 		E38A5EA11B7879F500B068D8 /* CPSelectView(筛选) */ = {
 			isa = PBXGroup;
 			children = (
+				6B885D081B8EF0B400D73208 /* HZAreaPickerView.h */,
+				6B885D091B8EF0B400D73208 /* HZAreaPickerView.m */,
+				6B885D0A1B8EF0B400D73208 /* HZLocation.h */,
+				6B885D0B1B8EF0B400D73208 /* HZLocation.m */,
+				6B885D0C1B8EF0B400D73208 /* zycity.plist */,
 				E3292A251B6A50700023677F /* CPSelectView.h */,
 				E3292A261B6A50700023677F /* CPSelectView.m */,
 				E3292A271B6A50700023677F /* CPSelectView.xib */,
@@ -2479,6 +2500,8 @@
 		E3E315051B5E6CF100FB0B55 /* 创建和编辑活动 */ = {
 			isa = PBXGroup;
 			children = (
+				E3A8A1721B8F155C00DB9B4D /* UILabel+ZY.h */,
+				E3A8A1731B8F155C00DB9B4D /* UILabel+ZY.m */,
 				E36CC9591B6C7D7F00380E53 /* CPMapViewController.h */,
 				E36CC95A1B6C7D7F00380E53 /* CPMapViewController.m */,
 				E3CE35351B59E1B0008434B5 /* CPCreatActivityController.h */,
@@ -2733,6 +2756,7 @@
 				A58FE4431B8D477F00EBE91D /* MembersManage.storyboard in Resources */,
 				A58FE43C1B8D46F400EBE91D /* Members.storyboard in Resources */,
 				E3BEAB271B859FCD004B5FD8 /* CPChatGroupDetailController.storyboard in Resources */,
+				6B885D0F1B8EF0B400D73208 /* zycity.plist in Resources */,
 				A57581A91B6789C500A5E681 /* downSeat.xib in Resources */,
 				E372D83E1B6216C100B4FC5C /* CPRegisterCellsTableViewCell2.xib in Resources */,
 				E31B087D1B8418BA008DA1D4 /* InfoPlist.strings in Resources */,
@@ -2832,6 +2856,7 @@
 				6BCF66121B6208C700358190 /* CPActivePicCell.m in Sources */,
 				E38A5EA41B78847900B068D8 /* ZYTabBar.m in Sources */,
 				E3C14F4E1B81815F006A0F52 /* MJPhotoProgressView.m in Sources */,
+				6B885D0E1B8EF0B400D73208 /* HZLocation.m in Sources */,
 				6BCB13381B745B6F00CE6AEC /* CPTopButton.m in Sources */,
 				A57582151B6789E500A5E681 /* UIColor+SMFoundation.m in Sources */,
 				E3C6114F1B5F498600B7E73A /* CPLocationModel.m in Sources */,
@@ -2860,6 +2885,7 @@
 				E3E4FBEA1B744F7A00E6E5F1 /* ZYTableViewCell.m in Sources */,
 				E31B08BE1B84B227008DA1D4 /* Reachability.m in Sources */,
 				E3E1DBFD1B5C8CFB00386B18 /* ZYPickView.m in Sources */,
+				E3A8A1741B8F155C00DB9B4D /* UILabel+ZY.m in Sources */,
 				E3D879421B575EC200228356 /* CPTopViewButton.m in Sources */,
 				6B512FAA1B7C504400258CA0 /* EMCDDeviceManagerBase.m in Sources */,
 				6B9711151B7DF60400EA0F09 /* LocationViewController.m in Sources */,
@@ -2924,6 +2950,7 @@
 				6BBCFFC61B721E6900F63818 /* CPFeedbackViewController.m in Sources */,
 				6B9711711B7DF94200EA0F09 /* XHMessageTextView.m in Sources */,
 				E34065ED1B65D6A2008BB3EB /* CPMyJoinController.m in Sources */,
+				E3A8A1711B8EF39C00DB9B4D /* CPCreatActivityModelTool.m in Sources */,
 				E35E6FD01B54B0EC001212D6 /* CPMyPublishFrameModel.m in Sources */,
 				E35E6FCD1B54B0D9001212D6 /* CPMyPublishModel.m in Sources */,
 				6B4EF1681B403A5D00292BD4 /* UIBarButtonItem+Extension.m in Sources */,
@@ -2983,6 +3010,7 @@
 				E30BD5971B54FD6E00FD9030 /* ZYNavigationController.m in Sources */,
 				6BC8A3F01B6A4DB700B199F2 /* CPTaPublishCell.m in Sources */,
 				6B9711461B7DF60C00EA0F09 /* EMChatBaseBubbleView.m in Sources */,
+				6B885D0D1B8EF0B400D73208 /* HZAreaPickerView.m in Sources */,
 				6B4EF1601B4036EE00292BD4 /* main.m in Sources */,
 				E35559A51B53A0CE00B200D0 /* CPSexView.m in Sources */,
 				E372D8411B6216C100B4FC5C /* CPRegisterStep2ViewController.m in Sources */,
