@@ -21,6 +21,8 @@
 #import "UMSocialData.h"
 #import "CPActiveDetailsController.h"
 #import "MJPhotoBrowser.h"
+#import "CPCreatActivityModelTool.h"
+#import "UIImage+Extension.h"
 
 #define PhotoViewMargin 6
 #define PickerViewHeght 256
@@ -40,6 +42,7 @@ typedef enum {
 }CreateActivityType; //创建完活动之后的操作
 
 @interface CPCreatActivityController ()<ZYPickViewDelegate, UIActionSheetDelegate,UIImagePickerControllerDelegate, UzysAssetsPickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate>
+
 @property (nonatomic, assign) BOOL isOpen;
 @property (nonatomic, assign) NSUInteger lastRow;
 @property (nonatomic, strong) NSArray *activivtyDatas;
@@ -55,7 +58,7 @@ typedef enum {
 @property (nonatomic, strong) NSMutableArray *editPhotoViews;
 @property (nonatomic, strong) UIBarButtonItem *rightItem;
 @property (nonatomic, strong) CPLocationModel *selectLocation;
-@property (nonatomic, strong) CPCreatActivityModel *currentModel;
+@property (nonatomic, strong) CPLocalActivityModel *currentModel;
 @property (nonatomic, strong) NSMutableArray *seats;
 @property (weak, nonatomic) IBOutlet UILabel *seatLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *locationLabelWitdh;
@@ -76,10 +79,10 @@ typedef enum {
     return _seats;
 }
 
-- (CPCreatActivityModel *)currentModel
+- (CPLocalActivityModel *)currentModel
 {
     if (_currentModel == nil) {
-        _currentModel = [[CPCreatActivityModel alloc] init];
+        _currentModel = [[CPLocalActivityModel alloc] init];
     }
     return _currentModel;
 }
@@ -154,8 +157,96 @@ typedef enum {
     
     self.currentModel.type = @"吃饭";
     self.currentModel.pay = @"我请客";
+    
+    CPLocalActivityModel *localModel = [CPCreatActivityModelTool getLocalModel];
+    if (localModel) {
+        self.currentModel = localModel;
+        
+        [self setLocalData];
+    }
 }
 
+/**
+ *  设置本地数据
+ */
+- (void)setLocalData
+{
+    if (self.currentModel == nil) {
+        return;
+    }
+    
+    if (self.currentModel.type.length) {
+        
+        [self labelWithRow:0].text = self.currentModel.type;
+    }
+    
+    if (self.currentModel.introduction.length > 0) {
+        [self setNameCellHeightWithString:self.currentModel.introduction];
+        self.nameLabel.text = self.currentModel.introduction;
+        self.nameLabel.height = [self.currentModel.introduction sizeWithFont:IntroductFont maxW:kScreenWidth - 30].height;
+        [self.tableView reloadData];
+    }
+    
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    fmt.dateFormat = @"yyyy年MM月dd HH:mm";
+    NSString *startStr = [fmt stringFromDate:[NSDate dateWithTimeIntervalSince1970:self.currentModel.start / 1000]];
+    if (self.currentModel.latitude) {
+        
+        self.selectLocation = [[CPLocationModel alloc] init];
+        self.selectLocation.latitude = @(self.currentModel.latitude);
+        self.selectLocation.longitude = @(self.currentModel.longitude);
+        self.selectLocation.city = self.currentModel.city;
+        self.selectLocation.district = self.currentModel.district;
+        self.selectLocation.province = self.currentModel.province;
+        self.selectLocation.address = self.currentModel.address;
+        self.selectLocation.location = self.currentModel.location;
+        
+        [self labelWithRow:3].text = self.currentModel.location;
+    }
+    
+    if (self.currentModel.start) {
+        
+        [self labelWithRow:4].text = startStr;
+    }
+    
+    if (self.currentModel.end > 0) {
+        NSString *endStr = [fmt stringFromDate:[NSDate dateWithTimeIntervalSince1970:self.currentModel.end / 1000]];
+        [self labelWithRow:5].text = endStr;
+    }else{
+        [self labelWithRow:5].text = @"不确定";
+    }
+    
+    if (self.currentModel.pay.length){
+        
+        [self labelWithRow:6].text = self.currentModel.pay;
+    }
+    
+    if (self.currentModel.seat) {
+        
+        [self labelWithRow:7].text = [NSString stringWithFormat:@"%zd个",self.currentModel.seat];
+    }
+    
+    if (self.currentModel.imageNames.count) {
+        
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            DLog(@"%@",[NSThread currentThread]);
+            
+            NSMutableArray *imageDatas = [NSMutableArray array];
+            [self.currentModel.imageNames enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                UIImage *img = [UIImage imageWithFileName:obj];
+                [imageDatas addObject:img];
+            }];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self addPhoto:imageDatas];
+            });
+        });
+    }
+    
+    if (self.photoView.subviews.count == 10) {
+        [self.photoView.subviews.lastObject setHidden:YES];
+    }
+
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -164,7 +255,7 @@ typedef enum {
     if (CPUnLogin){
         return;
     }
-    if ([[self labelWithRow:7].text isEqualToString:@"个数"] || [[self labelWithRow:7].text isEqualToString:@"人数"]) {
+  
         NSString *userId = [Tools getValueFromKey:@"userId"];
         NSString *url = [NSString stringWithFormat:@"v1/user/%@/seats",userId];
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -182,15 +273,18 @@ typedef enum {
             [SVProgressHUD showInfoWithStatus:@"加载空座数失败"];
         }];
 
-    }
     
 }
 
 - (void)changeSeatWithResult:(NSDictionary *)result
 {
+ 
     if ([result[@"isAuthenticated"] intValue] == 1) {
         self.seatLabel.text = @"提供空座数";
-        [self labelWithRow:7].text = @"个数";
+        if (self.currentModel.seat == 0) {
+            
+            [self labelWithRow:7].text = @"个数";
+        }
         [self.seats removeAllObjects];
         for(int i = [result[@"minValue"] intValue]; i <= [result[@"maxValue"] intValue]; i++){
             [self.seats addObject:[NSString stringWithFormat:@"%zd个",i]];
@@ -200,7 +294,9 @@ typedef enum {
         [self.seats addObject:@"1个"];
         [self.seats addObject:@"2个"];
         self.seatLabel.text = @"邀请人数";
-        [self labelWithRow:7].text = @"人数";
+        if (self.currentModel.seat == 0) {
+            [self labelWithRow:7].text = @"人数";
+        }
     }
 }
 
@@ -391,6 +487,7 @@ typedef enum {
                     self.currentModel.district = model.district;
                     self.currentModel.location = model.location;
                     self.currentModel.address = model.address;
+                    [CPCreatActivityModelTool save:self.currentModel];
                 }
             };
         }
@@ -409,9 +506,11 @@ typedef enum {
                     [self.tableView reloadData];
                 }else{
                     self.nameLabel.text = nil;
+                    self.currentModel.introduction = @"";
                     self.nameLableHeight = 50;
                     [self.tableView reloadData];
                 }
+                [CPCreatActivityModelTool save:self.currentModel];
             };
         }
         
@@ -533,6 +632,9 @@ typedef enum {
         default:
             break;
     }
+    
+    // 及时保存信息
+    [CPCreatActivityModelTool save:self.currentModel];
 }
 
 - (void)dealloc
@@ -764,6 +866,7 @@ typedef enum {
     CGFloat imgW = self.photoWH;
     CGFloat imgH = imgW;
     NSUInteger count = self.photoView.subviews.count;
+    [self.currentModel.imageNames removeAllObjects];
     for (int i = 0; i < count; i++) {
         UIView *subView = self.photoView.subviews[i];
         subView.tag = i + 20;
@@ -771,6 +874,20 @@ typedef enum {
         subView.y = PhotoViewMargin + (i / 4) * (PhotoViewMargin + imgH);
         subView.width = imgW;
         subView.height = imgH;
+        if ([subView isKindOfClass:[CPEditImageView class]]) {
+            NSString *imageName = [[Tools getValueFromKey:@"userId"] stringByAppendingString:[NSString stringWithFormat:@"image%zd.data",i]];
+            
+            // 异步存储数据
+            dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                CPEditImageView *editImageView = (CPEditImageView *)subView;
+                [editImageView.image writePngToFile:CPDocmentPath(imageName) atomically:YES];
+                [self.currentModel.imageNames addObject:imageName];
+                
+                // 及时保存信息
+                [CPCreatActivityModelTool save:self.currentModel];
+            });
+            
+        }
     }
     NSUInteger column = (count % 4 == 0) ? count / 4 : (count / 4 + 1);
     self.photoViewHeight = column * (imgH + PhotoViewMargin) + PhotoViewMargin;
@@ -942,6 +1059,7 @@ typedef enum {
         
         if (CPSuccess){
             [self showSuccess:@"创建成功"];
+            [CPCreatActivityModelTool save:nil];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 button.userInteractionEnabled = YES;
                 if (button.tag == CreateActivityNone) {

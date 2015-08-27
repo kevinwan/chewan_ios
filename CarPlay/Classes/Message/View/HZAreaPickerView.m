@@ -60,13 +60,11 @@
         self.locatePicker.delegate = self;
         NSArray *data = [[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"zycity.plist" ofType:nil]];
         [self.provinces addObjectsFromArray:data];
-        NSDictionary *dict = @{@"state" : @"不限"};
-        [self.provinces insertObject:dict atIndex:0];
-        [self.cities addObject:[NSMutableArray arrayWithArray:[[self.provinces objectAtIndex:0] objectForKey:@"cities"]]];
+        [self.cities addObjectsFromArray:[[self.provinces objectAtIndex:0] objectForKey:@"cities"]];
         
-        ;
         self.locate.state = [[self.provinces objectAtIndex:0] objectForKey:@"state"];
         self.locate.city = [self.cities objectAtIndex:0];
+        
     }
     return self;
 }
@@ -114,12 +112,16 @@
             if ([rs isKindOfClass:[NSString class]]) {
                 text = rs;
             }
-            ;
             break;
         }
     }
     label.text = text;
     return label;
+}
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
+{
+    return 80;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
@@ -133,7 +135,6 @@
                     if ([city isEqualToString:@"北京"] || [city isEqualToString:@"上海"] || [city isEqualToString:@"天津"] || [city isEqualToString:@"重庆"])
                     [self.cities insertObject:@"不限" atIndex:0];
                 }
-                
                 [self.locatePicker reloadComponent:1];
                 [self.locatePicker selectRow:0 inComponent:1 animated:YES];
                 
@@ -149,20 +150,11 @@
             default:
                 break;
         }
-//    if([self.delegate respondsToSelector:@selector(pickerDidChaneStatus:)]) {
-//        [self.delegate pickerDidChaneStatus:self];
-//    }
 
 }
 
 
 #pragma mark - animation
-//-(void)setUpToolBar{
-//    _toolbar=[self setToolbarStyle];
-//   
-//    [self setToolbarWithPickViewFrame];
-//    [self addSubview:_toolbar];
-//}
 -(UIToolbar *)toolbar{
     if (_toolbar) {
         return _toolbar;
@@ -230,6 +222,12 @@
         [_toolbar removeFromSuperview];
     }
     [self removeFromSuperview];
+}
+
+- (void)removeFromSuperview
+{
+    [_toolbar removeFromSuperview];
+    [super removeFromSuperview];
 }
 
 - (void)remove

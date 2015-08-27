@@ -36,8 +36,6 @@
     // 进行一些参数配置
     [self setAllConfig];
     
-//    [[EaseMob sharedInstance] registerSDKWithAppKey:@"gongpingjia#chewantest" apnsCertName:@"carPlayApns"];
-//    [[EaseMob sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     // 初始化环信SDK，详细内容在AppDelegate+EaseMob.m 文件中
     [self easemobApplication:application didFinishLaunchingWithOptions:launchOptions];
     // 如何知道第一次使用这个版本？比较上次的使用情况
@@ -181,7 +179,7 @@
             NSUInteger activityApplyCount = [application[@"count"] intValue];
             
 //            UITabBarController *tabVc = (UITabBarController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-            UIViewController *vc = _tabVc.childViewControllers[1];
+//            UIViewController *vc = _tabVc.childViewControllers[1];
             if (newMsgCount + activityApplyCount > 0) {
 //            vc.tabBarItem.badgeValue = [NSString stringWithFormat:@"%zd",newMsgCount+ activityApplyCount];
                 [_tabVc.tabBar showBadgeOnItemIndex:1];

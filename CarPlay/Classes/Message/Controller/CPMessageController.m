@@ -35,7 +35,7 @@ typedef enum {
 
 @property (nonatomic, strong) NSTimer *timer;
 
-
+@property (strong, nonatomic) NSDate *chatTagDate;
 @property (strong, nonatomic) NSMutableArray *dataSource;
 @property (nonatomic, strong) UIView *networkStateView;
 @property (nonatomic, strong) NSMutableArray *datas;
@@ -79,6 +79,15 @@ typedef enum {
         [self loadData];
     }
     return _timer;
+}
+
+- (NSDate *)chatTagDate
+{
+    if (_chatTagDate == nil) {
+        _chatTagDate = [NSDate dateWithTimeIntervalInMilliSecondSince1970:0];
+    }
+    
+    return _chatTagDate;
 }
 
 - (void)viewDidLoad {
@@ -386,12 +395,15 @@ typedef enum {
     NSString *ret = @"";
     EMMessage *lastMessage = [conversation latestMessage];;
     if (lastMessage) {
-        ret = [NSDate formattedTimeFromTimeInterval:lastMessage.timestamp];
+        NSDate *createDate = [NSDate dateWithTimeIntervalInMilliSecondSince1970:(NSTimeInterval)lastMessage.timestamp];
+        NSTimeInterval tempDate = [createDate timeIntervalSinceDate:self.chatTagDate];
+        if (tempDate > 60 || tempDate < -60 || (self.chatTagDate == nil)) {
+            ret = [createDate formattedTime];
+        }
+//        ret = [NSDate formattedTimeFromTimeInterval:lastMessage.timestamp];
     }
-    
     return ret;
 }
-
 // 得到未读消息条数
 - (NSInteger)unreadMessageCountByConversation:(EMConversation *)conversation
 {
@@ -482,6 +494,8 @@ typedef enum {
         cell.timeLabel.text = [self lastMessageTimeByConversation:conversation];
         if ([self unreadMessageCountByConversation:conversation]>0) {
             cell.showUnreadCount = YES;
+        }else{
+            cell.showUnreadCount = NO;
         }
         [cell.iconView setImage:[UIImage imageNamed:@"群聊默认"] forState:UIControlStateNormal];
     }

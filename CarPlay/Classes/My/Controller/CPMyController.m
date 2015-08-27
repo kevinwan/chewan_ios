@@ -37,7 +37,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"userId"]];
     data=[[NSDictionary alloc]init];
     organizer=[[CPOrganizer alloc]init];
     albumPhotos=[[NSArray alloc]init];
@@ -69,6 +68,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [self.timer invalidate];
     if ([Tools getValueFromKey:@"userId"]) {
+        fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"userId"]];
         self.unLoginStatusView.hidden=YES;
         [self getData];
     }else{

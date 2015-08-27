@@ -360,7 +360,7 @@
                                                    delegate:nil
                                           cancelButtonTitle:NSLocalizedString(@"ok", @"OK")
                                           otherButtonTitles:nil];
-    [alert show];
+//    [alert show];
 
 }
 

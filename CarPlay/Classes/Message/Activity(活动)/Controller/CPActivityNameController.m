@@ -8,9 +8,10 @@
 
 #import "CPActivityNameController.h"
 #import "NSString+Extension.h"
+#import "UILabel+ZY.h"
 
-@interface CPActivityNameController ()
-@property (nonatomic, strong) UITextField *textF;
+@interface CPActivityNameController ()<UITextViewDelegate>
+@property (nonatomic, strong) UITextView *textF;
 @end
 
 @implementation CPActivityNameController
@@ -20,22 +21,26 @@
     
     self.navigationItem.title = @"活动名称";
     
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(confirm)];
     [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:17], NSForegroundColorAttributeName :[UIColor whiteColor]} forState:UIControlStateNormal];
     
-    UITextField *textF = [[UITextField alloc] init];
+    UITextView *textF = [[UITextView alloc] init];
+    textF.scrollEnabled = NO;
+    textF.textContainerInset = UIEdgeInsetsMake(0, -5, 0, -5);
+    textF.delegate = self;
     textF.textColor = [Tools getColor:@"434a54"];
     textF.font = [UIFont systemFontOfSize:16];
     textF.frame = CGRectMake(10, 20 + 64, self.view.width - 20, 30);
-    if (self.forValue) {
-        textF.text = self.forValue;
-    }
+
     [self.view addSubview:textF];
     self.textF = textF;
     
     UIView *line = [[UIView alloc] init];
+    line.tag = 10;
     line.backgroundColor = [Tools getColor:@"aab2bd"];
     line.x = 0;
     line.y = textF.bottom + 10;
@@ -44,15 +49,23 @@
     [self.view addSubview:line];
     
     UILabel *lable = [[UILabel alloc] init];
+    lable.tag = 11;
     lable.font = [UIFont systemFontOfSize:14];
     lable.textColor = [Tools getColor:@"aab2bd"];
-    lable.numberOfLines = 0;
     lable.text = @"介绍越详细越容易吸引人";
     lable.x = 10;
     lable.width = self.view.width - 20;
     lable.height = [lable.text sizeWithFont:lable.font maxW:lable.width].height;
     lable.y = line.bottom + 10;
     [self.view addSubview:lable];
+    
+    if (self.forValue) {
+        textF.text = self.forValue;
+        textF.height =  [textF.text sizeWithFont:textF.font maxW:textF.width].height + 10;
+        
+        [self.view viewWithTag:10].y = textF.bottom + 10;
+        [self.view viewWithTag:11].y = [self.view viewWithTag:10].bottom + 10;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -78,4 +91,14 @@
 {
     [self.textF resignFirstResponder];
 }
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+    textView.height =  [textView.text sizeWithFont:textView.font maxW:textView.width].height + 10;
+    
+    [self.view viewWithTag:10].y = textView.bottom + 10;
+    [self.view viewWithTag:11].y = [self.view viewWithTag:10].bottom + 10;
+
+}
+
 @end
