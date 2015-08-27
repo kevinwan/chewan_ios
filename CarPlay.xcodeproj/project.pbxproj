@@ -50,6 +50,10 @@
 		6B885D0D1B8EF0B400D73208 /* HZAreaPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B885D091B8EF0B400D73208 /* HZAreaPickerView.m */; };
 		6B885D0E1B8EF0B400D73208 /* HZLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B885D0B1B8EF0B400D73208 /* HZLocation.m */; };
 		6B885D0F1B8EF0B400D73208 /* zycity.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B885D0C1B8EF0B400D73208 /* zycity.plist */; };
+		6B885D141B8F1EEF00D73208 /* CPNoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B885D131B8F1EEF00D73208 /* CPNoData.m */; };
+		6B885D161B8F371700D73208 /* CPNoData.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B885D151B8F371700D73208 /* CPNoData.xib */; };
+		6B885D181B8F3A1000D73208 /* CPActiveDetailsNoData.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B885D171B8F3A1000D73208 /* CPActiveDetailsNoData.xib */; };
+		6B885D1B1B8F3A2600D73208 /* CPActiveDetailsNoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B885D1A1B8F3A2600D73208 /* CPActiveDetailsNoData.m */; };
 		6B97110D1B7DF5E700EA0F09 /* ChatSendHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9711081B7DF5E700EA0F09 /* ChatSendHelper.m */; };
 		6B97110E1B7DF5E700EA0F09 /* ChatViewController+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97110A1B7DF5E700EA0F09 /* ChatViewController+Category.m */; };
 		6B97110F1B7DF5E700EA0F09 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97110C1B7DF5E700EA0F09 /* ChatViewController.m */; };
@@ -458,6 +462,12 @@
 		6B885D0A1B8EF0B400D73208 /* HZLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZLocation.h; sourceTree = "<group>"; };
 		6B885D0B1B8EF0B400D73208 /* HZLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZLocation.m; sourceTree = "<group>"; };
 		6B885D0C1B8EF0B400D73208 /* zycity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = zycity.plist; sourceTree = "<group>"; };
+		6B885D121B8F1EEF00D73208 /* CPNoData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNoData.h; sourceTree = "<group>"; };
+		6B885D131B8F1EEF00D73208 /* CPNoData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNoData.m; sourceTree = "<group>"; };
+		6B885D151B8F371700D73208 /* CPNoData.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPNoData.xib; sourceTree = "<group>"; };
+		6B885D171B8F3A1000D73208 /* CPActiveDetailsNoData.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPActiveDetailsNoData.xib; sourceTree = "<group>"; };
+		6B885D191B8F3A2600D73208 /* CPActiveDetailsNoData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActiveDetailsNoData.h; sourceTree = "<group>"; };
+		6B885D1A1B8F3A2600D73208 /* CPActiveDetailsNoData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActiveDetailsNoData.m; sourceTree = "<group>"; };
 		6B9711071B7DF5E700EA0F09 /* ChatSendHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatSendHelper.h; sourceTree = "<group>"; };
 		6B9711081B7DF5E700EA0F09 /* ChatSendHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatSendHelper.m; sourceTree = "<group>"; };
 		6B9711091B7DF5E700EA0F09 /* ChatViewController+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChatViewController+Category.h"; sourceTree = "<group>"; };
@@ -1741,6 +1751,9 @@
 				6BCB87601B79A0FF0012D035 /* CPNoNet.h */,
 				6BCB87611B79A0FF0012D035 /* CPNoNet.m */,
 				6BCB875B1B7995520012D035 /* CPNoNet.xib */,
+				6B885D121B8F1EEF00D73208 /* CPNoData.h */,
+				6B885D131B8F1EEF00D73208 /* CPNoData.m */,
+				6B885D151B8F371700D73208 /* CPNoData.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1794,6 +1807,9 @@
 				6BCF66051B6208C700358190 /* CPActivePicCell.m */,
 				6BCF66061B6208C700358190 /* CPDiscussCell.h */,
 				6BCF66071B6208C700358190 /* CPDiscussCell.m */,
+				6B885D191B8F3A2600D73208 /* CPActiveDetailsNoData.h */,
+				6B885D1A1B8F3A2600D73208 /* CPActiveDetailsNoData.m */,
+				6B885D171B8F3A1000D73208 /* CPActiveDetailsNoData.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2758,6 +2774,7 @@
 				E372D8401B6216C100B4FC5C /* CPRegisterCellsTableViewCell3.xib in Resources */,
 				6BB09A841B66650C00E0D77D /* CPMyBaseCell.xib in Resources */,
 				E3CE371C1B59FEBA008434B5 /* CPCreatActivityController.storyboard in Resources */,
+				6B885D181B8F3A1000D73208 /* CPActiveDetailsNoData.xib in Resources */,
 				A57581D11B6789D500A5E681 /* outActivity.xib in Resources */,
 				E372D82D1B6216C100B4FC5C /* CPForgetPasswordViewController.xib in Resources */,
 				A57581881B67871300A5E681 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
@@ -2778,6 +2795,7 @@
 				6BB09A9C1B675A3E00E0D77D /* CPEditInfoTableViewController.xib in Resources */,
 				E328F0691B621E1C00A20DCE /* area.plist in Resources */,
 				E3EEDFF41B53951D00595333 /* CPMessageController.storyboard in Resources */,
+				6B885D161B8F371700D73208 /* CPNoData.xib in Resources */,
 				6B0128511B7A22AF00B7A11F /* CPTaNoData.xib in Resources */,
 				6BCF66091B6208C700358190 /* CPActiveDetailsController.storyboard in Resources */,
 			);
@@ -2941,6 +2959,7 @@
 				E34065ED1B65D6A2008BB3EB /* CPMyJoinController.m in Sources */,
 				E35E6FD01B54B0EC001212D6 /* CPMyPublishFrameModel.m in Sources */,
 				E35E6FCD1B54B0D9001212D6 /* CPMyPublishModel.m in Sources */,
+				6B885D141B8F1EEF00D73208 /* CPNoData.m in Sources */,
 				6B4EF1681B403A5D00292BD4 /* UIBarButtonItem+Extension.m in Sources */,
 				E3BEAB2A1B85B3CA004B5FD8 /* CPOrganizerButton.m in Sources */,
 				6B512FA61B7C504400258CA0 /* EMCDDeviceManager+Media.m in Sources */,
@@ -3054,6 +3073,7 @@
 				A57582101B6789E500A5E681 /* SMAlertView.m in Sources */,
 				E35B04271B5645BC002C6655 /* HMStatusPhotosView.m in Sources */,
 				E3EEE0051B53952E00595333 /* UIView+Extension.m in Sources */,
+				6B885D1B1B8F3A2600D73208 /* CPActiveDetailsNoData.m in Sources */,
 				E372D8451B6216C100B4FC5C /* serviceTermsViewController.m in Sources */,
 				E372D82E1B6216C100B4FC5C /* CPNewPassWordViewController.m in Sources */,
 				6B62D12B1B83052A001F2A5B /* CPOfficialActivity.m in Sources */,
