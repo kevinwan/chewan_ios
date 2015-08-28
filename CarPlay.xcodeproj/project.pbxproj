@@ -317,6 +317,8 @@
 		E3BEAB251B859FB4004B5FD8 /* CPChatGroupDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BEAB241B859FB4004B5FD8 /* CPChatGroupDetailController.m */; };
 		E3BEAB271B859FCD004B5FD8 /* CPChatGroupDetailController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3BEAB261B859FCD004B5FD8 /* CPChatGroupDetailController.storyboard */; };
 		E3BEAB2A1B85B3CA004B5FD8 /* CPOrganizerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BEAB291B85B3CA004B5FD8 /* CPOrganizerButton.m */; };
+		E3C1483C1B9006E200640EE7 /* CPTipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3C1483B1B9006E200640EE7 /* CPTipView.xib */; };
+		E3C1483F1B9009B200640EE7 /* CPTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C1483E1B9009B200640EE7 /* CPTipView.m */; };
 		E3C14F4A1B81815F006A0F52 /* MJPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C14F3E1B81815F006A0F52 /* MJPhoto.m */; };
 		E3C14F4B1B81815F006A0F52 /* MJPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E3C14F3F1B81815F006A0F52 /* MJPhotoBrowser.bundle */; };
 		E3C14F4C1B81815F006A0F52 /* MJPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C14F411B81815F006A0F52 /* MJPhotoBrowser.m */; };
@@ -948,6 +950,9 @@
 		E3BEAB261B859FCD004B5FD8 /* CPChatGroupDetailController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPChatGroupDetailController.storyboard; sourceTree = "<group>"; };
 		E3BEAB281B85B3CA004B5FD8 /* CPOrganizerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPOrganizerButton.h; sourceTree = "<group>"; };
 		E3BEAB291B85B3CA004B5FD8 /* CPOrganizerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPOrganizerButton.m; sourceTree = "<group>"; };
+		E3C1483B1B9006E200640EE7 /* CPTipView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPTipView.xib; sourceTree = "<group>"; };
+		E3C1483D1B9009B200640EE7 /* CPTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTipView.h; sourceTree = "<group>"; };
+		E3C1483E1B9009B200640EE7 /* CPTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTipView.m; sourceTree = "<group>"; };
 		E3C14F3D1B81815F006A0F52 /* MJPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhoto.h; sourceTree = "<group>"; };
 		E3C14F3E1B81815F006A0F52 /* MJPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhoto.m; sourceTree = "<group>"; };
 		E3C14F3F1B81815F006A0F52 /* MJPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJPhotoBrowser.bundle; sourceTree = "<group>"; };
@@ -2247,6 +2252,9 @@
 				E3FCDD4C1B5E355A00F9C379 /* CPAnotationView.m */,
 				E310BF731B7E154200750BF4 /* CPAnnotationView.h */,
 				E310BF741B7E154200750BF4 /* CPAnnotationView.m */,
+				E3C1483B1B9006E200640EE7 /* CPTipView.xib */,
+				E3C1483D1B9009B200640EE7 /* CPTipView.h */,
+				E3C1483E1B9009B200640EE7 /* CPTipView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2771,6 +2779,7 @@
 				E31B087F1B8418BA008DA1D4 /* InfoPlist.strings in Resources */,
 				A58FE4431B8D477F00EBE91D /* MembersManage.storyboard in Resources */,
 				A58FE43C1B8D46F400EBE91D /* Members.storyboard in Resources */,
+				E3C1483C1B9006E200640EE7 /* CPTipView.xib in Resources */,
 				E3BEAB271B859FCD004B5FD8 /* CPChatGroupDetailController.storyboard in Resources */,
 				6B885D0F1B8EF0B400D73208 /* zycity.plist in Resources */,
 				A57581A91B6789C500A5E681 /* downSeat.xib in Resources */,
@@ -3107,6 +3116,7 @@
 				A57581A81B6789C500A5E681 /* downSeat.m in Sources */,
 				E3FCDD4A1B5E34E200F9C379 /* CPAnnotation.m in Sources */,
 				E372D8431B6216C100B4FC5C /* registerViewController.m in Sources */,
+				E3C1483F1B9009B200640EE7 /* CPTipView.m in Sources */,
 				6B6493D91B4FABC900C197D2 /* CPNetworkVO.m in Sources */,
 				E372D83D1B6216C100B4FC5C /* CPRegisterCellsTableViewCell2.m in Sources */,
 				6B512FC51B7C70F400258CA0 /* AppDelegate+EaseMobDebug.m in Sources */,
