@@ -15,6 +15,7 @@
 {
     BOOL uploaded;
     NSInteger drivingExperience;
+    NSDictionary *data;
 }
 @end
 
@@ -38,11 +39,12 @@
 -(void)viewWillAppear:(BOOL)animated{
     if ([Tools getValueFromKey:@"userId"]) {
         [self.tableView reloadData];
-        _organizer = [NSKeyedUnarchiver unarchiveObjectWithFile:CPDocmentPath(_fileName)];
-        if (_organizer && ![Tools isEmptyOrNull:_organizer.drivingLicensePhoto]) {
-            NSURL *url=[[NSURL alloc]initWithString:_organizer.drivingLicensePhoto];
-            [self.imageBtn sd_setImageWithURL:url];
-        }
+//        _organizer = [NSKeyedUnarchiver unarchiveObjectWithFile:CPDocmentPath(_fileName)];
+//        if (_organizer && ![Tools isEmptyOrNull:_organizer.drivingLicensePhoto]) {
+//            NSURL *url=[[NSURL alloc]initWithString:_organizer.drivingLicensePhoto];
+//            [self.imageBtn sd_setImageWithURL:url];
+//        }
+        [self getData];
     }else{
         [self.tableView removeFromSuperview];
         [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
@@ -85,11 +87,17 @@
         if (_organizer.drivingExperience) {
             cell.cellContent.text=[[NSString alloc]initWithFormat:@"%ld年",(long)_organizer.drivingExperience];
         }
+        if (data) {
+            cell.cellContent.text=[[NSString alloc]initWithFormat:@"%ld年",[data[@"drivingExperience"] integerValue]];
+        }
     }else{
         cell.cellTitle.text=@"车型品牌";
         cell.textLabel.textColor=[Tools getColor:@"aab2bd"];
         if (_organizer.carModel) {
             cell.cellContent.text=_organizer.carModel;
+        }
+        if (data) {
+            cell.cellContent.text=data[@"carModel"];
         }
     }
     return  cell;
@@ -264,13 +272,10 @@
     file.filename=@"license.jpg";
     file.mimeType=@"image/jpeg";
     NSArray *files=[[NSArray alloc]initWithObjects:file, nil];
-    MBProgressHUD *hud=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.color = [UIColor clearColor];
-    hud.labelText=@"加载中…";
-    hud.dimBackground=YES;
+    [self showLoadingWithInfo:@"图片上传中"];
     NSString *path=[[NSString alloc]initWithFormat:@"v1/user/%@/license/upload?token=%@",[Tools getValueFromKey:@"userId"],[Tools getValueFromKey:@"token"]];
     [ZYNetWorkTool postFileWithUrl:path params:nil files:files success:^(id responseObject){
-        [hud hide:YES];
+        [self disMiss];
         NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
         NSString *state=[numberFormatter stringFromNumber:[responseObject objectForKey:@"result"]];
         if (![state isEqualToString:@"0"]) {
@@ -279,7 +284,7 @@
             uploaded=YES;
         }
     }failure:^(NSError *erro){
-        [hud hide:YES];
+        [self disMiss];
         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
     }];
 }
@@ -314,4 +319,19 @@
     }
 }
 
+-(void)getData{
+    NSString *path=[[NSString alloc]initWithFormat:@"v1/user/%@/authentication?token=%@",[Tools getValueFromKey:@"userId"],[Tools getValueFromKey:@"token"]];
+    [ZYNetWorkTool getWithUrl:path params:nil success:^(id responseObject) {
+        if (CPSuccess) {
+            data=responseObject[@"data"];
+            NSURL *url=[[NSURL alloc]initWithString:data[@"licensePhoto"]];
+            [self.imageBtn sd_setImageWithURL:url];
+            [self.tableView reloadData];
+        }else{
+            [self showError:responseObject[@"errmsg"]];
+        }
+    } failure:^(NSError *error) {
+        [self showError:@"请检查手机网络"];
+    }];
+}
 @end

@@ -219,6 +219,13 @@
     datePicker.backgroundColor=[UIColor whiteColor];
     NSDate *now = [[NSDate alloc]init];
     datePicker.maximumDate=now;
+    
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    NSString *str = @"1900年01月01号";
+    fmt.dateFormat = @"yyyy年MM月dd号";
+    NSDate *minDate = [fmt dateFromString:str];
+    datePicker.minimumDate=minDate;
+    
     if (_defaulDate) {
         [datePicker setDate:_defaulDate];
     }

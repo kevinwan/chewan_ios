@@ -25,6 +25,7 @@
     NSString *fileName;
     CPOrganizer *organizer;
     NSDictionary *thirdPartyLoginDic;
+    UIImage *editedImage;
 }
 @end
 
@@ -199,8 +200,8 @@
         NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
         NSString *str = @"1990年01月01号";
         fmt.dateFormat = @"yyyy年MM月dd号";
-        NSDate *now = [fmt dateFromString:str];
-        _pickview=[[ZHPickView alloc] initDatePickWithDate:now datePickerMode:UIDatePickerModeDate isHaveNavControler:NO];
+        NSDate *defualtDate = [fmt dateFromString:str];
+        _pickview=[[ZHPickView alloc] initDatePickWithDate:defualtDate datePickerMode:UIDatePickerModeDate isHaveNavControler:NO];
         _pickview.delegate=self;
         [_pickview show];
         CGRect frame=self.tableView.frame;
@@ -315,7 +316,7 @@
 
 #pragma PickerController
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    UIImage *editedImage=[info objectForKey:UIImagePickerControllerEditedImage];
+    editedImage=[info objectForKey:UIImagePickerControllerEditedImage];
     [self.userIconBtn setImage:editedImage forState:UIControlStateNormal];
     [picker dismissViewControllerAnimated:YES completion:^{
         NSData *data=UIImageJPEGRepresentation(editedImage, 0.4);
@@ -348,6 +349,7 @@
                         organizer1.headImgId = [data objectForKey:@"photoId"];
                         [NSKeyedArchiver archiveRootObject:organizer1 toFile:CPDocmentPath(fileName)];
                     }
+                    [self.userIconBtn setImage:editedImage forState:UIControlStateNormal];
                 }else{
                     [[[UIAlertView alloc]initWithTitle:@"提示" message:@"上传失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                 }

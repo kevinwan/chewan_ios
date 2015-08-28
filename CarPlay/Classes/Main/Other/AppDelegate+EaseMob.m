@@ -214,25 +214,21 @@
 // 开始自动登录回调
 -(void)willAutoLoginWithInfo:(NSDictionary *)loginInfo error:(EMError *)error
 {
-    UIAlertView *alertView = nil;
+    [SVProgressHUD showWithStatus:@"努力加载中"];
     if (error) {
         //发送自动登录状态通知
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGINCHANGE object:@NO];
     }
     else{
-        // 旧数据转换 (如果您的sdk是由2.1.2版本升级过来的，需要家这句话)
-//        [[EaseMob sharedInstance].chatManager importDataToNewDatabase];
         //获取数据库中的数据
         [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
     }
-    
-    [alertView show];
 }
 
 // 结束自动登录回调
 -(void)didAutoLoginWithInfo:(NSDictionary *)loginInfo error:(EMError *)error
 {
-    UIAlertView *alertView = nil;
+    
     if (error) {
         //发送自动登录状态通知
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGINCHANGE object:@NO];
@@ -241,7 +237,7 @@
         //获取群组列表
         [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
     }
-    [alertView show];
+    [SVProgressHUD dismiss];
 }
 
 // 离开群组回调
