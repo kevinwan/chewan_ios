@@ -172,7 +172,7 @@
     }
     self.payView.payOption = model.pay;
     
-    // 构造
+    // 构造座位数
     if (model.totalSeat > 0) {
         self.seatView.hidden = NO;
         self.seatView.attributedText = [self seatViewTextWithModel:model];
@@ -183,25 +183,35 @@
     self.photosView.pic_urls = model.cover;
     self.bottomView.model = model;
     
-    // 进行frame的设置
-    self.nameLabel.frame = frameModel.nameLabelF;
+    if ([model.organizer.role isEqualToString:@"官方用户"]) {
+        self.sexView.hidden = YES;
+        self.carBrandLogo.hidden = YES;
+        self.descLabel.hidden = YES;
+    }else{
+        self.sexView.hidden = NO;
+        self.carBrandLogo.hidden = NO;
+        self.descLabel.hidden = NO;
+    }
     
+    
+    // 进行frame的设置
     self.sexView.frame = frameModel.sexViewF;
     
-    self.iconBtn.frame = frameModel.iconBtnF;
-    
     self.timeLabel.frame = frameModel.timeLabelF;
-    
-    self.timeLogo.x = CGRectGetMinX(frameModel.timeLabelF) - self.timeLogo.size.width - 3;
-    self.timeLogo.centerY = CGRectGetMidY(frameModel.timeLabelF);
     
     self.carBrandLogo.frame = frameModel.brandF;
     
     self.descLabel.frame = frameModel.descLabelF;
     
-    self.payView.frame = frameModel.payViewF;
+    self.nameLabel.frame = frameModel.nameLabelF;
     
-    self.sexView.frame = frameModel.sexViewF;
+    self.iconBtn.frame = frameModel.iconBtnF;
+    
+    self.timeLogo.x = CGRectGetMinX(frameModel.timeLabelF) - self.timeLogo.size.width - 3;
+    
+    self.timeLogo.centerY = CGRectGetMidY(frameModel.timeLabelF);
+    
+    self.payView.frame = frameModel.payViewF;
     
     self.seatView.frame = frameModel.seatViewF;
     

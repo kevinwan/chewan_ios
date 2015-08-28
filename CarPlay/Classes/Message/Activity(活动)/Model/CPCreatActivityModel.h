@@ -38,4 +38,6 @@
 @property (nonatomic, copy) NSString *province;
 @property (nonatomic, copy) NSString *district;
 @property (nonatomic, copy) NSString *activityId;
+@property (nonatomic, copy) NSString *currentCity;
+@property (nonatomic, copy) NSString *currentDistrict;
 @end
