@@ -86,6 +86,9 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <connections>
                 <outlet property="bgView" destination="8L1-pD-tDL" id="bst-7S-lJd"/>
+                <outlet property="cancleBtn" destination="6od-ZQ-2g0" id="hBd-Bn-j57"/>
+                <outlet property="confirmBtn" destination="hzr-sT-Fhx" id="VDs-db-xxs"/>
+                <outlet property="contentView" destination="0Cd-hi-m9H" id="LzP-et-Yhg"/>
             </connections>
             <point key="canvasLocation" x="292.5" y="271.5"/>
         </view>

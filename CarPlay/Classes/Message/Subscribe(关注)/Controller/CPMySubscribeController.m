@@ -50,11 +50,7 @@
     [super viewDidLoad];
     
     self.tableView.tableFooterView = [[UIView alloc] init];
-//    if ([self.hisUserId isEqualToString:[Tools getValueFromKey:@"userId"]]){
     self.navigationItem.title = @"我的收藏";
-//    }else{
-//        self.navigationItem.title = @"他的关注";
-//    }
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     

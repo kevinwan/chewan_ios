@@ -14,7 +14,7 @@
 
 #import "EMChatBaseBubbleView.h"
 
-#define MAX_SIZE 120 //　图片最大显示大小
+#define MAX_SIZE 180 //　图片最大显示大小
 #define ImageViewMargin 3
 
 extern NSString *const kRouterEventImageBubbleTapEventName;

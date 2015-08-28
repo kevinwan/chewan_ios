@@ -119,7 +119,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (indexPath.row == 0 && self.activityId) {
+    if (indexPath.row == 0 && self.activityId.length) {
         
         if (self.isOrganizer) { // 如果是组织者
             
