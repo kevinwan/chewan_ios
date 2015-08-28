@@ -267,16 +267,10 @@
             self.totalSeat.text = totalSeatStr;
         }
     }
-    
-    
+     
     
     // 正文
     self.introduction.text = _status.introduction;
-    
-    
-    
-    // 头像列表
-//    [self.bottomIconList setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"头像列表背景"]]];
     
     
     // 计算配图宽高
@@ -295,16 +289,9 @@
 
 //  头像点击
 - (void)imageClick:(UITapGestureRecognizer *)sender{
-    // 判断是否已登录
-    if (!CPUnLogin) {
-        // 已登录通知控制器跳到他的详情页面
-        [self routerEventWithName:@"IconClick" userInfo:@{@"status" : self.status}];
-        
-    }else{
-        
-        // 未登录跳到登录页面
-        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
-    }
+   
+    // 已登录通知控制器跳到他的详情页面
+    [self routerEventWithName:@"IconClick" userInfo:@{@"status" : self.status}];
 }
 
 

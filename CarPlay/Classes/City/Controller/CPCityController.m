@@ -212,27 +212,31 @@
     
     [self.geocoder reverseGeocodeLocation:cllocation completionHandler:^(NSArray *placemarks, NSError *error) {
 
-        for (CLPlacemark *placemark in placemarks) {
-            //            self.myCity = placemark.locality;
+        if (placemarks.count) {
             
+            CLPlacemark *placemark = placemarks.firstObject;
             NSString *tempCityStr = placemark.locality;
             if ([tempCityStr contains:@"市辖区"]) {
                 self.myCity = [tempCityStr stringByReplacingOccurrencesOfString:@"市辖区" withString:@""];
             }else{
-               self.myCity = tempCityStr;
+                self.myCity = tempCityStr;
             }
             
-//            NSLog(@"%@",self.myCity);
+            //            NSLog(@"%@",self.myCity);
             
             // 将城市存入缓存中
             [CPUserDefaults setObject:self.myCity forKey:@"CPUserCity"];
             [CPUserDefaults synchronize];
+            
+            [CPUserDefaults setObject:placemark.subLocality forKey:@"CPUserArea"];
+            [CPUserDefaults synchronize];
+            if (self.myCity) {
+                [self setupLoadStatusWithIgnore:0 Key:self.selectMark SelectModel:nil];
+            }
+        }else{
+            [self showInfo:@"加载用户位置失败"];
         }
-        
-        if (self.myCity) {
-            [self setupLoadStatusWithIgnore:0 Key:self.selectMark SelectModel:nil];
-        }
-
+          
     }];
 }
 
@@ -607,14 +611,15 @@
         CPHomeStatus *status = userInfo[@"status"];
         
         if ([self.userId isEqualToString:status.organizer.userId]) {
+            // 跳转的我的
             [self.tabBarController setSelectedIndex:2];
         }else{
+            // 跳转到他的详情
             CPTaDetailsController *taDetailsController = [[UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil] instantiateInitialViewController];
             taDetailsController.targetUserId = status.organizer.userId;
             
             [self.navigationController pushViewController:taDetailsController animated:YES];
-        }
-        
+        }      
         
     }
 }

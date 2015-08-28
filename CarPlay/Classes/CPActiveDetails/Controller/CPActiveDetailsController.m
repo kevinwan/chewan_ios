@@ -174,13 +174,18 @@
     if (headView.goTaDetails == nil) {
         __weak typeof(self) weakSelf = self;
         headView.goTaDetails = ^{
-            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil];
             
-            CPTaDetailsController *taViewController = sb.instantiateInitialViewController;
-            taViewController.targetUserId = weakSelf.createrId;
-            
-            [weakSelf.navigationController pushViewController:taViewController animated:YES];
-
+            if ([self.userId isEqualToString:self.activeStatus.organizer.userId]) {
+                [self.tabBarController setSelectedIndex:2];
+            }else{
+                
+                UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil];
+                
+                CPTaDetailsController *taViewController = sb.instantiateInitialViewController;
+                taViewController.targetUserId = weakSelf.createrId;
+                
+                [weakSelf.navigationController pushViewController:taViewController animated:YES];
+            }
         };
     }
     // 弹出图片浏览器
