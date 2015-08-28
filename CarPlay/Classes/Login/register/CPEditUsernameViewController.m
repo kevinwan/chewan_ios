@@ -58,9 +58,9 @@
                 [self.navigationController popViewControllerAnimated:YES];
             }
         }else{
-            CPOrganizer *organizer=[[CPOrganizer alloc]init];
-            organizer.nickname=self.nicknameLable.text;
-            [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
+            CPOrganizer *organizer1=[[CPOrganizer alloc]init];
+            organizer1.nickname=self.nicknameLable.text;
+            [NSKeyedArchiver archiveRootObject:organizer1 toFile:CPDocmentPath(fileName)];
             [self.navigationController popViewControllerAnimated:YES];
         }
         [Tools setValueForKey:self.nicknameLable.text key:@"nickName"];
