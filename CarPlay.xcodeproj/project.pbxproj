@@ -43,7 +43,6 @@
 		6B62D12B1B83052A001F2A5B /* CPOfficialActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B62D12A1B83052A001F2A5B /* CPOfficialActivity.m */; };
 		6B64938C1B4D04BE00C197D2 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B64938B1B4D04BE00C197D2 /* BaseViewController.m */; };
 		6B6493901B4D04E100C197D2 /* CPNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B64938F1B4D04E100C197D2 /* CPNetWork.m */; };
-		6B6493941B4D04E500C197D2 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493931B4D04E500C197D2 /* Tools.m */; };
 		6B6493D91B4FABC900C197D2 /* CPNetworkVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6493D81B4FABC900C197D2 /* CPNetworkVO.m */; };
 		6B82E62E1B81A64A0097ECE7 /* CPOfficialActivityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B82E62D1B81A64A0097ECE7 /* CPOfficialActivityCell.xib */; };
 		6B82E6311B81AB7C0097ECE7 /* CPOfficialActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B82E6301B81AB7C0097ECE7 /* CPOfficialActivityCell.m */; };
@@ -346,6 +345,7 @@
 		E3E104A91B675D520049CA4A /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E3E104A81B675D520049CA4A /* libicucore.dylib */; };
 		E3E1DBFD1B5C8CFB00386B18 /* ZYPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E1DBFC1B5C8CFB00386B18 /* ZYPickView.m */; };
 		E3E1DC001B5CA87C00386B18 /* CPReturnValueControllerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E1DBFF1B5CA87C00386B18 /* CPReturnValueControllerView.m */; };
+		E3E216101B904BCB00E842D0 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E2160F1B904BCB00E842D0 /* Tools.m */; };
 		E3E315041B5E551A00FB0B55 /* CPActivityApplyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E315031B5E551A00FB0B55 /* CPActivityApplyModel.m */; };
 		E3E4FBEA1B744F7A00E6E5F1 /* ZYTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E4FBE91B744F7A00E6E5F1 /* ZYTableViewCell.m */; };
 		E3EEDFF31B53951D00595333 /* CPMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EEDFE81B53951D00595333 /* CPMessageController.m */; };
@@ -454,8 +454,6 @@
 		6B64938B1B4D04BE00C197D2 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		6B64938E1B4D04E100C197D2 /* CPNetWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNetWork.h; sourceTree = "<group>"; };
 		6B64938F1B4D04E100C197D2 /* CPNetWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNetWork.m; sourceTree = "<group>"; };
-		6B6493921B4D04E500C197D2 /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
-		6B6493931B4D04E500C197D2 /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
 		6B6493D71B4FABC900C197D2 /* CPNetworkVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNetworkVO.h; sourceTree = "<group>"; };
 		6B6493D81B4FABC900C197D2 /* CPNetworkVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNetworkVO.m; sourceTree = "<group>"; };
 		6B82E62D1B81A64A0097ECE7 /* CPOfficialActivityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPOfficialActivityCell.xib; sourceTree = "<group>"; };
@@ -1004,6 +1002,8 @@
 		E3E1DBFC1B5C8CFB00386B18 /* ZYPickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYPickView.m; sourceTree = "<group>"; };
 		E3E1DBFE1B5CA87C00386B18 /* CPReturnValueControllerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPReturnValueControllerView.h; sourceTree = "<group>"; };
 		E3E1DBFF1B5CA87C00386B18 /* CPReturnValueControllerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPReturnValueControllerView.m; sourceTree = "<group>"; };
+		E3E2160E1B904BCB00E842D0 /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
+		E3E2160F1B904BCB00E842D0 /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
 		E3E315021B5E551A00FB0B55 /* CPActivityApplyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityApplyModel.h; sourceTree = "<group>"; };
 		E3E315031B5E551A00FB0B55 /* CPActivityApplyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityApplyModel.m; sourceTree = "<group>"; };
 		E3E4FBE81B744F7A00E6E5F1 /* ZYTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYTableViewCell.h; sourceTree = "<group>"; };
@@ -1397,13 +1397,13 @@
 		6B6493911B4D04E500C197D2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				E3E2160E1B904BCB00E842D0 /* Tools.h */,
+				E3E2160F1B904BCB00E842D0 /* Tools.m */,
 				6B9711721B7DFA9E00EA0F09 /* Emoji */,
 				6B512FAB1B7C520C00258CA0 /* VoiceConvert */,
 				6B512F8F1B7C4FFE00258CA0 /* DeviceUtil */,
 				E372D8581B62176C00B4FC5C /* MJIndexView */,
 				E3EEDFF91B53952E00595333 /* Categarys */,
-				6B6493921B4D04E500C197D2 /* Tools.h */,
-				6B6493931B4D04E500C197D2 /* Tools.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2938,6 +2938,7 @@
 				E3CE35371B59E1B0008434B5 /* CPCreatActivityController.m in Sources */,
 				E3C14F4D1B81815F006A0F52 /* MJPhotoLoadingView.m in Sources */,
 				6B9711441B7DF60C00EA0F09 /* DXRecordView.m in Sources */,
+				E3E216101B904BCB00E842D0 /* Tools.m in Sources */,
 				6B97114A1B7DF60C00EA0F09 /* EMChatVideoBubbleView.m in Sources */,
 				A58FE4421B8D477F00EBE91D /* carManageCell.m in Sources */,
 				E310BF711B7DF7BB00750BF4 /* UUDatePicker.m in Sources */,
@@ -2963,7 +2964,6 @@
 				6B9711421B7DF60C00EA0F09 /* FacialView.m in Sources */,
 				E36AFE631B579ECD0081F499 /* ZHAppDelegate.m in Sources */,
 				E3A61B191B7ED06200B641E0 /* CPModelButton.m in Sources */,
-				6B6493941B4D04E500C197D2 /* Tools.m in Sources */,
 				6B9711691B7DF74200EA0F09 /* NSString+Valid.m in Sources */,
 				E372D8381B6216C100B4FC5C /* CustomSlideCell.m in Sources */,
 				6BCF660D1B6208C700358190 /* CPActiveUser.m in Sources */,

@@ -167,9 +167,6 @@ static NSString *kGroupName = @"GroupName";
     }
 //    UIViewController *vc = self.childViewControllers[1];
     NSString *key=[[NSString alloc]initWithFormat:@"%@unreadMessageCount",[Tools getValueFromKey:@"userId"]];
-    if ([Tools getValueFromKey:key]) {
-        unreadCount +=[[Tools getValueFromKey:key] intValue];
-    }
     [Tools setValueForKey:@(unreadCount) key:key];
     if (unreadCount > 0) {
         [self.tabBar showBadgeOnItemIndex:1];
