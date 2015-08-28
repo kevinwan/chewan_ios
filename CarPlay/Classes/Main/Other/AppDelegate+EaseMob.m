@@ -40,7 +40,6 @@
 #else
     apnsCertName = @"carplayApnsProduction";
 #endif
-BASE_URL
     if (![self isSpecifyServer]) {
         [[EaseMob sharedInstance] registerSDKWithAppKey:@"gongpingjia#chewantest"
                                            apnsCertName:apnsCertName
