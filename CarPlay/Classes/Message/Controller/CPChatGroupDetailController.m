@@ -12,6 +12,7 @@
 #import "CPOrganizerButton.h"
 #import "CPMySubscribeModel.h"
 #import "UIButton+WebCache.h"
+#import "CPTaDetailsController.h"
 
 #define MaxMemberCount 9  // 最大显示的参与成员数
 
@@ -31,6 +32,9 @@
 
 // 是不是活动的组织者
 @property (nonatomic, assign) BOOL isOrganizer;
+
+// 组织者的userId
+@property (nonatomic, copy) NSString *orzUserId;
 
 @end
 
@@ -83,6 +87,7 @@
             
             self.introduceCellHeight = height + 62;
             CPOrganizer *orz = model.organizer;
+            self.orzUserId = orz.userId;
             self.organizerButton.icon = orz.photo;
             self.organizerButton.name = orz.nickname;
             
@@ -113,7 +118,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.row == 0 && self.activityId) {
         
@@ -135,6 +139,13 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
 
+    }else if (indexPath.row == 2 && self.activityId && self.orzUserId.length){
+        
+        // 跳转到他的详情页
+       CPTaDetailsController *taVc = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil].instantiateInitialViewController;
+        taVc.targetUserId = self.orzUserId;
+        [self.navigationController pushViewController:taVc animated:YES];
+        
     }
 }
 
