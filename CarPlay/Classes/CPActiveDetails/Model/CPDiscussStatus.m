@@ -78,11 +78,11 @@
     
     if ([createDate isThisYear]) { // 今年
         if ([createDate isYesterday]) { // 昨天
-            fmt.dateFormat = @"昨天 HH:mm";
-            return [fmt stringFromDate:createDate];
+            return @"昨天";
         } else if ([createDate isToday]) { // 今天
             if (cmps.hour >= 1) {
-                return  [NSString stringWithFormat:@"%d小时前", (int)cmps.hour];
+                fmt.dateFormat = @"HH:mm";
+                return [fmt stringFromDate:createDate];
             } else if (cmps.minute >= 1) {
                 return [NSString stringWithFormat:@"%d分钟前", (int)cmps.minute];
             } else {
