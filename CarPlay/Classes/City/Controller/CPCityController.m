@@ -34,6 +34,7 @@
 #import "CPModelButton.h"
 #import "CPNoData.h"
 
+
 @interface CPCityController ()<UITableViewDataSource,UITableViewDelegate,CPSelectViewDelegate,ZHPickViewDelegate>
 
 // 地理编码对象
@@ -604,10 +605,17 @@
 {
     if ([eventName isEqualToString:@"IconClick"]) {
         CPHomeStatus *status = userInfo[@"status"];
-        CPTaDetailsController *taDetailsController = [[UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil] instantiateInitialViewController];
-        taDetailsController.targetUserId = status.organizer.userId;
         
-        [self.navigationController pushViewController:taDetailsController animated:YES];
+        if ([self.userId isEqualToString:status.organizer.userId]) {
+            [self.tabBarController setSelectedIndex:2];
+        }else{
+            CPTaDetailsController *taDetailsController = [[UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil] instantiateInitialViewController];
+            taDetailsController.targetUserId = status.organizer.userId;
+            
+            [self.navigationController pushViewController:taDetailsController animated:YES];
+        }
+        
+        
     }
 }
 
