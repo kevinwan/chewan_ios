@@ -175,18 +175,13 @@
             
             NSDictionary *application = responseObject[@"data"][@"application"];
             
-            NSUInteger newMsgCount = [comment[@"count"] intValue];
-            NSUInteger activityApplyCount = [application[@"count"] intValue];
-            
             NSString *unreadMsgKey = [[NSString alloc]initWithFormat:@"%@unreadMessageCount",[Tools getValueFromKey:@"userId"]];
             
             NSString *unread = [Tools getValueFromKey:unreadMsgKey];
             
-            NSUInteger totalCount = newMsgCount + activityApplyCount;
-            
-            if (totalCount + unread.intValue > 0) {
-                [Tools setUnreadMsg:comment[@"count"]];
-                [Tools setUnreadMsg:application[@"count"]];
+            [Tools setUnreadMsg:comment[@"count"]];
+            [Tools setUnreadMsg:application[@"count"]];
+            if ([Tools getZyUnreadMsgCount] + unread.intValue > 0) {
                 
                 [_tabVc.tabBar showBadgeOnItemIndex:1];
             }else{
