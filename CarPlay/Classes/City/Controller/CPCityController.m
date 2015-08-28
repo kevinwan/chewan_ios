@@ -342,7 +342,7 @@
     }
 
     
-    [ZYNetWorkTool getWithUrl:@"http://cwapi.gongpingjia.com/v1/activity/list" params:parameters success:^(id responseObject) {
+    [ZYNetWorkTool getWithUrl:@"v1/activity/list" params:parameters success:^(id responseObject) {
         [self disMiss];
         if (CPSuccess) {
             
@@ -403,7 +403,7 @@
     
     self.twoCellHeight = 0;
     
-    [ZYNetWorkTool getWithUrl:@"http://cwapi.gongpingjia.com/v1/official/activity/list" params:nil success:^(id responseObject) {
+    [ZYNetWorkTool getWithUrl:@"v1/official/activity/list" params:nil success:^(id responseObject) {
         if (CPSuccess) {
             
             // 取出活动数据
@@ -822,7 +822,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    
+    [self disMiss];
     if (self.coverBtn) {
         self.coverBtn.hidden = YES;
     }
