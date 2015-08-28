@@ -12,6 +12,10 @@
 @property (nonatomic, copy) completion completion;
 @property (nonatomic, copy) cancle cancle;
 @property  (weak, nonatomic) IBOutlet UIView *bgView;
+@property (weak, nonatomic) IBOutlet UIButton *cancleBtn;
+
+@property (weak, nonatomic) IBOutlet UIButton *confirmBtn;
+@property (weak, nonatomic) IBOutlet UIView *contentView;
 
 @end
 
@@ -22,6 +26,12 @@
     CPTipView *view = [[[NSBundle mainBundle] loadNibNamed:@"CPTipView" owner:nil options:nil]lastObject];
     view.backgroundColor = RGBACOLOR(0, 0, 0, 0.3);
     view.bgView.backgroundColor = RGBACOLOR(0, 0, 0, 0.3);
+    view.contentView.layer.cornerRadius = 3;
+    view.contentView.clipsToBounds = YES;
+    view.cancleBtn.layer.cornerRadius = 3;
+    view.cancleBtn.clipsToBounds = YES;
+    view.confirmBtn.layer.cornerRadius = 3;
+    view.confirmBtn.clipsToBounds = YES;
     view.frame = [UIScreen mainScreen].bounds;
     view.completion = completion;
     view.cancle = cancle;

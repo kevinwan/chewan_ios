@@ -32,11 +32,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    if ([self.hisUserId isEqualToString:[Tools getValueFromKey:@"userId"]]){
-        self.navigationItem.title = @"我的发布";
-//    }else{
-//        self.navigationItem.title = @"他的发布";
-//    }
+    self.navigationItem.title = @"我的发布";
     __weak typeof(self) weakSelf = self;
     
     self.tableView.header = [CPRefreshHeader headerWithRefreshingBlock:^{
