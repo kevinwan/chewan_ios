@@ -15,6 +15,7 @@
 
 //接口地址
 #define BASE_URL @"http://cwapi.gongpingjia.com:80/"
+#define BASE_URL @"http://cwapi.gongpingjia.com"
 
 //测试接口地址
 #define TEST_URL @"http://api.bbh.sunprosp.com"

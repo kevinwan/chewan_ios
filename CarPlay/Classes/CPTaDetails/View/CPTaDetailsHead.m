@@ -552,7 +552,7 @@
             NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
             parameters[@"targetUserId"] = self.taStatus.userId;
             
-            NSString *postUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/user/%@/listen?token=%@",self.userId,self.token];
+            NSString *postUrl = [NSString stringWithFormat:@"v1/user/%@/listen?token=%@",self.userId,self.token];
             
             [ZYNetWorkTool postJsonWithUrl:postUrl params:parameters success:^(id responseObject) {
                 if (CPSuccess) {
@@ -567,7 +567,7 @@
             NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
             parameters[@"targetUserId"] = self.taStatus.userId;
             
-            NSString *postUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/user/%@/unlisten?token=%@",self.userId,self.token];
+            NSString *postUrl = [NSString stringWithFormat:@"v1/user/%@/unlisten?token=%@",self.userId,self.token];
             
             [ZYNetWorkTool postJsonWithUrl:postUrl params:parameters success:^(id responseObject) {
                 if (CPSuccess) {

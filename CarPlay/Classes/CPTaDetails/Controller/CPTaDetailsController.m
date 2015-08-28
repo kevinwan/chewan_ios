@@ -168,27 +168,7 @@
         parameters[@"token"] = self.token;
     };;
     
- 
-//    // 获取网络访问者
-//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
-    NSString *getUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/user/%@/info",self.targetUserId];
-    
-    
-//    // 发送请求
-//    [manager GET:getUrl parameters:parameters success:^(NSURLSessionDataTask * task, id responseObject) {
-//        
-//        
-//        // 字典转模型
-//        self.taStatus = [CPTaDetailsStatus objectWithKeyValues:responseObject[@"data"]];
-//        
-//        // 加载headview
-//        [self setupLoadHeadView];
-//        
-//        [self.tableView reloadData];
-//    } failure:^(NSURLSessionDataTask * task, NSError * error) {
-//        //
-//    }];
+    NSString *getUrl = [NSString stringWithFormat:@"v1/user/%@/info",self.targetUserId];
     
     [ZYNetWorkTool getWithUrl:getUrl params:parameters success:^(id responseObject) {
         [self disMiss];
@@ -229,9 +209,7 @@
     }
     
     
-    NSString *getUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com/v1/user/%@/%@",self.targetUserId,selectStr];
-    
-    
+    NSString *getUrl = [NSString stringWithFormat:@"v1/user/%@/%@",self.targetUserId,selectStr];
     
     [ZYNetWorkTool getWithUrl:getUrl params:parameters success:^(id responseObject) {
         

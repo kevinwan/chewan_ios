@@ -16,6 +16,4 @@
 // 获取当前cell重用标示符
 + (NSString *)identifier;
 
-
-
 @end
