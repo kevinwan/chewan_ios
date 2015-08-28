@@ -19,6 +19,7 @@
 #import "NSDate+Extension.h"
 #import "RegexKitLite.h"
 #import "MJPhotoBrowser.h"
+#import "CPTipView.h"
 #define PhotoViewMargin 6
 #define PickerViewHeght 256
 #define maxCount 9
@@ -128,7 +129,6 @@ typedef enum {
     self.navigationItem.title = @"编辑活动";
     
     [self setUp];
-    [[[UIAlertView alloc] initWithTitle:@"提示" message:@"已经发布的活动只允许修改一次哦" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
 }
 
 - (void)reRefreshData
@@ -897,8 +897,23 @@ typedef enum {
         return;
     }
     
+
+    [CPTipView showWithConfirm:^{
+        [self editWithButton:button photoIds:photoIds];
+    } cancle:^{
+        
+    }];
+    
+//    [[[UIAlertView alloc] initWithTitle:@"提示" message:@"已经发布的活动只允许修改一次哦" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil] show];
+    
+    
+}
+
+- (void)editWithButton:(UIButton *)button photoIds:(NSMutableArray *)photoIds
+{
     [SVProgressHUD showWithStatus:@"保存中"];
-    button.userInteractionEnabled = NO;
+    NSUInteger photoCount = self.photoView.subviews.count - 1;
+    button.enabled = NO;
     for (UIView *subView in self.photoView.subviews) {
         if ([subView isKindOfClass:[CPEditImageView class]]) {
             CPEditImageView *imageView = (CPEditImageView *)subView;
@@ -909,7 +924,7 @@ typedef enum {
                 if (photoIds.count == photoCount) {
                     [self uploadCreatActivtyInfoWithPicId:photoIds];
                 }
-
+                
             }else{
                 ZYHttpFile *imageFile = [ZYHttpFile fileWithName:@"cover.jpg" data:UIImageJPEGRepresentation(imageView.image, 0.4) mimeType:@"image/jpeg" filename:@"cover.jpg"];
                 
@@ -929,11 +944,11 @@ typedef enum {
                     [SVProgressHUD showErrorWithStatus:@"上传失败"];
                     self.saveBtn.userInteractionEnabled = YES;
                 }];
-
+                
             }
         }
     }
-    
+
 }
 
 /**
