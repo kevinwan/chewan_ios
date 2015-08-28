@@ -40,7 +40,7 @@
     self.sexView.isMan = model.isMan;
     self.sexView.age = model.age;
     
-    if (model.carBrandLogo){
+    if (model.carBrandLogo.length){
         [self.carLogoView sd_setImageWithURL:[NSURL URLWithString:model.carBrandLogo]];
         self.carLogoWitdh.constant = 15;
         self.descLabelXConstrant.constant = 30;

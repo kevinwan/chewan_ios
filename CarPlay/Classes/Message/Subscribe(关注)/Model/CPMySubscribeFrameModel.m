@@ -46,9 +46,14 @@
     CGFloat nameLableX = CGRectGetMaxX(_iconBtnF) + KCellMargin;
     CGFloat nameLableW = [organizer.nickname sizeWithFont:NickNameFont].width;
     CGFloat nameLableH = [organizer.nickname sizeWithFont:NickNameFont].height;
-    CGFloat nameLableY = 22.5;
-    self.nameLabelF = CGRectMake(nameLableX, nameLableY, nameLableW,nameLableH);
     
+    if ([model.organizer.role isEqualToString:@"官方用户"]){
+        CGFloat nameLableY = 33;
+        self.nameLabelF = CGRectMake(nameLableX, nameLableY, nameLableW,nameLableH);
+    }else{
+        CGFloat nameLableY = 22.5;
+        self.nameLabelF = CGRectMake(nameLableX, nameLableY, nameLableW,nameLableH);
+    }
     
     CGFloat sexViewX = CGRectGetMaxX(_nameLabelF) + 7;
     CGFloat sexViewW = 30;
@@ -56,11 +61,12 @@
     CGFloat sexViewY = 23.5;
     self.sexViewF = CGRectMake(sexViewX, sexViewY, sexViewW,sexViewH);
     
-    CGFloat timeLableY = sexViewY;
+    
     CGFloat timeLableW = [model.publishTimeStr sizeWithFont:TimeLabelFont].width;
     CGFloat timeLableH = [model.publishTimeStr sizeWithFont:TimeLabelFont].height;
     CGFloat timeLableX = kScreenWidth - timeLableW - KCellMargin;
-    self.timeLabelF = CGRectMake(timeLableX, timeLableY, timeLableW,timeLableH);
+    CGFloat timeLabelY = CGRectGetMinY(_nameLabelF) + (nameLableH - timeLableH) * 0.5;
+    self.timeLabelF = CGRectMake(timeLableX, timeLabelY, timeLableW,timeLableH);
     
     
     CGFloat descLableX = 0;

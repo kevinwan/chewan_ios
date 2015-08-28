@@ -39,6 +39,14 @@
     [_photoButton addTarget:self action:@selector(photoAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_photoButton];
     
+    UILabel *photoLabel=[[UILabel alloc]init];
+    [photoLabel setFrame:CGRectMake(25, 20+CHAT_BUTTON_SIZE, CHAT_BUTTON_SIZE, 12)];
+    [photoLabel setText:@"图片"];
+    [photoLabel setTextColor:[UIColor grayColor]];
+    [photoLabel setFont:[UIFont systemFontOfSize:12]];
+    [photoLabel setTextAlignment:NSTextAlignmentCenter];
+    [self addSubview:photoLabel];
+    
     _takePicButton =[UIButton buttonWithType:UIButtonTypeCustom];
     [_takePicButton setFrame:CGRectMake(48 + CHAT_BUTTON_SIZE, 15, CHAT_BUTTON_SIZE , CHAT_BUTTON_SIZE)];
     [_takePicButton setImage:[UIImage imageNamed:@"chatBar_colorMore_camera"] forState:UIControlStateNormal];
@@ -46,12 +54,28 @@
     [_takePicButton addTarget:self action:@selector(takePicAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_takePicButton];
     
+    UILabel *takePicLabel=[[UILabel alloc]init];
+    [takePicLabel setFrame:CGRectMake(48 + CHAT_BUTTON_SIZE, 20+CHAT_BUTTON_SIZE, CHAT_BUTTON_SIZE, 12)];
+    [takePicLabel setText:@"拍照"];
+    [takePicLabel setTextColor:[UIColor grayColor]];
+    [takePicLabel setFont:[UIFont systemFontOfSize:12]];
+    [takePicLabel setTextAlignment:NSTextAlignmentCenter];
+    [self addSubview:takePicLabel];
+    
     _locationButton =[UIButton buttonWithType:UIButtonTypeCustom];
     [_locationButton setFrame:CGRectMake(71 + CHAT_BUTTON_SIZE* 2, 15, CHAT_BUTTON_SIZE , CHAT_BUTTON_SIZE)];
     [_locationButton setImage:[UIImage imageNamed:@"chatBar_colorMore_location"] forState:UIControlStateNormal];
     [_locationButton setImage:[UIImage imageNamed:@"chatBar_colorMore_locationSelected"] forState:UIControlStateHighlighted];
     [_locationButton addTarget:self action:@selector(locationAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_locationButton];
+    
+    UILabel *locationLabel=[[UILabel alloc]init];
+    [locationLabel setFrame:CGRectMake(71 + CHAT_BUTTON_SIZE* 2, 20+CHAT_BUTTON_SIZE, CHAT_BUTTON_SIZE, 12)];
+    [locationLabel setText:@"位置"];
+    [locationLabel setTextColor:[UIColor grayColor]];
+    [locationLabel setFont:[UIFont systemFontOfSize:12]];
+    [locationLabel setTextAlignment:NSTextAlignmentCenter];
+    [self addSubview:locationLabel];
 
     CGRect frame = self.frame;
     if (type == ChatMoreTypeChat) {

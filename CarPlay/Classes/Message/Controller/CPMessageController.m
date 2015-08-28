@@ -150,24 +150,15 @@ typedef enum {
             NSUInteger newMsgCount = [comment[@"count"] intValue];
             NSUInteger activityApplyCount = [application[@"count"] intValue];
             
+            
+            [Tools setUnreadMsg:comment[@"count"]];
+            [Tools setUnreadMsg:application[@"count"]];
             CPHomeMsgModel *model = self.datas[0];
             if (newMsgCount > 0) {
                 model.content = comment[@"content"];
                 model.createTime = [comment[@"createTime"] longLongValue];
                 model.unreadCount = [NSString stringWithFormat:@"%zd",newMsgCount];
                 model.isShowUnread = YES;
-                NSString *unread = [Tools getValueFromKey:CPUnreadMsgKey];
-                if (unread.intValue < 0) {
-                    [Tools setValueForKey:@(newMsgCount) key:CPUnreadMsgKey];
-                    [self.tabBarController.tabBar showBadgeOnItemIndex:1];
-                }else{
-                    
-                    if (unread.intValue + newMsgCount  > 0) {
-                        
-                        [Tools setValueForKey:[NSString stringWithFormat:@"%zd",unread.intValue + newMsgCount] key:CPUnreadMsgKey];
-                        [self.tabBarController.tabBar showBadgeOnItemIndex:1];
-                    }
-                }
             }else{
                 model.isShowUnread = NO;
             }
@@ -181,21 +172,20 @@ typedef enum {
                 activityModel.unreadCount = [NSString stringWithFormat:@"%zd",activityApplyCount];
                 activityModel.createTime = [application[@"createTime"] longLongValue];
                 activityModel.isShowUnread = YES;
-                NSString *unread = [Tools getValueFromKey:CPUnreadMsgKey];
-                if (unread.intValue < 0) {
-                    
-                    [Tools setValueForKey:@(activityApplyCount) key:CPUnreadMsgKey];
-                    [self.tabBarController.tabBar showBadgeOnItemIndex:1];
-                }else{
-                    
-                    if (unread.intValue + activityApplyCount  > 0) {
-                        
-                        [Tools setValueForKey:@(unread.intValue + activityApplyCount) key:CPUnreadMsgKey];
-                        [self.tabBarController.tabBar showBadgeOnItemIndex:1];
-                    }
-                }
             }else{
                 activityModel.isShowUnread = NO;
+            }
+            
+            
+            NSString *unread = [Tools getValueFromKey:CPUnreadMsgKey];
+            if (newMsgCount + activityApplyCount > 0) {
+                [self.tabBarController.tabBar showBadgeOnItemIndex:1];
+            }else{
+                if (unread.intValue > 0) {
+                    [self.tabBarController.tabBar showBadgeOnItemIndex:1];
+                }else{
+                    [self.tabBarController.tabBar hideBadgeOnItemIndex:1];
+                }
             }
             
             
@@ -264,13 +254,12 @@ typedef enum {
         
         CPHomeMsgModel *model = self.datas[1];
         NSString *unread = [Tools getValueFromKey:CPUnreadMsgKey];
-        if (unread.intValue - model.unreadCount.intValue > 0) {
+        [Tools setUnreadAct:@"0"];
+        if ([Tools getZyUnreadMsgCount] + unread.intValue > 0) {
             
-            [Tools setValueForKey:@(unread.intValue - model.unreadCount.intValue) key:CPUnreadMsgKey];
              [self.tabBarController.tabBar showBadgeOnItemIndex:1];
         }else{
-            [Tools setValueForKey:@(0) key:CPUnreadMsgKey];
-                [self.tabBarController.tabBar hideBadgeOnItemIndex:1];
+            [self.tabBarController.tabBar hideBadgeOnItemIndex:1];
         }
         model.unreadCount = @"";
         model.type = @"";
@@ -283,12 +272,11 @@ typedef enum {
         
         CPHomeMsgModel *model = self.datas[0];
         NSString *unread = [Tools getValueFromKey:CPUnreadMsgKey];
-        if (unread.intValue - model.unreadCount.intValue > 0) {
+        [Tools setUnreadMsg:@"0"];
+        if (unread.intValue + [Tools getZyUnreadMsgCount] > 0) {
             
-            [Tools setValueForKey:@(unread.intValue - model.unreadCount.intValue) key:CPUnreadMsgKey];
             [self.tabBarController.tabBar showBadgeOnItemIndex:1];
         }else{
-            [Tools setValueForKey:@(0) key:CPUnreadMsgKey];
             [self.tabBarController.tabBar hideBadgeOnItemIndex:1];
         }
         
