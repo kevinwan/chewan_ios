@@ -37,18 +37,19 @@
 {
     _showUnreadCount = showUnreadCount;
     
+    self.unreadLabel.hidden = YES;
     if (showUnreadCount) {
         self.redUnreadLabelPoint.hidden = NO;
-        self.unreadLabel.hidden = YES;
     }else{
         self.redUnreadLabelPoint.hidden = YES;
-        self.unreadLabel.hidden = NO;
     }
 }
 
 - (void)setModel:(CPHomeMsgModel *)model
 {
     _model = model;
+    
+    self.redUnreadLabelPoint.hidden = YES;
     
     if (model.createTime) {
         self.timeLabel.text = model.timeStr;
