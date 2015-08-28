@@ -90,6 +90,8 @@
                 [activityIndicator stopAnimating];
             }];
     }else if (indexPath.row==1){
+        NSString *str = [NSString stringWithFormat:@"http://itunes.apple.com/us/app/id%d", 1034646246];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
         
     }else if (indexPath.row == 2){
             CPAbout *CPAbout=[UIStoryboard storyboardWithName:@"CPAbout" bundle:nil].instantiateInitialViewController;
