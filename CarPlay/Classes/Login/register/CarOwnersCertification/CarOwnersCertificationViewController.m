@@ -324,9 +324,11 @@
     [ZYNetWorkTool getWithUrl:path params:nil success:^(id responseObject) {
         if (CPSuccess) {
             data=responseObject[@"data"];
-            NSURL *url=[[NSURL alloc]initWithString:data[@"licensePhoto"]];
-            [self.imageBtn sd_setImageWithURL:url];
-            [self.tableView reloadData];
+            if (data[@"licensePhoto"] && ![Tools isEmptyOrNull:data[@"licensePhoto"]]) {
+                NSURL *url=[[NSURL alloc]initWithString:data[@"licensePhoto"]];
+                [self.imageBtn sd_setImageWithURL:url];
+                [self.tableView reloadData];
+            }
         }else{
             [self showError:responseObject[@"errmsg"]];
         }
