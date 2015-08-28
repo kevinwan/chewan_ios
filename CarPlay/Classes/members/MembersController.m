@@ -120,11 +120,17 @@
         if ([responseObject operationSuccess]) {
             NSArray *memberModel = [members objectArrayWithKeyValuesArray:responseObject[@"data"][@"members"]];
             NSArray *carModel = [cars objectArrayWithKeyValuesArray:responseObject[@"data"][@"cars"]];
-            NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"共%@个座位,还剩下%@个座位",responseObject[@"data"][@"totalSeat"],responseObject[@"data"][@"availableSeat"]]];
+            NSString *availableSeat = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"availableSeat"]];
+            NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"共%@个座位,还剩下%@个座位",responseObject[@"data"][@"totalSeat"],availableSeat]];
             self.chatGroupId = responseObject[@"data"][@"chatGroupId"];
             self.activityTitle = responseObject[@"data"][@"title"];
             SQLog(@"%@",self.chatGroupId);
-            [str addAttribute:NSForegroundColorAttributeName value:[AppAppearance redColor] range:NSMakeRange(str.length -4, 2)];
+            if (availableSeat.length == 1) {
+                [str addAttribute:NSForegroundColorAttributeName value:[AppAppearance redColor] range:NSMakeRange(str.length -4, 2)];
+            } else {
+                [str addAttribute:NSForegroundColorAttributeName value:[AppAppearance redColor] range:NSMakeRange(str.length -5, 3)];
+            }
+            
             self.seatLabel.attributedText = str;
             [self.membersArray removeAllObjects];
             [self.membersArray addObjectsFromArray:memberModel];
