@@ -8,7 +8,10 @@
 #import "Tools.h"
 
 #import <CommonCrypto/CommonDigest.h>
-//#import "npsNetworkVO.h"
+
+#define CPUnreadActKey [[NSString alloc]initWithFormat:@"%@unreadMsg",[Tools getValueFromKey:@"userId"]]
+
+#define CPUnreadMsgKey [[NSString alloc]initWithFormat:@"%@unreadAct",[Tools getValueFromKey:@"userId"]]
 
 #define CC_MD5_LENGTH 16
 
@@ -422,4 +425,32 @@ id getValueFromKey(NSString *keyInDefaults){
     NSArray *ary = [NSKeyedUnarchiver unarchiveObjectWithData:defalutData];
     return ary;
 }
+
++ (void)setUnreadAct:(NSString *)count
+{
+    [CPUserDefaults setValue:count forKey:CPUnreadActKey];
+    [CPUserDefaults synchronize];
+}
+
++ (void)setUnreadMsg:(NSString *)count
+{
+    [CPUserDefaults setValue:count forKey:CPUnreadMsgKey];
+    [CPUserDefaults synchronize];
+}
+
++ (NSUInteger)getUnreadAct
+{
+    return [[CPUserDefaults valueForKey:CPUnreadActKey] intValue];
+}
+
++ (NSUInteger)getUnreadMsg
+{
+    return [[CPUserDefaults valueForKey:CPUnreadMsgKey] intValue];
+}
+
++ (NSUInteger)getZyUnreadMsgCount
+{
+    return [self getUnreadMsg] + [self getUnreadAct];
+}
+
 @end

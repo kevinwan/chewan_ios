@@ -62,4 +62,22 @@ id getValueFromKey(NSString *keyInDefaults);
 +(void)exChangeHiden:(UIView *)changeOutView dur:(CFTimeInterval)dur;
 
 + (NSString *)md5EncryptWithString:(NSString*)string;
+
+/**
+ *  设置和获取未读的消息数
+ *
+ *  @param count 数
+ */
++ (void)setUnreadAct:(NSString *)count;
++ (void)setUnreadMsg:(NSString *)count;
++ (NSUInteger)getUnreadAct;
++ (NSUInteger)getUnreadMsg;
+
+/*
+ *  获取未读的评论消息数和活动消息数
+ *
+ *  @return
+ */
++ (NSUInteger)getZyUnreadMsgCount;
+
 @end
