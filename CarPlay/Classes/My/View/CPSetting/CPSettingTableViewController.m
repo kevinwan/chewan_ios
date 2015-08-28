@@ -140,8 +140,9 @@
                 [Tools setValueForKey:nil key:@"userId"];
                 [Tools setValueForKey:nil key:@"token"];
                 [Tools setValueForKey:nil key:THIRDPARTYLOGINACCOUNT];
-                [Tools setValueForKey:nil key:@"nickName"];
                 [Tools setValueForKey:nil key:@"headUrl"];
+                [Tools setValueForKey:@(NO) key:NOTIFICATION_HASLOGIN];
+                [Tools setValueForKey:@(NO) key:@"LoginFrom3Party"];
                 LoginViewController *loginVC=[[LoginViewController alloc]init];
                 ZYNavigationController* nav1 = [[ZYNavigationController alloc] initWithRootViewController:loginVC];
                 self.view.window.rootViewController=nav1;
