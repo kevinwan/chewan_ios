@@ -136,6 +136,11 @@ static NSString *kGroupName = @"GroupName";
         if (!error1 && info1) {
             [Tools setValueForKey:@(NO) key:NOTIFICATION_HASLOGIN];
             [Tools setValueForKey:nil key:@"userId"];
+            [Tools setValueForKey:nil key:@"token"];
+            [Tools setValueForKey:@(NO) key:@"LoginFrom3Party"];
+            [Tools setValueForKey:@(NO) key:NOTIFICATION_HASLOGIN];
+            [Tools setValueForKey:nil key:@"nickName"];
+            [Tools setValueForKey:nil key:@"headUrl"];
             LoginViewController *loginVC=[[LoginViewController alloc]init];
             UINavigationController *nav1 = [[UINavigationController alloc] initWithRootViewController:loginVC];
             self.view.window.rootViewController=nav1;
