@@ -1053,8 +1053,23 @@ typedef enum {
         self.currentModel.cover = picIds;
     }
   
+    NSString *currentCity = [CPUserDefaults stringForKey:@"CPUserCity"];
+    if (currentCity.length) {
+        self.currentModel.currentCity = currentCity;
+    }else{
+        self.currentModel.currentCity = @"";
+    }
+    
+    NSString *currentDistrict = [CPUserDefaults stringForKey:@"CPUserArea"];
+    if (currentDistrict.length) {
+        self.currentModel.currentDistrict = currentDistrict;
+    }else{
+        self.currentModel.currentDistrict = @"";
+    }
+    
     NSDictionary *params = [self.currentModel keyValues];
 
+    DLog(@"%@",params);
     [CPNetWorkTool postJsonWithUrl:@"v1/activity/register" params:params success:^(id responseObject) {
         
         if (CPSuccess){

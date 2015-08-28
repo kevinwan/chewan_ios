@@ -22,6 +22,7 @@
 @class CPOrganizer,Data;
 @interface CPMySubscribeModel : NSObject
 
+
 // 记录cell的行号
 @property (nonatomic, assign) NSUInteger row;
 
@@ -71,6 +72,9 @@
 @end
 
 @interface CPOrganizer : NSObject
+
+// 官方用户
+@property (nonatomic, copy) NSString *role;
 
 @property (nonatomic, copy) NSString *gender;
 

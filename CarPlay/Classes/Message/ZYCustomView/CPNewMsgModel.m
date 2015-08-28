@@ -41,14 +41,13 @@
     NSCalendarUnit unit = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
     // 计算两个日期之间的差值
     NSDateComponents *cmps = [calendar components:unit fromDate:createDate toDate:now options:0];
-    
     if ([createDate isThisYear]) { // 今年
         if ([createDate isYesterday]) { // 昨天
-            fmt.dateFormat = @"昨天 HH:mm";
-            return [fmt stringFromDate:createDate];
+            return @"昨天";
         } else if ([createDate isToday]) { // 今天
             if (cmps.hour >= 1) {
-               return  [NSString stringWithFormat:@"%d小时前", (int)cmps.hour];
+                fmt.dateFormat = @"HH:mm";
+                return [fmt stringFromDate:createDate];;
             } else if (cmps.minute >= 1) {
                 return [NSString stringWithFormat:@"%d分钟前", (int)cmps.minute];
             } else {
@@ -62,7 +61,7 @@
         fmt.dateFormat = @"MM-dd";
         return [fmt stringFromDate:createDate];
     }
-    
+
 }
 
 @end
