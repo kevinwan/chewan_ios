@@ -423,7 +423,7 @@
                 if (self.status.count > 0 && [self.selectMark isEqualToString:@"hot"]) {
                     // 数据拼接
                     [self.status insertObject:self.activeStatus atIndex:1];
-                    self.twoCellHeight = 150;
+                    self.twoCellHeight = kScreenHeight * 150.0 / 568.0;
                 }
 
             }

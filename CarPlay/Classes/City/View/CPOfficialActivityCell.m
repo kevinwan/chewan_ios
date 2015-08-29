@@ -20,6 +20,9 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
+// 高度约束
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightConstraint;
+
 // 图片总数
 @property (nonatomic,assign) NSInteger photoCount;
 
@@ -65,10 +68,16 @@
     // 设置图片轮播器
     [self setPicPlayWithStatus:activeStatus];
     
+    // 设置高度约束
+    self.heightConstraint.constant = kScreenHeight * 150 / 568;
+    
 }
 
 // 设置图片轮播器
 - (void)setPicPlayWithStatus:(NSArray *)activeStatus{
+    
+    // 根据机型设置scrollView高度
+    
     
     [self removeTimer];
     
@@ -106,7 +115,7 @@
         // 蒙版
         UIView *maskView = [[UIView alloc] init];
         maskView.backgroundColor = RGBACOLOR(0, 0, 0, 0.5);
-        maskView.frame = CGRectMake(0, 89, [UIScreen mainScreen].bounds.size.width,62.5);
+        maskView.frame = CGRectMake(0, 89.0 / 568.0 * kScreenHeight, [UIScreen mainScreen].bounds.size.width,62.5 / 568.0 * kScreenHeight);
         [imageView addSubview:maskView];
         
         
@@ -167,7 +176,7 @@
         logoImageView.layer.masksToBounds = YES;
         NSURL *logoUrl = [NSURL URLWithString:activeStu.logo];
         [logoImageView sd_setImageWithURL:logoUrl placeholderImage:[UIImage imageNamed:@"imageplace"]];
-        logoImageView.frame = CGRectMake(10, 59, 50, 50);
+        logoImageView.frame = CGRectMake(10, 59.0 / 568.0 * kScreenHeight, 50, 50);
         [imageView addSubview:logoImageView];
         
         [self.scrollView addSubview:imageView];

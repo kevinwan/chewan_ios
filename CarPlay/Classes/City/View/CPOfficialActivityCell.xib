@@ -16,7 +16,7 @@
                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r5O-D4-Aj3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="149.5"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="149.5" id="Ko3-KN-EpT"/>
+                            <constraint firstAttribute="height" constant="150" id="Ko3-KN-EpT"/>
                         </constraints>
                     </scrollView>
                 </subviews>
@@ -33,6 +33,7 @@
                 </variation>
             </tableViewCellContentView>
             <connections>
+                <outlet property="heightConstraint" destination="Ko3-KN-EpT" id="eh8-0j-lRJ"/>
                 <outlet property="scrollView" destination="r5O-D4-Aj3" id="IRc-ZE-bGF"/>
             </connections>
             <point key="canvasLocation" x="166" y="174"/>
