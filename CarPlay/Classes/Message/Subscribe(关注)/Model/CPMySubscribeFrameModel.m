@@ -66,6 +66,9 @@
     CGFloat timeLableH = [model.publishTimeStr sizeWithFont:TimeLabelFont].height;
     CGFloat timeLableX = kScreenWidth - timeLableW - KCellMargin;
     CGFloat timeLabelY = CGRectGetMinY(_nameLabelF) + (nameLableH - timeLableH) * 0.5;
+    if ([model.organizer.role isEqualToString:@"官方用户"]){
+        timeLabelY -= 0.5;
+    }
     self.timeLabelF = CGRectMake(timeLableX, timeLabelY, timeLableW,timeLableH);
     
     
