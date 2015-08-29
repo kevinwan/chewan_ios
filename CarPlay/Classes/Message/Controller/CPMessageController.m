@@ -111,6 +111,12 @@ typedef enum {
     [super viewWillAppear:animated];
     
     if (CPUnLogin){
+        // 清空数据
+        [self.datas removeAllObjects];
+        self.datas = nil;
+        [self datas];
+        [self.tableView reloadData];
+        [self.tabBarController.tabBar hideBadgeOnItemIndex:1];
         return;
     }else{
         if (_timer == nil) {
