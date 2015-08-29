@@ -34,8 +34,8 @@
         _failureLabel.bounds = CGRectMake(0, 0, self.bounds.size.width, 44);
         _failureLabel.textAlignment = NSTextAlignmentCenter;
         _failureLabel.center = self.center;
-        _failureLabel.text = @"网络不给力，图片下载失败";
-        _failureLabel.font = [UIFont boldSystemFontOfSize:20];
+        _failureLabel.text = @"网络不给力,图片下载失败";
+        _failureLabel.font = [UIFont boldSystemFontOfSize:16];
         _failureLabel.textColor = [UIColor whiteColor];
         _failureLabel.backgroundColor = [UIColor clearColor];
         _failureLabel.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
