@@ -670,6 +670,8 @@
 
 // 我要去玩按钮点击事件
 - (IBAction)GotoPlayButtonDidClick:(UIButton *)sender {
+    [CPUserDefaults setValue:@"活动详情我要去玩" forKey:CPRegisterFrom];
+    [CPUserDefaults synchronize];
     [SVProgressHUD showWithStatus:@"努力加载中"];
     //登录状态下可点 拿出创建者字段,非登录 自动跳转登录界面
     NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/info",self.activeId];

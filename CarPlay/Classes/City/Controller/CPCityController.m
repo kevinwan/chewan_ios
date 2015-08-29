@@ -861,7 +861,8 @@
 
 // 点击我要玩
 - (IBAction)goToPlay:(UIButton *)sender {
-    
+    [CPUserDefaults setValue:@"首页我要去玩" forKey:CPRegisterFrom];
+    [CPUserDefaults synchronize];
     [SVProgressHUD showWithStatus:@"努力加载中"];
     CPHomeStatus *model = self.status[sender.tag];
     NSString *activeId = model.activityId;
