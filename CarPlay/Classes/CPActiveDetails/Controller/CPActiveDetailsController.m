@@ -452,6 +452,11 @@
     
     NSString *postUrl = [NSString stringWithFormat:@"v1/comment/remove?userId=%@&token=%@",self.userId,self.token];
     if (CPUnLogin) {
+        
+        // 删除留言埋点
+        [CPUserDefaults setValue:@"删除留言" forKey:CPRegisterFrom];
+        [CPUserDefaults synchronize];
+        
          [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
         return;
     }
@@ -611,6 +616,10 @@
         
 
     }else{
+        // 留言埋点
+        [CPUserDefaults setValue:@"留言" forKey:CPRegisterFrom];
+        [CPUserDefaults synchronize];
+        
         // 未登录跳到登录页面
         [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
     }
@@ -817,6 +826,10 @@
         }
     }else{
         // 未登录情况
+        // 收藏埋点
+        [CPUserDefaults setValue:@"收藏" forKey:CPRegisterFrom];
+        [CPUserDefaults synchronize];
+        
         [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
     }
 }
