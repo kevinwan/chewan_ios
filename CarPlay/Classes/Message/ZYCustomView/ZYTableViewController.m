@@ -227,7 +227,7 @@
     self.tableView.scrollEnabled = YES;
     self.tipView.hidden = YES;
     self.tableView.footer.hidden = YES;
-    ZYJumpToLoginView
+    ZYJumpToLoginView([self class])
     [self reRefreshData];
 }
 

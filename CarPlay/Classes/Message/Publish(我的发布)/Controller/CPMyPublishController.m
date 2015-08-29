@@ -49,7 +49,7 @@
     self.tableView.tableFooterView = [[UIView alloc] init];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.footer.hidden = YES;
-    ZYJumpToLoginView
+    ZYJumpToLoginView(@"我的发布")
     if (CPIsLogin) {
         [self addBottomTimeLine];
     }
