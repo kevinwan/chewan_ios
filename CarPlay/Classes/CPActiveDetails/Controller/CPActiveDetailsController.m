@@ -179,17 +179,16 @@
         __weak typeof(self) weakSelf = self;
         headView.goTaDetails = ^{
             
-            if ([self.userId isEqualToString:self.activeStatus.organizer.userId]) {
-                [self.tabBarController setSelectedIndex:2];
-            }else{
-                
+//            if ([self.userId isEqualToString:self.activeStatus.organizer.userId]) {
+        
+            
                 UIStoryboard *sb = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil];
                 
                 CPTaDetailsController *taViewController = sb.instantiateInitialViewController;
                 taViewController.targetUserId = weakSelf.createrId;
                 
                 [weakSelf.navigationController pushViewController:taViewController animated:YES];
-            }
+//            }
         };
     }
     // 弹出图片浏览器

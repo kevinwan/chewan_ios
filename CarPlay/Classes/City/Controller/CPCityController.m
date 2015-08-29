@@ -77,6 +77,8 @@
 // 存储官方活动数据
 @property (nonatomic,strong) NSArray *activeStatus;
 
+@property (nonatomic, weak) UIButton *selectButton;
+
 // 存储所有需要显示的图片对象
 //@property (nonatomic, strong) NSMutableArray *photos;
 
@@ -174,6 +176,8 @@
     
     // 获取当前经纬度
     [self getLongitudeAndLatitude];
+    
+    self.selectButton = self.hotBtn;
   
 }
 
@@ -757,6 +761,14 @@
 
 // 热门按钮点击
 - (IBAction)hotBtnClick:(id)sender {
+    
+    
+    if (self.selectButton == sender) {
+        return;
+    }
+    
+    self.selectButton = sender;
+    
     // 按钮颜色
     [self.hotBtn setTitleColor:[Tools getColor:@"fc6e51"] forState:UIControlStateNormal];
     [self.nearBtn setTitleColor:[Tools getColor:@"434a53"] forState:UIControlStateNormal];
@@ -782,6 +794,14 @@
 
 // 附近按钮点击
 - (IBAction)nearBtnClick:(id)sender {
+    
+    
+    if (self.selectButton == sender) {
+        return;
+    }
+    
+    self.selectButton = sender;
+    
     // 按钮颜色
     [self.hotBtn setTitleColor:[Tools getColor:@"434a53"] forState:UIControlStateNormal];
     [self.nearBtn setTitleColor:[Tools getColor:@"fc6e51"] forState:UIControlStateNormal];
@@ -806,6 +826,14 @@
 
 // 最新按钮点击
 - (IBAction)lastestBtnClick:(id)sender {
+    
+    
+    if (self.selectButton == sender) {
+        return;
+    }
+    
+    self.selectButton = sender;
+    
     // 按钮颜色
     [self.hotBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.nearBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
