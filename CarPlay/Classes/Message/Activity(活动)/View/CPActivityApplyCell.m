@@ -145,7 +145,6 @@
     NSString *url = [NSString stringWithFormat:@"v1/application/%@/process",_model.applicationId];
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
     json[@"action"] = @(1);
-    [SVProgressHUD showWithStatus:@"努力加载中"];
     [CPNetWorkTool postJsonWithUrl:url params:json success:^(id responseObject) {
 
         if (CPSuccess) {

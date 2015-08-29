@@ -244,7 +244,7 @@
 {
     NSUInteger row = [notify.userInfo[CPActivityApplyInfo] intValue];
     if (row == CPActivityNoCheat){
-        [self coverView];
+        self.coverView.hidden = NO;
         return;
     }
     
