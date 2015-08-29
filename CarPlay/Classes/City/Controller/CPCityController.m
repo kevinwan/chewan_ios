@@ -317,13 +317,13 @@
             parameters[@"gender"] = @"";
         }
         
-        if (selectModel.city != nil) {
+        if (selectModel.city && ![selectModel.city isEqualToString:@"不限"]) {
             parameters[@"city"] = selectModel.city;
         }else{
             parameters[@"city"] = @"";
         }
         
-        if (selectModel.district != nil) {
+        if (selectModel.district.length && ![selectModel.district isEqualToString:@"不限"]) {
             parameters[@"district"] = selectModel.district;
         }else{
             parameters[@"district"] = @"";

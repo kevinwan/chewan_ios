@@ -289,7 +289,7 @@
 
 //  头像点击
 - (void)imageClick:(UITapGestureRecognizer *)sender{
-   
+
     // 已登录通知控制器跳到他的详情页面
     [self routerEventWithName:@"IconClick" userInfo:@{@"status" : self.status}];
 }

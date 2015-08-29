@@ -11,6 +11,7 @@
 
 
 typedef void (^TaPictureDidSelected)(CPTaPublishStatus *status,NSIndexPath *path, NSArray *srcView);
+typedef void (^tapIcon)(CPTaPublishStatus *status);
 
 @interface CPTaPublishCell : UITableViewCell
 
@@ -18,6 +19,9 @@ typedef void (^TaPictureDidSelected)(CPTaPublishStatus *status,NSIndexPath *path
 @property (nonatomic,assign) BOOL isFirst;
 
 @property (nonatomic,copy) TaPictureDidSelected taPictureDidSelected;
+@property (nonatomic, copy) tapIcon tapIcons;
+// 聊天
+@property (weak, nonatomic) IBOutlet UIButton *myPlay;
 
 + (NSString *)identifier;
 
