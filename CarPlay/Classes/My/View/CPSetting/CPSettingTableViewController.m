@@ -13,6 +13,7 @@
 #import "ZYNavigationController.h"
 #import "CPVersionIntroduction.h"
 #import "CPMySubscribeModel.h"
+#import "CPMessageController.h"
 
 @interface CPSettingTableViewController ()<UIAlertViewDelegate>
 {
@@ -143,6 +144,11 @@
                 [Tools setValueForKey:nil key:@"headUrl"];
                 [Tools setValueForKey:@(NO) key:NOTIFICATION_HASLOGIN];
                 [Tools setValueForKey:@(NO) key:@"LoginFrom3Party"];
+                UINavigationController *nav = self.tabBarController.childViewControllers[1];
+                CPMessageController *msg = nav.childViewControllers[0];
+                if ([msg isKindOfClass:[CPMessageController class]]) {
+                    [msg refreshDataSource];
+                }
                 LoginViewController *loginVC=[[LoginViewController alloc]init];
                 ZYNavigationController* nav1 = [[ZYNavigationController alloc] initWithRootViewController:loginVC];
                 self.view.window.rootViewController=nav1;

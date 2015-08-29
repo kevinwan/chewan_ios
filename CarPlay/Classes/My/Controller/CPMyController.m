@@ -288,9 +288,6 @@
             if(data && [data objectForKey:@"albumPhotos"]){
                 if ([[data objectForKey:@"albumPhotos"] count] > 0) {
                      albumPhotos=[data objectForKey:@"albumPhotos"];
-                }else{
-                    _pageControl.numberOfPages = 0;
-                    [self createScrollViewAndPagController];
                 }
             }
             if (data) {
@@ -351,8 +348,9 @@
             self.pageControl.currentPage = 0;
             // 启动时钟
             [self startTimer];
-        }else{
-            
+        }else if([organizer.albumPhotos count] == 0){
+                _pageControl.numberOfPages = 0;
+                [self createScrollViewAndPagController];
         }
         
         if (organizer.photo) {
