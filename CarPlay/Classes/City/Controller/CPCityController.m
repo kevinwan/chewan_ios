@@ -821,7 +821,7 @@
     [selectView dismissWithCompletion:nil];
     
     // 根据result中的参数 重新发送请求 刷新表格 reloadData
-    NSLog(@"%@",[result keyValues]);
+//    NSLog(@"%@",[result keyValues]);
     self.selectResult = result;
     
     [self setupLoadStatusWithIgnore:0 Key:@"hot" SelectModel:result];
