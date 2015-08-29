@@ -110,6 +110,22 @@
     
 }
 
+- (void)awakeFromNib
+{
+    self.photo.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(iconClick:)];
+    [self.photo addGestureRecognizer:tap];
+}
+
+- (void)iconClick:(UITapGestureRecognizer *)tapGes
+{
+    MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+    MJPhoto *photo = [MJPhoto new];
+    photo.url = [NSURL URLWithString:self.taStatus.originalPhoto];
+    browser.photos = @[photo];
+    [browser show];
+}
+
 - (void)setTaStatus:(CPTaDetailsStatus *)taStatus{
     _taStatus = taStatus;
     

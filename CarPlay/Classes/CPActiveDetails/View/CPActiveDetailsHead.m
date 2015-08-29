@@ -379,7 +379,7 @@
         if (self.goTaDetails != nil) {
             self.goTaDetails();
         }
-    } 
+    }
     
 }
 

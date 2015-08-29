@@ -44,6 +44,9 @@
 // 头像
 @property (nonatomic,copy) NSString *photo;
 
+// 高清头像
+@property (nonatomic,copy) NSString *originalPhoto;
+
 // 发布数
 @property (nonatomic,copy) NSString *postNumber;
 

@@ -10,8 +10,9 @@
 #import <UzysAssetsPickerController/UzysWrapperPickerController.h>
 #import "UzysAssetsPickerController.h"
 #import "CPEditImageView.h"
+#import "MJPhotoBrowser.h"
 
-@interface CPPhotoalbumManagement ()< UIActionSheetDelegate,UIImagePickerControllerDelegate, UzysAssetsPickerControllerDelegate, UIAlertViewDelegate>
+@interface CPPhotoalbumManagement ()< UIActionSheetDelegate,UIImagePickerControllerDelegate, UzysAssetsPickerControllerDelegate, UIAlertViewDelegate,UINavigationControllerDelegate>
 @property (nonatomic, assign) CGFloat photoWH;
 @property (nonatomic, strong) NSMutableArray *editPhotoViews;
 @property (nonatomic, assign) NSUInteger picIndex;
@@ -198,7 +199,7 @@
                 if (CPSuccess) {
                     CPEditImageView *imageView = [[CPEditImageView alloc] init];
                     imageView.image = arr[i];
-                    imageView.tag = self.picIndex++;
+
                     UILongPressGestureRecognizer *longPressGes = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
                     [imageView addGestureRecognizer:longPressGes];
                     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPress:)];
@@ -237,6 +238,24 @@
 {
     if (self.imageEditing) {
         [self dealImageViewTapWithRecognizer:recognizer];
+    }else{
+        
+        if (![recognizer.view isKindOfClass:[CPEditImageView class]]) {
+            return;
+        }
+        
+        MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+        browser.currentPhotoIndex = recognizer.view.tag - 20;
+        NSMutableArray *photos = [NSMutableArray array];
+        for (int i = 0; i < self.photoView.subviews.count - 1; i ++) {
+            UIImageView *imageView = (UIImageView *)[self.photoView viewWithTag:i + 20];
+            MJPhoto *photo = [[MJPhoto alloc] init];
+            photo.srcImageView = imageView;
+            photo.image = imageView.image;
+            [photos addObject:photo];
+        }
+        browser.photos = photos;
+        [browser show];
     }
 }
 
@@ -339,6 +358,7 @@
     NSUInteger count = self.photoView.subviews.count;
     for (int i = 0; i < count; i++) {
         UIView *subView = self.photoView.subviews[i];
+        subView.tag = i + 20;
         subView.x = 10 + (i % 4) * (10 + imgW);
         subView.y = 14 + (i / 4) * (10 + imgH);
         subView.width = imgW;
@@ -361,7 +381,6 @@
         NSURL *url=[[NSURL alloc]initWithString:photos[i][@"thumbnail_pic"]];
         [imageView sd_setImageWithURL:url];
       
-        imageView.tag = self.picIndex++;
         UILongPressGestureRecognizer *longPressGes = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
         [imageView addGestureRecognizer:longPressGes];
         UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPress:)];
