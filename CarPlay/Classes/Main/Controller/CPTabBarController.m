@@ -141,6 +141,11 @@ static NSString *kGroupName = @"GroupName";
             [Tools setValueForKey:@(NO) key:NOTIFICATION_HASLOGIN];
             [Tools setValueForKey:nil key:@"nickName"];
             [Tools setValueForKey:nil key:@"headUrl"];
+            UINavigationController *nav = self.childViewControllers[1];
+            CPMessageController *msg = nav.childViewControllers[0];
+            if ([msg isKindOfClass:[CPMessageController class]]) {
+                [msg refreshDataSource];
+            }
             LoginViewController *loginVC=[[LoginViewController alloc]init];
             UINavigationController *nav1 = [[UINavigationController alloc] initWithRootViewController:loginVC];
             self.view.window.rootViewController=nav1;
