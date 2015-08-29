@@ -49,7 +49,7 @@
         self.countBtn.hidden = NO;
         NSString *iconCount = [NSString stringWithFormat:@"%@",@(homeMember.membersCount)];
         [self.countBtn setTitle:iconCount forState:UIControlStateNormal];
-     
+        self.iconView.image = nil;
     }else{
         self.countBtn.hidden = YES;
         NSURL *url = [NSURL URLWithString:_homeMember.photo];
