@@ -152,7 +152,7 @@ typedef enum {
             
             
             [Tools setUnreadMsg:comment[@"count"]];
-            [Tools setUnreadMsg:application[@"count"]];
+            [Tools setUnreadAct:application[@"count"]];
             CPHomeMsgModel *model = self.datas[0];
             if (newMsgCount > 0) {
                 model.content = comment[@"content"];

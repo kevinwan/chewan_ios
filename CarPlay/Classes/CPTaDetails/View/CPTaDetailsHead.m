@@ -121,7 +121,7 @@
 {
     MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
     MJPhoto *photo = [MJPhoto new];
-    photo.url = [NSURL URLWithString:self.taStatus.photo];
+    photo.url = [NSURL URLWithString:self.taStatus.originalPhoto];
     browser.photos = @[photo];
     [browser show];
 }

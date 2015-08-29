@@ -9,9 +9,9 @@
 
 #import <CommonCrypto/CommonDigest.h>
 
-#define CPUnreadActKey [[NSString alloc]initWithFormat:@"%@unreadMsg",[Tools getValueFromKey:@"userId"]]
+#define CPUnreadActKey [[NSString alloc]initWithFormat:@"%@unreadAct",[Tools getValueFromKey:@"userId"]]
 
-#define CPUnreadMsgKey [[NSString alloc]initWithFormat:@"%@unreadAct",[Tools getValueFromKey:@"userId"]]
+#define CPUnreadMsgKey [[NSString alloc]initWithFormat:@"%@unreadMsg",[Tools getValueFromKey:@"userId"]]
 
 #define CC_MD5_LENGTH 16
 

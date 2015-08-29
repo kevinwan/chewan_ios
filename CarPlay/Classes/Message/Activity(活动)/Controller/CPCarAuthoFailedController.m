@@ -56,7 +56,7 @@
     [self.view addSubview:isAllowLabel];
     
     UILabel *msgLabel = [[UILabel alloc] init];
-       msgLabel.text = self.model.remarks;
+    msgLabel.text = self.model.remarks;
     msgLabel.font = [UIFont systemFontOfSize:10];
     msgLabel.textColor = [Tools getColor:@"aab2bd"];
     [msgLabel sizeToFit];
