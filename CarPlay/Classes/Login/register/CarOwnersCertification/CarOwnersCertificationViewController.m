@@ -39,7 +39,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     if ([Tools getValueFromKey:@"userId"]) {
         [self.tableView reloadData];
-//        _organizer = [NSKeyedUnarchiver unarchiveObjectWithFile:CPDocmentPath(_fileName)];
+        _organizer = [NSKeyedUnarchiver unarchiveObjectWithFile:CPDocmentPath(_fileName)];
 //        if (_organizer && ![Tools isEmptyOrNull:_organizer.drivingLicensePhoto]) {
 //            NSURL *url=[[NSURL alloc]initWithString:_organizer.drivingLicensePhoto];
 //            [self.imageBtn sd_setImageWithURL:url];
@@ -87,7 +87,7 @@
         if (_organizer.drivingExperience) {
             cell.cellContent.text=[[NSString alloc]initWithFormat:@"%ld年",(long)_organizer.drivingExperience];
         }
-        if (data) {
+        if (_isAuthenticated == 2 && [data[@"drivingExperience"] integerValue]>0) {
             cell.cellContent.text=[[NSString alloc]initWithFormat:@"%ld年",[data[@"drivingExperience"] integerValue]];
         }
     }else{
@@ -96,7 +96,7 @@
         if (_organizer.carModel) {
             cell.cellContent.text=_organizer.carModel;
         }
-        if (data) {
+        if (_isAuthenticated == 2 && ![Tools isEmptyOrNull:data[@"carModel"]]) {
             cell.cellContent.text=data[@"carModel"];
         }
     }

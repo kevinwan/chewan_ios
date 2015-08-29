@@ -38,10 +38,6 @@
 // 头像列表
 @property (weak, nonatomic) IBOutlet UICollectionView *iconColView;
 
-// 聊天
-@property (weak, nonatomic) IBOutlet UIButton *myPlay;
-
-
 // 配图容器高度
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *pictureViewHeight;
 
@@ -214,6 +210,10 @@
                  
             
             self.taPictureDidSelected(self.publishStatus,indexPath, imgArr);
+        }
+    } else {
+        if (self.tapIcons != nil) {
+            self.tapIcons(self.publishStatus);
         }
     }
 }
