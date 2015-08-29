@@ -158,8 +158,6 @@
     // 导航栏筛选
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithNorImage:@"首页筛选" higImage:@"" title:nil target:self action:@selector(select:)];
     
-    // 加载中提醒
-    [self showLoading];
     
     // 加载活动数据
 //    [self setupLoadStatusWithIgnore:0 Key:self.selectMark SelectModel:nil];
@@ -183,9 +181,14 @@
 // 获取当前经纬度
 - (void)getLongitudeAndLatitude{
     // 获取用户经纬度和城市
+    
+    // 0. 加载中提醒
+    [self showLoading];
+    
     // 1.创建位置管理者
     INTULocationManager *mgr = [INTULocationManager sharedInstance];
     // 2.利用位置管理者获取位置
+    
     [mgr requestLocationWithDesiredAccuracy:INTULocationAccuracyRoom  timeout:5 delayUntilAuthorized:YES block:^(CLLocation *currentLocation, INTULocationAccuracy achievedAccuracy, INTULocationStatus status) {
         if (status == INTULocationStatusSuccess || status == INTULocationStatusTimedOut) {
 
@@ -198,7 +201,7 @@
 
         }else if(status ==  INTULocationStatusError)
         {
-            NSLog(@"获取经纬度失败");
+            [self showError:@"无法获取您的位置"];
         }
     }];
 }
@@ -348,7 +351,7 @@
 
     
     [ZYNetWorkTool getWithUrl:@"v1/activity/list" params:parameters success:^(id responseObject) {
-        [self disMiss];
+
         if (CPSuccess) {
             
             // 取出活动数据
@@ -379,6 +382,8 @@
             // 只有上拉或者第一次加载数据才会获取官方活动数据
             if (ignore == 0 && self.status.count) {
                 [self setupOfficialActivity];
+            }else{
+                [self disMiss];
             }
            
             // 关闭下拉刷新栏
@@ -394,6 +399,8 @@
             if (models.count == 0) {
                 [self.tableView.footer noticeNoMoreData];
             }
+        }else{
+            [self disMiss];
         }
 
     } failure:^(NSError *error) {
@@ -429,8 +436,11 @@
             }
             // 刷新表格
             [self.tableView reloadData];
+     
         }
+       [self disMiss];
     } failure:^(NSError *error) {
+        [self showError:@"加载失败"];
     }];
     
 }
