@@ -140,6 +140,10 @@
     
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [self.tabBarController.tabBar setHidden:YES];
+}
+
 // 下拉刷新
 - (void)dropDownLoadData{
     

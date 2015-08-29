@@ -597,6 +597,10 @@
 //    return 200;
 //}
 
+-(void)viewWillAppear:(BOOL)animated{
+    [self.tabBarController.tabBar setHidden:NO];
+}
+
 
 // 点击cell跳转到活动详情页
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
