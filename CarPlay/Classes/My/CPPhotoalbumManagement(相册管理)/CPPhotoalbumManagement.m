@@ -12,7 +12,7 @@
 #import "CPEditImageView.h"
 #import "MJPhotoBrowser.h"
 
-@interface CPPhotoalbumManagement ()< UIActionSheetDelegate,UIImagePickerControllerDelegate, UzysAssetsPickerControllerDelegate, UIAlertViewDelegate>
+@interface CPPhotoalbumManagement ()< UIActionSheetDelegate,UIImagePickerControllerDelegate, UzysAssetsPickerControllerDelegate, UIAlertViewDelegate,UINavigationControllerDelegate>
 @property (nonatomic, assign) CGFloat photoWH;
 @property (nonatomic, strong) NSMutableArray *editPhotoViews;
 @property (nonatomic, assign) NSUInteger picIndex;
