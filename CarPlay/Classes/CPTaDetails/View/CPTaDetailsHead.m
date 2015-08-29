@@ -33,9 +33,6 @@
 // 性别和年龄
 @property (weak, nonatomic) IBOutlet UIButton *genderAndAge;
 
-// 关注
-@property (weak, nonatomic) IBOutlet UIButton *care;
-
 // 车标
 @property (weak, nonatomic) IBOutlet UIImageView *carBrandLogo;
 

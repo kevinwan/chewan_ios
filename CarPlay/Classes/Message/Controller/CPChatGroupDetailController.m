@@ -13,6 +13,7 @@
 #import "CPMySubscribeModel.h"
 #import "UIButton+WebCache.h"
 #import "CPTaDetailsController.h"
+#import "CPMyController.h"
 
 #define MaxMemberCount 9  // 最大显示的参与成员数
 
@@ -144,10 +145,14 @@
 
     }else if (indexPath.row == 2 && self.activityId && self.orzUserId.length){
         
-        // 跳转到他的详情页
-       CPTaDetailsController *taVc = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil].instantiateInitialViewController;
-        taVc.targetUserId = self.orzUserId;
-        [self.navigationController pushViewController:taVc animated:YES];
+        
+        if ([self.orzUserId isEqualToString:[Tools getValueFromKey:@"userId"]]){
+            // 跳转到他的详情页
+            CPTaDetailsController *taVc = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil].instantiateInitialViewController;
+            taVc.targetUserId = self.orzUserId;
+            [self.navigationController pushViewController:taVc animated:YES];
+            
+        }
         
     }
 }

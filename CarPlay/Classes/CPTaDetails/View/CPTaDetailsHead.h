@@ -14,6 +14,9 @@ typedef void(^StatusSelected)(NSInteger ignore,NSString *selectStr);
 
 @interface CPTaDetailsHead : UIView
 
+// 关注
+@property (weak, nonatomic) IBOutlet UIButton *care;
+
 @property (nonatomic,strong) CPTaDetailsStatus *taStatus;
 
 // 回调函数

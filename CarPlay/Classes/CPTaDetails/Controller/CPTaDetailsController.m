@@ -80,6 +80,12 @@
     // 页面标题
     self.title = @"TA的详情";
     
+    if ([self.targetUserId isEqualToString:[Tools getValueFromKey:@"userId"]]) {
+        self.title = @"我的详情";
+    }
+    
+    
+    
     // 上拉下拉刷新
     [self topAndBottomRefresh];
     
@@ -145,6 +151,13 @@
 
 - (void)setupLoadHeadView{
     CPTaDetailsHead *head = [CPTaDetailsHead headView];
+    
+    if ([self.targetUserId isEqualToString:[Tools getValueFromKey:@"userId"]]){
+        head.care.hidden = YES;
+    }else{
+        head.care.hidden = NO;
+    }
+    
     head.taStatus = self.taStatus;
     __weak typeof(self) weakSelf = self;
     head.statusSelected = ^(NSInteger ignore,NSString *selectStr){

@@ -623,9 +623,7 @@
         CPHomeStatus *status = userInfo[@"status"];
         
         if ([self.userId isEqualToString:status.organizer.userId]) {
-            // 跳转的我的
-            [self.tabBarController setSelectedIndex:2];
-        }else{
+            
             // 跳转到他的详情
             CPTaDetailsController *taDetailsController = [[UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil] instantiateInitialViewController];
             taDetailsController.targetUserId = status.organizer.userId;
