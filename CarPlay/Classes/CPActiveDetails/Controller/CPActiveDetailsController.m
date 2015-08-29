@@ -434,15 +434,11 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        
         // 删除tableview的row对应的后台数据
         NSString *deleteId = [self.discussStatus[indexPath.row] commentId];
         NSArray *deleteIdArray = [NSArray arrayWithObject:deleteId];
-        [self deleteDiscussWithId:deleteIdArray];
+        [self deleteDiscussWithId:deleteIdArray indexPath:indexPath];
         
-        // 删除tableview的row的前台样式
-        [self.discussStatus removeObjectAtIndex:indexPath.row];
-        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
     
     
@@ -450,16 +446,23 @@
 }
 
 // 调用删除评论接口方法
-- (void)deleteDiscussWithId:(NSArray *)deleteIdArray{
+- (void)deleteDiscussWithId:(NSArray *)deleteIdArray indexPath:(NSIndexPath *)indexPath{
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     parameters[@"comments"] = deleteIdArray;
     
     NSString *postUrl = [NSString stringWithFormat:@"v1/comment/remove?userId=%@&token=%@",self.userId,self.token];
-    
+    if (CPUnLogin) {
+         [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+        return;
+    }
     
     [ZYNetWorkTool postJsonWithUrl:postUrl params:parameters success:^(id responseObject) {
         if (CPSuccess) {
             [self showSuccess:@"删除成功"];
+            
+            // 删除tableview的row的前台样式
+            [self.discussStatus removeObjectAtIndex:indexPath.row];
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }
     } failed:^(NSError *error) {
         [self showError:@"删除失败"];
@@ -599,7 +602,7 @@
                 [self.view endEditing:YES];
                 
                 // 重新获取数据
-                [self loadDiscussDataWithIgnore:0];
+                [self loadDiscussDataWithIgnore:self.discussStatus.count];
             }
  
         } failed:^(NSError *error) {
