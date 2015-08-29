@@ -630,14 +630,11 @@
     if ([eventName isEqualToString:@"IconClick"]) {
         CPHomeStatus *status = userInfo[@"status"];
         
-        if ([self.userId isEqualToString:status.organizer.userId]) {
-            
             // 跳转到他的详情
             CPTaDetailsController *taDetailsController = [[UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil] instantiateInitialViewController];
             taDetailsController.targetUserId = status.organizer.userId;
             
             [self.navigationController pushViewController:taDetailsController animated:YES];
-        }      
         
     }
 }
