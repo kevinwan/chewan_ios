@@ -12,6 +12,7 @@
 #import "ZHPickView.h"
 #import "CPEditUsernameViewController.h"
 #import "CPMySubscribeModel.h"
+#import "UIImage+Extension.h"
 
 @interface CPEditInfoTableViewController ()<UIImagePickerControllerDelegate,UIActionSheetDelegate,ZHPickViewDelegate>
 {
@@ -33,6 +34,7 @@
     self.tableView.tableFooterView=[[UIView alloc]initWithFrame:CGRectZero];
     [UIApplication sharedApplication].keyWindow.backgroundColor=[UIColor whiteColor];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removePickview) name:@"remove" object:nil];
+    self.tableView.bounces=NO;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -241,6 +243,7 @@
             [Tools setValueForKey:[data objectForKey:@"photoId"] key:@"photoId"];
             [Tools setValueForKey:[data objectForKey:@"photoUrl"] key:@"photoUrl"];
             [Tools setValueForKey:data[@"photoUrl"] key:@"headUrl"];
+            [editedImage writePngToFile:CPDocmentPath(@"avatar.png") atomically:YES];
             organizer.headImgUrl = [data objectForKey:@"photoUrl"];
             organizer.headImgId = data[@"photoId"];
             organizer.photo = data[@"photoUrl"];

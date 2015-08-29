@@ -446,9 +446,15 @@
                 [Tools setValueForKey:[data objectForKey:@"token"] key:@"token"];
                 [Tools setValueForKey:organizer.nickname key:@"nickName"];
                 [Tools setValueForKey:organizer.headImgUrl key:@"headUrl"];
-//                [CPUserDefaults valueForKey:cpr]
-                NSDictionary *attributes=[[NSDictionary alloc]initWithObjectsAndKeys:@"",@"from",nil];
-                [MobClick event:@"register_from_tipview" attributes:attributes];
+                NSString *form=@"注册";
+                if ([CPUserDefaults valueForKey:CPRegisterFrom]) {
+                    form=[CPUserDefaults valueForKey:CPRegisterFrom];
+                }
+                NSDictionary *attributes=[[NSDictionary alloc]initWithObjectsAndKeys:form,@"from",nil];
+                
+                if (attributes) {
+                    [MobClick event:@"register_from_tipview" attributes:attributes];
+                }
                 [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
                 CarOwnersCertificationViewController *CarOwnersCertificationVC=[[CarOwnersCertificationViewController alloc]init];
                 CarOwnersCertificationVC.fromMy=@"1";

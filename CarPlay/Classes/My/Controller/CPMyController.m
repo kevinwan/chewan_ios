@@ -21,6 +21,7 @@
 #import "CPEditInfoTableViewController.h"
 #import "CPPhotoalbumManagement.h"
 #import "CPSubscribePersonController.h"
+#import "UIImage+Extension.h"
 
 @interface CPMyController ()<UIScrollViewDelegate>
 {
@@ -69,6 +70,10 @@
     [self.timer invalidate];
     if ([Tools getValueFromKey:@"userId"]) {
         fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"userId"]];
+        UIImage *img=[UIImage imageWithFileName:@"avatar.png"];
+        if (img) {
+            [self.userHeadImg setImage:img];
+        }
         self.unLoginStatusView.hidden=YES;
         [self getData];
     }else{
