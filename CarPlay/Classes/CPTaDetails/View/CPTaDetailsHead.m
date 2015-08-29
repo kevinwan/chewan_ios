@@ -593,6 +593,10 @@
         
 
     }else{
+        // 关注埋点
+        [CPUserDefaults setValue:@"关注" forKey:CPRegisterFrom];
+        [CPUserDefaults synchronize];
+        
         // 未登录情况
         [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
     }

@@ -87,6 +87,7 @@
         if (organizer.photo) {
             NSURL *url=[[NSURL alloc]initWithString:organizer.photo];
             [cell.headIcon sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"morenHeadBtnImg"]];
+            [cell.headIcon setImageWithURL:url];
         }
         
         return cell;

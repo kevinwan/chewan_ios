@@ -140,6 +140,10 @@
     
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [self.tabBarController.tabBar setHidden:YES];
+}
+
 // 下拉刷新
 - (void)dropDownLoadData{
     
@@ -452,6 +456,11 @@
     
     NSString *postUrl = [NSString stringWithFormat:@"v1/comment/remove?userId=%@&token=%@",self.userId,self.token];
     if (CPUnLogin) {
+        
+        // 删除留言埋点
+        [CPUserDefaults setValue:@"删除留言" forKey:CPRegisterFrom];
+        [CPUserDefaults synchronize];
+        
          [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
         return;
     }
@@ -611,6 +620,10 @@
         
 
     }else{
+        // 留言埋点
+        [CPUserDefaults setValue:@"留言" forKey:CPRegisterFrom];
+        [CPUserDefaults synchronize];
+        
         // 未登录跳到登录页面
         [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
     }
@@ -661,6 +674,8 @@
 
 // 我要去玩按钮点击事件
 - (IBAction)GotoPlayButtonDidClick:(UIButton *)sender {
+    [CPUserDefaults setValue:@"活动详情我要去玩" forKey:CPRegisterFrom];
+    [CPUserDefaults synchronize];
     [SVProgressHUD showWithStatus:@"努力加载中"];
     //登录状态下可点 拿出创建者字段,非登录 自动跳转登录界面
     NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/info",self.activeId];
@@ -817,6 +832,10 @@
         }
     }else{
         // 未登录情况
+        // 收藏埋点
+        [CPUserDefaults setValue:@"收藏" forKey:CPRegisterFrom];
+        [CPUserDefaults synchronize];
+        
         [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
     }
 }

@@ -15,6 +15,7 @@
 #import "CarOwnersCertificationViewController.h"
 #import "CPMySubscribeModel.h"
 #import "UIButton+WebCache.h"
+#import <MobClick.h>
 
 @interface CPRegisterStep2ViewController ()<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate,ZHPickViewDelegate,UIAlertViewDelegate>
 {
@@ -445,6 +446,9 @@
                 [Tools setValueForKey:[data objectForKey:@"token"] key:@"token"];
                 [Tools setValueForKey:organizer.nickname key:@"nickName"];
                 [Tools setValueForKey:organizer.headImgUrl key:@"headUrl"];
+//                [CPUserDefaults valueForKey:cpr]
+                NSDictionary *attributes=[[NSDictionary alloc]initWithObjectsAndKeys:@"",@"from",nil];
+                [MobClick event:@"register_from_tipview" attributes:attributes];
                 [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
                 CarOwnersCertificationViewController *CarOwnersCertificationVC=[[CarOwnersCertificationViewController alloc]init];
                 CarOwnersCertificationVC.fromMy=@"1";

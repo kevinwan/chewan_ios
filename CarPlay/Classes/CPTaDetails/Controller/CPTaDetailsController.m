@@ -599,6 +599,8 @@
 //}
 - (IBAction)goToPlay:(UIButton *)sender {
 //    [SVProgressHUD showWithStatus:@"努力加载中"];
+    [CPUserDefaults setValue:@"他的详情我要去玩" forKey:CPRegisterFrom];
+    [CPUserDefaults synchronize];
     CPTaPublishStatus *model = self.taPubStatus[sender.tag];
     NSString *activeId = model.activityId;
     self.activeId = activeId;

@@ -597,6 +597,10 @@
 //    return 200;
 //}
 
+-(void)viewWillAppear:(BOOL)animated{
+    [self.tabBarController.tabBar setHidden:NO];
+}
+
 
 // 点击cell跳转到活动详情页
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -715,8 +719,13 @@
 #pragma mark - 按钮点击事件
 // 创建活动
 - (IBAction)createActive:(id)sender {
+    
     if (CPUnLogin) {
     // 未登录则提示登录
+        // 埋点
+        [CPUserDefaults setValue:@"创建活动" forKey:CPRegisterFrom];
+        [CPUserDefaults synchronize];
+        
         [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
         
     }else{
@@ -854,7 +863,8 @@
 
 // 点击我要玩
 - (IBAction)goToPlay:(UIButton *)sender {
-    
+    [CPUserDefaults setValue:@"首页我要去玩" forKey:CPRegisterFrom];
+    [CPUserDefaults synchronize];
     [SVProgressHUD showWithStatus:@"努力加载中"];
     CPHomeStatus *model = self.status[sender.tag];
     NSString *activeId = model.activityId;

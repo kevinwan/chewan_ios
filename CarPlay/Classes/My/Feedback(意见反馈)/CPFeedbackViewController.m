@@ -427,6 +427,11 @@
 -(void)submit{
     self.navigationItem.rightBarButtonItem.enabled=NO;
         if (![Tools isEmptyOrNull:self.contentTextView.text] && ![self.contentTextView.text isEqualToString:@"请简要描述你的问题和意见"]) {
+            NSString *path=@"v1/feedback/submit";
+            if(CPIsLogin){
+                path= [[NSString alloc]initWithFormat:@"v1/feedback/submit?userId=%@&token=%@",[Tools getValueFromKey:@"userId"],[Tools getValueFromKey:@"token"]];
+            }
+            
             if (_imgs.count) {
                 for (int i = 0; i < _imgs.count; i++) {
                     ZYHttpFile *imageFile = [ZYHttpFile fileWithName:@"a1.jpg" data:UIImageJPEGRepresentation(_imgs[i], 0.4) mimeType:@"image/jpeg" filename:@"a1.jpg"];
@@ -435,8 +440,8 @@
                             NSDictionary *data=[responseObject objectForKey:@"data"];
                             [photoIds insertObject:[data objectForKey:@"photoId"] atIndex:0];
                             if (i == _imgs.count-1) {
-                                NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:photoIds,@"photos",self.contentTextView.text,@"content",[Tools getValueFromKey:@"userId"],@"userId",[Tools getValueFromKey:@"token"],@"token", nil];
-                                [ZYNetWorkTool postJsonWithUrl:@"v1/feedback/submit" params:params success:^(id responseObject) {
+                                NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:photoIds,@"photos",self.contentTextView.text,@"content", nil];
+                                [ZYNetWorkTool postJsonWithUrl:path params:params success:^(id responseObject) {
                                     self.navigationItem.rightBarButtonItem.enabled=YES;
                                     if (CPSuccess) {
                                         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"感谢您的反馈" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
@@ -461,9 +466,9 @@
                     }];
                 }
             }else{
-                NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:@"",@"photos",self.contentTextView.text,@"content",[Tools getValueFromKey:@"userId"],@"userId",[Tools getValueFromKey:@"token"],@"token", nil];
+                NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:@"",@"photos",self.contentTextView.text,@"content", nil];
                 NSLog(@"%@",params);
-                [ZYNetWorkTool postJsonWithUrl:@"v1/feedback/submit" params:params success:^(id responseObject) {
+                [ZYNetWorkTool postJsonWithUrl:path params:params success:^(id responseObject) {
                     if (CPSuccess) {
                         self.navigationItem.rightBarButtonItem.enabled=YES;
                         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"感谢您的反馈" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
