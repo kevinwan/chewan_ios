@@ -240,6 +240,9 @@
  */
 - (void)clickUserIcon
 {
+    if ([_frameModel.model.organizer.role isEqualToString:@"官方用户"]) {
+        return;
+    }
     NSString *userId = _frameModel.model.organizer.userId;
     if (userId.length) {
         [CPNotificationCenter postNotificationName:CPClickUserIconNotification object:nil userInfo:@{CPClickUserIconInfo : userId}];
