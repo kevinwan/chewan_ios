@@ -1067,7 +1067,7 @@ typedef enum {
         self.currentModel.currentDistrict = @"";
     }
     
-    NSDictionary *params = [self.currentModel keyValues];
+    NSDictionary *params = [CPCreatActivityModelTool paramsWithLocalModel:self.currentModel];
 
     DLog(@"%@",params);
     [CPNetWorkTool postJsonWithUrl:@"v1/activity/register" params:params success:^(id responseObject) {
