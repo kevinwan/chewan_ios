@@ -317,13 +317,13 @@
             parameters[@"gender"] = @"";
         }
         
-        if (selectModel.city != nil) {
+        if (selectModel.city && ![selectModel.city isEqualToString:@"不限"]) {
             parameters[@"city"] = selectModel.city;
         }else{
             parameters[@"city"] = @"";
         }
         
-        if (selectModel.district != nil) {
+        if (selectModel.district.length && ![selectModel.district isEqualToString:@"不限"]) {
             parameters[@"district"] = selectModel.district;
         }else{
             parameters[@"district"] = @"";
@@ -821,7 +821,7 @@
     [selectView dismissWithCompletion:nil];
     
     // 根据result中的参数 重新发送请求 刷新表格 reloadData
-//    NSLog(@"%@",[result keyValues]);
+    NSLog(@"%@",[result keyValues]);
     self.selectResult = result;
     
     [self setupLoadStatusWithIgnore:0 Key:@"hot" SelectModel:result];

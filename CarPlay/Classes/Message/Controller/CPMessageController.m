@@ -249,7 +249,7 @@ typedef enum {
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
     if (indexPath.row == 1) {
         
-                CPActivityApplyControllerView *vc = [UIStoryboard storyboardWithName:@"CPActivityApplyControllerView" bundle:nil].instantiateInitialViewController;
+        CPActivityApplyControllerView *vc = [UIStoryboard storyboardWithName:@"CPActivityApplyControllerView" bundle:nil].instantiateInitialViewController;
         [self.navigationController pushViewController:vc animated:YES];
         
         CPHomeMsgModel *model = self.datas[1];
@@ -267,7 +267,8 @@ typedef enum {
         model.content = @"暂无消息";
         model.createTime = 0;
         [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-    }else if (indexPath.row == 0){      CPNewMessageController *newMsgVc = [UIStoryboard storyboardWithName:@"CPNewMessageController" bundle:nil].instantiateInitialViewController;
+    }else if (indexPath.row == 0){
+        CPNewMessageController *newMsgVc = [UIStoryboard storyboardWithName:@"CPNewMessageController" bundle:nil].instantiateInitialViewController;
         [self.navigationController pushViewController:newMsgVc animated:YES];
         
         CPHomeMsgModel *model = self.datas[0];

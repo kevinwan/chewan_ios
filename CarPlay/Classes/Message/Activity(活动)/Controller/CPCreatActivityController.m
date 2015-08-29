@@ -1069,6 +1069,7 @@ typedef enum {
     
     NSDictionary *params = [self.currentModel keyValues];
 
+    DLog(@"%@",params);
     [CPNetWorkTool postJsonWithUrl:@"v1/activity/register" params:params success:^(id responseObject) {
         
         if (CPSuccess){

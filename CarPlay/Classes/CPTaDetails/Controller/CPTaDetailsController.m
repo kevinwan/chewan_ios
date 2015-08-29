@@ -166,11 +166,12 @@
     }
     if (self.token != nil) {
         parameters[@"token"] = self.token;
-    };;
+    };
     
     NSString *getUrl = [NSString stringWithFormat:@"v1/user/%@/info",self.targetUserId];
     
     [ZYNetWorkTool getWithUrl:getUrl params:parameters success:^(id responseObject) {
+
         [self disMiss];
         if (CPSuccess) {
             // 字典转模型
