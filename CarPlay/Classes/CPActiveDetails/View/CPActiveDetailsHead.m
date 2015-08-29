@@ -374,9 +374,11 @@
 // 点击头像跳转到他的详情页
 - (IBAction)iconBtnClick:(id)sender {
     
-    // 已登录通知控制器跳到他的详情页面
-    if (self.goTaDetails != nil) {
-        self.goTaDetails();
+    if (!self.isOfficialActivity) {
+        // 已登录通知控制器跳到他的详情页面
+        if (self.goTaDetails != nil) {
+            self.goTaDetails();
+        }
     }
     
 }
