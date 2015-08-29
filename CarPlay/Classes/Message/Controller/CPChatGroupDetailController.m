@@ -40,9 +40,9 @@
 
 @implementation CPChatGroupDetailController
 
-- (void)viewDidLoad
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidLoad];
+    [super viewWillAppear:animated];
     [self showLoading];
     NSString *url = [NSString stringWithFormat:@"v1/activity/%@/info",self.activityId];
     NSString *userId = [Tools getValueFromKey:@"userId"];
@@ -59,6 +59,9 @@
             CGFloat maxX = 0;
             NSArray *members = model.members;
             CGFloat count = members.count > MaxMemberCount ? MaxMemberCount : members.count;
+            
+            // 清空之前所有的members
+            [self.memberPhotoView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
             for (int i = 0 ; i < count; i ++) {
                 CPOrganizer *meb = members[i];
                 CPIconButton *btn = [CPIconButton buttonWithType:UIButtonTypeCustom];
