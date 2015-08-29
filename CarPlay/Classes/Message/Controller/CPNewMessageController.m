@@ -120,7 +120,7 @@
     }];
     
     self.tableView.footer.hidden = YES;
-    ZYJumpToLoginView // 跳转到登录页面
+    ZYJumpToLoginView(@"新的留言") // 跳转到登录页面
     
 }
 - (void)viewWillAppear:(BOOL)animated

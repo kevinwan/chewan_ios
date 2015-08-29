@@ -45,7 +45,7 @@
     }];
     
     self.tableView.footer.hidden = YES;
-    ZYJumpToLoginView
+    ZYJumpToLoginView(@"我关注的人")
 }
 
 - (void)viewWillAppear:(BOOL)animated

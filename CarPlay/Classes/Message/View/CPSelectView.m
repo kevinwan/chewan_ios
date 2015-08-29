@@ -11,7 +11,7 @@
 #import "ZHPickView.h"
 #import "ZYSegmentControl.h"
 #import "HZAreaPickerView.h"
-#define CPSelectModelPath CPDocmentPath(@"CPSelectModel.data")
+#define CPSelectModelPath CPDocmentPath([[Tools getValueFromKey:@"userId"] stringByAppendingString:@"CPSelectModel.data"])
 @interface CPSelectView ()<ZHPickViewDelegate,HZAreaPickerDelegate>
 
 @property (nonatomic, strong) ZHPickView *pickerView;
@@ -78,11 +78,11 @@
 {
     [view addSubview:self];
     
-//    if (CPIsLogin) {
+    if (CPIsLogin) {
     
         [self loadData];
-//    }
-    
+    }
+
     [UIView animateWithDuration:0.25 animations:^{
         self.y = view.height - 360;
     }];
@@ -231,7 +231,9 @@
     
     if ([self.delegate respondsToSelector:@selector(selectView:finishBtnClick:)]) {
         
-        [NSKeyedArchiver archiveRootObject:self.model toFile:CPSelectModelPath];
+        if (CPIsLogin) {
+            [NSKeyedArchiver archiveRootObject:self.model toFile:CPSelectModelPath];
+        }
         
         [self.delegate selectView:self finishBtnClick:self.model];
     }

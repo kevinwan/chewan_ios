@@ -67,7 +67,7 @@
     }];
     
     self.tableView.footer.hidden = YES;
-    ZYJumpToLoginView // 跳转到登录界面
+    ZYJumpToLoginView(@"我的收藏") // 跳转到登录界面
 }
 
 - (void)reRefreshData

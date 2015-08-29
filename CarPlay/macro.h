@@ -97,8 +97,10 @@ typedef enum _BasicViewControllerInfo {
 #define CPUnLogin (![Tools cpIsLogin]) // 是否登录成功
 #define CPSuccess ([responseObject[@"result"] intValue] == 0)
 #define CPFailure ([responseObject[@"result"] intValue] == 1)
-#define ZYJumpToLoginView \
+#define ZYJumpToLoginView(path) \
 if (CPUnLogin) {\
+    [CPUserDefaults setValue:path forKey:CPRegisterFrom];\
+    [CPUserDefaults synchronize];\
     [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];\
     return;\
 }
@@ -148,4 +150,6 @@ _##name = [property.type.typeClass new];\
 }\
 return _##name;\
 }
+
+#define CPRegisterFrom @"CPRegisterFrom"
 @end

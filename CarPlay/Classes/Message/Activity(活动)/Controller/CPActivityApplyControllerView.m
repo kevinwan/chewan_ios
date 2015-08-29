@@ -154,7 +154,7 @@
     }];
     
     self.tableView.footer.hidden = YES;
-    ZYJumpToLoginView // 跳转到登录页面
+    ZYJumpToLoginView(@"活动消息") // 跳转到登录页面
 }
 
 - (void)viewWillAppear:(BOOL)animated

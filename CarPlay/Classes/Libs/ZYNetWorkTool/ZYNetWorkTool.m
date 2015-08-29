@@ -14,6 +14,7 @@
 
 + (void)postWithUrl:(NSString *)url params:(id)params success:(void (^)(id))success failure:(void (^)(NSError *))failure
 {
+    
     if (url.length == 0)return;
     // 1.创建一个请求管理者<单例不必考虑内存问题>
     ZYNetWorkManager *mgr = [ZYNetWorkManager sharedInstances];
@@ -243,6 +244,16 @@
             failed(error);
         }
     }];
+}
+
++ (void)calculateRegisterFrom:(NSString *)url
+{
+    if (CPUnLogin) {
+        if (![url isEqualToString:@"v1/user/register"] && ![url isEqualToString:@""]) {
+            [CPUserDefaults setValue:url forKey:@"CPRegisterFrom"];
+            [CPUserDefaults synchronize];
+        }
+    }
 }
 
 @end
