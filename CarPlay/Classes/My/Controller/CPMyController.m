@@ -25,7 +25,7 @@
 @interface CPMyController ()<UIScrollViewDelegate>
 {
     NSDictionary *data;
-    NSArray *albumPhotos;
+    NSMutableArray *albumPhotos;
     NSArray *titleArray;
     NSArray *iconArray;
     CPOrganizer *organizer;
@@ -39,7 +39,7 @@
     [super viewDidLoad];
     data=[[NSDictionary alloc]init];
     organizer=[[CPOrganizer alloc]init];
-    albumPhotos=[[NSArray alloc]init];
+    albumPhotos=[[NSMutableArray alloc]init];
     titleArray=[[NSArray alloc]initWithObjects:@"我关注的人",@"车主认证",@"玩转车玩",@"意见反馈",@"编辑资料", nil];
     iconArray=[[NSArray alloc]initWithObjects:@"我关注的人",@"车主认证",@"玩转玩车",@"意见反馈",@"活动介绍", nil];
     self.userHeadImg.layer.cornerRadius=25;
@@ -286,7 +286,12 @@
         if (CPSuccess) {
             data=[responseObject objectForKey:@"data"];
             if(data && [data objectForKey:@"albumPhotos"]){
-                albumPhotos=[data objectForKey:@"albumPhotos"];
+                if ([[data objectForKey:@"albumPhotos"] count] > 0) {
+                     albumPhotos=[data objectForKey:@"albumPhotos"];
+                }else{
+                    _pageControl.numberOfPages = 0;
+                    [self createScrollViewAndPagController];
+                }
             }
             if (data) {
                 CPOrganizer *organizer1= [CPOrganizer objectWithKeyValues:data];
@@ -346,6 +351,8 @@
             self.pageControl.currentPage = 0;
             // 启动时钟
             [self startTimer];
+        }else{
+            
         }
         
         if (organizer.photo) {
