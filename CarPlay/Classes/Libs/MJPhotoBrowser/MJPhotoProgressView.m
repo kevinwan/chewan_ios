@@ -23,7 +23,7 @@
         _progressLabel.text = @"0%";
         _progressLabel.textColor = [UIColor whiteColor];
         [_progressLabel sizeToFit];
-        _progressLabel.font = [UIFont boldSystemFontOfSize:12];
+        _progressLabel.font = [UIFont boldSystemFontOfSize:10];
         [self addSubview:_progressLabel];
     }
     return self;
