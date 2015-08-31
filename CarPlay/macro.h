@@ -15,6 +15,8 @@
 
 //接口地址
 #define BASE_URL @"http://chewanapi.gongpingjia.com:80/"
+
+// 测试服务器接口地址
 //#define BASE_URL @"http://cwapi.gongpingjia.com/"
 
 //测试接口地址
