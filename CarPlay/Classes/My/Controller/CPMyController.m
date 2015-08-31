@@ -70,10 +70,6 @@
     [self.timer invalidate];
     if ([Tools getValueFromKey:@"userId"]) {
         fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"userId"]];
-        UIImage *img=[UIImage imageWithFileName:@"avatar.png"];
-        if (img) {
-            [self.userHeadImg setImage:img];
-        }
         self.unLoginStatusView.hidden=YES;
         [self getData];
     }else{
@@ -360,12 +356,18 @@
         
         if (organizer.photo) {
             NSURL *url = [[NSURL alloc]initWithString:organizer.photo];
+            NSLog(@"0000000000%@",url);
             [Tools setValueForKey:organizer.photo key:@"photoUrl"];
             [self.userHeadImg sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"morenHeadBtnImg"]];
         }else{
             [self.userHeadImg setImage:[UIImage imageNamed:@"morenHeadBtnImg"]];
         }
         
+//        NSString *path=[NSString stringWithFormat:@"%@avatar.png",[Tools getValueFromKey:@"userId"]];
+//        UIImage *img=[UIImage imageWithFileName:path];
+//        if (img) {
+//            [self.userHeadImg setImage:img];
+//        }
         if (organizer.nickname) {
             UIFont *font = [UIFont systemFontOfSize:16.0f];
             CGSize size = CGSizeMake(SCREEN_WIDTH-120.0,100.0);
