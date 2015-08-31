@@ -58,10 +58,8 @@
 /** 可用座位数 */
 @property (nonatomic, copy) NSString *holdingSeat;
 
-
 /** 活动类型 */
 @property (nonatomic, copy) NSString *type;
-
 
 /** 是否为活动创建者 */
 @property (nonatomic,assign) NSInteger isOrganizer;
