@@ -24,6 +24,9 @@
 // 用户token
 @property (nonatomic,copy) NSString *token;
 
+// 关注
+@property (weak, nonatomic) IBOutlet UIButton *care;
+
 // 头像
 @property (weak, nonatomic) IBOutlet UIImageView *photo;
 
