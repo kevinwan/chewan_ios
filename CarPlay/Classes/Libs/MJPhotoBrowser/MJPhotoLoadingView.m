@@ -12,7 +12,7 @@
 
 @interface MJPhotoLoadingView ()
 {
-    UILabel *_failureLabel;
+    UIImageView *_failureLabel;
     MJPhotoProgressView *_progressView;
 }
 
@@ -30,13 +30,12 @@
     [_progressView removeFromSuperview];
     
     if (_failureLabel == nil) {
-        _failureLabel = [[UILabel alloc] init];
-        _failureLabel.bounds = CGRectMake(0, 0, self.bounds.size.width, 44);
-        _failureLabel.textAlignment = NSTextAlignmentCenter;
-        _failureLabel.center = self.center;
-        _failureLabel.text = @"网络不给力,图片下载失败";
-        _failureLabel.font = [UIFont boldSystemFontOfSize:16];
-        _failureLabel.textColor = [UIColor whiteColor];
+        _failureLabel = [[UIImageView alloc] init];
+        _failureLabel.image = [UIImage imageNamed:@"imageplace"];
+        _failureLabel.width = kScreenWidth;
+        _failureLabel.height = kScreenWidth;
+        _failureLabel.y = (kScreenHeight - kScreenWidth) * 0.5;
+        _failureLabel.x = 0;
         _failureLabel.backgroundColor = [UIColor clearColor];
         _failureLabel.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     }
@@ -49,7 +48,7 @@
     
     if (_progressView == nil) {
         _progressView = [[MJPhotoProgressView alloc] init];
-        _progressView.bounds = CGRectMake( 0, 0, 30, 30);
+        _progressView.bounds = CGRectMake(0, 0, 30, 30);
         _progressView.center = self.center;
     }
     _progressView.progress = kMinProgress;
