@@ -36,12 +36,12 @@
 #warning SDK注册 APNS文件的名字, 需要与后台上传证书时的名字一一对应
     NSString *apnsCertName = nil;
 #if DEBUG
-    apnsCertName = @"carPlayApns";
+    apnsCertName = @"carplayApnsProduction";
 #else
     apnsCertName = @"carplayApnsProduction";
 #endif
     if (![self isSpecifyServer]) {
-        [[EaseMob sharedInstance] registerSDKWithAppKey:@"gongpingjia#chewantest"
+        [[EaseMob sharedInstance] registerSDKWithAppKey:@"gongpingjia#carchatinhouse"
                                            apnsCertName:apnsCertName
                                             otherConfig:@{kSDKConfigEnableConsoleLogger:@YES}];
     }

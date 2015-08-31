@@ -243,7 +243,7 @@
             [Tools setValueForKey:[data objectForKey:@"photoId"] key:@"photoId"];
             [Tools setValueForKey:[data objectForKey:@"photoUrl"] key:@"photoUrl"];
             [Tools setValueForKey:data[@"photoUrl"] key:@"headUrl"];
-            [editedImage writePngToFile:CPDocmentPath(@"avatar.png") atomically:YES];
+            [[SDImageCache sharedImageCache] removeImageForKey:[data objectForKey:@"photoUrl"]];
             organizer.headImgUrl = [data objectForKey:@"photoUrl"];
             organizer.headImgId = data[@"photoId"];
             organizer.photo = data[@"photoUrl"];

@@ -128,7 +128,7 @@
 //            [self showError:error.description];
 //        }
         
-        [[EaseMob sharedInstance].chatManager asyncLogoffWithCompletion:^(NSDictionary *info, EMError *error) {
+        [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES completion:^(NSDictionary *info, EMError *error) {
             if (error) {
                 [self showError:error.description];
             }
