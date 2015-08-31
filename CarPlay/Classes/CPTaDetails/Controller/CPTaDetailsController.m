@@ -572,6 +572,11 @@
 - (void)routerEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userInfo{
     if ([eventName isEqualToString:@"IconClick"]) {
         CPHomeStatus *status = userInfo[@"status"];
+        
+        if ([status.organizer.userId isEqualToString:self.userId] || [status.organizer.role isEqualToString:@"官方用户"]) {
+            return;
+        }
+        
         CPTaDetailsController *taDetailsController = [[UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil] instantiateInitialViewController];
         taDetailsController.targetUserId = status.organizer.userId;
         [self.navigationController pushViewController:taDetailsController animated:YES];
