@@ -191,8 +191,14 @@
  */
 - (void)userIconClick:(NSNotification *)notify
 {
+    NSString *userId = notify.userInfo[CPClickUserIconInfo];
+    
+    if ([[Tools getValueFromKey:@"userId"] isEqualToString:userId]) {
+        return;
+    }
+    
     CPTaDetailsController *vc = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil].instantiateInitialViewController;
-    vc.targetUserId = notify.userInfo[CPClickUserIconInfo];
+    vc.targetUserId = userId;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

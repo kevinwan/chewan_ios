@@ -37,6 +37,7 @@
 // 组织者的userId
 @property (nonatomic, copy) NSString *orzUserId;
 
+@property (weak, nonatomic) IBOutlet UIImageView *organizerArrow;
 @end
 
 @implementation CPChatGroupDetailController
@@ -91,6 +92,9 @@
             
             self.introduceCellHeight = height + 62;
             CPOrganizer *orz = model.organizer;
+            if ([orz.userId isEqualToString:[Tools getValueFromKey:@"userId"]]) {
+                self.organizerArrow.hidden = YES;
+            }
             self.orzUserId = orz.userId;
             self.organizerButton.icon = orz.photo;
             self.organizerButton.name = orz.nickname;
@@ -145,14 +149,14 @@
 
     }else if (indexPath.row == 2 && self.activityId && self.orzUserId.length){
         
-        
         if ([self.orzUserId isEqualToString:[Tools getValueFromKey:@"userId"]]){
-            // 跳转到他的详情页
-            CPTaDetailsController *taVc = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil].instantiateInitialViewController;
-            taVc.targetUserId = self.orzUserId;
-            [self.navigationController pushViewController:taVc animated:YES];
-            
+            return;
         }
+        
+        // 跳转到他的详情页
+        CPTaDetailsController *taVc = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil].instantiateInitialViewController;
+        taVc.targetUserId = self.orzUserId;
+        [self.navigationController pushViewController:taVc animated:YES];
         
     }
 }
