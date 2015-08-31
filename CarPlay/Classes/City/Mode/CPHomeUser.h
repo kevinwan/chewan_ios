@@ -34,6 +34,7 @@
 // 头像
 @property (nonatomic,copy) NSString *photo;
 
-
+// 是否为官方活动
+@property (nonatomic,copy) NSString *role;
 
 @end

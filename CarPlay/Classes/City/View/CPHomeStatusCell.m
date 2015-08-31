@@ -79,6 +79,12 @@
 // 配图collectionView
 @property (weak, nonatomic) IBOutlet UICollectionView *pictureView;
 
+// 昵称距离顶部高度
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *nicknameConstraint;
+
+// 发布时间距离顶部高度
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *publishTimeConstraint;
+
 
 @end
 
@@ -277,6 +283,16 @@
     CGSize pictureViewSize = [self caclPictureViewSize];
     self.pictureViewHeight.constant = pictureViewSize.height;
     self.pictureViewWidth.constant = pictureViewSize.width;
+    
+    
+    // 是否为官方活动
+    if ([status.organizer.role isEqualToString:@"官方用户"]) {
+        self.genderAndAge.hidden = YES;
+        self.carBrandLogo.hidden = YES;
+        self.states.hidden = YES;
+        self.nicknameConstraint.constant = 33;
+        self.publishTimeConstraint.constant = 35;
+    }
     
     
     // 刷新，collectionView数据清零

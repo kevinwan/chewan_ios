@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2Fw-dm-mk1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2Fw-dm-mk1">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -517,7 +517,7 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="-12" maxY="0.0"/>
-                                                    <state key="normal" backgroundImage="1147F90D-A808-4ED5-BB8A-7319BC287C37">
+                                                    <state key="normal" backgroundImage="C86427BD-FF12-4F6E-92BA-CE48685421AD">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
@@ -528,7 +528,7 @@
                                                         <constraint firstAttribute="width" constant="14" id="l7K-EO-Myp"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="E32C38B7-3D0B-43DA-B2DA-1E6F1B0492BA" translatesAutoresizingMaskIntoConstraints="NO" id="FNF-gb-wzr">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="地点" translatesAutoresizingMaskIntoConstraints="NO" id="FNF-gb-wzr">
                                                     <rect key="frame" x="261" y="187" width="14" height="14"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="14" id="pf6-sR-CRZ"/>
@@ -568,6 +568,7 @@
                                                 <constraint firstItem="wMO-kh-gcd" firstAttribute="leading" secondItem="Y51-1m-1vl" secondAttribute="trailing" constant="31" id="TBy-sY-SAv"/>
                                                 <constraint firstAttribute="trailing" secondItem="Yof-Xe-osY" secondAttribute="trailing" constant="10" id="UW5-3y-Y6P"/>
                                                 <constraint firstItem="6YJ-gV-eaA" firstAttribute="top" secondItem="u8c-eZ-8f5" secondAttribute="bottom" constant="10" id="YGt-BG-tXF"/>
+                                                <constraint firstItem="yfI-cI-j6c" firstAttribute="top" secondItem="yqS-XP-9iE" secondAttribute="top" constant="1" id="bCp-RV-fjC"/>
                                                 <constraint firstItem="FNF-gb-wzr" firstAttribute="top" secondItem="2As-lK-tfK" secondAttribute="bottom" constant="5" id="cIv-IH-bE2"/>
                                                 <constraint firstItem="2As-lK-tfK" firstAttribute="leading" secondItem="If5-Ln-PgX" secondAttribute="leading" id="cai-mP-l5Q"/>
                                                 <constraint firstItem="yqS-XP-9iE" firstAttribute="top" secondItem="bSf-eI-bFG" secondAttribute="top" constant="24" id="ea3-XL-NzR"/>
@@ -578,7 +579,6 @@
                                                 <constraint firstItem="M1f-bA-5U9" firstAttribute="leading" secondItem="Chj-zN-WHb" secondAttribute="trailing" id="noL-yZ-glz"/>
                                                 <constraint firstItem="Yof-Xe-osY" firstAttribute="leading" secondItem="FNF-gb-wzr" secondAttribute="trailing" constant="4" id="nyg-uf-eVh"/>
                                                 <constraint firstItem="6rt-mT-0lG" firstAttribute="leading" secondItem="2As-lK-tfK" secondAttribute="leading" id="rU9-hA-lXh"/>
-                                                <constraint firstItem="yfI-cI-j6c" firstAttribute="top" secondItem="bSf-eI-bFG" secondAttribute="top" constant="25" id="sKA-Zs-B07"/>
                                                 <constraint firstItem="3gB-hH-Da9" firstAttribute="top" secondItem="2As-lK-tfK" secondAttribute="bottom" constant="5" id="uMp-WB-47q"/>
                                                 <constraint firstItem="Chj-zN-WHb" firstAttribute="leading" secondItem="bSf-eI-bFG" secondAttribute="leading" constant="22" id="v4j-ag-pjM"/>
                                                 <constraint firstItem="6YJ-gV-eaA" firstAttribute="leading" secondItem="Y51-1m-1vl" secondAttribute="trailing" constant="10" id="wyU-w1-DCh"/>
@@ -598,6 +598,7 @@
                                             <outlet property="loction" destination="Yof-Xe-osY" id="hHm-jD-df7"/>
                                             <outlet property="myPlay" destination="GEF-X1-kV3" id="gZ0-Vo-XLy"/>
                                             <outlet property="nickname" destination="u8c-eZ-8f5" id="DEO-EK-MPX"/>
+                                            <outlet property="nicknameConstraint" destination="0rF-04-zJG" id="JpO-CZ-PyP"/>
                                             <outlet property="pay" destination="xuY-k0-Uoy" id="jmK-mu-tBg"/>
                                             <outlet property="payView" destination="Hgq-d0-WXo" id="mrE-hu-BQk"/>
                                             <outlet property="photo" destination="Y51-1m-1vl" id="OPb-6j-R5J"/>
@@ -605,6 +606,7 @@
                                             <outlet property="pictureViewHeight" destination="TER-bJ-q8X" id="8iD-uE-ePm"/>
                                             <outlet property="pictureViewWidth" destination="Jhc-P4-mfd" id="bPB-6x-BPX"/>
                                             <outlet property="publishTime" destination="yqS-XP-9iE" id="Xrg-cU-W6E"/>
+                                            <outlet property="publishTimeConstraint" destination="ea3-XL-NzR" id="EJ8-ER-ufw"/>
                                             <outlet property="start" destination="3gB-hH-Da9" id="L5O-un-aFC"/>
                                             <outlet property="states" destination="wMO-kh-gcd" id="Gli-ui-c6I"/>
                                             <outlet property="totalSeat" destination="M1f-bA-5U9" id="GIn-CD-wed"/>
@@ -636,7 +638,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="1147F90D-A808-4ED5-BB8A-7319BC287C37" width="32" height="14">
+        <image name="C86427BD-FF12-4F6E-92BA-CE48685421AD" width="32" height="14">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -715,68 +717,6 @@ ZEFyY2hpdmVy0UBBVHJvb3SAAQAIABEAGgAjAC0AMgA3AEYATABXAF4AZQByAHkAgQCDAIUAigCMAI4A
 lwCcAKcAqQCrAK0AsgC1ALcAuQC7AL0AwgDZANsA3RBPEFQQXxBoEHsQfxCSEJ0QphCrELMQthC7EMoQ
 zhDVEN0Q6hDvEPEQ8xD4EQARAxEIERARExElESgRLQAAAAAAAAIBAAAAAAAAAEIAAAAAAAAAAAAAAAAA
 ABEvA
-</mutableData>
-        </image>
-        <image name="E32C38B7-3D0B-43DA-B2DA-1E6F1B0492BA" width="13" height="13">
-            <mutableData key="keyedArchiveRepresentation">
-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
-AASkcnVSVQAAACIAAATQYXJFRwAAACYAAATyZW5VUwAAACYAAAUYZGFESwAAAC4AAAU+AFYBYQBlAG8A
-YgBlAGMAbgD9ACAAUgBHAEIAIABwAHIAbwBmAGkAbABHAGUAbgBlAHIAaQENAGsAaQAgAFIARwBCACAA
-cAByAG8AZgBpAGwAUABlAHIAZgBpAGwAIABSAEcAQgAgAGcAZQBuAOgAcgBpAGMAUABlAHIAZgBpAGwA
-IABSAEcAQgAgAEcAZQBuAOkAcgBpAGMAbwQXBDAEMwQwBDsETAQ9BDgEOQAgBD8EQAQ+BEQEMAQ5BDsA
-IABSAEcAQgBQAHIAbwBmAGkAbAAgAGcA6QBuAOkAcgBpAHEAdQBlACAAUgBWAEKQGnUoACAAUgBHAEIA
-IIJyX2ljz4/wAFAAcgBvAGYAaQBsAG8AIABSAEcAQgAgAGcAZQBuAGUAcgBpAGMAbwBHAGUAbgBlAHIA
-aQBzAGsAIABSAEcAQgAtAHAAcgBvAGYAaQBsx3y8GAAgAFIARwBCACDVBLhc0wzHfABPAGIAZQBjAG4A
-/QAgAFIARwBCACAAcAByAG8AZgBpAGwF5AXoBdUF5AXZBdwAIABSAEcAQgAgBdsF3AXcBdkAQQBsAGwA
-ZwBlAG0AZQBpAG4AZQBzACAAUgBHAEIALQBQAHIAbwBmAGkAbADBAGwAdABhAGwA4QBuAG8AcwAgAFIA
-RwBCACAAcAByAG8AZgBpAGxmbpAaACAAUgBHAEIAIGPPj/Blh072TgCCLAAgAFIARwBCACAw1zDtMNUw
-oTCkMOsAUAByAG8AZgBpAGwAIABSAEcAQgAgAGcAZQBuAGUAcgBpAGMDkwO1A70DuQO6A8wAIAPAA8ED
-vwPGA68DuwAgAFIARwBCAFAAZQByAGYAaQBsACAAUgBHAEIAIABnAGUAbgDpAHIAaQBjAG8AQQBsAGcA
-ZQBtAGUAZQBuACAAUgBHAEIALQBwAHIAbwBmAGkAZQBsDkIOGw4jDkQOHw4lDkwAIABSAEcAQgAgDhcO
-MQ5IDicORA4bAEcAZQBuAGUAbAAgAFIARwBCACAAUAByAG8AZgBpAGwAaQBZAGwAZQBpAG4AZQBuACAA
-UgBHAEIALQBwAHIAbwBmAGkAaQBsAGkAVQBuAGkAdwBlAHIAcwBhAGwAbgB5ACAAcAByAG8AZgBpAGwA
-IABSAEcAQgQeBDEESQQ4BDkAIAQ/BEAEPgREBDgEOwRMACAAUgBHAEIGRQZEBkEAIAYqBjkGMQZKBkEA
-IABSAEcAQgAgBicGRAY5BicGRQBHAGUAbgBlAHIAaQBjACAAUgBHAEIAIABQAHIAbwBmAGkAbABlAEcA
-ZQBuAGUAcgBlAGwAIABSAEcAQgAtAGIAZQBzAGsAcgBpAHYAZQBsAHMAZXRleHQAAAAAQ29weXJpZ2h0
-IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC4AWFlaIAAAAAAAAPNSAAEAAAABFs9Y
-WVogAAAAAAAAdE0AAD3uAAAD0FhZWiAAAAAAAABadQAArHMAABc0WFlaIAAAAAAAACgaAAAVnwAAuDZj
-dXJ2AAAAAAAAAAEBzQAAc2YzMgAAAAAAAQxCAAAF3v//8yYAAAeSAAD9kf//+6L///2jAAAD3AAAwGzS
-JSYnKFokY2xhc3NuYW1lWCRjbGFzc2VzXxAQTlNCaXRtYXBJbWFnZVJlcKMpKitfEBBOU0JpdG1hcElt
-YWdlUmVwWk5TSW1hZ2VSZXBYTlNPYmplY3TSJSYtLldOU0FycmF5oi0r0iUmMDFeTlNNdXRhYmxlQXJy
-YXmjMC0r0zM0CjU2N1dOU1doaXRlXE5TQ29sb3JTcGFjZUQwIDAAEAOADNIlJjk6V05TQ29sb3KiOSvS
-JSY8PVdOU0ltYWdlojwrXxAPTlNLZXllZEFyY2hpdmVy0UBBVHJvb3SAAQAIABEAGgAjAC0AMgA3AEYA
-TABXAF4AZQByAHkAgQCDAIUAigCMAI4AlwCcAKcAqQCrAK0AsgC1ALcAuQC7AL0AwgDZANsA3QvzC/gM
-AwwMDB8MIww2DEEMSgxPDFcMWgxfDG4Mcgx5DIEMjgyTDJUMlwycDKQMpwysDLQMtwzJDMwM0QAAAAAA
-AAIBAAAAAAAAAEIAAAAAAAAAAAAAAAAAAAzTA
 </mutableData>
         </image>
         <image name="地点" width="13" height="13"/>
