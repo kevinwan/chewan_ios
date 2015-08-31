@@ -166,6 +166,7 @@
                     <connections>
                         <outlet property="introduceLabel" destination="t4c-nj-ho3" id="vV5-Uf-jN0"/>
                         <outlet property="memberPhotoView" destination="FN1-gZ-Q2I" id="4eF-SC-ZPv"/>
+                        <outlet property="organizerArrow" destination="sPo-GR-9In" id="30c-kO-7Gh"/>
                         <outlet property="organizerButton" destination="Tg3-2B-dyy" id="sGz-sy-v1F"/>
                     </connections>
                 </tableViewController>

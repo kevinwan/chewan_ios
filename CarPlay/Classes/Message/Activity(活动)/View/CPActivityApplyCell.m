@@ -81,7 +81,6 @@
         }
         
     }
-    
 
     if (isActivityApply) {
 
@@ -97,48 +96,14 @@
             self.offerSeatLabel.attributedText = nil;
         }
         
-        
     }
     
     self.tipmsgLabel.attributedText = model.text;
     
-    
- 
-
-    
-//
-//    
-//    // 1. 活动申请处理
-//    if ([model.type isEqualToString:@"活动申请处理"]){
-////        self.tipMsgLabelWidth.constant = kScreenWidth -  150;
-//        if (model.carBrandLogo.length) {
-//            
-//            
-//            self.agreeBtnTopMargin.constant = 10;
-//            self.carView.hidden = NO;
-//            [self.carView sd_setImageWithURL:[NSURL URLWithString:model.carBrandLogo] placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
-//        }
-////        else{
-////            self.tipmsgLabel.text = @"带我飞 ~";
-////            self.offerSeatLabel.text = @"";
-////            self.agreeBtnTopMargin.constant = 20;
-////            self.carView.hidden = YES;
-////        }
-//    }else if ([model.type isEqualToString:@"车主认证"]){
-//        
-//    }else{
-//        if (model.carBrandLogo.length){
-//            [self.carView sd_setImageWithURL:[NSURL URLWithString:model.carBrandLogo] placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
-//             self.carView.hidden = NO;
-//        }else{
-//            self.carView.hidden = YES;
-//        }
-//        self.tipmsgLabel.attributedText = model.text;
-//    }
 }
 
 - (IBAction)agreeBtnClick:(id)sender {
-    if (_model.isAgree) {
+    if (_model.isAgree) { // 如果已同意 禁止点击
         return;
     }
     
@@ -177,8 +142,6 @@
     }
     
 }
-
-
 
 
 #pragma mark - 可以多选的tableView

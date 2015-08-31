@@ -626,15 +626,21 @@
 - (void)routerEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userInfo
 {
     
-    
     if ([eventName isEqualToString:@"IconClick"]) {
         CPHomeStatus *status = userInfo[@"status"];
         
+        if ([status.organizer.userId isEqualToString:self.userId]){
+            [self.tabBarController setSelectedIndex:2];
+            
+        }else{
+            
             // 跳转到他的详情
             CPTaDetailsController *taDetailsController = [[UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil] instantiateInitialViewController];
             taDetailsController.targetUserId = status.organizer.userId;
             
             [self.navigationController pushViewController:taDetailsController animated:YES];
+        }
+        
         
     }
 }

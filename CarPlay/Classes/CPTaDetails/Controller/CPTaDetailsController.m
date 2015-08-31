@@ -80,12 +80,6 @@
     // 页面标题
     self.title = @"TA的详情";
     
-    if ([self.targetUserId isEqualToString:[Tools getValueFromKey:@"userId"]]) {
-        self.title = @"我的详情";
-    }
-    
-    
-    
     // 上拉下拉刷新
     [self topAndBottomRefresh];
     
@@ -151,12 +145,6 @@
 
 - (void)setupLoadHeadView{
     CPTaDetailsHead *head = [CPTaDetailsHead headView];
-    
-    if ([self.targetUserId isEqualToString:[Tools getValueFromKey:@"userId"]]){
-        head.care.hidden = YES;
-    }else{
-        head.care.hidden = NO;
-    }
     
     head.taStatus = self.taStatus;
     __weak typeof(self) weakSelf = self;
@@ -584,6 +572,11 @@
 - (void)routerEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userInfo{
     if ([eventName isEqualToString:@"IconClick"]) {
         CPHomeStatus *status = userInfo[@"status"];
+        
+        if ([status.organizer.userId isEqualToString:self.userId] || [status.organizer.role isEqualToString:@"官方用户"]) {
+            return;
+        }
+        
         CPTaDetailsController *taDetailsController = [[UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil] instantiateInitialViewController];
         taDetailsController.targetUserId = status.organizer.userId;
         [self.navigationController pushViewController:taDetailsController animated:YES];

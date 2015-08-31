@@ -10,11 +10,21 @@
 #define kDegreeToRadian(x) (M_PI/180.0 * (x))
 
 @implementation MJPhotoProgressView
+{
+    UILabel *_progressLabel;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor clearColor];
+        _progressLabel = [UILabel new];
+        _progressLabel.textAlignment = NSTextAlignmentCenter;
+        _progressLabel.text = @"0%";
+        _progressLabel.textColor = [UIColor whiteColor];
+        [_progressLabel sizeToFit];
+        _progressLabel.font = [UIFont boldSystemFontOfSize:10];
+        [self addSubview:_progressLabel];
     }
     return self;
 }
@@ -64,6 +74,14 @@
 	CGContextFillPath(context);
 }
 
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    _progressLabel.centerX = self.centerXInSelf;
+    _progressLabel.centerY = self.centerYInSelf;
+}
+
 #pragma mark - Property Methods
 
 - (UIColor *)trackTintColor
@@ -87,6 +105,8 @@
 - (void)setProgress:(float)progress
 {
     _progress = progress;
+    _progressLabel.text = [NSString stringWithFormat:@"%.0f%%",progress * 100];
+    [_progressLabel sizeToFit];
     [self setNeedsDisplay];
 }
 
