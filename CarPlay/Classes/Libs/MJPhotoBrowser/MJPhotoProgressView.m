@@ -19,7 +19,11 @@
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor clearColor];
         _progressLabel = [UILabel new];
-        _progressLabel.font = [UIFont boldSystemFontOfSize:16];
+        _progressLabel.textAlignment = NSTextAlignmentCenter;
+        _progressLabel.text = @"0%";
+        _progressLabel.textColor = [UIColor whiteColor];
+        [_progressLabel sizeToFit];
+        _progressLabel.font = [UIFont boldSystemFontOfSize:12];
         [self addSubview:_progressLabel];
     }
     return self;
@@ -74,7 +78,8 @@
 {
     [super layoutSubviews];
     
-    _progressLabel.center = self.center;
+    _progressLabel.centerX = self.centerXInSelf;
+    _progressLabel.centerY = self.centerYInSelf;
 }
 
 #pragma mark - Property Methods
@@ -100,7 +105,7 @@
 - (void)setProgress:(float)progress
 {
     _progress = progress;
-    _progressLabel.text = [NSString stringWithFormat:@"%f%%",progress];
+    _progressLabel.text = [NSString stringWithFormat:@"%.0f%%",progress * 100];
     [_progressLabel sizeToFit];
     [self setNeedsDisplay];
 }

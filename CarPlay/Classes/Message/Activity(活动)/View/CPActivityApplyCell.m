@@ -138,7 +138,7 @@
 }
 
 - (IBAction)agreeBtnClick:(id)sender {
-    if (_model.isAgree) {
+    if (_model.isAgree) { // 如果已同意 禁止点击
         return;
     }
     
