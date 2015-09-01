@@ -41,7 +41,7 @@
     apnsCertName = @"carplayApnsProduction";
 #endif
     if (![self isSpecifyServer]) {
-        [[EaseMob sharedInstance] registerSDKWithAppKey:@"gongpingjia#chewantest"
+        [[EaseMob sharedInstance] registerSDKWithAppKey:@"gongpingjia#chewan"
                                            apnsCertName:apnsCertName
                                             otherConfig:@{kSDKConfigEnableConsoleLogger:@YES}];
     }
