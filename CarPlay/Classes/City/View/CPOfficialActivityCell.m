@@ -83,7 +83,7 @@
     
     // 0.一些固定的尺寸参数
     CGFloat imageW = [UIScreen mainScreen].bounds.size.width;
-    CGFloat imageH = self.scrollView.frame.size.height;
+    CGFloat imageH = 150.0 / 568.0 * kScreenHeight;
     CGFloat imageY = 0;
     
     // 1.添加图片到scrollView中
