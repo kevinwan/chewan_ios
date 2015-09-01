@@ -1033,15 +1033,11 @@
     
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
         UzysAssetsPickerController *picker = [[UzysAssetsPickerController alloc] init];
-        picker.delegate = self;
+                picker.delegate = self;
+        picker.maximumNumberOfSelectionPhoto = 10;
         [self presentViewController:picker animated:YES completion:nil];
     }
 
-    
-//    self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-//    self.imagePicker.mediaTypes = @[(NSString *)kUTTypeImage];
-//    self.imagePicker.delegate = self;
-//    [self presentViewController:self.imagePicker animated:YES completion:NULL];
     self.isInvisible = YES;
 }
 
@@ -1067,14 +1063,8 @@
         [SVProgressHUD showErrorWithStatus:@"相机不可用"];
     }
 
-//#if TARGET_IPHONE_SIMULATOR
-//    [self showHint:NSLocalizedString(@"message.simulatorNotSupportCamera", @"simulator does not support taking picture")];
-//#elif TARGET_OS_IPHONE
-//    self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-//    self.imagePicker.mediaTypes = @[(NSString *)kUTTypeImage,(NSString *)kUTTypeMovie];
-//    [self presentViewController:self.imagePicker animated:YES completion:NULL];
     self.isInvisible = YES;
-//#endif
+
 }
 
 - (void)moreViewLocationAction:(DXChatBarMoreView *)moreView
@@ -1216,52 +1206,47 @@
     self.isInvisible = NO;
 }
 
-//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-//{
-//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-//    NSString *mediaType = info[UIImagePickerControllerMediaType];
-//    if ([mediaType isEqualToString:(NSString *)kUTTypeMovie]) {
-//        NSURL *videoURL = info[UIImagePickerControllerMediaURL];
-//        [picker dismissViewControllerAnimated:YES completion:^{
-//            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"isShowPicker"];
-//        }];
-//        // video url:
-//        // file:///private/var/mobile/Applications/B3CDD0B2-2F19-432B-9CFA-158700F4DE8F/tmp/capture-T0x16e39100.tmp.9R8weF/capturedvideo.mp4
-//        // we will convert it to mp4 format
-//        NSURL *mp4 = [self convert2Mp4:videoURL];
-//        NSFileManager *fileman = [NSFileManager defaultManager];
-//        if ([fileman fileExistsAtPath:videoURL.path]) {
-//            NSError *error = nil;
-//            [fileman removeItemAtURL:videoURL error:&error];
-//            if (error) {
-//                NSLog(@"failed to remove file, error:%@.", error);
-//            }
-//        }
-//        EMChatVideo *chatVideo = [[EMChatVideo alloc] initWithFile:[mp4 relativePath] displayName:@"video.mp4"];
-//        [self sendVideoMessage:chatVideo];
-//        
-//    }else{
-//        UIImage *orgImage = info[UIImagePickerControllerOriginalImage];
-//        [picker dismissViewControllerAnimated:YES completion:^{
-//            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"isShowPicker"];
-//        }];
-//        [self sendImageMessage:orgImage];
-//    }
-//    self.isInvisible = NO;
-//}
-
-//- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-//{
-//    
-//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-//    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"isShowPicker"];
-//    [self.imagePicker dismissViewControllerAnimated:YES completion:nil];
-//    self.isInvisible = NO;
-//}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    NSString *mediaType = info[UIImagePickerControllerMediaType];
+    if ([mediaType isEqualToString:(NSString *)kUTTypeMovie]) {
+        NSURL *videoURL = info[UIImagePickerControllerMediaURL];
+        [picker dismissViewControllerAnimated:YES completion:^{
+            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"isShowPicker"];
+        }];
+        // video url:
+        // file:///private/var/mobile/Applications/B3CDD0B2-2F19-432B-9CFA-158700F4DE8F/tmp/capture-T0x16e39100.tmp.9R8weF/capturedvideo.mp4
+        // we will convert it to mp4 format
+        NSURL *mp4 = [self convert2Mp4:videoURL];
+        NSFileManager *fileman = [NSFileManager defaultManager];
+        if ([fileman fileExistsAtPath:videoURL.path]) {
+            NSError *error = nil;
+            [fileman removeItemAtURL:videoURL error:&error];
+            if (error) {
+                NSLog(@"failed to remove file, error:%@.", error);
+            }
+        }
+        EMChatVideo *chatVideo = [[EMChatVideo alloc] initWithFile:[mp4 relativePath] displayName:@"video.mp4"];
+        [self sendVideoMessage:chatVideo];
+        
+    }else{
+        UIImage *orgImage = info[UIImagePickerControllerOriginalImage];
+        [picker dismissViewControllerAnimated:YES completion:^{
+            [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"isShowPicker"];
+        }];
+        [self sendImageMessage:orgImage];
+    }
+    self.isInvisible = NO;
+}
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"isShowPicker"];
+    [self.imagePicker dismissViewControllerAnimated:YES completion:nil];
+    self.isInvisible = NO;
 }
 
 #pragma mark - MenuItem actions
