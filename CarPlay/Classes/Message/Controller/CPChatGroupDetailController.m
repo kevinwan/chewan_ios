@@ -147,7 +147,7 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
 
-    }else if (indexPath.row == 2 && self.activityId && self.orzUserId.length){
+    }else if (indexPath.row == 2 && self.orzUserId.length){
         
         if ([self.orzUserId isEqualToString:[Tools getValueFromKey:@"userId"]]){
             return;
