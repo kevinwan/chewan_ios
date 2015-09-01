@@ -121,6 +121,7 @@
         
         // 活动标题
         UILabel *titleLabel = [[UILabel alloc] init];
+//        titleLabel.numberOfLines = 2;
         titleLabel.text = activeStu.title;
         titleLabel.textColor = [UIColor whiteColor];
         titleLabel.font = ActiveTitleFont;
@@ -158,13 +159,19 @@
         contentLabel.font = ActiveContentFont;
         contentLabel.numberOfLines = 0;
         contentLabel.text = activeStu.content;
-        CGFloat contentX = 15;
-        CGFloat contentY = CGRectGetMaxY(titleLabel.frame);
-        CGFloat contentMaxW = maskView.width - 24;
-        CGSize contentSize = [activeStu.content sizeWithFont:ActiveContentFont constrainedToSize:CGSizeMake(contentMaxW, MAXFLOAT)];
-        contentLabel.frame = (CGRect){{contentX,contentY},contentSize};
+        
+//                CGFloat contentMaxW = maskView.width - 24;
+//        CGSize size = [contentLabel.text sizeWithFont:ActiveContentFont maxW:contentMaxW];
+        contentLabel.x = 15;
+        contentLabel.y = titleLabel.bottom - 5;
+        contentLabel.width = kScreenWidth - 30;
+        contentLabel.height = ActiveContentFont.lineHeight * 2 + 10;
+        
+//        CGFloat contentX = 15;
+//        CGFloat contentY = CGRectGetMaxY(titleLabel.frame);
+//        CGSize contentSize = [activeStu.content sizeWithFont:ActiveContentFont constrainedToSize:CGSizeMake(contentMaxW, MAXFLOAT)];
+//        contentLabel.frame = (CGRect){{contentX,contentY},contentSize};
         [maskView addSubview:contentLabel];
-        contentLabel.alpha = 1;
         
         // 图片容器添加蒙版容器
         [imageView addSubview:maskView];
