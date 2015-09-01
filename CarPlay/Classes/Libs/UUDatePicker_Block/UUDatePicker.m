@@ -13,9 +13,10 @@
 #define UUPICKER_MAXDATE 2050
 #define UUPICKER_MINDATE 1970
 
-#define UUPICKER_MONTH 12 * 60
-#define UUPICKER_HOUR 24 * 60
-#define UUPICKER_MINUTE 60 * 60
+#define UUPICKER_SCALE 20
+#define UUPICKER_MONTH 12 * UUPICKER_SCALE
+#define UUPICKER_HOUR 24 * UUPICKER_SCALE
+#define UUPICKER_MINUTE 60 * UUPICKER_SCALE
 
 #define UU_GRAY [Tools getColor:@"aab2bd"]
 #define UU_BLACK [UIColor blackColor]
@@ -257,7 +258,7 @@
         if (component == 0) return UUPICKER_MAXDATE-UUPICKER_MINDATE;
         if (component == 1) return UUPICKER_MONTH;
         if (component == 2) {
-            return [self DaysfromYear:[yearArray[yearIndex] integerValue] andMonth:[monthArray[monthIndex] integerValue]] * 60;
+            return [self DaysfromYear:[yearArray[yearIndex] integerValue] andMonth:[monthArray[monthIndex] integerValue]] * UUPICKER_SCALE;
         }
         if (component == 3) return 2;
         if (component == 4) return UUPICKER_HOUR;
@@ -685,7 +686,7 @@
 - (void)setdayArray:(NSInteger)num
 {
     [dayArray removeAllObjects];
-    for (int i=0; i<num * 60; i++) {
+    for (int i=0; i<num * UUPICKER_SCALE; i++) {
         [dayArray addObject:[NSString stringWithFormat:@"%02zd",i % num + 1]];
     }
 }

@@ -975,11 +975,11 @@ typedef enum {
     params[@"pay"] = self.currentModel.pay;
     NSString *url = [NSString stringWithFormat:@"v1/activity/%@/info",self.currentModel.activityId];
     [CPNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
-        self.saveBtn.userInteractionEnabled = YES;
         if (CPSuccess){
             [SVProgressHUD showSuccessWithStatus:@"修改成功"];
         }else{
             [SVProgressHUD showInfoWithStatus:@"修改失败"];
+            self.saveBtn.userInteractionEnabled = YES;
         }
     } failed:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:@"修改失败"];

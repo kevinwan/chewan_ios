@@ -48,7 +48,8 @@
 #define iphone5 ([UIScreen mainScreen].bounds.size.width == 320.0)
 #define iphone6 ([UIScreen mainScreen].bounds.size.height == 667.0)
 #define iphone6p ([UIScreen mainScreen].bounds.size.height == 736.0)
-#define GaoDeAppKey @"748dd85361269f3ce523e0c747a89031" //高德地图的Key
+#define BundleId  [NSBundle mainBundle].infoDictionary[ (__bridge NSString *)kCFBundleIdentifierKey]
+//#define GaoDeAppKey @"748dd85361269f3ce523e0c747a89031" //高德地图的Key
 #define iPhone5_JX ([UIScreen mainScreen].bounds.size.height == 568.0)
 
 #ifdef DEBUG // 处于开发阶段

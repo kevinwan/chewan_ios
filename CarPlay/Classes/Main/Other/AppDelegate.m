@@ -78,9 +78,18 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(rootControllerChangeToTab:)
                                                  name:NOTIFICATION_ROOTCONTROLLERCHANGETOTAB
+     
                                                object:nil];
+    DLog(@"%@=======",BundleId);
     
-    [MAMapServices sharedServices].apiKey = GaoDeAppKey;
+    if ([BundleId isEqualToString:@"com.gongpingjia.carplay"]) {
+        
+        [MAMapServices sharedServices].apiKey = @"22417b81c02ba1342b64fc4f6db170a5";
+    }else{
+        
+        [MAMapServices sharedServices].apiKey = @"748dd85361269f3ce523e0c747a89031";
+    }
+    
     [SVProgressHUD setBackgroundColor:RGBACOLOR(0, 0, 0, 0.8)];
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
     

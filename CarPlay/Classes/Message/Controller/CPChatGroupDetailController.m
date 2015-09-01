@@ -89,10 +89,9 @@
             [self.memberPhotoView addSubview:moreBtn];
             
             self.introduceLabel.text = model.introduction;
-            CGFloat height = [self.introduceLabel.text sizeWithFont:self.introduceLabel.font maxW:kScreenWidth - 20].height;
-            self.introduceLabel.height = height;
+            [self.introduceLabel layoutIfNeeded];
             
-            self.introduceCellHeight = height + 62;
+            self.introduceCellHeight = self.introduceLabel.bottom + 16;
             
             // 设置组织者信息
             CPOrganizer *orz = model.organizer;
