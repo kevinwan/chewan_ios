@@ -147,6 +147,7 @@ typedef enum {
     self.currentOffset = CGPointMake(0, -64);
     self.locationLabelWitdh.constant = kScreenWidth - 175;
     
+    [self labelWithRow:4].text = [self stringFromDate:[NSDate date]];
     
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
     [CPNotificationCenter addObserver:self selector:@selector(pickerViewCancle:) name:@"PicViewCancle" object:nil];
@@ -592,6 +593,19 @@ typedef enum {
     fmt.dateFormat = @"yyyy年MM月dd日 HH:mm";
     NSDate *date = [fmt dateFromString:dateStr];
     return date.timeIntervalSince1970 * 1000;
+}
+
+/**
+ *  转换出当前的时间格式
+ *
+ *  @return
+ */
+
+- (NSString *)stringFromDate:(NSDate *)date
+{
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    fmt.dateFormat = @"yyyy年MM月dd日 HH:mm";
+    return [fmt stringFromDate:date];
 }
 
 #pragma mark - ZHPickViewDelegate
@@ -1076,7 +1090,6 @@ typedef enum {
             [self showSuccess:@"创建成功"];
             [CPCreatActivityModelTool save:nil];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                button.userInteractionEnabled = YES;
                 if (button.tag == CreateActivityNone) {
                     // 跳转到活动详情界面
                     CPActiveDetailsController *activityDetailVc = [UIStoryboard storyboardWithName:@"CPActiveDetailsController" bundle:nil ].instantiateInitialViewController;

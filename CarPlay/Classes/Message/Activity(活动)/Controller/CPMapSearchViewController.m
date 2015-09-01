@@ -29,7 +29,15 @@
 - (AMapSearchAPI *)searchApi
 {
     if (_searchApi == nil) {
-        _searchApi = [[AMapSearchAPI alloc] initWithSearchKey:GaoDeAppKey Delegate:self];
+        NSString *gaoDeAppKey = @"";
+        if ([BundleId isEqualToString:@"com.gongpingjia.carplay"]) {
+            
+            gaoDeAppKey = @"22417b81c02ba1342b64fc4f6db170a5";
+        }else{
+            
+            gaoDeAppKey = @"748dd85361269f3ce523e0c747a89031";
+        }
+        _searchApi = [[AMapSearchAPI alloc] initWithSearchKey:gaoDeAppKey Delegate:self];
     }
     return _searchApi;
 }
