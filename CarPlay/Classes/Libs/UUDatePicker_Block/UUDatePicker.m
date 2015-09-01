@@ -341,6 +341,8 @@
 }
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
+    NSInteger currentMonth = monthIndex;
+    NSInteger currentHour = hourIndex;
     switch (self.datePickerStyle) {
         case UUDateStyle_YearMonthDayHourMinute:{
             
@@ -431,6 +433,13 @@
     }
 
     [pickerView reloadAllComponents];
+    
+    if (currentMonth != monthIndex) {
+        [myPickerView selectRow:0 inComponent:2 animated:YES];
+    }
+    if (currentHour != hourIndex) {
+        [myPickerView selectRow:0 inComponent:5 animated:YES];
+    }
     
     [self playTheDelegate];
 }

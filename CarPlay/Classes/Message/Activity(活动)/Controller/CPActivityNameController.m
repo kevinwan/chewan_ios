@@ -28,12 +28,11 @@
     [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:17], NSForegroundColorAttributeName :[UIColor whiteColor]} forState:UIControlStateNormal];
     
     UITextView *textF = [[UITextView alloc] init];
-    textF.scrollEnabled = NO;
     textF.textContainerInset = UIEdgeInsetsMake(0, -5, 0, -5);
     textF.delegate = self;
     textF.textColor = [Tools getColor:@"434a54"];
     textF.font = [UIFont systemFontOfSize:16];
-    textF.frame = CGRectMake(10, 20 + 64, self.view.width - 20, 30);
+    textF.frame = CGRectMake(10, 20 + 64, self.view.width - 20, 80);
 
     [self.view addSubview:textF];
     self.textF = textF;
@@ -91,15 +90,15 @@
     [self.textF resignFirstResponder];
 }
 
-- (void)textViewDidChange:(UITextView *)textView
-{
-    
-    textView.height =  [textView.text sizeWithFont:textView.font maxW:textView.width].height + 10;
-    
-    [self.view viewWithTag:10].y = textView.bottom + 10;
-    [self.view viewWithTag:11].y = [self.view viewWithTag:10].bottom + 10;
-
-}
+//- (void)textViewDidChange:(UITextView *)textView
+//{
+//    
+//    textView.height =  [textView.text sizeWithFont:textView.font maxW:textView.width].height + 10;
+//    
+//    [self.view viewWithTag:10].y = textView.bottom + 10;
+//    [self.view viewWithTag:11].y = [self.view viewWithTag:10].bottom + 10;
+//
+//}
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
