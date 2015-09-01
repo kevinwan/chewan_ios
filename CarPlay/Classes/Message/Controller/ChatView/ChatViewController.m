@@ -14,7 +14,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <MobileCoreServices/MobileCoreServices.h>
-#import <UzysAssetsPickerController.h>
+
 //#import "SRRefreshView.h"
 #import "DXChatBarMoreView.h"
 #import "DXRecordView.h"
@@ -41,7 +41,7 @@
 #define KPageCount 20
 #define KHintAdjustY    50
 
-@interface ChatViewController ()<UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, IChatManagerDelegate, DXChatBarMoreViewDelegate, DXMessageToolBarDelegate, LocationViewDelegate, EMCDDeviceManagerDelegate,UzysAssetsPickerControllerDelegate>
+@interface ChatViewController ()<UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, IChatManagerDelegate, DXChatBarMoreViewDelegate, DXMessageToolBarDelegate, LocationViewDelegate, EMCDDeviceManagerDelegate>
 {
     UIMenuController *_menuController;
     UIMenuItem *_copyMenuItem;
@@ -1033,14 +1033,10 @@
     [self keyBoardHidden];
     
     // 弹出照片选择
-    
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
-        UzysAssetsPickerController *picker = [[UzysAssetsPickerController alloc] init];
-                picker.delegate = self;
-        picker.maximumNumberOfSelectionPhoto = 10;
-        [self presentViewController:picker animated:YES completion:nil];
-    }
-
+    self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    self.imagePicker.mediaTypes = @[(NSString *)kUTTypeImage];
+    self.imagePicker.delegate = self;
+    [self presentViewController:self.imagePicker animated:YES completion:NULL];
     self.isInvisible = YES;
 }
 
@@ -1056,18 +1052,15 @@
 {
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:@"isShowPicker"];
     [self keyBoardHidden];
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        
-        UIImagePickerController *pick = [[UIImagePickerController alloc] init];
-        pick.delegate = self;
-        pick.sourceType = UIImagePickerControllerSourceTypeCamera;
-        [self presentViewController:pick animated:YES completion:nil];
-    }else{
-        [SVProgressHUD showErrorWithStatus:@"相机不可用"];
-    }
-
+    
+#if TARGET_IPHONE_SIMULATOR
+    [self showHint:NSLocalizedString(@"message.simulatorNotSupportCamera", @"simulator does not support taking picture")];
+#elif TARGET_OS_IPHONE
+    self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    self.imagePicker.mediaTypes = @[(NSString *)kUTTypeImage,(NSString *)kUTTypeMovie];
+    [self presentViewController:self.imagePicker animated:YES completion:NULL];
     self.isInvisible = YES;
-
+#endif
 }
 
 - (void)moreViewLocationAction:(DXChatBarMoreView *)moreView
@@ -1183,31 +1176,6 @@
 }
 
 #pragma mark - UIImagePickerControllerDelegate
-
-- (void)uzysAssetsPickerController:(UzysAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets
-{
-    [assets enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        ALAsset *representation = obj;
-        
-        UIImage *img = [UIImage imageWithCGImage:representation.defaultRepresentation.fullResolutionImage
-                                           scale:representation.defaultRepresentation.scale
-                                     orientation:(UIImageOrientation)representation.defaultRepresentation.orientation];
-        
-        [self sendImageMessage:img];
-    }];
-    
-    [picker dismissViewControllerAnimated:YES completion:^{
-        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"isShowPicker"];
-    }];
-}
-
-- (void)uzysAssetsPickerControllerDidCancel:(UzysAssetsPickerController *)picker
-{
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"isShowPicker"];
-    [self.imagePicker dismissViewControllerAnimated:YES completion:nil];
-    self.isInvisible = NO;
-}
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
