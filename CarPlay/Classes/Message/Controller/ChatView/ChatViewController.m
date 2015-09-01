@@ -924,7 +924,10 @@
 -(void)didReceiveCmdMessage:(EMMessage *)message
 {
     if ([_conversation.chatter isEqualToString:message.conversationChatter]) {
-        [self showHint:NSLocalizedString(@"receiveCmd", @"receive cmd message")];
+        EMCommandMessageBody *body = (EMCommandMessageBody *)message.messageBodies.lastObject;
+        
+        NSString *headUrl=message.ext[@"headUrl"];
+        [[SDImageCache sharedImageCache]removeImageForKey:headUrl];
     }
 }
 
