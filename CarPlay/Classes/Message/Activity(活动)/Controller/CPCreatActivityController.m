@@ -1079,7 +1079,8 @@ typedef enum {
                 button.userInteractionEnabled = YES;
                 if (button.tag == CreateActivityNone) {
                     // 跳转到活动详情界面
-                    CPActiveDetailsController *activityDetailVc = [UIStoryboard storyboardWithName:@"CPActiveDetailsController" bundle:nil ].instantiateInitialViewController;;
+                    CPActiveDetailsController *activityDetailVc = [UIStoryboard storyboardWithName:@"CPActiveDetailsController" bundle:nil ].instantiateInitialViewController;
+                    activityDetailVc.isFromCreateActivity = YES;
                     activityDetailVc.activeId = responseObject[@"data"][@"activityId"];
                     [self.navigationController pushViewController:activityDetailVc animated:YES];
                     
@@ -1087,7 +1088,8 @@ typedef enum {
                     // 分享给好友
                     [self shareToFriendWithDict:responseObject[@"data"]];
                     // 跳转到活动详情界面
-                    CPActiveDetailsController *activityDetailVc = [UIStoryboard storyboardWithName:@"CPActiveDetailsController" bundle:nil ].instantiateInitialViewController;;
+                    CPActiveDetailsController *activityDetailVc = [UIStoryboard storyboardWithName:@"CPActiveDetailsController" bundle:nil ].instantiateInitialViewController;
+                    activityDetailVc.isFromCreateActivity = YES;
                     activityDetailVc.activeId = responseObject[@"data"][@"activityId"];
                     [self.navigationController pushViewController:activityDetailVc animated:YES];
                 }
