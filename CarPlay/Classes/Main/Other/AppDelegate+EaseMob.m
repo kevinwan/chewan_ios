@@ -35,13 +35,25 @@
 
 #warning SDK注册 APNS文件的名字, 需要与后台上传证书时的名字一一对应
     NSString *apnsCertName = nil;
-#if DEBUG
-    apnsCertName = @"carPlayApns";
-#else
-    apnsCertName = @"carplayApnsProduction";
-#endif
+    NSString *appkey=@"gongpingjia#chewantest";
+
+    NSString *bundleId = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
+    if ([bundleId isEqualToString:@"com.gongpingjia.carplay"]) {
+        #if DEBUG
+            apnsCertName = @"carPlayApns";
+        #else
+            apnsCertName = @"carplayApnsProduction";
+        #endif
+    }else{
+        apnsCertName = @"CarPlayInhouseAPNs";
+    }
+    
+    if (![BASE_URL isEqualToString:@"http://cwapi.gongpingjia.com/"]) {
+        appkey = @"gongpingjia#chewan";
+    }
+    
     if (![self isSpecifyServer]) {
-        [[EaseMob sharedInstance] registerSDKWithAppKey:@"gongpingjia#chewan"
+        [[EaseMob sharedInstance] registerSDKWithAppKey:appkey
                                            apnsCertName:apnsCertName
                                             otherConfig:@{kSDKConfigEnableConsoleLogger:@YES}];
     }

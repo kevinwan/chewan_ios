@@ -129,7 +129,7 @@
                                                         <constraint firstAttribute="width" constant="17" id="dQB-lD-dd3"/>
                                                     </constraints>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tg3-2B-dyy" customClass="CPOrganizerButton">
+                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tg3-2B-dyy" customClass="CPOrganizerButton">
                                                     <rect key="frame" x="156" y="12.5" width="185" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="ZA0-Si-Zsx"/>

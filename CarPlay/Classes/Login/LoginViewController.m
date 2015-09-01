@@ -82,6 +82,8 @@
                             [Tools setValueForKey:password key:@"password"];
                             [Tools setValueForKey:data[@"nickname"] key:@"nickName"];
                             [Tools setValueForKey:data[@"photo"] key:@"headUrl"];
+                            [[SDImageCache sharedImageCache] removeImageForKey:data[@"photo"]];
+                            
                             CPOrganizer *organizer= [CPOrganizer objectWithKeyValues:data];
                             NSString *fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"userId"]];
                             [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
