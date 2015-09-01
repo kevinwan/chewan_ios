@@ -47,6 +47,13 @@
     [self setChecked:model.isChecked];
     
     BOOL isCarAutho =  [model.type isEqualToString:@"车主认证"];
+    // 如果是认证消息 不需要点击进入个人详情
+    if (isCarAutho){
+        self.iconView.userInteractionEnabled = NO;
+    }else{
+        self.iconView.userInteractionEnabled = YES;
+    }
+    
     BOOL isActivityApply =  [model.type isEqualToString:@"活动申请处理"];
     if (!isCarAutho){ // 如果不是车主认证,设置昵称,年龄和车标
         if (model.nickname) {
