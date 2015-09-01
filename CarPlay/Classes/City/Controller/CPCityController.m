@@ -383,8 +383,8 @@
             // 刷新表格
             [self.tableView reloadData];
             
-            // 只有上拉或者第一次加载数据才会获取官方活动数据
-            if (ignore == 0 && self.status.count) {
+            // 只有下拉或者第一次加载数据才会获取官方活动数据
+            if (ignore == 0 && self.status.count && [self.selectMark isEqualToString:@"hot"]) {
                 [self setupOfficialActivity];
             }else{
                 [self disMiss];
@@ -432,6 +432,12 @@
                 self.activeStatus = models;
                 
                 if (self.status.count > 0 && [self.selectMark isEqualToString:@"hot"]) {
+                    
+                    // 如果第二条有官方数据则移除
+                    if ([self.status[1] isKindOfClass:[NSArray class]]) {
+                        [self.status removeObjectAtIndex:1];
+                    }
+                    
                     // 数据拼接
                     [self.status insertObject:self.activeStatus atIndex:1];
                     self.twoCellHeight = kScreenHeight * 150.0 / 568.0;

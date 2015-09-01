@@ -112,6 +112,12 @@
     // 新手引导
     [CPGuideView showGuideViewWithImageName:@"detailGuide"];
     
+    // 判断是从哪个地方加载出来的
+    if (self.isFromCreateActivity) {
+        
+        self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithNorImage:@"返回" higImage:nil title:nil target:self action:@selector(backToRoot)];
+    }
+    
     // 发送按钮切圆
     self.sendBtn.layer.cornerRadius = 3;
     self.sendBtn.layer.masksToBounds = YES;
@@ -898,6 +904,12 @@
     [_picker removeFromSuperview];
     _picker = nil;
 }
+
+- (void)backToRoot
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 #pragma mark - lazy
 - (NSMutableArray *)pickerArray {
     if (!_pickerArray) {

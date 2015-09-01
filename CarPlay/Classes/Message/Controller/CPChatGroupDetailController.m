@@ -31,13 +31,15 @@
 // 组织者的button
 @property (weak, nonatomic) IBOutlet CPOrganizerButton *organizerButton;
 
+// 活动组织者的箭头
+@property (weak, nonatomic) IBOutlet UIImageView *organizerArrow;
+
 // 是不是活动的组织者
 @property (nonatomic, assign) BOOL isOrganizer;
 
 // 组织者的userId
 @property (nonatomic, copy) NSString *orzUserId;
 
-@property (weak, nonatomic) IBOutlet UIImageView *organizerArrow;
 @end
 
 @implementation CPChatGroupDetailController
@@ -91,6 +93,8 @@
             self.introduceLabel.height = height;
             
             self.introduceCellHeight = height + 62;
+            
+            // 设置组织者信息
             CPOrganizer *orz = model.organizer;
             if ([orz.userId isEqualToString:[Tools getValueFromKey:@"userId"]]) {
                 self.organizerArrow.hidden = YES;
@@ -147,7 +151,7 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
 
-    }else if (indexPath.row == 2 && self.activityId && self.orzUserId.length){
+    }else if (indexPath.row == 2 && self.orzUserId.length){
         
         if ([self.orzUserId isEqualToString:[Tools getValueFromKey:@"userId"]]){
             return;

@@ -16,4 +16,7 @@
 // 是否为官方活动
 @property (nonatomic,assign) BOOL isOfficialActivity;
 
+// 是不是从创建活动页跳转过来的
+@property (nonatomic, assign) BOOL isFromCreateActivity;
+
 @end
