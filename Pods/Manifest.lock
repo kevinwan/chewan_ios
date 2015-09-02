@@ -40,7 +40,6 @@ PODS:
   - SWTableViewCell (0.3.7)
   - THProgressView (1.0)
   - UMengAnalytics-NO-IDFA (3.5.11)
-  - UzysAssetsPickerController (0.9.9)
   - YLGIFImage (0.11)
 
 DEPENDENCIES:
@@ -59,7 +58,6 @@ DEPENDENCIES:
   - SWTableViewCell (~> 0.3.7)
   - THProgressView
   - UMengAnalytics-NO-IDFA
-  - UzysAssetsPickerController
   - YLGIFImage
 
 EXTERNAL SOURCES:
@@ -88,7 +86,6 @@ SPEC CHECKSUMS:
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
   THProgressView: 999dc78f748f4cb6d69408f545de4d82ef7f1cec
   UMengAnalytics-NO-IDFA: e41024644de702e450093ef043af20b5fbe06cbc
-  UzysAssetsPickerController: 47c27bd96955467925f3d4d80b1e2e8aaeff766d
   YLGIFImage: c0ae132fe80e5282b2762a97d14e23ba71a748ae
 
 COCOAPODS: 0.37.2

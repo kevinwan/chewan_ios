@@ -360,6 +360,15 @@
 		E3FCDD4A1B5E34E200F9C379 /* CPAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FCDD491B5E34E200F9C379 /* CPAnnotation.m */; };
 		E3FCDD4D1B5E355A00F9C379 /* CPAnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FCDD4C1B5E355A00F9C379 /* CPAnotationView.m */; };
 		E3FCDD4F1B5E491400F9C379 /* CPEditActivityController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3FCDD4E1B5E491400F9C379 /* CPEditActivityController.storyboard */; };
+		E3FF17151B969B7B00452554 /* UIImage+UzysExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FF17051B969B7B00452554 /* UIImage+UzysExtension.m */; };
+		E3FF17161B969B7B00452554 /* UzysAppearanceConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FF17071B969B7B00452554 /* UzysAppearanceConfig.m */; };
+		E3FF17171B969B7B00452554 /* UzysAssetPickerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E3FF17081B969B7B00452554 /* UzysAssetPickerController.bundle */; };
+		E3FF17181B969B7B00452554 /* UzysAssetsPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FF170A1B969B7B00452554 /* UzysAssetsPickerController.m */; };
+		E3FF17191B969B7B00452554 /* UzysAssetsPickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3FF170B1B969B7B00452554 /* UzysAssetsPickerController.xib */; };
+		E3FF171A1B969B7B00452554 /* UzysAssetsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FF170E1B969B7B00452554 /* UzysAssetsViewCell.m */; };
+		E3FF171B1B969B7B00452554 /* UzysGroupPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FF17101B969B7B00452554 /* UzysGroupPickerView.m */; };
+		E3FF171C1B969B7B00452554 /* UzysGroupViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FF17121B969B7B00452554 /* UzysGroupViewCell.m */; };
+		E3FF171D1B969B7B00452554 /* UzysWrapperPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FF17141B969B7B00452554 /* UzysWrapperPickerController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1028,6 +1037,23 @@
 		E3FCDD4B1B5E355A00F9C379 /* CPAnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnotationView.h; sourceTree = "<group>"; };
 		E3FCDD4C1B5E355A00F9C379 /* CPAnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAnotationView.m; sourceTree = "<group>"; };
 		E3FCDD4E1B5E491400F9C379 /* CPEditActivityController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPEditActivityController.storyboard; sourceTree = "<group>"; };
+		E3FF17041B969B7B00452554 /* UIImage+UzysExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+UzysExtension.h"; sourceTree = "<group>"; };
+		E3FF17051B969B7B00452554 /* UIImage+UzysExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+UzysExtension.m"; sourceTree = "<group>"; };
+		E3FF17061B969B7B00452554 /* UzysAppearanceConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysAppearanceConfig.h; sourceTree = "<group>"; };
+		E3FF17071B969B7B00452554 /* UzysAppearanceConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysAppearanceConfig.m; sourceTree = "<group>"; };
+		E3FF17081B969B7B00452554 /* UzysAssetPickerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UzysAssetPickerController.bundle; sourceTree = "<group>"; };
+		E3FF17091B969B7B00452554 /* UzysAssetsPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysAssetsPickerController.h; sourceTree = "<group>"; };
+		E3FF170A1B969B7B00452554 /* UzysAssetsPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysAssetsPickerController.m; sourceTree = "<group>"; };
+		E3FF170B1B969B7B00452554 /* UzysAssetsPickerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UzysAssetsPickerController.xib; sourceTree = "<group>"; };
+		E3FF170C1B969B7B00452554 /* UzysAssetsPickerController_Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysAssetsPickerController_Configuration.h; sourceTree = "<group>"; };
+		E3FF170D1B969B7B00452554 /* UzysAssetsViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysAssetsViewCell.h; sourceTree = "<group>"; };
+		E3FF170E1B969B7B00452554 /* UzysAssetsViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysAssetsViewCell.m; sourceTree = "<group>"; };
+		E3FF170F1B969B7B00452554 /* UzysGroupPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysGroupPickerView.h; sourceTree = "<group>"; };
+		E3FF17101B969B7B00452554 /* UzysGroupPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysGroupPickerView.m; sourceTree = "<group>"; };
+		E3FF17111B969B7B00452554 /* UzysGroupViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysGroupViewCell.h; sourceTree = "<group>"; };
+		E3FF17121B969B7B00452554 /* UzysGroupViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysGroupViewCell.m; sourceTree = "<group>"; };
+		E3FF17131B969B7B00452554 /* UzysWrapperPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysWrapperPickerController.h; sourceTree = "<group>"; };
+		E3FF17141B969B7B00452554 /* UzysWrapperPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysWrapperPickerController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1175,6 +1201,7 @@
 		6B4EF1401B4036EE00292BD4 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				E3FF17031B969B7B00452554 /* UzysAssetsPickerController */,
 				E3C14F3C1B81815F006A0F52 /* MJPhotoBrowser */,
 				E310BF6C1B7DF7BB00750BF4 /* UUDatePicker_Block */,
 				E3E104A41B675C910049CA4A /* RegexKitLite */,
@@ -2652,6 +2679,30 @@
 			name = MapModel;
 			sourceTree = "<group>";
 		};
+		E3FF17031B969B7B00452554 /* UzysAssetsPickerController */ = {
+			isa = PBXGroup;
+			children = (
+				E3FF17041B969B7B00452554 /* UIImage+UzysExtension.h */,
+				E3FF17051B969B7B00452554 /* UIImage+UzysExtension.m */,
+				E3FF17061B969B7B00452554 /* UzysAppearanceConfig.h */,
+				E3FF17071B969B7B00452554 /* UzysAppearanceConfig.m */,
+				E3FF17081B969B7B00452554 /* UzysAssetPickerController.bundle */,
+				E3FF17091B969B7B00452554 /* UzysAssetsPickerController.h */,
+				E3FF170A1B969B7B00452554 /* UzysAssetsPickerController.m */,
+				E3FF170B1B969B7B00452554 /* UzysAssetsPickerController.xib */,
+				E3FF170C1B969B7B00452554 /* UzysAssetsPickerController_Configuration.h */,
+				E3FF170D1B969B7B00452554 /* UzysAssetsViewCell.h */,
+				E3FF170E1B969B7B00452554 /* UzysAssetsViewCell.m */,
+				E3FF170F1B969B7B00452554 /* UzysGroupPickerView.h */,
+				E3FF17101B969B7B00452554 /* UzysGroupPickerView.m */,
+				E3FF17111B969B7B00452554 /* UzysGroupViewCell.h */,
+				E3FF17121B969B7B00452554 /* UzysGroupViewCell.m */,
+				E3FF17131B969B7B00452554 /* UzysWrapperPickerController.h */,
+				E3FF17141B969B7B00452554 /* UzysWrapperPickerController.m */,
+			);
+			path = UzysAssetsPickerController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2704,7 +2755,7 @@
 				TargetAttributes = {
 					6B4959C71B33A23900DB63EA = {
 						CreatedOnToolsVersion = 6.3.2;
-						DevelopmentTeam = K89RQ3A2PQ;
+						DevelopmentTeam = 54M46FP232;
 					};
 					6B4959E01B33A23900DB63EA = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -2757,6 +2808,7 @@
 				6BCF66101B6208C700358190 /* CPActiveDetailsHead.xib in Resources */,
 				A575817B1B67871300A5E681 /* UMSCommentInputController.xib in Resources */,
 				A575817D1B67871300A5E681 /* UMShareEditViewController.xib in Resources */,
+				E3FF17191B969B7B00452554 /* UzysAssetsPickerController.xib in Resources */,
 				6B5F9B6D1B5D29FE00F9D1E8 /* CPCityController.storyboard in Resources */,
 				A57581801B67871300A5E681 /* UMSnsAccountViewController.xib in Resources */,
 				E372D82F1B6216C100B4FC5C /* CPNewPassWordViewController.xib in Resources */,
@@ -2783,6 +2835,7 @@
 				6B9CFD7B1B71EA8200EF167D /* CPVersionIntroduction.storyboard in Resources */,
 				E31B087E1B8418BA008DA1D4 /* Localizable.strings in Resources */,
 				E372D8441B6216C100B4FC5C /* registerViewController.xib in Resources */,
+				E3FF17171B969B7B00452554 /* UzysAssetPickerController.bundle in Resources */,
 				E3292A291B6A50700023677F /* CPSelectView.xib in Resources */,
 				6BC8A3ED1B6A4DB700B199F2 /* CPTaDetailsHead.xib in Resources */,
 				E372D8401B6216C100B4FC5C /* CPRegisterCellsTableViewCell3.xib in Resources */,
@@ -2919,6 +2972,7 @@
 				E3A61B1C1B7EEC8B00B641E0 /* CPMapPlaceSearchRequest.m in Sources */,
 				E3C611521B5F4A6C00B7E73A /* ZYSearchBar.m in Sources */,
 				A575820D1B6789E500A5E681 /* NSObject+SMFoundation.m in Sources */,
+				E3FF171B1B969B7B00452554 /* UzysGroupPickerView.m in Sources */,
 				6B5F9B711B5D29FE00F9D1E8 /* CPHomeUser.m in Sources */,
 				6B9711401B7DF60C00EA0F09 /* DXMessageToolBar.m in Sources */,
 				E30A68CA1B7DD64100EB3D23 /* CPGuideView.m in Sources */,
@@ -2934,6 +2988,7 @@
 				6B9711441B7DF60C00EA0F09 /* DXRecordView.m in Sources */,
 				E3E216101B904BCB00E842D0 /* Tools.m in Sources */,
 				6B97114A1B7DF60C00EA0F09 /* EMChatVideoBubbleView.m in Sources */,
+				E3FF171C1B969B7B00452554 /* UzysGroupViewCell.m in Sources */,
 				A58FE4421B8D477F00EBE91D /* carManageCell.m in Sources */,
 				E310BF711B7DF7BB00750BF4 /* UUDatePicker.m in Sources */,
 				6B4EF15D1B4036EE00292BD4 /* CPTabBarController.m in Sources */,
@@ -2968,6 +3023,7 @@
 				E36CC9641B6C7DA400380E53 /* LineDashPolyline.m in Sources */,
 				6B64938C1B4D04BE00C197D2 /* BaseViewController.m in Sources */,
 				6BC8A3E91B6A4DB700B199F2 /* CPTaMember.m in Sources */,
+				E3FF17161B969B7B00452554 /* UzysAppearanceConfig.m in Sources */,
 				6BBCFFC61B721E6900F63818 /* CPFeedbackViewController.m in Sources */,
 				6B9711711B7DF94200EA0F09 /* XHMessageTextView.m in Sources */,
 				E34065ED1B65D6A2008BB3EB /* CPMyJoinController.m in Sources */,
@@ -2988,6 +3044,7 @@
 				6B9CFD791B71EA7500EF167D /* CPVersionIntroduction.m in Sources */,
 				E3EEE0021B53952E00595333 /* Foundation+Log.m in Sources */,
 				E372D83B1B6216C100B4FC5C /* CPRegisterCellsTableViewCell1.m in Sources */,
+				E3FF17181B969B7B00452554 /* UzysAssetsPickerController.m in Sources */,
 				A57582161B6789E500A5E681 /* UIImage+SMFoundation.m in Sources */,
 				6B9711701B7DF94200EA0F09 /* EMTextView.m in Sources */,
 				A57582061B6789E500A5E681 /* AppAppearance.m in Sources */,
@@ -3004,6 +3061,7 @@
 				E372D8391B6216C100B4FC5C /* CPEditUsernameViewController.m in Sources */,
 				6B97114F1B7DF60C00EA0F09 /* MessageModelManager.m in Sources */,
 				E3CFB1541B72126A0058B8C3 /* ZYSegmentControl.m in Sources */,
+				E3FF17151B969B7B00452554 /* UIImage+UzysExtension.m in Sources */,
 				6B9711141B7DF60400EA0F09 /* ConvertToCommonEmoticonsHelper.m in Sources */,
 				6BB09AA71B68B02900E0D77D /* CPPhotoalbumManagement.m in Sources */,
 				A57582091B6789E500A5E681 /* NSDate+SMFoundation.m in Sources */,
@@ -3083,6 +3141,7 @@
 				6BB09AB41B69F52900E0D77D /* CPNewfeatureViewController.m in Sources */,
 				6B512FCC1B7CC20500258CA0 /* CPCarAuthoAllowController.m in Sources */,
 				6B97110D1B7DF5E700EA0F09 /* ChatSendHelper.m in Sources */,
+				E3FF171D1B969B7B00452554 /* UzysWrapperPickerController.m in Sources */,
 				E310BF751B7E154200750BF4 /* CPAnnotationView.m in Sources */,
 				E3EEE0041B53952E00595333 /* UIImage+Extension.m in Sources */,
 				A57582101B6789E500A5E681 /* SMAlertView.m in Sources */,
@@ -3104,6 +3163,7 @@
 				E372D85B1B62176C00B4FC5C /* MJNIndexView.m in Sources */,
 				E3CE371F1B5A232D008434B5 /* CPCreatActivityCell.m in Sources */,
 				E3A6B74A1B8D62820011E169 /* ZYImagePickerController.m in Sources */,
+				E3FF171A1B969B7B00452554 /* UzysAssetsViewCell.m in Sources */,
 				E372D82C1B6216C100B4FC5C /* CPForgetPasswordViewController.m in Sources */,
 				E3C14F531B81D6BE006A0F52 /* CPBadgeIconButton.m in Sources */,
 				6BC8A3E61B6A4DB700B199F2 /* CPTaDetailsController.m in Sources */,
@@ -3297,7 +3357,7 @@
 					"$(PROJECT_DIR)/CarPlay/Classes/Utils/VoiceConvert/opencore-amrwb",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "06c415d8-6927-4cea-8c2f-a68534442f80";
 			};
 			name = Debug;
 		};
@@ -3329,7 +3389,7 @@
 					"$(PROJECT_DIR)/CarPlay/Classes/Utils/VoiceConvert/opencore-amrwb",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "06c415d8-6927-4cea-8c2f-a68534442f80";
 			};
 			name = Release;
 		};

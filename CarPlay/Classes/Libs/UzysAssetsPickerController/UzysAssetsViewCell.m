@@ -8,6 +8,7 @@
 
 #import "UzysAssetsViewCell.h"
 #import "UzysAppearanceConfig.h"
+#import "MJPhotoBrowser.h"
 
 @interface UzysAssetsViewCell()
 @property (nonatomic, strong) ALAsset *asset;
@@ -61,6 +62,27 @@ static CGFloat thumnailLength;
     self.image  = [UIImage imageWithCGImage:asset.thumbnail];
     self.type   = [asset valueForProperty:ALAssetPropertyType];
     self.title  = [UzysAssetsViewCell getTimeStringOfTimeInterval:[[asset valueForProperty:ALAssetPropertyDuration] doubleValue]];
+}
+
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    // 设置按钮的点中返回
+    CGRect rect = CGRectMake(self.width - 22, 2, 20, 20);
+    if (!CGRectContainsPoint(rect, [touches.anyObject locationInView:self])) {
+        MJPhotoBrowser *browser = [MJPhotoBrowser new];
+        
+        // 去除保存按钮
+        browser.showSaveBtn = 0;
+        MJPhoto *photo = [MJPhoto new];
+        photo.image = [UIImage imageWithCGImage:self.asset.defaultRepresentation.fullResolutionImage
+                                          scale:self.asset.defaultRepresentation.scale
+                                    orientation:(UIImageOrientation)self.asset.defaultRepresentation.orientation];
+        browser.photos = @[photo];
+        [browser show];
+    }else{
+        [super touchesBegan:touches withEvent:event];
+    }
 }
 
 - (void)setSelected:(BOOL)selected

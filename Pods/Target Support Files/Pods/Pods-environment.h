@@ -144,12 +144,6 @@
 #define COCOAPODS_VERSION_MINOR_UMengAnalytics_NO_IDFA 5
 #define COCOAPODS_VERSION_PATCH_UMengAnalytics_NO_IDFA 11
 
-// UzysAssetsPickerController
-#define COCOAPODS_POD_AVAILABLE_UzysAssetsPickerController
-#define COCOAPODS_VERSION_MAJOR_UzysAssetsPickerController 0
-#define COCOAPODS_VERSION_MINOR_UzysAssetsPickerController 9
-#define COCOAPODS_VERSION_PATCH_UzysAssetsPickerController 9
-
 // YLGIFImage
 #define COCOAPODS_POD_AVAILABLE_YLGIFImage
 #define COCOAPODS_VERSION_MAJOR_YLGIFImage 0

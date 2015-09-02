@@ -717,6 +717,7 @@ typedef enum {
             return;
         }
         MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+        browser.showSaveBtn = 0;
         browser.currentPhotoIndex = recognizer.view.tag - 20;
         NSMutableArray *photos = [NSMutableArray array];
         for (int i = 0; i < self.photoView.subviews.count - 1; i ++) {

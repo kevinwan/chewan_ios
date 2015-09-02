@@ -7,7 +7,6 @@
 //
 
 #import "CPPhotoalbumManagement.h"
-#import <UzysAssetsPickerController/UzysWrapperPickerController.h>
 #import "UzysAssetsPickerController.h"
 #import "CPEditImageView.h"
 #import "MJPhotoBrowser.h"
