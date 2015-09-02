@@ -12,7 +12,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="r0c-ep-IRC" userLabel="Active Details Head" customClass="CPActiveDetailsHead">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="430.5"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="424.5"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UV2-HF-J7s" userLabel="昵称">
@@ -325,7 +325,7 @@
                 <outlet property="startTime" destination="FRO-g7-CdP" id="wru-Ta-7lj"/>
                 <outlet property="status" destination="zJq-Kf-eiu" id="N0G-J8-uLn"/>
             </connections>
-            <point key="canvasLocation" x="342.5" y="95.25"/>
+            <point key="canvasLocation" x="342.5" y="92.25"/>
         </view>
     </objects>
     <resources>

@@ -120,7 +120,8 @@
 //    }else{
 //        return CGRectGetMaxY(self.bottomView.frame);
 //    }
-    
+    NSLog(@"---bottom:%f",CGRectGetMaxY(self.iconBtn.frame));
+     NSLog(@"---y:%f",self.iconBtn.y);
     return CGRectGetMaxY(self.bottomView.frame);
     
 }
