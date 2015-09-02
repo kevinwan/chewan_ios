@@ -190,6 +190,7 @@
                         <outlet property="inputView" destination="DVq-8z-gPF" id="kXV-vt-5qg"/>
                         <outlet property="sendBtn" destination="KeV-U4-eRl" id="9os-BE-ulS"/>
                         <outlet property="tableView" destination="nHk-l9-2bE" id="JeM-uT-v70"/>
+                        <outlet property="topConstraint" destination="p1H-7C-dHj" id="HLA-ES-zDq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dnm-9g-zf4" userLabel="First Responder" sceneMemberID="firstResponder"/>

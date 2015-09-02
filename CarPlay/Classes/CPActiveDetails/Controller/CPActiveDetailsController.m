@@ -401,11 +401,11 @@
 
     if ([n.name isEqualToString:UIKeyboardWillHideNotification]) {
         self.bottomConstraint.constant = 0.0;
-        self.topConstraint.constant = 64;
+        self.topConstraint.constant = 0.0;
     } else {
         CGRect r = [n.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
         self.bottomConstraint.constant = r.size.height;
-        self.topConstraint.constant = 64 - r.size.height;
+        self.topConstraint.constant = 0.0 - r.size.height;
     }
     
     //执行动画
