@@ -14,7 +14,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <MobileCoreServices/MobileCoreServices.h>
-
+#import "UzysAssetsPickerController.h"
 //#import "SRRefreshView.h"
 #import "DXChatBarMoreView.h"
 #import "DXRecordView.h"
@@ -41,7 +41,7 @@
 #define KPageCount 20
 #define KHintAdjustY    50
 
-@interface ChatViewController ()<UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, IChatManagerDelegate, DXChatBarMoreViewDelegate, DXMessageToolBarDelegate, LocationViewDelegate, EMCDDeviceManagerDelegate>
+@interface ChatViewController ()<UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, IChatManagerDelegate, DXChatBarMoreViewDelegate, DXMessageToolBarDelegate, LocationViewDelegate, EMCDDeviceManagerDelegate,UzysAssetsPickerControllerDelegate>
 {
     UIMenuController *_menuController;
     UIMenuItem *_copyMenuItem;
@@ -172,13 +172,13 @@
     //注册为SDK的ChatManager的delegate
     [[EaseMob sharedInstance].chatManager addDelegate:self delegateQueue:nil];
     
-//    [[EaseMob sharedInstance].callManager removeDelegate:self];
-//    // 注册为Call的Delegate
-//    [[EaseMob sharedInstance].callManager addDelegate:self delegateQueue:nil];
+    //    [[EaseMob sharedInstance].callManager removeDelegate:self];
+    //    // 注册为Call的Delegate
+    //    [[EaseMob sharedInstance].callManager addDelegate:self delegateQueue:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeAllMessages:) name:@"RemoveAllMessages" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exitGroup) name:@"ExitGroup" object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(insertCallMessage:) name:@"insertCallMessage" object:nil];
+    //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(insertCallMessage:) name:@"insertCallMessage" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground) name:@"applicationDidEnterBackground" object:nil];
     
     _messageQueue = dispatch_queue_create("easemob.com", NULL);
@@ -199,9 +199,9 @@
     //通过会话管理者获取已收发消息
     long long timestamp = [[NSDate date] timeIntervalSince1970] * 1000 + 1;
     [self loadMoreMessagesFrom:timestamp count:KPageCount append:NO];
-//    
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleCallNotification:) name:@"callOutWithChatter" object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleCallNotification:) name:@"callControllerClose" object:nil];
+    //
+    //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleCallNotification:) name:@"callOutWithChatter" object:nil];
+    //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleCallNotification:) name:@"callControllerClose" object:nil];
     
     if (_conversationType == eConversationTypeChatRoom)
     {
@@ -226,11 +226,11 @@
 
 - (void)setupBarButtonItem
 {
-//    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-//    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-//    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-//    [self.navigationItem setLeftBarButtonItem:backItem];
+    //    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    //    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+    //    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    //    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    //    [self.navigationItem setLeftBarButtonItem:backItem];
     
     if (self.isChatGroup) {
         UIButton *detailButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
@@ -292,7 +292,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 #warning 以下第一行代码必须写，将self从ChatManager的代理中移除
     [[EaseMob sharedInstance].chatManager removeDelegate:self];
-//    [[EaseMob sharedInstance].callManager removeDelegate:self];
+    //    [[EaseMob sharedInstance].callManager removeDelegate:self];
     if (_conversation.conversationType == eConversationTypeChatRoom && !_isKicked)
     {
         //退出聊天室，删除会话
@@ -1030,10 +1030,14 @@
     [self keyBoardHidden];
     
     // 弹出照片选择
-    self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    self.imagePicker.mediaTypes = @[(NSString *)kUTTypeImage];
-    self.imagePicker.delegate = self;
-    [self presentViewController:self.imagePicker animated:YES completion:NULL];
+    
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+        UzysAssetsPickerController *picker = [[UzysAssetsPickerController alloc] init];
+        picker.delegate = self;
+        picker.maximumNumberOfSelectionPhoto = 10;
+        [self presentViewController:picker animated:YES completion:nil];
+    }
+    
     self.isInvisible = YES;
 }
 
@@ -1049,15 +1053,18 @@
 {
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:@"isShowPicker"];
     [self keyBoardHidden];
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        
+        UIImagePickerController *pick = [[UIImagePickerController alloc] init];
+        pick.delegate = self;
+        pick.sourceType = UIImagePickerControllerSourceTypeCamera;
+        [self presentViewController:pick animated:YES completion:nil];
+    }else{
+        [SVProgressHUD showErrorWithStatus:@"相机不可用"];
+    }
     
-#if TARGET_IPHONE_SIMULATOR
-    [self showHint:NSLocalizedString(@"message.simulatorNotSupportCamera", @"simulator does not support taking picture")];
-#elif TARGET_OS_IPHONE
-    self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    self.imagePicker.mediaTypes = @[(NSString *)kUTTypeImage,(NSString *)kUTTypeMovie];
-    [self presentViewController:self.imagePicker animated:YES completion:NULL];
     self.isInvisible = YES;
-#endif
+    
 }
 
 - (void)moreViewLocationAction:(DXChatBarMoreView *)moreView
@@ -1130,7 +1137,7 @@
         int x = arc4random() % 100000;
         NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
         NSString *fileName = [NSString stringWithFormat:@"%d%d",(int)time,x];
-
+        
         [[EMCDDeviceManager sharedInstance] asyncStartRecordingWithFileName:fileName
                                                                  completion:^(NSError *error)
          {
@@ -1173,6 +1180,31 @@
 }
 
 #pragma mark - UIImagePickerControllerDelegate
+
+- (void)uzysAssetsPickerController:(UzysAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets
+{
+    [assets enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        ALAsset *representation = obj;
+        
+        UIImage *img = [UIImage imageWithCGImage:representation.defaultRepresentation.fullResolutionImage
+                                           scale:representation.defaultRepresentation.scale
+                                     orientation:(UIImageOrientation)representation.defaultRepresentation.orientation];
+        
+        [self sendImageMessage:img];
+    }];
+    
+    [picker dismissViewControllerAnimated:YES completion:^{
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"isShowPicker"];
+    }];
+}
+
+- (void)uzysAssetsPickerControllerDidCancel:(UzysAssetsPickerController *)picker
+{
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"isShowPicker"];
+    [self.imagePicker dismissViewControllerAnimated:YES completion:nil];
+    self.isInvisible = NO;
+}
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
@@ -1458,7 +1490,7 @@
     if ([_delelgate respondsToSelector:@selector(avatarWithChatter:)]) {
         model.headImageURL = [NSURL URLWithString:[_delelgate avatarWithChatter:model.username]];
     }
-
+    
     if (model) {
         [ret addObject:model];
     }
@@ -1492,52 +1524,52 @@
 
 - (void)showRoomContact:(id)sender
 {
-//    [self.view endEditing:YES];
-//    if (self.conversationType == eConversationTypeGroupChat) {
-//        ChatGroupDetailViewController *detailController = [[ChatGroupDetailViewController alloc] initWithGroupId:_chatter];
-//        [self.navigationController pushViewController:detailController animated:YES];
-//    }
-//    else if (self.conversationType == eConversationTypeChatRoom)
-//    {
-//        ChatroomDetailViewController *detailController = [[ChatroomDetailViewController alloc] initWithChatroomId:_chatter];
-//        [self.navigationController pushViewController:detailController animated:YES];
-//    }
+    //    [self.view endEditing:YES];
+    //    if (self.conversationType == eConversationTypeGroupChat) {
+    //        ChatGroupDetailViewController *detailController = [[ChatGroupDetailViewController alloc] initWithGroupId:_chatter];
+    //        [self.navigationController pushViewController:detailController animated:YES];
+    //    }
+    //    else if (self.conversationType == eConversationTypeChatRoom)
+    //    {
+    //        ChatroomDetailViewController *detailController = [[ChatroomDetailViewController alloc] initWithChatroomId:_chatter];
+    //        [self.navigationController pushViewController:detailController animated:YES];
+    //    }
 }
 
 - (void)removeAllMessages:(id)sender
 {
-//    if (_dataSource.count == 0) {
-//        [self showHint:NSLocalizedString(@"message.noMessage", @"no messages")];
-//        return;
-//    }
-//    
-//    if ([sender isKindOfClass:[NSNotification class]]) {
-//        NSString *groupId = (NSString *)[(NSNotification *)sender object];
-//        if (self.isChatGroup && [groupId isEqualToString:_conversation.chatter]) {
-//            [_conversation removeAllMessages];
-//            [_messages removeAllObjects];
-//            _chatTagDate = nil;
-//            [_dataSource removeAllObjects];
-//            [_tableView reloadData];
-//            [self showHint:NSLocalizedString(@"message.noMessage", @"no messages")];
-//        }
-//    }
-//    else{
-//        __weak typeof(self) weakSelf = self;
-//        
-//        [EMAlertView showAlertWithTitle:NSLocalizedString(@"prompt", @"Prompt")
-//                                message:NSLocalizedString(@"sureToDelete", @"please make sure to delete")
-//                        completionBlock:^(NSUInteger buttonIndex, EMAlertView *alertView) {
-//                            if (buttonIndex == 1) {
-//                                [weakSelf.conversation removeAllMessages];
-//                                [weakSelf.messages removeAllObjects];
-//                                weakSelf.chatTagDate = nil;
-//                                [weakSelf.dataSource removeAllObjects];
-//                                [weakSelf.tableView reloadData];
-//                            }
-//                        } cancelButtonTitle:NSLocalizedString(@"cancel", @"Cancel")
-//                      otherButtonTitles:NSLocalizedString(@"ok", @"OK"), nil];
-//    }
+    //    if (_dataSource.count == 0) {
+    //        [self showHint:NSLocalizedString(@"message.noMessage", @"no messages")];
+    //        return;
+    //    }
+    //
+    //    if ([sender isKindOfClass:[NSNotification class]]) {
+    //        NSString *groupId = (NSString *)[(NSNotification *)sender object];
+    //        if (self.isChatGroup && [groupId isEqualToString:_conversation.chatter]) {
+    //            [_conversation removeAllMessages];
+    //            [_messages removeAllObjects];
+    //            _chatTagDate = nil;
+    //            [_dataSource removeAllObjects];
+    //            [_tableView reloadData];
+    //            [self showHint:NSLocalizedString(@"message.noMessage", @"no messages")];
+    //        }
+    //    }
+    //    else{
+    //        __weak typeof(self) weakSelf = self;
+    //
+    //        [EMAlertView showAlertWithTitle:NSLocalizedString(@"prompt", @"Prompt")
+    //                                message:NSLocalizedString(@"sureToDelete", @"please make sure to delete")
+    //                        completionBlock:^(NSUInteger buttonIndex, EMAlertView *alertView) {
+    //                            if (buttonIndex == 1) {
+    //                                [weakSelf.conversation removeAllMessages];
+    //                                [weakSelf.messages removeAllObjects];
+    //                                weakSelf.chatTagDate = nil;
+    //                                [weakSelf.dataSource removeAllObjects];
+    //                                [weakSelf.tableView reloadData];
+    //                            }
+    //                        } cancelButtonTitle:NSLocalizedString(@"cancel", @"Cancel")
+    //                      otherButtonTitles:NSLocalizedString(@"ok", @"OK"), nil];
+    //    }
 }
 
 - (void)showMenuViewController:(UIView *)showInView andIndexPath:(NSIndexPath *)indexPath messageType:(MessageBodyType)messageType
@@ -1651,9 +1683,9 @@
 -(void)sendTextMessage:(NSString *)textMessage
 {
     NSDictionary *ext = nil;
-//    if (_isRobot) {
-//        ext = @{kRobot_Message_Ext:[NSNumber numberWithBool:YES]};
-//    }
+    //    if (_isRobot) {
+    //        ext = @{kRobot_Message_Ext:[NSNumber numberWithBool:YES]};
+    //    }
     ext = @{@"nickName":[Tools getValueFromKey:@"nickName"],@"headUrl":[Tools getValueFromKey:@"headUrl"],@"userId":[Tools getValueFromKey:@"userId"]};
     EMMessage *tempMessage = [ChatSendHelper sendTextMessageWithString:textMessage
                                                             toUsername:_conversation.chatter
@@ -1666,9 +1698,9 @@
 -(void)sendImageMessage:(UIImage *)image
 {
     NSDictionary *ext = nil;
-//    if (_isRobot) {
-//        ext = @{kRobot_Message_Ext:[NSNumber numberWithBool:YES]};
-//    }
+    //    if (_isRobot) {
+    //        ext = @{kRobot_Message_Ext:[NSNumber numberWithBool:YES]};
+    //    }
     ext = @{@"nickName":[Tools getValueFromKey:@"nickName"],@"headUrl":[Tools getValueFromKey:@"headUrl"],@"userId":[Tools getValueFromKey:@"userId"]};
     EMMessage *tempMessage = [ChatSendHelper sendImageMessageWithImage:image
                                                             toUsername:_conversation.chatter
@@ -1681,9 +1713,9 @@
 -(void)sendAudioMessage:(EMChatVoice *)voice
 {
     NSDictionary *ext = nil;
-//    if (_isRobot) {
-//        ext = @{kRobot_Message_Ext:[NSNumber numberWithBool:YES]};
-//    }
+    //    if (_isRobot) {
+    //        ext = @{kRobot_Message_Ext:[NSNumber numberWithBool:YES]};
+    //    }
     ext = @{@"nickName":[Tools getValueFromKey:@"nickName"],@"headUrl":[Tools getValueFromKey:@"headUrl"],@"userId":[Tools getValueFromKey:@"userId"]};
     EMMessage *tempMessage = [ChatSendHelper sendVoice:voice
                                             toUsername:_conversation.chatter
@@ -1695,9 +1727,9 @@
 -(void)sendVideoMessage:(EMChatVideo *)video
 {
     NSDictionary *ext = nil;
-//    if (_isRobot) {
-//        ext = @{kRobot_Message_Ext:[NSNumber numberWithBool:YES]};
-//    }
+    //    if (_isRobot) {
+    //        ext = @{kRobot_Message_Ext:[NSNumber numberWithBool:YES]};
+    //    }
     ext = @{@"nickName":[Tools getValueFromKey:@"nickName"],@"headUrl":[Tools getValueFromKey:@"headUrl"],@"userId":[Tools getValueFromKey:@"userId"]};
     EMMessage *tempMessage = [ChatSendHelper sendVideo:video
                                             toUsername:_conversation.chatter

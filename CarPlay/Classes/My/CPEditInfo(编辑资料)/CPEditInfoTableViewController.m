@@ -244,6 +244,19 @@
             [Tools setValueForKey:[data objectForKey:@"photoUrl"] key:@"photoUrl"];
             [Tools setValueForKey:data[@"photoUrl"] key:@"headUrl"];
             [[SDImageCache sharedImageCache] removeImageForKey:[data objectForKey:@"photoUrl"]];
+            
+            EMChatCommand *cmdChat = [[EMChatCommand alloc] init];
+            cmdChat.cmd = @"updateAvatar";
+            EMCommandMessageBody *body = [[EMCommandMessageBody alloc] initWithChatObject:cmdChat];
+            // 生成message
+            NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
+            for (EMGroup *group in groupArray) {
+                EMMessage *message = [[EMMessage alloc] initWithReceiver:group.groupId bodies:@[body]];
+                message.ext=[[NSDictionary alloc]initWithObjectsAndKeys:[data objectForKey:@"photoUrl"],@"headUrl", nil];
+                message.messageType = eConversationTypeGroupChat;// 设置为群聊消息
+                [[EaseMob sharedInstance].chatManager asyncSendMessage:message progress:nil];
+            }
+            
             organizer.headImgUrl = [data objectForKey:@"photoUrl"];
             organizer.headImgId = data[@"photoId"];
             organizer.photo = data[@"photoUrl"];

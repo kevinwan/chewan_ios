@@ -7,7 +7,6 @@
 //
 
 #import "CPFeedbackViewController.h"
-#import <UzysAssetsPickerController/UzysWrapperPickerController.h>
 #import "UzysAssetsPickerController.h"
 #import "CPEditImageView.h"
 #import "CPCreatActivityCell.h"

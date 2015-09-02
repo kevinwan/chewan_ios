@@ -147,7 +147,8 @@ typedef enum {
     self.currentOffset = CGPointMake(0, -64);
     self.locationLabelWitdh.constant = kScreenWidth - 175;
     
-    
+    [self labelWithRow:4].text = [self stringFromDate:[NSDate date]];
+    self.currentModel.start = [NSDate date].timeIntervalSince1970 * 1000;
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
     [CPNotificationCenter addObserver:self selector:@selector(pickerViewCancle:) name:@"PicViewCancle" object:nil];
     [self.seats addObject:@"1个"];
@@ -594,6 +595,19 @@ typedef enum {
     return date.timeIntervalSince1970 * 1000;
 }
 
+/**
+ *  转换出当前的时间格式
+ *
+ *  @return
+ */
+
+- (NSString *)stringFromDate:(NSDate *)date
+{
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    fmt.dateFormat = @"yyyy年MM月dd日 HH:mm";
+    return [fmt stringFromDate:date];
+}
+
 #pragma mark - ZHPickViewDelegate
 -(void)toobarDonBtnHaveClick:(ZYPickView *)pickView resultString:(NSString *)resultString{
 
@@ -818,6 +832,7 @@ typedef enum {
         }
         
         MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+        browser.showSaveBtn = 0;
         browser.currentPhotoIndex = recognizer.view.tag - 20;
         NSMutableArray *photos = [NSMutableArray array];
         for (int i = 0; i < self.photoView.subviews.count - 1; i ++) {
@@ -1076,7 +1091,6 @@ typedef enum {
             [self showSuccess:@"创建成功"];
             [CPCreatActivityModelTool save:nil];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                button.userInteractionEnabled = YES;
                 if (button.tag == CreateActivityNone) {
                     // 跳转到活动详情界面
                     CPActiveDetailsController *activityDetailVc = [UIStoryboard storyboardWithName:@"CPActiveDetailsController" bundle:nil ].instantiateInitialViewController;

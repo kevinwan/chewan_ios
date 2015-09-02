@@ -78,10 +78,16 @@
 {
     [view addSubview:self];
     
+    NSString *city = [CPUserDefaults valueForKey:@"CPUserCity"];
+    // 加载定位到的城市
+    if (city.length) {
+        [self.areaLabel setTitle:city forState:UIControlStateNormal];
+    }
+    
     if (CPIsLogin) {
     
         [self loadData];
-    }
+    }   
 
     [UIView animateWithDuration:0.25 animations:^{
         self.y = view.height - 360;
