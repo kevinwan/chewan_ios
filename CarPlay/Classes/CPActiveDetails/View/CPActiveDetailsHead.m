@@ -115,14 +115,13 @@
     
     
     // 获取高度
-//    if (iPhone5_JX) {
-//        return CGRectGetMaxY(self.bottomView.frame) + 50;
-//    }else{
-//        return CGRectGetMaxY(self.bottomView.frame);
-//    }
-    NSLog(@"---bottom:%f",CGRectGetMaxY(self.iconBtn.frame));
-     NSLog(@"---y:%f",self.iconBtn.y);
-    return CGRectGetMaxY(self.bottomView.frame);
+    if ([UIDevice currentDevice].systemVersion.doubleValue < 8.4) {
+        return CGRectGetMaxY(self.bottomView.frame) + 51;
+    }else{
+        return CGRectGetMaxY(self.bottomView.frame);
+    }
+
+//    return CGRectGetMaxY(self.bottomView.frame);
     
 }
 
