@@ -206,7 +206,7 @@ static NSString *kGroupName = @"GroupName";
     if ([body.action isEqualToString:@"updateAvatar"]) {
         NSString *headUrl=message.ext[@"headUrl"];
         [[SDImageCache sharedImageCache]removeImageForKey:headUrl];
-        
+        [[SDImageCache sharedImageCache]removeImageForKey:headUrl fromDisk:YES];
         }
 }
 

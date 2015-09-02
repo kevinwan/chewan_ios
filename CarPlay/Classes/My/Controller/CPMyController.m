@@ -363,11 +363,6 @@
             [self.userHeadImg setImage:[UIImage imageNamed:@"morenHeadBtnImg"]];
         }
         
-//        NSString *path=[NSString stringWithFormat:@"%@avatar.png",[Tools getValueFromKey:@"userId"]];
-//        UIImage *img=[UIImage imageWithFileName:path];
-//        if (img) {
-//            [self.userHeadImg setImage:img];
-//        }
         if (organizer.nickname) {
             UIFont *font = [UIFont systemFontOfSize:16.0f];
             CGSize size = CGSizeMake(SCREEN_WIDTH-120.0,100.0);

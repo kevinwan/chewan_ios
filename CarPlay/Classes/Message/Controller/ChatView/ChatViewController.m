@@ -923,8 +923,9 @@
 
 -(void)didReceiveCmdMessage:(EMMessage *)message
 {
-    if ([_conversation.chatter isEqualToString:message.conversationChatter]) {
-        [self showHint:NSLocalizedString(@"receiveCmd", @"receive cmd message")];
+    EMCommandMessageBody *body = (EMCommandMessageBody *)message.messageBodies.lastObject;
+    if ([body.action isEqualToString:@"updateAvatar"]) {
+        [self.tableView reloadData];
     }
 }
 
