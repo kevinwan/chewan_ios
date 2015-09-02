@@ -68,7 +68,7 @@ static CGFloat thumnailLength;
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     // 设置按钮的点中返回
-    CGRect rect = CGRectMake(self.width - 22, 2, 20, 20);
+    CGRect rect = CGRectMake(self.width - 33, 2, 30, 30);
     if (!CGRectContainsPoint(rect, [touches.anyObject locationInView:self])) {
         MJPhotoBrowser *browser = [MJPhotoBrowser new];
         

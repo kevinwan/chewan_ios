@@ -145,6 +145,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // 加载筛选条件
+    if (CPIsLogin) {
+        CPSelectViewModel *selectViewModel = [NSKeyedUnarchiver unarchiveObjectWithFile:CPSelectModelPath];
+        if (selectViewModel) {
+            self.selectResult = selectViewModel;
+        }
+    }
 
     // 没网的时候点击重新加载
     if (CPNoNetWork) {
@@ -229,7 +237,7 @@
                 self.myCity = tempCityStr;
             }
             
-            //            NSLog(@"%@",self.myCity);
+
             
             // 将城市存入缓存中
             [CPUserDefaults setObject:self.myCity forKey:@"CPUserCity"];
@@ -237,9 +245,9 @@
             
             [CPUserDefaults setObject:placemark.subLocality forKey:@"CPUserArea"];
             [CPUserDefaults synchronize];
-            if (self.myCity) {
-                [self setupLoadStatusWithIgnore:0 Key:self.selectMark SelectModel:self.selectResult];
-            }
+
+            [self setupLoadStatusWithIgnore:0 Key:self.selectMark SelectModel:self.selectResult];
+
         }else{
             [self showInfo:@"加载用户位置失败"];
         }
@@ -302,7 +310,7 @@
     parameters[@"key"] = key;
     parameters[@"ignore"] = @(ignore);
     
-    parameters[@"city"] = self.myCity;
+    parameters[@"city"] = self.selectViewModel.city.length ? self.selectViewModel.city : self.myCity;
     
     parameters[@"longitude"] = [NSString stringWithFormat:@"%f",self.longitude];
     parameters[@"latitude"] = [NSString stringWithFormat:@"%f",self.latitude];
@@ -622,9 +630,12 @@
     // 取出对应行模型
     CPHomeStatus *status = self.status[indexPath.row];
     
-    ac.activeId = status.activityId;
- 
-    [self.navigationController pushViewController:ac animated:YES];
+    if (![status isKindOfClass:[NSArray class]]) {
+        ac.activeId = status.activityId;
+        [self.navigationController pushViewController:ac animated:YES];
+    }
+    
+    
     
 }
 
