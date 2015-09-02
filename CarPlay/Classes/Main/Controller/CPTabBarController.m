@@ -200,6 +200,27 @@ static NSString *kGroupName = @"GroupName";
     }
 }
 
+-(void)didReceiveCmdMessage:(EMMessage *)message
+{
+    EMCommandMessageBody *body = (EMCommandMessageBody *)message.messageBodies.lastObject;
+    if ([body.action isEqualToString:@"updateAvatar"]) {
+        NSString *headUrl=message.ext[@"headUrl"];
+        [[SDImageCache sharedImageCache]removeImageForKey:headUrl];
+        
+        }
+}
+
+- (void)didReceiveOfflineCmdMessages:(NSArray *)offlineCmdMessages;{
+    for (EMMessage *message in offlineCmdMessages) {
+        EMCommandMessageBody *body = (EMCommandMessageBody *)message.messageBodies.lastObject;
+            if ([body.action isEqualToString:@"updateAvatar"]) {
+                NSString *headUrl=message.ext[@"headUrl"];
+                [[SDImageCache sharedImageCache]removeImageForKey:headUrl];
+                
+        }
+    }
+}
+
 - (void)playSoundAndVibration{
     NSTimeInterval timeInterval = [[NSDate date]
                                    timeIntervalSinceDate:self.lastPlaySoundDate];

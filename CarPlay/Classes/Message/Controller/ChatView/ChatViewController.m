@@ -921,16 +921,6 @@
     }
 }
 
--(void)didReceiveCmdMessage:(EMMessage *)message
-{
-    if ([_conversation.chatter isEqualToString:message.conversationChatter]) {
-        EMCommandMessageBody *body = (EMCommandMessageBody *)message.messageBodies.lastObject;
-        
-        NSString *headUrl=message.ext[@"headUrl"];
-        [[SDImageCache sharedImageCache]removeImageForKey:headUrl];
-    }
-}
-
 - (void)didReceiveMessageId:(NSString *)messageId
                     chatter:(NSString *)conversationChatter
                       error:(EMError *)error
