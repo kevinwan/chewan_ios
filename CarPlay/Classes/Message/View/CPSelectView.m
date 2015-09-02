@@ -11,7 +11,6 @@
 #import "ZHPickView.h"
 #import "ZYSegmentControl.h"
 #import "HZAreaPickerView.h"
-#define CPSelectModelPath CPDocmentPath([[Tools getValueFromKey:@"userId"] stringByAppendingString:@"CPSelectModel.data"])
 @interface CPSelectView ()<ZHPickViewDelegate,HZAreaPickerDelegate>
 
 @property (nonatomic, strong) ZHPickView *pickerView;

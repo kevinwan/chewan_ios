@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+// 筛选条件的本地路径
+#define CPSelectModelPath CPDocmentPath([[Tools getValueFromKey:@"userId"] stringByAppendingString:@"CPSelectModel.data"])
 @class CPSelectView,CPSelectViewModel;
 // 点击确认和取消进行代理回调传值
 @protocol CPSelectViewDelegate <NSObject>
