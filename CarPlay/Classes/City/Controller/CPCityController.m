@@ -238,7 +238,7 @@
             [CPUserDefaults setObject:placemark.subLocality forKey:@"CPUserArea"];
             [CPUserDefaults synchronize];
             if (self.myCity) {
-                [self setupLoadStatusWithIgnore:0 Key:self.selectMark SelectModel:nil];
+                [self setupLoadStatusWithIgnore:0 Key:self.selectMark SelectModel:self.selectResult];
             }
         }else{
             [self showInfo:@"加载用户位置失败"];

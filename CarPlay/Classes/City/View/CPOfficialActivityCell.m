@@ -163,7 +163,7 @@
 //                CGFloat contentMaxW = maskView.width - 24;
 //        CGSize size = [contentLabel.text sizeWithFont:ActiveContentFont maxW:contentMaxW];
         contentLabel.x = 15;
-        contentLabel.y = titleLabel.bottom - 5;
+        contentLabel.y = titleLabel.bottom - 2;
         contentLabel.width = kScreenWidth - 30;
         contentLabel.height = ActiveContentFont.lineHeight * 2 + 10;
         

@@ -148,7 +148,7 @@ typedef enum {
     self.locationLabelWitdh.constant = kScreenWidth - 175;
     
     [self labelWithRow:4].text = [self stringFromDate:[NSDate date]];
-    
+    self.currentModel.start = [NSDate date].timeIntervalSince1970 * 1000;
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
     [CPNotificationCenter addObserver:self selector:@selector(pickerViewCancle:) name:@"PicViewCancle" object:nil];
     [self.seats addObject:@"1个"];
@@ -832,6 +832,7 @@ typedef enum {
         }
         
         MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+        browser.showSaveBtn = 0;
         browser.currentPhotoIndex = recognizer.view.tag - 20;
         NSMutableArray *photos = [NSMutableArray array];
         for (int i = 0; i < self.photoView.subviews.count - 1; i ++) {
