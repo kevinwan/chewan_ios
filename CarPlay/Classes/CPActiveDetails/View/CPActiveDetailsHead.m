@@ -115,13 +115,12 @@
     
     
     // 获取高度
-    if ([UIDevice currentDevice].systemVersion.doubleValue < 8.4) {
+    if ([UIDevice currentDevice].systemVersion.doubleValue > 8.0 && [UIDevice currentDevice].systemVersion.doubleValue < 8.4) {
         return CGRectGetMaxY(self.bottomView.frame) + 51;
     }else{
         return CGRectGetMaxY(self.bottomView.frame);
     }
 
-//    return CGRectGetMaxY(self.bottomView.frame);
     
 }
 
