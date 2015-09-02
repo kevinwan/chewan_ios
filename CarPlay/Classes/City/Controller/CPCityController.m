@@ -146,6 +146,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // 加载筛选条件
     if (CPIsLogin) {
         CPSelectViewModel *selectViewModel = [NSKeyedUnarchiver unarchiveObjectWithFile:CPSelectModelPath];
         if (selectViewModel) {
@@ -629,9 +630,12 @@
     // 取出对应行模型
     CPHomeStatus *status = self.status[indexPath.row];
     
-    ac.activeId = status.activityId;
- 
-    [self.navigationController pushViewController:ac animated:YES];
+    if (![status isKindOfClass:[NSArray class]]) {
+        ac.activeId = status.activityId;
+        [self.navigationController pushViewController:ac animated:YES];
+    }
+    
+    
     
 }
 
