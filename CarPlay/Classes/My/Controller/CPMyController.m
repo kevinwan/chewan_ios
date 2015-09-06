@@ -358,7 +358,8 @@
             NSURL *url = [[NSURL alloc]initWithString:organizer.photo];
             NSLog(@"0000000000%@",url);
             [Tools setValueForKey:organizer.photo key:@"photoUrl"];
-            [self.userHeadImg sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"morenHeadBtnImg"]];
+            [self.userHeadImg setImage:nil];
+            [self.userHeadImg sd_setImageWithURL:url];
         }else{
             [self.userHeadImg setImage:[UIImage imageNamed:@"morenHeadBtnImg"]];
         }
@@ -408,7 +409,7 @@
             [self.carModelAndDrivingExperience setX:self.carBrandLogoImg.left];
             [self.carBrandLogoImg setImage:nil];
         }else if (organizer.isAuthenticated == 2){
-            self.carModelAndDrivingExperience.text=@"认证审核中";
+            self.carModelAndDrivingExperience.text=@"带我飞~";
             [self.carModelAndDrivingExperience setX:self.carBrandLogoImg.left];
         }
         if (organizer.postNumber) {

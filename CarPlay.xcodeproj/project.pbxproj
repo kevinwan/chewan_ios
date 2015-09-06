@@ -3357,7 +3357,7 @@
 					"$(PROJECT_DIR)/CarPlay/Classes/Utils/VoiceConvert/opencore-amrwb",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "06c415d8-6927-4cea-8c2f-a68534442f80";
+				PROVISIONING_PROFILE = "fd0ef819-7127-4fe9-aa32-d4ebd1adff96";
 			};
 			name = Debug;
 		};
@@ -3389,7 +3389,7 @@
 					"$(PROJECT_DIR)/CarPlay/Classes/Utils/VoiceConvert/opencore-amrwb",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "06c415d8-6927-4cea-8c2f-a68534442f80";
+				PROVISIONING_PROFILE = "fd0ef819-7127-4fe9-aa32-d4ebd1adff96";
 			};
 			name = Release;
 		};
