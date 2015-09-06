@@ -40,7 +40,7 @@
     [self addSubview:_photoButton];
     
     UILabel *photoLabel=[[UILabel alloc]init];
-    [photoLabel setFrame:CGRectMake(25, 20+CHAT_BUTTON_SIZE, CHAT_BUTTON_SIZE, 12)];
+    [photoLabel setFrame:CGRectMake(_photoButton.left, _photoButton.bottom, CHAT_BUTTON_SIZE, 12)];
     [photoLabel setText:@"图片"];
     [photoLabel setTextColor:[UIColor grayColor]];
     [photoLabel setFont:[UIFont systemFontOfSize:12]];
@@ -55,7 +55,7 @@
     [self addSubview:_takePicButton];
     
     UILabel *takePicLabel=[[UILabel alloc]init];
-    [takePicLabel setFrame:CGRectMake(48 + CHAT_BUTTON_SIZE, 20+CHAT_BUTTON_SIZE, CHAT_BUTTON_SIZE, 12)];
+    [takePicLabel setFrame:CGRectMake(_takePicButton.left, _takePicButton.bottom, CHAT_BUTTON_SIZE, 12)];
     [takePicLabel setText:@"拍照"];
     [takePicLabel setTextColor:[UIColor grayColor]];
     [takePicLabel setFont:[UIFont systemFontOfSize:12]];
@@ -70,7 +70,7 @@
     [self addSubview:_locationButton];
     
     UILabel *locationLabel=[[UILabel alloc]init];
-    [locationLabel setFrame:CGRectMake(71 + CHAT_BUTTON_SIZE* 2, 20+CHAT_BUTTON_SIZE, CHAT_BUTTON_SIZE, 12)];
+    [locationLabel setFrame:CGRectMake(_locationButton.left, _locationButton.bottom, CHAT_BUTTON_SIZE, 12)];
     [locationLabel setText:@"位置"];
     [locationLabel setTextColor:[UIColor grayColor]];
     [locationLabel setFont:[UIFont systemFontOfSize:12]];

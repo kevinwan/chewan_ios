@@ -244,6 +244,7 @@
             [Tools setValueForKey:[data objectForKey:@"photoUrl"] key:@"photoUrl"];
             [Tools setValueForKey:data[@"photoUrl"] key:@"headUrl"];
             [[SDImageCache sharedImageCache] removeImageForKey:[data objectForKey:@"photoUrl"]];
+            [[SDImageCache sharedImageCache] removeImageForKey:[data objectForKey:@"photoUrl"] fromDisk:YES];
             
             EMChatCommand *cmdChat = [[EMChatCommand alloc] init];
             cmdChat.cmd = @"updateAvatar";
