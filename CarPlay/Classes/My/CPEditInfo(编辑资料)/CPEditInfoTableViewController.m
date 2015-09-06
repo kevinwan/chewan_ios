@@ -117,6 +117,8 @@
         }else if (indexPath.row==3){
             cell.cellTitle.text=@"驾龄";
             cell.cellContent.text=drivingExperience;
+            [cell.arrowImgView setHidden:YES];
+            cell.cellContentRight.constant = -17.0f;
         }else if (indexPath.row==4){
             cell.cellTitle.text=@"地区";
             cell.cellContent.text=[[NSString alloc]initWithFormat:@"%@ %@",city,district];
@@ -160,7 +162,7 @@
         cell.arrowImgView.transform = CGAffineTransformMakeRotation(M_PI_2);
         //动画结束
         [UIView commitAnimations];
-        if (indexPath.row==2) {
+//        if (indexPath.row==2) {
 //            _pickview=[[ZHPickView alloc] initPickviewWithArray:@[@"男", @"女"] isHaveNavControler:NO];
 //            _pickview.delegate=self;
 //            [_pickview show];
@@ -168,15 +170,15 @@
 //            frame.size.height=SCREEN_HEIGHT-_pickview.height;
 //            [self.tableView setFrame:frame];
 //            [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentSize.height -self.tableView.bounds.size.height) animated:YES];
-        }else if (indexPath.row==3) {
-            _pickview=[[ZHPickView alloc] initPickviewWithArray:@[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",@"12",@"13",@"14",@"15",@"16",@"17",@"18",@"19",@"20"] isHaveNavControler:NO];
-            _pickview.delegate=self;
-            [_pickview show];
-            CGRect frame=self.tableView.frame;
-            frame.size.height=SCREEN_HEIGHT-_pickview.height;
-            [self.tableView setFrame:frame];
-            [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentSize.height -self.tableView.bounds.size.height) animated:YES];
-        }else if (indexPath.row==4) {
+//        }else if (indexPath.row==3) {
+//            _pickview=[[ZHPickView alloc] initPickviewWithArray:@[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",@"12",@"13",@"14",@"15",@"16",@"17",@"18",@"19",@"20"] isHaveNavControler:NO];
+//            _pickview.delegate=self;
+//            [_pickview show];
+//            CGRect frame=self.tableView.frame;
+//            frame.size.height=SCREEN_HEIGHT-_pickview.height;
+//            [self.tableView setFrame:frame];
+//            [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentSize.height -self.tableView.bounds.size.height) animated:YES];
+       if (indexPath.row==4) {
             _pickview=[[ZHPickView alloc] initPickviewWithPlistName:@"city" isHaveNavControler:NO];
             _pickview.delegate=self;
             [_pickview show];
