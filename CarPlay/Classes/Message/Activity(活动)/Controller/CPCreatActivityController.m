@@ -45,7 +45,6 @@ typedef enum {
 
 @property (nonatomic, assign) BOOL isOpen;
 @property (nonatomic, assign) NSUInteger lastRow;
-@property (nonatomic, assign) UITableViewCell *lastCell;
 @property (nonatomic, strong) NSArray *activivtyDatas;
 @property (nonatomic, strong) ZYPickView *pickView;
 @property (nonatomic, assign) CGFloat photoViewHeight;
