@@ -65,7 +65,6 @@
         _descLocationView.x = 10;
         _descLocationView.width = kScreenWidth - 20;
         _descLocationView.height = 66;
-        _descLocationView.y = kScreenHeight - 76;
         
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -99,8 +98,9 @@
         address.x = 10;
         [_descLocationView addSubview:address];
         
-        [self.view addSubview:_descLocationView];
-        
+        [self.navigationController.view addSubview:_descLocationView];
+        _descLocationView.hidden = NO;
+        _descLocationView.y = kScreenHeight - 76;
     }
     return _descLocationView;
 }
@@ -155,7 +155,7 @@
  */
 - (void)setUpMapView
 {
-    _mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
+    _mapView = [[MAMapView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     _mapView.delegate = self;
     [self.view addSubview:_mapView];
     
@@ -185,7 +185,7 @@
     
     for (GeocodeAnnotation *annotation in self.mapView.annotations) {
        MAAnnotationView *view = [self.mapView viewForAnnotation:annotation];
-        CGRect annitationRect = [view convertRect:view.bounds toView:[UIApplication sharedApplication].keyWindow];
+        CGRect annitationRect = [view convertRect:view.bounds toView:self.mapView];
         if (CGRectContainsPoint(annitationRect, touchPoint)) {
             return;
         }
@@ -401,9 +401,10 @@
         {
             annotationView = [[CPAnnotationView alloc] initWithAnnotation:annotation
                                                           reuseIdentifier:reuseIndetifier];
-            annotationView.canShowCallout = YES;
+//            annotationView.canShowCallout = YES;
             
         }
+        annotationView.selected = NO;
         annotationView.image = [UIImage imageNamed:@"定位蓝"];
         
         //设置中⼼心点偏移，使得标注底部中间点成为经纬度对应点
@@ -504,12 +505,14 @@
 {
     [super viewWillAppear:animated];
     self.searchBar.hidden = NO;
+    _descLocationView.hidden = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     self.searchBar.hidden = YES;
+    self.descLocationView.hidden = YES;
     [SVProgressHUD dismiss];
 }
 
@@ -563,17 +566,23 @@
     return NO;
 }
 
-- (void)mapView:(MAMapView *)mapView didSelectAnnotationView:(MAAnnotationView *)view
-{
-    if ([view.annotation isKindOfClass:[MAUserLocation class]])
-        return;
-    [self setToolBarViewWithAnnotation:view.annotation];
-}
+//- (void)mapView:(MAMapView *)mapView didSelectAnnotationView:(MAAnnotationView *)view
+//{
+//    if ([mapView.selectedAnnotations.firstObject isEqual:view]) {
+//        NSLog(@"点击了重复");
+//        return;
+//    }
+//    if ([view.annotation isKindOfClass:[MAUserLocation class]])
+//        return;
+//    [self setToolBarViewWithAnnotation:view.annotation];
+//}
 
 - (void)dealloc
 {
+    // 清空代理 不然可能会程序奔溃
+    _mapView.delegate = nil;
     _mapView.userTrackingMode = MAUserTrackingModeNone;
-    _mapView = nil;
+    [_mapView removeFromSuperview];
     _searchApi = nil;
 }
 
