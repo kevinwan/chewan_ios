@@ -187,6 +187,7 @@
     
     self.selectButton = self.hotBtn;
   
+    self.navigationController.navigationBar.translucent=NO;
 }
 
 
