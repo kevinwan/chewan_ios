@@ -2,8 +2,8 @@
 //  UUDatePicker.m
 //  1111
 //
-//  Created by shake on 14-7-24.
-//  Copyright (c) 2014年 uyiuyao. All rights reserved.
+//  Created by 苏兆云 on 14-7-24.
+//  Copyright (c) 2014年 苏兆云. All rights reserved.
 //
 
 #import "UUDatePicker.h"
@@ -108,7 +108,7 @@
     yearArray   = [self ishave:yearArray];
     monthArray  = [self ishave:monthArray];
     dayArray    = [self ishave:dayArray];
-    ampmArray     =  @[@"上午", @"下午"];
+//    ampmArray     =  @[@"上午", @"下午"];
     hourArray   = [self ishave:hourArray];
     minuteArray = [self ishave:minuteArray];
     
@@ -174,7 +174,7 @@
     [self DaysfromYear:[model.year integerValue] andMonth:[model.month integerValue]];
     
     yearIndex = [model.year intValue]-UUPICKER_MINDATE;
-    monthIndex = [model.month intValue]-1;
+    monthIndex = [model.month intValue]-2;
     dayIndex = [model.day intValue]-1;
     hourIndex = [model.hour intValue]-0;
     minuteIndex = [model.minute intValue]-0;
@@ -187,12 +187,6 @@
 
     if (self.datePickerStyle == UUDateStyle_YearMonthDayHourMinute)
         return @[year,month,day,@(ampmIndex),hour,minute];
-    if (self.datePickerStyle == UUDateStyle_YearMonthDay)
-        return @[year,month,day];
-    if (self.datePickerStyle == UUDateStyle_MonthDayHourMinute)
-        return @[month,day,hour,minute];
-    if (self.datePickerStyle == UUDateStyle_HourMinute)
-        return @[hour,minute];
     return nil;
 }
 
@@ -221,34 +215,9 @@
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     if (self.datePickerStyle == UUDateStyle_YearMonthDayHourMinute){
-//        if (isIOS7) {
-//            [self creatValuePointXs:@[@"90",@"145",@"200",@"255",@"310"]
-//                          withNames:@[@"年",@"月",@"日",@"时",@"分"]];
-//        }
         return 6;
     }
-    if (self.datePickerStyle == UUDateStyle_YearMonthDay){
-        if (isIOS7) {
-            [self creatValuePointXs:@[@"120",@"200",@"270"]
-                      withNames:@[@"年",@"月",@"日"]];
-            }
-        return 3;
-    }
-    if (self.datePickerStyle == UUDateStyle_MonthDayHourMinute){
-        if (isIOS7) {
-        [self creatValuePointXs:@[@"90",@"160",@"230",@"285"]
-                      withNames:@[@"月",@"日",@"时",@"分"]];
-            }
-        return 4;
-    }
-    if (self.datePickerStyle == UUDateStyle_HourMinute){
-        if (isIOS7) {
-        [self creatValuePointXs:@[@"140",@"245"]
-                      withNames:@[@"时",@"分"]];
-            }
-        return 2;
-    }
-    
+
     return 0;
 }
 
@@ -264,183 +233,46 @@
         if (component == 4) return UUPICKER_HOUR;
         if (component == 5) return UUPICKER_MINUTE;
     }
-    if (self.datePickerStyle == UUDateStyle_YearMonthDay)
-    {
-        if (component == 0) return UUPICKER_MAXDATE-UUPICKER_MINDATE;
-        if (component == 1) return UUPICKER_MONTH;
-        if (component == 2){
-            return [self DaysfromYear:[yearArray[yearIndex] integerValue] andMonth:[monthArray[monthIndex] integerValue]];
-        }
-    }
-    if (self.datePickerStyle == UUDateStyle_MonthDayHourMinute)
-    {
-        if (component == 0) return UUPICKER_MONTH;
-        if (component == 1){
-            return [self DaysfromYear:[yearArray[yearIndex] integerValue] andMonth:[monthArray[monthIndex] integerValue]];
-        }
-        if (component == 2) return UUPICKER_HOUR;
-        if (component == 3) return UUPICKER_MINUTE;
-    }
-    if (self.datePickerStyle == UUDateStyle_HourMinute)
-    {
-        if (component == 0) return UUPICKER_HOUR;
-        else                return UUPICKER_MINUTE;
-    }
     return 0;
 }
 
 #pragma mark - UIPickerViewDelegate
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
 {
-    switch (self.datePickerStyle) {
-//            if (component == self.dayComponent) {
-//                return 30.;
-//            } else if (component == self.monthComponent) {
-//                return 65.;
-//            } else if (component == self.yearComponent) {
-//                return 60.;
-//            } else if (component == self.hourComponent) {
-//                return 30.;
-//            } else if (component == self.minuteComponent) {
-//                return 30.;
-//            } else if (component == self.ampmComponent) {
-//                return 50.;
-//            }
-        case UUDateStyle_YearMonthDayHourMinute:{
-            if (component==0) return 58.;
-            if (component==1) return 65.;
-            if (component==2) return 30.;
-            if (component==3) return 50.;
-            if (component==4) return 30.;
-            if (component==5) return 30.;
-        }
-            break;
-        case UUDateStyle_YearMonthDay:{
-            if (component==0) return 70;
-            if (component==1) return 100;
-            if (component==2) return 50;
-        }
-            break;
-        case UUDateStyle_MonthDayHourMinute:{
-            if (component==0) return 70;
-            if (component==1) return 60;
-            if (component==2) return 60;
-            if (component==3) return 60;
-        }
-            break;
-        case UUDateStyle_HourMinute:{
-            if (component==0) return 100;
-            if (component==1) return 100;
-        }
-            break;
-            
-        default:
-            break;
-    }
-    
-    return 0;
+    if (component==0) return 58.;
+    if (component==1) return 65.;
+    if (component==2) return 50.;
+    if (component==3) return 0.;
+    if (component==4) return 50.;
+    if (component==5) return 50.;
+    return 0.0;
 }
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    NSInteger currentMonth = monthIndex;
-    NSInteger currentHour = hourIndex;
-    switch (self.datePickerStyle) {
-        case UUDateStyle_YearMonthDayHourMinute:{
-            
-            if (component == 0) {
-                yearIndex = row;
-            }
-            if (component == 1) {
-                monthIndex = row;
-            }
-            if (component == 2) {
-                dayIndex = row;
-            }
-            if (component == 4) {
-                hourIndex = row;
-            }
-            if (component == 5) {
-                minuteIndex = row;
-            }
-            if (component == 0 || component == 1 || component == 2){
-                [self DaysfromYear:[yearArray[yearIndex] integerValue] andMonth:[monthArray[monthIndex] integerValue]];
-                if (dayArray.count-1<dayIndex) {
-                    dayIndex = dayArray.count-1;
-                }
-//                [pickerView reloadComponent:2];
-                
-            }
-        }
-            break;
-            
-            
-        case UUDateStyle_YearMonthDay:{
-            
-            if (component == 0) {
-                yearIndex = row;
-            }
-            if (component == 1) {
-                monthIndex = row;
-            }
-            if (component == 2) {
-                dayIndex = row;
-            }
-            if (component == 0 || component == 1){
-                [self DaysfromYear:[yearArray[yearIndex] integerValue] andMonth:[monthArray[monthIndex] integerValue]];
-                if (dayArray.count-1<dayIndex) {
-                    dayIndex = dayArray.count-1;
-                }
-//                [pickerView reloadComponent:2];
-            }
-        }
-            break;
-            
-            
-        case UUDateStyle_MonthDayHourMinute:{
-            if (component == 1) {
-                dayIndex = row;
-            }
-            if (component == 2) {
-                hourIndex = row;
-            }
-            if (component == 3) {
-                minuteIndex = row;
-            }
-            if (component == 0) {
-                monthIndex = row;
-                if (dayArray.count-1<dayIndex) {
-                    dayIndex = dayArray.count-1;
-                }
-//                [pickerView reloadComponent:1];
-            }
-                [self DaysfromYear:[yearArray[yearIndex] integerValue] andMonth:[monthArray[monthIndex] integerValue]];
-
-        }
-            break;
-            
-            
-        case UUDateStyle_HourMinute:{
-            if (component == 3) {
-                hourIndex = row;
-            }
-            if (component == 4) {
-                minuteIndex = row;
-            }
-        }
-            break;
-            
-        default:
-            break;
+    if (component == 0) {
+        yearIndex = row;
     }
-
-    [pickerView reloadAllComponents];
-    
-//    if (currentMonth != monthIndex) {
-//        [myPickerView selectRow:0 inComponent:2 animated:YES];
-//    }
-//    if (currentHour != hourIndex) {
-//        [myPickerView selectRow:0 inComponent:5 animated:YES];
-//    }
+    if (component == 1) {
+        monthIndex = row;
+    }
+    if (component == 2) {
+        dayIndex = row;
+    }
+    if (component == 4) {
+        hourIndex = row;
+    }
+    if (component == 5) {
+        minuteIndex = row;
+    }
+    if (component == 0 || component == 1 || component == 2){
+        [self DaysfromYear:[yearArray[yearIndex] integerValue] andMonth:[monthArray[monthIndex] integerValue]];
+        if (dayArray.count-1<dayIndex) {
+            dayIndex = dayArray.count-1;
+        }
+//                [pickerView reloadComponent:2];
+        
+    }
+      [pickerView reloadAllComponents];
     
     [self playTheDelegate];
 }
@@ -455,88 +287,29 @@
     }
     UIColor *textColor = [UIColor blackColor];
     NSString *title;
-    
-    
-    
-    switch (self.datePickerStyle) {
-        case UUDateStyle_YearMonthDayHourMinute:{
-            if (component==0) {
-                title = yearArray[row];
-                textColor = [self returnYearColorRow:row];
-            }
-            if (component==1) {
-                title = monthArray[row];
-                textColor = [self returnMonthColorRow:row];
-            }
-            if (component==2) {
-                title = dayArray[row];
-                textColor = [self returnDayColorRow:row];
-            }
-            if (component==3) {
-                title = ampmArray[row];
-                textColor = [UIColor blackColor];
-            }
-            if (component==4) {
-                title = hourArray[row];
-                textColor = [self returnHourColorRow:row];
-            }
-            if (component==5) {
-                title = minuteArray[row];
-                textColor = [self returnMinuteColorRow:row];
-            }
-        }
-            break;
-            
-            
-        case UUDateStyle_YearMonthDay:{
-            if (component==0) {
-                title = yearArray[row];
-                textColor = [self returnYearColorRow:row];
-            }
-            if (component==1) {
-                title = monthArray[row];
-                textColor = [self returnMonthColorRow:row];
-            }
-            if (component==2) {
-                title = dayArray[row];
-                textColor = [self returnDayColorRow:row];
-            }
-        }
-            break;
-            
-        case UUDateStyle_MonthDayHourMinute:{
-            if (component==0) {
-                title = monthArray[row];
-                textColor = [self returnMonthColorRow:row];
-            }
-            if (component==1) {
-                title = dayArray[row];
-                textColor = [self returnDayColorRow:row];
-            }
-            if (component==2) {
-                title = hourArray[row];
-                textColor = [self returnHourColorRow:row];
-            }
-            if (component==3) {
-                title = minuteArray[row];
-                textColor = [self returnMinuteColorRow:row];
-            }
-        }
-            break;
-            
-        case UUDateStyle_HourMinute:{
-            if (component==0) {
-                title = hourArray[row];
-                textColor = [self returnHourColorRow:row];
-            }
-            if (component==1) {
-                title = minuteArray[row];
-                textColor = [self returnMinuteColorRow:row];
-            }
-        }
-            break;
-        default:
-            break;
+    if (component==0) {
+        title = yearArray[row];
+        textColor = [self returnYearColorRow:row];
+    }
+    if (component==1) {
+        title = monthArray[row];
+        textColor = [self returnMonthColorRow:row];
+    }
+    if (component==2) {
+        title = dayArray[row];
+        textColor = [self returnDayColorRow:row];
+    }
+    if (component==3) {
+        title = ampmArray[row];
+        textColor = [UIColor blackColor];
+    }
+    if (component==4) {
+        title = hourArray[row];
+        textColor = [self returnHourColorRow:row];
+    }
+    if (component==5) {
+        title = minuteArray[row];
+        textColor = [self returnMinuteColorRow:row];
     }
     customLabel.text = title;
     customLabel.textColor = textColor;
@@ -547,15 +320,10 @@
 - (void)playTheDelegate
 {
     NSString *monthStr = [monthArray[monthIndex] stringByReplacingOccurrencesOfString:@"月" withString:@""];
+    NSString *dayStr = [dayArray[dayIndex] stringByReplacingOccurrencesOfString:@"日" withString:@""];
     
-    NSDate *date = [self dateFromString:[NSString stringWithFormat:@"%@%@%@%@%@",yearArray[yearIndex],monthStr,dayArray[dayIndex],hourArray[hourIndex],minuteArray[minuteIndex]] withFormat:@"yyyyMMddHHmm"];
+    NSDate *date = [self dateFromString:[NSString stringWithFormat:@"%@%@%@%@%@",yearArray[yearIndex],monthStr,dayStr,hourArray[hourIndex],minuteArray[minuteIndex]] withFormat:@"yyyyMMddHHmm"];
     
-    NSInteger hour = [hourArray[hourIndex] integerValue];
-    if (hour > 12) {
-           [myPickerView selectRow:1 inComponent:3 animated:YES];
-    }else{
-         [myPickerView selectRow:0 inComponent:3 animated:YES];
-    }
     if ([date compare:self.minLimitDate] == NSOrderedAscending) {
         NSArray *array = [self getNowDate:self.minLimitDate];
         for (int i=0; i<array.count; i++) {
@@ -568,34 +336,12 @@
         }
     }
     
-    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-    fmt.dateFormat = @"yyyy年MM月dd HH:mm";
-    self.selectDateStr = [fmt stringFromDate:date];
-    
-    NSString *strWeekDay = [self getWeekDayWithYear:yearArray[yearIndex] month:monthArray[monthIndex] day:dayArray[dayIndex]];
-    
     monthStr = [monthArray[monthIndex] stringByReplacingOccurrencesOfString:@"月" withString:@""];
-    NSDate *selectDate = [self dateFromString:[NSString stringWithFormat:@"%@%@%@%@%@",yearArray[yearIndex],monthStr,dayArray[dayIndex],hourArray[hourIndex],minuteArray[minuteIndex]] withFormat:@"yyyyMMddHHmm"];//选择器时间
+    dayStr = [dayArray[dayIndex] stringByReplacingOccurrencesOfString:@"日" withString:@""];
+    NSDate *selectDate = [self dateFromString:[NSString stringWithFormat:@"%@%@%@%@%@",yearArray[yearIndex],monthStr,dayStr,hourArray[hourIndex],minuteArray[minuteIndex]] withFormat:@"yyyyMMddHHmm"];//选择器时间
     
     self.selectDateStr = [self stringFromDate:selectDate];
     
-    //block 回调
-//    if (self.finishBlock) {
-//        self.finishBlock(yearArray[yearIndex],
-//                         monthArray[monthIndex],
-//                         dayArray[dayIndex],
-//                         hourArray[hourIndex],
-//                         minuteArray[minuteIndex],
-//                         strWeekDay);
-//    }
-//    //代理回调
-//    [self.delegate uuDatePicker:self
-//                           year:yearArray[yearIndex]
-//                          month:monthArray[monthIndex]
-//                            day:dayArray[dayIndex]
-//                           hour:hourArray[hourIndex]
-//                         minute:minuteArray[minuteIndex]
-//                        weekDay:strWeekDay];
 }
 
 - (NSString *)stringFromDate:(NSDate *)date{
@@ -687,9 +433,11 @@
 {
     [dayArray removeAllObjects];
     for (int i=0; i<num * UUPICKER_SCALE; i++) {
-        [dayArray addObject:[NSString stringWithFormat:@"%02zd",i % num + 1]];
+        [dayArray addObject:[NSString stringWithFormat:@"%02zd日",i % num + 1]];
     }
 }
+
+#pragma mark - 设置picker的颜色
 
 - (UIColor *)returnYearColorRow:(NSInteger)row
 {

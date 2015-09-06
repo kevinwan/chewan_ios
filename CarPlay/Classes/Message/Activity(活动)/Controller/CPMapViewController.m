@@ -140,7 +140,7 @@
 {
     self.navigationItem.title = @"选择活动地点";
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    self.automaticallyAdjustsScrollViewInsets = NO;
     ZYSearchBar *searchBar = [[ZYSearchBar alloc] init];
     searchBar.textColor = [Tools getColor:@"aab2bd"];
     searchBar.placeholder = @"请输入目的地";
