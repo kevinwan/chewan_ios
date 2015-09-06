@@ -14,6 +14,8 @@
 
 -(void)toobarDonBtnHaveClick:(ZYPickView *)pickView resultString:(NSString *)resultString;
 
+- (void)pickerViewDidShow:(ZYPickView *)pickerView;
+
 @end
 
 @interface ZYPickView : UIView

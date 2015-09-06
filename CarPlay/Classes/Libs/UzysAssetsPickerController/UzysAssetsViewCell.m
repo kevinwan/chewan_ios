@@ -99,7 +99,8 @@ static CGFloat thumnailLength;
         return;
     }
     // 设置按钮的点中返回
-    CGRect rect = CGRectMake(self.width - 43, 2, 40, 40);
+    CGFloat width = self.width * 0.5;
+    CGRect rect = CGRectMake(self.width - width, 0, width, width);
     if (!CGRectContainsPoint(rect, [touches.anyObject locationInView:self])) {
         MJPhotoBrowser *browser = [MJPhotoBrowser new];
         

@@ -334,6 +334,9 @@
 -(void)show{
     
     [[UIApplication sharedApplication].keyWindow addSubview:self];
+    if ([self.delegate respondsToSelector:@selector(pickerViewDidShow:)]) {
+        [self.delegate pickerViewDidShow:self];
+    }
 }
 -(void)doneClick
 {

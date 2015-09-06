@@ -32,7 +32,7 @@
     textF.delegate = self;
     textF.textColor = [Tools getColor:@"434a54"];
     textF.font = [UIFont systemFontOfSize:16];
-    textF.frame = CGRectMake(10, 20 + 64, self.view.width - 20, 80);
+    textF.frame = CGRectMake(10, 20, self.view.width - 20, 80);
 
     [self.view addSubview:textF];
     self.textF = textF;

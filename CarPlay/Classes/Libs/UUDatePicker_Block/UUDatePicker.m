@@ -243,8 +243,8 @@
     if (component==1) return 65.;
     if (component==2) return 50.;
     if (component==3) return 0.;
-    if (component==4) return 50.;
-    if (component==5) return 50.;
+    if (component==4) return 60.;
+    if (component==5) return 30.;
     return 0.0;
 }
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
