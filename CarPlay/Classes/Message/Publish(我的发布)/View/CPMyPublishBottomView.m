@@ -213,7 +213,8 @@
 
 - (void)joinPersonClick
 {
-    [CPNotificationCenter postNotificationName:MyJoinPersonNotify object:nil userInfo:@{MyJoinPersonNotify : @(self.model.row)}];
+    DLog(@"wocao%zd",self.model.row);
+    [CPNotificationCenter postNotificationName:MyJoinPersonNotify object:nil userInfo:@{MyJoinPersonInfo : @(self.model.row)}];
 }
 
 @end

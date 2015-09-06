@@ -244,6 +244,7 @@
 - (void)joinPerson:(NSNotification *)notify
 {
     NSInteger row = [notify.userInfo[MyJoinPersonInfo] integerValue];
+    DLog(@"%zd======",row);
     CPMyPublishFrameModel *model = self.frameModels[row];
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MembersManage" bundle:nil];
     
