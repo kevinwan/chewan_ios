@@ -401,7 +401,7 @@
         {
             annotationView = [[CPAnnotationView alloc] initWithAnnotation:annotation
                                                           reuseIdentifier:reuseIndetifier];
-//            annotationView.canShowCallout = YES;
+            annotationView.canShowCallout = YES;
             
         }
         annotationView.selected = NO;
