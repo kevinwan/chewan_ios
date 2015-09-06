@@ -144,7 +144,7 @@ typedef enum {
     self.finishBtn.clipsToBounds = YES;
     self.finishToFriend.layer.cornerRadius = 3;
     self.finishToFriend.clipsToBounds = YES;
-    self.currentOffset = CGPointMake(0, -64);
+    self.currentOffset = self.tableView.contentOffset;
     self.locationLabelWitdh.constant = kScreenWidth - 175;
     
     [self labelWithRow:4].text = [self stringFromDate:[NSDate date]];
@@ -309,14 +309,29 @@ typedef enum {
 - (void)pickerViewCancle:(NSNotification *)notify
 {
     [self.tableView setContentOffset:self.currentOffset animated:YES];
-    int row = [notify.userInfo[@"row"] intValue];
-    if (row == 0) {
-        [self closeArrowWithRow:0];
-        [self.tableView setContentOffset:CGPointMake(0, -64) animated:YES];
-    }else{
-        [self closeArrowWithRow:row];
-    }
+    [self closeArrowWithRow:[notify.userInfo[@"row"] intValue]];
     self.pickView = nil;
+}
+
+/**
+ *  当pickerView显示出来的时候调用
+ *
+ *  @param pickerView pickerView
+ */
+- (void)pickerViewDidShow:(ZYPickView *)pickerView
+{
+    UITableViewCell *cell = [self cellWithRow:pickerView.row];
+    CGRect covertedRect = [cell convertRect:cell.bounds toView:self.tableView];
+
+    CGFloat cellBottom = covertedRect.origin.y + covertedRect.size.height - self.tableView.contentOffset.y + 64;
+    
+    CGFloat margin = kScreenHeight - PickerViewHeght - cellBottom;
+
+    if (margin < 0) {
+        self.currentOffset = self.tableView.contentOffset;
+        [self.tableView setContentOffset:CGPointMake(0,self.tableView.contentOffset.y - margin) animated:YES];
+    }
+
 }
 
 /**
@@ -530,33 +545,6 @@ typedef enum {
     
     if (cell.operation) {
         cell.operation();
-        [self viewUpWithCell:cell];
-        return;
-    }
-    
-}
-
-/**
- *  自动调整cell的位置
- *
- *  @param cell cell description
- */
-- (void)viewUpWithCell:(CPCreatActivityCell *)cell
-{
-    CGRect covertedRect = [cell convertRect:cell.bounds toView:self.tableView];
-    CGFloat cellBottom = covertedRect.origin.y + covertedRect.size.height - self.tableView.contentOffset.y;
-
-    CGFloat margin = kScreenHeight - PickerViewHeght - cellBottom;
-    
-    if (margin >= 0) { // 如果间距大于0
-        if ([self cellWithRow:0] == cell){
-            [self.tableView scrollsToTop];
-        }else{
-//            [self.tableView setContentOffset:CGPointMake(0,self.tableView.contentOffset.y ) animated:YES];
-        }
-    }else{
-        self.currentOffset = self.tableView.contentOffset;
-        [self.tableView setContentOffset:CGPointMake(0,self.tableView.contentOffset.y - margin) animated:YES];
     }
 }
 
@@ -679,6 +667,11 @@ typedef enum {
     [UIView animateWithDuration:0.25 animations:^{
         arrow.transform = CGAffineTransformIdentity;
     }];
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.pickView remove];
 }
 
 #pragma mark - 添加相片的相关方法

@@ -52,6 +52,8 @@ static CGFloat thumnailLength;
     {
         // Initialization code
         self.opaque = YES;
+//        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPress:)];
+//        [self addGestureRecognizer:tap];
         
     }
     return self;
@@ -65,10 +67,40 @@ static CGFloat thumnailLength;
 }
 
 
+//- (void)tapPress:(UITapGestureRecognizer *)tap
+//{
+//    // 设置按钮的点中返回
+//    CGRect rect = CGRectMake(self.width - 33, 2, 30, 30);
+//    ;
+//    if (!CGRectContainsPoint(rect, [tap locationInView:self])) {
+//        tap.enabled = YES;
+//        MJPhotoBrowser *browser = [MJPhotoBrowser new];
+//        
+//        // 去除保存按钮
+//        browser.showSaveBtn = 0;
+//        MJPhoto *photo = [MJPhoto new];
+//        photo.image = [UIImage imageWithCGImage:self.asset.defaultRepresentation.fullResolutionImage
+//                                          scale:self.asset.defaultRepresentation.scale
+//                                    orientation:(UIImageOrientation)self.asset.defaultRepresentation.orientation];
+//        browser.photos = @[photo];
+//        [browser show];
+//    }else{
+//        [self becomeFirstResponder];
+//        [self setSelected:!self.isSelected];
+//    }
+//
+//}
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    UICollectionView *collocView = (UICollectionView *)self.superview;
+    // 如果正在滚动,直接返回
+    if (collocView.isDragging || collocView.isTracking) {
+        return;
+    }
     // 设置按钮的点中返回
-    CGRect rect = CGRectMake(self.width - 33, 2, 30, 30);
+    CGFloat width = self.width * 0.5;
+    CGRect rect = CGRectMake(self.width - width, 0, width, width);
     if (!CGRectContainsPoint(rect, [touches.anyObject locationInView:self])) {
         MJPhotoBrowser *browser = [MJPhotoBrowser new];
         
@@ -84,6 +116,18 @@ static CGFloat thumnailLength;
         [super touchesBegan:touches withEvent:event];
     }
 }
+
+//- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+//{
+//    CGRect rect = CGRectMake(self.width - 33, 2, 30, 30);
+//    ;
+//    if (!CGRectContainsPoint(rect, point)) {
+//        return self;
+//    }else{
+//        return self.superview;
+//    }
+//
+//}
 
 - (void)setSelected:(BOOL)selected
 {

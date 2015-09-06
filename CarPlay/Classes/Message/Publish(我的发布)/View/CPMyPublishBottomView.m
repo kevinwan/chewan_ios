@@ -150,7 +150,6 @@
 
     CGFloat personBtnStartX = 5;
     CGFloat personBtnH = bottomViewH - 14;
-//    CGFloat personBtnY = (bottomViewH - personBtnH) * 0.5 + 1.3;
     CGFloat personBtnY = 0;
     CGFloat personBtnW = personBtnH;
     
