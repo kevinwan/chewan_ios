@@ -86,16 +86,6 @@
     [self.textF resignFirstResponder];
 }
 
-//- (void)textViewDidChange:(UITextView *)textView
-//{
-//    
-//    textView.height =  [textView.text sizeWithFont:textView.font maxW:textView.width].height + 10;
-//    
-//    [self.view viewWithTag:10].y = textView.bottom + 10;
-//    [self.view viewWithTag:11].y = [self.view viewWithTag:10].bottom + 10;
-//
-//}
-
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
     if (text.length + textView.text.length > 140) {

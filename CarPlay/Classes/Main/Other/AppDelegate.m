@@ -80,7 +80,6 @@
                                                  name:NOTIFICATION_ROOTCONTROLLERCHANGETOTAB
      
                                                object:nil];
-    DLog(@"%@=======",BundleId);
     
     if ([BundleId isEqualToString:@"com.gongpingjia.carplay"]) {
         

@@ -145,7 +145,6 @@ typedef enum {
     NSString *url = [NSString stringWithFormat:@"v1/user/%@/message/count?token=%@", userid, token];
     
     [ZYNetWorkTool getWithUrl:url params:nil success:^(id responseObject) {
-        DLog(@"%@",responseObject);
         [self.tableView.header endRefreshing];
         if (CPSuccess) {
             NSDictionary *comment = responseObject[@"data"][@"comment"];
