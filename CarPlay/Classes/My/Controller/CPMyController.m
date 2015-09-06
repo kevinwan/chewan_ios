@@ -119,7 +119,7 @@
                 }];
             }
         }else if (organizer.isAuthenticated == 0){
-            cell.valueLable.text=@"未认证";
+            cell.valueLable.text=@"带我飞~";
             [cell.arrow setHidden:NO];
         }else if (organizer.isAuthenticated == 2){
             cell.valueLable.text=@"审核中";
@@ -404,7 +404,7 @@
                 self.carModelAndDrivingExperience.text=description;
             }
         }else if (organizer.isAuthenticated == 0){
-            self.carModelAndDrivingExperience.text=@"未认证";
+            self.carModelAndDrivingExperience.text=@"带我飞~";
             [self.carModelAndDrivingExperience setX:self.carBrandLogoImg.left];
             [self.carBrandLogoImg setImage:nil];
         }else if (organizer.isAuthenticated == 2){

@@ -43,7 +43,7 @@
                                                 <constraint firstAttribute="width" constant="14" id="YWk-tj-zA6"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未认证/未审核" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0vO-nz-wJX">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未认证" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0vO-nz-wJX">
                                             <rect key="frame" x="91" y="41" width="219" height="13"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="13" id="BBA-Wi-7BG"/>

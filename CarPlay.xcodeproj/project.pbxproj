@@ -2755,7 +2755,7 @@
 				TargetAttributes = {
 					6B4959C71B33A23900DB63EA = {
 						CreatedOnToolsVersion = 6.3.2;
-						DevelopmentTeam = K89RQ3A2PQ;
+						DevelopmentTeam = 54M46FP232;
 					};
 					6B4959E01B33A23900DB63EA = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -3357,7 +3357,7 @@
 					"$(PROJECT_DIR)/CarPlay/Classes/Utils/VoiceConvert/opencore-amrwb",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "fd0ef819-7127-4fe9-aa32-d4ebd1adff96";
 			};
 			name = Debug;
 		};
@@ -3389,7 +3389,7 @@
 					"$(PROJECT_DIR)/CarPlay/Classes/Utils/VoiceConvert/opencore-amrwb",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "fd0ef819-7127-4fe9-aa32-d4ebd1adff96";
 			};
 			name = Release;
 		};
