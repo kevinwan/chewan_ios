@@ -185,6 +185,15 @@
     
 }
 
+- (void)setStart:(long long)start{
+    _start = start;
+    long long now = [[NSDate date] timeIntervalSince1970]*1000;
+    
+    if (now - start > 0) {
+        _isActiveStart = YES;
+    }
+}
+
 - (void)setStartDate:(long long)startDate{
     _startDate = startDate;
     // 将服务器返回时间转换为NSDate

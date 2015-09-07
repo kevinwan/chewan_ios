@@ -148,6 +148,12 @@
         [self.myPlay setTitle:@"我要去玩" forState:UIControlStateNormal];
     }
     
+    if (self.status.isActiveStart) {
+        [self.myPlay setTitle:@"进行中" forState:UIControlStateNormal];
+        [self.myPlay setBackgroundColor:[Tools getColor:@"ccd1d9"]];
+        self.myPlay.userInteractionEnabled = NO;
+    }
+    
     if (self.status.isOver) {
         [self.myPlay setTitle:@"已结束" forState:UIControlStateNormal];
         [self.myPlay setBackgroundColor:[Tools getColor:@"ccd1d9"]];
