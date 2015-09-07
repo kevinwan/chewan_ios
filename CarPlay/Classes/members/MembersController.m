@@ -58,6 +58,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [CPGuideView showGuideViewWithImageName:@"memberGuide"];
     self.navigationItem.title = @"参与成员";
     [self setupFontAndColor];
     [self setUpRefresh];

@@ -27,6 +27,9 @@
 @property (nonatomic, assign) long long start;
 @property (nonatomic,copy) NSString *startStr;
 
+/** 活动是否在进行中 */
+@property (nonatomic,assign) BOOL isActiveStart;
+
 /** 活动结束时间 */
 @property (nonatomic, assign) long long end;
 @property (nonatomic,copy) NSString *endStr;

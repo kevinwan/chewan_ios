@@ -74,7 +74,14 @@
 
 }
 
+- (void)setStart:(long long)start{
+    _start = start;
+    long long now = [[NSDate date] timeIntervalSince1970]*1000;
 
+    if (now - start > 0) {
+        _isActiveStart = YES;
+    }
+}
 
 
 
