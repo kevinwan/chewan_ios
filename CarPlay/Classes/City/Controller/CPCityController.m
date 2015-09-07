@@ -277,7 +277,7 @@
     footer.automaticallyChangeAlpha = YES;
     footer.stateLabel.textColor = [Tools getColor:@"aab2bd"];
     [footer setTitle:@"加载中..." forState:MJRefreshStateRefreshing];
-    [footer setTitle:@"无更多数据" forState:MJRefreshStateNoMoreData];
+    [footer setTitle:@"已无更多活动" forState:MJRefreshStateNoMoreData];
     self.tableView.footer = footer;
 
 }
