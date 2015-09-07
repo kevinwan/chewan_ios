@@ -170,7 +170,7 @@
     
     
     // 加载活动数据
-//    [self setupLoadStatusWithIgnore:0 Key:self.selectMark SelectModel:nil];
+    [self setupLoadStatusWithIgnore:0 Key:self.selectMark SelectModel:self.selectResult];
     
     
     // 上拉下拉刷新
