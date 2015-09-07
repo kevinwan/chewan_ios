@@ -224,12 +224,13 @@
     self.start.text = _status.startStr;
     
     // 活动地点
-    if ([status.location length]>5) {
-        NSString *tempLocation = [_status.location substringToIndex:6];
-        self.loction.text = [NSString stringWithFormat:@"%@...",tempLocation];
-    }else{
-        self.loction.text = status.location;
-    }
+//    if ([status.location length]>5) {
+//        NSString *tempLocation = [_status.location substringToIndex:6];
+//        self.loction.text = [NSString stringWithFormat:@"%@...",tempLocation];
+//    }else{
+//        self.loction.text = status.location;
+//    }
+    self.loction.text = status.location;
     
     
     // 付费方式
