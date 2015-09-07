@@ -418,6 +418,10 @@
 
     } failure:^(NSError *error) {
         [self showError:@"获取活动数据失败"];
+        // 关闭下拉刷新栏
+        [self.tableView.header endRefreshing];
+        // 关闭上拉刷新栏
+        [self.tableView.footer endRefreshing];
     }];
     
 }
