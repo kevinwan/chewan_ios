@@ -63,6 +63,15 @@
     
 }
 
+- (void)setStart:(long long)start{
+    _start = start;
+    long long now = [[NSDate date] timeIntervalSince1970]*1000;
+    
+    if (now - start > 0) {
+        _isActiveStart = YES;
+    }
+}
+
 // 活动结束时间转为字符串
 - (NSString *)endStr{
     // 将服务器时间转换为NSDate

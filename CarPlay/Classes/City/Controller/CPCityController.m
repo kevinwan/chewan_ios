@@ -170,7 +170,7 @@
     
     
     // 加载活动数据
-//    [self setupLoadStatusWithIgnore:0 Key:self.selectMark SelectModel:nil];
+    [self setupLoadStatusWithIgnore:0 Key:self.selectMark SelectModel:self.selectResult];
     
     
     // 上拉下拉刷新
@@ -418,6 +418,10 @@
 
     } failure:^(NSError *error) {
         [self showError:@"获取活动数据失败"];
+        // 关闭下拉刷新栏
+        [self.tableView.header endRefreshing];
+        // 关闭上拉刷新栏
+        [self.tableView.footer endRefreshing];
     }];
     
 }
