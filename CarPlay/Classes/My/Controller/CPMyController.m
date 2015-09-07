@@ -41,8 +41,8 @@
     data=[[NSDictionary alloc]init];
     organizer=[[CPOrganizer alloc]init];
     albumPhotos=[[NSMutableArray alloc]init];
-    titleArray=[[NSArray alloc]initWithObjects:@"我关注的人",@"车主认证",@"玩转车玩",@"意见反馈",@"编辑资料", nil];
-    iconArray=[[NSArray alloc]initWithObjects:@"我关注的人",@"车主认证",@"玩转玩车",@"意见反馈",@"活动介绍", nil];
+    titleArray=[[NSArray alloc]initWithObjects:@"我关注的人",@"车主认证",@"编辑资料",@"玩转车玩",@"意见反馈", nil];
+    iconArray=[[NSArray alloc]initWithObjects:@"我关注的人",@"车主认证",@"编辑资料",@"玩转玩车",@"意见反馈", nil];
     self.userHeadImg.layer.cornerRadius=25;
     self.userHeadImg.layer.masksToBounds=YES;
     UITapGestureRecognizer *singleTap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonpress1:)];
@@ -115,11 +115,10 @@
                     cell.valueLableRight.constant=10.0f;
                     cell.carBrandLogoImgRight.constant = -12.0f;
                     [cell.arrow setHidden:YES];
-                    
                 }];
             }
         }else if (organizer.isAuthenticated == 0){
-            cell.valueLable.text=@"带我飞~";
+            cell.valueLable.text=@"未认证";
             [cell.arrow setHidden:NO];
         }else if (organizer.isAuthenticated == 2){
             cell.valueLable.text=@"审核中";
@@ -144,15 +143,15 @@
             CarOwnersCertificationVC.isAuthenticated = organizer.isAuthenticated;
             [self.navigationController pushViewController:CarOwnersCertificationVC animated:YES];
         }
-    }else if (indexPath.row==2){
+    }else if (indexPath.row==3){
         CPHowToPlayViewController *CPHowToPlayVC=[[CPHowToPlayViewController alloc]init];
         CPHowToPlayVC.title=@"玩转车玩";
         [self.navigationController pushViewController:CPHowToPlayVC animated:YES];
-    }else if (indexPath.row==3){
+    }else if (indexPath.row==4){
         CPFeedbackViewController *CPFeedbackVC=[[CPFeedbackViewController alloc]init];
         CPFeedbackVC.title=@"意见反馈";
         [self.navigationController pushViewController:[UIStoryboard storyboardWithName:@"CPFeedbackViewController" bundle:nil].instantiateInitialViewController animated:YES];
-    }else if (indexPath.row==4){
+    }else if (indexPath.row==2){
         if ([Tools getValueFromKey:@"userId"]) {
             CPEditInfoTableViewController *CPEditInfoTableVC=[[CPEditInfoTableViewController alloc]init];
             CPEditInfoTableVC.title=@"编辑资料";
