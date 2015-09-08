@@ -231,6 +231,7 @@
     
     if (self.model.city.length == 0){
         self.model.city = @"不限";
+        self.model.district = @"";
     }
     
     if ([self.delegate respondsToSelector:@selector(selectView:finishBtnClick:)]) {
