@@ -112,6 +112,8 @@
 
 - (void)awakeFromNib
 {
+    self.scrollView.scrollsToTop = NO;
+    
     self.photo.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(iconClick:)];
     [self.photo addGestureRecognizer:tap];

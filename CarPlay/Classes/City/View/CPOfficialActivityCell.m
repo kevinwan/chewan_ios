@@ -38,7 +38,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    
+    self.scrollView.scrollsToTop = NO;
 }
 
 

@@ -94,6 +94,9 @@
 }
 
 - (void)awakeFromNib{
+    self.picColView.scrollsToTop = NO;
+    self.iconColView.scrollsToTop = NO;
+    
     // 正文宽度
     self.descriptions.preferredMaxLayoutWidth = [UIScreen mainScreen].bounds.size.width - 20;
     

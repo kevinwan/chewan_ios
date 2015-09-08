@@ -637,6 +637,14 @@
     
 }
 
+// 点击状态栏跳到顶部
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView{
+    return YES;
+}
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView{
+    [self.tableView.header beginRefreshing];
+}
+
 
 #pragma mark - lazy(懒加载)
 // 用户id

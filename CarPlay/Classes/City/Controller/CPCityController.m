@@ -891,8 +891,12 @@
 
 - (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView
 {
-    
     return YES;
+}
+
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
+{
+    [self.tableView.header beginRefreshing];
 }
 
 // 蒙版按钮点击

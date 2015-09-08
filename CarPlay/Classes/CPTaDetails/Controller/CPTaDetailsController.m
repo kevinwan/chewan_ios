@@ -26,7 +26,7 @@
 
 
 
-@interface CPTaDetailsController () <ZHPickViewDelegate>
+@interface CPTaDetailsController () <ZHPickViewDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *taTableView;
 
 // 用户id
@@ -719,6 +719,14 @@
         [self.view alertError:error];
     }];
 
+}
+
+// 点击状态栏向上滚动刷新
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView{
+    return YES;
+}
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView{
+    [self.taTableView.header beginRefreshing];
 }
 
 //点击提交
