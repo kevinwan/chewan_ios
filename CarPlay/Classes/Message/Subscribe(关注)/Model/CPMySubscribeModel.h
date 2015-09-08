@@ -68,6 +68,8 @@
 
 // 是否结束
 @property (nonatomic, assign) NSInteger isOver;
+// 活动是不是开始了
+@property (nonatomic, assign) BOOL isStart;
 
 @end
 
@@ -137,4 +139,6 @@
 @property (nonatomic, copy) NSString *snsUid;
 
 @property (nonatomic, copy) NSString *drivingLicensePhoto;
+
+
 @end

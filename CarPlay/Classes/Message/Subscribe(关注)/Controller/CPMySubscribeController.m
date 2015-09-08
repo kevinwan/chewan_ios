@@ -184,6 +184,17 @@
     [self.navigationController pushViewController:activityDetailVc animated:YES];
 }
 
+
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView
+{
+    return YES;
+}
+
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
+{
+    [self.tableView.header beginRefreshing];
+}
+
 /**
  *  点击了用户的头像
  *
@@ -222,6 +233,10 @@
     // 当前行对应的model
     CPMySubscribeModel *model = frameModel.model;
     self.activeId = model.activityId;
+    
+    if (model.isStart || model.isMember == 2 || model.isOver) {
+        return;
+    }
     
     //根据isOrganizer判断进入那个界面
     if (model.isOrganizer == 1) {

@@ -192,10 +192,8 @@
         [self.chatBtn showToPlay];
     }
     
-    if (self.model.isOver == 1 || self.model.isMember == 2){
-        self.chatBtn.userInteractionEnabled = NO;
-    }else{
-        self.chatBtn.userInteractionEnabled = YES;
+    if (self.model.isStart){
+        [self.chatBtn showStarting];
     }
     
     if (self.model.isOver == 1){

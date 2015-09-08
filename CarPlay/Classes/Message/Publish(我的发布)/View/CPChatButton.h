@@ -15,4 +15,5 @@
 - (void)showHasJoin;
 - (void)showToPlay;
 - (void)showGameOver;
+- (void)showStarting;
 @end

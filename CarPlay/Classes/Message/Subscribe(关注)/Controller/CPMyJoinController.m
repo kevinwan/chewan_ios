@@ -167,6 +167,17 @@
     [self.navigationController pushViewController:activityDetailVc animated:YES];
 }
 
+
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView
+{
+    return YES;
+}
+
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
+{
+    [self.tableView.header beginRefreshing];
+}
+
 - (void)userIconClick:(NSNotification *)notify
 {
     NSString *userId = notify.userInfo[CPClickUserIconInfo];
@@ -200,7 +211,9 @@
     
     // 当前行对应的model
     CPMySubscribeModel *model = frameModel.model;
-    
+    if (model.isStart || model.isMember == 2 || model.isOver) {
+        return;
+    }
     //根据isOrganizer判断进入那个界面
     if (model.isOrganizer == 1) { // 成员管理
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MembersManage" bundle:nil];
@@ -209,8 +222,6 @@
         vc.activityId = model.activityId;
         [self.navigationController pushViewController:vc animated:YES];
         
-    } else if (model.isMember == 2){
-        // 已加入
     }else{
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Members" bundle:nil];
         MembersController * vc = sb.instantiateInitialViewController;

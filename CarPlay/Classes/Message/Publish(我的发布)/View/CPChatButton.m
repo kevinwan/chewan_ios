@@ -77,4 +77,11 @@
     [self setTitle:@"已结束" forState:UIControlStateNormal];
 }
 
+- (void)showStarting
+{
+    [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.backgroundColor = [Tools getColor:@"ccd1d9"];
+    [self setTitle:@"进行中" forState:UIControlStateNormal];
+}
+
 @end

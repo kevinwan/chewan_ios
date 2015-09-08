@@ -32,5 +32,15 @@
     _publishDate = [NSString stringWithFormat:@"%02d.%02d",o, t];
 }
 
+/**
+ *  比较现在时间是不是大于开始时间
+ *
+ *  @return 比较的结果值
+ */
+- (BOOL)isStart
+{
+    return [NSDate date].timeIntervalSince1970 * 1000 > _startDate;
+}
+
 @end
 
