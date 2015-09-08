@@ -229,6 +229,10 @@
         self.model.carLevel = @"good";
     }
     
+    if (self.model.city.length == 0){
+        self.model.city = @"不限";
+    }
+    
     if ([self.delegate respondsToSelector:@selector(selectView:finishBtnClick:)]) {
         
         [NSKeyedArchiver archiveRootObject:self.model toFile:CPSelectModelPath];
@@ -283,7 +287,7 @@
     
     self.firstArrow.transform = CGAffineTransformIdentity;
     self.lastArrow = nil;
-      self.model.district = @"";
+    self.model.district = @"";
     self.model.city = @"不限";
     
     if (![pickerView.locate.state isEqualToString:@"不限"]) {
