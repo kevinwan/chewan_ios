@@ -114,9 +114,11 @@
     }
     self.token = token;
     [self showLoading];
+//    [self.view showWait];
     NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/members?userId=%@&token=%@",self.activityId,self.userId,self.token];
     [ZYNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
         [self disMiss];
+//        [self.view hideWait];
 //        SQLog(@"%@",responseObject);
         if ([responseObject operationSuccess]) {
             NSArray *memberModel = [members objectArrayWithKeyValuesArray:responseObject[@"data"][@"members"]];
@@ -352,6 +354,8 @@
         cars *models = self.carsArray[indexPath.row];
         cell.models = models;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        //防止点击状态栏不能回到顶部
+        cell.seatScrollView.scrollsToTop = NO;
         //先清除button
         for (UIButton *button in cell.seatScrollView.subviews) {
             [button removeFromSuperview];
