@@ -237,7 +237,8 @@
                 self.myCity = tempCityStr;
             }
             
-
+            // 获取缓存城市的值
+            NSString *cacheCity = [CPUserDefaults objectForKey:@"CPUserCity"];
             
             // 将城市存入缓存中
             [CPUserDefaults setObject:self.myCity forKey:@"CPUserCity"];
@@ -245,8 +246,13 @@
             
             [CPUserDefaults setObject:placemark.subLocality forKey:@"CPUserArea"];
             [CPUserDefaults synchronize];
+            
+            // 是否刷新
+            if (self.selectResult == nil && ![self.myCity isEqualToString:cacheCity]) {
+                [self setupLoadStatusWithIgnore:0 Key:self.selectMark SelectModel:self.selectResult];
+            }
 
-            [self setupLoadStatusWithIgnore:0 Key:self.selectMark SelectModel:self.selectResult];
+            
 
         }else{
             [self showInfo:@"加载用户位置失败"];
