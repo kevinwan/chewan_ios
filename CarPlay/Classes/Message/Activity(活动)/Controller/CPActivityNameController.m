@@ -8,6 +8,7 @@
 
 #import "CPActivityNameController.h"
 #import "NSString+Extension.h"
+#import "ZYTextView.h"
 
 @interface CPActivityNameController ()<UITextViewDelegate>
 @property (nonatomic, strong) UITextView *textF;
@@ -27,8 +28,9 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(confirm)];
     [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:17], NSForegroundColorAttributeName :[UIColor whiteColor]} forState:UIControlStateNormal];
     
-    UITextView *textF = [[UITextView alloc] init];
-    textF.textContainerInset = UIEdgeInsetsMake(0, -5, 0, -5);
+    ZYTextView *textF = [[ZYTextView alloc] init];
+    textF.placeholder = @"介绍越详细越容易吸引人哟~";
+    textF.placeholderColor = [Tools getColor:@"aab2bd"];
     textF.delegate = self;
     textF.textColor = [Tools getColor:@"434a54"];
     textF.font = [UIFont systemFontOfSize:16];
@@ -46,16 +48,16 @@
     line.height = 0.5;
     [self.view addSubview:line];
     
-    UILabel *lable = [[UILabel alloc] init];
-    lable.tag = 11;
-    lable.font = [UIFont systemFontOfSize:14];
-    lable.textColor = [Tools getColor:@"aab2bd"];
-    lable.text = @"介绍越详细越容易吸引人";
-    lable.x = 10;
-    lable.width = self.view.width - 20;
-    lable.height = [lable.text sizeWithFont:lable.font maxW:lable.width].height;
-    lable.y = line.bottom + 10;
-    [self.view addSubview:lable];
+//    UILabel *lable = [[UILabel alloc] init];
+//    lable.tag = 11;
+//    lable.font = [UIFont systemFontOfSize:14];
+//    lable.textColor = [Tools getColor:@"aab2bd"];
+//    lable.text = @"介绍越详细越容易吸引人";
+//    lable.x = 10;
+//    lable.width = self.view.width - 20;
+//    lable.height = [lable.text sizeWithFont:lable.font maxW:lable.width].height;
+//    lable.y = line.bottom + 10;
+//    [self.view addSubview:lable];
     
     if (self.forValue) {
         textF.text = self.forValue;

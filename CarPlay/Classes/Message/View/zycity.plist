@@ -13,6 +13,12 @@
 	<dict>
 		<key>cities</key>
 		<array>
+			<string>海淀</string>
+			<string>朝阳</string>
+			<string>丰台</string>
+			<string>石景山</string>
+			<string>西城</string>
+			<string>东城</string>
 			<string>通州</string>
 			<string>房山</string>
 			<string>昌平</string>
@@ -22,15 +28,9 @@
 			<string>密云</string>
 			<string>平谷</string>
 			<string>延庆</string>
-			<string>东城</string>
 			<string>崇文</string>
-			<string>西城</string>
-			<string>朝阳</string>
 			<string>宣武</string>
-			<string>石景山</string>
-			<string>丰台</string>
 			<string>门头沟</string>
-			<string>海淀</string>
 		</array>
 		<key>state</key>
 		<string>北京</string>
@@ -136,12 +136,12 @@
 	<dict>
 		<key>cities</key>
 		<array>
+			<string>杭州</string>
 			<string>丽水</string>
 			<string>舟山</string>
 			<string>宁波</string>
 			<string>衢州</string>
 			<string>温州</string>
-			<string>杭州</string>
 			<string>台州</string>
 			<string>嘉兴</string>
 			<string>绍兴</string>
@@ -154,6 +154,7 @@
 	<dict>
 		<key>cities</key>
 		<array>
+			<string>广州</string>
 			<string>珠海</string>
 			<string>惠州</string>
 			<string>清远</string>
@@ -162,7 +163,6 @@
 			<string>揭阳</string>
 			<string>云浮</string>
 			<string>佛山</string>
-			<string>广州</string>
 			<string>深圳</string>
 			<string>河源</string>
 			<string>汕头</string>
@@ -182,13 +182,13 @@
 	<dict>
 		<key>cities</key>
 		<array>
+			<string>南京</string>
 			<string>连云港</string>
 			<string>盐城</string>
 			<string>无锡</string>
 			<string>宿迁</string>
 			<string>扬州</string>
 			<string>镇江</string>
-			<string>南京</string>
 			<string>徐州</string>
 			<string>泰州</string>
 			<string>南通</string>
@@ -202,12 +202,12 @@
 	<dict>
 		<key>cities</key>
 		<array>
+			<string>济南</string>
 			<string>淄博</string>
 			<string>烟台</string>
 			<string>日照</string>
 			<string>荷泽</string>
 			<string>潍坊</string>
-			<string>济南</string>
 			<string>济宁</string>
 			<string>青岛</string>
 			<string>临沂</string>
@@ -226,9 +226,9 @@
 	<dict>
 		<key>cities</key>
 		<array>
+			<string>福州</string>
 			<string>南平</string>
 			<string>厦门</string>
-			<string>福州</string>
 			<string>宁德</string>
 			<string>龙岩</string>
 			<string>莆田</string>
@@ -242,10 +242,10 @@
 	<dict>
 		<key>cities</key>
 		<array>
+			<string>合肥</string>
 			<string>淮南</string>
 			<string>黄山</string>
 			<string>蚌埠</string>
-			<string>合肥</string>
 			<string>宿州</string>
 			<string>六安</string>
 			<string>池州</string>
@@ -266,10 +266,10 @@
 	<dict>
 		<key>cities</key>
 		<array>
+			<string>成都</string>
 			<string>宜宾</string>
 			<string>巴中</string>
 			<string>南充</string>
-			<string>成都</string>
 			<string>凉山彝族</string>
 			<string>眉山</string>
 			<string>阿坝</string>
@@ -294,6 +294,7 @@
 	<dict>
 		<key>cities</key>
 		<array>
+			<string>武汉</string>
 			<string>咸宁</string>
 			<string>宜昌</string>
 			<string>黄冈</string>
@@ -305,7 +306,6 @@
 			<string>天门</string>
 			<string>潜江</string>
 			<string>恩施</string>
-			<string>武汉</string>
 			<string>仙桃</string>
 			<string>神农架林</string>
 			<string>随州</string>
@@ -318,6 +318,7 @@
 	<dict>
 		<key>cities</key>
 		<array>
+			<string>石家庄</string>
 			<string>张家口</string>
 			<string>邯郸</string>
 			<string>邢台</string>
@@ -328,7 +329,6 @@
 			<string>承德</string>
 			<string>唐山</string>
 			<string>沧州</string>
-			<string>石家庄</string>
 		</array>
 		<key>state</key>
 		<string>河北</string>
@@ -336,6 +336,7 @@
 	<dict>
 		<key>cities</key>
 		<array>
+			<string>昆明</string>
 			<string>德宏</string>
 			<string>玉溪</string>
 			<string>曲靖</string>
@@ -343,7 +344,6 @@
 			<string>怒江</string>
 			<string>迪庆</string>
 			<string>昭通</string>
-			<string>昆明</string>
 			<string>楚雄</string>
 			<string>文山</string>
 			<string>西双版纳</string>
@@ -359,6 +359,7 @@
 	<dict>
 		<key>cities</key>
 		<array>
+			<string>哈尔滨</string>
 			<string>鹤岗</string>
 			<string>大兴安岭地</string>
 			<string>大庆</string>
@@ -370,7 +371,6 @@
 			<string>绥化</string>
 			<string>伊春</string>
 			<string>佳木斯</string>
-			<string>哈尔滨</string>
 			<string>鸡西</string>
 		</array>
 		<key>state</key>
@@ -379,13 +379,13 @@
 	<dict>
 		<key>cities</key>
 		<array>
+			<string>长春</string>
 			<string>松原</string>
 			<string>四平</string>
 			<string>白城</string>
 			<string>白山</string>
 			<string>吉林</string>
 			<string>通化</string>
-			<string>长春</string>
 			<string>延边朝鲜族</string>
 			<string>辽源</string>
 		</array>
@@ -395,6 +395,7 @@
 	<dict>
 		<key>cities</key>
 		<array>
+			<string>沈阳</string>
 			<string>铁岭</string>
 			<string>葫芦岛</string>
 			<string>营口</string>
@@ -406,7 +407,6 @@
 			<string>锦州</string>
 			<string>抚顺</string>
 			<string>丹东</string>
-			<string>沈阳</string>
 			<string>鞍山</string>
 			<string>大连</string>
 		</array>
@@ -416,6 +416,7 @@
 	<dict>
 		<key>cities</key>
 		<array>
+			<string>海口</string>
 			<string>保亭</string>
 			<string>澄迈</string>
 			<string>南沙群岛</string>
@@ -429,7 +430,6 @@
 			<string>文昌</string>
 			<string>万宁</string>
 			<string>白沙黎族</string>
-			<string>海口</string>
 			<string>三亚</string>
 			<string>五指山</string>
 			<string>琼中</string>
@@ -444,6 +444,7 @@
 	<dict>
 		<key>cities</key>
 		<array>
+			<string>长沙</string>
 			<string>郴州</string>
 			<string>岳阳</string>
 			<string>怀化</string>
@@ -456,7 +457,6 @@
 			<string>永州</string>
 			<string>衡阳</string>
 			<string>株洲</string>
-			<string>长沙</string>
 			<string>邵阳</string>
 		</array>
 		<key>state</key>
@@ -465,6 +465,7 @@
 	<dict>
 		<key>cities</key>
 		<array>
+			<string>郑州</string>
 			<string>南阳</string>
 			<string>洛阳</string>
 			<string>三门峡</string>
@@ -478,7 +479,6 @@
 			<string>信阳</string>
 			<string>漯河</string>
 			<string>平顶山</string>
-			<string>郑州</string>
 			<string>新乡</string>
 			<string>鹤壁</string>
 			<string>周口</string>
@@ -489,11 +489,11 @@
 	<dict>
 		<key>cities</key>
 		<array>
+			<string>贵阳</string>
 			<string>毕节地</string>
 			<string>黔南</string>
 			<string>六盘水</string>
 			<string>黔东南</string>
-			<string>贵阳</string>
 			<string>遵义</string>
 			<string>铜仁地</string>
 			<string>黔西南</string>
@@ -523,6 +523,7 @@
 	<dict>
 		<key>cities</key>
 		<array>
+			<string>桂林</string>
 			<string>贺州</string>
 			<string>梧州</string>
 			<string>河池</string>
@@ -533,7 +534,6 @@
 			<string>钦州</string>
 			<string>北海</string>
 			<string>柳州</string>
-			<string>桂林</string>
 			<string>南宁</string>
 			<string>防城港</string>
 			<string>崇左</string>
@@ -544,6 +544,7 @@
 	<dict>
 		<key>cities</key>
 		<array>
+			<string>西安</string>
 			<string>咸阳</string>
 			<string>铜川</string>
 			<string>商洛</string>
@@ -553,7 +554,6 @@
 			<string>安康</string>
 			<string>延安</string>
 			<string>宝鸡</string>
-			<string>西安</string>
 		</array>
 		<key>state</key>
 		<string>陕西</string>
@@ -561,6 +561,7 @@
 	<dict>
 		<key>cities</key>
 		<array>
+			<string>太原</string>
 			<string>临汾</string>
 			<string>晋中</string>
 			<string>朔州</string>
@@ -570,7 +571,6 @@
 			<string>忻州</string>
 			<string>大同</string>
 			<string>长治</string>
-			<string>太原</string>
 			<string>吕梁</string>
 		</array>
 		<key>state</key>
@@ -579,12 +579,12 @@
 	<dict>
 		<key>cities</key>
 		<array>
+			<string>西宁</string>
+			<string>玉树</string>
 			<string>黄南</string>
 			<string>海东地</string>
 			<string>果洛</string>
-			<string>西宁</string>
 			<string>海北</string>
-			<string>玉树</string>
 			<string>海南</string>
 			<string>海西</string>
 		</array>
@@ -594,10 +594,10 @@
 	<dict>
 		<key>cities</key>
 		<array>
+			<string>银川</string>
 			<string>石嘴山</string>
 			<string>固原</string>
 			<string>中卫</string>
-			<string>银川</string>
 			<string>吴忠</string>
 		</array>
 		<key>state</key>
@@ -627,8 +627,8 @@
 	<dict>
 		<key>cities</key>
 		<array>
-			<string>阿里地</string>
 			<string>拉萨</string>
+			<string>阿里地</string>
 			<string>山南地</string>
 			<string>日喀则地</string>
 			<string>那曲地</string>
@@ -641,6 +641,7 @@
 	<dict>
 		<key>cities</key>
 		<array>
+			<string>呼和浩特</string>
 			<string>巴彦淖尔</string>
 			<string>锡林郭勒盟</string>
 			<string>兴安盟</string>
@@ -648,7 +649,6 @@
 			<string>鄂尔多斯</string>
 			<string>乌海</string>
 			<string>包头</string>
-			<string>呼和浩特</string>
 			<string>呼伦贝尔</string>
 			<string>通辽</string>
 			<string>阿拉善盟</string>
@@ -660,6 +660,7 @@
 	<dict>
 		<key>cities</key>
 		<array>
+			<string>乌鲁木齐</string>
 			<string>伊犁</string>
 			<string>克拉玛依</string>
 			<string>哈密地</string>
@@ -667,7 +668,6 @@
 			<string>吐鲁番地</string>
 			<string>阿拉尔</string>
 			<string>阿勒泰地</string>
-			<string>乌鲁木齐</string>
 			<string>塔城地</string>
 			<string>昌吉</string>
 			<string>克孜勒</string>
@@ -685,10 +685,10 @@
 	<dict>
 		<key>cities</key>
 		<array>
+			<string>台北</string>
 			<string>新竹</string>
 			<string>基隆</string>
 			<string>高雄</string>
-			<string>台北</string>
 			<string>台南</string>
 			<string>嘉义</string>
 			<string>台中</string>
