@@ -196,6 +196,9 @@
         UIImagePickerController *picker=[[UIImagePickerController alloc]init];
         picker.delegate=self;
         picker.allowsEditing=YES;
+
+        picker.navigationBar.barTintColor = [Tools getColor:@"48d1d5"];
+        picker.navigationBar.tintColor = [UIColor whiteColor];
         picker.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
         [self presentViewController:picker animated:YES completion:^{
         }];
@@ -367,6 +370,14 @@
         [self disMiss];
         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
     }];
+}
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    if (((UIImagePickerController *)navigationController).sourceType ==     UIImagePickerControllerSourceTypePhotoLibrary) {
+        
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    }
 }
 
 @end

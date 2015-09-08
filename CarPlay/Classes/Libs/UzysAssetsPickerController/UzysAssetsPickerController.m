@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelSelectedMedia;
 @property (weak, nonatomic) IBOutlet UIButton *btnCamera;
 @property (weak, nonatomic) IBOutlet UIButton *btnClose;
+@property (weak, nonatomic) IBOutlet UILabel *labelPhotosCount;
 
 @property (nonatomic, strong) UIView *noAssetView;
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -141,12 +142,12 @@
 }
 - (void)setupLayout
 {
-    UzysAppearanceConfig *appearanceConfig = [UzysAppearanceConfig sharedConfig];
-    [self.btnCamera setImage:[UIImage Uzys_imageNamed:appearanceConfig.cameraImageName] forState:UIControlStateNormal];
-    [self.btnClose setImage:[UIImage Uzys_imageNamed:appearanceConfig.closeImageName] forState:UIControlStateNormal];
-    self.btnDone.layer.cornerRadius = 15;
-    self.btnDone.clipsToBounds = YES;
-    [self.btnDone setBackgroundColor:appearanceConfig.finishSelectionButtonColor];
+//    UzysAppearanceConfig *appearanceConfig = [UzysAppearanceConfig sharedConfig];
+//    [self.btnCamera setImage:[UIImage Uzys_imageNamed:appearanceConfig.cameraImageName] forState:UIControlStateNormal];
+//    [self.btnClose setImage:[UIImage Uzys_imageNamed:appearanceConfig.closeImageName] forState:UIControlStateNormal];
+    self.labelPhotosCount.layer.cornerRadius = 11.5;
+    self.labelPhotosCount.clipsToBounds = YES;
+//    [self.btnDone setBackgroundColor:appearanceConfig.finishSelectionButtonColor];
     
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 0.5)];
     lineView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.15f];
@@ -411,13 +412,15 @@
 - (void)reloadData
 {
     [self.collectionView reloadData];
-    [self.btnDone setTitle:[NSString stringWithFormat:@"%lu",(unsigned long)self.collectionView.indexPathsForSelectedItems
-                            .count] forState:UIControlStateNormal];
+//    [self.btnDone setTitle:[NSString stringWithFormat:@"%lu",(unsigned long)self.collectionView.indexPathsForSelectedItems
+//                            .count] forState:UIControlStateNormal];
+    [self.labelPhotosCount setText:[NSString stringWithFormat:@"%lu",(unsigned long)self.collectionView.indexPathsForSelectedItems.count]];
     [self showNoAssetsIfNeeded];
 }
 - (void)setAssetsCountWithSelectedIndexPaths:(NSArray *)indexPaths
 {
-    [self.btnDone setTitle:[NSString stringWithFormat:@"%lu",(unsigned long)indexPaths.count] forState:UIControlStateNormal];
+//    [self.btnDone setTitle:[NSString stringWithFormat:@"%lu",(unsigned long)indexPaths.count] forState:UIControlStateNormal];
+    [self.labelPhotosCount setText:[NSString stringWithFormat:@"%lu",(unsigned long)indexPaths.count]];
 }
 
 #pragma mark - Asset Exception View
