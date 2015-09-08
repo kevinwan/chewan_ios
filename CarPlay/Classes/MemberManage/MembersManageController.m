@@ -294,6 +294,8 @@
         cars *models = self.carsArray[indexPath.row];
         cell.models = models;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        //防止点击状态栏不能回到顶部
+        cell.seatScrollView.scrollsToTop = NO;
         //先清除button
         for (UIButton *button in cell.seatScrollView.subviews) {
             [button removeFromSuperview];

@@ -527,7 +527,7 @@
         if (cell.tapIcons == nil) {
             __weak typeof(self) weakSelf = self;
             cell.tapIcons = ^(CPHomeStatus *status) {
-                [SVProgressHUD showWithStatus:@"努力加载中"];
+//                [SVProgressHUD showWithStatus:@"努力加载中"];
                 //登录状态下可点 拿出创建者字段,非登录 自动跳转登录界面
                 NSString *urlStr = [NSString stringWithFormat:@"v1/activity/%@/info",status.activityId];
                 SQLog(@"%@",status.activityId);
