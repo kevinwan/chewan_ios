@@ -147,12 +147,11 @@
     [super viewDidLoad];
     
     // 加载筛选条件
-    if (CPIsLogin) {
-        CPSelectViewModel *selectViewModel = [NSKeyedUnarchiver unarchiveObjectWithFile:CPSelectModelPath];
-        if (selectViewModel) {
-            self.selectResult = selectViewModel;
-        }
+    CPSelectViewModel *selectViewModel = [NSKeyedUnarchiver unarchiveObjectWithFile:CPSelectModelPath];
+    if (selectViewModel) {
+        self.selectResult = selectViewModel;
     }
+
 
     // 没网的时候点击重新加载
     if (CPNoNetWork) {
