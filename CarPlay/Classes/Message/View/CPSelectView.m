@@ -153,9 +153,7 @@
         }
         
         // 设置用户筛选的位置
-        if (model.city.length == 0 && model.district.length == 0 ){
-            [self.areaLabel setTitle:@"不限" forState:UIControlStateNormal];
-        }else{
+        if (model.city.length && model.district.length){
             [self.areaLabel setTitle:[NSString stringWithFormat:@"%@ %@",model.city, model.district] forState:UIControlStateNormal];
         }
         
