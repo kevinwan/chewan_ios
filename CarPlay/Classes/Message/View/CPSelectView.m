@@ -82,11 +82,8 @@
     if (city.length) {
         [self.areaLabel setTitle:city forState:UIControlStateNormal];
     }
-    
-    if (CPIsLogin) {
-    
-        [self loadData];
-    }   
+
+    [self loadData];
 
     [UIView animateWithDuration:0.25 animations:^{
         self.y = view.height - 360;
@@ -156,9 +153,7 @@
         }
         
         // 设置用户筛选的位置
-        if (model.city.length == 0 && model.district.length == 0 ){
-            [self.areaLabel setTitle:@"不限" forState:UIControlStateNormal];
-        }else{
+        if (model.city.length && model.district.length){
             [self.areaLabel setTitle:[NSString stringWithFormat:@"%@ %@",model.city, model.district] forState:UIControlStateNormal];
         }
         
@@ -236,9 +231,7 @@
     
     if ([self.delegate respondsToSelector:@selector(selectView:finishBtnClick:)]) {
         
-        if (CPIsLogin) {
-            [NSKeyedArchiver archiveRootObject:self.model toFile:CPSelectModelPath];
-        }
+        [NSKeyedArchiver archiveRootObject:self.model toFile:CPSelectModelPath];
         
         [self.delegate selectView:self finishBtnClick:self.model];
     }

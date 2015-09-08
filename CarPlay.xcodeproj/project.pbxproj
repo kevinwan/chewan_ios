@@ -212,6 +212,7 @@
 		A5F515791B71E53100690802 /* NSString+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F515781B71E53100690802 /* NSString+Size.m */; };
 		A5FC9AFB1B83458000E41A7C /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FC9AFA1B83458000E41A7C /* NSString+Hash.m */; };
 		AD5690C45A77A4D82E40CA3F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E1F11B43C6536981B4E2558 /* libPods.a */; };
+		E30635641B9E77330055C82D /* ZYTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E30635631B9E77330055C82D /* ZYTextView.m */; };
 		E30A68CA1B7DD64100EB3D23 /* CPGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = E30A68C91B7DD64100EB3D23 /* CPGuideView.m */; };
 		E30BD57E1B54EBEB00FD9030 /* CPMySubscribeController.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD57D1B54EBEB00FD9030 /* CPMySubscribeController.m */; };
 		E30BD5891B54EC4A00FD9030 /* CPMySubscribeFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E30BD5861B54EC4A00FD9030 /* CPMySubscribeFrameModel.m */; };
@@ -776,6 +777,8 @@
 		A5F515781B71E53100690802 /* NSString+Size.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Size.m"; sourceTree = "<group>"; };
 		A5FC9AF91B83458000E41A7C /* NSString+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hash.h"; sourceTree = "<group>"; };
 		A5FC9AFA1B83458000E41A7C /* NSString+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hash.m"; sourceTree = "<group>"; };
+		E30635621B9E77330055C82D /* ZYTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYTextView.h; sourceTree = "<group>"; };
+		E30635631B9E77330055C82D /* ZYTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYTextView.m; sourceTree = "<group>"; };
 		E30A68C81B7DD64100EB3D23 /* CPGuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPGuideView.h; sourceTree = "<group>"; };
 		E30A68C91B7DD64100EB3D23 /* CPGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPGuideView.m; sourceTree = "<group>"; };
 		E30BD57C1B54EBEB00FD9030 /* CPMySubscribeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMySubscribeController.h; sourceTree = "<group>"; };
@@ -2114,6 +2117,8 @@
 				E38A5EA31B78847900B068D8 /* ZYTabBar.m */,
 				E3A6B7481B8D62820011E169 /* ZYImagePickerController.h */,
 				E3A6B7491B8D62820011E169 /* ZYImagePickerController.m */,
+				E30635621B9E77330055C82D /* ZYTextView.h */,
+				E30635631B9E77330055C82D /* ZYTextView.m */,
 			);
 			path = ZYCustomView;
 			sourceTree = "<group>";
@@ -2755,7 +2760,7 @@
 				TargetAttributes = {
 					6B4959C71B33A23900DB63EA = {
 						CreatedOnToolsVersion = 6.3.2;
-						DevelopmentTeam = K89RQ3A2PQ;
+						DevelopmentTeam = 54M46FP232;
 					};
 					6B4959E01B33A23900DB63EA = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -3181,6 +3186,7 @@
 				E3EEDFF31B53951D00595333 /* CPMessageController.m in Sources */,
 				A575820E1B6789E500A5E681 /* NSString+SMFoundation.m in Sources */,
 				E3FCDD4D1B5E355A00F9C379 /* CPAnotationView.m in Sources */,
+				E30635641B9E77330055C82D /* ZYTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
