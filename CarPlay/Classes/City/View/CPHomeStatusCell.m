@@ -92,6 +92,8 @@
 
 - (void)awakeFromNib {
     
+    self.pictureView.scrollsToTop = NO;
+    self.iconView.scrollsToTop = NO;
     // 设置正文最大的宽度
     self.introduction.preferredMaxLayoutWidth = [UIScreen mainScreen].bounds.size.width - 75;
     

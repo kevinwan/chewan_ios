@@ -52,6 +52,9 @@
 
 @property (nonatomic, assign) NSInteger isOver;
 
+// 活动是不是开始了
+@property (nonatomic, assign) BOOL isStart;
+
 @property (nonatomic, assign) NSUInteger row;
 
 @end

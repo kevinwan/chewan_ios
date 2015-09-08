@@ -94,6 +94,9 @@
 }
 
 - (void)awakeFromNib{
+    self.picColView.scrollsToTop = NO;
+    self.iconColView.scrollsToTop = NO;
+    
     // 正文宽度
     self.descriptions.preferredMaxLayoutWidth = [UIScreen mainScreen].bounds.size.width - 20;
     
@@ -115,7 +118,7 @@
     
     
     // 获取高度
-    if ([UIDevice currentDevice].systemVersion.doubleValue >= 8.0 && [UIDevice currentDevice].systemVersion.doubleValue < 8.4) {
+    if ([UIDevice currentDevice].systemVersion.doubleValue < 8.4) {
         return CGRectGetMaxY(self.bottomView.frame) + 51;
     }else{
         return CGRectGetMaxY(self.bottomView.frame);

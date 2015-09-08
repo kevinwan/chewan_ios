@@ -62,8 +62,6 @@
  */
 - (void)setUp
 {
-    
-    self.model = [[CPSelectViewModel alloc] init];
     self.width = kScreenWidth;
     self.height = 360;
     self.y = kScreenHeight;
@@ -76,12 +74,6 @@
 - (void)showWithView:(UIView *)view
 {
     [view addSubview:self];
-    
-    NSString *city = [CPUserDefaults valueForKey:@"CPUserCity"];
-    // 加载定位到的城市
-    if (city.length) {
-        [self.areaLabel setTitle:city forState:UIControlStateNormal];
-    }
 
     [self loadData];
 
@@ -114,20 +106,16 @@
 #pragma mark - 加载缓存数据
 - (void)loadData
 {
-    CPSelectViewModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:CPSelectModelPath];
-    if (model) {
+    self.model = [NSKeyedUnarchiver unarchiveObjectWithFile:CPSelectModelPath];
+    if (self.model) {
         
         // 设置类型
-        if (model.type.length) {
-            [self.typeLabel setTitle:model.type forState:UIControlStateNormal];
-        }else{
-            [self.typeLabel setTitle:@"不限" forState:UIControlStateNormal];
-        }
+        [self.typeLabel setTitle:self.model.type.length ? self.model.type : @"不限" forState:UIControlStateNormal];
         
         // 设置性别
-        if ([model.gender isEqualToString:@"男"]){
+        if ([self.model.gender isEqualToString:@"男"]){
             self.genderSeg.selectedSegmentIndex = 0;
-        }else if ([model.gender isEqualToString:@"女"]){
+        }else if ([self.model.gender isEqualToString:@"女"]){
             self.genderSeg.selectedSegmentIndex = 1;
         }else{
             self.genderSeg.selectedSegmentIndex = 2;
@@ -135,28 +123,35 @@
         
         
         // 设置是否车主
-        if (model.authenticate == 1) {
+        if (self.model.authenticate == 1) {
             self.authoCarSeg.selectedSegmentIndex = 0;
-        }else if (model.authenticate == 0){
+        }else if (self.model.authenticate == 0){
             self.authoCarSeg.selectedSegmentIndex = 1;
         }else{
             self.authoCarSeg.selectedSegmentIndex = 2;
         }
         
         // 设置是否好车
-        if ([model.carLevel isEqualToString:@"normal"]) {
+        if ([self.model.carLevel isEqualToString:@"normal"]) {
             self.carLevelSeg.selectedSegmentIndex = 0;
-        }else if ([model.carLevel isEqualToString:@"good"]){
+        }else if ([self.model.carLevel isEqualToString:@"good"]){
             self.carLevelSeg.selectedSegmentIndex = 1;
         }else{
             self.carLevelSeg.selectedSegmentIndex = 2;
         }
         
         // 设置用户筛选的位置
-        if (model.city.length && model.district.length){
-            [self.areaLabel setTitle:[NSString stringWithFormat:@"%@ %@",model.city, model.district] forState:UIControlStateNormal];
+        if (self.model.city.length){
+            [self.areaLabel setTitle:[NSString stringWithFormat:@"%@ %@",self.model.city, self.model.district.length ? self.model.district : @""] forState:UIControlStateNormal];
+        }else{
+            
+            NSString *city = [CPUserDefaults valueForKey:@"CPUserCity"];
+            // 加载定位到的城市
+            [self.areaLabel setTitle:city.length ? city : @"不限" forState:UIControlStateNormal];
         }
         
+    }else{
+        self.model = [[CPSelectViewModel alloc] init];
     }
 }
 
@@ -207,32 +202,41 @@
 
 - (IBAction)confirmBtnClick:(id)sender {
     
-    if (![self.typeLabel.titleLabel.text isEqualToString:@"不限"]){
-        self.model.type = self.typeLabel.titleLabel.text;
-    }
+    self.model.type = self.typeLabel.titleLabel.text;
     
     if (self.genderSeg.selectedSegmentIndex == 0) {
         self.model.gender = @"男";
     }else if (self.genderSeg.selectedSegmentIndex == 1){
         self.model.gender = @"女";
+    }else{
+        self.model.gender = nil;
     }
     
     if (self.authoCarSeg.selectedSegmentIndex == 0) {
         self.model.authenticate = 1;
     }else if (self.authoCarSeg.selectedSegmentIndex == 1){
         self.model.authenticate = 0;
+    }else{
+        self.model.authenticate = -1;
     }
     
     if (self.carLevelSeg.selectedSegmentIndex == 0) {
         self.model.carLevel = @"normal";
     }else if (self.carLevelSeg.selectedSegmentIndex == 1){
         self.model.carLevel = @"good";
+    }else{
+        self.model.carLevel = nil;
+    }
+    
+    if (self.model.city.length == 0 || [self.model.city isEqualToString:@"不限"]){
+        self.model.city = @"不限";
+        self.model.district = @"";
     }
     
     if ([self.delegate respondsToSelector:@selector(selectView:finishBtnClick:)]) {
         
         [NSKeyedArchiver archiveRootObject:self.model toFile:CPSelectModelPath];
-        
+    
         [self.delegate selectView:self finishBtnClick:self.model];
     }
 }
@@ -283,7 +287,7 @@
     
     self.firstArrow.transform = CGAffineTransformIdentity;
     self.lastArrow = nil;
-      self.model.district = @"";
+    self.model.district = @"";
     self.model.city = @"不限";
     
     if (![pickerView.locate.state isEqualToString:@"不限"]) {

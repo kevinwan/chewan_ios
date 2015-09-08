@@ -155,4 +155,6 @@ return _##name;\
 }
 
 #define CPRegisterFrom @"CPRegisterFrom"
+#define CPWeakSelf     @weakify(self);   // 防止block循环引用
+#define CPStrongSelf   @strongify(self); // 恢复self
 @end

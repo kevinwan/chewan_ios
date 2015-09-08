@@ -149,6 +149,7 @@
     // 加载筛选条件
     CPSelectViewModel *selectViewModel = [NSKeyedUnarchiver unarchiveObjectWithFile:CPSelectModelPath];
     if (selectViewModel) {
+//        NSLog(@"加载筛选条件%@",[selectViewModel keyValues]);
         self.selectResult = selectViewModel;
     }
 
@@ -168,6 +169,7 @@
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithNorImage:@"首页筛选" higImage:@"" title:nil target:self action:@selector(select:)];
     
     
+    [self showLoading];
     // 加载活动数据
     [self setupLoadStatusWithIgnore:0 Key:self.selectMark SelectModel:self.selectResult];
     
@@ -186,7 +188,8 @@
     
     self.selectButton = self.hotBtn;
   
-    self.navigationController.navigationBar.translucent=NO;
+    self.navigationController.navigationBar.translucent = NO;
+    self.tableView.scrollsToTop = YES;
 }
 
 
@@ -194,8 +197,8 @@
 - (void)getLongitudeAndLatitude{
     // 获取用户经纬度和城市
     
-    // 0. 加载中提醒
-    [self showLoading];
+//    // 0. 加载中提醒
+//    [self showLoading];
     
     // 1.创建位置管理者
     INTULocationManager *mgr = [INTULocationManager sharedInstance];
@@ -237,7 +240,8 @@
                 self.myCity = tempCityStr;
             }
             
-
+            // 获取缓存城市的值
+            NSString *cacheCity = [CPUserDefaults objectForKey:@"CPUserCity"];
             
             // 将城市存入缓存中
             [CPUserDefaults setObject:self.myCity forKey:@"CPUserCity"];
@@ -245,8 +249,13 @@
             
             [CPUserDefaults setObject:placemark.subLocality forKey:@"CPUserArea"];
             [CPUserDefaults synchronize];
+            
+            // 是否刷新
+            if (self.selectResult == nil && ![self.myCity isEqualToString:cacheCity]) {
+                [self setupLoadStatusWithIgnore:0 Key:self.selectMark SelectModel:self.selectResult];
+            }
 
-            [self setupLoadStatusWithIgnore:0 Key:self.selectMark SelectModel:self.selectResult];
+            
 
         }else{
             [self showInfo:@"加载用户位置失败"];
@@ -310,12 +319,12 @@
     parameters[@"key"] = key;
     parameters[@"ignore"] = @(ignore);
     
-    parameters[@"city"] = self.selectViewModel.city.length ? self.selectViewModel.city : self.myCity;
+    if(self.myCity.length){
+        parameters[@"city"] = self.myCity;
+    }
     
     parameters[@"longitude"] = [NSString stringWithFormat:@"%f",self.longitude];
     parameters[@"latitude"] = [NSString stringWithFormat:@"%f",self.latitude];
-
-//    NSLog(@"userID= %@",self.userId);
 
     if (self.userId != nil) {
         parameters[@"userId"] = self.userId;
@@ -328,42 +337,40 @@
     if (selectModel) {
         if (selectModel.gender != nil) {
             parameters[@"gender"] = selectModel.gender;
-        }else{
-            parameters[@"gender"] = @"";
         }
         
         if (selectModel.city && ![selectModel.city isEqualToString:@"不限"]) {
             parameters[@"city"] = selectModel.city;
-        }else{
-            parameters[@"city"] = @"";
         }
         
         if (selectModel.district.length && ![selectModel.district isEqualToString:@"不限"]) {
             parameters[@"district"] = selectModel.district;
-        }else{
-            parameters[@"district"] = @"";
         }
         
-        parameters[@"authenticate"] = @(selectModel.authenticate);
+        if (selectModel.authenticate != -1) {
+            parameters[@"authenticate"] = @(selectModel.authenticate);
+        }
         
-        
-        if (selectModel.type) {
+        if (selectModel.type && ![selectModel.type isEqualToString:@"不限"]) {
             parameters[@"type"] = selectModel.type;
-        }else{
-            parameters[@"type"] = @"";
         }
         
         if (selectModel.carLevel) {
             parameters[@"carLevel"] = selectModel.carLevel;
-        }else{
-            parameters[@"carLevel"] = @"";
         }
 
+        if (selectModel.city.length && ![selectModel.city isEqualToString:@"不限"]) {
+            parameters[@"city"] = selectModel.city;
+        }else{
+            [parameters removeObjectForKey:@"city"];
+        }
     }
 
+//    DLog(@"paramets%@",parameters);
     
     [ZYNetWorkTool getWithUrl:@"v1/activity/list" params:parameters success:^(id responseObject) {
-
+        
+        [self disMiss];
         if (CPSuccess) {
             
             // 取出活动数据
@@ -446,10 +453,13 @@
                 if (self.status.count > 0 && [self.selectMark isEqualToString:@"hot"]) {
                     
                     // 如果第二条有官方数据则移除
-                    if ([self.status[1] isKindOfClass:[NSArray class]]) {
-                        [self.status removeObjectAtIndex:1];
+                    if (self.status.count > 1){
+                        
+                        if ([self.status[1] isKindOfClass:[NSArray class]]) {
+                            [self.status removeObjectAtIndex:1];
+                        }
                     }
-                    
+//
                     // 数据拼接
                     [self.status insertObject:self.activeStatus atIndex:1];
                     self.twoCellHeight = kScreenHeight * 150.0 / 568.0;
@@ -460,7 +470,6 @@
             [self.tableView reloadData];
      
         }
-       [self disMiss];
     } failure:^(NSError *error) {
         [self showError:@"加载失败"];
     }];
@@ -808,7 +817,7 @@
     self.nearConstraint.constant = 1;
     self.lastestConstraint.constant = 1;
     
-    
+//    [self showLoading];
     [self setupLoadStatusWithIgnore:0 Key:@"hot" SelectModel:self.selectResult];
     self.selectMark = @"hot";
     
@@ -841,6 +850,7 @@
     self.nearConstraint.constant = 0;
     self.lastestConstraint.constant = 1;
     
+//    [self showLoading];
     // 获取经纬度和城市
     [self setupLoadStatusWithIgnore:0 Key:@"nearby" SelectModel:self.selectResult];
     
@@ -874,11 +884,20 @@
     self.nearConstraint.constant = 1;
     self.lastestConstraint.constant = 0;
     
+//    [self showLoading];
     [self setupLoadStatusWithIgnore:0 Key:@"latest" SelectModel:self.selectResult];
     self.selectMark = @"latest";
 }
 
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView
+{
+    return YES;
+}
 
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
+{
+    [self.tableView.header beginRefreshing];
+}
 
 // 蒙版按钮点击
 - (void)coverBtnClick
@@ -892,9 +911,10 @@
     [selectView dismissWithCompletion:nil];
     
     // 根据result中的参数 重新发送请求 刷新表格 reloadData
-//    NSLog(@"%@",[result keyValues]);
+//    NSLog(@"点击确定按钮%@",[result keyValues]);
     self.selectResult = result;
     
+    [self showLoading];
     [self setupLoadStatusWithIgnore:0 Key:@"hot" SelectModel:result];
 }
 

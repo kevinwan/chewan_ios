@@ -332,6 +332,16 @@
     [self setEditing:NO animated:YES];
 }
 
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView
+{
+    return YES;
+}
+
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
+{
+    [self.tableView.header beginRefreshing];
+}
+
 - (void)deleteCell
 {
     // 必须先获取选中的cell
@@ -370,6 +380,7 @@
 
 - (void)userIconClick:(NSNotification *)notify
 {
+    if (self.editing) return;
     CPTaDetailsController *vc = [UIStoryboard storyboardWithName:@"CPTaDetailsController" bundle:nil].instantiateInitialViewController;
     vc.targetUserId = notify.userInfo[CPClickUserIconInfo];
     [self.navigationController pushViewController:vc animated:YES];

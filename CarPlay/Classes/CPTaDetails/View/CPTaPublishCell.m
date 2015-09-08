@@ -55,6 +55,10 @@
 @implementation CPTaPublishCell
 
 - (void)awakeFromNib {
+    
+    self.picColView.scrollsToTop = NO;
+    self.iconColView.scrollsToTop = NO;
+    
     // 设置正文的宽度
     self.introduction.preferredMaxLayoutWidth = [UIScreen mainScreen].bounds.size.width - 78;
 }
