@@ -94,6 +94,16 @@
     return [NSString stringWithFormat:@"%zd/%zd",_holdingSeat, _totalSeat];
 }
 
+/**
+ *  比较现在时间是不是大于开始时间
+ *
+ *  @return 比较的结果值
+ */
+- (BOOL)isStart
+{
+    return [NSDate date].timeIntervalSince1970 * 1000 > _start;
+}
+
 @end
 
 @implementation CPOrganizer

@@ -222,6 +222,16 @@
     }
 }
 
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView
+{
+    return YES;
+}
+
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
+{
+    [self.tableView.header beginRefreshing];
+}
+
 - (void)memberManage:(NSNotification *)notify
 {
     
@@ -230,7 +240,7 @@
     NSInteger row = [notify.userInfo[MyPublishToPlayInfo] integerValue];
     CPMyPublishFrameModel *model = self.frameModels[row];
     
-    if (model.model.isOver) return;
+    if (model.model.isOver || model.model.isStart) return;
     
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"MembersManage" bundle:nil];
     

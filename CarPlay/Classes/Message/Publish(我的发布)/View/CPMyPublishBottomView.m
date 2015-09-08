@@ -192,10 +192,10 @@
     [self.moreBtn setTitle:[NSString stringWithFormat:@"%zd",self.model.members.count] forState:UIControlStateNormal];
     
     if (self.model.isOver){
-        self.chatBtn.userInteractionEnabled = NO;
         [self.chatBtn showGameOver];
+    }else if (self.model.isStart) {
+        [self.chatBtn showStarting];
     }else{
-        self.chatBtn.userInteractionEnabled = YES;
         [self.chatBtn showManageMember];
     }
     
@@ -207,7 +207,7 @@
  */
 - (void)memberManage
 {
-    [CPNotificationCenter postNotificationName:MyPublishToPlayNotify object:nil userInfo:@{ MyPublishToPlayInfo : @(self.model.row)}];
+    [CPNotificationCenter postNotificationName:MyPublishToPlayNotify object:nil userInfo:@{MyPublishToPlayInfo : @(self.model.row)}];
 }
 
 - (void)joinPersonClick
