@@ -240,30 +240,56 @@
         if ([state isEqualToString:@"0"]) {
             NSIndexPath *indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
             CPEditHeadIconCell *cell=(CPEditHeadIconCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-            [cell.headIcon setImage:editedImage];
+            
             NSDictionary *data=[responseObject objectForKey:@"data"];
             [Tools setValueForKey:[data objectForKey:@"photoId"] key:@"photoId"];
             [Tools setValueForKey:[data objectForKey:@"photoUrl"] key:@"photoUrl"];
             [Tools setValueForKey:data[@"photoUrl"] key:@"headUrl"];
-            [[SDImageCache sharedImageCache] removeImageForKey:[data objectForKey:@"photoUrl"]];
-            [[SDImageCache sharedImageCache] removeImageForKey:[data objectForKey:@"photoUrl"] fromDisk:YES];
             
-            EMChatCommand *cmdChat = [[EMChatCommand alloc] init];
-            cmdChat.cmd = @"updateAvatar";
-            EMCommandMessageBody *body = [[EMCommandMessageBody alloc] initWithChatObject:cmdChat];
-            // 生成message
-            NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
-            for (EMGroup *group in groupArray) {
-                EMMessage *message = [[EMMessage alloc] initWithReceiver:group.groupId bodies:@[body]];
-                message.ext=[[NSDictionary alloc]initWithObjectsAndKeys:[data objectForKey:@"photoUrl"],@"headUrl", nil];
-                message.messageType = eConversationTypeGroupChat;// 设置为群聊消息
-                [[EaseMob sharedInstance].chatManager asyncSendMessage:message progress:nil];
-            }
-            
-            organizer.headImgUrl = [data objectForKey:@"photoUrl"];
-            organizer.headImgId = data[@"photoId"];
-            organizer.photo = data[@"photoUrl"];
-            [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
+            [[SDImageCache sharedImageCache]clearMemory];
+            [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
+                
+                [cell.headIcon sd_setImageWithURL:[data objectForKey:@"photoUrl"]];
+                EMChatCommand *cmdChat = [[EMChatCommand alloc] init];
+                cmdChat.cmd = @"updateAvatar";
+                EMCommandMessageBody *body = [[EMCommandMessageBody alloc] initWithChatObject:cmdChat];
+                // 生成message
+                NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
+                for (EMGroup *group in groupArray) {
+                    EMMessage *message = [[EMMessage alloc] initWithReceiver:group.groupId bodies:@[body]];
+                    message.ext=[[NSDictionary alloc]initWithObjectsAndKeys:[data objectForKey:@"photoUrl"],@"headUrl", nil];
+                    message.messageType = eConversationTypeGroupChat;// 设置为群聊消息
+                    [[EaseMob sharedInstance].chatManager asyncSendMessage:message progress:nil];
+                }
+                
+                organizer.headImgUrl = [data objectForKey:@"photoUrl"];
+                organizer.headImgId = data[@"photoId"];
+                organizer.photo = data[@"photoUrl"];
+                [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
+            }];
+//            [[SDImageCache sharedImageCache] removeImageForKey:[data objectForKey:@"photoUrl"]];
+//            [[SDImageCache sharedImageCache] clearMemory];
+//            [[SDImageCache sharedImageCache] removeImageForKey:[data objectForKey:@"photoUrl"] fromDisk:YES withCompletion:^(SDWebImageNoParamsBlock *completion){
+//                [[SDImageCache sharedImageCache] storeImage:editedImage forKey:[data objectForKey:@"photoUrl"] toDisk:YES];
+//                [[SDImageCache sharedImageCache] storeImage:editedImage forKey:[data objectForKey:@"photoUrl"]];
+//                [cell.headIcon sd_setImageWithURL:[data objectForKey:@"photoUrl"]];
+//                EMChatCommand *cmdChat = [[EMChatCommand alloc] init];
+//                cmdChat.cmd = @"updateAvatar";
+//                EMCommandMessageBody *body = [[EMCommandMessageBody alloc] initWithChatObject:cmdChat];
+//                // 生成message
+//                NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
+//                for (EMGroup *group in groupArray) {
+//                    EMMessage *message = [[EMMessage alloc] initWithReceiver:group.groupId bodies:@[body]];
+//                    message.ext=[[NSDictionary alloc]initWithObjectsAndKeys:[data objectForKey:@"photoUrl"],@"headUrl", nil];
+//                    message.messageType = eConversationTypeGroupChat;// 设置为群聊消息
+//                    [[EaseMob sharedInstance].chatManager asyncSendMessage:message progress:nil];
+//                }
+//                
+//                organizer.headImgUrl = [data objectForKey:@"photoUrl"];
+//                organizer.headImgId = data[@"photoId"];
+//                organizer.photo = data[@"photoUrl"];
+//                [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
+//            }];
         }else{
             [[[UIAlertView alloc]initWithTitle:@"提示" message:@"上传失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
         }

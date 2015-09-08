@@ -33,7 +33,7 @@
 - (void)clearNotificationMark
 {
     [self setApplicationIconBadgeNumber:1];
-    [self setApplicationIconBadgeNumber:0];
+//    [self setApplicationIconBadgeNumber:0];
     NSArray* scheduledNotifications = [NSArray arrayWithArray:self.scheduledLocalNotifications];
     self.scheduledLocalNotifications = scheduledNotifications;
     [self cancelAllLocalNotifications];

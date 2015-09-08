@@ -277,7 +277,11 @@
         }
         
     } failure:^(NSError *error) {
-        
+        [self showError:@"获取数据失败"];
+        // 关闭下拉刷新
+        [self.taTableView.header endRefreshing];
+        // 关闭上拉刷新
+        [self.taTableView.footer endRefreshing];
     }];
     
     

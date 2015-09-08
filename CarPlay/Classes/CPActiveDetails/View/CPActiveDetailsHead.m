@@ -115,7 +115,7 @@
     
     
     // 获取高度
-    if ([UIDevice currentDevice].systemVersion.doubleValue > 8.0 && [UIDevice currentDevice].systemVersion.doubleValue < 8.4) {
+    if ([UIDevice currentDevice].systemVersion.doubleValue >= 8.0 && [UIDevice currentDevice].systemVersion.doubleValue < 8.4) {
         return CGRectGetMaxY(self.bottomView.frame) + 51;
     }else{
         return CGRectGetMaxY(self.bottomView.frame);
@@ -221,6 +221,12 @@
         
     }else{
         [self.myPlay setTitle:@"我要去玩" forState:UIControlStateNormal];
+    }
+    
+    if (self.activeStatus.isActiveStart) {
+        [self.myPlay setTitle:@"进行中" forState:UIControlStateNormal];
+        [self.myPlay setBackgroundColor:[Tools getColor:@"ccd1d9"]];
+        self.myPlay.userInteractionEnabled = NO;
     }
  
     if (activeStatus.isOver) {

@@ -34,6 +34,7 @@
     UITapGestureRecognizer *singleTap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageClick)];
     [self.imageBtn addGestureRecognizer:singleTap1];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removePickview) name:@"remove" object:nil];
+    [self.imageBtn setContentMode:UIViewContentModeScaleAspectFill];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -48,6 +49,9 @@
     }else{
         [self.tableView removeFromSuperview];
         [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+    }
+    if (_isAuthenticated != 0) {
+        [self.nextBtn setHidden:YES];
     }
 }
 
@@ -87,8 +91,10 @@
         if (_organizer.drivingExperience) {
             cell.cellContent.text=[[NSString alloc]initWithFormat:@"%ld年",(long)_organizer.drivingExperience];
         }
-        if (_isAuthenticated == 2 && [data[@"drivingExperience"] integerValue]>0) {
+        if (_isAuthenticated != 0 && [data[@"drivingExperience"] integerValue]>0) {
             cell.cellContent.text=[[NSString alloc]initWithFormat:@"%ld年",[data[@"drivingExperience"] integerValue]];
+            [cell.arrowImgView setHidden:YES];
+            cell.cellContentRight.constant = -17.0f;
         }
     }else{
         cell.cellTitle.text=@"车型品牌";
@@ -96,8 +102,10 @@
         if (_organizer.carModel) {
             cell.cellContent.text=_organizer.carModel;
         }
-        if (_isAuthenticated == 2 && ![Tools isEmptyOrNull:data[@"carModel"]]) {
+        if (_isAuthenticated != 0 && ![Tools isEmptyOrNull:data[@"carModel"]]) {
             cell.cellContent.text=data[@"carModel"];
+            [cell.arrowImgView setHidden:YES];
+            cell.cellContentRight.constant = -17.0f;
         }
     }
     return  cell;
@@ -107,40 +115,44 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [_pickview remove];
     if (indexPath.row==1) {
-        CPBrandModelViewController *CPBrandModelVC=[[CPBrandModelViewController alloc]init];
-//        if (![Tools getValueFromKey:@"userId"]) {
+        if (_isAuthenticated != 2 && _isAuthenticated != 1) {
+            CPBrandModelViewController *CPBrandModelVC=[[CPBrandModelViewController alloc]init];
             CPBrandModelVC.fromMy=_fromMy;
-//        }
-        CPBrandModelVC.title=@"车型选择";
-        CPBrandModelVC.fileName=_fileName;
-        [self.navigationController pushViewController:CPBrandModelVC animated:YES];
+            CPBrandModelVC.title=@"车型选择";
+            CPBrandModelVC.fileName=_fileName;
+            [self.navigationController pushViewController:CPBrandModelVC animated:YES];
+        }
     }
     
     if (indexPath.row==0) {
-        CPRegisterCellsTableViewCell3 *cell=(CPRegisterCellsTableViewCell3 *)[tableView cellForRowAtIndexPath:indexPath];
-        //开始动画
-        [UIView beginAnimations:nil context:nil];
-        //设定动画持续时间
-        [UIView setAnimationDuration:.3];
-        //动画的内容
-        cell.arrowImgView.transform = CGAffineTransformMakeRotation(M_PI_2);
-        //动画结束
-        [UIView commitAnimations];
-        NSArray *array=@[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",@"12",@"13",@"14",@"15",@"16",@"17",@"18",@"19",@"20"];
-        _pickview=[[ZHPickView alloc] initPickviewWithArray:array isHaveNavControler:NO];
-        _pickview.delegate=self;
-        [_pickview show];
+         if (_isAuthenticated != 2 && _isAuthenticated != 1) {
+             CPRegisterCellsTableViewCell3 *cell=(CPRegisterCellsTableViewCell3 *)[tableView cellForRowAtIndexPath:indexPath];
+             //开始动画
+             [UIView beginAnimations:nil context:nil];
+             //设定动画持续时间
+             [UIView setAnimationDuration:.3];
+             //动画的内容
+             cell.arrowImgView.transform = CGAffineTransformMakeRotation(M_PI_2);
+             //动画结束
+             [UIView commitAnimations];
+             NSArray *array=@[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",@"12",@"13",@"14",@"15",@"16",@"17",@"18",@"19",@"20"];
+             _pickview=[[ZHPickView alloc] initPickviewWithArray:array isHaveNavControler:NO];
+             _pickview.delegate=self;
+             [_pickview show];
+         }
     }else{
-        NSIndexPath *index= [NSIndexPath indexPathForRow:0 inSection:0];
-        CPRegisterCellsTableViewCell3 *cell=(CPRegisterCellsTableViewCell3 *)[self.tableView cellForRowAtIndexPath:index];
-        //开始动画
-        [UIView beginAnimations:nil context:nil];
-        //设定动画持续时间
-        [UIView setAnimationDuration:.3];
-        //动画的内容
-        cell.arrowImgView.transform = CGAffineTransformMakeRotation(0);
-        //动画结束
-        [UIView commitAnimations];
+         if (_isAuthenticated != 2 && _isAuthenticated != 1) {
+             NSIndexPath *index= [NSIndexPath indexPathForRow:0 inSection:0];
+             CPRegisterCellsTableViewCell3 *cell=(CPRegisterCellsTableViewCell3 *)[self.tableView cellForRowAtIndexPath:index];
+             //开始动画
+             [UIView beginAnimations:nil context:nil];
+             //设定动画持续时间
+             [UIView setAnimationDuration:.3];
+             //动画的内容
+             cell.arrowImgView.transform = CGAffineTransformMakeRotation(0);
+             //动画结束
+             [UIView commitAnimations];
+         }
     }
 }
 
@@ -219,8 +231,10 @@
 }
 
 -(void)imageClick{
-    UIActionSheet *sheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从相册选择",nil];
-    [sheet showInView:self.view];
+    if (_isAuthenticated == 0) {
+        UIActionSheet *sheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从相册选择",nil];
+        [sheet showInView:self.view];
+    }
 }
 
 #pragma mark ZhpickVIewDelegate
