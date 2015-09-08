@@ -76,4 +76,5 @@
 #import "XMNetWorkTool.h"
 #import "UITabBar+Extension.h"
 #import <SWTableViewCell.h>
+#import <ReactiveCocoa.h>
 #endif

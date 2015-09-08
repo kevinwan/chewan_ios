@@ -17,6 +17,7 @@
 @interface CPMyPublishController ()
 @property (nonatomic, strong) NSMutableArray *frameModels;
 @property (nonatomic, strong) UIView *timeLine;
+@property (nonatomic, strong) UIButton *btn;
 @end
 
 @implementation CPMyPublishController
