@@ -189,6 +189,7 @@
         [button sizeToFit];
         cell.accessoryView = button;
     }
+    
     AMapTip *tip = self.tips[indexPath.row];
     NSRange regexRange = [tip.name rangeOfString:self.searchBar.text.trim];
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:tip.name];
