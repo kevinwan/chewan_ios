@@ -209,7 +209,12 @@
 
             self.longitude = currentLocation.coordinate.longitude;
             self.latitude = currentLocation.coordinate.latitude;
-
+            [CPUserDefaults setValue:@(currentLocation.coordinate.longitude) forKey:@"CPUserLongitude"];
+            [CPUserDefaults synchronize];
+            [CPUserDefaults setValue:@(currentLocation.coordinate.latitude) forKey:@"CPUserLatitude"];
+            [CPUserDefaults synchronize];
+            
+            
 //            NSLog(@"%f",self.longitude);
 //            NSLog(@"%f",self.latitude);
             [self getAtCity];
