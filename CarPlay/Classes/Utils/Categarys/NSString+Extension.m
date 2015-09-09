@@ -9,6 +9,7 @@
 #import "NSString+Extension.h"
 
 @implementation NSString (Extension)
+
 - (CGSize)sizeWithFont:(UIFont *)font maxW:(CGFloat)maxW
 {
     NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
@@ -54,9 +55,9 @@
 /**
  *  去除字符串首尾的空格
  */
-- (NSString *)trimStr
+- (NSString *)trim
 {
-    return [self stringByReplacingOccurrencesOfString:@" " withString:@""];
+    return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
 /**
@@ -67,4 +68,10 @@
 {
     return [self rangeOfString:string].length;
 }
+
+- (NSUInteger)trimLength
+{
+    return self.trim.length;
+}
+
 @end
