@@ -891,7 +891,6 @@ typedef enum {
         return;
     }
     
-    
     [self editWithButton:button photoIds:photoIds];
     
 }

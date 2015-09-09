@@ -305,6 +305,10 @@
 		E372D85B1B62176C00B4FC5C /* MJNIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = E372D85A1B62176C00B4FC5C /* MJNIndexView.m */; };
 		E379E2E61B5DEC23001869AA /* CPEditImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E379E2E51B5DEC23001869AA /* CPEditImageView.m */; };
 		E38A5EA41B78847900B068D8 /* ZYTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E38A5EA31B78847900B068D8 /* ZYTabBar.m */; };
+		E390B4481BA02F3700752694 /* UIResponder+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E390B4471BA02F3700752694 /* UIResponder+Extension.m */; };
+		E390B44B1BA02F4100752694 /* CAAnimation+WAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E390B44A1BA02F4100752694 /* CAAnimation+WAnimation.m */; };
+		E390B4501BA02F4E00752694 /* UIButton+ZY.m in Sources */ = {isa = PBXBuildFile; fileRef = E390B44D1BA02F4E00752694 /* UIButton+ZY.m */; };
+		E390B4511BA02F4E00752694 /* UILabel+ZY.m in Sources */ = {isa = PBXBuildFile; fileRef = E390B44F1BA02F4E00752694 /* UILabel+ZY.m */; };
 		E3A61B191B7ED06200B641E0 /* CPModelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A61B181B7ED06200B641E0 /* CPModelButton.m */; };
 		E3A61B1C1B7EEC8B00B641E0 /* CPMapPlaceSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A61B1B1B7EEC8B00B641E0 /* CPMapPlaceSearchRequest.m */; };
 		E3A6B74A1B8D62820011E169 /* ZYImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A6B7491B8D62820011E169 /* ZYImagePickerController.m */; };
@@ -936,6 +940,14 @@
 		E379E2E51B5DEC23001869AA /* CPEditImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPEditImageView.m; sourceTree = "<group>"; };
 		E38A5EA21B78847900B068D8 /* ZYTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYTabBar.h; sourceTree = "<group>"; };
 		E38A5EA31B78847900B068D8 /* ZYTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYTabBar.m; sourceTree = "<group>"; };
+		E390B4461BA02F3700752694 /* UIResponder+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+Extension.h"; sourceTree = "<group>"; };
+		E390B4471BA02F3700752694 /* UIResponder+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+Extension.m"; sourceTree = "<group>"; };
+		E390B4491BA02F4100752694 /* CAAnimation+WAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAAnimation+WAnimation.h"; sourceTree = "<group>"; };
+		E390B44A1BA02F4100752694 /* CAAnimation+WAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAAnimation+WAnimation.m"; sourceTree = "<group>"; };
+		E390B44C1BA02F4E00752694 /* UIButton+ZY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+ZY.h"; sourceTree = "<group>"; };
+		E390B44D1BA02F4E00752694 /* UIButton+ZY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+ZY.m"; sourceTree = "<group>"; };
+		E390B44E1BA02F4E00752694 /* UILabel+ZY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+ZY.h"; sourceTree = "<group>"; };
+		E390B44F1BA02F4E00752694 /* UILabel+ZY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+ZY.m"; sourceTree = "<group>"; };
 		E39435DB1B5CE4E100AF91BF /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		E3A61B171B7ED06200B641E0 /* CPModelButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPModelButton.h; sourceTree = "<group>"; };
 		E3A61B181B7ED06200B641E0 /* CPModelButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPModelButton.m; sourceTree = "<group>"; };
@@ -2651,6 +2663,14 @@
 		E3EEDFF91B53952E00595333 /* Categarys */ = {
 			isa = PBXGroup;
 			children = (
+				E390B44C1BA02F4E00752694 /* UIButton+ZY.h */,
+				E390B44D1BA02F4E00752694 /* UIButton+ZY.m */,
+				E390B44E1BA02F4E00752694 /* UILabel+ZY.h */,
+				E390B44F1BA02F4E00752694 /* UILabel+ZY.m */,
+				E390B4491BA02F4100752694 /* CAAnimation+WAnimation.h */,
+				E390B44A1BA02F4100752694 /* CAAnimation+WAnimation.m */,
+				E390B4461BA02F3700752694 /* UIResponder+Extension.h */,
+				E390B4471BA02F3700752694 /* UIResponder+Extension.m */,
 				E33BAE821B58DC110021DED6 /* NSDate+Extension.h */,
 				E33BAE831B58DC110021DED6 /* NSDate+Extension.m */,
 				E3EEDFFA1B53952E00595333 /* Foundation+Log.m */,
@@ -2926,6 +2946,7 @@
 				6B01284F1B7A209200B7A11F /* CPTaNoData.m in Sources */,
 				E3C14F561B81D7E9006A0F52 /* CPChatListCell.m in Sources */,
 				E35EE4EB1B8C15B3002B68C6 /* ZYNetWorkTool.m in Sources */,
+				E390B44B1BA02F4100752694 /* CAAnimation+WAnimation.m in Sources */,
 				E36AFE661B579F0E0081F499 /* ZHPickView.h in Sources */,
 				6B9711771B7DFAA700EA0F09 /* Emoji.m in Sources */,
 				6B97114E1B7DF60C00EA0F09 /* MessageModel.m in Sources */,
@@ -2978,6 +2999,7 @@
 				E3C611521B5F4A6C00B7E73A /* ZYSearchBar.m in Sources */,
 				A575820D1B6789E500A5E681 /* NSObject+SMFoundation.m in Sources */,
 				E3FF171B1B969B7B00452554 /* UzysGroupPickerView.m in Sources */,
+				E390B4511BA02F4E00752694 /* UILabel+ZY.m in Sources */,
 				6B5F9B711B5D29FE00F9D1E8 /* CPHomeUser.m in Sources */,
 				6B9711401B7DF60C00EA0F09 /* DXMessageToolBar.m in Sources */,
 				E30A68CA1B7DD64100EB3D23 /* CPGuideView.m in Sources */,
@@ -3073,6 +3095,7 @@
 				E35E6FC71B54AFB8001212D6 /* CPMyPublishController.m in Sources */,
 				6B9711651B7DF74200EA0F09 /* NSDate+Category.m in Sources */,
 				A58FE43B1B8D46F400EBE91D /* carCell.m in Sources */,
+				E390B4501BA02F4E00752694 /* UIButton+ZY.m in Sources */,
 				E36C962A1B53C80900D3EDBB /* CPCancleSubBtn.m in Sources */,
 				E3CE02791B6885BB00808698 /* CPNewMsgModel.m in Sources */,
 				6B512FB61B7C522E00258CA0 /* amrFileCodec.mm in Sources */,
@@ -3102,6 +3125,7 @@
 				E372D8321B6216C100B4FC5C /* CarOwnersCertificationViewController.m in Sources */,
 				E33BAE841B58DC110021DED6 /* NSDate+Extension.m in Sources */,
 				E3C14F4C1B81815F006A0F52 /* MJPhotoBrowser.m in Sources */,
+				E390B4481BA02F3700752694 /* UIResponder+Extension.m in Sources */,
 				A51EBB4A1B86EC1A001A8138 /* NSMutableArray+CPUtilityButtons.m in Sources */,
 				E3CE02761B68671800808698 /* UIViewController+ZY.m in Sources */,
 				A57582141B6789E500A5E681 /* UIButton+SMFoundation.m in Sources */,
