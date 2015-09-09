@@ -20,6 +20,7 @@
 #import "RobotManager.h"
 #import "CPChatListCell.h"
 #import "CPHomeMsgModel.h"
+#import "UIImage+Extension.h"
 
 typedef enum {
     CPMessageOptionMsg, // 新留言消息
@@ -39,6 +40,8 @@ typedef enum {
 @property (strong, nonatomic) NSMutableArray *dataSource;
 @property (nonatomic, strong) UIView *networkStateView;
 @property (nonatomic, strong) NSMutableArray *datas;
+@property (strong, nonatomic) NSMutableArray *groupIds;
+@property (strong, nonatomic) NSMutableArray *groupsAndGroupIcons;
 
 #define CPUnreadMsgKey [[NSString alloc]initWithFormat:@"%@unreadMessageCount",[Tools getValueFromKey:@"userId"]]
 @end
@@ -351,7 +354,23 @@ typedef enum {
 -(void)refreshDataSource
 {
     self.dataSource = [self loadDataSource];
-    [self.tableView reloadData];
+//    [self.groupIds removeAllObjects];
+//    for (EMConversation *conversation in self.dataSource) {
+//        if (conversation.conversationType == eConversationTypeGroupChat) {
+//            [self.groupIds addObject:conversation.chatter];
+//        }
+//    }
+//    NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:self.groupIds,@"groupIds", nil];
+//    [ZYNetWorkTool postWithUrl:@"" params:params success:^(id responseObject) {
+//        if (CPSuccess) {
+//            self.groupsAndGroupIcons=responseObject[@"data"];
+//        }
+        [self.tableView reloadData];
+//    } failure:^(NSError *error) {
+//        [self showError:@"获取群组头像失败"];
+//    }];
+//    
+    
 //    [self hideHud];
 }
 
@@ -527,6 +546,11 @@ typedef enum {
         }else{
             cell.showUnreadCount = NO;
         }
+//        SDWebImageManager *manager = [SDWebImageManager sharedManager];
+//        
+//        
+//        [UIImage imageWithBgImage:<#(UIImage *)#> waterImage:<#(UIImage *)#> frame:<#(CGRect)#> angle:<#(CGFloat)#>]
+        
         [cell.iconView setImage:[UIImage imageNamed:@"群聊默认"] forState:UIControlStateNormal];
     }
     return cell;
