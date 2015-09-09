@@ -153,7 +153,6 @@ typedef enum {
     
     // 设置cell的数据
     [self setCellData];
-    
 }
 
 /**
@@ -824,6 +823,18 @@ typedef enum {
 }
 
 /**
+ *  视图已经显示出来的时候显示
+ *
+ *  @param animated 是否动画
+ */
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [CPTipView showWithConfirm:nil cancle:nil];
+}
+
+/**
  *  视图即将消失的时候做清理工作
  *
  *  @param animated 是否动画
@@ -887,15 +898,8 @@ typedef enum {
         return;
     }
     
-
-    [CPTipView showWithConfirm:^{
-        [self editWithButton:button photoIds:photoIds];
-    } cancle:^{
-        
-    }];
     
-//    [[[UIAlertView alloc] initWithTitle:@"提示" message:@"已经发布的活动只允许修改一次哦" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil] show];
-    
+    [self editWithButton:button photoIds:photoIds];
     
 }
 

@@ -229,6 +229,10 @@
     NSString *phone = [Tools getValueFromKey:@"phone"];
     NSString *password = [Tools getValueFromKey:@"password"];
 
+    if (phone.length == 0 || password.length == 0){
+        return;
+    }
+    
     NSString *url = @"v1/user/login";
     [mgr POST:url parameters:@{@"phone" : phone, @"password" : password } success:^(AFHTTPRequestOperation * operation, id responseObject) {
         if (CPSuccess) {
