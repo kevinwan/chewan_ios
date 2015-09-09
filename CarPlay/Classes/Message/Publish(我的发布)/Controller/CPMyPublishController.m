@@ -13,6 +13,7 @@
 #import "CPMyPublishCell.h"
 #import "CPActiveDetailsController.h"
 #import "MJRefresh.h"
+#import "UIImage+Extension.h"
 
 @interface CPMyPublishController ()
 @property (nonatomic, strong) NSMutableArray *frameModels;

@@ -40,6 +40,21 @@
     return newImage;
 }
 
++ (UIImage *)imageWithColor:(UIColor *)color
+{
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
 + (UIImage *)imageWithCircleClip:(NSString *)imageName boder:(CGFloat)border color:(UIColor *)boderColor
 {
     UIImage *image = [UIImage imageNamed:imageName];
@@ -98,6 +113,54 @@
     CGFloat waterY = bgImage.size.height - waterH - margin;
     
     [water drawInRect:CGRectMake(waterX, waterY, waterW, waterH)];
+    
+    // 获得上下文中的图形
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    // 关闭上下文
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
+
+
+- (UIImage*)imageWithRotateAngle:(CGFloat)angle cropMode:(ZYCropMode)cropMode
+{
+    CGSize imgSize = CGSizeMake(self.size.width * self.scale, self.size.height * self.scale);
+    CGSize outputSize = imgSize;
+    if (cropMode == ZYCropModelExpand) {
+        CGRect rect = CGRectMake(0, 0, imgSize.width, imgSize.height);
+        rect = CGRectApplyAffineTransform(rect, CGAffineTransformMakeRotation(angle));
+        outputSize = CGSizeMake(CGRectGetWidth(rect), CGRectGetHeight(rect));
+    }
+    
+    UIGraphicsBeginImageContext(outputSize);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextTranslateCTM(context, outputSize.width / 2, outputSize.height / 2);
+    CGContextRotateCTM(context, angle);
+    CGContextTranslateCTM(context, -imgSize.width / 2, -imgSize.height / 2);
+    
+    [self drawInRect:CGRectMake(0, 0, imgSize.width, imgSize.height)];
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
++ (UIImage *)imageWithBgImage:(UIImage *)bgImage waterImage:(UIImage *)waterImage frame:(CGRect)waterFrame angle:(CGFloat)angle
+{
+    // 创建图形上下文，一般大小为图片的大小
+    UIGraphicsBeginImageContextWithOptions(bgImage.size, NO, 0.0);
+    
+    // 画背景图到上下文
+    [bgImage drawInRect:CGRectMake(0, 0, bgImage.size.width, bgImage.size.height)];
+    
+    // 添加水印到上下文
+    UIImage *water = [waterImage imageWithRotateAngle:angle cropMode:ZYCropModeClip];
+    
+    [water drawInRect:waterFrame];
     
     // 获得上下文中的图形
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();

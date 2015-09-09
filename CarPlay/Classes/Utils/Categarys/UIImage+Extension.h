@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+enum {
+    ZYCropModeClip,     // 不会改变图像大小,多出来的不会会被裁切
+    ZYCropModelExpand,  // 进行需要扩展图像大小
+};
+typedef NSInteger ZYCropMode;
 @interface UIImage (Extension)
 
 // 返回一张可以随意拉伸不变形的图片
@@ -18,6 +22,15 @@
  *  @return 一个UIImage
  */
 + (UIImage *)imageWithCaptureView:(UIView *)view;
+
+/**
+ *  根据颜色生成图片
+ *
+ *  @param color 颜色
+ *
+ *  @return 纯色图片
+ */
++ (UIImage *)imageWithColor:(UIColor *)color;
 
 /**
  *  圆形裁剪
@@ -36,6 +49,29 @@
  *  @return          加入水印，大小不变的图
  */
 + (UIImage *)imageWithWaterImage:(NSString *)imageName waterImage:(NSString *)waterName scale:(CGFloat)scale margin:(CGFloat)margin;
+
+/**
+ *  添加旋转的水印图片
+ *
+ *  @param image      背景图
+ *  @param waterImage 水印图片
+ *  @param waterFrame 水印图片的位置
+ *  @param angle      水印图片旋转角度
+ *
+ *  @return 最终的图片
+ */
++ (UIImage *)imageWithBgImage:(UIImage *)bgImage waterImage:(UIImage *)waterImage frame:(CGRect)waterFrame angle:(CGFloat)angle;
+
+/**
+ *  旋转图片
+ *
+ *  @param radian   旋转弧度
+ *  @param cropMode 裁切模式
+ *
+ *  @return 最终图片
+ */
+- (UIImage *)imageWithRotateAngle:(CGFloat)angle cropMode:(ZYCropMode)cropMode;
+
 /**
  *  将图片写成png格式到文件
  */
