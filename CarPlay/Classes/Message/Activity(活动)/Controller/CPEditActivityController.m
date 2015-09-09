@@ -153,6 +153,11 @@ typedef enum {
     
     // 设置cell的数据
     [self setCellData];
+    
+    // 延迟显示tipView
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [CPTipView showWithConfirm:nil cancle:nil];
+    });
 }
 
 /**
@@ -820,18 +825,6 @@ typedef enum {
         [self.photoView.subviews.lastObject setHidden:NO];
     }
     self.imageEditing = NO;
-}
-
-/**
- *  视图已经显示出来的时候显示
- *
- *  @param animated 是否动画
- */
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    [CPTipView showWithConfirm:nil cancle:nil];
 }
 
 /**
