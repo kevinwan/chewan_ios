@@ -12,10 +12,11 @@
 @property (nonatomic, copy) completion completion;
 @property (nonatomic, copy) cancle cancle;
 @property  (weak, nonatomic) IBOutlet UIView *bgView;
-@property (weak, nonatomic) IBOutlet UIButton *cancleBtn;
+//@property (weak, nonatomic) IBOutlet UIButton *cancleBtn;
 
 @property (weak, nonatomic) IBOutlet UIButton *confirmBtn;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
+@property (weak, nonatomic) IBOutlet UILabel *tipLabel;
 
 @end
 
@@ -28,13 +29,13 @@
     view.bgView.backgroundColor = RGBACOLOR(0, 0, 0, 0.3);
     view.contentView.layer.cornerRadius = 3;
     view.contentView.clipsToBounds = YES;
-    view.cancleBtn.layer.cornerRadius = 3;
-    view.cancleBtn.clipsToBounds = YES;
+    view.tipLabel.preferredMaxLayoutWidth = view.contentView.width;
     view.confirmBtn.layer.cornerRadius = 3;
     view.confirmBtn.clipsToBounds = YES;
     view.frame = [UIScreen mainScreen].bounds;
     view.completion = completion;
     view.cancle = cancle;
+    [view layoutIfNeeded];
     [[UIApplication sharedApplication].windows.lastObject addSubview:view];
     
 }
@@ -50,11 +51,11 @@
 }
 
 
-- (IBAction)cancle:(id)sender
-{
-    if (self.cancle) {
-        self.cancle();
-    }
-    [self removeFromSuperview];
-}
+//- (IBAction)cancle:(id)sender
+//{
+//    if (self.cancle) {
+//        self.cancle();
+//    }
+//    [self removeFromSuperview];
+//}
 @end
