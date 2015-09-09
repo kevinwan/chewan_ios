@@ -39,7 +39,14 @@
  *
  *  @return
  */
-- (NSString *)trimStr;
+- (NSString *)trim;
+
+/**
+ *  去除首位空格之后的length
+ *
+ *  @return length
+ */
+- (NSUInteger)trimLength;
 
 /**
  *  判断是否包含某个字符串

@@ -190,7 +190,7 @@
         cell.accessoryView = button;
     }
     AMapTip *tip = self.tips[indexPath.row];
-    NSRange regexRange = [tip.name rangeOfString:self.searchBar.text.trimStr];
+    NSRange regexRange = [tip.name rangeOfString:self.searchBar.text.trim];
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:tip.name];
     [str setAttributes:@{NSForegroundColorAttributeName : [Tools getColor:@"48d1d5"]} range:regexRange];
     cell.textLabel.attributedText = str;
@@ -218,7 +218,7 @@
 - (void)searchBtnClick
 {
     if (self.search) {
-        self.search(self.searchBar.text.trimStr);
+        self.search(self.searchBar.text.trim);
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
