@@ -78,8 +78,8 @@
 {
     [super layoutSubviews];
     
-    _progressLabel.centerX = self.centerXInSelf;
-    _progressLabel.centerY = self.centerYInSelf;
+    _progressLabel.centerX = self.middleX;
+    _progressLabel.centerY = self.middleY;
 }
 
 #pragma mark - Property Methods

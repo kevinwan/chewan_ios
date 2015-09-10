@@ -27,8 +27,8 @@
         _tipView.hidden = YES;
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"网"]];
         imageView.tag = 1;
-        imageView.centerX = _tipView.centerXInSelf;
-        imageView.centerY = _tipView.centerYInSelf - 50;
+        imageView.centerX = _tipView.middleX;
+        imageView.centerY = _tipView.middleY - 50;
         [_tipView addSubview:imageView];
         _tipView.backgroundColor = [UIColor whiteColor];
         

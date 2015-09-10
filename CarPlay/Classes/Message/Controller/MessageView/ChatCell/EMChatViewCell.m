@@ -95,7 +95,7 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
         // 保持在右下脚
         self.activityView.x = _bubbleView.x - frame.size.width - ACTIVTIYVIEW_BUBBLE_PADDING - 40;
 //        frame.origin.y = _bubbleView.bottom - frame.size.height - ACTIVTIYVIEW_BUBBLE_PADDING;
-        self.activityView.centerY = _bubbleView.centerYInSuper;
+        self.activityView.centerY = _bubbleView.centerY;
     }
     else{
         _bubbleView.x = HEAD_PADDING * 2 + HEAD_SIZE;

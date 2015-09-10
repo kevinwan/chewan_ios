@@ -39,27 +39,19 @@ typedef void(^ALConstraintsBlock)(void);    // a block of method calls to the UI
 @property (nonatomic, assign) CGFloat y;
 @property (nonatomic, assign) CGFloat width;
 @property (nonatomic, assign) CGFloat height;
-@property (nonatomic, assign) CGSize size;
+@property (nonatomic, assign) CGSize  size;
 @property (nonatomic, assign) CGPoint origin;
-@property (nonatomic) CGFloat centerY;
-@property (nonatomic) CGFloat centerX;
-@property (nonatomic, assign, readonly) CGFloat bottom;
-@property (nonatomic, assign, readonly) CGFloat left;
-@property (nonatomic, assign, readonly) CGFloat right;
-@property (nonatomic, assign, readonly) CGFloat top;
-@property (nonatomic, copy, readonly) NSString *frameStr;
+@property (nonatomic, assign) CGFloat centerX;
+@property (nonatomic, assign) CGFloat centerY;
 
-- (void)setCenterX:(CGFloat)centerX;
+- (NSString *)frameStr;
 
-- (CGFloat)centerXInSuper;
-
-- (CGFloat)centerXInSelf;
-
-- (void)setCenterY:(CGFloat)centerY;
-
-- (CGFloat)centerYInSuper;
-
-- (CGFloat)centerYInSelf;
+- (CGFloat)bottom; // 底部
+- (CGFloat)left;   // 最左
+- (CGFloat)right;  // 最右
+- (CGFloat)top;    // 顶部
+- (CGFloat)middleX; // 中点x
+- (CGFloat)middleY; // 中点y
 
 #pragma mark - 截图方法
 - (UIImage *)captureImage;

@@ -49,7 +49,7 @@
         titleLabel.textColor = [Tools getColor:@"656c78"];
         titleLabel.text = @"还没有人提供车";
         [titleLabel sizeToFit];
-        titleLabel.centerX = bgView.centerXInSelf;
+        titleLabel.centerX = bgView.middleX;
         titleLabel.y = 20;
         [bgView addSubview:titleLabel];
         
@@ -58,7 +58,7 @@
         msgLabel.textColor = [Tools getColor:@"656c78"];
         msgLabel.text = @"请选择\"提供空座\"的人加入活动!";
         [msgLabel sizeToFit];
-        msgLabel.centerX = bgView.centerXInSelf;
+        msgLabel.centerX = bgView.middleX;
         msgLabel.y = 12.5 + titleLabel.bottom;
         [bgView addSubview:msgLabel];
         

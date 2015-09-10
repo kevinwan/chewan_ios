@@ -123,7 +123,7 @@
     self.bottomView.frame = frameModel.bottomViewF;
     
     CGFloat timeLineY = 0;
-    CGFloat timeCenterY = self.timeStampLabel.centerYInSuper;
+    CGFloat timeCenterY = self.timeStampLabel.centerY;
     if (self.indexPath.row == 0) {
         timeLineY = timeCenterY;
     }
@@ -134,8 +134,8 @@
     
     self.cycleView.width = 5;
     self.cycleView.height = 5;
-    self.cycleView.centerX = self.timeLine.centerXInSuper;
-    self.cycleView.centerY = self.timeStampLabel.centerYInSuper;
+    self.cycleView.centerX = self.timeLine.centerX;
+    self.cycleView.centerY = self.timeStampLabel.centerY;
     
 }
 

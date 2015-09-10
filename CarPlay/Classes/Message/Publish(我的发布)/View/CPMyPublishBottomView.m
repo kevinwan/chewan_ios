@@ -127,7 +127,7 @@
     
     [self.moneyBtn sizeToFit];
     self.moneyBtn.x = self.topView.width - self.moneyBtn.width - 10;
-    self.moneyBtn.centerY = self.dateBtn.centerYInSuper;
+    self.moneyBtn.centerY = self.dateBtn.centerY;
     
     self.addressBtn.x = 0;
     self.addressBtn.y = btnH +4;
@@ -146,7 +146,7 @@
     self.bottomView.frame = CGRectMake(0, self.height * 0.4 + 14, self.width, bottomViewH);
     
     self.chatBtn.x = self.width - self.chatBtn.width - 10;
-    self.chatBtn.centerY = self.bottomView.centerYInSelf + 1.3;
+    self.chatBtn.centerY = self.bottomView.middleY + 1.3;
 
     CGFloat personBtnStartX = 5;
     CGFloat personBtnH = bottomViewH - 14;
@@ -157,14 +157,14 @@
         UIView *btn = [self.bottomView viewWithTag:i + 1];
         CGFloat btnX = personBtnStartX + i * (personBtnW + 5);
         btn.frame = CGRectMake(btnX, personBtnY, personBtnW, personBtnH);
-        btn.centerY = self.chatBtn.centerYInSuper;
+        btn.centerY = self.chatBtn.centerY;
     }
     NSUInteger count = self.model.members.count > KPersonNum? KPersonNum : self.model.members.count;
 
     self.moreBtn.width = personBtnW;
     self.moreBtn.height = personBtnH;
     self.moreBtn.x = personBtnStartX + count * (personBtnW + 5);
-    self.moreBtn.centerY = self.chatBtn.centerYInSuper;
+    self.moreBtn.centerY = self.chatBtn.centerY;
 }
 
 - (void)setModel:(CPMyPublishModel *)model

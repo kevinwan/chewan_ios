@@ -127,7 +127,7 @@
     
     self.chatBtn.x = self.width - self.chatBtn.width - 10;
 //    self.chatBtn.y = (bottomViewH - self.chatBtn.height) * 0.5;
-    self.chatBtn.centerY = self.bottomView.centerYInSelf + 1.3;
+    self.chatBtn.centerY = self.bottomView.middleY + 1.3;
     
     CGFloat personBtnStartX = 5;
     CGFloat personBtnH = bottomViewH - 14;
@@ -139,7 +139,7 @@
        UIView *btn = [self.bottomView viewWithTag:i + 1];
         CGFloat btnX = personBtnStartX + i * (personBtnW + 5);
         btn.frame = CGRectMake(btnX, personBtnY, personBtnW, personBtnH);
-        btn.centerY = self.chatBtn.centerYInSuper;
+        btn.centerY = self.chatBtn.centerY;
     }
     
     count = self.model.members.count > 4 ? 4 : self.model.members.count;
@@ -147,7 +147,7 @@
     self.moreBtn.width = personBtnW;
     self.moreBtn.height = personBtnH;
     self.moreBtn.x = personBtnStartX + count  * (personBtnW + 5);
-    self.moreBtn.centerY = self.chatBtn.centerYInSuper;
+    self.moreBtn.centerY = self.chatBtn.centerY;
 
     
 }

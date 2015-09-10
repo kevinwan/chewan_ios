@@ -26,7 +26,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     UIImageView *icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"认证成功"]];
     icon.y = 104;
-    icon.centerX = self.view.centerXInSelf;
+    icon.centerX = self.view.middleX;
     [self.view addSubview:icon];
     
     UILabel *titleLabel = [[UILabel alloc] init];
@@ -34,7 +34,7 @@
     titleLabel.font = [UIFont systemFontOfSize:16];
     titleLabel.textColor = [Tools getColor:@"fd6d53"];
     [titleLabel sizeToFit];
-    titleLabel.centerX = self.view.centerXInSelf;
+    titleLabel.centerX = self.view.middleX;
     titleLabel.y = icon.bottom + 20;
     [self.view addSubview:titleLabel];
     
@@ -44,7 +44,7 @@
     isAllowLabel.font = [UIFont systemFontOfSize:14];
     isAllowLabel.textColor = [Tools getColor:@"434a54"];
     [isAllowLabel sizeToFit];
-    isAllowLabel.centerX = self.view.centerXInSelf;
+    isAllowLabel.centerX = self.view.middleX;
     isAllowLabel.y = titleLabel.bottom + 15;
     [self.view addSubview:isAllowLabel];
     
@@ -53,7 +53,7 @@
     msgLabel.font = [UIFont systemFontOfSize:14];
     msgLabel.textColor = [Tools getColor:@"434a54"];
     [msgLabel sizeToFit];
-    msgLabel.centerX = self.view.centerXInSelf;
+    msgLabel.centerX = self.view.middleX;
     msgLabel.y = isAllowLabel.bottom + 5;
     [self.view addSubview:msgLabel];
     

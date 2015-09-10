@@ -362,6 +362,7 @@
 		E3EEE0031B53952E00595333 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EEDFFC1B53952E00595333 /* NSString+Extension.m */; };
 		E3EEE0041B53952E00595333 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EEDFFF1B53952E00595333 /* UIImage+Extension.m */; };
 		E3EEE0051B53952E00595333 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EEE0011B53952E00595333 /* UIView+Extension.m */; };
+		E3F5B34A1BA17054003ABE36 /* NSString+Directory.m in Sources */ = {isa = PBXBuildFile; fileRef = E3F5B3491BA17054003ABE36 /* NSString+Directory.m */; };
 		E3FCDD4A1B5E34E200F9C379 /* CPAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FCDD491B5E34E200F9C379 /* CPAnnotation.m */; };
 		E3FCDD4D1B5E355A00F9C379 /* CPAnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FCDD4C1B5E355A00F9C379 /* CPAnotationView.m */; };
 		E3FCDD4F1B5E491400F9C379 /* CPEditActivityController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3FCDD4E1B5E491400F9C379 /* CPEditActivityController.storyboard */; };
@@ -1047,6 +1048,9 @@
 		E3EEDFFF1B53952E00595333 /* UIImage+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
 		E3EEE0001B53952E00595333 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		E3EEE0011B53952E00595333 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		E3F5B3481BA17054003ABE36 /* NSString+Directory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Directory.h"; sourceTree = "<group>"; };
+		E3F5B3491BA17054003ABE36 /* NSString+Directory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Directory.m"; sourceTree = "<group>"; };
+		E3F5B34B1BA17176003ABE36 /* ZYCategarys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZYCategarys.h; sourceTree = "<group>"; };
 		E3FCDD481B5E34E200F9C379 /* CPAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnnotation.h; sourceTree = "<group>"; };
 		E3FCDD491B5E34E200F9C379 /* CPAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAnnotation.m; sourceTree = "<group>"; };
 		E3FCDD4B1B5E355A00F9C379 /* CPAnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnotationView.h; sourceTree = "<group>"; };
@@ -2683,6 +2687,9 @@
 				E3EEE0011B53952E00595333 /* UIView+Extension.m */,
 				E30C80AE1B86DBB30061C642 /* UITabBar+Extension.h */,
 				E30C80AF1B86DBB30061C642 /* UITabBar+Extension.m */,
+				E3F5B3481BA17054003ABE36 /* NSString+Directory.h */,
+				E3F5B3491BA17054003ABE36 /* NSString+Directory.m */,
+				E3F5B34B1BA17176003ABE36 /* ZYCategarys.h */,
 			);
 			path = Categarys;
 			sourceTree = "<group>";
@@ -3091,6 +3098,7 @@
 				E3FF17151B969B7B00452554 /* UIImage+UzysExtension.m in Sources */,
 				6B9711141B7DF60400EA0F09 /* ConvertToCommonEmoticonsHelper.m in Sources */,
 				6BB09AA71B68B02900E0D77D /* CPPhotoalbumManagement.m in Sources */,
+				E3F5B34A1BA17054003ABE36 /* NSString+Directory.m in Sources */,
 				A57582091B6789E500A5E681 /* NSDate+SMFoundation.m in Sources */,
 				E35E6FC71B54AFB8001212D6 /* CPMyPublishController.m in Sources */,
 				6B9711651B7DF74200EA0F09 /* NSDate+Category.m in Sources */,

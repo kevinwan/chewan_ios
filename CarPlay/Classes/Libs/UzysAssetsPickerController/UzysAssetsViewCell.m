@@ -52,9 +52,7 @@ static CGFloat thumnailLength;
     {
         // Initialization code
         self.opaque = YES;
-//        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPress:)];
-//        [self addGestureRecognizer:tap];
-        
+  
     }
     return self;
 }
@@ -65,31 +63,6 @@ static CGFloat thumnailLength;
     self.type   = [asset valueForProperty:ALAssetPropertyType];
     self.title  = [UzysAssetsViewCell getTimeStringOfTimeInterval:[[asset valueForProperty:ALAssetPropertyDuration] doubleValue]];
 }
-
-
-//- (void)tapPress:(UITapGestureRecognizer *)tap
-//{
-//    // 设置按钮的点中返回
-//    CGRect rect = CGRectMake(self.width - 33, 2, 30, 30);
-//    ;
-//    if (!CGRectContainsPoint(rect, [tap locationInView:self])) {
-//        tap.enabled = YES;
-//        MJPhotoBrowser *browser = [MJPhotoBrowser new];
-//        
-//        // 去除保存按钮
-//        browser.showSaveBtn = 0;
-//        MJPhoto *photo = [MJPhoto new];
-//        photo.image = [UIImage imageWithCGImage:self.asset.defaultRepresentation.fullResolutionImage
-//                                          scale:self.asset.defaultRepresentation.scale
-//                                    orientation:(UIImageOrientation)self.asset.defaultRepresentation.orientation];
-//        browser.photos = @[photo];
-//        [browser show];
-//    }else{
-//        [self becomeFirstResponder];
-//        [self setSelected:!self.isSelected];
-//    }
-//
-//}
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -107,27 +80,17 @@ static CGFloat thumnailLength;
         // 去除保存按钮
         browser.showSaveBtn = 0;
         MJPhoto *photo = [MJPhoto new];
-        photo.image = [UIImage imageWithCGImage:self.asset.defaultRepresentation.fullResolutionImage
-                                          scale:self.asset.defaultRepresentation.scale
-                                    orientation:(UIImageOrientation)self.asset.defaultRepresentation.orientation];
+        photo.localAsset = _asset;
+//        UIImage *image = [UIImage imageWithCGImage:_asset.defaultRepresentation.fullResolutionImage
+//                                          scale:_asset.defaultRepresentation.scale
+//                                    orientation:(UIImageOrientation)_asset.defaultRepresentation.orientation];
+//        photo.image = image;
         browser.photos = @[photo];
         [browser show];
     }else{
         [super touchesBegan:touches withEvent:event];
     }
 }
-
-//- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
-//{
-//    CGRect rect = CGRectMake(self.width - 33, 2, 30, 30);
-//    ;
-//    if (!CGRectContainsPoint(rect, point)) {
-//        return self;
-//    }else{
-//        return self.superview;
-//    }
-//
-//}
 
 - (void)setSelected:(BOOL)selected
 {

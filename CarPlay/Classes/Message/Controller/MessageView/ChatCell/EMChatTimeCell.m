@@ -46,7 +46,7 @@
     [self.timeLabel sizeToFit];
     self.timeLabel.width += 20;
     self.timeLabel.height = 19;
-    self.timeLabel.centerX = self.centerXInSelf;
-    self.timeLabel.y = self.centerYInSelf;
+    self.timeLabel.centerX = self.middleX;
+    self.timeLabel.y = self.middleY;
 }
 @end

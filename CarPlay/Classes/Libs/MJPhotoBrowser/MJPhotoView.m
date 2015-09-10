@@ -95,7 +95,15 @@
         [_photoLoadingView removeFromSuperview];
         _imageView.image = _photo.image;
         self.scrollEnabled = YES;
-    } else {
+    }if (_photo.localAsset) {
+        [_photoLoadingView removeFromSuperview];
+        _imageView.image = [UIImage imageWithCGImage:_photo.localAsset.defaultRepresentation.fullResolutionImage
+                                                                                        scale:_photo.localAsset.defaultRepresentation.scale
+                                                                                  orientation:(UIImageOrientation)_photo.localAsset.defaultRepresentation.orientation];
+
+        self.scrollEnabled = YES;
+    }
+    else {
         _imageView.image = _photo.placeholder;
         self.scrollEnabled = NO;
         // 直接显示进度条

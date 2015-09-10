@@ -101,7 +101,7 @@ NSString *const kRouterEventAudioBubbleTapEventName = @"kRouterEventAudioBubbleT
     }
     
     // 录音时间的位置居中
-    _timeLabel.centerY = _animationImageView.centerYInSuper;
+    _timeLabel.centerY = _animationImageView.centerY;
 }
 
 #pragma mark - setter

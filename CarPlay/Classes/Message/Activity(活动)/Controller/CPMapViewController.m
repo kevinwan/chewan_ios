@@ -76,7 +76,7 @@
         button.height = 30;
         button.layer.cornerRadius = 3;
         button.clipsToBounds = YES;
-        button.centerY = _descLocationView.centerYInSelf;
+        button.centerY = _descLocationView.middleY;
         button.x = _descLocationView.width - 60;
         [_descLocationView addSubview:button];
         [button addTarget:self action:@selector(goThere) forControlEvents:UIControlEventTouchUpInside];

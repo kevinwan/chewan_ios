@@ -89,16 +89,6 @@
     self.center = center;
 }
 
-- (CGFloat)centerXInSuper
-{
-    return self.frame.origin.x + self.bounds.size.width * 0.5;
-}
-
-- (CGFloat)centerXInSelf
-{
-    return self.bounds.size.width * 0.5;
-}
-
 - (void)setCenterY:(CGFloat)centerY
 {
     CGPoint center = self.center;
@@ -106,12 +96,22 @@
     self.center = center;
 }
 
-- (CGFloat)centerYInSuper
+- (CGFloat)centerX
 {
-    return self.frame.origin.y + self.bounds.size.height * 0.5;
+    return self.center.x;
 }
 
-- (CGFloat)centerYInSelf
+- (CGFloat)centerY
+{
+    return self.center.y;
+}
+
+- (CGFloat)middleX
+{
+    return self.bounds.size.width * 0.5;
+}
+
+- (CGFloat)middleY
 {
     return self.bounds.size.height * 0.5;
 }
