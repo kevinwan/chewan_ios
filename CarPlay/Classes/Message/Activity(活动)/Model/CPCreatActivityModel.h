@@ -22,6 +22,10 @@
 @property (nonatomic, assign) double longitude;
 //“latitude”:”$latitude”,
 @property (nonatomic, assign) double latitude;
+// 用户位置的经度
+@property (nonatomic, assign) double currentLongitude;
+// 用户位置的纬度
+@property (nonatomic, assign) double currentLatitude;
 //“start”:”$start”,
 @property (nonatomic, assign) NSTimeInterval start;
 //“end”:”$end”,
