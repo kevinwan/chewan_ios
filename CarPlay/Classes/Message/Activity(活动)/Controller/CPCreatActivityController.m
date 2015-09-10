@@ -1069,6 +1069,14 @@ typedef enum {
         self.currentModel.currentCity = @"";
     }
     
+    double currentLongitude = [[CPUserDefaults valueForKey:@"CPUserLongitude"] doubleValue];
+    double currentLatitude = [[CPUserDefaults valueForKey:@"CPUserLatitude"] doubleValue];
+    if (currentLongitude) {
+        self.currentModel.currentLongitude = currentLongitude;
+    }
+    if (currentLatitude) {
+        self.currentModel.currentLatitude = currentLatitude;
+    }
     NSString *currentDistrict = [CPUserDefaults stringForKey:@"CPUserArea"];
     if (currentDistrict.length) {
         self.currentModel.currentDistrict = currentDistrict;
