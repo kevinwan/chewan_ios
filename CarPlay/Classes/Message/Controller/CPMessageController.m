@@ -21,6 +21,7 @@
 #import "CPChatListCell.h"
 #import "CPHomeMsgModel.h"
 #import "UIImage+Extension.h"
+#import <UIButton+WebCache.h>
 
 typedef enum {
     CPMessageOptionMsg, // 新留言消息
@@ -28,6 +29,9 @@ typedef enum {
 }CPMessageOption;
 
 @interface CPMessageController ()<IChatManagerDelegate,ChatViewControllerDelegate>
+{
+    SDWebImageManager *manager;
+}
 @property (weak, nonatomic) CPBadgeView *leaveNewMsgNumber;
 
 @property (weak, nonatomic)  CPBadgeView *activityApplyNewMsgNumber;
@@ -40,8 +44,8 @@ typedef enum {
 @property (strong, nonatomic) NSMutableArray *dataSource;
 @property (nonatomic, strong) UIView *networkStateView;
 @property (nonatomic, strong) NSMutableArray *datas;
-@property (strong, nonatomic) NSMutableArray *groupIds;
-@property (strong, nonatomic) NSMutableArray *groupsAndGroupIcons;
+@property (strong, nonatomic) NSMutableString *groupIds;
+@property (strong, nonatomic) NSArray *groupsAndGroupIcons;
 
 #define CPUnreadMsgKey [[NSString alloc]initWithFormat:@"%@unreadMessageCount",[Tools getValueFromKey:@"userId"]]
 @end
@@ -99,7 +103,7 @@ typedef enum {
     [super viewDidLoad];
     
     self.tableView.tableFooterView = [UIView new];
-    
+    manager = [SDWebImageManager sharedManager];
     self.tableView.header = [CPRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
     if (CPIsLogin){
         [self timer];
@@ -354,24 +358,28 @@ typedef enum {
 -(void)refreshDataSource
 {
     self.dataSource = [self loadDataSource];
-//    [self.groupIds removeAllObjects];
-//    for (EMConversation *conversation in self.dataSource) {
-//        if (conversation.conversationType == eConversationTypeGroupChat) {
-//            [self.groupIds addObject:conversation.chatter];
-//        }
-//    }
-//    NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:self.groupIds,@"groupIds", nil];
-//    [ZYNetWorkTool postWithUrl:@"" params:params success:^(id responseObject) {
-//        if (CPSuccess) {
-//            self.groupsAndGroupIcons=responseObject[@"data"];
-//        }
-        [self.tableView reloadData];
-//    } failure:^(NSError *error) {
-//        [self showError:@"获取群组头像失败"];
-//    }];
-//    
-    
-//    [self hideHud];
+    self.groupIds = [[NSMutableString alloc]init];
+    for (EMConversation *conversation in self.dataSource) {
+        if (conversation.conversationType == eConversationTypeGroupChat) {
+            if ([self.groupIds length] == 0) {
+                [self.groupIds appendString:conversation.chatter];
+            }else{
+                [self.groupIds appendString:[NSString stringWithFormat:@",%@",conversation.chatter]];
+            }
+            
+        }
+    }
+    if ([self.groupIds length]>0) {
+        NSString *path=[NSString stringWithFormat:@"/v1/chatgroup/photos?userId=%@&token=%@&ids=%@",[Tools getValueFromKey:@"userId"],[Tools getValueFromKey:@"token"],self.groupIds];
+        [ZYNetWorkTool getWithUrl:path params:nil success:^(id responseObject) {
+            if (CPSuccess) {
+                self.groupsAndGroupIcons=responseObject[@"data"];
+            }
+            [self.tableView reloadData];
+        } failure:^(NSError *error) {
+            [self showError:@"获取群组头像失败"];
+        }];
+     }
 }
 
 - (void)isConnect:(BOOL)isConnect{
@@ -546,12 +554,64 @@ typedef enum {
         }else{
             cell.showUnreadCount = NO;
         }
-//        SDWebImageManager *manager = [SDWebImageManager sharedManager];
-//        
-//        
-//        [UIImage imageWithBgImage:<#(UIImage *)#> waterImage:<#(UIImage *)#> frame:<#(CGRect)#> angle:<#(CGFloat)#>]
+        NSLog(@"%ld",(long)indexPath.row);
+        NSDictionary *groupAndPhotos=self.groupsAndGroupIcons[indexPath.row-2];
+        NSArray *photos=groupAndPhotos[@"photos"];
+        switch ([photos count]) {
+            case 1:
+                [cell.iconView sd_setImageWithURL:[NSURL URLWithString:photos[0]] forState:UIControlStateNormal];
+                break;
+
+            case 2:
+            {
+                [manager downloadImageWithURL:[NSURL URLWithString:photos[0]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                    UIImage *image1 = [UIImage imageWithBgImage:[UIImage imageNamed:@"群头像背景"] waterImage:[self shearToCircleImage:image] frame:CGRectMake(6.5, 16, 17, 17) angle:0];
+                    [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                        UIImage *image2 = [UIImage imageWithBgImage:image1 waterImage:[self shearToCircleImage:image] frame:CGRectMake(26.5, 16, 17, 17) angle:0];
+                        [cell.iconView setImage:image2 forState:UIControlStateNormal];
+                    }];
+                }];
+            }
+                
+                break;
+                
+            case 3:
+            {
+                [manager downloadImageWithURL:[NSURL URLWithString:photos[0]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                    UIImage *image1 = [UIImage imageWithBgImage:[UIImage imageNamed:@"群头像背景"] waterImage:[self shearToCircleImage:image] frame:CGRectMake(16, 7, 17, 17) angle:0];
+                    [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                        UIImage *image2 = [UIImage imageWithBgImage:image1 waterImage:[self shearToCircleImage:image] frame:CGRectMake(6.5, 26, 17, 17) angle:0];
+                        [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                            UIImage *image3 = [UIImage imageWithBgImage:image2 waterImage:[self shearToCircleImage:image] frame:CGRectMake(26.5, 26, 17, 17) angle:0];
+                            [cell.iconView setImage:image3 forState:UIControlStateNormal];
+
+                        }];
+                    }];
+                }];
+            }
+                break;
+                
+            case 4:
+            {
+                [manager downloadImageWithURL:[NSURL URLWithString:photos[0]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                    UIImage *image1 = [UIImage imageWithBgImage:[UIImage imageNamed:@"群头像背景"] waterImage:[self shearToCircleImage:image] frame:CGRectMake(7, 7, 17, 17) angle:0];
+                    [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                        UIImage *image2 = [UIImage imageWithBgImage:image1 waterImage:[self shearToCircleImage:image] frame:CGRectMake(27, 7, 17, 17) angle:0];
+                        [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                            UIImage *image3 = [UIImage imageWithBgImage:image2 waterImage:[self shearToCircleImage:image] frame:CGRectMake(7, 27, 17, 17) angle:0];
+                            [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                UIImage *image4 = [UIImage imageWithBgImage:image3 waterImage:[self shearToCircleImage:image] frame:CGRectMake(27, 27, 17, 17) angle:0];
+                                [cell.iconView setImage:image4 forState:UIControlStateNormal];
+                            }];
+                        }];
+                    }];
+                }];
+            }
+                break;
+        }
         
-        [cell.iconView setImage:[UIImage imageNamed:@"群聊默认"] forState:UIControlStateNormal];
+        
+//        [cell.iconView setImage:[UIImage imageNamed:@"群聊默认"] forState:UIControlStateNormal];
     }
     return cell;
 }
@@ -629,4 +689,38 @@ typedef enum {
     }
 }
 
+-(UIImage *)shearToCircleImage:(UIImage *)image{
+    CGFloat sizeW = image.size.width;
+    CGFloat sizeH = image.size.height;
+    CGSize size =  CGSizeMake(sizeW, sizeH);
+    // 创建bit上下文
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
+    CGContextRef ctf = UIGraphicsGetCurrentContext();
+    
+    // 画出外边的大圆
+    CGFloat bigX = sizeW * 0.5;
+    CGFloat bigY = sizeH * 0.5;
+    CGFloat radius = bigX;
+    CGContextAddArc(ctf, bigX, bigY, radius, 0, M_PI * 2, NO);
+    
+    // 将上下文渲染到图层
+    CGContextFillPath(ctf);
+    
+    // 画小圆
+    CGFloat smallX = bigX;
+    CGFloat smallY = bigY;
+    CGContextAddArc(ctf, smallX, smallY, radius, 0, M_PI * 2, NO);
+    CGContextClip(ctf);
+    
+    // 画图
+    [image drawInRect:CGRectMake(0.0, 0.0, image.size.width, image.size.height)];
+    
+    // 获得上下文中的图形
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    // 关闭上下文
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
 @end
