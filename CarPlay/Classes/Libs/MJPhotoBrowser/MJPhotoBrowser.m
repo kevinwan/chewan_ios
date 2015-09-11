@@ -252,6 +252,19 @@
     [UIView animateWithDuration:0.35 animations:^{
         self.view.alpha = 0.0;
     } completion:^(BOOL finished) {
+        photoView.imageView.image = nil;
+        
+        [self.photos enumerateObjectsUsingBlock:^(MJPhoto *obj, NSUInteger idx, BOOL *stop) {
+            obj.image = nil;
+        }];
+        
+        [self.photoScrollView.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            if ([obj isKindOfClass:[MJPhotoView class]]) {
+                MJPhotoView *view = obj;
+                view.imageView.image = nil;
+            }
+        }];
+        
         [self.view removeFromSuperview];
     }];
 }

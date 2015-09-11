@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class MJPhotoBrowser, MJPhoto, MJPhotoView;
+@class MJPhotoBrowser, MJPhoto, MJPhotoView,YLImageView;
 
 @protocol MJPhotoViewDelegate <NSObject>
 - (void)photoViewImageFinishLoad:(MJPhotoView *)photoView;
@@ -15,6 +15,8 @@
 @end
 
 @interface MJPhotoView : UIScrollView <UIScrollViewDelegate>
+// 图片控件
+@property (nonatomic, strong) YLImageView *imageView;
 // 图片
 @property (nonatomic, strong) MJPhoto *photo;
 // 代理

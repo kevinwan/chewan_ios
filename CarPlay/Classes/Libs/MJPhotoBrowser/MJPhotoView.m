@@ -25,7 +25,6 @@
 @interface MJPhotoView ()
 {
     BOOL _zoomByDoubleTap;
-    YLImageView *_imageView;
     MJPhotoLoadingView *_photoLoadingView;
 }
 @end
@@ -95,7 +94,7 @@
         [_photoLoadingView removeFromSuperview];
         _imageView.image = _photo.image;
         self.scrollEnabled = YES;
-    }if (_photo.localAsset) {
+    }else if (_photo.localAsset) {
         [_photoLoadingView removeFromSuperview];
         _imageView.image = [UIImage imageWithCGImage:_photo.localAsset.defaultRepresentation.fullResolutionImage
                                                                                         scale:_photo.localAsset.defaultRepresentation.scale

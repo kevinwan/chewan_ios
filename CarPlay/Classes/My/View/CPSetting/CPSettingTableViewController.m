@@ -14,6 +14,7 @@
 #import "CPVersionIntroduction.h"
 #import "CPMySubscribeModel.h"
 #import "CPMessageController.h"
+#import "UMessage.h"
 
 @interface CPSettingTableViewController ()<UIAlertViewDelegate>
 {
@@ -138,6 +139,15 @@
                 NSString *fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"userId"]];
                 CPOrganizer *organizer=[[CPOrganizer alloc]init];
                 [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
+                NSString *userId = [Tools getValueFromKey:@"userId"];
+                
+                if (userId.length) {
+                    [UMessage removeTag:userId
+                               response:^(id responseObject, NSInteger remain, NSError *error) {
+                                   DLog(@"移除设备绑定");
+                               }];
+                }
+                
                 [Tools setValueForKey:nil key:@"userId"];
                 [Tools setValueForKey:nil key:@"token"];
                 [Tools setValueForKey:nil key:THIRDPARTYLOGINACCOUNT];

@@ -509,6 +509,16 @@ typedef enum {
 
 - (void)dealloc
 {
+    // 清理图片缓存
+    [self.photoView.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        
+        if ([obj isKindOfClass:[CPEditImageView class]]) {
+            CPEditImageView *imageView = obj;
+            imageView.image = nil;
+            [imageView removeFromSuperview];
+        }
+    }];
+    
     [CPNotificationCenter removeObserver:self];
     if (self.pickView) {
         [self.pickView removeFromSuperview];
@@ -587,6 +597,7 @@ typedef enum {
                                      orientation:(UIImageOrientation)representation.defaultRepresentation.orientation];
         [arr addObject:img];
     }];
+    assets = nil;
     [self addPhoto:arr];
     if (self.photoView.subviews.count == 10) {
         [self.photoView.subviews.lastObject setHidden:YES];
@@ -657,7 +668,7 @@ typedef enum {
         [imageView addGestureRecognizer:tapGes];
         [self.photoView insertSubview:imageView atIndex:0];
     }
-    
+    arr = nil;
     [self layoutPhotoView];
 }
 

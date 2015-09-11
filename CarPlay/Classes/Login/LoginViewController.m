@@ -12,6 +12,7 @@
 #import "CPMySubscribeModel.h"
 #import "UMSocial.h"
 #import "CPRegisterStep2ViewController.h"
+#import "UMessage.h"
 
 @interface LoginViewController ()
 @property (nonatomic, strong) UIBarButtonItem *rightItem;
@@ -73,6 +74,10 @@
                     
                     if ([data objectForKey:@"userId"]) {
                         [Tools setValueForKey:[data objectForKey:@"userId"] key:@"userId"];
+                        [UMessage addTag:[data objectForKey:@"userId"]
+                                response:^(id responseObject, NSInteger remain, NSError *error) {
+                                    DLog(@"添加设备绑定...");
+                                }];
                         EMError *error = nil;
                         NSString *EMuser=[Tools md5EncryptWithString:[data objectForKey:@"userId"]];
                         NSDictionary *loginInfo = [[EaseMob sharedInstance].chatManager loginWithUsername:EMuser password:password error:&error];
@@ -222,6 +227,11 @@
                     [Tools setValueForKey:@(YES) key:NOTIFICATION_HASLOGIN];
                     [Tools setValueForKey:[data objectForKey:@"token"] key:@"token"];
                     [Tools setValueForKey:[data objectForKey:@"userId"] key:@"userId"];
+                    [UMessage addTag:[data objectForKey:@"userId"]
+                            response:^(id responseObject, NSInteger remain, NSError *error) {
+                                DLog(@"添加设备绑定...");
+                            }];
+                    
                     [Tools setValueForKey:data[@"nickname"] key:@"nickName"];
                     [Tools setValueForKey:data[@"photo"] key:@"headUrl"];
                     

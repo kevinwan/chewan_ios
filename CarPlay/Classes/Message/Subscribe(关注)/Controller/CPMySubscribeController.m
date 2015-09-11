@@ -53,7 +53,6 @@
     self.navigationItem.title = @"我的收藏";
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    
     __weak typeof(self) weakSelf = self;
     self.tableView.header = [CPRefreshHeader headerWithRefreshingBlock:^{
         weakSelf.ignore = 0;

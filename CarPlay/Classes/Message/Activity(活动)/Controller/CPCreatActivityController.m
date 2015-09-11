@@ -130,7 +130,7 @@ typedef enum {
     [super viewDidLoad];
     
     self.title = @"创建活动";
-
+    
     [self setUp];
 }
 
@@ -246,7 +246,7 @@ typedef enum {
     if (self.photoView.subviews.count == 10) {
         [self.photoView.subviews.lastObject setHidden:YES];
     }
-
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -256,30 +256,30 @@ typedef enum {
     if (CPUnLogin){
         return;
     }
-  
-        NSString *userId = [Tools getValueFromKey:@"userId"];
-        NSString *url = [NSString stringWithFormat:@"v1/user/%@/seats",userId];
-        NSMutableDictionary *params = [NSMutableDictionary dictionary];
-        NSString *token = [Tools getValueFromKey:@"token"];
-        if (token){
-            params[@"token"] = [Tools getValueFromKey:@"token"];
+    
+    NSString *userId = [Tools getValueFromKey:@"userId"];
+    NSString *url = [NSString stringWithFormat:@"v1/user/%@/seats",userId];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    NSString *token = [Tools getValueFromKey:@"token"];
+    if (token){
+        params[@"token"] = [Tools getValueFromKey:@"token"];
+    }
+    [ZYNetWorkTool getWithUrl:url params:params success:^(id responseObject) {
+        if (CPSuccess){
+            // 更改seat的座位
+            [self changeSeatWithResult:responseObject[@"data"]];
+            
         }
-        [ZYNetWorkTool getWithUrl:url params:params success:^(id responseObject) {
-            if (CPSuccess){
-                // 更改seat的座位
-                [self changeSeatWithResult:responseObject[@"data"]];
-                
-            }
-        } failure:^(NSError *error) {
-            [SVProgressHUD showInfoWithStatus:@"加载空座数失败"];
-        }];
-
+    } failure:^(NSError *error) {
+        [SVProgressHUD showInfoWithStatus:@"加载空座数失败"];
+    }];
+    
     
 }
 
 - (void)changeSeatWithResult:(NSDictionary *)result
 {
- 
+    
     if ([result[@"isAuthenticated"] intValue] == 1) {
         self.seatLabel.text = @"提供空座数";
         if (self.currentModel.seat == 0) {
@@ -322,16 +322,16 @@ typedef enum {
 {
     UITableViewCell *cell = [self cellWithRow:pickerView.row];
     CGRect covertedRect = [cell convertRect:cell.bounds toView:self.tableView];
-
+    
     CGFloat cellBottom = covertedRect.origin.y + covertedRect.size.height - self.tableView.contentOffset.y + 64;
     
     CGFloat margin = kScreenHeight - PickerViewHeght - cellBottom;
-
+    
     if (margin < 0) {
         self.currentOffset = self.tableView.contentOffset;
         [self.tableView setContentOffset:CGPointMake(0,self.tableView.contentOffset.y - margin) animated:YES];
     }
-
+    
 }
 
 /**
@@ -360,7 +360,7 @@ typedef enum {
             [weakSelf.pickView show];
         }
     };
-      // 设置活动名称
+    // 设置活动名称
     CPCreatActivityCell *activityNameCell = [self cellWithRow:1];
     [activityNameCell.contentView addSubview:weakSelf.nameLabel];
     
@@ -378,7 +378,7 @@ typedef enum {
     [addPhotoBtn setImage:[UIImage imageNamed:@"大相机"] forState:UIControlStateNormal];
     [addPhotoBtn addTarget:self action:@selector(addPhoto) forControlEvents:UIControlEventTouchUpInside];
     [photoView addSubview:addPhotoBtn];
-
+    
     
     CPCreatActivityCell *activityLocationCell = [self cellWithRow:3];
     activityLocationCell.destClass = [CPMapViewController class];
@@ -413,7 +413,7 @@ typedef enum {
         }else{
             [weakSelf.pickView removeFromSuperview];
             weakSelf.pickView  = [[ZYPickView alloc] initDatePickWithDate:[NSDate dateWithTimeIntervalSinceNow:60] datePickerMode:UIDatePickerModeDate isHaveNavControler:NO];
-     
+            
             weakSelf.pickView.tag = ActivityCreateEnd;
             weakSelf.pickView.row = 5;
             weakSelf.pickView.delegate = weakSelf;
@@ -488,7 +488,7 @@ typedef enum {
     
     if (cell.destClass){
         CPReturnValueControllerView *vc = [[cell.destClass alloc] init];
-
+        
         if (indexPath.row == 3) {
             if (self.selectLocation) {
                 vc.forValue = self.selectLocation;
@@ -599,7 +599,7 @@ typedef enum {
 
 #pragma mark - ZHPickViewDelegate
 -(void)toobarDonBtnHaveClick:(ZYPickView *)pickView resultString:(NSString *)resultString{
-
+    
     switch (pickView.tag) {
         case ActivityCreateType:
         {
@@ -642,6 +642,16 @@ typedef enum {
 
 - (void)dealloc
 {
+    // 清理图片缓存
+    [self.photoView.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+       
+        if ([obj isKindOfClass:[CPEditImageView class]]) {
+            CPEditImageView *imageView = obj;
+            imageView.image = nil;
+            [imageView removeFromSuperview];
+        }
+    }];
+    
     [CPNotificationCenter removeObserver:self];
     if (self.pickView) {
         [self.pickView removeFromSuperview];
@@ -717,14 +727,15 @@ typedef enum {
 - (void)uzysAssetsPickerController:(UzysAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets
 {
     NSMutableArray *arr = [NSMutableArray array];
-        [assets enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            ALAsset *representation = obj;
-            
-            UIImage *img = [UIImage imageWithCGImage:representation.defaultRepresentation.fullResolutionImage
-                                               scale:representation.defaultRepresentation.scale
-                                         orientation:(UIImageOrientation)representation.defaultRepresentation.orientation];
-            [arr addObject:img];
-        }];
+    [assets enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        ALAsset *representation = obj;
+        
+        UIImage *img = [UIImage imageWithCGImage:representation.defaultRepresentation.fullResolutionImage
+                                           scale:representation.defaultRepresentation.scale
+                                     orientation:(UIImageOrientation)representation.defaultRepresentation.orientation];
+        [arr addObject:img];
+    }];
+    assets = nil;
     [self addPhoto:arr];
     if (self.photoView.subviews.count == 10) {
         [self.photoView.subviews.lastObject setHidden:YES];
@@ -750,7 +761,7 @@ typedef enum {
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
     [alert show];
-
+    
 }
 
 - (void)uzysAssetsPickerControllerDidCancel:(UzysAssetsPickerController *)picker
@@ -798,7 +809,7 @@ typedef enum {
         
         [self.photoView insertSubview:imageView atIndex:0];
     }
-    
+    arr = nil;
     [self layoutPhotoView];
 }
 
@@ -832,7 +843,6 @@ typedef enum {
         for (int i = 0; i < self.photoView.subviews.count - 1; i ++) {
             UIImageView *imageView = (UIImageView *)[self.photoView viewWithTag:i + 20];
             MJPhoto *photo = [[MJPhoto alloc] init];
-            photo.srcImageView = imageView;
             photo.image = imageView.image;
             [photos addObject:photo];
         }
@@ -863,7 +873,7 @@ typedef enum {
         self.imageEditing = NO;
         self.navigationItem.rightBarButtonItem = nil;
     }
-
+    
 }
 
 /**
@@ -1032,7 +1042,7 @@ typedef enum {
             [CPNetWorkTool postFileWithUrl:@"v1/activity/cover/upload" params:nil files:@[imageFile] success:^(id responseObject) {
                 if (CPSuccess) {
                     NSString *photoId =
-                     responseObject[@"data"][@"photoId"];
+                    responseObject[@"data"][@"photoId"];
                     [photoIds addObject:photoId];
                     
                     // 图片上传完成
@@ -1061,7 +1071,7 @@ typedef enum {
     if (picIds.count) {
         self.currentModel.cover = picIds;
     }
-  
+    
     NSString *currentCity = [CPUserDefaults stringForKey:@"CPUserCity"];
     if (currentCity.length) {
         self.currentModel.currentCity = currentCity;
@@ -1085,7 +1095,7 @@ typedef enum {
     }
     
     NSDictionary *params = [CPCreatActivityModelTool paramsWithLocalModel:self.currentModel];
-
+    
     DLog(@"%@",params);
     [CPNetWorkTool postJsonWithUrl:@"v1/activity/register" params:params success:^(id responseObject) {
         
@@ -1109,7 +1119,7 @@ typedef enum {
                     activityDetailVc.activeId = responseObject[@"data"][@"activityId"];
                     [self.navigationController pushViewController:activityDetailVc animated:YES];
                 }
-
+                
             });
         }else{
             [self showError:@"创建失败"];

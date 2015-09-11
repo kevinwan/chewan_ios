@@ -17,9 +17,15 @@
 #import "AppDelegate+EaseMob.h"
 #import "ZYNavigationController.h"
 #import <MobClick.h>
+#import "UMessage.h"
+
 #define kCheWanAppID @"55a34ed367e58e6efc00285d"
 #define kWeiXinAppID @"wx4c127cf07bd7d80b"
 #define kWeiXinAppSecret @"315ce754c5a1096c5188b4b69a7b9f04"
+
+#define UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+
+#define _IPHONE80_ 80000
 @interface AppDelegate ()<UIAlertViewDelegate>
 
 @end
@@ -33,8 +39,13 @@
     [application setStatusBarHidden:NO];
     application.statusBarStyle = UIStatusBarStyleLightContent;
     
+    //set AppKey and AppSecret
+    // 初始化友盟推送
+    [self setUpUmessageWithApplication:application didFinishLaunchingWithOptions:launchOptions];
+    
     // 进行一些参数配置
     [self setAllConfig];
+    
     
     // 初始化环信SDK，详细内容在AppDelegate+EaseMob.m 文件中
     [self easemobApplication:application didFinishLaunchingWithOptions:launchOptions];
@@ -63,6 +74,62 @@
     return YES;
 }
 
+- (void)setUpUmessageWithApplication:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    [UMessage startWithAppkey:@"55a34ed367e58e6efc00285d" launchOptions:launchOptions];
+    
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
+    if(UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
+    {
+        //register remoteNotification types
+        UIMutableUserNotificationAction *action1 = [[UIMutableUserNotificationAction alloc] init];
+        action1.identifier = @"action1_identifier";
+        action1.title=@"Accept";
+        action1.activationMode = UIUserNotificationActivationModeForeground;//当点击的时候启动程序
+        
+        UIMutableUserNotificationAction *action2 = [[UIMutableUserNotificationAction alloc] init];  //第二按钮
+        action2.identifier = @"action2_identifier";
+        action2.title=@"Reject";
+        action2.activationMode = UIUserNotificationActivationModeBackground;//当点击的时候不启动程序，在后台处理
+        action2.authenticationRequired = YES;//需要解锁才能处理，如果action.activationMode = UIUserNotificationActivationModeForeground;则这个属性被忽略；
+        action2.destructive = YES;
+        
+        UIMutableUserNotificationCategory *categorys = [[UIMutableUserNotificationCategory alloc] init];
+        categorys.identifier = @"category1";//这组动作的唯一标示
+        [categorys setActions:@[action1,action2] forContext:(UIUserNotificationActionContextDefault)];
+        
+        UIUserNotificationSettings *userSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge|UIUserNotificationTypeSound|UIUserNotificationTypeAlert
+                                                                                     categories:[NSSet setWithObject:categorys]];
+        [UMessage registerRemoteNotificationAndUserNotificationSettings:userSettings];
+        
+    } else{
+        //register remoteNotification types
+        [UMessage registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge
+         |UIRemoteNotificationTypeSound
+         |UIRemoteNotificationTypeAlert];
+    }
+#else
+    
+    //register remoteNotification types
+    [UMessage registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge
+     |UIRemoteNotificationTypeSound
+     |UIRemoteNotificationTypeAlert];
+    
+#endif
+    
+    // for tag
+    NSString *userId = [Tools getValueFromKey:@"userId"];
+    if (userId.length) {
+        [UMessage addTag:userId
+                response:^(id responseObject, NSInteger remain, NSError *error) {
+                    NSLog(@"添加设备绑定...");
+        }];
+    }
+    
+    //for log
+    [UMessage setLogEnabled:YES];
+    
+}
 
 /**
  *  进行一些全局的配置
@@ -216,9 +283,18 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
+    NSLog(@"收到远程推送......");
+    [UMessage didReceiveRemoteNotification:userInfo];
     if (_tabVc) {
         [_tabVc jumpToChatList];
     }
+}
+
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    [UMessage registerDeviceToken:deviceToken];
+    
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification

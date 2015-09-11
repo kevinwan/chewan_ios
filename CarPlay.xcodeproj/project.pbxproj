@@ -305,6 +305,7 @@
 		E372D85B1B62176C00B4FC5C /* MJNIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = E372D85A1B62176C00B4FC5C /* MJNIndexView.m */; };
 		E379E2E61B5DEC23001869AA /* CPEditImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E379E2E51B5DEC23001869AA /* CPEditImageView.m */; };
 		E38A5EA41B78847900B068D8 /* ZYTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E38A5EA31B78847900B068D8 /* ZYTabBar.m */; };
+		E38C6B8A1BA2A90300840C68 /* libUMessage_Sdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E38C6B881BA2A90300840C68 /* libUMessage_Sdk_1.1.0.a */; };
 		E390B4481BA02F3700752694 /* UIResponder+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E390B4471BA02F3700752694 /* UIResponder+Extension.m */; };
 		E390B44B1BA02F4100752694 /* CAAnimation+WAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E390B44A1BA02F4100752694 /* CAAnimation+WAnimation.m */; };
 		E390B4501BA02F4E00752694 /* UIButton+ZY.m in Sources */ = {isa = PBXBuildFile; fileRef = E390B44D1BA02F4E00752694 /* UIButton+ZY.m */; };
@@ -941,6 +942,8 @@
 		E379E2E51B5DEC23001869AA /* CPEditImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPEditImageView.m; sourceTree = "<group>"; };
 		E38A5EA21B78847900B068D8 /* ZYTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYTabBar.h; sourceTree = "<group>"; };
 		E38A5EA31B78847900B068D8 /* ZYTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYTabBar.m; sourceTree = "<group>"; };
+		E38C6B881BA2A90300840C68 /* libUMessage_Sdk_1.1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.1.0.a; sourceTree = "<group>"; };
+		E38C6B891BA2A90300840C68 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		E390B4461BA02F3700752694 /* UIResponder+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+Extension.h"; sourceTree = "<group>"; };
 		E390B4471BA02F3700752694 /* UIResponder+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+Extension.m"; sourceTree = "<group>"; };
 		E390B4491BA02F4100752694 /* CAAnimation+WAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAAnimation+WAnimation.h"; sourceTree = "<group>"; };
@@ -1093,6 +1096,7 @@
 				A575818D1B67877400A5E681 /* libz.dylib in Frameworks */,
 				A57581861B67871300A5E681 /* libSocialQQ.a in Frameworks */,
 				A57581871B67871300A5E681 /* TencentOpenAPI.framework in Frameworks */,
+				E38C6B8A1BA2A90300840C68 /* libUMessage_Sdk_1.1.0.a in Frameworks */,
 				A57581781B67871300A5E681 /* libUMSocial_Sdk_4.2.3.a in Frameworks */,
 				A57581791B67871300A5E681 /* libUMSocial_Sdk_Comment_4.2.3.a in Frameworks */,
 				A57581821B67871300A5E681 /* libSocialSina.a in Frameworks */,
@@ -1157,7 +1161,6 @@
 		6B4959CA1B33A23900DB63EA /* CarPlay */ = {
 			isa = PBXGroup;
 			children = (
-				A575813E1B67871300A5E681 /* UMSocial_Sdk_4.2.3 */,
 				6B4EF1381B4036EE00292BD4 /* Classes */,
 				6B4959CB1B33A23900DB63EA /* Supporting Files */,
 			);
@@ -1220,6 +1223,8 @@
 		6B4EF1401B4036EE00292BD4 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				E38C6B871BA2A90300840C68 /* UMessage_Sdk_1.1.0 */,
+				A575813E1B67871300A5E681 /* UMSocial_Sdk_4.2.3 */,
 				E3FF17031B969B7B00452554 /* UzysAssetsPickerController */,
 				E3C14F3C1B81815F006A0F52 /* MJPhotoBrowser */,
 				E310BF6C1B7DF7BB00750BF4 /* UUDatePicker_Block */,
@@ -1888,7 +1893,8 @@
 				A57581581B67871300A5E681 /* UMSocial_Sdk_Extra_Frameworks */,
 				A57581751B67871300A5E681 /* UMSocialSDKResourcesNew.bundle */,
 			);
-			path = UMSocial_Sdk_4.2.3;
+			name = UMSocial_Sdk_4.2.3;
+			path = ../../UMSocial_Sdk_4.2.3;
 			sourceTree = "<group>";
 		};
 		A57581411B67871300A5E681 /* Header */ = {
@@ -2518,6 +2524,15 @@
 				E3CFB1561B7213580058B8C3 /* ZYSegment.m */,
 			);
 			name = "CPSelectView(筛选)";
+			sourceTree = "<group>";
+		};
+		E38C6B871BA2A90300840C68 /* UMessage_Sdk_1.1.0 */ = {
+			isa = PBXGroup;
+			children = (
+				E38C6B881BA2A90300840C68 /* libUMessage_Sdk_1.1.0.a */,
+				E38C6B891BA2A90300840C68 /* UMessage.h */,
+			);
+			path = UMessage_Sdk_1.1.0;
 			sourceTree = "<group>";
 		};
 		E3AE58C11B57E08800D8F0CA /* ZYNetWorkTool */ = {
@@ -3373,7 +3388,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Min Sun (LWA55QF822)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3393,6 +3408,8 @@
 					"$(PROJECT_DIR)/CarPlay/UMSocial_Sdk_4.2.3/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/CarPlay/Classes/Utils/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/CarPlay/Classes/Utils/VoiceConvert/opencore-amrwb",
+					"$(PROJECT_DIR)/CarPlay/UMessage_Sdk_1.1.0",
+					"$(PROJECT_DIR)/CarPlay/Classes/Libs/UMessage_Sdk_1.1.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "cd74e067-3610-4ee6-8f04-768e1ad208b4";
@@ -3405,7 +3422,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Min Sun (LWA55QF822)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3425,6 +3442,8 @@
 					"$(PROJECT_DIR)/CarPlay/UMSocial_Sdk_4.2.3/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/CarPlay/Classes/Utils/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/CarPlay/Classes/Utils/VoiceConvert/opencore-amrwb",
+					"$(PROJECT_DIR)/CarPlay/UMessage_Sdk_1.1.0",
+					"$(PROJECT_DIR)/CarPlay/Classes/Libs/UMessage_Sdk_1.1.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "cd74e067-3610-4ee6-8f04-768e1ad208b4";
