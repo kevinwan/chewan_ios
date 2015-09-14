@@ -92,4 +92,13 @@ typedef NSInteger ZYCropMode;
  */
 + (UIImage *)imageWithFileName:(NSString *)name;
 
+/**
+ *  生成制定size的图片缩略图
+ *
+ *  @param size 制定的size
+ *
+ *  @return 压缩后的图片
+ */
+- (UIImage *)imageWithSize:(CGSize)targetSize;
+
 @end
