@@ -597,7 +597,7 @@ typedef enum {
                                      orientation:(UIImageOrientation)representation.defaultRepresentation.orientation];
         [arr addObject:img];
     }];
-    assets = nil;
+
     [self addPhoto:arr];
     if (self.photoView.subviews.count == 10) {
         [self.photoView.subviews.lastObject setHidden:YES];
@@ -668,7 +668,6 @@ typedef enum {
         [imageView addGestureRecognizer:tapGes];
         [self.photoView insertSubview:imageView atIndex:0];
     }
-    arr = nil;
     [self layoutPhotoView];
 }
 
