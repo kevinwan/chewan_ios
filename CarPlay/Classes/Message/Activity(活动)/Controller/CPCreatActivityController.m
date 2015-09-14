@@ -235,7 +235,9 @@ typedef enum {
             NSMutableArray *imageDatas = [NSMutableArray array];
             [self.currentModel.imageNames enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                 UIImage *img = [UIImage imageWithFileName:obj];
-                [imageDatas addObject:img];
+                if (img) {
+                    [imageDatas addObject:img];
+                }
             }];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self addPhoto:imageDatas];
@@ -884,6 +886,7 @@ typedef enum {
     CGFloat imgW = self.photoWH;
     CGFloat imgH = imgW;
     NSUInteger count = self.photoView.subviews.count;
+    
     [self.currentModel.imageNames removeAllObjects];
     for (int i = 0; i < count; i++) {
         UIView *subView = self.photoView.subviews[i];
