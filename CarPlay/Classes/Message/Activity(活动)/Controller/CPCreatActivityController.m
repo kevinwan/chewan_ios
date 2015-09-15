@@ -132,6 +132,8 @@ typedef enum {
     self.title = @"创建活动";
     
     [self setUp];
+    
+    
 }
 
 /**
