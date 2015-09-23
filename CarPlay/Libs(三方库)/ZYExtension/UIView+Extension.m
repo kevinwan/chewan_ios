@@ -9,12 +9,6 @@
 #import "UIView+Extension.h"
 #import <objc/runtime.h>
 
-@interface UIView()
-@property (nonatomic, assign) CGFloat tempCenterX;
-@property (nonatomic, assign) CGFloat tempCenterY;
-
-@end
-
 NSString * const ZYTransitionTypeCube = @"cube";
 NSString * const ZYTransitionTypeOglFlip = @"oglFlip";
 NSString * const ZYTransitionTypeSuckEffect = @"suckEffect";
@@ -22,30 +16,7 @@ NSString * const ZYTransitionTypeRippleEffect = @"rippleEffect";
 NSString * const ZYTransitionTypePageCurl = @"pageCurl";
 NSString * const ZYTransitionTypePageUnCurl = @"pageUnCurl";
 
-static const char ZYTempCenterXKey = '\0';
-static const char ZYTempCenterYKey = 'a';
-
 @implementation UIView (Extension)
-
-- (void)setTempCenterX:(CGFloat)tempCenterX
-{
-    objc_setAssociatedObject(self, &ZYTempCenterXKey, @(tempCenterX), OBJC_ASSOCIATION_ASSIGN);
-}
-
-- (CGFloat)tempCenterX
-{
-    return [objc_getAssociatedObject(self, &ZYTempCenterXKey) doubleValue];
-}
-
-- (void)setTempCenterY:(CGFloat)tempCenterY
-{
-    objc_setAssociatedObject(self, &ZYTempCenterYKey, @(tempCenterY), OBJC_ASSOCIATION_ASSIGN);
-}
-
-- (CGFloat)tempCenterY
-{
-    return [objc_getAssociatedObject(self, &ZYTempCenterYKey) doubleValue];
-}
 
 - (void)setX:(CGFloat)x
 {
@@ -66,9 +37,6 @@ static const char ZYTempCenterYKey = 'a';
     CGRect frame = self.frame;
     frame.size.width = width;
     self.frame = frame;
-    if (self.tempCenterX) {
-        [self setCenterX:self.tempCenterX];
-    }
 }
 
 - (void)setHeight:(CGFloat)height
@@ -76,9 +44,6 @@ static const char ZYTempCenterYKey = 'a';
     CGRect frame = self.frame;
     frame.size.height = height;
     self.frame = frame;
-    if (self.tempCenterY) {
-        [self setCenterY:self.tempCenterY];
-    }
 }
 
 - (void)setSize:(CGSize)size
@@ -127,24 +92,16 @@ static const char ZYTempCenterYKey = 'a';
 
 - (void)setCenterX:(CGFloat)centerX
 {
-    if (self.width) {
-        CGPoint center = self.center;
-        center.x = centerX;
-        self.center = center;
-    }else{
-        self.tempCenterX = centerX;
-    }
+    CGPoint center = self.center;
+    center.x = centerX;
+    self.center = center;
 }
 
 - (void)setCenterY:(CGFloat)centerY
 {
-    if (self.height) {
-        CGPoint center = self.center;
-        center.y = centerY;
-        self.center = center;
-    }else{
-        self.tempCenterY = centerY;
-    }
+    CGPoint center = self.center;
+    center.y = centerY;
+    self.center = center;
 }
 
 - (CGFloat)centerX

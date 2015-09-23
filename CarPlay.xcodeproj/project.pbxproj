@@ -12,7 +12,6 @@
 		E305F89C1BB24BBD000CD1A0 /* Const.m in Sources */ = {isa = PBXBuildFile; fileRef = E305F89A1BB24BBD000CD1A0 /* Const.m */; settings = {ASSET_TAGS = (); }; };
 		E305F89F1BB24D29000CD1A0 /* CPTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E305F89E1BB24D29000CD1A0 /* CPTabBarController.m */; settings = {ASSET_TAGS = (); }; };
 		E305F8A31BB24D68000CD1A0 /* CPTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E305F8A21BB24D68000CD1A0 /* CPTabBar.m */; settings = {ASSET_TAGS = (); }; };
-		E305F8A61BB24E72000CD1A0 /* CPNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E305F8A51BB24E72000CD1A0 /* CPNavigationController.m */; settings = {ASSET_TAGS = (); }; };
 		E31E4BD71BAD47A500902B34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E31E4BD61BAD47A500902B34 /* main.m */; };
 		E31E4BE01BAD47A500902B34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E31E4BDE1BAD47A500902B34 /* Main.storyboard */; };
 		E31E4BE21BAD47A500902B34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E31E4BE11BAD47A500902B34 /* Assets.xcassets */; };
@@ -45,6 +44,10 @@
 		E31E4C471BAD48BE00902B34 /* ZYNetWorkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E31E4C291BAD48BE00902B34 /* ZYNetWorkTool.m */; settings = {ASSET_TAGS = (); }; };
 		E31E4C4D1BAD4FC700902B34 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = E31E4C4C1BAD4FC700902B34 /* Tools.m */; settings = {ASSET_TAGS = (); }; };
 		E38834151BB1311F0006C184 /* UIViewController+ZYExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = E38834141BB1311F0006C184 /* UIViewController+ZYExtension.m */; settings = {ASSET_TAGS = (); }; };
+		E3B022431BB297E1001971A5 /* CPNearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B022421BB297E1001971A5 /* CPNearViewController.m */; settings = {ASSET_TAGS = (); }; };
+		E3B022461BB29960001971A5 /* CPNearViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B022451BB29960001971A5 /* CPNearViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		E3B022481BB29A6F001971A5 /* CPNearViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3B022471BB29A6F001971A5 /* CPNearViewCell.xib */; settings = {ASSET_TAGS = (); }; };
+		E3B0224B1BB29BAE001971A5 /* CPNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B0224A1BB29BAE001971A5 /* CPNavigationController.m */; settings = {ASSET_TAGS = (); }; };
 		E3F789C91BAD62FC002EC16D /* Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = E3F789C81BAD62FC002EC16D /* Aspects.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -60,8 +63,6 @@
 		E305F89E1BB24D29000CD1A0 /* CPTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTabBarController.m; sourceTree = "<group>"; };
 		E305F8A11BB24D68000CD1A0 /* CPTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTabBar.h; sourceTree = "<group>"; };
 		E305F8A21BB24D68000CD1A0 /* CPTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTabBar.m; sourceTree = "<group>"; };
-		E305F8A41BB24E72000CD1A0 /* CPNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNavigationController.h; sourceTree = "<group>"; };
-		E305F8A51BB24E72000CD1A0 /* CPNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNavigationController.m; sourceTree = "<group>"; };
 		E31E4BD21BAD47A500902B34 /* CarPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E31E4BD61BAD47A500902B34 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E31E4BDF1BAD47A500902B34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -128,6 +129,13 @@
 		E31E4C4E1BAD507E00902B34 /* macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = macro.h; sourceTree = "<group>"; };
 		E38834131BB1311F0006C184 /* UIViewController+ZYExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZYExtension.h"; sourceTree = "<group>"; };
 		E38834141BB1311F0006C184 /* UIViewController+ZYExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZYExtension.m"; sourceTree = "<group>"; };
+		E3B022411BB297E1001971A5 /* CPNearViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNearViewController.h; sourceTree = "<group>"; };
+		E3B022421BB297E1001971A5 /* CPNearViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNearViewController.m; sourceTree = "<group>"; };
+		E3B022441BB29960001971A5 /* CPNearViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNearViewCell.h; sourceTree = "<group>"; };
+		E3B022451BB29960001971A5 /* CPNearViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNearViewCell.m; sourceTree = "<group>"; };
+		E3B022471BB29A6F001971A5 /* CPNearViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPNearViewCell.xib; sourceTree = "<group>"; };
+		E3B022491BB29BAE001971A5 /* CPNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNavigationController.h; sourceTree = "<group>"; };
+		E3B0224A1BB29BAE001971A5 /* CPNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNavigationController.m; sourceTree = "<group>"; };
 		E3F789C71BAD62FC002EC16D /* Aspects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Aspects.h; sourceTree = "<group>"; };
 		E3F789C81BAD62FC002EC16D /* Aspects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Aspects.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -166,8 +174,8 @@
 			children = (
 				E305F89D1BB24D29000CD1A0 /* CPTabBarController.h */,
 				E305F89E1BB24D29000CD1A0 /* CPTabBarController.m */,
-				E305F8A41BB24E72000CD1A0 /* CPNavigationController.h */,
-				E305F8A51BB24E72000CD1A0 /* CPNavigationController.m */,
+				E3B022491BB29BAE001971A5 /* CPNavigationController.h */,
+				E3B0224A1BB29BAE001971A5 /* CPNavigationController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -213,6 +221,7 @@
 		E31E4BD41BAD47A500902B34 /* CarPlay */ = {
 			isa = PBXGroup;
 			children = (
+				E3B0223D1BB297C8001971A5 /* Near(附近) */,
 				E31E4BEC1BAD48BE00902B34 /* Common(公用) */,
 				E31E4BF01BAD48BE00902B34 /* Libs(三方库) */,
 				E31E4C2A1BAD48BE00902B34 /* Main(主要) */,
@@ -382,6 +391,42 @@
 			path = Tools;
 			sourceTree = "<group>";
 		};
+		E3B0223D1BB297C8001971A5 /* Near(附近) */ = {
+			isa = PBXGroup;
+			children = (
+				E3B0223E1BB297C8001971A5 /* Controller */,
+				E3B0223F1BB297C8001971A5 /* Model */,
+				E3B022401BB297C8001971A5 /* View */,
+			);
+			path = "Near(附近)";
+			sourceTree = "<group>";
+		};
+		E3B0223E1BB297C8001971A5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E3B022411BB297E1001971A5 /* CPNearViewController.h */,
+				E3B022421BB297E1001971A5 /* CPNearViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E3B0223F1BB297C8001971A5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E3B022401BB297C8001971A5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E3B022441BB29960001971A5 /* CPNearViewCell.h */,
+				E3B022451BB29960001971A5 /* CPNearViewCell.m */,
+				E3B022471BB29A6F001971A5 /* CPNearViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		E3F789C61BAD62FC002EC16D /* Aspects(Aop框架) */ = {
 			isa = PBXGroup;
 			children = (
@@ -455,6 +500,7 @@
 				E31E4BE51BAD47A500902B34 /* LaunchScreen.storyboard in Resources */,
 				E31E4BE21BAD47A500902B34 /* Assets.xcassets in Resources */,
 				E31E4BE01BAD47A500902B34 /* Main.storyboard in Resources */,
+				E3B022481BB29A6F001971A5 /* CPNearViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,12 +550,12 @@
 				E31E4C461BAD48BE00902B34 /* ZYNetWorkManager.m in Sources */,
 				E31E4C471BAD48BE00902B34 /* ZYNetWorkTool.m in Sources */,
 				E31E4C441BAD48BE00902B34 /* Reachability.m in Sources */,
+				E3B0224B1BB29BAE001971A5 /* CPNavigationController.m in Sources */,
 				E31E4C401BAD48BE00902B34 /* UIView+Extension.m in Sources */,
 				E31E4BD71BAD47A500902B34 /* main.m in Sources */,
 				E31E4C3B1BAD48BE00902B34 /* UILabel+ZY.m in Sources */,
 				E305F89C1BB24BBD000CD1A0 /* Const.m in Sources */,
 				E31E4C451BAD48BE00902B34 /* XMNetStatuesTool.m in Sources */,
-				E305F8A61BB24E72000CD1A0 /* CPNavigationController.m in Sources */,
 				E3F789C91BAD62FC002EC16D /* Aspects.m in Sources */,
 				E305F8A31BB24D68000CD1A0 /* CPTabBar.m in Sources */,
 				E31E4C421BAD48BE00902B34 /* ZYChildUserDefaults.m in Sources */,
@@ -519,6 +565,8 @@
 				E31E4C3F1BAD48BE00902B34 /* UITableViewCell+ZYExtension.m in Sources */,
 				E38834151BB1311F0006C184 /* UIViewController+ZYExtension.m in Sources */,
 				E31E4C361BAD48BE00902B34 /* NSString+Extension.m in Sources */,
+				E3B022431BB297E1001971A5 /* CPNearViewController.m in Sources */,
+				E3B022461BB29960001971A5 /* CPNearViewCell.m in Sources */,
 				E31E4C431BAD48BE00902B34 /* CPNetWorkTool.m in Sources */,
 				E31E4C391BAD48BE00902B34 /* UIButton+ZY.m in Sources */,
 				E31E4C351BAD48BE00902B34 /* NSString+Directory.m in Sources */,

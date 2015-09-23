@@ -9,6 +9,7 @@
 #import "CPTabBarController.h"
 #import "CPTabBar.h"
 #import "CPNavigationController.h"
+#import "CPNearViewController.h"
 
 @interface CPTabBarController () <CPTabBarDelegate>
 
@@ -22,41 +23,28 @@
     
     self.view.backgroundColor = [UIColor redColor];
     // 1.初始化子控制器
-//    CPHomeViewController *home = [[CPHomeViewController alloc] init];
-//    [self addChildVc:home title:@"首页" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
-//
-//    
-    ZYNewLabel(weiye);
-    weiye.text = @"厉害啊伟业😁";
-    weiye.font = [UIFont systemFontOfSize:30];
-    weiye.textColor = [UIColor whiteColor];
-    weiye.textColor = ColorTools.redColor;
-    [self.view addSubview:weiye];
-    weiye.backgroundColor = [UIColor whiteColor];
-//    weiye.center = self.view.center;
-//    [weiye sizeToFit];
-    [weiye mas_makeConstraints:^(MASConstraintMaker *make){
-        make.center.equalTo(self.view);
-        make.size.equalTo(self.view);
-    }];
+    
+    CPNearViewController *nearVc1 = [[CPNearViewController alloc] init];
+    [self addChildVc:nearVc1 title:@"附近" image:@"" selectedImage:@""];
+    
+    CPNearViewController *nearVc2 = [[CPNearViewController alloc] init];
+    [self addChildVc:nearVc2 title:@"首sgsd页" image:@"" selectedImage:@""];
+    
+    CPNearViewController *nearVc3 = [[CPNearViewController alloc] init];
+    [self addChildVc:nearVc3 title:@"首fs页" image:@"" selectedImage:@""];
+    
+    CPNearViewController *nearVc4 = [[CPNearViewController alloc] init];
+    nearVc4.view.backgroundColor = [UIColor blueColor];
+    [self addChildVc:nearVc4 title:@"首ss页" image:@"" selectedImage:@""];
+
     // 2.更换系统自带的tabbar
     CPTabBar *tabBar = [[CPTabBar alloc] init];
+    tabBar.frame = self.tabBar.bounds;
+    tabBar.delegate = self;
     [self setValue:tabBar forKeyPath:@"tabBar"];
-    /*
-     [self setValue:tabBar forKeyPath:@"tabBar"];相当于self.tabBar = tabBar;
-     [self setValue:tabBar forKeyPath:@"tabBar"];这行代码过后，tabBar的delegate就是CPTabBarViewController
-     说明，不用再设置tabBar.delegate = self;
-     */
-    
-    /*
-     1.如果tabBar设置完delegate后，再执行下面代码修改delegate，就会报错
-     tabBar.delegate = self;
-     
-     2.如果再次修改tabBar的delegate属性，就会报下面的错误
-     错误信息：Changing the delegate of a tab bar managed by a tab bar controller is not allowed.
-     错误意思：不允许修改TabBar的delegate属性(这个TabBar是被TabBarViewController所管理的)
-     */
+ 
 }
+
 
 /**
  *  添加一个子控制器
