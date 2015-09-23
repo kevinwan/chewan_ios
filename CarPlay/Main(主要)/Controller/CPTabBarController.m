@@ -20,6 +20,7 @@
 {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor redColor];
     // 1.初始化子控制器
 //    CPHomeViewController *home = [[CPHomeViewController alloc] init];
 //    [self addChildVc:home title:@"首页" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];

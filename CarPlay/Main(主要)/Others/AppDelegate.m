@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "CPTabBarController.h"
 
 @interface AppDelegate ()
 
@@ -15,6 +16,15 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    CPTabBarController *tabVc = [CPTabBarController new];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    
+    self.window.rootViewController = tabVc;
+    
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
