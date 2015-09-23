@@ -1,0 +1,13 @@
+//
+//  CPNavigationController.m
+//  CarPlay
+//
+//  Created by chewan on 15/9/23.
+//  Copyright © 2015年 chewan. All rights reserved.
+//
+
+#import "CPNavigationController.h"
+
+@implementation CPNavigationController
+
+@end
