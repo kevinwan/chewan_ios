@@ -48,7 +48,8 @@
         _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.rowHeight = 300;
+        _tableView.rowHeight = 340;
+        _tableView.backgroundColor = [UIColor redColor];
     }
     return _tableView;
 }

@@ -10,6 +10,12 @@
 
 @implementation CPNearViewCell
 
+- (void)setFrame:(CGRect)frame
+{
+    CGRect newF = frame;
+    newF.origin.y += 40;
+    [super setFrame:newF];
+}
 
 + (instancetype)cellWithTableView:(UITableView *)tableView reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -20,6 +26,8 @@
         cell = [[NSBundle mainBundle] loadNibNamed:@"CPNearViewCell" owner:nil options:nil].lastObject;
         cell.width = ZYScreenWidth;
     }
+    cell.layer.cornerRadius = 5;
+    cell.clipsToBounds = YES;
     return cell;
 //     [UINib nibWithNibName:@"CPNearViewCell" bundle:nil]
 }
