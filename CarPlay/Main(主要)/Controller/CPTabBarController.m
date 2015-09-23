@@ -25,15 +25,20 @@
 //    CPHomeViewController *home = [[CPHomeViewController alloc] init];
 //    [self addChildVc:home title:@"首页" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
 //
-    
+//    
     ZYNewLabel(weiye);
     weiye.text = @"厉害啊伟业😁";
     weiye.font = [UIFont systemFontOfSize:30];
     weiye.textColor = [UIColor whiteColor];
+    weiye.textColor = ColorTools.redColor;
     [self.view addSubview:weiye];
-    [weiye sizeToFit];
-    weiye.center = self.view.center;
-    
+    weiye.backgroundColor = [UIColor whiteColor];
+//    weiye.center = self.view.center;
+//    [weiye sizeToFit];
+    [weiye mas_makeConstraints:^(MASConstraintMaker *make){
+        make.center.equalTo(self.view);
+        make.size.equalTo(self.view);
+    }];
     // 2.更换系统自带的tabbar
     CPTabBar *tabBar = [[CPTabBar alloc] init];
     [self setValue:tabBar forKeyPath:@"tabBar"];

@@ -26,8 +26,13 @@
 #define ZYNewImageView(imgV) UIImageView *imgV = [[UIImageView alloc] init];
 #define ZYNewLabel(l)        UILabel *l = [[UILabel alloc] init];
 
+// 系统版本号
+//#define SystemVersion ([[[UIDevice currentDevice] systemVersion] floatValue])   //当前设备的系统版本
+//#define iOS7 (SystemVersion >= 7.0 && SystemVersion < 8.0)
+//#define iOS8 (SystemVersion >= 8.0 && SystemVersion < 9.0)
+//#define iOS9 (SystemVersion >= 9.0 && SystemVersion < 10.0)
+
 #define ZYWeakSelf     @weakify(self);   // 防止block循环引用
 #define ZYStrongSelf   @strongify(self); // 恢复self
-#define IOS8           ([[[UIDevice currentDevice]systemVersion] floatValue] >= 8.0 && [[[UIDevice currentDevice]systemVersion] floatValue] < 9.0)
 #define ZYKeyWindow    (UIWindow *)([UIApplication sharedApplication].windows.lastObject)
 #endif

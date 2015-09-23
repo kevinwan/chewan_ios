@@ -10,6 +10,11 @@
 
 @interface Tools : NSObject
 
+@property (nonatomic, strong) UIColor *redColor;
+@property (nonatomic, strong) UIColor *greenColor;
+@property (nonatomic, strong) UIColor *blueColor;
+@property (nonatomic, strong) UIColor *grayColor;
+
 + (NSString *)getUserId;
 
 + (NSString *)getToken;

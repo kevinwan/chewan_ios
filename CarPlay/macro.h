@@ -23,6 +23,11 @@
 #    define DLog(...) /* */
 #endif
 
+// 定义这个宏可以使用一些更简洁的方法
+#define MAS_SHORTHAND
+
+// 定义这个宏可以使用自动装箱功能
+#define MAS_SHORTHAND_GLOBALS
 #define iPhone4 ([UIScreen mainScreen].bounds.size.height == 480.0)
 #define iPhone5 ([UIScreen mainScreen].bounds.size.height == 568.0)
 #define iPhone6 ([UIScreen mainScreen].bounds.size.height == 667.0)
@@ -34,7 +39,7 @@
 #define iOS8 (SystemVersion >= 8.0 && SystemVersion < 9.0)
 #define iOS9 (SystemVersion >= 9.0 && SystemVersion < 10.0)
 
-
+#define ColorTools      [Tools new]         // 获取常用的颜色
 #define CPNoNetWork     ([Tools getToken])  // 判断网络状态
 #define CPUserId        [Tools getToken]    // 获取userId
 #define CPToken         [Tools getToken]    // 获取token
