@@ -49,7 +49,8 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.rowHeight = 340;
-        _tableView.backgroundColor = [UIColor redColor];
+        _tableView.backgroundColor = [UIColor lightGrayColor];
+        _tableView.showsVerticalScrollIndicator = NO;
     }
     return _tableView;
 }

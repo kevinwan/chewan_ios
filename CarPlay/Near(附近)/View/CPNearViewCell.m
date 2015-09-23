@@ -8,12 +8,17 @@
 
 #import "CPNearViewCell.h"
 
+@interface CPNearViewCell ()
+@property (weak, nonatomic) IBOutlet UIView *bgView;
+
+@end
+
 @implementation CPNearViewCell
 
 - (void)setFrame:(CGRect)frame
 {
     CGRect newF = frame;
-    newF.origin.y += 40;
+    newF.origin.y += 20;
     [super setFrame:newF];
 }
 
@@ -26,8 +31,8 @@
         cell = [[NSBundle mainBundle] loadNibNamed:@"CPNearViewCell" owner:nil options:nil].lastObject;
         cell.width = ZYScreenWidth;
     }
-    cell.layer.cornerRadius = 5;
-    cell.clipsToBounds = YES;
+    cell.bgView.layer.cornerRadius = 5;
+    cell.bgView.clipsToBounds = YES;
     return cell;
 //     [UINib nibWithNibName:@"CPNearViewCell" bundle:nil]
 }
