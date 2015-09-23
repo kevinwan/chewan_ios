@@ -20,19 +20,10 @@ PODS:
   - AFNetworking/UIKit (2.6.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - AMap2DMap (2.6.0)
-  - AMapSearch (2.6.0)
-  - DACircularProgress (2.3.1)
   - EaseMobSDK (2.2.0)
-  - INTULocationManager (4.0.0)
   - Masonry (0.6.2)
-  - MBProgressHUD (0.9.1)
-  - MJExtension (2.5.8)
-  - MJRefresh (2.4.7)
-  - MWPhotoBrowser (2.1.1):
-    - DACircularProgress (~> 2.3)
-    - MBProgressHUD (~> 0.9)
-    - SDWebImage (!= 3.7.2, ~> 3.7)
+  - MJExtension (2.5.10)
+  - MJRefresh (2.4.10)
   - ReactiveCocoa (2.5):
     - ReactiveCocoa/UI (= 2.5)
   - ReactiveCocoa/Core (2.5):
@@ -44,29 +35,16 @@ PODS:
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
   - SVProgressHUD (1.1.3)
-  - SWTableViewCell (0.3.7)
-  - THProgressView (1.0)
-  - UMengAnalytics-NO-IDFA (3.5.11)
-  - YLGIFImage (0.11)
 
 DEPENDENCIES:
   - AFNetworking
-  - AMap2DMap
-  - AMapSearch
   - EaseMobSDK (from `https://github.com/easemob/sdk-ios-cocoapods.git`)
-  - INTULocationManager
   - Masonry
-  - MBProgressHUD
   - MJExtension
   - MJRefresh
-  - MWPhotoBrowser
-  - ReactiveCocoa
+  - ReactiveCocoa (~> 2.5.0)
   - SDWebImage
   - SVProgressHUD
-  - SWTableViewCell (~> 0.3.7)
-  - THProgressView
-  - UMengAnalytics-NO-IDFA
-  - YLGIFImage
 
 EXTERNAL SOURCES:
   EaseMobSDK:
@@ -79,22 +57,12 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
-  AMap2DMap: b5ce82581ca53b71a0136da858f7ef04db1ffc59
-  AMapSearch: 0ea3101eec4b9f500b53e33dcda30d343d41613b
-  DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   EaseMobSDK: e0c1e3d00e95e0e2d54dd58313b52eaed74cc6df
-  INTULocationManager: 754f2800415378b7bb2c07be103449e1f6a2cc70
   Masonry: 362e8a1cc0beada4a4c4832d5e863da2a51533be
-  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
-  MJExtension: e6f30c738b7618552ee5563fcf4eadf552f997e0
-  MJRefresh: 6eb2f61338f89f64fd628fd43debcf479381ff59
-  MWPhotoBrowser: ba0d0c09ffda3a7ea10093518738c502c1c7141c
+  MJExtension: 944fb5a12bceb9b866914527f66101566e66292b
+  MJRefresh: e52328552ed9cbfce3501e3820b18bf7643c65cc
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
-  SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
-  THProgressView: 999dc78f748f4cb6d69408f545de4d82ef7f1cec
-  UMengAnalytics-NO-IDFA: e41024644de702e450093ef043af20b5fbe06cbc
-  YLGIFImage: c0ae132fe80e5282b2762a97d14e23ba71a748ae
 
 COCOAPODS: 0.37.2

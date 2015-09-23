@@ -9,72 +9,17 @@
 #ifndef CarPlay_CP_Prefix_pch
 #define CarPlay_CP_Prefix_pch
 
-// Include any system framework and library headers here that should be included in all compilation units.
-// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
-
-// 随机色
-#define CPRandomColor [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1]
-// 快速创建颜色
-#define CPColor(r, g, b, a) [UIColor colorWithRed:(r/255.0) green:(g/255.0) blue:(b/255.0) alpha:a]
-
-#import "UIBarButtonItem+Extension.h"
-#import "NSDate+Extension.h"
 #import "macro.h"
-#import "Tools.h"
-#import "CPNetworkVO.h"
-#import "MBProgressHUD.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-//#import "MBProgressHUD+Add.h"
-#import "UIView+Extension.h"
-#import "UIViewController+ZY.h"
+#import <Masonry.h>
+#import <MJExtension/MJExtension.h>
+#import "ZYExtension.h"
+#import "XMNetStatuesTool.h"
 #import "ZYNetWorkTool.h"
 #import "CPNetWorkTool.h"
-#import "SVProgressHUD.h"
-#import "NSString+Extension.h"
-#import <Masonry.h>
-#import "ZYTableViewController.h"
-#import <MJExtension/MJExtension.h>
-#import "EaseMob.h"
-// 通知中心
-#define CPNotificationCenter [NSNotificationCenter defaultCenter]
-// 偏好设置
-#define CPUserDefaults [NSUserDefaults standardUserDefaults]
-// Document的路径
-#define CPDocmentPath(fileName) [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:fileName]
-#define CPCachePath(fileName) [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:fileName]
-#define kStatusBarHight 20
-#define kScreenHeight [UIScreen mainScreen].bounds.size.height  //屏幕的高度
-#define kScreenWidth [UIScreen mainScreen].bounds.size.width    //屏幕的宽度
-#define iphone5 ([UIScreen mainScreen].bounds.size.width == 320.0)
-#define iphone6 ([UIScreen mainScreen].bounds.size.height == 667.0)
-#define iphone6p ([UIScreen mainScreen].bounds.size.height == 736.0)
-#define BundleId  [NSBundle mainBundle].infoDictionary[ (__bridge NSString *)kCFBundleIdentifierKey]
-//#define GaoDeAppKey @"748dd85361269f3ce523e0c747a89031" //高德地图的Key
-#define iPhone5_JX ([UIScreen mainScreen].bounds.size.height == 568.0)
-
-#ifdef DEBUG // 处于开发阶段
-
-#define SQLog(...) NSLog(@"%s %d \n %@ \n\n",__func__,__LINE__,[NSString stringWithFormat:__VA_ARGS__])
-
-#else // 处于发布阶段
-
-#define SQLog(...)
-#endif
-
-
-#import <MJExtension/MJExtension.h>
 #import <MJRefresh.h>
-#import "CPRefreshHeader.h"
-#import "CPRefreshFooter.h"
-#import "ZYTableViewCell.h"
-#import "NSDictionary+Dealer.h"
-#import "UIView+Dealer.h"
-#import "AppAppearance.h"
-#import "MembersController.h"
-#import "MembersManageController.h"
-#import "CPGuideView.h" // 新手引导的View
-#import "XMNetWorkTool.h"
-#import "UITabBar+Extension.h"
-#import <SWTableViewCell.h>
 #import <ReactiveCocoa.h>
+#import "Const.h"
+#import "Tools.h"
+
 #endif
