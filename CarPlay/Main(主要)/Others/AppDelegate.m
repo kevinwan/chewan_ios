@@ -26,8 +26,8 @@
     
     [self.window makeKeyAndVisible];
     
-    [UIViewController aspect_hookSelector:NSSelectorFromString(@"dealloc") withOptions:AspectPositionBefore usingBlock:^(id info){
-        NSLog(@"viewDidLoad..%@ %@",[NSThread mainThread],info);
+    [UIViewController aspect_hookSelector:NSSelectorFromString(@"viewDidAppear") withOptions:AspectPositionAfter usingBlock:^(id info){
+        NSLog(@"viewDidAppear..%@ %@",[NSThread mainThread],info);
         
     }error:NULL];
     
