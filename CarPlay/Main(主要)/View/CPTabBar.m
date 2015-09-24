@@ -20,6 +20,8 @@
         _plusBtn = [[UIButton alloc] init];
         [_plusBtn setImage:[UIImage imageNamed:@"ceo头像"] forState:UIControlStateNormal];
         [_plusBtn setBackgroundColor:[UIColor clearColor]];
+    
+        [_plusBtn addAnimation:[CAAnimation scaleFrom:0.9 toScale:1.2 durTimes:0.4 rep:MAXFLOAT]];
         [_plusBtn addTarget:self action:@selector(plusClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _plusBtn;

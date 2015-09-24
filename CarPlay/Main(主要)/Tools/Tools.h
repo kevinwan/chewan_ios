@@ -26,4 +26,5 @@
 
 + (UIColor *)getColor:(NSString *)hex;
 
+
 @end

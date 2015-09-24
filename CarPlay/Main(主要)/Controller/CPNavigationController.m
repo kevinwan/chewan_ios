@@ -44,7 +44,7 @@
         viewController.hidesBottomBarWhenPushed = YES;
     }
     
-    viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithNorImage:@"返回" higImage:nil title:nil target:self action:@selector(back)];
+    viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithNorImage:@"icon_jt" higImage:nil title:nil target:self action:@selector(back)];
     
     [super pushViewController:viewController animated:animated];
 }
