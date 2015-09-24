@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B3350901BB3AA3B00AAA4A2 /* CPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B33508F1BB3AA3B00AAA4A2 /* CPLoginViewController.m */; settings = {ASSET_TAGS = (); }; };
+		6B3350921BB3AAFB00AAA4A2 /* CPLoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B3350911BB3AAFB00AAA4A2 /* CPLoginViewController.storyboard */; settings = {ASSET_TAGS = (); }; };
 		6D9724033DC4D258BAD49B6C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8695309F427E7B2C9007D66B /* libPods.a */; };
 		E305F89B1BB24BBD000CD1A0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E305F8981BB24BBD000CD1A0 /* AppDelegate.m */; settings = {ASSET_TAGS = (); }; };
 		E305F89C1BB24BBD000CD1A0 /* Const.m in Sources */ = {isa = PBXBuildFile; fileRef = E305F89A1BB24BBD000CD1A0 /* Const.m */; settings = {ASSET_TAGS = (); }; };
@@ -53,6 +55,9 @@
 
 /* Begin PBXFileReference section */
 		67D41D30DFBFAF45C8B1AB7F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		6B33508E1BB3AA3B00AAA4A2 /* CPLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLoginViewController.h; sourceTree = "<group>"; };
+		6B33508F1BB3AA3B00AAA4A2 /* CPLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPLoginViewController.m; sourceTree = "<group>"; };
+		6B3350911BB3AAFB00AAA4A2 /* CPLoginViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPLoginViewController.storyboard; sourceTree = "<group>"; };
 		8695309F427E7B2C9007D66B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1B028500DCBF99DF280B6AC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E305F8971BB24BBD000CD1A0 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -534,6 +539,9 @@
 		E3A470FA1BB39B6600973197 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6B33508E1BB3AA3B00AAA4A2 /* CPLoginViewController.h */,
+				6B33508F1BB3AA3B00AAA4A2 /* CPLoginViewController.m */,
+				6B3350911BB3AAFB00AAA4A2 /* CPLoginViewController.storyboard */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -660,6 +668,7 @@
 			files = (
 				E31E4BE51BAD47A500902B34 /* LaunchScreen.storyboard in Resources */,
 				E31E4BE21BAD47A500902B34 /* Assets.xcassets in Resources */,
+				6B3350921BB3AAFB00AAA4A2 /* CPLoginViewController.storyboard in Resources */,
 				E31E4BE01BAD47A500902B34 /* Main.storyboard in Resources */,
 				E3B022481BB29A6F001971A5 /* CPNearViewCell.xib in Resources */,
 			);
@@ -734,6 +743,7 @@
 				E31E4C4D1BAD4FC700902B34 /* Tools.m in Sources */,
 				E305F89F1BB24D29000CD1A0 /* CPTabBarController.m in Sources */,
 				E31E4C371BAD48BE00902B34 /* NSTimer+ZY.m in Sources */,
+				6B3350901BB3AA3B00AAA4A2 /* CPLoginViewController.m in Sources */,
 				E305F89B1BB24BBD000CD1A0 /* AppDelegate.m in Sources */,
 				E31E4C301BAD48BE00902B34 /* NSArray+ZY.m in Sources */,
 				E31E4C3C1BAD48BE00902B34 /* UIResponder+Extension.m in Sources */,
