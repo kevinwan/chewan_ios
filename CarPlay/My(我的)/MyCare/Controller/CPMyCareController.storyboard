@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="725-rp-g56">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <scenes>
+        <!--我的关注-->
+        <scene sceneID="wX5-mo-nJd">
+            <objects>
+                <viewController id="725-rp-g56" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iVK-nP-gjD"/>
+                        <viewControllerLayoutGuide type="bottom" id="jIW-aU-LzI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0uj-DH-Y4O">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.28235294119999998" green="0.81960784310000001" blue="0.83529411760000005" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="我的关注" id="AQZ-dC-Cuz">
+                        <barButtonItem key="leftBarButtonItem" image="icon_jt" id="P57-EP-l2S"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="mzB-iN-loI"/>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sbJ-oI-rHn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-281" y="187"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icon_jt" width="27" height="27"/>
+    </resources>
+</document>
