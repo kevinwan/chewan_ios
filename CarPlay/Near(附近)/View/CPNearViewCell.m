@@ -9,12 +9,16 @@
 #import "CPNearViewCell.h"
 
 @interface CPNearViewCell ()
+/**
+ *  背景的View
+ */
 @property (weak, nonatomic) IBOutlet UIView *bgView;
 
 @end
 
 @implementation CPNearViewCell
 
+// 使cell位置下移20
 - (void)setFrame:(CGRect)frame
 {
     CGRect newF = frame;
@@ -26,8 +30,6 @@
 {
     CPNearViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        
-        DLog(@"疯狂创建啊啊啊啊啊啊啊");
         cell = [[NSBundle mainBundle] loadNibNamed:@"CPNearViewCell" owner:nil options:nil].lastObject;
         cell.width = ZYScreenWidth;
         
@@ -35,7 +37,6 @@
         cell.bgView.clipsToBounds = YES;
     }
     return cell;
-//     [UINib nibWithNibName:@"CPNearViewCell" bundle:nil]
 }
 - (IBAction)he:(id)sender {
     [self.nextResponder superViewWillRecive:@"来不来" info:@"he"];

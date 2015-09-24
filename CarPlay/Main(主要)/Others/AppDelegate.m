@@ -26,12 +26,38 @@
     
     [self.window makeKeyAndVisible];
     
-    [UIViewController aspect_hookSelector:NSSelectorFromString(@"viewDidAppear") withOptions:AspectPositionAfter usingBlock:^(id info){
-        NSLog(@"viewDidAppear..%@ %@",[NSThread mainThread],info);
-        
-    }error:NULL];
+    [self setViewCycleAop];
     
     return YES;
+}
+
+- (void)setViewCycleAop
+{
+    
+    [UIViewController aspect_hookSelector:NSSelectorFromString(@"viewDidLoad") withOptions:AspectPositionAfter usingBlock:^(id info){
+
+        if (![[info instance] isKindOfClass:NSClassFromString(@"UIInputWindowController")]) {
+            
+            NSLog(@"%@viewDidLoad..",[[info instance] class]);
+        }
+        
+    }error:NULL];
+    /**
+    [UIViewController aspect_hookSelector:NSSelectorFromString(@"viewWillDisappear:") withOptions:AspectPositionBefore usingBlock:^(id info){
+        
+        if (![[info instance] isKindOfClass:NSClassFromString(@"UIInputWindowController")]) {
+            
+            NSLog(@"%@viewWillDisappear..",[[info instance] class]);
+        }
+    }error:NULL];
+    
+    [UIViewController aspect_hookSelector:NSSelectorFromString(@"dealloc") withOptions:AspectPositionBefore usingBlock:^(id info){
+        
+        if (![[info instance] isKindOfClass:NSClassFromString(@"UIInputWindowController")]) {
+            NSLog(@"%@ dealloc..",[[info instance] class]);
+        }
+    }error:NULL];
+     */
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

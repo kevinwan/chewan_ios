@@ -28,21 +28,24 @@
     [self addChildVc:nearVc1 title:@"附近" image:@"" selectedImage:@""];
     
     CPNearViewController *nearVc2 = [[CPNearViewController alloc] init];
-    [self addChildVc:nearVc2 title:@"首sgsd页" image:@"" selectedImage:@""];
+    [self addChildVc:nearVc2 title:@"推荐" image:@"" selectedImage:@""];
     
     CPNearViewController *nearVc3 = [[CPNearViewController alloc] init];
-    [self addChildVc:nearVc3 title:@"首fs页" image:@"" selectedImage:@""];
+    [self addChildVc:nearVc3 title:@"动态" image:@"" selectedImage:@""];
     
     CPNearViewController *nearVc4 = [[CPNearViewController alloc] init];
     nearVc4.view.backgroundColor = [UIColor blueColor];
-    [self addChildVc:nearVc4 title:@"首ss页" image:@"" selectedImage:@""];
+    [self addChildVc:nearVc4 title:@"我的" image:@"" selectedImage:@""];
 
     // 2.更换系统自带的tabbar
     CPTabBar *tabBar = [[CPTabBar alloc] init];
     tabBar.frame = self.tabBar.bounds;
     tabBar.delegate = self;
     [self setValue:tabBar forKeyPath:@"tabBar"];
- 
+    [self.tabBar setTintColor:RedColor];
+    
+    UITabBarItem *itemApp = [UITabBarItem appearance];
+    [itemApp setTitleTextAttributes:@{NSFontAttributeName : ZYFont12} forState:UIControlStateNormal];
 }
 
 
@@ -62,14 +65,6 @@
     // 设置子控制器的图片
     childVc.tabBarItem.image = [UIImage imageNamed:image];
     childVc.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImage]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    
-    // 设置文字的样式
-    NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
-    textAttrs[NSForegroundColorAttributeName] = ZYColor(123, 123, 123, 1);
-    NSMutableDictionary *selectTextAttrs = [NSMutableDictionary dictionary];
-    selectTextAttrs[NSForegroundColorAttributeName] = [UIColor orangeColor];
-    [childVc.tabBarItem setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
-    [childVc.tabBarItem setTitleTextAttributes:selectTextAttrs forState:UIControlStateSelected];
     
     // 先给外面传进来的小控制器 包装 一个导航控制器
     CPNavigationController *nav = [[CPNavigationController alloc] initWithRootViewController:childVc];

@@ -14,19 +14,15 @@
 
 @implementation CPTabBar
 
-- (id)initWithFrame:(CGRect)frame
+- (UIButton *)plusBtn
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // 添加一个按钮到tabbar中
-        UIButton *plusBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [plusBtn setTitle:@"加号" forState:UIControlStateNormal];
-        [plusBtn setBackgroundColor:[UIColor yellowColor]];
-        [plusBtn addTarget:self action:@selector(plusClick) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:plusBtn];
-        self.plusBtn = plusBtn;
+    if (_plusBtn == nil) {
+        _plusBtn = [[UIButton alloc] init];
+        [_plusBtn setImage:[UIImage imageNamed:@"ceo头像"] forState:UIControlStateNormal];
+        [_plusBtn setBackgroundColor:[UIColor clearColor]];
+        [_plusBtn addTarget:self action:@selector(plusClick) forControlEvents:UIControlEventTouchUpInside];
     }
-    return self;
+    return _plusBtn;
 }
 
 /**
@@ -44,11 +40,14 @@
 {
     [super layoutSubviews];
     
+    // 延迟加载加号按钮
+    _plusBtn?:[self addSubview:self.plusBtn];
+    
     self.plusBtn.width = self.bounds.size.width / 5.0;
     self.plusBtn.height = self.bounds.size.height;
     // 1.设置加号按钮的位置
     self.plusBtn.centerX = self.bounds.size.width * 0.5;
-    self.plusBtn.centerY = self.bounds.size.height * 0.5;
+    self.plusBtn.centerY = self.bounds.size.height * 0.5 - 10;
     ;
 
     // 2.设置其他tabbarButton的位置和尺寸
