@@ -289,7 +289,6 @@
 			isa = PBXGroup;
 			children = (
 				E3A471061BB3A85300973197 /* Controller */,
-				E3A471071BB3A85300973197 /* LoginReg(登录注册) */,
 				E3A4710B1BB3A85300973197 /* Model */,
 				E3A4710C1BB3A85300973197 /* View */,
 			);
@@ -301,37 +300,6 @@
 			children = (
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		E3A471071BB3A85300973197 /* LoginReg(登录注册) */ = {
-			isa = PBXGroup;
-			children = (
-				E3A471081BB3A85300973197 /* Controller */,
-				E3A471091BB3A85300973197 /* Model */,
-				E3A4710A1BB3A85300973197 /* View */,
-			);
-			path = "LoginReg(登录注册)";
-			sourceTree = "<group>";
-		};
-		E3A471081BB3A85300973197 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		E3A471091BB3A85300973197 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		E3A4710A1BB3A85300973197 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		E3A4710B1BB3A85300973197 /* Model */ = {
