@@ -34,7 +34,6 @@
 {
     return 100;
 }
-
 #pragma mark - 处理事件交互
 - (void)superViewWillRecive:(NSString *)notifyName info:(id)userInfo
 {
@@ -50,7 +49,7 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.rowHeight = 340;
-        _tableView.backgroundColor = [UIColor lightGrayColor];
+        _tableView.backgroundColor = RedColor;
         _tableView.showsVerticalScrollIndicator = NO;
     }
     return _tableView;

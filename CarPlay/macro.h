@@ -39,7 +39,6 @@
 #define iOS8 (SystemVersion >= 8.0 && SystemVersion < 9.0)
 #define iOS9 (SystemVersion >= 9.0 && SystemVersion < 10.0)
 
-#define ColorTools      [Tools new]         // 获取常用的颜色
 #define CPNoNetWork     ([Tools getToken])  // 判断网络状态
 #define CPUserId        [Tools getToken]    // 获取userId
 #define CPToken         [Tools getToken]    // 获取token

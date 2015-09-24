@@ -8,12 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Tools : NSObject
+#define RedColor   [Tools getColor:@"fe5969"]
+#define GreenColor [Tools getColor:@"74ced6"]
+#define GrayColor  [Tools getColor:@"cccccc"]
 
-@property (nonatomic, strong) UIColor *redColor;
-@property (nonatomic, strong) UIColor *greenColor;
-@property (nonatomic, strong) UIColor *blueColor;
-@property (nonatomic, strong) UIColor *grayColor;
+@interface Tools : NSObject
 
 + (NSString *)getUserId;
 
@@ -24,5 +23,7 @@
 + (BOOL)isUnLogin;
 
 + (BOOL)isNoNetWork;
+
++ (UIColor *)getColor:(NSString *)hex;
 
 @end
