@@ -31,7 +31,7 @@
     [self addChildVc:nearVc2 title:@"推荐" image:@"" selectedImage:@""];
     
     UIViewController *vc3 = [UIStoryboard storyboardWithName:@"CPMyCareController" bundle:nil].instantiateInitialViewController;
-    [self addChildVc:vc3 title:@"动态" image:@"" selectedImage:@""];
+    [self addChildVc:vc3 title:@"我的关注" image:@"" selectedImage:@""];
     
     CPNearViewController *nearVc4 = [[CPNearViewController alloc] init];
     nearVc4.view.backgroundColor = [UIColor blueColor];
