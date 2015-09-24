@@ -226,6 +226,7 @@
 				E3A470ED1BB398F200973197 /* Matching(匹配) */,
 				E3A470F11BB398F200973197 /* News(动态) */,
 				E3A470E91BB3981200973197 /* My(我的) */,
+				E3A470F91BB39B6600973197 /* LoginReg(登录注册) */,
 				E31E4BEC1BAD48BE00902B34 /* Common(公用) */,
 				E31E4BF01BAD48BE00902B34 /* Libs(三方库) */,
 				E31E4C2A1BAD48BE00902B34 /* Main(主要) */,
@@ -513,6 +514,38 @@
 			sourceTree = "<group>";
 		};
 		E3A470F81BB398F200973197 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E3A470F91BB39B6600973197 /* LoginReg(登录注册) */ = {
+			isa = PBXGroup;
+			children = (
+				E3A470FA1BB39B6600973197 /* Controller */,
+				E3A470FB1BB39B6600973197 /* Model */,
+				E3A470FC1BB39B6600973197 /* View */,
+			);
+			name = "LoginReg(登录注册)";
+			path = "My(我的)/LoginReg(登录注册)";
+			sourceTree = "<group>";
+		};
+		E3A470FA1BB39B6600973197 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E3A470FB1BB39B6600973197 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E3A470FC1BB39B6600973197 /* View */ = {
 			isa = PBXGroup;
 			children = (
 			);
