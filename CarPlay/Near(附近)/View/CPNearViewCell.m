@@ -30,9 +30,10 @@
         DLog(@"疯狂创建啊啊啊啊啊啊啊");
         cell = [[NSBundle mainBundle] loadNibNamed:@"CPNearViewCell" owner:nil options:nil].lastObject;
         cell.width = ZYScreenWidth;
+        
+        cell.bgView.layer.cornerRadius = 5;
+        cell.bgView.clipsToBounds = YES;
     }
-    cell.bgView.layer.cornerRadius = 5;
-    cell.bgView.clipsToBounds = YES;
     return cell;
 //     [UINib nibWithNibName:@"CPNearViewCell" bundle:nil]
 }
@@ -40,13 +41,16 @@
     [self.nextResponder superViewWillRecive:@"来不来" info:@"he"];
 }
 
-//- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-//{
-//    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-//    
-//        
-//    }
-//    return self;
-//}
+- (IBAction)yueTa:(id)sender {
+    UIAlertView *alert =[[UIAlertView alloc] initWithTitle:@"中秋提示" message:@"伟业是好淫吗?" delegate:nil cancelButtonTitle:@"可能吗" otherButtonTitles:@"算是吧", nil];
+    [alert.rac_buttonClickedSignal subscribeNext:^(id x) {
+        if ([x isEqual:@(0)]) {
+            NSLog(@"不是啊");
+        }else{
+            NSLog(@"是");
+        }
+    }];
+    [alert show];
+}
 
 @end

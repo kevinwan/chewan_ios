@@ -72,6 +72,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iz5-xy-KSs">
                                 <rect key="frame" x="153" y="172" width="78" height="64"/>
                                 <state key="normal" title="约她"/>
+                                <connections>
+                                    <action selector="yueTa:" destination="vqL-Bv-kw8" eventType="touchUpInside" id="nWc-UQ-V1z"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQr-8m-CGj">
                                 <rect key="frame" x="344" y="314" width="37" height="34"/>
