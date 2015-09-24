@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B3350971BB3E0BF00AAA4A2 /* CPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3350951BB3E0BF00AAA4A2 /* CPLoginViewController.m */; settings = {ASSET_TAGS = (); }; };
+		6B3350981BB3E0BF00AAA4A2 /* CPLoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B3350961BB3E0BF00AAA4A2 /* CPLoginViewController.storyboard */; settings = {ASSET_TAGS = (); }; };
 		6D9724033DC4D258BAD49B6C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8695309F427E7B2C9007D66B /* libPods.a */; };
 		E31E4BD71BAD47A500902B34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E31E4BD61BAD47A500902B34 /* main.m */; };
 		E31E4BE01BAD47A500902B34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E31E4BDE1BAD47A500902B34 /* Main.storyboard */; };
@@ -49,11 +51,13 @@
 		E3A471951BB3A85300973197 /* Const.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A4716C1BB3A85300973197 /* Const.m */; settings = {ASSET_TAGS = (); }; };
 		E3A471961BB3A85300973197 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A4716F1BB3A85300973197 /* Tools.m */; settings = {ASSET_TAGS = (); }; };
 		E3A471971BB3A85300973197 /* CPTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A471721BB3A85300973197 /* CPTabBar.m */; settings = {ASSET_TAGS = (); }; };
-		E3A4719A1BB3A8DB00973197 /* CPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A471991BB3A8DB00973197 /* CPLoginViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		67D41D30DFBFAF45C8B1AB7F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		6B3350941BB3E0BF00AAA4A2 /* CPLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLoginViewController.h; sourceTree = "<group>"; };
+		6B3350951BB3E0BF00AAA4A2 /* CPLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPLoginViewController.m; sourceTree = "<group>"; };
+		6B3350961BB3E0BF00AAA4A2 /* CPLoginViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPLoginViewController.storyboard; sourceTree = "<group>"; };
 		8695309F427E7B2C9007D66B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1B028500DCBF99DF280B6AC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E31E4BD21BAD47A500902B34 /* CarPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,8 +143,6 @@
 		E3A4716F1BB3A85300973197 /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
 		E3A471711BB3A85300973197 /* CPTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTabBar.h; sourceTree = "<group>"; };
 		E3A471721BB3A85300973197 /* CPTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTabBar.m; sourceTree = "<group>"; };
-		E3A471981BB3A8DB00973197 /* CPLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLoginViewController.h; sourceTree = "<group>"; };
-		E3A471991BB3A8DB00973197 /* CPLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPLoginViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,16 @@
 				67D41D30DFBFAF45C8B1AB7F /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		6B3350931BB3DFD900AAA4A2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6B3350941BB3E0BF00AAA4A2 /* CPLoginViewController.h */,
+				6B3350951BB3E0BF00AAA4A2 /* CPLoginViewController.m */,
+				6B3350961BB3E0BF00AAA4A2 /* CPLoginViewController.storyboard */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		8BBB39D02B9E5F4A2C7ABD5F /* Frameworks */ = {
@@ -224,20 +236,11 @@
 		E3A470FD1BB3A85300973197 /* LoginReg(登录注册) */ = {
 			isa = PBXGroup;
 			children = (
-				E3A470FE1BB3A85300973197 /* Controller */,
+				6B3350931BB3DFD900AAA4A2 /* Controller */,
 				E3A470FF1BB3A85300973197 /* Model */,
 				E3A471001BB3A85300973197 /* View */,
 			);
 			path = "LoginReg(登录注册)";
-			sourceTree = "<group>";
-		};
-		E3A470FE1BB3A85300973197 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				E3A471981BB3A8DB00973197 /* CPLoginViewController.h */,
-				E3A471991BB3A8DB00973197 /* CPLoginViewController.m */,
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		E3A470FF1BB3A85300973197 /* Model */ = {
@@ -663,6 +666,7 @@
 			files = (
 				E31E4BE51BAD47A500902B34 /* LaunchScreen.storyboard in Resources */,
 				E31E4BE21BAD47A500902B34 /* Assets.xcassets in Resources */,
+				6B3350981BB3E0BF00AAA4A2 /* CPLoginViewController.storyboard in Resources */,
 				E31E4BE01BAD47A500902B34 /* Main.storyboard in Resources */,
 				E3A471751BB3A85300973197 /* CPNearViewCell.xib in Resources */,
 			);
@@ -737,7 +741,7 @@
 				E3A471931BB3A85300973197 /* CPTabBarController.m in Sources */,
 				E3A471951BB3A85300973197 /* Const.m in Sources */,
 				E3A4718F1BB3A85300973197 /* XMNetStatuesTool.m in Sources */,
-				E3A4719A1BB3A8DB00973197 /* CPLoginViewController.m in Sources */,
+				6B3350971BB3E0BF00AAA4A2 /* CPLoginViewController.m in Sources */,
 				E3A4717C1BB3A85300973197 /* NSFileManager+ZY.m in Sources */,
 				E3A471761BB3A85300973197 /* Aspects.m in Sources */,
 				E3A471921BB3A85300973197 /* CPNavigationController.m in Sources */,

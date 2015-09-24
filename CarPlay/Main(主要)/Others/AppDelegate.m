@@ -26,6 +26,10 @@
     
     [self.window makeKeyAndVisible];
     
+    [UIViewController aspect_hookSelector:NSSelectorFromString(@"viewDidAppear") withOptions:AspectPositionAfter usingBlock:^(id info){
+        NSLog(@"viewDidAppear..%@ %@",[NSThread mainThread],info);
+        
+    }error:NULL];
     [self setViewCycleAop];
     
     return YES;
