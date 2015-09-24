@@ -49,6 +49,7 @@
 		E3A471951BB3A85300973197 /* Const.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A4716C1BB3A85300973197 /* Const.m */; settings = {ASSET_TAGS = (); }; };
 		E3A471961BB3A85300973197 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A4716F1BB3A85300973197 /* Tools.m */; settings = {ASSET_TAGS = (); }; };
 		E3A471971BB3A85300973197 /* CPTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A471721BB3A85300973197 /* CPTabBar.m */; settings = {ASSET_TAGS = (); }; };
+		E3A4719A1BB3A8DB00973197 /* CPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A471991BB3A8DB00973197 /* CPLoginViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,6 +139,8 @@
 		E3A4716F1BB3A85300973197 /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
 		E3A471711BB3A85300973197 /* CPTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTabBar.h; sourceTree = "<group>"; };
 		E3A471721BB3A85300973197 /* CPTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTabBar.m; sourceTree = "<group>"; };
+		E3A471981BB3A8DB00973197 /* CPLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLoginViewController.h; sourceTree = "<group>"; };
+		E3A471991BB3A8DB00973197 /* CPLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPLoginViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +234,8 @@
 		E3A470FE1BB3A85300973197 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E3A471981BB3A8DB00973197 /* CPLoginViewController.h */,
+				E3A471991BB3A8DB00973197 /* CPLoginViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -764,6 +769,7 @@
 				E3A471931BB3A85300973197 /* CPTabBarController.m in Sources */,
 				E3A471951BB3A85300973197 /* Const.m in Sources */,
 				E3A4718F1BB3A85300973197 /* XMNetStatuesTool.m in Sources */,
+				E3A4719A1BB3A8DB00973197 /* CPLoginViewController.m in Sources */,
 				E3A4717C1BB3A85300973197 /* NSFileManager+ZY.m in Sources */,
 				E3A471761BB3A85300973197 /* Aspects.m in Sources */,
 				E3A471921BB3A85300973197 /* CPNavigationController.m in Sources */,
