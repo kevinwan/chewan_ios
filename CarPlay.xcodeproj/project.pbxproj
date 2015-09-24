@@ -222,6 +222,10 @@
 			isa = PBXGroup;
 			children = (
 				E3B0223D1BB297C8001971A5 /* Near(附近) */,
+				E3A470F51BB398F200973197 /* Recommend(推荐) */,
+				E3A470ED1BB398F200973197 /* Matching(匹配) */,
+				E3A470F11BB398F200973197 /* News(动态) */,
+				E3A470E91BB3981200973197 /* My(我的) */,
 				E31E4BEC1BAD48BE00902B34 /* Common(公用) */,
 				E31E4BF01BAD48BE00902B34 /* Libs(三方库) */,
 				E31E4C2A1BAD48BE00902B34 /* Main(主要) */,
@@ -389,6 +393,130 @@
 				E31E4C4C1BAD4FC700902B34 /* Tools.m */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		E3A470E91BB3981200973197 /* My(我的) */ = {
+			isa = PBXGroup;
+			children = (
+				E3A470EA1BB3981200973197 /* Controller */,
+				E3A470EB1BB3981200973197 /* Model */,
+				E3A470EC1BB3981200973197 /* View */,
+			);
+			path = "My(我的)";
+			sourceTree = "<group>";
+		};
+		E3A470EA1BB3981200973197 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E3A470EB1BB3981200973197 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E3A470EC1BB3981200973197 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E3A470ED1BB398F200973197 /* Matching(匹配) */ = {
+			isa = PBXGroup;
+			children = (
+				E3A470EE1BB398F200973197 /* Controller */,
+				E3A470EF1BB398F200973197 /* Model */,
+				E3A470F01BB398F200973197 /* View */,
+			);
+			path = "Matching(匹配)";
+			sourceTree = "<group>";
+		};
+		E3A470EE1BB398F200973197 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E3A470EF1BB398F200973197 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E3A470F01BB398F200973197 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E3A470F11BB398F200973197 /* News(动态) */ = {
+			isa = PBXGroup;
+			children = (
+				E3A470F21BB398F200973197 /* Controller */,
+				E3A470F31BB398F200973197 /* Model */,
+				E3A470F41BB398F200973197 /* View */,
+			);
+			path = "News(动态)";
+			sourceTree = "<group>";
+		};
+		E3A470F21BB398F200973197 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E3A470F31BB398F200973197 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E3A470F41BB398F200973197 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E3A470F51BB398F200973197 /* Recommend(推荐) */ = {
+			isa = PBXGroup;
+			children = (
+				E3A470F61BB398F200973197 /* Controller */,
+				E3A470F71BB398F200973197 /* Model */,
+				E3A470F81BB398F200973197 /* View */,
+			);
+			path = "Recommend(推荐)";
+			sourceTree = "<group>";
+		};
+		E3A470F61BB398F200973197 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E3A470F71BB398F200973197 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E3A470F81BB398F200973197 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		E3B0223D1BB297C8001971A5 /* Near(附近) */ = {

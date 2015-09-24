@@ -25,7 +25,8 @@
 #pragma mark - dataSource & delegate
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CPNearViewCell *cell = [CPNearViewCell cellWithTableView:tableView reuseIdentifier:@"cell"];
+    static NSString *ID = @"cell";
+    CPNearViewCell *cell = [CPNearViewCell cellWithTableView:tableView reuseIdentifier:ID];
     return cell;
 }
 
