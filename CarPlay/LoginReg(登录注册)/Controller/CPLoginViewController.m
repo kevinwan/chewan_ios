@@ -2,8 +2,8 @@
 //  CPLoginViewController.m
 //  CarPlay
 //
-//  Created by chewan on 9/24/15.
-//  Copyright © 2015 chewan. All rights reserved.
+//  Created by 公平价 on 15/9/24.
+//  Copyright © 2015年 chewan. All rights reserved.
 //
 
 #import "CPLoginViewController.h"
