@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6BC89C911BB4FDC600A8163F /* CPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC89C8F1BB4FDC600A8163F /* CPLoginViewController.m */; settings = {ASSET_TAGS = (); }; };
-		6BC89C921BB4FDC600A8163F /* CPLoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BC89C901BB4FDC600A8163F /* CPLoginViewController.storyboard */; settings = {ASSET_TAGS = (); }; };
-		6BC89C951BB4FF2E00A8163F /* CPTopButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC89C941BB4FF2E00A8163F /* CPTopButton.m */; settings = {ASSET_TAGS = (); }; };
 		6BCC90FB1BB3FDBF00900286 /* CPMyCareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCC90FA1BB3FDBF00900286 /* CPMyCareController.m */; settings = {ASSET_TAGS = (); }; };
 		6BCC90FD1BB3FDD900900286 /* CPMyCareController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BCC90FC1BB3FDD900900286 /* CPMyCareController.storyboard */; settings = {ASSET_TAGS = (); }; };
 		6D9724033DC4D258BAD49B6C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8695309F427E7B2C9007D66B /* libPods.a */; };
@@ -50,20 +47,17 @@
 		E3A471911BB3A85300973197 /* ZYNetWorkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A471601BB3A85300973197 /* ZYNetWorkTool.m */; settings = {ASSET_TAGS = (); }; };
 		E3A471921BB3A85300973197 /* CPNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A471651BB3A85300973197 /* CPNavigationController.m */; settings = {ASSET_TAGS = (); }; };
 		E3A471931BB3A85300973197 /* CPTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A471671BB3A85300973197 /* CPTabBarController.m */; settings = {ASSET_TAGS = (); }; };
-		E3A471941BB3A85300973197 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A4716A1BB3A85300973197 /* AppDelegate.m */; settings = {ASSET_TAGS = (); }; };
 		E3A471951BB3A85300973197 /* Const.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A4716C1BB3A85300973197 /* Const.m */; settings = {ASSET_TAGS = (); }; };
 		E3A471961BB3A85300973197 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A4716F1BB3A85300973197 /* Tools.m */; settings = {ASSET_TAGS = (); }; };
 		E3A471971BB3A85300973197 /* CPTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A471721BB3A85300973197 /* CPTabBar.m */; settings = {ASSET_TAGS = (); }; };
 		E3E6B88C1BB4F7FA006B4F8A /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6B88B1BB4F7FA006B4F8A /* FXBlurView.m */; settings = {ASSET_TAGS = (); }; };
+		E3E6B8911BB4FD54006B4F8A /* CPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6B88F1BB4FD54006B4F8A /* CPLoginViewController.m */; settings = {ASSET_TAGS = (); }; };
+		E3E6B8921BB4FD54006B4F8A /* CPLoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3E6B8901BB4FD54006B4F8A /* CPLoginViewController.storyboard */; settings = {ASSET_TAGS = (); }; };
+		E3E6B8951BB514A2006B4F8A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6B8941BB514A2006B4F8A /* AppDelegate.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		67D41D30DFBFAF45C8B1AB7F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		6BC89C8E1BB4FDC600A8163F /* CPLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLoginViewController.h; sourceTree = "<group>"; };
-		6BC89C8F1BB4FDC600A8163F /* CPLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPLoginViewController.m; sourceTree = "<group>"; };
-		6BC89C901BB4FDC600A8163F /* CPLoginViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPLoginViewController.storyboard; sourceTree = "<group>"; };
-		6BC89C931BB4FF2E00A8163F /* CPTopButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTopButton.h; sourceTree = "<group>"; };
-		6BC89C941BB4FF2E00A8163F /* CPTopButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTopButton.m; sourceTree = "<group>"; };
 		6BCC90F91BB3FDBF00900286 /* CPMyCareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyCareController.h; sourceTree = "<group>"; };
 		6BCC90FA1BB3FDBF00900286 /* CPMyCareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyCareController.m; sourceTree = "<group>"; };
 		6BCC90FC1BB3FDD900900286 /* CPMyCareController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMyCareController.storyboard; sourceTree = "<group>"; };
@@ -144,8 +138,6 @@
 		E3A471651BB3A85300973197 /* CPNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNavigationController.m; sourceTree = "<group>"; };
 		E3A471661BB3A85300973197 /* CPTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTabBarController.h; sourceTree = "<group>"; };
 		E3A471671BB3A85300973197 /* CPTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTabBarController.m; sourceTree = "<group>"; };
-		E3A471691BB3A85300973197 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		E3A4716A1BB3A85300973197 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E3A4716B1BB3A85300973197 /* Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
 		E3A4716C1BB3A85300973197 /* Const.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Const.m; sourceTree = "<group>"; };
 		E3A4716E1BB3A85300973197 /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
@@ -154,6 +146,11 @@
 		E3A471721BB3A85300973197 /* CPTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTabBar.m; sourceTree = "<group>"; };
 		E3E6B88A1BB4F7FA006B4F8A /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		E3E6B88B1BB4F7FA006B4F8A /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
+		E3E6B88E1BB4FD54006B4F8A /* CPLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLoginViewController.h; sourceTree = "<group>"; };
+		E3E6B88F1BB4FD54006B4F8A /* CPLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPLoginViewController.m; sourceTree = "<group>"; };
+		E3E6B8901BB4FD54006B4F8A /* CPLoginViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPLoginViewController.storyboard; sourceTree = "<group>"; };
+		E3E6B8931BB514A2006B4F8A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E3E6B8941BB514A2006B4F8A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,19 +177,9 @@
 		6B3350931BB3DFD900AAA4A2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				6BC89C8D1BB4FDC600A8163F /* CPLogin */,
+				E3E6B88D1BB4FD54006B4F8A /* CPLogin */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		6BC89C8D1BB4FDC600A8163F /* CPLogin */ = {
-			isa = PBXGroup;
-			children = (
-				6BC89C8E1BB4FDC600A8163F /* CPLoginViewController.h */,
-				6BC89C8F1BB4FDC600A8163F /* CPLoginViewController.m */,
-				6BC89C901BB4FDC600A8163F /* CPLoginViewController.storyboard */,
-			);
-			path = CPLogin;
 			sourceTree = "<group>";
 		};
 		6BCC90F31BB3FD1600900286 /* MyCare */ = {
@@ -225,8 +212,6 @@
 		6BCC90F61BB3FD1600900286 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6BC89C931BB4FF2E00A8163F /* CPTopButton.h */,
-				6BC89C941BB4FF2E00A8163F /* CPTopButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -277,6 +262,8 @@
 		E31E4BD51BAD47A500902B34 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E3E6B8931BB514A2006B4F8A /* AppDelegate.h */,
+				E3E6B8941BB514A2006B4F8A /* AppDelegate.m */,
 				E31E4C4E1BAD507E00902B34 /* macro.h */,
 				E31E4C491BAD48D600902B34 /* CP_Prefix.pch */,
 				E31E4BDE1BAD47A500902B34 /* Main.storyboard */,
@@ -508,19 +495,20 @@
 			isa = PBXGroup;
 			children = (
 				E3E6B8891BB4F7FA006B4F8A /* FXBlurView(模糊效果) */,
-				E3A471231BB3A85300973197 /* Aspects */,
+				E3A471231BB3A85300973197 /* Aspects(Aop) */,
 				E3A471261BB3A85300973197 /* ZYExtension */,
 				E3A471551BB3A85300973197 /* ZYNetWorkTool */,
 			);
 			path = "Libs(三方库)";
 			sourceTree = "<group>";
 		};
-		E3A471231BB3A85300973197 /* Aspects */ = {
+		E3A471231BB3A85300973197 /* Aspects(Aop) */ = {
 			isa = PBXGroup;
 			children = (
 				E3A471241BB3A85300973197 /* Aspects.h */,
 				E3A471251BB3A85300973197 /* Aspects.m */,
 			);
+			name = "Aspects(Aop)";
 			path = Aspects;
 			sourceTree = "<group>";
 		};
@@ -635,8 +623,6 @@
 		E3A471681BB3A85300973197 /* Others */ = {
 			isa = PBXGroup;
 			children = (
-				E3A471691BB3A85300973197 /* AppDelegate.h */,
-				E3A4716A1BB3A85300973197 /* AppDelegate.m */,
 				E3A4716B1BB3A85300973197 /* Const.h */,
 				E3A4716C1BB3A85300973197 /* Const.m */,
 			);
@@ -669,6 +655,16 @@
 			);
 			name = "FXBlurView(模糊效果)";
 			path = FXBlurView;
+			sourceTree = "<group>";
+		};
+		E3E6B88D1BB4FD54006B4F8A /* CPLogin */ = {
+			isa = PBXGroup;
+			children = (
+				E3E6B88E1BB4FD54006B4F8A /* CPLoginViewController.h */,
+				E3E6B88F1BB4FD54006B4F8A /* CPLoginViewController.m */,
+				E3E6B8901BB4FD54006B4F8A /* CPLoginViewController.storyboard */,
+			);
+			path = CPLogin;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -735,7 +731,7 @@
 				E31E4BE51BAD47A500902B34 /* LaunchScreen.storyboard in Resources */,
 				E31E4BE21BAD47A500902B34 /* Assets.xcassets in Resources */,
 				E31E4BE01BAD47A500902B34 /* Main.storyboard in Resources */,
-				6BC89C921BB4FDC600A8163F /* CPLoginViewController.storyboard in Resources */,
+				E3E6B8921BB4FD54006B4F8A /* CPLoginViewController.storyboard in Resources */,
 				E3A471751BB3A85300973197 /* CPNearViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -784,6 +780,7 @@
 				E3A471791BB3A85300973197 /* NSArray+ZY.m in Sources */,
 				E3A471831BB3A85300973197 /* UIImage+Extension.m in Sources */,
 				E3A471961BB3A85300973197 /* Tools.m in Sources */,
+				E3E6B8951BB514A2006B4F8A /* AppDelegate.m in Sources */,
 				E3A471801BB3A85300973197 /* NSTimer+ZY.m in Sources */,
 				E31E4BD71BAD47A500902B34 /* main.m in Sources */,
 				E3A471871BB3A85300973197 /* UITableView+ZYExtension.m in Sources */,
@@ -793,11 +790,10 @@
 				E3A471731BB3A85300973197 /* CPNearViewController.m in Sources */,
 				E3A471971BB3A85300973197 /* CPTabBar.m in Sources */,
 				E3A4718A1BB3A85300973197 /* UIViewController+ZYExtension.m in Sources */,
-				6BC89C911BB4FDC600A8163F /* CPLoginViewController.m in Sources */,
+				E3E6B8911BB4FD54006B4F8A /* CPLoginViewController.m in Sources */,
 				E3A4718E1BB3A85300973197 /* Reachability.m in Sources */,
 				E3A4718D1BB3A85300973197 /* CPNetWorkTool.m in Sources */,
 				E3A4717D1BB3A85300973197 /* NSMutableArray+ZY.m in Sources */,
-				E3A471941BB3A85300973197 /* AppDelegate.m in Sources */,
 				E3A471901BB3A85300973197 /* ZYNetWorkManager.m in Sources */,
 				E3A471881BB3A85300973197 /* UITableViewCell+ZYExtension.m in Sources */,
 				E3A4717B1BB3A85300973197 /* NSDictionary+ZY.m in Sources */,
@@ -805,7 +801,6 @@
 				E3A4718B1BB3A85300973197 /* ZYBlock.m in Sources */,
 				E3A4717F1BB3A85300973197 /* NSString+Extension.m in Sources */,
 				E3A4717A1BB3A85300973197 /* NSDate+Extension.m in Sources */,
-				6BC89C951BB4FF2E00A8163F /* CPTopButton.m in Sources */,
 				E3A471811BB3A85300973197 /* UIBarButtonItem+Extension.m in Sources */,
 				E3A471771BB3A85300973197 /* CAAnimation+ZY.m in Sources */,
 				E3A471931BB3A85300973197 /* CPTabBarController.m in Sources */,
