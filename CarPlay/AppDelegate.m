@@ -9,8 +9,9 @@
 #import "AppDelegate.h"
 #import "CPTabBarController.h"
 #import "Aspects.h"
+#import "CPMyCareController.h"
 
-@interface AppDelegate ()
+@interface AppDelegate ()<UITabBarControllerDelegate>
 
 @end
 
@@ -19,19 +20,24 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     CPTabBarController *tabVc = [CPTabBarController new];
-    
+    tabVc.delegate = self;
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
     self.window.rootViewController = tabVc;
     
     [self.window makeKeyAndVisible];
     
-    [UIViewController aspect_hookSelector:NSSelectorFromString(@"viewDidAppear") withOptions:AspectPositionAfter usingBlock:^(id info){
-        NSLog(@"viewDidAppear..%@ %@",[NSThread mainThread],info);
-        
-    }error:NULL];
     [self setViewCycleAop];
     
+    return YES;
+}
+
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
+{
+//    UINavigationController *nav = (UINavigationController *)viewController;
+//    if ([nav.childViewControllers.firstObject isKindOfClass:[CPMyCareController class]]) {
+//        return CPIsLogin?YES:NO;
+//    }
     return YES;
 }
 

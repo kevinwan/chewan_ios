@@ -8,7 +8,7 @@
         <!--我的关注-->
         <scene sceneID="wX5-mo-nJd">
             <objects>
-                <viewController id="725-rp-g56" sceneMemberID="viewController">
+                <viewController id="725-rp-g56" customClass="CPMyCareController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iVK-nP-gjD"/>
                         <viewControllerLayoutGuide type="bottom" id="jIW-aU-LzI"/>

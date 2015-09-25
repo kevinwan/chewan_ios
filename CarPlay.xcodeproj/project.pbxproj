@@ -14,9 +14,14 @@
 		E31E4BE01BAD47A500902B34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E31E4BDE1BAD47A500902B34 /* Main.storyboard */; };
 		E31E4BE21BAD47A500902B34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E31E4BE11BAD47A500902B34 /* Assets.xcassets */; };
 		E31E4BE51BAD47A500902B34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E31E4BE31BAD47A500902B34 /* LaunchScreen.storyboard */; };
+		E39627B21BB5265A005E0CF2 /* UIImage+Blur.m in Sources */ = {isa = PBXBuildFile; fileRef = E39627B11BB5265A005E0CF2 /* UIImage+Blur.m */; settings = {ASSET_TAGS = (); }; };
+		E39627B51BB53357005E0CF2 /* CPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E39627B41BB53357005E0CF2 /* CPUser.m */; settings = {ASSET_TAGS = (); }; };
+		E39627B81BB5352D005E0CF2 /* CPActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E39627B71BB5352D005E0CF2 /* CPActivityModel.m */; settings = {ASSET_TAGS = (); }; };
+		E39627C11BB54D91005E0CF2 /* MultiplePulsingHaloLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E39627BE1BB54D91005E0CF2 /* MultiplePulsingHaloLayer.m */; settings = {ASSET_TAGS = (); }; };
+		E39627C21BB54D91005E0CF2 /* PulsingHaloLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E39627C01BB54D91005E0CF2 /* PulsingHaloLayer.m */; settings = {ASSET_TAGS = (); }; };
 		E3A471731BB3A85300973197 /* CPNearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A471181BB3A85300973197 /* CPNearViewController.m */; settings = {ASSET_TAGS = (); }; };
-		E3A471741BB3A85300973197 /* CPNearViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A4711C1BB3A85300973197 /* CPNearViewCell.m */; settings = {ASSET_TAGS = (); }; };
-		E3A471751BB3A85300973197 /* CPNearViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3A4711D1BB3A85300973197 /* CPNearViewCell.xib */; settings = {ASSET_TAGS = (); }; };
+		E3A471741BB3A85300973197 /* CPBaseViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A4711C1BB3A85300973197 /* CPBaseViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		E3A471751BB3A85300973197 /* CPBaseViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3A4711D1BB3A85300973197 /* CPBaseViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		E3A471761BB3A85300973197 /* Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A471251BB3A85300973197 /* Aspects.m */; settings = {ASSET_TAGS = (); }; };
 		E3A471771BB3A85300973197 /* CAAnimation+ZY.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A471281BB3A85300973197 /* CAAnimation+ZY.m */; settings = {ASSET_TAGS = (); }; };
 		E3A471781BB3A85300973197 /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A471291BB3A85300973197 /* Foundation+Log.m */; settings = {ASSET_TAGS = (); }; };
@@ -54,6 +59,7 @@
 		E3E6B8911BB4FD54006B4F8A /* CPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6B88F1BB4FD54006B4F8A /* CPLoginViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E3E6B8921BB4FD54006B4F8A /* CPLoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3E6B8901BB4FD54006B4F8A /* CPLoginViewController.storyboard */; settings = {ASSET_TAGS = (); }; };
 		E3E6B8951BB514A2006B4F8A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6B8941BB514A2006B4F8A /* AppDelegate.m */; settings = {ASSET_TAGS = (); }; };
+		E3E6B8981BB515F1006B4F8A /* CPSexView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6B8971BB515F1006B4F8A /* CPSexView.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,11 +77,21 @@
 		E31E4BE61BAD47A500902B34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E31E4C491BAD48D600902B34 /* CP_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CP_Prefix.pch; sourceTree = "<group>"; };
 		E31E4C4E1BAD507E00902B34 /* macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = macro.h; sourceTree = "<group>"; };
+		E39627B01BB5265A005E0CF2 /* UIImage+Blur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Blur.h"; sourceTree = "<group>"; };
+		E39627B11BB5265A005E0CF2 /* UIImage+Blur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Blur.m"; sourceTree = "<group>"; };
+		E39627B31BB53357005E0CF2 /* CPUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPUser.h; sourceTree = "<group>"; };
+		E39627B41BB53357005E0CF2 /* CPUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPUser.m; sourceTree = "<group>"; };
+		E39627B61BB5352D005E0CF2 /* CPActivityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityModel.h; sourceTree = "<group>"; };
+		E39627B71BB5352D005E0CF2 /* CPActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityModel.m; sourceTree = "<group>"; };
+		E39627BD1BB54D91005E0CF2 /* MultiplePulsingHaloLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiplePulsingHaloLayer.h; sourceTree = "<group>"; };
+		E39627BE1BB54D91005E0CF2 /* MultiplePulsingHaloLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiplePulsingHaloLayer.m; sourceTree = "<group>"; };
+		E39627BF1BB54D91005E0CF2 /* PulsingHaloLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PulsingHaloLayer.h; sourceTree = "<group>"; };
+		E39627C01BB54D91005E0CF2 /* PulsingHaloLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PulsingHaloLayer.m; sourceTree = "<group>"; };
 		E3A471171BB3A85300973197 /* CPNearViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNearViewController.h; sourceTree = "<group>"; };
 		E3A471181BB3A85300973197 /* CPNearViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNearViewController.m; sourceTree = "<group>"; };
-		E3A4711B1BB3A85300973197 /* CPNearViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNearViewCell.h; sourceTree = "<group>"; };
-		E3A4711C1BB3A85300973197 /* CPNearViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNearViewCell.m; sourceTree = "<group>"; };
-		E3A4711D1BB3A85300973197 /* CPNearViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPNearViewCell.xib; sourceTree = "<group>"; };
+		E3A4711B1BB3A85300973197 /* CPBaseViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPBaseViewCell.h; sourceTree = "<group>"; };
+		E3A4711C1BB3A85300973197 /* CPBaseViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPBaseViewCell.m; sourceTree = "<group>"; };
+		E3A4711D1BB3A85300973197 /* CPBaseViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPBaseViewCell.xib; sourceTree = "<group>"; };
 		E3A471241BB3A85300973197 /* Aspects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Aspects.h; sourceTree = "<group>"; };
 		E3A471251BB3A85300973197 /* Aspects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Aspects.m; sourceTree = "<group>"; };
 		E3A471271BB3A85300973197 /* CAAnimation+ZY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAAnimation+ZY.h"; sourceTree = "<group>"; };
@@ -151,6 +167,8 @@
 		E3E6B8901BB4FD54006B4F8A /* CPLoginViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPLoginViewController.storyboard; sourceTree = "<group>"; };
 		E3E6B8931BB514A2006B4F8A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E3E6B8941BB514A2006B4F8A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E3E6B8961BB515F1006B4F8A /* CPSexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSexView.h; sourceTree = "<group>"; };
+		E3E6B8971BB515F1006B4F8A /* CPSexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSexView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +291,17 @@
 				E31E4BD61BAD47A500902B34 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E39627BC1BB54D91005E0CF2 /* PulsingHalo */ = {
+			isa = PBXGroup;
+			children = (
+				E39627BD1BB54D91005E0CF2 /* MultiplePulsingHaloLayer.h */,
+				E39627BE1BB54D91005E0CF2 /* MultiplePulsingHaloLayer.m */,
+				E39627BF1BB54D91005E0CF2 /* PulsingHaloLayer.h */,
+				E39627C01BB54D91005E0CF2 /* PulsingHaloLayer.m */,
+			);
+			path = PulsingHalo;
 			sourceTree = "<group>";
 		};
 		E3A470FD1BB3A85300973197 /* LoginReg(登录注册) */ = {
@@ -446,6 +475,8 @@
 		E3A471191BB3A85300973197 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E39627B61BB5352D005E0CF2 /* CPActivityModel.h */,
+				E39627B71BB5352D005E0CF2 /* CPActivityModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -453,9 +484,9 @@
 		E3A4711A1BB3A85300973197 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E3A4711B1BB3A85300973197 /* CPNearViewCell.h */,
-				E3A4711C1BB3A85300973197 /* CPNearViewCell.m */,
-				E3A4711D1BB3A85300973197 /* CPNearViewCell.xib */,
+				E3A4711B1BB3A85300973197 /* CPBaseViewCell.h */,
+				E3A4711C1BB3A85300973197 /* CPBaseViewCell.m */,
+				E3A4711D1BB3A85300973197 /* CPBaseViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -480,6 +511,8 @@
 		E3A471201BB3A85300973197 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E39627B31BB53357005E0CF2 /* CPUser.h */,
+				E39627B41BB53357005E0CF2 /* CPUser.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -487,6 +520,8 @@
 		E3A471211BB3A85300973197 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E3E6B8961BB515F1006B4F8A /* CPSexView.h */,
+				E3E6B8971BB515F1006B4F8A /* CPSexView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -494,6 +529,7 @@
 		E3A471221BB3A85300973197 /* Libs(三方库) */ = {
 			isa = PBXGroup;
 			children = (
+				E39627BC1BB54D91005E0CF2 /* PulsingHalo */,
 				E3E6B8891BB4F7FA006B4F8A /* FXBlurView(模糊效果) */,
 				E3A471231BB3A85300973197 /* Aspects(Aop) */,
 				E3A471261BB3A85300973197 /* ZYExtension */,
@@ -605,6 +641,8 @@
 		E3A471621BB3A85300973197 /* Categaries(分类) */ = {
 			isa = PBXGroup;
 			children = (
+				E39627B01BB5265A005E0CF2 /* UIImage+Blur.h */,
+				E39627B11BB5265A005E0CF2 /* UIImage+Blur.m */,
 			);
 			path = "Categaries(分类)";
 			sourceTree = "<group>";
@@ -732,7 +770,7 @@
 				E31E4BE21BAD47A500902B34 /* Assets.xcassets in Resources */,
 				E31E4BE01BAD47A500902B34 /* Main.storyboard in Resources */,
 				E3E6B8921BB4FD54006B4F8A /* CPLoginViewController.storyboard in Resources */,
-				E3A471751BB3A85300973197 /* CPNearViewCell.xib in Resources */,
+				E3A471751BB3A85300973197 /* CPBaseViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -786,6 +824,7 @@
 				E3A471871BB3A85300973197 /* UITableView+ZYExtension.m in Sources */,
 				E3A471911BB3A85300973197 /* ZYNetWorkTool.m in Sources */,
 				E3A471861BB3A85300973197 /* UITabBar+Extension.m in Sources */,
+				E39627C21BB54D91005E0CF2 /* PulsingHaloLayer.m in Sources */,
 				E3A471841BB3A85300973197 /* UILabel+ZY.m in Sources */,
 				E3A471731BB3A85300973197 /* CPNearViewController.m in Sources */,
 				E3A471971BB3A85300973197 /* CPTabBar.m in Sources */,
@@ -793,11 +832,13 @@
 				E3E6B8911BB4FD54006B4F8A /* CPLoginViewController.m in Sources */,
 				E3A4718E1BB3A85300973197 /* Reachability.m in Sources */,
 				E3A4718D1BB3A85300973197 /* CPNetWorkTool.m in Sources */,
+				E39627B81BB5352D005E0CF2 /* CPActivityModel.m in Sources */,
 				E3A4717D1BB3A85300973197 /* NSMutableArray+ZY.m in Sources */,
+				E39627B51BB53357005E0CF2 /* CPUser.m in Sources */,
 				E3A471901BB3A85300973197 /* ZYNetWorkManager.m in Sources */,
 				E3A471881BB3A85300973197 /* UITableViewCell+ZYExtension.m in Sources */,
 				E3A4717B1BB3A85300973197 /* NSDictionary+ZY.m in Sources */,
-				E3A471741BB3A85300973197 /* CPNearViewCell.m in Sources */,
+				E3A471741BB3A85300973197 /* CPBaseViewCell.m in Sources */,
 				E3A4718B1BB3A85300973197 /* ZYBlock.m in Sources */,
 				E3A4717F1BB3A85300973197 /* NSString+Extension.m in Sources */,
 				E3A4717A1BB3A85300973197 /* NSDate+Extension.m in Sources */,
@@ -810,10 +851,13 @@
 				E3A4717C1BB3A85300973197 /* NSFileManager+ZY.m in Sources */,
 				E3A471761BB3A85300973197 /* Aspects.m in Sources */,
 				E3A471921BB3A85300973197 /* CPNavigationController.m in Sources */,
+				E3E6B8981BB515F1006B4F8A /* CPSexView.m in Sources */,
 				E3A471891BB3A85300973197 /* UIView+Extension.m in Sources */,
+				E39627B21BB5265A005E0CF2 /* UIImage+Blur.m in Sources */,
 				E3A471781BB3A85300973197 /* Foundation+Log.m in Sources */,
 				E3A471851BB3A85300973197 /* UIResponder+Extension.m in Sources */,
 				E3E6B88C1BB4F7FA006B4F8A /* FXBlurView.m in Sources */,
+				E39627C11BB54D91005E0CF2 /* MultiplePulsingHaloLayer.m in Sources */,
 				E3A4718C1BB3A85300973197 /* ZYChildUserDefaults.m in Sources */,
 				E3A4717E1BB3A85300973197 /* NSString+Directory.m in Sources */,
 			);

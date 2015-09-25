@@ -7,7 +7,7 @@
 //
 
 #import "CPNearViewController.h"
-#import "CPNearViewCell.h"
+#import "CPBaseViewCell.h"
 
 @interface CPNearViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
@@ -42,7 +42,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *ID = @"cell";
-    CPNearViewCell *cell = [CPNearViewCell cellWithTableView:tableView reuseIdentifier:ID];
+    CPBaseViewCell *cell = [CPBaseViewCell cellWithTableView:tableView reuseIdentifier:ID];
     return cell;
 }
 
