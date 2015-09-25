@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6B33509D1BB3F3D800AAA4A2 /* CustomSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B33509B1BB3F3D800AAA4A2 /* CustomSwitch.m */; settings = {ASSET_TAGS = (); }; };
-		6B33509E1BB3F3D800AAA4A2 /* CustomSwitch.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B33509C1BB3F3D800AAA4A2 /* CustomSwitch.xib */; settings = {ASSET_TAGS = (); }; };
-		6B3350A31BB4E2C300AAA4A2 /* CPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3350A11BB4E2C300AAA4A2 /* CPLoginViewController.m */; settings = {ASSET_TAGS = (); }; };
-		6B3350A41BB4E2C300AAA4A2 /* CPLoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B3350A21BB4E2C300AAA4A2 /* CPLoginViewController.storyboard */; settings = {ASSET_TAGS = (); }; };
+		6B3350971BB3E0BF00AAA4A2 /* CPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3350951BB3E0BF00AAA4A2 /* CPLoginViewController.m */; settings = {ASSET_TAGS = (); }; };
+		6B3350981BB3E0BF00AAA4A2 /* CPLoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B3350961BB3E0BF00AAA4A2 /* CPLoginViewController.storyboard */; settings = {ASSET_TAGS = (); }; };
+		6BCC90FB1BB3FDBF00900286 /* CPMyCareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCC90FA1BB3FDBF00900286 /* CPMyCareController.m */; settings = {ASSET_TAGS = (); }; };
+		6BCC90FD1BB3FDD900900286 /* CPMyCareController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BCC90FC1BB3FDD900900286 /* CPMyCareController.storyboard */; settings = {ASSET_TAGS = (); }; };
 		6D9724033DC4D258BAD49B6C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8695309F427E7B2C9007D66B /* libPods.a */; };
 		E31E4BD71BAD47A500902B34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E31E4BD61BAD47A500902B34 /* main.m */; };
 		E31E4BE01BAD47A500902B34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E31E4BDE1BAD47A500902B34 /* Main.storyboard */; };
@@ -57,12 +57,12 @@
 
 /* Begin PBXFileReference section */
 		67D41D30DFBFAF45C8B1AB7F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		6B33509A1BB3F3D800AAA4A2 /* CustomSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSwitch.h; sourceTree = "<group>"; };
-		6B33509B1BB3F3D800AAA4A2 /* CustomSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSwitch.m; sourceTree = "<group>"; };
-		6B33509C1BB3F3D800AAA4A2 /* CustomSwitch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomSwitch.xib; sourceTree = "<group>"; };
-		6B3350A01BB4E2C300AAA4A2 /* CPLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLoginViewController.h; sourceTree = "<group>"; };
-		6B3350A11BB4E2C300AAA4A2 /* CPLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPLoginViewController.m; sourceTree = "<group>"; };
-		6B3350A21BB4E2C300AAA4A2 /* CPLoginViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPLoginViewController.storyboard; sourceTree = "<group>"; };
+		6B3350941BB3E0BF00AAA4A2 /* CPLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLoginViewController.h; sourceTree = "<group>"; };
+		6B3350951BB3E0BF00AAA4A2 /* CPLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPLoginViewController.m; sourceTree = "<group>"; };
+		6B3350961BB3E0BF00AAA4A2 /* CPLoginViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPLoginViewController.storyboard; sourceTree = "<group>"; };
+		6BCC90F91BB3FDBF00900286 /* CPMyCareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyCareController.h; sourceTree = "<group>"; };
+		6BCC90FA1BB3FDBF00900286 /* CPMyCareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyCareController.m; sourceTree = "<group>"; };
+		6BCC90FC1BB3FDD900900286 /* CPMyCareController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMyCareController.storyboard; sourceTree = "<group>"; };
 		8695309F427E7B2C9007D66B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1B028500DCBF99DF280B6AC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E31E4BD21BAD47A500902B34 /* CarPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -174,29 +174,45 @@
 		6B3350931BB3DFD900AAA4A2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				6B33509F1BB4E22F00AAA4A2 /* CPLogin */,
+				6B3350941BB3E0BF00AAA4A2 /* CPLoginViewController.h */,
+				6B3350951BB3E0BF00AAA4A2 /* CPLoginViewController.m */,
+				6B3350961BB3E0BF00AAA4A2 /* CPLoginViewController.storyboard */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		6B3350991BB3F3D800AAA4A2 /* CustomSwitch */ = {
+		6BCC90F31BB3FD1600900286 /* MyCare */ = {
 			isa = PBXGroup;
 			children = (
-				6B33509A1BB3F3D800AAA4A2 /* CustomSwitch.h */,
-				6B33509B1BB3F3D800AAA4A2 /* CustomSwitch.m */,
-				6B33509C1BB3F3D800AAA4A2 /* CustomSwitch.xib */,
+				6BCC90F41BB3FD1600900286 /* Controller */,
+				6BCC90F51BB3FD1600900286 /* Model */,
+				6BCC90F61BB3FD1600900286 /* View */,
 			);
-			path = CustomSwitch;
+			path = MyCare;
 			sourceTree = "<group>";
 		};
-		6B33509F1BB4E22F00AAA4A2 /* CPLogin */ = {
+		6BCC90F41BB3FD1600900286 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				6B3350A01BB4E2C300AAA4A2 /* CPLoginViewController.h */,
-				6B3350A11BB4E2C300AAA4A2 /* CPLoginViewController.m */,
-				6B3350A21BB4E2C300AAA4A2 /* CPLoginViewController.storyboard */,
+				6BCC90F91BB3FDBF00900286 /* CPMyCareController.h */,
+				6BCC90FA1BB3FDBF00900286 /* CPMyCareController.m */,
+				6BCC90FC1BB3FDD900900286 /* CPMyCareController.storyboard */,
 			);
-			path = CPLogin;
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		6BCC90F51BB3FD1600900286 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6BCC90F61BB3FD1600900286 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		8BBB39D02B9E5F4A2C7ABD5F /* Frameworks */ = {
@@ -314,6 +330,7 @@
 		E3A471051BB3A85300973197 /* My(我的) */ = {
 			isa = PBXGroup;
 			children = (
+				6BCC90F31BB3FD1600900286 /* MyCare */,
 				E3A471061BB3A85300973197 /* Controller */,
 				E3A4710B1BB3A85300973197 /* Model */,
 				E3A4710C1BB3A85300973197 /* View */,
@@ -467,7 +484,6 @@
 		E3A471211BB3A85300973197 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6B3350991BB3F3D800AAA4A2 /* CustomSwitch */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -688,11 +704,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BCC90FD1BB3FDD900900286 /* CPMyCareController.storyboard in Resources */,
 				E31E4BE51BAD47A500902B34 /* LaunchScreen.storyboard in Resources */,
 				E31E4BE21BAD47A500902B34 /* Assets.xcassets in Resources */,
-				6B3350A41BB4E2C300AAA4A2 /* CPLoginViewController.storyboard in Resources */,
+				6B3350981BB3E0BF00AAA4A2 /* CPLoginViewController.storyboard in Resources */,
 				E31E4BE01BAD47A500902B34 /* Main.storyboard in Resources */,
-				6B33509E1BB3F3D800AAA4A2 /* CustomSwitch.xib in Resources */,
 				E3A471751BB3A85300973197 /* CPNearViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -750,7 +766,6 @@
 				E3A471731BB3A85300973197 /* CPNearViewController.m in Sources */,
 				E3A471971BB3A85300973197 /* CPTabBar.m in Sources */,
 				E3A4718A1BB3A85300973197 /* UIViewController+ZYExtension.m in Sources */,
-				6B3350A31BB4E2C300AAA4A2 /* CPLoginViewController.m in Sources */,
 				E3A4718E1BB3A85300973197 /* Reachability.m in Sources */,
 				E3A4718D1BB3A85300973197 /* CPNetWorkTool.m in Sources */,
 				E3A4717D1BB3A85300973197 /* NSMutableArray+ZY.m in Sources */,
@@ -758,7 +773,6 @@
 				E3A471901BB3A85300973197 /* ZYNetWorkManager.m in Sources */,
 				E3A471881BB3A85300973197 /* UITableViewCell+ZYExtension.m in Sources */,
 				E3A4717B1BB3A85300973197 /* NSDictionary+ZY.m in Sources */,
-				6B33509D1BB3F3D800AAA4A2 /* CustomSwitch.m in Sources */,
 				E3A471741BB3A85300973197 /* CPNearViewCell.m in Sources */,
 				E3A4718B1BB3A85300973197 /* ZYBlock.m in Sources */,
 				E3A4717F1BB3A85300973197 /* NSString+Extension.m in Sources */,
@@ -766,8 +780,10 @@
 				E3A471811BB3A85300973197 /* UIBarButtonItem+Extension.m in Sources */,
 				E3A471771BB3A85300973197 /* CAAnimation+ZY.m in Sources */,
 				E3A471931BB3A85300973197 /* CPTabBarController.m in Sources */,
+				6BCC90FB1BB3FDBF00900286 /* CPMyCareController.m in Sources */,
 				E3A471951BB3A85300973197 /* Const.m in Sources */,
 				E3A4718F1BB3A85300973197 /* XMNetStatuesTool.m in Sources */,
+				6B3350971BB3E0BF00AAA4A2 /* CPLoginViewController.m in Sources */,
 				E3A4717C1BB3A85300973197 /* NSFileManager+ZY.m in Sources */,
 				E3A471761BB3A85300973197 /* Aspects.m in Sources */,
 				E3A471921BB3A85300973197 /* CPNavigationController.m in Sources */,
