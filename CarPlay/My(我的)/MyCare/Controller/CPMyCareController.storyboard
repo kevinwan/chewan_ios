@@ -44,7 +44,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rfq-iV-FY6" userLabel="三个按钮容器">
                                 <rect key="frame" x="0.0" y="100" width="320" height="40"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c9p-1e-nIn" userLabel="互相关注">
+                                    <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c9p-1e-nIn" userLabel="互相关注" customClass="CPTopButton">
                                         <rect key="frame" x="0.0" y="0.0" width="106.5" height="39"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="39" id="bnW-5x-sho"/>
@@ -53,8 +53,11 @@
                                         <state key="normal" title="互相关注">
                                             <color key="titleColor" red="0.99607843137254903" green="0.34901960784313724" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="careClick:" destination="725-rp-g56" eventType="touchUpInside" id="ETU-PD-bOq"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R9x-Pn-His" userLabel="我的关注">
+                                    <button opaque="NO" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R9x-Pn-His" userLabel="我的关注" customClass="CPTopButton">
                                         <rect key="frame" x="106.5" y="0.0" width="107" height="39"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="39" id="YfF-SW-QO3"/>
@@ -63,8 +66,11 @@
                                         <state key="normal" title="我的关注">
                                             <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="careClick:" destination="725-rp-g56" eventType="touchUpInside" id="aEp-yh-jLB"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jO2-YM-rDR" userLabel="关注我的">
+                                    <button opaque="NO" tag="30" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jO2-YM-rDR" userLabel="关注我的" customClass="CPTopButton">
                                         <rect key="frame" x="213.5" y="0.0" width="106.5" height="39"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="39" id="mVO-iG-bdV"/>
@@ -73,6 +79,9 @@
                                         <state key="normal" title="关注我的">
                                             <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="careClick:" destination="725-rp-g56" eventType="touchUpInside" id="YgZ-Fy-4wI"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6DP-4M-osf" userLabel="底线一">
                                         <rect key="frame" x="0.0" y="39" width="106.5" height="1"/>
@@ -122,15 +131,35 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="G7o-Vv-uhT">
+                                <rect key="frame" x="0.0" y="140" width="320" height="428"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="zC5-HN-elo">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zC5-HN-elo" id="2L1-We-dHs">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.0" green="1" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="G7o-Vv-uhT" firstAttribute="top" secondItem="Rfq-iV-FY6" secondAttribute="bottom" id="0RC-Qz-ahx"/>
                             <constraint firstItem="XiF-Jd-WC8" firstAttribute="leading" secondItem="0uj-DH-Y4O" secondAttribute="leading" id="55F-LP-wm6"/>
                             <constraint firstItem="hpH-FI-CMn" firstAttribute="leading" secondItem="0uj-DH-Y4O" secondAttribute="leading" id="Ndt-x0-dL7"/>
                             <constraint firstAttribute="trailing" secondItem="XiF-Jd-WC8" secondAttribute="trailing" id="POD-Sn-NIJ"/>
+                            <constraint firstItem="G7o-Vv-uhT" firstAttribute="leading" secondItem="0uj-DH-Y4O" secondAttribute="leading" id="SJ9-xk-Nme"/>
                             <constraint firstItem="hpH-FI-CMn" firstAttribute="top" secondItem="XiF-Jd-WC8" secondAttribute="bottom" id="eBa-9L-BW1"/>
                             <constraint firstItem="Rfq-iV-FY6" firstAttribute="top" secondItem="hpH-FI-CMn" secondAttribute="bottom" id="gpX-4l-vWS"/>
                             <constraint firstItem="XiF-Jd-WC8" firstAttribute="top" secondItem="iVK-nP-gjD" secondAttribute="bottom" id="hfj-hi-Z7m"/>
+                            <constraint firstItem="jIW-aU-LzI" firstAttribute="top" secondItem="G7o-Vv-uhT" secondAttribute="bottom" id="oAg-fI-oWd"/>
                             <constraint firstAttribute="trailing" secondItem="hpH-FI-CMn" secondAttribute="trailing" id="wGS-Pp-2ST"/>
+                            <constraint firstAttribute="trailing" secondItem="G7o-Vv-uhT" secondAttribute="trailing" id="wve-CR-HR2"/>
                             <constraint firstAttribute="trailing" secondItem="Rfq-iV-FY6" secondAttribute="trailing" id="yam-Sz-QXi"/>
                             <constraint firstItem="Rfq-iV-FY6" firstAttribute="leading" secondItem="0uj-DH-Y4O" secondAttribute="leading" id="zyz-hB-s6R"/>
                         </constraints>
@@ -140,6 +169,14 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="careEachBtn" destination="c9p-1e-nIn" id="F9r-BH-YCI"/>
+                        <outlet property="careMeBtn" destination="jO2-YM-rDR" id="Z87-xU-e3d"/>
+                        <outlet property="myCareBtn" destination="R9x-Pn-His" id="MR8-V3-Xjz"/>
+                        <outlet property="oneLine" destination="6DP-4M-osf" id="oi2-en-pXI"/>
+                        <outlet property="threeLine" destination="yQm-Dj-7Rn" id="2YU-Rb-iiT"/>
+                        <outlet property="twoLine" destination="DlG-nO-BhJ" id="4MJ-0x-Ncc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sbJ-oI-rHn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
