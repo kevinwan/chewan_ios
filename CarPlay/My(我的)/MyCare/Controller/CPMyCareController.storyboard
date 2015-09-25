@@ -24,7 +24,7 @@
                                     <constraint firstAttribute="height" constant="1" id="Mxk-pS-yAO"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hpH-FI-CMn" userLabel="提示关注语">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hpH-FI-CMn" userLabel="互相关注可以聊天">
                                 <rect key="frame" x="0.0" y="65" width="320" height="35"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="互相关注可以聊天" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vq1-QU-bhn">
@@ -34,22 +34,105 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="vq1-QU-bhn" firstAttribute="centerY" secondItem="hpH-FI-CMn" secondAttribute="centerY" id="8JE-X1-bHA"/>
                                     <constraint firstItem="vq1-QU-bhn" firstAttribute="centerX" secondItem="hpH-FI-CMn" secondAttribute="centerX" id="YZr-W7-hve"/>
                                     <constraint firstAttribute="height" constant="35" id="c7O-ga-Xux"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rfq-iV-FY6" userLabel="三个按钮容器">
+                                <rect key="frame" x="0.0" y="100" width="320" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c9p-1e-nIn" userLabel="互相关注">
+                                        <rect key="frame" x="0.0" y="0.0" width="106.5" height="39"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="39" id="bnW-5x-sho"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <state key="normal" title="互相关注">
+                                            <color key="titleColor" red="0.99607843137254903" green="0.34901960784313724" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R9x-Pn-His" userLabel="我的关注">
+                                        <rect key="frame" x="106.5" y="0.0" width="107" height="39"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="39" id="YfF-SW-QO3"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <state key="normal" title="我的关注">
+                                            <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jO2-YM-rDR" userLabel="关注我的">
+                                        <rect key="frame" x="213.5" y="0.0" width="106.5" height="39"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="39" id="mVO-iG-bdV"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <state key="normal" title="关注我的">
+                                            <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6DP-4M-osf" userLabel="底线一">
+                                        <rect key="frame" x="0.0" y="39" width="106.5" height="1"/>
+                                        <color key="backgroundColor" red="0.99607843137254903" green="0.34901960784313724" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DlG-nO-BhJ" userLabel="底线二">
+                                        <rect key="frame" x="106.5" y="39" width="107" height="1"/>
+                                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yQm-Dj-7Rn" userLabel="底线三">
+                                        <rect key="frame" x="213.5" y="39" width="106.5" height="1"/>
+                                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="DlG-nO-BhJ" firstAttribute="leading" secondItem="6DP-4M-osf" secondAttribute="trailing" id="2Mc-gr-Oe4"/>
+                                    <constraint firstItem="6DP-4M-osf" firstAttribute="top" secondItem="c9p-1e-nIn" secondAttribute="bottom" id="3qf-QM-0JU"/>
+                                    <constraint firstItem="R9x-Pn-His" firstAttribute="width" secondItem="c9p-1e-nIn" secondAttribute="width" id="6ex-9h-B8s"/>
+                                    <constraint firstAttribute="trailing" secondItem="jO2-YM-rDR" secondAttribute="trailing" id="72C-RY-BL4"/>
+                                    <constraint firstItem="yQm-Dj-7Rn" firstAttribute="width" secondItem="6DP-4M-osf" secondAttribute="width" id="9Dv-rp-Qgo"/>
+                                    <constraint firstItem="jO2-YM-rDR" firstAttribute="top" secondItem="Rfq-iV-FY6" secondAttribute="top" id="Bwh-Di-Nsm"/>
+                                    <constraint firstItem="DlG-nO-BhJ" firstAttribute="top" secondItem="R9x-Pn-His" secondAttribute="bottom" id="HDj-0O-3cf"/>
+                                    <constraint firstItem="c9p-1e-nIn" firstAttribute="top" secondItem="Rfq-iV-FY6" secondAttribute="top" id="Jau-Hp-aI7"/>
+                                    <constraint firstAttribute="bottom" secondItem="DlG-nO-BhJ" secondAttribute="bottom" id="Lnl-0P-bSx"/>
+                                    <constraint firstAttribute="bottom" secondItem="6DP-4M-osf" secondAttribute="bottom" id="ULX-oD-kf6"/>
+                                    <constraint firstAttribute="trailing" secondItem="yQm-Dj-7Rn" secondAttribute="trailing" id="YGT-Bt-8pI"/>
+                                    <constraint firstItem="jO2-YM-rDR" firstAttribute="leading" secondItem="R9x-Pn-His" secondAttribute="trailing" id="a1t-LJ-saY"/>
+                                    <constraint firstItem="jO2-YM-rDR" firstAttribute="width" secondItem="c9p-1e-nIn" secondAttribute="width" id="ege-2N-hAf"/>
+                                    <constraint firstItem="DlG-nO-BhJ" firstAttribute="width" secondItem="6DP-4M-osf" secondAttribute="width" id="iEN-zu-WEW"/>
+                                    <constraint firstItem="c9p-1e-nIn" firstAttribute="leading" secondItem="Rfq-iV-FY6" secondAttribute="leading" id="jHF-nF-Qf9"/>
+                                    <constraint firstAttribute="bottom" secondItem="jO2-YM-rDR" secondAttribute="bottom" constant="39" id="lqJ-HS-vaf"/>
+                                    <constraint firstItem="6DP-4M-osf" firstAttribute="leading" secondItem="Rfq-iV-FY6" secondAttribute="leading" id="qy8-vg-fuW"/>
+                                    <constraint firstAttribute="bottom" secondItem="yQm-Dj-7Rn" secondAttribute="bottom" id="r2a-e0-cqs"/>
+                                    <constraint firstAttribute="bottom" secondItem="R9x-Pn-His" secondAttribute="bottom" constant="39" id="r82-33-fVj"/>
+                                    <constraint firstAttribute="bottom" secondItem="c9p-1e-nIn" secondAttribute="bottom" constant="39" id="sIM-wE-uZO"/>
+                                    <constraint firstAttribute="height" constant="40" id="sKl-Wg-3er"/>
+                                    <constraint firstItem="yQm-Dj-7Rn" firstAttribute="leading" secondItem="DlG-nO-BhJ" secondAttribute="trailing" id="u7m-uF-Lsa"/>
+                                    <constraint firstItem="R9x-Pn-His" firstAttribute="leading" secondItem="c9p-1e-nIn" secondAttribute="trailing" id="uLE-cr-X72"/>
+                                    <constraint firstItem="R9x-Pn-His" firstAttribute="top" secondItem="Rfq-iV-FY6" secondAttribute="top" id="vfd-g4-jun"/>
+                                    <constraint firstItem="yQm-Dj-7Rn" firstAttribute="top" secondItem="jO2-YM-rDR" secondAttribute="bottom" id="xdw-z8-Bbf"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="sIM-wE-uZO"/>
+                                        <exclude reference="r82-33-fVj"/>
+                                        <exclude reference="lqJ-HS-vaf"/>
+                                    </mask>
+                                </variation>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.28235294119999998" green="0.81960784310000001" blue="0.83529411760000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="XiF-Jd-WC8" firstAttribute="leading" secondItem="0uj-DH-Y4O" secondAttribute="leading" id="55F-LP-wm6"/>
                             <constraint firstItem="hpH-FI-CMn" firstAttribute="leading" secondItem="0uj-DH-Y4O" secondAttribute="leading" id="Ndt-x0-dL7"/>
                             <constraint firstAttribute="trailing" secondItem="XiF-Jd-WC8" secondAttribute="trailing" id="POD-Sn-NIJ"/>
                             <constraint firstItem="hpH-FI-CMn" firstAttribute="top" secondItem="XiF-Jd-WC8" secondAttribute="bottom" id="eBa-9L-BW1"/>
+                            <constraint firstItem="Rfq-iV-FY6" firstAttribute="top" secondItem="hpH-FI-CMn" secondAttribute="bottom" id="gpX-4l-vWS"/>
                             <constraint firstItem="XiF-Jd-WC8" firstAttribute="top" secondItem="iVK-nP-gjD" secondAttribute="bottom" id="hfj-hi-Z7m"/>
                             <constraint firstAttribute="trailing" secondItem="hpH-FI-CMn" secondAttribute="trailing" id="wGS-Pp-2ST"/>
+                            <constraint firstAttribute="trailing" secondItem="Rfq-iV-FY6" secondAttribute="trailing" id="yam-Sz-QXi"/>
+                            <constraint firstItem="Rfq-iV-FY6" firstAttribute="leading" secondItem="0uj-DH-Y4O" secondAttribute="leading" id="zyz-hB-s6R"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="我的关注" id="AQZ-dC-Cuz">
