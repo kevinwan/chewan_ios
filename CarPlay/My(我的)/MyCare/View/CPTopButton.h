@@ -1,13 +1,13 @@
 //
-//  CPNearViewCell.h
+//  CPTopButton.h
 //  CarPlay
 //
-//  Created by chewan on 15/9/23.
+//  Created by 公平价 on 15/9/25.
 //  Copyright © 2015年 chewan. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface CPNearViewCell : UITableViewCell
+@interface CPTopButton : UIButton
 
 @end

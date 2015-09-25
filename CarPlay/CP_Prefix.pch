@@ -21,5 +21,6 @@
 #import <ReactiveCocoa.h>
 #import "Const.h"
 #import "Tools.h"
+#import "CPUser.h"
 
 #endif
