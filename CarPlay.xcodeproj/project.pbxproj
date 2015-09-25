@@ -53,6 +53,7 @@
 		E3A471951BB3A85300973197 /* Const.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A4716C1BB3A85300973197 /* Const.m */; settings = {ASSET_TAGS = (); }; };
 		E3A471961BB3A85300973197 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A4716F1BB3A85300973197 /* Tools.m */; settings = {ASSET_TAGS = (); }; };
 		E3A471971BB3A85300973197 /* CPTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A471721BB3A85300973197 /* CPTabBar.m */; settings = {ASSET_TAGS = (); }; };
+		E3E6B88C1BB4F7FA006B4F8A /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6B88B1BB4F7FA006B4F8A /* FXBlurView.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -148,6 +149,8 @@
 		E3A4716F1BB3A85300973197 /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
 		E3A471711BB3A85300973197 /* CPTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTabBar.h; sourceTree = "<group>"; };
 		E3A471721BB3A85300973197 /* CPTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTabBar.m; sourceTree = "<group>"; };
+		E3E6B88A1BB4F7FA006B4F8A /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
+		E3E6B88B1BB4F7FA006B4F8A /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -491,6 +494,7 @@
 		E3A471221BB3A85300973197 /* Libs(三方库) */ = {
 			isa = PBXGroup;
 			children = (
+				E3E6B8891BB4F7FA006B4F8A /* FXBlurView(模糊效果) */,
 				E3A471231BB3A85300973197 /* Aspects */,
 				E3A471261BB3A85300973197 /* ZYExtension */,
 				E3A471551BB3A85300973197 /* ZYNetWorkTool */,
@@ -644,6 +648,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		E3E6B8891BB4F7FA006B4F8A /* FXBlurView(模糊效果) */ = {
+			isa = PBXGroup;
+			children = (
+				E3E6B88A1BB4F7FA006B4F8A /* FXBlurView.h */,
+				E3E6B88B1BB4F7FA006B4F8A /* FXBlurView.m */,
+			);
+			name = "FXBlurView(模糊效果)";
+			path = FXBlurView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -790,6 +804,7 @@
 				E3A471891BB3A85300973197 /* UIView+Extension.m in Sources */,
 				E3A471781BB3A85300973197 /* Foundation+Log.m in Sources */,
 				E3A471851BB3A85300973197 /* UIResponder+Extension.m in Sources */,
+				E3E6B88C1BB4F7FA006B4F8A /* FXBlurView.m in Sources */,
 				E3A4718C1BB3A85300973197 /* ZYChildUserDefaults.m in Sources */,
 				E3A4717E1BB3A85300973197 /* NSString+Directory.m in Sources */,
 			);

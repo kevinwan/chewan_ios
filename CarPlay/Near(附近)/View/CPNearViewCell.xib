@@ -20,7 +20,6 @@
                         <subviews>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="fBh-C9-X7g">
                                 <rect key="frame" x="0.0" y="76" width="300" height="250"/>
-                                <color key="backgroundColor" red="0.98823529409999999" green="0.43137254899999999" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="fBh-C9-X7g" secondAttribute="height" multiplier="6:5" id="fw3-To-rc0"/>
                                 </constraints>
@@ -135,7 +134,16 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="addressView" destination="Sah-8z-7Vp" id="XiT-JS-si6"/>
+                <outlet property="authView" destination="Q8o-f5-ZTT" id="2cD-SS-w6e"/>
                 <outlet property="bgView" destination="2M9-Ns-HWN" id="M2l-8t-ytX"/>
+                <outlet property="carView" destination="E4d-M2-JDn" id="b2q-Iy-aGi"/>
+                <outlet property="distanceView" destination="hQr-8m-CGj" id="INt-vw-3aR"/>
+                <outlet property="payView" destination="1kK-Wq-sqP" id="C2g-rd-rTL"/>
+                <outlet property="sendView" destination="uBV-c9-lCX" id="orn-5d-xer"/>
+                <outlet property="sexView" destination="o5u-QQ-jER" id="oy3-vm-oe0"/>
+                <outlet property="titleLabel" destination="lKM-Sl-VgI" id="4Hy-MM-c3L"/>
+                <outlet property="userIconView" destination="fBh-C9-X7g" id="mTo-QM-VLz"/>
             </connections>
             <point key="canvasLocation" x="383.5" y="261.5"/>
         </tableViewCell>
