@@ -29,14 +29,12 @@
 
 - (void)test
 {
-    
-    [self.tableView.footer endRefreshing];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
-        
         [self.datas addObject:@"jajaj"];
-        [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.datas.count - 1 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-        [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y + 401) animated:YES];
+        [self.tableView reloadData];  [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y - 40 + _tableView.rowHeight) animated:YES];
+        
+        [self.tableView.footer endRefreshing];
     });
 }
 
@@ -71,6 +69,7 @@
         _tableView.rowHeight = 401 + offset;
         _tableView.backgroundColor = [Tools getColor:@"efefef"];
         _tableView.showsVerticalScrollIndicator = NO;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _tableView;
 }
