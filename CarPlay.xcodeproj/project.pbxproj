@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B153EF51BB5690900560935 /* CPForgetPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B153EEE1BB5690900560935 /* CPForgetPassword.storyboard */; settings = {ASSET_TAGS = (); }; };
+		6B153EF61BB5690900560935 /* CPForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B153EF01BB5690900560935 /* CPForgetPasswordViewController.m */; settings = {ASSET_TAGS = (); }; };
+		6B153EF71BB5690900560935 /* CPRegViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B153EF31BB5690900560935 /* CPRegViewController.m */; settings = {ASSET_TAGS = (); }; };
+		6B153EF81BB5690900560935 /* CPRegViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B153EF41BB5690900560935 /* CPRegViewController.storyboard */; settings = {ASSET_TAGS = (); }; };
 		6B69F53A1BB55505008E7BF1 /* CPTopButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B69F5391BB55505008E7BF1 /* CPTopButton.m */; settings = {ASSET_TAGS = (); }; };
 		6BCC90FB1BB3FDBF00900286 /* CPMyCareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCC90FA1BB3FDBF00900286 /* CPMyCareController.m */; settings = {ASSET_TAGS = (); }; };
 		6BCC90FD1BB3FDD900900286 /* CPMyCareController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BCC90FC1BB3FDD900900286 /* CPMyCareController.storyboard */; settings = {ASSET_TAGS = (); }; };
@@ -65,6 +69,12 @@
 
 /* Begin PBXFileReference section */
 		67D41D30DFBFAF45C8B1AB7F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		6B153EEE1BB5690900560935 /* CPForgetPassword.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPForgetPassword.storyboard; sourceTree = "<group>"; };
+		6B153EEF1BB5690900560935 /* CPForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPForgetPasswordViewController.h; sourceTree = "<group>"; };
+		6B153EF01BB5690900560935 /* CPForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPForgetPasswordViewController.m; sourceTree = "<group>"; };
+		6B153EF21BB5690900560935 /* CPRegViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRegViewController.h; sourceTree = "<group>"; };
+		6B153EF31BB5690900560935 /* CPRegViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRegViewController.m; sourceTree = "<group>"; };
+		6B153EF41BB5690900560935 /* CPRegViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPRegViewController.storyboard; sourceTree = "<group>"; };
 		6B69F5381BB55505008E7BF1 /* CPTopButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTopButton.h; sourceTree = "<group>"; };
 		6B69F5391BB55505008E7BF1 /* CPTopButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTopButton.m; sourceTree = "<group>"; };
 		6BCC90F91BB3FDBF00900286 /* CPMyCareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyCareController.h; sourceTree = "<group>"; };
@@ -195,9 +205,31 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		6B153EED1BB5690900560935 /* CPForgetPassword(忘记密码) */ = {
+			isa = PBXGroup;
+			children = (
+				6B153EEE1BB5690900560935 /* CPForgetPassword.storyboard */,
+				6B153EEF1BB5690900560935 /* CPForgetPasswordViewController.h */,
+				6B153EF01BB5690900560935 /* CPForgetPasswordViewController.m */,
+			);
+			path = "CPForgetPassword(忘记密码)";
+			sourceTree = "<group>";
+		};
+		6B153EF11BB5690900560935 /* CPReg(注册) */ = {
+			isa = PBXGroup;
+			children = (
+				6B153EF21BB5690900560935 /* CPRegViewController.h */,
+				6B153EF31BB5690900560935 /* CPRegViewController.m */,
+				6B153EF41BB5690900560935 /* CPRegViewController.storyboard */,
+			);
+			path = "CPReg(注册)";
+			sourceTree = "<group>";
+		};
 		6B3350931BB3DFD900AAA4A2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6B153EED1BB5690900560935 /* CPForgetPassword(忘记密码) */,
+				6B153EF11BB5690900560935 /* CPReg(注册) */,
 				E3E6B88D1BB4FD54006B4F8A /* CPLogin */,
 			);
 			path = Controller;
@@ -774,6 +806,8 @@
 				E31E4BE51BAD47A500902B34 /* LaunchScreen.storyboard in Resources */,
 				E31E4BE21BAD47A500902B34 /* Assets.xcassets in Resources */,
 				E31E4BE01BAD47A500902B34 /* Main.storyboard in Resources */,
+				6B153EF51BB5690900560935 /* CPForgetPassword.storyboard in Resources */,
+				6B153EF81BB5690900560935 /* CPRegViewController.storyboard in Resources */,
 				E3E6B8921BB4FD54006B4F8A /* CPLoginViewController.storyboard in Resources */,
 				E3A471751BB3A85300973197 /* CPBaseViewCell.xib in Resources */,
 			);
@@ -832,7 +866,9 @@
 				E39627C21BB54D91005E0CF2 /* PulsingHaloLayer.m in Sources */,
 				E3A471841BB3A85300973197 /* UILabel+ZY.m in Sources */,
 				E3A471731BB3A85300973197 /* CPNearViewController.m in Sources */,
+				6B153EF71BB5690900560935 /* CPRegViewController.m in Sources */,
 				E3A471971BB3A85300973197 /* CPTabBar.m in Sources */,
+				6B153EF61BB5690900560935 /* CPForgetPasswordViewController.m in Sources */,
 				E3A4718A1BB3A85300973197 /* UIViewController+ZYExtension.m in Sources */,
 				E3E6B8911BB4FD54006B4F8A /* CPLoginViewController.m in Sources */,
 				E3A4718E1BB3A85300973197 /* Reachability.m in Sources */,
