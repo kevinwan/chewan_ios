@@ -10,4 +10,9 @@
 
 @implementation CPActivityModel
 
+- (NSString *)title
+{
+    return [NSString stringWithFormat:@"%@想邀请你%@",_organizer.nickname, _type];
+}
+
 @end

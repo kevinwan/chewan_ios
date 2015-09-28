@@ -33,6 +33,8 @@ typedef void(^ClickAction)();
  *  @param target      响应者
  *  @return item
  */
+- (UIBarButtonItem *)initWithNorImage:(NSString *)norimage higImage:(NSString *)higImage title:(NSString *)title target:(id)target action:(SEL)action;
+
 + (instancetype)itemWithNorImage:(NSString *)norimage higImage:(NSString *)higImage title:(NSString *)title target:(id)target action:(SEL)action;
 
 @end

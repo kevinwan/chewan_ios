@@ -30,7 +30,7 @@
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="328i" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ1-dG-BzA">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="328i" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ1-dG-BzA">
                                 <rect key="frame" x="212" y="20" width="25.5" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -42,17 +42,16 @@
                                     <constraint firstAttribute="height" constant="18" id="0pv-T8-r9x"/>
                                     <constraint firstAttribute="width" constant="18" id="HPl-Pi-p3S"/>
                                 </constraints>
-                                <state key="normal" image="头像已认证"/>
+                                <state key="normal" image="未认证-审核中"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E4d-M2-JDn">
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E4d-M2-JDn">
                                 <rect key="frame" x="184" y="18" width="18" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="18" id="LzX-6a-03G"/>
                                     <constraint firstAttribute="height" constant="18" id="UTj-xq-ciJ"/>
                                 </constraints>
-                                <state key="normal" image="头像已认证"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o5u-QQ-jER" customClass="CPSexView">
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o5u-QQ-jER" customClass="CPSexView">
                                 <rect key="frame" x="10" y="48" width="40" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="LB3-wz-9Uk"/>
@@ -115,15 +114,9 @@
                             <constraint firstItem="Sah-8z-7Vp" firstAttribute="top" secondItem="fBh-C9-X7g" secondAttribute="bottom" constant="12" id="lyl-h3-Lfl"/>
                             <constraint firstItem="hQr-8m-CGj" firstAttribute="centerY" secondItem="Sah-8z-7Vp" secondAttribute="centerY" id="n6w-70-rev"/>
                             <constraint firstItem="Q8o-f5-ZTT" firstAttribute="leading" secondItem="lKM-Sl-VgI" secondAttribute="trailing" constant="10" id="oT6-yF-2Im"/>
-                            <constraint firstItem="ZQ1-dG-BzA" firstAttribute="leading" secondItem="E4d-M2-JDn" secondAttribute="trailing" constant="10" id="qbs-H3-Thj"/>
                             <constraint firstItem="lKM-Sl-VgI" firstAttribute="leading" secondItem="2M9-Ns-HWN" secondAttribute="leading" constant="10" id="spM-Ff-pij"/>
                             <constraint firstItem="fBh-C9-X7g" firstAttribute="top" secondItem="uBV-c9-lCX" secondAttribute="bottom" constant="13" id="yq2-Sb-9Pj"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="qbs-H3-Thj"/>
-                            </mask>
-                        </variation>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -139,6 +132,7 @@
                 <outlet property="addressView" destination="Sah-8z-7Vp" id="XiT-JS-si6"/>
                 <outlet property="authView" destination="Q8o-f5-ZTT" id="2cD-SS-w6e"/>
                 <outlet property="bgView" destination="2M9-Ns-HWN" id="M2l-8t-ytX"/>
+                <outlet property="carTypeView" destination="ZQ1-dG-BzA" id="jVG-Ry-A3s"/>
                 <outlet property="carView" destination="E4d-M2-JDn" id="b2q-Iy-aGi"/>
                 <outlet property="distanceView" destination="hQr-8m-CGj" id="INt-vw-3aR"/>
                 <outlet property="payView" destination="1kK-Wq-sqP" id="C2g-rd-rTL"/>
@@ -151,7 +145,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="头像已认证" width="18" height="18"/>
+        <image name="未认证-审核中" width="18" height="18"/>
         <image name="男" width="40" height="15"/>
         <image name="距离" width="10" height="14"/>
     </resources>

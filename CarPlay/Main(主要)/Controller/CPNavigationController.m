@@ -7,6 +7,7 @@
 //
 
 #import "CPNavigationController.h"
+#import "ZYNavigationBar.h"
 
 @interface CPNavigationController ()
 
@@ -17,11 +18,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // 利用kvc对readonly的属性进行赋值 自定义navigationBar
+//    // 利用kvc对readonly的属性进行赋值 自定义navigationBar
 //    [self setValue:[[ZYNavigationBar alloc] init] forKey:@"navigationBar"];
     
     self.navigationBar.barTintColor = [UIColor whiteColor];
-    
+
     // 隐藏导航栏边框
     UIView *backGroundView = self.navigationBar.subviews.firstObject;
     for (UIView *view in backGroundView.subviews) {

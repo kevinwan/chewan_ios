@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CPActivityModel.h"
 
 @interface CPBaseViewCell : UITableViewCell
-
+@property (nonatomic, strong) CPActivityModel *model;
 @end

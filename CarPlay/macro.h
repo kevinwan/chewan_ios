@@ -47,7 +47,7 @@
 #define CPUnLogin       ([Tools isUnLogin]) // 是否登录成功
 #define CPSuccess       ([responseObject[@"result"] intValue] == 0)
 #define CPFailure       ([responseObject[@"result"] intValue] == 1)
-
+#define CPPlaceHolderImage [UIImage imageNamed:@"未认证-审核中"]
 
 //登录状态改变
 #define NOTIFICATION_LOGINCHANGE @"loginStatusChange"

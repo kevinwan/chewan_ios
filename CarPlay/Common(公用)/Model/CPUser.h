@@ -21,6 +21,9 @@
 
 //    "gender": "男",
 @property (nonatomic, copy) NSString *gender;
+
+@property (nonatomic, assign) BOOL isMan;
+
 //    "age": 25,
 @property (nonatomic, assign) NSUInteger age;
 //    "role": "普通用户",

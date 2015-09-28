@@ -10,4 +10,14 @@
 
 @implementation CPUser
 
+- (void)setGender:(NSString *)gender
+{
+    _gender = gender;
+    if ([gender isEqualToString:@"男"]) {
+        _isMan = YES;
+    }else{
+        _isMan = NO;
+    }
+}
+
 @end

@@ -12,7 +12,7 @@
 #import "CPNearViewController.h"
 #import "CPMyViewController.h"
 #import "CPMyCareController.h"
-
+#import "CPTestPhotoViewController.h"
 @interface CPTabBarController () <CPTabBarDelegate>
 
 @end
@@ -23,13 +23,12 @@
 {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor redColor];
     // 1.初始化子控制器
     
     CPNearViewController *nearVc1 = [[CPNearViewController alloc] init];
     [self addChildVc:nearVc1 title:@"附近" image:@"" selectedImage:@""];
     
-    CPNearViewController *nearVc2 = [[CPNearViewController alloc] init];
+    CPTestPhotoViewController *nearVc2 = [[CPTestPhotoViewController alloc] init];
     [self addChildVc:nearVc2 title:@"推荐" image:@"" selectedImage:@""];
     
     CPMyCareController *vc3 = [UIStoryboard storyboardWithName:@"CPMyCareController" bundle:nil].instantiateInitialViewController;
@@ -66,7 +65,7 @@
     // 设置子控制器的图片
     childVc.tabBarItem.image = [UIImage imageNamed:image];
     childVc.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImage]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    
+//
     // 先给外面传进来的小控制器 包装 一个导航控制器
     CPNavigationController *nav = [[CPNavigationController alloc] initWithRootViewController:childVc];
     // 添加为子控制器
@@ -81,10 +80,5 @@
     [self presentViewController:vc animated:YES completion:nil];
 }
 
-- (void)setSelectedIndex:(NSUInteger)selectedIndex
-{
-    NSLog(@"%zd----",selectedIndex);
-    [super setSelectedIndex:selectedIndex];
-}
 
 @end

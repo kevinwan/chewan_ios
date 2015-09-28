@@ -10,6 +10,8 @@
 #import "FXBlurView.h"
 #import "UIImage+Blur.h"
 #import "MultiplePulsingHaloLayer.h"
+#import "CPSexView.h"
+#import "UIButton+WebCache.h"
 
 @interface CPBaseViewCell ()
 /**
@@ -28,6 +30,12 @@
  *  显示车标的View
  */
 @property (weak, nonatomic) IBOutlet UIButton *carView;
+
+/**
+ *  显示车型的View
+ */
+@property (weak, nonatomic) IBOutlet UILabel *carTypeView;
+
 /**
  *  包接送
  */
@@ -35,11 +43,12 @@
 /**
  *  显示性别和年龄的View
  */
-@property (weak, nonatomic) IBOutlet UIButton *sexView;
+@property (weak, nonatomic) IBOutlet CPSexView *sexView;
 /**
  *  请客的View
  */
 @property (weak, nonatomic) IBOutlet UILabel *payView;
+
 /**
  *  显示用户大图的View
  */
@@ -75,6 +84,11 @@
 @property (nonatomic, strong) UIButton *ignoreButton;
 
 /**
+ *  提示未认证
+ */
+@property (nonatomic, strong) UIView *tipView;
+
+/**
  *  约她的动画
  */
 @property (nonatomic, strong) MultiplePulsingHaloLayer *dateAnim;
@@ -102,10 +116,34 @@
         
         self.userIconView.image = [image blurredImageWithRadius:20];
     }];
+    
+    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] init];
+    [tapGes.rac_gestureSignal subscribeNext:^(id x) {
+        
+        if (![_model.organizer.photoAuthStatus isEqualToString:@"认证通过"]) {
+            self.tipView.hidden = NO;
+        }
+    }];
+    [self.userIconView addGestureRecognizer:tapGes];
+    [self.userIconView addSubview:self.tipView];
     [self.userIconView addSubview:self.dateButton];
     [self.userIconView addSubview:self.invitedButton];
     [self.userIconView addSubview:self.ignoreButton];
-    
+    [self dateAnim];
+}
+
++ (instancetype)cellWithTableView:(UITableView *)tableView reuseIdentifier:(NSString *)reuseIdentifier
+{
+    CPBaseViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (cell == nil) {
+        cell = [[NSBundle mainBundle] loadNibNamed:@"CPBaseViewCell" owner:nil options:nil].lastObject;
+    }
+    cell.tipView.hidden = YES;
+    return cell;
+}
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
     [self.dateButton mas_makeConstraints:^(MASConstraintMaker *make){
         make.centerX.equalTo(self.userIconView);
         make.size.equalTo(CGSizeMake(56, 56));
@@ -123,22 +161,56 @@
         make.centerY.equalTo(self.invitedButton);
         make.centerX.equalTo(self.userIconView).with.offset(@38);
     }];
-    [self dateAnim];
+    
+    [self.tipView makeConstraints:^(MASConstraintMaker *make) {
+        make.width.equalTo(self.userIconView);
+        make.top.and.left.equalTo(@0);
+        make.height.equalTo(@40);
+    }];
+ 
 }
 
-+ (instancetype)cellWithTableView:(UITableView *)tableView reuseIdentifier:(NSString *)reuseIdentifier
+/**
+ *  根据model设置cell展示的数据
+ *
+ *  @param model model description
+ */
+- (void)setModel:(CPActivityModel *)model
 {
-    CPBaseViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    if (cell == nil) {
-        cell = [[NSBundle mainBundle] loadNibNamed:@"CPBaseViewCell" owner:nil options:nil].lastObject;
-    }
-    return cell;
-}
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
+    _model = model;
     
- 
+    self.sexView.isMan = model.organizer.isMan;
+    self.sexView.age = model.organizer.age;
+    [self.userIconView sd_setImageWithURL:[NSURL URLWithString:model.organizer.avatar] placeholderImage:CPPlaceHolderImage options:SDWebImageLowPriority | SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        
+        self.userIconView.image = [image blurredImageWithRadius:10];
+    }];
+    
+    [self.distanceView setTitle:[NSString stringWithFormat:@"%zd",model.distance] forState:UIControlStateNormal];
+    
+    self.payView.text = model.pay;
+    self.sendView.hidden = !model.transfer;
+    if (model.title.length) {
+        self.titleLabel.text = model.title;
+    }else{
+        self.titleLabel.text = @"";
+    }
+    
+    if ([model.organizer.photoAuthStatus isEqualToString:@"认证通过"]) {
+        [self.authView setImage:[UIImage imageNamed:@"头像已认证"] forState:UIControlStateNormal];
+    }else{
+        [self.authView setImage:[UIImage imageNamed:@"未认证-审核中"] forState:UIControlStateNormal];
+    }
+    
+    if ([model.organizer.licenseAuthStatus isEqualToString:@"认证通过"]) {
+        self.carView.hidden = NO;
+        self.carTypeView.hidden = NO;
+        [self.carView sd_setImageWithURL:[NSURL URLWithString:model.organizer.car.logo] forState:UIControlStateNormal placeholderImage:CPPlaceHolderImage];
+        self.carTypeView.text = model.organizer.car.model;
+    }else{
+        self.carView.hidden = YES;
+        self.carTypeView.hidden = YES;
+    }
 }
 
 #pragma mark - 处理cell事件
@@ -220,13 +292,26 @@
 - (MultiplePulsingHaloLayer *)multiLayer
 {
     MultiplePulsingHaloLayer *multiLayer = [[MultiplePulsingHaloLayer alloc] initWithHaloLayerNum:3 andStartInterval:0.8];
-    multiLayer.fromValueForRadius = 0.8;
+    multiLayer.fromValueForRadius = 0.6;
     multiLayer.radius = 40;
     multiLayer.useTimingFunction = NO;
     multiLayer.fromValueForAlpha = 1.0;
     [multiLayer buildSublayers];
     [multiLayer setHaloLayerColor:RedColor.CGColor];
     return multiLayer;
+}
+
+/**
+ *  提示未上传图片
+ */
+- (UIView *)tipView
+{
+    if (_tipView == nil) {
+        _tipView = [[UIView alloc] init];
+        _tipView.backgroundColor = [UIColor yellowColor];
+        _tipView.hidden = YES;
+    }
+    return _tipView;
 }
 
 @end
