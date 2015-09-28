@@ -131,16 +131,93 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="G7o-Vv-uhT">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="G7o-Vv-uhT">
                                 <rect key="frame" x="0.0" y="140" width="320" height="428"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="zC5-HN-elo">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="70" id="zC5-HN-elo">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zC5-HN-elo" id="2L1-We-dHs">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xrv-kr-BGO">
+                                                    <rect key="frame" x="10" y="10" width="50" height="50"/>
+                                                    <color key="backgroundColor" red="0.40000000596046448" green="0.80000001192092896" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="7Xa-L0-eHU"/>
+                                                        <constraint firstAttribute="height" constant="50" id="8tA-2h-uaX"/>
+                                                    </constraints>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="陈小小" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjy-I4-9FU">
+                                                    <rect key="frame" x="70" y="15" width="48" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ywe-x1-NEp">
+                                                    <rect key="frame" x="70" y="44" width="40" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="15" id="1it-2Q-hRQ"/>
+                                                        <constraint firstAttribute="width" constant="40" id="vQn-eG-tMl"/>
+                                                    </constraints>
+                                                    <state key="normal" backgroundImage="女"/>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5p-K1-x6g">
+                                                    <rect key="frame" x="120" y="44" width="25.5" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bpF-oV-3Cb">
+                                                    <rect key="frame" x="290" y="27" width="20" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="P5w-1r-wif"/>
+                                                        <constraint firstAttribute="height" constant="16" id="XUd-3e-el3"/>
+                                                    </constraints>
+                                                    <state key="normal" backgroundImage="互相关注"/>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uXq-RT-ihb">
+                                                    <rect key="frame" x="255" y="24.5" width="15" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="VvE-oI-K4V"/>
+                                                        <constraint firstAttribute="width" constant="15" id="ynN-gr-bHf"/>
+                                                    </constraints>
+                                                    <state key="normal" backgroundImage="电话"/>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="10b-pI-ZFM">
+                                                    <rect key="frame" x="215" y="24.5" width="20" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="85D-nM-L4v"/>
+                                                        <constraint firstAttribute="width" constant="20" id="mmX-6W-DWJ"/>
+                                                    </constraints>
+                                                    <state key="normal" backgroundImage="聊天"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Xrv-kr-BGO" firstAttribute="top" secondItem="2L1-We-dHs" secondAttribute="top" constant="10" id="9yW-V8-SE2"/>
+                                                <constraint firstItem="xjy-I4-9FU" firstAttribute="leading" secondItem="Xrv-kr-BGO" secondAttribute="trailing" constant="10" id="Dmc-SV-ih3"/>
+                                                <constraint firstItem="Ywe-x1-NEp" firstAttribute="leading" secondItem="xjy-I4-9FU" secondAttribute="leading" id="Iuj-Bi-S12"/>
+                                                <constraint firstItem="g5p-K1-x6g" firstAttribute="leading" secondItem="Ywe-x1-NEp" secondAttribute="trailing" constant="10" id="P25-ku-F2X"/>
+                                                <constraint firstItem="uXq-RT-ihb" firstAttribute="centerY" secondItem="2L1-We-dHs" secondAttribute="centerY" id="QAx-fZ-6Dn"/>
+                                                <constraint firstItem="uXq-RT-ihb" firstAttribute="leading" secondItem="10b-pI-ZFM" secondAttribute="trailing" constant="20" id="Swp-py-GgB"/>
+                                                <constraint firstItem="g5p-K1-x6g" firstAttribute="centerY" secondItem="Ywe-x1-NEp" secondAttribute="centerY" id="XYR-Df-9FD"/>
+                                                <constraint firstAttribute="bottom" secondItem="Xrv-kr-BGO" secondAttribute="bottom" constant="10" id="btc-Em-Ccm"/>
+                                                <constraint firstItem="xjy-I4-9FU" firstAttribute="top" secondItem="2L1-We-dHs" secondAttribute="top" constant="15" id="fzf-s6-9x9"/>
+                                                <constraint firstItem="bpF-oV-3Cb" firstAttribute="centerY" secondItem="2L1-We-dHs" secondAttribute="centerY" id="gnN-fL-xdx"/>
+                                                <constraint firstAttribute="bottom" secondItem="Xrv-kr-BGO" secondAttribute="bottom" constant="10" id="iY8-PC-AIP"/>
+                                                <constraint firstItem="Ywe-x1-NEp" firstAttribute="top" secondItem="xjy-I4-9FU" secondAttribute="bottom" constant="10" id="iwq-1d-IEZ"/>
+                                                <constraint firstItem="10b-pI-ZFM" firstAttribute="centerY" secondItem="2L1-We-dHs" secondAttribute="centerY" id="mon-TI-qiA"/>
+                                                <constraint firstItem="Xrv-kr-BGO" firstAttribute="leading" secondItem="2L1-We-dHs" secondAttribute="leading" constant="10" id="nkM-f0-KSK"/>
+                                                <constraint firstItem="bpF-oV-3Cb" firstAttribute="leading" secondItem="uXq-RT-ihb" secondAttribute="trailing" constant="20" id="qNE-D9-8dY"/>
+                                                <constraint firstAttribute="trailing" secondItem="bpF-oV-3Cb" secondAttribute="trailing" constant="10" id="rHS-hI-bMw"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="iY8-PC-AIP"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.0" green="1" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
@@ -185,5 +262,9 @@
     </scenes>
     <resources>
         <image name="icon_jt" width="27" height="27"/>
+        <image name="互相关注" width="20" height="16"/>
+        <image name="女" width="40" height="15"/>
+        <image name="电话" width="15" height="21"/>
+        <image name="聊天" width="20" height="21"/>
     </resources>
 </document>
