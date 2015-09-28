@@ -26,16 +26,16 @@
     // 1.初始化子控制器
     
     CPNearViewController *nearVc1 = [[CPNearViewController alloc] init];
-    [self addChildVc:nearVc1 title:@"附近" image:@"" selectedImage:@""];
+    [self addChildVc:nearVc1 title:@"附近" image:@"NearUnSelect" selectedImage:@"NearSelect"];
     
     CPTestPhotoViewController *nearVc2 = [[CPTestPhotoViewController alloc] init];
-    [self addChildVc:nearVc2 title:@"推荐" image:@"" selectedImage:@""];
+    [self addChildVc:nearVc2 title:@"推荐" image:@"RecommendUnSelect" selectedImage:@"RecommendSelect"];
     
     CPMyCareController *vc3 = [UIStoryboard storyboardWithName:@"CPMyCareController" bundle:nil].instantiateInitialViewController;
-    [self addChildVc:vc3 title:@"我的关注" image:@"" selectedImage:@""];
+    [self addChildVc:vc3 title:@"我的关注" image:@"DynamicUnSelect" selectedImage:@"DynamicSelect"];
     
     CPMyViewController *nearVc4 = [UIStoryboard storyboardWithName:@"CPMyViewController" bundle:nil].instantiateInitialViewController;
-    [self addChildVc:nearVc4 title:@"我的" image:@"" selectedImage:@""];
+    [self addChildVc:nearVc4 title:@"我的" image:@"MineUnSelect" selectedImage:@"MineSelect"];
 
     // 2.更换系统自带的tabbar
     CPTabBar *tabBar = [[CPTabBar alloc] init];

@@ -27,4 +27,6 @@
 + (UIColor *)getColor:(NSString *)hex;
 
 +(BOOL) isValidateMobile:(NSString *)mobile;
+
++(BOOL) isValidatePassword:(NSString *)password;
 @end

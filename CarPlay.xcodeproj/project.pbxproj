@@ -13,6 +13,8 @@
 		6B153EF81BB5690900560935 /* CPRegViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B153EF41BB5690900560935 /* CPRegViewController.storyboard */; settings = {ASSET_TAGS = (); }; };
 		6B153EFC1BB5692500560935 /* CPMyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B153EFA1BB5692500560935 /* CPMyViewController.m */; settings = {ASSET_TAGS = (); }; };
 		6B153EFD1BB5692500560935 /* CPMyViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B153EFB1BB5692500560935 /* CPMyViewController.storyboard */; settings = {ASSET_TAGS = (); }; };
+		6B51767C1BB9502100D7A62E /* CustomSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B51767A1BB9502100D7A62E /* CustomSwitch.m */; settings = {ASSET_TAGS = (); }; };
+		6B51767D1BB9502100D7A62E /* CustomSwitch.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B51767B1BB9502100D7A62E /* CustomSwitch.xib */; settings = {ASSET_TAGS = (); }; };
 		6B69F53A1BB55505008E7BF1 /* CPTopButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B69F5391BB55505008E7BF1 /* CPTopButton.m */; settings = {ASSET_TAGS = (); }; };
 		6BC919441BB8EE8800E41C64 /* CPCareUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC919431BB8EE8800E41C64 /* CPCareUser.m */; settings = {ASSET_TAGS = (); }; };
 		6BC9194B1BB9118C00E41C64 /* CPMyInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC9194A1BB9118C00E41C64 /* CPMyInfoController.m */; settings = {ASSET_TAGS = (); }; };
@@ -125,6 +127,9 @@
 		6B153EF91BB5692500560935 /* CPMyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyViewController.h; sourceTree = "<group>"; };
 		6B153EFA1BB5692500560935 /* CPMyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyViewController.m; sourceTree = "<group>"; };
 		6B153EFB1BB5692500560935 /* CPMyViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMyViewController.storyboard; sourceTree = "<group>"; };
+		6B5176791BB9502100D7A62E /* CustomSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSwitch.h; sourceTree = "<group>"; };
+		6B51767A1BB9502100D7A62E /* CustomSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSwitch.m; sourceTree = "<group>"; };
+		6B51767B1BB9502100D7A62E /* CustomSwitch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomSwitch.xib; sourceTree = "<group>"; };
 		6B69F5381BB55505008E7BF1 /* CPTopButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTopButton.h; sourceTree = "<group>"; };
 		6B69F5391BB55505008E7BF1 /* CPTopButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTopButton.m; sourceTree = "<group>"; };
 		6BC919421BB8EE8800E41C64 /* CPCareUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCareUser.h; sourceTree = "<group>"; };
@@ -370,6 +375,16 @@
 				E3E6B88D1BB4FD54006B4F8A /* CPLogin */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		6B5176781BB9502100D7A62E /* CustomSwitch */ = {
+			isa = PBXGroup;
+			children = (
+				6B5176791BB9502100D7A62E /* CustomSwitch.h */,
+				6B51767A1BB9502100D7A62E /* CustomSwitch.m */,
+				6B51767B1BB9502100D7A62E /* CustomSwitch.xib */,
+			);
+			path = CustomSwitch;
 			sourceTree = "<group>";
 		};
 		6BC919451BB90FD300E41C64 /* MyInfo */ = {
@@ -1087,6 +1102,7 @@
 		E3A471211BB3A85300973197 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6B5176781BB9502100D7A62E /* CustomSwitch */,
 				E3E6B8961BB515F1006B4F8A /* CPSexView.h */,
 				E3E6B8971BB515F1006B4F8A /* CPSexView.m */,
 			);
@@ -1340,6 +1356,7 @@
 				E31B13501BB9312D00B51696 /* CoreSDWebImage.bundle in Resources */,
 				E31B12E31BB9311700B51696 /* PB.bundle in Resources */,
 				E31E4BE21BAD47A500902B34 /* Assets.xcassets in Resources */,
+				6B51767D1BB9502100D7A62E /* CustomSwitch.xib in Resources */,
 				E31B13531BB9312D00B51696 /* CoreSVP.bundle in Resources */,
 				6B153EF51BB5690900560935 /* CPForgetPassword.storyboard in Resources */,
 				6B153EF81BB5690900560935 /* CPRegViewController.storyboard in Resources */,
@@ -1462,6 +1479,7 @@
 				E3A471951BB3A85300973197 /* Const.m in Sources */,
 				E3A4718F1BB3A85300973197 /* XMNetStatuesTool.m in Sources */,
 				E3A4717C1BB3A85300973197 /* NSFileManager+ZY.m in Sources */,
+				6B51767C1BB9502100D7A62E /* CustomSwitch.m in Sources */,
 				E3A471761BB3A85300973197 /* Aspects.m in Sources */,
 				E31B13541BB9312D00B51696 /* CoreSVP.m in Sources */,
 				E3A471921BB3A85300973197 /* CPNavigationController.m in Sources */,

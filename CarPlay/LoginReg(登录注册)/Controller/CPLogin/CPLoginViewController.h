@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomSwitch.h"
 
 @interface CPLoginViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITextField *accountField;
@@ -18,5 +19,6 @@
 - (IBAction)forgetPasswordBtnClick:(id)sender;
 - (IBAction)thirdpartyLogin:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *forgetPasswordBtn;
+@property (weak, nonatomic) IBOutlet CustomSwitch *switchPassword;
 
 @end
