@@ -94,6 +94,9 @@
                                 <rect key="frame" x="269" y="16.5" width="21" height="22"/>
                                 <state key="normal" image="icon_gz"/>
                                 <state key="selected" image="icon_gz_hover"/>
+                                <connections>
+                                    <action selector="loveClick:" destination="vqL-Bv-kw8" eventType="touchDown" id="2qR-tM-19q"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

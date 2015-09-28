@@ -225,6 +225,11 @@
     
 }
 
+- (IBAction)loveClick:(UIButton *)sender {
+    
+    sender.selected = !sender.isSelected;
+}
+
 
 #pragma mark - lazy
 
@@ -343,7 +348,7 @@
         cameraBtn.titleLabel.font = ZYFont14;
         [cameraBtn setTitle:@"相机" forState:UIControlStateNormal];
         [cameraBtn setBackgroundImage:[UIImage imageNamed:@"btn_pic"] forState:UIControlStateNormal];
-        cameraBtn.hidden = YES;
+        cameraBtn.alpha = 0;
         [_tipView addSubview:cameraBtn];
         
         [cameraBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -358,7 +363,7 @@
         [photoBtn setTitle:@"照片" forState:UIControlStateNormal];
         [photoBtn setBackgroundImage:[UIImage imageNamed:@"btn_pic"] forState:UIControlStateNormal];
         [_tipView addSubview:photoBtn];
-         photoBtn.hidden = YES;
+         photoBtn.alpha = 0;
         
         [photoBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(uploadBtn);
@@ -367,21 +372,38 @@
         }];
         
         [[uploadBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-            cameraBtn.hidden = NO;
-            photoBtn.hidden = NO;
-            [cameraBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+            
+            if (cameraBtn.alpha == 0){
                 
-                make.centerX.equalTo(uploadBtn);
-                make.size.equalTo(uploadBtn);
-                make.top.equalTo(uploadBtn.mas_bottom).offset(10);
-            }];
+                cameraBtn.alpha = 1;
+                photoBtn.alpha = 1;
+                [cameraBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    
+                    make.centerX.equalTo(uploadBtn);
+                    make.top.equalTo(uploadBtn.mas_bottom).offset(10);
+                }];
+                
+                [photoBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    
+                    make.centerX.equalTo(uploadBtn);
+                    make.top.equalTo(cameraBtn.mas_bottom).offset(10);
+                }];
+            }else{
+                cameraBtn.alpha = 0;
+                photoBtn.alpha = 0;
+                [cameraBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    
+                    make.centerX.equalTo(uploadBtn);
+                    make.top.equalTo(uploadBtn);
+                }];
+                
+                [photoBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    
+                    make.centerX.equalTo(uploadBtn);
+                    make.top.equalTo(cameraBtn);
+                }];
 
-            [photoBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-                
-                make.centerX.equalTo(uploadBtn);
-                make.size.equalTo(uploadBtn);
-                make.top.equalTo(cameraBtn.mas_bottom).offset(10);
-            }];
+            }
             
             [UIView animateWithDuration:0.25 animations:^{
                 [_tipView layoutIfNeeded];
