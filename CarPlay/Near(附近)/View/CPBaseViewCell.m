@@ -89,6 +89,11 @@
 @property (nonatomic, strong) UIView *tipView;
 
 /**
+ *  上传按钮
+ */
+@property (nonatomic, strong) UIButton *uploadButton;
+
+/**
  *  约她的动画
  */
 @property (nonatomic, strong) MultiplePulsingHaloLayer *dateAnim;
@@ -108,8 +113,7 @@
 - (void)awakeFromNib
 {
     // 进行初始化设置
-    self.bgView.layer.cornerRadius = 5;
-    self.bgView.clipsToBounds = YES;
+    [self.bgView setCornerRadius:5];
     self.distanceView.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 6);
 
     [self.userIconView sd_setImageWithURL:[NSURL URLWithString:@"http://m3.biz.itc.cn/pic/new/n/50/72/Img7927250_n.jpg"] placeholderImage:nil options:SDWebImageLowPriority | SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
@@ -163,9 +167,8 @@
     }];
     
     [self.tipView makeConstraints:^(MASConstraintMaker *make) {
-        make.width.equalTo(self.userIconView);
-        make.top.and.left.equalTo(@0);
-        make.height.equalTo(@40);
+        make.right.and.left.and.top.equalTo(@0);
+        make.height.equalTo(self.mas_height).multipliedBy(0.5);
     }];
  
 }
@@ -222,8 +225,15 @@
     
 }
 
+- (IBAction)loveClick:(UIButton *)sender {
+    
+    sender.selected = !sender.isSelected;
+}
+
 
 #pragma mark - lazy
+
+
 
 - (FXBlurView *)userCoverView
 {
@@ -253,12 +263,21 @@
 - (UIButton *)dateButton
 {
     if (_dateButton == nil) {
-        _dateButton = [UIButton buttonWithTitle:@"约她" icon:nil titleColor:[UIColor whiteColor] fontSize:16];
+        _dateButton = [UIButton buttonWithTitle:@"邀Ta" icon:nil titleColor:[UIColor whiteColor] fontSize:16];
         
         _dateButton.backgroundColor = RedColor;
         
         _dateButton.layer.cornerRadius = 28;
         _dateButton.clipsToBounds = YES;
+        [[_dateButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            UIAlertView *a = [[UIAlertView alloc] initWithTitle:@"提示" message:@"要什么自行车" delegate:nil cancelButtonTitle:@"要" otherButtonTitles:nil, nil];
+            [a.rac_buttonClickedSignal subscribeNext:^(id x) {
+                if ([x isEqual:@0]) {
+                    DLog(@"要要切克闹");
+                }
+            }];
+            [a show];
+        }];
     }
     return _dateButton;
 }
@@ -308,8 +327,102 @@
 {
     if (_tipView == nil) {
         _tipView = [[UIView alloc] init];
-        _tipView.backgroundColor = [UIColor yellowColor];
-        _tipView.hidden = YES;
+        _tipView.backgroundColor = [UIColor clearColor];
+        
+        UILabel *textL = [UILabel new];
+        textL.text = @"上传照片即可查看Ta的照片呦~";
+        textL.textColor = [UIColor whiteColor];
+        textL.font = ZYFont14;
+        textL.textAlignment = NSTextAlignmentRight;
+        [textL sizeToFit];
+        [_tipView addSubview:textL];
+        
+        UIButton *uploadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        uploadBtn.titleLabel.font = ZYFont14;
+        [uploadBtn setTitle:@"上传" forState:UIControlStateNormal];
+        [uploadBtn setBackgroundImage:[UIImage imageNamed:@"btn_pic"] forState:UIControlStateNormal];
+        
+        [_tipView addSubview:uploadBtn];
+        
+        UIButton *cameraBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        cameraBtn.titleLabel.font = ZYFont14;
+        [cameraBtn setTitle:@"相机" forState:UIControlStateNormal];
+        [cameraBtn setBackgroundImage:[UIImage imageNamed:@"btn_pic"] forState:UIControlStateNormal];
+        cameraBtn.alpha = 0;
+        [_tipView addSubview:cameraBtn];
+        
+        [cameraBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(uploadBtn);
+            make.size.equalTo(uploadBtn);
+            make.top.equalTo(uploadBtn);
+        }];
+
+        
+        UIButton *photoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        photoBtn.titleLabel.font = ZYFont14;
+        [photoBtn setTitle:@"照片" forState:UIControlStateNormal];
+        [photoBtn setBackgroundImage:[UIImage imageNamed:@"btn_pic"] forState:UIControlStateNormal];
+        [_tipView addSubview:photoBtn];
+         photoBtn.alpha = 0;
+        
+        [photoBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(uploadBtn);
+            make.size.equalTo(uploadBtn);
+            make.top.equalTo(uploadBtn);
+        }];
+        
+        [[uploadBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            
+            if (cameraBtn.alpha == 0){
+                
+                cameraBtn.alpha = 1;
+                photoBtn.alpha = 1;
+                [cameraBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    
+                    make.centerX.equalTo(uploadBtn);
+                    make.top.equalTo(uploadBtn.mas_bottom).offset(10);
+                }];
+                
+                [photoBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    
+                    make.centerX.equalTo(uploadBtn);
+                    make.top.equalTo(cameraBtn.mas_bottom).offset(10);
+                }];
+            }else{
+                cameraBtn.alpha = 0;
+                photoBtn.alpha = 0;
+                [cameraBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    
+                    make.centerX.equalTo(uploadBtn);
+                    make.top.equalTo(uploadBtn);
+                }];
+                
+                [photoBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    
+                    make.centerX.equalTo(uploadBtn);
+                    make.top.equalTo(cameraBtn);
+                }];
+
+            }
+            
+            [UIView animateWithDuration:0.25 animations:^{
+                [_tipView layoutIfNeeded];
+            }];
+            
+        }];
+        
+        
+        [uploadBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(@-10);
+            make.top.equalTo(@15);
+            make.size.equalTo(CGSizeMake(58, 30));
+        }];
+        
+        [textL mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(uploadBtn.mas_left).with.offset(-10);
+            make.center.equalTo(uploadBtn);
+            make.left.equalTo(@0);
+        }];
     }
     return _tipView;
 }
