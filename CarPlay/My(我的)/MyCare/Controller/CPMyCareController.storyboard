@@ -241,10 +241,7 @@
                             <constraint firstItem="Rfq-iV-FY6" firstAttribute="leading" secondItem="0uj-DH-Y4O" secondAttribute="leading" id="zyz-hB-s6R"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="我的关注" id="AQZ-dC-Cuz">
-                        <barButtonItem key="leftBarButtonItem" image="icon_jt" id="P57-EP-l2S"/>
-                        <barButtonItem key="rightBarButtonItem" title="个人信息" id="HTQ-mJ-tV0"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="我的关注" id="AQZ-dC-Cuz"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
@@ -262,7 +259,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icon_jt" width="27" height="27"/>
         <image name="互相关注" width="20" height="16"/>
         <image name="女" width="40" height="15"/>
         <image name="电话" width="15" height="21"/>
