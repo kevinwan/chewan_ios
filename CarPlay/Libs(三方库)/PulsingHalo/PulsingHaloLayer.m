@@ -89,7 +89,7 @@
     
     CAKeyframeAnimation *opacityAnimation = [CAKeyframeAnimation animationWithKeyPath:@"opacity"];
     opacityAnimation.duration = self.animationDuration;
-    opacityAnimation.values = @[@(self.fromValueForAlpha), @0.7, @0];
+    opacityAnimation.values = @[@(self.fromValueForAlpha), @0.7,@0];
     opacityAnimation.keyTimes = @[@0, @(self.keyTimeForHalfOpacity), @1];
     opacityAnimation.removedOnCompletion = NO;
     

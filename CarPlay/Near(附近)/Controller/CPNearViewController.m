@@ -19,6 +19,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     [self.view addSubview:self.tableView];
     ZYWeakSelf
     self.tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
