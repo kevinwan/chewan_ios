@@ -23,6 +23,7 @@
     [self.loginBtn.layer setCornerRadius:20.0];
     [self.registerBtn.layer setMasksToBounds:YES];
     [self.registerBtn.layer setCornerRadius:20.0];
+    [self.forgetPasswordBtn setTitleColor:[Tools getColor:@"999999"] forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {

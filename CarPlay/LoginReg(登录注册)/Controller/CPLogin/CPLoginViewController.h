@@ -17,4 +17,6 @@
 - (IBAction)registerBtnClick:(id)sender;
 - (IBAction)forgetPasswordBtnClick:(id)sender;
 - (IBAction)thirdpartyLogin:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *forgetPasswordBtn;
+
 @end
