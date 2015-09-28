@@ -16,7 +16,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self.navigationItem setTitle:@"注册"];
+    [self setLeftNavigationBarItemWithTitle:nil Image:@"Close" highImage:@"Close" target:self action:@selector(dismissPresentVC)];
+    [self.getVerificationCodeBtn.layer setMasksToBounds:YES];
+    [self.getVerificationCodeBtn.layer setCornerRadius:15.0];
+    [self.registerBtn.layer setMasksToBounds:YES];
+    [self.registerBtn.layer setCornerRadius:20.0];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +29,77 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)dismissPresentVC{
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
-*/
 
+#pragma 获取验证码
+- (IBAction)getVerificationCodeBtnClick:(id)sender {
+    
+    if (self.phoneField.text && ![self.phoneField.text isEqualToString:@""]) {
+        if ([Tools isValidateMobile:self.phoneField.text]) {
+            NSString *path=[[NSString alloc]initWithFormat:@"/v2/phone/%@/verification",self.phoneField.text];
+            [ZYNetWorkTool getWithUrl:path params:nil success:^(id responseObject) {
+                if (CPSuccess) {
+                    [self startTime];
+                }else{
+                    NSString *errmsg =[responseObject objectForKey:@"errmsg"];
+                    [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                }
+            } failure:^(NSError *error) {
+                [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                
+            }];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请正确输入手机号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请输入您的手机号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+}
+
+#pragma 手机号注册
+- (IBAction)registerBtnClick:(id)sender {
+    
+}
+
+#pragma 第三方注册
+- (IBAction)thirdpartyRegister:(id)sender {
+    
+}
+
+//获取验证码按钮倒计时
+-(void)startTime{
+    __block int timeout=60; //倒计时时间
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
+    dispatch_source_set_event_handler(_timer, ^{
+        if(timeout<=0){ //倒计时结束，关闭
+            dispatch_source_cancel(_timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+                [self.getVerificationCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+                self.getVerificationCodeBtn.userInteractionEnabled = YES;
+                [self.getVerificationCodeBtn setBackgroundColor:GreenColor];
+                [self.getVerificationCodeBtn setTitleColor:[Tools getColor:@"ffffff"] forState:UIControlStateNormal];
+            });
+        }else{
+            int seconds = timeout;
+            NSString *strTime = [NSString stringWithFormat:@"%.2dS", seconds];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+                [self.getVerificationCodeBtn setTitle:strTime forState:UIControlStateNormal];
+                self.getVerificationCodeBtn.userInteractionEnabled = NO;
+                [self.getVerificationCodeBtn setBackgroundColor:[Tools getColor:@"e5e5e5"]];
+                [self.getVerificationCodeBtn setTitleColor:[Tools getColor:@"ffffff"] forState:UIControlStateNormal];
+            });
+            timeout--;
+        }
+    });
+    dispatch_resume(_timer);
+    
+}
 @end
