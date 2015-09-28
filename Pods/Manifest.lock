@@ -21,6 +21,7 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - EaseMobSDK (2.2.0)
+  - IQKeyboardManager (3.3.2)
   - Masonry (0.6.2)
   - MJExtension (2.5.10)
   - MJRefresh (2.4.10)
@@ -39,6 +40,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - EaseMobSDK (from `https://github.com/easemob/sdk-ios-cocoapods.git`)
+  - IQKeyboardManager
   - Masonry
   - MJExtension
   - MJRefresh
@@ -58,6 +60,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
   EaseMobSDK: e0c1e3d00e95e0e2d54dd58313b52eaed74cc6df
+  IQKeyboardManager: d863eb0bca424d1f6dad6bdd1f856af52664add8
   Masonry: 362e8a1cc0beada4a4c4832d5e863da2a51533be
   MJExtension: 944fb5a12bceb9b866914527f66101566e66292b
   MJRefresh: e52328552ed9cbfce3501e3820b18bf7643c65cc

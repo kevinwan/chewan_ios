@@ -11,7 +11,7 @@
 
 @interface CPNearViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *datas;
+@property (nonatomic, strong) NSMutableArray<CPActivityModel *> *datas;
 @end
 
 @implementation CPNearViewController

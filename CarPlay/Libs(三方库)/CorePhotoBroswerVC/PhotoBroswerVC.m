@@ -314,8 +314,6 @@
         photoItemView = [PhotoItemView viewFromXIB];
     }
     
-    NSLog(@"%p",&photoItemView);
-    
     //数据覆盖
     photoItemView.ItemViewSingleTapBlock = ^(){
         [self dismiss];
@@ -535,12 +533,12 @@
         [actionSheet.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
             if (index.intValue == 0) {
                 
-                CGFloat y = self.scrollView.contentOffset.x - ZYScreenWidth - 20;
+                CGFloat y = self.scrollView.contentOffset.x + ZYScreenWidth + 20;
 #warning 删除有bug 因为缓存问题 待修改
                 if (self.page) {
                     
                     [self.photoModels removeObjectAtIndex:self.page];
-                    [self.currentItemView removeFromSuperview];
+                    [self.currentItemView setPhotoModel:nil];
                     [self.scrollView setContentOffset:CGPointMake(y , 0) animated:YES];
                 }
                 

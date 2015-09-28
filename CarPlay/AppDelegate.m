@@ -10,6 +10,7 @@
 #import "CPTabBarController.h"
 #import "Aspects.h"
 #import "CPMyCareController.h"
+#import "IQKeyboardManager.h"
 
 @interface AppDelegate ()<UITabBarControllerDelegate>
 
@@ -26,6 +27,9 @@
     self.window.rootViewController = tabVc;
     
     [self.window makeKeyAndVisible];
+    
+    // 设置点击空白区域退出键盘
+    [[IQKeyboardManager sharedManager] setShouldResignOnTouchOutside:YES];
     
     [self setViewCycleAop];
 
