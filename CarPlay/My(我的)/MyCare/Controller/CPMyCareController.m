@@ -31,8 +31,42 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // 加载关注信息
+    [self setupMyCare];
   
 }
+
+
+
+#pragma mark - 加载网络数据
+- (void)setupMyCare{
+    
+    // 封装请求参数
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+//    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
+//    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
+    
+    
+    NSString *getUrl = @"http://cwapi.gongpingjia.com:8080/v2/user/5608bc1a0cf2c4f648d9bcd5/subscribe?token=399e45a8-9e72-4734-a1e2-25a0229c549c";
+    
+    [ZYNetWorkTool getWithUrl:getUrl params:nil success:^(id responseObject) {
+        //
+        DLog(@"%@",responseObject);
+        if (CPSuccess) {
+            
+        }
+        
+        
+    } failure:^(NSError *error) {
+        //
+    }];
+    
+    
+}
+
+
+
 
 
 - (IBAction)careClick:(UIButton *)btn{
