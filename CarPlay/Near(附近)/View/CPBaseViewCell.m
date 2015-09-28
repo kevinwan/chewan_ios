@@ -220,10 +220,10 @@
 - (MultiplePulsingHaloLayer *)multiLayer
 {
     MultiplePulsingHaloLayer *multiLayer = [[MultiplePulsingHaloLayer alloc] initWithHaloLayerNum:3 andStartInterval:0.8];
-    multiLayer.fromValueForRadius = 0.5;
+    multiLayer.fromValueForRadius = 0.8;
     multiLayer.radius = 40;
     multiLayer.useTimingFunction = NO;
-    multiLayer.fromValueForAlpha = 0.5;
+    multiLayer.fromValueForAlpha = 1.0;
     [multiLayer buildSublayers];
     [multiLayer setHaloLayerColor:RedColor.CGColor];
     return multiLayer;

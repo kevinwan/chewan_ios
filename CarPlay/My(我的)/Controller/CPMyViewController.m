@@ -17,9 +17,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"设置" target:nil action:@selector(rightClick)];
-//    [self setRightNavigationBarItemWithTitle:@"设置" Image:@"设置" highImage:@"设置" target:nil action:@selector(rightClick)];
-    [self setRightNavigationBarItemWithTitle:@"设置" Image:@"设置" highImage:@"设置" target:nil action:@selector(rightClick)];
+    [self setRightNavigationBarItemWithTitle:nil Image:@"设置" highImage:@"设置" target:self action:@selector(rightClick)];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setHidden:NO];
 }
 
 - (void)didReceiveMemoryWarning {

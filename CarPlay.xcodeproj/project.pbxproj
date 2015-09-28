@@ -213,9 +213,9 @@
 		6B153EED1BB5690900560935 /* CPForgetPassword(忘记密码) */ = {
 			isa = PBXGroup;
 			children = (
-				6B153EEE1BB5690900560935 /* CPForgetPassword.storyboard */,
 				6B153EEF1BB5690900560935 /* CPForgetPasswordViewController.h */,
 				6B153EF01BB5690900560935 /* CPForgetPasswordViewController.m */,
+				6B153EEE1BB5690900560935 /* CPForgetPassword.storyboard */,
 			);
 			path = "CPForgetPassword(忘记密码)";
 			sourceTree = "<group>";

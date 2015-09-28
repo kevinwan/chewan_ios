@@ -28,6 +28,9 @@
     [self.window makeKeyAndVisible];
     
     [self setViewCycleAop];
+
+    [ZYUserDefaults setObject:@"5608a74ae28c15187144fba9" forKey:UserId];
+    [ZYUserDefaults setObject:@"4101fe9c-f5b1-4460-a907-15687a7de517" forKey:Token];
     
     return YES;
 }
