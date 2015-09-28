@@ -10,6 +10,8 @@
 #import "CPTabBar.h"
 #import "CPNavigationController.h"
 #import "CPNearViewController.h"
+#import "CPMyViewController.h"
+#import "CPMyCareController.h"
 
 @interface CPTabBarController () <CPTabBarDelegate>
 
@@ -30,11 +32,10 @@
     CPNearViewController *nearVc2 = [[CPNearViewController alloc] init];
     [self addChildVc:nearVc2 title:@"推荐" image:@"" selectedImage:@""];
     
-    UIViewController *vc3 = [UIStoryboard storyboardWithName:@"CPMyCareController" bundle:nil].instantiateInitialViewController;
+    CPMyCareController *vc3 = [UIStoryboard storyboardWithName:@"CPMyCareController" bundle:nil].instantiateInitialViewController;
     [self addChildVc:vc3 title:@"我的关注" image:@"" selectedImage:@""];
     
-    CPNearViewController *nearVc4 = [[CPNearViewController alloc] init];
-    nearVc4.view.backgroundColor = [UIColor blueColor];
+    CPMyViewController *nearVc4 = [UIStoryboard storyboardWithName:@"CPMyViewController" bundle:nil].instantiateInitialViewController;
     [self addChildVc:nearVc4 title:@"我的" image:@"" selectedImage:@""];
 
     // 2.更换系统自带的tabbar
@@ -78,6 +79,12 @@
     UIViewController *vc = [[UIViewController alloc] init];
     vc.view.backgroundColor = [UIColor redColor];
     [self presentViewController:vc animated:YES completion:nil];
+}
+
+- (void)setSelectedIndex:(NSUInteger)selectedIndex
+{
+    NSLog(@"%zd----",selectedIndex);
+    [super setSelectedIndex:selectedIndex];
 }
 
 @end

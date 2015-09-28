@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPNearViewCell : UITableViewCell
+@interface CPBaseViewCell : UITableViewCell
 
 @end
