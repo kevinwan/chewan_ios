@@ -86,7 +86,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O59-Qp-lmp">
                                 <rect key="frame" x="165" y="312" width="145" height="40"/>
-                                <color key="backgroundColor" red="0.33725490196078434" green="0.6588235294117647" blue="0.68627450980392157" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.39215686274509803" green="0.7686274509803922" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="les-lt-e7j"/>
                                 </constraints>
@@ -238,6 +238,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="accountField" destination="Tel-x2-0r7" id="gai-fY-hAh"/>
+                        <outlet property="forgetPasswordBtn" destination="efI-lR-ujY" id="tFa-I3-gTc"/>
                         <outlet property="loginBtn" destination="Sa9-8t-p4B" id="Ol6-8E-2s8"/>
                         <outlet property="passwordField" destination="qlY-c6-VSJ" id="Kds-O3-zOp"/>
                         <outlet property="registerBtn" destination="O59-Qp-lmp" id="1ZY-fa-rbV"/>
