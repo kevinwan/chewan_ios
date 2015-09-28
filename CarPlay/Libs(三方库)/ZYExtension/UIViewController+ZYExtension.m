@@ -8,7 +8,7 @@
 
 #import "UIViewController+ZYExtension.h"
 
-#define NavgationItemTitleColor [UIColor whiteColor]
+#define NavgationItemTitleColor [UIColor blackColor]
 #define NavgationItemTitleFont  [UIFont systemFontOfSize:16]
 
 @implementation UIViewController (ZYExtension)
