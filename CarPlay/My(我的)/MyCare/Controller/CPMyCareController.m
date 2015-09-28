@@ -25,6 +25,10 @@
 @property (weak, nonatomic) IBOutlet UIView *twoLine;
 @property (weak, nonatomic) IBOutlet UIView *threeLine;
 
+
+
+
+
 @end
 
 @implementation CPMyCareController
@@ -32,9 +36,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setRightNavigationBarItemWithTitle:@"我的关注" Image:nil highImage:nil target:self action:@selector(gotoMyInfo)];
+    
     // 加载关注信息
     [self setupMyCare];
   
+}
+
+
+// 临时跳转
+- (void)gotoMyInfo{
+    
 }
 
 
