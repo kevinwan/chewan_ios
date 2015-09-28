@@ -11,4 +11,5 @@
 @interface CPSexView : UIButton
 @property (nonatomic, assign) NSUInteger age;
 @property (nonatomic, assign) BOOL isMan;
+@property (nonatomic, copy) NSString *gender;
 @end

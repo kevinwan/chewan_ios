@@ -20,14 +20,7 @@
 {
     [super viewDidLoad];
 //    
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"haha" target:self action:@selector(haha)];
-    
-//    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"yaweiye" action:^{
-//        NSLog(@"厉害啊伟业");
-//    }];
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"wocao" style:UIBarButtonItemStyleDone target:self action:@selector(heh)];
-     NSLog(@"frame---%@ .. %@",NSStringFromCGRect(self.navigationController.navigationItem.rightBarButtonItem.customView.frame), self.navigationController.navigationItem.rightBarButtonItem.title);
-//    [self setLeftNavigationBarItemWithTitle:@"hah" Image:nil highImage:nil target:nil action:nil];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"筛选" target:self action:@selector(filter)];
     
     [self.view addSubview:self.tableView];
     ZYWeakSelf
@@ -37,7 +30,7 @@
     }];
 }
 
-- (void)haha
+- (void)filter
 {
     NSLog(@"伟业");
 }

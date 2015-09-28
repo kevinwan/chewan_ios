@@ -99,7 +99,7 @@ static const char ZYActionKey = '\0';
         [btn setImage:[UIImage imageNamed:higImage] forState:UIControlStateHighlighted];
     }
     // 设置标题
-    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont systemFontOfSize:16];
     
     [btn setTitle:title forState:UIControlStateNormal];

@@ -53,4 +53,14 @@
     [self setTitle:[NSString stringWithFormat:@"%zd",age] forState:UIControlStateNormal];
 }
 
+- (void)setGender:(NSString *)gender
+{
+    _gender = [gender copy];
+    if ([gender isEqualToString:@"男"]) {
+        self.isMan = YES;
+    }else{
+        self.isMan = NO;
+    }
+}
+
 @end

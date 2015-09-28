@@ -81,7 +81,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQr-8m-CGj">
-                                <rect key="frame" x="160" y="344.5" width="130" height="15"/>
+                                <rect key="frame" x="160" y="344" width="130" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="22220m" image="距离">
                                     <color key="titleColor" red="0.5607843137254902" green="0.83921568627450982" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
@@ -89,6 +89,11 @@
                                 <connections>
                                     <action selector="distanceClick:" destination="vqL-Bv-kw8" eventType="touchUpInside" id="j6t-VE-xLg"/>
                                 </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CuS-pj-HqN">
+                                <rect key="frame" x="269" y="16.5" width="21" height="22"/>
+                                <state key="normal" image="icon_gz"/>
+                                <state key="selected" image="icon_gz_hover"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -101,6 +106,7 @@
                             <constraint firstItem="ZQ1-dG-BzA" firstAttribute="centerY" secondItem="lKM-Sl-VgI" secondAttribute="centerY" id="6f9-da-USm"/>
                             <constraint firstItem="lKM-Sl-VgI" firstAttribute="top" secondItem="2M9-Ns-HWN" secondAttribute="top" constant="17" id="7kN-M7-Ldv"/>
                             <constraint firstItem="ZQ1-dG-BzA" firstAttribute="leading" secondItem="lKM-Sl-VgI" secondAttribute="trailing" constant="66" id="9bQ-yB-qjb"/>
+                            <constraint firstAttribute="trailing" secondItem="CuS-pj-HqN" secondAttribute="trailing" constant="10" id="CPQ-4k-MFs"/>
                             <constraint firstItem="hQr-8m-CGj" firstAttribute="width" secondItem="Sah-8z-7Vp" secondAttribute="width" id="F9j-Le-SOX"/>
                             <constraint firstItem="o5u-QQ-jER" firstAttribute="top" secondItem="lKM-Sl-VgI" secondAttribute="bottom" constant="11" id="GZa-Uf-fZk"/>
                             <constraint firstItem="1kK-Wq-sqP" firstAttribute="centerY" secondItem="o5u-QQ-jER" secondAttribute="centerY" id="IP9-Md-RCY"/>
@@ -111,6 +117,7 @@
                             <constraint firstItem="hQr-8m-CGj" firstAttribute="leading" secondItem="Sah-8z-7Vp" secondAttribute="trailing" constant="20" id="Vpe-dR-oDc"/>
                             <constraint firstItem="uBV-c9-lCX" firstAttribute="centerY" secondItem="o5u-QQ-jER" secondAttribute="centerY" id="fd1-iS-GL1"/>
                             <constraint firstItem="o5u-QQ-jER" firstAttribute="leading" secondItem="2M9-Ns-HWN" secondAttribute="leading" constant="10" id="hb3-Mm-IUY"/>
+                            <constraint firstItem="CuS-pj-HqN" firstAttribute="centerY" secondItem="lKM-Sl-VgI" secondAttribute="centerY" id="kNd-J2-nPi"/>
                             <constraint firstItem="Sah-8z-7Vp" firstAttribute="top" secondItem="fBh-C9-X7g" secondAttribute="bottom" constant="12" id="lyl-h3-Lfl"/>
                             <constraint firstItem="hQr-8m-CGj" firstAttribute="centerY" secondItem="Sah-8z-7Vp" secondAttribute="centerY" id="n6w-70-rev"/>
                             <constraint firstItem="Q8o-f5-ZTT" firstAttribute="leading" secondItem="lKM-Sl-VgI" secondAttribute="trailing" constant="10" id="oT6-yF-2Im"/>
@@ -145,6 +152,8 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="icon_gz" width="21" height="18"/>
+        <image name="icon_gz_hover" width="21" height="18"/>
         <image name="未认证-审核中" width="18" height="18"/>
         <image name="男" width="40" height="15"/>
         <image name="距离" width="10" height="14"/>
