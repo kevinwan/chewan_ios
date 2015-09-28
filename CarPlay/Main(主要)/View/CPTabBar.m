@@ -18,10 +18,10 @@
 {
     if (_plusBtn == nil) {
         _plusBtn = [[UIButton alloc] init];
-        [_plusBtn setImage:[UIImage imageNamed:@"ceo头像"] forState:UIControlStateNormal];
+        [_plusBtn setImage:[UIImage imageNamed:@"Wheel"] forState:UIControlStateNormal];
         [_plusBtn setBackgroundColor:[UIColor clearColor]];
     
-        [_plusBtn addAnimation:[CAAnimation scaleFrom:0.9 toScale:1.2 durTimes:0.4 rep:MAXFLOAT]];
+        [_plusBtn addAnimation:[CAAnimation rotation:50 degree:-200 direction:ZYAxisZ repeatCount:MAXFLOAT]];
         [_plusBtn addTarget:self action:@selector(plusClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _plusBtn;
@@ -46,14 +46,15 @@
     _plusBtn?:[self addSubview:self.plusBtn];
     
     self.plusBtn.width = self.bounds.size.width / 5.0;
-    self.plusBtn.height = self.bounds.size.height;
+    self.plusBtn.height = self.bounds.size.width / 5.0;
+    NSLog(@"width:%f-----height:%f",self.plusBtn.width,self.plusBtn.height);
     // 1.设置加号按钮的位置
     self.plusBtn.centerX = self.bounds.size.width * 0.5;
     self.plusBtn.centerY = self.bounds.size.height * 0.5 - 10;
     ;
 
     // 2.设置其他tabbarButton的位置和尺寸
-    CGFloat tabbarButtonW = self.bounds.size.width / 5;
+    CGFloat tabbarButtonW = self.bounds.size.width / 5.0;
     CGFloat tabbarButtonIndex = 0;
     for (UIView *child in self.subviews) {
         Class class = NSClassFromString(@"UITabBarButton");

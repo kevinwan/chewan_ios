@@ -62,7 +62,45 @@
 
 #pragma 手机号注册
 - (IBAction)registerBtnClick:(id)sender {
-    
+    if (self.phoneField.text && ![self.phoneField.text isEqualToString:@""]) {
+        if ([Tools isValidateMobile:self.phoneField.text]) {
+            if (self.verificationCodeField.text && ![self.verificationCodeField.text isEqualToString:@""]) {
+                if (self.verificationCodeField.text.length == 4) {
+                    if (self.passwordField.text && ![self.passwordField.text isEqualToString:@""]) {
+                        if ([Tools isValidatePassword:self.passwordField.text]) {
+                            NSString *path=[[NSString alloc]initWithFormat:@"/v2/phone/%@/verification" ,self.phoneField.text];
+                            NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:self.verificationCodeField.text,@"code", nil];
+                            [ZYNetWorkTool getWithUrl:path params:params success:^(id responseObject) {
+                                if (CPSuccess) {
+                                    NSLog(@"注册成功");
+                                }else{
+                                    NSString *errmsg =[responseObject objectForKey:@"errmsg"];
+                                    [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                                }
+                            } failure:^(NSError *error) {
+                                [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                                
+                            }];
+                        }else{
+                            [[[UIAlertView alloc]initWithTitle:@"提示" message:@"密码为6-15位字母和数组的组合" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                        }
+                    }else{
+                        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请输入您的密码" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                    }
+                }else{
+                    [[[UIAlertView alloc]initWithTitle:@"提示" message:@"验证码为四位数字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                }
+            }else{
+                [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请输入验证码" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请正确输入手机号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请输入您的手机号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
 }
 
 #pragma 第三方注册

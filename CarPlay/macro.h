@@ -13,7 +13,7 @@
 //#define BASE_URL @"http://chewanapi.gongpingjia.com/"
 
 // 测试服务器接口地址
-#define BASE_URL @"http://cwapi.gongpingjia.com/:8080"
+#define BASE_URL @"http://cwapi.gongpingjia.com:8080"
 
 
 //==============================DLog/NSLog=====================

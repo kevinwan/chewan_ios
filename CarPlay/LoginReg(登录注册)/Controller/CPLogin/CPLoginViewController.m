@@ -23,18 +23,18 @@
     [self.loginBtn.layer setCornerRadius:20.0];
     [self.registerBtn.layer setMasksToBounds:YES];
     [self.registerBtn.layer setCornerRadius:20.0];
-    [self.forgetPasswordBtn setTitleColor:[Tools getColor:@"999999"] forState:UIControlStateNormal];
+    self.switchPassword.arrange = CustomSwitchArrangeONLeftOFFRight;
+    self.switchPassword.onImage = [UIImage imageNamed:@"SwitchOn"];
+    self.switchPassword.offImage = [UIImage imageNamed:@"SwitchOff"];
+    self.switchPassword.status = CustomSwitchStatusOff;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    
     [self.navigationController.navigationBar setHidden:YES];
-    
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
@@ -52,7 +52,33 @@
 */
 #pragma mark - 登录
 - (IBAction)loginBtnClick:(id)sender {
-    
+    if (self.accountField.text && ![self.accountField.text isEqualToString:@""]) {
+        if ([Tools isValidateMobile:self.accountField.text]) {
+            if (self.passwordField.text && ![self.passwordField.text isEqualToString:@""]) {
+                NSDictionary *paras=[[NSDictionary alloc]initWithObjectsAndKeys:self.accountField.text,@"phone",self.passwordField.text,@"password",nil];
+                [ZYNetWorkTool postJsonWithUrl:@"/v2/user/login" params:paras success:^(id responseObject) {
+                    if (CPSuccess) {
+                        NSLog(@"登录成功");
+                    }else{
+                        NSString *errmsg =[responseObject objectForKey:@"errmsg"];
+                        [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                    }
+                } failed:^(NSError *error) {
+                    [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                    
+                }];
+            }else{
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请输入您的密码" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alert show];
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请正确输入手机号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请输入您的手机号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
 }
 
 #pragma mark - 注册
@@ -73,5 +99,20 @@
 #pragma mark - 第三方登录
 - (IBAction)thirdpartyLogin:(id)sender {
     
+}
+
+#pragma mark - customSwitch delegate
+-(void)customSwitchSetStatus:(CustomSwitchStatus)status
+{
+    switch (status) {
+        case CustomSwitchStatusOn:
+            self.passwordField.secureTextEntry=NO;
+            break;
+        case CustomSwitchStatusOff:
+            self.passwordField.secureTextEntry=YES;
+            break;
+        default:
+            break;
+    }
 }
 @end

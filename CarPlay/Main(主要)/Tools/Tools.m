@@ -57,4 +57,23 @@
     NSPredicate *phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",phoneRegex];
     return [phoneTest evaluateWithObject:mobile];
 }
+
++(BOOL) isValidatePassword:(NSString *)password{
+    // 特殊字符包含`、-、=、\、[、]、;、'、,、.、/、~、!、@、#、$、%、^、&、*、(、)、_、+、|、?、>、<、"、:、{、}
+    // 必须包含数字和字母，可以包含上述特殊字符。
+    // 依次为（如果包含特殊字符）
+    // 数字 字母 特殊
+    // 字母 数字 特殊
+    // 数字 特殊 字母
+    // 字母 特殊 数字
+    // 特殊 数字 字母
+    // 特殊 字母 数字
+    NSString *passWordRegex = @"(\\d+[a-zA-Z]+[-`=\\\[\\];',./~!@#$%^&*()_+|{}:\"<>?]*)|([a-zA-Z]+\\d+[-`=\\\[\\];',./~!@#$%^&*()_+|{}:\"<>?]*)|(\\d+[-`=\\\[\\];',./~!@#$%^&*()_+|{}:\"<>?]*[a-zA-Z]+)|([a-zA-Z]+[-`=\\\[\\];',./~!@#$%^&*()_+|{}:\"<>?]*\\d+)|([-`=\\\[\\];',./~!@#$%^&*()_+|{}:\"<>?]*\\d+[a-zA-Z]+)|([-`=\\\[\\];',./~!@#$%^&*()_+|{}:\"<>?]*[a-zA-Z]+\\d+)";
+    NSPredicate *passWordPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", passWordRegex];
+    BOOL validate=[passWordPredicate evaluateWithObject:password];
+    if (password.length<6 || password.length>15) {
+        validate = FALSE;
+    }
+    return [passWordPredicate evaluateWithObject:password];
+}
 @end
