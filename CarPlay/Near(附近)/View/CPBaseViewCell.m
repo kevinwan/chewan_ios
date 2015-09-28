@@ -375,8 +375,6 @@
             
             if (cameraBtn.alpha == 0){
                 
-                cameraBtn.alpha = 1;
-                photoBtn.alpha = 1;
                 [cameraBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
                     
                     make.centerX.equalTo(uploadBtn);
@@ -388,9 +386,14 @@
                     make.centerX.equalTo(uploadBtn);
                     make.top.equalTo(cameraBtn.mas_bottom).offset(10);
                 }];
+                
+                [UIView animateWithDuration:0.25 animations:^{
+                    
+                    cameraBtn.alpha = 1;
+                    photoBtn.alpha = 1;
+                    [_tipView layoutIfNeeded];
+                }];
             }else{
-                cameraBtn.alpha = 0;
-                photoBtn.alpha = 0;
                 [cameraBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
                     
                     make.centerX.equalTo(uploadBtn);
@@ -402,12 +405,16 @@
                     make.centerX.equalTo(uploadBtn);
                     make.top.equalTo(cameraBtn);
                 }];
+                
+                [UIView animateWithDuration:0.25 animations:^{
+                    
+                    cameraBtn.alpha = 0;
+                    photoBtn.alpha = 0;
+                    [_tipView layoutIfNeeded];
+                }];
 
             }
             
-            [UIView animateWithDuration:0.25 animations:^{
-                [_tipView layoutIfNeeded];
-            }];
             
         }];
         
