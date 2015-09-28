@@ -7,7 +7,6 @@
 //
 
 #import "CPNavigationController.h"
-#import "ZYNavigationBar.h"
 
 @interface CPNavigationController ()
 
