@@ -38,7 +38,7 @@
                                 </constraints>
                                 <color key="textColor" red="0.90588235289999997" green="0.23137254900000001" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o3R-M7-NqD">
                                 <rect key="frame" x="10" y="220" width="300" height="1"/>
@@ -94,6 +94,9 @@
                                 <state key="normal" title="注册">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="registerBtnClick:" destination="Cdn-Ce-Zhu" eventType="touchUpInside" id="fkQ-fA-T50"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efI-lR-ujY">
                                 <rect key="frame" x="10" y="368" width="80" height="16"/>
@@ -105,17 +108,26 @@
                                 <state key="normal" title="忘记密码？">
                                     <color key="titleColor" red="0.72156862745098038" green="0.72156862745098038" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="forgetPasswordBtnClick:" destination="Cdn-Ce-Zhu" eventType="touchUpInside" id="kLA-4Y-A4L"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdt-cE-Gd1">
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdt-cE-Gd1">
                                 <rect key="frame" x="137" y="499" width="46" height="46"/>
                                 <state key="normal" image="QQ"/>
+                                <connections>
+                                    <action selector="thirdpartyLogin:" destination="Cdn-Ce-Zhu" eventType="touchUpInside" id="WKB-JN-zU7"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ppl-Er-XRL">
                                 <rect key="frame" x="251" y="499" width="46" height="46"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B2Y-wt-beb">
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B2Y-wt-beb">
                                 <rect key="frame" x="236" y="499" width="46" height="46"/>
                                 <state key="normal" image="Weibo"/>
+                                <connections>
+                                    <action selector="thirdpartyLogin:" destination="Cdn-Ce-Zhu" eventType="touchUpInside" id="Wmg-YV-rhG"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="第三方账号直接登录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vro-qp-m4C">
                                 <rect key="frame" x="97" y="467" width="126" height="21"/>
@@ -147,13 +159,16 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xwb-gL-00p">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xwb-gL-00p">
                                 <rect key="frame" x="38" y="499" width="46" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="7FV-Je-JHi"/>
                                     <constraint firstAttribute="width" constant="46" id="Xkd-al-Qy2"/>
                                 </constraints>
                                 <state key="normal" image="Wechat"/>
+                                <connections>
+                                    <action selector="thirdpartyLogin:" destination="Cdn-Ce-Zhu" eventType="touchUpInside" id="M4Z-33-paK"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sa9-8t-p4B">
                                 <rect key="frame" x="10" y="312" width="145" height="40"/>
@@ -165,6 +180,9 @@
                                 <state key="normal" title="登录">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="loginBtnClick:" destination="Cdn-Ce-Zhu" eventType="touchUpInside" id="IJU-US-Fmd"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -184,6 +202,7 @@
                             <constraint firstAttribute="trailing" secondItem="o3R-M7-NqD" secondAttribute="trailing" constant="10" id="8AA-Fu-FPq"/>
                             <constraint firstItem="mdt-cE-Gd1" firstAttribute="leading" secondItem="Xwb-gL-00p" secondAttribute="trailing" constant="53" id="8gN-1N-0MQ"/>
                             <constraint firstItem="mdt-cE-Gd1" firstAttribute="centerY" secondItem="Xwb-gL-00p" secondAttribute="centerY" id="AHg-Px-1ml"/>
+                            <constraint firstAttribute="bottom" secondItem="Xwb-gL-00p" secondAttribute="bottom" constant="23" id="AVT-Q8-IGh"/>
                             <constraint firstItem="mdt-cE-Gd1" firstAttribute="height" secondItem="Xwb-gL-00p" secondAttribute="height" id="EtK-tn-fRA"/>
                             <constraint firstItem="Xwb-gL-00p" firstAttribute="top" secondItem="lrJ-hz-RTy" secondAttribute="bottom" constant="21" id="H1u-0z-Thx"/>
                             <constraint firstItem="qlY-c6-VSJ" firstAttribute="centerY" secondItem="BSs-gw-N2k" secondAttribute="centerY" id="H7L-2B-R6J"/>
@@ -207,7 +226,6 @@
                             <constraint firstItem="Cdo-gK-efD" firstAttribute="leading" secondItem="Gcz-ZT-pWH" secondAttribute="leading" constant="10" id="oX6-7R-N6X"/>
                             <constraint firstAttribute="trailing" secondItem="EZc-5c-qGX" secondAttribute="trailing" constant="10" id="ofe-lG-Et7"/>
                             <constraint firstItem="BSs-gw-N2k" firstAttribute="top" secondItem="o3R-M7-NqD" secondAttribute="bottom" constant="28" id="onP-AO-LvY"/>
-                            <constraint firstItem="Mlg-2q-cJ8" firstAttribute="top" secondItem="Xwb-gL-00p" secondAttribute="bottom" constant="23" id="r4G-2P-pkb"/>
                             <constraint firstItem="Tel-x2-0r7" firstAttribute="leading" secondItem="Cdo-gK-efD" secondAttribute="trailing" constant="10" id="se7-dU-o9a"/>
                             <constraint firstItem="Tel-x2-0r7" firstAttribute="top" secondItem="NtR-cd-yDf" secondAttribute="bottom" constant="21" id="uhC-Nt-hsJ"/>
                             <constraint firstItem="XbX-oM-duw" firstAttribute="leading" secondItem="Vro-qp-m4C" secondAttribute="trailing" constant="10" id="uub-Ee-81K"/>
@@ -218,6 +236,12 @@
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="accountField" destination="Tel-x2-0r7" id="gai-fY-hAh"/>
+                        <outlet property="loginBtn" destination="Sa9-8t-p4B" id="Ol6-8E-2s8"/>
+                        <outlet property="passwordField" destination="qlY-c6-VSJ" id="Kds-O3-zOp"/>
+                        <outlet property="registerBtn" destination="O59-Qp-lmp" id="1ZY-fa-rbV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hhX-na-4Uw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

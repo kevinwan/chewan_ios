@@ -38,7 +38,7 @@
 - (void)setLeftNavigationBarItemWithTitle:(NSString *)title Image:(NSString *)imageName highImage:(NSString *)highImageName target:(id)target action:(SEL)action
 {
     if (self.navigationController) {
-        self.navigationController.navigationItem.leftBarButtonItem = [self navigationBarItemWithTitle:title Image:imageName highImage:highImageName target:target action:action];
+        self.navigationItem.leftBarButtonItem = [self navigationBarItemWithTitle:title Image:imageName highImage:highImageName target:target action:action];
     }else{
         NSLog(@"😁并没有找到导航控制器");
     }
@@ -47,7 +47,7 @@
 - (void)setRightNavigationBarItemWithTitle:(NSString *)title Image:(NSString *)imageName highImage:(NSString *)highImageName target:(id)target action:(SEL)action
 {
     if (self.navigationController) {
-        self.navigationController.navigationItem.rightBarButtonItem = [self navigationBarItemWithTitle:title Image:imageName highImage:highImageName target:target action:action];
+        self.navigationItem.rightBarButtonItem = [self navigationBarItemWithTitle:title Image:imageName highImage:highImageName target:target action:action];
     }else{
         NSLog(@"😁并没有找到导航控制器");
     }
