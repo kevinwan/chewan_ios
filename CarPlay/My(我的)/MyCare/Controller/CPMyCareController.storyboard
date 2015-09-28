@@ -243,6 +243,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="我的关注" id="AQZ-dC-Cuz">
                         <barButtonItem key="leftBarButtonItem" image="icon_jt" id="P57-EP-l2S"/>
+                        <barButtonItem key="rightBarButtonItem" title="个人信息" id="HTQ-mJ-tV0"/>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
