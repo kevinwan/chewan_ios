@@ -63,9 +63,9 @@
     
     // 封装请求参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    parameters[@"token"] = @"399e45a8-9e72-4734-a1e2-25a0229c549c";
+    parameters[@"token"] = @"329b04df-ecdd-40db-af6e-2ca0f283637d";
     
-    NSString *userId = @"5608bc1a0cf2c4f648d9bcd5";
+    NSString *userId = @"5609eaf70cf224e7d878f691";
     NSString *getUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com:8080/v2/user/%@/subscribe",userId];
     
     [ZYNetWorkTool getWithUrl:getUrl params:parameters success:^(id responseObject) {
