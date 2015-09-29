@@ -8,10 +8,13 @@
 
 #import "CPNearViewController.h"
 #import "CPBaseViewCell.h"
+#import "CPMySwitch.h"
 
 @interface CPNearViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray<CPActivityModel *> *datas;
+@property (nonatomic, strong) UIView *tipView;
+
 @end
 
 @implementation CPNearViewController
@@ -21,8 +24,8 @@
     [super viewDidLoad];
 //    
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"筛选" target:self action:@selector(filter)];
-    
     [self.view addSubview:self.tableView];
+    [self tipView];
     ZYWeakSelf
     self.tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         ZYStrongSelf
@@ -99,6 +102,45 @@
         [_datas addObject:@"5"];
     }
     return _datas;
+}
+
+- (UIView *)tipView
+{
+    if (_tipView == nil) {
+        _tipView = [[UIView alloc] init];
+        _tipView.backgroundColor = ZYColor(0, 0, 0, 0.7);
+        [self.view addSubview:_tipView];
+        [_tipView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(@64);
+            make.width.equalTo(self.view);
+            make.height.equalTo(@35);
+        }];
+        
+        UILabel *textL = [UILabel labelWithText:@"有空,其他人可以邀请你参加活动" textColor:[UIColor whiteColor] fontSize:14];
+        [_tipView addSubview:textL];
+        [textL mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(@10);
+            make.centerY.equalTo(_tipView);
+        }];
+        
+        CPMySwitch *freeTimeBtn = [CPMySwitch new];
+        [_tipView addSubview:freeTimeBtn];
+        [[freeTimeBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton *btn) {
+            
+            btn.selected = !btn.isSelected;
+            
+            if (btn.isSelected) {
+                textL.text = @"有空,其他人可以邀请你参加活动";
+            }else{
+                textL.text = @"没空,你将接受不到任何活动邀请";
+            }
+        }];
+        [freeTimeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(_tipView);
+            make.right.equalTo(@-10);
+        }];
+    }
+    return _tipView;
 }
 
 @end

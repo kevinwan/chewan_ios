@@ -12,6 +12,7 @@
 #import "MultiplePulsingHaloLayer.h"
 #import "CPSexView.h"
 #import "UIButton+WebCache.h"
+#import "CPNoHighLightButton.h"
 
 @interface CPBaseViewCell ()
 /**
@@ -86,7 +87,7 @@
 /**
  *  提示未认证
  */
-@property (nonatomic, strong) UIView *tipView;
+@property (nonatomic, strong) UIImageView *tipView;
 
 /**
  *  上传按钮
@@ -133,6 +134,7 @@
     [self.userIconView addSubview:self.dateButton];
     [self.userIconView addSubview:self.invitedButton];
     [self.userIconView addSubview:self.ignoreButton];
+    [self beginLayoutSubviews];
     [self dateAnim];
 }
 
@@ -142,12 +144,10 @@
     if (cell == nil) {
         cell = [[NSBundle mainBundle] loadNibNamed:@"CPBaseViewCell" owner:nil options:nil].lastObject;
     }
-    cell.tipView.hidden = YES;
     return cell;
 }
-- (void)layoutSubviews
+- (void)beginLayoutSubviews
 {
-    [super layoutSubviews];
     [self.dateButton mas_makeConstraints:^(MASConstraintMaker *make){
         make.centerX.equalTo(self.userIconView);
         make.size.equalTo(CGSizeMake(56, 56));
@@ -168,7 +168,7 @@
     
     [self.tipView makeConstraints:^(MASConstraintMaker *make) {
         make.right.and.left.and.top.equalTo(@0);
-        make.height.equalTo(self.mas_height).multipliedBy(0.5);
+        make.height.equalTo(self.userIconView.mas_height).multipliedBy(0.5);
     }];
  
 }
@@ -227,6 +227,10 @@
 
 - (IBAction)loveClick:(UIButton *)sender {
     
+    
+    if (!sender.isSelected) {
+        [sender addAnimation:[CAAnimation scaleFrom:1.0 toScale:1.2 durTimes:0.2 rep:1]];
+    }
     sender.selected = !sender.isSelected;
 }
 
@@ -323,11 +327,12 @@
 /**
  *  提示未上传图片
  */
-- (UIView *)tipView
+- (UIImageView *)tipView
 {
     if (_tipView == nil) {
-        _tipView = [[UIView alloc] init];
-        _tipView.backgroundColor = [UIColor clearColor];
+        _tipView = [[UIImageView alloc] init];
+        _tipView.userInteractionEnabled = YES;
+        _tipView.image = [UIImage imageNamed:@"bg_pic"];
         
         UILabel *textL = [UILabel new];
         textL.text = @"上传照片即可查看Ta的照片呦~";
@@ -337,14 +342,14 @@
         [textL sizeToFit];
         [_tipView addSubview:textL];
         
-        UIButton *uploadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        CPNoHighLightButton *uploadBtn = [CPNoHighLightButton buttonWithType:UIButtonTypeCustom];
         uploadBtn.titleLabel.font = ZYFont14;
         [uploadBtn setTitle:@"上传" forState:UIControlStateNormal];
         [uploadBtn setBackgroundImage:[UIImage imageNamed:@"btn_pic"] forState:UIControlStateNormal];
         
         [_tipView addSubview:uploadBtn];
         
-        UIButton *cameraBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        CPNoHighLightButton *cameraBtn = [CPNoHighLightButton buttonWithType:UIButtonTypeCustom];
         cameraBtn.titleLabel.font = ZYFont14;
         [cameraBtn setTitle:@"相机" forState:UIControlStateNormal];
         [cameraBtn setBackgroundImage:[UIImage imageNamed:@"btn_pic"] forState:UIControlStateNormal];
@@ -356,9 +361,8 @@
             make.size.equalTo(uploadBtn);
             make.top.equalTo(uploadBtn);
         }];
-
         
-        UIButton *photoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        CPNoHighLightButton *photoBtn = [CPNoHighLightButton buttonWithType:UIButtonTypeCustom];
         photoBtn.titleLabel.font = ZYFont14;
         [photoBtn setTitle:@"照片" forState:UIControlStateNormal];
         [photoBtn setBackgroundImage:[UIImage imageNamed:@"btn_pic"] forState:UIControlStateNormal];
@@ -427,8 +431,7 @@
         
         [textL mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(uploadBtn.mas_left).with.offset(-10);
-            make.center.equalTo(uploadBtn);
-            make.left.equalTo(@0);
+            make.centerY.equalTo(uploadBtn);
         }];
     }
     return _tipView;

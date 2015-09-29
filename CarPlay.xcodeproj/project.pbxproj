@@ -109,6 +109,8 @@
 		E3A471951BB3A85300973197 /* Const.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A4716C1BB3A85300973197 /* Const.m */; settings = {ASSET_TAGS = (); }; };
 		E3A471961BB3A85300973197 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A4716F1BB3A85300973197 /* Tools.m */; settings = {ASSET_TAGS = (); }; };
 		E3A471971BB3A85300973197 /* CPTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A471721BB3A85300973197 /* CPTabBar.m */; settings = {ASSET_TAGS = (); }; };
+		E3AF16FE1BBA296C00306ABF /* CPNoHighLightButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AF16FD1BBA296C00306ABF /* CPNoHighLightButton.m */; settings = {ASSET_TAGS = (); }; };
+		E3AF17011BBA317E00306ABF /* CPMySwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AF17001BBA317E00306ABF /* CPMySwitch.m */; settings = {ASSET_TAGS = (); }; };
 		E3E6B88C1BB4F7FA006B4F8A /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6B88B1BB4F7FA006B4F8A /* FXBlurView.m */; settings = {ASSET_TAGS = (); }; };
 		E3E6B8911BB4FD54006B4F8A /* CPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6B88F1BB4FD54006B4F8A /* CPLoginViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E3E6B8921BB4FD54006B4F8A /* CPLoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3E6B8901BB4FD54006B4F8A /* CPLoginViewController.storyboard */; settings = {ASSET_TAGS = (); }; };
@@ -315,6 +317,10 @@
 		E3A4716F1BB3A85300973197 /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
 		E3A471711BB3A85300973197 /* CPTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTabBar.h; sourceTree = "<group>"; };
 		E3A471721BB3A85300973197 /* CPTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTabBar.m; sourceTree = "<group>"; };
+		E3AF16FC1BBA296C00306ABF /* CPNoHighLightButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNoHighLightButton.h; sourceTree = "<group>"; };
+		E3AF16FD1BBA296C00306ABF /* CPNoHighLightButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNoHighLightButton.m; sourceTree = "<group>"; };
+		E3AF16FF1BBA317E00306ABF /* CPMySwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMySwitch.h; sourceTree = "<group>"; };
+		E3AF17001BBA317E00306ABF /* CPMySwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMySwitch.m; sourceTree = "<group>"; };
 		E3E6B88A1BB4F7FA006B4F8A /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		E3E6B88B1BB4F7FA006B4F8A /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 		E3E6B88E1BB4FD54006B4F8A /* CPLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLoginViewController.h; sourceTree = "<group>"; };
@@ -1069,6 +1075,8 @@
 				E3A4711B1BB3A85300973197 /* CPBaseViewCell.h */,
 				E3A4711C1BB3A85300973197 /* CPBaseViewCell.m */,
 				E3A4711D1BB3A85300973197 /* CPBaseViewCell.xib */,
+				E3AF16FF1BBA317E00306ABF /* CPMySwitch.h */,
+				E3AF17001BBA317E00306ABF /* CPMySwitch.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1105,6 +1113,8 @@
 				6B5176781BB9502100D7A62E /* CustomSwitch */,
 				E3E6B8961BB515F1006B4F8A /* CPSexView.h */,
 				E3E6B8971BB515F1006B4F8A /* CPSexView.m */,
+				E3AF16FC1BBA296C00306ABF /* CPNoHighLightButton.h */,
+				E3AF16FD1BBA296C00306ABF /* CPNoHighLightButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1471,6 +1481,7 @@
 				E3A471931BB3A85300973197 /* CPTabBarController.m in Sources */,
 				6BCC90FB1BB3FDBF00900286 /* CPMyCareController.m in Sources */,
 				E31B12E01BB9311700B51696 /* PBConst.m in Sources */,
+				E3AF16FE1BBA296C00306ABF /* CPNoHighLightButton.m in Sources */,
 				E31B133F1BB9312D00B51696 /* NSArray+Extend.m in Sources */,
 				E31B135A1BB9313A00B51696 /* CPTestPhotoViewController.m in Sources */,
 				E31B134B1BB9312D00B51696 /* UIImage+Water.m in Sources */,
@@ -1478,6 +1489,7 @@
 				E31B133B1BB9312D00B51696 /* NSString+File.m in Sources */,
 				E3A471951BB3A85300973197 /* Const.m in Sources */,
 				E3A4718F1BB3A85300973197 /* XMNetStatuesTool.m in Sources */,
+				E3AF17011BBA317E00306ABF /* CPMySwitch.m in Sources */,
 				E3A4717C1BB3A85300973197 /* NSFileManager+ZY.m in Sources */,
 				6B51767C1BB9502100D7A62E /* CustomSwitch.m in Sources */,
 				E3A471761BB3A85300973197 /* Aspects.m in Sources */,
