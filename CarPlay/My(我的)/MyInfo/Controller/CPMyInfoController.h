@@ -2,12 +2,12 @@
 //  CPMyInfoController.h
 //  CarPlay
 //
-//  Created by 公平价 on 15/9/28.
+//  Created by 公平价 on 15/9/29.
 //  Copyright © 2015年 chewan. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface CPMyInfoController : UIViewController
+@interface CPMyInfoController : UITableViewController
 
 @end
