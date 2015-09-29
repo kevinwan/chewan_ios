@@ -8,8 +8,18 @@
 
 #import "CPMyCareController.h"
 #import "CPTopButton.h"
+#import "MJExtension.h"
+#import "CPCareUser.h"
+#import "CPMyCareCell.h"
 
-@interface CPMyCareController ()
+@interface CPMyCareController ()<UITableViewDataSource,UITableViewDelegate>
+
+// 我的关注
+@property (nonatomic,strong) NSMutableArray *mySubscribe;
+
+// tableView
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 
 // 顶部三个关注按钮
 @property (weak, nonatomic) IBOutlet CPTopButton *careEachBtn;
@@ -19,15 +29,10 @@
 // 顶部三个关注按钮点击事件
 - (IBAction)careClick:(UIButton *)btn;
 
-
 // 顶部三个关注按钮下三条线
 @property (weak, nonatomic) IBOutlet UIView *oneLine;
 @property (weak, nonatomic) IBOutlet UIView *twoLine;
 @property (weak, nonatomic) IBOutlet UIView *threeLine;
-
-
-
-
 
 @end
 
@@ -36,7 +41,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setRightNavigationBarItemWithTitle:@"我的关注" Image:nil highImage:nil target:self action:@selector(gotoMyInfo)];
+    // 设置导航栏
+    [self setRightNavigationBarItemWithTitle:@"个人信息" Image:nil highImage:nil target:self action:@selector(gotoMyInfo)];
     
     // 加载关注信息
     [self setupMyCare];
@@ -46,7 +52,8 @@
 
 // 临时跳转
 - (void)gotoMyInfo{
-    
+    UIViewController *vc = [UIStoryboard storyboardWithName:@"CPMyInfoController" bundle:nil].instantiateInitialViewController;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
@@ -56,16 +63,28 @@
     
     // 封装请求参数
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-//    parameters[@"userId"] = @"846de312-306c-4916-91c1-a5e69b158014";
-//    parameters[@"token"] = @"750dd49c-6129-4a9a-9558-27fa74fc4ce7";
+    parameters[@"token"] = @"399e45a8-9e72-4734-a1e2-25a0229c549c";
     
+    NSString *userId = @"5608bc1a0cf2c4f648d9bcd5";
+    NSString *getUrl = [NSString stringWithFormat:@"http://cwapi.gongpingjia.com:8080/v2/user/%@/subscribe",userId];
     
-    NSString *getUrl = @"http://cwapi.gongpingjia.com:8080/v2/user/5608bc1a0cf2c4f648d9bcd5/subscribe?token=399e45a8-9e72-4734-a1e2-25a0229c549c";
-    
-    [ZYNetWorkTool getWithUrl:getUrl params:nil success:^(id responseObject) {
-        //
-        DLog(@"%@",responseObject);
+    [ZYNetWorkTool getWithUrl:getUrl params:parameters success:^(id responseObject) {
+        
+        // 数据加载成功
         if (CPSuccess) {
+             DLog(@"%@",responseObject[@"data"][@"mySubscribe"]);
+            
+            // 取出关注数据
+            NSArray *mySubscribeDicts = responseObject[@"data"][@"mySubscribe"];
+            
+            // 转为模型数组
+            NSArray *mySubscribeModels = [CPCareUser objectArrayWithKeyValuesArray:mySubscribeDicts];
+
+            // 存储我的关注
+            [self.mySubscribe addObjectsFromArray:mySubscribeModels];
+            
+            // 刷新表格
+            [self.tableView reloadData];
             
         }
         
@@ -78,7 +97,16 @@
 }
 
 
+#pragma mark - 数据源方法
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.mySubscribe.count;
+}
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    CPMyCareCell *cell = [tableView dequeueReusableCellWithIdentifier:[CPMyCareCell identifier]];
+    cell.careUser = self.mySubscribe[indexPath.row];
+    return cell;
+}
 
 
 - (IBAction)careClick:(UIButton *)btn{
@@ -110,7 +138,13 @@
     
 }
 
-
+#pragma mark - 懒加载
+- (NSMutableArray *)mySubscribe{
+    if (!_mySubscribe) {
+        _mySubscribe = [NSMutableArray array];
+    }
+    return _mySubscribe;
+}
 
 
 @end

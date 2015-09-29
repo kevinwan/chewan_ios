@@ -15,12 +15,13 @@
 		6B153EFD1BB5692500560935 /* CPMyViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B153EFB1BB5692500560935 /* CPMyViewController.storyboard */; settings = {ASSET_TAGS = (); }; };
 		6B51767C1BB9502100D7A62E /* CustomSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B51767A1BB9502100D7A62E /* CustomSwitch.m */; settings = {ASSET_TAGS = (); }; };
 		6B51767D1BB9502100D7A62E /* CustomSwitch.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B51767B1BB9502100D7A62E /* CustomSwitch.xib */; settings = {ASSET_TAGS = (); }; };
-		6B69F53A1BB55505008E7BF1 /* CPTopButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B69F5391BB55505008E7BF1 /* CPTopButton.m */; settings = {ASSET_TAGS = (); }; };
-		6BC919441BB8EE8800E41C64 /* CPCareUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC919431BB8EE8800E41C64 /* CPCareUser.m */; settings = {ASSET_TAGS = (); }; };
 		6BC9194B1BB9118C00E41C64 /* CPMyInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC9194A1BB9118C00E41C64 /* CPMyInfoController.m */; settings = {ASSET_TAGS = (); }; };
 		6BC9194D1BB911A300E41C64 /* CPMyInfoController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BC9194C1BB911A300E41C64 /* CPMyInfoController.storyboard */; settings = {ASSET_TAGS = (); }; };
-		6BCC90FB1BB3FDBF00900286 /* CPMyCareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCC90FA1BB3FDBF00900286 /* CPMyCareController.m */; settings = {ASSET_TAGS = (); }; };
-		6BCC90FD1BB3FDD900900286 /* CPMyCareController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BCC90FC1BB3FDD900900286 /* CPMyCareController.storyboard */; settings = {ASSET_TAGS = (); }; };
+		6BCFFBB81BBA456900C082B2 /* CPMyCareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCFFBAE1BBA456900C082B2 /* CPMyCareController.m */; settings = {ASSET_TAGS = (); }; };
+		6BCFFBB91BBA456900C082B2 /* CPMyCareController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BCFFBAF1BBA456900C082B2 /* CPMyCareController.storyboard */; settings = {ASSET_TAGS = (); }; };
+		6BCFFBBA1BBA456900C082B2 /* CPCareUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCFFBB21BBA456900C082B2 /* CPCareUser.m */; settings = {ASSET_TAGS = (); }; };
+		6BCFFBBB1BBA456900C082B2 /* CPMyCareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCFFBB51BBA456900C082B2 /* CPMyCareCell.m */; settings = {ASSET_TAGS = (); }; };
+		6BCFFBBC1BBA456900C082B2 /* CPTopButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCFFBB71BBA456900C082B2 /* CPTopButton.m */; settings = {ASSET_TAGS = (); }; };
 		6D9724033DC4D258BAD49B6C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8695309F427E7B2C9007D66B /* libPods.a */; };
 		E31B12DF1BB9311700B51696 /* UIView+PBExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = E31B12C01BB9311700B51696 /* UIView+PBExtend.m */; settings = {ASSET_TAGS = (); }; };
 		E31B12E01BB9311700B51696 /* PBConst.m in Sources */ = {isa = PBXBuildFile; fileRef = E31B12C31BB9311700B51696 /* PBConst.m */; settings = {ASSET_TAGS = (); }; };
@@ -132,16 +133,18 @@
 		6B5176791BB9502100D7A62E /* CustomSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSwitch.h; sourceTree = "<group>"; };
 		6B51767A1BB9502100D7A62E /* CustomSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSwitch.m; sourceTree = "<group>"; };
 		6B51767B1BB9502100D7A62E /* CustomSwitch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomSwitch.xib; sourceTree = "<group>"; };
-		6B69F5381BB55505008E7BF1 /* CPTopButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTopButton.h; sourceTree = "<group>"; };
-		6B69F5391BB55505008E7BF1 /* CPTopButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTopButton.m; sourceTree = "<group>"; };
-		6BC919421BB8EE8800E41C64 /* CPCareUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCareUser.h; sourceTree = "<group>"; };
-		6BC919431BB8EE8800E41C64 /* CPCareUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCareUser.m; sourceTree = "<group>"; };
 		6BC919491BB9118C00E41C64 /* CPMyInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyInfoController.h; sourceTree = "<group>"; };
 		6BC9194A1BB9118C00E41C64 /* CPMyInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyInfoController.m; sourceTree = "<group>"; };
 		6BC9194C1BB911A300E41C64 /* CPMyInfoController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMyInfoController.storyboard; sourceTree = "<group>"; };
-		6BCC90F91BB3FDBF00900286 /* CPMyCareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyCareController.h; sourceTree = "<group>"; };
-		6BCC90FA1BB3FDBF00900286 /* CPMyCareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyCareController.m; sourceTree = "<group>"; };
-		6BCC90FC1BB3FDD900900286 /* CPMyCareController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMyCareController.storyboard; sourceTree = "<group>"; };
+		6BCFFBAD1BBA456900C082B2 /* CPMyCareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyCareController.h; sourceTree = "<group>"; };
+		6BCFFBAE1BBA456900C082B2 /* CPMyCareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyCareController.m; sourceTree = "<group>"; };
+		6BCFFBAF1BBA456900C082B2 /* CPMyCareController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMyCareController.storyboard; sourceTree = "<group>"; };
+		6BCFFBB11BBA456900C082B2 /* CPCareUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCareUser.h; sourceTree = "<group>"; };
+		6BCFFBB21BBA456900C082B2 /* CPCareUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCareUser.m; sourceTree = "<group>"; };
+		6BCFFBB41BBA456900C082B2 /* CPMyCareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyCareCell.h; sourceTree = "<group>"; };
+		6BCFFBB51BBA456900C082B2 /* CPMyCareCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyCareCell.m; sourceTree = "<group>"; };
+		6BCFFBB61BBA456900C082B2 /* CPTopButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTopButton.h; sourceTree = "<group>"; };
+		6BCFFBB71BBA456900C082B2 /* CPTopButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTopButton.m; sourceTree = "<group>"; };
 		8695309F427E7B2C9007D66B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1B028500DCBF99DF280B6AC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E31B12BF1BB9311700B51696 /* UIView+PBExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PBExtend.h"; sourceTree = "<group>"; };
@@ -427,40 +430,42 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		6BCC90F31BB3FD1600900286 /* MyCare */ = {
+		6BCFFBAB1BBA456900C082B2 /* MyCare */ = {
 			isa = PBXGroup;
 			children = (
-				6BCC90F41BB3FD1600900286 /* Controller */,
-				6BCC90F51BB3FD1600900286 /* Model */,
-				6BCC90F61BB3FD1600900286 /* View */,
+				6BCFFBAC1BBA456900C082B2 /* Controller */,
+				6BCFFBB01BBA456900C082B2 /* Model */,
+				6BCFFBB31BBA456900C082B2 /* View */,
 			);
 			path = MyCare;
 			sourceTree = "<group>";
 		};
-		6BCC90F41BB3FD1600900286 /* Controller */ = {
+		6BCFFBAC1BBA456900C082B2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				6BCC90F91BB3FDBF00900286 /* CPMyCareController.h */,
-				6BCC90FA1BB3FDBF00900286 /* CPMyCareController.m */,
-				6BCC90FC1BB3FDD900900286 /* CPMyCareController.storyboard */,
+				6BCFFBAD1BBA456900C082B2 /* CPMyCareController.h */,
+				6BCFFBAE1BBA456900C082B2 /* CPMyCareController.m */,
+				6BCFFBAF1BBA456900C082B2 /* CPMyCareController.storyboard */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		6BCC90F51BB3FD1600900286 /* Model */ = {
+		6BCFFBB01BBA456900C082B2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6BC919421BB8EE8800E41C64 /* CPCareUser.h */,
-				6BC919431BB8EE8800E41C64 /* CPCareUser.m */,
+				6BCFFBB11BBA456900C082B2 /* CPCareUser.h */,
+				6BCFFBB21BBA456900C082B2 /* CPCareUser.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		6BCC90F61BB3FD1600900286 /* View */ = {
+		6BCFFBB31BBA456900C082B2 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6B69F5381BB55505008E7BF1 /* CPTopButton.h */,
-				6B69F5391BB55505008E7BF1 /* CPTopButton.m */,
+				6BCFFBB41BBA456900C082B2 /* CPMyCareCell.h */,
+				6BCFFBB51BBA456900C082B2 /* CPMyCareCell.m */,
+				6BCFFBB61BBA456900C082B2 /* CPTopButton.h */,
+				6BCFFBB71BBA456900C082B2 /* CPTopButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -942,8 +947,8 @@
 		E3A471051BB3A85300973197 /* My(我的) */ = {
 			isa = PBXGroup;
 			children = (
+				6BCFFBAB1BBA456900C082B2 /* MyCare */,
 				6BC919451BB90FD300E41C64 /* MyInfo */,
-				6BCC90F31BB3FD1600900286 /* MyCare */,
 				E3A471061BB3A85300973197 /* Controller */,
 				E3A4710B1BB3A85300973197 /* Model */,
 				E3A4710C1BB3A85300973197 /* View */,
@@ -1359,10 +1364,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6BCC90FD1BB3FDD900900286 /* CPMyCareController.storyboard in Resources */,
 				6B153EFD1BB5692500560935 /* CPMyViewController.storyboard in Resources */,
 				E31B12EA1BB9311700B51696 /* PhotoItemView.xib in Resources */,
 				E31E4BE51BAD47A500902B34 /* LaunchScreen.storyboard in Resources */,
+				6BCFFBB91BBA456900C082B2 /* CPMyCareController.storyboard in Resources */,
 				E31B13501BB9312D00B51696 /* CoreSDWebImage.bundle in Resources */,
 				E31B12E31BB9311700B51696 /* PB.bundle in Resources */,
 				E31E4BE21BAD47A500902B34 /* Assets.xcassets in Resources */,
@@ -1437,6 +1442,7 @@
 				E3A471911BB3A85300973197 /* ZYNetWorkTool.m in Sources */,
 				E31B13401BB9312D00B51696 /* NSDate+Extend.m in Sources */,
 				E3A471861BB3A85300973197 /* UITabBar+Extension.m in Sources */,
+				6BCFFBBC1BBA456900C082B2 /* CPTopButton.m in Sources */,
 				E39627C21BB54D91005E0CF2 /* PulsingHaloLayer.m in Sources */,
 				E3A471841BB3A85300973197 /* UILabel+ZY.m in Sources */,
 				E3A471731BB3A85300973197 /* CPNearViewController.m in Sources */,
@@ -1451,6 +1457,7 @@
 				E3A4718E1BB3A85300973197 /* Reachability.m in Sources */,
 				E3A4718D1BB3A85300973197 /* CPNetWorkTool.m in Sources */,
 				E39627B81BB5352D005E0CF2 /* CPActivityModel.m in Sources */,
+				6BCFFBBB1BBA456900C082B2 /* CPMyCareCell.m in Sources */,
 				E3A4717D1BB3A85300973197 /* NSMutableArray+ZY.m in Sources */,
 				E39627B51BB53357005E0CF2 /* CPUser.m in Sources */,
 				E31B13511BB9312D00B51696 /* UIButton+SD.m in Sources */,
@@ -1470,18 +1477,18 @@
 				E31B134E1BB9312D00B51696 /* UIWindow+Launch.m in Sources */,
 				E31B134C1BB9312D00B51696 /* UITableViewCell+Extend.m in Sources */,
 				E31B133D1BB9312D00B51696 /* CALayer+Anim.m in Sources */,
+				6BCFFBB81BBA456900C082B2 /* CPMyCareController.m in Sources */,
 				E31B134D1BB9312D00B51696 /* UIView+Extend.m in Sources */,
 				E3A4717A1BB3A85300973197 /* NSDate+Extension.m in Sources */,
-				6B69F53A1BB55505008E7BF1 /* CPTopButton.m in Sources */,
 				E3A471811BB3A85300973197 /* UIBarButtonItem+Extension.m in Sources */,
 				E31B12E11BB9311700B51696 /* PhotoBroswerLayout.m in Sources */,
 				E3A471771BB3A85300973197 /* CAAnimation+ZY.m in Sources */,
 				E31B13471BB9312D00B51696 /* UIImage+Color.m in Sources */,
 				E31B134F1BB9312D00B51696 /* UIImage+ReMake.m in Sources */,
 				E3A471931BB3A85300973197 /* CPTabBarController.m in Sources */,
-				6BCC90FB1BB3FDBF00900286 /* CPMyCareController.m in Sources */,
 				E31B12E01BB9311700B51696 /* PBConst.m in Sources */,
 				E3AF16FE1BBA296C00306ABF /* CPNoHighLightButton.m in Sources */,
+				6BCFFBBA1BBA456900C082B2 /* CPCareUser.m in Sources */,
 				E31B133F1BB9312D00B51696 /* NSArray+Extend.m in Sources */,
 				E31B135A1BB9313A00B51696 /* CPTestPhotoViewController.m in Sources */,
 				E31B134B1BB9312D00B51696 /* UIImage+Water.m in Sources */,
@@ -1501,7 +1508,6 @@
 				E3E6B8981BB515F1006B4F8A /* CPSexView.m in Sources */,
 				E3A471891BB3A85300973197 /* UIView+Extension.m in Sources */,
 				E39627B21BB5265A005E0CF2 /* UIImage+Blur.m in Sources */,
-				6BC919441BB8EE8800E41C64 /* CPCareUser.m in Sources */,
 				E3A471781BB3A85300973197 /* Foundation+Log.m in Sources */,
 				E31B12E21BB9311700B51696 /* PhotoModel.m in Sources */,
 				E31B133C1BB9312D00B51696 /* CoreArchive.m in Sources */,
