@@ -8,7 +8,7 @@
         <!--个人信息-->
         <scene sceneID="mGm-z7-Vfl">
             <objects>
-                <viewController id="hdm-va-v5V" sceneMemberID="viewController">
+                <viewController id="hdm-va-v5V" customClass="CPMyInfoController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fdN-GM-YJt"/>
                         <viewControllerLayoutGuide type="bottom" id="Rmf-rg-Jgy"/>
@@ -171,10 +171,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="个人信息" id="x1f-Lt-6mk">
-                        <barButtonItem key="leftBarButtonItem" image="icon_jt" id="r62-pb-ofP"/>
-                        <barButtonItem key="rightBarButtonItem" title="完成" id="GMV-Sg-iBP"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="个人信息" id="x1f-Lt-6mk"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
@@ -188,6 +185,5 @@
         <image name="btn_man_1" width="65" height="30"/>
         <image name="btn_woman_2" width="65" height="30"/>
         <image name="icon_cemare" width="84" height="84"/>
-        <image name="icon_jt" width="27" height="27"/>
     </resources>
 </document>
