@@ -124,12 +124,13 @@
         }];
         
         CPMySwitch *freeTimeBtn = [CPMySwitch new];
+        [freeTimeBtn setOnImage:[UIImage imageNamed:@"btn_youkong"]];
+        [freeTimeBtn setOffImage:[UIImage imageNamed:@"btn_meikong"]];
+        freeTimeBtn.on = YES;
         [_tipView addSubview:freeTimeBtn];
-        [[freeTimeBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton *btn) {
-            
-            btn.selected = !btn.isSelected;
-            
-            if (btn.isSelected) {
+        [[freeTimeBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(CPMySwitch *btn) {
+            btn.on = !btn.on;
+            if (btn.on) {
                 textL.text = @"有空,其他人可以邀请你参加活动";
             }else{
                 textL.text = @"没空,你将接受不到任何活动邀请";

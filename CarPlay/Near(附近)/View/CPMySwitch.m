@@ -31,10 +31,23 @@
  */
 - (void)setUp
 {
-    [self setBackgroundImage:[UIImage imageNamed:@"btn_meikong"] forState:UIControlStateNormal];
-    [self setBackgroundImage:[UIImage imageNamed:@"btn_youkong"] forState:UIControlStateSelected];
-    [self setSelected:YES];
     [self sizeToFit];
+}
+
+- (void)setOnImage:(UIImage *)onImage
+{
+    [self setBackgroundImage:onImage forState:UIControlStateSelected];
+}
+
+- (void)setOffImage:(UIImage *)offImage
+{
+    [self setBackgroundImage:offImage forState:UIControlStateNormal];
+}
+
+- (void)setOn:(BOOL)on
+{
+    _on = on;
+    self.selected = on;
 }
 
 @end
