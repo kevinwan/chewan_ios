@@ -86,7 +86,7 @@
                                 <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j3s-zP-XtE">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j3s-zP-XtE" userLabel="女">
                                 <rect key="frame" x="245" y="346" width="65" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="VAp-ZJ-Zll"/>
@@ -94,7 +94,7 @@
                                 </constraints>
                                 <state key="normal" backgroundImage="btn_woman_2"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DHV-kj-pmv">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DHV-kj-pmv" userLabel="男">
                                 <rect key="frame" x="170" y="346" width="65" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="jGP-Fa-Hhg"/>
