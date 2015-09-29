@@ -14,6 +14,13 @@
 
 @implementation CPNavigationController
 
++ (void)initialize
+{
+    UIBarButtonItem *item = [UIBarButtonItem appearance];
+    [item setTitleTextAttributes:@{   NSFontAttributeName : ZYFont16,
+        NSForegroundColorAttributeName:[UIColor blackColor]}forState:UIControlStateNormal];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

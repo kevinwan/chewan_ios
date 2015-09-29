@@ -69,6 +69,7 @@
 		E31E4BD71BAD47A500902B34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E31E4BD61BAD47A500902B34 /* main.m */; };
 		E31E4BE21BAD47A500902B34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E31E4BE11BAD47A500902B34 /* Assets.xcassets */; };
 		E31E4BE51BAD47A500902B34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E31E4BE31BAD47A500902B34 /* LaunchScreen.storyboard */; };
+		E37FDBBA1BBA77B70078FBEF /* CPMyDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E37FDBB91BBA77B70078FBEF /* CPMyDateViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E39627B21BB5265A005E0CF2 /* UIImage+Blur.m in Sources */ = {isa = PBXBuildFile; fileRef = E39627B11BB5265A005E0CF2 /* UIImage+Blur.m */; settings = {ASSET_TAGS = (); }; };
 		E39627B51BB53357005E0CF2 /* CPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E39627B41BB53357005E0CF2 /* CPUser.m */; settings = {ASSET_TAGS = (); }; };
 		E39627B81BB5352D005E0CF2 /* CPActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E39627B71BB5352D005E0CF2 /* CPActivityModel.m */; settings = {ASSET_TAGS = (); }; };
@@ -237,6 +238,8 @@
 		E31E4BE61BAD47A500902B34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E31E4C491BAD48D600902B34 /* CP_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CP_Prefix.pch; sourceTree = "<group>"; };
 		E31E4C4E1BAD507E00902B34 /* macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = macro.h; sourceTree = "<group>"; };
+		E37FDBB81BBA77B70078FBEF /* CPMyDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyDateViewController.h; sourceTree = "<group>"; };
+		E37FDBB91BBA77B70078FBEF /* CPMyDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyDateViewController.m; sourceTree = "<group>"; };
 		E39627B01BB5265A005E0CF2 /* UIImage+Blur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Blur.h"; sourceTree = "<group>"; };
 		E39627B11BB5265A005E0CF2 /* UIImage+Blur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Blur.m"; sourceTree = "<group>"; };
 		E39627B31BB53357005E0CF2 /* CPUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPUser.h; sourceTree = "<group>"; };
@@ -962,6 +965,8 @@
 				6B153EF91BB5692500560935 /* CPMyViewController.h */,
 				6B153EFA1BB5692500560935 /* CPMyViewController.m */,
 				6B153EFB1BB5692500560935 /* CPMyViewController.storyboard */,
+				E37FDBB81BBA77B70078FBEF /* CPMyDateViewController.h */,
+				E37FDBB91BBA77B70078FBEF /* CPMyDateViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1464,6 +1469,7 @@
 				E31B13421BB9312D00B51696 /* NSString+Extend.m in Sources */,
 				E3A471901BB3A85300973197 /* ZYNetWorkManager.m in Sources */,
 				E31B12EB1BB9311700B51696 /* PhotoBroswerVC.m in Sources */,
+				E37FDBBA1BBA77B70078FBEF /* CPMyDateViewController.m in Sources */,
 				E31B13481BB9312D00B51696 /* UIImage+Cut.m in Sources */,
 				E31B13521BB9312D00B51696 /* UIImageView+SD.m in Sources */,
 				E3A471881BB3A85300973197 /* UITableViewCell+ZYExtension.m in Sources */,
