@@ -10,12 +10,9 @@
 
 @implementation CPNoHighLightButton
 
-- (id)initWithCoder:(NSCoder *)aDecoder
+- (void)awakeFromNib
 {
-    if (self = [super initWithCoder:aDecoder]) {
-        [self setUp];
-    }
-    return self;
+      [self setUp];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame

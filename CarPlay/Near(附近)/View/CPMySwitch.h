@@ -10,4 +10,9 @@
 
 @interface CPMySwitch : CPNoHighLightButton
 
+@property (nonatomic, assign) BOOL on;
+
+- (void)setOnImage:(UIImage *)onImage;
+- (void)setOffImage:(UIImage *)offImage;
+
 @end
