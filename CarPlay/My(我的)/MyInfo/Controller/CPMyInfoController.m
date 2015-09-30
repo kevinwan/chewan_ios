@@ -7,6 +7,9 @@
 //
 
 #import "CPMyInfoController.h"
+#import "CPMyInfoFirCell.h"
+#import "CPMyInfoSecCell.h"
+#import "CPMyInfoThrCell.h"
 
 @interface CPMyInfoController ()
 
@@ -30,44 +33,49 @@
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return 15;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell;
+    
     if (indexPath.row == 0) {
         //
         static NSString *firId = @"myInfoFirCell";
-        cell = [tableView dequeueReusableCellWithIdentifier:firId];
+        CPMyInfoFirCell *cell = [tableView dequeueReusableCellWithIdentifier:firId];
         
         if (cell == nil) {
             cell = [[[NSBundle mainBundle] loadNibNamed:@"CPMyInfoFirCell" owner:nil options:nil] lastObject];
         }
+        return cell;
         
-    }
-    if (indexPath.row == 1) {
+    }else if (indexPath.row == 1) {
         //
         static NSString *secId = @"myInfoSecCell";
-        cell = [tableView dequeueReusableCellWithIdentifier:secId];
+        CPMyInfoSecCell *cell = [tableView dequeueReusableCellWithIdentifier:secId];
         
         if (cell == nil) {
             cell = [[[NSBundle mainBundle] loadNibNamed:@"CPMyInfoSecCell" owner:nil options:nil] lastObject];
         }
+        return cell;
 
-    }
-    if (indexPath.row == 2) {
+    }else if (indexPath.row == 2) {
         //
         static NSString *ThrId = @"myInfoThrCell";
-        cell = [tableView dequeueReusableCellWithIdentifier:ThrId];
+        CPMyInfoThrCell *cell = [tableView dequeueReusableCellWithIdentifier:ThrId];
         
         if (cell == nil) {
             cell = [[[NSBundle mainBundle] loadNibNamed:@"CPMyInfoThrCell" owner:nil options:nil] lastObject];
         }
+        return cell;
 
+    }else{
+        UITableViewCell *cell = [[UITableViewCell alloc] init];
+        cell.backgroundColor = [Tools getColor:@"efefef"];
+        return cell;
     }
        
-    return cell;
+
 }
 
 
