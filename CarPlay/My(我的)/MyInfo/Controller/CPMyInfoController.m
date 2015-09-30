@@ -31,25 +31,34 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return 3;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+//    if (indexPath.row == 0) {
+//        //
+//        static NSString *firId = @"myInfoFirCell";
+//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:firId];
+//    }
+//    if (indexPath.row == 1) {
+//        //
+//        static NSString *firId = @"myInfoFirCell";
+//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:firId];
+//    }
+//    if (indexPath.row == 2) {
+//        //
+//        static NSString *firId = @"myInfoFirCell";
+//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:firId];
+//    }
     
-    // Configure the cell...
+    static NSString *firId = @"myInfoFirCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:firId];
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
