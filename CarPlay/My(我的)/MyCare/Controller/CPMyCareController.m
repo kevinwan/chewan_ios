@@ -41,6 +41,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // 设置标题
+    self.title = @"我的关注";
+    
     // 设置导航栏
     [self setRightNavigationBarItemWithTitle:@"个人信息" Image:nil highImage:nil target:self action:@selector(gotoMyInfo)];
     

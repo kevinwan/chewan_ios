@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
-        <!--我的关注-->
+        <!--My Care Controller-->
         <scene sceneID="wX5-mo-nJd">
             <objects>
                 <viewController id="725-rp-g56" customClass="CPMyCareController" sceneMemberID="viewController">
@@ -251,7 +251,6 @@
                             <constraint firstItem="Rfq-iV-FY6" firstAttribute="leading" secondItem="0uj-DH-Y4O" secondAttribute="leading" id="zyz-hB-s6R"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="我的关注" id="AQZ-dC-Cuz"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>

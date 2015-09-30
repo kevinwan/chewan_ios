@@ -21,6 +21,10 @@
 		6B440CE71BBA86E600CF8410 /* CPMyInfoThrCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B440CE61BBA86E600CF8410 /* CPMyInfoThrCell.xib */; settings = {ASSET_TAGS = (); }; };
 		6B51767C1BB9502100D7A62E /* CustomSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B51767A1BB9502100D7A62E /* CustomSwitch.m */; settings = {ASSET_TAGS = (); }; };
 		6B51767D1BB9502100D7A62E /* CustomSwitch.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B51767B1BB9502100D7A62E /* CustomSwitch.xib */; settings = {ASSET_TAGS = (); }; };
+		6BCD585C1BBB87750025F995 /* CPMyInfoFirCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCD585B1BBB87750025F995 /* CPMyInfoFirCell.m */; settings = {ASSET_TAGS = (); }; };
+		6BCD585F1BBB878B0025F995 /* CPMyInfoSecCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCD585E1BBB878B0025F995 /* CPMyInfoSecCell.m */; settings = {ASSET_TAGS = (); }; };
+		6BCD58621BBB87990025F995 /* CPMyInfoThrCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCD58611BBB87990025F995 /* CPMyInfoThrCell.m */; settings = {ASSET_TAGS = (); }; };
+		6BCD58651BBB87BE0025F995 /* CPMyInfoHead.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCD58641BBB87BE0025F995 /* CPMyInfoHead.m */; settings = {ASSET_TAGS = (); }; };
 		6BCFFBB81BBA456900C082B2 /* CPMyCareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCFFBAE1BBA456900C082B2 /* CPMyCareController.m */; settings = {ASSET_TAGS = (); }; };
 		6BCFFBB91BBA456900C082B2 /* CPMyCareController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BCFFBAF1BBA456900C082B2 /* CPMyCareController.storyboard */; settings = {ASSET_TAGS = (); }; };
 		6BCFFBBA1BBA456900C082B2 /* CPCareUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCFFBB21BBA456900C082B2 /* CPCareUser.m */; settings = {ASSET_TAGS = (); }; };
@@ -153,6 +157,14 @@
 		6B5176791BB9502100D7A62E /* CustomSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSwitch.h; sourceTree = "<group>"; };
 		6B51767A1BB9502100D7A62E /* CustomSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSwitch.m; sourceTree = "<group>"; };
 		6B51767B1BB9502100D7A62E /* CustomSwitch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomSwitch.xib; sourceTree = "<group>"; };
+		6BCD585A1BBB87750025F995 /* CPMyInfoFirCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyInfoFirCell.h; sourceTree = "<group>"; };
+		6BCD585B1BBB87750025F995 /* CPMyInfoFirCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyInfoFirCell.m; sourceTree = "<group>"; };
+		6BCD585D1BBB878B0025F995 /* CPMyInfoSecCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyInfoSecCell.h; sourceTree = "<group>"; };
+		6BCD585E1BBB878B0025F995 /* CPMyInfoSecCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyInfoSecCell.m; sourceTree = "<group>"; };
+		6BCD58601BBB87990025F995 /* CPMyInfoThrCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyInfoThrCell.h; sourceTree = "<group>"; };
+		6BCD58611BBB87990025F995 /* CPMyInfoThrCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyInfoThrCell.m; sourceTree = "<group>"; };
+		6BCD58631BBB87BE0025F995 /* CPMyInfoHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyInfoHead.h; sourceTree = "<group>"; };
+		6BCD58641BBB87BE0025F995 /* CPMyInfoHead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyInfoHead.m; sourceTree = "<group>"; };
 		6BCFFBAD1BBA456900C082B2 /* CPMyCareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyCareController.h; sourceTree = "<group>"; };
 		6BCFFBAE1BBA456900C082B2 /* CPMyCareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyCareController.m; sourceTree = "<group>"; };
 		6BCFFBAF1BBA456900C082B2 /* CPMyCareController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMyCareController.storyboard; sourceTree = "<group>"; };
@@ -459,9 +471,17 @@
 		6BC919481BB90FD300E41C64 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6BCD58631BBB87BE0025F995 /* CPMyInfoHead.h */,
+				6BCD58641BBB87BE0025F995 /* CPMyInfoHead.m */,
 				6B440CDA1BBA857B00CF8410 /* CPMyInfoHead.xib */,
+				6BCD585A1BBB87750025F995 /* CPMyInfoFirCell.h */,
+				6BCD585B1BBB87750025F995 /* CPMyInfoFirCell.m */,
 				6B440CE21BBA86C500CF8410 /* CPMyInfoFirCell.xib */,
+				6BCD585D1BBB878B0025F995 /* CPMyInfoSecCell.h */,
+				6BCD585E1BBB878B0025F995 /* CPMyInfoSecCell.m */,
 				6B440CE41BBA86D100CF8410 /* CPMyInfoSecCell.xib */,
+				6BCD58601BBB87990025F995 /* CPMyInfoThrCell.h */,
+				6BCD58611BBB87990025F995 /* CPMyInfoThrCell.m */,
 				6B440CE61BBA86E600CF8410 /* CPMyInfoThrCell.xib */,
 			);
 			path = View;
@@ -1499,6 +1519,7 @@
 				E31B12E61BB9311700B51696 /* PBSaveBtn.m in Sources */,
 				E3A471871BB3A85300973197 /* UITableView+ZYExtension.m in Sources */,
 				E3A471911BB3A85300973197 /* ZYNetWorkTool.m in Sources */,
+				6BCD585C1BBB87750025F995 /* CPMyInfoFirCell.m in Sources */,
 				E31B13401BB9312D00B51696 /* NSDate+Extend.m in Sources */,
 				E3A471861BB3A85300973197 /* UITabBar+Extension.m in Sources */,
 				6BCFFBBC1BBA456900C082B2 /* CPTopButton.m in Sources */,
@@ -1522,6 +1543,7 @@
 				E39627B51BB53357005E0CF2 /* CPUser.m in Sources */,
 				E31B13511BB9312D00B51696 /* UIButton+SD.m in Sources */,
 				E31B13421BB9312D00B51696 /* NSString+Extend.m in Sources */,
+				6BCD585F1BBB878B0025F995 /* CPMyInfoSecCell.m in Sources */,
 				E3A471901BB3A85300973197 /* ZYNetWorkManager.m in Sources */,
 				E3A68BC71BBBA11E002F4F75 /* CPTableView.m in Sources */,
 				E31B12EB1BB9311700B51696 /* PhotoBroswerVC.m in Sources */,
@@ -1542,6 +1564,7 @@
 				E31B134C1BB9312D00B51696 /* UITableViewCell+Extend.m in Sources */,
 				E31B133D1BB9312D00B51696 /* CALayer+Anim.m in Sources */,
 				6BCFFBB81BBA456900C082B2 /* CPMyCareController.m in Sources */,
+				6BCD58651BBB87BE0025F995 /* CPMyInfoHead.m in Sources */,
 				E31B134D1BB9312D00B51696 /* UIView+Extend.m in Sources */,
 				E3A4717A1BB3A85300973197 /* NSDate+Extension.m in Sources */,
 				E3A471811BB3A85300973197 /* UIBarButtonItem+Extension.m in Sources */,
@@ -1562,6 +1585,7 @@
 				E31B133B1BB9312D00B51696 /* NSString+File.m in Sources */,
 				E3A471951BB3A85300973197 /* Const.m in Sources */,
 				E3A4718F1BB3A85300973197 /* XMNetStatuesTool.m in Sources */,
+				6BCD58621BBB87990025F995 /* CPMyInfoThrCell.m in Sources */,
 				E3AF17011BBA317E00306ABF /* CPMySwitch.m in Sources */,
 				E3A4717C1BB3A85300973197 /* NSFileManager+ZY.m in Sources */,
 				6B51767C1BB9502100D7A62E /* CustomSwitch.m in Sources */,
