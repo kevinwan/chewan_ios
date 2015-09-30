@@ -20,4 +20,14 @@
     // Configure the view for the selected state
 }
 
++ (instancetype)cellWithTableView:(UITableView *)tableView{
+    static NSString *ThrId = @"myInfoThrCell";
+    CPMyInfoThrCell *cell = [tableView dequeueReusableCellWithIdentifier:ThrId];
+    
+    if (cell == nil) {
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"CPMyInfoThrCell" owner:nil options:nil] lastObject];
+    }
+    return cell;
+}
+
 @end

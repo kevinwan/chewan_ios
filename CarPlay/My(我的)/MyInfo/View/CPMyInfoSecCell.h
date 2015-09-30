@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CPMyInfoSecCell : UITableViewCell
-
++ (instancetype)cellWithTableView:(UITableView *)tableView;
 @end

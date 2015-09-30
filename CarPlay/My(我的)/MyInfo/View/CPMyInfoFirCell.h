@@ -10,4 +10,6 @@
 
 @interface CPMyInfoFirCell : UITableViewCell
 
++ (instancetype)cellWithTableView:(UITableView *)tableView;
+
 @end

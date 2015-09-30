@@ -20,4 +20,14 @@
     // Configure the view for the selected state
 }
 
++ (instancetype)cellWithTableView:(UITableView *)tableView{
+    static NSString *secId = @"myInfoSecCell";
+    CPMyInfoSecCell *cell = [tableView dequeueReusableCellWithIdentifier:secId];
+    
+    if (cell == nil) {
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"CPMyInfoSecCell" owner:nil options:nil] lastObject];
+    }
+    return cell;
+}
+
 @end

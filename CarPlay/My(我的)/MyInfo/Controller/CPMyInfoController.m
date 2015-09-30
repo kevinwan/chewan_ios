@@ -40,35 +40,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.row == 0) {
-        //
-        static NSString *firId = @"myInfoFirCell";
-        CPMyInfoFirCell *cell = [tableView dequeueReusableCellWithIdentifier:firId];
-        
-        if (cell == nil) {
-            cell = [[[NSBundle mainBundle] loadNibNamed:@"CPMyInfoFirCell" owner:nil options:nil] lastObject];
-        }
+        CPMyInfoFirCell *cell = [CPMyInfoFirCell cellWithTableView:tableView];
         return cell;
-        
     }else if (indexPath.row == 1) {
-        //
-        static NSString *secId = @"myInfoSecCell";
-        CPMyInfoSecCell *cell = [tableView dequeueReusableCellWithIdentifier:secId];
-        
-        if (cell == nil) {
-            cell = [[[NSBundle mainBundle] loadNibNamed:@"CPMyInfoSecCell" owner:nil options:nil] lastObject];
-        }
+        CPMyInfoSecCell *cell = [CPMyInfoSecCell cellWithTableView:tableView];
         return cell;
-
     }else if (indexPath.row == 2) {
-        //
-        static NSString *ThrId = @"myInfoThrCell";
-        CPMyInfoThrCell *cell = [tableView dequeueReusableCellWithIdentifier:ThrId];
-        
-        if (cell == nil) {
-            cell = [[[NSBundle mainBundle] loadNibNamed:@"CPMyInfoThrCell" owner:nil options:nil] lastObject];
-        }
+        CPMyInfoThrCell *cell = [CPMyInfoThrCell cellWithTableView:tableView];
         return cell;
-
     }else{
         UITableViewCell *cell = [[UITableViewCell alloc] init];
         cell.backgroundColor = [Tools getColor:@"efefef"];

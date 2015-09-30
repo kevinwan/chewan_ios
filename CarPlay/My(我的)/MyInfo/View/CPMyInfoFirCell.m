@@ -20,4 +20,14 @@
     // Configure the view for the selected state
 }
 
++ (instancetype)cellWithTableView:(UITableView *)tableView{
+    static NSString *firId = @"myInfoFirCell";
+    CPMyInfoFirCell *cell = [tableView dequeueReusableCellWithIdentifier:firId];
+    
+    if (cell == nil) {
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"CPMyInfoFirCell" owner:nil options:nil] lastObject];
+    }
+    return cell;
+}
+
 @end
