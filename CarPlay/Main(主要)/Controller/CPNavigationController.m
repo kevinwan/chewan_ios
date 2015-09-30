@@ -33,10 +33,10 @@
     UIView *backGroundView = self.navigationBar.subviews.firstObject;
     for (UIView *view in backGroundView.subviews) {
         if ([view isKindOfClass:[UIImageView class]]) {
-            view.hidden = YES;
+            view.alpha = 0.4;
         }
     }
-    
+
     // 设置全局的导航栏字体
     UINavigationBar *bar = [UINavigationBar appearance];
     NSMutableDictionary *textAttr = [NSMutableDictionary dictionary];

@@ -127,7 +127,7 @@
     [self.bgView setCornerRadius:5];
     self.distanceView.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 6);
 
-    [self.userIconView sd_setImageWithURL:[NSURL URLWithString:@"http://m3.biz.itc.cn/pic/new/n/50/72/Img7927250_n.jpg"] placeholderImage:nil options:SDWebImageLowPriority | SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [self.userIconView sd_setImageWithURL:[NSURL URLWithString:@"http://i6.topit.me/6/5d/45/1131907198420455d6o.jpg"] placeholderImage:nil options:SDWebImageLowPriority | SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         
         self.userIconView.image = [image blurredImageWithRadius:20];
     }];
@@ -160,12 +160,12 @@
     [self.dateButton mas_makeConstraints:^(MASConstraintMaker *make){
         make.centerX.equalTo(self.userIconView);
         make.size.equalTo(CGSizeMake(56, 56));
-        make.bottom.equalTo(@-10);
+        make.bottom.equalTo(@-20);
     }];
     
     [self.invitedButton mas_makeConstraints:^(MASConstraintMaker *make){
         make.size.equalTo(CGSizeMake(56, 56));
-        make.bottom.equalTo(@-10);
+        make.bottom.equalTo(@-20);
         make.centerX.equalTo(self.userIconView).with.offset(@-38);
     }];
     
@@ -177,7 +177,7 @@
     
     [self.tipView makeConstraints:^(MASConstraintMaker *make) {
         make.right.and.left.and.top.equalTo(@0);
-        make.height.equalTo(self.userIconView.mas_height).multipliedBy(0.5);
+        make.height.equalTo(self.userIconView.mas_height).multipliedBy(0.46);
     }];
  
 }
@@ -259,6 +259,8 @@
     
     if (!sender.isSelected) {
         [sender addAnimation:[CAAnimation scaleFrom:1.0 toScale:1.2 durTimes:0.2 rep:1]];
+    }else{
+        [sender addAnimation:[CAAnimation scaleFrom:1.0 toScale:1.1 durTimes:0.2 rep:1]];
     }
     sender.selected = !sender.isSelected;
 }
@@ -300,13 +302,7 @@
         _dateButton.layer.cornerRadius = 28;
         _dateButton.clipsToBounds = YES;
         [[_dateButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-            UIAlertView *a = [[UIAlertView alloc] initWithTitle:@"提示" message:@"要什么自行车" delegate:nil cancelButtonTitle:@"要" otherButtonTitles:nil, nil];
-            [a.rac_buttonClickedSignal subscribeNext:^(id x) {
-                if ([x isEqual:@0]) {
-                    DLog(@"要要切克闹");
-                }
-            }];
-            [a show];
+            [self superViewWillRecive:DateBtnClickKey info:_model];
         }];
     }
     return _dateButton;
@@ -331,7 +327,7 @@
         _dateAnim = [self multiLayer];
         
         CGFloat x = (ZYScreenWidth - 20) * 0.5;
-        CGFloat y = (ZYScreenWidth - 20) / 6.0 * 5.0 - 38;
+        CGFloat y = (ZYScreenWidth - 20) / 6.0 * 5.0 - 48;
         _dateAnim.position = CGPointMake(x, y);
         [self.userIconView.layer insertSublayer:_dateAnim below:_dateButton.layer];
     }
@@ -346,7 +342,7 @@
         _inviAnim = [self multiLayer];
         
         CGFloat x = (ZYScreenWidth - 20) * 0.5 - 38;
-        CGFloat y = (ZYScreenWidth - 20) / 6.0 * 5.0 - 38;
+        CGFloat y = (ZYScreenWidth - 20) / 6.0 * 5.0 - 48;
         _inviAnim.position = CGPointMake(x, y);
         [self.userIconView.layer insertSublayer:_inviAnim below:_invitedButton.layer];
     }
@@ -361,7 +357,7 @@
         _ignoreAnim = [self multiLayer];
         _ignoreAnim.haloLayerColor = [Tools getColor:@"cccccc"].CGColor;
         CGFloat x = (ZYScreenWidth - 20) * 0.5 + 38;
-        CGFloat y = (ZYScreenWidth - 20) / 6.0 * 5.0 - 38;
+        CGFloat y = (ZYScreenWidth - 20) / 6.0 * 5.0 - 48;
         _ignoreAnim.position = CGPointMake(x, y);
         [self.userIconView.layer insertSublayer:_ignoreAnim below:_ignoreButton.layer];
     }
