@@ -31,17 +31,21 @@
  */
 - (void)setUp
 {
+    CATransition *t = [CATransition new];
+    t.type = ZYTransitionTypeCube;
+    [self.imageView addAnimation:t forKey:nil];
     [self sizeToFit];
+    self.clipsToBounds = YES;
 }
 
 - (void)setOnImage:(UIImage *)onImage
 {
-    [self setBackgroundImage:onImage forState:UIControlStateSelected];
+    [self setImage:onImage forState:UIControlStateSelected];
 }
 
 - (void)setOffImage:(UIImage *)offImage
 {
-    [self setBackgroundImage:offImage forState:UIControlStateNormal];
+    [self setImage:offImage forState:UIControlStateNormal];
 }
 
 - (void)setOn:(BOOL)on

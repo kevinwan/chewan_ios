@@ -99,6 +99,16 @@
  */
 @property (nonatomic, strong) MultiplePulsingHaloLayer *dateAnim;
 
+/**
+ *  应邀的动画
+ */
+@property (nonatomic, strong) MultiplePulsingHaloLayer *inviAnim;
+
+/**
+ *  忽略的动画
+ */
+@property (nonatomic, strong) MultiplePulsingHaloLayer *ignoreAnim;
+
 @end
 
 @implementation CPBaseViewCell
@@ -135,7 +145,6 @@
     [self.userIconView addSubview:self.invitedButton];
     [self.userIconView addSubview:self.ignoreButton];
     [self beginLayoutSubviews];
-    [self dateAnim];
 }
 
 + (instancetype)cellWithTableView:(UITableView *)tableView reuseIdentifier:(NSString *)reuseIdentifier
@@ -216,13 +225,33 @@
     }
 }
 
+- (void)setOneType:(BOOL)oneType
+{
+    _oneType = oneType;
+    if (oneType) {
+        self.dateButton.hidden = NO;
+        self.invitedButton.hidden = YES;
+        self.ignoreButton.hidden = YES;
+        [self dateAnim];
+        [self.ignoreAnim removeFromSuperlayer];
+        [self.inviAnim removeFromSuperlayer];
+    }else{
+        self.dateButton.hidden = YES;
+        self.invitedButton.hidden = NO;
+        self.ignoreButton.hidden = NO;
+        [self.dateAnim removeFromSuperlayer];
+        [self inviAnim];
+        [self ignoreAnim];
+    }
+}
+
 #pragma mark - 处理cell事件
 
 /**
  *  点击距离按钮
  */
 - (IBAction)distanceClick:(id)sender {
-    
+    [self superViewWillRecive:DistanceBtnClickKey info:nil];
 }
 
 - (IBAction)loveClick:(UIButton *)sender {
@@ -236,9 +265,6 @@
 
 
 #pragma mark - lazy
-
-
-
 - (FXBlurView *)userCoverView
 {
     if (_userCoverView == nil) {
@@ -290,7 +316,7 @@
 {
     if (_ignoreButton == nil) {
         _ignoreButton = [UIButton buttonWithTitle:@"忽略" icon:nil titleColor:[UIColor whiteColor] fontSize:16];
-        _ignoreButton.backgroundColor = RedColor;
+        _ignoreButton.backgroundColor = [Tools getColor:@"cccccc"];
         _ignoreButton.layer.cornerRadius = 28;
         _ignoreButton.clipsToBounds = YES;
         _ignoreButton.hidden = YES;
@@ -310,6 +336,36 @@
         [self.userIconView.layer insertSublayer:_dateAnim below:_dateButton.layer];
     }
     return _dateAnim;
+}
+
+
+- (MultiplePulsingHaloLayer *)inviAnim
+{
+    if (_inviAnim == nil) {
+        
+        _inviAnim = [self multiLayer];
+        
+        CGFloat x = (ZYScreenWidth - 20) * 0.5 - 38;
+        CGFloat y = (ZYScreenWidth - 20) / 6.0 * 5.0 - 38;
+        _inviAnim.position = CGPointMake(x, y);
+        [self.userIconView.layer insertSublayer:_inviAnim below:_invitedButton.layer];
+    }
+    return _inviAnim;
+}
+
+
+- (MultiplePulsingHaloLayer *)ignoreAnim
+{
+    if (_ignoreAnim == nil) {
+        
+        _ignoreAnim = [self multiLayer];
+        _ignoreAnim.haloLayerColor = [Tools getColor:@"cccccc"].CGColor;
+        CGFloat x = (ZYScreenWidth - 20) * 0.5 + 38;
+        CGFloat y = (ZYScreenWidth - 20) / 6.0 * 5.0 - 38;
+        _ignoreAnim.position = CGPointMake(x, y);
+        [self.userIconView.layer insertSublayer:_ignoreAnim below:_ignoreButton.layer];
+    }
+    return _ignoreAnim;
 }
 
 - (MultiplePulsingHaloLayer *)multiLayer
@@ -334,6 +390,18 @@
         _tipView.userInteractionEnabled = YES;
         _tipView.image = [UIImage imageNamed:@"bg_pic"];
         
+        
+        CPNoHighLightButton *uploadBtn = [CPNoHighLightButton buttonWithType:UIButtonTypeCustom];
+        uploadBtn.titleLabel.font = ZYFont14;
+        [uploadBtn setTitle:@"上传" forState:UIControlStateNormal];
+        [uploadBtn setBackgroundImage:[UIImage imageNamed:@"btn_pic"] forState:UIControlStateNormal];
+        [_tipView addSubview:uploadBtn];
+        [uploadBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(@-10);
+            make.top.equalTo(@15);
+            make.size.equalTo(CGSizeMake(58, 30));
+        }];
+        
         UILabel *textL = [UILabel new];
         textL.text = @"上传照片即可查看Ta的照片呦~";
         textL.textColor = [UIColor whiteColor];
@@ -341,13 +409,10 @@
         textL.textAlignment = NSTextAlignmentRight;
         [textL sizeToFit];
         [_tipView addSubview:textL];
-        
-        CPNoHighLightButton *uploadBtn = [CPNoHighLightButton buttonWithType:UIButtonTypeCustom];
-        uploadBtn.titleLabel.font = ZYFont14;
-        [uploadBtn setTitle:@"上传" forState:UIControlStateNormal];
-        [uploadBtn setBackgroundImage:[UIImage imageNamed:@"btn_pic"] forState:UIControlStateNormal];
-        
-        [_tipView addSubview:uploadBtn];
+        [textL mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(uploadBtn.mas_left).with.offset(-10);
+            make.centerY.equalTo(uploadBtn);
+        }];
         
         CPNoHighLightButton *cameraBtn = [CPNoHighLightButton buttonWithType:UIButtonTypeCustom];
         cameraBtn.titleLabel.font = ZYFont14;
@@ -355,11 +420,13 @@
         [cameraBtn setBackgroundImage:[UIImage imageNamed:@"btn_pic"] forState:UIControlStateNormal];
         cameraBtn.alpha = 0;
         [_tipView addSubview:cameraBtn];
-        
         [cameraBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(uploadBtn);
             make.size.equalTo(uploadBtn);
             make.top.equalTo(uploadBtn);
+        }];
+        [[cameraBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            [self superViewWillRecive:CameraBtnClickKey info:nil];
         }];
         
         CPNoHighLightButton *photoBtn = [CPNoHighLightButton buttonWithType:UIButtonTypeCustom];
@@ -368,17 +435,17 @@
         [photoBtn setBackgroundImage:[UIImage imageNamed:@"btn_pic"] forState:UIControlStateNormal];
         [_tipView addSubview:photoBtn];
          photoBtn.alpha = 0;
-        
         [photoBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(uploadBtn);
             make.size.equalTo(uploadBtn);
             make.top.equalTo(uploadBtn);
         }];
+        [[photoBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            [self superViewWillRecive:PhotoBtnClickKey info:nil];
+        }];
         
         [[uploadBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-            
             if (cameraBtn.alpha == 0){
-                
                 [cameraBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
                     
                     make.centerX.equalTo(uploadBtn);
@@ -389,13 +456,6 @@
                     
                     make.centerX.equalTo(uploadBtn);
                     make.top.equalTo(cameraBtn.mas_bottom).offset(10);
-                }];
-                
-                [UIView animateWithDuration:0.25 animations:^{
-                    
-                    cameraBtn.alpha = 1;
-                    photoBtn.alpha = 1;
-                    [_tipView layoutIfNeeded];
                 }];
             }else{
                 [cameraBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -409,30 +469,17 @@
                     make.centerX.equalTo(uploadBtn);
                     make.top.equalTo(cameraBtn);
                 }];
-                
-                [UIView animateWithDuration:0.25 animations:^{
-                    
-                    cameraBtn.alpha = 0;
-                    photoBtn.alpha = 0;
-                    [_tipView layoutIfNeeded];
-                }];
-
             }
             
+            [UIView animateWithDuration:0.25 animations:^{
+                
+                cameraBtn.alpha = !cameraBtn.alpha;
+                photoBtn.alpha = !photoBtn.alpha;
+                [_tipView layoutIfNeeded];
+            }];
             
         }];
-        
-        
-        [uploadBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(@-10);
-            make.top.equalTo(@15);
-            make.size.equalTo(CGSizeMake(58, 30));
-        }];
-        
-        [textL mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(uploadBtn.mas_left).with.offset(-10);
-            make.centerY.equalTo(uploadBtn);
-        }];
+       
     }
     return _tipView;
 }
