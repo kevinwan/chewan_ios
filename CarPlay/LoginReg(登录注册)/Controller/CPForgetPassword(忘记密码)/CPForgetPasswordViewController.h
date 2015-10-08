@@ -15,5 +15,5 @@
 - (IBAction)verificationCodeBtnClick:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UIButton *finishBtn;
-@property (weak, nonatomic) IBOutlet UIButton *finishBtnClick;
+- (IBAction)finishBtnClick:(id)sender;
 @end

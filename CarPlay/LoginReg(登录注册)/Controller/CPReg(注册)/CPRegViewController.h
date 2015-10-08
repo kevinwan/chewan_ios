@@ -17,4 +17,5 @@
 @property (weak, nonatomic) IBOutlet UIButton *registerBtn;
 - (IBAction)registerBtnClick:(id)sender;
 - (IBAction)thirdpartyRegister:(id)sender;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *verificationCodeWeight;
 @end

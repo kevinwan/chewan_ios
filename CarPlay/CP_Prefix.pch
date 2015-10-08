@@ -22,5 +22,6 @@
 #import "Const.h"
 #import "Tools.h"
 #import "CPUser.h"
+#import "CPNPSButton.h"
 
 #endif

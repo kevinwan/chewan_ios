@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="K4n-CO-GbR">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <scenes>
+        <!--TakeA Look View Controller-->
+        <scene sceneID="jHU-H7-s0z">
+            <objects>
+                <viewController id="K4n-CO-GbR" customClass="CPTakeALookViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QOC-bI-2lz"/>
+                        <viewControllerLayoutGuide type="bottom" id="vQA-hg-iQY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yMQ-hk-vC9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="takeALookBg" translatesAutoresizingMaskIntoConstraints="NO" id="AGK-Fq-8lS">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6wm-Fo-flS" customClass="CPNPSButton">
+                                <rect key="frame" x="35" y="56" width="46" height="30"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="personBtnClick:" destination="K4n-CO-GbR" eventType="touchUpInside" id="T6Z-uu-I8W"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QQX-SQ-N2t" customClass="CPNPSButton">
+                                <rect key="frame" x="164" y="319" width="46" height="30"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="personBtnClick:" destination="K4n-CO-GbR" eventType="touchUpInside" id="7C4-qx-lWg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wsn-0M-9JI" customClass="CPNPSButton">
+                                <rect key="frame" x="164" y="319" width="46" height="30"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="personBtnClick:" destination="K4n-CO-GbR" eventType="touchUpInside" id="Ujy-4X-PXb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rK9-1m-GhM" customClass="CPNPSButton">
+                                <rect key="frame" x="164" y="319" width="46" height="30"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="personBtnClick:" destination="K4n-CO-GbR" eventType="touchUpInside" id="kr5-RP-vI1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ik7-BA-jV0" customClass="CPNPSButton">
+                                <rect key="frame" x="164" y="319" width="46" height="30"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="personBtnClick:" destination="K4n-CO-GbR" eventType="touchUpInside" id="ZE1-GA-hgR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="90Z-Vh-gEa" customClass="CPNPSButton">
+                                <rect key="frame" x="164" y="319" width="46" height="30"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="personBtnClick:" destination="K4n-CO-GbR" eventType="touchUpInside" id="uUa-Tt-VCO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="7" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tg5-vo-Guz" customClass="CPNPSButton">
+                                <rect key="frame" x="164" y="319" width="46" height="30"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="personBtnClick:" destination="K4n-CO-GbR" eventType="touchUpInside" id="SBR-EO-T2y"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="8" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pgn-EV-2PZ" customClass="CPNPSButton">
+                                <rect key="frame" x="164" y="319" width="46" height="30"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="personBtnClick:" destination="K4n-CO-GbR" eventType="touchUpInside" id="7De-YB-7di"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="9" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WRD-0Z-o2R" customClass="CPNPSButton">
+                                <rect key="frame" x="164" y="319" width="46" height="30"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="personBtnClick:" destination="K4n-CO-GbR" eventType="touchUpInside" id="27n-uP-6hv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="10" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="odi-OX-92v" customClass="CPNPSButton">
+                                <rect key="frame" x="159" y="217" width="46" height="30"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="personBtnClick:" destination="K4n-CO-GbR" eventType="touchUpInside" id="c3g-cp-HbQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="AGK-Fq-8lS" firstAttribute="leading" secondItem="yMQ-hk-vC9" secondAttribute="leading" id="6qe-2J-kZY"/>
+                            <constraint firstItem="AGK-Fq-8lS" firstAttribute="top" secondItem="yMQ-hk-vC9" secondAttribute="top" id="AxZ-Nh-0NA"/>
+                            <constraint firstAttribute="trailing" secondItem="AGK-Fq-8lS" secondAttribute="trailing" id="pJx-2U-MUF"/>
+                            <constraint firstItem="vQA-hg-iQY" firstAttribute="top" secondItem="AGK-Fq-8lS" secondAttribute="bottom" id="uKp-qg-AoF"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="person1" destination="6wm-Fo-flS" id="miG-Zv-oQe"/>
+                        <outlet property="person10" destination="odi-OX-92v" id="nnn-QF-l91"/>
+                        <outlet property="person2" destination="QQX-SQ-N2t" id="44w-NG-zEP"/>
+                        <outlet property="person3" destination="wsn-0M-9JI" id="Ma0-cQ-qCl"/>
+                        <outlet property="person4" destination="rK9-1m-GhM" id="GbJ-MU-EX7"/>
+                        <outlet property="person5" destination="Ik7-BA-jV0" id="UDh-x7-rao"/>
+                        <outlet property="person6" destination="90Z-Vh-gEa" id="S4K-i8-4Mm"/>
+                        <outlet property="person7" destination="tg5-vo-Guz" id="Z16-Ai-PbM"/>
+                        <outlet property="person8" destination="Pgn-EV-2PZ" id="SKN-QR-wcn"/>
+                        <outlet property="person9" destination="WRD-0Z-o2R" id="gyu-gZ-AZE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NeG-1O-43M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="249.5" y="274.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="takeALookBg" width="320" height="568"/>
+    </resources>
+</document>

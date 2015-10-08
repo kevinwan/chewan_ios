@@ -13,6 +13,8 @@
 #import "CPMyViewController.h"
 #import "CPMyCareController.h"
 #import "CPTestPhotoViewController.h"
+#import "CPMatchingViewController.h"
+
 @interface CPTabBarController () <CPTabBarDelegate>
 
 @end
@@ -75,9 +77,9 @@
 #pragma mark - CPTabBarDelegate代理方法
 - (void)tabBarDidClickPlusButton:(CPTabBar *)tabBar
 {
-    UIViewController *vc = [[UIViewController alloc] init];
-    vc.view.backgroundColor = [UIColor redColor];
-    [self presentViewController:vc animated:YES completion:nil];
+    CPMatchingViewController *mathching=[UIStoryboard storyboardWithName:@"CPMatching" bundle:nil].instantiateInitialViewController;
+     CPNavigationController *nav=[[CPNavigationController alloc]initWithRootViewController:mathching];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 
