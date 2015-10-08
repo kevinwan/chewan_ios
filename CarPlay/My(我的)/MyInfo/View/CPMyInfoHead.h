@@ -10,4 +10,6 @@
 
 @interface CPMyInfoHead : UIView
 
++ (UIView *)createHead;
+
 @end

@@ -36,17 +36,27 @@
                         </constraints>
                         <state key="normal" backgroundImage="btn_woman_1"/>
                     </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KIY-NV-pR1" userLabel="底线">
+                        <rect key="frame" x="0.0" y="42.5" width="320" height="1"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="Fl5-pZ-cxe"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="KIY-NV-pR1" secondAttribute="trailing" id="0c1-h3-Vjw"/>
                     <constraint firstItem="fOk-lV-JRN" firstAttribute="centerY" secondItem="rSR-pq-MEV" secondAttribute="centerY" id="1bL-vW-AhA"/>
                     <constraint firstAttribute="trailing" secondItem="fOk-lV-JRN" secondAttribute="trailing" constant="10" id="BMY-Kj-oj0"/>
+                    <constraint firstAttribute="bottom" secondItem="KIY-NV-pR1" secondAttribute="bottom" id="daH-yV-LWF"/>
                     <constraint firstItem="gTG-Xb-svp" firstAttribute="centerY" secondItem="rSR-pq-MEV" secondAttribute="centerY" id="e5l-if-5Lh"/>
                     <constraint firstItem="gTG-Xb-svp" firstAttribute="leading" secondItem="rSR-pq-MEV" secondAttribute="leading" constant="10" id="jsE-LE-w9Q"/>
+                    <constraint firstItem="KIY-NV-pR1" firstAttribute="leading" secondItem="rSR-pq-MEV" secondAttribute="leading" id="l7c-V1-IHm"/>
                     <constraint firstItem="fOk-lV-JRN" firstAttribute="leading" secondItem="xJv-Yo-jJe" secondAttribute="trailing" constant="10" id="t5M-74-aYV"/>
                     <constraint firstItem="xJv-Yo-jJe" firstAttribute="centerY" secondItem="rSR-pq-MEV" secondAttribute="centerY" id="yHx-7l-lVR"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="225" y="185"/>
+            <point key="canvasLocation" x="223" y="181"/>
         </tableViewCell>
     </objects>
     <resources>
