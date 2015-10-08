@@ -41,6 +41,7 @@
         _collectionView.dataSource = self;
         [_collectionView registerNib:[UINib nibWithNibName:@"CPRecommendCell" bundle:nil] forCellWithReuseIdentifier:@"item"];
         _collectionView.backgroundColor = [Tools getColor:@"efefef"];
+        _collectionView.showsVerticalScrollIndicator = NO;
     }
     return _collectionView;
 }
