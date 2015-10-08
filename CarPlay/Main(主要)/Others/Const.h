@@ -11,5 +11,5 @@
 ZYEXTENSION_EXTERN NSString * const UserId;
 ZYEXTENSION_EXTERN NSString * const Token;
 
-// 是不是开启推送模式的key
+// 附近页面是不是开启推送模式的key
 ZYEXTENSION_EXTERN NSString * const FreeTimeKey;

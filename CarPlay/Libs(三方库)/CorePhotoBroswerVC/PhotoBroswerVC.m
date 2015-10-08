@@ -473,7 +473,7 @@
 
 -(void)setPhotoModels:(NSArray *)photoModels{
     
-    _photoModels = photoModels;
+    _photoModels = [NSMutableArray arrayWithArray:photoModels];
     
     self.pageCount = photoModels.count;
     

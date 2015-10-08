@@ -17,7 +17,6 @@
 @property (nonatomic, strong) UIView *tipView;
 
 @end
-
 @implementation CPNearViewController
 
 - (void)viewDidLoad

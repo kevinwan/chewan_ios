@@ -32,6 +32,24 @@
         [self.tableView.footer endRefreshing];
     });
 }
+
+/**
+ *  加载网络数据
+ */
+- (void)loadData
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[Token] = CPToken;
+    NSString *url = [NSString stringWithFormat:@"v2/user/%@/appointment",CPUserId];
+    [ZYNetWorkTool getWithUrl:url params:params success:^(id responseObject) {
+        if (CPSuccess) {
+            
+        }
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
 #pragma mark - dataSource & delegate
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

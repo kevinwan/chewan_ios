@@ -28,6 +28,7 @@
 
 // 定义这个宏可以使用自动装箱功能
 #define MAS_SHORTHAND_GLOBALS
+
 #define iPhone4 ([UIScreen mainScreen].bounds.size.height == 480.0)
 #define iPhone5 ([UIScreen mainScreen].bounds.size.height == 568.0)
 #define iPhone6 ([UIScreen mainScreen].bounds.size.height == 667.0)

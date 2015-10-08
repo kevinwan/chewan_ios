@@ -127,6 +127,9 @@
 		E3A68BBE1BBB8846002F4F75 /* CPConcernMyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A68BBD1BBB8846002F4F75 /* CPConcernMyCell.m */; settings = {ASSET_TAGS = (); }; };
 		E3A68BC11BBB8EE4002F4F75 /* ZYTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A68BC01BBB8EE4002F4F75 /* ZYTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		E3A68BC71BBBA11E002F4F75 /* CPTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A68BC61BBBA11E002F4F75 /* CPTableView.m */; settings = {ASSET_TAGS = (); }; };
+		E3AEFE351BC64970009C9438 /* CPRecommendController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AEFE341BC64970009C9438 /* CPRecommendController.m */; settings = {ASSET_TAGS = (); }; };
+		E3AEFE391BC64E5B009C9438 /* CPRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AEFE371BC64E5B009C9438 /* CPRecommendCell.m */; settings = {ASSET_TAGS = (); }; };
+		E3AEFE3A1BC64E5B009C9438 /* CPRecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3AEFE381BC64E5B009C9438 /* CPRecommendCell.xib */; settings = {ASSET_TAGS = (); }; };
 		E3AF16FE1BBA296C00306ABF /* CPNoHighLightButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AF16FD1BBA296C00306ABF /* CPNoHighLightButton.m */; settings = {ASSET_TAGS = (); }; };
 		E3AF17011BBA317E00306ABF /* CPMySwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AF17001BBA317E00306ABF /* CPMySwitch.m */; settings = {ASSET_TAGS = (); }; };
 		E3E6B88C1BB4F7FA006B4F8A /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6B88B1BB4F7FA006B4F8A /* FXBlurView.m */; settings = {ASSET_TAGS = (); }; };
@@ -365,6 +368,11 @@
 		E3A68BC01BBB8EE4002F4F75 /* ZYTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYTableViewCell.m; sourceTree = "<group>"; };
 		E3A68BC51BBBA11E002F4F75 /* CPTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTableView.h; sourceTree = "<group>"; };
 		E3A68BC61BBBA11E002F4F75 /* CPTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTableView.m; sourceTree = "<group>"; };
+		E3AEFE331BC64970009C9438 /* CPRecommendController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRecommendController.h; sourceTree = "<group>"; };
+		E3AEFE341BC64970009C9438 /* CPRecommendController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRecommendController.m; sourceTree = "<group>"; };
+		E3AEFE361BC64E5B009C9438 /* CPRecommendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRecommendCell.h; sourceTree = "<group>"; };
+		E3AEFE371BC64E5B009C9438 /* CPRecommendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRecommendCell.m; sourceTree = "<group>"; };
+		E3AEFE381BC64E5B009C9438 /* CPRecommendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPRecommendCell.xib; sourceTree = "<group>"; };
 		E3AF16FC1BBA296C00306ABF /* CPNoHighLightButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNoHighLightButton.h; sourceTree = "<group>"; };
 		E3AF16FD1BBA296C00306ABF /* CPNoHighLightButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNoHighLightButton.m; sourceTree = "<group>"; };
 		E3AF16FF1BBA317E00306ABF /* CPMySwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMySwitch.h; sourceTree = "<group>"; };
@@ -1095,6 +1103,8 @@
 		E3A471121BB3A85300973197 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E3AEFE331BC64970009C9438 /* CPRecommendController.h */,
+				E3AEFE341BC64970009C9438 /* CPRecommendController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1109,6 +1119,9 @@
 		E3A471141BB3A85300973197 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E3AEFE361BC64E5B009C9438 /* CPRecommendCell.h */,
+				E3AEFE371BC64E5B009C9438 /* CPRecommendCell.m */,
+				E3AEFE381BC64E5B009C9438 /* CPRecommendCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1450,6 +1463,7 @@
 				6B440CDB1BBA857B00CF8410 /* CPMyInfoHead.xib in Resources */,
 				E37C10B41BBB79E700E1A6A2 /* CPMyVisitorViewController.storyboard in Resources */,
 				E3A68BBB1BBB874D002F4F75 /* CPConcernMyController.storyboard in Resources */,
+				E3AEFE3A1BC64E5B009C9438 /* CPRecommendCell.xib in Resources */,
 				E31B13531BB9312D00B51696 /* CoreSVP.bundle in Resources */,
 				6B440CD91BBA848200CF8410 /* CPMyInfoController.storyboard in Resources */,
 				6B153EF51BB5690900560935 /* CPForgetPassword.storyboard in Resources */,
@@ -1520,6 +1534,7 @@
 				E3A471871BB3A85300973197 /* UITableView+ZYExtension.m in Sources */,
 				E3A471911BB3A85300973197 /* ZYNetWorkTool.m in Sources */,
 				6BCD585C1BBB87750025F995 /* CPMyInfoFirCell.m in Sources */,
+				E3AEFE351BC64970009C9438 /* CPRecommendController.m in Sources */,
 				E31B13401BB9312D00B51696 /* NSDate+Extend.m in Sources */,
 				E3A471861BB3A85300973197 /* UITabBar+Extension.m in Sources */,
 				6BCFFBBC1BBA456900C082B2 /* CPTopButton.m in Sources */,
@@ -1530,6 +1545,7 @@
 				6B153EF71BB5690900560935 /* CPRegViewController.m in Sources */,
 				E31B12E81BB9311700B51696 /* PhotoImageView.m in Sources */,
 				E3A471971BB3A85300973197 /* CPTabBar.m in Sources */,
+				E3AEFE391BC64E5B009C9438 /* CPRecommendCell.m in Sources */,
 				6B153EF61BB5690900560935 /* CPForgetPasswordViewController.m in Sources */,
 				E3A4718A1BB3A85300973197 /* UIViewController+ZYExtension.m in Sources */,
 				E3E6B8911BB4FD54006B4F8A /* CPLoginViewController.m in Sources */,
