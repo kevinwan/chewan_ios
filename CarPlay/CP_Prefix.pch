@@ -23,5 +23,6 @@
 #import "Tools.h"
 #import "CPUser.h"
 #import "CPNPSButton.h"
+#import "ZYTableViewCell.h"
 
 #endif

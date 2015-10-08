@@ -4,7 +4,7 @@
 //
 //  Created by chewan on 15/8/24.
 //  Copyright (c) 2015年 chewan. All rights reserved.
-//  从环信Demo中提取修改
+//  主要用于同一控制器的传值
 
 #import <UIKit/UIKit.h>
 

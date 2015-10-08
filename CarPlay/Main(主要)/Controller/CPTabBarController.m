@@ -15,6 +15,7 @@
 #import "CPTestPhotoViewController.h"
 #import "CPMatchingViewController.h"
 
+#import "CPRecommendController.h"
 @interface CPTabBarController () <CPTabBarDelegate>
 
 @end
@@ -30,7 +31,7 @@
     CPNearViewController *nearVc1 = [[CPNearViewController alloc] init];
     [self addChildVc:nearVc1 title:@"附近" image:@"NearUnSelect" selectedImage:@"NearSelect"];
     
-    CPTestPhotoViewController *nearVc2 = [[CPTestPhotoViewController alloc] init];
+    CPRecommendController *nearVc2 = [[CPRecommendController alloc] init];
     [self addChildVc:nearVc2 title:@"推荐" image:@"RecommendUnSelect" selectedImage:@"RecommendSelect"];
     
     CPMyCareController *vc3 = [UIStoryboard storyboardWithName:@"CPMyCareController" bundle:nil].instantiateInitialViewController;

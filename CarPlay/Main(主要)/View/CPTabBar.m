@@ -20,8 +20,13 @@
         _plusBtn = [[UIButton alloc] init];
         [_plusBtn setImage:[UIImage imageNamed:@"Wheel"] forState:UIControlStateNormal];
         [_plusBtn setBackgroundColor:[UIColor clearColor]];
-    
-        [_plusBtn addAnimation:[CAAnimation rotation:50 degree:-200 direction:ZYAxisZ repeatCount:MAXFLOAT]];
+        CABasicAnimation *anima=[CABasicAnimation animationWithKeyPath:@"transform"];
+        anima.duration=0.4;
+        anima.toValue=[NSValue valueWithCATransform3D:CATransform3DMakeRotation(M_PI_2, 0, 0, 1)];
+        anima.removedOnCompletion=NO;
+        anima.fillMode=kCAFillModeForwards;
+        anima.repeatCount = MAXFLOAT;
+        [_plusBtn.layer addAnimation:anima forKey:nil];
         [_plusBtn addTarget:self action:@selector(plusClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _plusBtn;
@@ -47,7 +52,6 @@
     
     self.plusBtn.width = self.bounds.size.width / 5.0;
     self.plusBtn.height = self.bounds.size.width / 5.0;
-    NSLog(@"width:%f-----height:%f",self.plusBtn.width,self.plusBtn.height);
     // 1.设置加号按钮的位置
     self.plusBtn.centerX = self.bounds.size.width * 0.5;
     self.plusBtn.centerY = self.bounds.size.height * 0.5 - 10;

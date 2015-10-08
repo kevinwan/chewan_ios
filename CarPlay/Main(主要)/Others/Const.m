@@ -10,3 +10,4 @@
 
 NSString * const UserId = @"userId";
 NSString * const Token  = @"token";
+NSString * const FreeTimeKey = @"FreeTimeKey";
