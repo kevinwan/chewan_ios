@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#define RecommentAddressClickKey @"RecommentAddressClickKey"
 @interface CPRecommendCell : UICollectionViewCell
 
 @end

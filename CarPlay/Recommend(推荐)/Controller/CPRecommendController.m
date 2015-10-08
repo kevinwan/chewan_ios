@@ -7,6 +7,7 @@
 //  推荐活动
 
 #import "CPRecommendController.h"
+#import "CPRecommendCell.h"
 
 @interface CPRecommendController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -20,12 +21,20 @@
     [self.view addSubview:self.collectionView];
 }
 
+- (void)superViewWillRecive:(NSString *)notifyName info:(id)userInfo
+{
+    if ([notifyName isEqualToString:RecommentAddressClickKey]) {
+        NSLog(@"国家体育馆");
+    }
+}
+
 - (UICollectionView *)collectionView
 {
     if (_collectionView == nil) {
         UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
         layout.minimumLineSpacing = 40;
-        layout.itemSize = CGSizeMake(ZYScreenWidth - 20, ZYScreenHeight - 150);
+        layout.itemSize = CGSizeMake(ZYScreenWidth - 50, 405 + ZYScreenWidth - 320);
+        ;
 //        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];;
         _collectionView.delegate = self;

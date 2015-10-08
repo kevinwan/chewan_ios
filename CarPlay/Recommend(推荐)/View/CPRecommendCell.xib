@@ -23,7 +23,7 @@
                         <state key="normal" image="ceo头像"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AJK-2T-a5A">
-                        <rect key="frame" x="259" y="19" width="12" height="12"/>
+                        <rect key="frame" x="265" y="19" width="12" height="12"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="12" id="ljQ-Ti-GeJ"/>
                             <constraint firstAttribute="width" constant="12" id="sgQ-iM-Oee"/>
@@ -31,7 +31,7 @@
                         <state key="normal" image="icon_women"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m69-rh-pMd">
-                        <rect key="frame" x="307" y="19" width="12" height="12"/>
+                        <rect key="frame" x="310" y="19" width="12" height="12"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="12" id="Dbc-P6-Foj"/>
                             <constraint firstAttribute="height" constant="12" id="SNc-L8-qSV"/>
@@ -39,7 +39,7 @@
                         <state key="normal" image="icon_men"/>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 / 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="diQ-dL-FFa">
-                        <rect key="frame" x="276" y="19" width="20.5" height="12"/>
+                        <rect key="frame" x="279" y="19" width="20.5" height="12"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -50,16 +50,16 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3" translatesAutoresizingMaskIntoConstraints="NO" id="54C-pY-HWU">
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3" translatesAutoresizingMaskIntoConstraints="NO" id="54C-pY-HWU">
                         <rect key="frame" x="0.0" y="44" width="361" height="361"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="54C-pY-HWU" secondAttribute="height" multiplier="1:1" id="c9Z-dl-lUc"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNa-xo-2iz">
-                        <rect key="frame" x="10" y="415" width="924" height="17"/>
+                        <rect key="frame" x="10" y="415" width="480" height="17"/>
                         <attributedString key="attributedText">
-                            <fragment content="范德萨发大水发生的法师打发士大夫对方答复多舒服撒发生的房价的萨拉开房记录卡电视剧法律会计师的离开房间了开始的减肥快乐就上课了对方家里的快速减肥快乐撒地方就">
+                            <fragment content="范德萨发大水发生的法师打发士大夫对方答复多舒服撒发生的房价的萨拉开房记录卡电视剧">
                                 <attributes>
                                     <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <font key="NSFont" size="12" name="STHeitiSC-Light"/>
@@ -69,8 +69,8 @@
                         </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="300元每人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QWd-fE-37B">
-                        <rect key="frame" x="10" y="452" width="77.5" height="19.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="300元/人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QWd-fE-37B">
+                        <rect key="frame" x="10" y="442" width="66.5" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -82,7 +82,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_tip" translatesAutoresizingMaskIntoConstraints="NO" id="NsM-gH-75b">
-                        <rect key="frame" x="250" y="451.5" width="111" height="20"/>
+                        <rect key="frame" x="250" y="441.5" width="111" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="E1S-ER-Qo3"/>
                             <constraint firstAttribute="width" constant="111" id="RN5-t3-y6Z"/>
@@ -97,9 +97,9 @@
                 <constraint firstItem="7BT-J4-Mm3" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="3G5-Xa-DUr"/>
                 <constraint firstAttribute="trailing" secondItem="QHb-b8-dXj" secondAttribute="trailing" constant="10" id="3OL-iZ-8WE"/>
                 <constraint firstItem="m69-rh-pMd" firstAttribute="leading" secondItem="diQ-dL-FFa" secondAttribute="trailing" constant="10" id="3sr-sb-TcX"/>
-                <constraint firstItem="QWd-fE-37B" firstAttribute="top" secondItem="qNa-xo-2iz" secondAttribute="bottom" constant="20" id="4EQ-Ot-s6T"/>
+                <constraint firstItem="QWd-fE-37B" firstAttribute="top" secondItem="qNa-xo-2iz" secondAttribute="bottom" constant="10" id="4EQ-Ot-s6T"/>
                 <constraint firstItem="7BT-J4-Mm3" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="7cr-7Q-yz7"/>
-                <constraint firstItem="diQ-dL-FFa" firstAttribute="leading" secondItem="AJK-2T-a5A" secondAttribute="trailing" constant="5" id="AeD-je-4I2"/>
+                <constraint firstItem="diQ-dL-FFa" firstAttribute="leading" secondItem="AJK-2T-a5A" secondAttribute="trailing" constant="2" id="AeD-je-4I2"/>
                 <constraint firstItem="diQ-dL-FFa" firstAttribute="centerY" secondItem="7BT-J4-Mm3" secondAttribute="centerY" id="GYb-1n-UBd"/>
                 <constraint firstAttribute="trailing" secondItem="54C-pY-HWU" secondAttribute="trailing" id="Ipy-W4-dTT"/>
                 <constraint firstItem="54C-pY-HWU" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="44" id="MjZ-4A-Eey"/>
@@ -109,7 +109,7 @@
                 <constraint firstItem="QWd-fE-37B" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="d1k-XO-MmU"/>
                 <constraint firstItem="54C-pY-HWU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ecQ-sa-vr7"/>
                 <constraint firstItem="NBq-tU-DhP" firstAttribute="leading" secondItem="7BT-J4-Mm3" secondAttribute="trailing" constant="10" id="h77-GW-oJV"/>
-                <constraint firstItem="QHb-b8-dXj" firstAttribute="leading" secondItem="m69-rh-pMd" secondAttribute="trailing" constant="5" id="nYJ-fr-1op"/>
+                <constraint firstItem="QHb-b8-dXj" firstAttribute="leading" secondItem="m69-rh-pMd" secondAttribute="trailing" constant="2" id="nYJ-fr-1op"/>
                 <constraint firstItem="QHb-b8-dXj" firstAttribute="centerY" secondItem="7BT-J4-Mm3" secondAttribute="centerY" id="tBb-1T-PMn"/>
                 <constraint firstItem="NsM-gH-75b" firstAttribute="centerY" secondItem="QWd-fE-37B" secondAttribute="centerY" id="uzW-7Y-keN"/>
                 <constraint firstItem="qNa-xo-2iz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="v5x-S7-KDF"/>
@@ -117,6 +117,7 @@
             </constraints>
             <size key="customSize" width="361" height="655"/>
             <connections>
+                <outlet property="bgImageView" destination="54C-pY-HWU" id="uSX-wY-u6e"/>
                 <outlet property="bgTip" destination="NsM-gH-75b" id="P0w-Lm-42H"/>
                 <outlet property="contentTextL" destination="qNa-xo-2iz" id="pp6-zC-TAN"/>
             </connections>
