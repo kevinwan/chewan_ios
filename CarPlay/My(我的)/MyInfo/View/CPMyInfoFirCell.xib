@@ -26,9 +26,19 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xBS-Fw-4xu" userLabel="底线">
+                        <rect key="frame" x="0.0" y="42" width="320" height="1"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="NCT-CZ-8A7"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="xBS-Fw-4xu" secondAttribute="trailing" id="7Ul-TT-uSd"/>
+                    <constraint firstItem="xBS-Fw-4xu" firstAttribute="leading" secondItem="dRO-DM-rtW" secondAttribute="leading" id="PMs-a4-oFk"/>
                     <constraint firstAttribute="trailing" secondItem="wzv-Oa-va6" secondAttribute="trailing" constant="10" id="WuR-q4-Jaq"/>
+                    <constraint firstAttribute="bottom" secondItem="xBS-Fw-4xu" secondAttribute="bottom" id="cJY-EN-et2"/>
                     <constraint firstItem="dMg-1T-yxk" firstAttribute="leading" secondItem="dRO-DM-rtW" secondAttribute="leading" constant="10" id="g6N-mz-e7M"/>
                     <constraint firstItem="dMg-1T-yxk" firstAttribute="centerY" secondItem="dRO-DM-rtW" secondAttribute="centerY" id="j3A-L1-BES"/>
                     <constraint firstItem="wzv-Oa-va6" firstAttribute="centerY" secondItem="dRO-DM-rtW" secondAttribute="centerY" id="nb3-Il-tqN"/>

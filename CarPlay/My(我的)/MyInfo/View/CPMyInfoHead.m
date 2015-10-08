@@ -10,12 +10,9 @@
 
 @implementation CPMyInfoHead
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
++ (UIView *)createHead{
+    UIView *head = [[[NSBundle mainBundle] loadNibNamed:@"CPMyInfoHead" owner:nil options:nil] lastObject];
+    return head;
 }
-*/
 
 @end

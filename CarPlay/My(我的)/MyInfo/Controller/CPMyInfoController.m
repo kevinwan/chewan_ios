@@ -10,6 +10,7 @@
 #import "CPMyInfoFirCell.h"
 #import "CPMyInfoSecCell.h"
 #import "CPMyInfoThrCell.h"
+#import "CPMyInfoHead.h"
 
 @interface CPMyInfoController ()
 
@@ -20,10 +21,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"个人信息";
     // 设置导航栏
+    self.title = @"个人信息";
     [self setRightNavigationBarItemWithTitle:@"完成" Image:nil highImage:nil  target:self action:@selector(finish)];
-     
+    
+    // 设置head
+    self.tableView.tableHeaderView = [CPMyInfoHead createHead];
+    
+
+    
 }
 
 - (void)finish{
