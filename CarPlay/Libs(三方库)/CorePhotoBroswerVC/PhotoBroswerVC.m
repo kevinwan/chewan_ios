@@ -231,9 +231,10 @@
     [super viewDidLoad];
     UIView *lineView = [UIView new];
     lineView.backgroundColor = ZYColor(0, 0, 0, 0.5);
+    lineView.alpha = 0.4;
     [self.topBarView addSubview:lineView];
     [lineView mas_makeConstraints:^(MASConstraintMaker *make){
-        make.height.equalTo(@1);
+        make.height.equalTo(@0.5);
         make.left.and.bottom.equalTo(@0);
         make.width.equalTo(self.topBarView);
     }];
@@ -269,6 +270,7 @@
     
     //去除自动处理
     self.automaticallyAdjustsScrollViewInsets = NO;
+    
     
     //每页准备
     [self pagesPrepare];
@@ -337,14 +339,14 @@
     
     //这里有一个奇怪的重影bug，必须这样解决
 
-//    photoItemView.hidden=YES;
-//    [UIView animateWithDuration:.01 animations:^{
-//        photoItemView.alpha=1;
-//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.001 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//            photoItemView.hidden=NO;
-//        });
-//    
-//    }];
+    photoItemView.hidden=YES;
+    [UIView animateWithDuration:.01 animations:^{
+        photoItemView.alpha=1;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.001 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            photoItemView.hidden=NO;
+        });
+    
+    }];
 }
 
 
@@ -533,18 +535,8 @@
         [actionSheet.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
             if (index.intValue == 0) {
                 
-                CGFloat y = self.scrollView.contentOffset.x + ZYScreenWidth + 20;
 #warning 删除有bug 因为缓存问题 待修改
-                if (self.page) {
-                    
-                    [self.photoModels removeObjectAtIndex:self.page];
-                    [self.currentItemView setPhotoModel:nil];
-                    [self.scrollView setContentOffset:CGPointMake(y , 0) animated:YES];
-                }
-                
-                
-                
-                [SVProgressHUD showSuccessWithStatus:@"删除成功"];
+                [self deletePhoto];
                 
             }
         }];
@@ -598,11 +590,38 @@
 }
 
 
+- (void)deletePhoto
+{
+    
+    [self.photoModels removeObjectAtIndex:self.page];
+    // 清空缓存
+    [self.reusablePhotoItemViewSetM removeAllObjects];
+    
+    [self.visiblePhotoItemViewDictM removeAllObjects];
+    self.index = self.page;
+    if (self.page == self.pageCount - 1) {
+        self.index -= 1;
+    }
+    self.pageCount -= 1;
+    
+    [self vcPrepare];
+
+    //设置标题
+    NSString *text = [NSString stringWithFormat:@"%@ / %@", @(self.page + 1) , @(self.pageCount)];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        self.topBarLabel.text = text;
+        [self.topBarLabel setNeedsLayout];
+        [self.topBarLabel layoutIfNeeded];
+    });
+    
+    [SVProgressHUD showSuccessWithStatus:@"删除成功"];
+}
+
 -(void)setIndex:(NSUInteger)index{
     _index = index ;
 }
-
-
 
 /** 取出可重用照片视图 */
 -(PhotoItemView *)dequeReusablePhotoItemView{

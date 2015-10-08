@@ -119,7 +119,8 @@
  */
 - (void)dateClickWithInfo:(id)userInfo
 {
-    
+    UIViewController *vc = [UIStoryboard storyboardWithName:@"CPMyVisitorViewController" bundle:nil].instantiateInitialViewController;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /**

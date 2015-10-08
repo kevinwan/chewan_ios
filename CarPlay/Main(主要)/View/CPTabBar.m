@@ -22,7 +22,7 @@
         [_plusBtn setBackgroundColor:[UIColor clearColor]];
         CABasicAnimation *anima=[CABasicAnimation animationWithKeyPath:@"transform"];
         anima.duration=0.4;
-        anima.toValue=[NSValue valueWithCATransform3D:CATransform3DMakeRotation(M_PI_2, 0, 0, -1)];
+        anima.toValue=[NSValue valueWithCATransform3D:CATransform3DMakeRotation(M_PI_2, 0, 0, 1)];
         anima.removedOnCompletion=NO;
         anima.fillMode=kCAFillModeForwards;
         anima.repeatCount = MAXFLOAT;

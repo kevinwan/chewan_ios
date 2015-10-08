@@ -77,6 +77,10 @@
 		E31E4BD71BAD47A500902B34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E31E4BD61BAD47A500902B34 /* main.m */; };
 		E31E4BE21BAD47A500902B34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E31E4BE11BAD47A500902B34 /* Assets.xcassets */; };
 		E31E4BE51BAD47A500902B34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E31E4BE31BAD47A500902B34 /* LaunchScreen.storyboard */; };
+		E37C10B21BBB79D800E1A6A2 /* CPMyVisitorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E37C10B11BBB79D800E1A6A2 /* CPMyVisitorViewController.m */; settings = {ASSET_TAGS = (); }; };
+		E37C10B41BBB79E700E1A6A2 /* CPMyVisitorViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E37C10B31BBB79E700E1A6A2 /* CPMyVisitorViewController.storyboard */; settings = {ASSET_TAGS = (); }; };
+		E37C10B71BBB7CEB00E1A6A2 /* CPMyVistorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E37C10B61BBB7CEB00E1A6A2 /* CPMyVistorCell.m */; settings = {ASSET_TAGS = (); }; };
+		E37C10BA1BBB80C100E1A6A2 /* CPConcernMyController.m in Sources */ = {isa = PBXBuildFile; fileRef = E37C10B91BBB80C100E1A6A2 /* CPConcernMyController.m */; settings = {ASSET_TAGS = (); }; };
 		E37FDBBA1BBA77B70078FBEF /* CPMyDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E37FDBB91BBA77B70078FBEF /* CPMyDateViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E39627B21BB5265A005E0CF2 /* UIImage+Blur.m in Sources */ = {isa = PBXBuildFile; fileRef = E39627B11BB5265A005E0CF2 /* UIImage+Blur.m */; settings = {ASSET_TAGS = (); }; };
 		E39627B51BB53357005E0CF2 /* CPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E39627B41BB53357005E0CF2 /* CPUser.m */; settings = {ASSET_TAGS = (); }; };
@@ -119,6 +123,10 @@
 		E3A471951BB3A85300973197 /* Const.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A4716C1BB3A85300973197 /* Const.m */; settings = {ASSET_TAGS = (); }; };
 		E3A471961BB3A85300973197 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A4716F1BB3A85300973197 /* Tools.m */; settings = {ASSET_TAGS = (); }; };
 		E3A471971BB3A85300973197 /* CPTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A471721BB3A85300973197 /* CPTabBar.m */; settings = {ASSET_TAGS = (); }; };
+		E3A68BBB1BBB874D002F4F75 /* CPConcernMyController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3A68BBA1BBB874D002F4F75 /* CPConcernMyController.storyboard */; settings = {ASSET_TAGS = (); }; };
+		E3A68BBE1BBB8846002F4F75 /* CPConcernMyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A68BBD1BBB8846002F4F75 /* CPConcernMyCell.m */; settings = {ASSET_TAGS = (); }; };
+		E3A68BC11BBB8EE4002F4F75 /* ZYTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A68BC01BBB8EE4002F4F75 /* ZYTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		E3A68BC71BBBA11E002F4F75 /* CPTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A68BC61BBBA11E002F4F75 /* CPTableView.m */; settings = {ASSET_TAGS = (); }; };
 		E3AF16FE1BBA296C00306ABF /* CPNoHighLightButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AF16FD1BBA296C00306ABF /* CPNoHighLightButton.m */; settings = {ASSET_TAGS = (); }; };
 		E3AF17011BBA317E00306ABF /* CPMySwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AF17001BBA317E00306ABF /* CPMySwitch.m */; settings = {ASSET_TAGS = (); }; };
 		E3E6B88C1BB4F7FA006B4F8A /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6B88B1BB4F7FA006B4F8A /* FXBlurView.m */; settings = {ASSET_TAGS = (); }; };
@@ -258,6 +266,13 @@
 		E31E4BE61BAD47A500902B34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E31E4C491BAD48D600902B34 /* CP_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CP_Prefix.pch; sourceTree = "<group>"; };
 		E31E4C4E1BAD507E00902B34 /* macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = macro.h; sourceTree = "<group>"; };
+		E37C10B01BBB79D800E1A6A2 /* CPMyVisitorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyVisitorViewController.h; sourceTree = "<group>"; };
+		E37C10B11BBB79D800E1A6A2 /* CPMyVisitorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyVisitorViewController.m; sourceTree = "<group>"; };
+		E37C10B31BBB79E700E1A6A2 /* CPMyVisitorViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMyVisitorViewController.storyboard; sourceTree = "<group>"; };
+		E37C10B51BBB7CEB00E1A6A2 /* CPMyVistorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyVistorCell.h; sourceTree = "<group>"; };
+		E37C10B61BBB7CEB00E1A6A2 /* CPMyVistorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyVistorCell.m; sourceTree = "<group>"; };
+		E37C10B81BBB80C100E1A6A2 /* CPConcernMyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPConcernMyController.h; sourceTree = "<group>"; };
+		E37C10B91BBB80C100E1A6A2 /* CPConcernMyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPConcernMyController.m; sourceTree = "<group>"; };
 		E37FDBB81BBA77B70078FBEF /* CPMyDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyDateViewController.h; sourceTree = "<group>"; };
 		E37FDBB91BBA77B70078FBEF /* CPMyDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyDateViewController.m; sourceTree = "<group>"; };
 		E39627B01BB5265A005E0CF2 /* UIImage+Blur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Blur.h"; sourceTree = "<group>"; };
@@ -343,6 +358,13 @@
 		E3A4716F1BB3A85300973197 /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
 		E3A471711BB3A85300973197 /* CPTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTabBar.h; sourceTree = "<group>"; };
 		E3A471721BB3A85300973197 /* CPTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTabBar.m; sourceTree = "<group>"; };
+		E3A68BBA1BBB874D002F4F75 /* CPConcernMyController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPConcernMyController.storyboard; sourceTree = "<group>"; };
+		E3A68BBC1BBB8846002F4F75 /* CPConcernMyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPConcernMyCell.h; sourceTree = "<group>"; };
+		E3A68BBD1BBB8846002F4F75 /* CPConcernMyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPConcernMyCell.m; sourceTree = "<group>"; };
+		E3A68BBF1BBB8EE4002F4F75 /* ZYTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYTableViewCell.h; sourceTree = "<group>"; };
+		E3A68BC01BBB8EE4002F4F75 /* ZYTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYTableViewCell.m; sourceTree = "<group>"; };
+		E3A68BC51BBBA11E002F4F75 /* CPTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTableView.h; sourceTree = "<group>"; };
+		E3A68BC61BBBA11E002F4F75 /* CPTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTableView.m; sourceTree = "<group>"; };
 		E3AF16FC1BBA296C00306ABF /* CPNoHighLightButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNoHighLightButton.h; sourceTree = "<group>"; };
 		E3AF16FD1BBA296C00306ABF /* CPNoHighLightButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNoHighLightButton.m; sourceTree = "<group>"; };
 		E3AF16FF1BBA317E00306ABF /* CPMySwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMySwitch.h; sourceTree = "<group>"; };
@@ -1030,6 +1052,12 @@
 		E3A4710E1BB3A85300973197 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E37C10B01BBB79D800E1A6A2 /* CPMyVisitorViewController.h */,
+				E37C10B11BBB79D800E1A6A2 /* CPMyVisitorViewController.m */,
+				E37C10B31BBB79E700E1A6A2 /* CPMyVisitorViewController.storyboard */,
+				E37C10B81BBB80C100E1A6A2 /* CPConcernMyController.h */,
+				E37C10B91BBB80C100E1A6A2 /* CPConcernMyController.m */,
+				E3A68BBA1BBB874D002F4F75 /* CPConcernMyController.storyboard */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1044,6 +1072,12 @@
 		E3A471101BB3A85300973197 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E37C10B51BBB7CEB00E1A6A2 /* CPMyVistorCell.h */,
+				E37C10B61BBB7CEB00E1A6A2 /* CPMyVistorCell.m */,
+				E3A68BBC1BBB8846002F4F75 /* CPConcernMyCell.h */,
+				E3A68BBD1BBB8846002F4F75 /* CPConcernMyCell.m */,
+				E3A68BC51BBBA11E002F4F75 /* CPTableView.h */,
+				E3A68BC61BBBA11E002F4F75 /* CPTableView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1152,6 +1186,8 @@
 		E3A471211BB3A85300973197 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E3A68BBF1BBB8EE4002F4F75 /* ZYTableViewCell.h */,
+				E3A68BC01BBB8EE4002F4F75 /* ZYTableViewCell.m */,
 				6B5176781BB9502100D7A62E /* CustomSwitch */,
 				E3E6B8961BB515F1006B4F8A /* CPSexView.h */,
 				E3E6B8971BB515F1006B4F8A /* CPSexView.m */,
@@ -1412,6 +1448,8 @@
 				6B440CE31BBA86C500CF8410 /* CPMyInfoFirCell.xib in Resources */,
 				6B51767D1BB9502100D7A62E /* CustomSwitch.xib in Resources */,
 				6B440CDB1BBA857B00CF8410 /* CPMyInfoHead.xib in Resources */,
+				E37C10B41BBB79E700E1A6A2 /* CPMyVisitorViewController.storyboard in Resources */,
+				E3A68BBB1BBB874D002F4F75 /* CPConcernMyController.storyboard in Resources */,
 				E31B13531BB9312D00B51696 /* CoreSVP.bundle in Resources */,
 				6B440CD91BBA848200CF8410 /* CPMyInfoController.storyboard in Resources */,
 				6B153EF51BB5690900560935 /* CPForgetPassword.storyboard in Resources */,
@@ -1507,17 +1545,20 @@
 				E31B13421BB9312D00B51696 /* NSString+Extend.m in Sources */,
 				6BCD585F1BBB878B0025F995 /* CPMyInfoSecCell.m in Sources */,
 				E3A471901BB3A85300973197 /* ZYNetWorkManager.m in Sources */,
+				E3A68BC71BBBA11E002F4F75 /* CPTableView.m in Sources */,
 				E31B12EB1BB9311700B51696 /* PhotoBroswerVC.m in Sources */,
 				E37FDBBA1BBA77B70078FBEF /* CPMyDateViewController.m in Sources */,
 				E31B13481BB9312D00B51696 /* UIImage+Cut.m in Sources */,
 				E31B13521BB9312D00B51696 /* UIImageView+SD.m in Sources */,
 				E3A471881BB3A85300973197 /* UITableViewCell+ZYExtension.m in Sources */,
+				E37C10B71BBB7CEB00E1A6A2 /* CPMyVistorCell.m in Sources */,
 				E31B13431BB9312D00B51696 /* NSString+Password.m in Sources */,
 				E3A4717B1BB3A85300973197 /* NSDictionary+ZY.m in Sources */,
 				E31B134A1BB9312D00B51696 /* UIImage+FixOrientation.m in Sources */,
 				E31B13491BB9312D00B51696 /* UIImage+Extend.m in Sources */,
 				E3A471741BB3A85300973197 /* CPBaseViewCell.m in Sources */,
 				E3A4718B1BB3A85300973197 /* ZYBlock.m in Sources */,
+				E3A68BC11BBB8EE4002F4F75 /* ZYTableViewCell.m in Sources */,
 				E3A4717F1BB3A85300973197 /* NSString+Extension.m in Sources */,
 				E31B134E1BB9312D00B51696 /* UIWindow+Launch.m in Sources */,
 				E31B134C1BB9312D00B51696 /* UITableViewCell+Extend.m in Sources */,
@@ -1528,9 +1569,12 @@
 				E3A4717A1BB3A85300973197 /* NSDate+Extension.m in Sources */,
 				E3A471811BB3A85300973197 /* UIBarButtonItem+Extension.m in Sources */,
 				E31B12E11BB9311700B51696 /* PhotoBroswerLayout.m in Sources */,
+				E37C10B21BBB79D800E1A6A2 /* CPMyVisitorViewController.m in Sources */,
 				E3A471771BB3A85300973197 /* CAAnimation+ZY.m in Sources */,
 				E31B13471BB9312D00B51696 /* UIImage+Color.m in Sources */,
+				E3A68BBE1BBB8846002F4F75 /* CPConcernMyCell.m in Sources */,
 				E31B134F1BB9312D00B51696 /* UIImage+ReMake.m in Sources */,
+				E37C10BA1BBB80C100E1A6A2 /* CPConcernMyController.m in Sources */,
 				E3A471931BB3A85300973197 /* CPTabBarController.m in Sources */,
 				E31B12E01BB9311700B51696 /* PBConst.m in Sources */,
 				E3AF16FE1BBA296C00306ABF /* CPNoHighLightButton.m in Sources */,

@@ -23,7 +23,7 @@
     CPTabBarController *tabVc = [CPTabBarController new];
     tabVc.delegate = self;
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    
+    self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = tabVc;
     
     [self.window makeKeyAndVisible];
@@ -55,10 +55,12 @@
 
         if (![[info instance] isKindOfClass:NSClassFromString(@"UIInputWindowController")]) {
             
-            NSLog(@"%@viewDidLoad..",[[info instance] class]);
+        }else if ([[info instance] isKindOfClass:[UITableViewController class]]){
+         
         }
         
     }error:NULL];
+    
     /**
     [UIViewController aspect_hookSelector:NSSelectorFromString(@"viewWillDisappear:") withOptions:AspectPositionBefore usingBlock:^(id info){
         
