@@ -10,9 +10,10 @@
 #import "CPBaseViewCell.h"
 #import "CPMySwitch.h"
 #import "CPMyDateViewController.h"
+#import "PagedFlowView.h"
 
-@interface CPNearViewController ()<UITableViewDelegate,UITableViewDataSource>
-@property (nonatomic, strong) UITableView *tableView;
+@interface CPNearViewController ()<PagedFlowViewDataSource,PagedFlowViewDelegate>
+@property (nonatomic, strong) PagedFlowView *tableView;
 @property (nonatomic, strong) NSMutableArray<CPActivityModel *> *datas;
 @property (nonatomic, strong) UIView *tipView;
 
@@ -22,36 +23,73 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"筛选" target:self action:@selector(filter)];
     [self.view addSubview:self.tableView];
     [self tipView];
 }
 
-- (void)test
+- (void)viewDidAppear:(BOOL)animated
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        [self.datas addObject:@"jajaj"];
-        [self.tableView reloadData];  [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y - 40 + _tableView.rowHeight) animated:YES];
-        
-        [self.tableView.footer endRefreshing];
-    });
+    [super viewDidAppear:animated];
+    
+    CGFloat offset = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250;
+    CGFloat margin = (ZYScreenHeight - 49 - 64) - (381 + offset) + 12;
+    self.tableView.scrollView.contentInset = UIEdgeInsetsMake(-(margin * 0.5) + 20, 0, 0, 0);
+    if (iPhone4) {
+          self.tableView.scrollView.contentInset = UIEdgeInsetsMake(-(margin * 0.5), 0, 0, 0);
+    }
 }
 
-#pragma mark - dataSource & delegate
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGSize)sizeForPageInFlowView:(PagedFlowView *)flowView
 {
-    static NSString *ID = @"cell";
-    CPBaseViewCell *cell = [CPBaseViewCell cellWithTableView:tableView reuseIdentifier:ID];
-    cell.oneType = YES;
+    CGFloat offset = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250;
+    return CGSizeMake(ZYScreenWidth - 20, 381 + offset + 12);
+}
+
+- (UIView *)flowView:(PagedFlowView *)flowView cellForPageAtIndex:(NSInteger)index
+{
+    CPBaseViewCell *cell = (CPBaseViewCell *)[flowView dequeueReusableCell];
+    if (!cell) {
+        cell = [[NSBundle mainBundle] loadNibNamed:@"CPBaseViewCell" owner:nil options:nil].lastObject;
+    }
     return cell;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)numberOfPagesInFlowView:(PagedFlowView *)flowView
 {
-    return self.datas.count;
+    return 20;
 }
+
+//- (void)test
+//{
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        
+//        [self.datas addObject:@"jajaj"];
+//        [self.tableView reloadData];
+//    };
+//                   };
+//                   }
+//                   }
+//        [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y - 40 + _tableView.rowHeight) animated:YES];
+//        
+//        [self.tableView.footer endRefreshing];
+//    });
+//}
+
+//#pragma mark - dataSource & delegate
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    static NSString *ID = @"cell";
+//    CPBaseViewCell *cell = [CPBaseViewCell cellWithTableView:tableView reuseIdentifier:ID];
+//    cell.oneType = YES;
+//    return cell;
+//}
+//
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//{
+//    return self.datas.count;
+//}
 #pragma mark - 处理事件交互
 - (void)superViewWillRecive:(NSString *)notifyName info:(id)userInfo
 {
@@ -134,23 +172,28 @@
 
 #pragma mark - 加载子控件
 
-- (UITableView *)tableView
+- (PagedFlowView *)tableView
 {
     if (_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        _tableView = [[PagedFlowView alloc] initWithFrame:({
+            CGRectMake(0, 64, ZYScreenWidth, ZYScreenHeight - 90);
+        })];
+        self.automaticallyAdjustsScrollViewInsets = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        
-        CGFloat offset = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250;
-        _tableView.rowHeight = 401 + offset;
+        _tableView.orientation = PagedFlowViewOrientationVertical;
+//        CGFloat offset = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250;
+//        _tableView.rowHeight = 401 + offset;
         _tableView.backgroundColor = [Tools getColor:@"efefef"];
-        _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        ZYWeakSelf
-        _tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-            ZYStrongSelf
-            [self test];
-        }];
+            _tableView.minimumPageScale = 0.96;
+//        _tableView.showsVerticalScrollIndicator = NO;
+//        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//        _tableView.pagingEnabled = YES;
+//        ZYWeakSelf
+//        _tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+//            ZYStrongSelf
+//            [self test];
+//        }];
     }
     return _tableView;
 }
@@ -199,6 +242,11 @@
                 textL.text = @"有空,其他人可以邀请你参加活动";
             }else{
                 textL.text = @"没空,你将接受不到任何活动邀请";
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [UIView animateWithDuration:0.25 animations:^{
+                        _tipView.alpha = 0;
+                    }];
+                });
             }
         }];
         [freeTimeBtn mas_makeConstraints:^(MASConstraintMaker *make) {

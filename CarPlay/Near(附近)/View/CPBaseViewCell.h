@@ -17,7 +17,7 @@
 #define DistanceBtnClickKey @"DistanceBtnClickKey"
 #define AddressBtnClickKey  @"AddressBtnClickKey"
 
-@interface CPBaseViewCell : UITableViewCell
+@interface CPBaseViewCell : UIView
 @property (nonatomic, strong) CPActivityModel *model;
 @property (nonatomic, assign) BOOL oneType;
 @end

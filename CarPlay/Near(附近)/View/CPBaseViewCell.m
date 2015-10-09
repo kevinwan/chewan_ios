@@ -108,21 +108,28 @@
  *  忽略的动画
  */
 @property (nonatomic, strong) MultiplePulsingHaloLayer *ignoreAnim;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *marginCons;
 
 @end
 
 @implementation CPBaseViewCell
 
 // 使cell位置下移20
-- (void)setFrame:(CGRect)frame
-{
-    CGRect newF = frame;
-    newF.origin.y += 20;
-    [super setFrame:newF];
-}
+//- (void)setFrame:(CGRect)frame
+//{
+//    CGRect newF = frame;
+//    newF.origin.y += 20;
+//    [super setFrame:newF];
+//}
 
 - (void)awakeFromNib
 {
+    
+    CGFloat offset = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250;
+    CGFloat margin = 20 - (381 + offset) * 0.04;
+//    if (iPhone4) {
+        self.marginCons.constant = 12;
+//    }
     // 进行初始化设置
     [self.bgView setCornerRadius:5];
     self.distanceView.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 6);
@@ -144,17 +151,18 @@
     [self.userIconView addSubview:self.dateButton];
     [self.userIconView addSubview:self.invitedButton];
     [self.userIconView addSubview:self.ignoreButton];
+    [self dateAnim];
     [self beginLayoutSubviews];
 }
 
-+ (instancetype)cellWithTableView:(UITableView *)tableView reuseIdentifier:(NSString *)reuseIdentifier
-{
-    CPBaseViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    if (cell == nil) {
-        cell = [[NSBundle mainBundle] loadNibNamed:@"CPBaseViewCell" owner:nil options:nil].lastObject;
-    }
-    return cell;
-}
+//+ (instancetype)cellWithTableView:(UITableView *)tableView reuseIdentifier:(NSString *)reuseIdentifier
+//{
+//    CPBaseViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+//    if (cell == nil) {
+//        cell = [[NSBundle mainBundle] loadNibNamed:@"CPBaseViewCell" owner:nil options:nil].lastObject;
+//    }
+//    return cell;
+//}
 - (void)beginLayoutSubviews
 {
     [self.dateButton mas_makeConstraints:^(MASConstraintMaker *make){

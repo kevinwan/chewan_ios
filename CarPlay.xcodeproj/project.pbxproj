@@ -82,6 +82,9 @@
 		E31E4BD71BAD47A500902B34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E31E4BD61BAD47A500902B34 /* main.m */; };
 		E31E4BE21BAD47A500902B34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E31E4BE11BAD47A500902B34 /* Assets.xcassets */; };
 		E31E4BE51BAD47A500902B34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E31E4BE31BAD47A500902B34 /* LaunchScreen.storyboard */; };
+		E3606F0D1BC76FF100797968 /* CPRecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */; settings = {ASSET_TAGS = (); }; };
+		E3606F101BC773EA00797968 /* PagedFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3606F0F1BC773EA00797968 /* PagedFlowView.m */; settings = {ASSET_TAGS = (); }; };
+		E3606F121BC78C7300797968 /* CPBaseViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F111BC78C7300797968 /* CPBaseViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		E37C10B21BBB79D800E1A6A2 /* CPMyVisitorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E37C10B11BBB79D800E1A6A2 /* CPMyVisitorViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E37C10B41BBB79E700E1A6A2 /* CPMyVisitorViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E37C10B31BBB79E700E1A6A2 /* CPMyVisitorViewController.storyboard */; settings = {ASSET_TAGS = (); }; };
 		E37C10B71BBB7CEB00E1A6A2 /* CPMyVistorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E37C10B61BBB7CEB00E1A6A2 /* CPMyVistorCell.m */; settings = {ASSET_TAGS = (); }; };
@@ -94,7 +97,6 @@
 		E39627C21BB54D91005E0CF2 /* PulsingHaloLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E39627C01BB54D91005E0CF2 /* PulsingHaloLayer.m */; settings = {ASSET_TAGS = (); }; };
 		E3A471731BB3A85300973197 /* CPNearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A471181BB3A85300973197 /* CPNearViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E3A471741BB3A85300973197 /* CPBaseViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A4711C1BB3A85300973197 /* CPBaseViewCell.m */; settings = {ASSET_TAGS = (); }; };
-		E3A471751BB3A85300973197 /* CPBaseViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3A4711D1BB3A85300973197 /* CPBaseViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		E3A471761BB3A85300973197 /* Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A471251BB3A85300973197 /* Aspects.m */; settings = {ASSET_TAGS = (); }; };
 		E3A471771BB3A85300973197 /* CAAnimation+ZY.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A471281BB3A85300973197 /* CAAnimation+ZY.m */; settings = {ASSET_TAGS = (); }; };
 		E3A471781BB3A85300973197 /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A471291BB3A85300973197 /* Foundation+Log.m */; settings = {ASSET_TAGS = (); }; };
@@ -134,7 +136,6 @@
 		E3A68BC71BBBA11E002F4F75 /* CPTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A68BC61BBBA11E002F4F75 /* CPTableView.m */; settings = {ASSET_TAGS = (); }; };
 		E3AEFE351BC64970009C9438 /* CPRecommendController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AEFE341BC64970009C9438 /* CPRecommendController.m */; settings = {ASSET_TAGS = (); }; };
 		E3AEFE391BC64E5B009C9438 /* CPRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AEFE371BC64E5B009C9438 /* CPRecommendCell.m */; settings = {ASSET_TAGS = (); }; };
-		E3AEFE3A1BC64E5B009C9438 /* CPRecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3AEFE381BC64E5B009C9438 /* CPRecommendCell.xib */; settings = {ASSET_TAGS = (); }; };
 		E3AF16FE1BBA296C00306ABF /* CPNoHighLightButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AF16FD1BBA296C00306ABF /* CPNoHighLightButton.m */; settings = {ASSET_TAGS = (); }; };
 		E3AF17011BBA317E00306ABF /* CPMySwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AF17001BBA317E00306ABF /* CPMySwitch.m */; settings = {ASSET_TAGS = (); }; };
 		E3E6B88C1BB4F7FA006B4F8A /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6B88B1BB4F7FA006B4F8A /* FXBlurView.m */; settings = {ASSET_TAGS = (); }; };
@@ -282,6 +283,10 @@
 		E31E4BE61BAD47A500902B34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E31E4C491BAD48D600902B34 /* CP_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CP_Prefix.pch; sourceTree = "<group>"; };
 		E31E4C4E1BAD507E00902B34 /* macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = macro.h; sourceTree = "<group>"; };
+		E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPRecommendCell.xib; sourceTree = "<group>"; };
+		E3606F0E1BC773EA00797968 /* PagedFlowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagedFlowView.h; sourceTree = "<group>"; };
+		E3606F0F1BC773EA00797968 /* PagedFlowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagedFlowView.m; sourceTree = "<group>"; };
+		E3606F111BC78C7300797968 /* CPBaseViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPBaseViewCell.xib; sourceTree = "<group>"; };
 		E37C10B01BBB79D800E1A6A2 /* CPMyVisitorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyVisitorViewController.h; sourceTree = "<group>"; };
 		E37C10B11BBB79D800E1A6A2 /* CPMyVisitorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyVisitorViewController.m; sourceTree = "<group>"; };
 		E37C10B31BBB79E700E1A6A2 /* CPMyVisitorViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMyVisitorViewController.storyboard; sourceTree = "<group>"; };
@@ -305,7 +310,6 @@
 		E3A471181BB3A85300973197 /* CPNearViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNearViewController.m; sourceTree = "<group>"; };
 		E3A4711B1BB3A85300973197 /* CPBaseViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPBaseViewCell.h; sourceTree = "<group>"; };
 		E3A4711C1BB3A85300973197 /* CPBaseViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPBaseViewCell.m; sourceTree = "<group>"; };
-		E3A4711D1BB3A85300973197 /* CPBaseViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPBaseViewCell.xib; sourceTree = "<group>"; };
 		E3A471241BB3A85300973197 /* Aspects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Aspects.h; sourceTree = "<group>"; };
 		E3A471251BB3A85300973197 /* Aspects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Aspects.m; sourceTree = "<group>"; };
 		E3A471271BB3A85300973197 /* CAAnimation+ZY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAAnimation+ZY.h"; sourceTree = "<group>"; };
@@ -385,7 +389,6 @@
 		E3AEFE341BC64970009C9438 /* CPRecommendController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRecommendController.m; sourceTree = "<group>"; };
 		E3AEFE361BC64E5B009C9438 /* CPRecommendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRecommendCell.h; sourceTree = "<group>"; };
 		E3AEFE371BC64E5B009C9438 /* CPRecommendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRecommendCell.m; sourceTree = "<group>"; };
-		E3AEFE381BC64E5B009C9438 /* CPRecommendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPRecommendCell.xib; sourceTree = "<group>"; };
 		E3AF16FC1BBA296C00306ABF /* CPNoHighLightButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNoHighLightButton.h; sourceTree = "<group>"; };
 		E3AF16FD1BBA296C00306ABF /* CPNoHighLightButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNoHighLightButton.m; sourceTree = "<group>"; };
 		E3AF16FF1BBA317E00306ABF /* CPMySwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMySwitch.h; sourceTree = "<group>"; };
@@ -1139,6 +1142,8 @@
 		E3A471121BB3A85300973197 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E3606F0E1BC773EA00797968 /* PagedFlowView.h */,
+				E3606F0F1BC773EA00797968 /* PagedFlowView.m */,
 				E3AEFE331BC64970009C9438 /* CPRecommendController.h */,
 				E3AEFE341BC64970009C9438 /* CPRecommendController.m */,
 			);
@@ -1157,7 +1162,7 @@
 			children = (
 				E3AEFE361BC64E5B009C9438 /* CPRecommendCell.h */,
 				E3AEFE371BC64E5B009C9438 /* CPRecommendCell.m */,
-				E3AEFE381BC64E5B009C9438 /* CPRecommendCell.xib */,
+				E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1199,9 +1204,9 @@
 			children = (
 				E3A4711B1BB3A85300973197 /* CPBaseViewCell.h */,
 				E3A4711C1BB3A85300973197 /* CPBaseViewCell.m */,
-				E3A4711D1BB3A85300973197 /* CPBaseViewCell.xib */,
 				E3AF16FF1BBA317E00306ABF /* CPMySwitch.h */,
 				E3AF17001BBA317E00306ABF /* CPMySwitch.m */,
+				E3606F111BC78C7300797968 /* CPBaseViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1490,6 +1495,7 @@
 				6B153EFD1BB5692500560935 /* CPMyViewController.storyboard in Resources */,
 				E31B12EA1BB9311700B51696 /* PhotoItemView.xib in Resources */,
 				E31E4BE51BAD47A500902B34 /* LaunchScreen.storyboard in Resources */,
+				E3606F0D1BC76FF100797968 /* CPRecommendCell.xib in Resources */,
 				6BCFFBB91BBA456900C082B2 /* CPMyCareController.storyboard in Resources */,
 				E31B13501BB9312D00B51696 /* CoreSDWebImage.bundle in Resources */,
 				E31B12E31BB9311700B51696 /* PB.bundle in Resources */,
@@ -1502,15 +1508,14 @@
 				E37C10B41BBB79E700E1A6A2 /* CPMyVisitorViewController.storyboard in Resources */,
 				E3A68BBB1BBB874D002F4F75 /* CPConcernMyController.storyboard in Resources */,
 				6BE2E61A1BC67CB000D1D928 /* CPMatching.storyboard in Resources */,
-				E3AEFE3A1BC64E5B009C9438 /* CPRecommendCell.xib in Resources */,
 				E31B13531BB9312D00B51696 /* CoreSVP.bundle in Resources */,
 				6B440CD91BBA848200CF8410 /* CPMyInfoController.storyboard in Resources */,
 				6B153EF51BB5690900560935 /* CPForgetPassword.storyboard in Resources */,
+				E3606F121BC78C7300797968 /* CPBaseViewCell.xib in Resources */,
 				6B153EF81BB5690900560935 /* CPRegViewController.storyboard in Resources */,
 				E31B12EC1BB9311700B51696 /* PhotoBroswerVC.xib in Resources */,
 				E3E6B8921BB4FD54006B4F8A /* CPLoginViewController.storyboard in Resources */,
 				6B440CE71BBA86E600CF8410 /* CPMyInfoThrCell.xib in Resources */,
-				E3A471751BB3A85300973197 /* CPBaseViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1629,6 +1634,7 @@
 				E37C10B21BBB79D800E1A6A2 /* CPMyVisitorViewController.m in Sources */,
 				E3A471771BB3A85300973197 /* CAAnimation+ZY.m in Sources */,
 				E31B13471BB9312D00B51696 /* UIImage+Color.m in Sources */,
+				E3606F101BC773EA00797968 /* PagedFlowView.m in Sources */,
 				E3A68BBE1BBB8846002F4F75 /* CPConcernMyCell.m in Sources */,
 				E31B134F1BB9312D00B51696 /* UIImage+ReMake.m in Sources */,
 				E37C10BA1BBB80C100E1A6A2 /* CPConcernMyController.m in Sources */,

@@ -22,7 +22,10 @@
 @implementation CPRecommendCell
 
 - (void)awakeFromNib{
-    self.contentTextL.preferredMaxLayoutWidth = ZYScreenWidth - 60;
+    
+    [self setCornerRadius:5];
+    
+    self.contentTextL.preferredMaxLayoutWidth = ZYScreenWidth - 56;
 
     [self.bgTip addSubview:self.tipLabel];
     self.tipLabel.text = @"官方补贴50元每人";
