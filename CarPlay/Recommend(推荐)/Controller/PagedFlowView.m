@@ -176,10 +176,8 @@
             case PagedFlowViewOrientationHorizontal:
             {
                 
-                [UIView animateWithDuration:0.05 animations:^{
                     
-                    cell.frame = CGRectMake(_pageSize.width * pageIndex, 0, _pageSize.width, _pageSize.height);
-                }];
+                cell.frame = CGRectMake(_pageSize.width * pageIndex, 0, _pageSize.width, _pageSize.height);
                
                  break;
             }
@@ -187,10 +185,7 @@
             case PagedFlowViewOrientationVertical:
             {
                 
-                [UIView animateWithDuration:0.05 animations:^{
-                    
-                    cell.frame = CGRectMake(0, _pageSize.height * pageIndex, _pageSize.width, _pageSize.height);
-                }];
+                cell.frame = CGRectMake(0, _pageSize.height * pageIndex, _pageSize.width, _pageSize.height);
                 break;
             }
             default:
