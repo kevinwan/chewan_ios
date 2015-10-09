@@ -55,10 +55,17 @@
     if (self.accountField.text && ![self.accountField.text isEqualToString:@""]) {
         if ([Tools isValidateMobile:self.accountField.text]) {
             if (self.passwordField.text && ![self.passwordField.text isEqualToString:@""]) {
-                NSDictionary *paras=[[NSDictionary alloc]initWithObjectsAndKeys:self.accountField.text,@"phone",self.passwordField.text,@"password",nil];
+                NSDictionary *paras=[[NSDictionary alloc]initWithObjectsAndKeys:self.accountField.text,@"phone",@"e10adc3949ba59abbe56e057f20f883e",@"password",nil];
                 [ZYNetWorkTool postJsonWithUrl:@"/v2/user/login" params:paras success:^(id responseObject) {
                     if (CPSuccess) {
-                        NSLog(@"登录成功");
+                        if (responseObject[@"data"][@"userId"]) {
+                            [ZYUserDefaults setObject:responseObject[@"data"][@"userId"] forKey:UserId];
+                        }
+                        if (responseObject[@"data"][@"token"]) {
+                            [ZYUserDefaults setObject:responseObject[@"data"][@"token"] forKey:Token];
+                        }
+                        [ZYNotificationCenter postNotificationName:NOTIFICATION_HASLOGIN object:nil];
+                        [self.navigationController popToRootViewControllerAnimated:NO];
                     }else{
                         NSString *errmsg =[responseObject objectForKey:@"errmsg"];
                         [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];

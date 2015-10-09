@@ -7,6 +7,7 @@
 //
 
 #import "CPRegViewController.h"
+#import "CPMyInfoController.h"
 
 @interface CPRegViewController ()
 
@@ -29,6 +30,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma 关闭注册窗口
 -(void)dismissPresentVC{
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
@@ -41,6 +43,7 @@
             NSString *path=[[NSString alloc]initWithFormat:@"/v2/phone/%@/verification",self.phoneField.text];
             [ZYNetWorkTool getWithUrl:path params:nil success:^(id responseObject) {
                 if (CPSuccess) {
+                    self.verificationCodeWeight.constant=53.0f;
                     [self startTime];
                 }else{
                     NSString *errmsg =[responseObject objectForKey:@"errmsg"];
@@ -72,7 +75,9 @@
                             NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:self.verificationCodeField.text,@"code", nil];
                             [ZYNetWorkTool getWithUrl:path params:params success:^(id responseObject) {
                                 if (CPSuccess) {
-                                    NSLog(@"注册成功");
+                                    CPMyInfoController *myInfoVC = [UIStoryboard storyboardWithName:@"CPMyInfoController" bundle:nil].instantiateInitialViewController;
+                                    [self.navigationController pushViewController:myInfoVC animated:YES];
+                                    
                                 }else{
                                     NSString *errmsg =[responseObject objectForKey:@"errmsg"];
                                     [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
@@ -119,6 +124,7 @@
             dispatch_source_cancel(_timer);
             dispatch_async(dispatch_get_main_queue(), ^{
                 //设置界面的按钮显示 根据自己需求设置
+                self.verificationCodeWeight.constant=90.0f;
                 [self.getVerificationCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
                 self.getVerificationCodeBtn.userInteractionEnabled = YES;
                 [self.getVerificationCodeBtn setBackgroundColor:GreenColor];

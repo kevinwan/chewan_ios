@@ -289,6 +289,7 @@
                         <outlet property="phoneField" destination="jsV-o5-ZIK" id="4lo-1D-qva"/>
                         <outlet property="registerBtn" destination="lOh-B7-OSK" id="dxF-Uh-H7V"/>
                         <outlet property="verificationCodeField" destination="sJS-iE-SS5" id="9eh-Hx-voJ"/>
+                        <outlet property="verificationCodeWeight" destination="2n3-NP-RgV" id="nAo-K2-nRf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lW6-g2-17E" userLabel="First Responder" sceneMemberID="firstResponder"/>

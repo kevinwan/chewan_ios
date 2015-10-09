@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="uwA-Hh-LbF">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <scenes>
+        <!--Matching View Controller-->
+        <scene sceneID="Bws-KW-s3W">
+            <objects>
+                <viewController id="uwA-Hh-LbF" customClass="CPMatchingViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Oxi-3x-aG7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="WPz-Ph-KfY">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="现在你想" id="1Yi-zN-ICW">
+                                        <rect key="frame" x="105" y="20" width="110" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="现在你想" id="Jhh-oj-L2X">
+                                        <rect key="frame" x="425" y="20" width="110" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="T3E-rl-8BT">
+                                        <rect key="frame" x="29" y="73" width="81" height="81"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="吃饭"/>
+                                        <connections>
+                                            <action selector="btnClick:" destination="uwA-Hh-LbF" eventType="touchUpInside" id="dhy-er-ZpF"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SWH-FZ-hRO">
+                                        <rect key="frame" x="134" y="73" width="70" height="70"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="唱歌"/>
+                                        <connections>
+                                            <action selector="btnClick:" destination="uwA-Hh-LbF" eventType="touchUpInside" id="vkp-tn-ig2"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="VtZ-Mh-tCN">
+                                        <rect key="frame" x="34" y="167" width="70" height="70"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="看电影"/>
+                                        <connections>
+                                            <action selector="btnClick:" destination="uwA-Hh-LbF" eventType="touchUpInside" id="Gf3-mH-wxe"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="t7z-jj-ccW">
+                                        <rect key="frame" x="145" y="219" width="70" height="70"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="夜宵"/>
+                                        <connections>
+                                            <action selector="btnClick:" destination="uwA-Hh-LbF" eventType="touchUpInside" id="Eta-uB-dBl"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="BCW-OV-xrd">
+                                        <rect key="frame" x="34" y="258" width="65" height="65"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="运动"/>
+                                        <connections>
+                                            <action selector="btnClick:" destination="uwA-Hh-LbF" eventType="touchUpInside" id="cOU-zo-4xb"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7RV-Ej-Qcv">
+                                        <rect key="frame" x="130" y="151" width="60" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="遛狗"/>
+                                        <connections>
+                                            <action selector="btnClick:" destination="uwA-Hh-LbF" eventType="touchUpInside" id="qAi-Cc-uJ2"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="XQZ-MX-1sl">
+                                        <rect key="frame" x="99" y="477" width="150" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <state key="normal" title="随便看看" backgroundImage="随便看看"/>
+                                        <connections>
+                                            <action selector="btnClick:" destination="uwA-Hh-LbF" eventType="touchUpInside" id="ZqI-BQ-OyO"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Nxn-sU-cTo">
+                                        <rect key="frame" x="19" y="337" width="70" height="70"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="夜店"/>
+                                        <connections>
+                                            <action selector="btnClick:" destination="uwA-Hh-LbF" eventType="touchUpInside" id="PM1-Gk-Cmq"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Qol-aV-Fle">
+                                        <rect key="frame" x="19" y="423" width="70" height="70"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="喝酒"/>
+                                        <connections>
+                                            <action selector="btnClick:" destination="uwA-Hh-LbF" eventType="touchUpInside" id="xcE-dl-aAr"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Jn3-Cd-yb8">
+                                        <rect key="frame" x="215" y="356" width="60" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="购物"/>
+                                        <connections>
+                                            <action selector="btnClick:" destination="uwA-Hh-LbF" eventType="touchUpInside" id="8OC-XX-W2O"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vY7-DS-J95">
+                                        <rect key="frame" x="112" y="356" width="60" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="喝咖啡"/>
+                                        <connections>
+                                            <action selector="btnClick:" destination="uwA-Hh-LbF" eventType="touchUpInside" id="j3M-Kq-fIT"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ydi-yS-KPz">
+                                        <rect key="frame" x="419" y="477" width="150" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <state key="normal" title="随便看看" backgroundImage="随便看看"/>
+                                        <connections>
+                                            <action selector="btnClick:" destination="uwA-Hh-LbF" eventType="touchUpInside" id="KrF-uj-Mhu"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="beerBtn" destination="Qol-aV-Fle" id="8pM-rM-egf"/>
+                        <outlet property="coffeBtn" destination="vY7-DS-J95" id="S30-PP-twK"/>
+                        <outlet property="eatBtn" destination="T3E-rl-8BT" id="wqh-Ne-t8V"/>
+                        <outlet property="movieBtn" destination="VtZ-Mh-tCN" id="nZW-dk-Whn"/>
+                        <outlet property="nightclubBtn" destination="Nxn-sU-cTo" id="oK6-K3-pp6"/>
+                        <outlet property="nowYouWantImg" destination="1Yi-zN-ICW" id="qa5-zZ-E97"/>
+                        <outlet property="nowYouWantImg2" destination="Jhh-oj-L2X" id="Av1-L2-NK5"/>
+                        <outlet property="scrollView" destination="WPz-Ph-KfY" id="Zca-jW-r6j"/>
+                        <outlet property="shoppingBtn" destination="Jn3-Cd-yb8" id="EDY-Uz-o4T"/>
+                        <outlet property="singBtn" destination="SWH-FZ-hRO" id="WHO-Bk-R83"/>
+                        <outlet property="supperBtn" destination="t7z-jj-ccW" id="J4m-iY-p1c"/>
+                        <outlet property="takeALookBtn" destination="XQZ-MX-1sl" id="6Xn-aO-LGg"/>
+                        <outlet property="takeALookBtn1" destination="Ydi-yS-KPz" id="bWK-hT-3iS"/>
+                        <outlet property="takeExerciseBtn" destination="BCW-OV-xrd" id="Rs3-EZ-Jlb"/>
+                        <outlet property="walkDogBtn" destination="7RV-Ej-Qcv" id="aFN-nb-Pf2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3JK-E3-aJk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="217.06666666666666" y="62.479999999999997"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="吃饭" width="81" height="81"/>
+        <image name="唱歌" width="71" height="71"/>
+        <image name="喝咖啡" width="60" height="60"/>
+        <image name="喝酒" width="70" height="70"/>
+        <image name="夜宵" width="70" height="70"/>
+        <image name="夜店" width="70" height="70"/>
+        <image name="现在你想" width="110" height="29"/>
+        <image name="看电影" width="70" height="70"/>
+        <image name="购物" width="60" height="60"/>
+        <image name="运动" width="65" height="65"/>
+        <image name="遛狗" width="60" height="60"/>
+        <image name="随便看看" width="150" height="50"/>
+    </resources>
+</document>
