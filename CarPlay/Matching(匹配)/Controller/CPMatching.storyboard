@@ -13,18 +13,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="WPz-Ph-KfY">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="WPz-Ph-KfY">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="现在你想" id="1Yi-zN-ICW">
-                                        <rect key="frame" x="105" y="20" width="110" height="29"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="现在你想" id="Jhh-oj-L2X">
-                                        <rect key="frame" x="425" y="20" width="110" height="29"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                    </imageView>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="T3E-rl-8BT">
                                         <rect key="frame" x="29" y="73" width="81" height="81"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -73,15 +65,6 @@
                                             <action selector="btnClick:" destination="uwA-Hh-LbF" eventType="touchUpInside" id="qAi-Cc-uJ2"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="XQZ-MX-1sl">
-                                        <rect key="frame" x="99" y="477" width="150" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                        <state key="normal" title="随便看看" backgroundImage="随便看看"/>
-                                        <connections>
-                                            <action selector="btnClick:" destination="uwA-Hh-LbF" eventType="touchUpInside" id="ZqI-BQ-OyO"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Nxn-sU-cTo">
                                         <rect key="frame" x="19" y="337" width="70" height="70"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -114,17 +97,21 @@
                                             <action selector="btnClick:" destination="uwA-Hh-LbF" eventType="touchUpInside" id="j3M-Kq-fIT"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ydi-yS-KPz">
-                                        <rect key="frame" x="419" y="477" width="150" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                        <state key="normal" title="随便看看" backgroundImage="随便看看"/>
-                                        <connections>
-                                            <action selector="btnClick:" destination="uwA-Hh-LbF" eventType="touchUpInside" id="KrF-uj-Mhu"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                             </scrollView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="现在你想" id="1Yi-zN-ICW">
+                                <rect key="frame" x="105" y="20" width="110" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="XQZ-MX-1sl">
+                                <rect key="frame" x="99" y="477" width="150" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="随便看看" backgroundImage="随便看看"/>
+                                <connections>
+                                    <action selector="btnClick:" destination="uwA-Hh-LbF" eventType="touchUpInside" id="ZqI-BQ-OyO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -136,13 +123,11 @@
                         <outlet property="movieBtn" destination="VtZ-Mh-tCN" id="nZW-dk-Whn"/>
                         <outlet property="nightclubBtn" destination="Nxn-sU-cTo" id="oK6-K3-pp6"/>
                         <outlet property="nowYouWantImg" destination="1Yi-zN-ICW" id="qa5-zZ-E97"/>
-                        <outlet property="nowYouWantImg2" destination="Jhh-oj-L2X" id="Av1-L2-NK5"/>
                         <outlet property="scrollView" destination="WPz-Ph-KfY" id="Zca-jW-r6j"/>
                         <outlet property="shoppingBtn" destination="Jn3-Cd-yb8" id="EDY-Uz-o4T"/>
                         <outlet property="singBtn" destination="SWH-FZ-hRO" id="WHO-Bk-R83"/>
                         <outlet property="supperBtn" destination="t7z-jj-ccW" id="J4m-iY-p1c"/>
                         <outlet property="takeALookBtn" destination="XQZ-MX-1sl" id="6Xn-aO-LGg"/>
-                        <outlet property="takeALookBtn1" destination="Ydi-yS-KPz" id="bWK-hT-3iS"/>
                         <outlet property="takeExerciseBtn" destination="BCW-OV-xrd" id="Rs3-EZ-Jlb"/>
                         <outlet property="walkDogBtn" destination="7RV-Ej-Qcv" id="aFN-nb-Pf2"/>
                     </connections>

@@ -12,7 +12,6 @@
 @interface CPMatchingViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIImageView *nowYouWantImg;
-@property (weak, nonatomic) IBOutlet UIImageView *nowYouWantImg2;
 @property (weak, nonatomic) IBOutlet UIButton *eatBtn;
 @property (weak, nonatomic) IBOutlet UIButton *singBtn;
 @property (weak, nonatomic) IBOutlet UIButton *movieBtn;
@@ -25,7 +24,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *beerBtn;
 @property (weak, nonatomic) IBOutlet UIButton *takeALookBtn;
 - (IBAction)btnClick:(UIButton *)sender;
-@property (weak, nonatomic) IBOutlet UIButton *takeALookBtn1;
 
 
 
