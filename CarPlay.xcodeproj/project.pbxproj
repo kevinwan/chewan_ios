@@ -30,6 +30,11 @@
 		6BCFFBBA1BBA456900C082B2 /* CPCareUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCFFBB21BBA456900C082B2 /* CPCareUser.m */; settings = {ASSET_TAGS = (); }; };
 		6BCFFBBB1BBA456900C082B2 /* CPMyCareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCFFBB51BBA456900C082B2 /* CPMyCareCell.m */; settings = {ASSET_TAGS = (); }; };
 		6BCFFBBC1BBA456900C082B2 /* CPTopButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCFFBB71BBA456900C082B2 /* CPTopButton.m */; settings = {ASSET_TAGS = (); }; };
+		6BE2E6121BC67C8C00D1D928 /* CPNPSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2E6111BC67C8C00D1D928 /* CPNPSButton.m */; settings = {ASSET_TAGS = (); }; };
+		6BE2E61A1BC67CB000D1D928 /* CPMatching.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BE2E6131BC67CB000D1D928 /* CPMatching.storyboard */; settings = {ASSET_TAGS = (); }; };
+		6BE2E61B1BC67CB000D1D928 /* CPMatchingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2E6151BC67CB000D1D928 /* CPMatchingViewController.m */; settings = {ASSET_TAGS = (); }; };
+		6BE2E61C1BC67CB000D1D928 /* CPTakeALook.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BE2E6171BC67CB000D1D928 /* CPTakeALook.storyboard */; settings = {ASSET_TAGS = (); }; };
+		6BE2E61D1BC67CB000D1D928 /* CPTakeALookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2E6191BC67CB000D1D928 /* CPTakeALookViewController.m */; settings = {ASSET_TAGS = (); }; };
 		6D9724033DC4D258BAD49B6C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8695309F427E7B2C9007D66B /* libPods.a */; };
 		E31B12DF1BB9311700B51696 /* UIView+PBExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = E31B12C01BB9311700B51696 /* UIView+PBExtend.m */; settings = {ASSET_TAGS = (); }; };
 		E31B12E01BB9311700B51696 /* PBConst.m in Sources */ = {isa = PBXBuildFile; fileRef = E31B12C31BB9311700B51696 /* PBConst.m */; settings = {ASSET_TAGS = (); }; };
@@ -177,6 +182,14 @@
 		6BCFFBB51BBA456900C082B2 /* CPMyCareCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyCareCell.m; sourceTree = "<group>"; };
 		6BCFFBB61BBA456900C082B2 /* CPTopButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTopButton.h; sourceTree = "<group>"; };
 		6BCFFBB71BBA456900C082B2 /* CPTopButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTopButton.m; sourceTree = "<group>"; };
+		6BE2E6101BC67C8C00D1D928 /* CPNPSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNPSButton.h; sourceTree = "<group>"; };
+		6BE2E6111BC67C8C00D1D928 /* CPNPSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNPSButton.m; sourceTree = "<group>"; };
+		6BE2E6131BC67CB000D1D928 /* CPMatching.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMatching.storyboard; sourceTree = "<group>"; };
+		6BE2E6141BC67CB000D1D928 /* CPMatchingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMatchingViewController.h; sourceTree = "<group>"; };
+		6BE2E6151BC67CB000D1D928 /* CPMatchingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMatchingViewController.m; sourceTree = "<group>"; };
+		6BE2E6171BC67CB000D1D928 /* CPTakeALook.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPTakeALook.storyboard; sourceTree = "<group>"; };
+		6BE2E6181BC67CB000D1D928 /* CPTakeALookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTakeALookViewController.h; sourceTree = "<group>"; };
+		6BE2E6191BC67CB000D1D928 /* CPTakeALookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTakeALookViewController.m; sourceTree = "<group>"; };
 		8695309F427E7B2C9007D66B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1B028500DCBF99DF280B6AC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E31B12BF1BB9311700B51696 /* UIView+PBExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PBExtend.h"; sourceTree = "<group>"; };
@@ -533,6 +546,25 @@
 				6BCFFBB71BBA456900C082B2 /* CPTopButton.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		6BE2E60F1BC67C8C00D1D928 /* CPNPSButton(文字图片垂直排列) */ = {
+			isa = PBXGroup;
+			children = (
+				6BE2E6101BC67C8C00D1D928 /* CPNPSButton.h */,
+				6BE2E6111BC67C8C00D1D928 /* CPNPSButton.m */,
+			);
+			path = "CPNPSButton(文字图片垂直排列)";
+			sourceTree = "<group>";
+		};
+		6BE2E6161BC67CB000D1D928 /* takeALook(随便看看) */ = {
+			isa = PBXGroup;
+			children = (
+				6BE2E6171BC67CB000D1D928 /* CPTakeALook.storyboard */,
+				6BE2E6181BC67CB000D1D928 /* CPTakeALookViewController.h */,
+				6BE2E6191BC67CB000D1D928 /* CPTakeALookViewController.m */,
+			);
+			path = "takeALook(随便看看)";
 			sourceTree = "<group>";
 		};
 		8BBB39D02B9E5F4A2C7ABD5F /* Frameworks */ = {
@@ -991,6 +1023,10 @@
 		E3A471021BB3A85300973197 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6BE2E6131BC67CB000D1D928 /* CPMatching.storyboard */,
+				6BE2E6141BC67CB000D1D928 /* CPMatchingViewController.h */,
+				6BE2E6151BC67CB000D1D928 /* CPMatchingViewController.m */,
+				6BE2E6161BC67CB000D1D928 /* takeALook(随便看看) */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1199,6 +1235,7 @@
 		E3A471211BB3A85300973197 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6BE2E60F1BC67C8C00D1D928 /* CPNPSButton(文字图片垂直排列) */,
 				E3A68BBF1BBB8EE4002F4F75 /* ZYTableViewCell.h */,
 				E3A68BC01BBB8EE4002F4F75 /* ZYTableViewCell.m */,
 				6B5176781BB9502100D7A62E /* CustomSwitch */,
@@ -1461,8 +1498,10 @@
 				6B440CE31BBA86C500CF8410 /* CPMyInfoFirCell.xib in Resources */,
 				6B51767D1BB9502100D7A62E /* CustomSwitch.xib in Resources */,
 				6B440CDB1BBA857B00CF8410 /* CPMyInfoHead.xib in Resources */,
+				6BE2E61C1BC67CB000D1D928 /* CPTakeALook.storyboard in Resources */,
 				E37C10B41BBB79E700E1A6A2 /* CPMyVisitorViewController.storyboard in Resources */,
 				E3A68BBB1BBB874D002F4F75 /* CPConcernMyController.storyboard in Resources */,
+				6BE2E61A1BC67CB000D1D928 /* CPMatching.storyboard in Resources */,
 				E3AEFE3A1BC64E5B009C9438 /* CPRecommendCell.xib in Resources */,
 				E31B13531BB9312D00B51696 /* CoreSVP.bundle in Resources */,
 				6B440CD91BBA848200CF8410 /* CPMyInfoController.storyboard in Resources */,
@@ -1544,6 +1583,7 @@
 				E31B13441BB9312D00B51696 /* UIColor+Extend.m in Sources */,
 				6B153EF71BB5690900560935 /* CPRegViewController.m in Sources */,
 				E31B12E81BB9311700B51696 /* PhotoImageView.m in Sources */,
+				6BE2E61D1BC67CB000D1D928 /* CPTakeALookViewController.m in Sources */,
 				E3A471971BB3A85300973197 /* CPTabBar.m in Sources */,
 				E3AEFE391BC64E5B009C9438 /* CPRecommendCell.m in Sources */,
 				6B153EF61BB5690900560935 /* CPForgetPasswordViewController.m in Sources */,
@@ -1579,6 +1619,7 @@
 				E31B134E1BB9312D00B51696 /* UIWindow+Launch.m in Sources */,
 				E31B134C1BB9312D00B51696 /* UITableViewCell+Extend.m in Sources */,
 				E31B133D1BB9312D00B51696 /* CALayer+Anim.m in Sources */,
+				6BE2E6121BC67C8C00D1D928 /* CPNPSButton.m in Sources */,
 				6BCFFBB81BBA456900C082B2 /* CPMyCareController.m in Sources */,
 				6BCD58651BBB87BE0025F995 /* CPMyInfoHead.m in Sources */,
 				E31B134D1BB9312D00B51696 /* UIView+Extend.m in Sources */,
@@ -1603,6 +1644,7 @@
 				E3A4718F1BB3A85300973197 /* XMNetStatuesTool.m in Sources */,
 				6BCD58621BBB87990025F995 /* CPMyInfoThrCell.m in Sources */,
 				E3AF17011BBA317E00306ABF /* CPMySwitch.m in Sources */,
+				6BE2E61B1BC67CB000D1D928 /* CPMatchingViewController.m in Sources */,
 				E3A4717C1BB3A85300973197 /* NSFileManager+ZY.m in Sources */,
 				6B51767C1BB9502100D7A62E /* CustomSwitch.m in Sources */,
 				E3A471761BB3A85300973197 /* Aspects.m in Sources */,
