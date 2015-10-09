@@ -13,6 +13,9 @@
 #import "IQKeyboardManager.h"
 
 @interface AppDelegate ()<UITabBarControllerDelegate>
+{
+    CPTabBarController *tabVc;
+}
 
 @end
 
@@ -20,21 +23,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    CPTabBarController *tabVc = [CPTabBarController new];
+    tabVc = [CPTabBarController new];
     tabVc.delegate = self;
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = tabVc;
     
     [self.window makeKeyAndVisible];
+    [ZYNotificationCenter addObserver:self selector:@selector(loginStateChang) name:NOTIFICATION_HASLOGIN object:nil];
     
     // 设置点击空白区域退出键盘
     [[IQKeyboardManager sharedManager] setShouldResignOnTouchOutside:YES];
     
     [self setViewCycleAop];
-
-    [ZYUserDefaults setObject:@"5608a74ae28c15187144fba9" forKey:UserId];
-    [ZYUserDefaults setObject:@"4101fe9c-f5b1-4460-a907-15687a7de517" forKey:Token];
     
     return YES;
 }
@@ -99,6 +100,11 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+-(void)loginStateChang{
+//    self.window.rootViewController = tabVc;
+//    [self.window makeKeyAndVisible];
 }
 
 @end
