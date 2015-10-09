@@ -8,12 +8,12 @@
 
 #import "CPMatchingViewController.h"
 #import "CPTakeALookViewController.h"
+#import "UIView+Shake.h"
 
-@interface CPMatchingViewController ()
+@interface CPMatchingViewController ()<UIGestureRecognizerDelegate>
 {
     NSTimer *timer;
     NSTimer *takeALookViewTimer;
-    NSUInteger index;
     NSUInteger takeALookAnimationIndex;
     CPTakeALookViewController *takeALook;
 }
@@ -24,13 +24,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    index=1;
     takeALook=[UIStoryboard storyboardWithName:@"CPTakeALook" bundle:nil].instantiateInitialViewController;
     [self.scrollView setFrame:CGRectMake(0, 0, ZYScreenWidth, ZYScreenHeight)];
-    [self.scrollView setContentSize:CGSizeMake(ZYScreenWidth*2.0, ZYScreenHeight)];
+    [self.scrollView setContentSize:CGSizeMake(545.0/320.0*ZYScreenWidth, ZYScreenHeight-60)];
     [self.scrollView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"背景"]]];
     [self.nowYouWantImg setCenter:CGPointMake(ZYScreenWidth/2.0, 45.0f)];
-    [self.nowYouWantImg2 setCenter:CGPointMake(ZYScreenWidth *1.5, 45.0f)];
     [self.eatBtn setCenter:CGPointMake(95.5/320.0*ZYScreenWidth, 131/568.0*ZYScreenHeight)];
     [self.singBtn setCenter:CGPointMake(232.0/320.0*ZYScreenWidth, 175.0/568.0*ZYScreenHeight)];
     [self.movieBtn setCenter:CGPointMake(130.0/320.0*ZYScreenWidth, 245.0/568.0*ZYScreenHeight)];
@@ -42,8 +40,11 @@
     [self.shoppingBtn setCenter:CGPointMake(380.0/320.0*ZYScreenWidth, 196.0/568.0*ZYScreenHeight)];
     [self.coffeBtn setCenter:CGPointMake(423.0/320.0*ZYScreenWidth, 315.0/568.0*ZYScreenHeight)];
     [self.takeALookBtn setCenter:CGPointMake(ZYScreenWidth/2.0, 505.0/568.0*ZYScreenHeight)];
-    [self.takeALookBtn1 setCenter:CGPointMake(ZYScreenWidth*1.5, 505.0/568.0*ZYScreenHeight)];
-    timer =  [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(dateAnim) userInfo:nil repeats:YES];
+    timer =  [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(dateAnim) userInfo:nil repeats:YES];
+    for (int i=1; i<11; i++) {
+        UIButton *btn=(UIButton *)[self.scrollView viewWithTag:i];
+        [btn shakeWithOptions:SCShakeOptionsDirectionHorizontalAndVertical | SCShakeOptionsForceInterpolationRandom | SCShakeOptionsAtEndContinue force:0.05 duration:2 iterationDuration:1 completionHandler:nil];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -54,6 +55,16 @@
 -(void)viewDidDisappear:(BOOL)animated{
     [self.navigationController.navigationBar setHidden:YES];
     [timer setFireDate:[NSDate distantFuture]];
+    [_eatBtn endShake];
+    [_singBtn endShake];
+    [_movieBtn endShake];
+    [_takeExerciseBtn endShake];
+    [_walkDogBtn endShake];
+    [_supperBtn endShake];
+    [_beerBtn endShake];
+    [_nightclubBtn endShake];
+    [_shoppingBtn endShake];
+    [_coffeBtn endShake];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,80 +73,100 @@
 
 - (MultiplePulsingHaloLayer *)dateAnim
 {
-//    if (_dateAnim == nil) {
-        _dateAnim = [self multiLayer];
-    switch (index % 10) {
+
+    _dateAnim = [self multiLayer];
+    switch (arc4random() % 10) {
         case 1:
+        {
             _dateAnim.position = _eatBtn.center;
             [_dateAnim setHaloLayerColor:[Tools getColor:@"77c0f7"].CGColor];
             _dateAnim.radius = _eatBtn.bounds.size.width/2.0+15.0;
             [self.scrollView.layer insertSublayer:_dateAnim below:_eatBtn.layer];
+        }
             break;
         case 2:
+        {
             _dateAnim.position = _singBtn.center;
             [_dateAnim setHaloLayerColor:[Tools getColor:@"fddb64"].CGColor];
             _dateAnim.radius = _singBtn.bounds.size.width/2.0+15.0;
-            [self.scrollView.layer insertSublayer:_dateAnim below:_eatBtn.layer];
+            [self.scrollView.layer insertSublayer:_dateAnim below:_singBtn.layer];
+        }
             break;
         case 3:
+        {
             _dateAnim.position = _movieBtn.center;
             [_dateAnim setHaloLayerColor:[Tools getColor:@"cd97dd"].CGColor];
             _dateAnim.radius = _movieBtn.bounds.size.width/2.0+15.0;
-            [self.scrollView.layer insertSublayer:_dateAnim below:_eatBtn.layer];
+            [self.scrollView.layer insertSublayer:_dateAnim below:_movieBtn.layer];
+        }
             break;
         case 4:
+        {
             _dateAnim.position = _takeExerciseBtn.center;
-            [_dateAnim setHaloLayerColor:[Tools getColor:@"5adad0"].CGColor];
+            [_dateAnim setHaloLayerColor:[Tools getColor:@"E0F3D4"].CGColor];
             _dateAnim.radius = _takeExerciseBtn.bounds.size.width/2.0+15.0;
-            [self.scrollView.layer insertSublayer:_dateAnim below:_eatBtn.layer];
+            [self.scrollView.layer insertSublayer:_dateAnim below:_takeExerciseBtn.layer];
+        }
             break;
         case 5:
+        {
             _dateAnim.position = _walkDogBtn.center;
             [_dateAnim setHaloLayerColor:[Tools getColor:@"f48c60"].CGColor];
             _dateAnim.radius = _walkDogBtn.bounds.size.width/2.0+15.0;
-            [self.scrollView.layer insertSublayer:_dateAnim below:_eatBtn.layer];
+            [self.scrollView.layer insertSublayer:_dateAnim below:_walkDogBtn.layer];
+            
+        }
             break;
         case 6:
+        {
             _dateAnim.position = _supperBtn.center;
             [_dateAnim setHaloLayerColor:[Tools getColor:@"5f99c0"].CGColor];
             _dateAnim.radius = _supperBtn.bounds.size.width/2.0+15.0;
-            [self.scrollView.layer insertSublayer:_dateAnim below:_eatBtn.layer];
+           [self.scrollView.layer insertSublayer:_dateAnim below:_supperBtn.layer];
+        }
             break;
         case 7:
+        {
             _dateAnim.position = _beerBtn.center;
             [_dateAnim setHaloLayerColor:[Tools getColor:@"1cc1a0"].CGColor];
             _dateAnim.radius = _beerBtn.bounds.size.width/2.0+15.0;
-            [self.scrollView.layer insertSublayer:_dateAnim below:_eatBtn.layer];
+            [self.scrollView.layer insertSublayer:_dateAnim below:_beerBtn.layer];
+        }
             break;
         case 8:
+        {
             _dateAnim.position = _nightclubBtn.center;
             [_dateAnim setHaloLayerColor:[Tools getColor:@"5adad0"].CGColor];
             _dateAnim.radius = _nightclubBtn.bounds.size.width/2.0+15.0;
-            [self.scrollView.layer insertSublayer:_dateAnim below:_eatBtn.layer];
+            [self.scrollView.layer insertSublayer:_dateAnim below:_nightclubBtn.layer];
+        }
             break;
         case 9:
+        {
             _dateAnim.position = _shoppingBtn.center;
             [_dateAnim setHaloLayerColor:[Tools getColor:@"fb7b9b"].CGColor];
             _dateAnim.radius = _shoppingBtn.bounds.size.width/2.0+15.0;
-            [self.scrollView.layer insertSublayer:_dateAnim below:_eatBtn.layer];
+            [self.scrollView.layer insertSublayer:_dateAnim below:_shoppingBtn.layer];
+        }
             break;
         case 0:
+        {
             _dateAnim.position = _coffeBtn.center;
             [_dateAnim setHaloLayerColor:[Tools getColor:@"ea6f6f"].CGColor];
             _dateAnim.radius = _coffeBtn.bounds.size.width/2.0+15.0;
-            [self.scrollView.layer insertSublayer:_dateAnim below:_eatBtn.layer];
+            [self.scrollView.layer insertSublayer:_dateAnim below:_coffeBtn.layer];
+        }
             break;
         default:
             break;
     }
-    index++;
     return _dateAnim;
 }
 
 - (MultiplePulsingHaloLayer *)multiLayer
 {
-    MultiplePulsingHaloLayer *multiLayer = [[MultiplePulsingHaloLayer alloc] initWithHaloLayerNum:3 andStartInterval:0.8];
-    multiLayer.fromValueForRadius = 0.6;
+    MultiplePulsingHaloLayer *multiLayer = [[MultiplePulsingHaloLayer alloc] initWithHaloLayerNum:3 andStartInterval:0.5];
+    multiLayer.fromValueForRadius = 0.5;
     multiLayer.useTimingFunction = NO;
     multiLayer.fromValueForAlpha = 1.0;
     multiLayer.animationRepeatCount=1;
@@ -144,16 +175,7 @@
 }
 
 - (IBAction)btnClick:(UIButton *)sender {
-//    switch (sender.tag) {
-//        case 1:
-//            
-//            break;
-//            
-//        default:
-//            break;
-//    }
-    
-    if (sender.tag==100) {
+    if (sender.tag!=100) {
         [self dismissViewControllerAnimated:YES completion:nil];
     }else{
         [self.view addSubview:takeALook.view];
@@ -191,31 +213,31 @@
             [takeALook.person1 setFrame:CGRectMake(53.0/320.0*ZYScreenWidth, 35.0/568.0*ZYScreenHeight, 59.0, 59.0)];
             break;
         case 2:
-           [takeALook.person1 setFrame:CGRectMake(182.0/320.0*ZYScreenWidth, 59.0/568.0*ZYScreenHeight, 59.0, 59.0)];
+           [takeALook.person2 setFrame:CGRectMake(182.0/320.0*ZYScreenWidth, 59.0/568.0*ZYScreenHeight, 59.0, 59.0)];
             break;
         case 3:
-            [takeALook.person1 setFrame:CGRectMake(80.0/320.0*ZYScreenWidth, 115.0/568.0*ZYScreenHeight, 62.0, 62.0)];
+            [takeALook.person3 setFrame:CGRectMake(80.0/320.0*ZYScreenWidth, 115.0/568.0*ZYScreenHeight, 62.0, 62.0)];
             break;
         case 4:
-          [takeALook.person1 setFrame:CGRectMake(233.0/320.0*ZYScreenWidth, 148.0/568.0*ZYScreenHeight, 69.0, 69.0)];
+          [takeALook.person4 setFrame:CGRectMake(233.0/320.0*ZYScreenWidth, 148.0/568.0*ZYScreenHeight, 69.0, 69.0)];
             break;
         case 5:
-           [takeALook.person1 setFrame:CGRectMake(130.0/320.0*ZYScreenWidth, 196.0/568.0*ZYScreenHeight, 59.0, 59.0)];
+           [takeALook.person5 setFrame:CGRectMake(130.0/320.0*ZYScreenWidth, 196.0/568.0*ZYScreenHeight, 59.0, 59.0)];
             break;
         case 6:
-           [takeALook.person1 setFrame:CGRectMake(27.0/320.0*ZYScreenWidth, 206.0/568.0*ZYScreenHeight, 59.0, 59.0)];
+           [takeALook.person6 setFrame:CGRectMake(27.0/320.0*ZYScreenWidth, 206.0/568.0*ZYScreenHeight, 59.0, 59.0)];
             break;
         case 7:
-            [takeALook.person1 setFrame:CGRectMake(214.0/320.0*ZYScreenWidth, 261.0/568.0*ZYScreenHeight, 59.0, 59.0)];
+            [takeALook.person7 setFrame:CGRectMake(214.0/320.0*ZYScreenWidth, 261.0/568.0*ZYScreenHeight, 59.0, 59.0)];
             break;
         case 8:
-            [takeALook.person1 setFrame:CGRectMake(32.0/320.0*ZYScreenWidth, 313.0/568.0*ZYScreenHeight, 59.0, 59.0)];
+            [takeALook.person8 setFrame:CGRectMake(32.0/320.0*ZYScreenWidth, 313.0/568.0*ZYScreenHeight, 59.0, 59.0)];
             break;
         case 9:
-           [takeALook.person1 setFrame:CGRectMake(125.0/320.0*ZYScreenWidth, 326.0/568.0*ZYScreenHeight, 69.0, 69.0)];
+           [takeALook.person9 setFrame:CGRectMake(125.0/320.0*ZYScreenWidth, 326.0/568.0*ZYScreenHeight, 69.0, 69.0)];
             break;
         case 0:
-            [takeALook.person1 setFrame:CGRectMake(232.0/320.0*ZYScreenWidth, 349.0/568.0*ZYScreenHeight, 59.0, 59.0)];
+            [takeALook.person10 setFrame:CGRectMake(232.0/320.0*ZYScreenWidth, 349.0/568.0*ZYScreenHeight, 59.0, 59.0)];
             break;
         default:
             break;
@@ -225,5 +247,4 @@
         takeALookAnimationIndex=1;
     }
 }
-
 @end

@@ -21,6 +21,7 @@
 		6B440CE71BBA86E600CF8410 /* CPMyInfoThrCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B440CE61BBA86E600CF8410 /* CPMyInfoThrCell.xib */; settings = {ASSET_TAGS = (); }; };
 		6B51767C1BB9502100D7A62E /* CustomSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B51767A1BB9502100D7A62E /* CustomSwitch.m */; settings = {ASSET_TAGS = (); }; };
 		6B51767D1BB9502100D7A62E /* CustomSwitch.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B51767B1BB9502100D7A62E /* CustomSwitch.xib */; settings = {ASSET_TAGS = (); }; };
+		6B906F771BC773830048A806 /* UIView+Shake.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B906F761BC773830048A806 /* UIView+Shake.m */; settings = {ASSET_TAGS = (); }; };
 		6BCD585C1BBB87750025F995 /* CPMyInfoFirCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCD585B1BBB87750025F995 /* CPMyInfoFirCell.m */; settings = {ASSET_TAGS = (); }; };
 		6BCD585F1BBB878B0025F995 /* CPMyInfoSecCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCD585E1BBB878B0025F995 /* CPMyInfoSecCell.m */; settings = {ASSET_TAGS = (); }; };
 		6BCD58621BBB87990025F995 /* CPMyInfoThrCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCD58611BBB87990025F995 /* CPMyInfoThrCell.m */; settings = {ASSET_TAGS = (); }; };
@@ -165,6 +166,8 @@
 		6B5176791BB9502100D7A62E /* CustomSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSwitch.h; sourceTree = "<group>"; };
 		6B51767A1BB9502100D7A62E /* CustomSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSwitch.m; sourceTree = "<group>"; };
 		6B51767B1BB9502100D7A62E /* CustomSwitch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomSwitch.xib; sourceTree = "<group>"; };
+		6B906F751BC773830048A806 /* UIView+Shake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Shake.h"; sourceTree = "<group>"; };
+		6B906F761BC773830048A806 /* UIView+Shake.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Shake.m"; sourceTree = "<group>"; };
 		6BCD585A1BBB87750025F995 /* CPMyInfoFirCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyInfoFirCell.h; sourceTree = "<group>"; };
 		6BCD585B1BBB87750025F995 /* CPMyInfoFirCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyInfoFirCell.m; sourceTree = "<group>"; };
 		6BCD585D1BBB878B0025F995 /* CPMyInfoSecCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyInfoSecCell.h; sourceTree = "<group>"; };
@@ -460,6 +463,15 @@
 				6B51767B1BB9502100D7A62E /* CustomSwitch.xib */,
 			);
 			path = CustomSwitch;
+			sourceTree = "<group>";
+		};
+		6B906F741BC773770048A806 /* UIView+Shake（抖动动画） */ = {
+			isa = PBXGroup;
+			children = (
+				6B906F751BC773830048A806 /* UIView+Shake.h */,
+				6B906F761BC773830048A806 /* UIView+Shake.m */,
+			);
+			path = "UIView+Shake（抖动动画）";
 			sourceTree = "<group>";
 		};
 		6BC919451BB90FD300E41C64 /* MyInfo */ = {
@@ -1235,6 +1247,7 @@
 		E3A471211BB3A85300973197 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6B906F741BC773770048A806 /* UIView+Shake（抖动动画） */,
 				6BE2E60F1BC67C8C00D1D928 /* CPNPSButton(文字图片垂直排列) */,
 				E3A68BBF1BBB8EE4002F4F75 /* ZYTableViewCell.h */,
 				E3A68BC01BBB8EE4002F4F75 /* ZYTableViewCell.m */,
@@ -1587,6 +1600,7 @@
 				E3A471971BB3A85300973197 /* CPTabBar.m in Sources */,
 				E3AEFE391BC64E5B009C9438 /* CPRecommendCell.m in Sources */,
 				6B153EF61BB5690900560935 /* CPForgetPasswordViewController.m in Sources */,
+				6B906F771BC773830048A806 /* UIView+Shake.m in Sources */,
 				E3A4718A1BB3A85300973197 /* UIViewController+ZYExtension.m in Sources */,
 				E3E6B8911BB4FD54006B4F8A /* CPLoginViewController.m in Sources */,
 				E31B12E71BB9311700B51696 /* PBScrollView.m in Sources */,
