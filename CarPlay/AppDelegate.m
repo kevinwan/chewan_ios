@@ -11,12 +11,16 @@
 #import "Aspects.h"
 #import "CPMyCareController.h"
 #import "IQKeyboardManager.h"
+#import <CoreLocation/CoreLocation.h>
 
-@interface AppDelegate ()<UITabBarControllerDelegate>
+@interface AppDelegate ()<UITabBarControllerDelegate,CLLocationManagerDelegate>
 {
     CPTabBarController *tabVc;
 }
-
+/**
+ *  定位管理者
+ */
+@property (nonatomic ,strong) CLLocationManager *mgr;
 @end
 
 @implementation AppDelegate
@@ -30,20 +34,25 @@
     self.window.rootViewController = tabVc;
     [self.window makeKeyAndVisible];
     [ZYNotificationCenter addObserver:self selector:@selector(loginStateChang) name:NOTIFICATION_HASLOGIN object:nil];
-    //设置定位精确度，默认：kCLLocationAccuracyBest
-//    [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
-//    //指定最小距离更新(米)，默认：kCLDistanceFilterNone
-//    [BMKLocationService setLocationDistanceFilter:100.f];
-//    
-//    //初始化BMKLocationService
-//    _locService = [[BMKLocationService alloc]init];
-//    _locService.delegate = self;
-//    //启动LocationService
-//    [_locService startUserLocationService];
+
     // 设置点击空白区域退出键盘
     [[IQKeyboardManager sharedManager] setShouldResignOnTouchOutside:YES];
     
     [self setViewCycleAop];
+    
+    self.mgr.delegate = self;
+    // 判断是否是iOS8
+    if([[UIDevice currentDevice].systemVersion doubleValue] >= 8.0)
+    {
+        NSLog(@"是iOS8");
+        // 主动要求用户对我们的程序授权, 授权状态改变就会通知代理
+        [self.mgr requestAlwaysAuthorization]; // 请求前台和后台定位权限
+    }else
+    {
+        NSLog(@"是iOS7");
+        // 3.开始监听(开始获取位置)
+        [self.mgr startUpdatingLocation];
+    }
     
     return YES;
 }
@@ -115,8 +124,28 @@
 //    [self.window makeKeyAndVisible];
 }
 
-//- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation{
-//    NSLog(@"%@",userLocation);
-//}
+/**
+ *  授权状态发生改变时调用
+ *
+ *  @param manager 触发事件的对象
+ *  @param status  当前授权的状态
+ */
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    if (status == kCLAuthorizationStatusNotDetermined) {
+        NSLog(@"等待用户授权");
+    }else if (status == kCLAuthorizationStatusAuthorizedAlways ||
+              status == kCLAuthorizationStatusAuthorizedWhenInUse)
+        
+    {
+        NSLog(@"授权成功");
+        // 开始定位
+        [self.mgr startUpdatingLocation];
+        
+    }else
+    {
+        NSLog(@"授权失败");
+    }
+}
 
 @end
