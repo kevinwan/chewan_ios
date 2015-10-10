@@ -66,13 +66,11 @@
     这里为了避免scrollview滚动带来自己layoutSubviews的调用,所以给scrollView加了一层父View
      */
     UIView *superViewOfScrollView = [[UIView alloc] initWithFrame:self.bounds];
-//    [superViewOfScrollView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+    [superViewOfScrollView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
     [superViewOfScrollView setBackgroundColor:[UIColor clearColor]];
     [superViewOfScrollView addSubview:_scrollView];
+    
     [self addSubview:superViewOfScrollView];
-    [superViewOfScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(UIEdgeInsetsZero);
-    }];
     
 }
 
@@ -376,7 +374,12 @@
                 _scrollView.frame = CGRectMake(0, 0, _pageSize.width, _pageSize.height);
                 _scrollView.contentSize = CGSizeMake(_pageSize.width ,_pageSize.height * _pageCount);
                 CGPoint theCenter = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
-                _scrollView.center = theCenter;
+                if (!self.giveFrame) {
+                    _scrollView.center = theCenter;
+                }else{
+                    _scrollView.y = (iPhone4?0:20);
+                    _scrollView.centerX = theCenter.x;
+                }
                 break;
             }
             default:
