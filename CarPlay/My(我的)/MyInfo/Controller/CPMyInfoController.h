@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZHPickView.h"
 
 @interface CPMyInfoController : UITableViewController
-
+@property(nonatomic,strong)ZHPickView *pickview;
 @end

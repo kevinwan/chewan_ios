@@ -12,7 +12,7 @@
 #import "CPMyInfoThrCell.h"
 #import "CPMyInfoHead.h"
 
-@interface CPMyInfoController ()
+@interface CPMyInfoController ()<ZHPickViewDelegate>
 
 @end
 
@@ -64,7 +64,29 @@
 
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 2) {
+        NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+        NSString *str = @"1990年01月01号";
+        fmt.dateFormat = @"yyyy年MM月dd号";
+        NSDate *defualtDate = [fmt dateFromString:str];
+        _pickview=[[ZHPickView alloc] initDatePickWithDate:defualtDate datePickerMode:UIDatePickerModeDate isHaveNavControler:NO];
+        _pickview.delegate=self;
+        [_pickview show];
+    }
+}
 
+#pragma mark ZhpickVIewDelegate
 
-
+-(void)toobarDonBtnHaveClick:(ZHPickView *)pickView resultString:(NSString *)resultString{
+    NSIndexPath *index = [NSIndexPath indexPathForRow:2 inSection:0];
+    UITableViewCell * cell=[self.tableView cellForRowAtIndexPath:index];
+        double age=[resultString doubleValue]/31536000;
+        NSLog(@"%.0f岁",0-age);
+        NSDate *brithDay=[[NSDate alloc]initWithTimeIntervalSinceNow:[resultString doubleValue]];
+        NSCalendar* calendar = [NSCalendar currentCalendar];
+        NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:brithDay]; // Get necessary date components
+        
+//        [Tools setValueForKey:[[NSString alloc]initWithFormat:@"%.0f岁",0-age] key:@"age"];
+}
 @end

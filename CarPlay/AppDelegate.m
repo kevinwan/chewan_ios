@@ -28,10 +28,18 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = tabVc;
-    
     [self.window makeKeyAndVisible];
     [ZYNotificationCenter addObserver:self selector:@selector(loginStateChang) name:NOTIFICATION_HASLOGIN object:nil];
-    
+    //设置定位精确度，默认：kCLLocationAccuracyBest
+//    [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
+//    //指定最小距离更新(米)，默认：kCLDistanceFilterNone
+//    [BMKLocationService setLocationDistanceFilter:100.f];
+//    
+//    //初始化BMKLocationService
+//    _locService = [[BMKLocationService alloc]init];
+//    _locService.delegate = self;
+//    //启动LocationService
+//    [_locService startUserLocationService];
     // 设置点击空白区域退出键盘
     [[IQKeyboardManager sharedManager] setShouldResignOnTouchOutside:YES];
     
@@ -106,5 +114,9 @@
 //    self.window.rootViewController = tabVc;
 //    [self.window makeKeyAndVisible];
 }
+
+//- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation{
+//    NSLog(@"%@",userLocation);
+//}
 
 @end
