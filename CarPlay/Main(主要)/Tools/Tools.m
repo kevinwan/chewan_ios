@@ -20,6 +20,16 @@
     return [ZYUserDefaults stringForKey:Token];
 }
 
++(double) getLatitude
+{
+    return [ZYUserDefaults doubleForKey:Latitude];
+}
+
++(double)getLongitude
+{
+    return [ZYUserDefaults doubleForKey:Longitude];
+}
+
 + (BOOL)isLogin
 {
     return [self getUserId].length && [self getToken].length;

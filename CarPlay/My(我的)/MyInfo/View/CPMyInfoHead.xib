@@ -11,34 +11,24 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="230"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="t01-hL-MbZ" userLabel="背景图片">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="t01-hL-MbZ" userLabel="背景图片">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="220"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="220" id="qwN-mc-dIC"/>
-                    </constraints>
                 </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RvL-y3-bcG" userLabel="间距线">
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RvL-y3-bcG" userLabel="间距线">
                     <rect key="frame" x="0.0" y="220" width="320" height="10"/>
                     <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="10" id="uZ6-Vs-Hql"/>
-                    </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rQx-bZ-sqW" userLabel="相册">
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rQx-bZ-sqW" userLabel="相册">
                     <rect key="frame" x="118" y="47" width="84" height="84"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="84" id="ngN-Zg-Lwg"/>
-                        <constraint firstAttribute="width" constant="84" id="opS-Q1-ihR"/>
-                    </constraints>
                     <state key="normal" backgroundImage="icon_cemare"/>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上传真实头像" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E0Z-h4-LzV">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="上传真实头像" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E0Z-h4-LzV">
                     <rect key="frame" x="124" y="131" width="72" height="14.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="非真实头像不会得到推荐噢" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aa2-Cm-MsU">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="非真实头像不会得到推荐噢" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aa2-Cm-MsU">
                     <rect key="frame" x="88" y="153.5" width="144" height="14.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -46,20 +36,6 @@
                 </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="t01-hL-MbZ" secondAttribute="trailing" id="1Uu-YJ-Cv2"/>
-                <constraint firstAttribute="trailing" secondItem="RvL-y3-bcG" secondAttribute="trailing" id="D27-2J-zNK"/>
-                <constraint firstItem="aa2-Cm-MsU" firstAttribute="top" secondItem="E0Z-h4-LzV" secondAttribute="bottom" constant="8" id="Lbs-Vy-btv"/>
-                <constraint firstItem="t01-hL-MbZ" firstAttribute="leading" secondItem="x6P-lv-o3R" secondAttribute="leading" id="N4S-IJ-BqP"/>
-                <constraint firstItem="E0Z-h4-LzV" firstAttribute="top" secondItem="rQx-bZ-sqW" secondAttribute="bottom" id="OOe-I7-Ak4"/>
-                <constraint firstItem="t01-hL-MbZ" firstAttribute="top" secondItem="x6P-lv-o3R" secondAttribute="top" id="QjR-nO-LFk"/>
-                <constraint firstItem="rQx-bZ-sqW" firstAttribute="top" secondItem="x6P-lv-o3R" secondAttribute="top" constant="47" id="cee-ew-DCR"/>
-                <constraint firstItem="RvL-y3-bcG" firstAttribute="leading" secondItem="x6P-lv-o3R" secondAttribute="leading" id="gWz-bN-OSO"/>
-                <constraint firstItem="RvL-y3-bcG" firstAttribute="top" secondItem="t01-hL-MbZ" secondAttribute="bottom" id="jog-mr-vXf"/>
-                <constraint firstItem="E0Z-h4-LzV" firstAttribute="centerX" secondItem="x6P-lv-o3R" secondAttribute="centerX" id="lev-Ol-1n9"/>
-                <constraint firstItem="aa2-Cm-MsU" firstAttribute="centerX" secondItem="x6P-lv-o3R" secondAttribute="centerX" id="t5b-vd-oOS"/>
-                <constraint firstItem="rQx-bZ-sqW" firstAttribute="centerX" secondItem="x6P-lv-o3R" secondAttribute="centerX" id="t5p-Vu-57O"/>
-            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="207" y="-174"/>

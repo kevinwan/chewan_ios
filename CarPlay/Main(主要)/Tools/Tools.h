@@ -12,6 +12,7 @@
 #define GreenColor [Tools getColor:@"74ced6"]
 #define GrayColor  [Tools getColor:@"cccccc"]
 
+
 @interface Tools : NSObject
 
 + (NSString *)getUserId;
@@ -29,4 +30,8 @@
 +(BOOL) isValidateMobile:(NSString *)mobile;
 
 +(BOOL) isValidatePassword:(NSString *)password;
+
++(double) getLatitude;
+
++(double)getLongitude;
 @end
