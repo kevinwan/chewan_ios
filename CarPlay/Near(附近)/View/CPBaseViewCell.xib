@@ -92,7 +92,7 @@
                             <state key="normal" image="icon_gz"/>
                             <state key="selected" image="icon_gz_hover"/>
                             <connections>
-                                <action selector="loveClick:" destination="gOg-uM-5H7" eventType="touchUpInside" id="NYh-bU-oAj"/>
+                                <action selector="loveClick:" destination="gOg-uM-5H7" eventType="touchUpInside" id="8Ez-rb-QKg"/>
                             </connections>
                         </button>
                     </subviews>
