@@ -11,3 +11,5 @@
 NSString * const UserId = @"userId";
 NSString * const Token  = @"token";
 NSString * const FreeTimeKey = @"FreeTimeKey";
+NSString * const Longitude = @"longitude";
+NSString * const Latitude = @"latitude";

@@ -43,6 +43,8 @@
 #define CPNoNetWork     ([Tools getToken])  // 判断网络状态
 #define CPUserId        [Tools getToken]    // 获取userId
 #define CPToken         [Tools getToken]    // 获取token
+#define CPLatitude      [Tools getLatitude] //获取经度
+#define CPLongitude     [Tools getLongitude] //获取维度
 
 #define CPIsLogin       ([Tools isLogin])   // 是否登录成功
 #define CPUnLogin       ([Tools isUnLogin]) // 是否登录成功

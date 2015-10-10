@@ -20,7 +20,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self setupViewDidLoad];  
 }
 
@@ -39,30 +38,9 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 15;
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (indexPath.row == 0) {
-        CPMyInfoFirCell *cell = [CPMyInfoFirCell cellWithTableView:tableView];
-        return cell;
-    }else if (indexPath.row == 1) {
-        CPMyInfoSecCell *cell = [CPMyInfoSecCell cellWithTableView:tableView];
-        return cell;
-    }else if (indexPath.row == 2) {
-        CPMyInfoThrCell *cell = [CPMyInfoThrCell cellWithTableView:tableView];
-        return cell;
-    }else{
-        UITableViewCell *cell = [[UITableViewCell alloc] init];
-        cell.backgroundColor = [Tools getColor:@"efefef"];
-        return cell;
-    }
-       
-
-}
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//    return 3;
+//}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 2) {

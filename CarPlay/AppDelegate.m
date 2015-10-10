@@ -148,4 +148,48 @@
     }
 }
 
+#pragma mark - CLLocationManagerDelegate
+/**
+ *  获取到位置信息之后就会调用(调用频率非常高)
+ *
+ *  @param manager   触发事件的对象
+ *  @param locations 获取到的位置
+ */
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    NSLog(@"%s", __func__);
+    // 如果只需要获取一次, 可以获取到位置之后就停止
+    //    [self.mgr stopUpdatingLocation];
+    
+    // 1.获取最后一次的位置
+    /*
+     location.coordinate; 坐标, 包含经纬度
+     location.altitude; 设备海拔高度 单位是米
+     location.course; 设置前进方向 0表示北 90东 180南 270西
+     location.horizontalAccuracy; 水平精准度
+     location.verticalAccuracy; 垂直精准度
+     location.timestamp; 定位信息返回的时间
+     location.speed; 设备移动速度 单位是米/秒, 适用于行车速度而不太适用于不行
+     */
+    /*
+     可以设置模拟器模拟速度
+     bicycle ride 骑车移动
+     run 跑动
+     freeway drive 高速公路驾车
+     */
+    CLLocation *location = [locations lastObject];
+    NSLog(@"%f, %f speed = %f，城市%@", location.coordinate.latitude , location.coordinate.longitude, location.speed ,location.description);
+    [ZYUserDefaults setDouble:location.coordinate.latitude forKey:Latitude];
+    [ZYUserDefaults setDouble:location.coordinate.longitude forKey:Longitude];
+    [self.mgr stopUpdatingLocation];
+}
+
+#pragma mark - 懒加载
+- (CLLocationManager *)mgr
+{
+    if (!_mgr) {
+        _mgr = [[CLLocationManager alloc] init];
+    }
+    return _mgr;
+}
 @end
