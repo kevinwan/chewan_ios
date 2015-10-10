@@ -10,7 +10,7 @@
 #define malco_h
 
 // 正式服务器接口地址
-//#define BASE_URL @"http://chewanapi.gongpingjia.com/v2"
+//#define BASE_URL @"http://chewanapi.gongpingjia.com/v2/"
 
 // 测试服务器接口地址
 #define BASE_URL @"http://cwapi.gongpingjia.com:8080/v2/"
@@ -41,7 +41,7 @@
 #define iOS9 (SystemVersion >= 9.0 && SystemVersion < 10.0)
 
 #define CPNoNetWork     ([Tools getToken])  // 判断网络状态
-#define CPUserId        [Tools getToken]    // 获取userId
+#define CPUserId        [Tools getUserId]    // 获取userId
 #define CPToken         [Tools getToken]    // 获取token
 
 #define CPIsLogin       ([Tools isLogin])   // 是否登录成功

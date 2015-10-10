@@ -147,11 +147,13 @@
 		E3AEFE391BC64E5B009C9438 /* CPRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AEFE371BC64E5B009C9438 /* CPRecommendCell.m */; settings = {ASSET_TAGS = (); }; };
 		E3AF16FE1BBA296C00306ABF /* CPNoHighLightButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AF16FD1BBA296C00306ABF /* CPNoHighLightButton.m */; settings = {ASSET_TAGS = (); }; };
 		E3AF17011BBA317E00306ABF /* CPMySwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AF17001BBA317E00306ABF /* CPMySwitch.m */; settings = {ASSET_TAGS = (); }; };
+		E3C5F1911BC92C790021E33D /* CPActivityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C5F1901BC92C790021E33D /* CPActivityDetailViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E3E6B88C1BB4F7FA006B4F8A /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6B88B1BB4F7FA006B4F8A /* FXBlurView.m */; settings = {ASSET_TAGS = (); }; };
 		E3E6B8911BB4FD54006B4F8A /* CPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6B88F1BB4FD54006B4F8A /* CPLoginViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E3E6B8921BB4FD54006B4F8A /* CPLoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3E6B8901BB4FD54006B4F8A /* CPLoginViewController.storyboard */; settings = {ASSET_TAGS = (); }; };
 		E3E6B8951BB514A2006B4F8A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6B8941BB514A2006B4F8A /* AppDelegate.m */; settings = {ASSET_TAGS = (); }; };
 		E3E6B8981BB515F1006B4F8A /* CPSexView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6B8971BB515F1006B4F8A /* CPSexView.m */; settings = {ASSET_TAGS = (); }; };
+		E3EA1A021BC8DF43007ECECA /* CPRecommendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EA1A011BC8DF43007ECECA /* CPRecommendModel.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -414,6 +416,8 @@
 		E3AF16FD1BBA296C00306ABF /* CPNoHighLightButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNoHighLightButton.m; sourceTree = "<group>"; };
 		E3AF16FF1BBA317E00306ABF /* CPMySwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMySwitch.h; sourceTree = "<group>"; };
 		E3AF17001BBA317E00306ABF /* CPMySwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMySwitch.m; sourceTree = "<group>"; };
+		E3C5F18F1BC92C790021E33D /* CPActivityDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityDetailViewController.h; sourceTree = "<group>"; };
+		E3C5F1901BC92C790021E33D /* CPActivityDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityDetailViewController.m; sourceTree = "<group>"; };
 		E3E6B88A1BB4F7FA006B4F8A /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		E3E6B88B1BB4F7FA006B4F8A /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 		E3E6B88E1BB4FD54006B4F8A /* CPLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLoginViewController.h; sourceTree = "<group>"; };
@@ -423,6 +427,8 @@
 		E3E6B8941BB514A2006B4F8A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E3E6B8961BB515F1006B4F8A /* CPSexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSexView.h; sourceTree = "<group>"; };
 		E3E6B8971BB515F1006B4F8A /* CPSexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSexView.m; sourceTree = "<group>"; };
+		E3EA1A001BC8DF43007ECECA /* CPRecommendModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRecommendModel.h; sourceTree = "<group>"; };
+		E3EA1A011BC8DF43007ECECA /* CPRecommendModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRecommendModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1199,6 +1205,8 @@
 				E3606F0F1BC773EA00797968 /* PagedFlowView.m */,
 				E3AEFE331BC64970009C9438 /* CPRecommendController.h */,
 				E3AEFE341BC64970009C9438 /* CPRecommendController.m */,
+				E3C5F18F1BC92C790021E33D /* CPActivityDetailViewController.h */,
+				E3C5F1901BC92C790021E33D /* CPActivityDetailViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1206,6 +1214,8 @@
 		E3A471131BB3A85300973197 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E3EA1A001BC8DF43007ECECA /* CPRecommendModel.h */,
+				E3EA1A011BC8DF43007ECECA /* CPRecommendModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1624,6 +1634,7 @@
 				6B153EFC1BB5692500560935 /* CPMyViewController.m in Sources */,
 				6B906F7D1BC7C98B0048A806 /* ZHAppDelegate.m in Sources */,
 				E31B135B1BB9313A00B51696 /* PhotoCotentView.m in Sources */,
+				E3C5F1911BC92C790021E33D /* CPActivityDetailViewController.m in Sources */,
 				E31B13451BB9312D00B51696 /* UIDevice+Extend.m in Sources */,
 				E3A471961BB3A85300973197 /* Tools.m in Sources */,
 				E3E6B8951BB514A2006B4F8A /* AppDelegate.m in Sources */,
@@ -1660,6 +1671,7 @@
 				6BCFFBBB1BBA456900C082B2 /* CPMyCareCell.m in Sources */,
 				E3A4717D1BB3A85300973197 /* NSMutableArray+ZY.m in Sources */,
 				E39627B51BB53357005E0CF2 /* CPUser.m in Sources */,
+				E3EA1A021BC8DF43007ECECA /* CPRecommendModel.m in Sources */,
 				E31B13511BB9312D00B51696 /* UIButton+SD.m in Sources */,
 				E31B13421BB9312D00B51696 /* NSString+Extend.m in Sources */,
 				6BCD585F1BBB878B0025F995 /* CPMyInfoSecCell.m in Sources */,

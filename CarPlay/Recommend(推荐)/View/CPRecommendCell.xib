@@ -24,8 +24,8 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CpY-ZY-trk">
-                    <rect key="frame" x="10" y="429" width="355" height="32"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CpY-ZY-trk">
+                    <rect key="frame" x="10" y="429" width="480" height="38"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="38" id="SVe-lo-2Bz"/>
                     </constraints>
@@ -76,8 +76,16 @@
                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3" translatesAutoresizingMaskIntoConstraints="NO" id="O24-Rw-lQO">
                     <rect key="frame" x="0.0" y="44" width="375" height="375"/>
                     <constraints>
+                        <constraint firstAttribute="width" secondItem="O24-Rw-lQO" secondAttribute="height" multiplier="1:1" id="4rS-W8-s0l"/>
                         <constraint firstAttribute="width" secondItem="O24-Rw-lQO" secondAttribute="height" multiplier="1:1" id="npc-JQ-bSQ"/>
+                        <constraint firstAttribute="height" constant="250" id="vTR-aC-ea3"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="npc-JQ-bSQ"/>
+                            <exclude reference="vTR-aC-ea3"/>
+                        </mask>
+                    </variation>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="300元/人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="870-t4-xjJ">
                     <rect key="frame" x="10" y="477" width="66.5" height="19.5"/>

@@ -66,6 +66,7 @@
     [mgr GET:url parameters:params
      success:^(AFHTTPRequestOperation *operation, id responseObject) {
          if ([responseObject[@"result"] intValue] && [responseObject[@"errmsg"] contains:@"口令已过期"]) {
+             
              [self reLoginWithSuccess:^{
                  
                  mgr.requestSerializer = [AFHTTPRequestSerializer serializer];
