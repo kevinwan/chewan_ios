@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #define RecommentAddressClickKey @"RecommentAddressClickKey"
-@interface CPRecommendCell : UICollectionViewCell
+@interface CPRecommendCell : UIView
 
 @end
