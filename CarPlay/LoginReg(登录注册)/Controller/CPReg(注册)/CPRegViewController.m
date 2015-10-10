@@ -40,7 +40,7 @@
     
     if (self.phoneField.text && ![self.phoneField.text isEqualToString:@""]) {
         if ([Tools isValidateMobile:self.phoneField.text]) {
-            NSString *path=[[NSString alloc]initWithFormat:@"/v2/phone/%@/verification",self.phoneField.text];
+            NSString *path=[[NSString alloc]initWithFormat:@"/phone/%@/verification",self.phoneField.text];
             [ZYNetWorkTool getWithUrl:path params:nil success:^(id responseObject) {
                 if (CPSuccess) {
                     self.verificationCodeWeight.constant=53.0f;
@@ -71,7 +71,7 @@
                 if (self.verificationCodeField.text.length == 4) {
                     if (self.passwordField.text && ![self.passwordField.text isEqualToString:@""]) {
                         if ([Tools isValidatePassword:self.passwordField.text]) {
-                            NSString *path=[[NSString alloc]initWithFormat:@"/v2/phone/%@/verification" ,self.phoneField.text];
+                            NSString *path=[[NSString alloc]initWithFormat:@"phone/%@/verification" ,self.phoneField.text];
                             NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:self.verificationCodeField.text,@"code", nil];
                             [ZYNetWorkTool getWithUrl:path params:params success:^(id responseObject) {
                                 if (CPSuccess) {

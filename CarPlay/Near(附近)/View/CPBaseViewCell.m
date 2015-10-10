@@ -124,12 +124,7 @@
 
 - (void)awakeFromNib
 {
-    
-    CGFloat offset = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250;
-    CGFloat margin = 20 - (381 + offset) * 0.04;
-//    if (iPhone4) {
-        self.marginCons.constant = 12;
-//    }
+    self.marginCons.constant = 12;
     // 进行初始化设置
     [self.bgView setCornerRadius:5];
     self.distanceView.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 6);

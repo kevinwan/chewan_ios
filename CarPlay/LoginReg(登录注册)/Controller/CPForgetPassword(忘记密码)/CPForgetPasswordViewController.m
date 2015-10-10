@@ -39,7 +39,7 @@
 - (IBAction)verificationCodeBtnClick:(id)sender {
     if (self.phoneField.text && ![self.phoneField.text isEqualToString:@""]) {
         if ([Tools isValidateMobile:self.phoneField.text]) {
-            NSString *path=[[NSString alloc]initWithFormat:@"/v2/phone/%@/verification",self.phoneField.text];
+            NSString *path=[[NSString alloc]initWithFormat:@"phone/%@/verification",self.phoneField.text];
             NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:@"1",@"type", nil];
             [ZYNetWorkTool getWithUrl:path params:params success:^(id responseObject) {
                 if (CPSuccess) {

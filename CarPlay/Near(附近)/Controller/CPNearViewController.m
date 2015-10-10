@@ -16,35 +16,25 @@
 @property (nonatomic, strong) PagedFlowView *tableView;
 @property (nonatomic, strong) NSMutableArray<CPActivityModel *> *datas;
 @property (nonatomic, strong) UIView *tipView;
-
+@property (nonatomic, assign) CGFloat offset;
 @end
 @implementation CPNearViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.offset = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250;
+    
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"筛选" target:self action:@selector(filter)];
     [self.view addSubview:self.tableView];
     [self tipView];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    CGFloat offset = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250;
-    CGFloat margin = (ZYScreenHeight - 49 - 64) - (381 + offset) + 12;
-    self.tableView.scrollView.contentInset = UIEdgeInsetsMake(-(margin * 0.5) + 20, 0, 0, 0);
-    if (iPhone4) {
-          self.tableView.scrollView.contentInset = UIEdgeInsetsMake(-(margin * 0.5), 0, 0, 0);
-    }
-}
 
 - (CGSize)sizeForPageInFlowView:(PagedFlowView *)flowView
 {
-    CGFloat offset = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250;
-    return CGSizeMake(ZYScreenWidth - 20, 381 + offset + 12);
+    return CGSizeMake(ZYScreenWidth - 20, 393 + self.offset);
 }
 
 - (UIView *)flowView:(PagedFlowView *)flowView cellForPageAtIndex:(NSInteger)index
@@ -100,6 +90,7 @@
         [self photoPresent];
     }else if([notifyName isEqualToString:DateBtnClickKey]){
         [self dateClickWithInfo:userInfo];
+//        [self.tableView reloadData];
     }else if([notifyName isEqualToString:InvitedBtnClickKey]){
         
     }else if([notifyName isEqualToString:IgnoreBtnClickKey]){
@@ -176,16 +167,15 @@
 {
     if (_tableView == nil) {
         _tableView = [[PagedFlowView alloc] initWithFrame:({
-            CGRectMake(0, 64, ZYScreenWidth, ZYScreenHeight - 90);
+            CGRectMake(0, 64, ZYScreenWidth, ZYScreenHeight - 84);
         })];
         self.automaticallyAdjustsScrollViewInsets = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.orientation = PagedFlowViewOrientationVertical;
-//        CGFloat offset = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250;
-//        _tableView.rowHeight = 401 + offset;
         _tableView.backgroundColor = [Tools getColor:@"efefef"];
             _tableView.minimumPageScale = 0.96;
+        _tableView.giveFrame = YES;
 //        _tableView.showsVerticalScrollIndicator = NO;
 //        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 //        _tableView.pagingEnabled = YES;

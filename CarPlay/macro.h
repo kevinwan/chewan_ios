@@ -10,10 +10,10 @@
 #define malco_h
 
 // 正式服务器接口地址
-//#define BASE_URL @"http://chewanapi.gongpingjia.com/"
+//#define BASE_URL @"http://chewanapi.gongpingjia.com/v2"
 
 // 测试服务器接口地址
-#define BASE_URL @"http://cwapi.gongpingjia.com:8080"
+#define BASE_URL @"http://cwapi.gongpingjia.com:8080/v2/"
 
 
 //==============================DLog/NSLog=====================
