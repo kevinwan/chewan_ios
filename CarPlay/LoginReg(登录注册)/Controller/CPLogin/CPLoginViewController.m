@@ -55,7 +55,7 @@
     if (self.accountField.text && ![self.accountField.text isEqualToString:@""]) {
         if ([Tools isValidateMobile:self.accountField.text]) {
             if (self.passwordField.text && ![self.passwordField.text isEqualToString:@""]) {
-                NSDictionary *paras=[[NSDictionary alloc]initWithObjectsAndKeys:self.accountField.text,@"phone",@"e10adc3949ba59abbe56e057f20f883e",@"password",nil];
+                NSDictionary *paras=[[NSDictionary alloc]initWithObjectsAndKeys:self.accountField.text,@"phone",[Tools md5EncryptWithString:self.passwordField.text],@"password",nil];
                 [ZYNetWorkTool postJsonWithUrl:@"user/login" params:paras success:^(id responseObject) {
                     if (CPSuccess) {
                         if (responseObject[@"data"][@"userId"]) {

@@ -9,6 +9,7 @@
 #import "CPMyViewController.h"
 #import "CPLoginViewController.h"
 #import "CPMyInfoController.h"
+#import "CPNavigationController.h"
 
 @interface CPMyViewController ()
 
@@ -89,10 +90,14 @@
 
 #pragma privateMethod
 -(void)rightClick{
-//    CPLoginViewController *login = [UIStoryboard storyboardWithName:@"CPLoginViewController" bundle:nil].instantiateInitialViewController;
+    CPLoginViewController *login = [UIStoryboard storyboardWithName:@"CPLoginViewController" bundle:nil].instantiateInitialViewController;
 //    [self.navigationController pushViewController:login animated:YES];
-    CPMyInfoController *myInfoVC = [UIStoryboard storyboardWithName:@"CPMyInfoController" bundle:nil].instantiateInitialViewController;
-    [self.navigationController pushViewController:myInfoVC animated:YES];
+    CPNavigationController *nav=[[CPNavigationController alloc]initWithRootViewController:login];
+    self.view.window.rootViewController = nav;
+    [self.view.window makeKeyAndVisible];
+//    self.view.window
+//    CPMyInfoController *myInfoVC = [UIStoryboard storyboardWithName:@"CPMyInfoController" bundle:nil].instantiateInitialViewController;
+//    [self.navigationController pushViewController:myInfoVC animated:YES];
 }
 
 @end

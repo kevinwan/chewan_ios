@@ -7,6 +7,9 @@
 //
 
 #import "Tools.h"
+#import <CommonCrypto/CommonDigest.h>
+
+#define CC_MD5_LENGTH 16
 
 @implementation Tools
 
@@ -85,5 +88,16 @@
         validate = FALSE;
     }
     return [passWordPredicate evaluateWithObject:password];
+}
+
++ (NSString *)md5EncryptWithString:(NSString*)string
+{
+    const char *original_str = [string UTF8String];
+    unsigned char result[CC_MD5_LENGTH];
+    CC_MD5(original_str, strlen(original_str), result);
+    NSMutableString *hash = [NSMutableString string];
+    for (int i = 0; i < CC_MD5_LENGTH; i++)
+        [hash appendFormat:@"%02X", result[i]];
+    return [hash lowercaseString];
 }
 @end

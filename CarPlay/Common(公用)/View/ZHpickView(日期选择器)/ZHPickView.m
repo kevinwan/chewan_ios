@@ -39,7 +39,7 @@
 }
 
 -(NSArray *)componentArray{
-
+    
     if (_componentArray==nil) {
         _componentArray=[[NSMutableArray alloc] init];
     }
@@ -107,14 +107,14 @@
         [self setUpPickView];
         [self setFrameWith:isHaveNavControler];
         
-//         _dicKeyArray=[[NSMutableArray alloc] init];
-//        for (id levelTwo in areaDic) {
-//                _isLevelDic=YES;
-//                _isLevelString=NO;
-//                _isLevelArray=NO;
-//                _levelTwoDic=levelTwo;
-//                [_dicKeyArray addObject:[_levelTwoDic allKeys] ];
-//        }
+        //         _dicKeyArray=[[NSMutableArray alloc] init];
+        //        for (id levelTwo in areaDic) {
+        //                _isLevelDic=YES;
+        //                _isLevelString=NO;
+        //                _isLevelArray=NO;
+        //                _levelTwoDic=levelTwo;
+        //                [_dicKeyArray addObject:[_levelTwoDic allKeys] ];
+        //        }
     }
     return self;
 }
@@ -177,14 +177,14 @@
     }
     
     
-//    for (id levelTwo in array) {
-//            _isLevelDic=YES;
-//            _isLevelString=NO;
-//            _isLevelArray=NO;
-//            _isFromPlist=NO;
-//            _levelTwoDic=levelTwo;
-//            [_dicKeyArray addObject:[_levelTwoDic allKeys] ];
-//    }
+    //    for (id levelTwo in array) {
+    //            _isLevelDic=YES;
+    //            _isLevelString=NO;
+    //            _isLevelArray=NO;
+    //            _isFromPlist=NO;
+    //            _levelTwoDic=levelTwo;
+    //            [_dicKeyArray addObject:[_levelTwoDic allKeys] ];
+    //    }
 }
 
 -(void)setFrameWith:(BOOL)isHaveNavControler{
@@ -206,8 +206,8 @@
     pickView.delegate=self;
     pickView.dataSource=self;
     pickView.frame=CGRectMake(0, ZHToobarHeight, pickView.frame.size.width, pickView.frame.size.height);
-//    pickView.showsSelectionIndicator = YES;
-//    [pickView selectRow: 0 inComponent: 0 animated: YES];
+    //    pickView.showsSelectionIndicator = YES;
+    //    [pickView selectRow: 0 inComponent: 0 animated: YES];
     _pickeviewHeight=pickView.frame.size.height;
     [self addSubview:pickView];
 }
@@ -243,7 +243,7 @@
 }
 -(UIToolbar *)setToolbarStyle{
     UIToolbar *toolbar=[[UIToolbar alloc] init];
-
+    
     UIButton *left = [UIButton buttonWithType:UIButtonTypeCustom];
     left.titleLabel.font = [UIFont systemFontOfSize:16];
     [left setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
@@ -299,15 +299,15 @@
         rowArray=_plistArray;
     }else if (_isLevelDic){
         if (_isFromPlist) {
-        if (component == PROVINCE_COMPONENT) {
-            rowArray=province;
-        }
-        else if (component == CITY_COMPONENT) {
-            rowArray=city;
-        }
-        else {
-            rowArray=district;
-        }
+            if (component == PROVINCE_COMPONENT) {
+                rowArray=province;
+            }
+            else if (component == CITY_COMPONENT) {
+                rowArray=city;
+            }
+            else {
+                rowArray=district;
+            }
         }else{
             NSInteger pIndex = [pickerView selectedRowInComponent:0];
             NSDictionary *dic=_plistArray[pIndex];
@@ -330,8 +330,8 @@
 
 //- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 //{
-//    
-//    
+//
+//
 //    NSString *rowTitle=nil;
 //    if (_isLevelArray) {
 //        rowTitle=_plistArray[component][row];
@@ -361,18 +361,18 @@
 //                    if (bb.count>row) {
 //                        rowTitle=aa[row];
 //                    }
-//                    
+//
 //                }
 //            }
 //        }
-//       
+//
 //    }
 //    return rowTitle;
-//    
-//    
-//    
-//    
-//    
+//
+//
+//
+//
+//
 ////    if (component == PROVINCE_COMPONENT) {
 ////        return [province objectAtIndex: row];
 ////    }
@@ -540,7 +540,7 @@
     }];
 }
 -(void)show{
-
+    
     [[UIApplication sharedApplication].windows.lastObject addSubview:self];
     
 }
@@ -549,7 +549,7 @@
     if (_pickerView) {
         
         if (_resultString) {
-           
+            
         }else{
             if (_isLevelString) {
                 _resultString=[NSString stringWithFormat:@"%@",_plistArray[0]];
@@ -575,14 +575,14 @@
                 else if ([cityStr isEqualToString: districtStr]) {
                     districtStr = @"";
                 }
-              _resultString=[NSString stringWithFormat: @"%@,%@,%@", provinceStr, cityStr, districtStr];
-           }
+                _resultString=[NSString stringWithFormat: @"%@,%@,%@", provinceStr, cityStr, districtStr];
+            }
         }
     }else if (_datePicker) {
-//        NSDateFormatter *dateFormtter=[[NSDateFormatter alloc] init];
-//        [dateFormtter setDateFormat:@"yyyy-MM-dd"];
-//        NSString *dateString=[dateFormtter stringFromDate:_datePicker.date];
-       
+        //        NSDateFormatter *dateFormtter=[[NSDateFormatter alloc] init];
+        //        [dateFormtter setDateFormat:@"yyyy-MM-dd"];
+        //        NSString *dateString=[dateFormtter stringFromDate:_datePicker.date];
+        
         _resultString=[NSString stringWithFormat:@"%f",[_datePicker.date timeIntervalSinceNow]];
     }
     if ([self.delegate respondsToSelector:@selector(toobarDonBtnHaveClick:resultString:)]) {
