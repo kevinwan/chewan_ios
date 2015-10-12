@@ -40,7 +40,7 @@
     
     if (self.phoneField.text && ![self.phoneField.text isEqualToString:@""]) {
         if ([Tools isValidateMobile:self.phoneField.text]) {
-            NSString *path=[[NSString alloc]initWithFormat:@"/phone/%@/verification",self.phoneField.text];
+            NSString *path=[[NSString alloc]initWithFormat:@"phone/%@/verification",self.phoneField.text];
             [ZYNetWorkTool getWithUrl:path params:nil success:^(id responseObject) {
                 if (CPSuccess) {
                     self.verificationCodeWeight.constant=53.0f;
@@ -73,16 +73,21 @@
                         if ([Tools isValidatePassword:self.passwordField.text]) {
                             NSString *path=[[NSString alloc]initWithFormat:@"phone/%@/verification" ,self.phoneField.text];
                             NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:self.verificationCodeField.text,@"code", nil];
-                            [ZYNetWorkTool getWithUrl:path params:params success:^(id responseObject) {
+                            [ZYNetWorkTool postJsonWithUrl:path params:params success:^(id responseObject) {
                                 if (CPSuccess) {
                                     CPMyInfoController *myInfoVC = [UIStoryboard storyboardWithName:@"CPMyInfoController" bundle:nil].instantiateInitialViewController;
+                                    myInfoVC.code=self.verificationCodeField.text;
+                                    CPUser *user=[[CPUser alloc]init];
+                                    user.phone=self.phoneField.text;
+                                    myInfoVC.user=user;
+                                    myInfoVC.password=[Tools md5EncryptWithString:self.passwordField.text];
                                     [self.navigationController pushViewController:myInfoVC animated:YES];
                                     
                                 }else{
                                     NSString *errmsg =[responseObject objectForKey:@"errmsg"];
                                     [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                                 }
-                            } failure:^(NSError *error) {
+                            } failed:^(NSError *error) {
                                 [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                                 
                             }];

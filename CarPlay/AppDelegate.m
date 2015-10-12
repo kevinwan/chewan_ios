@@ -7,16 +7,13 @@
 //
 
 #import "AppDelegate.h"
-#import "CPTabBarController.h"
 #import "Aspects.h"
 #import "CPMyCareController.h"
 #import "IQKeyboardManager.h"
 #import <CoreLocation/CoreLocation.h>
 
 @interface AppDelegate ()<UITabBarControllerDelegate,CLLocationManagerDelegate>
-{
-    CPTabBarController *tabVc;
-}
+
 /**
  *  定位管理者
  */
@@ -27,11 +24,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    tabVc = [CPTabBarController new];
-    tabVc.delegate = self;
+    _tabVc = [CPTabBarController new];
+    _tabVc.delegate = self;
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = tabVc;
+    self.window.rootViewController = _tabVc;
     [self.window makeKeyAndVisible];
     [ZYNotificationCenter addObserver:self selector:@selector(loginStateChang) name:NOTIFICATION_HASLOGIN object:nil];
 
@@ -120,8 +117,8 @@
 }
 
 -(void)loginStateChang{
-//    self.window.rootViewController = tabVc;
-//    [self.window makeKeyAndVisible];
+    self.window.rootViewController = _tabVc;
+    [self.window makeKeyAndVisible];
 }
 
 /**
@@ -182,6 +179,7 @@
     [ZYUserDefaults setDouble:location.coordinate.latitude forKey:Latitude];
     [ZYUserDefaults setDouble:location.coordinate.longitude forKey:Longitude];
     [self.mgr stopUpdatingLocation];
+    
 }
 
 #pragma mark - 懒加载

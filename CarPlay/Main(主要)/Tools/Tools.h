@@ -11,7 +11,8 @@
 #define RedColor   [Tools getColor:@"fe5969"]
 #define GreenColor [Tools getColor:@"74ced6"]
 #define GrayColor  [Tools getColor:@"cccccc"]
-
+#define ZYLongitude [Tools getLongitude]
+#define ZYLatitude [Tools getLatitude]
 
 @interface Tools : NSObject
 
@@ -34,4 +35,6 @@
 +(double) getLatitude;
 
 +(double)getLongitude;
+
++ (NSString *)md5EncryptWithString:(NSString*)string;
 @end

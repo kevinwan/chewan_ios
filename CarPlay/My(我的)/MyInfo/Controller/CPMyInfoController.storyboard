@@ -27,7 +27,7 @@
                                         <constraint firstAttribute="width" constant="84" id="3Cl-5G-tnf"/>
                                         <constraint firstAttribute="height" constant="84" id="CaY-Lv-gkW"/>
                                     </constraints>
-                                    <state key="normal" image="icon_cemare" backgroundImage="C571579D-C421-42D4-B81E-6F9E8E452535"/>
+                                    <state key="normal" image="icon_cemare" backgroundImage="FF50889B-599C-4227-A243-5DD54DBB7377"/>
                                     <connections>
                                         <action selector="headIconBtnClick:" destination="Ngq-HX-lPw" eventType="touchUpInside" id="v0c-n5-nYk"/>
                                     </connections>
@@ -125,6 +125,9 @@
                                                         <constraint firstAttribute="width" constant="65" id="bXZ-Ab-O1V"/>
                                                     </constraints>
                                                     <state key="normal" backgroundImage="btn_woman_2"/>
+                                                    <connections>
+                                                        <action selector="womanBtnClick:" destination="Ngq-HX-lPw" eventType="touchUpInside" id="XiX-Os-H6X"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="flo-Sd-6IL" userLabel="男">
                                                     <rect key="frame" x="170" y="7" width="65" height="30"/>
@@ -133,6 +136,9 @@
                                                         <constraint firstAttribute="height" constant="30" id="g6i-KV-OLm"/>
                                                     </constraints>
                                                     <state key="normal" backgroundImage="btn_man_2"/>
+                                                    <connections>
+                                                        <action selector="manBtnClick:" destination="Ngq-HX-lPw" eventType="touchUpInside" id="viR-v6-nxu"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -191,8 +197,10 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="brithDay" destination="hm5-Ok-DEF" id="NAy-mE-hvq"/>
+                        <outlet property="manBtn" destination="flo-Sd-6IL" id="7DY-gq-Fos"/>
                         <outlet property="nick" destination="pyH-GR-iyq" id="bfq-4D-eqf"/>
                         <outlet property="userHeadIcon" destination="kd2-u9-Qhk" id="NH9-Ui-hdh"/>
+                        <outlet property="womanBtn" destination="RGS-Sj-HRd" id="YpX-i3-Lmd"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sz2-lN-wfY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -201,7 +209,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="C571579D-C421-42D4-B81E-6F9E8E452535" width="84" height="84">
+        <image name="FF50889B-599C-4227-A243-5DD54DBB7377" width="84" height="84">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

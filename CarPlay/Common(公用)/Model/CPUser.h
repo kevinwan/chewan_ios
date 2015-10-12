@@ -19,6 +19,8 @@
 
 @property (nonatomic, copy) NSString *nickname;
 
+@property (nonatomic, copy) NSString *phone;
+
 //    "gender": "男",
 @property (nonatomic, copy) NSString *gender;
 
@@ -26,10 +28,15 @@
 
 //    "age": 25,
 @property (nonatomic, assign) NSUInteger age;
+
+@property (nonatomic, assign) long brithDay;
 //    "role": "普通用户",
 @property (nonatomic, copy) NSString *role;
-//      用户头像
+//      用户头像url
 @property (nonatomic, copy) NSString *avatar;
+//      用户头像Id
+@property (nonatomic, copy) NSString *avatarId;
+
 //    "drivingYears": 5,
 @property (nonatomic, assign) NSUInteger drivingYears;
 //    "photoAuthStatus": 认证通过,

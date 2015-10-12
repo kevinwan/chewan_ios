@@ -7,8 +7,12 @@
 //
 
 #import "CPMyInfoController.h"
+#import "CPUser.h"
 
 @interface CPMyInfoController ()<UIImagePickerControllerDelegate,UIActionSheetDelegate,UIAlertViewDelegate>
+{
+    UIImage *editedImage;
+}
 
 @end
 
@@ -52,11 +56,52 @@
     NSDate *brithDay=[[NSDate alloc]initWithTimeIntervalSinceNow:[resultString doubleValue]];
     NSString * dateToString = [fmt stringFromDate:brithDay];
     self.brithDay.text=dateToString;
-    long age=[resultString longLongValue];
+    long brith=[resultString longLongValue];
+    _user.brithDay=brith;
 }
 
 - (void)finish{
-    NSLog(@"完成");
+    if (_user.avatar && ![_user.avatar isEqualToString:@""]) {
+        if (self.nick.text && ![self.nick.text isEqualToString:@""]) {
+            if (_user.gender && ![_user.gender isEqualToString:@""]) {
+                if (_user.brithDay) {
+                    NSLog(@"ZYLongitude%f,-------ZYLatitude%f",ZYLongitude,ZYLatitude);
+                    NSDictionary *landmark=[[NSDictionary alloc]initWithObjectsAndKeys:@(ZYLongitude),@"longitude",@(ZYLatitude),@"latitude", nil];
+                    NSDictionary *paras=[[NSDictionary alloc]initWithObjectsAndKeys:_user.phone,@"phone",_code,@"code",_password,@"password",self.nick.text,@"nickname",_user.gender,@"gender",@(_user.brithDay),@"birthday",_user.avatarId,@"avatar",landmark,@"landmark",nil];
+                    
+                    [ZYNetWorkTool postJsonWithUrl:@"user/register" params:paras success:^(id responseObject) {
+                        if (CPSuccess) {
+                            if (responseObject[@"data"][@"userId"]) {
+                                [ZYUserDefaults setObject:responseObject[@"data"][@"userId"] forKey:UserId];
+                            }
+                            if (responseObject[@"data"][@"token"]) {
+                                [ZYUserDefaults setObject:responseObject[@"data"][@"token"] forKey:Token];
+                            }
+                            [ZYNotificationCenter postNotificationName:NOTIFICATION_HASLOGIN object:nil];
+                            
+                        }else{
+                            NSString *errmsg =[responseObject objectForKey:@"errmsg"];
+                            [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                        }
+                    } failed:^(NSError *error) {
+                        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                    }];
+                }else{
+                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请选择您的生日" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alert show];
+                }
+            }else{
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请选择您的性别" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alert show];
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请输入您的昵称" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请上传您的头像" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
 }
 - (IBAction)headIconBtnClick:(id)sender {
     UIActionSheet *sheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从相册选择",nil];
@@ -89,53 +134,43 @@
 
 #pragma PickerController
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    UIImage *editedImage=[info objectForKey:UIImagePickerControllerEditedImage];
-    [self.userHeadIcon setImage:editedImage];
+    editedImage=[info objectForKey:UIImagePickerControllerEditedImage];
     [picker dismissViewControllerAnimated:YES completion:^{
         NSData *data=UIImageJPEGRepresentation(editedImage, 0.4);
-//        [self upLoadImageWithBase64Encodeing:data];
+        [self upLoadImageWithBase64Encodeing:data];
         
     }];
-    
-//    editedImage=[info objectForKey:UIImagePickerControllerEditedImage];
-//    [self.userIconBtn setImage:editedImage forState:UIControlStateNormal];
-//    [picker dismissViewControllerAnimated:YES completion:^{
-//        NSData *data=UIImageJPEGRepresentation(editedImage, 0.4);
-//        [self upLoadImageWithBase64Encodeing:data];
-//        
-//    }];
 }
 
 -(void)upLoadImageWithBase64Encodeing:(NSData *)encodedImageData{
     ZYHttpFile *file=[[ZYHttpFile alloc]init];
-    file.name=@"photo";
+    file.name=@"attach";
     file.data=encodedImageData;
     file.filename=@"avatar.jpg";
     file.mimeType=@"image/jpeg";
     NSArray *files=[[NSArray alloc]initWithObjects:file, nil];
-//    [ZYNetWorkTool postFileWithUrl:@"v1/avatar/upload" params:nil files:files success:^(id responseObject){
-//        NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
-//        NSString *state=[numberFormatter stringFromNumber:[responseObject objectForKey:@"result"]];
-//        if ([state isEqualToString:@"0"]) {
-//            NSDictionary *data=[responseObject objectForKey:@"data"];
-//            [Tools setValueForKey:[data objectForKey:@"photoId"] key:@"photoId"];
-//            [Tools setValueForKey:[data objectForKey:@"photoUrl"] key:@"photoUrl"];
-//            if (organizer) {
-//                organizer.headImgUrl=[data objectForKey:@"photoUrl"];
-//                organizer.headImgId =[data objectForKey:@"photoId"];
-//                [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
-//            }else{
-//                CPOrganizer *organizer1=[[CPOrganizer alloc]init];
-//                organizer1.headImgUrl=[data objectForKey:@"photoUrl"];
-//                organizer1.headImgId = [data objectForKey:@"photoId"];
-//                [NSKeyedArchiver archiveRootObject:organizer1 toFile:CPDocmentPath(fileName)];
-//            }
-//            [self.userIconBtn setImage:editedImage forState:UIControlStateNormal];
-//        }else{
-//            [[[UIAlertView alloc]initWithTitle:@"提示" message:@"上传失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-//        }
-//    }failure:^(NSError *erro){
-//        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-//    }];
+    [ZYNetWorkTool postFileWithUrl:@"avatar/upload" params:nil files:files success:^(id responseObject){
+        if (CPSuccess) {
+            _user.avatar=responseObject[@"data"][@"photoUrl"];
+            _user.avatarId=responseObject[@"data"][@"photoId"];
+//            [NSKeyedArchiver archiveRootObject:user toFile:@"user.data".documentPath];
+
+            [self.userHeadIcon setImage:editedImage];
+        }else{
+            [[[UIAlertView alloc]initWithTitle:@"提示" message:@"上传失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        }
+    }failure:^(NSError *erro){
+        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+    }];
+}
+- (IBAction)manBtnClick:(id)sender {
+    _user.gender=@"男";
+    [self.manBtn setBackgroundImage:[UIImage imageNamed:@"btn_man_1"] forState:UIControlStateNormal];
+    [self.womanBtn setBackgroundImage:[UIImage imageNamed:@"btn_woman_2"] forState:UIControlStateNormal];
+}
+- (IBAction)womanBtnClick:(id)sender {
+    _user.gender=@"女";
+    [self.manBtn setBackgroundImage:[UIImage imageNamed:@"btn_man_2"] forState:UIControlStateNormal];
+    [self.womanBtn setBackgroundImage:[UIImage imageNamed:@"btn_woman_1"] forState:UIControlStateNormal];
 }
 @end
