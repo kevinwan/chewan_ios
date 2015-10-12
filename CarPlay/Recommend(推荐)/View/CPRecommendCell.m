@@ -9,19 +9,25 @@
 #import "CPRecommendCell.h"
 
 @interface CPRecommendCell ()
+@property (strong, nonatomic) UILabel *priceLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *contentTextL;
-@property (weak, nonatomic) IBOutlet UIImageView *bgTip;
+@property (strong, nonatomic) UIImageView *bgTip;
 @property (nonatomic, strong) UILabel *tipLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *bgImageView;
 
 @property (nonatomic, strong) UIImageView *blackView;
 @property (nonatomic, strong) UIButton *addressView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageHCons;
+
 @end
 
 @implementation CPRecommendCell
 
 - (void)awakeFromNib{
+    
+  
+    
     
     [self setCornerRadius:5];
     
@@ -32,6 +38,8 @@
 
     [self.bgImageView addSubview:self.blackView];
     [self.blackView addSubview:self.addressView];
+    [self addSubview:self.priceLabel];
+    [self addSubview:self.bgTip];
     [self beginLayout];
     
 }
@@ -52,6 +60,33 @@
         make.right.equalTo(@-5);
         make.width.equalTo(self.blackView).multipliedBy(0.4);
     }];
+    if (iPhone4) {
+        self.imageHCons.constant = 250;
+        
+        [self.bgTip mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.bgImageView.mas_top).offset(10);
+            make.right.equalTo(@0);
+            make.size.equalTo(CGSizeMake(111, 20));
+        }];
+        
+        [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.bgImageView.mas_bottom).offset(-10);
+            make.left.equalTo(@10);
+        }];
+        
+    }else{
+        [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.contentTextL.mas_bottom).offset(10);
+            make.left.equalTo(@10);
+        }];
+        [self.bgTip mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.contentTextL.mas_bottom).offset(10);
+            make.right.equalTo(@0);
+            make.size.equalTo(CGSizeMake(111, 20));
+        }];
+        
+        self.imageHCons.constant = ZYScreenWidth - 36;
+    }
 }
 
 #pragma mark - 懒加载
@@ -92,6 +127,24 @@
         }];
     }
     return _addressView;
+}
+
+- (UILabel *)priceLabel
+{
+    if (_priceLabel == nil) {
+        _priceLabel = [UILabel labelWithText:@"300元 / 人" textColor:[UIColor redColor] fontSize:20];
+        [_priceLabel sizeToFit];
+    }
+    return _priceLabel;
+}
+
+- (UIImageView *)bgTip
+{
+    if (_bgTip == nil) {
+        _bgTip = [[UIImageView alloc] init];
+        _bgTip.image = [UIImage imageNamed:@"bg_tip"];
+    }
+    return _bgTip;
 }
 
 @end

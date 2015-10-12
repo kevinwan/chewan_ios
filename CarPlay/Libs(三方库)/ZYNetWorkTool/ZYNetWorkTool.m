@@ -65,6 +65,7 @@
     // 2.发送一个GET请求
     [mgr GET:url parameters:params
      success:^(AFHTTPRequestOperation *operation, id responseObject) {
+         DLog(@"%@",operation.request.URL);
          if ([responseObject[@"result"] intValue] && [responseObject[@"errmsg"] contains:@"口令已过期"]) {
              
              [self reLoginWithSuccess:^{
