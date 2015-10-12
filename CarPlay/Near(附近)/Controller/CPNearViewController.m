@@ -29,12 +29,38 @@
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"筛选" target:self action:@selector(filter)];
     [self.view addSubview:self.tableView];
     [self tipView];
+    [self  loadData];
 }
 
 
+/**
+ *  加载网络数据
+ */
+- (void)loadData
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        params[UserId] = CPUserId;
+        params[Token] = CPToken;
+    params[@"longitude"] = @118;
+    params[@"latitude"] = @32;
+    params[@"maxDistance"] = @5000;
+    DLog(@"%@",params);
+    [ZYNetWorkTool getWithUrl:@"activity/list" params:params success:^(id responseObject) {
+        
+        DLog(@"%@ ---- ",responseObject);
+        if (CPSuccess) {
+        }
+    } failure:^(NSError *error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+
+#pragma mark - FlowViewDataSource & FlowViewDelegate
 - (CGSize)sizeForPageInFlowView:(PagedFlowView *)flowView
 {
-    return CGSizeMake(ZYScreenWidth - 20, 393 + self.offset);
+    return CGSizeMake(ZYScreenWidth - 20, 383 + self.offset);
 }
 
 - (UIView *)flowView:(PagedFlowView *)flowView cellForPageAtIndex:(NSInteger)index
@@ -48,7 +74,7 @@
 
 - (NSInteger)numberOfPagesInFlowView:(PagedFlowView *)flowView
 {
-    return 20;
+    return self.datas.count;
 }
 
 //- (void)test
@@ -175,19 +201,29 @@
         _tableView.orientation = PagedFlowViewOrientationVertical;
         _tableView.backgroundColor = [Tools getColor:@"efefef"];
             _tableView.minimumPageScale = 0.96;
-        _tableView.giveFrame = YES;
-//        _tableView.showsVerticalScrollIndicator = NO;
-//        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//        _tableView.pagingEnabled = YES;
-//        ZYWeakSelf
-//        _tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-//            ZYStrongSelf
-//            [self test];
-//        }];
+        _tableView.giveFrame = YES;YES;
+        ZYWeakSelf
+        _tableView.scrollView.footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
+            ZYStrongSelf
+            [self test];
+        }];
     }
     return _tableView;
 }
-
+- (void)test
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        [self.datas addObject:@"jajaj"];
+         [self.datas addObject:@"jajaj"];
+         [self.datas addObject:@"jajaj"];
+         [self.datas addObject:@"jajaj"];
+         [self.datas addObject:@"jajaj"];
+        [self.tableView reloadData];
+        
+        [self.tableView.scrollView.footer endRefreshing];
+    });
+}
 - (NSMutableArray *)datas
 {
     if (_datas == nil) {

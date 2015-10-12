@@ -9,6 +9,7 @@
 #import "CPRecommendController.h"
 #import "CPRecommendCell.h"
 #import "PagedFlowView.h"
+#import "CPActivityDetailViewController.h"
 
 @interface CPRecommendController ()<PagedFlowViewDelegate, PagedFlowViewDataSource>
 @property (nonatomic, strong) PagedFlowView *collectionView;
@@ -21,8 +22,32 @@
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.collectionView];
+    [self loadData];
 }
 
+/**
+ *  加载网络数据
+ */
+- (void)loadData
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[UserId] = CPUserId;
+    params[Token] = CPToken;
+    params[@"province"] = @"江苏省";
+    params[@"city"] = @"南京市";
+    params[@"district"] = @"玄武区";
+    params[@"limit"] = @10;
+    [ZYNetWorkTool getWithUrl:@"official/activity/list" params:params success:^(id responseObject) {
+        DLog(@"%@",responseObject);
+        if (CPSuccess) {
+            
+        }
+    } failure:^(NSError *error) {
+        DLog(@"%@",error);
+    }];
+}
+
+#pragma mark - 事件交互
 - (void)superViewWillRecive:(NSString *)notifyName info:(id)userInfo
 {
     if ([notifyName isEqualToString:RecommentAddressClickKey]) {
@@ -30,52 +55,7 @@
     }
 }
 
-- (PagedFlowView *)collectionView
-{
-    if (_collectionView == nil) {
-//        UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
-//        layout.minimumLineSpacing = 0;
-//        layout.minimumInteritemSpacing = 0;
-//        layout.sectionInset = UIEdgeInsetsZero;
-//        layout.itemSize = CGSizeMake(ZYScreenWidth - 40, 405 + ZYScreenWidth - 320);
-//        ;
-//        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        
-        CGFloat offset = (ZYScreenWidth - 320);
-        _collectionView = [[PagedFlowView alloc] initWithFrame:({
-                        CGFloat x = 0;
-            
-            CGFloat y = 84;
-            if (iPhone4) {
-                y = 64;
-            }
-                        CGFloat w = ZYScreenWidth;
-                        CGFloat h = offset + 420;
-                        CGRect frame = CGRectMake(x, y, w, h);
-                        frame;
-                    })];
-        _collectionView.orientation = PagedFlowViewOrientationHorizontal;
-//        _collectionView = [[PagedFlowView alloc] initWithFrame:({
-//            CGFloat x = 40;
-//            CGFloat y = 84;
-//            CGFloat w = ZYScreenWidth - 80;
-//            CGFloat h = ZYScreenHeight - 64 - 49 - 48;
-//            CGRect frame = CGRectMake(x, y, w, h);
-//            frame;
-//        }) collectionViewLayout:layout];
-//        _collectionView.clipsToBounds = NO;
-//        _collectionView.contentInset = UIEdgeInsetsMake(0, 30, 0, 0);
-//        _collectionView.pagingEnabled = YES;
-        _collectionView.delegate = self;
-        _collectionView.dataSource = self;
-        _collectionView.minimumPageScale = 0.9;
-//        [_collectionView registerNib:[UINib nibWithNibName:@"CPRecommendCell" bundle:nil] forCellWithReuseIdentifier:@"item"];
-        self.view.backgroundColor = [Tools getColor:@"efefef"];
-//        _collectionView.showsVerticalScrollIndicator = NO;
-    }
-    return _collectionView;
-}
-
+#pragma mark - flowViewDelegate & flowViewDataSource
 - (NSInteger)numberOfPagesInFlowView:(PagedFlowView *)flowView
 {
     return 10;
@@ -91,21 +71,44 @@
     return cell;
 }
 
+- (void)flowView:(PagedFlowView *)flowView didTapPageAtIndex:(NSInteger)index
+{
+    CPActivityDetailViewController *activityDetailVc = [CPActivityDetailViewController new];
+    [self.navigationController pushViewController:activityDetailVc animated:YES];
+}
+
 - (CGSize)sizeForPageInFlowView:(PagedFlowView *)flowView
 {
     return CGSizeMake(ZYScreenWidth - 36,ZYScreenWidth + 100);
 }
 
-//- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-//{
-//    return 5;
-//}
-//
-//- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"item" forIndexPath:indexPath];
-//    [cell setCornerRadius:10];
-//    return cell;
-//}
+#pragma mark - lazy
+- (PagedFlowView *)collectionView
+{
+    if (_collectionView == nil) {
+        
+        CGFloat offset = (ZYScreenWidth - 320);
+        _collectionView = [[PagedFlowView alloc] initWithFrame:({
+                        CGFloat x = 0;
+            
+            CGFloat y = 84;
+            if (iPhone4) {
+                y = 44;
+            }
+            CGFloat w = ZYScreenWidth;
+            CGFloat h = offset + 420;
+            CGRect frame = CGRectMake(x, y, w, h);
+            frame;})];
+        _collectionView.centerY = (ZYScreenHeight - 49 - 64) * 0.5 + 64;
+        _collectionView.centerX = ZYScreenWidth * 0.5;
+        _collectionView.orientation = PagedFlowViewOrientationHorizontal;
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+        _collectionView.minimumPageScale = 0.9;
+        self.view.backgroundColor = [Tools getColor:@"efefef"];
+    }
+    return _collectionView;
+}
+
 
 @end
