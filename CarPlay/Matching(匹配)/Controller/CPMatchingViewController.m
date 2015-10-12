@@ -187,8 +187,9 @@
                                               animations:^{
                                                   takeALook.view.transform = CGAffineTransformMakeScale(1, 1);
                                               }completion:^(BOOL finish){
+                                                  [takeALook.person1 setFrame:CGRectMake(53.0/320.0*ZYScreenWidth, 35.0/568.0*ZYScreenHeight, 59.0, 59.0)];
                                                   takeALookAnimationIndex=1;
-                                                  takeALookViewTimer =  [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(takeALookAnimation) userInfo:nil repeats:YES];
+                                                  takeALookViewTimer =  [NSTimer scheduledTimerWithTimeInterval:.2 target:self selector:@selector(takeALookAnimation) userInfo:nil repeats:YES];
                                               }];
                          }];
         [self addChildViewController:takeALook];
@@ -197,14 +198,23 @@
 
 //随便看看页面动画
 -(void)takeALookAnimation{
-    [UIView beginAnimations:@"takeALookAnimation" context:nil];
-    //动画持续时间
-    [UIView setAnimationDuration:.1];
-    //设置动画的回调函数，设置后可以使用回调方法
-    [UIView setAnimationDelegate:self];
-    [self takeALookAnimationDetail];
+//    [UIView beginAnimations:@"takeALookAnimation" context:nil];
+//    //动画持续时间
+//    [UIView setAnimationDuration:.2];
+//    //设置动画的回调函数，设置后可以使用回调方法
+//    [UIView setAnimationDelegate:self];
+//    [UIView setAnimationDelay:0];
+//    [self takeALookAnimationDetail];
+    
+    [UIView animateWithDuration:0.2 animations:^{
+//        [takeALook.person1 setFrame:CGRectMake(53.0/320.0*ZYScreenWidth, 35.0/568.0*ZYScreenHeight, 59.0, 59.0)];
+//        takeALook.person1.height=59.0;
+//        takeALook.person1.width=59.0;
+        [takeALook.person1 setBackgroundColor:[UIColor yellowColor]];
+    }];
+    
     //提交UIView动画
-    [UIView commitAnimations];
+//    [UIView commitAnimations];
 }
 //随便看看页面逐步动画
 -(void)takeALookAnimationDetail{
