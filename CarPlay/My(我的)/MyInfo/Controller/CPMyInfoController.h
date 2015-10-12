@@ -2,7 +2,7 @@
 //  CPMyInfoController.h
 //  CarPlay
 //
-//  Created by 公平价 on 15/9/29.
+//  Created by 公平价 on 15/10/12.
 //  Copyright © 2015年 chewan. All rights reserved.
 //
 
@@ -11,4 +11,9 @@
 
 @interface CPMyInfoController : UITableViewController
 @property(nonatomic,strong)ZHPickView *pickview;
+- (IBAction)headIconBtnClick:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *userHeadIcon;
+@property (weak, nonatomic) IBOutlet UITextField *nick;
+@property (weak, nonatomic) IBOutlet UITextField *brithDay;
+
 @end
