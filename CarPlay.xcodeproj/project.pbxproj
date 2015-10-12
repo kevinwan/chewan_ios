@@ -94,6 +94,10 @@
 		E3606F0D1BC76FF100797968 /* CPRecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */; settings = {ASSET_TAGS = (); }; };
 		E3606F101BC773EA00797968 /* PagedFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3606F0F1BC773EA00797968 /* PagedFlowView.m */; settings = {ASSET_TAGS = (); }; };
 		E3606F121BC78C7300797968 /* CPBaseViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F111BC78C7300797968 /* CPBaseViewCell.xib */; settings = {ASSET_TAGS = (); }; };
+		E369E2B11BCB952E000A12B5 /* CPSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E369E2B01BCB952E000A12B5 /* CPSelectView.xib */; settings = {ASSET_TAGS = (); }; };
+		E369E2B41BCB985A000A12B5 /* CPSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E369E2B31BCB985A000A12B5 /* CPSelectButton.m */; settings = {ASSET_TAGS = (); }; };
+		E369E2B81BCB9F87000A12B5 /* CPSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = E369E2B71BCB9F87000A12B5 /* CPSelectView.m */; settings = {ASSET_TAGS = (); }; };
+		E369E2BB1BCBB997000A12B5 /* CPSelectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E369E2BA1BCBB997000A12B5 /* CPSelectModel.m */; settings = {ASSET_TAGS = (); }; };
 		E37C10B21BBB79D800E1A6A2 /* CPMyVisitorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E37C10B11BBB79D800E1A6A2 /* CPMyVisitorViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E37C10B41BBB79E700E1A6A2 /* CPMyVisitorViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E37C10B31BBB79E700E1A6A2 /* CPMyVisitorViewController.storyboard */; settings = {ASSET_TAGS = (); }; };
 		E37C10B71BBB7CEB00E1A6A2 /* CPMyVistorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E37C10B61BBB7CEB00E1A6A2 /* CPMyVistorCell.m */; settings = {ASSET_TAGS = (); }; };
@@ -310,6 +314,13 @@
 		E3606F0E1BC773EA00797968 /* PagedFlowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagedFlowView.h; sourceTree = "<group>"; };
 		E3606F0F1BC773EA00797968 /* PagedFlowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagedFlowView.m; sourceTree = "<group>"; };
 		E3606F111BC78C7300797968 /* CPBaseViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPBaseViewCell.xib; sourceTree = "<group>"; };
+		E369E2B01BCB952E000A12B5 /* CPSelectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPSelectView.xib; sourceTree = "<group>"; };
+		E369E2B21BCB985A000A12B5 /* CPSelectButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSelectButton.h; sourceTree = "<group>"; };
+		E369E2B31BCB985A000A12B5 /* CPSelectButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSelectButton.m; sourceTree = "<group>"; };
+		E369E2B61BCB9F87000A12B5 /* CPSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSelectView.h; sourceTree = "<group>"; };
+		E369E2B71BCB9F87000A12B5 /* CPSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSelectView.m; sourceTree = "<group>"; };
+		E369E2B91BCBB997000A12B5 /* CPSelectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSelectModel.h; sourceTree = "<group>"; };
+		E369E2BA1BCBB997000A12B5 /* CPSelectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSelectModel.m; sourceTree = "<group>"; };
 		E37C10B01BBB79D800E1A6A2 /* CPMyVisitorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyVisitorViewController.h; sourceTree = "<group>"; };
 		E37C10B11BBB79D800E1A6A2 /* CPMyVisitorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyVisitorViewController.m; sourceTree = "<group>"; };
 		E37C10B31BBB79E700E1A6A2 /* CPMyVisitorViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMyVisitorViewController.storyboard; sourceTree = "<group>"; };
@@ -1037,6 +1048,20 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		E369E2B51BCB9F70000A12B5 /* CPSelectView */ = {
+			isa = PBXGroup;
+			children = (
+				E369E2B01BCB952E000A12B5 /* CPSelectView.xib */,
+				E369E2B21BCB985A000A12B5 /* CPSelectButton.h */,
+				E369E2B31BCB985A000A12B5 /* CPSelectButton.m */,
+				E369E2B61BCB9F87000A12B5 /* CPSelectView.h */,
+				E369E2B71BCB9F87000A12B5 /* CPSelectView.m */,
+				E369E2B91BCBB997000A12B5 /* CPSelectModel.h */,
+				E369E2BA1BCBB997000A12B5 /* CPSelectModel.m */,
+			);
+			name = CPSelectView;
+			sourceTree = "<group>";
+		};
 		E39627BC1BB54D91005E0CF2 /* PulsingHalo */ = {
 			isa = PBXGroup;
 			children = (
@@ -1270,6 +1295,7 @@
 				E3AF16FF1BBA317E00306ABF /* CPMySwitch.h */,
 				E3AF17001BBA317E00306ABF /* CPMySwitch.m */,
 				E3606F111BC78C7300797968 /* CPBaseViewCell.xib */,
+				E369E2B51BCB9F70000A12B5 /* CPSelectView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1574,6 +1600,7 @@
 				E3A68BBB1BBB874D002F4F75 /* CPConcernMyController.storyboard in Resources */,
 				6BE2E61A1BC67CB000D1D928 /* CPMatching.storyboard in Resources */,
 				E31B13531BB9312D00B51696 /* CoreSVP.bundle in Resources */,
+				E369E2B11BCB952E000A12B5 /* CPSelectView.xib in Resources */,
 				6B153EF51BB5690900560935 /* CPForgetPassword.storyboard in Resources */,
 				E3606F121BC78C7300797968 /* CPBaseViewCell.xib in Resources */,
 				6B153EF81BB5690900560935 /* CPRegViewController.storyboard in Resources */,
@@ -1626,6 +1653,7 @@
 			files = (
 				E3A471821BB3A85300973197 /* UIButton+ZY.m in Sources */,
 				E3A471791BB3A85300973197 /* NSArray+ZY.m in Sources */,
+				E369E2B41BCB985A000A12B5 /* CPSelectButton.m in Sources */,
 				E31B13551BB9312D00B51696 /* LFRoundProgressView.m in Sources */,
 				E3A471831BB3A85300973197 /* UIImage+Extension.m in Sources */,
 				E31B12DF1BB9311700B51696 /* UIView+PBExtend.m in Sources */,
@@ -1682,6 +1710,7 @@
 				E31B13481BB9312D00B51696 /* UIImage+Cut.m in Sources */,
 				E31B13521BB9312D00B51696 /* UIImageView+SD.m in Sources */,
 				E3A471881BB3A85300973197 /* UITableViewCell+ZYExtension.m in Sources */,
+				E369E2B81BCB9F87000A12B5 /* CPSelectView.m in Sources */,
 				E37C10B71BBB7CEB00E1A6A2 /* CPMyVistorCell.m in Sources */,
 				E31B13431BB9312D00B51696 /* NSString+Password.m in Sources */,
 				E3A4717B1BB3A85300973197 /* NSDictionary+ZY.m in Sources */,
@@ -1702,6 +1731,7 @@
 				E3A471811BB3A85300973197 /* UIBarButtonItem+Extension.m in Sources */,
 				E31B12E11BB9311700B51696 /* PhotoBroswerLayout.m in Sources */,
 				E37C10B21BBB79D800E1A6A2 /* CPMyVisitorViewController.m in Sources */,
+				E369E2BB1BCBB997000A12B5 /* CPSelectModel.m in Sources */,
 				E3A471771BB3A85300973197 /* CAAnimation+ZY.m in Sources */,
 				E31B13471BB9312D00B51696 /* UIImage+Color.m in Sources */,
 				E3606F101BC773EA00797968 /* PagedFlowView.m in Sources */,

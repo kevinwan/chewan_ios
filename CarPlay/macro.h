@@ -39,6 +39,7 @@
 #define iOS7 (SystemVersion >= 7.0 && SystemVersion < 8.0)
 #define iOS8 (SystemVersion >= 8.0 && SystemVersion < 9.0)
 #define iOS9 (SystemVersion >= 9.0 && SystemVersion < 10.0)
+#define CPPageNum       10
 
 #define CPNoNetWork     ([Tools getToken])  // 判断网络状态
 #define CPUserId        [Tools getUserId]    // 获取userId

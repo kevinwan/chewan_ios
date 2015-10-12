@@ -11,12 +11,15 @@
 #import "CPMySwitch.h"
 #import "CPMyDateViewController.h"
 #import "PagedFlowView.h"
+#import "MJRefreshNormalHeader.h"
+#import "CPSelectView.h"
 
 @interface CPNearViewController ()<PagedFlowViewDataSource,PagedFlowViewDelegate>
 @property (nonatomic, strong) PagedFlowView *tableView;
 @property (nonatomic, strong) NSMutableArray<CPActivityModel *> *datas;
 @property (nonatomic, strong) UIView *tipView;
 @property (nonatomic, assign) CGFloat offset;
+@property (nonatomic, assign) NSUInteger ignore;
 @end
 @implementation CPNearViewController
 
@@ -41,22 +44,30 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[UserId] = CPUserId;
     params[Token] = CPToken;
-//    double longitude = [ZYUserDefaults doubleForKey:zylo];
-    params[@"longitude"] = @118;
-    params[@"latitude"] = @32;
+    double longitude = [ZYUserDefaults doubleForKey:Longitude];
+    double latitude = [ZYUserDefaults doubleForKey:Latitude];
+    params[@"longitude"] = @(longitude);
+    params[@"latitude"] = @(latitude);
     params[@"maxDistance"] = @5000;
+//    params[@"ignore"] = @(self.ignore);
     DLog(@"%@",params);
     [ZYNetWorkTool getWithUrl:@"activity/list" params:params success:^(id responseObject) {
-        
+        [self.tableView.scrollView.header endRefreshing];
+        [self.tableView.scrollView.footer endRefreshing];
         DLog(@"%@ ---- ",responseObject);
         if (CPSuccess) {
             
+            if (self.ignore == 0) {
+                [self.datas removeAllObjects];
+            }
             NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
             [self.datas addObjectsFromArray:arr];
-//            [self.tableView reloadData];
+            [self.tableView reloadData];
         }
     } failure:^(NSError *error) {
         
+        [self.tableView.scrollView.header endRefreshing];
+        [self.tableView.scrollView.footer endRefreshing];
         NSLog(@"%@",error);
     }];
 }
@@ -151,8 +162,41 @@
  */
 - (void)dateClickWithInfo:(id)userInfo
 {
-    UIViewController *vc = [UIStoryboard storyboardWithName:@"CPMyVisitorViewController" bundle:nil].instantiateInitialViewController;
-    [self.navigationController pushViewController:vc animated:YES];
+    if (CPUnLogin) {
+        
+        return;
+    }
+//    body
+//    {
+//        “type”:”$type”,
+//        “pay”:”$pay”,
+//        “destPoint”:
+//        {
+//            “longitude”:”$longitude”,
+//            “latitude”:”$latitude”
+//        },
+//        “destination”:
+//        {
+//            “province”:”$province”,
+//            “city”:”$city”,
+//            “district”:”$district”,
+//            “street”:”$street”
+//        },
+//        “transfer”:”$transfer”
+//    }
+    CPActivityModel *model = userInfo;
+    NSString *url = [NSString stringWithFormat:@"activity/%@/join",model.activityId];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[UserId] = CPUserId;
+    params[Token] = CPToken;
+    [CPNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
+        if (CPSuccess) {
+            DLog(@"邀请已发出%@",responseObject);
+        }
+    } failed:^(NSError *error) {
+        DLog(@"%@邀请失败",error);
+    }];
+    
 }
 
 /**
@@ -160,9 +204,11 @@
  */
 - (void)filter
 {
-    NSLog(@"伟业");
-    CPMyDateViewController *dateVc = [CPMyDateViewController new];
-    [self.navigationController pushViewController:dateVc animated:YES];
+    [CPSelectView showWithParams:^(CPSelectModel *selectModel) {
+        NSLog(@"%@",selectModel);
+    }];
+    
+    
 }
 
 #pragma mark - 加载子控件
@@ -179,11 +225,18 @@
         _tableView.orientation = PagedFlowViewOrientationVertical;
         _tableView.backgroundColor = [Tools getColor:@"efefef"];
             _tableView.minimumPageScale = 0.96;
-        _tableView.giveFrame = YES;YES;
+        _tableView.giveFrame = YES;
         ZYWeakSelf
-        _tableView.scrollView.footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
+        _tableView.scrollView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
             ZYStrongSelf
-            [self test];
+            self.ignore += CPPageNum;
+            [self loadData];
+        }];
+        
+        _tableView.scrollView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            ZYStrongSelf
+            self.ignore = 0;
+            [self loadData];
         }];
     }
     return _tableView;
