@@ -79,6 +79,9 @@
 
 - (CGSize)sizeForPageInFlowView:(PagedFlowView *)flowView
 {
+    if (iPhone4) {
+        return CGSizeMake(ZYScreenWidth - 36,345 );
+    }
     return CGSizeMake(ZYScreenWidth - 36,ZYScreenWidth + 100);
 }
 
@@ -104,7 +107,7 @@
         _collectionView.orientation = PagedFlowViewOrientationHorizontal;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
-        _collectionView.minimumPageScale = 0.9;
+        _collectionView.minimumPageScale = 0.928;
         self.view.backgroundColor = [Tools getColor:@"efefef"];
     }
     return _collectionView;

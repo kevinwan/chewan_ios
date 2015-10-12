@@ -98,8 +98,11 @@
     if (_headerView == nil) {
         _headerView = [[UIView alloc] init];
         _headerView.backgroundColor = [UIColor redColor];
-        _headerView.height = 100;
         _headerView.width = ZYScreenWidth;
+        
+        UIImageView *logoV = [UIImageView new];
+        logoV.image = [UIImage imageNamed:@"ceo头像"];
+        
     }
     return _headerView;
 }

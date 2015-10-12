@@ -259,13 +259,46 @@
 
 - (IBAction)loveClick:(UIButton *)sender {
     
-    
-    if (!sender.isSelected) {
-        [sender addAnimation:[CAAnimation scaleFrom:1.0 toScale:1.2 durTimes:0.2 rep:1]];
-    }else{
-        [sender addAnimation:[CAAnimation scaleFrom:1.0 toScale:1.1 durTimes:0.2 rep:1]];
+    if (CPUnLogin) {
+        
+        return;
     }
-    sender.selected = !sender.isSelected;
+    
+    NSString *url = [NSString stringWithFormat:@"user/%@/listen?token=%@",CPUserId, CPToken];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"targetUserId"] = _model.organizer.userId;
+    params[@"token"] = CPToken;
+    
+    if (sender.isSelected) {
+        
+        url = [NSString stringWithFormat:@"user/%@/unlisten?token=%@",CPUserId, CPToken];
+        
+        [ZYNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
+            DLog(@"%@",responseObject);
+            if (CPSuccess) {
+                
+                [sender addAnimation:[CAAnimation scaleFrom:1.0 toScale:1.1 durTimes:0.2 rep:1]];
+                sender.selected = NO;
+            }
+        } failed:^(NSError *error) {
+            
+        }];
+        
+    }else{
+        
+        [ZYNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
+            
+            DLog(@"%@",responseObject);
+            if (CPSuccess){
+                
+                [sender addAnimation:[CAAnimation scaleFrom:1.0 toScale:1.2 durTimes:0.2 rep:1]];
+                sender.selected = YES;
+            }
+        } failed:^(NSError *error) {
+            
+        }];
+    }
+    
 }
 
 

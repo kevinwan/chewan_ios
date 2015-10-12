@@ -39,8 +39,9 @@
 - (void)loadData
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-        params[UserId] = CPUserId;
-        params[Token] = CPToken;
+    params[UserId] = CPUserId;
+    params[Token] = CPToken;
+//    double longitude = [ZYUserDefaults doubleForKey:zylo];
     params[@"longitude"] = @118;
     params[@"latitude"] = @32;
     params[@"maxDistance"] = @5000;
@@ -49,6 +50,10 @@
         
         DLog(@"%@ ---- ",responseObject);
         if (CPSuccess) {
+            
+            NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
+            [self.datas addObjectsFromArray:arr];
+//            [self.tableView reloadData];
         }
     } failure:^(NSError *error) {
         
@@ -68,6 +73,7 @@
     CPBaseViewCell *cell = (CPBaseViewCell *)[flowView dequeueReusableCell];
     if (!cell) {
         cell = [[NSBundle mainBundle] loadNibNamed:@"CPBaseViewCell" owner:nil options:nil].lastObject;
+        cell.model = self.datas.firstObject;
     }
     return cell;
 }
@@ -77,36 +83,8 @@
     return self.datas.count;
 }
 
-//- (void)test
-//{
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        
-//        [self.datas addObject:@"jajaj"];
-//        [self.tableView reloadData];
-//    };
-//                   };
-//                   }
-//                   }
-//        [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y - 40 + _tableView.rowHeight) animated:YES];
-//        
-//        [self.tableView.footer endRefreshing];
-//    });
-//}
+#pragma mark - 事件交互
 
-//#pragma mark - dataSource & delegate
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    static NSString *ID = @"cell";
-//    CPBaseViewCell *cell = [CPBaseViewCell cellWithTableView:tableView reuseIdentifier:ID];
-//    cell.oneType = YES;
-//    return cell;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//    return self.datas.count;
-//}
-#pragma mark - 处理事件交互
 - (void)superViewWillRecive:(NSString *)notifyName info:(id)userInfo
 {
     NSLog(@"%@ %@ ",notifyName, userInfo);
@@ -228,11 +206,6 @@
 {
     if (_datas == nil) {
         _datas = [[NSMutableArray alloc] init];
-        [_datas addObject:@"1"];
-        [_datas addObject:@"2"];
-        [_datas addObject:@"3"];
-        [_datas addObject:@"4"];
-        [_datas addObject:@"5"];
     }
     return _datas;
 }
