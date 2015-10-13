@@ -46,4 +46,9 @@
 //    "car":{   "logo":    "model": "奥迪A4L"}
 @property (nonatomic, strong) CPCar *car;
 
+@property (nonatomic, copy) NSString *driverLicense;
+
+@property (nonatomic, strong) NSArray *albums;
+//个人资料完成程度1-100
+@property (nonatomic, assign) NSUInteger completion;
 @end

@@ -27,7 +27,7 @@
                                         <constraint firstAttribute="width" constant="84" id="3Cl-5G-tnf"/>
                                         <constraint firstAttribute="height" constant="84" id="CaY-Lv-gkW"/>
                                     </constraints>
-                                    <state key="normal" image="icon_cemare" backgroundImage="FF50889B-599C-4227-A243-5DD54DBB7377"/>
+                                    <state key="normal" image="icon_cemare" backgroundImage="9F6A9253-DA05-4F1C-B759-CF34171F83B8"/>
                                     <connections>
                                         <action selector="headIconBtnClick:" destination="Ngq-HX-lPw" eventType="touchUpInside" id="v0c-n5-nYk"/>
                                     </connections>
@@ -209,7 +209,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="FF50889B-599C-4227-A243-5DD54DBB7377" width="84" height="84">
+        <image name="9F6A9253-DA05-4F1C-B759-CF34171F83B8" width="84" height="84">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

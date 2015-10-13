@@ -24,7 +24,7 @@
 #endif
 
 // 定义这个宏可以使用一些更简洁的方法
-#define MAS_SHORTHAND
+//#define MAS_SHORTHAND
 
 // 定义这个宏可以使用自动装箱功能
 #define MAS_SHORTHAND_GLOBALS

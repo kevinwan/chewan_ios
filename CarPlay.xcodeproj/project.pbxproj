@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B1387DC1BCD0A6C00FAC462 /* CPBrandModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1387D21BCD0A6C00FAC462 /* CPBrandModelViewController.m */; settings = {ASSET_TAGS = (); }; };
+		6B1387DD1BCD0A6C00FAC462 /* CPBrandModelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B1387D31BCD0A6C00FAC462 /* CPBrandModelViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		6B1387DE1BCD0A6C00FAC462 /* CustomBrandCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1387D51BCD0A6C00FAC462 /* CustomBrandCell.m */; settings = {ASSET_TAGS = (); }; };
+		6B1387DF1BCD0A6C00FAC462 /* CustomSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1387D71BCD0A6C00FAC462 /* CustomSectionView.m */; settings = {ASSET_TAGS = (); }; };
+		6B1387E01BCD0A6C00FAC462 /* CustomSlideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1387D91BCD0A6C00FAC462 /* CustomSlideCell.m */; settings = {ASSET_TAGS = (); }; };
 		6B153EF51BB5690900560935 /* CPForgetPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B153EEE1BB5690900560935 /* CPForgetPassword.storyboard */; settings = {ASSET_TAGS = (); }; };
 		6B153EF61BB5690900560935 /* CPForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B153EF01BB5690900560935 /* CPForgetPasswordViewController.m */; settings = {ASSET_TAGS = (); }; };
 		6B153EF71BB5690900560935 /* CPRegViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B153EF31BB5690900560935 /* CPRegViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -15,6 +20,7 @@
 		6B153EFD1BB5692500560935 /* CPMyViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B153EFB1BB5692500560935 /* CPMyViewController.storyboard */; settings = {ASSET_TAGS = (); }; };
 		6B2411171BCB569E0014468D /* CPMyInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2411161BCB569E0014468D /* CPMyInfoController.m */; settings = {ASSET_TAGS = (); }; };
 		6B2411191BCB56AC0014468D /* CPMyInfoController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B2411181BCB56AC0014468D /* CPMyInfoController.storyboard */; settings = {ASSET_TAGS = (); }; };
+		6B2E36221BCD24A00053459E /* MJNIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2E36211BCD24A00053459E /* MJNIndexView.m */; settings = {ASSET_TAGS = (); }; };
 		6B440CDB1BBA857B00CF8410 /* CPMyInfoHead.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B440CDA1BBA857B00CF8410 /* CPMyInfoHead.xib */; settings = {ASSET_TAGS = (); }; };
 		6B440CE31BBA86C500CF8410 /* CPMyInfoFirCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B440CE21BBA86C500CF8410 /* CPMyInfoFirCell.xib */; settings = {ASSET_TAGS = (); }; };
 		6B440CE51BBA86D100CF8410 /* CPMyInfoSecCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B440CE41BBA86D100CF8410 /* CPMyInfoSecCell.xib */; settings = {ASSET_TAGS = (); }; };
@@ -158,6 +164,15 @@
 
 /* Begin PBXFileReference section */
 		67D41D30DFBFAF45C8B1AB7F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		6B1387D11BCD0A6C00FAC462 /* CPBrandModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPBrandModelViewController.h; sourceTree = "<group>"; };
+		6B1387D21BCD0A6C00FAC462 /* CPBrandModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPBrandModelViewController.m; sourceTree = "<group>"; };
+		6B1387D31BCD0A6C00FAC462 /* CPBrandModelViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPBrandModelViewController.xib; sourceTree = "<group>"; };
+		6B1387D41BCD0A6C00FAC462 /* CustomBrandCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomBrandCell.h; sourceTree = "<group>"; };
+		6B1387D51BCD0A6C00FAC462 /* CustomBrandCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomBrandCell.m; sourceTree = "<group>"; };
+		6B1387D61BCD0A6C00FAC462 /* CustomSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSectionView.h; sourceTree = "<group>"; };
+		6B1387D71BCD0A6C00FAC462 /* CustomSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSectionView.m; sourceTree = "<group>"; };
+		6B1387D81BCD0A6C00FAC462 /* CustomSlideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSlideCell.h; sourceTree = "<group>"; };
+		6B1387D91BCD0A6C00FAC462 /* CustomSlideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSlideCell.m; sourceTree = "<group>"; };
 		6B153EEE1BB5690900560935 /* CPForgetPassword.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPForgetPassword.storyboard; sourceTree = "<group>"; };
 		6B153EEF1BB5690900560935 /* CPForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPForgetPasswordViewController.h; sourceTree = "<group>"; };
 		6B153EF01BB5690900560935 /* CPForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPForgetPasswordViewController.m; sourceTree = "<group>"; };
@@ -170,6 +185,8 @@
 		6B2411151BCB569E0014468D /* CPMyInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyInfoController.h; sourceTree = "<group>"; };
 		6B2411161BCB569E0014468D /* CPMyInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyInfoController.m; sourceTree = "<group>"; };
 		6B2411181BCB56AC0014468D /* CPMyInfoController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMyInfoController.storyboard; sourceTree = "<group>"; };
+		6B2E36201BCD24A00053459E /* MJNIndexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJNIndexView.h; sourceTree = "<group>"; };
+		6B2E36211BCD24A00053459E /* MJNIndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJNIndexView.m; sourceTree = "<group>"; };
 		6B440CDA1BBA857B00CF8410 /* CPMyInfoHead.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPMyInfoHead.xib; sourceTree = "<group>"; };
 		6B440CE21BBA86C500CF8410 /* CPMyInfoFirCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPMyInfoFirCell.xib; sourceTree = "<group>"; };
 		6B440CE41BBA86D100CF8410 /* CPMyInfoSecCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPMyInfoSecCell.xib; sourceTree = "<group>"; };
@@ -458,6 +475,30 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		6B1387CC1BCD0A6C00FAC462 /* CarOwnersCertification */ = {
+			isa = PBXGroup;
+			children = (
+				6B1387D01BCD0A6C00FAC462 /* CPBrandModel */,
+			);
+			path = CarOwnersCertification;
+			sourceTree = "<group>";
+		};
+		6B1387D01BCD0A6C00FAC462 /* CPBrandModel */ = {
+			isa = PBXGroup;
+			children = (
+				6B1387D11BCD0A6C00FAC462 /* CPBrandModelViewController.h */,
+				6B1387D21BCD0A6C00FAC462 /* CPBrandModelViewController.m */,
+				6B1387D31BCD0A6C00FAC462 /* CPBrandModelViewController.xib */,
+				6B1387D41BCD0A6C00FAC462 /* CustomBrandCell.h */,
+				6B1387D51BCD0A6C00FAC462 /* CustomBrandCell.m */,
+				6B1387D61BCD0A6C00FAC462 /* CustomSectionView.h */,
+				6B1387D71BCD0A6C00FAC462 /* CustomSectionView.m */,
+				6B1387D81BCD0A6C00FAC462 /* CustomSlideCell.h */,
+				6B1387D91BCD0A6C00FAC462 /* CustomSlideCell.m */,
+			);
+			path = CPBrandModel;
+			sourceTree = "<group>";
+		};
 		6B153EED1BB5690900560935 /* CPForgetPassword(忘记密码) */ = {
 			isa = PBXGroup;
 			children = (
@@ -476,6 +517,15 @@
 				6B153EF41BB5690900560935 /* CPRegViewController.storyboard */,
 			);
 			path = "CPReg(注册)";
+			sourceTree = "<group>";
+		};
+		6B2E361F1BCD24A00053459E /* MJIndexView */ = {
+			isa = PBXGroup;
+			children = (
+				6B2E36201BCD24A00053459E /* MJNIndexView.h */,
+				6B2E36211BCD24A00053459E /* MJNIndexView.m */,
+			);
+			path = MJIndexView;
 			sourceTree = "<group>";
 		};
 		6B3350931BB3DFD900AAA4A2 /* Controller */ = {
@@ -1110,6 +1160,7 @@
 		E3A471051BB3A85300973197 /* My(我的) */ = {
 			isa = PBXGroup;
 			children = (
+				6B1387CC1BCD0A6C00FAC462 /* CarOwnersCertification */,
 				6BCFFBAB1BBA456900C082B2 /* MyCare */,
 				6BC919451BB90FD300E41C64 /* MyInfo */,
 				E3A471061BB3A85300973197 /* Controller */,
@@ -1320,6 +1371,7 @@
 		E3A471221BB3A85300973197 /* Libs(三方库) */ = {
 			isa = PBXGroup;
 			children = (
+				6B2E361F1BCD24A00053459E /* MJIndexView */,
 				E31B12BC1BB9311700B51696 /* CorePhotoBroswerVC */,
 				E39627BC1BB54D91005E0CF2 /* PulsingHalo */,
 				E3E6B8891BB4F7FA006B4F8A /* FXBlurView(模糊效果) */,
@@ -1579,6 +1631,7 @@
 				6B153EF81BB5690900560935 /* CPRegViewController.storyboard in Resources */,
 				E31B12EC1BB9311700B51696 /* PhotoBroswerVC.xib in Resources */,
 				6B2411191BCB56AC0014468D /* CPMyInfoController.storyboard in Resources */,
+				6B1387DD1BCD0A6C00FAC462 /* CPBrandModelViewController.xib in Resources */,
 				E3E6B8921BB4FD54006B4F8A /* CPLoginViewController.storyboard in Resources */,
 				6B440CE71BBA86E600CF8410 /* CPMyInfoThrCell.xib in Resources */,
 			);
@@ -1633,6 +1686,7 @@
 				E31B13411BB9312D00B51696 /* NSObject+Extend.m in Sources */,
 				6B153EFC1BB5692500560935 /* CPMyViewController.m in Sources */,
 				6B906F7D1BC7C98B0048A806 /* ZHAppDelegate.m in Sources */,
+				6B2E36221BCD24A00053459E /* MJNIndexView.m in Sources */,
 				E31B135B1BB9313A00B51696 /* PhotoCotentView.m in Sources */,
 				E3C5F1911BC92C790021E33D /* CPActivityDetailViewController.m in Sources */,
 				E31B13451BB9312D00B51696 /* UIDevice+Extend.m in Sources */,
@@ -1641,6 +1695,7 @@
 				E3A471801BB3A85300973197 /* NSTimer+ZY.m in Sources */,
 				E31E4BD71BAD47A500902B34 /* main.m in Sources */,
 				E31B133E1BB9312D00B51696 /* CALayer+Transition.m in Sources */,
+				6B1387DE1BCD0A6C00FAC462 /* CustomBrandCell.m in Sources */,
 				E31B12E61BB9311700B51696 /* PBSaveBtn.m in Sources */,
 				E3A471871BB3A85300973197 /* UITableView+ZYExtension.m in Sources */,
 				E3A471911BB3A85300973197 /* ZYNetWorkTool.m in Sources */,
@@ -1675,6 +1730,7 @@
 				E31B13511BB9312D00B51696 /* UIButton+SD.m in Sources */,
 				E31B13421BB9312D00B51696 /* NSString+Extend.m in Sources */,
 				6BCD585F1BBB878B0025F995 /* CPMyInfoSecCell.m in Sources */,
+				6B1387E01BCD0A6C00FAC462 /* CustomSlideCell.m in Sources */,
 				E3A471901BB3A85300973197 /* ZYNetWorkManager.m in Sources */,
 				E3A68BC71BBBA11E002F4F75 /* CPTableView.m in Sources */,
 				E31B12EB1BB9311700B51696 /* PhotoBroswerVC.m in Sources */,
@@ -1683,6 +1739,7 @@
 				E31B13521BB9312D00B51696 /* UIImageView+SD.m in Sources */,
 				E3A471881BB3A85300973197 /* UITableViewCell+ZYExtension.m in Sources */,
 				E37C10B71BBB7CEB00E1A6A2 /* CPMyVistorCell.m in Sources */,
+				6B1387DC1BCD0A6C00FAC462 /* CPBrandModelViewController.m in Sources */,
 				E31B13431BB9312D00B51696 /* NSString+Password.m in Sources */,
 				E3A4717B1BB3A85300973197 /* NSDictionary+ZY.m in Sources */,
 				E31B134A1BB9312D00B51696 /* UIImage+FixOrientation.m in Sources */,
@@ -1703,6 +1760,7 @@
 				E31B12E11BB9311700B51696 /* PhotoBroswerLayout.m in Sources */,
 				E37C10B21BBB79D800E1A6A2 /* CPMyVisitorViewController.m in Sources */,
 				E3A471771BB3A85300973197 /* CAAnimation+ZY.m in Sources */,
+				6B1387DF1BCD0A6C00FAC462 /* CustomSectionView.m in Sources */,
 				E31B13471BB9312D00B51696 /* UIImage+Color.m in Sources */,
 				E3606F101BC773EA00797968 /* PagedFlowView.m in Sources */,
 				E3A68BBE1BBB8846002F4F75 /* CPConcernMyCell.m in Sources */,
