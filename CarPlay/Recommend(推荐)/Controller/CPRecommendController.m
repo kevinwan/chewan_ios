@@ -10,9 +10,11 @@
 #import "CPRecommendCell.h"
 #import "PagedFlowView.h"
 #import "CPActivityDetailViewController.h"
+#import "CPRecommendModel.h"
 
 @interface CPRecommendController ()<PagedFlowViewDelegate, PagedFlowViewDataSource>
 @property (nonatomic, strong) PagedFlowView *collectionView;
+@property (nonatomic, strong) NSMutableArray *datas;
 @end
 
 @implementation CPRecommendController
@@ -40,7 +42,9 @@
     [ZYNetWorkTool getWithUrl:@"official/activity/list" params:params success:^(id responseObject) {
         DLog(@"%@",responseObject);
         if (CPSuccess) {
-            
+            NSArray *arr = [CPRecommendModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
+            [self.datas addObjectsFromArray:arr];
+            [self.collectionView reloadData];
         }
     } failure:^(NSError *error) {
         DLog(@"%@",error);
@@ -58,7 +62,7 @@
 #pragma mark - flowViewDelegate & flowViewDataSource
 - (NSInteger)numberOfPagesInFlowView:(PagedFlowView *)flowView
 {
-    return 10;
+    return self.datas.count;
 }
 
 - (UIView *)flowView:(PagedFlowView *)flowView cellForPageAtIndex:(NSInteger)index
@@ -67,6 +71,7 @@
     if (!cell) {
         
         cell = [[NSBundle mainBundle] loadNibNamed:@"CPRecommendCell" owner:nil options:nil].lastObject;
+        cell.model = self.datas[index];
     }
     return cell;
 }
@@ -110,9 +115,19 @@
         _collectionView.dataSource = self;
         _collectionView.minimumPageScale = 0.928;
         self.view.backgroundColor = [Tools getColor:@"efefef"];
+//        _collectionView.scrollView.header = [MJRefreshHeader headerWithRefreshingBlock:^{
+//            NSLog(@"hsuala....");
+//        }];
     }
     return _collectionView;
 }
 
+- (NSMutableArray *)datas
+{
+    if (_datas == nil) {
+        _datas = [[NSMutableArray alloc] init];
+    }
+    return _datas;
+}
 
 @end

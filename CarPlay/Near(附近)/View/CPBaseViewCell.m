@@ -124,16 +124,15 @@
 
 - (void)awakeFromNib
 {
-    DLog(@"来了...");
     self.marginCons.constant = 12;
     // 进行初始化设置
     [self.bgView setCornerRadius:5];
     self.distanceView.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 6);
 
-//    [self.userIconView sd_setImageWithURL:[NSURL URLWithString:@"http://i6.topit.me/6/5d/45/1131907198420455d6o.jpg"] placeholderImage:nil options:SDWebImageLowPriority | SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-//        
-//        self.userIconView.image = [image blurredImageWithRadius:20];
-//    }];
+    [self.userIconView sd_setImageWithURL:[NSURL URLWithString:@"http://i6.topit.me/6/5d/45/1131907198420455d6o.jpg"] placeholderImage:nil options:SDWebImageLowPriority | SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        
+        self.userIconView.image = [image blurredImageWithRadius:20];
+    }];
     
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] init];
     [tapGes.rac_gestureSignal subscribeNext:^(id x) {
@@ -179,7 +178,7 @@
         make.centerX.equalTo(self.userIconView).with.offset(@38);
     }];
     
-    [self.tipView makeConstraints:^(MASConstraintMaker *make) {
+    [self.tipView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.and.left.and.top.equalTo(@0);
         
         if (ZYScreenWidth == 320) {

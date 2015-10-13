@@ -38,8 +38,7 @@
     }];
     [[closeBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         [UIView animateWithDuration:0.25 animations:^{
-            self.superview.alpha = 0;
-            self.superview.y = ZYScreenHeight;
+            self.superview.alpha = 0.0;
         }completion:^(BOOL finished) {
             [self.superview removeFromSuperview];
         }];
@@ -61,7 +60,6 @@
 {
     
     CPSelectView *view = [[NSBundle mainBundle] loadNibNamed:@"CPSelectView" owner:nil options:nil].lastObject;
-    
         
     [view typeBtnClick:(UIButton *)[view viewWithTag:11]];
     [view payTypeClick:(UIButton *)[view viewWithTag:23]];
@@ -73,16 +71,16 @@
     cover.frame = [ZYKeyWindow bounds];
     [[cover rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         [UIView animateWithDuration:0.25 animations:^{
-            cover.y = ZYScreenHeight;
+            cover.alpha = 0.0;
         } completion:^(BOOL finished) {
             [cover removeFromSuperview];
         }];
     }];
     view.center = cover.center;
     [cover addSubview:view];
-    cover.y = ZYScreenHeight;
-    [UIView animateWithDuration:0.25 animations:^{
-        cover.y = 0;
+    cover.alpha = 0.0;
+    [UIView animateWithDuration:0.3 animations:^{
+        cover.alpha = 1.0;
     }];
 }
 
@@ -95,7 +93,7 @@
     model.type = self.lastTypebtn.currentTitle;
     model.transfer = self.transferBtn.isSelected;
     [UIView animateWithDuration:0.25 animations:^{
-        self.superview.y = ZYScreenHeight;
+        self.superview.alpha = 0;
     }completion:^(BOOL finished) {
         !_click?:_click(model);
         [self.superview removeFromSuperview];

@@ -92,7 +92,6 @@
 		E31E4BE21BAD47A500902B34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E31E4BE11BAD47A500902B34 /* Assets.xcassets */; };
 		E31E4BE51BAD47A500902B34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E31E4BE31BAD47A500902B34 /* LaunchScreen.storyboard */; };
 		E3606F0D1BC76FF100797968 /* CPRecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */; settings = {ASSET_TAGS = (); }; };
-		E3606F101BC773EA00797968 /* PagedFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3606F0F1BC773EA00797968 /* PagedFlowView.m */; settings = {ASSET_TAGS = (); }; };
 		E3606F121BC78C7300797968 /* CPBaseViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F111BC78C7300797968 /* CPBaseViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		E369E2B11BCB952E000A12B5 /* CPSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E369E2B01BCB952E000A12B5 /* CPSelectView.xib */; settings = {ASSET_TAGS = (); }; };
 		E369E2B41BCB985A000A12B5 /* CPSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E369E2B31BCB985A000A12B5 /* CPSelectButton.m */; settings = {ASSET_TAGS = (); }; };
@@ -143,6 +142,8 @@
 		E3A471951BB3A85300973197 /* Const.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A4716C1BB3A85300973197 /* Const.m */; settings = {ASSET_TAGS = (); }; };
 		E3A471961BB3A85300973197 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A4716F1BB3A85300973197 /* Tools.m */; settings = {ASSET_TAGS = (); }; };
 		E3A471971BB3A85300973197 /* CPTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A471721BB3A85300973197 /* CPTabBar.m */; settings = {ASSET_TAGS = (); }; };
+		E3A4E0C71BCCCC1300850AA7 /* CPNearParams.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A4E0C61BCCCC1300850AA7 /* CPNearParams.m */; settings = {ASSET_TAGS = (); }; };
+		E3A4E0CA1BCCD35300850AA7 /* PagedFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A4E0C91BCCD35300850AA7 /* PagedFlowView.m */; settings = {ASSET_TAGS = (); }; };
 		E3A68BBB1BBB874D002F4F75 /* CPConcernMyController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3A68BBA1BBB874D002F4F75 /* CPConcernMyController.storyboard */; settings = {ASSET_TAGS = (); }; };
 		E3A68BBE1BBB8846002F4F75 /* CPConcernMyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A68BBD1BBB8846002F4F75 /* CPConcernMyCell.m */; settings = {ASSET_TAGS = (); }; };
 		E3A68BC11BBB8EE4002F4F75 /* ZYTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A68BC01BBB8EE4002F4F75 /* ZYTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
@@ -311,8 +312,6 @@
 		E31E4C491BAD48D600902B34 /* CP_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CP_Prefix.pch; sourceTree = "<group>"; };
 		E31E4C4E1BAD507E00902B34 /* macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = macro.h; sourceTree = "<group>"; };
 		E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPRecommendCell.xib; sourceTree = "<group>"; };
-		E3606F0E1BC773EA00797968 /* PagedFlowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagedFlowView.h; sourceTree = "<group>"; };
-		E3606F0F1BC773EA00797968 /* PagedFlowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagedFlowView.m; sourceTree = "<group>"; };
 		E3606F111BC78C7300797968 /* CPBaseViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPBaseViewCell.xib; sourceTree = "<group>"; };
 		E369E2B01BCB952E000A12B5 /* CPSelectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPSelectView.xib; sourceTree = "<group>"; };
 		E369E2B21BCB985A000A12B5 /* CPSelectButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSelectButton.h; sourceTree = "<group>"; };
@@ -412,6 +411,10 @@
 		E3A4716F1BB3A85300973197 /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
 		E3A471711BB3A85300973197 /* CPTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTabBar.h; sourceTree = "<group>"; };
 		E3A471721BB3A85300973197 /* CPTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTabBar.m; sourceTree = "<group>"; };
+		E3A4E0C51BCCCC1300850AA7 /* CPNearParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNearParams.h; sourceTree = "<group>"; };
+		E3A4E0C61BCCCC1300850AA7 /* CPNearParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNearParams.m; sourceTree = "<group>"; };
+		E3A4E0C81BCCD35300850AA7 /* PagedFlowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagedFlowView.h; sourceTree = "<group>"; };
+		E3A4E0C91BCCD35300850AA7 /* PagedFlowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagedFlowView.m; sourceTree = "<group>"; };
 		E3A68BBA1BBB874D002F4F75 /* CPConcernMyController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPConcernMyController.storyboard; sourceTree = "<group>"; };
 		E3A68BBC1BBB8846002F4F75 /* CPConcernMyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPConcernMyCell.h; sourceTree = "<group>"; };
 		E3A68BBD1BBB8846002F4F75 /* CPConcernMyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPConcernMyCell.m; sourceTree = "<group>"; };
@@ -1226,8 +1229,6 @@
 		E3A471121BB3A85300973197 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E3606F0E1BC773EA00797968 /* PagedFlowView.h */,
-				E3606F0F1BC773EA00797968 /* PagedFlowView.m */,
 				E3AEFE331BC64970009C9438 /* CPRecommendController.h */,
 				E3AEFE341BC64970009C9438 /* CPRecommendController.m */,
 				E3C5F18F1BC92C790021E33D /* CPActivityDetailViewController.h */,
@@ -1268,6 +1269,8 @@
 		E3A471161BB3A85300973197 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E3A4E0C81BCCD35300850AA7 /* PagedFlowView.h */,
+				E3A4E0C91BCCD35300850AA7 /* PagedFlowView.m */,
 				E31B13561BB9313A00B51696 /* CPTestPhotoViewController.h */,
 				E31B13571BB9313A00B51696 /* CPTestPhotoViewController.m */,
 				E31B13581BB9313A00B51696 /* PhotoCotentView.h */,
@@ -1283,6 +1286,8 @@
 			children = (
 				E39627B61BB5352D005E0CF2 /* CPActivityModel.h */,
 				E39627B71BB5352D005E0CF2 /* CPActivityModel.m */,
+				E3A4E0C51BCCCC1300850AA7 /* CPNearParams.h */,
+				E3A4E0C61BCCCC1300850AA7 /* CPNearParams.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1734,7 +1739,6 @@
 				E369E2BB1BCBB997000A12B5 /* CPSelectModel.m in Sources */,
 				E3A471771BB3A85300973197 /* CAAnimation+ZY.m in Sources */,
 				E31B13471BB9312D00B51696 /* UIImage+Color.m in Sources */,
-				E3606F101BC773EA00797968 /* PagedFlowView.m in Sources */,
 				E3A68BBE1BBB8846002F4F75 /* CPConcernMyCell.m in Sources */,
 				E31B134F1BB9312D00B51696 /* UIImage+ReMake.m in Sources */,
 				E37C10BA1BBB80C100E1A6A2 /* CPConcernMyController.m in Sources */,
@@ -1754,6 +1758,7 @@
 				E3A4717C1BB3A85300973197 /* NSFileManager+ZY.m in Sources */,
 				6B51767C1BB9502100D7A62E /* CustomSwitch.m in Sources */,
 				E3A471761BB3A85300973197 /* Aspects.m in Sources */,
+				E3A4E0CA1BCCD35300850AA7 /* PagedFlowView.m in Sources */,
 				E31B13541BB9312D00B51696 /* CoreSVP.m in Sources */,
 				E3A471921BB3A85300973197 /* CPNavigationController.m in Sources */,
 				E31B12E51BB9311700B51696 /* PBPGView.m in Sources */,
@@ -1761,6 +1766,7 @@
 				E31B12E41BB9311700B51696 /* PBBlurImageView.m in Sources */,
 				E3E6B8981BB515F1006B4F8A /* CPSexView.m in Sources */,
 				E3A471891BB3A85300973197 /* UIView+Extension.m in Sources */,
+				E3A4E0C71BCCCC1300850AA7 /* CPNearParams.m in Sources */,
 				E39627B21BB5265A005E0CF2 /* UIImage+Blur.m in Sources */,
 				E3A471781BB3A85300973197 /* Foundation+Log.m in Sources */,
 				E31B12E21BB9311700B51696 /* PhotoModel.m in Sources */,

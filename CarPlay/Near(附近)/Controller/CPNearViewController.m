@@ -13,6 +13,7 @@
 #import "PagedFlowView.h"
 #import "MJRefreshNormalHeader.h"
 #import "CPSelectView.h"
+#import "CPNearParams.h"
 
 @interface CPNearViewController ()<PagedFlowViewDataSource,PagedFlowViewDelegate,UIScrollViewDelegate>
 @property (nonatomic, strong) PagedFlowView *tableView;
@@ -22,6 +23,7 @@
 @property (nonatomic, assign) NSUInteger ignore;
 @property (nonatomic, assign) BOOL refreshing;
 @property (nonatomic, assign) CGFloat contentInsetY;
+@property (nonatomic, strong) CPNearParams *params;
 @end
 @implementation CPNearViewController
 
@@ -46,6 +48,7 @@
     [self.view addSubview:self.tableView];
     [self tipView];
     [self loadData];
+    DLog(@"%f",self.view.right);
 }
 
 
@@ -54,17 +57,8 @@
  */
 - (void)loadData
 {
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[UserId] = CPUserId;
-    params[Token] = CPToken;
-    double longitude = [ZYUserDefaults doubleForKey:Longitude];
-    double latitude = [ZYUserDefaults doubleForKey:Latitude];
-    params[@"longitude"] = @(longitude);
-    params[@"latitude"] = @(latitude);
-    params[@"maxDistance"] = @5000;
-//    params[@"ignore"] = @(self.ignore);
-    DLog(@"%@",params);
-    [ZYNetWorkTool getWithUrl:@"activity/list" params:params success:^(id responseObject) {
+
+    [ZYNetWorkTool getWithUrl:@"activity/list" params:self.params.keyValues success:^(id responseObject) {
         [self.tableView.scrollView.header endRefreshing];
         [self.tableView.scrollView.footer endRefreshing];
         DLog(@"%@ ---- ",responseObject);
@@ -222,6 +216,10 @@
 {
     [CPSelectView showWithParams:^(CPSelectModel *selectModel) {
         NSLog(@"%@",selectModel.keyValues);
+        
+        self.params.type = selectModel.type;
+        self.params.pay = selectModel.pay;
+        [self loadData];
     }];
     
     
@@ -233,7 +231,8 @@
 {
     if (_tableView == nil) {
         _tableView = [[PagedFlowView alloc] initWithFrame:({
-            CGRectMake(10, 64, ZYScreenWidth - 20, 383 + self.offset);
+            CGFloat y = iPhone4?64:84;
+            CGRectMake(10, y, ZYScreenWidth - 20, 383 + self.offset);
         })];
         _tableView.backgroundColor = [UIColor clearColor];
         self.automaticallyAdjustsScrollViewInsets = NO;
@@ -242,7 +241,7 @@
         _tableView.orientation = PagedFlowViewOrientationVertical;
         self.view.backgroundColor = [Tools getColor:@"efefef"];
             _tableView.minimumPageScale = 0.96;
-        _tableView.giveFrame = YES;
+//        _tableView.giveFrame = YES;
         ZYWeakSelf
         _tableView.scrollView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
             ZYStrongSelf
@@ -258,10 +257,10 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         [self.datas addObject:@"jajaj"];
-         [self.datas addObject:@"jajaj"];
-         [self.datas addObject:@"jajaj"];
-         [self.datas addObject:@"jajaj"];
-         [self.datas addObject:@"jajaj"];
+        [self.datas addObject:@"jajaj"];
+        [self.datas addObject:@"jajaj"];
+        [self.datas addObject:@"jajaj"];
+        [self.datas addObject:@"jajaj"];
         [self.tableView reloadData];
         
         [self.tableView.scrollView.footer endRefreshing];
@@ -322,10 +321,6 @@
 }
 
 #pragma mark - scrollViewDelegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    
-}
 //{
 //    if (self.refreshing) {
 //        return;
@@ -339,4 +334,20 @@
 //    }
 //}
 //
+
+- (CPNearParams *)params
+{
+    if (_params == nil) {
+        _params = [[CPNearParams alloc] init];
+        _params.userId = CPUserId;
+        _params.token = CPToken;
+        _params.longitude = ZYLongitude;
+        _params.latitude = ZYLatitude;
+        _params.ignore = self.ignore;
+        _params.maxDistance = 5000;
+        DLog(@"%@",_params);
+    }
+    return _params;
+}
+
 @end

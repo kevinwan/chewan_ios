@@ -114,7 +114,12 @@
             <connections>
                 <outlet property="bgImageView" destination="O24-Rw-lQO" id="D09-38-bvT"/>
                 <outlet property="contentTextL" destination="CpY-ZY-trk" id="L2G-s8-0zS"/>
+                <outlet property="femaleImageV" destination="Dmt-Ap-l16" id="Stk-jX-v6U"/>
+                <outlet property="femaleLabel" destination="2d2-TL-l2f" id="zYb-Cu-vYp"/>
                 <outlet property="imageHCons" destination="0NM-yx-OcR" id="V7o-TU-Umb"/>
+                <outlet property="maleImageV" destination="qbI-C1-XG9" id="l5W-L8-27w"/>
+                <outlet property="maleLabel" destination="qxO-C2-peK" id="wfG-fD-XUl"/>
+                <outlet property="titleLabel" destination="Ikd-o4-WUg" id="aVR-cs-kCC"/>
             </connections>
             <point key="canvasLocation" x="277" y="147.5"/>
         </view>
