@@ -44,6 +44,7 @@
 		6BE2E61B1BC67CB000D1D928 /* CPMatchingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2E6151BC67CB000D1D928 /* CPMatchingViewController.m */; settings = {ASSET_TAGS = (); }; };
 		6BE2E61C1BC67CB000D1D928 /* CPTakeALook.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BE2E6171BC67CB000D1D928 /* CPTakeALook.storyboard */; settings = {ASSET_TAGS = (); }; };
 		6BE2E61D1BC67CB000D1D928 /* CPTakeALookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2E6191BC67CB000D1D928 /* CPTakeALookViewController.m */; settings = {ASSET_TAGS = (); }; };
+		6D931B5F1BCD28B70057DDB7 /* LYJViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D931B5E1BCD28B70057DDB7 /* LYJViewController.m */; settings = {ASSET_TAGS = (); }; };
 		6D9724033DC4D258BAD49B6C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8695309F427E7B2C9007D66B /* libPods.a */; };
 		E31B12DF1BB9311700B51696 /* UIView+PBExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = E31B12C01BB9311700B51696 /* UIView+PBExtend.m */; settings = {ASSET_TAGS = (); }; };
 		E31B12E01BB9311700B51696 /* PBConst.m in Sources */ = {isa = PBXBuildFile; fileRef = E31B12C31BB9311700B51696 /* PBConst.m */; settings = {ASSET_TAGS = (); }; };
@@ -214,6 +215,8 @@
 		6BE2E6171BC67CB000D1D928 /* CPTakeALook.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPTakeALook.storyboard; sourceTree = "<group>"; };
 		6BE2E6181BC67CB000D1D928 /* CPTakeALookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTakeALookViewController.h; sourceTree = "<group>"; };
 		6BE2E6191BC67CB000D1D928 /* CPTakeALookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTakeALookViewController.m; sourceTree = "<group>"; };
+		6D931B5D1BCD28B70057DDB7 /* LYJViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYJViewController.h; sourceTree = "<group>"; };
+		6D931B5E1BCD28B70057DDB7 /* LYJViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYJViewController.m; sourceTree = "<group>"; };
 		8695309F427E7B2C9007D66B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1B028500DCBF99DF280B6AC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E31B12BF1BB9311700B51696 /* UIView+PBExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PBExtend.h"; sourceTree = "<group>"; };
@@ -1164,6 +1167,8 @@
 				E37C10B81BBB80C100E1A6A2 /* CPConcernMyController.h */,
 				E37C10B91BBB80C100E1A6A2 /* CPConcernMyController.m */,
 				E3A68BBA1BBB874D002F4F75 /* CPConcernMyController.storyboard */,
+				6D931B5D1BCD28B70057DDB7 /* LYJViewController.h */,
+				6D931B5E1BCD28B70057DDB7 /* LYJViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1727,6 +1732,7 @@
 				E31B13541BB9312D00B51696 /* CoreSVP.m in Sources */,
 				E3A471921BB3A85300973197 /* CPNavigationController.m in Sources */,
 				E31B12E51BB9311700B51696 /* PBPGView.m in Sources */,
+				6D931B5F1BCD28B70057DDB7 /* LYJViewController.m in Sources */,
 				E31B13461BB9312D00B51696 /* UIFont+Extend.m in Sources */,
 				E31B12E41BB9311700B51696 /* PBBlurImageView.m in Sources */,
 				E3E6B8981BB515F1006B4F8A /* CPSexView.m in Sources */,
@@ -1854,6 +1860,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.77iland.carplay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "29c4037c-5fca-4e3c-9b64-14916af5fb52";
 			};
 			name = Debug;
 		};
@@ -1874,6 +1881,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.77iland.carplay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "29c4037c-5fca-4e3c-9b64-14916af5fb52";
 			};
 			name = Release;
 		};
