@@ -94,7 +94,7 @@
 //    if (!_fromMy || ![_fromMy isEqualToString:@"1"]) {
 //        self.modelTableView.frame=CGRectMake(60, 64, SCREEN_WIDTH-60, SCREEN_HEIGHT-64);
 //    }else{
-        self.modelTableView.frame=CGRectMake(60, 0, ZYScreenWidth-60, ZYScreenHeight);
+        self.modelTableView.frame=CGRectMake(60, 0, ZYScreenWidth-60, ZYScreenHeight-64);
 //    }
     // 清扫手势
     UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipes:)];
@@ -304,7 +304,7 @@
 #pragma privateMethods
 -(void)getData{
 
-    [ZYNetWorkTool getWithUrl:@"v1/car/brand" params:nil success:^(id responseObject) {
+    [ZYNetWorkTool getWithUrl:@"car/brand" params:nil success:^(id responseObject) {
 
         NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
         NSString *state=[numberFormatter stringFromNumber:[responseObject objectForKey:@"result"]];
@@ -344,7 +344,7 @@
 
 //    NSString *path=[[NSString alloc]initWithFormat:@"v1/car/model",model];
     NSDictionary *para=[[NSDictionary alloc]initWithObjectsAndKeys:model,@"brand", nil];
-    [ZYNetWorkTool getWithUrl:@"v1/car/model" params:para success:^(id responseObject) {
+    [ZYNetWorkTool getWithUrl:@"car/model" params:para success:^(id responseObject) {
       
         NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
         NSString *state=[numberFormatter stringFromNumber:[responseObject objectForKey:@"result"]];

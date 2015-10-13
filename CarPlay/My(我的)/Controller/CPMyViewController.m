@@ -70,11 +70,11 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    CPBrandModelViewController *CPBrandModelVC=[[CPBrandModelViewController alloc]init];
-//    CPBrandModelVC.fromMy=_fromMy;
-    CPBrandModelVC.title=@"车型选择";
-//    CPBrandModelVC.fileName=_fileName;
-    [self.navigationController pushViewController:CPBrandModelVC animated:YES];
+    if (indexPath.row == 2) {
+        CPBrandModelViewController *CPBrandModelVC=[[CPBrandModelViewController alloc]init];
+        CPBrandModelVC.title=@"车型选择";
+        [self.navigationController pushViewController:CPBrandModelVC animated:YES];
+    }
 }
 #pragma privateMethod
 -(void)rightClick{
