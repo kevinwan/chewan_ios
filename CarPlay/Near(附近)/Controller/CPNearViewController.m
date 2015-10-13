@@ -14,25 +14,38 @@
 #import "MJRefreshNormalHeader.h"
 #import "CPSelectView.h"
 
-@interface CPNearViewController ()<PagedFlowViewDataSource,PagedFlowViewDelegate>
+@interface CPNearViewController ()<PagedFlowViewDataSource,PagedFlowViewDelegate,UIScrollViewDelegate>
 @property (nonatomic, strong) PagedFlowView *tableView;
 @property (nonatomic, strong) NSMutableArray<CPActivityModel *> *datas;
 @property (nonatomic, strong) UIView *tipView;
 @property (nonatomic, assign) CGFloat offset;
 @property (nonatomic, assign) NSUInteger ignore;
+@property (nonatomic, assign) BOOL refreshing;
+@property (nonatomic, assign) CGFloat contentInsetY;
 @end
 @implementation CPNearViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+//    [RACObserve(self, refreshing) subscribeNext:^(id x) {
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            NSLog(@"加载数据成功");
+//            UIEdgeInsets in = self.tableView.scrollView.contentInset;
+//            in.top = self.contentInsetY;
+//            [self.tableView.scrollView setContentInset:in];
+//            self.refreshing = NO;
+//        });
+//    }];
+    
     self.offset = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250;
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"筛选" target:self action:@selector(filter)];
     [self.view addSubview:self.tableView];
     [self tipView];
-    [self  loadData];
+    [self loadData];
 }
 
 
@@ -105,7 +118,6 @@
         [self photoPresent];
     }else if([notifyName isEqualToString:DateBtnClickKey]){
         [self dateClickWithInfo:userInfo];
-//        [self.tableView reloadData];
     }else if([notifyName isEqualToString:InvitedBtnClickKey]){
         
     }else if([notifyName isEqualToString:IgnoreBtnClickKey]){
@@ -189,9 +201,13 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[UserId] = CPUserId;
     params[Token] = CPToken;
+    DLog(@"邀请%@",params);
     [CPNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
         if (CPSuccess) {
             DLog(@"邀请已发出%@",responseObject);
+        }else if ([CPErrorMsg contains:@"申请中"]){
+            
+            DLog(@"申请中...");
         }
     } failed:^(NSError *error) {
         DLog(@"%@邀请失败",error);
@@ -205,7 +221,7 @@
 - (void)filter
 {
     [CPSelectView showWithParams:^(CPSelectModel *selectModel) {
-        NSLog(@"%@",selectModel);
+        NSLog(@"%@",selectModel.keyValues);
     }];
     
     
@@ -217,13 +233,14 @@
 {
     if (_tableView == nil) {
         _tableView = [[PagedFlowView alloc] initWithFrame:({
-            CGRectMake(0, 64, ZYScreenWidth, ZYScreenHeight - 84);
+            CGRectMake(10, 64, ZYScreenWidth - 20, 383 + self.offset);
         })];
+        _tableView.backgroundColor = [UIColor clearColor];
         self.automaticallyAdjustsScrollViewInsets = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.orientation = PagedFlowViewOrientationVertical;
-        _tableView.backgroundColor = [Tools getColor:@"efefef"];
+        self.view.backgroundColor = [Tools getColor:@"efefef"];
             _tableView.minimumPageScale = 0.96;
         _tableView.giveFrame = YES;
         ZYWeakSelf
@@ -233,11 +250,6 @@
             [self loadData];
         }];
         
-        _tableView.scrollView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-            ZYStrongSelf
-            self.ignore = 0;
-            [self loadData];
-        }];
     }
     return _tableView;
 }
@@ -309,4 +321,22 @@
     return _tipView;
 }
 
+#pragma mark - scrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    
+}
+//{
+//    if (self.refreshing) {
+//        return;
+//    }
+//    if (scrollView.contentOffset.y < -50) {
+//        self.contentInsetY = scrollView.contentInset.top;
+//        DLog(@"刷仙..");
+//        self.refreshing = YES;
+//        NSLog(@"%f ..",scrollView.contentOffset.y);
+//        self.tableView.scrollView.contentInset = UIEdgeInsetsMake(50, 0, 0, 0);
+//    }
+//}
+//
 @end

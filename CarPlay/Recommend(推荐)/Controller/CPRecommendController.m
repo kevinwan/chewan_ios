@@ -82,6 +82,7 @@
     if (iPhone4) {
         return CGSizeMake(ZYScreenWidth - 36,345 );
     }
+    
     return CGSizeMake(ZYScreenWidth - 36,ZYScreenWidth + 100);
 }
 
@@ -92,13 +93,13 @@
         
         CGFloat offset = (ZYScreenWidth - 320);
         _collectionView = [[PagedFlowView alloc] initWithFrame:({
-                        CGFloat x = 0;
+            CGFloat x = 18;
             
             CGFloat y = 84;
             if (iPhone4) {
                 y = 44;
             }
-            CGFloat w = ZYScreenWidth;
+            CGFloat w = ZYScreenWidth - 36;
             CGFloat h = offset + 420;
             CGRect frame = CGRectMake(x, y, w, h);
             frame;})];

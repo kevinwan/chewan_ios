@@ -26,16 +26,7 @@
 {
     [self.confirmBtn setCornerRadius:20];
     [self.bgView setCornerRadius:10];
-    
-    ZYMainThread(^{
-        
-        self.lastTypebtn = (UIButton *)[self viewWithTag:11];
 
-         [self.lastTypebtn setBackgroundColor:[Tools getColor:@"74ced6"]];
-        //    [self typeBtnClick:];
-        [self payTypeClick:(UIButton *)[self viewWithTag:23]];
-        [self sexBtnClick:(UIButton *)[self viewWithTag:33]];
-    });
     
     ZYNewButton(closeBtn);
     [closeBtn setImage:[UIImage imageNamed:@"icon_close_shaixuan"] forState:UIControlStateNormal];
@@ -70,6 +61,11 @@
 {
     
     CPSelectView *view = [[NSBundle mainBundle] loadNibNamed:@"CPSelectView" owner:nil options:nil].lastObject;
+    
+        
+    [view typeBtnClick:(UIButton *)[view viewWithTag:11]];
+    [view payTypeClick:(UIButton *)[view viewWithTag:23]];
+    [view sexBtnClick:(UIButton *)[view viewWithTag:33]];
     view.click = click;
     ZYNewButton(cover);
     [cover setBackgroundColor:ZYColor(0, 0, 0, 0.5)];

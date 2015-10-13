@@ -37,7 +37,7 @@
 }
 
 - (void)initialize{
-    self.clipsToBounds = YES;
+    self.clipsToBounds = NO;
     
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     [self addGestureRecognizer:tapRecognizer];
@@ -100,19 +100,20 @@
 }
 
 - (void)refreshVisibleCellAppearance{
-    
 
+    
     if (_minimumPageAlpha == 1.0 && _minimumPageScale == 1.0) {
         return;//无需更新
     }
     
+    [_scrollView layoutIfNeeded];
     switch (orientation) {
         case PagedFlowViewOrientationHorizontal:{
             CGFloat offset = _scrollView.contentOffset.x;
             
             for (int i = _visibleRange.location; i < _visibleRange.location + _visibleRange.length; i++) {
                 UIView *cell = [_cells objectAtIndex:i];
-                [cell layoutIfNeeded];
+//                [cell layoutIfNeeded];
                 CGFloat origin = cell.frame.origin.x;
                 CGFloat delta = fabs(origin - offset);
            
@@ -136,7 +137,7 @@
             
             for (int i = _visibleRange.location; i < _visibleRange.location + _visibleRange.length; i++) {
                 UIView *cell = [_cells objectAtIndex:i];
-                [cell layoutIfNeeded];
+//                [cell layoutIfNeeded];
                 CGFloat origin = cell.frame.origin.y;
                 CGFloat delta = fabs(origin - offset);
                 
@@ -145,10 +146,12 @@
                     cell.alpha = 1 - (delta / _pageSize.height) * (1 - _minimumPageAlpha);
                     
                     CGFloat pageScale = 1 - (delta / _pageSize.height) * (1 - _minimumPageScale);
-                    cell.layer.transform = CATransform3DMakeScale(pageScale, pageScale, 1);
+//                    cell.layer.transform = CATransform3DMakeScale(pageScale, pageScale, 1);
+                    cell.transform = CGAffineTransformMakeScale(pageScale, pageScale);
                 } else {
                     cell.alpha = _minimumPageAlpha;
-                    cell.layer.transform = CATransform3DMakeScale(_minimumPageScale, _minimumPageScale, 1);
+//                    cell.layer.transform = CATransform3DMakeScale(_minimumPageScale, _minimumPageScale, 1);
+                    cell.transform = CGAffineTransformMakeScale(_minimumPageScale, _minimumPageScale);
                 }
                 [UIView commitAnimations];
             }
@@ -423,7 +426,7 @@
                 [_scrollView setContentOffset:CGPointMake(_pageSize.width * pageNumber, 0) animated:YES];
                 break;
             case PagedFlowViewOrientationVertical:
-                [_scrollView setContentOffset:CGPointMake(0, _pageSize.height * pageNumber) animated:YES];
+                [_scrollView setContentOffset:CGPointMake(0, _pageSize.height * pageNumber) animated:NO];
                 break;
         }
         [self setPagesAtContentOffset:_scrollView.contentOffset];
@@ -445,25 +448,38 @@
         }
         
         return _scrollView;
+    }else{
+        return _scrollView;
     }
-    
-    return nil;
 }
 
+//- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+//{
+//    DLog(@"hitTestppp: %@",NSStringFromCGPoint(point));
+//    return [super hitTest:point withEvent:event];
+//}
 
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
+{
+    
+    DLog(@"pointInsideppp: %@",NSStringFromCGPoint(point));
+    return YES;
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark UIScrollView Delegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    DLog(@"还掉不...");
     [self setPagesAtContentOffset:scrollView.contentOffset];
     [self refreshVisibleCellAppearance];
 }
 
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    DLog(@"减速啊 ");
     //如果有PageControl，计算出当前页码，并对pageControl进行更新
-    
+    return;
     NSInteger pageIndex;
     
     switch (orientation) {
