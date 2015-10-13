@@ -178,9 +178,16 @@
         make.centerX.equalTo(self.userIconView).with.offset(@38);
     }];
     
-    [self.tipView makeConstraints:^(MASConstraintMaker *make) {
+    [self.tipView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.and.left.and.top.equalTo(@0);
-        make.height.equalTo(self.userIconView.mas_height).multipliedBy(0.46);
+        
+        if (ZYScreenWidth == 320) {
+            
+            make.height.equalTo(self.userIconView.mas_height).multipliedBy(0.6);
+        }else{
+            
+            make.height.equalTo(self.userIconView.mas_height).multipliedBy(0.46);
+        }
     }];
  
 }
@@ -196,12 +203,12 @@
     
     self.sexView.isMan = model.organizer.isMan;
     self.sexView.age = model.organizer.age;
-    [self.userIconView sd_setImageWithURL:[NSURL URLWithString:model.organizer.avatar] placeholderImage:CPPlaceHolderImage options:SDWebImageLowPriority | SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        
-        self.userIconView.image = [image blurredImageWithRadius:10];
-    }];
+//    [self.userIconView sd_setImageWithURL:[NSURL URLWithString:model.organizer.avatar] placeholderImage:CPPlaceHolderImage options:SDWebImageLowPriority | SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//        
+//        self.userIconView.image = [image blurredImageWithRadius:10];
+//    }];
     
-    [self.distanceView setTitle:[NSString stringWithFormat:@"%zd",model.distance] forState:UIControlStateNormal];
+    [self.distanceView setTitle:[NSString stringWithFormat:@"%zdm",model.distance] forState:UIControlStateNormal];
     
     self.payView.text = model.pay;
     self.sendView.hidden = !model.transfer;
@@ -274,7 +281,7 @@
         url = [NSString stringWithFormat:@"user/%@/unlisten?token=%@",CPUserId, CPToken];
         
         [ZYNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
-            DLog(@"%@",responseObject);
+            DLog(@"%@取消成功",responseObject);
             if (CPSuccess) {
                 
                 [sender addAnimation:[CAAnimation scaleFrom:1.0 toScale:1.1 durTimes:0.2 rep:1]];
@@ -288,7 +295,7 @@
         
         [ZYNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
             
-            DLog(@"%@",responseObject);
+            DLog(@"%@关注成功",responseObject);
             if (CPSuccess){
                 
                 [sender addAnimation:[CAAnimation scaleFrom:1.0 toScale:1.2 durTimes:0.2 rep:1]];
@@ -402,14 +409,15 @@
 
 - (MultiplePulsingHaloLayer *)multiLayer
 {
-    MultiplePulsingHaloLayer *multiLayer = [[MultiplePulsingHaloLayer alloc] initWithHaloLayerNum:3 andStartInterval:0.8];
-    multiLayer.fromValueForRadius = 0.6;
+    MultiplePulsingHaloLayer *multiLayer = [[MultiplePulsingHaloLayer alloc] initWithHaloLayerNum:3 andStartInterval:0.5];
+    multiLayer.fromValueForRadius = 0.5;
     multiLayer.radius = 40;
     multiLayer.useTimingFunction = NO;
     multiLayer.fromValueForAlpha = 1.0;
     [multiLayer buildSublayers];
     [multiLayer setHaloLayerColor:RedColor.CGColor];
     return multiLayer;
+    
 }
 
 /**

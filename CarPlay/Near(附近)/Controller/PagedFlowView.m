@@ -37,7 +37,7 @@
 }
 
 - (void)initialize{
-    self.clipsToBounds = YES;
+    self.clipsToBounds = NO;
     
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     [self addGestureRecognizer:tapRecognizer];
@@ -69,7 +69,6 @@
     [superViewOfScrollView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
     [superViewOfScrollView setBackgroundColor:[UIColor clearColor]];
     [superViewOfScrollView addSubview:_scrollView];
-    
     [self addSubview:superViewOfScrollView];
     
 }
@@ -101,21 +100,19 @@
 
 - (void)refreshVisibleCellAppearance{
     
-
     if (_minimumPageAlpha == 1.0 && _minimumPageScale == 1.0) {
         return;//无需更新
     }
-    
+    [_scrollView layoutIfNeeded];
     switch (orientation) {
         case PagedFlowViewOrientationHorizontal:{
             CGFloat offset = _scrollView.contentOffset.x;
             
             for (int i = _visibleRange.location; i < _visibleRange.location + _visibleRange.length; i++) {
                 UIView *cell = [_cells objectAtIndex:i];
-                [cell layoutIfNeeded];
                 CGFloat origin = cell.frame.origin.x;
                 CGFloat delta = fabs(origin - offset);
-           
+                                                
                 [UIView beginAnimations:@"CellAnimation" context:nil];
                 if (delta < _pageSize.width) {
                     cell.alpha = 1 - (delta / _pageSize.width) * (1 - _minimumPageAlpha);
@@ -126,7 +123,6 @@
                     cell.alpha = _minimumPageAlpha;
                     cell.layer.transform = CATransform3DMakeScale(_minimumPageScale, _minimumPageScale, 1);
                 }
-                
                 [UIView commitAnimations];
             }
             break;   
@@ -136,10 +132,9 @@
             
             for (int i = _visibleRange.location; i < _visibleRange.location + _visibleRange.length; i++) {
                 UIView *cell = [_cells objectAtIndex:i];
-                [cell layoutIfNeeded];
                 CGFloat origin = cell.frame.origin.y;
                 CGFloat delta = fabs(origin - offset);
-                
+                                
                 [UIView beginAnimations:@"CellAnimation" context:nil];
                 if (delta < _pageSize.height) {
                     cell.alpha = 1 - (delta / _pageSize.height) * (1 - _minimumPageAlpha);
@@ -172,20 +167,11 @@
         
         switch (orientation) {
             case PagedFlowViewOrientationHorizontal:
-            {
-                
-                    
                 cell.frame = CGRectMake(_pageSize.width * pageIndex, 0, _pageSize.width, _pageSize.height);
-               
-                 break;
-            }
-                
+                break;
             case PagedFlowViewOrientationVertical:
-            {
-                
                 cell.frame = CGRectMake(0, _pageSize.height * pageIndex, _pageSize.width, _pageSize.height);
                 break;
-            }
             default:
                 break;
         }
@@ -330,8 +316,7 @@
     
     if (_needsReload) {
         //如果需要重新加载数据，则需要清空相关数据全部重新加载
-//        
-//        [[_scrollView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        
         
         //重置pageCount
         if (_dataSource && [_dataSource respondsToSelector:@selector(numberOfPagesInFlowView:)]) {
@@ -374,12 +359,7 @@
                 _scrollView.frame = CGRectMake(0, 0, _pageSize.width, _pageSize.height);
                 _scrollView.contentSize = CGSizeMake(_pageSize.width ,_pageSize.height * _pageCount);
                 CGPoint theCenter = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
-                if (!self.giveFrame) {
-                    _scrollView.center = theCenter;
-                }else{
-                    _scrollView.y = (iPhone4?0:20);
-                    _scrollView.centerX = theCenter.x;
-                }
+                _scrollView.center = theCenter;
                 break;
             }
             default:
@@ -436,7 +416,7 @@
 #pragma mark hitTest
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
-    if ([self pointInside:point withEvent:event]) {
+//    if ([self pointInside:point withEvent:event]) {
         CGPoint newPoint = CGPointZero;
         newPoint.x = point.x - _scrollView.frame.origin.x + _scrollView.contentOffset.x;
         newPoint.y = point.y - _scrollView.frame.origin.y + _scrollView.contentOffset.y;
@@ -445,9 +425,9 @@
         }
         
         return _scrollView;
-    }
-    
-    return nil;
+//    }
+//    
+//    return _scrollView;
 }
 
 

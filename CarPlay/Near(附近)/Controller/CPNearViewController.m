@@ -11,25 +11,44 @@
 #import "CPMySwitch.h"
 #import "CPMyDateViewController.h"
 #import "PagedFlowView.h"
+#import "MJRefreshNormalHeader.h"
+#import "CPSelectView.h"
+#import "CPNearParams.h"
 
-@interface CPNearViewController ()<PagedFlowViewDataSource,PagedFlowViewDelegate>
+@interface CPNearViewController ()<PagedFlowViewDataSource,PagedFlowViewDelegate,UIScrollViewDelegate>
 @property (nonatomic, strong) PagedFlowView *tableView;
 @property (nonatomic, strong) NSMutableArray<CPActivityModel *> *datas;
 @property (nonatomic, strong) UIView *tipView;
 @property (nonatomic, assign) CGFloat offset;
+@property (nonatomic, assign) NSUInteger ignore;
+@property (nonatomic, assign) BOOL refreshing;
+@property (nonatomic, assign) CGFloat contentInsetY;
+@property (nonatomic, strong) CPNearParams *params;
 @end
 @implementation CPNearViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+//    [RACObserve(self, refreshing) subscribeNext:^(id x) {
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            NSLog(@"加载数据成功");
+//            UIEdgeInsets in = self.tableView.scrollView.contentInset;
+//            in.top = self.contentInsetY;
+//            [self.tableView.scrollView setContentInset:in];
+//            self.refreshing = NO;
+//        });
+//    }];
+    
     self.offset = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250;
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"筛选" target:self action:@selector(filter)];
     [self.view addSubview:self.tableView];
     [self tipView];
-    [self  loadData];
+    [self loadData];
+    DLog(@"%f",self.view.right);
 }
 
 
@@ -38,25 +57,24 @@
  */
 - (void)loadData
 {
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[UserId] = CPUserId;
-    params[Token] = CPToken;
-//    double longitude = [ZYUserDefaults doubleForKey:zylo];
-    params[@"longitude"] = @118;
-    params[@"latitude"] = @32;
-    params[@"maxDistance"] = @5000;
-    DLog(@"%@",params);
-    [ZYNetWorkTool getWithUrl:@"activity/list" params:params success:^(id responseObject) {
-        
+
+    [ZYNetWorkTool getWithUrl:@"activity/list" params:self.params.keyValues success:^(id responseObject) {
+        [self.tableView.scrollView.header endRefreshing];
+        [self.tableView.scrollView.footer endRefreshing];
         DLog(@"%@ ---- ",responseObject);
         if (CPSuccess) {
             
+            if (self.ignore == 0) {
+                [self.datas removeAllObjects];
+            }
             NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
             [self.datas addObjectsFromArray:arr];
-//            [self.tableView reloadData];
+            [self.tableView reloadData];
         }
     } failure:^(NSError *error) {
         
+        [self.tableView.scrollView.header endRefreshing];
+        [self.tableView.scrollView.footer endRefreshing];
         NSLog(@"%@",error);
     }];
 }
@@ -94,7 +112,6 @@
         [self photoPresent];
     }else if([notifyName isEqualToString:DateBtnClickKey]){
         [self dateClickWithInfo:userInfo];
-//        [self.tableView reloadData];
     }else if([notifyName isEqualToString:InvitedBtnClickKey]){
         
     }else if([notifyName isEqualToString:IgnoreBtnClickKey]){
@@ -151,8 +168,45 @@
  */
 - (void)dateClickWithInfo:(id)userInfo
 {
-    UIViewController *vc = [UIStoryboard storyboardWithName:@"CPMyVisitorViewController" bundle:nil].instantiateInitialViewController;
-    [self.navigationController pushViewController:vc animated:YES];
+    if (CPUnLogin) {
+        
+        return;
+    }
+//    body
+//    {
+//        “type”:”$type”,
+//        “pay”:”$pay”,
+//        “destPoint”:
+//        {
+//            “longitude”:”$longitude”,
+//            “latitude”:”$latitude”
+//        },
+//        “destination”:
+//        {
+//            “province”:”$province”,
+//            “city”:”$city”,
+//            “district”:”$district”,
+//            “street”:”$street”
+//        },
+//        “transfer”:”$transfer”
+//    }
+    CPActivityModel *model = userInfo;
+    NSString *url = [NSString stringWithFormat:@"activity/%@/join",model.activityId];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[UserId] = CPUserId;
+    params[Token] = CPToken;
+    DLog(@"邀请%@",params);
+    [CPNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
+        if (CPSuccess) {
+            DLog(@"邀请已发出%@",responseObject);
+        }else if ([CPErrorMsg contains:@"申请中"]){
+            
+            DLog(@"申请中...");
+        }
+    } failed:^(NSError *error) {
+        DLog(@"%@邀请失败",error);
+    }];
+    
 }
 
 /**
@@ -160,9 +214,15 @@
  */
 - (void)filter
 {
-    NSLog(@"伟业");
-    CPMyDateViewController *dateVc = [CPMyDateViewController new];
-    [self.navigationController pushViewController:dateVc animated:YES];
+    [CPSelectView showWithParams:^(CPSelectModel *selectModel) {
+        NSLog(@"%@",selectModel.keyValues);
+        
+        self.params.type = selectModel.type;
+        self.params.pay = selectModel.pay;
+        [self loadData];
+    }];
+    
+    
 }
 
 #pragma mark - 加载子控件
@@ -171,20 +231,24 @@
 {
     if (_tableView == nil) {
         _tableView = [[PagedFlowView alloc] initWithFrame:({
-            CGRectMake(0, 64, ZYScreenWidth, ZYScreenHeight - 84);
+            CGFloat y = iPhone4?64:84;
+            CGRectMake(10, y, ZYScreenWidth - 20, 383 + self.offset);
         })];
+        _tableView.backgroundColor = [UIColor clearColor];
         self.automaticallyAdjustsScrollViewInsets = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.orientation = PagedFlowViewOrientationVertical;
-        _tableView.backgroundColor = [Tools getColor:@"efefef"];
+        self.view.backgroundColor = [Tools getColor:@"efefef"];
             _tableView.minimumPageScale = 0.96;
-        _tableView.giveFrame = YES;YES;
+//        _tableView.giveFrame = YES;
         ZYWeakSelf
-        _tableView.scrollView.footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
+        _tableView.scrollView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
             ZYStrongSelf
-            [self test];
+            self.ignore += CPPageNum;
+            [self loadData];
         }];
+        
     }
     return _tableView;
 }
@@ -193,10 +257,10 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         [self.datas addObject:@"jajaj"];
-         [self.datas addObject:@"jajaj"];
-         [self.datas addObject:@"jajaj"];
-         [self.datas addObject:@"jajaj"];
-         [self.datas addObject:@"jajaj"];
+        [self.datas addObject:@"jajaj"];
+        [self.datas addObject:@"jajaj"];
+        [self.datas addObject:@"jajaj"];
+        [self.datas addObject:@"jajaj"];
         [self.tableView reloadData];
         
         [self.tableView.scrollView.footer endRefreshing];
@@ -254,6 +318,36 @@
         }];
     }
     return _tipView;
+}
+
+#pragma mark - scrollViewDelegate
+//{
+//    if (self.refreshing) {
+//        return;
+//    }
+//    if (scrollView.contentOffset.y < -50) {
+//        self.contentInsetY = scrollView.contentInset.top;
+//        DLog(@"刷仙..");
+//        self.refreshing = YES;
+//        NSLog(@"%f ..",scrollView.contentOffset.y);
+//        self.tableView.scrollView.contentInset = UIEdgeInsetsMake(50, 0, 0, 0);
+//    }
+//}
+//
+
+- (CPNearParams *)params
+{
+    if (_params == nil) {
+        _params = [[CPNearParams alloc] init];
+        _params.userId = CPUserId;
+        _params.token = CPToken;
+        _params.longitude = ZYLongitude;
+        _params.latitude = ZYLatitude;
+        _params.ignore = self.ignore;
+        _params.maxDistance = 5000;
+        DLog(@"%@",_params);
+    }
+    return _params;
 }
 
 @end

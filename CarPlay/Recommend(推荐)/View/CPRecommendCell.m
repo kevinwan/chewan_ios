@@ -19,22 +19,41 @@
 @property (nonatomic, strong) UIImageView *blackView;
 @property (nonatomic, strong) UIButton *addressView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageHCons;
+@property (weak, nonatomic) IBOutlet UIButton *femaleImageV;
+@property (weak, nonatomic) IBOutlet UILabel *femaleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *maleImageV;
+@property (weak, nonatomic) IBOutlet UILabel *maleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
 
 @implementation CPRecommendCell
 
+#pragma mark - 设置数据
+- (void)setModel:(CPRecommendModel *)model
+{
+    _model = model;
+    
+    self.titleLabel.text = model.title;
+    self.contentTextL.text = model.desc;
+    self.priceLabel.text = model.priceDesc;
+    self.tipLabel.text = [NSString stringWithFormat:@"官方补贴%.0f元每人",model.subsidyPrice];
+    self.femaleLabel.text = [NSString stringWithFormat:@"%zd / %zd",model.femaleNum, model.femaleLimit];
+    
+    self.maleLabel.text = [NSString stringWithFormat:@"%zd / %zd",model.maleNum, model.maleLimit];
+    
+    self.priceLabel.attributedText = model.priceText;
+    
+}
+
+#pragma mark - 加载视图
 - (void)awakeFromNib{
-    
-  
-    
     
     [self setCornerRadius:5];
     
     self.contentTextL.preferredMaxLayoutWidth = ZYScreenWidth - 56;
 
     [self.bgTip addSubview:self.tipLabel];
-    self.tipLabel.text = @"官方补贴50元每人";
 
     [self.bgImageView addSubview:self.blackView];
     [self.blackView addSubview:self.addressView];

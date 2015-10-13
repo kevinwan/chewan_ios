@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CPRecommendModel.h"
 #define RecommentAddressClickKey @"RecommentAddressClickKey"
 @interface CPRecommendCell : UIView
-
+@property (nonatomic, strong) CPRecommendModel *model;
 @end
