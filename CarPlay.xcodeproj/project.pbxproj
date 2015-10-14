@@ -1409,11 +1409,8 @@
 		E3A471221BB3A85300973197 /* Libs(三方库) */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				E3A4E1421BCD293000850AA7 /* SVPullToRefresh */,
-=======
 				6B2E361F1BCD24A00053459E /* MJIndexView */,
->>>>>>> 7c1cca93c70f5060742efa24d28229b396aa9b7c
 				E31B12BC1BB9311700B51696 /* CorePhotoBroswerVC */,
 				E39627BC1BB54D91005E0CF2 /* PulsingHalo */,
 				E3E6B8891BB4F7FA006B4F8A /* FXBlurView(模糊效果) */,
