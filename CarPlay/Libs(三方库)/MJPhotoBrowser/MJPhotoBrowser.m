@@ -101,7 +101,7 @@
     //渐变显示
     self.view.alpha = 0;
     [[UIApplication sharedApplication].keyWindow addSubview:self.view];
-        self.view.frame = CGRectMake(10, 15, kScreenWidth - 20, kScreenHeight - 30);
+        self.view.frame = CGRectMake(10, 15, ZYScreenWidth - 20, ZYScreenHeight - 30);
     [UIView animateWithDuration:0.25 animations:^{
         self.view.frame = [UIScreen mainScreen].bounds;
         self.view.alpha = 1.0;

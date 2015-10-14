@@ -32,9 +32,9 @@
     if (_failureLabel == nil) {
         _failureLabel = [[UIImageView alloc] init];
         _failureLabel.image = [UIImage imageNamed:@"imageplace"];
-        _failureLabel.width = kScreenWidth;
-        _failureLabel.height = kScreenWidth;
-        _failureLabel.y = (kScreenHeight - kScreenWidth) * 0.5;
+        _failureLabel.width = ZYScreenWidth;
+        _failureLabel.height = ZYScreenWidth;
+        _failureLabel.y = (ZYScreenHeight - ZYScreenWidth) * 0.5;
         _failureLabel.x = 0;
         _failureLabel.backgroundColor = [UIColor clearColor];
         _failureLabel.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
