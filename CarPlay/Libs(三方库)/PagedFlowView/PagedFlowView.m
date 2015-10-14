@@ -443,6 +443,11 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     //如果有PageControl，计算出当前页码，并对pageControl进行更新
+//    [CAAnimation scaleFrom:0 toScale:0 durTimes:0 rep:0];
+//    
+//    scrollView addAnimation:<#(CAAnimation *)#>
+    
+    NSInteger zyIndex = _currentPageIndex;
     
     NSInteger pageIndex;
     
@@ -456,6 +461,19 @@
         default:
             break;
     }
+    
+    CGFloat x = _scrollView.x;
+    [UIView animateWithDuration:0.1 delay:-0.1 usingSpringWithDamping:0.005 initialSpringVelocity:8 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        
+        if (zyIndex > pageIndex) {
+            _scrollView.x = x-1.5;
+        }else if (zyIndex != pageIndex){
+            _scrollView.x = x+1.5;
+        }
+    } completion:^(BOOL finished) {
+        _scrollView.x = x;
+    }];
+    
     
     if (pageControl && [pageControl respondsToSelector:@selector(setCurrentPage:)]) {
         [pageControl setCurrentPage:pageIndex];

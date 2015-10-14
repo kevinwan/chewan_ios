@@ -15,6 +15,7 @@
 #import "CPNearParams.h"
 #import "AAPullToRefresh.h"
 #import "ZYProgressView.h"
+#import "ZYRefreshView.h"
 
 @interface CPNearViewController ()<PagedFlowViewDataSource,PagedFlowViewDelegate,UIScrollViewDelegate>
 @property (nonatomic, strong) PagedFlowView *tableView;
@@ -37,6 +38,7 @@
         [ZYProgressView showMessage:@"网络连接失败,请检查网络"];
         return;
     }
+    
     
     self.offset = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250;
     
