@@ -40,15 +40,33 @@
     [self.shoppingBtn setCenter:CGPointMake(380.0/320.0*ZYScreenWidth, 196.0/568.0*ZYScreenHeight)];
     [self.coffeBtn setCenter:CGPointMake(423.0/320.0*ZYScreenWidth, 315.0/568.0*ZYScreenHeight)];
     [self.takeALookBtn setCenter:CGPointMake(ZYScreenWidth/2.0, 505.0/568.0*ZYScreenHeight)];
-    timer =  [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(dateAnim) userInfo:nil repeats:YES];
-    for (int i=1; i<11; i++) {
-        UIButton *btn=(UIButton *)[self.scrollView viewWithTag:i];
-        [btn shakeWithOptions:SCShakeOptionsDirectionHorizontalAndVertical | SCShakeOptionsForceInterpolationRandom | SCShakeOptionsAtEndContinue force:0.05 duration:2 iterationDuration:1 completionHandler:nil];
-    }
+   
+//    for (int i=1; i<11; i++) {
+//        UIButton *btn=(UIButton *)[self.scrollView viewWithTag:i];
+//        [btn shakeWithOptions:SCShakeOptionsDirectionHorizontalAndVertical | SCShakeOptionsForceInterpolationRandom | SCShakeOptionsAtEndContinue force:0.05 duration:2 iterationDuration:1 completionHandler:nil];
+//    }
+   
+}
+
+-(void)aaa{
+    [UIView animateWithDuration:0.35 animations:^{
+        self.eatBtn.transform=CGAffineTransformMakeScale(.7, .7);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.35 animations:^{
+            self.eatBtn.transform=CGAffineTransformMakeScale(1, 1);
+        } completion:^(BOOL finished) {
+            _dateAnim = [self multiLayer];
+            _dateAnim.position = _eatBtn.center;
+            [_dateAnim setHaloLayerColor:[Tools getColor:@"44A8F2"].CGColor];
+            _dateAnim.radius = 81.0/2.0+6.0;
+            [self.scrollView.layer insertSublayer:_dateAnim below:_eatBtn.layer];
+        }];
+    }];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [self.navigationController.navigationBar setHidden:YES];
+     timer =  [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(aaa) userInfo:nil repeats:YES];
     [timer setFireDate:[NSDate distantPast]];
 }
 
@@ -165,7 +183,7 @@
 
 - (MultiplePulsingHaloLayer *)multiLayer
 {
-    MultiplePulsingHaloLayer *multiLayer = [[MultiplePulsingHaloLayer alloc] initWithHaloLayerNum:3 andStartInterval:0.5];
+    MultiplePulsingHaloLayer *multiLayer = [[MultiplePulsingHaloLayer alloc] initWithHaloLayerNum:1 andStartInterval:0];
     multiLayer.fromValueForRadius = 0.5;
     multiLayer.useTimingFunction = NO;
     multiLayer.fromValueForAlpha = 1.0;

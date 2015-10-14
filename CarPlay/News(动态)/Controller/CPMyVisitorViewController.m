@@ -18,6 +18,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //test 李云江
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     self.tableView.backgroundColor = [Tools getColor:@"ededf1"];
     self.navigationItem.title = @"最近访客";
     
