@@ -59,14 +59,14 @@ install_resource()
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "BaiduMapAPI/Release-universal/BaiduMapAPI.framework/Resources/mapapi.bundle"
-  install_resource "EaseMobSDK/EaseMobSDK/resources/EaseMob.bundle"
+  install_resource "EaseMobSDKFull/EaseMobSDKFull/resources/EaseMob.bundle"
   install_resource "IQKeyboardManager/IQKeyBoardManager/Resources/IQKeyboardManager.bundle"
   install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "BaiduMapAPI/Release-universal/BaiduMapAPI.framework/Resources/mapapi.bundle"
-  install_resource "EaseMobSDK/EaseMobSDK/resources/EaseMob.bundle"
+  install_resource "EaseMobSDKFull/EaseMobSDKFull/resources/EaseMob.bundle"
   install_resource "IQKeyboardManager/IQKeyBoardManager/Resources/IQKeyboardManager.bundle"
   install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle"

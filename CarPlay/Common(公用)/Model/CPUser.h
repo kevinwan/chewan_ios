@@ -47,6 +47,8 @@
 @property (nonatomic, strong) CPCar *car;
 
 @property (nonatomic, copy) NSString *driverLicense;
+// 是不是被关注
+@property (nonatomic, assign) BOOL subscribeFlag;
 
 @property (nonatomic, strong) NSArray *albums;
 //个人资料完成程度1-100

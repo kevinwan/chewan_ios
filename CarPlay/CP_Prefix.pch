@@ -25,4 +25,6 @@
 #import "CPNPSButton.h"
 #import "ZYTableViewCell.h"
 #import <BaiduMapAPI/BMapKit.h>
+#import <SVProgressHUD.h>
+#import "ZYProgressView.h"
 #endif

@@ -36,6 +36,10 @@
  *  显示车型的View
  */
 @property (weak, nonatomic) IBOutlet UILabel *carTypeView;
+/**
+ *  关注的按钮
+ */
+@property (weak, nonatomic) IBOutlet UIButton *loveBtn;
 
 /**
  *  包接送
@@ -114,14 +118,6 @@
 
 @implementation CPBaseViewCell
 
-// 使cell位置下移20
-//- (void)setFrame:(CGRect)frame
-//{
-//    CGRect newF = frame;
-//    newF.origin.y += 20;
-//    [super setFrame:newF];
-//}
-
 - (void)awakeFromNib
 {
     self.marginCons.constant = 12;
@@ -150,14 +146,6 @@
     [self beginLayoutSubviews];
 }
 
-//+ (instancetype)cellWithTableView:(UITableView *)tableView reuseIdentifier:(NSString *)reuseIdentifier
-//{
-//    CPBaseViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-//    if (cell == nil) {
-//        cell = [[NSBundle mainBundle] loadNibNamed:@"CPBaseViewCell" owner:nil options:nil].lastObject;
-//    }
-//    return cell;
-//}
 - (void)beginLayoutSubviews
 {
     [self.dateButton mas_makeConstraints:^(MASConstraintMaker *make){
@@ -209,7 +197,7 @@
 //    }];
     
     [self.distanceView setTitle:[NSString stringWithFormat:@"%zdm",model.distance] forState:UIControlStateNormal];
-    
+    self.loveBtn.selected = model.organizer.subscribeFlag;
     self.payView.text = model.pay;
     self.sendView.hidden = !model.transfer;
     if (model.title.length) {

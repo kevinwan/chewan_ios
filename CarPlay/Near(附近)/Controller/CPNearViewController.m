@@ -11,9 +11,10 @@
 #import "CPMySwitch.h"
 #import "CPMyDateViewController.h"
 #import "PagedFlowView.h"
-#import "MJRefreshNormalHeader.h"
 #import "CPSelectView.h"
 #import "CPNearParams.h"
+#import "AAPullToRefresh.h"
+#import "ZYProgressView.h"
 
 @interface CPNearViewController ()<PagedFlowViewDataSource,PagedFlowViewDelegate,UIScrollViewDelegate>
 @property (nonatomic, strong) PagedFlowView *tableView;
@@ -31,15 +32,11 @@
 {
     [super viewDidLoad];
     
-//    [RACObserve(self, refreshing) subscribeNext:^(id x) {
-//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//            NSLog(@"加载数据成功");
-//            UIEdgeInsets in = self.tableView.scrollView.contentInset;
-//            in.top = self.contentInsetY;
-//            [self.tableView.scrollView setContentInset:in];
-//            self.refreshing = NO;
-//        });
-//    }];
+    if (CPNoNetWork) {
+        
+        [ZYProgressView showMessage:@"网络连接失败,请检查网络"];
+        return;
+    }
     
     self.offset = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250;
     
@@ -69,13 +66,14 @@
             }
             NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
             [self.datas addObjectsFromArray:arr];
+            
             [self.tableView reloadData];
         }
     } failure:^(NSError *error) {
         
         [self.tableView.scrollView.header endRefreshing];
         [self.tableView.scrollView.footer endRefreshing];
-        NSLog(@"%@",error);
+        [self showError:@"加载失败"];
     }];
 }
 
@@ -170,6 +168,13 @@
 {
     if (CPUnLogin) {
         
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"你还未注册,注册后就可以邀请" delegate:nil cancelButtonTitle:@"再想想" otherButtonTitles:@"去注册", nil];
+        [alertView.rac_buttonClickedSignal subscribeNext:^(id x) {
+            if ([x integerValue] != 0) {
+                [ZYNotificationCenter postNotificationName:NOTIFICATION_HASLOGIN object:nil];
+            }
+        }];
+        [alertView show];
         return;
     }
 //    body
@@ -198,13 +203,12 @@
     DLog(@"邀请%@",params);
     [CPNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
         if (CPSuccess) {
-            DLog(@"邀请已发出%@",responseObject);
+            [self showInfo:@"邀请已发出"];
         }else if ([CPErrorMsg contains:@"申请中"]){
-            
-            DLog(@"申请中...");
+            [self showInfo:@"正在申请中"];
         }
     } failed:^(NSError *error) {
-        DLog(@"%@邀请失败",error);
+        [self showInfo:@"邀请失败"];
     }];
     
 }
@@ -242,13 +246,34 @@
         self.view.backgroundColor = [Tools getColor:@"efefef"];
             _tableView.minimumPageScale = 0.96;
 //        _tableView.giveFrame = YES;
+        // top
+        _tableView.scrollView.alwaysBounceVertical = YES;
         ZYWeakSelf
-        _tableView.scrollView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        AAPullToRefresh *tv = [_tableView.scrollView addPullToRefreshPosition:AAPullToRefreshPositionTop actionHandler:^(AAPullToRefresh *v){
+            NSLog(@"fire from top");
             ZYStrongSelf
-            self.ignore += CPPageNum;
-            [self loadData];
+            [self.tableView.scrollView setContentOffset:CGPointMake(0, -40) animated:YES];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [v stopIndicatorAnimation];
+                NSLog(@"刷新完毕");
+            });
         }];
+        tv.imageIcon = [UIImage imageNamed:@"车轮"];
+        tv.borderColor = [UIColor whiteColor];
         
+        // bottom
+        AAPullToRefresh *bv = [_tableView.scrollView addPullToRefreshPosition:AAPullToRefreshPositionBottom actionHandler:^(AAPullToRefresh *v){
+            NSLog(@"fire from bottom");
+            ZYStrongSelf
+            [self.tableView.scrollView setContentOffset:CGPointMake(0, _tableView.scrollView.contentSize.height + 49 - _tableView.scrollView.bounds.size.height) animated:YES];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [v stopIndicatorAnimation];
+            });
+        }];
+        bv.imageIcon = [UIImage imageNamed:@"车轮"];
+        bv.borderColor = [UIColor whiteColor];
+
     }
     return _tableView;
 }

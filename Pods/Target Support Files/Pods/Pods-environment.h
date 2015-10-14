@@ -66,11 +66,12 @@
 #define COCOAPODS_VERSION_MINOR_BaiduMapAPI_Universal 8
 #define COCOAPODS_VERSION_PATCH_BaiduMapAPI_Universal 1
 
-// EaseMobSDK
-#define COCOAPODS_POD_AVAILABLE_EaseMobSDK
-#define COCOAPODS_VERSION_MAJOR_EaseMobSDK 2
-#define COCOAPODS_VERSION_MINOR_EaseMobSDK 2
-#define COCOAPODS_VERSION_PATCH_EaseMobSDK 0
+// EaseMobSDKFull
+#define COCOAPODS_POD_AVAILABLE_EaseMobSDKFull
+// This library does not follow semantic-versioning,
+// so we were not able to define version macros.
+// Please contact the author.
+// Version: 2.2.0.1.
 
 // IQKeyboardManager
 #define COCOAPODS_POD_AVAILABLE_IQKeyboardManager
@@ -137,4 +138,10 @@
 #define COCOAPODS_VERSION_MAJOR_SVProgressHUD 1
 #define COCOAPODS_VERSION_MINOR_SVProgressHUD 1
 #define COCOAPODS_VERSION_PATCH_SVProgressHUD 3
+
+// YLGIFImage
+#define COCOAPODS_POD_AVAILABLE_YLGIFImage
+#define COCOAPODS_VERSION_MAJOR_YLGIFImage 0
+#define COCOAPODS_VERSION_MINOR_YLGIFImage 11
+#define COCOAPODS_VERSION_PATCH_YLGIFImage 0
 

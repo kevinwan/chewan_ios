@@ -29,15 +29,9 @@
                     </variation>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="车玩官方" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ikd-o4-WUg">
-                    <rect key="frame" x="50" y="15" width="64" height="20"/>
+                    <rect key="frame" x="50" y="15" width="64" height="19.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" red="0.99607843139999996" green="0.34901960780000002" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 / 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2d2-TL-l2f">
-                    <rect key="frame" x="288" y="19" width="21" height="12"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CpY-ZY-trk">
@@ -56,16 +50,6 @@
                     </attributedString>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dmt-Ap-l16">
-                    <rect key="frame" x="269" y="14" width="16" height="22"/>
-                    <state key="normal" image="icon_women"/>
-                </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8 / 12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qxO-C2-peK">
-                    <rect key="frame" x="338" y="19" width="27" height="12"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1yf-Qp-y3F">
                     <rect key="frame" x="10" y="10" width="30" height="30"/>
                     <constraints>
@@ -74,34 +58,26 @@
                     </constraints>
                     <state key="normal" image="ceo头像"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qbI-C1-XG9">
-                    <rect key="frame" x="319" y="17" width="16" height="16"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="16" id="28R-lU-Lsf"/>
-                        <constraint firstAttribute="height" constant="16" id="GUI-7c-hve"/>
-                    </constraints>
-                    <state key="normal" image="icon_men"/>
-                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ej0-RG-oLt">
+                    <rect key="frame" x="334" y="18" width="31" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="1yf-Qp-y3F" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="1fX-aT-9VN"/>
                 <constraint firstItem="O24-Rw-lQO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="44" id="4wJ-b8-5C0"/>
-                <constraint firstItem="2d2-TL-l2f" firstAttribute="leading" secondItem="Dmt-Ap-l16" secondAttribute="trailing" constant="3" id="5lf-jr-2Ja"/>
-                <constraint firstItem="qbI-C1-XG9" firstAttribute="leading" secondItem="2d2-TL-l2f" secondAttribute="trailing" constant="10" id="7II-OP-ijD"/>
-                <constraint firstItem="qxO-C2-peK" firstAttribute="leading" secondItem="qbI-C1-XG9" secondAttribute="trailing" constant="3" id="RUY-sp-Y0c"/>
                 <constraint firstItem="1yf-Qp-y3F" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="SJL-2o-H3t"/>
                 <constraint firstItem="CpY-ZY-trk" firstAttribute="top" secondItem="O24-Rw-lQO" secondAttribute="bottom" constant="10" id="SMO-vj-6LD"/>
                 <constraint firstItem="Ikd-o4-WUg" firstAttribute="leading" secondItem="1yf-Qp-y3F" secondAttribute="trailing" constant="10" id="b12-d6-StF"/>
                 <constraint firstItem="Ikd-o4-WUg" firstAttribute="centerY" secondItem="1yf-Qp-y3F" secondAttribute="centerY" id="f3X-hs-o54"/>
-                <constraint firstItem="2d2-TL-l2f" firstAttribute="centerY" secondItem="1yf-Qp-y3F" secondAttribute="centerY" id="f8E-Sh-BRh"/>
-                <constraint firstItem="qxO-C2-peK" firstAttribute="centerY" secondItem="1yf-Qp-y3F" secondAttribute="centerY" id="h0A-CL-FwK"/>
                 <constraint firstAttribute="trailing" secondItem="O24-Rw-lQO" secondAttribute="trailing" id="hzO-8R-Rro"/>
-                <constraint firstAttribute="trailing" secondItem="qxO-C2-peK" secondAttribute="trailing" constant="10" id="iDB-Ds-rsy"/>
+                <constraint firstAttribute="trailing" secondItem="ej0-RG-oLt" secondAttribute="trailing" constant="10" id="iZQ-rh-7cx"/>
                 <constraint firstItem="CpY-ZY-trk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="mLG-sK-Ing"/>
-                <constraint firstItem="qbI-C1-XG9" firstAttribute="centerY" secondItem="1yf-Qp-y3F" secondAttribute="centerY" id="nGQ-hZ-ufB"/>
                 <constraint firstItem="O24-Rw-lQO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qxb-gT-pfo"/>
-                <constraint firstItem="Dmt-Ap-l16" firstAttribute="centerY" secondItem="1yf-Qp-y3F" secondAttribute="centerY" id="w5B-84-adh"/>
+                <constraint firstItem="ej0-RG-oLt" firstAttribute="centerY" secondItem="Ikd-o4-WUg" secondAttribute="centerY" id="wfs-24-Yvt"/>
                 <constraint firstAttribute="trailing" secondItem="CpY-ZY-trk" secondAttribute="trailing" constant="10" id="zMl-uP-Rsv"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
@@ -114,11 +90,8 @@
             <connections>
                 <outlet property="bgImageView" destination="O24-Rw-lQO" id="D09-38-bvT"/>
                 <outlet property="contentTextL" destination="CpY-ZY-trk" id="L2G-s8-0zS"/>
-                <outlet property="femaleImageV" destination="Dmt-Ap-l16" id="Stk-jX-v6U"/>
-                <outlet property="femaleLabel" destination="2d2-TL-l2f" id="zYb-Cu-vYp"/>
                 <outlet property="imageHCons" destination="0NM-yx-OcR" id="V7o-TU-Umb"/>
-                <outlet property="maleImageV" destination="qbI-C1-XG9" id="l5W-L8-27w"/>
-                <outlet property="maleLabel" destination="qxO-C2-peK" id="wfG-fD-XUl"/>
+                <outlet property="partLabel" destination="ej0-RG-oLt" id="hyM-QZ-mSo"/>
                 <outlet property="titleLabel" destination="Ikd-o4-WUg" id="aVR-cs-kCC"/>
             </connections>
             <point key="canvasLocation" x="277" y="147.5"/>
@@ -127,7 +100,5 @@
     <resources>
         <image name="3" width="915" height="785"/>
         <image name="ceo头像" width="50" height="50"/>
-        <image name="icon_men" width="16" height="16"/>
-        <image name="icon_women" width="16" height="16"/>
     </resources>
 </document>

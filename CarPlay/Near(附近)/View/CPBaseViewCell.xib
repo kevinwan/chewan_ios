@@ -142,6 +142,7 @@
                 <outlet property="carTypeView" destination="Fou-d1-fUf" id="aB3-xS-cRA"/>
                 <outlet property="carView" destination="U1j-NC-wz6" id="2m7-lS-aIw"/>
                 <outlet property="distanceView" destination="8Lv-m2-sgM" id="RAy-0k-W9s"/>
+                <outlet property="loveBtn" destination="RcY-th-q34" id="etp-qa-XQD"/>
                 <outlet property="marginCons" destination="sLa-Ef-mQd" id="ctS-B9-Rik"/>
                 <outlet property="payView" destination="WDr-aw-4W8" id="vQn-6d-Nga"/>
                 <outlet property="sendView" destination="tng-NA-qzb" id="Ux6-qt-b6j"/>

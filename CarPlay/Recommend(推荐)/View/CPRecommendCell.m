@@ -19,10 +19,8 @@
 @property (nonatomic, strong) UIImageView *blackView;
 @property (nonatomic, strong) UIButton *addressView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageHCons;
-@property (weak, nonatomic) IBOutlet UIButton *femaleImageV;
-@property (weak, nonatomic) IBOutlet UILabel *femaleLabel;
-@property (weak, nonatomic) IBOutlet UIButton *maleImageV;
-@property (weak, nonatomic) IBOutlet UILabel *maleLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *partLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
@@ -38,9 +36,7 @@
     self.contentTextL.text = model.desc;
     self.priceLabel.text = model.priceDesc;
     self.tipLabel.text = [NSString stringWithFormat:@"官方补贴%.0f元每人",model.subsidyPrice];
-    self.femaleLabel.text = [NSString stringWithFormat:@"%zd / %zd",model.femaleNum, model.femaleLimit];
-    
-    self.maleLabel.text = [NSString stringWithFormat:@"%zd / %zd",model.maleNum, model.maleLimit];
+        self.partLabel.text = [NSString stringWithFormat:@"%zd / %zd",model.maleNum, model.maleLimit];
     
     self.priceLabel.attributedText = model.priceText;
     

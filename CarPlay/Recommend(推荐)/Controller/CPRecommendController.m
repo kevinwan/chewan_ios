@@ -11,6 +11,7 @@
 #import "PagedFlowView.h"
 #import "CPActivityDetailViewController.h"
 #import "CPRecommendModel.h"
+#import "AAPullToRefresh.h"
 
 @interface CPRecommendController ()<PagedFlowViewDelegate, PagedFlowViewDataSource>
 @property (nonatomic, strong) PagedFlowView *collectionView;
@@ -35,9 +36,9 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[UserId] = CPUserId;
     params[Token] = CPToken;
-    params[@"province"] = @"江苏省";
-    params[@"city"] = @"南京市";
-    params[@"district"] = @"玄武区";
+    params[@"province"] = [ZYUserDefaults stringForKey:Province];
+    params[@"city"] = [ZYUserDefaults stringForKey:City];
+    params[@"district"] = [ZYUserDefaults stringForKey:District];
     params[@"limit"] = @10;
     [ZYNetWorkTool getWithUrl:@"official/activity/list" params:params success:^(id responseObject) {
         DLog(@"%@",responseObject);
@@ -62,7 +63,8 @@
 #pragma mark - flowViewDelegate & flowViewDataSource
 - (NSInteger)numberOfPagesInFlowView:(PagedFlowView *)flowView
 {
-    return self.datas.count;
+    return 3;
+//    return self.datas.count;
 }
 
 - (UIView *)flowView:(PagedFlowView *)flowView cellForPageAtIndex:(NSInteger)index
@@ -71,7 +73,7 @@
     if (!cell) {
         
         cell = [[NSBundle mainBundle] loadNibNamed:@"CPRecommendCell" owner:nil options:nil].lastObject;
-        cell.model = self.datas[index];
+//        cell.model = self.datas[index];
     }
     return cell;
 }
@@ -115,9 +117,26 @@
         _collectionView.dataSource = self;
         _collectionView.minimumPageScale = 0.928;
         self.view.backgroundColor = [Tools getColor:@"efefef"];
-//        _collectionView.scrollView.header = [MJRefreshHeader headerWithRefreshingBlock:^{
-//            NSLog(@"hsuala....");
-//        }];
+        
+        // 设置刷新控件
+        ZYWeakSelf
+        AAPullToRefresh *tv = [_collectionView.scrollView addPullToRefreshPosition:AAPullToRefreshPositionLeft actionHandler:^(AAPullToRefresh *v){
+            ZYStrongSelf
+            [self.collectionView.scrollView setContentOffset:CGPointMake(-50, 0) animated:YES];
+            [v performSelector:@selector(stopIndicatorAnimation) withObject:nil afterDelay:1.0f];
+        }];
+        tv.imageIcon = [UIImage imageNamed:@"车轮"];
+        tv.borderColor = [UIColor whiteColor];
+        
+        // bottom
+        AAPullToRefresh *bv = [_collectionView.scrollView addPullToRefreshPosition:AAPullToRefreshPositionRight actionHandler:^(AAPullToRefresh *v){
+            ZYStrongSelf
+            [self.collectionView.scrollView setContentOffset:CGPointMake(_collectionView.scrollView.contentSize.width + 50 - _collectionView.scrollView.width, 0) animated:YES];
+            [v performSelector:@selector(stopIndicatorAnimation) withObject:nil afterDelay:1.0f];
+        }];
+        bv.imageIcon = [UIImage imageNamed:@"车轮"];
+        bv.borderColor = [UIColor whiteColor];
+
     }
     return _collectionView;
 }
