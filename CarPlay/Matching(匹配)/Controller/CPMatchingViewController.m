@@ -13,9 +13,11 @@
 @interface CPMatchingViewController ()<UIGestureRecognizerDelegate>
 {
     NSTimer *timer;
+    NSTimer *timer1;
     NSTimer *takeALookViewTimer;
     NSUInteger takeALookAnimationIndex;
     CPTakeALookViewController *takeALook;
+    NSInteger index;
 }
 
 @end
@@ -24,50 +26,141 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    index = 1;
     takeALook=[UIStoryboard storyboardWithName:@"CPTakeALook" bundle:nil].instantiateInitialViewController;
     [self.scrollView setFrame:CGRectMake(0, 0, ZYScreenWidth, ZYScreenHeight)];
     [self.scrollView setContentSize:CGSizeMake(545.0/320.0*ZYScreenWidth, ZYScreenHeight-60)];
     [self.scrollView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"背景"]]];
+    
     [self.nowYouWantImg setCenter:CGPointMake(ZYScreenWidth/2.0, 45.0f)];
     [self.eatBtn setCenter:CGPointMake(95.5/320.0*ZYScreenWidth, 131/568.0*ZYScreenHeight)];
+    [self.eatBtn setSize:CGSizeMake(81.0/320.0*ZYScreenWidth, 81.0/320.0*ZYScreenWidth)];
+    [self.eatBtnBgView setCenter:CGPointMake(95.5/320.0*ZYScreenWidth, 131/568.0*ZYScreenHeight)];
+    [self.eatBtnBgView setSize:CGSizeMake(81.0/320.0*ZYScreenWidth, 81.0/320.0*ZYScreenWidth)];
+    [self.eatBtnBgView.layer setMasksToBounds:YES];
+    [self.eatBtnBgView.layer setCornerRadius:40.5/320.0*ZYScreenWidth];
+    [self.eatBtnBgView setBackgroundColor:[Tools getColor:@"44A8F2"]];
+    
     [self.singBtn setCenter:CGPointMake(232.0/320.0*ZYScreenWidth, 175.0/568.0*ZYScreenHeight)];
+    [self.singBtn setSize:CGSizeMake(70.0/320.0*ZYScreenWidth, 70.0/320.0*ZYScreenWidth)];
+    [self.singBtnBgView setCenter:CGPointMake(232.0/320.0*ZYScreenWidth, 175.0/568.0*ZYScreenHeight)];
+    [self.singBtnBgView setSize:CGSizeMake(70.0/320.0*ZYScreenWidth, 70.0/320.0*ZYScreenWidth)];
+    [self.singBtnBgView.layer setMasksToBounds:YES];
+    [self.singBtnBgView.layer setCornerRadius:35.0/320.0*ZYScreenWidth];
+    [self.singBtnBgView setBackgroundColor:[Tools getColor:@"FDCC22"]];
+    
     [self.movieBtn setCenter:CGPointMake(130.0/320.0*ZYScreenWidth, 245.0/568.0*ZYScreenHeight)];
-    [self.takeExerciseBtn setCenter:CGPointMake(62.5/320.0*ZYScreenWidth, 293.0/568.0*ZYScreenHeight)];
+    [self.movieBtn setSize:CGSizeMake(70.0/320.0*ZYScreenWidth, 70.0/320.0*ZYScreenWidth)];
+    [self.movieBtnBgView setCenter:CGPointMake(130.0/320.0*ZYScreenWidth, 245.0/568.0*ZYScreenHeight)];
+    [self.movieBtnBgView setSize:CGSizeMake(70.0/320.0*ZYScreenWidth, 70.0/320.0*ZYScreenWidth)];
+    [self.movieBtnBgView.layer setMasksToBounds:YES];
+    [self.movieBtnBgView.layer setCornerRadius:35.0/320.0*ZYScreenWidth];
+    [self.movieBtnBgView setBackgroundColor:[Tools getColor:@"BE77D2"]];
+    
+    [self.takeExerciseBtn setCenter:CGPointMake(62.5/320.0*ZYScreenWidth, 325.5/568.0*ZYScreenHeight)];
+    [self.takeExerciseBtn setSize:CGSizeMake(65.0/320.0*ZYScreenWidth, 65.0/320.0*ZYScreenWidth)];
+    [self.takeExerciseBtnBgView setCenter:CGPointMake(62.5/320.0*ZYScreenWidth, 325.5/568.0*ZYScreenHeight)];
+    [self.takeExerciseBtnBgView setSize:CGSizeMake(65.0/320.0*ZYScreenWidth, 65.0/320.0*ZYScreenWidth)];
+    [self.takeExerciseBtnBgView.layer setMasksToBounds:YES];
+    [self.takeExerciseBtnBgView.layer setCornerRadius:32.5/320.0*ZYScreenWidth];
+    [self.takeExerciseBtnBgView setBackgroundColor:[Tools getColor:@"7BCC4A"]];
+    
     [self.walkDogBtn setCenter:CGPointMake(256.0/320.0*ZYScreenWidth, 294.0/568.0*ZYScreenHeight)];
+    [self.walkDogBtn setSize:CGSizeMake(60.0/320.0*ZYScreenWidth, 60.0/320.0*ZYScreenWidth)];
+    [self.walkDogBtnBgView setCenter:CGPointMake(256.0/320.0*ZYScreenWidth, 294.0/568.0*ZYScreenHeight)];
+    [self.walkDogBtnBgView setSize:CGSizeMake(60.0/320.0*ZYScreenWidth, 60.0/320.0*ZYScreenWidth)];
+    [self.walkDogBtnBgView.layer setMasksToBounds:YES];
+    [self.walkDogBtnBgView.layer setCornerRadius:30.0/320.0*ZYScreenWidth];
+    [self.walkDogBtnBgView setBackgroundColor:[Tools getColor:@"F17945"]];
+    
     [self.supperBtn setCenter:CGPointMake(182.0/320.0*ZYScreenWidth, 378.0/568.0*ZYScreenHeight)];
+    [self.supperBtn setSize:CGSizeMake(70.0/320.0*ZYScreenWidth, 70.0/320.0*ZYScreenWidth)];
+    [self.supperBtnBgView setCenter:CGPointMake(182.0/320.0*ZYScreenWidth, 378.0/568.0*ZYScreenHeight)];
+    [self.supperBtnBgView setSize:CGSizeMake(70.0/320.0*ZYScreenWidth, 70.0/320.0*ZYScreenWidth)];
+    [self.supperBtnBgView.layer setMasksToBounds:YES];
+    [self.supperBtnBgView.layer setCornerRadius:35.0/320.0*ZYScreenWidth];
+    [self.supperBtnBgView setBackgroundColor:[Tools getColor:@"498BB8"]];
+    
     [self.beerBtn setCenter:CGPointMake(339.0/320.0*ZYScreenWidth, 400.0/568.0*ZYScreenHeight)];
+    [self.beerBtn setSize:CGSizeMake(70.0/320.0*ZYScreenWidth, 70.0/320.0*ZYScreenWidth)];
+    [self.beerBtnBgView setCenter:CGPointMake(339.0/320.0*ZYScreenWidth, 400.0/568.0*ZYScreenHeight)];
+    [self.beerBtnBgView setSize:CGSizeMake(70.0/320.0*ZYScreenWidth, 70.0/320.0*ZYScreenWidth)];
+    [self.beerBtnBgView.layer setMasksToBounds:YES];
+    [self.beerBtnBgView.layer setCornerRadius:35.0/320.0*ZYScreenWidth];
+    [self.beerBtnBgView setBackgroundColor:[Tools getColor:@"1AAC8E"]];
+    
     [self.nightclubBtn setCenter:CGPointMake(476.0/320.0*ZYScreenWidth, 131.0/568.0*ZYScreenHeight)];
+    [self.nightclubBtn setSize:CGSizeMake(70.0/320.0*ZYScreenWidth, 70.0/320.0*ZYScreenWidth)];
+    [self.nightclubBtnBgView setCenter:CGPointMake(476.0/320.0*ZYScreenWidth, 131.0/568.0*ZYScreenHeight)];
+    [self.nightclubBtnBgView setSize:CGSizeMake(70.0/320.0*ZYScreenWidth, 70.0/320.0*ZYScreenWidth)];
+    [self.nightclubBtnBgView.layer setMasksToBounds:YES];
+    [self.nightclubBtnBgView.layer setCornerRadius:35.0/320.0*ZYScreenWidth];
+    [self.nightclubBtnBgView setBackgroundColor:[Tools getColor:@"2DC6BA"]];
+    
     [self.shoppingBtn setCenter:CGPointMake(380.0/320.0*ZYScreenWidth, 196.0/568.0*ZYScreenHeight)];
+     [self.shoppingBtn setSize:CGSizeMake(60.0/320.0*ZYScreenWidth, 60.0/320.0*ZYScreenWidth)];
+    [self.shoppingBtnBgView setCenter:CGPointMake(380.0/320.0*ZYScreenWidth, 196.0/568.0*ZYScreenHeight)];
+    [self.shoppingBtnBgView setSize:CGSizeMake(60.0/320.0*ZYScreenWidth, 60.0/320.0*ZYScreenWidth)];
+    [self.shoppingBtnBgView.layer setMasksToBounds:YES];
+    [self.shoppingBtnBgView.layer setCornerRadius:30.0/320.0*ZYScreenWidth];
+    [self.shoppingBtnBgView setBackgroundColor:[Tools getColor:@"FB6087"]];
+    
     [self.coffeBtn setCenter:CGPointMake(423.0/320.0*ZYScreenWidth, 315.0/568.0*ZYScreenHeight)];
+    [self.coffeBtn setSize:CGSizeMake(60.0/320.0*ZYScreenWidth, 60.0/320.0*ZYScreenWidth)];
+    [self.coffeBtnBgView setCenter:CGPointMake(423.0/320.0*ZYScreenWidth, 315.0/568.0*ZYScreenHeight)];
+    [self.coffeBtnBgView setSize:CGSizeMake(60.0/320.0*ZYScreenWidth, 60.0/320.0*ZYScreenWidth)];
+    [self.coffeBtnBgView.layer setMasksToBounds:YES];
+    [self.coffeBtnBgView.layer setCornerRadius:30.0/320.0*ZYScreenWidth];
+    [self.coffeBtnBgView setBackgroundColor:[Tools getColor:@"E85959"]];
+    
     [self.takeALookBtn setCenter:CGPointMake(ZYScreenWidth/2.0, 505.0/568.0*ZYScreenHeight)];
    
-//    for (int i=1; i<11; i++) {
-//        UIButton *btn=(UIButton *)[self.scrollView viewWithTag:i];
-//        [btn shakeWithOptions:SCShakeOptionsDirectionHorizontalAndVertical | SCShakeOptionsForceInterpolationRandom | SCShakeOptionsAtEndContinue force:0.05 duration:2 iterationDuration:1 completionHandler:nil];
-//    }
+    timer =  [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(biginAni) userInfo:nil repeats:YES];
    
 }
 
--(void)aaa{
-    [UIView animateWithDuration:0.35 animations:^{
-        self.eatBtn.transform=CGAffineTransformMakeScale(.7, .7);
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.35 animations:^{
-            self.eatBtn.transform=CGAffineTransformMakeScale(1, 1);
+-(void)animationContent{
+    
+    UIView *btnView=[self.scrollView viewWithTag:index];
+    UIView *bgView=[self.scrollView viewWithTag:index+20];
+    
+        [UIView animateWithDuration:0.0 animations:^{
+//            btnView.transform=CGAffineTransformMakeScale(.7, .7);
+//            bgView.transform=CGAffineTransformMakeScale(.7, .7);
         } completion:^(BOOL finished) {
-            _dateAnim = [self multiLayer];
-            _dateAnim.position = _eatBtn.center;
-            [_dateAnim setHaloLayerColor:[Tools getColor:@"44A8F2"].CGColor];
-            _dateAnim.radius = 81.0/2.0+6.0;
-            [self.scrollView.layer insertSublayer:_dateAnim below:_eatBtn.layer];
+            [UIView animateWithDuration:0.5 animations:^{
+                btnView.transform=CGAffineTransformMakeScale(1, 1);
+                bgView.transform=CGAffineTransformMakeScale(.9, .9);
+            } completion:^(BOOL finished) {
+                [UIView animateWithDuration:.2 animations:^{
+                    btnView.transform=CGAffineTransformMakeScale(0.9, 0.9);
+                } completion:^(BOOL finished) {
+                    [UIView animateWithDuration:.3 animations:^{
+                        bgView.transform=CGAffineTransformMakeScale(1.2, 1.2);
+                    } completion:^(BOOL finished) {
+                        [UIView animateWithDuration:.4 animations:^{
+                            bgView.transform=CGAffineTransformMakeScale(0.9, 0.9);
+                        } completion:^(BOOL finished) {
+                            [timer1 setFireDate:[NSDate distantFuture]];
+                        }];
+                    }];
+                }];
+            }];
         }];
-    }];
+    index++;
+    if (index>10) {
+        index=1;
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [self.navigationController.navigationBar setHidden:YES];
-     timer =  [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(aaa) userInfo:nil repeats:YES];
     [timer setFireDate:[NSDate distantPast]];
+}
+
+-(void)biginAni{
+    timer1 =  [NSTimer scheduledTimerWithTimeInterval:.5 target:self selector:@selector(animationContent) userInfo:nil repeats:YES];
+    [timer1 setFireDate:[NSDate distantPast]];
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
