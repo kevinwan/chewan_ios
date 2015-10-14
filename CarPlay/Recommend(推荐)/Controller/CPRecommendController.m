@@ -117,25 +117,24 @@
         _collectionView.dataSource = self;
         _collectionView.minimumPageScale = 0.928;
         self.view.backgroundColor = [Tools getColor:@"efefef"];
-//        _collectionView.scrollView.header = [MJRefreshHeader headerWithRefreshingBlock:^{
-//            NSLog(@"hsuala....");
-//        }];
-        // top
+        
+        // 设置刷新控件
+        ZYWeakSelf
         AAPullToRefresh *tv = [_collectionView.scrollView addPullToRefreshPosition:AAPullToRefreshPositionLeft actionHandler:^(AAPullToRefresh *v){
-            NSLog(@"fire from top");
-            [_collectionView.scrollView setContentOffset:CGPointMake(-40, 0) animated:YES];
+            ZYStrongSelf
+            [self.collectionView.scrollView setContentOffset:CGPointMake(-50, 0) animated:YES];
             [v performSelector:@selector(stopIndicatorAnimation) withObject:nil afterDelay:1.0f];
         }];
-        tv.imageIcon = [UIImage imageNamed:@"launchpad"];
+        tv.imageIcon = [UIImage imageNamed:@"车轮"];
         tv.borderColor = [UIColor whiteColor];
         
         // bottom
         AAPullToRefresh *bv = [_collectionView.scrollView addPullToRefreshPosition:AAPullToRefreshPositionRight actionHandler:^(AAPullToRefresh *v){
-            NSLog(@"fire from bottom");
-            [_collectionView.scrollView setContentOffset:CGPointMake(_collectionView.scrollView.contentSize.width + 49 - _collectionView.scrollView.bounds.size.width, 0) animated:YES];
+            ZYStrongSelf
+            [self.collectionView.scrollView setContentOffset:CGPointMake(_collectionView.scrollView.contentSize.width + 50 - _collectionView.scrollView.width, 0) animated:YES];
             [v performSelector:@selector(stopIndicatorAnimation) withObject:nil afterDelay:1.0f];
         }];
-        bv.imageIcon = [UIImage imageNamed:@"launchpad"];
+        bv.imageIcon = [UIImage imageNamed:@"车轮"];
         bv.borderColor = [UIColor whiteColor];
 
     }

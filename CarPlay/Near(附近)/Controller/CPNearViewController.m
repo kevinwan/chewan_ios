@@ -11,10 +11,8 @@
 #import "CPMySwitch.h"
 #import "CPMyDateViewController.h"
 #import "PagedFlowView.h"
-#import "MJRefreshNormalHeader.h"
 #import "CPSelectView.h"
 #import "CPNearParams.h"
-#import "SVPullToRefresh.h"
 #import "AAPullToRefresh.h"
 
 @interface CPNearViewController ()<PagedFlowViewDataSource,PagedFlowViewDelegate,UIScrollViewDelegate>
@@ -64,10 +62,6 @@
             [self.datas addObjectsFromArray:arr];
             
             [self.tableView reloadData];
-            if (self.ignore == 0) {
-                self.tableView.scrollView.contentOffset = CGPointZero;;
-                NSLog(@"老了");
-            }
         }
     } failure:^(NSError *error) {
         
@@ -246,41 +240,28 @@
         AAPullToRefresh *tv = [_tableView.scrollView addPullToRefreshPosition:AAPullToRefreshPositionTop actionHandler:^(AAPullToRefresh *v){
             NSLog(@"fire from top");
             ZYStrongSelf
-            [_tableView.scrollView setContentOffset:CGPointMake(0, -40) animated:YES];
+            [self.tableView.scrollView setContentOffset:CGPointMake(0, -40) animated:YES];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [v stopIndicatorAnimation];
                 NSLog(@"刷新完毕");
             });
         }];
-        tv.imageIcon = [UIImage imageNamed:@"launchpad"];
+        tv.imageIcon = [UIImage imageNamed:@"车轮"];
         tv.borderColor = [UIColor whiteColor];
         
         // bottom
         AAPullToRefresh *bv = [_tableView.scrollView addPullToRefreshPosition:AAPullToRefreshPositionBottom actionHandler:^(AAPullToRefresh *v){
             NSLog(@"fire from bottom");
-            [_tableView.scrollView setContentOffset:CGPointMake(0, _tableView.scrollView.contentSize.height + 49 - _tableView.scrollView.bounds.size.height) animated:YES];
+            ZYStrongSelf
+            [self.tableView.scrollView setContentOffset:CGPointMake(0, _tableView.scrollView.contentSize.height + 49 - _tableView.scrollView.bounds.size.height) animated:YES];
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [v stopIndicatorAnimation];
             });
         }];
-        bv.imageIcon = [UIImage imageNamed:@"launchpad"];
+        bv.imageIcon = [UIImage imageNamed:@"车轮"];
         bv.borderColor = [UIColor whiteColor];
 
-//        ZYWeakSelf
-//        MJRefreshStateHeader *header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
-//            ZYStrongSelf
-//            self.ignore = 0;
-//            [self loadData];
-//        }];
-//        header.ignoredScrollViewContentInsetTop = 40;
-//        _tableView.scrollView.header = header;
-//        _tableView.scrollView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-//            ZYStrongSelf
-//            self.ignore += CPPageNum;
-//            [self loadData];
-//        }];
-        
     }
     return _tableView;
 }
