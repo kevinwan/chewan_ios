@@ -9,3 +9,4 @@ pod 'EaseMobSDKFull', :git => 'https://github.com/easemob/sdk-ios-cocoapods-inte
 pod 'ReactiveCocoa', '~> 2.5.0'
 pod 'IQKeyboardManager'
 pod 'BaiduMapAPI'
+pod 'YLGIFImage'

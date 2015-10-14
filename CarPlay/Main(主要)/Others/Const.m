@@ -13,3 +13,6 @@ NSString * const Token  = @"token";
 NSString * const FreeTimeKey = @"FreeTimeKey";
 NSString * const Longitude = @"longitude";
 NSString * const Latitude = @"latitude";
+NSString * const Province = @"province";
+NSString * const City = @"city";
+NSString * const District = @"district";

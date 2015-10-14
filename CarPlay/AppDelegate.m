@@ -18,6 +18,7 @@
  *  定位管理者
  */
 @property (nonatomic ,strong) CLLocationManager *mgr;
+@property (nonatomic, strong) CLGeocoder *geocoder;
 @end
 
 @implementation AppDelegate
@@ -31,7 +32,9 @@
     self.window.rootViewController = _tabVc;
     [self.window makeKeyAndVisible];
     [ZYNotificationCenter addObserver:self selector:@selector(loginStateChang) name:NOTIFICATION_HASLOGIN object:nil];
-
+    
+    [SVProgressHUD setBackgroundColor:ZYColor(0, 0, 0, 0.8)];
+    [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
     // 设置点击空白区域退出键盘
     [[IQKeyboardManager sharedManager] setShouldResignOnTouchOutside:YES];
     
@@ -154,7 +157,7 @@
  */
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    NSLog(@"%s", __func__);
+    
     // 如果只需要获取一次, 可以获取到位置之后就停止
     //    [self.mgr stopUpdatingLocation];
     
@@ -175,10 +178,24 @@
      freeway drive 高速公路驾车
      */
     CLLocation *location = [locations lastObject];
-    NSLog(@"%f, %f speed = %f，城市%@", location.coordinate.latitude , location.coordinate.longitude, location.speed ,location.description);
     [ZYUserDefaults setDouble:location.coordinate.latitude forKey:Latitude];
     [ZYUserDefaults setDouble:location.coordinate.longitude forKey:Longitude];
     [self.mgr stopUpdatingLocation];
+    
+    if (!location) {
+        return;
+    }
+    // 根据CLLocation对象获取对应的地标信息
+    [self.geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+        
+        for (CLPlacemark *placemark in placemarks) {
+    
+            [ZYUserDefaults setObject:placemark.addressDictionary[@"State"] forKey:Province];
+            [ZYUserDefaults setObject:placemark.addressDictionary[@"City"] forKey:City];
+            [ZYUserDefaults setObject:placemark.addressDictionary[@"SubLocality"] forKey:District];
+        }
+    }];
+
     
 }
 
@@ -190,4 +207,12 @@
     }
     return _mgr;
 }
+- (CLGeocoder *)geocoder
+{
+    if (_geocoder == nil) {
+        _geocoder = [[CLGeocoder alloc] init];
+    }
+    return _geocoder;
+}
+
 @end

@@ -32,4 +32,5 @@
 #import "NSTimer+ZY.h"
 #import "SingleTon.h"
 #import "ZYBlock.h"
+#import "UIViewController+ZY.h"
 #endif

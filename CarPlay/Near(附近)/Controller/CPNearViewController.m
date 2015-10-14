@@ -14,6 +14,7 @@
 #import "CPSelectView.h"
 #import "CPNearParams.h"
 #import "AAPullToRefresh.h"
+#import "ZYProgressView.h"
 
 @interface CPNearViewController ()<PagedFlowViewDataSource,PagedFlowViewDelegate,UIScrollViewDelegate>
 @property (nonatomic, strong) PagedFlowView *tableView;
@@ -31,6 +32,11 @@
 {
     [super viewDidLoad];
     
+    if (CPNoNetWork) {
+        
+        [ZYProgressView showMessage:@"网络连接失败,请检查网络"];
+        return;
+    }
     
     self.offset = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250;
     
@@ -67,7 +73,7 @@
         
         [self.tableView.scrollView.header endRefreshing];
         [self.tableView.scrollView.footer endRefreshing];
-        NSLog(@"%@",error);
+        [self showError:@"加载失败"];
     }];
 }
 
@@ -162,6 +168,13 @@
 {
     if (CPUnLogin) {
         
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"你还未注册,注册后就可以邀请" delegate:nil cancelButtonTitle:@"再想想" otherButtonTitles:@"去注册", nil];
+        [alertView.rac_buttonClickedSignal subscribeNext:^(id x) {
+            if ([x integerValue] != 0) {
+                [ZYNotificationCenter postNotificationName:NOTIFICATION_HASLOGIN object:nil];
+            }
+        }];
+        [alertView show];
         return;
     }
 //    body
@@ -190,13 +203,12 @@
     DLog(@"邀请%@",params);
     [CPNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
         if (CPSuccess) {
-            DLog(@"邀请已发出%@",responseObject);
+            [self showInfo:@"邀请已发出"];
         }else if ([CPErrorMsg contains:@"申请中"]){
-            
-            DLog(@"申请中...");
+            [self showInfo:@"正在申请中"];
         }
     } failed:^(NSError *error) {
-        DLog(@"%@邀请失败",error);
+        [self showInfo:@"邀请失败"];
     }];
     
 }

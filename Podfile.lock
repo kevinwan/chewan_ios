@@ -41,6 +41,7 @@ PODS:
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
   - SVProgressHUD (1.1.3)
+  - YLGIFImage (0.11)
 
 DEPENDENCIES:
   - AFNetworking
@@ -53,6 +54,7 @@ DEPENDENCIES:
   - ReactiveCocoa (~> 2.5.0)
   - SDWebImage
   - SVProgressHUD
+  - YLGIFImage
 
 EXTERNAL SOURCES:
   EaseMobSDKFull:
@@ -74,5 +76,6 @@ SPEC CHECKSUMS:
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
+  YLGIFImage: c0ae132fe80e5282b2762a97d14e23ba71a748ae
 
 COCOAPODS: 0.37.2

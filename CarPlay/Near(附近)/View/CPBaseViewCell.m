@@ -36,6 +36,10 @@
  *  显示车型的View
  */
 @property (weak, nonatomic) IBOutlet UILabel *carTypeView;
+/**
+ *  关注的按钮
+ */
+@property (weak, nonatomic) IBOutlet UIButton *loveBtn;
 
 /**
  *  包接送
@@ -193,7 +197,7 @@
 //    }];
     
     [self.distanceView setTitle:[NSString stringWithFormat:@"%zdm",model.distance] forState:UIControlStateNormal];
-    
+    self.loveBtn.selected = model.organizer.subscribeFlag;
     self.payView.text = model.pay;
     self.sendView.hidden = !model.transfer;
     if (model.title.length) {

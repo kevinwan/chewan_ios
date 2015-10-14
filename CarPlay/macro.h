@@ -41,7 +41,7 @@
 #define iOS9 (SystemVersion >= 9.0 && SystemVersion < 10.0)
 #define CPPageNum       10
 
-#define CPNoNetWork     ([Tools getToken])  // 判断网络状态
+#define CPNoNetWork     ([Tools isNoNetWork])  // 判断网络状态
 #define CPUserId        [Tools getUserId]    // 获取userId
 #define CPToken         [Tools getToken]    // 获取token
 #define CPLatitude      [Tools getLatitude] //获取经度
@@ -59,5 +59,5 @@
 #define NOTIFICATION_ROOTCONTROLLERCHANGETOTAB @"rootControllerChangeToTab"
 #define NOTIFICATION_HASLOGIN @"hasLogin"
 #define THIRDPARTYLOGINACCOUNT @"3partyLoginAccount"
-
+#define CPReRefreshNotification @"CPReRefreshNotification"
 #endif

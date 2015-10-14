@@ -36,9 +36,9 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[UserId] = CPUserId;
     params[Token] = CPToken;
-    params[@"province"] = @"江苏省";
-    params[@"city"] = @"南京市";
-    params[@"district"] = @"玄武区";
+    params[@"province"] = [ZYUserDefaults stringForKey:Province];
+    params[@"city"] = [ZYUserDefaults stringForKey:City];
+    params[@"district"] = [ZYUserDefaults stringForKey:District];
     params[@"limit"] = @10;
     [ZYNetWorkTool getWithUrl:@"official/activity/list" params:params success:^(id responseObject) {
         DLog(@"%@",responseObject);
