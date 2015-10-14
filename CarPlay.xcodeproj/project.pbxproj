@@ -167,6 +167,11 @@
 		E3E6B8951BB514A2006B4F8A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6B8941BB514A2006B4F8A /* AppDelegate.m */; settings = {ASSET_TAGS = (); }; };
 		E3E6B8981BB515F1006B4F8A /* CPSexView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6B8971BB515F1006B4F8A /* CPSexView.m */; settings = {ASSET_TAGS = (); }; };
 		E3EA1A021BC8DF43007ECECA /* CPRecommendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EA1A011BC8DF43007ECECA /* CPRecommendModel.m */; settings = {ASSET_TAGS = (); }; };
+		E3EA40B01BCE04C900C6219E /* EGORefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E3EA40AD1BCE04C900C6219E /* EGORefresh.bundle */; settings = {ASSET_TAGS = (); }; };
+		E3EA40B11BCE04C900C6219E /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EA40AF1BCE04C900C6219E /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E3EA40B71BCE098400C6219E /* AAPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EA40B41BCE098400C6219E /* AAPullToRefresh.m */; settings = {ASSET_TAGS = (); }; };
+		E3EA40B81BCE098400C6219E /* centerIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3EA40B51BCE098400C6219E /* centerIcon@2x.png */; settings = {ASSET_TAGS = (); }; };
+		E3EA40B91BCE098400C6219E /* launchpad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3EA40B61BCE098400C6219E /* launchpad@2x.png */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -467,6 +472,13 @@
 		E3E6B8971BB515F1006B4F8A /* CPSexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSexView.m; sourceTree = "<group>"; };
 		E3EA1A001BC8DF43007ECECA /* CPRecommendModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRecommendModel.h; sourceTree = "<group>"; };
 		E3EA1A011BC8DF43007ECECA /* CPRecommendModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRecommendModel.m; sourceTree = "<group>"; };
+		E3EA40AD1BCE04C900C6219E /* EGORefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EGORefresh.bundle; sourceTree = "<group>"; };
+		E3EA40AE1BCE04C900C6219E /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		E3EA40AF1BCE04C900C6219E /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		E3EA40B31BCE098400C6219E /* AAPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPullToRefresh.h; sourceTree = "<group>"; };
+		E3EA40B41BCE098400C6219E /* AAPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPullToRefresh.m; sourceTree = "<group>"; };
+		E3EA40B51BCE098400C6219E /* centerIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "centerIcon@2x.png"; sourceTree = "<group>"; };
+		E3EA40B61BCE098400C6219E /* launchpad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launchpad@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1409,6 +1421,8 @@
 		E3A471221BB3A85300973197 /* Libs(三方库) */ = {
 			isa = PBXGroup;
 			children = (
+				E3EA40B21BCE098400C6219E /* AAPullToRefresh */,
+				E3EA40AC1BCE04C900C6219E /* EGORefreshTableHeaderView */,
 				E3A4E1421BCD293000850AA7 /* SVPullToRefresh */,
 				6B2E361F1BCD24A00053459E /* MJIndexView */,
 				E31B12BC1BB9311700B51696 /* CorePhotoBroswerVC */,
@@ -1600,6 +1614,27 @@
 			path = CPLogin;
 			sourceTree = "<group>";
 		};
+		E3EA40AC1BCE04C900C6219E /* EGORefreshTableHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				E3EA40AD1BCE04C900C6219E /* EGORefresh.bundle */,
+				E3EA40AE1BCE04C900C6219E /* EGORefreshTableHeaderView.h */,
+				E3EA40AF1BCE04C900C6219E /* EGORefreshTableHeaderView.m */,
+			);
+			path = EGORefreshTableHeaderView;
+			sourceTree = "<group>";
+		};
+		E3EA40B21BCE098400C6219E /* AAPullToRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				E3EA40B31BCE098400C6219E /* AAPullToRefresh.h */,
+				E3EA40B41BCE098400C6219E /* AAPullToRefresh.m */,
+				E3EA40B51BCE098400C6219E /* centerIcon@2x.png */,
+				E3EA40B61BCE098400C6219E /* launchpad@2x.png */,
+			);
+			path = AAPullToRefresh;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1672,8 +1707,10 @@
 				6B440CE31BBA86C500CF8410 /* CPMyInfoFirCell.xib in Resources */,
 				6B51767D1BB9502100D7A62E /* CustomSwitch.xib in Resources */,
 				6B440CDB1BBA857B00CF8410 /* CPMyInfoHead.xib in Resources */,
+				E3EA40B91BCE098400C6219E /* launchpad@2x.png in Resources */,
 				6BE2E61C1BC67CB000D1D928 /* CPTakeALook.storyboard in Resources */,
 				E37C10B41BBB79E700E1A6A2 /* CPMyVisitorViewController.storyboard in Resources */,
+				E3EA40B01BCE04C900C6219E /* EGORefresh.bundle in Resources */,
 				E3A68BBB1BBB874D002F4F75 /* CPConcernMyController.storyboard in Resources */,
 				6BE2E61A1BC67CB000D1D928 /* CPMatching.storyboard in Resources */,
 				E31B13531BB9312D00B51696 /* CoreSVP.bundle in Resources */,
@@ -1683,6 +1720,7 @@
 				6B153EF81BB5690900560935 /* CPRegViewController.storyboard in Resources */,
 				E31B12EC1BB9311700B51696 /* PhotoBroswerVC.xib in Resources */,
 				6B2411191BCB56AC0014468D /* CPMyInfoController.storyboard in Resources */,
+				E3EA40B81BCE098400C6219E /* centerIcon@2x.png in Resources */,
 				6B1387DD1BCD0A6C00FAC462 /* CPBrandModelViewController.xib in Resources */,
 				E3E6B8921BB4FD54006B4F8A /* CPLoginViewController.storyboard in Resources */,
 				6B440CE71BBA86E600CF8410 /* CPMyInfoThrCell.xib in Resources */,
@@ -1740,6 +1778,7 @@
 				6B153EFC1BB5692500560935 /* CPMyViewController.m in Sources */,
 				6B906F7D1BC7C98B0048A806 /* ZHAppDelegate.m in Sources */,
 				6B2E36221BCD24A00053459E /* MJNIndexView.m in Sources */,
+				E3EA40B71BCE098400C6219E /* AAPullToRefresh.m in Sources */,
 				E31B135B1BB9313A00B51696 /* PhotoCotentView.m in Sources */,
 				E3C5F1911BC92C790021E33D /* CPActivityDetailViewController.m in Sources */,
 				E31B13451BB9312D00B51696 /* UIDevice+Extend.m in Sources */,
@@ -1773,6 +1812,7 @@
 				6B906F771BC773830048A806 /* UIView+Shake.m in Sources */,
 				E3A4718A1BB3A85300973197 /* UIViewController+ZYExtension.m in Sources */,
 				E3E6B8911BB4FD54006B4F8A /* CPLoginViewController.m in Sources */,
+				E3EA40B11BCE04C900C6219E /* EGORefreshTableHeaderView.m in Sources */,
 				E31B12E71BB9311700B51696 /* PBScrollView.m in Sources */,
 				E3A4718E1BB3A85300973197 /* Reachability.m in Sources */,
 				E3A4718D1BB3A85300973197 /* CPNetWorkTool.m in Sources */,

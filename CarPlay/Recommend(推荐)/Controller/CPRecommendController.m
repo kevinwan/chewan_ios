@@ -11,6 +11,7 @@
 #import "PagedFlowView.h"
 #import "CPActivityDetailViewController.h"
 #import "CPRecommendModel.h"
+#import "AAPullToRefresh.h"
 
 @interface CPRecommendController ()<PagedFlowViewDelegate, PagedFlowViewDataSource>
 @property (nonatomic, strong) PagedFlowView *collectionView;
@@ -62,7 +63,8 @@
 #pragma mark - flowViewDelegate & flowViewDataSource
 - (NSInteger)numberOfPagesInFlowView:(PagedFlowView *)flowView
 {
-    return self.datas.count;
+    return 3;
+//    return self.datas.count;
 }
 
 - (UIView *)flowView:(PagedFlowView *)flowView cellForPageAtIndex:(NSInteger)index
@@ -71,7 +73,7 @@
     if (!cell) {
         
         cell = [[NSBundle mainBundle] loadNibNamed:@"CPRecommendCell" owner:nil options:nil].lastObject;
-        cell.model = self.datas[index];
+//        cell.model = self.datas[index];
     }
     return cell;
 }
@@ -118,6 +120,24 @@
 //        _collectionView.scrollView.header = [MJRefreshHeader headerWithRefreshingBlock:^{
 //            NSLog(@"hsuala....");
 //        }];
+        // top
+        AAPullToRefresh *tv = [_collectionView.scrollView addPullToRefreshPosition:AAPullToRefreshPositionLeft actionHandler:^(AAPullToRefresh *v){
+            NSLog(@"fire from top");
+            [_collectionView.scrollView setContentOffset:CGPointMake(-40, 0) animated:YES];
+            [v performSelector:@selector(stopIndicatorAnimation) withObject:nil afterDelay:1.0f];
+        }];
+        tv.imageIcon = [UIImage imageNamed:@"launchpad"];
+        tv.borderColor = [UIColor whiteColor];
+        
+        // bottom
+        AAPullToRefresh *bv = [_collectionView.scrollView addPullToRefreshPosition:AAPullToRefreshPositionRight actionHandler:^(AAPullToRefresh *v){
+            NSLog(@"fire from bottom");
+            [_collectionView.scrollView setContentOffset:CGPointMake(_collectionView.scrollView.contentSize.width + 49 - _collectionView.scrollView.bounds.size.width, 0) animated:YES];
+            [v performSelector:@selector(stopIndicatorAnimation) withObject:nil afterDelay:1.0f];
+        }];
+        bv.imageIcon = [UIImage imageNamed:@"launchpad"];
+        bv.borderColor = [UIColor whiteColor];
+
     }
     return _collectionView;
 }
