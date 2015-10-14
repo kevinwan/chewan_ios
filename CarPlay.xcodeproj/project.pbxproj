@@ -144,6 +144,8 @@
 		E3A471971BB3A85300973197 /* CPTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A471721BB3A85300973197 /* CPTabBar.m */; settings = {ASSET_TAGS = (); }; };
 		E3A4E0C71BCCCC1300850AA7 /* CPNearParams.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A4E0C61BCCCC1300850AA7 /* CPNearParams.m */; settings = {ASSET_TAGS = (); }; };
 		E3A4E0CA1BCCD35300850AA7 /* PagedFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A4E0C91BCCD35300850AA7 /* PagedFlowView.m */; settings = {ASSET_TAGS = (); }; };
+		E3A4E1481BCD293000850AA7 /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A4E1451BCD293000850AA7 /* UIScrollView+SVInfiniteScrolling.m */; settings = {ASSET_TAGS = (); }; };
+		E3A4E1491BCD293000850AA7 /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A4E1471BCD293000850AA7 /* UIScrollView+SVPullToRefresh.m */; settings = {ASSET_TAGS = (); }; };
 		E3A68BBB1BBB874D002F4F75 /* CPConcernMyController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3A68BBA1BBB874D002F4F75 /* CPConcernMyController.storyboard */; settings = {ASSET_TAGS = (); }; };
 		E3A68BBE1BBB8846002F4F75 /* CPConcernMyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A68BBD1BBB8846002F4F75 /* CPConcernMyCell.m */; settings = {ASSET_TAGS = (); }; };
 		E3A68BC11BBB8EE4002F4F75 /* ZYTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A68BC01BBB8EE4002F4F75 /* ZYTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
@@ -415,6 +417,11 @@
 		E3A4E0C61BCCCC1300850AA7 /* CPNearParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNearParams.m; sourceTree = "<group>"; };
 		E3A4E0C81BCCD35300850AA7 /* PagedFlowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagedFlowView.h; sourceTree = "<group>"; };
 		E3A4E0C91BCCD35300850AA7 /* PagedFlowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagedFlowView.m; sourceTree = "<group>"; };
+		E3A4E1431BCD293000850AA7 /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
+		E3A4E1441BCD293000850AA7 /* UIScrollView+SVInfiniteScrolling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVInfiniteScrolling.h"; sourceTree = "<group>"; };
+		E3A4E1451BCD293000850AA7 /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
+		E3A4E1461BCD293000850AA7 /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
+		E3A4E1471BCD293000850AA7 /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
 		E3A68BBA1BBB874D002F4F75 /* CPConcernMyController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPConcernMyController.storyboard; sourceTree = "<group>"; };
 		E3A68BBC1BBB8846002F4F75 /* CPConcernMyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPConcernMyCell.h; sourceTree = "<group>"; };
 		E3A68BBD1BBB8846002F4F75 /* CPConcernMyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPConcernMyCell.m; sourceTree = "<group>"; };
@@ -1351,6 +1358,7 @@
 		E3A471221BB3A85300973197 /* Libs(三方库) */ = {
 			isa = PBXGroup;
 			children = (
+				E3A4E1421BCD293000850AA7 /* SVPullToRefresh */,
 				E31B12BC1BB9311700B51696 /* CorePhotoBroswerVC */,
 				E39627BC1BB54D91005E0CF2 /* PulsingHalo */,
 				E3E6B8891BB4F7FA006B4F8A /* FXBlurView(模糊效果) */,
@@ -1506,6 +1514,18 @@
 				E3A471721BB3A85300973197 /* CPTabBar.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		E3A4E1421BCD293000850AA7 /* SVPullToRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				E3A4E1431BCD293000850AA7 /* SVPullToRefresh.h */,
+				E3A4E1441BCD293000850AA7 /* UIScrollView+SVInfiniteScrolling.h */,
+				E3A4E1451BCD293000850AA7 /* UIScrollView+SVInfiniteScrolling.m */,
+				E3A4E1461BCD293000850AA7 /* UIScrollView+SVPullToRefresh.h */,
+				E3A4E1471BCD293000850AA7 /* UIScrollView+SVPullToRefresh.m */,
+			);
+			path = SVPullToRefresh;
 			sourceTree = "<group>";
 		};
 		E3E6B8891BB4F7FA006B4F8A /* FXBlurView(模糊效果) */ = {
@@ -1694,6 +1714,7 @@
 				E3A471971BB3A85300973197 /* CPTabBar.m in Sources */,
 				E3AEFE391BC64E5B009C9438 /* CPRecommendCell.m in Sources */,
 				6B153EF61BB5690900560935 /* CPForgetPasswordViewController.m in Sources */,
+				E3A4E1491BCD293000850AA7 /* UIScrollView+SVPullToRefresh.m in Sources */,
 				6B906F771BC773830048A806 /* UIView+Shake.m in Sources */,
 				E3A4718A1BB3A85300973197 /* UIViewController+ZYExtension.m in Sources */,
 				E3E6B8911BB4FD54006B4F8A /* CPLoginViewController.m in Sources */,
@@ -1747,6 +1768,7 @@
 				E3AF16FE1BBA296C00306ABF /* CPNoHighLightButton.m in Sources */,
 				6BCFFBBA1BBA456900C082B2 /* CPCareUser.m in Sources */,
 				E31B133F1BB9312D00B51696 /* NSArray+Extend.m in Sources */,
+				E3A4E1481BCD293000850AA7 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				E31B135A1BB9313A00B51696 /* CPTestPhotoViewController.m in Sources */,
 				E31B134B1BB9312D00B51696 /* UIImage+Water.m in Sources */,
 				E31B133B1BB9312D00B51696 /* NSString+File.m in Sources */,

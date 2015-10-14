@@ -14,6 +14,7 @@
 #import "MJRefreshNormalHeader.h"
 #import "CPSelectView.h"
 #import "CPNearParams.h"
+#import "SVPullToRefresh.h"
 
 @interface CPNearViewController ()<PagedFlowViewDataSource,PagedFlowViewDelegate,UIScrollViewDelegate>
 @property (nonatomic, strong) PagedFlowView *tableView;
@@ -69,7 +70,12 @@
             }
             NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
             [self.datas addObjectsFromArray:arr];
+            
             [self.tableView reloadData];
+            if (self.ignore == 0) {
+                self.tableView.scrollView.contentOffset = CGPointZero;;
+                NSLog(@"老了");
+            }
         }
     } failure:^(NSError *error) {
         
@@ -243,11 +249,21 @@
             _tableView.minimumPageScale = 0.96;
 //        _tableView.giveFrame = YES;
         ZYWeakSelf
-        _tableView.scrollView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        MJRefreshStateHeader *header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
             ZYStrongSelf
-            self.ignore += CPPageNum;
+            self.ignore = 0;
             [self loadData];
         }];
+        header.ignoredScrollViewContentInsetTop = 40;
+        _tableView.scrollView.header = header;
+        [RACObserve(_tableView.scrollView, contentOffset) subscribeNext:^(id x) {
+            NSLog(@"%f ddd",[x CGPointValue].y);
+        }];
+//        _tableView.scrollView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+//            ZYStrongSelf
+//            self.ignore += CPPageNum;
+//            [self loadData];
+//        }];
         
     }
     return _tableView;
