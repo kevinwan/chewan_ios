@@ -137,9 +137,10 @@
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] init];
     [tapGes.rac_gestureSignal subscribeNext:^(id x) {
         
-        if (![_model.organizer.photoAuthStatus isEqualToString:@"认证通过"]) {
-            self.tipView.hidden = NO;
-        }
+//        if (![_model.organizer.photoAuthStatus isEqualToString:@"认证通过"]) {
+//            self.tipView.hidden = NO;
+//        }
+        [self superViewWillRecive:IconViewClickKey info:_model];
     }];
     [self.userIconView addGestureRecognizer:tapGes];
     [self.userIconView addSubview:self.tipView];

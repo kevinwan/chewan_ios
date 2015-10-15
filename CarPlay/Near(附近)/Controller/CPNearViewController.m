@@ -151,13 +151,6 @@
     return self.datas.count;
 }
 
-- (void)flowView:(PagedFlowView *)flowView didTapPageAtIndex:(NSInteger)index
-{
-    CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
-    taVc.userId = self.datas[index].organizer.userId;
-    [self.navigationController pushViewController:taVc animated:YES];
-}
-
 #pragma mark - 事件交互
 
 - (void)superViewWillRecive:(NSString *)notifyName info:(id)userInfo
@@ -175,6 +168,12 @@
         
     }else if([notifyName isEqualToString:LoveBtnClickKey]){
         [self loveBtnClickWithInfo:(CPActivityModel *)userInfo];
+    }else if ([notifyName isEqualToString:IconViewClickKey]){
+        
+        CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
+        CPActivityModel *model = userInfo;
+        taVc.userId = model.organizer.userId;
+        [self.navigationController pushViewController:taVc animated:YES];
     }
 }
 
