@@ -47,6 +47,8 @@
 		6B364CA51BCF4748005A4AF9 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B364CA41BCF4748005A4AF9 /* UserProfileViewController.m */; settings = {ASSET_TAGS = (); }; };
 		6B364CA71BCF4BA8005A4AF9 /* CPSetting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B364CA61BCF4BA8005A4AF9 /* CPSetting.storyboard */; settings = {ASSET_TAGS = (); }; };
 		6B364CAA1BCF4BC3005A4AF9 /* CPSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B364CA91BCF4BC3005A4AF9 /* CPSettingController.m */; settings = {ASSET_TAGS = (); }; };
+		6B364CB21BCF5ACE005A4AF9 /* CPCarOwnersCertification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B364CB11BCF5ACE005A4AF9 /* CPCarOwnersCertification.storyboard */; settings = {ASSET_TAGS = (); }; };
+		6B364CB51BCF5AEB005A4AF9 /* CPCarOwnersCertificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B364CB41BCF5AEB005A4AF9 /* CPCarOwnersCertificationController.m */; settings = {ASSET_TAGS = (); }; };
 		6B440CDB1BBA857B00CF8410 /* CPMyInfoHead.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B440CDA1BBA857B00CF8410 /* CPMyInfoHead.xib */; settings = {ASSET_TAGS = (); }; };
 		6B440CE31BBA86C500CF8410 /* CPMyInfoFirCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B440CE21BBA86C500CF8410 /* CPMyInfoFirCell.xib */; settings = {ASSET_TAGS = (); }; };
 		6B440CE51BBA86D100CF8410 /* CPMyInfoSecCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B440CE41BBA86D100CF8410 /* CPMyInfoSecCell.xib */; settings = {ASSET_TAGS = (); }; };
@@ -587,6 +589,9 @@
 		6B364CA61BCF4BA8005A4AF9 /* CPSetting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPSetting.storyboard; sourceTree = "<group>"; };
 		6B364CA81BCF4BC3005A4AF9 /* CPSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSettingController.h; sourceTree = "<group>"; };
 		6B364CA91BCF4BC3005A4AF9 /* CPSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSettingController.m; sourceTree = "<group>"; };
+		6B364CB11BCF5ACE005A4AF9 /* CPCarOwnersCertification.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPCarOwnersCertification.storyboard; sourceTree = "<group>"; };
+		6B364CB31BCF5AEB005A4AF9 /* CPCarOwnersCertificationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCarOwnersCertificationController.h; sourceTree = "<group>"; };
+		6B364CB41BCF5AEB005A4AF9 /* CPCarOwnersCertificationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCarOwnersCertificationController.m; sourceTree = "<group>"; };
 		6B440CDA1BBA857B00CF8410 /* CPMyInfoHead.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPMyInfoHead.xib; sourceTree = "<group>"; };
 		6B440CE21BBA86C500CF8410 /* CPMyInfoFirCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPMyInfoFirCell.xib; sourceTree = "<group>"; };
 		6B440CE41BBA86D100CF8410 /* CPMyInfoSecCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPMyInfoSecCell.xib; sourceTree = "<group>"; };
@@ -1361,6 +1366,7 @@
 		6B1387CC1BCD0A6C00FAC462 /* CarOwnersCertification */ = {
 			isa = PBXGroup;
 			children = (
+				6B364CAB1BCF5A31005A4AF9 /* CarOwnersCertification(车主认证) */,
 				6B1387D01BCD0A6C00FAC462 /* CPBrandModel */,
 			);
 			path = CarOwnersCertification;
@@ -1514,6 +1520,16 @@
 				6B364CA41BCF4748005A4AF9 /* UserProfileViewController.m */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		6B364CAB1BCF5A31005A4AF9 /* CarOwnersCertification(车主认证) */ = {
+			isa = PBXGroup;
+			children = (
+				6B364CB11BCF5ACE005A4AF9 /* CPCarOwnersCertification.storyboard */,
+				6B364CB31BCF5AEB005A4AF9 /* CPCarOwnersCertificationController.h */,
+				6B364CB41BCF5AEB005A4AF9 /* CPCarOwnersCertificationController.m */,
+			);
+			path = "CarOwnersCertification(车主认证)";
 			sourceTree = "<group>";
 		};
 		6B5176781BB9502100D7A62E /* CustomSwitch */ = {
@@ -3585,6 +3601,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D2AC1811BCE5A5100201A8E /* tabbar_contacts.png in Resources */,
+				6B364CB21BCF5ACE005A4AF9 /* CPCarOwnersCertification.storyboard in Resources */,
 				6D2AC1611BCE5A5100201A8E /* chat_sender_audio_playing_002.png in Resources */,
 				6D2AC0FF1BCE5A5100201A8E /* VoiceSearchFeedback018@2x.png in Resources */,
 				6D2AC0F11BCE5A5100201A8E /* VoiceSearchFeedback011@2x.png in Resources */,
@@ -3888,6 +3905,7 @@
 				6D2ABF941BCE582100201A8E /* MWPhoto.m in Sources */,
 				6B2E36221BCD24A00053459E /* MJNIndexView.m in Sources */,
 				E3EA40B71BCE098400C6219E /* AAPullToRefresh.m in Sources */,
+				6B364CB51BCF5AEB005A4AF9 /* CPCarOwnersCertificationController.m in Sources */,
 				6D2AC0011BCE582100201A8E /* RobotListViewController.m in Sources */,
 				E31B135B1BB9313A00B51696 /* PhotoCotentView.m in Sources */,
 				E3C5F1911BC92C790021E33D /* CPActivityDetailViewController.m in Sources */,

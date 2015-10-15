@@ -65,6 +65,9 @@
                         if (responseObject[@"data"][@"token"]) {
                             [ZYUserDefaults setObject:responseObject[@"data"][@"token"] forKey:Token];
                         }
+                        [ZYUserDefaults setObject:self.accountField.text forKey:@"phone"];
+                        [ZYUserDefaults setObject:[Tools md5EncryptWithString:self.passwordField.text] forKey:@"password"];
+                        
                         [ZYNotificationCenter postNotificationName:NOTIFICATION_HASLOGIN object:nil];
                         [self.navigationController popToRootViewControllerAnimated:NO];
                     }else{

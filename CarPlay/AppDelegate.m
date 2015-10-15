@@ -188,7 +188,7 @@
  */
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    
+
     // 如果只需要获取一次, 可以获取到位置之后就停止
     //    [self.mgr stopUpdatingLocation];
     
