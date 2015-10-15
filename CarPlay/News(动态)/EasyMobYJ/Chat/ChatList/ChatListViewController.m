@@ -78,7 +78,7 @@
     [self.view addSubview:self.tableView];
     [self.tableView addSubview:self.slimeView];
     [self networkStateView];
-
+    self.view.backgroundColor = UIColorFromRGB(0xefefef);
     [self searchController];
 }
 
@@ -180,7 +180,7 @@
     if (_tableView == nil) {
 //        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.searchBar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.searchBar.frame.size.height) style:UITableViewStylePlain];
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
-        _tableView.backgroundColor = [UIColor whiteColor];
+        _tableView.backgroundColor = UIColorFromRGB(0xefefef);
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -307,66 +307,94 @@
 
 
     NSMutableArray * sortArr = [NSMutableArray arrayWithArray:sorte];
-    //如果没有感兴趣的人的话，自定义
-//    if (sortArr.count<5) {
-//        EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"yunjiang2" conversationType:eConversationTypeChat];
-//        EMConversation *activityConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"offen4" conversationType:eConversationTypeChat];
-//        EMConversation *lookMeConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"offen2" conversationType:eConversationTypeChat];
-//        EMConversation *subscribeConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"offen03" conversationType:eConversationTypeChat];
-//        EMConversation *officialConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"yunjiang" conversationType:eConversationTypeChat];
-//        [sortArr addObject:interestConversation];
-//        [sortArr addObject:activityConversation];
-//        [sortArr addObject:lookMeConversation];
-//        [sortArr addObject:subscribeConversation];
-//        [sortArr addObject:officialConversation];
-//    }
+
 //    后续优化算法，暂时这样做先
         if (sortArr.count == 0) {
-        EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"yunjiang2" conversationType:eConversationTypeChat];
+        EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"InterestAdmin" conversationType:eConversationTypeChat];
         [sortArr addObject:interestConversation];
     }
     //感兴趣的
     for (int i = 0; i<sortArr.count; i++) {
         EMConversation *conversation = [sortArr objectAtIndex:i];
-        if ([conversation.chatter isEqualToString:@"yunjiang2"])
+        if ([conversation.chatter isEqualToString:@"interestadmin"])
         {
             break;
         }else if (i == sortArr.count-1)
         {
-            EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"yunjiang2" conversationType:eConversationTypeChat];
+            EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"InterestAdmin" conversationType:eConversationTypeChat];
             [sortArr addObject:interestConversation];
         }
     }
-    //关注我的
+    //活动动态
     for (int i = 0; i<sortArr.count; i++) {
         EMConversation *conversation = [sortArr objectAtIndex:i];
-        if ([conversation.chatter isEqualToString:@"offen4"])
+        if ([conversation.chatter isEqualToString:@"activitystateadmin"])
         {
             break;
         }else if (i == sortArr.count-1)
         {
-            EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"offen4" conversationType:eConversationTypeChat];
+            EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"ActivityStateAdmin" conversationType:eConversationTypeChat];
+            [sortArr addObject:interestConversation];
+        }
+    }
+    
+    //最近访客
+    for (int i = 0; i<sortArr.count; i++) {
+        EMConversation *conversation = [sortArr objectAtIndex:i];
+        if ([conversation.chatter isEqualToString:@"userviewadmin"])
+        {
+            break;
+        }else if (i == sortArr.count-1)
+        {
+            EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"UserViewAdmin" conversationType:eConversationTypeChat];
+            [sortArr addObject:interestConversation];
+        }
+    }
+    
+    //谁关注我
+    for (int i = 0; i<sortArr.count; i++) {
+        EMConversation *conversation = [sortArr objectAtIndex:i];
+        if ([conversation.chatter isEqualToString:@"subscribeadmin"])
+        {
+            break;
+        }else if (i == sortArr.count-1)
+        {
+            EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"SubscribeAdmin" conversationType:eConversationTypeChat];
+            [sortArr addObject:interestConversation];
+        }
+    }
+    
+    //车玩官方
+    for (int i = 0; i<sortArr.count; i++) {
+        EMConversation *conversation = [sortArr objectAtIndex:i];
+        if ([conversation.chatter isEqualToString:@"officialadmin"])
+        {
+            break;
+        }else if (i == sortArr.count-1)
+        {
+            EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"OfficialAdmin" conversationType:eConversationTypeChat];
             [sortArr addObject:interestConversation];
         }
     }
 
     
     
+    
     for (int i = 0; i<sortArr.count; i++) {
         EMConversation *conversation = [sortArr objectAtIndex:i];
-        if ([conversation.chatter isEqualToString:@"yunjiang2"])
+        if ([conversation.chatter isEqualToString:@"interestadmin"])
         {
             [sortArr exchangeObjectAtIndex:i withObjectAtIndex:0];
-        }else if ([conversation.chatter isEqualToString:@"offen4"])
+        }else if ([conversation.chatter isEqualToString:@"activitystateadmin"])
         {
             [sortArr exchangeObjectAtIndex:i withObjectAtIndex:1];
-        }else if ([conversation.chatter isEqualToString:@"offen2"])
+        }else if ([conversation.chatter isEqualToString:@"userviewadmin"])
         {
             [sortArr exchangeObjectAtIndex:i withObjectAtIndex:2];
-        }else if ([conversation.chatter isEqualToString:@"offen03"])
+        }else if ([conversation.chatter isEqualToString:@"subscribeadmin"])
         {
             [sortArr exchangeObjectAtIndex:i withObjectAtIndex:3];
-        }else if ([conversation.chatter isEqualToString:@"yunjiang"])
+        }else if ([conversation.chatter isEqualToString:@"officialadmin"])
         {
             [sortArr exchangeObjectAtIndex:i withObjectAtIndex:4];
         }
@@ -452,8 +480,33 @@
     EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
     cell.name = conversation.chatter;
     if (conversation.conversationType == eConversationTypeChat) {
-        cell.name = [[RobotManager sharedInstance] getRobotNickWithUsername:conversation.chatter];
-        cell.placeholderImage = [UIImage imageNamed:@"chatListCellHead.png"];
+        switch (indexPath.row) {
+            case 0:
+                cell.name = @"感兴趣的";
+                cell.placeholderImage = [UIImage imageNamed:@"InterestAdmin"];
+                break;
+            case 1:
+                cell.name = @"活动动态";
+                cell.placeholderImage = [UIImage imageNamed:@"ActivityStateAdmin"];
+                break;
+            case 2:
+                cell.name = @"最近访客";
+                cell.placeholderImage = [UIImage imageNamed:@"UserViewAdmin"];
+                break;
+            case 3:
+                cell.name = @"谁关注我";
+                cell.placeholderImage = [UIImage imageNamed:@"SubscribeAdmin"];
+                break;
+            case 4:
+                cell.name = @"活动官方";
+                cell.placeholderImage = [UIImage imageNamed:@"OfficialAdmin"];
+                break;
+            default:
+                cell.name = [[RobotManager sharedInstance] getRobotNickWithUsername:conversation.chatter];
+                cell.placeholderImage = [UIImage imageNamed:@"chatListCellHead.png"];
+
+                break;
+        }
     }
     else{
         NSString *imageName = @"groupPublicHeader";
@@ -483,11 +536,6 @@
     cell.detailMsg = [self subTitleMessageByConversation:conversation];
     cell.time = [self lastMessageTimeByConversation:conversation];
     cell.unreadCount = [self unreadMessageCountByConversation:conversation];
-    if (indexPath.row % 2 == 1) {
-        cell.contentView.backgroundColor = RGBACOLOR(246, 246, 246, 1);
-    }else{
-        cell.contentView.backgroundColor = [UIColor whiteColor];
-    }
     return cell;
 }
 
