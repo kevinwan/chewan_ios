@@ -14,10 +14,11 @@
 #import "UIButton+SD.h"
 #import <UIButton+WebCache.h>
 #import "CPMyCareController.h"
-#import "CPBrandModelViewController.h"
 #import "UzysAssetsPickerController.h"
 #import "CPAlbum.h"
-#import "CPSettingTableViewController.h"
+#import "CPSettingController.h"
+#import "CPCarOwnersCertificationController.h"
+#import "CPAvatarAuthenticationController.h"
 
 @interface CPMyViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate, UzysAssetsPickerControllerDelegate, UIAlertViewDelegate,UINavigationControllerDelegate>
 {
@@ -73,10 +74,12 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == 2) {
-        CPBrandModelViewController *CPBrandModelVC=[[CPBrandModelViewController alloc]init];
-        CPBrandModelVC.title=@"车型选择";
-        [self.navigationController pushViewController:CPBrandModelVC animated:YES];
+    if (indexPath.row == 1) {
+       CPCarOwnersCertificationController *CPCarOwnersCertification = [UIStoryboard storyboardWithName:@"CPCarOwnersCertification" bundle:nil].instantiateInitialViewController;
+        [self.navigationController pushViewController:CPCarOwnersCertification animated:YES];
+    }else {
+        CPAvatarAuthenticationController *CPAvatarAuthenticationController = [UIStoryboard storyboardWithName:@"CPAvatarAuthenticationController" bundle:nil].instantiateInitialViewController;
+        [self.navigationController pushViewController:CPAvatarAuthenticationController animated:YES];
     }
 }
 #pragma privateMethod
@@ -89,7 +92,7 @@
 //    self.view.window
 //    CPMyInfoController *myInfoVC = [UIStoryboard storyboardWithName:@"CPMyInfoController" bundle:nil].instantiateInitialViewController;
 //    [self.navigationController pushViewController:myInfoVC animated:YES];
-    CPSettingTableViewController *CPSettingTableVC=[[CPSettingTableViewController alloc]init];
+     CPSettingController *CPSettingTableVC = [UIStoryboard storyboardWithName:@"CPSetting" bundle:nil].instantiateInitialViewController;
     CPSettingTableVC.title=@"设置";
     [self.navigationController pushViewController:CPSettingTableVC animated:YES];
 }

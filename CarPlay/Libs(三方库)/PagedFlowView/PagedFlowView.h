@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CPScrollView.h"
 
 @protocol PagedFlowViewDataSource;
 @protocol PagedFlowViewDelegate;
@@ -56,7 +57,7 @@ typedef enum{
     id <PagedFlowViewDataSource> __weak _dataSource;
     id <PagedFlowViewDelegate>   __weak _delegate;
 }
-@property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) CPScrollView *scrollView;
 @property(nonatomic,weak)   id <PagedFlowViewDataSource> dataSource;
 @property(nonatomic,weak)   id <PagedFlowViewDelegate>   delegate;
 @property(nonatomic,strong)    UIPageControl       *pageControl;

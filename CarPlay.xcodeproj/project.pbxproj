@@ -40,13 +40,17 @@
 		6B364C891BCF3FDC005A4AF9 /* CPAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B364C881BCF3FDC005A4AF9 /* CPAlbum.m */; settings = {ASSET_TAGS = (); }; };
 		6B364C961BCF43B8005A4AF9 /* CPAbout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B364C8D1BCF43B8005A4AF9 /* CPAbout.m */; settings = {ASSET_TAGS = (); }; };
 		6B364C971BCF43B8005A4AF9 /* CPAbout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B364C8E1BCF43B8005A4AF9 /* CPAbout.storyboard */; settings = {ASSET_TAGS = (); }; };
-		6B364C981BCF43B8005A4AF9 /* CPSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B364C901BCF43B8005A4AF9 /* CPSettingTableViewController.m */; settings = {ASSET_TAGS = (); }; };
-		6B364C991BCF43B8005A4AF9 /* CPSettingTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B364C911BCF43B8005A4AF9 /* CPSettingTableViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		6B364C9A1BCF43B8005A4AF9 /* CPVersionIntroduction.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B364C941BCF43B8005A4AF9 /* CPVersionIntroduction.m */; settings = {ASSET_TAGS = (); }; };
 		6B364C9B1BCF43B8005A4AF9 /* CPVersionIntroduction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B364C951BCF43B8005A4AF9 /* CPVersionIntroduction.storyboard */; settings = {ASSET_TAGS = (); }; };
 		6B364CA01BCF442E005A4AF9 /* CPMyBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B364C9E1BCF442E005A4AF9 /* CPMyBaseCell.m */; settings = {ASSET_TAGS = (); }; };
 		6B364CA11BCF442E005A4AF9 /* CPMyBaseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B364C9F1BCF442E005A4AF9 /* CPMyBaseCell.xib */; settings = {ASSET_TAGS = (); }; };
 		6B364CA51BCF4748005A4AF9 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B364CA41BCF4748005A4AF9 /* UserProfileViewController.m */; settings = {ASSET_TAGS = (); }; };
+		6B364CA71BCF4BA8005A4AF9 /* CPSetting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B364CA61BCF4BA8005A4AF9 /* CPSetting.storyboard */; settings = {ASSET_TAGS = (); }; };
+		6B364CAA1BCF4BC3005A4AF9 /* CPSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B364CA91BCF4BC3005A4AF9 /* CPSettingController.m */; settings = {ASSET_TAGS = (); }; };
+		6B364CB21BCF5ACE005A4AF9 /* CPCarOwnersCertification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B364CB11BCF5ACE005A4AF9 /* CPCarOwnersCertification.storyboard */; settings = {ASSET_TAGS = (); }; };
+		6B364CB51BCF5AEB005A4AF9 /* CPCarOwnersCertificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B364CB41BCF5AEB005A4AF9 /* CPCarOwnersCertificationController.m */; settings = {ASSET_TAGS = (); }; };
+		6B364CB91BCF7ED0005A4AF9 /* CPAvatarAuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B364CB81BCF7ED0005A4AF9 /* CPAvatarAuthenticationController.m */; settings = {ASSET_TAGS = (); }; };
+		6B364CBB1BCF7EDB005A4AF9 /* CPAvatarAuthenticationController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B364CBA1BCF7EDB005A4AF9 /* CPAvatarAuthenticationController.storyboard */; settings = {ASSET_TAGS = (); }; };
 		6B440CDB1BBA857B00CF8410 /* CPMyInfoHead.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B440CDA1BBA857B00CF8410 /* CPMyInfoHead.xib */; settings = {ASSET_TAGS = (); }; };
 		6B440CE31BBA86C500CF8410 /* CPMyInfoFirCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B440CE21BBA86C500CF8410 /* CPMyInfoFirCell.xib */; settings = {ASSET_TAGS = (); }; };
 		6B440CE51BBA86D100CF8410 /* CPMyInfoSecCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B440CE41BBA86D100CF8410 /* CPMyInfoSecCell.xib */; settings = {ASSET_TAGS = (); }; };
@@ -453,7 +457,10 @@
 		E31E4BE51BAD47A500902B34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E31E4BE31BAD47A500902B34 /* LaunchScreen.storyboard */; };
 		E32B5DD51BCE264B0057FD71 /* PagedFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = E32B5DD41BCE264B0057FD71 /* PagedFlowView.m */; settings = {ASSET_TAGS = (); }; };
 		E32B5DD81BCE39CC0057FD71 /* UIViewController+ZY.m in Sources */ = {isa = PBXBuildFile; fileRef = E32B5DD71BCE39CC0057FD71 /* UIViewController+ZY.m */; settings = {ASSET_TAGS = (); }; };
-		E32B5DDB1BCE3C9A0057FD71 /* ZYProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E32B5DDA1BCE3C9A0057FD71 /* ZYProgressView.m */; settings = {ASSET_TAGS = (); }; };
+		E32B5DDF1BCE41B50057FD71 /* ZYProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E32B5DDE1BCE41B50057FD71 /* ZYProgressView.m */; settings = {ASSET_TAGS = (); }; };
+		E32B5DE21BCE41CA0057FD71 /* ZYRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = E32B5DE11BCE41CA0057FD71 /* ZYRefreshView.m */; settings = {ASSET_TAGS = (); }; };
+		E359EDBA1BCF3C2B0004B17D /* CPScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E359EDB91BCF3C2B0004B17D /* CPScrollView.m */; settings = {ASSET_TAGS = (); }; };
+		E359EDBD1BCF75C20004B17D /* ZYImageVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = E359EDBC1BCF75C20004B17D /* ZYImageVIew.m */; settings = {ASSET_TAGS = (); }; };
 		E3606F0D1BC76FF100797968 /* CPRecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */; settings = {ASSET_TAGS = (); }; };
 		E3606F121BC78C7300797968 /* CPBaseViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F111BC78C7300797968 /* CPBaseViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		E369E2B11BCB952E000A12B5 /* CPSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E369E2B01BCB952E000A12B5 /* CPSelectView.xib */; settings = {ASSET_TAGS = (); }; };
@@ -586,9 +593,6 @@
 		6B364C8C1BCF43B8005A4AF9 /* CPAbout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAbout.h; sourceTree = "<group>"; };
 		6B364C8D1BCF43B8005A4AF9 /* CPAbout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAbout.m; sourceTree = "<group>"; };
 		6B364C8E1BCF43B8005A4AF9 /* CPAbout.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPAbout.storyboard; sourceTree = "<group>"; };
-		6B364C8F1BCF43B8005A4AF9 /* CPSettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSettingTableViewController.h; sourceTree = "<group>"; };
-		6B364C901BCF43B8005A4AF9 /* CPSettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSettingTableViewController.m; sourceTree = "<group>"; };
-		6B364C911BCF43B8005A4AF9 /* CPSettingTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPSettingTableViewController.xib; sourceTree = "<group>"; };
 		6B364C931BCF43B8005A4AF9 /* CPVersionIntroduction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPVersionIntroduction.h; sourceTree = "<group>"; };
 		6B364C941BCF43B8005A4AF9 /* CPVersionIntroduction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPVersionIntroduction.m; sourceTree = "<group>"; };
 		6B364C951BCF43B8005A4AF9 /* CPVersionIntroduction.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPVersionIntroduction.storyboard; sourceTree = "<group>"; };
@@ -597,6 +601,15 @@
 		6B364C9F1BCF442E005A4AF9 /* CPMyBaseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPMyBaseCell.xib; sourceTree = "<group>"; };
 		6B364CA31BCF4748005A4AF9 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
 		6B364CA41BCF4748005A4AF9 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
+		6B364CA61BCF4BA8005A4AF9 /* CPSetting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPSetting.storyboard; sourceTree = "<group>"; };
+		6B364CA81BCF4BC3005A4AF9 /* CPSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSettingController.h; sourceTree = "<group>"; };
+		6B364CA91BCF4BC3005A4AF9 /* CPSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSettingController.m; sourceTree = "<group>"; };
+		6B364CB11BCF5ACE005A4AF9 /* CPCarOwnersCertification.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPCarOwnersCertification.storyboard; sourceTree = "<group>"; };
+		6B364CB31BCF5AEB005A4AF9 /* CPCarOwnersCertificationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCarOwnersCertificationController.h; sourceTree = "<group>"; };
+		6B364CB41BCF5AEB005A4AF9 /* CPCarOwnersCertificationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCarOwnersCertificationController.m; sourceTree = "<group>"; };
+		6B364CB71BCF7ED0005A4AF9 /* CPAvatarAuthenticationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAvatarAuthenticationController.h; sourceTree = "<group>"; };
+		6B364CB81BCF7ED0005A4AF9 /* CPAvatarAuthenticationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAvatarAuthenticationController.m; sourceTree = "<group>"; };
+		6B364CBA1BCF7EDB005A4AF9 /* CPAvatarAuthenticationController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPAvatarAuthenticationController.storyboard; sourceTree = "<group>"; };
 		6B440CDA1BBA857B00CF8410 /* CPMyInfoHead.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPMyInfoHead.xib; sourceTree = "<group>"; };
 		6B440CE21BBA86C500CF8410 /* CPMyInfoFirCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPMyInfoFirCell.xib; sourceTree = "<group>"; };
 		6B440CE41BBA86D100CF8410 /* CPMyInfoSecCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPMyInfoSecCell.xib; sourceTree = "<group>"; };
@@ -1210,8 +1223,14 @@
 		E32B5DD41BCE264B0057FD71 /* PagedFlowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagedFlowView.m; sourceTree = "<group>"; };
 		E32B5DD61BCE39CC0057FD71 /* UIViewController+ZY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZY.h"; sourceTree = "<group>"; };
 		E32B5DD71BCE39CC0057FD71 /* UIViewController+ZY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZY.m"; sourceTree = "<group>"; };
-		E32B5DD91BCE3C9A0057FD71 /* ZYProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYProgressView.h; sourceTree = "<group>"; };
-		E32B5DDA1BCE3C9A0057FD71 /* ZYProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYProgressView.m; sourceTree = "<group>"; };
+		E32B5DDD1BCE41B50057FD71 /* ZYProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYProgressView.h; sourceTree = "<group>"; };
+		E32B5DDE1BCE41B50057FD71 /* ZYProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYProgressView.m; sourceTree = "<group>"; };
+		E32B5DE01BCE41CA0057FD71 /* ZYRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYRefreshView.h; sourceTree = "<group>"; };
+		E32B5DE11BCE41CA0057FD71 /* ZYRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYRefreshView.m; sourceTree = "<group>"; };
+		E359EDB81BCF3C2B0004B17D /* CPScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPScrollView.h; sourceTree = "<group>"; };
+		E359EDB91BCF3C2B0004B17D /* CPScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPScrollView.m; sourceTree = "<group>"; };
+		E359EDBB1BCF75C20004B17D /* ZYImageVIew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYImageVIew.h; sourceTree = "<group>"; };
+		E359EDBC1BCF75C20004B17D /* ZYImageVIew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYImageVIew.m; sourceTree = "<group>"; };
 		E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPRecommendCell.xib; sourceTree = "<group>"; };
 		E3606F111BC78C7300797968 /* CPBaseViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPBaseViewCell.xib; sourceTree = "<group>"; };
 		E369E2B01BCB952E000A12B5 /* CPSelectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPSelectView.xib; sourceTree = "<group>"; };
@@ -1381,6 +1400,7 @@
 		6B1387CC1BCD0A6C00FAC462 /* CarOwnersCertification */ = {
 			isa = PBXGroup;
 			children = (
+				6B364CAB1BCF5A31005A4AF9 /* CarOwnersCertification(车主认证) */,
 				6B1387D01BCD0A6C00FAC462 /* CPBrandModel */,
 			);
 			path = CarOwnersCertification;
@@ -1489,10 +1509,10 @@
 			isa = PBXGroup;
 			children = (
 				6B364C8B1BCF43B8005A4AF9 /* CPAbout（关于我们） */,
-				6B364C8F1BCF43B8005A4AF9 /* CPSettingTableViewController.h */,
-				6B364C901BCF43B8005A4AF9 /* CPSettingTableViewController.m */,
-				6B364C911BCF43B8005A4AF9 /* CPSettingTableViewController.xib */,
 				6B364C921BCF43B8005A4AF9 /* CPVersionIntroduction(版本介绍) */,
+				6B364CA61BCF4BA8005A4AF9 /* CPSetting.storyboard */,
+				6B364CA81BCF4BC3005A4AF9 /* CPSettingController.h */,
+				6B364CA91BCF4BC3005A4AF9 /* CPSettingController.m */,
 			);
 			path = CPSetting;
 			sourceTree = "<group>";
@@ -1534,6 +1554,26 @@
 				6B364CA41BCF4748005A4AF9 /* UserProfileViewController.m */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		6B364CAB1BCF5A31005A4AF9 /* CarOwnersCertification(车主认证) */ = {
+			isa = PBXGroup;
+			children = (
+				6B364CB11BCF5ACE005A4AF9 /* CPCarOwnersCertification.storyboard */,
+				6B364CB31BCF5AEB005A4AF9 /* CPCarOwnersCertificationController.h */,
+				6B364CB41BCF5AEB005A4AF9 /* CPCarOwnersCertificationController.m */,
+			);
+			path = "CarOwnersCertification(车主认证)";
+			sourceTree = "<group>";
+		};
+		6B364CB61BCF7EB5005A4AF9 /* CPAvatarAuthentication */ = {
+			isa = PBXGroup;
+			children = (
+				6B364CB71BCF7ED0005A4AF9 /* CPAvatarAuthenticationController.h */,
+				6B364CB81BCF7ED0005A4AF9 /* CPAvatarAuthenticationController.m */,
+				6B364CBA1BCF7EDB005A4AF9 /* CPAvatarAuthenticationController.storyboard */,
+			);
+			path = CPAvatarAuthentication;
 			sourceTree = "<group>";
 		};
 		6B5176781BB9502100D7A62E /* CustomSwitch */ = {
@@ -3044,8 +3084,23 @@
 			children = (
 				E32B5DD31BCE264B0057FD71 /* PagedFlowView.h */,
 				E32B5DD41BCE264B0057FD71 /* PagedFlowView.m */,
+				E359EDB81BCF3C2B0004B17D /* CPScrollView.h */,
+				E359EDB91BCF3C2B0004B17D /* CPScrollView.m */,
 			);
 			path = PagedFlowView;
+			sourceTree = "<group>";
+		};
+		E32B5DDC1BCE41B50057FD71 /* ZYProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				E32B5DDD1BCE41B50057FD71 /* ZYProgressView.h */,
+				E32B5DDE1BCE41B50057FD71 /* ZYProgressView.m */,
+				E32B5DE01BCE41CA0057FD71 /* ZYRefreshView.h */,
+				E32B5DE11BCE41CA0057FD71 /* ZYRefreshView.m */,
+				E359EDBB1BCF75C20004B17D /* ZYImageVIew.h */,
+				E359EDBC1BCF75C20004B17D /* ZYImageVIew.m */,
+			);
+			path = ZYProgressView;
 			sourceTree = "<group>";
 		};
 		E369E2B51BCB9F70000A12B5 /* CPSelectView */ = {
@@ -3135,6 +3190,7 @@
 		E3A471051BB3A85300973197 /* My(我的) */ = {
 			isa = PBXGroup;
 			children = (
+				6B364CB61BCF7EB5005A4AF9 /* CPAvatarAuthentication */,
 				6B364C8A1BCF43B8005A4AF9 /* CPSetting */,
 				6B1387CC1BCD0A6C00FAC462 /* CarOwnersCertification */,
 				6BCFFBAB1BBA456900C082B2 /* MyCare */,
@@ -3357,6 +3413,7 @@
 		E3A471221BB3A85300973197 /* Libs(三方库) */ = {
 			isa = PBXGroup;
 			children = (
+				E32B5DDC1BCE41B50057FD71 /* ZYProgressView */,
 				6B364C691BCE4077005A4AF9 /* MJPhotoBrowser */,
 				6B364C4E1BCE401C005A4AF9 /* UzysAssetsPickerController */,
 				E32B5DD21BCE264B0057FD71 /* PagedFlowView */,
@@ -3368,8 +3425,6 @@
 				E3A471231BB3A85300973197 /* Aspects(Aop) */,
 				E3A471261BB3A85300973197 /* ZYExtension */,
 				E3A471551BB3A85300973197 /* ZYNetWorkTool */,
-				E32B5DD91BCE3C9A0057FD71 /* ZYProgressView.h */,
-				E32B5DDA1BCE3C9A0057FD71 /* ZYProgressView.m */,
 			);
 			path = "Libs(三方库)";
 			sourceTree = "<group>";
@@ -3615,6 +3670,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D2AC1811BCE5A5100201A8E /* tabbar_contacts.png in Resources */,
+				6B364CB21BCF5ACE005A4AF9 /* CPCarOwnersCertification.storyboard in Resources */,
 				6D2AC1611BCE5A5100201A8E /* chat_sender_audio_playing_002.png in Resources */,
 				6D2AC0FF1BCE5A5100201A8E /* VoiceSearchFeedback018@2x.png in Resources */,
 				6D2AC0F11BCE5A5100201A8E /* VoiceSearchFeedback011@2x.png in Resources */,
@@ -3708,7 +3764,6 @@
 				6B153EF51BB5690900560935 /* CPForgetPassword.storyboard in Resources */,
 				6D2AC1051BCE5A5100201A8E /* call_out@2x.png in Resources */,
 				6D2AC12C1BCE5A5100201A8E /* chatBar_more.png in Resources */,
-				6B364C991BCF43B8005A4AF9 /* CPSettingTableViewController.xib in Resources */,
 				E3606F121BC78C7300797968 /* CPBaseViewCell.xib in Resources */,
 				6D2AC1881BCE5A5100201A8E /* tabbar_settingHL@2x.png in Resources */,
 				6D2AC14F1BCE5A5100201A8E /* chatBar_more_photoSelected@2x.png in Resources */,
@@ -3780,6 +3835,7 @@
 				6B364C781BCE4077005A4AF9 /* MJPhotoBrowser.bundle in Resources */,
 				E31B12EC1BB9311700B51696 /* PhotoBroswerVC.xib in Resources */,
 				6D2AC1721BCE5A5100201A8E /* titleBar@2x.png in Resources */,
+				6B364CBB1BCF7EDB005A4AF9 /* CPAvatarAuthenticationController.storyboard in Resources */,
 				6D2AC1031BCE5A5100201A8E /* VoiceSearchFeedback020@2x.png in Resources */,
 				6D2AC0FA1BCE5A5100201A8E /* VoiceSearchFeedback016.png in Resources */,
 				6D2AC1501BCE5A5100201A8E /* messageToolbarBg@2x.png in Resources */,
@@ -3821,6 +3877,7 @@
 				6B364CA11BCF442E005A4AF9 /* CPMyBaseCell.xib in Resources */,
 				6D2AC1421BCE5A5100201A8E /* chatBar_colorMore_videoCallSelected@2x.png in Resources */,
 				6D2AC0F91BCE5A5100201A8E /* VoiceSearchFeedback015@2x.png in Resources */,
+				6B364CA71BCF4BA8005A4AF9 /* CPSetting.storyboard in Resources */,
 				6B364C9B1BCF43B8005A4AF9 /* CPVersionIntroduction.storyboard in Resources */,
 				6D2AC1581BCE5A5100201A8E /* chat_receiver_audio_playing003@2x.png in Resources */,
 				6D2AC13C1BCE5A5100201A8E /* chatBar_colorMore_location@2x.png in Resources */,
@@ -3921,13 +3978,16 @@
 				6B364C961BCF43B8005A4AF9 /* CPAbout.m in Sources */,
 				6D2ABF8C1BCE582100201A8E /* EMAlertView.m in Sources */,
 				6D2ABFEF1BCE582100201A8E /* ApplyFriendCell.m in Sources */,
+				E359EDBD1BCF75C20004B17D /* ZYImageVIew.m in Sources */,
 				6B153EFC1BB5692500560935 /* CPMyViewController.m in Sources */,
 				6D2ABFDB1BCE582100201A8E /* MessageModel.m in Sources */,
 				6B906F7D1BC7C98B0048A806 /* ZHAppDelegate.m in Sources */,
 				6D2ABFE41BCE582100201A8E /* GroupSettingViewController.m in Sources */,
+				6B364CB91BCF7ED0005A4AF9 /* CPAvatarAuthenticationController.m in Sources */,
 				6D2ABF941BCE582100201A8E /* MWPhoto.m in Sources */,
 				6B2E36221BCD24A00053459E /* MJNIndexView.m in Sources */,
 				E3EA40B71BCE098400C6219E /* AAPullToRefresh.m in Sources */,
+				6B364CB51BCF5AEB005A4AF9 /* CPCarOwnersCertificationController.m in Sources */,
 				6D2AC0011BCE582100201A8E /* RobotListViewController.m in Sources */,
 				E31B135B1BB9313A00B51696 /* PhotoCotentView.m in Sources */,
 				E3C5F1911BC92C790021E33D /* CPActivityDetailViewController.m in Sources */,
@@ -3936,7 +3996,6 @@
 				E3A471961BB3A85300973197 /* Tools.m in Sources */,
 				6D2ABF8A1BCE582100201A8E /* EMCDDeviceManager+Remind.m in Sources */,
 				6D2ABFBB1BCE582100201A8E /* SRSlimeView.m in Sources */,
-				6B364C981BCF43B8005A4AF9 /* CPSettingTableViewController.m in Sources */,
 				E3E6B8951BB514A2006B4F8A /* AppDelegate.m in Sources */,
 				6D2ABFE31BCE582100201A8E /* GroupListViewController.m in Sources */,
 				6D2ABFA31BCE582100201A8E /* UIButton+EMWebCache.m in Sources */,
@@ -4038,6 +4097,7 @@
 				6D2ABFB01BCE582100201A8E /* PSTCollectionViewItemKey.m in Sources */,
 				6D2ABFE21BCE582100201A8E /* GroupBansViewController.m in Sources */,
 				E31B13491BB9312D00B51696 /* UIImage+Extend.m in Sources */,
+				E32B5DE21BCE41CA0057FD71 /* ZYRefreshView.m in Sources */,
 				6B364C611BCE401C005A4AF9 /* UzysAppearanceConfig.m in Sources */,
 				E3A471741BB3A85300973197 /* CPBaseViewCell.m in Sources */,
 				6D2ABFA41BCE582100201A8E /* UIImage+EMGIF.m in Sources */,
@@ -4053,10 +4113,10 @@
 				E31B134E1BB9312D00B51696 /* UIWindow+Launch.m in Sources */,
 				6D2ABFE91BCE582100201A8E /* ChatroomListViewController.m in Sources */,
 				E31B134C1BB9312D00B51696 /* UITableViewCell+Extend.m in Sources */,
+				E32B5DDF1BCE41B50057FD71 /* ZYProgressView.m in Sources */,
 				6D2ABF8B1BCE582100201A8E /* EMCDDeviceManagerBase.m in Sources */,
 				6D2ABF9F1BCE582100201A8E /* EMSDWebImageManager.m in Sources */,
 				6D2ABFA01BCE582100201A8E /* EMSDWebImagePrefetcher.m in Sources */,
-				E32B5DDB1BCE3C9A0057FD71 /* ZYProgressView.m in Sources */,
 				E31B133D1BB9312D00B51696 /* CALayer+Anim.m in Sources */,
 				6D2AC0081BCE582100201A8E /* UIViewController+DismissKeyboard.m in Sources */,
 				6BE2E6121BC67C8C00D1D928 /* CPNPSButton.m in Sources */,
@@ -4106,6 +4166,7 @@
 				E31B135A1BB9313A00B51696 /* CPTestPhotoViewController.m in Sources */,
 				E31B134B1BB9312D00B51696 /* UIImage+Water.m in Sources */,
 				E31B133B1BB9312D00B51696 /* NSString+File.m in Sources */,
+				6B364CAA1BCF4BC3005A4AF9 /* CPSettingController.m in Sources */,
 				E3A471951BB3A85300973197 /* Const.m in Sources */,
 				6D2ABFA11BCE582100201A8E /* MKAnnotationView+EMWebCache.m in Sources */,
 				E3A4718F1BB3A85300973197 /* XMNetStatuesTool.m in Sources */,
@@ -4147,6 +4208,7 @@
 				6B364C601BCE401C005A4AF9 /* UIImage+UzysExtension.m in Sources */,
 				E31B12E21BB9311700B51696 /* PhotoModel.m in Sources */,
 				E31B133C1BB9312D00B51696 /* CoreArchive.m in Sources */,
+				E359EDBA1BCF3C2B0004B17D /* CPScrollView.m in Sources */,
 				6D2ABFD31BCE582100201A8E /* EMChatBaseBubbleView.m in Sources */,
 				6D2ABFDD1BCE582100201A8E /* MessageReadManager.m in Sources */,
 				6B364C681BCE401C005A4AF9 /* UzysWrapperPickerController.m in Sources */,

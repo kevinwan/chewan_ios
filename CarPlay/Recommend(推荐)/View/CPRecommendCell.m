@@ -7,6 +7,7 @@
 //
 
 #import "CPRecommendCell.h"
+#import "ZYImageVIew.h"
 
 @interface CPRecommendCell ()
 @property (strong, nonatomic) UILabel *priceLabel;
@@ -14,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *contentTextL;
 @property (strong, nonatomic) UIImageView *bgTip;
 @property (nonatomic, strong) UILabel *tipLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *bgImageView;
+@property (weak, nonatomic) IBOutlet ZYImageVIew *bgImageView;
 
 @property (nonatomic, strong) UIImageView *blackView;
 @property (nonatomic, strong) UIButton *addressView;
@@ -22,6 +23,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *partLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *iconView;
 
 @end
 
@@ -32,14 +34,16 @@
 {
     _model = model;
     
-    self.titleLabel.text = model.title;
-    self.contentTextL.text = model.desc;
+    [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.organizer.avatar] forState:UIControlStateNormal placeholderImage:CPPlaceHolderImage];
+    self.titleLabel.text = model.organizer.nickname;
+    self.contentTextL.attributedText = model.titleAttrText;
     self.priceLabel.text = model.priceDesc;
     self.tipLabel.text = [NSString stringWithFormat:@"官方补贴%.0f元每人",model.subsidyPrice];
-        self.partLabel.text = [NSString stringWithFormat:@"%zd / %zd",model.maleNum, model.maleLimit];
-    
+    self.partLabel.attributedText = model.joinPersonText;
+    [self.bgImageView zy_setImageWithUrl:model.covers.firstObject completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        self.bgImageView.image = image;
+    }];
     self.priceLabel.attributedText = model.priceText;
-    
 }
 
 #pragma mark - 加载视图
