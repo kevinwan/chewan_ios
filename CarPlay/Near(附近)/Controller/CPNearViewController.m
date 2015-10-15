@@ -98,10 +98,11 @@
 
     [ZYNetWorkTool getWithUrl:@"activity/list" params:self.params.keyValues success:^(id responseObject) {
         self.refreshView.hidden = YES;
+        
+        [self setUpRefresh];
         [refresh stopIndicatorAnimation];
         DLog(@"%@ ---- ",responseObject);
         if (CPSuccess) {
-            [self setUpRefresh];
             if (self.ignore == 0) {
                 [self.datas removeAllObjects];
             }

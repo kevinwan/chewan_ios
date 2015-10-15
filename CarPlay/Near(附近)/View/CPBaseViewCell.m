@@ -13,6 +13,7 @@
 #import "CPSexView.h"
 #import "UIButton+WebCache.h"
 #import "CPNoHighLightButton.h"
+#import "ZYImageVIew.h"
 
 @interface CPBaseViewCell ()
 /**
@@ -57,7 +58,7 @@
 /**
  *  显示用户大图的View
  */
-@property (weak, nonatomic) IBOutlet UIImageView *userIconView;
+@property (weak, nonatomic) IBOutlet ZYImageVIew *userIconView;
 
 /**
  *  用户图像的模糊效果View
@@ -125,11 +126,14 @@
     [self.bgView setCornerRadius:5];
     self.distanceView.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 6);
 
-    [self.userIconView sd_setImageWithURL:[NSURL URLWithString:@"http://i6.topit.me/6/5d/45/1131907198420455d6o.jpg"] placeholderImage:nil options:SDWebImageLowPriority | SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        
+//    [self.userIconView sd_setImageWithURL:[NSURL URLWithString:@"http://i6.topit.me/6/5d/45/1131907198420455d6o.jpg"] placeholderImage:nil options:SDWebImageLowPriority | SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//        
+//        self.userIconView.image = [image blurredImageWithRadius:20];
+//    }];
+
+    [self.userIconView zy_setImageWithUrl:@"http://i6.topit.me/6/5d/45/1131907198420455d6o.jpg" completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         self.userIconView.image = [image blurredImageWithRadius:20];
     }];
-    
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] init];
     [tapGes.rac_gestureSignal subscribeNext:^(id x) {
         
@@ -191,14 +195,20 @@
     
     self.sexView.isMan = model.organizer.isMan;
     self.sexView.age = model.organizer.age;
-    [self.userIconView sd_setImageWithURL:[NSURL URLWithString:model.organizer.avatar] placeholderImage:CPPlaceHolderImage options:SDWebImageLowPriority | SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//    [self.userIconView sd_setImageWithURL:[NSURL URLWithString:model.organizer.avatar] placeholderImage:CPPlaceHolderImage options:SDWebImageLowPriority | SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//         if ([model.organizer.photoAuthStatus isEqualToString:@"认证通过"]) {
+//            self.userIconView.image = [image blurredImageWithRadius:10];
+//         }else{
+//             self.userIconView.image = image;
+//         }
+//    }];
+    [self.userIconView zy_setImageWithUrl:@"http://i6.topit.me/6/5d/45/1131907198420455d6o.jpg" completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) { self.userIconView.image = [image blurredImageWithRadius:10];
          if ([model.organizer.photoAuthStatus isEqualToString:@"认证通过"]) {
             self.userIconView.image = [image blurredImageWithRadius:10];
          }else{
              self.userIconView.image = image;
          }
     }];
-    
     [self.distanceView setTitle:[NSString stringWithFormat:@"%zdm",model.distance] forState:UIControlStateNormal];
     self.loveBtn.selected = model.organizer.subscribeFlag;
     self.payView.text = model.pay;
@@ -514,40 +524,6 @@
                 } completion:NULL];
                 
             }];
-            
-//            
-//            if (cameraBtn.alpha == 0){
-//                [cameraBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-//                    
-//                    make.centerX.equalTo(uploadBtn);
-//                    make.top.equalTo(uploadBtn.mas_bottom).offset(10);
-//                }];
-//                
-//                [photoBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-//                    
-//                    make.centerX.equalTo(uploadBtn);
-//                    make.top.equalTo(cameraBtn.mas_bottom).offset(10);
-//                }];
-//            }else{
-//                [cameraBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-//                    
-//                    make.centerX.equalTo(uploadBtn);
-//                    make.top.equalTo(uploadBtn);
-//                }];
-//                
-//                [photoBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-//                    
-//                    make.centerX.equalTo(uploadBtn);
-//                    make.top.equalTo(cameraBtn);
-//                }];
-//            }
-//            
-//            [UIView animateWithDuration:0.25 animations:^{
-//                
-//                cameraBtn.alpha = !cameraBtn.alpha;
-//                photoBtn.alpha = !photoBtn.alpha;
-//                [_tipView layoutIfNeeded];
-//            }];
             
         }];
        

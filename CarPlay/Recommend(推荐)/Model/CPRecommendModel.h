@@ -14,6 +14,7 @@
 //    femaleNum = ,
 //    title = 测试官方活动Title,
 @property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy, readonly) NSAttributedString  *titleAttrText;
 //    instruction = 测试官方活动Instruction,
 @property (nonatomic, copy) NSString *instruction;
 
@@ -49,4 +50,20 @@
 //    priceDesc = 测试PriceDescription,
 @property (nonatomic, copy) NSString *priceDesc;
 @property (nonatomic, copy, readonly) NSAttributedString *priceText;
+//"limitType" : 2,
+@property (nonatomic, assign) NSUInteger limitType;
+//"totalLimit" : 300,
+@property (nonatomic, assign) NSUInteger totalLimit;
+//"nowJoinNum" : 30,
+@property (nonatomic, assign) NSUInteger nowJoinNum;
+@property (nonatomic, copy, readonly) NSAttributedString *joinPersonText;
+//"maleLimit" : 30,
+@property (nonatomic, assign) NSUInteger maleLimit;
+//"maleNum" : 10,
+@property (nonatomic, assign) NSUInteger maleNum;
+//"femaleLimit" : 30,
+@property (nonatomic, assign) NSUInteger femaleLimit;
+//"femaleNum" : 3,
+@property (nonatomic, assign) NSUInteger femaleNum;
+@property (nonatomic, strong) CPUser *organizer;
 @end

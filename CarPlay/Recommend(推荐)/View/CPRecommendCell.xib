@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3" translatesAutoresizingMaskIntoConstraints="NO" id="O24-Rw-lQO">
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3" translatesAutoresizingMaskIntoConstraints="NO" id="O24-Rw-lQO" customClass="ZYImageVIew">
                     <rect key="frame" x="0.0" y="44" width="375" height="375"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="375" id="0NM-yx-OcR"/>
@@ -90,6 +90,7 @@
             <connections>
                 <outlet property="bgImageView" destination="O24-Rw-lQO" id="D09-38-bvT"/>
                 <outlet property="contentTextL" destination="CpY-ZY-trk" id="L2G-s8-0zS"/>
+                <outlet property="iconView" destination="1yf-Qp-y3F" id="QeY-An-iiP"/>
                 <outlet property="imageHCons" destination="0NM-yx-OcR" id="V7o-TU-Umb"/>
                 <outlet property="partLabel" destination="ej0-RG-oLt" id="hyM-QZ-mSo"/>
                 <outlet property="titleLabel" destination="Ikd-o4-WUg" id="aVR-cs-kCC"/>

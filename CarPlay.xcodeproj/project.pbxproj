@@ -448,6 +448,7 @@
 		E32B5DDF1BCE41B50057FD71 /* ZYProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E32B5DDE1BCE41B50057FD71 /* ZYProgressView.m */; settings = {ASSET_TAGS = (); }; };
 		E32B5DE21BCE41CA0057FD71 /* ZYRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = E32B5DE11BCE41CA0057FD71 /* ZYRefreshView.m */; settings = {ASSET_TAGS = (); }; };
 		E359EDBA1BCF3C2B0004B17D /* CPScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E359EDB91BCF3C2B0004B17D /* CPScrollView.m */; settings = {ASSET_TAGS = (); }; };
+		E359EDBD1BCF75C20004B17D /* ZYImageVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = E359EDBC1BCF75C20004B17D /* ZYImageVIew.m */; settings = {ASSET_TAGS = (); }; };
 		E3606F0D1BC76FF100797968 /* CPRecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */; settings = {ASSET_TAGS = (); }; };
 		E3606F121BC78C7300797968 /* CPBaseViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F111BC78C7300797968 /* CPBaseViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		E369E2B11BCB952E000A12B5 /* CPSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E369E2B01BCB952E000A12B5 /* CPSelectView.xib */; settings = {ASSET_TAGS = (); }; };
@@ -1203,6 +1204,8 @@
 		E32B5DE11BCE41CA0057FD71 /* ZYRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYRefreshView.m; sourceTree = "<group>"; };
 		E359EDB81BCF3C2B0004B17D /* CPScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPScrollView.h; sourceTree = "<group>"; };
 		E359EDB91BCF3C2B0004B17D /* CPScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPScrollView.m; sourceTree = "<group>"; };
+		E359EDBB1BCF75C20004B17D /* ZYImageVIew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYImageVIew.h; sourceTree = "<group>"; };
+		E359EDBC1BCF75C20004B17D /* ZYImageVIew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYImageVIew.m; sourceTree = "<group>"; };
 		E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPRecommendCell.xib; sourceTree = "<group>"; };
 		E3606F111BC78C7300797968 /* CPBaseViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPBaseViewCell.xib; sourceTree = "<group>"; };
 		E369E2B01BCB952E000A12B5 /* CPSelectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPSelectView.xib; sourceTree = "<group>"; };
@@ -3049,6 +3052,8 @@
 				E32B5DDE1BCE41B50057FD71 /* ZYProgressView.m */,
 				E32B5DE01BCE41CA0057FD71 /* ZYRefreshView.h */,
 				E32B5DE11BCE41CA0057FD71 /* ZYRefreshView.m */,
+				E359EDBB1BCF75C20004B17D /* ZYImageVIew.h */,
+				E359EDBC1BCF75C20004B17D /* ZYImageVIew.m */,
 			);
 			path = ZYProgressView;
 			sourceTree = "<group>";
@@ -3916,6 +3921,7 @@
 				6B364C961BCF43B8005A4AF9 /* CPAbout.m in Sources */,
 				6D2ABF8C1BCE582100201A8E /* EMAlertView.m in Sources */,
 				6D2ABFEF1BCE582100201A8E /* ApplyFriendCell.m in Sources */,
+				E359EDBD1BCF75C20004B17D /* ZYImageVIew.m in Sources */,
 				6B153EFC1BB5692500560935 /* CPMyViewController.m in Sources */,
 				6D2ABFDB1BCE582100201A8E /* MessageModel.m in Sources */,
 				6B906F7D1BC7C98B0048A806 /* ZHAppDelegate.m in Sources */,
@@ -4053,7 +4059,6 @@
 				6D2ABF8B1BCE582100201A8E /* EMCDDeviceManagerBase.m in Sources */,
 				6D2ABF9F1BCE582100201A8E /* EMSDWebImageManager.m in Sources */,
 				6D2ABFA01BCE582100201A8E /* EMSDWebImagePrefetcher.m in Sources */,
-				E32B5DDB1BCE3C9A0057FD71 /* ZYProgressView.m in Sources */,
 				E31B133D1BB9312D00B51696 /* CALayer+Anim.m in Sources */,
 				6D2AC0081BCE582100201A8E /* UIViewController+DismissKeyboard.m in Sources */,
 				6BE2E6121BC67C8C00D1D928 /* CPNPSButton.m in Sources */,
