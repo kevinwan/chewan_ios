@@ -52,7 +52,7 @@
     self.refreshView.hidden = NO;
     [self loadDataWithHeader:nil];
     DLog(@"%f",self.view.right);
-
+    
 }
 
 - (void)setUpRefresh
@@ -165,7 +165,30 @@
         
     }else if([notifyName isEqualToString:IgnoreBtnClickKey]){
         
+    }else if([notifyName isEqualToString:LoveBtnClickKey]){
+        [self loveBtnClickWithInfo:(CPActivityModel *)userInfo];
     }
+}
+
+/**
+ *  处理关注点击
+ *
+ *  @param model model description
+ */
+- (void)loveBtnClickWithInfo:(CPActivityModel *)model
+{
+    ZYAsyncThead(^{
+        
+        for (CPActivityModel *obj in self.datas) {
+            if ([obj.organizer.userId isEqualToString:model.organizer.userId]) {
+                obj.organizer.subscribeFlag = model.organizer.subscribeFlag;
+            }
+
+        }
+        ZYMainThread(^{
+            [self.tableView reloadData];
+        });
+    });
 }
 
 /**

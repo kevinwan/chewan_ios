@@ -14,7 +14,7 @@
 #define DateBtnClickKey     @"DateBtnClickKey"
 #define InvitedBtnClickKey  @"InvitedBtnClickKey"
 #define IgnoreBtnClickKey   @"IgnoreBtnClickKey"
-#define DistanceBtnClickKey @"DistanceBtnClickKey"
+#define LoveBtnClickKey @"LoveBtnClickKey"
 #define AddressBtnClickKey  @"AddressBtnClickKey"
 
 @interface CPBaseViewCell : UIView

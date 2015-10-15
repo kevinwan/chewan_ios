@@ -262,7 +262,6 @@
  *  点击距离按钮
  */
 - (IBAction)distanceClick:(id)sender {
-    [self superViewWillRecive:DistanceBtnClickKey info:nil];
 }
 
 - (IBAction)loveClick:(UIButton *)sender {
@@ -286,6 +285,8 @@
                 DLog(@"取消关注成功");
                 [sender addAnimation:[CAAnimation scaleFrom:1.0 toScale:1.1 durTimes:0.2 rep:1]];
                 sender.selected = NO;
+                _model.organizer.subscribeFlag = 1;
+                [self superViewWillRecive:LoveBtnClickKey info:_model];
             }
         } failed:^(NSError *error) {
             
@@ -298,16 +299,17 @@
             
             if (CPSuccess){
                 
-                DLog(@"关注成功");
+                DLog(@"取消关注成功");
                 [sender addAnimation:[CAAnimation scaleFrom:1.0 toScale:1.2 durTimes:0.2 rep:1]];
                 sender.selected = YES;
+                _model.organizer.subscribeFlag = 0;
+                [self superViewWillRecive:LoveBtnClickKey info:_model];
             }
         } failed:^(NSError *error) {
             
             DLog(@"关注失败%@",error);
         }];
     }
-    
 }
 
 
