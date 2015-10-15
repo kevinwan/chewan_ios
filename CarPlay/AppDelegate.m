@@ -58,15 +58,10 @@
     }
     //环信
     //gongpingjia#carplayapp
-    [[EaseMob sharedInstance] registerSDKWithAppKey:@"easemob-demo#chatdemoui" apnsCertName:@"istore_dev"];
+    //"easemob-demo#chatdemoui
+    [[EaseMob sharedInstance] registerSDKWithAppKey:@"gongpingjia#carplayapp" apnsCertName:@"istore_dev"];
     [[EaseMob sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     
-    [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:@"offen3" password:@"123" completion:^(NSDictionary *loginInfo, EMError *error) {
-        if (!error) {
-            // 设置自动登录
-            [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
-        }
-    } onQueue:nil];
     return YES;
 }
 

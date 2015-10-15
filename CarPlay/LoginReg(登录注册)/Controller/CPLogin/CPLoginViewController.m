@@ -59,17 +59,31 @@
                 [self showLoading];
                 [ZYNetWorkTool postJsonWithUrl:@"user/login" params:paras success:^(id responseObject) {
                     if (CPSuccess) {
-                        if (responseObject[@"data"][@"userId"]) {
-                            [ZYUserDefaults setObject:responseObject[@"data"][@"userId"] forKey:UserId];
-                        }
-                        if (responseObject[@"data"][@"token"]) {
-                            [ZYUserDefaults setObject:responseObject[@"data"][@"token"] forKey:Token];
-                        }
-                        [ZYUserDefaults setObject:self.accountField.text forKey:@"phone"];
-                        [ZYUserDefaults setObject:[Tools md5EncryptWithString:self.passwordField.text] forKey:@"password"];
-                        
-                        [ZYNotificationCenter postNotificationName:NOTIFICATION_HASLOGIN object:nil];
-                        [self.navigationController popToRootViewControllerAnimated:NO];
+
+                        //登陆环信
+
+
+                        [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:[Tools md5EncryptWithString:responseObject[@"data"][@"userId"]] password:[ZYUserDefaults stringForKey:@"password"] completion:^(NSDictionary *loginInfo, EMError *error) {
+                            if (!error) {
+                                // 设置自动登录
+                                [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+                                
+                                if (responseObject[@"data"][@"userId"]) {
+                                    [ZYUserDefaults setObject:responseObject[@"data"][@"userId"] forKey:UserId];
+                                }
+                                if (responseObject[@"data"][@"token"]) {
+                                    [ZYUserDefaults setObject:responseObject[@"data"][@"token"] forKey:Token];
+                                }
+                                [ZYUserDefaults setObject:self.accountField.text forKey:@"phone"];
+                                [ZYUserDefaults setObject:[Tools md5EncryptWithString:self.passwordField.text] forKey:@"password"];
+                                
+                                [ZYNotificationCenter postNotificationName:NOTIFICATION_HASLOGIN object:nil];
+                                
+                                [self.navigationController popToRootViewControllerAnimated:NO];
+
+                            }
+                        } onQueue:nil];
+
                     }else{
                         NSString *errmsg =[responseObject objectForKey:@"errmsg"];
                         [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
@@ -107,6 +121,9 @@
     forgetPasswordVC.navigationItem.title=@"忘记密码";
     forgetPasswordVC.navigationController.navigationBarHidden=NO;
     [self.navigationController pushViewController:forgetPasswordVC animated:YES];
+    
+
+
 }
 
 #pragma mark - 第三方登录
