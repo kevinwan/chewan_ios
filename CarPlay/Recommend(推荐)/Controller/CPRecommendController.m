@@ -16,6 +16,9 @@
 @interface CPRecommendController ()<PagedFlowViewDelegate, PagedFlowViewDataSource>
 @property (nonatomic, strong) PagedFlowView *collectionView;
 @property (nonatomic, strong) NSMutableArray *datas;
+@property (nonatomic, strong) ZYRefreshView *refreshView;
+@property (nonatomic, assign) BOOL isHasRefreshHeader;
+@property (nonatomic, assign) NSUInteger ignore;
 @end
 
 @implementation CPRecommendController
@@ -25,30 +28,80 @@
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.collectionView];
-    [self loadData];
+    [self loadDataWithHeader:nil];
+    [self.view addSubview:self.refreshView];
 }
+
+- (void)setUpRefresh
+{
+    if (self.isHasRefreshHeader) {
+        return;
+    }
+    // 设置刷新控件
+    ZYWeakSelf
+    AAPullToRefresh *tv = [_collectionView.scrollView addPullToRefreshPosition:AAPullToRefreshPositionLeft actionHandler:^(AAPullToRefresh *v){
+        ZYStrongSelf
+        [self.collectionView.scrollView setContentOffset:CGPointMake(-44, 0) animated:YES];
+        self.ignore = 0;
+        [self loadDataWithHeader:v];
+    }];
+    tv.imageIcon = [UIImage imageNamed:@"车轮"];
+    tv.borderColor = [UIColor whiteColor];
+    
+    // bottom
+    AAPullToRefresh *bv = [_collectionView.scrollView addPullToRefreshPosition:AAPullToRefreshPositionRight actionHandler:^(AAPullToRefresh *v){
+        ZYStrongSelf
+        [self.collectionView.scrollView setContentOffset:CGPointMake(_collectionView.scrollView.contentSize.width + 44 - _collectionView.scrollView.width, 0) animated:YES];
+        
+        if (self.datas.count >= CPPageNum) {
+            self.ignore += CPPageNum;
+            [self loadDataWithHeader:v];
+        }else{
+            [v stopIndicatorAnimation];
+        }
+    }];
+
+    bv.imageIcon = [UIImage imageNamed:@"车轮"];
+    bv.borderColor = [UIColor whiteColor];
+    
+    self.isHasRefreshHeader = YES;
+}
+
 
 /**
  *  加载网络数据
  */
-- (void)loadData
+- (void)loadDataWithHeader:(AAPullToRefresh *)refreshView
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[UserId] = CPUserId;
     params[Token] = CPToken;
-    params[@"province"] = [ZYUserDefaults stringForKey:Province];
-    params[@"city"] = [ZYUserDefaults stringForKey:City];
-    params[@"district"] = [ZYUserDefaults stringForKey:District];
-    params[@"limit"] = @10;
+//    params[@"province"] = [ZYUserDefaults stringForKey:Province];
+//    params[@"city"] = [ZYUserDefaults stringForKey:City];
+//    params[@"district"] = [ZYUserDefaults stringForKey:District];
+    params[@"province"] = @"江苏省";
+    params[@"city"] = @"南京市";
+//    params[@"district"] = [ZYUserDefaults stringForKey:District];
     [ZYNetWorkTool getWithUrl:@"official/activity/list" params:params success:^(id responseObject) {
-        DLog(@"%@",responseObject);
+        self.refreshView.hidden = YES;
+        [self setUpRefresh];
+        [refreshView stopIndicatorAnimation];
+        DLog(@"office %@",responseObject);
         if (CPSuccess) {
+            
+            
+            if (self.ignore == 0){
+                [self.datas removeAllObjects];
+            }
             NSArray *arr = [CPRecommendModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
             [self.datas addObjectsFromArray:arr];
             [self.collectionView reloadData];
         }
     } failure:^(NSError *error) {
-        DLog(@"%@",error);
+        [self showInfo:@"加载失败"];
+        self.refreshView.hidden = YES;
+        [self setUpRefresh];
+        [refreshView stopIndicatorAnimation];
     }];
 }
 
@@ -63,8 +116,7 @@
 #pragma mark - flowViewDelegate & flowViewDataSource
 - (NSInteger)numberOfPagesInFlowView:(PagedFlowView *)flowView
 {
-    return 10;
-//    return self.datas.count;
+    return self.datas.count;
 }
 
 - (UIView *)flowView:(PagedFlowView *)flowView cellForPageAtIndex:(NSInteger)index
@@ -73,7 +125,7 @@
     if (!cell) {
         
         cell = [[NSBundle mainBundle] loadNibNamed:@"CPRecommendCell" owner:nil options:nil].lastObject;
-//        cell.model = self.datas[index];
+        cell.model = self.datas[index];
     }
     return cell;
 }
@@ -108,8 +160,8 @@
             }
             CGFloat w = ZYScreenWidth - 36;
             CGFloat h = offset + 420;
-            CGRect frame = CGRectMake(x, y, w, h);
-            frame;})];
+            CGRectMake(x, y, w, h);
+            })];
         _collectionView.centerY = (ZYScreenHeight - 49 - 64) * 0.5 + 64;
         _collectionView.centerX = ZYScreenWidth * 0.5;
         _collectionView.orientation = PagedFlowViewOrientationHorizontal;
@@ -118,25 +170,7 @@
         _collectionView.minimumPageScale = 0.928;
         self.view.backgroundColor = [Tools getColor:@"efefef"];
         
-        // 设置刷新控件
-        ZYWeakSelf
-        AAPullToRefresh *tv = [_collectionView.scrollView addPullToRefreshPosition:AAPullToRefreshPositionLeft actionHandler:^(AAPullToRefresh *v){
-            ZYStrongSelf
-            [self.collectionView.scrollView setContentOffset:CGPointMake(-50, 0) animated:YES];
-            [v performSelector:@selector(stopIndicatorAnimation) withObject:nil afterDelay:1.0f];
-        }];
-        tv.imageIcon = [UIImage imageNamed:@"车轮"];
-        tv.borderColor = [UIColor whiteColor];
-        
-        // bottom
-        AAPullToRefresh *bv = [_collectionView.scrollView addPullToRefreshPosition:AAPullToRefreshPositionRight actionHandler:^(AAPullToRefresh *v){
-            ZYStrongSelf
-            [self.collectionView.scrollView setContentOffset:CGPointMake(_collectionView.scrollView.contentSize.width + 50 - _collectionView.scrollView.width, 0) animated:YES];
-            [v performSelector:@selector(stopIndicatorAnimation) withObject:nil afterDelay:1.0f];
-        }];
-        bv.imageIcon = [UIImage imageNamed:@"车轮"];
-        bv.borderColor = [UIColor whiteColor];
-
+       
     }
     return _collectionView;
 }
@@ -147,6 +181,16 @@
         _datas = [[NSMutableArray alloc] init];
     }
     return _datas;
+}
+
+- (ZYRefreshView *)refreshView
+{
+    if (_refreshView == nil) {
+        _refreshView = [[ZYRefreshView alloc] init];
+        [self.view addSubview:_refreshView];
+        _refreshView.center = self.view.center;
+    }
+    return _refreshView;
 }
 
 @end

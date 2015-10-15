@@ -16,6 +16,7 @@
 #import "AAPullToRefresh.h"
 #import "ZYProgressView.h"
 #import "ZYRefreshView.h"
+#import "CPNoDataTipView.h"
 
 @interface CPNearViewController ()<PagedFlowViewDataSource,PagedFlowViewDelegate,UIScrollViewDelegate>
 @property (nonatomic, strong) PagedFlowView *tableView;
@@ -28,6 +29,7 @@
 @property (nonatomic, strong) CPNearParams *params;
 @property (nonatomic, strong) ZYRefreshView *refreshView;
 @property (nonatomic, assign) BOOL isHasRefreshHeader;
+@property (nonatomic, strong) CPNoDataTipView *noDataView;
 @end
 @implementation CPNearViewController
 
@@ -41,9 +43,6 @@
         return;
     }
     
-    
-    
-    
     self.offset = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250;
     
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -53,6 +52,7 @@
     self.refreshView.hidden = NO;
     [self loadDataWithHeader:nil];
     DLog(@"%f",self.view.right);
+
 }
 
 - (void)setUpRefresh
@@ -98,7 +98,6 @@
 
     [ZYNetWorkTool getWithUrl:@"activity/list" params:self.params.keyValues success:^(id responseObject) {
         self.refreshView.hidden = YES;
-        
         [self setUpRefresh];
         [refresh stopIndicatorAnimation];
         DLog(@"%@ ---- ",responseObject);
@@ -108,8 +107,14 @@
             }
             NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
             [self.datas addObjectsFromArray:arr];
-            
             [self.tableView reloadData];
+            self.noDataView.tipLabel.text = @"已经没有活动了,请放宽条件再试试";
+            self.refreshView.hidden = YES;
+            if (self.datas.count == 0) {;
+                self.noDataView.hidden = NO;
+            }else{
+                self.noDataView.hidden = YES;
+            }
         }
     } failure:^(NSError *error) {
         
@@ -118,6 +123,8 @@
         self.ignore -= CPPageNum;
         [refresh stopIndicatorAnimation];
         [self showError:@"加载失败"];
+        self.noDataView.tipLabel.text = @"加载失败了,请换个网络试试";
+        self.refreshView.hidden = YES;
     }];
 }
 
@@ -288,7 +295,7 @@
         _tableView.dataSource = self;
         _tableView.orientation = PagedFlowViewOrientationVertical;
         self.view.backgroundColor = [Tools getColor:@"efefef"];
-            _tableView.minimumPageScale = 0.96;
+        _tableView.minimumPageScale = 0.96;
         // top
         _tableView.scrollView.alwaysBounceVertical = YES;
        
@@ -379,7 +386,6 @@
         _params.latitude = ZYLatitude;
         _params.ignore = self.ignore;
         _params.maxDistance = 5000;
-        DLog(@"%@",_params);
     }
     return _params;
 }
@@ -393,6 +399,15 @@
         _refreshView.center = self.view.center;
     }
     return _refreshView;
+}
+
+- (CPNoDataTipView *)noDataView
+{    if (_noDataView == nil) {
+        _noDataView = [CPNoDataTipView noDataTipView];
+        [self.tableView addSubview:_noDataView];
+        _noDataView.frame = self.tableView.bounds;
+    }
+    return _noDataView;
 }
 
 @end

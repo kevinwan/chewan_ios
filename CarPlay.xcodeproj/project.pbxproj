@@ -459,6 +459,8 @@
 		E32B5DD81BCE39CC0057FD71 /* UIViewController+ZY.m in Sources */ = {isa = PBXBuildFile; fileRef = E32B5DD71BCE39CC0057FD71 /* UIViewController+ZY.m */; settings = {ASSET_TAGS = (); }; };
 		E32B5DDF1BCE41B50057FD71 /* ZYProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E32B5DDE1BCE41B50057FD71 /* ZYProgressView.m */; settings = {ASSET_TAGS = (); }; };
 		E32B5DE21BCE41CA0057FD71 /* ZYRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = E32B5DE11BCE41CA0057FD71 /* ZYRefreshView.m */; settings = {ASSET_TAGS = (); }; };
+		E35428511BCF94D100D4A07A /* CPNoDataTipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E35428501BCF94D100D4A07A /* CPNoDataTipView.xib */; settings = {ASSET_TAGS = (); }; };
+		E35428541BCF965600D4A07A /* CPNoDataTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35428531BCF965600D4A07A /* CPNoDataTipView.m */; settings = {ASSET_TAGS = (); }; };
 		E359EDBA1BCF3C2B0004B17D /* CPScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E359EDB91BCF3C2B0004B17D /* CPScrollView.m */; settings = {ASSET_TAGS = (); }; };
 		E359EDBD1BCF75C20004B17D /* ZYImageVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = E359EDBC1BCF75C20004B17D /* ZYImageVIew.m */; settings = {ASSET_TAGS = (); }; };
 		E3606F0D1BC76FF100797968 /* CPRecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */; settings = {ASSET_TAGS = (); }; };
@@ -1227,6 +1229,9 @@
 		E32B5DDE1BCE41B50057FD71 /* ZYProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYProgressView.m; sourceTree = "<group>"; };
 		E32B5DE01BCE41CA0057FD71 /* ZYRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYRefreshView.h; sourceTree = "<group>"; };
 		E32B5DE11BCE41CA0057FD71 /* ZYRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYRefreshView.m; sourceTree = "<group>"; };
+		E35428501BCF94D100D4A07A /* CPNoDataTipView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPNoDataTipView.xib; sourceTree = "<group>"; };
+		E35428521BCF965600D4A07A /* CPNoDataTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNoDataTipView.h; sourceTree = "<group>"; };
+		E35428531BCF965600D4A07A /* CPNoDataTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNoDataTipView.m; sourceTree = "<group>"; };
 		E359EDB81BCF3C2B0004B17D /* CPScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPScrollView.h; sourceTree = "<group>"; };
 		E359EDB91BCF3C2B0004B17D /* CPScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPScrollView.m; sourceTree = "<group>"; };
 		E359EDBB1BCF75C20004B17D /* ZYImageVIew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYImageVIew.h; sourceTree = "<group>"; };
@@ -3361,6 +3366,9 @@
 				E3AF17001BBA317E00306ABF /* CPMySwitch.m */,
 				E3606F111BC78C7300797968 /* CPBaseViewCell.xib */,
 				E369E2B51BCB9F70000A12B5 /* CPSelectView */,
+				E35428501BCF94D100D4A07A /* CPNoDataTipView.xib */,
+				E35428521BCF965600D4A07A /* CPNoDataTipView.h */,
+				E35428531BCF965600D4A07A /* CPNoDataTipView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3892,6 +3900,7 @@
 				6D2AC1901BCE824400201A8E /* Localizable.strings in Resources */,
 				6D2AC1271BCE5A5100201A8E /* chatBar_faceSelected@2x.png in Resources */,
 				6D2AC1221BCE5A5100201A8E /* imageDownloadFail@2x.png in Resources */,
+				E35428511BCF94D100D4A07A /* CPNoDataTipView.xib in Resources */,
 				6D2AC0DB1BCE5A5100201A8E /* chatListCellHead@2x.png in Resources */,
 				6D2AC1791BCE5A5100201A8E /* groupPrivateHeader@2x.png in Resources */,
 				6D2AC0F71BCE5A5100201A8E /* VoiceSearchFeedback014@2x.png in Resources */,
@@ -4096,6 +4105,7 @@
 				E31B134A1BB9312D00B51696 /* UIImage+FixOrientation.m in Sources */,
 				6D2ABFB01BCE582100201A8E /* PSTCollectionViewItemKey.m in Sources */,
 				6D2ABFE21BCE582100201A8E /* GroupBansViewController.m in Sources */,
+				E35428541BCF965600D4A07A /* CPNoDataTipView.m in Sources */,
 				E31B13491BB9312D00B51696 /* UIImage+Extend.m in Sources */,
 				E32B5DE21BCE41CA0057FD71 /* ZYRefreshView.m in Sources */,
 				6B364C611BCE401C005A4AF9 /* UzysAppearanceConfig.m in Sources */,
