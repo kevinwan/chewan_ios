@@ -53,4 +53,9 @@
 @property (nonatomic, strong) NSArray *album;
 //个人资料完成程度1-100
 @property (nonatomic, assign) NSUInteger completion;
+
+@property (nonatomic, copy) NSString *address;
+
+@property (nonatomic, copy) NSString *authentication;
+
 @end
