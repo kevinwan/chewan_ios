@@ -61,9 +61,9 @@
                     if (CPSuccess) {
 
                         //登陆环信
+                        NSLog(@"环信账号是:%@,密码是:%@",[Tools md5EncryptWithString:responseObject[@"data"][@"userId"]],[Tools md5EncryptWithString:self.passwordField.text]);
 
-
-                        [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:[Tools md5EncryptWithString:responseObject[@"data"][@"userId"]] password:[ZYUserDefaults stringForKey:@"password"] completion:^(NSDictionary *loginInfo, EMError *error) {
+                        [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:[Tools md5EncryptWithString:responseObject[@"data"][@"userId"]] password:[Tools md5EncryptWithString:self.passwordField.text] completion:^(NSDictionary *loginInfo, EMError *error) {
                             if (!error) {
                                 // 设置自动登录
                                 [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
