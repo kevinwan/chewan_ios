@@ -193,6 +193,8 @@
 
         }
         ZYMainThread(^{
+            
+            NSLog(@"===%@",self.datas);
             [self.tableView reloadData];
         });
     });
@@ -252,7 +254,7 @@
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"你还未注册,注册后就可以邀请" delegate:nil cancelButtonTitle:@"再想想" otherButtonTitles:@"去注册", nil];
         [alertView.rac_buttonClickedSignal subscribeNext:^(id x) {
             if ([x integerValue] != 0) {
-                [ZYNotificationCenter postNotificationName:NOTIFICATION_HASLOGIN object:nil];
+                [ZYNotificationCenter postNotificationName:NOTIFICATION_GOLOGIN object:nil];
             }
         }];
         [alertView show];
@@ -299,6 +301,8 @@
  */
 - (void)filter
 {
+    [self.tableView reloadData];
+    return;
     [CPSelectView showWithParams:^(CPSelectModel *selectModel) {
         NSLog(@"%@",selectModel.keyValues);
         

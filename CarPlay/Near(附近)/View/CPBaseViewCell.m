@@ -268,7 +268,13 @@
 - (IBAction)loveClick:(UIButton *)sender {
     
     if (CPUnLogin) {
-        [ZYNotificationCenter postNotificationName:NOTIFICATION_HASLOGIN object:nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"你还未登录,登录后就可以关注" delegate:nil cancelButtonTitle:@"再想想" otherButtonTitles:@"去注册", nil];
+        [alertView.rac_buttonClickedSignal subscribeNext:^(id x) {
+            if ([x integerValue] != 0) {
+                [ZYNotificationCenter postNotificationName:NOTIFICATION_GOLOGIN object:nil];
+            }
+        }];
+        [alertView show];
         return;
     }
     
@@ -286,7 +292,7 @@
                 DLog(@"取消关注成功");
                 [sender addAnimation:[CAAnimation scaleFrom:1.0 toScale:1.1 durTimes:0.2 rep:1]];
                 sender.selected = NO;
-                _model.organizer.subscribeFlag = 1;
+                _model.organizer.subscribeFlag = 0;
                 [self superViewWillRecive:LoveBtnClickKey info:_model];
             }
         } failed:^(NSError *error) {
@@ -303,7 +309,7 @@
                 DLog(@"取消关注成功");
                 [sender addAnimation:[CAAnimation scaleFrom:1.0 toScale:1.2 durTimes:0.2 rep:1]];
                 sender.selected = YES;
-                _model.organizer.subscribeFlag = 0;
+                _model.organizer.subscribeFlag = 1;
                 [self superViewWillRecive:LoveBtnClickKey info:_model];
             }
         } failed:^(NSError *error) {

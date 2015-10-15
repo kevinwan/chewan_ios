@@ -61,4 +61,5 @@
 #define NOTIFICATION_GOLOGIN @"goLogin"
 #define THIRDPARTYLOGINACCOUNT @"3partyLoginAccount"
 #define CPReRefreshNotification @"CPReRefreshNotification"
+
 #endif
