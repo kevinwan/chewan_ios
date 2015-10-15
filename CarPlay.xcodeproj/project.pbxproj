@@ -37,6 +37,15 @@
 		6B364C7B1BCE4077005A4AF9 /* MJPhotoProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B364C721BCE4077005A4AF9 /* MJPhotoProgressView.m */; settings = {ASSET_TAGS = (); }; };
 		6B364C7C1BCE4077005A4AF9 /* MJPhotoToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B364C741BCE4077005A4AF9 /* MJPhotoToolbar.m */; settings = {ASSET_TAGS = (); }; };
 		6B364C7D1BCE4077005A4AF9 /* MJPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B364C761BCE4077005A4AF9 /* MJPhotoView.m */; settings = {ASSET_TAGS = (); }; };
+		6B364C891BCF3FDC005A4AF9 /* CPAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B364C881BCF3FDC005A4AF9 /* CPAlbum.m */; settings = {ASSET_TAGS = (); }; };
+		6B364C961BCF43B8005A4AF9 /* CPAbout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B364C8D1BCF43B8005A4AF9 /* CPAbout.m */; settings = {ASSET_TAGS = (); }; };
+		6B364C971BCF43B8005A4AF9 /* CPAbout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B364C8E1BCF43B8005A4AF9 /* CPAbout.storyboard */; settings = {ASSET_TAGS = (); }; };
+		6B364C981BCF43B8005A4AF9 /* CPSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B364C901BCF43B8005A4AF9 /* CPSettingTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		6B364C991BCF43B8005A4AF9 /* CPSettingTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B364C911BCF43B8005A4AF9 /* CPSettingTableViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		6B364C9A1BCF43B8005A4AF9 /* CPVersionIntroduction.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B364C941BCF43B8005A4AF9 /* CPVersionIntroduction.m */; settings = {ASSET_TAGS = (); }; };
+		6B364C9B1BCF43B8005A4AF9 /* CPVersionIntroduction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B364C951BCF43B8005A4AF9 /* CPVersionIntroduction.storyboard */; settings = {ASSET_TAGS = (); }; };
+		6B364CA01BCF442E005A4AF9 /* CPMyBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B364C9E1BCF442E005A4AF9 /* CPMyBaseCell.m */; settings = {ASSET_TAGS = (); }; };
+		6B364CA11BCF442E005A4AF9 /* CPMyBaseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B364C9F1BCF442E005A4AF9 /* CPMyBaseCell.xib */; settings = {ASSET_TAGS = (); }; };
 		6B440CDB1BBA857B00CF8410 /* CPMyInfoHead.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B440CDA1BBA857B00CF8410 /* CPMyInfoHead.xib */; settings = {ASSET_TAGS = (); }; };
 		6B440CE31BBA86C500CF8410 /* CPMyInfoFirCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B440CE21BBA86C500CF8410 /* CPMyInfoFirCell.xib */; settings = {ASSET_TAGS = (); }; };
 		6B440CE51BBA86D100CF8410 /* CPMyInfoSecCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B440CE41BBA86D100CF8410 /* CPMyInfoSecCell.xib */; settings = {ASSET_TAGS = (); }; };
@@ -562,6 +571,20 @@
 		6B364C741BCE4077005A4AF9 /* MJPhotoToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoToolbar.m; sourceTree = "<group>"; };
 		6B364C751BCE4077005A4AF9 /* MJPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoView.h; sourceTree = "<group>"; };
 		6B364C761BCE4077005A4AF9 /* MJPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoView.m; sourceTree = "<group>"; };
+		6B364C871BCF3FDC005A4AF9 /* CPAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAlbum.h; sourceTree = "<group>"; };
+		6B364C881BCF3FDC005A4AF9 /* CPAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAlbum.m; sourceTree = "<group>"; };
+		6B364C8C1BCF43B8005A4AF9 /* CPAbout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAbout.h; sourceTree = "<group>"; };
+		6B364C8D1BCF43B8005A4AF9 /* CPAbout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAbout.m; sourceTree = "<group>"; };
+		6B364C8E1BCF43B8005A4AF9 /* CPAbout.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPAbout.storyboard; sourceTree = "<group>"; };
+		6B364C8F1BCF43B8005A4AF9 /* CPSettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSettingTableViewController.h; sourceTree = "<group>"; };
+		6B364C901BCF43B8005A4AF9 /* CPSettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSettingTableViewController.m; sourceTree = "<group>"; };
+		6B364C911BCF43B8005A4AF9 /* CPSettingTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPSettingTableViewController.xib; sourceTree = "<group>"; };
+		6B364C931BCF43B8005A4AF9 /* CPVersionIntroduction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPVersionIntroduction.h; sourceTree = "<group>"; };
+		6B364C941BCF43B8005A4AF9 /* CPVersionIntroduction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPVersionIntroduction.m; sourceTree = "<group>"; };
+		6B364C951BCF43B8005A4AF9 /* CPVersionIntroduction.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPVersionIntroduction.storyboard; sourceTree = "<group>"; };
+		6B364C9D1BCF442E005A4AF9 /* CPMyBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyBaseCell.h; sourceTree = "<group>"; };
+		6B364C9E1BCF442E005A4AF9 /* CPMyBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyBaseCell.m; sourceTree = "<group>"; };
+		6B364C9F1BCF442E005A4AF9 /* CPMyBaseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPMyBaseCell.xib; sourceTree = "<group>"; };
 		6B440CDA1BBA857B00CF8410 /* CPMyInfoHead.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPMyInfoHead.xib; sourceTree = "<group>"; };
 		6B440CE21BBA86C500CF8410 /* CPMyInfoFirCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPMyInfoFirCell.xib; sourceTree = "<group>"; };
 		6B440CE41BBA86D100CF8410 /* CPMyInfoSecCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPMyInfoSecCell.xib; sourceTree = "<group>"; };
@@ -1440,6 +1463,48 @@
 				6B364C761BCE4077005A4AF9 /* MJPhotoView.m */,
 			);
 			path = MJPhotoBrowser;
+			sourceTree = "<group>";
+		};
+		6B364C8A1BCF43B8005A4AF9 /* CPSetting */ = {
+			isa = PBXGroup;
+			children = (
+				6B364C8B1BCF43B8005A4AF9 /* CPAbout（关于我们） */,
+				6B364C8F1BCF43B8005A4AF9 /* CPSettingTableViewController.h */,
+				6B364C901BCF43B8005A4AF9 /* CPSettingTableViewController.m */,
+				6B364C911BCF43B8005A4AF9 /* CPSettingTableViewController.xib */,
+				6B364C921BCF43B8005A4AF9 /* CPVersionIntroduction(版本介绍) */,
+			);
+			path = CPSetting;
+			sourceTree = "<group>";
+		};
+		6B364C8B1BCF43B8005A4AF9 /* CPAbout（关于我们） */ = {
+			isa = PBXGroup;
+			children = (
+				6B364C8C1BCF43B8005A4AF9 /* CPAbout.h */,
+				6B364C8D1BCF43B8005A4AF9 /* CPAbout.m */,
+				6B364C8E1BCF43B8005A4AF9 /* CPAbout.storyboard */,
+			);
+			path = "CPAbout（关于我们）";
+			sourceTree = "<group>";
+		};
+		6B364C921BCF43B8005A4AF9 /* CPVersionIntroduction(版本介绍) */ = {
+			isa = PBXGroup;
+			children = (
+				6B364C931BCF43B8005A4AF9 /* CPVersionIntroduction.h */,
+				6B364C941BCF43B8005A4AF9 /* CPVersionIntroduction.m */,
+				6B364C951BCF43B8005A4AF9 /* CPVersionIntroduction.storyboard */,
+			);
+			path = "CPVersionIntroduction(版本介绍)";
+			sourceTree = "<group>";
+		};
+		6B364C9C1BCF442E005A4AF9 /* CPMyBaseCell */ = {
+			isa = PBXGroup;
+			children = (
+				6B364C9D1BCF442E005A4AF9 /* CPMyBaseCell.h */,
+				6B364C9E1BCF442E005A4AF9 /* CPMyBaseCell.m */,
+				6B364C9F1BCF442E005A4AF9 /* CPMyBaseCell.xib */,
+			);
+			path = CPMyBaseCell;
 			sourceTree = "<group>";
 		};
 		6B5176781BB9502100D7A62E /* CustomSwitch */ = {
@@ -3040,6 +3105,7 @@
 		E3A471051BB3A85300973197 /* My(我的) */ = {
 			isa = PBXGroup;
 			children = (
+				6B364C8A1BCF43B8005A4AF9 /* CPSetting */,
 				6B1387CC1BCD0A6C00FAC462 /* CarOwnersCertification */,
 				6BCFFBAB1BBA456900C082B2 /* MyCare */,
 				6BC919451BB90FD300E41C64 /* MyInfo */,
@@ -3072,6 +3138,7 @@
 		E3A4710C1BB3A85300973197 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6B364C9C1BCF442E005A4AF9 /* CPMyBaseCell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3232,6 +3299,8 @@
 		E3A471201BB3A85300973197 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6B364C871BCF3FDC005A4AF9 /* CPAlbum.h */,
+				6B364C881BCF3FDC005A4AF9 /* CPAlbum.m */,
 				E39627B31BB53357005E0CF2 /* CPUser.h */,
 				E39627B41BB53357005E0CF2 /* CPUser.m */,
 			);
@@ -3606,6 +3675,7 @@
 				6B153EF51BB5690900560935 /* CPForgetPassword.storyboard in Resources */,
 				6D2AC1051BCE5A5100201A8E /* call_out@2x.png in Resources */,
 				6D2AC12C1BCE5A5100201A8E /* chatBar_more.png in Resources */,
+				6B364C991BCF43B8005A4AF9 /* CPSettingTableViewController.xib in Resources */,
 				E3606F121BC78C7300797968 /* CPBaseViewCell.xib in Resources */,
 				6D2AC1881BCE5A5100201A8E /* tabbar_settingHL@2x.png in Resources */,
 				6D2AC14F1BCE5A5100201A8E /* chatBar_more_photoSelected@2x.png in Resources */,
@@ -3708,12 +3778,15 @@
 				6D2AC1111BCE5A5100201A8E /* chatBar_more_cardSelected@2x.png in Resources */,
 				6D2AC15B1BCE5A5100201A8E /* chat_receiver_bg.png in Resources */,
 				6D2AC12B1BCE5A5100201A8E /* chatBar_keyboardSelected@2x.png in Resources */,
+				6B364CA11BCF442E005A4AF9 /* CPMyBaseCell.xib in Resources */,
 				6D2AC1421BCE5A5100201A8E /* chatBar_colorMore_videoCallSelected@2x.png in Resources */,
 				6D2AC0F91BCE5A5100201A8E /* VoiceSearchFeedback015@2x.png in Resources */,
+				6B364C9B1BCF43B8005A4AF9 /* CPVersionIntroduction.storyboard in Resources */,
 				6D2AC1581BCE5A5100201A8E /* chat_receiver_audio_playing003@2x.png in Resources */,
 				6D2AC13C1BCE5A5100201A8E /* chatBar_colorMore_location@2x.png in Resources */,
 				6D2ABFB91BCE582100201A8E /* sr_refresh@2X.png in Resources */,
 				6D2AC1361BCE5A5100201A8E /* chatBar_recordSelectedBg.png in Resources */,
+				6B364C971BCF43B8005A4AF9 /* CPAbout.storyboard in Resources */,
 				6D2AC1701BCE5A5100201A8E /* group_detail@2x.png in Resources */,
 				6D2AC1851BCE5A5100201A8E /* tabbar_setting.png in Resources */,
 				6D2AC1061BCE5A5100201A8E /* call_out_h.png in Resources */,
@@ -3787,6 +3860,7 @@
 				E3A471791BB3A85300973197 /* NSArray+ZY.m in Sources */,
 				E369E2B41BCB985A000A12B5 /* CPSelectButton.m in Sources */,
 				6D2ABFC61BCE582100201A8E /* ChatListCell.m in Sources */,
+				6B364C9A1BCF43B8005A4AF9 /* CPVersionIntroduction.m in Sources */,
 				E31B13551BB9312D00B51696 /* LFRoundProgressView.m in Sources */,
 				6D2ABFE71BCE582100201A8E /* PublicGroupListViewController.m in Sources */,
 				6D2ABFE51BCE582100201A8E /* GroupSubjectChangingViewController.m in Sources */,
@@ -3804,6 +3878,7 @@
 				6D2ABFE81BCE582100201A8E /* ChatroomDetailViewController.m in Sources */,
 				6D2AC0041BCE582100201A8E /* NSDateFormatter+Category.m in Sources */,
 				6D2ABFAF1BCE582100201A8E /* PSTCollectionViewFlowLayout.m in Sources */,
+				6B364C961BCF43B8005A4AF9 /* CPAbout.m in Sources */,
 				6D2ABF8C1BCE582100201A8E /* EMAlertView.m in Sources */,
 				6D2ABFEF1BCE582100201A8E /* ApplyFriendCell.m in Sources */,
 				6B153EFC1BB5692500560935 /* CPMyViewController.m in Sources */,
@@ -3821,6 +3896,7 @@
 				E3A471961BB3A85300973197 /* Tools.m in Sources */,
 				6D2ABF8A1BCE582100201A8E /* EMCDDeviceManager+Remind.m in Sources */,
 				6D2ABFBB1BCE582100201A8E /* SRSlimeView.m in Sources */,
+				6B364C981BCF43B8005A4AF9 /* CPSettingTableViewController.m in Sources */,
 				E3E6B8951BB514A2006B4F8A /* AppDelegate.m in Sources */,
 				6D2ABFE31BCE582100201A8E /* GroupListViewController.m in Sources */,
 				6D2ABFA31BCE582100201A8E /* UIButton+EMWebCache.m in Sources */,
@@ -3901,6 +3977,7 @@
 				6D2ABFF31BCE582100201A8E /* UserProfileManager.m in Sources */,
 				E37FDBBA1BBA77B70078FBEF /* CPMyDateViewController.m in Sources */,
 				E31B13481BB9312D00B51696 /* UIImage+Cut.m in Sources */,
+				6B364CA01BCF442E005A4AF9 /* CPMyBaseCell.m in Sources */,
 				E31B13521BB9312D00B51696 /* UIImageView+SD.m in Sources */,
 				E3A471881BB3A85300973197 /* UITableViewCell+ZYExtension.m in Sources */,
 				E369E2B81BCB9F87000A12B5 /* CPSelectView.m in Sources */,
@@ -4021,6 +4098,7 @@
 				E31B12E41BB9311700B51696 /* PBBlurImageView.m in Sources */,
 				E3E6B8981BB515F1006B4F8A /* CPSexView.m in Sources */,
 				E3A471891BB3A85300973197 /* UIView+Extension.m in Sources */,
+				6B364C891BCF3FDC005A4AF9 /* CPAlbum.m in Sources */,
 				E3A4E0C71BCCCC1300850AA7 /* CPNearParams.m in Sources */,
 				6D2AC0091BCE582100201A8E /* UIViewController+HUD.m in Sources */,
 				E39627B21BB5265A005E0CF2 /* UIImage+Blur.m in Sources */,

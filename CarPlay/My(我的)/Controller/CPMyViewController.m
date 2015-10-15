@@ -17,6 +17,7 @@
 #import "CPBrandModelViewController.h"
 #import "UzysAssetsPickerController.h"
 #import "CPAlbum.h"
+#import "CPSettingTableViewController.h"
 
 @interface CPMyViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate, UzysAssetsPickerControllerDelegate, UIAlertViewDelegate,UINavigationControllerDelegate>
 {
@@ -80,14 +81,17 @@
 }
 #pragma privateMethod
 -(void)rightClick{
-    CPLoginViewController *login = [UIStoryboard storyboardWithName:@"CPLoginViewController" bundle:nil].instantiateInitialViewController;
-//    [self.navigationController pushViewController:login animated:YES];
-    CPNavigationController *nav=[[CPNavigationController alloc]initWithRootViewController:login];
-    self.view.window.rootViewController = nav;
-    [self.view.window makeKeyAndVisible];
+//    CPLoginViewController *login = [UIStoryboard storyboardWithName:@"CPLoginViewController" bundle:nil].instantiateInitialViewController;
+////    [self.navigationController pushViewController:login animated:YES];
+//    CPNavigationController *nav=[[CPNavigationController alloc]initWithRootViewController:login];
+//    self.view.window.rootViewController = nav;
+//    [self.view.window makeKeyAndVisible];
 //    self.view.window
 //    CPMyInfoController *myInfoVC = [UIStoryboard storyboardWithName:@"CPMyInfoController" bundle:nil].instantiateInitialViewController;
 //    [self.navigationController pushViewController:myInfoVC animated:YES];
+    CPSettingTableViewController *CPSettingTableVC=[[CPSettingTableViewController alloc]init];
+    CPSettingTableVC.title=@"设置";
+    [self.navigationController pushViewController:CPSettingTableVC animated:YES];
 }
 
 //加载数据
