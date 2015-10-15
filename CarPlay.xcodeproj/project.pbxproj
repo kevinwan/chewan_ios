@@ -49,6 +49,8 @@
 		6B364CAA1BCF4BC3005A4AF9 /* CPSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B364CA91BCF4BC3005A4AF9 /* CPSettingController.m */; settings = {ASSET_TAGS = (); }; };
 		6B364CB21BCF5ACE005A4AF9 /* CPCarOwnersCertification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B364CB11BCF5ACE005A4AF9 /* CPCarOwnersCertification.storyboard */; settings = {ASSET_TAGS = (); }; };
 		6B364CB51BCF5AEB005A4AF9 /* CPCarOwnersCertificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B364CB41BCF5AEB005A4AF9 /* CPCarOwnersCertificationController.m */; settings = {ASSET_TAGS = (); }; };
+		6B364CB91BCF7ED0005A4AF9 /* CPAvatarAuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B364CB81BCF7ED0005A4AF9 /* CPAvatarAuthenticationController.m */; settings = {ASSET_TAGS = (); }; };
+		6B364CBB1BCF7EDB005A4AF9 /* CPAvatarAuthenticationController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B364CBA1BCF7EDB005A4AF9 /* CPAvatarAuthenticationController.storyboard */; settings = {ASSET_TAGS = (); }; };
 		6B440CDB1BBA857B00CF8410 /* CPMyInfoHead.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B440CDA1BBA857B00CF8410 /* CPMyInfoHead.xib */; settings = {ASSET_TAGS = (); }; };
 		6B440CE31BBA86C500CF8410 /* CPMyInfoFirCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B440CE21BBA86C500CF8410 /* CPMyInfoFirCell.xib */; settings = {ASSET_TAGS = (); }; };
 		6B440CE51BBA86D100CF8410 /* CPMyInfoSecCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B440CE41BBA86D100CF8410 /* CPMyInfoSecCell.xib */; settings = {ASSET_TAGS = (); }; };
@@ -592,6 +594,9 @@
 		6B364CB11BCF5ACE005A4AF9 /* CPCarOwnersCertification.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPCarOwnersCertification.storyboard; sourceTree = "<group>"; };
 		6B364CB31BCF5AEB005A4AF9 /* CPCarOwnersCertificationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCarOwnersCertificationController.h; sourceTree = "<group>"; };
 		6B364CB41BCF5AEB005A4AF9 /* CPCarOwnersCertificationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCarOwnersCertificationController.m; sourceTree = "<group>"; };
+		6B364CB71BCF7ED0005A4AF9 /* CPAvatarAuthenticationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAvatarAuthenticationController.h; sourceTree = "<group>"; };
+		6B364CB81BCF7ED0005A4AF9 /* CPAvatarAuthenticationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAvatarAuthenticationController.m; sourceTree = "<group>"; };
+		6B364CBA1BCF7EDB005A4AF9 /* CPAvatarAuthenticationController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPAvatarAuthenticationController.storyboard; sourceTree = "<group>"; };
 		6B440CDA1BBA857B00CF8410 /* CPMyInfoHead.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPMyInfoHead.xib; sourceTree = "<group>"; };
 		6B440CE21BBA86C500CF8410 /* CPMyInfoFirCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPMyInfoFirCell.xib; sourceTree = "<group>"; };
 		6B440CE41BBA86D100CF8410 /* CPMyInfoSecCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPMyInfoSecCell.xib; sourceTree = "<group>"; };
@@ -1530,6 +1535,16 @@
 				6B364CB41BCF5AEB005A4AF9 /* CPCarOwnersCertificationController.m */,
 			);
 			path = "CarOwnersCertification(车主认证)";
+			sourceTree = "<group>";
+		};
+		6B364CB61BCF7EB5005A4AF9 /* CPAvatarAuthentication */ = {
+			isa = PBXGroup;
+			children = (
+				6B364CB71BCF7ED0005A4AF9 /* CPAvatarAuthenticationController.h */,
+				6B364CB81BCF7ED0005A4AF9 /* CPAvatarAuthenticationController.m */,
+				6B364CBA1BCF7EDB005A4AF9 /* CPAvatarAuthenticationController.storyboard */,
+			);
+			path = CPAvatarAuthentication;
 			sourceTree = "<group>";
 		};
 		6B5176781BB9502100D7A62E /* CustomSwitch */ = {
@@ -3121,6 +3136,7 @@
 		E3A471051BB3A85300973197 /* My(我的) */ = {
 			isa = PBXGroup;
 			children = (
+				6B364CB61BCF7EB5005A4AF9 /* CPAvatarAuthentication */,
 				6B364C8A1BCF43B8005A4AF9 /* CPSetting */,
 				6B1387CC1BCD0A6C00FAC462 /* CarOwnersCertification */,
 				6BCFFBAB1BBA456900C082B2 /* MyCare */,
@@ -3758,6 +3774,7 @@
 				6B364C781BCE4077005A4AF9 /* MJPhotoBrowser.bundle in Resources */,
 				E31B12EC1BB9311700B51696 /* PhotoBroswerVC.xib in Resources */,
 				6D2AC1721BCE5A5100201A8E /* titleBar@2x.png in Resources */,
+				6B364CBB1BCF7EDB005A4AF9 /* CPAvatarAuthenticationController.storyboard in Resources */,
 				6D2AC1031BCE5A5100201A8E /* VoiceSearchFeedback020@2x.png in Resources */,
 				6D2AC0FA1BCE5A5100201A8E /* VoiceSearchFeedback016.png in Resources */,
 				6D2AC1501BCE5A5100201A8E /* messageToolbarBg@2x.png in Resources */,
@@ -3902,6 +3919,7 @@
 				6D2ABFDB1BCE582100201A8E /* MessageModel.m in Sources */,
 				6B906F7D1BC7C98B0048A806 /* ZHAppDelegate.m in Sources */,
 				6D2ABFE41BCE582100201A8E /* GroupSettingViewController.m in Sources */,
+				6B364CB91BCF7ED0005A4AF9 /* CPAvatarAuthenticationController.m in Sources */,
 				6D2ABF941BCE582100201A8E /* MWPhoto.m in Sources */,
 				6B2E36221BCD24A00053459E /* MJNIndexView.m in Sources */,
 				E3EA40B71BCE098400C6219E /* AAPullToRefresh.m in Sources */,
