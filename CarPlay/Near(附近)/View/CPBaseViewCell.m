@@ -283,12 +283,13 @@
         
         [ZYNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
             if (CPSuccess) {
-                
+                DLog(@"取消关注成功");
                 [sender addAnimation:[CAAnimation scaleFrom:1.0 toScale:1.1 durTimes:0.2 rep:1]];
                 sender.selected = NO;
             }
         } failed:^(NSError *error) {
             
+            DLog(@"取消关注失败%@",error);
         }];
         
     }else{
@@ -297,11 +298,13 @@
             
             if (CPSuccess){
                 
+                DLog(@"关注成功");
                 [sender addAnimation:[CAAnimation scaleFrom:1.0 toScale:1.2 durTimes:0.2 rep:1]];
                 sender.selected = YES;
             }
         } failed:^(NSError *error) {
             
+            DLog(@"关注失败%@",error);
         }];
     }
     

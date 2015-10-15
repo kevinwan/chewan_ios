@@ -5,13 +5,17 @@
 //  Created by Ji Fang on 3/8/13.
 //  Copyright (c) 2013 Ji Fang. All rights reserved.
 //
-#import "XDDefine.h"
+//#import "XDDefine.h"
 #ifndef EaseMob_macros_h
 #define EaseMob_macros_h
 
 
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
-
+//三原色
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+//设备的高度、宽度
+#define kDeviceWidth  [UIScreen mainScreen].bounds.size.width
+#define KDeviceHeight [UIScreen mainScreen].bounds.size.height
 typedef enum _BasicViewControllerInfo {
     eBasicControllerInfo_Title,
     eBasicControllerInfo_ImageName,

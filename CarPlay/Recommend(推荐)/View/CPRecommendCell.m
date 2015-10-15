@@ -44,6 +44,7 @@
         self.bgImageView.image = image;
     }];
     self.priceLabel.attributedText = model.priceText;
+    [self.addressView setTitle:model.destination[@"detail"] forState:UIControlStateNormal];
 }
 
 #pragma mark - 加载视图
@@ -53,6 +54,7 @@
     
     self.contentTextL.preferredMaxLayoutWidth = ZYScreenWidth - 56;
 
+    [self.iconView setCornerRadius:15];
     [self.bgTip addSubview:self.tipLabel];
 
     [self.bgImageView addSubview:self.blackView];
