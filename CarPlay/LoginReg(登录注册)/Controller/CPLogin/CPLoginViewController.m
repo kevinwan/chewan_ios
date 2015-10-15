@@ -56,6 +56,7 @@
         if ([Tools isValidateMobile:self.accountField.text]) {
             if (self.passwordField.text && ![self.passwordField.text isEqualToString:@""]) {
                 NSDictionary *paras=[[NSDictionary alloc]initWithObjectsAndKeys:self.accountField.text,@"phone",[Tools md5EncryptWithString:self.passwordField.text],@"password",nil];
+                [self showLoading];
                 [ZYNetWorkTool postJsonWithUrl:@"user/login" params:paras success:^(id responseObject) {
                     if (CPSuccess) {
                         if (responseObject[@"data"][@"userId"]) {
@@ -70,7 +71,9 @@
                         NSString *errmsg =[responseObject objectForKey:@"errmsg"];
                         [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                     }
+                    [self disMiss];
                 } failed:^(NSError *error) {
+                    [self disMiss];
                     [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                     
                 }];

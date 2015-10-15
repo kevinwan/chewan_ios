@@ -37,6 +37,7 @@
 		6B364C7B1BCE4077005A4AF9 /* MJPhotoProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B364C721BCE4077005A4AF9 /* MJPhotoProgressView.m */; settings = {ASSET_TAGS = (); }; };
 		6B364C7C1BCE4077005A4AF9 /* MJPhotoToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B364C741BCE4077005A4AF9 /* MJPhotoToolbar.m */; settings = {ASSET_TAGS = (); }; };
 		6B364C7D1BCE4077005A4AF9 /* MJPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B364C761BCE4077005A4AF9 /* MJPhotoView.m */; settings = {ASSET_TAGS = (); }; };
+		6B364C801BCE82CF005A4AF9 /* CPAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B364C7F1BCE82CF005A4AF9 /* CPAlbum.m */; settings = {ASSET_TAGS = (); }; };
 		6B440CDB1BBA857B00CF8410 /* CPMyInfoHead.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B440CDA1BBA857B00CF8410 /* CPMyInfoHead.xib */; settings = {ASSET_TAGS = (); }; };
 		6B440CE31BBA86C500CF8410 /* CPMyInfoFirCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B440CE21BBA86C500CF8410 /* CPMyInfoFirCell.xib */; settings = {ASSET_TAGS = (); }; };
 		6B440CE51BBA86D100CF8410 /* CPMyInfoSecCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B440CE41BBA86D100CF8410 /* CPMyInfoSecCell.xib */; settings = {ASSET_TAGS = (); }; };
@@ -243,6 +244,8 @@
 		6B364C741BCE4077005A4AF9 /* MJPhotoToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoToolbar.m; sourceTree = "<group>"; };
 		6B364C751BCE4077005A4AF9 /* MJPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoView.h; sourceTree = "<group>"; };
 		6B364C761BCE4077005A4AF9 /* MJPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoView.m; sourceTree = "<group>"; };
+		6B364C7E1BCE82CF005A4AF9 /* CPAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAlbum.h; sourceTree = "<group>"; };
+		6B364C7F1BCE82CF005A4AF9 /* CPAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAlbum.m; sourceTree = "<group>"; };
 		6B440CDA1BBA857B00CF8410 /* CPMyInfoHead.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPMyInfoHead.xib; sourceTree = "<group>"; };
 		6B440CE21BBA86C500CF8410 /* CPMyInfoFirCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPMyInfoFirCell.xib; sourceTree = "<group>"; };
 		6B440CE41BBA86D100CF8410 /* CPMyInfoSecCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPMyInfoSecCell.xib; sourceTree = "<group>"; };
@@ -1488,6 +1491,8 @@
 			children = (
 				E39627B31BB53357005E0CF2 /* CPUser.h */,
 				E39627B41BB53357005E0CF2 /* CPUser.m */,
+				6B364C7E1BCE82CF005A4AF9 /* CPAlbum.h */,
+				6B364C7F1BCE82CF005A4AF9 /* CPAlbum.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1867,6 +1872,7 @@
 				E31B133E1BB9312D00B51696 /* CALayer+Transition.m in Sources */,
 				6B1387DE1BCD0A6C00FAC462 /* CustomBrandCell.m in Sources */,
 				E31B12E61BB9311700B51696 /* PBSaveBtn.m in Sources */,
+				6B364C801BCE82CF005A4AF9 /* CPAlbum.m in Sources */,
 				E3A471871BB3A85300973197 /* UITableView+ZYExtension.m in Sources */,
 				E3A471911BB3A85300973197 /* ZYNetWorkTool.m in Sources */,
 				6BCD585C1BBB87750025F995 /* CPMyInfoFirCell.m in Sources */,

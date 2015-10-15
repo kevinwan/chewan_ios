@@ -16,6 +16,7 @@
 #import "CPMyCareController.h"
 #import "CPBrandModelViewController.h"
 #import "UzysAssetsPickerController.h"
+#import "CPAlbum.h"
 
 @interface CPMyViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate, UzysAssetsPickerControllerDelegate, UIAlertViewDelegate,UINavigationControllerDelegate>
 {
@@ -124,15 +125,16 @@
     self.albumsScrollView.contentSize=CGSizeMake(0, 0);
     self.albumsScrollView.pagingEnabled=NO;
     
-    for (int i=0; i<[user.albums count]; i++) {
+    for (int i=0; i<[user.album count]; i++) {
         UIButton *albumBtn=[[UIButton alloc]initWithFrame:CGRectMake(85+75*i, 15, 70, 70)];
-        [albumBtn sd_setImageWithURL:[[NSURL alloc]initWithString:user.albums[i]] forState:UIControlStateNormal];
+        CPAlbum *album=user.album[i];
+        [albumBtn sd_setImageWithURL:[[NSURL alloc]initWithString:album.url] forState:UIControlStateNormal];
         [albumBtn addTarget:self action:@selector(photoBrowser) forControlEvents:UIControlEventTouchUpInside];
         [albumBtn.layer setMasksToBounds:YES];
         [albumBtn.layer setCornerRadius:3.0];
         [self.albumsScrollView addSubview:albumBtn];
     }
-    self.albumsScrollView.contentSize=CGSizeMake(85+75*[user.albums count], 100.0);
+    self.albumsScrollView.contentSize=CGSizeMake(85+75*[user.album count], 100.0);
 }
 
 //完善
@@ -175,7 +177,7 @@
             pick.sourceType = UIImagePickerControllerSourceTypeCamera;
             [self presentViewController:pick animated:YES completion:nil];
         }else{
-//            [SVProgressHUD showErrorWithStatus:@"相机不可用"];
+          [[[UIAlertView alloc]initWithTitle:@"提示" message:@"相机不可用" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
         }
     }else{
         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
@@ -258,17 +260,12 @@
  */
 - (void)addPhoto:(NSArray *)arr
 {
-//    if ([Tools getValueFromKey:@"userId"]) {
-//        if (self.photoView.subviews.count + arr.count > 10){
-//            [self showAlert];
-//            return;
-//        }
-//        NSString *path=[[NSString alloc]initWithFormat:@"v1/user/%@/album/upload?token=%@",[Tools getValueFromKey:@"userId"],[Tools getValueFromKey:@"token"]];
-//        for (int i = 0; i < arr.count; i++) {
-//            ZYHttpFile *imageFile = [ZYHttpFile fileWithName:@"a1.jpg" data:UIImageJPEGRepresentation(arr[i], 0.4) mimeType:@"image/jpeg" filename:@"a1.jpg"];
-//            
-//            [ZYNetWorkTool postFileWithUrl:path params:nil files:@[imageFile] success:^(id responseObject) {
-//                if (CPSuccess) {
+        NSString *path=[[NSString alloc]initWithFormat:@"user/%@/album/upload?token=%@",[Tools getUserId],[Tools getToken]];
+        for (int i = 0; i < arr.count; i++) {
+            ZYHttpFile *imageFile = [ZYHttpFile fileWithName:@"attach" data:UIImageJPEGRepresentation(arr[i], 0.4) mimeType:@"image/jpeg" filename:@"a1.jpg"];
+            [self showLoading];
+            [ZYNetWorkTool postFileWithUrl:path params:nil files:@[imageFile] success:^(id responseObject) {
+                if (CPSuccess) {
 //                    CPEditImageView *imageView = [[CPEditImageView alloc] init];
 //                    imageView.image = arr[i];
 //                    
@@ -278,19 +275,19 @@
 //                    [imageView addGestureRecognizer:tapGes];
 //                    imageView.coverId=responseObject[@"data"][@"photoId"];
 //                    [_allPhotoIds addObject:responseObject[@"data"][@"photoId"]];
+                    
 //                    [self.photoView insertSubview:imageView atIndex:0];
+                    NSLog(@"%@",responseObject);
+                    
 //                    [self layoutPhotoView];
-//                }else{
-//                    [self showError:responseObject[@"errmsg"]];
-//                }
-//            } failure:^(NSError *error) {
-//                [self showError:@"照片上传失败"];
-//            }];
-//        }
-//        
-//    }else{
-//        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_HASLOGIN object:nil];
-//    }
+                }else{
+                    [self showError:responseObject[@"errmsg"]];
+                }
+            } failure:^(NSError *error) {
+                [self showError:@"照片上传失败"];
+            }];
+        }
+    [self disMiss];
 }
 
 @end
