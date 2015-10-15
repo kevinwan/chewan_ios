@@ -35,6 +35,9 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [self.navigationController.navigationBar setHidden:YES];
+    if (ZYScreenHeight == 480) {
+        self.headDistance.constant=20.0;
+    }
 }
 
 -(void)viewDidDisappear:(BOOL)animated{

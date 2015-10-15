@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UzysAssetsPickerController">
@@ -34,6 +34,7 @@
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <state key="normal" title="取消">
+                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -47,13 +48,13 @@
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                             <state key="normal" title=".">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
                                 <action selector="btnAction:" destination="-1" eventType="touchUpInside" id="9iB-BX-fxc"/>
                             </connections>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UzysAssetPickerController.bundle/uzysAP_ico_arrow_upload_album_d.png" translatesAutoresizingMaskIntoConstraints="NO" id="uvL-Np-IWv">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="down" translatesAutoresizingMaskIntoConstraints="NO" id="uvL-Np-IWv">
                             <rect key="frame" x="178" y="41" width="9" height="9"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="9" id="g2U-7j-09o"/>
@@ -61,7 +62,7 @@
                             </constraints>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" red="0.2196078431372549" green="0.70980392156862748" blue="0.71764705882352942" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="rd5-Z7-vdI" firstAttribute="trailing" secondItem="uvL-Np-IWv" secondAttribute="leading" constant="-3" id="5tI-lL-2ql"/>
                         <constraint firstItem="GMr-RU-k94" firstAttribute="top" secondItem="eF0-Xh-u5U" secondAttribute="top" constant="28" id="Owl-NB-pwD"/>
@@ -84,7 +85,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <state key="normal" title="完成">
-                                <color key="titleColor" red="0.97254901959999995" green="0.3411764706" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.98039215690000003" green="0.2470588235" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
                                 <action selector="btnAction:" destination="-1" eventType="touchUpInside" id="sbl-ar-Pla"/>
@@ -92,7 +93,7 @@
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uFq-Yj-a8R">
                             <rect key="frame" x="240" y="12" width="23" height="23"/>
-                            <color key="backgroundColor" red="0.97254901959999995" green="0.3411764706" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.98039215690000003" green="0.2470588235" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="23" id="eQz-ve-59F"/>
                                 <constraint firstAttribute="width" constant="23" id="iJJ-Qp-VMn"/>
@@ -108,7 +109,7 @@
                                 <constraint firstAttribute="height" constant="30" id="mua-Rx-Xrs"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" image="UzysAssetPickerController.bundle/uzysAP_ico_upload_camera.png">
+                            <state key="normal" image="cameraBig">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -130,7 +131,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.87843137250000003" green="0.89019607840000003" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="kxD-PY-Oat" secondAttribute="trailing" id="1Ea-x9-NZ5"/>
                 <constraint firstAttribute="bottom" secondItem="kxD-PY-Oat" secondAttribute="bottom" id="PMN-qw-pbb"/>
@@ -142,12 +143,7 @@
         </view>
     </objects>
     <resources>
-        <image name="UzysAssetPickerController.bundle/uzysAP_ico_arrow_upload_album_d.png" width="15" height="15"/>
-        <image name="UzysAssetPickerController.bundle/uzysAP_ico_upload_camera.png" width="15" height="15"/>
+        <image name="cameraBig" width="24" height="20"/>
+        <image name="down" width="9" height="9"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>
