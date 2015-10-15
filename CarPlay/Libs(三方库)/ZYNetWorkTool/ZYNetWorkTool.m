@@ -65,6 +65,7 @@
     // 2.发送一个GET请求
     [mgr GET:url parameters:params
      success:^(AFHTTPRequestOperation *operation, id responseObject) {
+         DLog(@"请求的url为%@",operation.request.URL.absoluteString);
          if ([responseObject[@"result"] intValue] && [responseObject[@"errmsg"] contains:@"口令已过期"]) {
              
              [self reLoginWithSuccess:^{
@@ -196,12 +197,12 @@
  */
 + (void)reLoginWithSuccess:(void (^)())success failed:(failed)failed
 {
-//    DLog(@"token过期了");
-//    ZYNetWorkManager *mgr = [ZYNetWorkManager sharedInstances];
-//    
-//    mgr.requestSerializer = [AFJSONRequestSerializer serializer];
-//    mgr.requestSerializer.timeoutInterval = 40;
-//    
+    DLog(@"token过期了");
+    ZYNetWorkManager *mgr = [ZYNetWorkManager sharedInstances];
+    
+    mgr.requestSerializer = [AFJSONRequestSerializer serializer];
+    mgr.requestSerializer.timeoutInterval = 40;
+    
 //    BOOL isThirdLogin = [CPUserDefaults boolForKey:LoginFrom3Party];
 //    DLog(@"isthirdLogin ---------------------------%zd",isThirdLogin);
 //
@@ -227,29 +228,30 @@
 //    }
 //    
 //    
-//    // 2. 如果是普通登录
-//    NSString *phone = [Tools getValueFromKey:@"phone"];
-//    NSString *password = [Tools getValueFromKey:@"password"];
-//
-//    if (phone.length == 0 || password.length == 0){
-//        return;
-//    }
-//    
-//    NSString *url = @"v1/user/login";
-//    [mgr POST:url parameters:@{@"phone" : phone, @"password" : password } success:^(AFHTTPRequestOperation * operation, id responseObject) {
-//        if (CPSuccess) {
-//            DLog(@"token过期普通登录修复");
-//            // 重新设置token
-//            [Tools setValueForKey:[responseObject[@"data"] objectForKey:@"token"] key:@"token"];
-//            if (success){
-//                success();
-//            }
-//        }
-//    } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
-//        if (failed) {
-//            failed(error);
-//        }
-//    }];
+    // 2. 如果是普通登录
+    NSString *phone = [ZYUserDefaults stringForKey:@"phone"];
+    NSString *password = [ZYUserDefaults stringForKey:@"password"];
+
+    if (phone.length == 0 || password.length == 0){
+        return;
+    }
+    
+    NSString *url = @"user/login";
+    [mgr POST:url parameters:@{@"phone" : phone, @"password" : password } success:^(AFHTTPRequestOperation * operation, id responseObject) {
+        if (CPSuccess) {
+            DLog(@"token过期普通登录修复");
+            // 重新设置token
+            
+            [ZYUserDefaults setObject:[responseObject[@"data"] objectForKey:@"token"] forKey:Token];
+            if (success){
+                success();
+            }
+        }
+    } failure:^(AFHTTPRequestOperation * operation, NSError *error) {
+        if (failed) {
+            failed(error);
+        }
+    }];
 }
 
 + (void)calculateRegisterFrom:(NSString *)url

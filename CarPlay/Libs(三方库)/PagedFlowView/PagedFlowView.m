@@ -55,7 +55,7 @@
     _reusableCells = [[NSMutableArray alloc] initWithCapacity:0];
     _cells = [[NSMutableArray alloc] initWithCapacity:0];
     
-    _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
+    _scrollView = [[CPScrollView alloc] initWithFrame:self.bounds];
     _scrollView.delegate = self;
     _scrollView.pagingEnabled = YES;
     _scrollView.clipsToBounds = NO;
@@ -462,17 +462,17 @@
             break;
     }
     
-    CGFloat x = _scrollView.x;
-    [UIView animateWithDuration:0.1 delay:-0.1 usingSpringWithDamping:0.005 initialSpringVelocity:8 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        
-        if (zyIndex > pageIndex) {
-            _scrollView.x = x-1.5;
-        }else if (zyIndex != pageIndex){
-            _scrollView.x = x+1.5;
-        }
-    } completion:^(BOOL finished) {
-        _scrollView.x = x;
-    }];
+//    CGFloat x = _scrollView.x;
+//    [UIView animateWithDuration:0.1 delay:-0.1 usingSpringWithDamping:0.005 initialSpringVelocity:8 options:UIViewAnimationOptionCurveEaseIn animations:^{
+//        
+//        if (zyIndex > pageIndex) {
+//            _scrollView.x = x-1.5;
+//        }else if (zyIndex != pageIndex){
+//            _scrollView.x = x+1.5;
+//        }
+//    } completion:^(BOOL finished) {
+//        _scrollView.x = x;
+//    }];
     
     
     if (pageControl && [pageControl respondsToSelector:@selector(setCurrentPage:)]) {

@@ -138,7 +138,7 @@
 //    _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
 //    _activityIndicatorView.hidesWhenStopped = YES;
     _activityIndicatorView = [ZYRefreshView new];
-    _activityIndicatorView.center = self.center;
+    _activityIndicatorView.center = self.centerInSelf;
     [_activityIndicatorView setHidden:YES];
     [self addSubview:_activityIndicatorView];
     
@@ -452,7 +452,7 @@
     
     self.frame = rect;
     self.shapeLayer.frame = self.bounds;
-    self.activityIndicatorView.frame = self.bounds;
+    self.activityIndicatorView.center = self.centerInSelf;
     self.imageLayer.frame = CGRectInset(self.bounds, self.borderWidth, self.borderWidth);
     
     self.backgroundLayer.frame = self.bounds;
@@ -492,7 +492,7 @@
     _activityIndicatorView = activityIndicatorView;
 //    _activityIndicatorView.hidesWhenStopped = YES;
 //    _activityIndicatorView.frame = self.bounds;
-    _activityIndicatorView.center = self.center;
+    _activityIndicatorView.center = self.centerInSelf;
     [self addSubview:_activityIndicatorView];
     
 }

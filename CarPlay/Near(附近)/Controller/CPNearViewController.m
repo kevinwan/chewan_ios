@@ -26,6 +26,8 @@
 @property (nonatomic, assign) BOOL refreshing;
 @property (nonatomic, assign) CGFloat contentInsetY;
 @property (nonatomic, strong) CPNearParams *params;
+@property (nonatomic, strong) ZYRefreshView *refreshView;
+@property (nonatomic, assign) BOOL isHasRefreshHeader;
 @end
 @implementation CPNearViewController
 
@@ -40,29 +42,66 @@
     }
     
     
+    
+    
     self.offset = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250;
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"筛选" target:self action:@selector(filter)];
     [self.view addSubview:self.tableView];
     [self tipView];
-    [self loadData];
+    self.refreshView.hidden = NO;
+    [self loadDataWithHeader:nil];
     DLog(@"%f",self.view.right);
 }
 
+- (void)setUpRefresh
+{
+    if (self.isHasRefreshHeader) {
+        return;
+    }
+    ZYWeakSelf
+    AAPullToRefresh *tv = [_tableView.scrollView addPullToRefreshPosition:AAPullToRefreshPositionTop actionHandler:^(AAPullToRefresh *v){
+        NSLog(@"fire from top");
+        ZYStrongSelf
+        [self.tableView.scrollView setContentOffset:CGPointMake(0, -40) animated:YES];
+        self.params.ignore = 0;
+        [self loadDataWithHeader:v];
+    }];
+    tv.imageIcon = [UIImage imageNamed:@"车轮"];
+    tv.borderColor = [UIColor whiteColor];
+    
+    // bottom
+    AAPullToRefresh *bv = [_tableView.scrollView addPullToRefreshPosition:AAPullToRefreshPositionBottom actionHandler:^(AAPullToRefresh *v){
+        NSLog(@"fire from bottom");
+        ZYStrongSelf
+        [self.tableView.scrollView setContentOffset:CGPointMake(0, _tableView.scrollView.contentSize.height + 49 - _tableView.scrollView.bounds.size.height) animated:YES];
+        
+        if (self.datas.count >= CPPageNum) {
+            
+            self.params.ignore += CPPageNum;
+            [self loadDataWithHeader:v];
+        }else{
+            [v stopIndicatorAnimation];
+        }
+    }];
+    bv.imageIcon = [UIImage imageNamed:@"车轮"];
+    bv.borderColor = [UIColor whiteColor];
+
+}
 
 /**
  *  加载网络数据
  */
-- (void)loadData
+- (void)loadDataWithHeader:(AAPullToRefresh *)refresh
 {
 
     [ZYNetWorkTool getWithUrl:@"activity/list" params:self.params.keyValues success:^(id responseObject) {
-        [self.tableView.scrollView.header endRefreshing];
-        [self.tableView.scrollView.footer endRefreshing];
+        self.refreshView.hidden = YES;
+        [refresh stopIndicatorAnimation];
         DLog(@"%@ ---- ",responseObject);
         if (CPSuccess) {
-            
+            [self setUpRefresh];
             if (self.ignore == 0) {
                 [self.datas removeAllObjects];
             }
@@ -73,8 +112,10 @@
         }
     } failure:^(NSError *error) {
         
-        [self.tableView.scrollView.header endRefreshing];
-        [self.tableView.scrollView.footer endRefreshing];
+        [self setUpRefresh];
+        DLog(@"%@---",error);
+        self.ignore -= CPPageNum;
+        [refresh stopIndicatorAnimation];
         [self showError:@"加载失败"];
     }];
 }
@@ -91,7 +132,7 @@
     CPBaseViewCell *cell = (CPBaseViewCell *)[flowView dequeueReusableCell];
     if (!cell) {
         cell = [[NSBundle mainBundle] loadNibNamed:@"CPBaseViewCell" owner:nil options:nil].lastObject;
-        cell.model = self.datas.firstObject;
+        cell.model = self.datas[index];
     }
     return cell;
 }
@@ -170,7 +211,7 @@
 {
     if (CPUnLogin) {
         
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"你还未注册,注册后就可以邀请" delegate:nil cancelButtonTitle:@"再想想" otherButtonTitles:@"去注册", nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"你还未注册,注册后就可以邀请" delegate:nil cancelButtonTitle:@"再想想" otherButtonTitles:@"去注册", nil];
         [alertView.rac_buttonClickedSignal subscribeNext:^(id x) {
             if ([x integerValue] != 0) {
                 [ZYNotificationCenter postNotificationName:NOTIFICATION_HASLOGIN object:nil];
@@ -225,7 +266,7 @@
         
         self.params.type = selectModel.type;
         self.params.pay = selectModel.pay;
-        [self loadData];
+        [self loadDataWithHeader:nil];
     }];
     
     
@@ -247,52 +288,13 @@
         _tableView.orientation = PagedFlowViewOrientationVertical;
         self.view.backgroundColor = [Tools getColor:@"efefef"];
             _tableView.minimumPageScale = 0.96;
-//        _tableView.giveFrame = YES;
         // top
         _tableView.scrollView.alwaysBounceVertical = YES;
-        ZYWeakSelf
-        AAPullToRefresh *tv = [_tableView.scrollView addPullToRefreshPosition:AAPullToRefreshPositionTop actionHandler:^(AAPullToRefresh *v){
-            NSLog(@"fire from top");
-            ZYStrongSelf
-            [self.tableView.scrollView setContentOffset:CGPointMake(0, -40) animated:YES];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [v stopIndicatorAnimation];
-                NSLog(@"刷新完毕");
-            });
-        }];
-        tv.imageIcon = [UIImage imageNamed:@"车轮"];
-        tv.borderColor = [UIColor whiteColor];
-        
-        // bottom
-        AAPullToRefresh *bv = [_tableView.scrollView addPullToRefreshPosition:AAPullToRefreshPositionBottom actionHandler:^(AAPullToRefresh *v){
-            NSLog(@"fire from bottom");
-            ZYStrongSelf
-            [self.tableView.scrollView setContentOffset:CGPointMake(0, _tableView.scrollView.contentSize.height + 49 - _tableView.scrollView.bounds.size.height) animated:YES];
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [v stopIndicatorAnimation];
-            });
-        }];
-        bv.imageIcon = [UIImage imageNamed:@"车轮"];
-        bv.borderColor = [UIColor whiteColor];
-
+       
     }
     return _tableView;
 }
-- (void)test
-{
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        [self.datas addObject:@"jajaj"];
-        [self.datas addObject:@"jajaj"];
-        [self.datas addObject:@"jajaj"];
-        [self.datas addObject:@"jajaj"];
-        [self.datas addObject:@"jajaj"];
-        [self.tableView reloadData];
-        
-        [self.tableView.scrollView.footer endRefreshing];
-    });
-}
+
 - (NSMutableArray *)datas
 {
     if (_datas == nil) {
@@ -325,18 +327,22 @@
         [freeTimeBtn setOffImage:[UIImage imageNamed:@"btn_meikong"]];
         freeTimeBtn.on = [ZYUserDefaults boolForKey:FreeTimeKey];
         [_tipView addSubview:freeTimeBtn];
+        if (freeTimeBtn.on){
+            _tipView.alpha = 0;
+        }
         [[freeTimeBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(CPMySwitch *btn) {
             btn.on = !btn.on;
             [ZYUserDefaults setBool:btn.on forKey:FreeTimeKey];
             if (btn.on) {
                 textL.text = @"有空,其他人可以邀请你参加活动";
-            }else{
-                textL.text = @"没空,你将接受不到任何活动邀请";
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [UIView animateWithDuration:0.25 animations:^{
                         _tipView.alpha = 0;
                     }];
                 });
+            }else{
+                textL.text = @"没空,你将接受不到任何活动邀请";
+               
             }
         }];
         [freeTimeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -375,6 +381,17 @@
         DLog(@"%@",_params);
     }
     return _params;
+}
+
+
+- (ZYRefreshView *)refreshView
+{
+    if (_refreshView == nil) {
+        _refreshView = [[ZYRefreshView alloc] init];
+        [self.view addSubview:_refreshView];
+        _refreshView.center = self.view.center;
+    }
+    return _refreshView;
 }
 
 @end

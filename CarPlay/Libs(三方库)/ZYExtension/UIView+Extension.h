@@ -48,7 +48,7 @@ UIKIT_EXTERN NSString * const ZYTransitionTypePageUnCurl; // 向下翻页效果
 @property (nonatomic, assign) CGPoint origin;
 @property (nonatomic, assign) CGFloat centerX;
 @property (nonatomic, assign) CGFloat centerY;
-
+@property (nonatomic) CGPoint centerInSelf;
 - (NSString *)frameStr;
 
 // 设置底部的前提是有高度

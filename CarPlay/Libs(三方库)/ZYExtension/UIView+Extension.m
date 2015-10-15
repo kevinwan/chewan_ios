@@ -144,6 +144,11 @@ NSString * const ZYTransitionTypePageUnCurl = @"pageUnCurl";
     return self.frame.origin.x + self.bounds.size.width;
 }
 
+- (CGPoint)centerInSelf
+{
+    return CGPointMake(self.middleX, self.middleY);
+}
+
 - (NSString *)frameStr
 {
     return NSStringFromCGRect(self.frame);

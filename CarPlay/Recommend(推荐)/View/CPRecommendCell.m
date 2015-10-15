@@ -32,11 +32,10 @@
 {
     _model = model;
     
-    self.titleLabel.text = model.title;
-    self.contentTextL.text = model.desc;
+    self.contentTextL.text = model.title;
     self.priceLabel.text = model.priceDesc;
     self.tipLabel.text = [NSString stringWithFormat:@"官方补贴%.0f元每人",model.subsidyPrice];
-        self.partLabel.text = [NSString stringWithFormat:@"%zd / %zd",model.maleNum, model.maleLimit];
+    self.partLabel.text = @"参与人数 10 人";
     
     self.priceLabel.attributedText = model.priceText;
     

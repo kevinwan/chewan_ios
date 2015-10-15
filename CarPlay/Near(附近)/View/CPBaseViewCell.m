@@ -191,10 +191,13 @@
     
     self.sexView.isMan = model.organizer.isMan;
     self.sexView.age = model.organizer.age;
-//    [self.userIconView sd_setImageWithURL:[NSURL URLWithString:model.organizer.avatar] placeholderImage:CPPlaceHolderImage options:SDWebImageLowPriority | SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-//        
-//        self.userIconView.image = [image blurredImageWithRadius:10];
-//    }];
+    [self.userIconView sd_setImageWithURL:[NSURL URLWithString:model.organizer.avatar] placeholderImage:CPPlaceHolderImage options:SDWebImageLowPriority | SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+         if ([model.organizer.photoAuthStatus isEqualToString:@"认证通过"]) {
+            self.userIconView.image = [image blurredImageWithRadius:10];
+         }else{
+             self.userIconView.image = image;
+         }
+    }];
     
     [self.distanceView setTitle:[NSString stringWithFormat:@"%zdm",model.distance] forState:UIControlStateNormal];
     self.loveBtn.selected = model.organizer.subscribeFlag;
@@ -255,7 +258,7 @@
 - (IBAction)loveClick:(UIButton *)sender {
     
     if (CPUnLogin) {
-        
+        [ZYNotificationCenter postNotificationName:NOTIFICATION_HASLOGIN object:nil];
         return;
     }
     
@@ -269,7 +272,6 @@
         url = [NSString stringWithFormat:@"user/%@/unlisten?token=%@",CPUserId, CPToken];
         
         [ZYNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
-            DLog(@"%@取消成功",responseObject);
             if (CPSuccess) {
                 
                 [sender addAnimation:[CAAnimation scaleFrom:1.0 toScale:1.1 durTimes:0.2 rep:1]];
@@ -283,7 +285,6 @@
         
         [ZYNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
             
-            DLog(@"%@关注成功",responseObject);
             if (CPSuccess){
                 
                 [sender addAnimation:[CAAnimation scaleFrom:1.0 toScale:1.2 durTimes:0.2 rep:1]];
@@ -479,12 +480,6 @@
                     make.centerX.equalTo(uploadBtn);
                     make.top.equalTo(uploadBtn.mas_bottom).offset(10);
                 }];
-                
-                [photoBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-                    
-                    make.centerX.equalTo(uploadBtn);
-                    make.top.equalTo(cameraBtn.mas_bottom).offset(10);
-                }];
             }else{
                 [cameraBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
                     
@@ -492,19 +487,67 @@
                     make.top.equalTo(uploadBtn);
                 }];
                 
-                [photoBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-                    
-                    make.centerX.equalTo(uploadBtn);
-                    make.top.equalTo(cameraBtn);
-                }];
             }
-            
+
             [UIView animateWithDuration:0.25 animations:^{
-                
                 cameraBtn.alpha = !cameraBtn.alpha;
-                photoBtn.alpha = !photoBtn.alpha;
-                [_tipView layoutIfNeeded];
+               [cameraBtn layoutIfNeeded];
+            } completion:^(BOOL finished) {
+                if (photoBtn.alpha == 0){
+                    [photoBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+                        
+                        make.centerX.equalTo(uploadBtn);
+                        make.top.equalTo(cameraBtn.mas_bottom).offset(10);
+                    }];
+                }else{
+                    
+                    [photoBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+                        
+                        make.centerX.equalTo(uploadBtn);
+                        make.top.equalTo(cameraBtn);
+                    }];
+                }
+
+                [UIView animateWithDuration:0.25 animations:^{
+                    photoBtn.alpha = !photoBtn.alpha;
+                    [photoBtn layoutIfNeeded];
+                } completion:NULL];
+                
             }];
+            
+//            
+//            if (cameraBtn.alpha == 0){
+//                [cameraBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+//                    
+//                    make.centerX.equalTo(uploadBtn);
+//                    make.top.equalTo(uploadBtn.mas_bottom).offset(10);
+//                }];
+//                
+//                [photoBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+//                    
+//                    make.centerX.equalTo(uploadBtn);
+//                    make.top.equalTo(cameraBtn.mas_bottom).offset(10);
+//                }];
+//            }else{
+//                [cameraBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+//                    
+//                    make.centerX.equalTo(uploadBtn);
+//                    make.top.equalTo(uploadBtn);
+//                }];
+//                
+//                [photoBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+//                    
+//                    make.centerX.equalTo(uploadBtn);
+//                    make.top.equalTo(cameraBtn);
+//                }];
+//            }
+//            
+//            [UIView animateWithDuration:0.25 animations:^{
+//                
+//                cameraBtn.alpha = !cameraBtn.alpha;
+//                photoBtn.alpha = !photoBtn.alpha;
+//                [_tipView layoutIfNeeded];
+//            }];
             
         }];
        

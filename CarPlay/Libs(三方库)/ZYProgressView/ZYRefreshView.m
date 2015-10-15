@@ -37,6 +37,7 @@
  */
 - (void)setUp
 {
+    self.size = CGSizeMake(40, 21);
     self.backgroundColor = [UIColor clearColor];
     self.wheelView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"车轮"]];
     [self addSubview:self.wheelView];
@@ -53,19 +54,25 @@
     
     self.lightView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"光"]];
     [self addSubview:self.lightView];
+    
+    CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
+    animation.keyPath = ZYAnimationTranslationXKey;
+    animation.values = @[@40,@36, @32, @28,@24,@20,@16,@12,@8,@4, @0];
+    animation.duration = 1;
+    animation.repeatCount = MAXFLOAT;
+    [self.lightView addAnimation:animation];
+    
 }
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
     
-    self.width = 40;
-    self.height = 21;
     self.wheelView.y = 4;
-    self.wheelView.centerX = self.centerX;
+    self.wheelView.centerX = self.middleX;
     
     self.roadView.y = self.wheelView.bottom + 1;
-    self.roadView.centerX = self.centerX;
+    self.roadView.centerX = self.middleX;
     
     self.lightView.centerY = self.roadView.centerY;
     self.lightView.x = self.roadView.left;

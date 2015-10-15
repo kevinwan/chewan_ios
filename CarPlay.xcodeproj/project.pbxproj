@@ -101,6 +101,7 @@
 		E32B5DD81BCE39CC0057FD71 /* UIViewController+ZY.m in Sources */ = {isa = PBXBuildFile; fileRef = E32B5DD71BCE39CC0057FD71 /* UIViewController+ZY.m */; settings = {ASSET_TAGS = (); }; };
 		E32B5DDF1BCE41B50057FD71 /* ZYProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E32B5DDE1BCE41B50057FD71 /* ZYProgressView.m */; settings = {ASSET_TAGS = (); }; };
 		E32B5DE21BCE41CA0057FD71 /* ZYRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = E32B5DE11BCE41CA0057FD71 /* ZYRefreshView.m */; settings = {ASSET_TAGS = (); }; };
+		E359EDBA1BCF3C2B0004B17D /* CPScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E359EDB91BCF3C2B0004B17D /* CPScrollView.m */; settings = {ASSET_TAGS = (); }; };
 		E3606F0D1BC76FF100797968 /* CPRecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */; settings = {ASSET_TAGS = (); }; };
 		E3606F121BC78C7300797968 /* CPBaseViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F111BC78C7300797968 /* CPBaseViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		E369E2B11BCB952E000A12B5 /* CPSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E369E2B01BCB952E000A12B5 /* CPSelectView.xib */; settings = {ASSET_TAGS = (); }; };
@@ -342,6 +343,8 @@
 		E32B5DDE1BCE41B50057FD71 /* ZYProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYProgressView.m; sourceTree = "<group>"; };
 		E32B5DE01BCE41CA0057FD71 /* ZYRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYRefreshView.h; sourceTree = "<group>"; };
 		E32B5DE11BCE41CA0057FD71 /* ZYRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYRefreshView.m; sourceTree = "<group>"; };
+		E359EDB81BCF3C2B0004B17D /* CPScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPScrollView.h; sourceTree = "<group>"; };
+		E359EDB91BCF3C2B0004B17D /* CPScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPScrollView.m; sourceTree = "<group>"; };
 		E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPRecommendCell.xib; sourceTree = "<group>"; };
 		E3606F111BC78C7300797968 /* CPBaseViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPBaseViewCell.xib; sourceTree = "<group>"; };
 		E369E2B01BCB952E000A12B5 /* CPSelectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPSelectView.xib; sourceTree = "<group>"; };
@@ -1122,6 +1125,8 @@
 			children = (
 				E32B5DD31BCE264B0057FD71 /* PagedFlowView.h */,
 				E32B5DD41BCE264B0057FD71 /* PagedFlowView.m */,
+				E359EDB81BCF3C2B0004B17D /* CPScrollView.h */,
+				E359EDB91BCF3C2B0004B17D /* CPScrollView.m */,
 			);
 			path = PagedFlowView;
 			sourceTree = "<group>";
@@ -1885,6 +1890,7 @@
 				E3A471781BB3A85300973197 /* Foundation+Log.m in Sources */,
 				E31B12E21BB9311700B51696 /* PhotoModel.m in Sources */,
 				E31B133C1BB9312D00B51696 /* CoreArchive.m in Sources */,
+				E359EDBA1BCF3C2B0004B17D /* CPScrollView.m in Sources */,
 				E3A471851BB3A85300973197 /* UIResponder+Extension.m in Sources */,
 				E3E6B88C1BB4F7FA006B4F8A /* FXBlurView.m in Sources */,
 				E39627C11BB54D91005E0CF2 /* MultiplePulsingHaloLayer.m in Sources */,
