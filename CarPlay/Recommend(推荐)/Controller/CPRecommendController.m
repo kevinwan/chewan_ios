@@ -63,7 +63,7 @@
 #pragma mark - flowViewDelegate & flowViewDataSource
 - (NSInteger)numberOfPagesInFlowView:(PagedFlowView *)flowView
 {
-    return 3;
+    return 10;
 //    return self.datas.count;
 }
 

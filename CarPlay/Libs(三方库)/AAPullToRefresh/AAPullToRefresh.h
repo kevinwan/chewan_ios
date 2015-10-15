@@ -1,4 +1,5 @@
 #import <UIKit/UIKit.h>
+#import "ZYRefreshView.h"
 
 typedef void (^actionHandler)(void);
 typedef NS_ENUM(NSUInteger, AAPullToRefreshState) {
@@ -28,7 +29,7 @@ typedef NS_ENUM(NSUInteger, AAPullToRefreshPosition) {
 @property (nonatomic, strong) UIImage *imageIcon;
 @property (nonatomic, strong) UIColor *borderColor;
 @property (nonatomic, assign) CGFloat borderWidth;
-@property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
+@property (nonatomic, strong) ZYRefreshView *activityIndicatorView;
 
 - (id)initWithImage:(UIImage *)image position:(AAPullToRefreshPosition)position;
 - (void)stopIndicatorAnimation;

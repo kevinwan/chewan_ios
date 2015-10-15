@@ -1,7 +1,7 @@
 #import "AAPullToRefresh.h"
 
-#define DEGREES_TO_RADIANS(x) (x)/180.0*M_PI
-#define RADIANS_TO_DEGREES(x) (x)/M_PI*180.0
+//#define DEGREES_TO_RADIANS(x) (x)/180.0*M_PI
+//#define RADIANS_TO_DEGREES(x) (x)/M_PI*180.0
 
 @implementation UIScrollView (AAPullToRefresh)
 
@@ -135,9 +135,11 @@
         self.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     self.backgroundColor = [UIColor clearColor];
     //init actitvity indicator
-    _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    _activityIndicatorView.hidesWhenStopped = YES;
-    _activityIndicatorView.frame = self.bounds;
+//    _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+//    _activityIndicatorView.hidesWhenStopped = YES;
+    _activityIndicatorView = [ZYRefreshView new];
+    _activityIndicatorView.center = self.centerInSelf;
+    [_activityIndicatorView setHidden:YES];
     [self addSubview:_activityIndicatorView];
     
     //init background layer
@@ -400,7 +402,7 @@
                          [self setLayerHidden:YES];
                      }];
     
-    [self.activityIndicatorView startAnimating];
+    [self.activityIndicatorView setHidden:NO];
     [self setupScrollViewContentInsetForLoadingIndicator:nil];
     if (self.pullToRefreshHandler)
         self.pullToRefreshHandler(self);
@@ -414,7 +416,7 @@
                      animations:^{
                          self.activityIndicatorView.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
                      } completion:^(BOOL finished) {
-                         [self.activityIndicatorView stopAnimating];
+                         [self.activityIndicatorView setHidden:YES];
                          [self resetScrollViewContentInset:^{
                              self.activityIndicatorView.transform = CGAffineTransformIdentity;
                              [self setLayerHidden:NO];
@@ -450,7 +452,7 @@
     
     self.frame = rect;
     self.shapeLayer.frame = self.bounds;
-    self.activityIndicatorView.frame = self.bounds;
+    self.activityIndicatorView.center = self.centerInSelf;
     self.imageLayer.frame = CGRectInset(self.bounds, self.borderWidth, self.borderWidth);
     
     self.backgroundLayer.frame = self.bounds;
@@ -483,13 +485,14 @@
     _shapeLayer.strokeColor = _borderColor.CGColor;
 }
 
-- (void)setActivityIndicatorView:(UIActivityIndicatorView *)activityIndicatorView
+- (void)setActivityIndicatorView:(ZYRefreshView *)activityIndicatorView
 {
     if(_activityIndicatorView)
         [activityIndicatorView removeFromSuperview];
     _activityIndicatorView = activityIndicatorView;
-    _activityIndicatorView.hidesWhenStopped = YES;
-    _activityIndicatorView.frame = self.bounds;
+//    _activityIndicatorView.hidesWhenStopped = YES;
+//    _activityIndicatorView.frame = self.bounds;
+    _activityIndicatorView.center = self.centerInSelf;
     [self addSubview:_activityIndicatorView];
     
 }
