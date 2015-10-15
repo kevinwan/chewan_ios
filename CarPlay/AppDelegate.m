@@ -8,11 +8,13 @@
 
 #import "AppDelegate.h"
 #import "Aspects.h"
-#import "CPMyCareController.h"
+#import "CPMyViewController.h"
 #import "IQKeyboardManager.h"
 #import <CoreLocation/CoreLocation.h>
+#import "CPLoginViewController.h"
+#import "CPNavigationController.h"
 
-@interface AppDelegate ()<UITabBarControllerDelegate,CLLocationManagerDelegate>
+@interface AppDelegate ()<UITabBarControllerDelegate,CLLocationManagerDelegate,UIAlertViewDelegate>
 
 /**
  *  定位管理者
@@ -32,6 +34,7 @@
     self.window.rootViewController = _tabVc;
     [self.window makeKeyAndVisible];
     [ZYNotificationCenter addObserver:self selector:@selector(loginStateChang) name:NOTIFICATION_HASLOGIN object:nil];
+    [ZYNotificationCenter addObserver:self selector:@selector(goLogin) name:NOTIFICATION_GOLOGIN object:nil];
     
     [SVProgressHUD setBackgroundColor:ZYColor(0, 0, 0, 0.8)];
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
@@ -53,17 +56,39 @@
         // 3.开始监听(开始获取位置)
         [self.mgr startUpdatingLocation];
     }
+    //环信
+    //gongpingjia#carplayapp
+    [[EaseMob sharedInstance] registerSDKWithAppKey:@"easemob-demo#chatdemoui" apnsCertName:@"istore_dev"];
+    [[EaseMob sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     
+    [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:@"offen3" password:@"123" completion:^(NSDictionary *loginInfo, EMError *error) {
+        if (!error) {
+            // 设置自动登录
+            [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+        }
+    } onQueue:nil];
     return YES;
 }
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
-//    UINavigationController *nav = (UINavigationController *)viewController;
-//    if ([nav.childViewControllers.firstObject isKindOfClass:[CPMyCareController class]]) {
-//        return CPIsLogin?YES:NO;
-//    }
+    UINavigationController *nav = (UINavigationController *)viewController;
+    if ([nav.childViewControllers.firstObject isKindOfClass:[CPMyViewController class]]) {
+        if (CPIsLogin) {
+            return YES;
+        }else{
+            [[[UIAlertView alloc]initWithTitle:@"提示" message:@"您还没有登录是否登录？" delegate:self cancelButtonTitle:@"在想想" otherButtonTitles:@"去登录", nil] show];
+            return NO;
+        }
+    }
     return YES;
+}
+
+#pragma UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
+        [self goLogin];
+    }
 }
 
 - (void)setViewCycleAop
@@ -103,12 +128,11 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+[[EaseMob sharedInstance] applicationDidEnterBackground:application];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+[[EaseMob sharedInstance] applicationWillEnterForeground:application];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -116,11 +140,18 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [[EaseMob sharedInstance] applicationWillTerminate:application];
 }
 
 -(void)loginStateChang{
     self.window.rootViewController = _tabVc;
+    [self.window makeKeyAndVisible];
+}
+
+-(void)goLogin{
+    CPLoginViewController *login = [UIStoryboard storyboardWithName:@"CPLoginViewController" bundle:nil].instantiateInitialViewController;
+    CPNavigationController *nav=[[CPNavigationController alloc]initWithRootViewController:login];
+    self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
 }
 
@@ -157,7 +188,7 @@
  */
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    
+
     // 如果只需要获取一次, 可以获取到位置之后就停止
     //    [self.mgr stopUpdatingLocation];
     

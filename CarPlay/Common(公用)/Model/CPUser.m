@@ -7,6 +7,7 @@
 //
 
 #import "CPUser.h"
+#import "CPAlbum.h"
 
 @implementation CPUser
 
@@ -20,6 +21,13 @@
     }
 }
 
++ (NSDictionary *)objectClassInArray
+{
+    return @{@"album":[CPAlbum class]};
+}
+
 MJCodingImplementation
+
+
 
 @end

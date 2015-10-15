@@ -15,8 +15,11 @@
 #import <UIButton+WebCache.h>
 #import "CPMyCareController.h"
 #import "CPBrandModelViewController.h"
+#import "UzysAssetsPickerController.h"
+#import "CPAlbum.h"
+#import "CPSettingController.h"
 
-@interface CPMyViewController ()
+@interface CPMyViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate, UzysAssetsPickerControllerDelegate, UIAlertViewDelegate,UINavigationControllerDelegate>
 {
     CPUser *user;
 }
@@ -78,14 +81,17 @@
 }
 #pragma privateMethod
 -(void)rightClick{
-    CPLoginViewController *login = [UIStoryboard storyboardWithName:@"CPLoginViewController" bundle:nil].instantiateInitialViewController;
-//    [self.navigationController pushViewController:login animated:YES];
-    CPNavigationController *nav=[[CPNavigationController alloc]initWithRootViewController:login];
-    self.view.window.rootViewController = nav;
-    [self.view.window makeKeyAndVisible];
+//    CPLoginViewController *login = [UIStoryboard storyboardWithName:@"CPLoginViewController" bundle:nil].instantiateInitialViewController;
+////    [self.navigationController pushViewController:login animated:YES];
+//    CPNavigationController *nav=[[CPNavigationController alloc]initWithRootViewController:login];
+//    self.view.window.rootViewController = nav;
+//    [self.view.window makeKeyAndVisible];
 //    self.view.window
 //    CPMyInfoController *myInfoVC = [UIStoryboard storyboardWithName:@"CPMyInfoController" bundle:nil].instantiateInitialViewController;
 //    [self.navigationController pushViewController:myInfoVC animated:YES];
+     CPSettingController *CPSettingTableVC = [UIStoryboard storyboardWithName:@"CPSetting" bundle:nil].instantiateInitialViewController;
+    CPSettingTableVC.title=@"设置";
+    [self.navigationController pushViewController:CPSettingTableVC animated:YES];
 }
 
 //加载数据
@@ -123,15 +129,16 @@
     self.albumsScrollView.contentSize=CGSizeMake(0, 0);
     self.albumsScrollView.pagingEnabled=NO;
     
-    for (int i=0; i<[user.albums count]; i++) {
+    for (int i=0; i<[user.album count]; i++) {
         UIButton *albumBtn=[[UIButton alloc]initWithFrame:CGRectMake(85+75*i, 15, 70, 70)];
-        [albumBtn sd_setImageWithURL:[[NSURL alloc]initWithString:user.albums[i]] forState:UIControlStateNormal];
+        CPAlbum *album=user.album[i];
+        [albumBtn sd_setImageWithURL:[[NSURL alloc]initWithString:album.url] forState:UIControlStateNormal];
         [albumBtn addTarget:self action:@selector(photoBrowser) forControlEvents:UIControlEventTouchUpInside];
         [albumBtn.layer setMasksToBounds:YES];
         [albumBtn.layer setCornerRadius:3.0];
         [self.albumsScrollView addSubview:albumBtn];
     }
-    self.albumsScrollView.contentSize=CGSizeMake(85+75*[user.albums count], 100.0);
+    self.albumsScrollView.contentSize=CGSizeMake(85+75*[user.album count], 100.0);
 }
 
 //完善
@@ -152,11 +159,139 @@
 
 //添加照片
 -(void)addPhoto{
-    NSLog(@"addPhoto");
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择相片" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"相册", nil];
+    [actionSheet showInView:self.view];
 }
 
 //图片大图浏览
 -(void)photoBrowser{
     NSLog(@"photoBrowser");
 }
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 2) {
+        return;
+    }
+    if (buttonIndex == 0) {
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            
+            UIImagePickerController *pick = [[UIImagePickerController alloc] init];
+            pick.delegate = self;
+            pick.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self presentViewController:pick animated:YES completion:nil];
+        }else{
+          [[[UIAlertView alloc]initWithTitle:@"提示" message:@"相机不可用" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        }
+    }else{
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+            UzysAssetsPickerController *picker = [[UzysAssetsPickerController alloc] init];
+            picker.delegate = self;
+            picker.maximumNumberOfSelectionPhoto = 10;
+            [self presentViewController:picker animated:YES completion:nil];
+        }
+    }
+}
+/**
+ *  照片选择完毕
+ *
+ *  @param picker picker description
+ *  @param info   info description
+ */
+
+#pragma mark - <UZYImagePickerController>
+
+- (void)uzysAssetsPickerController:(UzysAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets
+{
+    NSMutableArray *arr = [NSMutableArray array];
+    [assets enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        ALAsset *representation = obj;
+        
+        UIImage *img = [UIImage imageWithCGImage:representation.defaultRepresentation.fullResolutionImage
+                                           scale:representation.defaultRepresentation.scale
+                                     orientation:(UIImageOrientation)representation.defaultRepresentation.orientation];
+        [arr addObject:img];
+    }];
+    [self addPhoto:arr];
+//    [SVProgressHUD showWithStatus:@"加载中"];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [SVProgressHUD dismiss];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    });
+    
+}
+
+- (void)uzysAssetsPickerControllerDidExceedMaximumNumberOfSelection:(UzysAssetsPickerController *)picker
+{
+    [self showAlert];
+}
+
+- (void)showAlert
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                    message:@"您最多只能上传9张图片"
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+    
+}
+
+- (void)uzysAssetsPickerControllerDidCancel:(UzysAssetsPickerController *)picker
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+/**
+ *  系统的拍照完毕方法
+ */
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *portraitImg = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    [self addPhoto:@[portraitImg]];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    DLog(@"系统的....");
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+/**
+ *  添加图片
+ */
+- (void)addPhoto:(NSArray *)arr
+{
+        NSString *path=[[NSString alloc]initWithFormat:@"user/%@/album/upload?token=%@",[Tools getUserId],[Tools getToken]];
+        for (int i = 0; i < arr.count; i++) {
+            ZYHttpFile *imageFile = [ZYHttpFile fileWithName:@"attach" data:UIImageJPEGRepresentation(arr[i], 0.4) mimeType:@"image/jpeg" filename:@"a1.jpg"];
+            [self showLoading];
+            [ZYNetWorkTool postFileWithUrl:path params:nil files:@[imageFile] success:^(id responseObject) {
+                if (CPSuccess) {
+//                    CPEditImageView *imageView = [[CPEditImageView alloc] init];
+//                    imageView.image = arr[i];
+//                    
+//                    UILongPressGestureRecognizer *longPressGes = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+//                    [imageView addGestureRecognizer:longPressGes];
+//                    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPress:)];
+//                    [imageView addGestureRecognizer:tapGes];
+//                    imageView.coverId=responseObject[@"data"][@"photoId"];
+//                    [_allPhotoIds addObject:responseObject[@"data"][@"photoId"]];
+                    
+//                    [self.photoView insertSubview:imageView atIndex:0];
+                    NSLog(@"%@",responseObject);
+                    
+//                    [self layoutPhotoView];
+                }else{
+                    [self showError:responseObject[@"errmsg"]];
+                }
+            } failure:^(NSError *error) {
+                [self showError:@"照片上传失败"];
+            }];
+        }
+    [self disMiss];
+}
+
 @end

@@ -50,7 +50,7 @@
 // 是不是被关注
 @property (nonatomic, assign) BOOL subscribeFlag;
 
-@property (nonatomic, strong) NSArray *albums;
+@property (nonatomic, strong) NSArray *album;
 //个人资料完成程度1-100
 @property (nonatomic, assign) NSUInteger completion;
 @end

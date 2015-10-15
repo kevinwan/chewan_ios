@@ -17,82 +17,132 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
+                                    <view tag="21" contentMode="scaleToFill" id="dSH-a0-0ge">
+                                        <rect key="frame" x="29" y="73" width="81" height="81"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="T3E-rl-8BT">
                                         <rect key="frame" x="29" y="73" width="81" height="81"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="吃饭"/>
+                                        <state key="normal" backgroundImage="吃饭"/>
                                         <connections>
                                             <action selector="btnClick:" destination="uwA-Hh-LbF" eventType="touchUpInside" id="dhy-er-ZpF"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SWH-FZ-hRO">
+                                    <view tag="23" contentMode="scaleToFill" id="hFv-IT-alR">
                                         <rect key="frame" x="134" y="73" width="70" height="70"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="唱歌"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SWH-FZ-hRO">
+                                        <rect key="frame" x="134" y="73" width="70" height="70"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="唱歌"/>
                                         <connections>
                                             <action selector="btnClick:" destination="uwA-Hh-LbF" eventType="touchUpInside" id="vkp-tn-ig2"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="VtZ-Mh-tCN">
+                                    <view tag="25" contentMode="scaleToFill" id="ZMJ-GL-sLf">
                                         <rect key="frame" x="34" y="167" width="70" height="70"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="看电影"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="VtZ-Mh-tCN">
+                                        <rect key="frame" x="34" y="167" width="70" height="70"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="看电影"/>
                                         <connections>
                                             <action selector="btnClick:" destination="uwA-Hh-LbF" eventType="touchUpInside" id="Gf3-mH-wxe"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="t7z-jj-ccW">
+                                    <view tag="22" contentMode="scaleToFill" id="fQQ-DY-rSc">
                                         <rect key="frame" x="145" y="219" width="70" height="70"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="夜宵"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="t7z-jj-ccW">
+                                        <rect key="frame" x="145" y="219" width="70" height="70"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="夜宵"/>
                                         <connections>
                                             <action selector="btnClick:" destination="uwA-Hh-LbF" eventType="touchUpInside" id="Eta-uB-dBl"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="BCW-OV-xrd">
+                                    <view tag="29" contentMode="scaleToFill" id="tIs-XZ-qiD">
                                         <rect key="frame" x="34" y="258" width="65" height="65"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="运动"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="BCW-OV-xrd">
+                                        <rect key="frame" x="34" y="258" width="65" height="65"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="运动"/>
                                         <connections>
                                             <action selector="btnClick:" destination="uwA-Hh-LbF" eventType="touchUpInside" id="cOU-zo-4xb"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7RV-Ej-Qcv">
+                                    <view tag="27" contentMode="scaleToFill" id="EZV-cq-3rl">
                                         <rect key="frame" x="130" y="151" width="60" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="遛狗"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7RV-Ej-Qcv">
+                                        <rect key="frame" x="130" y="151" width="60" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="遛狗"/>
                                         <connections>
                                             <action selector="btnClick:" destination="uwA-Hh-LbF" eventType="touchUpInside" id="qAi-Cc-uJ2"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Nxn-sU-cTo">
+                                    <view tag="24" contentMode="scaleToFill" id="obW-13-oSk">
                                         <rect key="frame" x="19" y="337" width="70" height="70"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="夜店"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Nxn-sU-cTo">
+                                        <rect key="frame" x="19" y="337" width="70" height="70"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="夜店"/>
                                         <connections>
                                             <action selector="btnClick:" destination="uwA-Hh-LbF" eventType="touchUpInside" id="PM1-Gk-Cmq"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Qol-aV-Fle">
+                                    <view tag="28" contentMode="scaleToFill" id="3TD-DQ-c6x">
                                         <rect key="frame" x="19" y="423" width="70" height="70"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="喝酒"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Qol-aV-Fle">
+                                        <rect key="frame" x="19" y="423" width="70" height="70"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="喝酒"/>
                                         <connections>
                                             <action selector="btnClick:" destination="uwA-Hh-LbF" eventType="touchUpInside" id="xcE-dl-aAr"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Jn3-Cd-yb8">
+                                    <view tag="30" contentMode="scaleToFill" id="S3O-iK-Wtg">
                                         <rect key="frame" x="215" y="356" width="60" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="购物"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Jn3-Cd-yb8">
+                                        <rect key="frame" x="215" y="356" width="60" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="购物"/>
                                         <connections>
                                             <action selector="btnClick:" destination="uwA-Hh-LbF" eventType="touchUpInside" id="8OC-XX-W2O"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vY7-DS-J95">
+                                    <view tag="26" contentMode="scaleToFill" id="vlb-YL-xKl">
                                         <rect key="frame" x="112" y="356" width="60" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="喝咖啡"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vY7-DS-J95">
+                                        <rect key="frame" x="112" y="356" width="60" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="喝咖啡"/>
                                         <connections>
                                             <action selector="btnClick:" destination="uwA-Hh-LbF" eventType="touchUpInside" id="j3M-Kq-fIT"/>
                                         </connections>
@@ -118,18 +168,28 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="beerBtn" destination="Qol-aV-Fle" id="8pM-rM-egf"/>
+                        <outlet property="beerBtnBgView" destination="3TD-DQ-c6x" id="ncm-eg-YKt"/>
                         <outlet property="coffeBtn" destination="vY7-DS-J95" id="S30-PP-twK"/>
+                        <outlet property="coffeBtnBgView" destination="vlb-YL-xKl" id="xhK-M2-Z3G"/>
                         <outlet property="eatBtn" destination="T3E-rl-8BT" id="wqh-Ne-t8V"/>
+                        <outlet property="eatBtnBgView" destination="dSH-a0-0ge" id="6lR-Zk-L1s"/>
                         <outlet property="movieBtn" destination="VtZ-Mh-tCN" id="nZW-dk-Whn"/>
+                        <outlet property="movieBtnBgView" destination="ZMJ-GL-sLf" id="A4E-NA-ohB"/>
                         <outlet property="nightclubBtn" destination="Nxn-sU-cTo" id="oK6-K3-pp6"/>
+                        <outlet property="nightclubBtnBgView" destination="obW-13-oSk" id="PJr-dj-XaJ"/>
                         <outlet property="nowYouWantImg" destination="1Yi-zN-ICW" id="qa5-zZ-E97"/>
                         <outlet property="scrollView" destination="WPz-Ph-KfY" id="Zca-jW-r6j"/>
                         <outlet property="shoppingBtn" destination="Jn3-Cd-yb8" id="EDY-Uz-o4T"/>
+                        <outlet property="shoppingBtnBgView" destination="S3O-iK-Wtg" id="UHd-HN-E9J"/>
                         <outlet property="singBtn" destination="SWH-FZ-hRO" id="WHO-Bk-R83"/>
+                        <outlet property="singBtnBgView" destination="hFv-IT-alR" id="042-ok-5Ff"/>
                         <outlet property="supperBtn" destination="t7z-jj-ccW" id="J4m-iY-p1c"/>
+                        <outlet property="supperBtnBgView" destination="fQQ-DY-rSc" id="hgO-tU-uTs"/>
                         <outlet property="takeALookBtn" destination="XQZ-MX-1sl" id="6Xn-aO-LGg"/>
                         <outlet property="takeExerciseBtn" destination="BCW-OV-xrd" id="Rs3-EZ-Jlb"/>
+                        <outlet property="takeExerciseBtnBgView" destination="tIs-XZ-qiD" id="sJW-V5-nPp"/>
                         <outlet property="walkDogBtn" destination="7RV-Ej-Qcv" id="aFN-nb-Pf2"/>
+                        <outlet property="walkDogBtnBgView" destination="EZV-cq-3rl" id="RBW-Mp-W0B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3JK-E3-aJk" userLabel="First Responder" sceneMemberID="firstResponder"/>
