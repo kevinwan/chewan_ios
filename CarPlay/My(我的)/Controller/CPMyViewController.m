@@ -17,7 +17,7 @@
 #import "CPBrandModelViewController.h"
 #import "UzysAssetsPickerController.h"
 #import "CPAlbum.h"
-#import "CPSettingTableViewController.h"
+#import "CPSettingController.h"
 
 @interface CPMyViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate, UzysAssetsPickerControllerDelegate, UIAlertViewDelegate,UINavigationControllerDelegate>
 {
@@ -89,7 +89,7 @@
 //    self.view.window
 //    CPMyInfoController *myInfoVC = [UIStoryboard storyboardWithName:@"CPMyInfoController" bundle:nil].instantiateInitialViewController;
 //    [self.navigationController pushViewController:myInfoVC animated:YES];
-    CPSettingTableViewController *CPSettingTableVC=[[CPSettingTableViewController alloc]init];
+     CPSettingController *CPSettingTableVC = [UIStoryboard storyboardWithName:@"CPSetting" bundle:nil].instantiateInitialViewController;
     CPSettingTableVC.title=@"设置";
     [self.navigationController pushViewController:CPSettingTableVC animated:YES];
 }
