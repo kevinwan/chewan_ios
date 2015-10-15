@@ -18,6 +18,7 @@
 @property (nonatomic, strong) UIButton *lastTypebtn;
 @property (nonatomic, weak) UIButton *lastPaybtn;
 @property (nonatomic, weak) UIButton *lastSexbtn;
+
 @end
 
 @implementation CPSelectView

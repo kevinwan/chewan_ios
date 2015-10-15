@@ -28,10 +28,10 @@
 - (void)setNowJoinNum:(NSUInteger)nowJoinNum
 {
     _nowJoinNum = nowJoinNum;
-    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"参与" attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"999999"]}];
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"参与 " attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"999999"]}];
     NSAttributedString *num = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%zd",nowJoinNum] attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"333333"]}];
     [str appendAttributedString:num];
-    [str appendAttributedString:[[NSAttributedString alloc] initWithString:@"人" attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"999999"]}]];
+    [str appendAttributedString:[[NSAttributedString alloc] initWithString:@" 人" attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"999999"]}]];
     _joinPersonText = [str copy];
 }
 
@@ -56,7 +56,7 @@
 - (void)setTitleAttrbuteText
 {
     NSString *city = _destination[@"city"];
-    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"[%@]",city] attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"fe5966"]}];
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@" [%@] ",city] attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"fe5966"]}];
     NSAttributedString *title = [[NSAttributedString alloc] initWithString:_title attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"333333"]}];
     [str appendAttributedString:title];
    
