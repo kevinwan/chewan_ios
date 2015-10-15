@@ -8,11 +8,11 @@
 
 #import "CPTaInfo.h"
 
-@interface CPTaInfo ()
+@interface CPTaInfo ()<UIAlertViewDelegate>
 
 @end
 
-@implementation CPTaInfo<UIAlertViewDelegate>
+@implementation CPTaInfo
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,6 +25,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     [self getData];
 }
 
