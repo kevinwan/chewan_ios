@@ -17,6 +17,7 @@
 #import "ZYProgressView.h"
 #import "ZYRefreshView.h"
 #import "CPNoDataTipView.h"
+#import "CPTaInfo.h"
 
 @interface CPNearViewController ()<PagedFlowViewDataSource,PagedFlowViewDelegate,UIScrollViewDelegate>
 @property (nonatomic, strong) PagedFlowView *tableView;
@@ -52,7 +53,7 @@
     self.refreshView.hidden = NO;
     [self loadDataWithHeader:nil];
     DLog(@"%f",self.view.right);
-
+    
 }
 
 - (void)setUpRefresh
@@ -150,6 +151,13 @@
     return self.datas.count;
 }
 
+- (void)flowView:(PagedFlowView *)flowView didTapPageAtIndex:(NSInteger)index
+{
+    CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
+    taVc.userId = self.datas[index].organizer.userId;
+    [self.navigationController pushViewController:taVc animated:YES];
+}
+
 #pragma mark - 事件交互
 
 - (void)superViewWillRecive:(NSString *)notifyName info:(id)userInfo
@@ -165,7 +173,30 @@
         
     }else if([notifyName isEqualToString:IgnoreBtnClickKey]){
         
+    }else if([notifyName isEqualToString:LoveBtnClickKey]){
+        [self loveBtnClickWithInfo:(CPActivityModel *)userInfo];
     }
+}
+
+/**
+ *  处理关注点击
+ *
+ *  @param model model description
+ */
+- (void)loveBtnClickWithInfo:(CPActivityModel *)model
+{
+    ZYAsyncThead(^{
+        
+        for (CPActivityModel *obj in self.datas) {
+            if ([obj.organizer.userId isEqualToString:model.organizer.userId]) {
+                obj.organizer.subscribeFlag = model.organizer.subscribeFlag;
+            }
+
+        }
+        ZYMainThread(^{
+            [self.tableView reloadData];
+        });
+    });
 }
 
 /**
