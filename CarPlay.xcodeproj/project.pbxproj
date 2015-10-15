@@ -46,6 +46,7 @@
 		6B364C9B1BCF43B8005A4AF9 /* CPVersionIntroduction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B364C951BCF43B8005A4AF9 /* CPVersionIntroduction.storyboard */; settings = {ASSET_TAGS = (); }; };
 		6B364CA01BCF442E005A4AF9 /* CPMyBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B364C9E1BCF442E005A4AF9 /* CPMyBaseCell.m */; settings = {ASSET_TAGS = (); }; };
 		6B364CA11BCF442E005A4AF9 /* CPMyBaseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B364C9F1BCF442E005A4AF9 /* CPMyBaseCell.xib */; settings = {ASSET_TAGS = (); }; };
+		6B364CA51BCF4748005A4AF9 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B364CA41BCF4748005A4AF9 /* UserProfileViewController.m */; settings = {ASSET_TAGS = (); }; };
 		6B440CDB1BBA857B00CF8410 /* CPMyInfoHead.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B440CDA1BBA857B00CF8410 /* CPMyInfoHead.xib */; settings = {ASSET_TAGS = (); }; };
 		6B440CE31BBA86C500CF8410 /* CPMyInfoFirCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B440CE21BBA86C500CF8410 /* CPMyInfoFirCell.xib */; settings = {ASSET_TAGS = (); }; };
 		6B440CE51BBA86D100CF8410 /* CPMyInfoSecCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B440CE41BBA86D100CF8410 /* CPMyInfoSecCell.xib */; settings = {ASSET_TAGS = (); }; };
@@ -195,7 +196,6 @@
 		6D2ABFFA1BCE582100201A8E /* EMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2ABF611BCE582100201A8E /* EMNavigationController.m */; settings = {ASSET_TAGS = (); }; };
 		6D2ABFFB1BCE582100201A8E /* EMSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2ABF631BCE582100201A8E /* EMSearchDisplayController.m */; settings = {ASSET_TAGS = (); }; };
 		6D2ABFFC1BCE582100201A8E /* XHMessageTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2ABF651BCE582100201A8E /* XHMessageTextView.m */; settings = {ASSET_TAGS = (); }; };
-		6D2ABFFD1BCE582100201A8E /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2ABF681BCE582100201A8E /* UserProfileViewController.m */; settings = {ASSET_TAGS = (); }; };
 		6D2ABFFE1BCE582100201A8E /* EMRobotChatTextBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2ABF6B1BCE582100201A8E /* EMRobotChatTextBubbleView.m */; settings = {ASSET_TAGS = (); }; };
 		6D2ABFFF1BCE582100201A8E /* EMRotbotChatViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2ABF6D1BCE582100201A8E /* EMRotbotChatViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		6D2AC0001BCE582100201A8E /* RobotChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2ABF6F1BCE582100201A8E /* RobotChatViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -585,6 +585,8 @@
 		6B364C9D1BCF442E005A4AF9 /* CPMyBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyBaseCell.h; sourceTree = "<group>"; };
 		6B364C9E1BCF442E005A4AF9 /* CPMyBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyBaseCell.m; sourceTree = "<group>"; };
 		6B364C9F1BCF442E005A4AF9 /* CPMyBaseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPMyBaseCell.xib; sourceTree = "<group>"; };
+		6B364CA31BCF4748005A4AF9 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
+		6B364CA41BCF4748005A4AF9 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
 		6B440CDA1BBA857B00CF8410 /* CPMyInfoHead.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPMyInfoHead.xib; sourceTree = "<group>"; };
 		6B440CE21BBA86C500CF8410 /* CPMyInfoFirCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPMyInfoFirCell.xib; sourceTree = "<group>"; };
 		6B440CE41BBA86D100CF8410 /* CPMyInfoSecCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPMyInfoSecCell.xib; sourceTree = "<group>"; };
@@ -878,8 +880,6 @@
 		6D2ABF631BCE582100201A8E /* EMSearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMSearchDisplayController.m; sourceTree = "<group>"; };
 		6D2ABF641BCE582100201A8E /* XHMessageTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHMessageTextView.h; sourceTree = "<group>"; };
 		6D2ABF651BCE582100201A8E /* XHMessageTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHMessageTextView.m; sourceTree = "<group>"; };
-		6D2ABF671BCE582100201A8E /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
-		6D2ABF681BCE582100201A8E /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
 		6D2ABF6A1BCE582100201A8E /* EMRobotChatTextBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMRobotChatTextBubbleView.h; sourceTree = "<group>"; };
 		6D2ABF6B1BCE582100201A8E /* EMRobotChatTextBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMRobotChatTextBubbleView.m; sourceTree = "<group>"; };
 		6D2ABF6C1BCE582100201A8E /* EMRotbotChatViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMRotbotChatViewCell.h; sourceTree = "<group>"; };
@@ -1507,6 +1507,15 @@
 			path = CPMyBaseCell;
 			sourceTree = "<group>";
 		};
+		6B364CA21BCF473E005A4AF9 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				6B364CA31BCF4748005A4AF9 /* UserProfileViewController.h */,
+				6B364CA41BCF4748005A4AF9 /* UserProfileViewController.m */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		6B5176781BB9502100D7A62E /* CustomSwitch */ = {
 			isa = PBXGroup;
 			children = (
@@ -1948,6 +1957,7 @@
 		6D2ABEE01BCE582100201A8E /* EasyMobYJ */ = {
 			isa = PBXGroup;
 			children = (
+				6B364CA21BCF473E005A4AF9 /* Profile */,
 				6D2ABEE11BCE582100201A8E /* Call */,
 				6D2ABEE51BCE582100201A8E /* Chat */,
 				6D2ABF201BCE582100201A8E /* ChatGroup */,
@@ -1955,7 +1965,6 @@
 				6D2ABF3C1BCE582100201A8E /* Contacts */,
 				6D2ABF4C1BCE582100201A8E /* Core Data */,
 				6D2ABF511BCE582100201A8E /* Custom */,
-				6D2ABF661BCE582100201A8E /* Profile */,
 				6D2ABF691BCE582100201A8E /* Robot */,
 			);
 			path = EasyMobYJ;
@@ -2225,15 +2234,6 @@
 				6D2ABF631BCE582100201A8E /* EMSearchDisplayController.m */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		6D2ABF661BCE582100201A8E /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				6D2ABF671BCE582100201A8E /* UserProfileViewController.h */,
-				6D2ABF681BCE582100201A8E /* UserProfileViewController.m */,
-			);
-			path = Profile;
 			sourceTree = "<group>";
 		};
 		6D2ABF691BCE582100201A8E /* Robot */ = {
@@ -3921,6 +3921,7 @@
 				6D2AC0021BCE582100201A8E /* RobotManager.m in Sources */,
 				6D2ABFF81BCE582100201A8E /* BaseViewController.m in Sources */,
 				6B906F7E1BC7C98B0048A806 /* ZHPickView.m in Sources */,
+				6B364CA51BCF4748005A4AF9 /* UserProfileViewController.m in Sources */,
 				6D2ABFB41BCE582100201A8E /* PSTGridLayoutItem.m in Sources */,
 				E31B13401BB9312D00B51696 /* NSDate+Extend.m in Sources */,
 				6D2ABFE11BCE582100201A8E /* CreateGroupViewController.m in Sources */,
@@ -3981,7 +3982,6 @@
 				E31B13521BB9312D00B51696 /* UIImageView+SD.m in Sources */,
 				E3A471881BB3A85300973197 /* UITableViewCell+ZYExtension.m in Sources */,
 				E369E2B81BCB9F87000A12B5 /* CPSelectView.m in Sources */,
-				6D2ABFFD1BCE582100201A8E /* UserProfileViewController.m in Sources */,
 				E37C10B71BBB7CEB00E1A6A2 /* CPMyVistorCell.m in Sources */,
 				6B1387DC1BCD0A6C00FAC462 /* CPBrandModelViewController.m in Sources */,
 				E32B5DD51BCE264B0057FD71 /* PagedFlowView.m in Sources */,

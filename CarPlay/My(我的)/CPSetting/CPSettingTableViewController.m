@@ -8,13 +8,11 @@
 
 #import "CPSettingTableViewController.h"
 #import "CPMyBaseCell.h"
-#import "LoginViewController.h"
+
 #import "CPAbout.h"
-#import "ZYNavigationController.h"
+
 #import "CPVersionIntroduction.h"
-#import "CPMySubscribeModel.h"
-#import "CPMessageController.h"
-#import "UMessage.h"
+
 
 @interface CPSettingTableViewController ()<UIAlertViewDelegate>
 {
@@ -38,9 +36,9 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    if (![Tools getValueFromKey:@"userId"]) {
-        [self.loginOutBtn setTitle:@"登录" forState:UIControlStateNormal];
-    }
+//    if (![Tools getValueFromKey:@"userId"]) {
+//        [self.loginOutBtn setTitle:@"登录" forState:UIControlStateNormal];
+//    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -71,7 +69,7 @@
         cell.valueLable.text=[[NSString alloc]initWithFormat:@"%.2fM",totalSize/1024/1024];
         UIFont *font = [UIFont systemFontOfSize:16.0f];
         //设置一个行高上限
-        CGSize size = CGSizeMake(SCREEN_WIDTH,20);
+        CGSize size = CGSizeMake(ZYScreenWidth,20);
         //计算实际frame大小，并将label的frame变成实际大小
         CGSize labelsize = [[titleArray objectAtIndex:indexPath.row] sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
         cell.titleLableWidth.constant=labelsize.width;
@@ -105,11 +103,11 @@
 }
 
 - (IBAction)loginOutBtnClick:(id)sender {
-    if ([Tools getValueFromKey:@"userId"]) {
-        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"是否注销当前账号？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"注销", nil] show];
-    }else{
-        [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
-    }
+//    if ([Tools getValueFromKey:@"userId"]) {
+//        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"是否注销当前账号？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"注销", nil] show];
+//    }else{
+//        [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
+//    }
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -134,35 +132,35 @@
                 [self showError:error.description];
             }
             else{
-                [Tools setValueForKey:@(NO) key:NOTIFICATION_HASLOGIN];
-                [Tools setValueForKey:@(NO) key:@"LoginFrom3Party"];
-                NSString *fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"userId"]];
-                CPOrganizer *organizer=[[CPOrganizer alloc]init];
-                [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
-                NSString *userId = [Tools getValueFromKey:@"userId"];
-                
-                if (userId.length) {
-                    [UMessage removeTag:userId
-                               response:^(id responseObject, NSInteger remain, NSError *error) {
-                                   DLog(@"移除设备绑定");
-                               }];
-                }
-                
-                [Tools setValueForKey:nil key:@"userId"];
-                [Tools setValueForKey:nil key:@"token"];
-                [Tools setValueForKey:nil key:THIRDPARTYLOGINACCOUNT];
-                [Tools setValueForKey:nil key:@"headUrl"];
-                [Tools setValueForKey:@(NO) key:NOTIFICATION_HASLOGIN];
-                [Tools setValueForKey:@(NO) key:@"LoginFrom3Party"];
-                UINavigationController *nav = self.tabBarController.childViewControllers[1];
-                CPMessageController *msg = nav.childViewControllers[0];
-                if ([msg isKindOfClass:[CPMessageController class]]) {
-                    [msg refreshDataSource];
-                }
-                LoginViewController *loginVC=[[LoginViewController alloc]init];
-                ZYNavigationController* nav1 = [[ZYNavigationController alloc] initWithRootViewController:loginVC];
-                self.view.window.rootViewController=nav1;
-                [self.view.window makeKeyAndVisible];
+//                [Tools setValueForKey:@(NO) key:NOTIFICATION_HASLOGIN];
+//                [Tools setValueForKey:@(NO) key:@"LoginFrom3Party"];
+//                NSString *fileName=[[NSString alloc]initWithFormat:@"%@.data",[Tools getValueFromKey:@"userId"]];
+//                CPOrganizer *organizer=[[CPOrganizer alloc]init];
+//                [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(fileName)];
+//                NSString *userId = [Tools getValueFromKey:@"userId"];
+//                
+//                if (userId.length) {
+//                    [UMessage removeTag:userId
+//                               response:^(id responseObject, NSInteger remain, NSError *error) {
+//                                   DLog(@"移除设备绑定");
+//                               }];
+//                }
+//                
+//                [Tools setValueForKey:nil key:@"userId"];
+//                [Tools setValueForKey:nil key:@"token"];
+//                [Tools setValueForKey:nil key:THIRDPARTYLOGINACCOUNT];
+//                [Tools setValueForKey:nil key:@"headUrl"];
+//                [Tools setValueForKey:@(NO) key:NOTIFICATION_HASLOGIN];
+//                [Tools setValueForKey:@(NO) key:@"LoginFrom3Party"];
+//                UINavigationController *nav = self.tabBarController.childViewControllers[1];
+//                CPMessageController *msg = nav.childViewControllers[0];
+//                if ([msg isKindOfClass:[CPMessageController class]]) {
+//                    [msg refreshDataSource];
+//                }
+//                LoginViewController *loginVC=[[LoginViewController alloc]init];
+//                ZYNavigationController* nav1 = [[ZYNavigationController alloc] initWithRootViewController:loginVC];
+//                self.view.window.rootViewController=nav1;
+//                [self.view.window makeKeyAndVisible];
             }
         } onQueue:nil];
         
