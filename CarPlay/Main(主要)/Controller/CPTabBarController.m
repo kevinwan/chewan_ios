@@ -14,7 +14,7 @@
 #import "CPMyCareController.h"
 #import "CPTestPhotoViewController.h"
 #import "CPMatchingViewController.h"
-
+#import "ChatListViewController.h"
 #import "CPRecommendController.h"
 @interface CPTabBarController () <CPTabBarDelegate>
 
@@ -34,8 +34,9 @@
     CPRecommendController *nearVc2 = [[CPRecommendController alloc] init];
     [self addChildVc:nearVc2 title:@"推荐" image:@"RecommendUnSelect" selectedImage:@"RecommendSelect"];
     
-    CPMyCareController *vc3 = [UIStoryboard storyboardWithName:@"CPMyCareController" bundle:nil].instantiateInitialViewController;
-    [self addChildVc:vc3 title:@"我的关注" image:@"DynamicUnSelect" selectedImage:@"DynamicSelect"];
+    ChatListViewController *vc3 = [[ChatListViewController alloc]init];
+    UINavigationController *nvc = [[UINavigationController alloc]initWithRootViewController:vc3];
+    [self addChildVc:vc3 title:@"动态" image:@"DynamicUnSelect" selectedImage:@"DynamicSelect"];
     
     CPMyViewController *nearVc4 = [UIStoryboard storyboardWithName:@"CPMyViewController" bundle:nil].instantiateInitialViewController;
     [self addChildVc:nearVc4 title:@"我的" image:@"MineUnSelect" selectedImage:@"MineSelect"];
