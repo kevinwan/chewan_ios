@@ -14,9 +14,9 @@
 #define DateBtnClickKey     @"DateBtnClickKey"
 #define InvitedBtnClickKey  @"InvitedBtnClickKey"
 #define IgnoreBtnClickKey   @"IgnoreBtnClickKey"
-#define DistanceBtnClickKey @"DistanceBtnClickKey"
+#define LoveBtnClickKey @"LoveBtnClickKey"
 #define AddressBtnClickKey  @"AddressBtnClickKey"
-
+#define IconViewClickKey  @"IconViewClickKey"
 @interface CPBaseViewCell : UIView
 @property (nonatomic, strong) CPActivityModel *model;
 @property (nonatomic, assign) BOOL oneType;

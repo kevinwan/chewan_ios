@@ -20,5 +20,6 @@
 - (IBAction)thirdpartyLogin:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *forgetPasswordBtn;
 @property (weak, nonatomic) IBOutlet CustomSwitch *switchPassword;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headDistance;
 
 @end

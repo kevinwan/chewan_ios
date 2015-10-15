@@ -137,9 +137,10 @@
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] init];
     [tapGes.rac_gestureSignal subscribeNext:^(id x) {
         
-        if (![_model.organizer.photoAuthStatus isEqualToString:@"认证通过"]) {
-            self.tipView.hidden = NO;
-        }
+//        if (![_model.organizer.photoAuthStatus isEqualToString:@"认证通过"]) {
+//            self.tipView.hidden = NO;
+//        }
+        [self superViewWillRecive:IconViewClickKey info:_model];
     }];
     [self.userIconView addGestureRecognizer:tapGes];
     [self.userIconView addSubview:self.tipView];
@@ -262,7 +263,6 @@
  *  点击距离按钮
  */
 - (IBAction)distanceClick:(id)sender {
-    [self superViewWillRecive:DistanceBtnClickKey info:nil];
 }
 
 - (IBAction)loveClick:(UIButton *)sender {
@@ -286,6 +286,8 @@
                 DLog(@"取消关注成功");
                 [sender addAnimation:[CAAnimation scaleFrom:1.0 toScale:1.1 durTimes:0.2 rep:1]];
                 sender.selected = NO;
+                _model.organizer.subscribeFlag = 1;
+                [self superViewWillRecive:LoveBtnClickKey info:_model];
             }
         } failed:^(NSError *error) {
             
@@ -298,16 +300,17 @@
             
             if (CPSuccess){
                 
-                DLog(@"关注成功");
+                DLog(@"取消关注成功");
                 [sender addAnimation:[CAAnimation scaleFrom:1.0 toScale:1.2 durTimes:0.2 rep:1]];
                 sender.selected = YES;
+                _model.organizer.subscribeFlag = 0;
+                [self superViewWillRecive:LoveBtnClickKey info:_model];
             }
         } failed:^(NSError *error) {
             
             DLog(@"关注失败%@",error);
         }];
     }
-    
 }
 
 

@@ -10,4 +10,6 @@
 
 @implementation CPAlbum
 
+MJCodingImplementation
+
 @end

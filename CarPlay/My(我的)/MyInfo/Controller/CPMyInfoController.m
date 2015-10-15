@@ -153,8 +153,8 @@
         if (CPSuccess) {
             _user.avatar=responseObject[@"data"][@"photoUrl"];
             _user.avatarId=responseObject[@"data"][@"photoId"];
-//            [NSKeyedArchiver archiveRootObject:user toFile:@"user.data".documentPath];
-
+            [_truePortraitLabel setHidden:YES];
+            [_promptLabel setHidden:YES];
             [self.userHeadIcon setImage:editedImage];
         }else{
             [[[UIAlertView alloc]initWithTitle:@"提示" message:@"上传失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
