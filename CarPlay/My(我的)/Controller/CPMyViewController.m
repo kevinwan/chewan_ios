@@ -84,14 +84,6 @@
 }
 #pragma privateMethod
 -(void)rightClick{
-//    CPLoginViewController *login = [UIStoryboard storyboardWithName:@"CPLoginViewController" bundle:nil].instantiateInitialViewController;
-////    [self.navigationController pushViewController:login animated:YES];
-//    CPNavigationController *nav=[[CPNavigationController alloc]initWithRootViewController:login];
-//    self.view.window.rootViewController = nav;
-//    [self.view.window makeKeyAndVisible];
-//    self.view.window
-//    CPMyInfoController *myInfoVC = [UIStoryboard storyboardWithName:@"CPMyInfoController" bundle:nil].instantiateInitialViewController;
-//    [self.navigationController pushViewController:myInfoVC animated:YES];
      CPSettingController *CPSettingTableVC = [UIStoryboard storyboardWithName:@"CPSetting" bundle:nil].instantiateInitialViewController;
     CPSettingTableVC.title=@"设置";
     [self.navigationController pushViewController:CPSettingTableVC animated:YES];
@@ -103,8 +95,8 @@
     [ZYNetWorkTool getWithUrl:path params:nil success:^(id responseObject) {
         if (CPSuccess) {
             user = [CPUser objectWithKeyValues:responseObject[@"data"]];
-            NSString *path=[[NSString alloc]initWithFormat:@"%@.info",[Tools getUserId].documentPath];
-            [NSKeyedArchiver archiveRootObject:user toFile:path];
+            NSString *path=[[NSString alloc]initWithFormat:@"%@.info",[Tools getUserId]];
+            [NSKeyedArchiver archiveRootObject:user toFile:path.documentPath];
             [self reloadData];
         }else{
             NSString *errmsg =[responseObject objectForKey:@"errmsg"];
@@ -131,15 +123,21 @@
     
     self.albumsScrollView.contentSize=CGSizeMake(0, 0);
     self.albumsScrollView.pagingEnabled=NO;
-    
+    [self reloadAlbumsScrollView];
+}
+
+-(void)reloadAlbumsScrollView{
     for (int i=0; i<[user.album count]; i++) {
-        UIButton *albumBtn=[[UIButton alloc]initWithFrame:CGRectMake(85+75*i, 15, 70, 70)];
-        CPAlbum *album=user.album[i];
-        [albumBtn sd_setImageWithURL:[[NSURL alloc]initWithString:album.url] forState:UIControlStateNormal];
-        [albumBtn addTarget:self action:@selector(photoBrowser) forControlEvents:UIControlEventTouchUpInside];
-        [albumBtn.layer setMasksToBounds:YES];
-        [albumBtn.layer setCornerRadius:3.0];
-        [self.albumsScrollView addSubview:albumBtn];
+        UIImageView *album=[[UIImageView alloc]initWithFrame:CGRectMake(85+75*i, 15, 70, 70)];
+        CPAlbum *albumModel=(CPAlbum *)user.album[i];
+        [album sd_setImageWithURL:[[NSURL alloc]initWithString:albumModel.url] placeholderImage:[UIImage imageNamed:@"logo"]];
+        UITapGestureRecognizer *singleTap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(photoBrowser)];
+        album.userInteractionEnabled = YES;
+        [album addGestureRecognizer:singleTap1];
+        [album.layer setMasksToBounds:YES];
+        [album.layer setCornerRadius:3.0];
+        [album setContentMode:UIViewContentModeScaleAspectFill];
+        [self.albumsScrollView addSubview:album];
     }
     self.albumsScrollView.contentSize=CGSizeMake(85+75*[user.album count], 100.0);
 }
@@ -190,7 +188,7 @@
         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
             UzysAssetsPickerController *picker = [[UzysAssetsPickerController alloc] init];
             picker.delegate = self;
-            picker.maximumNumberOfSelectionPhoto = 10;
+            picker.maximumNumberOfSelectionPhoto = 30-[user.album count];
             [self presentViewController:picker animated:YES completion:nil];
         }
     }
@@ -232,7 +230,7 @@
 - (void)showAlert
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                    message:@"您最多只能上传9张图片"
+                                                    message:@"您最多只能上传30张图片"
                                                    delegate:nil
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
@@ -268,25 +266,19 @@
 - (void)addPhoto:(NSArray *)arr
 {
         NSString *path=[[NSString alloc]initWithFormat:@"user/%@/album/upload?token=%@",[Tools getUserId],[Tools getToken]];
+        NSMutableArray *albums=user.album;
+        CPAlbum *albumModel=[[CPAlbum alloc]init];
+    [self showLoading];
         for (int i = 0; i < arr.count; i++) {
             ZYHttpFile *imageFile = [ZYHttpFile fileWithName:@"attach" data:UIImageJPEGRepresentation(arr[i], 0.4) mimeType:@"image/jpeg" filename:@"a1.jpg"];
             [self showLoading];
             [ZYNetWorkTool postFileWithUrl:path params:nil files:@[imageFile] success:^(id responseObject) {
                 if (CPSuccess) {
-//                    CPEditImageView *imageView = [[CPEditImageView alloc] init];
-//                    imageView.image = arr[i];
-//                    
-//                    UILongPressGestureRecognizer *longPressGes = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
-//                    [imageView addGestureRecognizer:longPressGes];
-//                    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPress:)];
-//                    [imageView addGestureRecognizer:tapGes];
-//                    imageView.coverId=responseObject[@"data"][@"photoId"];
-//                    [_allPhotoIds addObject:responseObject[@"data"][@"photoId"]];
-                    
-//                    [self.photoView insertSubview:imageView atIndex:0];
-                    NSLog(@"%@",responseObject);
-                    
-//                    [self layoutPhotoView];
+                    albumModel.key=responseObject[@"data"][@"photoKey"];
+                    albumModel.url=responseObject[@"data"][@"photoUrl"];
+                    [albums insertObject:albumModel atIndex:0];
+                    user.album=albums;
+                    [self reloadAlbumsScrollView];
                 }else{
                     [self showError:responseObject[@"errmsg"]];
                 }
