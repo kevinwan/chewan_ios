@@ -27,7 +27,7 @@
 #import <BaiduMapAPI/BMapKit.h>
 #import <SVProgressHUD.h>
 #import "ZYProgressView.h"
-
+#import "macros.h"
 #import "ChatDemoUIDefine.h"
 #import "EMAlertView.h"
 #import "TTGlobalUICommon.h"
