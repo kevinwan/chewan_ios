@@ -17,6 +17,7 @@
 #import "ZYProgressView.h"
 #import "ZYRefreshView.h"
 #import "CPNoDataTipView.h"
+#import "CPTaInfo.h"
 
 @interface CPNearViewController ()<PagedFlowViewDataSource,PagedFlowViewDelegate,UIScrollViewDelegate>
 @property (nonatomic, strong) PagedFlowView *tableView;
@@ -148,6 +149,13 @@
 - (NSInteger)numberOfPagesInFlowView:(PagedFlowView *)flowView
 {
     return self.datas.count;
+}
+
+- (void)flowView:(PagedFlowView *)flowView didTapPageAtIndex:(NSInteger)index
+{
+    CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
+    taVc.userId = self.datas[index].organizer.userId;
+    [self.navigationController pushViewController:taVc animated:YES];
 }
 
 #pragma mark - 事件交互
