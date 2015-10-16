@@ -70,8 +70,8 @@
                 if (self.verificationCodeField.text.length == 4) {
                     if (self.passwordField.text && ![self.passwordField.text isEqualToString:@""]) {
                         if ([Tools isValidatePassword:self.passwordField.text]) {
-                            NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:self.phoneField.text,@"phone",self.verificationCodeField.text,@"code",self.passwordField.text,@"password", nil];
-                            [ZYNetWorkTool getWithUrl:@"user/password" params:params success:^(id responseObject) {
+                            NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:self.phoneField.text,@"phone",self.verificationCodeField.text,@"code",[Tools md5EncryptWithString:self.passwordField.text],@"password", nil];
+                            [ZYNetWorkTool postWithUrl:@"user/password" params:params success:^(id responseObject) {
                                 if (CPSuccess) {
 //                                    CPMyInfoController *myInfoVC = [UIStoryboard storyboardWithName:@"CPMyInfoController" bundle:nil].instantiateInitialViewController;
 //                                    [self.navigationController pushViewController:myInfoVC animated:YES];
