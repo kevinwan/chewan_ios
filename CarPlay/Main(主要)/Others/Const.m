@@ -16,3 +16,4 @@ NSString * const Latitude = @"latitude";
 NSString * const Province = @"province";
 NSString * const City = @"city";
 NSString * const District = @"district";
+NSString * const Street = @"street";

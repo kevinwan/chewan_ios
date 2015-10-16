@@ -71,16 +71,34 @@
                     if (self.passwordField.text && ![self.passwordField.text isEqualToString:@""]) {
                         if ([Tools isValidatePassword:self.passwordField.text]) {
                             NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:self.phoneField.text,@"phone",self.verificationCodeField.text,@"code",[Tools md5EncryptWithString:self.passwordField.text],@"password", nil];
-                            [ZYNetWorkTool postWithUrl:@"user/password" params:params success:^(id responseObject) {
+                            [ZYNetWorkTool postJsonWithUrl:@"user/password" params:params success:^(id responseObject) {
                                 if (CPSuccess) {
-//                                    CPMyInfoController *myInfoVC = [UIStoryboard storyboardWithName:@"CPMyInfoController" bundle:nil].instantiateInitialViewController;
-//                                    [self.navigationController pushViewController:myInfoVC animated:YES];
-                                    NSLog(@"密码修改成功，去登录");
+                                    //登陆环信
+                                    NSLog(@"环信账号是:%@,密码是:%@",[Tools md5EncryptWithString:responseObject[@"data"][@"userId"]],[Tools md5EncryptWithString:self.passwordField.text]);
+                                    
+                                    [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:[Tools md5EncryptWithString:responseObject[@"data"][@"userId"]] password:[Tools md5EncryptWithString:self.passwordField.text] completion:^(NSDictionary *loginInfo, EMError *error) {
+                                        if (!error) {
+                                            // 设置自动登录
+                                            [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+                                            
+                                            if (responseObject[@"data"][@"userId"]) {
+                                                [ZYUserDefaults setObject:responseObject[@"data"][@"userId"] forKey:UserId];
+                                            }
+                                            if (responseObject[@"data"][@"token"]) {
+                                                [ZYUserDefaults setObject:responseObject[@"data"][@"token"] forKey:Token];
+                                            }
+                                            [ZYUserDefaults setObject:responseObject[@"data"][@"phone"] forKey:@"phone"];
+                                            [ZYUserDefaults setObject:[Tools md5EncryptWithString:self.passwordField.text] forKey:@"password"];
+                                            
+                                            [ZYNotificationCenter postNotificationName:NOTIFICATION_HASLOGIN object:nil];
+                                        }
+                                    } onQueue:nil];
+                                    
                                 }else{
                                     NSString *errmsg =[responseObject objectForKey:@"errmsg"];
                                     [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                                 }
-                            } failure:^(NSError *error) {
+                            } failed:^(NSError *error) {
                                 [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                                 
                             }];

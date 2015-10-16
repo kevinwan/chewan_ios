@@ -82,6 +82,8 @@
 		6BE2E61B1BC67CB000D1D928 /* CPMatchingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2E6151BC67CB000D1D928 /* CPMatchingViewController.m */; settings = {ASSET_TAGS = (); }; };
 		6BE2E61C1BC67CB000D1D928 /* CPTakeALook.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BE2E6171BC67CB000D1D928 /* CPTakeALook.storyboard */; settings = {ASSET_TAGS = (); }; };
 		6BE2E61D1BC67CB000D1D928 /* CPTakeALookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2E6191BC67CB000D1D928 /* CPTakeALookViewController.m */; settings = {ASSET_TAGS = (); }; };
+		6BF14C301BD0AB12008D2E74 /* MatchingSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BF14C2F1BD0AB12008D2E74 /* MatchingSelectView.xib */; settings = {ASSET_TAGS = (); }; };
+		6BF14C331BD0CB32008D2E74 /* MatchingSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF14C321BD0CB32008D2E74 /* MatchingSelectView.m */; settings = {ASSET_TAGS = (); }; };
 		6D2ABF851BCE582100201A8E /* EMAudioPlayerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2ABE4B1BCE582100201A8E /* EMAudioPlayerUtil.m */; settings = {ASSET_TAGS = (); }; };
 		6D2ABF861BCE582100201A8E /* EMAudioRecorderUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2ABE4D1BCE582100201A8E /* EMAudioRecorderUtil.m */; settings = {ASSET_TAGS = (); }; };
 		6D2ABF871BCE582100201A8E /* EMCDDeviceManager+Media.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2ABE4F1BCE582100201A8E /* EMCDDeviceManager+Media.m */; settings = {ASSET_TAGS = (); }; };
@@ -663,6 +665,9 @@
 		6BE2E6171BC67CB000D1D928 /* CPTakeALook.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPTakeALook.storyboard; sourceTree = "<group>"; };
 		6BE2E6181BC67CB000D1D928 /* CPTakeALookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTakeALookViewController.h; sourceTree = "<group>"; };
 		6BE2E6191BC67CB000D1D928 /* CPTakeALookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTakeALookViewController.m; sourceTree = "<group>"; };
+		6BF14C2F1BD0AB12008D2E74 /* MatchingSelectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchingSelectView.xib; sourceTree = "<group>"; };
+		6BF14C311BD0CB32008D2E74 /* MatchingSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchingSelectView.h; sourceTree = "<group>"; };
+		6BF14C321BD0CB32008D2E74 /* MatchingSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchingSelectView.m; sourceTree = "<group>"; };
 		6D2ABE461BCE582100201A8E /* EMCDDeviceManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCDDeviceManagerDelegate.h; sourceTree = "<group>"; };
 		6D2ABE471BCE582100201A8E /* EMCDDeviceManagerProximitySensorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCDDeviceManagerProximitySensorDelegate.h; sourceTree = "<group>"; };
 		6D2ABE491BCE582100201A8E /* DemoErrorCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoErrorCode.h; sourceTree = "<group>"; };
@@ -3208,6 +3213,9 @@
 		E3A471041BB3A85300973197 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6BF14C2F1BD0AB12008D2E74 /* MatchingSelectView.xib */,
+				6BF14C311BD0CB32008D2E74 /* MatchingSelectView.h */,
+				6BF14C321BD0CB32008D2E74 /* MatchingSelectView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3909,6 +3917,7 @@
 				6D2AC15B1BCE5A5100201A8E /* chat_receiver_bg.png in Resources */,
 				6D2AC12B1BCE5A5100201A8E /* chatBar_keyboardSelected@2x.png in Resources */,
 				6B364CA11BCF442E005A4AF9 /* CPMyBaseCell.xib in Resources */,
+				6BF14C301BD0AB12008D2E74 /* MatchingSelectView.xib in Resources */,
 				6D2AC1421BCE5A5100201A8E /* chatBar_colorMore_videoCallSelected@2x.png in Resources */,
 				6D2AC0F91BCE5A5100201A8E /* VoiceSearchFeedback015@2x.png in Resources */,
 				6B364CA71BCF4BA8005A4AF9 /* CPSetting.storyboard in Resources */,
@@ -4016,6 +4025,7 @@
 				E359EDBD1BCF75C20004B17D /* ZYImageVIew.m in Sources */,
 				6B153EFC1BB5692500560935 /* CPMyViewController.m in Sources */,
 				6D2ABFDB1BCE582100201A8E /* MessageModel.m in Sources */,
+				6BF14C331BD0CB32008D2E74 /* MatchingSelectView.m in Sources */,
 				6B906F7D1BC7C98B0048A806 /* ZHAppDelegate.m in Sources */,
 				6D2ABFE41BCE582100201A8E /* GroupSettingViewController.m in Sources */,
 				6B364CB91BCF7ED0005A4AF9 /* CPAvatarAuthenticationController.m in Sources */,
