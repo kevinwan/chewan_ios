@@ -18,6 +18,7 @@
 #import "ZYRefreshView.h"
 #import "CPNoDataTipView.h"
 #import "CPTaInfo.h"
+#import "CPLoadingView.h"
 
 @interface CPNearViewController ()<PagedFlowViewDataSource,PagedFlowViewDelegate,UIScrollViewDelegate>
 @property (nonatomic, strong) PagedFlowView *tableView;
@@ -50,10 +51,17 @@
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"筛选" target:self action:@selector(filter)];
     [self.view addSubview:self.tableView];
     [self tipView];
-    self.refreshView.hidden = NO;
+    [[CPLoadingView sharedInstance] showLoadingView];
     [self loadDataWithHeader:nil];
     DLog(@"%f",self.view.right);
-    
+    [RACObserve(self.tableView.scrollView, contentOffset) subscribeNext:^(id x) {
+        CGPoint p = [x CGPointValue];
+        if (p.y < -40) {
+            self.tipView.hidden = NO;
+        }else if (p.y > self.tableView.scrollView.height){
+            self.tipView.height = YES;
+        }
+    }];
 }
 
 - (void)setUpRefresh
@@ -98,7 +106,7 @@
 {
 
     [ZYNetWorkTool getWithUrl:@"activity/list" params:self.params.keyValues success:^(id responseObject) {
-        self.refreshView.hidden = YES;
+        [[CPLoadingView sharedInstance] dismissLoadingView];
         [self setUpRefresh];
         [refresh stopIndicatorAnimation];
         DLog(@"%@ ---- ",responseObject);
@@ -125,7 +133,7 @@
         [refresh stopIndicatorAnimation];
         [self showError:@"加载失败"];
         self.noDataView.tipLabel.text = @"加载失败了,请换个网络试试";
-        self.refreshView.hidden = YES;
+        [[CPLoadingView sharedInstance] dismissLoadingView];
     }];
 }
 
@@ -301,8 +309,6 @@
  */
 - (void)filter
 {
-    [self.tableView reloadData];
-    return;
     [CPSelectView showWithParams:^(CPSelectModel *selectModel) {
         NSLog(@"%@",selectModel.keyValues);
         
@@ -369,19 +375,11 @@
         [freeTimeBtn setOffImage:[UIImage imageNamed:@"btn_meikong"]];
         freeTimeBtn.on = [ZYUserDefaults boolForKey:FreeTimeKey];
         [_tipView addSubview:freeTimeBtn];
-        if (freeTimeBtn.on){
-            _tipView.alpha = 0;
-        }
         [[freeTimeBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(CPMySwitch *btn) {
             btn.on = !btn.on;
             [ZYUserDefaults setBool:btn.on forKey:FreeTimeKey];
             if (btn.on) {
                 textL.text = @"有空,其他人可以邀请你参加活动";
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [UIView animateWithDuration:0.25 animations:^{
-                        _tipView.alpha = 0;
-                    }];
-                });
             }else{
                 textL.text = @"没空,你将接受不到任何活动邀请";
                
@@ -391,7 +389,7 @@
             make.centerY.equalTo(_tipView);
             make.right.equalTo(@-10);
         }];
-    }
+    } 
     return _tipView;
 }
 
@@ -429,8 +427,12 @@
 {
     if (_refreshView == nil) {
         _refreshView = [[ZYRefreshView alloc] init];
-        [self.view addSubview:_refreshView];
-        _refreshView.center = self.view.center;
+        _refreshView.backgroundColor = [UIColor redColor];
+        _refreshView.y = 64;
+        _refreshView.x = 0;
+        _refreshView.width = ZYScreenWidth;
+        _refreshView.height = ZYScreenHeight - 64 - 49;
+        [ZYKeyWindow addSubview:_refreshView];
     }
     return _refreshView;
 }

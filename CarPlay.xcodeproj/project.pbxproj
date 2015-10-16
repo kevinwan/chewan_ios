@@ -411,6 +411,8 @@
 		6D2AD8D31BCF72A30099CFD7 /* UserViewAdmin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D2AD8C91BCF72A30099CFD7 /* UserViewAdmin@2x.png */; settings = {ASSET_TAGS = (); }; };
 		6D2AD8D41BCF72A30099CFD7 /* UserViewAdmin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D2AD8CA1BCF72A30099CFD7 /* UserViewAdmin@3x.png */; settings = {ASSET_TAGS = (); }; };
 		6D9724033DC4D258BAD49B6C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8695309F427E7B2C9007D66B /* libPods.a */; };
+		E311371F1BD09309004EF249 /* CPLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = E311371E1BD09309004EF249 /* CPLoadingView.m */; settings = {ASSET_TAGS = (); }; };
+		E31137211BD096EC004EF249 /* CPRecommendCells.xib in Resources */ = {isa = PBXBuildFile; fileRef = E31137201BD096EC004EF249 /* CPRecommendCells.xib */; settings = {ASSET_TAGS = (); }; };
 		E31B12DF1BB9311700B51696 /* UIView+PBExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = E31B12C01BB9311700B51696 /* UIView+PBExtend.m */; settings = {ASSET_TAGS = (); }; };
 		E31B12E01BB9311700B51696 /* PBConst.m in Sources */ = {isa = PBXBuildFile; fileRef = E31B12C31BB9311700B51696 /* PBConst.m */; settings = {ASSET_TAGS = (); }; };
 		E31B12E11BB9311700B51696 /* PhotoBroswerLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E31B12C61BB9311700B51696 /* PhotoBroswerLayout.m */; settings = {ASSET_TAGS = (); }; };
@@ -1136,6 +1138,9 @@
 		6D2AD8CA1BCF72A30099CFD7 /* UserViewAdmin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UserViewAdmin@3x.png"; sourceTree = "<group>"; };
 		8695309F427E7B2C9007D66B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1B028500DCBF99DF280B6AC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		E311371D1BD09309004EF249 /* CPLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLoadingView.h; sourceTree = "<group>"; };
+		E311371E1BD09309004EF249 /* CPLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPLoadingView.m; sourceTree = "<group>"; };
+		E31137201BD096EC004EF249 /* CPRecommendCells.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPRecommendCells.xib; sourceTree = "<group>"; };
 		E31B12BF1BB9311700B51696 /* UIView+PBExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PBExtend.h"; sourceTree = "<group>"; };
 		E31B12C01BB9311700B51696 /* UIView+PBExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+PBExtend.m"; sourceTree = "<group>"; };
 		E31B12C21BB9311700B51696 /* PBConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBConst.h; sourceTree = "<group>"; };
@@ -3331,6 +3336,7 @@
 		E3A471141BB3A85300973197 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E31137201BD096EC004EF249 /* CPRecommendCells.xib */,
 				E3AEFE361BC64E5B009C9438 /* CPRecommendCell.h */,
 				E3AEFE371BC64E5B009C9438 /* CPRecommendCell.m */,
 				E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */,
@@ -3430,6 +3436,8 @@
 				E3E6B8971BB515F1006B4F8A /* CPSexView.m */,
 				E3AF16FC1BBA296C00306ABF /* CPNoHighLightButton.h */,
 				E3AF16FD1BBA296C00306ABF /* CPNoHighLightButton.m */,
+				E311371D1BD09309004EF249 /* CPLoadingView.h */,
+				E311371E1BD09309004EF249 /* CPLoadingView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3794,6 +3802,7 @@
 				6D2AC14F1BCE5A5100201A8E /* chatBar_more_photoSelected@2x.png in Resources */,
 				6D2AC1771BCE5A5100201A8E /* group_participant_add@2x.png in Resources */,
 				6D2AC0E71BCE5A5100201A8E /* VoiceSearchFeedback006@2x.png in Resources */,
+				E31137211BD096EC004EF249 /* CPRecommendCells.xib in Resources */,
 				6D2AC14C1BCE5A5100201A8E /* chatBar_more_photo.png in Resources */,
 				6D2AC0EE1BCE5A5100201A8E /* VoiceSearchFeedback010.png in Resources */,
 				6D2AC0E81BCE5A5100201A8E /* VoiceSearchFeedback007.png in Resources */,
@@ -4253,6 +4262,7 @@
 				E3A4718C1BB3A85300973197 /* ZYChildUserDefaults.m in Sources */,
 				6D2ABFD41BCE582100201A8E /* EMChatImageBubbleView.m in Sources */,
 				E3A4717E1BB3A85300973197 /* NSString+Directory.m in Sources */,
+				E311371F1BD09309004EF249 /* CPLoadingView.m in Sources */,
 				6D2ABFEA1BCE582100201A8E /* MyChatroomListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
