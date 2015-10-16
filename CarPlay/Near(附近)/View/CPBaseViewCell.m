@@ -131,9 +131,9 @@
 //        self.userIconView.image = [image blurredImageWithRadius:20];
 //    }];
 
-    [self.userIconView zy_setImageWithUrl:@"http://i6.topit.me/6/5d/45/1131907198420455d6o.jpg" completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        self.userIconView.image = [image blurredImageWithRadius:20];
-    }];
+//    [self.userIconView zy_setImageWithUrl:@"http://i6.topit.me/6/5d/45/1131907198420455d6o.jpg" completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//        self.userIconView.image = [image blurredImageWithRadius:20];
+//    }];
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] init];
     [tapGes.rac_gestureSignal subscribeNext:^(id x) {
         
@@ -196,14 +196,14 @@
     
     self.sexView.isMan = model.organizer.isMan;
     self.sexView.age = model.organizer.age;
-//    [self.userIconView sd_setImageWithURL:[NSURL URLWithString:model.organizer.avatar] placeholderImage:CPPlaceHolderImage options:SDWebImageLowPriority | SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//    [self.userIconView zy_setImageWithUrl:[NSURL model.organizer.avatar] placeholderImage:CPPlaceHolderImage options:SDWebImageLowPriority | SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
 //         if ([model.organizer.photoAuthStatus isEqualToString:@"认证通过"]) {
 //            self.userIconView.image = [image blurredImageWithRadius:10];
 //         }else{
 //             self.userIconView.image = image;
 //         }
 //    }];
-    [self.userIconView zy_setImageWithUrl:@"http://i6.topit.me/6/5d/45/1131907198420455d6o.jpg" completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) { self.userIconView.image = [image blurredImageWithRadius:10];
+    [self.userIconView zy_setImageWithUrl:model.organizer.avatar completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) { self.userIconView.image = [image blurredImageWithRadius:10];
          if ([model.organizer.photoAuthStatus isEqualToString:@"认证通过"]) {
             self.userIconView.image = [image blurredImageWithRadius:10];
          }else{
