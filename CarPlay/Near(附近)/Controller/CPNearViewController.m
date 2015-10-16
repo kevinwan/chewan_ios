@@ -53,13 +53,20 @@
     [self tipView];
     [[CPLoadingView sharedInstance] showLoadingView];
     [self loadDataWithHeader:nil];
-    DLog(@"%f",self.view.right);
     [RACObserve(self.tableView.scrollView, contentOffset) subscribeNext:^(id x) {
         CGPoint p = [x CGPointValue];
-        if (p.y < -40) {
-            self.tipView.hidden = NO;
+        if (p.y <= 0) {
+            if (self.tipView.alpha == 0) {
+                [UIView animateWithDuration:0.2 animations:^{
+                    self.tipView.alpha = 1;
+                }];
+            }
         }else if (p.y > self.tableView.scrollView.height){
-            self.tipView.height = YES;
+            if (self.tipView.alpha == 1) {
+            [UIView animateWithDuration:0.2 animations:^{
+                self.tipView.alpha = 0;
+            }];
+        }
         }
     }];
 }
@@ -389,7 +396,7 @@
             make.centerY.equalTo(_tipView);
             make.right.equalTo(@-10);
         }];
-    } 
+    }
     return _tipView;
 }
 
