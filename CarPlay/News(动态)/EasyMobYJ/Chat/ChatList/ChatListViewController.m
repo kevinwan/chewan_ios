@@ -22,7 +22,7 @@
 #import "RobotManager.h"
 #import "UserProfileManager.h"
 #import "RobotChatViewController.h"
-
+#import "UIImageView+EMWebCache.h"
 @implementation EMConversation (search)
 
 //根据用户昵称,环信机器人名称,群名称进行搜索
@@ -530,35 +530,39 @@
 
     cell.name = conversation.chatter;
     if (conversation.conversationType == eConversationTypeChat) {
-//        switch (indexPath.row) {
-//            case 0:
-//                cell.name = @"感兴趣的";
-//                cell.placeholderImage = [UIImage imageNamed:@"InterestAdmin"];
-//                break;
-//            case 1:
-//                cell.name = @"活动动态";
-//                cell.placeholderImage = [UIImage imageNamed:@"ActivityStateAdmin"];
-//                break;
-//            case 2:
-//                cell.name = @"最近访客";
-//                cell.placeholderImage = [UIImage imageNamed:@"UserViewAdmin"];
-//                break;
-//            case 3:
-//                cell.name = @"谁关注我";
-//                cell.placeholderImage = [UIImage imageNamed:@"SubscribeAdmin"];
-//                break;
-//            case 4:
-//                cell.name = @"活动官方";
-//                cell.placeholderImage = [UIImage imageNamed:@"OfficialAdmin"];
-//                break;
-//            default:
-//                cell.name = [[RobotManager sharedInstance] getRobotNickWithUsername:conversation.chatter];
+        switch (indexPath.row) {
+            case 0:
+            {
+                cell.name = @"感兴趣的";
+                cell.placeholderImage = [UIImage imageNamed:@"InterestAdmin"];
+                NSURL *url = [NSURL URLWithString:[conversation.latestMessage.ext valueForKey:@"avatar"]];
+                [cell.interestIV sd_setImageWithURL:url placeholderImage:nil];
+
+                
+            }
+                break;
+            case 1:
+                cell.name = @"活动动态";
+                cell.placeholderImage = [UIImage imageNamed:@"ActivityStateAdmin"];
+                break;
+            case 2:
+                cell.name = @"最近访客";
+                cell.placeholderImage = [UIImage imageNamed:@"UserViewAdmin"];
+                break;
+            case 3:
+                cell.name = @"谁关注我";
+                cell.placeholderImage = [UIImage imageNamed:@"SubscribeAdmin"];
+                break;
+            case 4:
+                cell.name = @"活动官方";
+                cell.placeholderImage = [UIImage imageNamed:@"OfficialAdmin"];
+                break;
+            default:
+                cell.name = [conversation.latestMessage.ext valueForKey:kUserNickName];
 //                cell.placeholderImage = [UIImage imageNamed:@"chatListCellHead.png"];
-//
-//                break;
-//        }
-        cell.name = [[RobotManager sharedInstance] getRobotNickWithUsername:conversation.chatter];
-        cell.placeholderImage = [UIImage imageNamed:@"chatListCellHead.png"];
+                cell.imageURL = [NSURL URLWithString:[conversation.latestMessage.ext valueForKey:kUserHeadUrl]];
+                break;
+        }
 
     }
     else{
@@ -587,7 +591,12 @@
         cell.placeholderImage = [UIImage imageNamed:imageName];
     }
     cell.detailMsg = [self subTitleMessageByConversation:conversation];
-    cell.time = [self lastMessageTimeByConversation:conversation];
+    
+    if (indexPath.row != 0) {
+        cell.time = [self lastMessageTimeByConversation:conversation];
+    }else{
+        cell.time = nil;
+    }
     cell.unreadCount = [self unreadMessageCountByConversation:conversation];
     return cell;
 }
@@ -634,7 +643,7 @@
     }else {
         chatController = [[ChatViewController alloc] initWithChatter:chatter
                                                     conversationType:conversation.conversationType];
-        chatController.title = title;
+        chatController.title = [conversation.latestMessage.ext valueForKey:kUserNickName];;
     }
     
     chatController.delelgate = self;

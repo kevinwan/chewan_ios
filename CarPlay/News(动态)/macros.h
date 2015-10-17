@@ -16,6 +16,11 @@
 //设备的高度、宽度
 #define kDeviceWidth  [UIScreen mainScreen].bounds.size.width
 #define KDeviceHeight [UIScreen mainScreen].bounds.size.height
+
+//用户昵称和头像的存储
+#define kUserNickName @"kUserNickName"
+#define kUserHeadUrl @"kUserHeadUrl"
+
 typedef enum _BasicViewControllerInfo {
     eBasicControllerInfo_Title,
     eBasicControllerInfo_ImageName,

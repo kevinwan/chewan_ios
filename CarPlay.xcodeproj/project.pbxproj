@@ -84,6 +84,11 @@
 		6BE2E61D1BC67CB000D1D928 /* CPTakeALookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2E6191BC67CB000D1D928 /* CPTakeALookViewController.m */; settings = {ASSET_TAGS = (); }; };
 		6BF14C301BD0AB12008D2E74 /* MatchingSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BF14C2F1BD0AB12008D2E74 /* MatchingSelectView.xib */; settings = {ASSET_TAGS = (); }; };
 		6BF14C331BD0CB32008D2E74 /* MatchingSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF14C321BD0CB32008D2E74 /* MatchingSelectView.m */; settings = {ASSET_TAGS = (); }; };
+		6BF14C371BD125DF008D2E74 /* ExerciseMatchingSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BF14C351BD125DF008D2E74 /* ExerciseMatchingSelectView.xib */; settings = {ASSET_TAGS = (); }; };
+		6BF14C381BD125DF008D2E74 /* ExerciseMatchingSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF14C361BD125DF008D2E74 /* ExerciseMatchingSelectView.m */; settings = {ASSET_TAGS = (); }; };
+		6BF14C3C1BD12671008D2E74 /* OtherMatchingSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF14C391BD12671008D2E74 /* OtherMatchingSelectView.m */; settings = {ASSET_TAGS = (); }; };
+		6BF14C3D1BD12671008D2E74 /* OtherMatchingSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BF14C3A1BD12671008D2E74 /* OtherMatchingSelectView.xib */; settings = {ASSET_TAGS = (); }; };
+		6BF14C431BD23331008D2E74 /* CPExerciseMatchingSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF14C421BD23331008D2E74 /* CPExerciseMatchingSelectButton.m */; settings = {ASSET_TAGS = (); }; };
 		6D2ABF851BCE582100201A8E /* EMAudioPlayerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2ABE4B1BCE582100201A8E /* EMAudioPlayerUtil.m */; settings = {ASSET_TAGS = (); }; };
 		6D2ABF861BCE582100201A8E /* EMAudioRecorderUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2ABE4D1BCE582100201A8E /* EMAudioRecorderUtil.m */; settings = {ASSET_TAGS = (); }; };
 		6D2ABF871BCE582100201A8E /* EMCDDeviceManager+Media.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2ABE4F1BCE582100201A8E /* EMCDDeviceManager+Media.m */; settings = {ASSET_TAGS = (); }; };
@@ -672,6 +677,14 @@
 		6BF14C2F1BD0AB12008D2E74 /* MatchingSelectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchingSelectView.xib; sourceTree = "<group>"; };
 		6BF14C311BD0CB32008D2E74 /* MatchingSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchingSelectView.h; sourceTree = "<group>"; };
 		6BF14C321BD0CB32008D2E74 /* MatchingSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchingSelectView.m; sourceTree = "<group>"; };
+		6BF14C341BD125DF008D2E74 /* ExerciseMatchingSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseMatchingSelectView.h; sourceTree = "<group>"; };
+		6BF14C351BD125DF008D2E74 /* ExerciseMatchingSelectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExerciseMatchingSelectView.xib; sourceTree = "<group>"; };
+		6BF14C361BD125DF008D2E74 /* ExerciseMatchingSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseMatchingSelectView.m; sourceTree = "<group>"; };
+		6BF14C391BD12671008D2E74 /* OtherMatchingSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherMatchingSelectView.m; sourceTree = "<group>"; };
+		6BF14C3A1BD12671008D2E74 /* OtherMatchingSelectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OtherMatchingSelectView.xib; sourceTree = "<group>"; };
+		6BF14C3B1BD12671008D2E74 /* OtherMatchingSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherMatchingSelectView.h; sourceTree = "<group>"; };
+		6BF14C411BD23331008D2E74 /* CPExerciseMatchingSelectButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPExerciseMatchingSelectButton.h; sourceTree = "<group>"; };
+		6BF14C421BD23331008D2E74 /* CPExerciseMatchingSelectButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPExerciseMatchingSelectButton.m; sourceTree = "<group>"; };
 		6D2ABE461BCE582100201A8E /* EMCDDeviceManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCDDeviceManagerDelegate.h; sourceTree = "<group>"; };
 		6D2ABE471BCE582100201A8E /* EMCDDeviceManagerProximitySensorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCDDeviceManagerProximitySensorDelegate.h; sourceTree = "<group>"; };
 		6D2ABE491BCE582100201A8E /* DemoErrorCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoErrorCode.h; sourceTree = "<group>"; };
@@ -3245,9 +3258,17 @@
 		E3A471041BB3A85300973197 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6BF14C2F1BD0AB12008D2E74 /* MatchingSelectView.xib */,
+				6BF14C341BD125DF008D2E74 /* ExerciseMatchingSelectView.h */,
+				6BF14C361BD125DF008D2E74 /* ExerciseMatchingSelectView.m */,
+				6BF14C351BD125DF008D2E74 /* ExerciseMatchingSelectView.xib */,
 				6BF14C311BD0CB32008D2E74 /* MatchingSelectView.h */,
 				6BF14C321BD0CB32008D2E74 /* MatchingSelectView.m */,
+				6BF14C2F1BD0AB12008D2E74 /* MatchingSelectView.xib */,
+				6BF14C3B1BD12671008D2E74 /* OtherMatchingSelectView.h */,
+				6BF14C391BD12671008D2E74 /* OtherMatchingSelectView.m */,
+				6BF14C3A1BD12671008D2E74 /* OtherMatchingSelectView.xib */,
+				6BF14C411BD23331008D2E74 /* CPExerciseMatchingSelectButton.h */,
+				6BF14C421BD23331008D2E74 /* CPExerciseMatchingSelectButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3805,6 +3826,7 @@
 				6D2AC14B1BCE5A5100201A8E /* chatBar_more_locationSelected@2x.png in Resources */,
 				6D2AC0EF1BCE5A5100201A8E /* VoiceSearchFeedback010@2x.png in Resources */,
 				6D2AC1781BCE5A5100201A8E /* group_participant_addHL@2x.png in Resources */,
+				6BF14C3D1BD12671008D2E74 /* OtherMatchingSelectView.xib in Resources */,
 				6D2AC16E1BCE5A5100201A8E /* back@2x.png in Resources */,
 				6BE2E61C1BC67CB000D1D928 /* CPTakeALook.storyboard in Resources */,
 				E37C10B41BBB79E700E1A6A2 /* CPMyVisitorViewController.storyboard in Resources */,
@@ -3955,6 +3977,7 @@
 				6D2AC13C1BCE5A5100201A8E /* chatBar_colorMore_location@2x.png in Resources */,
 				6D2ABFB91BCE582100201A8E /* sr_refresh@2X.png in Resources */,
 				6D2AC1361BCE5A5100201A8E /* chatBar_recordSelectedBg.png in Resources */,
+				6BF14C371BD125DF008D2E74 /* ExerciseMatchingSelectView.xib in Resources */,
 				6B364C971BCF43B8005A4AF9 /* CPAbout.storyboard in Resources */,
 				6D2AC1701BCE5A5100201A8E /* group_detail@2x.png in Resources */,
 				6D2AC1851BCE5A5100201A8E /* tabbar_setting.png in Resources */,
@@ -4132,11 +4155,13 @@
 				6D2ABF871BCE582100201A8E /* EMCDDeviceManager+Media.m in Sources */,
 				6B364C651BCE401C005A4AF9 /* UzysAssetsViewCell.m in Sources */,
 				6D2ABF901BCE582100201A8E /* MBProgressHUD.m in Sources */,
+				6BF14C431BD23331008D2E74 /* CPExerciseMatchingSelectButton.m in Sources */,
 				E39627B81BB5352D005E0CF2 /* CPActivityModel.m in Sources */,
 				6BCFFBBB1BBA456900C082B2 /* CPMyCareCell.m in Sources */,
 				6B364C7C1BCE4077005A4AF9 /* MJPhotoToolbar.m in Sources */,
 				E3A4717D1BB3A85300973197 /* NSMutableArray+ZY.m in Sources */,
 				E39627B51BB53357005E0CF2 /* CPUser.m in Sources */,
+				6BF14C381BD125DF008D2E74 /* ExerciseMatchingSelectView.m in Sources */,
 				6D2ABFE61BCE582100201A8E /* PublicGroupDetailViewController.m in Sources */,
 				E3EA1A021BC8DF43007ECECA /* CPRecommendModel.m in Sources */,
 				E31B13511BB9312D00B51696 /* UIButton+SD.m in Sources */,
@@ -4169,6 +4194,7 @@
 				6D2ABFFC1BCE582100201A8E /* XHMessageTextView.m in Sources */,
 				6D2ABFC81BCE582100201A8E /* ChatSendHelper.m in Sources */,
 				E31B134A1BB9312D00B51696 /* UIImage+FixOrientation.m in Sources */,
+				6BF14C3C1BD12671008D2E74 /* OtherMatchingSelectView.m in Sources */,
 				6D2ABFB01BCE582100201A8E /* PSTCollectionViewItemKey.m in Sources */,
 				6D2ABFE21BCE582100201A8E /* GroupBansViewController.m in Sources */,
 				E35428541BCF965600D4A07A /* CPNoDataTipView.m in Sources */,

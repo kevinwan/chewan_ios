@@ -6,9 +6,9 @@
 //  Copyright © 2015年 chewan. All rights reserved.
 //
 
-#import "MatchingSelectView.h"
+#import "OtherMatchingSelectView.h"
 
-@implementation MatchingSelectView
+@implementation OtherMatchingSelectView
 
 - (void)awakeFromNib
 {
@@ -61,7 +61,7 @@
 }
 
 +(void)show:(NSString *)colorStr{
-    MatchingSelectView *view= [[NSBundle mainBundle] loadNibNamed:@"MatchingSelectView" owner:nil options:nil].lastObject;
+    OtherMatchingSelectView *view= [[NSBundle mainBundle] loadNibNamed:@"OtherMatchingSelectView" owner:nil options:nil].lastObject;
     view.backgroundColor=[Tools getColor:colorStr];
     view.frame = [ZYKeyWindow bounds];
     [ZYKeyWindow addSubview:view];

@@ -68,6 +68,12 @@
 
                         [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:[Tools md5EncryptWithString:responseObject[@"data"][@"userId"]] password:[Tools md5EncryptWithString:self.passwordField.text] completion:^(NSDictionary *loginInfo, EMError *error) {
                             if (!error) {
+                                //存储个人信息
+                               CPUser * user = [CPUser objectWithKeyValues:responseObject[@"data"]];
+                                NSString *path=[[NSString alloc]initWithFormat:@"%@.info",[Tools getUserId]];
+                                [NSKeyedArchiver archiveRootObject:user toFile:path.documentPath];
+                                [ZYUserDefaults setObject:responseObject[@"data"][@"nickname"] forKey:kUserNickName];
+                                [ZYUserDefaults setObject:responseObject[@"data"][@"avatar"] forKey:kUserHeadUrl];
                                 // 设置自动登录
                                 [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
                                 
@@ -79,11 +85,8 @@
                                 }
                                 [ZYUserDefaults setObject:self.accountField.text forKey:@"phone"];
                                 [ZYUserDefaults setObject:[Tools md5EncryptWithString:self.passwordField.text] forKey:@"password"];
-                                
                                 [ZYNotificationCenter postNotificationName:NOTIFICATION_HASLOGIN object:nil];
-                                
                                 [self.navigationController popToRootViewControllerAnimated:NO];
-
                             }
                         } onQueue:nil];
 

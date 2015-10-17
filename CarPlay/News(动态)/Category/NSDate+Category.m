@@ -122,9 +122,7 @@
     if (timeInterval < 60) {
         return NSLocalizedString(@"NSDateCategory.text1", @"");
 	} else if (timeInterval < 3600) {//1小时内
-        return [NSString stringWithFormat:NSLocalizedString(@"NSDateCategory.text2", @""), timeInterval / 60];
-	} else if (timeInterval < 21600) {//6小时内
-        return [NSString stringWithFormat:NSLocalizedString(@"NSDateCategory.text3", @""), timeInterval / 3600];
+        return [NSString stringWithFormat:@"%ld分钟前", timeInterval / 60];
 	} else if ([theDay isEqualToString:currentDay]) {//当天
 		[dateFormatter setDateFormat:@"HH:mm"];
         return [NSString stringWithFormat:NSLocalizedString(@"NSDateCategory.text14", @""), [dateFormatter stringFromDate:self]];
@@ -132,7 +130,7 @@
         [dateFormatter setDateFormat:@"HH:mm"];
         return [NSString stringWithFormat:NSLocalizedString(@"NSDateCategory.text7", @""), [dateFormatter stringFromDate:self]];
     } else {//以前
-		[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+		[dateFormatter setDateFormat:@"yyyy-MM-dd"];
         return [dateFormatter stringFromDate:self];
 	}
 }
@@ -157,7 +155,9 @@
 }
 
 + (NSString *)formattedTimeFromTimeInterval:(long long)time{
-    return [[NSDate dateWithTimeIntervalInMilliSecondSince1970:time] formattedTime];
+//    return [[NSDate dateWithTimeIntervalInMilliSecondSince1970:time] formattedTime];
+    return [[NSDate dateWithTimeIntervalInMilliSecondSince1970:time] formattedDateDescription];
+
 }
 
 #pragma mark Relative Dates

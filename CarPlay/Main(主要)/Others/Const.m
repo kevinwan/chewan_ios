@@ -17,3 +17,5 @@ NSString * const Province = @"province";
 NSString * const City = @"city";
 NSString * const District = @"district";
 NSString * const Street = @"street";
+NSString * const LastType = @"lastType";
+NSString * const Transfer = @"transfer";
