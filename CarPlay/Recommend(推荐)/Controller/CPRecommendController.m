@@ -28,7 +28,6 @@ static NSString *ID = @"cell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.collectionView];
     [self loadDataWithHeader:nil];
     [self.view addSubview:self.refreshView];
@@ -171,8 +170,13 @@ static NSString *ID = @"cell";
         _collectionView.dataSource = self;
         self.view.backgroundColor = [Tools getColor:@"efefef"];
         [_collectionView registerClass:[CPRecommentViewCell class] forCellWithReuseIdentifier:ID];
-        
-        
+        [RACObserve(_collectionView, contentOffset) subscribeNext:^(id x) {
+            if (!_collectionView.isDragging) {
+                
+                DLog(@"isDragging%@",x);
+            }
+        }];
+        _collectionView.panGestureRecognizer.delaysTouchesBegan = _collectionView.delaysContentTouches;
     }
     return _collectionView;
 }
