@@ -210,7 +210,7 @@
              self.userIconView.image = image;
          }
     }];
-    [self.distanceView setTitle:[NSString stringWithFormat:@"%zdm",model.distance] forState:UIControlStateNormal];
+    [self.distanceView setTitle:model.distanceStr forState:UIControlStateNormal];
     self.loveBtn.selected = model.organizer.subscribeFlag;
     self.payView.text = model.pay;
     self.sendView.hidden = !model.transfer;
@@ -267,17 +267,7 @@
 
 - (IBAction)loveClick:(UIButton *)sender {
     
-    if (CPUnLogin) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"你还未登录,登录后就可以关注" delegate:nil cancelButtonTitle:@"再想想" otherButtonTitles:@"去注册", nil];
-        [alertView.rac_buttonClickedSignal subscribeNext:^(id x) {
-            if ([x integerValue] != 0) {
-                [ZYNotificationCenter postNotificationName:NOTIFICATION_GOLOGIN object:nil];
-            }
-        }];
-        [alertView show];
-        return;
-    }
-    
+    CPGoLogin(@"关注");
     NSString *url = [NSString stringWithFormat:@"user/%@/listen?token=%@",CPUserId, CPToken];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"targetUserId"] = _model.organizer.userId;

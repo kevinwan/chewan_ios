@@ -182,17 +182,7 @@ static NSString *ID = @"cell";
     }else if([notifyName isEqualToString:LoveBtnClickKey]){
         [self loveBtnClickWithInfo:(CPActivityModel *)userInfo];
     }else if ([notifyName isEqualToString:IconViewClickKey]){
-        if (CPUnLogin) {
-            
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"你还未登录,登录后就可以查看TA的详情" delegate:nil cancelButtonTitle:@"再想想" otherButtonTitles:@"去登录", nil];
-            [alertView.rac_buttonClickedSignal subscribeNext:^(id x) {
-                if ([x integerValue] != 0) {
-                    [ZYNotificationCenter postNotificationName:NOTIFICATION_GOLOGIN object:nil];
-                }
-            }];
-            [alertView show];
-            return;
-        }
+        CPGoLogin(@"查看TA的详情");
         CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
         CPActivityModel *model = userInfo;
         taVc.userId = model.organizer.userId;
@@ -207,16 +197,19 @@ static NSString *ID = @"cell";
  */
 - (void)loveBtnClickWithInfo:(CPActivityModel *)model
 {
+    NSMutableArray *indexPaths = [NSMutableArray array];
     ZYAsyncThead(^{
         
-        for (CPActivityModel *obj in self.datas) {
+        for (int i = 0;i < self.datas.count; i++) {
+            CPActivityModel *obj = self.datas[i];
             if ([obj.organizer.userId isEqualToString:model.organizer.userId]) {
                 obj.organizer.subscribeFlag = model.organizer.subscribeFlag;
+                [indexPaths addObject:[NSIndexPath indexPathForItem:i inSection:0]];
             }
             
         }
         ZYMainThread(^{
-            [self.tableView reloadData];
+            [self.tableView reloadItemsAtIndexPaths:indexPaths];
         });
     });
 }
@@ -226,6 +219,7 @@ static NSString *ID = @"cell";
  */
 - (void)cameraPresent
 {
+    CPGoLogin(@"上传照片");
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         [self showError:@"相机不可用"];
         return;
@@ -248,6 +242,7 @@ static NSString *ID = @"cell";
  */
 - (void)photoPresent
 {
+    CPGoLogin(@"上传照片");
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
         [self showError:@"相册不可用"];
         return;
@@ -266,17 +261,6 @@ static NSString *ID = @"cell";
 
 - (void)addPhoto:(NSArray *)arr
 {
-    if (CPUnLogin) {
-        
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"你还未登录,登录后就可以上传" delegate:nil cancelButtonTitle:@"再想想" otherButtonTitles:@"去登录", nil];
-        [alertView.rac_buttonClickedSignal subscribeNext:^(id x) {
-            if ([x integerValue] != 0) {
-                [ZYNotificationCenter postNotificationName:NOTIFICATION_GOLOGIN object:nil];
-            }
-        }];
-        [alertView show];
-        return;
-    }
     
     NSString *path=[[NSString alloc]initWithFormat:@"user/%@/album/upload?token=%@",[Tools getUserId],[Tools getToken]];
     [self showLoading];
@@ -303,18 +287,7 @@ static NSString *ID = @"cell";
  */
 - (void)dateClickWithInfo:(id)userInfo
 {
-    if (CPUnLogin) {
-        
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"你还未登录,登录后就可以邀请" delegate:nil cancelButtonTitle:@"再想想" otherButtonTitles:@"去登录", nil];
-        [alertView.rac_buttonClickedSignal subscribeNext:^(id x) {
-            if ([x integerValue] != 0) {
-                [ZYNotificationCenter postNotificationName:NOTIFICATION_GOLOGIN object:nil];
-            }
-        }];
-        [alertView show];
-        return;
-    }
-    //    body
+    CPGoLogin(@"邀TA");
     //    {
     //        “type”:”$type”,
     //        “pay”:”$pay”,

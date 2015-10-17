@@ -24,4 +24,12 @@
  *  @param view    需要显示在那个view上
  */
 + (void)showMessage:(NSString *)message inView:(UIView *)view;
+
+/**
+ *  提示用户去登陆
+ *
+ *  @param title 登录之后才能进行的操作
+ */
++ (void)showGoLoginWithTitle:(NSString *)title;
+
 @end

@@ -30,6 +30,8 @@
 @property (nonatomic, assign) BOOL transfer;
 //"distance": 20,
 @property (nonatomic, assign) NSUInteger distance;
+
+@property (nonatomic, copy, readonly) NSString *distanceStr;
 // organizer 组织者
 @property (nonatomic, strong) CPUser *organizer;
 @end
