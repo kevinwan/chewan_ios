@@ -127,6 +127,8 @@ typedef enum
 
 
 
+
+
 /**
  *  将要布局
  */
@@ -297,10 +299,7 @@ typedef enum
 -(void)EndAnchorMove
 {
      self.isScrolling=NO;
-  
- 
     [self EndOrCancelMove:YES];
-    
 }
 
 /**
@@ -357,7 +356,6 @@ typedef enum
             }
         }
         
-        
          offset=CGPointMake(self.collectionView.contentOffset.x+ReduceOrAdd, self.collectionView.contentOffset.y);
     }else
     {
@@ -410,12 +408,9 @@ typedef enum
         
         offset=CGPointMake(self.collectionView.contentOffset.x, self.collectionView.contentOffset.y+ReduceOrAdd);
     }
-    
     ZYMainThread(^{
-        
         [self.collectionView setContentOffset:offset animated:YES];
     });
-    
 //    if (isNeed) {
 //            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.28 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //                [self ExcuteEndAnimate];

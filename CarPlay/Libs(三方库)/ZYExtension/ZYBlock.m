@@ -15,10 +15,5 @@ void ZYAsyncThead(dispatch_block_t block)
 
 void ZYMainThread(dispatch_block_t block)
 {
-    if ([NSThread isMainThread]) {
-        block();
-    }
-    else {
-        dispatch_async(dispatch_get_main_queue(), block);
-    }
+    dispatch_async(dispatch_get_main_queue(), block);
 }

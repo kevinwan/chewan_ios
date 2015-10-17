@@ -103,7 +103,7 @@ static NSString *ID = @"cell";
  */
 - (void)loadDataWithHeader:(AAPullToRefresh *)refresh
 {
-    
+
     [ZYNetWorkTool getWithUrl:@"activity/list" params:self.params.keyValues success:^(id responseObject) {
         
         [[CPLoadingView sharedInstance] dismissLoadingView];
@@ -114,9 +114,9 @@ static NSString *ID = @"cell";
             if (self.params.ignore == 0) {
                 [self.datas removeAllObjects];
             }
-            NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
+            NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"][@"activityList"]];
             [self.datas addObjectsFromArray:arr];
-            [self.tableView reloadData];
+
             self.noDataView.tipLabel.text = @"已经没有活动了,请放宽条件再试试";
             self.refreshView.hidden = YES;
             if (self.datas.count == 0) {;
@@ -124,6 +124,7 @@ static NSString *ID = @"cell";
             }else{
                 self.noDataView.hidden = YES;
             }
+            [self.tableView reloadData];
         }
     } failure:^(NSError *error) {
         
@@ -211,6 +212,7 @@ static NSString *ID = @"cell";
         ZYMainThread(^{
             [self.tableView reloadItemsAtIndexPaths:indexPaths];
         });
+        
     });
 }
 
@@ -468,7 +470,7 @@ static NSString *ID = @"cell";
     _noDataView = [CPNoDataTipView noDataTipView];
     [self.tableView addSubview:_noDataView];
     _noDataView.frame = self.tableView.bounds;
-}
+    }
     return _noDataView;
 }
 

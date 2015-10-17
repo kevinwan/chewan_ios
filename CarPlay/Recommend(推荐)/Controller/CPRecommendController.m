@@ -135,14 +135,16 @@ static NSString *ID = @"cell";
 {
     UICollectionView3DLayout *layout=(UICollectionView3DLayout*)self.collectionView.collectionViewLayout;
     [layout EndAnchorMove];
-    
 }
 
--(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {
     UICollectionView3DLayout *layout=(UICollectionView3DLayout*)self.collectionView.collectionViewLayout;
     [layout EndAnchorMove];
+    
 }
+
+
 #pragma mark - lazy
 - (UICollectionView *)collectionView
 {
@@ -160,7 +162,6 @@ static NSString *ID = @"cell";
         
         layout.itemSize = itemSize;
         layout.itemScale = 0.94;
-        DLog(@"%@......",NSStringFromUIEdgeInsets(layout.sectionInset));
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, ZYScreenWidth, itemSize.height + layout.sectionInset.top + layout.sectionInset.bottom) collectionViewLayout:layout];
         
         _collectionView.backgroundColor = [Tools getColor:@"efefef"];
@@ -170,13 +171,7 @@ static NSString *ID = @"cell";
         _collectionView.dataSource = self;
         self.view.backgroundColor = [Tools getColor:@"efefef"];
         [_collectionView registerClass:[CPRecommentViewCell class] forCellWithReuseIdentifier:ID];
-        [RACObserve(_collectionView, contentOffset) subscribeNext:^(id x) {
-            if (!_collectionView.isDragging) {
-                
-                DLog(@"isDragging%@",x);
-            }
-        }];
-        _collectionView.panGestureRecognizer.delaysTouchesBegan = _collectionView.delaysContentTouches;
+               _collectionView.panGestureRecognizer.delaysTouchesBegan = _collectionView.delaysContentTouches;
     }
     return _collectionView;
 }
