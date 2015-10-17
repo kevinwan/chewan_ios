@@ -12,15 +12,17 @@
 #import "CPActivityDetailViewController.h"
 #import "CPRecommendModel.h"
 #import "AAPullToRefresh.h"
+#import "UICollectionView3DLayout.h"
+#import "CPRecommentViewCell.h"
 
-@interface CPRecommendController ()<PagedFlowViewDelegate, PagedFlowViewDataSource>
-@property (nonatomic, strong) PagedFlowView *collectionView;
+@interface CPRecommendController ()<UICollectionViewDelegate, UICollectionViewDataSource>
+@property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *datas;
 @property (nonatomic, strong) ZYRefreshView *refreshView;
 @property (nonatomic, assign) BOOL isHasRefreshHeader;
 @property (nonatomic, assign) NSUInteger ignore;
 @end
-
+static NSString *ID = @"cell";
 @implementation CPRecommendController
 
 - (void)viewDidLoad {
@@ -39,9 +41,9 @@
     }
     // 设置刷新控件
     ZYWeakSelf
-    AAPullToRefresh *tv = [_collectionView.scrollView addPullToRefreshPosition:AAPullToRefreshPositionLeft actionHandler:^(AAPullToRefresh *v){
+    AAPullToRefresh *tv = [_collectionView addPullToRefreshPosition:AAPullToRefreshPositionLeft actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
-        [self.collectionView.scrollView setContentOffset:CGPointMake(-44, 0) animated:YES];
+        [self.collectionView setContentOffset:CGPointMake(-44, 0) animated:YES];
         self.ignore = 0;
         [self loadDataWithHeader:v];
     }];
@@ -49,9 +51,9 @@
     tv.borderColor = [UIColor whiteColor];
     
     // bottom
-    AAPullToRefresh *bv = [_collectionView.scrollView addPullToRefreshPosition:AAPullToRefreshPositionRight actionHandler:^(AAPullToRefresh *v){
+    AAPullToRefresh *bv = [_collectionView addPullToRefreshPosition:AAPullToRefreshPositionRight actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
-        [self.collectionView.scrollView setContentOffset:CGPointMake(_collectionView.scrollView.contentSize.width + 44 - _collectionView.scrollView.width, 0) animated:YES];
+        [self.collectionView setContentOffset:CGPointMake(_collectionView.contentSize.width + 44 - _collectionView.width, 0) animated:YES];
         
         if (self.datas.count >= CPPageNum) {
             self.ignore += CPPageNum;
@@ -60,7 +62,7 @@
             [v stopIndicatorAnimation];
         }
     }];
-
+    
     bv.imageIcon = [UIImage imageNamed:@"车轮"];
     bv.borderColor = [UIColor whiteColor];
     
@@ -76,12 +78,12 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[UserId] = CPUserId;
     params[Token] = CPToken;
-//    params[@"province"] = [ZYUserDefaults stringForKey:Province];
-//    params[@"city"] = [ZYUserDefaults stringForKey:City];
-//    params[@"district"] = [ZYUserDefaults stringForKey:District];
+    //    params[@"province"] = [ZYUserDefaults stringForKey:Province];
+    //    params[@"city"] = [ZYUserDefaults stringForKey:City];
+    //    params[@"district"] = [ZYUserDefaults stringForKey:District];
     params[@"province"] = @"江苏省";
     params[@"city"] = @"南京市";
-//    params[@"district"] = [ZYUserDefaults stringForKey:District];
+    //    params[@"district"] = [ZYUserDefaults stringForKey:District];
     [ZYNetWorkTool getWithUrl:@"official/activity/list" params:params success:^(id responseObject) {
         self.refreshView.hidden = YES;
         [self setUpRefresh];
@@ -114,63 +116,63 @@
 }
 
 #pragma mark - flowViewDelegate & flowViewDataSource
-- (NSInteger)numberOfPagesInFlowView:(PagedFlowView *)flowView
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return self.datas.count;
 }
 
-- (UIView *)flowView:(PagedFlowView *)flowView cellForPageAtIndex:(NSInteger)index
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CPRecommendCell *cell = (CPRecommendCell *)[flowView dequeueReusableCell];
-    if (!cell) {
-        
-        cell = [[NSBundle mainBundle] loadNibNamed:@"CPRecommendCell" owner:nil options:nil].lastObject;
-        cell.model = self.datas[index];
-    }
+    CPRecommentViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
+    cell.model = self.datas[indexPath.item];
     return cell;
 }
 
-- (void)flowView:(PagedFlowView *)flowView didTapPageAtIndex:(NSInteger)index
+- (NSInteger)numberOfPagesInFlowView:(PagedFlowView *)flowView
 {
-    CPActivityDetailViewController *activityDetailVc = [CPActivityDetailViewController new];
-    [self.navigationController pushViewController:activityDetailVc animated:YES];
+    return self.datas.count;
 }
-
-- (CGSize)sizeForPageInFlowView:(PagedFlowView *)flowView
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    if (iPhone4) {
-        return CGSizeMake(ZYScreenWidth - 36,345 );
-    }
+    UICollectionView3DLayout *layout=(UICollectionView3DLayout*)self.collectionView.collectionViewLayout;
+    [layout EndAnchorMove];
     
-    return CGSizeMake(ZYScreenWidth - 36,ZYScreenWidth + 100);
 }
 
+-(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+    UICollectionView3DLayout *layout=(UICollectionView3DLayout*)self.collectionView.collectionViewLayout;
+    [layout EndAnchorMove];
+}
 #pragma mark - lazy
-- (PagedFlowView *)collectionView
+- (UICollectionView *)collectionView
 {
     if (_collectionView == nil) {
-        
-        CGFloat offset = (ZYScreenWidth - 320);
-        _collectionView = [[PagedFlowView alloc] initWithFrame:({
-            CGFloat x = 18;
+        self.automaticallyAdjustsScrollViewInsets = NO;
+        UICollectionView3DLayout *layout = [UICollectionView3DLayout new];
+        layout.LayoutDirection = UICollectionLayoutScrollDirectionHorizontal;
+        CGSize itemSize;
+        if (iPhone4) {
+            itemSize = CGSizeMake(ZYScreenWidth - 36,345);
+        }else{
             
-            CGFloat y = 84;
-            if (iPhone4) {
-                y = 44;
-            }
-            CGFloat w = ZYScreenWidth - 36;
-            CGFloat h = offset + 420;
-            CGRectMake(x, y, w, h);
-            })];
-        _collectionView.centerY = (ZYScreenHeight - 49 - 64) * 0.5 + 64;
+            itemSize = CGSizeMake(ZYScreenWidth - 36,ZYScreenWidth + 100);
+        }
+        
+        layout.itemSize = itemSize;
+        layout.itemScale = 0.94;
+        DLog(@"%@......",NSStringFromUIEdgeInsets(layout.sectionInset));
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, ZYScreenWidth, itemSize.height + layout.sectionInset.top + layout.sectionInset.bottom) collectionViewLayout:layout];
+        
+        _collectionView.backgroundColor = [Tools getColor:@"efefef"];
+        _collectionView.centerY = (ZYScreenHeight - 64- 49) * 0.5 + 64;
         _collectionView.centerX = ZYScreenWidth * 0.5;
-        _collectionView.orientation = PagedFlowViewOrientationHorizontal;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
-        _collectionView.minimumPageScale = 0.928;
         self.view.backgroundColor = [Tools getColor:@"efefef"];
+        [_collectionView registerClass:[CPRecommentViewCell class] forCellWithReuseIdentifier:ID];
         
-       
+        
     }
     return _collectionView;
 }

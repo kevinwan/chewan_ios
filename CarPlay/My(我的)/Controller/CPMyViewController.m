@@ -266,7 +266,7 @@
 - (void)addPhoto:(NSArray *)arr
 {
         NSString *path=[[NSString alloc]initWithFormat:@"user/%@/album/upload?token=%@",[Tools getUserId],[Tools getToken]];
-        NSMutableArray *albums=user.album;
+        NSMutableArray *albums=[[NSMutableArray alloc] initWithArray:user.album];
         CPAlbum *albumModel=[[CPAlbum alloc]init];
     [self showLoading];
         for (int i = 0; i < arr.count; i++) {

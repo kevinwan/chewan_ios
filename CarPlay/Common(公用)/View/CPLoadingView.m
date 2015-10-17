@@ -32,7 +32,7 @@ ZYSingleTonM
         _refreshView.y = 64;
         _refreshView.x = 0;
         _refreshView.width = ZYScreenWidth;
-        _refreshView.height = ZYScreenHeight - 64 - 49;
+        _refreshView.height = ZYScreenHeight - 64 - 68;
         [ZYKeyWindow addSubview:_refreshView];
         ZYRefreshView *rs = [[ZYRefreshView alloc] init];
         rs.center = _refreshView.centerInSelf;

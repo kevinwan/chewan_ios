@@ -214,25 +214,55 @@
     } else {
         currentInsets.bottom = self.originalInsetBottom;
     }
-    [self setScrollViewContentInset:currentInsets handler:handler];
+    
+    if (self.position == AAPullToRefreshPositionTop){
+        
+        [self.scrollView setContentOffset:CGPointZero animated:YES];
+    }else if (self.position == AAPullToRefreshPositionLeft){
+        [self.scrollView setContentOffset:CGPointMake(0, self.scrollView.contentOffset.y) animated:YES];
+    }else if (self.position == AAPullToRefreshPositionBottom){
+        [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentOffset.x, self.scrollView.contentSize.height - self.scrollView.bounds.size.height) animated:YES];
+    }else if (self.position == AAPullToRefreshPositionRight){
+        [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentSizeWidth - self.scrollView.width,self.scrollView.contentOffset.y) animated:YES];
+    }
+    if (handler) {
+        handler();
+    }
 }
 
 - (void)setScrollViewContentInset:(UIEdgeInsets)contentInset handler:(actionHandler)handler
 {
+    if (self.position == AAPullToRefreshPositionTop) {
+        
+        [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentOffsetX, -self.scrollView.contentInsetTop) animated:YES];
+    }else if (self.position == AAPullToRefreshPositionLeft){
+        
+        [self.scrollView setContentOffset:CGPointMake(-self.scrollView.contentInsetLeft,self.scrollView.contentOffsetX) animated:YES];
+    }else if (self.position == AAPullToRefreshPositionBottom){
+        
+        [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentSize.height - self.scrollView.bounds.size.height - 44,self.scrollView.contentOffset.x) animated:YES];
+    }else if (self.position == AAPullToRefreshPositionRight){
+        
+        [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentSizeWidth - self.scrollView.width - 44,self.scrollView.contentOffsetX) animated:YES];
+    }
+    if (handler) {
+        handler();
+    }
+    return;
     [UIView animateWithDuration:0.3f
                           delay:0
                         options:UIViewAnimationOptionAllowUserInteraction |
      UIViewAnimationOptionCurveEaseOut |
      UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
-                         self.scrollView.contentInset = contentInset;
+                         //                         self.scrollView.contentInset = contentInset;
+                         [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentOffset.x, -self.scrollView.contentInset.top)];
                      }
                      completion:^(BOOL finished) {
                          if (handler)
                              handler();
                      }];
 }
-
 #pragma mark - property
 - (void)setShowPullToRefresh:(BOOL)showPullToRefresh
 {
@@ -347,24 +377,26 @@
         case AAPullToRefreshPositionTop:
             self.progress = ((yOffset + self.originalInsetTop) / -self.threshold);
             centerX = self.scrollView.center.x + xOffset;
-            centerY = (yOffset + self.originalInsetTop) / 2.0f;
+            centerY = (yOffset + self.originalInsetTop) / 2.0f + 64;
             break;
         case AAPullToRefreshPositionBottom:
             self.progress = overBottomOffsetY / self.threshold;
             centerX = self.scrollView.center.x + xOffset;
-            centerY = self.scrollView.frame.size.height + self.frame.size.height / 2.0f + yOffset;
+            CGFloat itemH = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250 + 383;
+            CGFloat ss = self.scrollView.height - itemH - 20 - 49;
+            centerY = self.scrollView.frame.size.height + self.frame.size.height / 2.0f + yOffset - ss;
             if (overBottomOffsetY >= 0.0f) {
                 centerY -= overBottomOffsetY / 1.5f;
             }
             break;
         case AAPullToRefreshPositionLeft:
             self.progress = xOffset / -self.threshold;
-            centerX = xOffset / 2.0f;
+            centerX = xOffset / 2.0f + 20;
             centerY = self.scrollView.bounds.size.height / 2.0f + yOffset;
             break;
         case AAPullToRefreshPositionRight: {
             CGFloat rightEdgeOffset = self.scrollView.contentSize.width - self.scrollView.bounds.size.width;
-            centerX = self.scrollView.contentSize.width + MAX((xOffset - rightEdgeOffset) / 2.0f, 0);
+            centerX = self.scrollView.contentSize.width + MAX((xOffset - rightEdgeOffset) / 2.0f, 0) - 10;
             centerY = self.scrollView.bounds.size.height / 2.0f + yOffset;
             self.progress = MAX((xOffset - rightEdgeOffset) / self.threshold, 0);
             break;

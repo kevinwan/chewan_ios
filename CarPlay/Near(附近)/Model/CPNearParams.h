@@ -28,7 +28,7 @@
 //ignore	false	Integer	忽略数量,不传默认0
 @property (nonatomic, assign) NSUInteger ignore;
 //limit	false	Integer	限制数量，不传默认10
-//@property (nonatomic, assign) NSUInteger limit;
+@property (nonatomic, assign) NSUInteger limit;
 //longitude	true	String	经度
 @property (nonatomic, assign) double longitude;
 //latitude	true	String	纬度
