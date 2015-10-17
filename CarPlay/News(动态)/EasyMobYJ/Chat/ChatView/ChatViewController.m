@@ -1725,6 +1725,8 @@
 
 -(void)sendTextMessage:(NSString *)textMessage
 {
+    
+
     NSDictionary *ext = nil;
     EMMessage *tempMessage = [ChatSendHelper sendTextMessageWithString:textMessage
                                                             toUsername:_conversation.chatter

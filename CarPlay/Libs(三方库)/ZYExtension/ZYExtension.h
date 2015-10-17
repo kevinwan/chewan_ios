@@ -33,4 +33,5 @@
 #import "SingleTon.h"
 #import "ZYBlock.h"
 #import "UIViewController+ZY.h"
+#import "UIScrollView+Extension.h"
 #endif

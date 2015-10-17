@@ -19,20 +19,21 @@
 #import "CPNoDataTipView.h"
 #import "CPTaInfo.h"
 #import "CPLoadingView.h"
+#import "UICollectionView3DLayout.h"
+#import "CPNearCollectionViewCell.h"
 
-@interface CPNearViewController ()<PagedFlowViewDataSource,PagedFlowViewDelegate,UIScrollViewDelegate>
-@property (nonatomic, strong) PagedFlowView *tableView;
+@interface CPNearViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate>
+@property (nonatomic, strong) UICollectionView *tableView;
 @property (nonatomic, strong) NSMutableArray<CPActivityModel *> *datas;
 @property (nonatomic, strong) UIView *tipView;
 @property (nonatomic, assign) CGFloat offset;
-@property (nonatomic, assign) NSUInteger ignore;
-@property (nonatomic, assign) BOOL refreshing;
-@property (nonatomic, assign) CGFloat contentInsetY;
 @property (nonatomic, strong) CPNearParams *params;
 @property (nonatomic, strong) ZYRefreshView *refreshView;
 @property (nonatomic, assign) BOOL isHasRefreshHeader;
 @property (nonatomic, strong) CPNoDataTipView *noDataView;
 @end
+
+static NSString *ID = @"cell";
 @implementation CPNearViewController
 
 - (void)viewDidLoad
@@ -51,24 +52,15 @@
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"筛选" target:self action:@selector(filter)];
     [self.view addSubview:self.tableView];
     [self tipView];
-    [[CPLoadingView sharedInstance] showLoadingView];
-    [self loadDataWithHeader:nil];
-    [RACObserve(self.tableView.scrollView, contentOffset) subscribeNext:^(id x) {
-        CGPoint p = [x CGPointValue];
-        if (p.y <= 0) {
-            if (self.tipView.alpha == 0) {
-                [UIView animateWithDuration:0.2 animations:^{
-                    self.tipView.alpha = 1;
-                }];
-            }
-        }else if (p.y > self.tableView.scrollView.height){
-            if (self.tipView.alpha == 1) {
-            [UIView animateWithDuration:0.2 animations:^{
-                self.tipView.alpha = 0;
-            }];
-        }
-        }
-    }];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (self.datas.count == 0) {
+         [[CPLoadingView sharedInstance] showLoadingView];
+         [self loadDataWithHeader:nil];
+    }
 }
 
 - (void)setUpRefresh
@@ -77,10 +69,10 @@
         return;
     }
     ZYWeakSelf
-    AAPullToRefresh *tv = [_tableView.scrollView addPullToRefreshPosition:AAPullToRefreshPositionTop actionHandler:^(AAPullToRefresh *v){
+    AAPullToRefresh *tv = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionTop actionHandler:^(AAPullToRefresh *v){
         NSLog(@"fire from top");
         ZYStrongSelf
-        [self.tableView.scrollView setContentOffset:CGPointMake(0, -40) animated:YES];
+        [self.tableView setContentOffset:CGPointMake(0, -44) animated:YES];
         self.params.ignore = 0;
         [self loadDataWithHeader:v];
     }];
@@ -88,10 +80,10 @@
     tv.borderColor = [UIColor whiteColor];
     
     // bottom
-    AAPullToRefresh *bv = [_tableView.scrollView addPullToRefreshPosition:AAPullToRefreshPositionBottom actionHandler:^(AAPullToRefresh *v){
+    AAPullToRefresh *bv = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionBottom actionHandler:^(AAPullToRefresh *v){
         NSLog(@"fire from bottom");
         ZYStrongSelf
-        [self.tableView.scrollView setContentOffset:CGPointMake(0, _tableView.scrollView.contentSize.height + 49 - _tableView.scrollView.bounds.size.height) animated:YES];
+        [self.tableView setContentOffset:CGPointMake(0, _tableView.contentSize.height + 44 - _tableView.bounds.size.height) animated:YES];
         
         if (self.datas.count >= CPPageNum) {
             
@@ -103,7 +95,7 @@
     }];
     bv.imageIcon = [UIImage imageNamed:@"车轮"];
     bv.borderColor = [UIColor whiteColor];
-
+    self.isHasRefreshHeader = YES;
 }
 
 /**
@@ -111,14 +103,15 @@
  */
 - (void)loadDataWithHeader:(AAPullToRefresh *)refresh
 {
-
+    
     [ZYNetWorkTool getWithUrl:@"activity/list" params:self.params.keyValues success:^(id responseObject) {
+        
         [[CPLoadingView sharedInstance] dismissLoadingView];
         [self setUpRefresh];
         [refresh stopIndicatorAnimation];
         DLog(@"%@ ---- ",responseObject);
         if (CPSuccess) {
-            if (self.ignore == 0) {
+            if (self.params.ignore == 0) {
                 [self.datas removeAllObjects];
             }
             NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
@@ -136,7 +129,7 @@
         
         [self setUpRefresh];
         DLog(@"%@---",error);
-        self.ignore -= CPPageNum;
+        self.params.ignore -= CPPageNum;
         [refresh stopIndicatorAnimation];
         [self showError:@"加载失败"];
         self.noDataView.tipLabel.text = @"加载失败了,请换个网络试试";
@@ -144,27 +137,32 @@
     }];
 }
 
+#pragma mark - UICollectionViewDelegate &dataSource
 
-#pragma mark - FlowViewDataSource & FlowViewDelegate
-- (CGSize)sizeForPageInFlowView:(PagedFlowView *)flowView
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(ZYScreenWidth - 20, 383 + self.offset);
-}
-
-- (UIView *)flowView:(PagedFlowView *)flowView cellForPageAtIndex:(NSInteger)index
-{
-    CPBaseViewCell *cell = (CPBaseViewCell *)[flowView dequeueReusableCell];
-    if (!cell) {
-        cell = [[NSBundle mainBundle] loadNibNamed:@"CPBaseViewCell" owner:nil options:nil].lastObject;
-        cell.model = self.datas[index];
-    }
+    CPNearCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
+    cell.model = self.datas[indexPath.item];
     return cell;
 }
 
-- (NSInteger)numberOfPagesInFlowView:(PagedFlowView *)flowView
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return self.datas.count;
 }
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    UICollectionView3DLayout *layout=(UICollectionView3DLayout*)self.tableView.collectionViewLayout;
+    [layout EndAnchorMove];
+    
+}
+
+-(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+    UICollectionView3DLayout *layout=(UICollectionView3DLayout*)self.tableView.collectionViewLayout;
+    [layout EndAnchorMove];
+}
+
 
 #pragma mark - 事件交互
 
@@ -184,7 +182,7 @@
     }else if([notifyName isEqualToString:LoveBtnClickKey]){
         [self loveBtnClickWithInfo:(CPActivityModel *)userInfo];
     }else if ([notifyName isEqualToString:IconViewClickKey]){
-        
+        CPGoLogin(@"查看TA的详情");
         CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
         CPActivityModel *model = userInfo;
         taVc.userId = model.organizer.userId;
@@ -199,18 +197,19 @@
  */
 - (void)loveBtnClickWithInfo:(CPActivityModel *)model
 {
+    NSMutableArray *indexPaths = [NSMutableArray array];
     ZYAsyncThead(^{
         
-        for (CPActivityModel *obj in self.datas) {
+        for (int i = 0;i < self.datas.count; i++) {
+            CPActivityModel *obj = self.datas[i];
             if ([obj.organizer.userId isEqualToString:model.organizer.userId]) {
                 obj.organizer.subscribeFlag = model.organizer.subscribeFlag;
+                [indexPaths addObject:[NSIndexPath indexPathForItem:i inSection:0]];
             }
-
+            
         }
         ZYMainThread(^{
-            
-            NSLog(@"===%@",self.datas);
-            [self.tableView reloadData];
+            [self.tableView reloadItemsAtIndexPaths:indexPaths];
         });
     });
 }
@@ -220,15 +219,16 @@
  */
 - (void)cameraPresent
 {
+    CPGoLogin(@"上传照片");
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        DLog(@"相机不可用");
+        [self showError:@"相机不可用"];
         return;
     }
     UIImagePickerController *pic = [UIImagePickerController new];
+    pic.allowsEditing = YES;
     pic.sourceType = UIImagePickerControllerSourceTypeCamera;
-    [pic.rac_imageSelectedSignal subscribeNext:^(id x) {
-        NSLog(@"%@",x);
-        
+    [pic.rac_imageSelectedSignal subscribeNext:^(NSDictionary *dict) {
+        [self addPhoto:@[dict[UIImagePickerControllerEditedImage]]];
         [self dismissViewControllerAnimated:YES completion:NULL];
     }completed:^{
         
@@ -242,19 +242,42 @@
  */
 - (void)photoPresent
 {
+    CPGoLogin(@"上传照片");
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
-        DLog(@"相册不可用");
+        [self showError:@"相册不可用"];
         return;
     }
     UIImagePickerController *pic = [UIImagePickerController new];
     pic.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    [pic.rac_imageSelectedSignal subscribeNext:^(id x) {
+    [pic.rac_imageSelectedSignal subscribeNext:^(NSDictionary *dict) {
+        [self addPhoto:@[dict[UIImagePickerControllerOriginalImage]]];
         [self dismissViewControllerAnimated:YES completion:NULL];
     } completed:^{
         [self dismissViewControllerAnimated:YES completion:NULL];
     }];
     [self presentViewController:pic animated:YES completion:NULL];
+    
+}
 
+- (void)addPhoto:(NSArray *)arr
+{
+    
+    NSString *path=[[NSString alloc]initWithFormat:@"user/%@/album/upload?token=%@",[Tools getUserId],[Tools getToken]];
+    [self showLoading];
+    for (int i = 0; i < arr.count; i++) {
+        ZYHttpFile *imageFile = [ZYHttpFile fileWithName:@"attach" data:UIImageJPEGRepresentation(arr[i], 0.4) mimeType:@"image/jpeg" filename:@"a1.jpg"];
+        [ZYNetWorkTool postFileWithUrl:path params:nil files:@[imageFile] success:^(id responseObject) {
+            if (CPSuccess) {
+                [self disMiss];
+                [self loadDataWithHeader:nil];
+            }else{
+                [self showError:responseObject[@"errmsg"]];
+            }
+        } failure:^(NSError *error) {
+            [self showError:@"照片上传失败"];
+        }];
+    }
+    
 }
 
 /**
@@ -264,35 +287,24 @@
  */
 - (void)dateClickWithInfo:(id)userInfo
 {
-    if (CPUnLogin) {
-        
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"你还未注册,注册后就可以邀请" delegate:nil cancelButtonTitle:@"再想想" otherButtonTitles:@"去注册", nil];
-        [alertView.rac_buttonClickedSignal subscribeNext:^(id x) {
-            if ([x integerValue] != 0) {
-                [ZYNotificationCenter postNotificationName:NOTIFICATION_GOLOGIN object:nil];
-            }
-        }];
-        [alertView show];
-        return;
-    }
-//    body
-//    {
-//        “type”:”$type”,
-//        “pay”:”$pay”,
-//        “destPoint”:
-//        {
-//            “longitude”:”$longitude”,
-//            “latitude”:”$latitude”
-//        },
-//        “destination”:
-//        {
-//            “province”:”$province”,
-//            “city”:”$city”,
-//            “district”:”$district”,
-//            “street”:”$street”
-//        },
-//        “transfer”:”$transfer”
-//    }
+    CPGoLogin(@"邀TA");
+    //    {
+    //        “type”:”$type”,
+    //        “pay”:”$pay”,
+    //        “destPoint”:
+    //        {
+    //            “longitude”:”$longitude”,
+    //            “latitude”:”$latitude”
+    //        },
+    //        “destination”:
+    //        {
+    //            “province”:”$province”,
+    //            “city”:”$city”,
+    //            “district”:”$district”,
+    //            “street”:”$street”
+    //        },
+    //        “transfer”:”$transfer”
+    //    }
     CPActivityModel *model = userInfo;
     NSString *url = [NSString stringWithFormat:@"activity/%@/join",model.activityId];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -329,23 +341,25 @@
 
 #pragma mark - 加载子控件
 
-- (PagedFlowView *)tableView
+- (UICollectionView *)tableView
 {
     if (_tableView == nil) {
-        _tableView = [[PagedFlowView alloc] initWithFrame:({
-            CGFloat y = iPhone4?64:84;
-            CGRectMake(10, y, ZYScreenWidth - 20, 383 + self.offset);
-        })];
+        UICollectionView3DLayout *layout = [UICollectionView3DLayout new];
+        _tableView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
+        
         _tableView.backgroundColor = [UIColor clearColor];
+        _tableView.showsHorizontalScrollIndicator = NO;
+        _tableView.showsVerticalScrollIndicator = NO;
         self.automaticallyAdjustsScrollViewInsets = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.orientation = PagedFlowViewOrientationVertical;
+        CGSize itemSzie= CGSizeMake(ZYScreenWidth - 20, 383 + self.offset);
+        layout.itemSize = itemSzie;
+        layout.itemScale = 0.96;
+        layout.LayoutDirection=UICollectionLayoutScrollDirectionVertical;
         self.view.backgroundColor = [Tools getColor:@"efefef"];
-        _tableView.minimumPageScale = 0.96;
-        // top
-        _tableView.scrollView.alwaysBounceVertical = YES;
-       
+        [_tableView registerClass:[CPNearCollectionViewCell class] forCellWithReuseIdentifier:ID];
+        
     }
     return _tableView;
 }
@@ -389,31 +403,35 @@
                 textL.text = @"有空,其他人可以邀请你参加活动";
             }else{
                 textL.text = @"没空,你将接受不到任何活动邀请";
-               
+                
             }
         }];
         [freeTimeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(_tipView);
             make.right.equalTo(@-10);
         }];
+        [RACObserve(self.tableView, contentOffset) subscribeNext:^(id x) {
+            CGPoint p = [x CGPointValue];
+            if (p.y <= 0 && p.y >= -10) {
+                if (_tipView.alpha == 0) {
+                    [UIView animateWithDuration:0.2 animations:^{
+                        _tipView.alpha = 1;
+                    }];
+                }
+            }else if (p.y > self.tableView.height - 383 - self.offset){
+                if (_tipView.alpha == 1) {
+                [UIView animateWithDuration:0.2 animations:^{
+                    _tipView.alpha = 0;
+                }];
+                }
+            }else if (p.y < -10){
+                _tipView.alpha = 0;
+            }
+        }];
+
     }
     return _tipView;
 }
-
-#pragma mark - scrollViewDelegate
-//{
-//    if (self.refreshing) {
-//        return;
-//    }
-//    if (scrollView.contentOffset.y < -50) {
-//        self.contentInsetY = scrollView.contentInset.top;
-//        DLog(@"刷仙..");
-//        self.refreshing = YES;
-//        NSLog(@"%f ..",scrollView.contentOffset.y);
-//        self.tableView.scrollView.contentInset = UIEdgeInsetsMake(50, 0, 0, 0);
-//    }
-//}
-//
 
 - (CPNearParams *)params
 {
@@ -423,7 +441,8 @@
         _params.token = CPToken;
         _params.longitude = ZYLongitude;
         _params.latitude = ZYLatitude;
-        _params.ignore = self.ignore;
+        _params.ignore = 0;
+        _params.limit = 10;
         _params.maxDistance = 5000;
     }
     return _params;
@@ -446,10 +465,10 @@
 
 - (CPNoDataTipView *)noDataView
 {    if (_noDataView == nil) {
-        _noDataView = [CPNoDataTipView noDataTipView];
-        [self.tableView addSubview:_noDataView];
-        _noDataView.frame = self.tableView.bounds;
-    }
+    _noDataView = [CPNoDataTipView noDataTipView];
+    [self.tableView addSubview:_noDataView];
+    _noDataView.frame = self.tableView.bounds;
+}
     return _noDataView;
 }
 

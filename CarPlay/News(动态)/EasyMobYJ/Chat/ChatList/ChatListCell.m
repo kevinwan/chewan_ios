@@ -31,8 +31,10 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(240, 7, 80, 16)];
+        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(kDeviceWidth-75, 7, 70, 16)];
         _timeLabel.font = [UIFont systemFontOfSize:13];
+        [_timeLabel setTextColor:UIColorFromRGB(0xaaaaaa)];
+        [_timeLabel setTextAlignment:NSTextAlignmentRight];
         _timeLabel.backgroundColor = [UIColor clearColor];
         [self.contentView addSubview:_timeLabel];
         
@@ -56,6 +58,14 @@
         
         _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,kDeviceWidth, 1)];
         _lineView.backgroundColor = RGBACOLOR(207, 210, 213, 0.7);
+        
+        //感兴趣的模块  需要显示头像
+        ///
+        _interestIV = [[UIImageView alloc]initWithFrame:CGRectMake(kDeviceWidth-40-10, 10, 40, 40)];
+        _interestIV.backgroundColor =[UIColor clearColor];
+        [self.contentView addSubview:_interestIV];
+        
+        
         self.contentView.backgroundColor = [UIColor whiteColor];
 
         [self.contentView addSubview:_lineView];
@@ -87,10 +97,12 @@
     [super layoutSubviews];
     CGRect frame = self.imageView.frame;
     
-//    [self.imageView sd_setImageWithURL:_imageURL placeholderImage:_placeholderImage];
-    [self.imageView imageWithUsername:_name placeholderImage:_placeholderImage];
+    [self.imageView sd_setImageWithURL:_imageURL placeholderImage:_placeholderImage];
+//    [self.imageView imageWithUsername:_name placeholderImage:_placeholderImage];
     self.imageView.frame = CGRectMake(10, 7, 45, 45);
     
+    [self.imageView setClipsToBounds:YES];
+    self.imageView.layer.cornerRadius = 22;
 //    self.textLabel.text = _name;
     [self.textLabel setTextWithUsername:_name];
     self.textLabel.frame = CGRectMake(65, 7, 175, 20);

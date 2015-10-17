@@ -79,5 +79,15 @@ static BOOL _isShow;
     }];
 }
 
++ (void)showGoLoginWithTitle:(NSString *)title
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:[NSString stringWithFormat:@"你还未登录,登录后就可以%@",title] delegate:nil cancelButtonTitle:@"再想想" otherButtonTitles:@"去登录", nil];
+    [alertView.rac_buttonClickedSignal subscribeNext:^(id x) {
+        if ([x integerValue] != 0) {
+            [ZYNotificationCenter postNotificationName:NOTIFICATION_GOLOGIN object:nil];
+        }
+    }];
+    [alertView show];
+}
 
 @end

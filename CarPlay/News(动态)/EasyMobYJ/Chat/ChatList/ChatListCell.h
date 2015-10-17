@@ -18,6 +18,8 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *detailMsg;
 @property (nonatomic, strong) NSString *time;
+@property (nonatomic, strong) UIImageView *interestIV;
+;
 @property (nonatomic) NSInteger unreadCount;
 
 +(CGFloat)tableView:(UITableView *)tableView
