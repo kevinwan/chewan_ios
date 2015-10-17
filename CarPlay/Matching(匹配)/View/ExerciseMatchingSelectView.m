@@ -6,9 +6,14 @@
 //  Copyright © 2015年 chewan. All rights reserved.
 //
 
-#import "MatchingSelectView.h"
+#import "ExerciseMatchingSelectView.h"
 
-@implementation MatchingSelectView
+@interface ExerciseMatchingSelectView ()
+@property (nonatomic, strong) UIButton *lastTypebtn;
+@end
+
+
+@implementation ExerciseMatchingSelectView
 
 - (void)awakeFromNib
 {
@@ -61,7 +66,7 @@
 }
 
 +(void)show:(NSString *)colorStr{
-    MatchingSelectView *view= [[NSBundle mainBundle] loadNibNamed:@"MatchingSelectView" owner:nil options:nil].lastObject;
+    ExerciseMatchingSelectView *view= [[NSBundle mainBundle] loadNibNamed:@"ExerciseMatchingSelectView" owner:nil options:nil].lastObject;
     view.backgroundColor=[Tools getColor:colorStr];
     view.frame = [ZYKeyWindow bounds];
     [ZYKeyWindow addSubview:view];
@@ -78,6 +83,12 @@
         }];
     }];
     [view addGestureRecognizer:tap];
+}
+
+- (IBAction)exerciseBtnClick:(UIButton *)sender {
+    self.lastTypebtn.selected = NO;
+    sender.selected = YES;
+    self.lastTypebtn = sender;
 }
 
 @end

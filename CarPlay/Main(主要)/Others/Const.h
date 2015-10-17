@@ -18,3 +18,7 @@ ZYEXTENSION_EXTERN NSString * const District;
 ZYEXTENSION_EXTERN NSString * const Street;
 // 附近页面是不是开启推送模式的key
 ZYEXTENSION_EXTERN NSString * const FreeTimeKey;
+//意向匹配最后一次选择的类型
+ZYEXTENSION_EXTERN NSString * const LastType;
+//意向匹配最后一次包接送否
+ZYEXTENSION_EXTERN NSString * const Transfer;
