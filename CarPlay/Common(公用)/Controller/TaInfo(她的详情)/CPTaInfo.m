@@ -117,9 +117,10 @@
 }
 
 #pragma mark - Table view data source
-
 - (IBAction)attentionBtnClick:(id)sender {
+    
 }
 - (IBAction)taActivityClick:(id)sender {
+    
 }
 @end

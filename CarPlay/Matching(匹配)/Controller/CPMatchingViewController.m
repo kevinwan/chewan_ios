@@ -9,6 +9,7 @@
 #import "CPMatchingViewController.h"
 #import "CPTakeALookViewController.h"
 #import "UIView+Shake.h"
+#import "MatchingSelectView.h"
 
 @interface CPMatchingViewController ()<UIGestureRecognizerDelegate>
 {
@@ -116,6 +117,9 @@
     [self.takeALookBtn setCenter:CGPointMake(ZYScreenWidth/2.0, 505.0/568.0*ZYScreenHeight)];
    
     timer =  [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(biginAni) userInfo:nil repeats:YES];
+    
+    UITapGestureRecognizer*tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hidenScrollView)];
+    [self.scrollView addGestureRecognizer:tapGesture];
    
 }
 
@@ -287,7 +291,7 @@
 
 - (IBAction)btnClick:(UIButton *)sender {
     if (sender.tag!=100) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [MatchingSelectView show:@"efefef"];
     }else{
         [self.view addSubview:takeALook.view];
         [UIView animateWithDuration:0.1
@@ -367,5 +371,9 @@
     if (takeALookAnimationIndex>10) {
         takeALookAnimationIndex=1;
     }
+}
+
+-(void)hidenScrollView{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

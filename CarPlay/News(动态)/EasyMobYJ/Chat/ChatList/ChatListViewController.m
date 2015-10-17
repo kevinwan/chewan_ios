@@ -310,7 +310,7 @@
 
 //    后续优化算法，暂时这样做先
         if (sortArr.count == 0) {
-        EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"InterestAdmin" conversationType:eConversationTypeChat];
+        EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"interestadmin" conversationType:eConversationTypeChat];
         [sortArr addObject:interestConversation];
     }
     //感兴趣的
@@ -321,8 +321,9 @@
             break;
         }else if (i == sortArr.count-1)
         {
-            EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"InterestAdmin" conversationType:eConversationTypeChat];
+            EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"interestadmin" conversationType:eConversationTypeChat];
             [sortArr addObject:interestConversation];
+            break;
         }
     }
     //活动动态
@@ -333,8 +334,9 @@
             break;
         }else if (i == sortArr.count-1)
         {
-            EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"ActivityStateAdmin" conversationType:eConversationTypeChat];
+            EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"activitystateadmin" conversationType:eConversationTypeChat];
             [sortArr addObject:interestConversation];
+            break;
         }
     }
     
@@ -346,8 +348,9 @@
             break;
         }else if (i == sortArr.count-1)
         {
-            EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"UserViewAdmin" conversationType:eConversationTypeChat];
+            EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"userviewadmin" conversationType:eConversationTypeChat];
             [sortArr addObject:interestConversation];
+            break;
         }
     }
     
@@ -359,8 +362,9 @@
             break;
         }else if (i == sortArr.count-1)
         {
-            EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"SubscribeAdmin" conversationType:eConversationTypeChat];
+            EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"subscribeadmin" conversationType:eConversationTypeChat];
             [sortArr addObject:interestConversation];
+            break;
         }
     }
     
@@ -372,37 +376,81 @@
             break;
         }else if (i == sortArr.count-1)
         {
-            EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"OfficialAdmin" conversationType:eConversationTypeChat];
+            EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"officialadmin" conversationType:eConversationTypeChat];
             [sortArr addObject:interestConversation];
+            break;
         }
     }
 
     
     
     
-    for (int i = 0; i<sortArr.count; i++) {
+//    for (int i = 0; i<sortArr.count; i++)
+//    {
+//        EMConversation *conversation = [sortArr objectAtIndex:i];
+//        if ([conversation.chatter isEqualToString:@"interestadmin"])
+//        {
+//            [sortArr exchangeObjectAtIndex:i withObjectAtIndex:0];
+//        }else if ([conversation.chatter isEqualToString:@"activitystateadmin"])
+//        {
+//            [sortArr exchangeObjectAtIndex:i withObjectAtIndex:1];
+//        }else if ([conversation.chatter isEqualToString:@"userviewadmin"])
+//        {
+//            [sortArr exchangeObjectAtIndex:i withObjectAtIndex:2];
+//        }else if ([conversation.chatter isEqualToString:@"subscribeadmin"])
+//        {
+//            [sortArr exchangeObjectAtIndex:i withObjectAtIndex:3];
+//        }else if ([conversation.chatter isEqualToString:@"officialadmin"])
+//        {
+//            [sortArr exchangeObjectAtIndex:i withObjectAtIndex:4];
+//        }
+//    }
+    //test
+    for (int i = 0; i<sortArr.count; i++)
+    {
         EMConversation *conversation = [sortArr objectAtIndex:i];
         if ([conversation.chatter isEqualToString:@"interestadmin"])
         {
             [sortArr exchangeObjectAtIndex:i withObjectAtIndex:0];
-        }else if ([conversation.chatter isEqualToString:@"activitystateadmin"])
+        }
+    }
+    for (int i = 0; i<sortArr.count; i++)
+    {
+        EMConversation *conversation = [sortArr objectAtIndex:i];
+        if ([conversation.chatter isEqualToString:@"activitystateadmin"])
         {
             [sortArr exchangeObjectAtIndex:i withObjectAtIndex:1];
-        }else if ([conversation.chatter isEqualToString:@"userviewadmin"])
+        }
+    }
+
+    for (int i = 0; i<sortArr.count; i++)
+    {
+        EMConversation *conversation = [sortArr objectAtIndex:i];
+        if ([conversation.chatter isEqualToString:@"userviewadmin"])
         {
             [sortArr exchangeObjectAtIndex:i withObjectAtIndex:2];
-        }else if ([conversation.chatter isEqualToString:@"subscribeadmin"])
+        }
+    }
+
+    for (int i = 0; i<sortArr.count; i++)
+    {
+        EMConversation *conversation = [sortArr objectAtIndex:i];
+        if ([conversation.chatter isEqualToString:@"subscribeadmin"])
         {
             [sortArr exchangeObjectAtIndex:i withObjectAtIndex:3];
-        }else if ([conversation.chatter isEqualToString:@"officialadmin"])
+        }
+    }
+
+    for (int i = 0; i<sortArr.count; i++)
+    {
+        EMConversation *conversation = [sortArr objectAtIndex:i];
+        if ([conversation.chatter isEqualToString:@"officialadmin"])
         {
             [sortArr exchangeObjectAtIndex:i withObjectAtIndex:4];
         }
-
-
-
     }
-    
+
+
     
     return sortArr;
 }
@@ -478,35 +526,40 @@
         cell = [[ChatListCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identify];
     }
     EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
+    NSLog(@"===========title = %@,indexPath = %ld",conversation.chatter,(long)indexPath.row);
+
     cell.name = conversation.chatter;
     if (conversation.conversationType == eConversationTypeChat) {
-        switch (indexPath.row) {
-            case 0:
-                cell.name = @"感兴趣的";
-                cell.placeholderImage = [UIImage imageNamed:@"InterestAdmin"];
-                break;
-            case 1:
-                cell.name = @"活动动态";
-                cell.placeholderImage = [UIImage imageNamed:@"ActivityStateAdmin"];
-                break;
-            case 2:
-                cell.name = @"最近访客";
-                cell.placeholderImage = [UIImage imageNamed:@"UserViewAdmin"];
-                break;
-            case 3:
-                cell.name = @"谁关注我";
-                cell.placeholderImage = [UIImage imageNamed:@"SubscribeAdmin"];
-                break;
-            case 4:
-                cell.name = @"活动官方";
-                cell.placeholderImage = [UIImage imageNamed:@"OfficialAdmin"];
-                break;
-            default:
-                cell.name = [[RobotManager sharedInstance] getRobotNickWithUsername:conversation.chatter];
-                cell.placeholderImage = [UIImage imageNamed:@"chatListCellHead.png"];
+//        switch (indexPath.row) {
+//            case 0:
+//                cell.name = @"感兴趣的";
+//                cell.placeholderImage = [UIImage imageNamed:@"InterestAdmin"];
+//                break;
+//            case 1:
+//                cell.name = @"活动动态";
+//                cell.placeholderImage = [UIImage imageNamed:@"ActivityStateAdmin"];
+//                break;
+//            case 2:
+//                cell.name = @"最近访客";
+//                cell.placeholderImage = [UIImage imageNamed:@"UserViewAdmin"];
+//                break;
+//            case 3:
+//                cell.name = @"谁关注我";
+//                cell.placeholderImage = [UIImage imageNamed:@"SubscribeAdmin"];
+//                break;
+//            case 4:
+//                cell.name = @"活动官方";
+//                cell.placeholderImage = [UIImage imageNamed:@"OfficialAdmin"];
+//                break;
+//            default:
+//                cell.name = [[RobotManager sharedInstance] getRobotNickWithUsername:conversation.chatter];
+//                cell.placeholderImage = [UIImage imageNamed:@"chatListCellHead.png"];
+//
+//                break;
+//        }
+        cell.name = [[RobotManager sharedInstance] getRobotNickWithUsername:conversation.chatter];
+        cell.placeholderImage = [UIImage imageNamed:@"chatListCellHead.png"];
 
-                break;
-        }
     }
     else{
         NSString *imageName = @"groupPublicHeader";

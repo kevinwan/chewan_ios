@@ -15,5 +15,6 @@ ZYEXTENSION_EXTERN NSString * const Latitude;
 ZYEXTENSION_EXTERN NSString * const Province;
 ZYEXTENSION_EXTERN NSString * const City;
 ZYEXTENSION_EXTERN NSString * const District;
+ZYEXTENSION_EXTERN NSString * const Street;
 // 附近页面是不是开启推送模式的key
 ZYEXTENSION_EXTERN NSString * const FreeTimeKey;

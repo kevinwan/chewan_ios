@@ -41,21 +41,7 @@
     // 设置点击空白区域退出键盘
     [[IQKeyboardManager sharedManager] setShouldResignOnTouchOutside:YES];
     
-    [self setViewCycleAop];
-    
-    self.mgr.delegate = self;
-    // 判断是否是iOS8
-    if([[UIDevice currentDevice].systemVersion doubleValue] >= 8.0)
-    {
-        NSLog(@"是iOS8");
-        // 主动要求用户对我们的程序授权, 授权状态改变就会通知代理
-        [self.mgr requestAlwaysAuthorization]; // 请求前台和后台定位权限
-    }else
-    {
-        NSLog(@"是iOS7");
-        // 3.开始监听(开始获取位置)
-        [self.mgr startUpdatingLocation];
-    }
+    [self getLocation];
     //环信
     //gongpingjia#carplayapp
     //"easemob-demo#chatdemoui
@@ -150,6 +136,24 @@
     [self.window makeKeyAndVisible];
 }
 
+-(void)getLocation{
+    [self setViewCycleAop];
+    self.mgr.delegate = self;
+    // 判断是否是iOS8
+    if([[UIDevice currentDevice].systemVersion doubleValue] >= 8.0)
+    {
+        NSLog(@"是iOS8");
+        // 主动要求用户对我们的程序授权, 授权状态改变就会通知代理
+        [self.mgr requestAlwaysAuthorization]; // 请求前台和后台定位权限
+    }else
+    {
+        NSLog(@"是iOS7");
+        // 3.开始监听(开始获取位置)
+        [self.mgr startUpdatingLocation];
+    }
+}
+
+
 /**
  *  授权状态发生改变时调用
  *
@@ -170,7 +174,7 @@
         
     }else
     {
-        NSLog(@"授权失败");
+//        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"您还没有登录是否登录？" delegate:self cancelButtonTitle:@"在想想" otherButtonTitles:@"去登录", nil] show];
     }
 }
 
@@ -219,6 +223,7 @@
             [ZYUserDefaults setObject:placemark.addressDictionary[@"State"] forKey:Province];
             [ZYUserDefaults setObject:placemark.addressDictionary[@"City"] forKey:City];
             [ZYUserDefaults setObject:placemark.addressDictionary[@"SubLocality"] forKey:District];
+            [ZYUserDefaults setObject:placemark.addressDictionary[@"Street"] forKey:Street];
         }
     }];
 

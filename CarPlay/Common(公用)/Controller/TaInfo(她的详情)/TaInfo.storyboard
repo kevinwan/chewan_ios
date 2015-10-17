@@ -8,7 +8,6 @@
         <!--Ta Info-->
         <scene sceneID="UBu-EL-RFs">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3kh-tq-Pkq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="bLO-eZ-b4h" customClass="CPTaInfo" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="cwZ-2z-twI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -236,6 +235,7 @@
                         <outlet property="uploadBtnClick" destination="yEw-TE-TZ0" id="SxU-FT-KJ9"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3kh-tq-Pkq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="134" y="195"/>
         </scene>

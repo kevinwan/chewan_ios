@@ -38,6 +38,7 @@
     [self.status.layer setCornerRadius:11.0];
     [self.headImage.layer setMasksToBounds:YES];
     [self.headImage.layer setCornerRadius:50.0];
+    [self.headImage setContentMode:UIViewContentModeScaleAspectFill];
     [self.tableView setBackgroundColor:[Tools getColor:@"efefef"]];
 //    取消下划线
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
