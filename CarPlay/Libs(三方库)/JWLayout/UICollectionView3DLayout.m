@@ -411,8 +411,10 @@ typedef enum
         offset=CGPointMake(self.collectionView.contentOffset.x, self.collectionView.contentOffset.y+ReduceOrAdd);
     }
     
-    
-    [self.collectionView setContentOffset:offset animated:YES];
+    ZYMainThread(^{
+        
+        [self.collectionView setContentOffset:offset animated:YES];
+    });
     
 //    if (isNeed) {
 //            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.28 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

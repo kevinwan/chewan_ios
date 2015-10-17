@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3" translatesAutoresizingMaskIntoConstraints="NO" id="O24-Rw-lQO" customClass="ZYImageVIew">
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O24-Rw-lQO" customClass="ZYImageVIew">
                     <rect key="frame" x="0.0" y="44" width="375" height="375"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="375" id="0NM-yx-OcR"/>
@@ -135,7 +135,6 @@
         </view>
     </objects>
     <resources>
-        <image name="3" width="915" height="785"/>
         <image name="ceo头像" width="50" height="50"/>
         <image name="icon_men" width="16" height="16"/>
         <image name="icon_women" width="16" height="16"/>
