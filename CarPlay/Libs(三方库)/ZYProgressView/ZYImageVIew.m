@@ -37,9 +37,11 @@
 
 - (void)zy_setImageWithUrl:(NSString *)url completed:(completion)completed
 {
+    self.clipsToBounds = NO;
     self.contentMode = UIStackViewAlignmentCenter;
     [self sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"icon"] options:SDWebImageLowPriority | SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        self.contentMode = UIViewContentModeScaleToFill;
+        self.contentMode = UIViewContentModeScaleAspectFill;
+        self.clipsToBounds = YES;
         if (completed) {
             completed(image,error,cacheType,imageURL);
         }

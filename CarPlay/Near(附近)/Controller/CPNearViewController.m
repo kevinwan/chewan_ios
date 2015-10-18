@@ -198,12 +198,13 @@ static NSString *ID = @"cell";
  */
 - (void)loveBtnClickWithInfo:(CPActivityModel *)model
 {
-    NSMutableArray *indexPaths = [NSMutableArray array];
     ZYAsyncThead(^{
+        
+        NSMutableArray *indexPaths = [NSMutableArray array];
         
         for (int i = 0;i < self.datas.count; i++) {
             CPActivityModel *obj = self.datas[i];
-            if ([obj.organizer.userId isEqualToString:model.organizer.userId]) {
+            if ([obj.organizer.userId isEqualToString:model.organizer.userId] && ![obj.activityId isEqualToString:model.activityId]) {
                 obj.organizer.subscribeFlag = model.organizer.subscribeFlag;
                 [indexPaths addObject:[NSIndexPath indexPathForItem:i inSection:0]];
             }
