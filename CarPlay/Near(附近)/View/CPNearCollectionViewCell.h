@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CPActivityModel.h"
+#import "CPBaseViewCell.h"
 
 @interface CPNearCollectionViewCell : UICollectionViewCell
 @property (nonatomic, strong) CPActivityModel *model;

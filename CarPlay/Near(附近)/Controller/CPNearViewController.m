@@ -7,15 +7,11 @@
 //
 
 #import "CPNearViewController.h"
-#import "CPBaseViewCell.h"
 #import "CPMySwitch.h"
-#import "CPMyDateViewController.h"
-#import "PagedFlowView.h"
 #import "CPSelectView.h"
 #import "CPNearParams.h"
 #import "AAPullToRefresh.h"
 #import "ZYProgressView.h"
-#import "ZYRefreshView.h"
 #import "CPNoDataTipView.h"
 #import "CPTaInfo.h"
 #import "CPLoadingView.h"
@@ -28,7 +24,6 @@
 @property (nonatomic, strong) UIView *tipView;
 @property (nonatomic, assign) CGFloat offset;
 @property (nonatomic, strong) CPNearParams *params;
-@property (nonatomic, strong) ZYRefreshView *refreshView;
 @property (nonatomic, assign) BOOL isHasRefreshHeader;
 @property (nonatomic, strong) CPNoDataTipView *noDataView;
 @end
@@ -70,7 +65,6 @@ static NSString *ID = @"cell";
     }
     ZYWeakSelf
     AAPullToRefresh *tv = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionTop actionHandler:^(AAPullToRefresh *v){
-        NSLog(@"fire from top");
         ZYStrongSelf
         [self.tableView setContentOffset:CGPointMake(0, -44) animated:YES];
         self.params.ignore = 0;
@@ -81,12 +75,10 @@ static NSString *ID = @"cell";
     
     // bottom
     AAPullToRefresh *bv = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionBottom actionHandler:^(AAPullToRefresh *v){
-        NSLog(@"fire from bottom");
         ZYStrongSelf
-        [self.tableView setContentOffset:CGPointMake(0, _tableView.contentSize.height + 44 - _tableView.bounds.size.height) animated:YES];
+        [self.tableView setContentOffset:CGPointMake(0, _tableView.contentSizeHeight + 44 - _tableView.height) animated:YES];
         
         if (self.datas.count >= CPPageNum) {
-            
             self.params.ignore += CPPageNum;
             [self loadDataWithHeader:v];
         }else{
@@ -117,9 +109,8 @@ static NSString *ID = @"cell";
             NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"][@"activityList"]];
             [self.datas addObjectsFromArray:arr];
 
-            self.noDataView.tipLabel.text = @"已经没有活动了,请放宽条件再试试";
-            self.refreshView.hidden = YES;
-            if (self.datas.count == 0) {;
+            if (self.datas.count == 0) {
+                self.noDataView.netWorkFailtype = NO;
                 self.noDataView.hidden = NO;
             }else{
                 self.noDataView.hidden = YES;
@@ -133,8 +124,8 @@ static NSString *ID = @"cell";
         self.params.ignore -= CPPageNum;
         [refresh stopIndicatorAnimation];
         [self showError:@"加载失败"];
-        self.noDataView.tipLabel.text = @"加载失败了,请换个网络试试";
-        [[CPLoadingView sharedInstance] dismissLoadingView];
+        self.noDataView.netWorkFailtype = NO;
+        [ZYLoadingView dismissLoadingView];
     }];
 }
 
@@ -158,11 +149,11 @@ static NSString *ID = @"cell";
     
 }
 
--(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
-{
-    UICollectionView3DLayout *layout=(UICollectionView3DLayout*)self.tableView.collectionViewLayout;
-    [layout EndAnchorMove];
-}
+//-(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+//{
+//    UICollectionView3DLayout *layout=(UICollectionView3DLayout*)self.tableView.collectionViewLayout;
+//    [layout EndAnchorMove];
+//}
 
 
 #pragma mark - 事件交互
@@ -362,7 +353,8 @@ static NSString *ID = @"cell";
         layout.LayoutDirection=UICollectionLayoutScrollDirectionVertical;
         self.view.backgroundColor = [Tools getColor:@"efefef"];
         [_tableView registerClass:[CPNearCollectionViewCell class] forCellWithReuseIdentifier:ID];
-        
+        _tableView.panGestureRecognizer.delaysTouchesBegan = _tableView.delaysContentTouches;
+
     }
     return _tableView;
 }
@@ -452,25 +444,25 @@ static NSString *ID = @"cell";
 }
 
 
-- (ZYRefreshView *)refreshView
-{
-    if (_refreshView == nil) {
-        _refreshView = [[ZYRefreshView alloc] init];
-        _refreshView.backgroundColor = [UIColor redColor];
-        _refreshView.y = 64;
-        _refreshView.x = 0;
-        _refreshView.width = ZYScreenWidth;
-        _refreshView.height = ZYScreenHeight - 64 - 49;
-        [ZYKeyWindow addSubview:_refreshView];
-    }
-    return _refreshView;
-}
+//- (ZYRefreshView *)refreshView
+//{
+//    if (_refreshView == nil) {
+//        _refreshView = [[ZYRefreshView alloc] init];
+//        _refreshView.backgroundColor = [UIColor redColor];
+//        _refreshView.y = 64;
+//        _refreshView.x = 0;
+//        _refreshView.width = ZYScreenWidth;
+//        _refreshView.height = ZYScreenHeight - 64 - 49;
+//        [ZYKeyWindow addSubview:_refreshView];
+//    }
+//    return _refreshView;
+//}
 
 - (CPNoDataTipView *)noDataView
 {    if (_noDataView == nil) {
-    _noDataView = [CPNoDataTipView noDataTipView];
-    [self.tableView addSubview:_noDataView];
-    _noDataView.frame = self.tableView.bounds;
+        _noDataView = [CPNoDataTipView noDataTipViewWithTitle:@"已经没有活动了,请放宽条件再试试"];
+        [self.tableView addSubview:_noDataView];
+        _noDataView.frame = self.tableView.bounds;
     }
     return _noDataView;
 }

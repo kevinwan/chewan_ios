@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface CPNoDataTipView : UIView
-@property (weak, nonatomic) IBOutlet UILabel *tipLabel;
 
-+ (instancetype)noDataTipView;
+@property (nonatomic, assign) BOOL netWorkFailtype;
+
++ (instancetype)noDataTipViewWithTitle:(NSString *)title;
+
 @end

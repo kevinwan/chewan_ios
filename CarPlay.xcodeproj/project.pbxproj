@@ -466,13 +466,11 @@
 		E31E4BD71BAD47A500902B34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E31E4BD61BAD47A500902B34 /* main.m */; };
 		E31E4BE21BAD47A500902B34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E31E4BE11BAD47A500902B34 /* Assets.xcassets */; };
 		E31E4BE51BAD47A500902B34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E31E4BE31BAD47A500902B34 /* LaunchScreen.storyboard */; };
-		E32B5DD51BCE264B0057FD71 /* PagedFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = E32B5DD41BCE264B0057FD71 /* PagedFlowView.m */; settings = {ASSET_TAGS = (); }; };
 		E32B5DD81BCE39CC0057FD71 /* UIViewController+ZY.m in Sources */ = {isa = PBXBuildFile; fileRef = E32B5DD71BCE39CC0057FD71 /* UIViewController+ZY.m */; settings = {ASSET_TAGS = (); }; };
 		E32B5DDF1BCE41B50057FD71 /* ZYProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E32B5DDE1BCE41B50057FD71 /* ZYProgressView.m */; settings = {ASSET_TAGS = (); }; };
 		E32B5DE21BCE41CA0057FD71 /* ZYRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = E32B5DE11BCE41CA0057FD71 /* ZYRefreshView.m */; settings = {ASSET_TAGS = (); }; };
 		E35428511BCF94D100D4A07A /* CPNoDataTipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E35428501BCF94D100D4A07A /* CPNoDataTipView.xib */; settings = {ASSET_TAGS = (); }; };
 		E35428541BCF965600D4A07A /* CPNoDataTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35428531BCF965600D4A07A /* CPNoDataTipView.m */; settings = {ASSET_TAGS = (); }; };
-		E359EDBA1BCF3C2B0004B17D /* CPScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E359EDB91BCF3C2B0004B17D /* CPScrollView.m */; settings = {ASSET_TAGS = (); }; };
 		E359EDBD1BCF75C20004B17D /* ZYImageVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = E359EDBC1BCF75C20004B17D /* ZYImageVIew.m */; settings = {ASSET_TAGS = (); }; };
 		E3606F0D1BC76FF100797968 /* CPRecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */; settings = {ASSET_TAGS = (); }; };
 		E3606F121BC78C7300797968 /* CPBaseViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F111BC78C7300797968 /* CPBaseViewCell.xib */; settings = {ASSET_TAGS = (); }; };
@@ -1253,8 +1251,6 @@
 		E31E4BE61BAD47A500902B34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E31E4C491BAD48D600902B34 /* CP_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CP_Prefix.pch; sourceTree = "<group>"; };
 		E31E4C4E1BAD507E00902B34 /* macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = macro.h; sourceTree = "<group>"; };
-		E32B5DD31BCE264B0057FD71 /* PagedFlowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagedFlowView.h; sourceTree = "<group>"; };
-		E32B5DD41BCE264B0057FD71 /* PagedFlowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagedFlowView.m; sourceTree = "<group>"; };
 		E32B5DD61BCE39CC0057FD71 /* UIViewController+ZY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZY.h"; sourceTree = "<group>"; };
 		E32B5DD71BCE39CC0057FD71 /* UIViewController+ZY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZY.m"; sourceTree = "<group>"; };
 		E32B5DDD1BCE41B50057FD71 /* ZYProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYProgressView.h; sourceTree = "<group>"; };
@@ -1264,8 +1260,6 @@
 		E35428501BCF94D100D4A07A /* CPNoDataTipView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPNoDataTipView.xib; sourceTree = "<group>"; };
 		E35428521BCF965600D4A07A /* CPNoDataTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNoDataTipView.h; sourceTree = "<group>"; };
 		E35428531BCF965600D4A07A /* CPNoDataTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNoDataTipView.m; sourceTree = "<group>"; };
-		E359EDB81BCF3C2B0004B17D /* CPScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPScrollView.h; sourceTree = "<group>"; };
-		E359EDB91BCF3C2B0004B17D /* CPScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPScrollView.m; sourceTree = "<group>"; };
 		E359EDBB1BCF75C20004B17D /* ZYImageVIew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYImageVIew.h; sourceTree = "<group>"; };
 		E359EDBC1BCF75C20004B17D /* ZYImageVIew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYImageVIew.m; sourceTree = "<group>"; };
 		E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPRecommendCell.xib; sourceTree = "<group>"; };
@@ -3134,17 +3128,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E32B5DD21BCE264B0057FD71 /* PagedFlowView */ = {
-			isa = PBXGroup;
-			children = (
-				E32B5DD31BCE264B0057FD71 /* PagedFlowView.h */,
-				E32B5DD41BCE264B0057FD71 /* PagedFlowView.m */,
-				E359EDB81BCF3C2B0004B17D /* CPScrollView.h */,
-				E359EDB91BCF3C2B0004B17D /* CPScrollView.m */,
-			);
-			path = PagedFlowView;
-			sourceTree = "<group>";
-		};
 		E32B5DDC1BCE41B50057FD71 /* ZYProgressView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3515,7 +3498,6 @@
 				E32B5DDC1BCE41B50057FD71 /* ZYProgressView */,
 				6B364C691BCE4077005A4AF9 /* MJPhotoBrowser */,
 				6B364C4E1BCE401C005A4AF9 /* UzysAssetsPickerController */,
-				E32B5DD21BCE264B0057FD71 /* PagedFlowView */,
 				6B2E361F1BCD24A00053459E /* MJIndexView */,
 				E31B12BC1BB9311700B51696 /* CorePhotoBroswerVC */,
 				E39627BC1BB54D91005E0CF2 /* PulsingHalo */,
@@ -4183,7 +4165,6 @@
 				E369E2B81BCB9F87000A12B5 /* CPSelectView.m in Sources */,
 				E37C10B71BBB7CEB00E1A6A2 /* CPMyVistorCell.m in Sources */,
 				6B1387DC1BCD0A6C00FAC462 /* CPBrandModelViewController.m in Sources */,
-				E32B5DD51BCE264B0057FD71 /* PagedFlowView.m in Sources */,
 				E31B13431BB9312D00B51696 /* NSString+Password.m in Sources */,
 				6D2ABFEC1BCE582100201A8E /* ContactsViewController.m in Sources */,
 				6D2AC0071BCE582100201A8E /* UIResponder+Router.m in Sources */,
@@ -4314,7 +4295,6 @@
 				6B364C601BCE401C005A4AF9 /* UIImage+UzysExtension.m in Sources */,
 				E31B12E21BB9311700B51696 /* PhotoModel.m in Sources */,
 				E31B133C1BB9312D00B51696 /* CoreArchive.m in Sources */,
-				E359EDBA1BCF3C2B0004B17D /* CPScrollView.m in Sources */,
 				6D2ABFD31BCE582100201A8E /* EMChatBaseBubbleView.m in Sources */,
 				6D2ABFDD1BCE582100201A8E /* MessageReadManager.m in Sources */,
 				6B364C681BCE401C005A4AF9 /* UzysWrapperPickerController.m in Sources */,

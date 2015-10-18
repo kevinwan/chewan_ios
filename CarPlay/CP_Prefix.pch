@@ -36,5 +36,6 @@
 #import "NSString+Valid.h"
 #import <EaseMobSDKFull/EaseMob.h>
 #import <UIButton+WebCache.h>
+#import "CPLoadingView.h"
 
 #endif

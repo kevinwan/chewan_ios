@@ -7,18 +7,17 @@
 //  推荐活动
 
 #import "CPRecommendController.h"
-#import "CPRecommendCell.h"
-#import "PagedFlowView.h"
 #import "CPActivityDetailViewController.h"
 #import "CPRecommendModel.h"
 #import "AAPullToRefresh.h"
 #import "UICollectionView3DLayout.h"
 #import "CPRecommentViewCell.h"
+#import "CPNoDataTipView.h"
 
 @interface CPRecommendController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) CPNoDataTipView *noDataView;
 @property (nonatomic, strong) NSMutableArray *datas;
-@property (nonatomic, strong) ZYRefreshView *refreshView;
 @property (nonatomic, assign) BOOL isHasRefreshHeader;
 @property (nonatomic, assign) NSUInteger ignore;
 @end
@@ -29,8 +28,16 @@ static NSString *ID = @"cell";
     [super viewDidLoad];
     
     [self.view addSubview:self.collectionView];
-    [self loadDataWithHeader:nil];
-    [self.view addSubview:self.refreshView];
+}
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (self.datas.count == 0) {
+        [ZYLoadingView showLoadingView];
+        [self loadDataWithHeader:nil];
+    }
 }
 
 - (void)setUpRefresh
@@ -84,25 +91,31 @@ static NSString *ID = @"cell";
     params[@"city"] = @"南京市";
     //    params[@"district"] = [ZYUserDefaults stringForKey:District];
     [ZYNetWorkTool getWithUrl:@"official/activity/list" params:params success:^(id responseObject) {
-        self.refreshView.hidden = YES;
+        [ZYLoadingView dismissLoadingView];
         [self setUpRefresh];
         [refreshView stopIndicatorAnimation];
         DLog(@"office %@",responseObject);
         if (CPSuccess) {
-            
             
             if (self.ignore == 0){
                 [self.datas removeAllObjects];
             }
             NSArray *arr = [CPRecommendModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
             [self.datas addObjectsFromArray:arr];
+            if (self.datas.count == 0) {
+                self.noDataView.netWorkFailtype = NO;
+                self.noDataView.hidden = NO;
+            }else{
+                self.noDataView.hidden = YES;
+            }
             [self.collectionView reloadData];
         }
     } failure:^(NSError *error) {
         [self showInfo:@"加载失败"];
-        self.refreshView.hidden = YES;
         [self setUpRefresh];
+        [ZYLoadingView dismissLoadingView];
         [refreshView stopIndicatorAnimation];
+        
     }];
 }
 
@@ -127,15 +140,11 @@ static NSString *ID = @"cell";
     return cell;
 }
 
-- (NSInteger)numberOfPagesInFlowView:(PagedFlowView *)flowView
-{
-    return self.datas.count;
-}
--(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    UICollectionView3DLayout *layout=(UICollectionView3DLayout*)self.collectionView.collectionViewLayout;
-    [layout EndAnchorMove];
-}
+//-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+//{
+//    UICollectionView3DLayout *layout=(UICollectionView3DLayout*)self.collectionView.collectionViewLayout;
+//    [layout EndAnchorMove];
+//}
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {
@@ -171,7 +180,7 @@ static NSString *ID = @"cell";
         _collectionView.dataSource = self;
         self.view.backgroundColor = [Tools getColor:@"efefef"];
         [_collectionView registerClass:[CPRecommentViewCell class] forCellWithReuseIdentifier:ID];
-               _collectionView.panGestureRecognizer.delaysTouchesBegan = _collectionView.delaysContentTouches;
+        _collectionView.panGestureRecognizer.delaysTouchesBegan = _collectionView.delaysContentTouches;
     }
     return _collectionView;
 }
@@ -184,14 +193,14 @@ static NSString *ID = @"cell";
     return _datas;
 }
 
-- (ZYRefreshView *)refreshView
-{
-    if (_refreshView == nil) {
-        _refreshView = [[ZYRefreshView alloc] init];
-        [self.view addSubview:_refreshView];
-        _refreshView.center = self.view.center;
+- (CPNoDataTipView *)noDataView
+{    if (_noDataView == nil) {
+        _noDataView = [CPNoDataTipView noDataTipViewWithTitle:@"暂时没有活动了"];
+        [self.collectionView addSubview:_noDataView];
+        _noDataView.frame = self.collectionView.bounds;
     }
-    return _refreshView;
+    return _noDataView;
 }
+
 
 @end

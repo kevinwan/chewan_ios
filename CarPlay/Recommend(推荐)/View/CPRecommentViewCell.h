@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CPRecommendModel.h"
+#import "CPRecommendCell.h"
 
 @interface CPRecommentViewCell : UICollectionViewCell
 @property (nonatomic, strong) CPRecommendModel *model;

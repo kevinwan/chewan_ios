@@ -8,17 +8,35 @@
 
 #import "CPNoDataTipView.h"
 
+@interface CPNoDataTipView()
+@property (weak, nonatomic) IBOutlet UILabel *tipLabel;
+@property (nonatomic, copy) NSString *titleText;
+@end
 
 @implementation CPNoDataTipView
 
-+ (instancetype)noDataTipView
++ (instancetype)noDataTipViewWithTitle:(NSString *)title
 {
-    return [[NSBundle mainBundle] loadNibNamed:@"CPNoDataTipView" owner:nil options:nil].lastObject;
+    CPNoDataTipView *view = [[NSBundle mainBundle] loadNibNamed:@"CPNoDataTipView" owner:nil options:nil].lastObject;
+    view.tipLabel.text = title;
+    view.titleText = title;
+    return view;
 }
 
 -(BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
 {
     return NO;
+}
+
+- (void)setNetWorkFailtype:(BOOL)netWorkFailtype
+{
+    _netWorkFailtype = netWorkFailtype;
+    
+    if (netWorkFailtype) {
+        self.tipLabel.text = @"加载失败了,请换个网络试试";
+    }else{
+        self.tipLabel.text = self.titleText;
+    }
 }
 
 @end
