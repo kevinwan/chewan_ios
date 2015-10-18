@@ -153,7 +153,6 @@ static NSString *ID = @"cell";
     
 }
 
-
 #pragma mark - lazy
 - (UICollectionView *)collectionView
 {

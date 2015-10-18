@@ -444,7 +444,10 @@ typedef enum
         {
             offsetValue=offsetDistance;
         }
-        [self.collectionView setContentOffset:CGPointMake(self.collectionView.contentOffset.x+offsetValue, self.collectionView.contentOffset.y) animated:YES];
+        ZYMainThread(^{
+            
+            [self.collectionView setContentOffset:CGPointMake(self.collectionView.contentOffset.x+offsetValue, self.collectionView.contentOffset.y) animated:YES];
+        });
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.collectionView setContentOffset:point animated:YES];
@@ -458,7 +461,10 @@ typedef enum
         {
             offsetValue=offsetDistance;
         }
-        [self.collectionView setContentOffset:CGPointMake(self.collectionView.contentOffset.x, self.collectionView.contentOffset.y+offsetValue) animated:YES];
+        ZYMainThread(^{
+            
+            [self.collectionView setContentOffset:CGPointMake(self.collectionView.contentOffset.x, self.collectionView.contentOffset.y+offsetValue) animated:YES];
+        });
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.collectionView setContentOffset:point animated:YES];
