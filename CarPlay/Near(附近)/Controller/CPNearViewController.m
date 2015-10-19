@@ -106,7 +106,8 @@ static NSString *ID = @"cell";
             if (self.params.ignore == 0) {
                 [self.datas removeAllObjects];
             }
-            NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"][@"activityList"]];
+                
+            NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
             [self.datas addObjectsFromArray:arr];
 
             if (self.datas.count == 0) {
@@ -257,7 +258,8 @@ static NSString *ID = @"cell";
         [ZYNetWorkTool postFileWithUrl:path params:nil files:@[imageFile] success:^(id responseObject) {
             if (CPSuccess) {
                 [self disMiss];
-                [self loadDataWithHeader:nil];
+                [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
+                [self.tableView reloadData];
             }else{
                 [self showError:responseObject[@"errmsg"]];
             }
@@ -334,7 +336,7 @@ static NSString *ID = @"cell";
     if (_tableView == nil) {
         UICollectionView3DLayout *layout = [UICollectionView3DLayout new];
         _tableView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
-        
+        _tableView.alwaysBounceVertical = YES;
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.showsHorizontalScrollIndicator = NO;
         _tableView.showsVerticalScrollIndicator = NO;
@@ -455,7 +457,7 @@ static NSString *ID = @"cell";
 - (CPNoDataTipView *)noDataView
 {    if (_noDataView == nil) {
         _noDataView = [CPNoDataTipView noDataTipViewWithTitle:@"已经没有活动了,请放宽条件再试试"];
-        [self.tableView addSubview:_noDataView];
+        [self.view addSubview:_noDataView];
         _noDataView.frame = self.tableView.bounds;
     }
     return _noDataView;

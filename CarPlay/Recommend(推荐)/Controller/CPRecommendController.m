@@ -107,13 +107,16 @@ static NSString *ID = @"cell";
                 self.noDataView.hidden = NO;
             }else{
                 self.noDataView.hidden = YES;
+                
+                [self.collectionView reloadData];
             }
-            [self.collectionView reloadData];
         }
     } failure:^(NSError *error) {
         [self showInfo:@"加载失败"];
         [self setUpRefresh];
         [ZYLoadingView dismissLoadingView];
+        
+        self.noDataView.hidden = NO;
         [refreshView stopIndicatorAnimation];
         
     }];
@@ -138,6 +141,12 @@ static NSString *ID = @"cell";
     CPRecommentViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
     cell.model = self.datas[indexPath.item];
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CPActivityDetailViewController *activityVc = [UIStoryboard storyboardWithName:@"CPActivityDetailViewController" bundle:nil].instantiateInitialViewController;
+    [self.navigationController pushViewController:activityVc animated:YES];
 }
 
 //-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
@@ -171,7 +180,7 @@ static NSString *ID = @"cell";
         layout.itemSize = itemSize;
         layout.itemScale = 0.94;
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, ZYScreenWidth, itemSize.height + layout.sectionInset.top + layout.sectionInset.bottom) collectionViewLayout:layout];
-        
+        _collectionView.alwaysBounceHorizontal = YES;
         _collectionView.backgroundColor = [Tools getColor:@"efefef"];
         _collectionView.centerY = (ZYScreenHeight - 64- 49) * 0.5 + 64;
         _collectionView.centerX = ZYScreenWidth * 0.5;
@@ -195,7 +204,7 @@ static NSString *ID = @"cell";
 - (CPNoDataTipView *)noDataView
 {    if (_noDataView == nil) {
         _noDataView = [CPNoDataTipView noDataTipViewWithTitle:@"暂时没有活动了"];
-        [self.collectionView addSubview:_noDataView];
+        [self.view addSubview:_noDataView];
         _noDataView.frame = self.collectionView.bounds;
     }
     return _noDataView;

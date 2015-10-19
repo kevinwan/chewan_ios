@@ -182,15 +182,15 @@
 - (void)setModel:(CPActivityModel *)model
 {
     _model = model;
-    
+    BOOL isHasAlubm = YES;
     self.sexView.isMan = model.organizer.isMan;
     self.sexView.age = model.organizer.age;
 
     [self.userIconView zy_setImageWithUrl:model.organizer.avatar completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) { self.userIconView.image = [image blurredImageWithRadius:10];
-         if ([model.organizer.photoAuthStatus isEqualToString:@"认证通过"]) {
-            self.userIconView.image = [image blurredImageWithRadius:10];
-         }else{
+         if (isHasAlubm) {
              self.userIconView.image = image;
+         }else{
+             self.userIconView.image = [image blurredImageWithRadius:10];
          }
     }];
     [self.distanceView setTitle:model.distanceStr forState:UIControlStateNormal];
@@ -217,6 +217,11 @@
     }else{
         self.carView.hidden = YES;
         self.carTypeView.hidden = YES;
+    }
+    if (isHasAlubm) {
+        self.tipView.hidden = YES;
+    }else{
+        self.tipView.hidden = NO;
     }
 }
 
