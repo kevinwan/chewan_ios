@@ -7,18 +7,17 @@
 //  推荐活动
 
 #import "CPRecommendController.h"
-#import "CPRecommendCell.h"
-#import "PagedFlowView.h"
 #import "CPActivityDetailViewController.h"
 #import "CPRecommendModel.h"
 #import "AAPullToRefresh.h"
 #import "UICollectionView3DLayout.h"
 #import "CPRecommentViewCell.h"
+#import "CPNoDataTipView.h"
 
 @interface CPRecommendController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) CPNoDataTipView *noDataView;
 @property (nonatomic, strong) NSMutableArray *datas;
-@property (nonatomic, strong) ZYRefreshView *refreshView;
 @property (nonatomic, assign) BOOL isHasRefreshHeader;
 @property (nonatomic, assign) NSUInteger ignore;
 @end
@@ -29,8 +28,16 @@ static NSString *ID = @"cell";
     [super viewDidLoad];
     
     [self.view addSubview:self.collectionView];
-    [self loadDataWithHeader:nil];
-    [self.view addSubview:self.refreshView];
+}
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (self.datas.count == 0) {
+        [ZYLoadingView showLoadingView];
+        [self loadDataWithHeader:nil];
+    }
 }
 
 - (void)setUpRefresh
@@ -84,25 +91,34 @@ static NSString *ID = @"cell";
     params[@"city"] = @"南京市";
     //    params[@"district"] = [ZYUserDefaults stringForKey:District];
     [ZYNetWorkTool getWithUrl:@"official/activity/list" params:params success:^(id responseObject) {
-        self.refreshView.hidden = YES;
+        [ZYLoadingView dismissLoadingView];
         [self setUpRefresh];
         [refreshView stopIndicatorAnimation];
         DLog(@"office %@",responseObject);
         if (CPSuccess) {
-            
             
             if (self.ignore == 0){
                 [self.datas removeAllObjects];
             }
             NSArray *arr = [CPRecommendModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
             [self.datas addObjectsFromArray:arr];
-            [self.collectionView reloadData];
+            if (self.datas.count == 0) {
+                self.noDataView.netWorkFailtype = NO;
+                self.noDataView.hidden = NO;
+            }else{
+                self.noDataView.hidden = YES;
+                
+                [self.collectionView reloadData];
+            }
         }
     } failure:^(NSError *error) {
         [self showInfo:@"加载失败"];
-        self.refreshView.hidden = YES;
         [self setUpRefresh];
+        [ZYLoadingView dismissLoadingView];
+        
+        self.noDataView.hidden = NO;
         [refreshView stopIndicatorAnimation];
+        
     }];
 }
 
@@ -127,22 +143,25 @@ static NSString *ID = @"cell";
     return cell;
 }
 
-- (NSInteger)numberOfPagesInFlowView:(PagedFlowView *)flowView
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return self.datas.count;
+    CPActivityDetailViewController *activityVc = [UIStoryboard storyboardWithName:@"CPActivityDetailViewController" bundle:nil].instantiateInitialViewController;
+    [self.navigationController pushViewController:activityVc animated:YES];
 }
--(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+
+//-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+//{
+//    UICollectionView3DLayout *layout=(UICollectionView3DLayout*)self.collectionView.collectionViewLayout;
+//    [layout EndAnchorMove];
+//}
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {
     UICollectionView3DLayout *layout=(UICollectionView3DLayout*)self.collectionView.collectionViewLayout;
     [layout EndAnchorMove];
     
 }
 
--(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
-{
-    UICollectionView3DLayout *layout=(UICollectionView3DLayout*)self.collectionView.collectionViewLayout;
-    [layout EndAnchorMove];
-}
 #pragma mark - lazy
 - (UICollectionView *)collectionView
 {
@@ -160,9 +179,8 @@ static NSString *ID = @"cell";
         
         layout.itemSize = itemSize;
         layout.itemScale = 0.94;
-        DLog(@"%@......",NSStringFromUIEdgeInsets(layout.sectionInset));
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, ZYScreenWidth, itemSize.height + layout.sectionInset.top + layout.sectionInset.bottom) collectionViewLayout:layout];
-        
+        _collectionView.alwaysBounceHorizontal = YES;
         _collectionView.backgroundColor = [Tools getColor:@"efefef"];
         _collectionView.centerY = (ZYScreenHeight - 64- 49) * 0.5 + 64;
         _collectionView.centerX = ZYScreenWidth * 0.5;
@@ -170,12 +188,6 @@ static NSString *ID = @"cell";
         _collectionView.dataSource = self;
         self.view.backgroundColor = [Tools getColor:@"efefef"];
         [_collectionView registerClass:[CPRecommentViewCell class] forCellWithReuseIdentifier:ID];
-        [RACObserve(_collectionView, contentOffset) subscribeNext:^(id x) {
-            if (!_collectionView.isDragging) {
-                
-                DLog(@"isDragging%@",x);
-            }
-        }];
         _collectionView.panGestureRecognizer.delaysTouchesBegan = _collectionView.delaysContentTouches;
     }
     return _collectionView;
@@ -189,14 +201,14 @@ static NSString *ID = @"cell";
     return _datas;
 }
 
-- (ZYRefreshView *)refreshView
-{
-    if (_refreshView == nil) {
-        _refreshView = [[ZYRefreshView alloc] init];
-        [self.view addSubview:_refreshView];
-        _refreshView.center = self.view.center;
+- (CPNoDataTipView *)noDataView
+{    if (_noDataView == nil) {
+        _noDataView = [CPNoDataTipView noDataTipViewWithTitle:@"暂时没有活动了"];
+        [self.view addSubview:_noDataView];
+        _noDataView.frame = self.collectionView.bounds;
     }
-    return _refreshView;
+    return _noDataView;
 }
+
 
 @end

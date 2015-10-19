@@ -126,20 +126,9 @@
     [self.bgView setCornerRadius:5];
     self.distanceView.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 6);
 
-//    [self.userIconView sd_setImageWithURL:[NSURL URLWithString:@"http://i6.topit.me/6/5d/45/1131907198420455d6o.jpg"] placeholderImage:nil options:SDWebImageLowPriority | SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-//        
-//        self.userIconView.image = [image blurredImageWithRadius:20];
-//    }];
-
-//    [self.userIconView zy_setImageWithUrl:@"http://i6.topit.me/6/5d/45/1131907198420455d6o.jpg" completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-//        self.userIconView.image = [image blurredImageWithRadius:20];
-//    }];
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] init];
     [tapGes.rac_gestureSignal subscribeNext:^(id x) {
         
-//        if (![_model.organizer.photoAuthStatus isEqualToString:@"认证通过"]) {
-//            self.tipView.hidden = NO;
-//        }
         [self superViewWillRecive:IconViewClickKey info:_model];
     }];
     [self.userIconView addGestureRecognizer:tapGes];
@@ -193,21 +182,15 @@
 - (void)setModel:(CPActivityModel *)model
 {
     _model = model;
-    
+    BOOL isHasAlubm = YES;
     self.sexView.isMan = model.organizer.isMan;
     self.sexView.age = model.organizer.age;
-//    [self.userIconView zy_setImageWithUrl:[NSURL model.organizer.avatar] placeholderImage:CPPlaceHolderImage options:SDWebImageLowPriority | SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-//         if ([model.organizer.photoAuthStatus isEqualToString:@"认证通过"]) {
-//            self.userIconView.image = [image blurredImageWithRadius:10];
-//         }else{
-//             self.userIconView.image = image;
-//         }
-//    }];
+
     [self.userIconView zy_setImageWithUrl:model.organizer.avatar completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) { self.userIconView.image = [image blurredImageWithRadius:10];
-         if ([model.organizer.photoAuthStatus isEqualToString:@"认证通过"]) {
-            self.userIconView.image = [image blurredImageWithRadius:10];
-         }else{
+         if (isHasAlubm) {
              self.userIconView.image = image;
+         }else{
+             self.userIconView.image = [image blurredImageWithRadius:10];
          }
     }];
     [self.distanceView setTitle:model.distanceStr forState:UIControlStateNormal];
@@ -234,6 +217,11 @@
     }else{
         self.carView.hidden = YES;
         self.carTypeView.hidden = YES;
+    }
+    if (isHasAlubm) {
+        self.tipView.hidden = YES;
+    }else{
+        self.tipView.hidden = NO;
     }
 }
 
@@ -263,6 +251,7 @@
  *  点击距离按钮
  */
 - (IBAction)distanceClick:(id)sender {
+
 }
 
 - (IBAction)loveClick:(UIButton *)sender {
@@ -280,8 +269,8 @@
         [ZYNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
             if (CPSuccess) {
                 DLog(@"取消关注成功");
-                [sender addAnimation:[CAAnimation scaleFrom:1.0 toScale:1.1 durTimes:0.2 rep:1]];
                 sender.selected = NO;
+                [sender addAnimation:[CAAnimation scaleFrom:1.0 toScale:1.2 durTimes:0.2 rep:1]];
                 _model.organizer.subscribeFlag = 0;
                 [self superViewWillRecive:LoveBtnClickKey info:_model];
             }
@@ -296,9 +285,9 @@
             
             if (CPSuccess){
                 
-                DLog(@"取消关注成功");
-                [sender addAnimation:[CAAnimation scaleFrom:1.0 toScale:1.2 durTimes:0.2 rep:1]];
+                DLog(@"关注成功");
                 sender.selected = YES;
+                [sender addAnimation:[CAAnimation scaleFrom:1.0 toScale:1.2 durTimes:0.2 rep:1]];
                 _model.organizer.subscribeFlag = 1;
                 [self superViewWillRecive:LoveBtnClickKey info:_model];
             }

@@ -7,7 +7,6 @@
 //
 
 #import "CPRecommentViewCell.h"
-#import "CPRecommendCell.h"
 
 @interface CPRecommentViewCell ()
 @property (nonatomic, strong) CPRecommendCell *contentV;
