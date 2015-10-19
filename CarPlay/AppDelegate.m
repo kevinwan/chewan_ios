@@ -256,13 +256,19 @@
             CPUser *user = [CPUser objectWithKeyValues:responseObject[@"data"]];
             NSString *path=[[NSString alloc]initWithFormat:@"%@.info",[Tools getUserId]];
             [NSKeyedArchiver archiveRootObject:user toFile:path.documentPath];
-            _login=YES;
+            if (responseObject[@"data"][@"userId"]) {
+                [ZYUserDefaults setObject:responseObject[@"data"][@"userId"] forKey:UserId];
+            }
+            if (responseObject[@"data"][@"token"]) {
+                [ZYUserDefaults setObject:responseObject[@"data"][@"token"] forKey:Token];
+            }
+            [ZYNotificationCenter postNotificationName:NOTIFICATION_LOGINSUCCESS object:nil userInfo:@{NOTIFICATION_LOGINSUCCESS:@(YES)}];
         }else{
-            _login=NO;
+            [ZYNotificationCenter postNotificationName:NOTIFICATION_LOGINSUCCESS object:nil userInfo:@{NOTIFICATION_LOGINSUCCESS:@(NO)}];
         }
     } failed:^(NSError *error) {
         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-         _login=NO;
+         [ZYNotificationCenter postNotificationName:NOTIFICATION_LOGINSUCCESS object:nil userInfo:@{NOTIFICATION_LOGINSUCCESS:@(NO)}];
     }];
     
 }

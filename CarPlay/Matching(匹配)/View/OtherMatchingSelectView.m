@@ -23,8 +23,8 @@
     [self.matchingBtn.layer setCornerRadius:20.0];
     [self.locationAddressView.layer setMasksToBounds:YES];
     [self.locationAddressView.layer setCornerRadius:20.0];
-    [self.addressTableView.layer setMasksToBounds:YES];
-    [self.addressTableView.layer setCornerRadius:20.0];
+    [self.addressSelection.layer setMasksToBounds:YES];
+    [self.addressSelection.layer setCornerRadius:20.0];
     [self.confirmButton.layer setMasksToBounds:YES];
     [self.confirmButton.layer setCornerRadius:20.0];
     [self.reSelectionButton.layer setMasksToBounds:YES];
@@ -50,6 +50,7 @@
     _locationAddressView.alpha=1.0;
     _selectView.alpha=0.0;
     _addressLable.text=[[NSString alloc]initWithFormat:@"%@  %@  %@  %@",[ZYUserDefaults stringForKey:Province],[ZYUserDefaults stringForKey:City],[ZYUserDefaults stringForKey:District],[ZYUserDefaults stringForKey:Street]];
+    _locationAddressLable.text=[[NSString alloc]initWithFormat:@"%@  %@  %@  %@",[ZYUserDefaults stringForKey:Province],[ZYUserDefaults stringForKey:City],[ZYUserDefaults stringForKey:District],[ZYUserDefaults stringForKey:Street]];
 }
 //
 - (IBAction)matchingBtnClick:(id)sender {
@@ -98,7 +99,30 @@
 - (IBAction)confirm:(id)sender {
     
 }
+
+- (IBAction)reSelection:(id)sender {
+    _locationAddressView.alpha=0.0;
+    _addressSelection.alpha=1.0;
+    _parentId=0;
+    [self getArea];
+}
 - (IBAction)closeAddressSelectionView:(id)sender {
     
+}
+
+//获取省市列表
+-(void)getArea{
+    NSString *path=[[NSString alloc]initWithFormat:@"area/list?parentId=%ld",(long)_parentId];
+    [ZYNetWorkTool getWithUrl:path params:nil success:^(id responseObject) {
+        if (CPSuccess) {
+            NSLog(@"%@",responseObject);
+            [_addressTableView reloadData];
+        }else{
+            
+        }
+    } failure:^(NSError *error) {
+        
+        NSLog(@"%@",error);
+    }];
 }
 @end

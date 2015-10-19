@@ -242,6 +242,9 @@
                             <state key="normal" title="重新选择">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="reSelection:" destination="iN0-l3-epB" eventType="touchUpInside" id="vsF-U2-ezO"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -385,7 +388,6 @@
                 <outlet property="locationAddressLable" destination="tE6-GA-ECF" id="Yu9-Ia-qWB"/>
                 <outlet property="locationAddressView" destination="fOu-sO-9Fq" id="h0O-ja-KQt"/>
                 <outlet property="matchingBtn" destination="o8C-uD-xUm" id="RJ4-8a-uw6"/>
-                <outlet property="reSelection" destination="QrH-GT-BFz" id="Mf6-aW-SYi"/>
                 <outlet property="reSelectionButton" destination="QrH-GT-BFz" id="Jpz-EC-XTv"/>
                 <outlet property="selectPlace" destination="oiR-sN-1bI" id="MeR-eV-7Gy"/>
                 <outlet property="selectView" destination="QXg-wN-0HV" id="mp6-nd-QAP"/>

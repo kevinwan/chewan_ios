@@ -27,8 +27,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *confirmButton;
 @property (weak, nonatomic) IBOutlet UIButton *reSelectionButton;
 - (IBAction)confirm:(id)sender;
-@property (weak, nonatomic) IBOutlet UIButton *reSelection;
+- (IBAction)reSelection:(id)sender;
+
 - (IBAction)closeAddressSelectionView:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *locationAddressLable;
 @property (weak, nonatomic) IBOutlet UITableView *addressTableView;
+@property (nonatomic, assign) NSInteger parentId;
 @end

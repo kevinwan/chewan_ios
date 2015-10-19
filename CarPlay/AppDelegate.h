@@ -13,6 +13,5 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) CPTabBarController *tabVc;
-@property (nonatomic, assign) BOOL login;
 @end
 

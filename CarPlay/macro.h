@@ -60,6 +60,7 @@
 #define NOTIFICATION_ROOTCONTROLLERCHANGETOTAB @"rootControllerChangeToTab"
 #define NOTIFICATION_HASLOGIN @"hasLogin"
 #define NOTIFICATION_GOLOGIN @"goLogin"
+#define NOTIFICATION_LOGINSUCCESS @"loginSuccess"
 #define THIRDPARTYLOGINACCOUNT @"3partyLoginAccount"
 #define CPReRefreshNotification @"CPReRefreshNotification"
 #define CPGoLogin(title) \
