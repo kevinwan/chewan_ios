@@ -63,8 +63,15 @@
         ///
         _interestIV = [[UIImageView alloc]initWithFrame:CGRectMake(kDeviceWidth-40-10, 10, 40, 40)];
         _interestIV.backgroundColor =[UIColor clearColor];
+        [_interestIV setClipsToBounds:YES];
+        _interestIV.layer.cornerRadius= 20;
         [self.contentView addSubview:_interestIV];
         
+        _HeadIV = [[UIImageView alloc]initWithFrame:CGRectMake(10, 7, 45, 45)];
+        _HeadIV.backgroundColor = [UIColor clearColor];
+        _HeadIV.layer.cornerRadius = 22;
+        [_HeadIV setClipsToBounds:YES];
+        [self.contentView addSubview:_HeadIV];
         
         self.contentView.backgroundColor = [UIColor whiteColor];
 
@@ -97,12 +104,13 @@
     [super layoutSubviews];
     CGRect frame = self.imageView.frame;
     
-    [self.imageView sd_setImageWithURL:_imageURL placeholderImage:_placeholderImage];
-//    [self.imageView imageWithUsername:_name placeholderImage:_placeholderImage];
-    self.imageView.frame = CGRectMake(10, 7, 45, 45);
-    
-    [self.imageView setClipsToBounds:YES];
-    self.imageView.layer.cornerRadius = 22;
+//    [self.imageView sd_setImageWithURL:_imageURL placeholderImage:_placeholderImage];
+////    [self.imageView sd_setImageWithURL:_imageURL];
+////    [self.imageView imageWithUsername:_name placeholderImage:_placeholderImage];
+//    self.imageView.frame = CGRectMake(10, 7, 45, 45);
+//    
+//    [self.imageView setClipsToBounds:YES];
+//    self.imageView.layer.cornerRadius = 22;
 //    self.textLabel.text = _name;
     [self.textLabel setTextWithUsername:_name];
     self.textLabel.frame = CGRectMake(65, 7, 175, 20);
