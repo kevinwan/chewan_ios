@@ -28,6 +28,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     _tabVc = [CPTabBarController new];
+    
     _tabVc.delegate = self;
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
@@ -47,7 +48,9 @@
     //"easemob-demo#chatdemoui
     [[EaseMob sharedInstance] registerSDKWithAppKey:@"gongpingjia#carplayapp" apnsCertName:@"istore_dev"];
     [[EaseMob sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
-    
+    if (CPIsLogin) {
+        [self upDateUserInfo];
+    }
     return YES;
 }
 
@@ -244,6 +247,24 @@
         _geocoder = [[CLGeocoder alloc] init];
     }
     return _geocoder;
+}
+
+-(void)upDateUserInfo{
+     NSDictionary *paras=[[NSDictionary alloc]initWithObjectsAndKeys:[ZYUserDefaults stringForKey:@"phone"],@"phone",[ZYUserDefaults stringForKey:@"password"],@"password",nil];
+    [ZYNetWorkTool postJsonWithUrl:@"user/login" params:paras success:^(id responseObject) {
+        if (CPSuccess) {
+            CPUser *user = [CPUser objectWithKeyValues:responseObject[@"data"]];
+            NSString *path=[[NSString alloc]initWithFormat:@"%@.info",[Tools getUserId]];
+            [NSKeyedArchiver archiveRootObject:user toFile:path.documentPath];
+            _login=YES;
+        }else{
+            _login=NO;
+        }
+    } failed:^(NSError *error) {
+        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+         _login=NO;
+    }];
+    
 }
 
 @end

@@ -22,4 +22,13 @@
 @property (weak, nonatomic) IBOutlet UIView *locationAddressView;
 
 @property (weak, nonatomic) IBOutlet UIView *addressSelection;
+- (IBAction)closeLocatoinAddressView:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *addressLable;
+@property (weak, nonatomic) IBOutlet UIButton *confirmButton;
+@property (weak, nonatomic) IBOutlet UIButton *reSelectionButton;
+- (IBAction)confirm:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *reSelection;
+- (IBAction)closeAddressSelectionView:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *locationAddressLable;
+@property (weak, nonatomic) IBOutlet UITableView *addressTableView;
 @end

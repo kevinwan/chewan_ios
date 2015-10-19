@@ -169,6 +169,9 @@
                                         <constraint firstAttribute="height" constant="27" id="p4N-cH-Qo9"/>
                                     </constraints>
                                     <state key="normal" backgroundImage="closeWhite"/>
+                                    <connections>
+                                        <action selector="closeLocatoinAddressView:" destination="iN0-l3-epB" eventType="touchUpInside" id="GoJ-qB-dkb"/>
+                                    </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="区域选择" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Lw-zl-wNL">
                                     <rect key="frame" x="90" y="10" width="64" height="20"/>
@@ -225,6 +228,9 @@
                             <state key="normal" title="确认">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="confirm:" destination="iN0-l3-epB" eventType="touchUpInside" id="Oqt-DB-8dr"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QrH-GT-BFz">
                             <rect key="frame" x="130" y="133" width="100" height="40"/>
@@ -280,6 +286,9 @@
                                         <constraint firstAttribute="width" constant="27" id="nY4-JA-PgT"/>
                                     </constraints>
                                     <state key="normal" backgroundImage="closeWhite"/>
+                                    <connections>
+                                        <action selector="closeAddressSelectionView:" destination="iN0-l3-epB" eventType="touchUpInside" id="FaD-CY-Qtl"/>
+                                    </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="区域选择" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oot-54-mEx">
                                     <rect key="frame" x="90" y="10" width="64" height="20"/>
@@ -369,9 +378,15 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="addressLable" destination="aOD-wS-ADc" id="h2I-CK-Cfx"/>
                 <outlet property="addressSelection" destination="YIh-LW-jiu" id="0BF-aS-Hop"/>
+                <outlet property="addressTableView" destination="GCg-qh-0RB" id="BwK-da-A3f"/>
+                <outlet property="confirmButton" destination="cUE-EI-4GH" id="brG-Fy-RQl"/>
+                <outlet property="locationAddressLable" destination="tE6-GA-ECF" id="Yu9-Ia-qWB"/>
                 <outlet property="locationAddressView" destination="fOu-sO-9Fq" id="h0O-ja-KQt"/>
                 <outlet property="matchingBtn" destination="o8C-uD-xUm" id="RJ4-8a-uw6"/>
+                <outlet property="reSelection" destination="QrH-GT-BFz" id="Mf6-aW-SYi"/>
+                <outlet property="reSelectionButton" destination="QrH-GT-BFz" id="Jpz-EC-XTv"/>
                 <outlet property="selectPlace" destination="oiR-sN-1bI" id="MeR-eV-7Gy"/>
                 <outlet property="selectView" destination="QXg-wN-0HV" id="mp6-nd-QAP"/>
                 <outlet property="shuttleBtn" destination="JE1-gq-VLE" id="1rB-IE-gn9"/>

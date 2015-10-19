@@ -21,6 +21,15 @@
     self.selectPlace.layer.borderWidth= 1.0f;
     [self.matchingBtn.layer setMasksToBounds:YES];
     [self.matchingBtn.layer setCornerRadius:20.0];
+    [self.locationAddressView.layer setMasksToBounds:YES];
+    [self.locationAddressView.layer setCornerRadius:20.0];
+    [self.addressTableView.layer setMasksToBounds:YES];
+    [self.addressTableView.layer setCornerRadius:20.0];
+    [self.confirmButton.layer setMasksToBounds:YES];
+    [self.confirmButton.layer setCornerRadius:20.0];
+    [self.reSelectionButton.layer setMasksToBounds:YES];
+    [self.reSelectionButton.layer setCornerRadius:20.0];
+    
     [self.selectPlace setTitleEdgeInsets:UIEdgeInsetsMake(0, -self.selectPlace.imageView.size.width, 0, self.selectPlace.imageView.size.width)];
     [self.selectPlace setImageEdgeInsets:UIEdgeInsetsMake(0, self.selectPlace.titleLabel.bounds.size.width, 0, -self.selectPlace.titleLabel.bounds.size.width)];
 }
@@ -38,7 +47,9 @@
 }
 //选择地址
 - (IBAction)selectPlaceClick:(id)sender {
-    
+    _locationAddressView.alpha=1.0;
+    _selectView.alpha=0.0;
+    _addressLable.text=[[NSString alloc]initWithFormat:@"%@  %@  %@  %@",[ZYUserDefaults stringForKey:Province],[ZYUserDefaults stringForKey:City],[ZYUserDefaults stringForKey:District],[ZYUserDefaults stringForKey:Street]];
 }
 //
 - (IBAction)matchingBtnClick:(id)sender {
@@ -80,4 +91,14 @@
     [view addGestureRecognizer:tap];
 }
 
+- (IBAction)closeLocatoinAddressView:(id)sender {
+    _locationAddressView.alpha=0.0;
+    _selectView.alpha=1.0;
+}
+- (IBAction)confirm:(id)sender {
+    
+}
+- (IBAction)closeAddressSelectionView:(id)sender {
+    
+}
 @end

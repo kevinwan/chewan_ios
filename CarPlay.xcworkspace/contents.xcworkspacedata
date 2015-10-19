@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:CPOtherMatchingSelectViewBtn.xib">
-   </FileRef>
-   <FileRef
       location = "group:CarPlay.xcodeproj">
    </FileRef>
    <FileRef
