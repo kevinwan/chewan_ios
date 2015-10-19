@@ -339,8 +339,8 @@
                                 <constraint firstAttribute="height" constant="172" id="7MJ-BH-OVJ"/>
                             </constraints>
                             <connections>
-                                <outlet property="dataSource" destination="-1" id="GQ8-GH-4Zc"/>
-                                <outlet property="delegate" destination="-1" id="HgX-1h-h7n"/>
+                                <outlet property="dataSource" destination="-1" id="3E9-3j-zA0"/>
+                                <outlet property="delegate" destination="-1" id="np1-5z-nUT"/>
                             </connections>
                         </tableView>
                     </subviews>
@@ -393,6 +393,7 @@
                 <outlet property="selectView" destination="QXg-wN-0HV" id="mp6-nd-QAP"/>
                 <outlet property="shuttleBtn" destination="JE1-gq-VLE" id="1rB-IE-gn9"/>
             </connections>
+            <point key="canvasLocation" x="393" y="202"/>
         </view>
     </objects>
     <resources>
