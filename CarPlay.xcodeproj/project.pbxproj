@@ -77,6 +77,10 @@
 		6BCFFBBA1BBA456900C082B2 /* CPCareUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCFFBB21BBA456900C082B2 /* CPCareUser.m */; settings = {ASSET_TAGS = (); }; };
 		6BCFFBBB1BBA456900C082B2 /* CPMyCareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCFFBB51BBA456900C082B2 /* CPMyCareCell.m */; settings = {ASSET_TAGS = (); }; };
 		6BCFFBBC1BBA456900C082B2 /* CPTopButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCFFBB71BBA456900C082B2 /* CPTopButton.m */; settings = {ASSET_TAGS = (); }; };
+		6BDA2C821BD4DA420032FFF1 /* CPpinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDA2C811BD4DA420032FFF1 /* CPpinyin.m */; settings = {ASSET_TAGS = (); }; };
+		6BDA2C851BD4DABA0032FFF1 /* CPNameIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDA2C841BD4DABA0032FFF1 /* CPNameIndex.m */; settings = {ASSET_TAGS = (); }; };
+		6BDA2C871BD511F10032FFF1 /* OtherMatchingSelectView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BDA2C861BD511F10032FFF1 /* OtherMatchingSelectView.storyboard */; settings = {ASSET_TAGS = (); }; };
+		6BDA2C8A1BD514780032FFF1 /* OtherMatchingSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDA2C891BD514780032FFF1 /* OtherMatchingSelectView.m */; settings = {ASSET_TAGS = (); }; };
 		6BE2E6121BC67C8C00D1D928 /* CPNPSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2E6111BC67C8C00D1D928 /* CPNPSButton.m */; settings = {ASSET_TAGS = (); }; };
 		6BE2E61A1BC67CB000D1D928 /* CPMatching.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BE2E6131BC67CB000D1D928 /* CPMatching.storyboard */; settings = {ASSET_TAGS = (); }; };
 		6BE2E61B1BC67CB000D1D928 /* CPMatchingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2E6151BC67CB000D1D928 /* CPMatchingViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -86,7 +90,6 @@
 		6BF14C331BD0CB32008D2E74 /* MatchingSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF14C321BD0CB32008D2E74 /* MatchingSelectView.m */; settings = {ASSET_TAGS = (); }; };
 		6BF14C371BD125DF008D2E74 /* ExerciseMatchingSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BF14C351BD125DF008D2E74 /* ExerciseMatchingSelectView.xib */; settings = {ASSET_TAGS = (); }; };
 		6BF14C381BD125DF008D2E74 /* ExerciseMatchingSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF14C361BD125DF008D2E74 /* ExerciseMatchingSelectView.m */; settings = {ASSET_TAGS = (); }; };
-		6BF14C3C1BD12671008D2E74 /* OtherMatchingSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF14C391BD12671008D2E74 /* OtherMatchingSelectView.m */; settings = {ASSET_TAGS = (); }; };
 		6BF14C3D1BD12671008D2E74 /* OtherMatchingSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BF14C3A1BD12671008D2E74 /* OtherMatchingSelectView.xib */; settings = {ASSET_TAGS = (); }; };
 		6BF14C431BD23331008D2E74 /* CPExerciseMatchingSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF14C421BD23331008D2E74 /* CPExerciseMatchingSelectButton.m */; settings = {ASSET_TAGS = (); }; };
 		6D2ABF851BCE582100201A8E /* EMAudioPlayerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2ABE4B1BCE582100201A8E /* EMAudioPlayerUtil.m */; settings = {ASSET_TAGS = (); }; };
@@ -673,6 +676,13 @@
 		6BCFFBB51BBA456900C082B2 /* CPMyCareCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyCareCell.m; sourceTree = "<group>"; };
 		6BCFFBB61BBA456900C082B2 /* CPTopButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTopButton.h; sourceTree = "<group>"; };
 		6BCFFBB71BBA456900C082B2 /* CPTopButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTopButton.m; sourceTree = "<group>"; };
+		6BDA2C801BD4DA420032FFF1 /* CPpinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPpinyin.h; sourceTree = "<group>"; };
+		6BDA2C811BD4DA420032FFF1 /* CPpinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPpinyin.m; sourceTree = "<group>"; };
+		6BDA2C831BD4DABA0032FFF1 /* CPNameIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNameIndex.h; sourceTree = "<group>"; };
+		6BDA2C841BD4DABA0032FFF1 /* CPNameIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNameIndex.m; sourceTree = "<group>"; };
+		6BDA2C861BD511F10032FFF1 /* OtherMatchingSelectView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OtherMatchingSelectView.storyboard; sourceTree = "<group>"; };
+		6BDA2C881BD514780032FFF1 /* OtherMatchingSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherMatchingSelectView.h; sourceTree = "<group>"; };
+		6BDA2C891BD514780032FFF1 /* OtherMatchingSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherMatchingSelectView.m; sourceTree = "<group>"; };
 		6BE2E6101BC67C8C00D1D928 /* CPNPSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNPSButton.h; sourceTree = "<group>"; };
 		6BE2E6111BC67C8C00D1D928 /* CPNPSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNPSButton.m; sourceTree = "<group>"; };
 		6BE2E6131BC67CB000D1D928 /* CPMatching.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMatching.storyboard; sourceTree = "<group>"; };
@@ -687,9 +697,7 @@
 		6BF14C341BD125DF008D2E74 /* ExerciseMatchingSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseMatchingSelectView.h; sourceTree = "<group>"; };
 		6BF14C351BD125DF008D2E74 /* ExerciseMatchingSelectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExerciseMatchingSelectView.xib; sourceTree = "<group>"; };
 		6BF14C361BD125DF008D2E74 /* ExerciseMatchingSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseMatchingSelectView.m; sourceTree = "<group>"; };
-		6BF14C391BD12671008D2E74 /* OtherMatchingSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherMatchingSelectView.m; sourceTree = "<group>"; };
 		6BF14C3A1BD12671008D2E74 /* OtherMatchingSelectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OtherMatchingSelectView.xib; sourceTree = "<group>"; };
-		6BF14C3B1BD12671008D2E74 /* OtherMatchingSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherMatchingSelectView.h; sourceTree = "<group>"; };
 		6BF14C411BD23331008D2E74 /* CPExerciseMatchingSelectButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPExerciseMatchingSelectButton.h; sourceTree = "<group>"; };
 		6BF14C421BD23331008D2E74 /* CPExerciseMatchingSelectButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPExerciseMatchingSelectButton.m; sourceTree = "<group>"; };
 		6D2ABE461BCE582100201A8E /* EMCDDeviceManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCDDeviceManagerDelegate.h; sourceTree = "<group>"; };
@@ -3270,11 +3278,12 @@
 				6BF14C311BD0CB32008D2E74 /* MatchingSelectView.h */,
 				6BF14C321BD0CB32008D2E74 /* MatchingSelectView.m */,
 				6BF14C2F1BD0AB12008D2E74 /* MatchingSelectView.xib */,
-				6BF14C3B1BD12671008D2E74 /* OtherMatchingSelectView.h */,
-				6BF14C391BD12671008D2E74 /* OtherMatchingSelectView.m */,
-				6BF14C3A1BD12671008D2E74 /* OtherMatchingSelectView.xib */,
+				6BDA2C881BD514780032FFF1 /* OtherMatchingSelectView.h */,
+				6BDA2C891BD514780032FFF1 /* OtherMatchingSelectView.m */,
+				6BDA2C861BD511F10032FFF1 /* OtherMatchingSelectView.storyboard */,
 				6BF14C411BD23331008D2E74 /* CPExerciseMatchingSelectButton.h */,
 				6BF14C421BD23331008D2E74 /* CPExerciseMatchingSelectButton.m */,
+				6BF14C3A1BD12671008D2E74 /* OtherMatchingSelectView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3504,6 +3513,10 @@
 				6B364C881BCF3FDC005A4AF9 /* CPAlbum.m */,
 				E39627B31BB53357005E0CF2 /* CPUser.h */,
 				E39627B41BB53357005E0CF2 /* CPUser.m */,
+				6BDA2C801BD4DA420032FFF1 /* CPpinyin.h */,
+				6BDA2C811BD4DA420032FFF1 /* CPpinyin.m */,
+				6BDA2C831BD4DABA0032FFF1 /* CPNameIndex.h */,
+				6BDA2C841BD4DABA0032FFF1 /* CPNameIndex.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3781,6 +3794,7 @@
 				6D2AC1811BCE5A5100201A8E /* tabbar_contacts.png in Resources */,
 				6B364CB21BCF5ACE005A4AF9 /* CPCarOwnersCertification.storyboard in Resources */,
 				6D2AC1611BCE5A5100201A8E /* chat_sender_audio_playing_002.png in Resources */,
+				6BDA2C871BD511F10032FFF1 /* OtherMatchingSelectView.storyboard in Resources */,
 				6D2AC0FF1BCE5A5100201A8E /* VoiceSearchFeedback018@2x.png in Resources */,
 				6D2AC0F11BCE5A5100201A8E /* VoiceSearchFeedback011@2x.png in Resources */,
 				6D2AC0D41BCE5A5100201A8E /* 114.png in Resources */,
@@ -4075,6 +4089,7 @@
 				6D2ABFEE1BCE582100201A8E /* AddFriendViewController.m in Sources */,
 				E3A471791BB3A85300973197 /* NSArray+ZY.m in Sources */,
 				E369E2B41BCB985A000A12B5 /* CPSelectButton.m in Sources */,
+				6BDA2C821BD4DA420032FFF1 /* CPpinyin.m in Sources */,
 				6D2ABFC61BCE582100201A8E /* ChatListCell.m in Sources */,
 				6B364C9A1BCF43B8005A4AF9 /* CPVersionIntroduction.m in Sources */,
 				E31B13551BB9312D00B51696 /* LFRoundProgressView.m in Sources */,
@@ -4219,7 +4234,6 @@
 				6D2ABFFC1BCE582100201A8E /* XHMessageTextView.m in Sources */,
 				6D2ABFC81BCE582100201A8E /* ChatSendHelper.m in Sources */,
 				E31B134A1BB9312D00B51696 /* UIImage+FixOrientation.m in Sources */,
-				6BF14C3C1BD12671008D2E74 /* OtherMatchingSelectView.m in Sources */,
 				6D2ABFB01BCE582100201A8E /* PSTCollectionViewItemKey.m in Sources */,
 				6D2ABFE21BCE582100201A8E /* GroupBansViewController.m in Sources */,
 				E35428541BCF965600D4A07A /* CPNoDataTipView.m in Sources */,
@@ -4227,6 +4241,7 @@
 				E32B5DE21BCE41CA0057FD71 /* ZYRefreshView.m in Sources */,
 				6B364C611BCE401C005A4AF9 /* UzysAppearanceConfig.m in Sources */,
 				E3A471741BB3A85300973197 /* CPBaseViewCell.m in Sources */,
+				6BDA2C8A1BD514780032FFF1 /* OtherMatchingSelectView.m in Sources */,
 				6D2ABFA41BCE582100201A8E /* UIImage+EMGIF.m in Sources */,
 				E3A4718B1BB3A85300973197 /* ZYBlock.m in Sources */,
 				6D2AC0031BCE582100201A8E /* NSDate+Category.m in Sources */,
@@ -4315,6 +4330,7 @@
 				E3A4717C1BB3A85300973197 /* NSFileManager+ZY.m in Sources */,
 				6D2ABFA21BCE582100201A8E /* NSData+EMImageContentType.m in Sources */,
 				6D2ABF991BCE582100201A8E /* DACircularProgressView.m in Sources */,
+				6BDA2C851BD4DABA0032FFF1 /* CPNameIndex.m in Sources */,
 				6B364CC11BCFC44B005A4AF9 /* CPTaInfo.m in Sources */,
 				6B51767C1BB9502100D7A62E /* CustomSwitch.m in Sources */,
 				E3A471761BB3A85300973197 /* Aspects.m in Sources */,

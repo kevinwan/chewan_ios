@@ -1,14 +1,15 @@
 //
-//  MatchingSelectView.h
+//  OtherMatchingSelectView.h
 //  CarPlay
 //
-//  Created by 公平价 on 15/10/16.
+//  Created by 公平价 on 15/10/19.
 //  Copyright © 2015年 chewan. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "MJNIndexView.h"
 
-@interface OtherMatchingSelectView : UIView
+@interface OtherMatchingSelectView : UIViewController<UITableViewDataSource,UITableViewDelegate,MJNIndexViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *selectView;
 @property (weak, nonatomic) IBOutlet UIButton *selectPlace;
 - (IBAction)shuttle:(id)sender;
@@ -18,7 +19,6 @@
 //1包接送  0不包接送
 @property (nonatomic, strong) NSString *whetherShuttle;
 - (IBAction)matchingBtnClick:(id)sender;
-+(void)show:(NSString *)colorStr;
 @property (weak, nonatomic) IBOutlet UIView *locationAddressView;
 
 @property (weak, nonatomic) IBOutlet UIView *addressSelection;
@@ -33,4 +33,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *locationAddressLable;
 @property (weak, nonatomic) IBOutlet UITableView *addressTableView;
 @property (nonatomic, assign) NSInteger parentId;
+//排序后
+@property (nonatomic, strong) NSMutableArray *areaList;
+//排序前
+@property (nonatomic, strong) NSArray *areaListBeforeSort;
+
+@property (nonatomic, strong) MJNIndexView *indexView;
+
 @end
