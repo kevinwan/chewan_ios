@@ -472,7 +472,14 @@
 		E35428511BCF94D100D4A07A /* CPNoDataTipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E35428501BCF94D100D4A07A /* CPNoDataTipView.xib */; settings = {ASSET_TAGS = (); }; };
 		E35428541BCF965600D4A07A /* CPNoDataTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35428531BCF965600D4A07A /* CPNoDataTipView.m */; settings = {ASSET_TAGS = (); }; };
 		E356F0E11BD4851A00D5BE07 /* CPActivityDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E356F0E01BD4851A00D5BE07 /* CPActivityDetailViewController.storyboard */; settings = {ASSET_TAGS = (); }; };
-		E356F0E31BD488D100D5BE07 /* CPActivityDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E356F0E21BD488D100D5BE07 /* CPActivityDetailHeaderView.xib */; settings = {ASSET_TAGS = (); }; };
+		E356F0E61BD4D8D600D5BE07 /* CPActivityDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E356F0E51BD4D8D600D5BE07 /* CPActivityDetailModel.m */; settings = {ASSET_TAGS = (); }; };
+		E356F0E91BD4DB5000D5BE07 /* CPActivityDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E356F0E81BD4DB5000D5BE07 /* CPActivityDetailHeaderView.m */; settings = {ASSET_TAGS = (); }; };
+		E356F0EB1BD4DBF700D5BE07 /* CPActivityDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E356F0EA1BD4DBF700D5BE07 /* CPActivityDetailHeaderView.xib */; settings = {ASSET_TAGS = (); }; };
+		E356F0EE1BD4ED7A00D5BE07 /* CPActivityDetailMiddleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E356F0ED1BD4ED7A00D5BE07 /* CPActivityDetailMiddleView.m */; settings = {ASSET_TAGS = (); }; };
+		E356F0F01BD4ED9100D5BE07 /* CPActivityDetailMiddleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E356F0EF1BD4ED9100D5BE07 /* CPActivityDetailMiddleView.xib */; settings = {ASSET_TAGS = (); }; };
+		E356F0F21BD4F21400D5BE07 /* CPActivityDetailFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E356F0F11BD4F21400D5BE07 /* CPActivityDetailFooterView.xib */; settings = {ASSET_TAGS = (); }; };
+		E356F0F51BD4F22500D5BE07 /* CPActivityDetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E356F0F41BD4F22500D5BE07 /* CPActivityDetailFooterView.m */; settings = {ASSET_TAGS = (); }; };
+		E356F0F81BD51DE400D5BE07 /* CPActivityPartnerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E356F0F71BD51DE400D5BE07 /* CPActivityPartnerCell.m */; settings = {ASSET_TAGS = (); }; };
 		E359EDBD1BCF75C20004B17D /* ZYImageVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = E359EDBC1BCF75C20004B17D /* ZYImageVIew.m */; settings = {ASSET_TAGS = (); }; };
 		E3606F0D1BC76FF100797968 /* CPRecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */; settings = {ASSET_TAGS = (); }; };
 		E3606F121BC78C7300797968 /* CPBaseViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F111BC78C7300797968 /* CPBaseViewCell.xib */; settings = {ASSET_TAGS = (); }; };
@@ -1263,7 +1270,19 @@
 		E35428521BCF965600D4A07A /* CPNoDataTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNoDataTipView.h; sourceTree = "<group>"; };
 		E35428531BCF965600D4A07A /* CPNoDataTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNoDataTipView.m; sourceTree = "<group>"; };
 		E356F0E01BD4851A00D5BE07 /* CPActivityDetailViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPActivityDetailViewController.storyboard; sourceTree = "<group>"; };
-		E356F0E21BD488D100D5BE07 /* CPActivityDetailHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPActivityDetailHeaderView.xib; sourceTree = "<group>"; };
+		E356F0E41BD4D8D600D5BE07 /* CPActivityDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityDetailModel.h; sourceTree = "<group>"; };
+		E356F0E51BD4D8D600D5BE07 /* CPActivityDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityDetailModel.m; sourceTree = "<group>"; };
+		E356F0E71BD4DB5000D5BE07 /* CPActivityDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityDetailHeaderView.h; sourceTree = "<group>"; };
+		E356F0E81BD4DB5000D5BE07 /* CPActivityDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityDetailHeaderView.m; sourceTree = "<group>"; };
+		E356F0EA1BD4DBF700D5BE07 /* CPActivityDetailHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPActivityDetailHeaderView.xib; sourceTree = "<group>"; };
+		E356F0EC1BD4ED7A00D5BE07 /* CPActivityDetailMiddleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityDetailMiddleView.h; sourceTree = "<group>"; };
+		E356F0ED1BD4ED7A00D5BE07 /* CPActivityDetailMiddleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityDetailMiddleView.m; sourceTree = "<group>"; };
+		E356F0EF1BD4ED9100D5BE07 /* CPActivityDetailMiddleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPActivityDetailMiddleView.xib; sourceTree = "<group>"; };
+		E356F0F11BD4F21400D5BE07 /* CPActivityDetailFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPActivityDetailFooterView.xib; sourceTree = "<group>"; };
+		E356F0F31BD4F22500D5BE07 /* CPActivityDetailFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityDetailFooterView.h; sourceTree = "<group>"; };
+		E356F0F41BD4F22500D5BE07 /* CPActivityDetailFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityDetailFooterView.m; sourceTree = "<group>"; };
+		E356F0F61BD51DE400D5BE07 /* CPActivityPartnerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityPartnerCell.h; sourceTree = "<group>"; };
+		E356F0F71BD51DE400D5BE07 /* CPActivityPartnerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityPartnerCell.m; sourceTree = "<group>"; };
 		E359EDBB1BCF75C20004B17D /* ZYImageVIew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYImageVIew.h; sourceTree = "<group>"; };
 		E359EDBC1BCF75C20004B17D /* ZYImageVIew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYImageVIew.m; sourceTree = "<group>"; };
 		E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPRecommendCell.xib; sourceTree = "<group>"; };
@@ -3369,7 +3388,6 @@
 				E3C5F18F1BC92C790021E33D /* CPActivityDetailViewController.h */,
 				E3C5F1901BC92C790021E33D /* CPActivityDetailViewController.m */,
 				E356F0E01BD4851A00D5BE07 /* CPActivityDetailViewController.storyboard */,
-				E356F0E21BD488D100D5BE07 /* CPActivityDetailHeaderView.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3379,6 +3397,8 @@
 			children = (
 				E3EA1A001BC8DF43007ECECA /* CPRecommendModel.h */,
 				E3EA1A011BC8DF43007ECECA /* CPRecommendModel.m */,
+				E356F0E41BD4D8D600D5BE07 /* CPActivityDetailModel.h */,
+				E356F0E51BD4D8D600D5BE07 /* CPActivityDetailModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3392,6 +3412,17 @@
 				E3AEFE361BC64E5B009C9438 /* CPRecommendCell.h */,
 				E3AEFE371BC64E5B009C9438 /* CPRecommendCell.m */,
 				E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */,
+				E356F0E71BD4DB5000D5BE07 /* CPActivityDetailHeaderView.h */,
+				E356F0E81BD4DB5000D5BE07 /* CPActivityDetailHeaderView.m */,
+				E356F0EA1BD4DBF700D5BE07 /* CPActivityDetailHeaderView.xib */,
+				E356F0EC1BD4ED7A00D5BE07 /* CPActivityDetailMiddleView.h */,
+				E356F0ED1BD4ED7A00D5BE07 /* CPActivityDetailMiddleView.m */,
+				E356F0EF1BD4ED9100D5BE07 /* CPActivityDetailMiddleView.xib */,
+				E356F0F11BD4F21400D5BE07 /* CPActivityDetailFooterView.xib */,
+				E356F0F31BD4F22500D5BE07 /* CPActivityDetailFooterView.h */,
+				E356F0F41BD4F22500D5BE07 /* CPActivityDetailFooterView.m */,
+				E356F0F61BD51DE400D5BE07 /* CPActivityPartnerCell.h */,
+				E356F0F71BD51DE400D5BE07 /* CPActivityPartnerCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3802,6 +3833,7 @@
 				6B51767D1BB9502100D7A62E /* CustomSwitch.xib in Resources */,
 				6D2AC10B1BCE5A5100201A8E /* call_silence_h@2x.png in Resources */,
 				6D2AC10E1BCE5A5100201A8E /* chatBar_more_card.png in Resources */,
+				E356F0F21BD4F21400D5BE07 /* CPActivityDetailFooterView.xib in Resources */,
 				6B440CDB1BBA857B00CF8410 /* CPMyInfoHead.xib in Resources */,
 				6D2AC11D1BCE5A5100201A8E /* chat_location_detail_disclosureHL@2x.png in Resources */,
 				6D2AC18C1BCE5A5100201A8E /* tabbarSelectBg@2x.png in Resources */,
@@ -3835,6 +3867,7 @@
 				6D2AC17B1BCE5A5100201A8E /* nav_createGroup@2x.png in Resources */,
 				6D2AC15D1BCE5A5100201A8E /* chat_sender_audio_playing_000.png in Resources */,
 				E31B13531BB9312D00B51696 /* CoreSVP.bundle in Resources */,
+				E356F0EB1BD4DBF700D5BE07 /* CPActivityDetailHeaderView.xib in Resources */,
 				6D2AC1591BCE5A5100201A8E /* chat_receiver_audio_playing_full.png in Resources */,
 				6D2AC1631BCE5A5100201A8E /* chat_sender_audio_playing_003.png in Resources */,
 				E356F0E11BD4851A00D5BE07 /* CPActivityDetailViewController.storyboard in Resources */,
@@ -3926,6 +3959,7 @@
 				6D2AC12E1BCE5A5100201A8E /* chatBar_moreSelected.png in Resources */,
 				6D2AC16B1BCE5A5100201A8E /* password.png in Resources */,
 				6D2AC1001BCE5A5100201A8E /* VoiceSearchFeedback019.png in Resources */,
+				E356F0F01BD4ED9100D5BE07 /* CPActivityDetailMiddleView.xib in Resources */,
 				6D2AC0E11BCE5A5100201A8E /* VoiceSearchFeedback003@2x.png in Resources */,
 				6B2411191BCB56AC0014468D /* CPMyInfoController.storyboard in Resources */,
 				6D2AC1621BCE5A5100201A8E /* chat_sender_audio_playing_002@2x.png in Resources */,
@@ -3934,7 +3968,6 @@
 				6D2AC0D81BCE5A5100201A8E /* 58.png in Resources */,
 				6D2AC14D1BCE5A5100201A8E /* chatBar_more_photo@2x.png in Resources */,
 				6D2AD8D41BCF72A30099CFD7 /* UserViewAdmin@3x.png in Resources */,
-				E356F0E31BD488D100D5BE07 /* CPActivityDetailHeaderView.xib in Resources */,
 				6D2AC1321BCE5A5100201A8E /* chatBar_recordBg.png in Resources */,
 				6D2AC0F01BCE5A5100201A8E /* VoiceSearchFeedback011.png in Resources */,
 				6D2AC1871BCE5A5100201A8E /* tabbar_settingHL.png in Resources */,
@@ -4094,6 +4127,7 @@
 				6D2ABFF01BCE582100201A8E /* ApplyViewController.m in Sources */,
 				6D2ABFD61BCE582100201A8E /* EMChatTextBubbleView.m in Sources */,
 				E31B133E1BB9312D00B51696 /* CALayer+Transition.m in Sources */,
+				E356F0E61BD4D8D600D5BE07 /* CPActivityDetailModel.m in Sources */,
 				6B1387DE1BCD0A6C00FAC462 /* CustomBrandCell.m in Sources */,
 				E31B12E61BB9311700B51696 /* PBSaveBtn.m in Sources */,
 				6D2ABFBD1BCE582100201A8E /* TTGlobalUICommon.m in Sources */,
@@ -4135,8 +4169,10 @@
 				E3A4718A1BB3A85300973197 /* UIViewController+ZYExtension.m in Sources */,
 				E3E6B8911BB4FD54006B4F8A /* CPLoginViewController.m in Sources */,
 				E31B12E71BB9311700B51696 /* PBScrollView.m in Sources */,
+				E356F0F51BD4F22500D5BE07 /* CPActivityDetailFooterView.m in Sources */,
 				6D2ABFFE1BCE582100201A8E /* EMRobotChatTextBubbleView.m in Sources */,
 				6D2AC0061BCE582100201A8E /* UIImageView+HeadImage.m in Sources */,
+				E356F0F81BD51DE400D5BE07 /* CPActivityPartnerCell.m in Sources */,
 				6D2ABFB61BCE582100201A8E /* PSTGridLayoutSection.m in Sources */,
 				E3A4718E1BB3A85300973197 /* Reachability.m in Sources */,
 				E3A4718D1BB3A85300973197 /* CPNetWorkTool.m in Sources */,
@@ -4208,6 +4244,7 @@
 				6D2ABF8B1BCE582100201A8E /* EMCDDeviceManagerBase.m in Sources */,
 				6D2ABF9F1BCE582100201A8E /* EMSDWebImageManager.m in Sources */,
 				6D2ABFA01BCE582100201A8E /* EMSDWebImagePrefetcher.m in Sources */,
+				E356F0E91BD4DB5000D5BE07 /* CPActivityDetailHeaderView.m in Sources */,
 				E31B133D1BB9312D00B51696 /* CALayer+Anim.m in Sources */,
 				6D2AC0081BCE582100201A8E /* UIViewController+DismissKeyboard.m in Sources */,
 				6BE2E6121BC67C8C00D1D928 /* CPNPSButton.m in Sources */,
@@ -4310,6 +4347,7 @@
 				E3A471851BB3A85300973197 /* UIResponder+Extension.m in Sources */,
 				6D2ABFBA1BCE582100201A8E /* SRRefreshView.m in Sources */,
 				6D2ABF911BCE582100201A8E /* MWCaptionView.m in Sources */,
+				E356F0EE1BD4ED7A00D5BE07 /* CPActivityDetailMiddleView.m in Sources */,
 				6D2ABFF71BCE582100201A8E /* EMRemarkImageView.m in Sources */,
 				E3E6B88C1BB4F7FA006B4F8A /* FXBlurView.m in Sources */,
 				6D2ABFD01BCE582100201A8E /* DXChatBarMoreView.m in Sources */,

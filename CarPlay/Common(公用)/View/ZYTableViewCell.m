@@ -33,7 +33,7 @@
 {
     UIView *line = [[UIView alloc] init];
     line.height = 0.5;
-    line.backgroundColor = [Tools getColor:@"e6e9ed"];
+    line.backgroundColor = [Tools getColor:@"f7f7f7"];
     [self addSubview:line];
     
     [line mas_makeConstraints:^(MASConstraintMaker *make) {
