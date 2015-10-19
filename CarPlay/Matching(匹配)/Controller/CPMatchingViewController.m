@@ -21,6 +21,7 @@
     NSTimer *takeALookViewTimer;
     NSUInteger takeALookAnimationIndex;
     CPTakeALookViewController *takeALook;
+    OtherMatchingSelectView *matchingSelectView;
     NSInteger index;
 }
 
@@ -123,7 +124,8 @@
     
     UITapGestureRecognizer*tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hidenScrollView)];
     [self.scrollView addGestureRecognizer:tapGesture];
-   
+    matchingSelectView=[UIStoryboard storyboardWithName:@"OtherMatchingSelectView" bundle:nil].instantiateInitialViewController;
+
 }
 
 -(void)animationContent{
@@ -298,32 +300,35 @@
     if (sender.tag!=100) {
         switch (sender.tag) {
             case 1:
-                [OtherMatchingSelectView show:colorRGB];
+//                [OtherMatchingSelectView show:colorRGB];
+                matchingSelectView.view.backgroundColor=[Tools getColor:colorRGB];
+                [self.view addSubview:matchingSelectView.view];
+                [self addChildViewController:matchingSelectView];
                 break;
             case 2:
                 colorRGB=@"5f99c0";
                 type=@"夜宵";
-                [OtherMatchingSelectView show:colorRGB];
+//                [OtherMatchingSelectView show:colorRGB];
                 break;
             case 3:
                 colorRGB=@"fddb64";
                 type=@"唱歌";
-                [OtherMatchingSelectView show:colorRGB];
+//                [OtherMatchingSelectView show:colorRGB];
                 break;
             case 4:
                 colorRGB=@"5adad0";
                 type=@"夜店";
-                [OtherMatchingSelectView show:colorRGB];
+//                [OtherMatchingSelectView show:colorRGB];
                 break;
             case 5:
                 colorRGB=@"cd97dd";
                 type=@"看电影";
-                [OtherMatchingSelectView show:colorRGB];
+//                [OtherMatchingSelectView show:colorRGB];
                 break;
             case 6:
                 colorRGB=@"ea6f6f";
                 type=@"喝咖啡";
-                [OtherMatchingSelectView show:colorRGB];
+//                [OtherMatchingSelectView show:colorRGB];
                 break;
             case 7:
                 colorRGB=@"f48c60";
@@ -333,7 +338,7 @@
             case 8:
                 colorRGB=@"1cc1a0";
                 type=@"喝酒";
-                [OtherMatchingSelectView show:colorRGB];
+//                [OtherMatchingSelectView show:colorRGB];
                 break;
             case 9:
                 colorRGB=@"98d872";
@@ -442,7 +447,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 0;
+    return 2;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
@@ -455,5 +460,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell=[UITableViewCell new];
+    return cell;
 }
 @end

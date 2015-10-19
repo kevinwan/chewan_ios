@@ -47,15 +47,24 @@ static NSString *ID = @"cell";
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"筛选" target:self action:@selector(filter)];
     [self.view addSubview:self.tableView];
     [self tipView];
+    
+    if (CPUnLogin) {
+        [self loadDataWithHeader:nil];
+    }else{
+        [[ZYNotificationCenter rac_addObserverForName:NOTIFICATION_LOGINSUCCESS object:nil] subscribeNext:^(NSNotification *notify) {
+            
+            BOOL loginSuccess = [notify.userInfo[NOTIFICATION_LOGINSUCCESS] boolValue];
+            if (loginSuccess) {
+                [self loadDataWithHeader:nil];
+            }
+        }];
+    }
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
-    if (self.datas.count == 0) {
-         [[CPLoadingView sharedInstance] showLoadingView];
-         [self loadDataWithHeader:nil];
-    }
+    [super viewWillDisappear:animated];
+    [ZYLoadingView dismissLoadingView];
 }
 
 - (void)setUpRefresh
@@ -66,7 +75,6 @@ static NSString *ID = @"cell";
     ZYWeakSelf
     AAPullToRefresh *tv = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionTop actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
-        [self.tableView setContentOffset:CGPointMake(0, -44) animated:YES];
         self.params.ignore = 0;
         [self loadDataWithHeader:v];
     }];
@@ -76,8 +84,7 @@ static NSString *ID = @"cell";
     // bottom
     AAPullToRefresh *bv = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionBottom actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
-        [self.tableView setContentOffset:CGPointMake(0, _tableView.contentSizeHeight + 44 - _tableView.height) animated:YES];
-        
+        [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, self.tableView.contentSizeHeight - self.tableView.height + 44) animated:YES];
         if (self.datas.count >= CPPageNum) {
             self.params.ignore += CPPageNum;
             [self loadDataWithHeader:v];
@@ -141,7 +148,7 @@ static NSString *ID = @"cell";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.datas.count;
+    return self.datas.count > 2?2:0;
 }
 
 -(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
@@ -258,7 +265,6 @@ static NSString *ID = @"cell";
         [ZYNetWorkTool postFileWithUrl:path params:nil files:@[imageFile] success:^(id responseObject) {
             if (CPSuccess) {
                 [self disMiss];
-                [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
                 [self.tableView reloadData];
             }else{
                 [self showError:responseObject[@"errmsg"]];
@@ -438,21 +444,6 @@ static NSString *ID = @"cell";
     }
     return _params;
 }
-
-
-//- (ZYRefreshView *)refreshView
-//{
-//    if (_refreshView == nil) {
-//        _refreshView = [[ZYRefreshView alloc] init];
-//        _refreshView.backgroundColor = [UIColor redColor];
-//        _refreshView.y = 64;
-//        _refreshView.x = 0;
-//        _refreshView.width = ZYScreenWidth;
-//        _refreshView.height = ZYScreenHeight - 64 - 49;
-//        [ZYKeyWindow addSubview:_refreshView];
-//    }
-//    return _refreshView;
-//}
 
 - (CPNoDataTipView *)noDataView
 {    if (_noDataView == nil) {

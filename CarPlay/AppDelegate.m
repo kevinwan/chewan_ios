@@ -254,6 +254,13 @@
     [ZYNetWorkTool postJsonWithUrl:@"user/login" params:paras success:^(id responseObject) {
         if (CPSuccess) {
             CPUser *user = [CPUser objectWithKeyValues:responseObject[@"data"]];
+            if (user.album.count) {
+                
+                [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
+            }else{
+                
+                [ZYUserDefaults setBool:NO forKey:CPHasAlbum];
+            }
             NSString *path=[[NSString alloc]initWithFormat:@"%@.info",[Tools getUserId]];
             [NSKeyedArchiver archiveRootObject:user toFile:path.documentPath];
             if (responseObject[@"data"][@"userId"]) {

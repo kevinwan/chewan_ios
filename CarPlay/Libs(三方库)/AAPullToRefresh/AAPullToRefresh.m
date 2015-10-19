@@ -216,14 +216,23 @@
     }
     
     if (self.position == AAPullToRefreshPositionTop){
-        
-        [self.scrollView setContentOffset:CGPointZero animated:YES];
+        ZYMainThread(^{
+            
+            [self.scrollView setContentOffset:CGPointZero animated:YES];
+        });
     }else if (self.position == AAPullToRefreshPositionLeft){
-        [self.scrollView setContentOffset:CGPointMake(0, self.scrollView.contentOffset.y) animated:YES];
+        ZYMainThread(^{
+            
+            [self.scrollView setContentOffset:CGPointMake(0, self.scrollView.contentOffset.y) animated:YES];
+        });
     }else if (self.position == AAPullToRefreshPositionBottom){
+        
         [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentOffset.x, self.scrollView.contentSize.height - self.scrollView.bounds.size.height) animated:YES];
     }else if (self.position == AAPullToRefreshPositionRight){
-        [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentSizeWidth - self.scrollView.width,self.scrollView.contentOffset.y) animated:YES];
+        ZYMainThread(^{
+            
+            [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentSizeWidth - self.scrollView.width,self.scrollView.contentOffset.y) animated:YES];
+        });
     }
     if (handler) {
         handler();
@@ -233,35 +242,27 @@
 - (void)setScrollViewContentInset:(UIEdgeInsets)contentInset handler:(actionHandler)handler
 {
     if (self.position == AAPullToRefreshPositionTop) {
-        
-        [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentOffsetX, -self.scrollView.contentInsetTop) animated:YES];
+        ZYMainThread(^{
+            
+            [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentOffsetX, -self.scrollView.contentInsetTop) animated:YES];
+        });
     }else if (self.position == AAPullToRefreshPositionLeft){
-        
-        [self.scrollView setContentOffset:CGPointMake(-self.scrollView.contentInsetLeft,self.scrollView.contentOffsetX) animated:YES];
+        ZYMainThread(^{
+            
+            [self.scrollView setContentOffset:CGPointMake(-self.scrollView.contentInsetLeft,self.scrollView.contentOffsetY) animated:YES];
+        });
     }else if (self.position == AAPullToRefreshPositionBottom){
-        
-        [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentSize.height - self.scrollView.bounds.size.height - 44,self.scrollView.contentOffset.x) animated:YES];
+     
     }else if (self.position == AAPullToRefreshPositionRight){
-        
-        [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentSizeWidth - self.scrollView.width - 44,self.scrollView.contentOffsetX) animated:YES];
+        ZYMainThread(^{
+            
+            [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentSizeWidth - self.scrollView.width - 44,self.scrollView.contentOffsetY) animated:YES];
+        });
     }
     if (handler) {
         handler();
     }
-    return;
-    [UIView animateWithDuration:0.3f
-                          delay:0
-                        options:UIViewAnimationOptionAllowUserInteraction |
-     UIViewAnimationOptionCurveEaseOut |
-     UIViewAnimationOptionBeginFromCurrentState
-                     animations:^{
-                         //                         self.scrollView.contentInset = contentInset;
-                         [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentOffset.x, -self.scrollView.contentInset.top)];
-                     }
-                     completion:^(BOOL finished) {
-                         if (handler)
-                             handler();
-                     }];
+    
 }
 #pragma mark - property
 - (void)setShowPullToRefresh:(BOOL)showPullToRefresh

@@ -7,23 +7,25 @@
 //
 
 #import "CPActivityDetailViewController.h"
+#import "CPRecommendModel.h"
+#import "CPActivityDetailHeaderView.h"
+#import "CPActivityDetailFooterView.h"
+#import "CPActivityDetailMiddleView.h"
+#import "CPActivityPartnerCell.h"
 
 @interface CPActivityDetailViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIView *footerView;
-@property (weak, nonatomic) IBOutlet UIView *headerView;
+@property (strong, nonatomic) CPActivityDetailFooterView *footerView;
+@property (strong, nonatomic) CPActivityDetailHeaderView *headerView;
 @property (nonatomic, assign) BOOL open;
+@property (nonatomic, strong) CPRecommendModel *model;
 @end
 
 @implementation CPActivityDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self.view addSubview:self.tableView];
-    
-    self.tableView.frame = self.view.bounds;
-    
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.tableFooterView = self.footerView;
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"laile" action:^{
@@ -32,6 +34,37 @@
         self.footerView.height = 200;
         self.tableView.tableFooterView = self.footerView;
     }];
+    self.title = @"活动详情";
+    [self loadData];
+}
+
+- (void)loadData
+{
+    NSString *url = [NSString stringWithFormat:@"official/activity/%@/info",self.officialActivityId];
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"userId"] = CPUserId;
+    param[@"token"] = CPToken;
+    [ZYNetWorkTool getWithUrl:url params:param success:^(id responseObject) {
+        self.model = [CPRecommendModel objectWithKeyValues:responseObject[@"data"]];
+        [self reloadData];
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
+- (void)reloadData
+{
+    self.headerView.model = self.model;
+    self.tableView.tableHeaderView = self.headerView;
+    [self.tableView reloadData];
+}
+
+- (void)superViewWillRecive:(NSString *)notifyName info:(id)userInfo
+{
+    if ([notifyName isEqualToString:CPActivityDetailOpenPathKey]) {
+        self.open = !self.open;
+        [self.tableView reloadData];
+    }
 }
 
 #pragma mark - delegate & datasource
@@ -40,8 +73,9 @@
     if (section == 1) {
         if (self.open) {
             return 10;
+        }else{
+            return 0;
         }
-        return 0;
     }
     return 10;
 }
@@ -51,70 +85,66 @@
     return 2;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 1) {
+        return 98;
+    }
+    return 0;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        return 110;
+    }else{
+        return 100;
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        cell.textLabel.text = @"fsdakldasfjkladfsj";
-    }
+    CPActivityPartnerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"partCell"];
     return cell;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-    [[btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        NSLog(@"展开.....");
-        self.open = !self.open;
-        [self.tableView reloadData];
-    }];
-
-    return btn;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    
-    return 50;
+    if (section == 1) {
+        return [CPActivityDetailMiddleView activityDetailMiddleView];
+    }else{
+        return nil;
+    }
 }
 
 #pragma mark - lazy
 
-- (UITableView *)tableView
-{
-    if (_tableView == nil) {
-        _tableView = [[UITableView alloc] init];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-    }
-    return _tableView;
-}
-
-- (UIView *)headerView
+- (CPActivityDetailHeaderView *)headerView
 {
     if (_headerView == nil) {
-        _headerView = [[UIView alloc] init];
-        _headerView.backgroundColor = [UIColor redColor];
-        _headerView.width = ZYScreenWidth;
-        
-        UIImageView *logoV = [UIImageView new];
-        logoV.image = [UIImage imageNamed:@"ceo头像"];
-        
+        _headerView =  [CPActivityDetailHeaderView activityDetailHeaderView];
     }
     return _headerView;
 }
 
-- (UIView *)footerView
+- (CPActivityDetailFooterView *)footerView
 {
     if (_footerView == nil) {
-        _footerView = [[UIView alloc] init];
-        _footerView.backgroundColor = [UIColor blueColor];
-        _footerView.height = 100;
+        _footerView = [CPActivityDetailFooterView activityDetailFooterView];
+        [_footerView layoutIfNeeded];
         _footerView.width = ZYScreenWidth;
     }
     return _footerView;
+}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGFloat sectionHeaderHeight = 98;
+    if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
+        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+    }
+    else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
+        scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+    }
 }
 
 @end

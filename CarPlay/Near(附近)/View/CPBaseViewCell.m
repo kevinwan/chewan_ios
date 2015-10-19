@@ -182,12 +182,12 @@
 - (void)setModel:(CPActivityModel *)model
 {
     _model = model;
-    BOOL isHasAlubm = YES;
+    BOOL isHasAlubm = [ZYUserDefaults boolForKey:CPHasAlbum];
     self.sexView.isMan = model.organizer.isMan;
     self.sexView.age = model.organizer.age;
 
     [self.userIconView zy_setImageWithUrl:model.organizer.avatar completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) { self.userIconView.image = [image blurredImageWithRadius:10];
-         if (isHasAlubm) {
+         if (isHasAlubm && CPIsLogin) {
              self.userIconView.image = image;
          }else{
              self.userIconView.image = [image blurredImageWithRadius:10];
@@ -197,6 +197,7 @@
     self.loveBtn.selected = model.organizer.subscribeFlag;
     self.payView.text = model.pay;
     self.sendView.hidden = !model.transfer;
+    [self.addressView setTitle:model.destination[@"street"] forState:UIControlStateNormal];
     if (model.title.length) {
         self.titleLabel.text = model.title;
     }else{
@@ -218,7 +219,7 @@
         self.carView.hidden = YES;
         self.carTypeView.hidden = YES;
     }
-    if (isHasAlubm) {
+    if (isHasAlubm && CPIsLogin) {
         self.tipView.hidden = YES;
     }else{
         self.tipView.hidden = NO;

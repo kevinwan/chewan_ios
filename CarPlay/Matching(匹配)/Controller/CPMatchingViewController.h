@@ -9,10 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "MultiplePulsingHaloLayer.h"
 
-@protocol TestDetegate <NSObject>
-- (void)setAreaArray:(NSArray *)areaList;
-@end
-
 @interface CPMatchingViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIImageView *nowYouWantImg;
