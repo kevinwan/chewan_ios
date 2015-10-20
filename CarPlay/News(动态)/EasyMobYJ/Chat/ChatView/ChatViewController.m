@@ -54,6 +54,7 @@
     NSMutableArray *_messages;
     BOOL _isScrollToBottom;
 }
+@property (nonatomic,strong) NSDictionary *extDic;//用来发消息拓展，头像链接和昵称
 
 @property (nonatomic) BOOL isChatGroup;
 
@@ -157,6 +158,8 @@
 {
     [super viewDidLoad];
     [self registerBecomeActive];
+    //获取头像和昵称
+    self.extDic = [NSDictionary dictionaryWithObjectsAndKeys:[ZYUserDefaults valueForKey:kUserNickName],kUserNickName,[ZYUserDefaults valueForKey:kUserHeadUrl],kUserHeadUrl, nil];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = RGBACOLOR(248, 248, 248, 1);
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
@@ -1727,43 +1730,43 @@
 {
     
 
-    NSDictionary *ext = nil;
+//    NSDictionary *ext = nil;
     EMMessage *tempMessage = [ChatSendHelper sendTextMessageWithString:textMessage
                                                             toUsername:_conversation.chatter
                                                            messageType:[self messageType]
                                                      requireEncryption:NO
-                                                                   ext:ext];
+                                                                   ext:_extDic];
     [self addMessage:tempMessage];
 }
 
 -(void)sendImageMessage:(UIImage *)image
 {
-    NSDictionary *ext = nil;
+//    NSDictionary *ext = nil;
     EMMessage *tempMessage = [ChatSendHelper sendImageMessageWithImage:image
                                                             toUsername:_conversation.chatter
                                                            messageType:[self messageType]
                                                      requireEncryption:NO
-                                                                   ext:ext];
+                                                                   ext:_extDic];
     [self addMessage:tempMessage];
 }
 
 -(void)sendAudioMessage:(EMChatVoice *)voice
 {
-    NSDictionary *ext = nil;
+//    NSDictionary *ext = nil;
     EMMessage *tempMessage = [ChatSendHelper sendVoice:voice
                                             toUsername:_conversation.chatter
                                            messageType:[self messageType]
-                                     requireEncryption:NO ext:ext];
+                                     requireEncryption:NO ext:_extDic];
     [self addMessage:tempMessage];
 }
 
 -(void)sendVideoMessage:(EMChatVideo *)video
 {
-    NSDictionary *ext = nil;
+//    NSDictionary *ext = nil;
     EMMessage *tempMessage = [ChatSendHelper sendVideo:video
                                             toUsername:_conversation.chatter
                                            messageType:[self messageType]
-                                     requireEncryption:NO ext:ext];
+                                     requireEncryption:NO ext:_extDic];
     [self addMessage:tempMessage];
 }
 

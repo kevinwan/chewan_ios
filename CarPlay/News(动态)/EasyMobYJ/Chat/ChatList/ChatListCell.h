@@ -19,7 +19,7 @@
 @property (nonatomic, strong) NSString *detailMsg;
 @property (nonatomic, strong) NSString *time;
 @property (nonatomic, strong) UIImageView *interestIV;
-;
+@property (nonatomic, strong) UIImageView *HeadIV;
 @property (nonatomic) NSInteger unreadCount;
 
 +(CGFloat)tableView:(UITableView *)tableView

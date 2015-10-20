@@ -286,174 +286,193 @@
 }
 
 #pragma mark - private
-
 - (NSMutableArray *)loadDataSource
 {
-
+    NSMutableArray *ret = nil;
     NSArray *conversations = [[EaseMob sharedInstance].chatManager conversations];
-
+    
     NSArray* sorte = [conversations sortedArrayUsingComparator:
-           ^(EMConversation *obj1, EMConversation* obj2){
-               EMMessage *message1 = [obj1 latestMessage];
-               EMMessage *message2 = [obj2 latestMessage];
-               if(message1.timestamp > message2.timestamp) {
-                   return(NSComparisonResult)NSOrderedAscending;
-               }else {
-                   return(NSComparisonResult)NSOrderedDescending;
-               }
-           }];
-    //验证排序问题，把 感兴趣的  放到首位
-//    EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
+                      ^(EMConversation *obj1, EMConversation* obj2){
+                          EMMessage *message1 = [obj1 latestMessage];
+                          EMMessage *message2 = [obj2 latestMessage];
+                          if(message1.timestamp > message2.timestamp) {
+                              return(NSComparisonResult)NSOrderedAscending;
+                          }else {
+                              return(NSComparisonResult)NSOrderedDescending;
+                          }
+                      }];
+    
+    ret = [[NSMutableArray alloc] initWithArray:sorte];
+    return ret;
+}
 
-
-    NSMutableArray * sortArr = [NSMutableArray arrayWithArray:sorte];
-
-//    后续优化算法，暂时这样做先
-        if (sortArr.count == 0) {
-        EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"interestadmin" conversationType:eConversationTypeChat];
-        [sortArr addObject:interestConversation];
-    }
-    //感兴趣的
-    for (int i = 0; i<sortArr.count; i++) {
-        EMConversation *conversation = [sortArr objectAtIndex:i];
-        if ([conversation.chatter isEqualToString:@"interestadmin"])
-        {
-            break;
-        }else if (i == sortArr.count-1)
-        {
-            EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"interestadmin" conversationType:eConversationTypeChat];
-            [sortArr addObject:interestConversation];
-            break;
-        }
-    }
-    //活动动态
-    for (int i = 0; i<sortArr.count; i++) {
-        EMConversation *conversation = [sortArr objectAtIndex:i];
-        if ([conversation.chatter isEqualToString:@"activitystateadmin"])
-        {
-            break;
-        }else if (i == sortArr.count-1)
-        {
-            EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"activitystateadmin" conversationType:eConversationTypeChat];
-            [sortArr addObject:interestConversation];
-            break;
-        }
-    }
-    
-    //最近访客
-    for (int i = 0; i<sortArr.count; i++) {
-        EMConversation *conversation = [sortArr objectAtIndex:i];
-        if ([conversation.chatter isEqualToString:@"userviewadmin"])
-        {
-            break;
-        }else if (i == sortArr.count-1)
-        {
-            EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"userviewadmin" conversationType:eConversationTypeChat];
-            [sortArr addObject:interestConversation];
-            break;
-        }
-    }
-    
-    //谁关注我
-    for (int i = 0; i<sortArr.count; i++) {
-        EMConversation *conversation = [sortArr objectAtIndex:i];
-        if ([conversation.chatter isEqualToString:@"subscribeadmin"])
-        {
-            break;
-        }else if (i == sortArr.count-1)
-        {
-            EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"subscribeadmin" conversationType:eConversationTypeChat];
-            [sortArr addObject:interestConversation];
-            break;
-        }
-    }
-    
-    //车玩官方
-    for (int i = 0; i<sortArr.count; i++) {
-        EMConversation *conversation = [sortArr objectAtIndex:i];
-        if ([conversation.chatter isEqualToString:@"officialadmin"])
-        {
-            break;
-        }else if (i == sortArr.count-1)
-        {
-            EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"officialadmin" conversationType:eConversationTypeChat];
-            [sortArr addObject:interestConversation];
-            break;
-        }
-    }
-
-    
-    
-    
+//- (NSMutableArray *)loadDataSource
+//{
+//
+//    NSArray *conversations = [[EaseMob sharedInstance].chatManager conversations];
+//
+//    NSArray* sorte = [conversations sortedArrayUsingComparator:
+//           ^(EMConversation *obj1, EMConversation* obj2){
+//               EMMessage *message1 = [obj1 latestMessage];
+//               EMMessage *message2 = [obj2 latestMessage];
+//               if(message1.timestamp > message2.timestamp) {
+//                   return(NSComparisonResult)NSOrderedAscending;
+//               }else {
+//                   return(NSComparisonResult)NSOrderedDescending;
+//               }
+//           }];
+//    //验证排序问题，把 感兴趣的  放到首位
+////    EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
+//
+//
+//    NSMutableArray * sortArr = [NSMutableArray arrayWithArray:sorte];
+//
+////    后续优化算法，暂时这样做先
+//        if (sortArr.count == 0) {
+//        EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"interestadmin" conversationType:eConversationTypeChat];
+//        [sortArr addObject:interestConversation];
+//    }
+//    //感兴趣的
+//    for (int i = 0; i<sortArr.count; i++) {
+//        EMConversation *conversation = [sortArr objectAtIndex:i];
+//        if ([conversation.chatter isEqualToString:@"interestadmin"])
+//        {
+//            break;
+//        }else if (i == sortArr.count-1)
+//        {
+//            EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"interestadmin" conversationType:eConversationTypeChat];
+//            [sortArr addObject:interestConversation];
+//            break;
+//        }
+//    }
+//    //活动动态
+//    for (int i = 0; i<sortArr.count; i++) {
+//        EMConversation *conversation = [sortArr objectAtIndex:i];
+//        if ([conversation.chatter isEqualToString:@"activitystateadmin"])
+//        {
+//            break;
+//        }else if (i == sortArr.count-1)
+//        {
+//            EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"activitystateadmin" conversationType:eConversationTypeChat];
+//            [sortArr addObject:interestConversation];
+//            break;
+//        }
+//    }
+//    
+//    //最近访客
+//    for (int i = 0; i<sortArr.count; i++) {
+//        EMConversation *conversation = [sortArr objectAtIndex:i];
+//        if ([conversation.chatter isEqualToString:@"userviewadmin"])
+//        {
+//            break;
+//        }else if (i == sortArr.count-1)
+//        {
+//            EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"userviewadmin" conversationType:eConversationTypeChat];
+//            [sortArr addObject:interestConversation];
+//            break;
+//        }
+//    }
+//    
+//    //谁关注我
+//    for (int i = 0; i<sortArr.count; i++) {
+//        EMConversation *conversation = [sortArr objectAtIndex:i];
+//        if ([conversation.chatter isEqualToString:@"subscribeadmin"])
+//        {
+//            break;
+//        }else if (i == sortArr.count-1)
+//        {
+//            EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"subscribeadmin" conversationType:eConversationTypeChat];
+//            [sortArr addObject:interestConversation];
+//            break;
+//        }
+//    }
+//    
+//    //车玩官方
+//    for (int i = 0; i<sortArr.count; i++) {
+//        EMConversation *conversation = [sortArr objectAtIndex:i];
+//        if ([conversation.chatter isEqualToString:@"officialadmin"])
+//        {
+//            break;
+//        }else if (i == sortArr.count-1)
+//        {
+//            EMConversation *interestConversation = [[EaseMob sharedInstance].chatManager conversationForChatter:@"officialadmin" conversationType:eConversationTypeChat];
+//            [sortArr addObject:interestConversation];
+//            break;
+//        }
+//    }
+//
+//    
+//    
+//    
+////    for (int i = 0; i<sortArr.count; i++)
+////    {
+////        EMConversation *conversation = [sortArr objectAtIndex:i];
+////        if ([conversation.chatter isEqualToString:@"interestadmin"])
+////        {
+////            [sortArr exchangeObjectAtIndex:i withObjectAtIndex:0];
+////        }else if ([conversation.chatter isEqualToString:@"activitystateadmin"])
+////        {
+////            [sortArr exchangeObjectAtIndex:i withObjectAtIndex:1];
+////        }else if ([conversation.chatter isEqualToString:@"userviewadmin"])
+////        {
+////            [sortArr exchangeObjectAtIndex:i withObjectAtIndex:2];
+////        }else if ([conversation.chatter isEqualToString:@"subscribeadmin"])
+////        {
+////            [sortArr exchangeObjectAtIndex:i withObjectAtIndex:3];
+////        }else if ([conversation.chatter isEqualToString:@"officialadmin"])
+////        {
+////            [sortArr exchangeObjectAtIndex:i withObjectAtIndex:4];
+////        }
+////    }
+//    //test
 //    for (int i = 0; i<sortArr.count; i++)
 //    {
 //        EMConversation *conversation = [sortArr objectAtIndex:i];
 //        if ([conversation.chatter isEqualToString:@"interestadmin"])
 //        {
 //            [sortArr exchangeObjectAtIndex:i withObjectAtIndex:0];
-//        }else if ([conversation.chatter isEqualToString:@"activitystateadmin"])
+//        }
+//    }
+//    for (int i = 0; i<sortArr.count; i++)
+//    {
+//        EMConversation *conversation = [sortArr objectAtIndex:i];
+//        if ([conversation.chatter isEqualToString:@"activitystateadmin"])
 //        {
 //            [sortArr exchangeObjectAtIndex:i withObjectAtIndex:1];
-//        }else if ([conversation.chatter isEqualToString:@"userviewadmin"])
+//        }
+//    }
+//
+//    for (int i = 0; i<sortArr.count; i++)
+//    {
+//        EMConversation *conversation = [sortArr objectAtIndex:i];
+//        if ([conversation.chatter isEqualToString:@"userviewadmin"])
 //        {
 //            [sortArr exchangeObjectAtIndex:i withObjectAtIndex:2];
-//        }else if ([conversation.chatter isEqualToString:@"subscribeadmin"])
+//        }
+//    }
+//
+//    for (int i = 0; i<sortArr.count; i++)
+//    {
+//        EMConversation *conversation = [sortArr objectAtIndex:i];
+//        if ([conversation.chatter isEqualToString:@"subscribeadmin"])
 //        {
 //            [sortArr exchangeObjectAtIndex:i withObjectAtIndex:3];
-//        }else if ([conversation.chatter isEqualToString:@"officialadmin"])
+//        }
+//    }
+//
+//    for (int i = 0; i<sortArr.count; i++)
+//    {
+//        EMConversation *conversation = [sortArr objectAtIndex:i];
+//        if ([conversation.chatter isEqualToString:@"officialadmin"])
 //        {
 //            [sortArr exchangeObjectAtIndex:i withObjectAtIndex:4];
 //        }
 //    }
-    //test
-    for (int i = 0; i<sortArr.count; i++)
-    {
-        EMConversation *conversation = [sortArr objectAtIndex:i];
-        if ([conversation.chatter isEqualToString:@"interestadmin"])
-        {
-            [sortArr exchangeObjectAtIndex:i withObjectAtIndex:0];
-        }
-    }
-    for (int i = 0; i<sortArr.count; i++)
-    {
-        EMConversation *conversation = [sortArr objectAtIndex:i];
-        if ([conversation.chatter isEqualToString:@"activitystateadmin"])
-        {
-            [sortArr exchangeObjectAtIndex:i withObjectAtIndex:1];
-        }
-    }
-
-    for (int i = 0; i<sortArr.count; i++)
-    {
-        EMConversation *conversation = [sortArr objectAtIndex:i];
-        if ([conversation.chatter isEqualToString:@"userviewadmin"])
-        {
-            [sortArr exchangeObjectAtIndex:i withObjectAtIndex:2];
-        }
-    }
-
-    for (int i = 0; i<sortArr.count; i++)
-    {
-        EMConversation *conversation = [sortArr objectAtIndex:i];
-        if ([conversation.chatter isEqualToString:@"subscribeadmin"])
-        {
-            [sortArr exchangeObjectAtIndex:i withObjectAtIndex:3];
-        }
-    }
-
-    for (int i = 0; i<sortArr.count; i++)
-    {
-        EMConversation *conversation = [sortArr objectAtIndex:i];
-        if ([conversation.chatter isEqualToString:@"officialadmin"])
-        {
-            [sortArr exchangeObjectAtIndex:i withObjectAtIndex:4];
-        }
-    }
-
-
-    
-    return sortArr;
-}
+//
+//
+//    
+//    return sortArr;
+//}
 
 // 得到最后消息时间
 -(NSString *)lastMessageTimeByConversation:(EMConversation *)conversation
@@ -530,42 +549,41 @@
 
     cell.name = conversation.chatter;
     if (conversation.conversationType == eConversationTypeChat) {
-        switch (indexPath.row) {
-            case 0:
-            {
-                cell.name = @"感兴趣的";
-                cell.placeholderImage = [UIImage imageNamed:@"InterestAdmin"];
-                NSURL *url = [NSURL URLWithString:[conversation.latestMessage.ext valueForKey:@"avatar"]];
-                [cell.interestIV sd_setImageWithURL:url placeholderImage:nil];
+        if ([conversation.chatter isEqualToString:@"interestadmin"]) {
+            cell.name = @"感兴趣的";
+            cell.HeadIV.image = [UIImage imageNamed:@"InterestAdmin"];
+            NSURL *url = [NSURL URLWithString:[conversation.latestMessage.ext valueForKey:@"avatar"]];
+            [cell.interestIV sd_setImageWithURL:url placeholderImage:nil];
+        }else if ([conversation.chatter isEqualToString:@"activitystateadmin"])
+        {
+            cell.name = @"活动动态";
+            cell.HeadIV.image = [UIImage imageNamed:@"ActivityStateAdmin"];
+            
+        }else if ([conversation.chatter isEqualToString:@"userviewadmin"])
+        {
+            cell.name = @"最近访客";
+            cell.HeadIV.image = [UIImage imageNamed:@"UserViewAdmin"];
+            
+        }else if ([conversation.chatter isEqualToString:@"subscribeadmin"])
+        {
+            cell.name = @"谁关注我";
+            cell.HeadIV.image = [UIImage imageNamed:@"SubscribeAdmin"];
+            
+        }else if ([conversation.chatter isEqualToString:@"officialadmin"])
+        {
+            cell.name = @"活动官方";
+            cell.HeadIV.image = [UIImage imageNamed:@"OfficialAdmin"];
 
-                
-            }
-                break;
-            case 1:
-                cell.name = @"活动动态";
-                cell.placeholderImage = [UIImage imageNamed:@"ActivityStateAdmin"];
-                break;
-            case 2:
-                cell.name = @"最近访客";
-                cell.placeholderImage = [UIImage imageNamed:@"UserViewAdmin"];
-                break;
-            case 3:
-                cell.name = @"谁关注我";
-                cell.placeholderImage = [UIImage imageNamed:@"SubscribeAdmin"];
-                break;
-            case 4:
-                cell.name = @"活动官方";
-                cell.placeholderImage = [UIImage imageNamed:@"OfficialAdmin"];
-                break;
-            default:
-                cell.name = [conversation.latestMessage.ext valueForKey:kUserNickName];
-//                cell.placeholderImage = [UIImage imageNamed:@"chatListCellHead.png"];
-                cell.imageURL = [NSURL URLWithString:[conversation.latestMessage.ext valueForKey:kUserHeadUrl]];
-                break;
+        }else{
+            
+            cell.name = [conversation.latestMessage.ext valueForKey:kUserNickName];
+            [cell.HeadIV sd_setImageWithURL:[NSURL URLWithString:[conversation.latestMessage.ext valueForKey:kUserHeadUrl]] placeholderImage:nil];
+
         }
 
+
     }
-    else{
+    else{//群聊
         NSString *imageName = @"groupPublicHeader";
         if (![conversation.ext objectForKey:@"groupSubject"] || ![conversation.ext objectForKey:@"isPublic"])
         {
@@ -592,7 +610,7 @@
     }
     cell.detailMsg = [self subTitleMessageByConversation:conversation];
     
-    if (indexPath.row != 0) {
+    if (![conversation.chatter isEqualToString:@"interestadmin"]) {
         cell.time = [self lastMessageTimeByConversation:conversation];
     }else{
         cell.time = nil;
@@ -643,6 +661,14 @@
     }else {
         chatController = [[ChatViewController alloc] initWithChatter:chatter
                                                     conversationType:conversation.conversationType];
+//        switch (indexPath.row) {
+//            case 0://感兴趣的
+//                
+//                break;
+//                
+//            default:
+//                break;
+//        }
         chatController.title = [conversation.latestMessage.ext valueForKey:kUserNickName];;
     }
     
@@ -651,10 +677,6 @@
 }
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if (indexPath.row>3) {
-//        return YES;
-//    }
-//    return NO;
     return YES;
 }
 
