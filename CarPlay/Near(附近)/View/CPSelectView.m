@@ -9,6 +9,7 @@
 #import "CPSelectView.h"
 #import "CPNoHighLightButton.h"
 
+#define   CPSelectModelFilePath @"selectModel.data".documentPath
 @interface CPSelectView ()
 
 @property (weak, nonatomic) IBOutlet UIButton *confirmBtn;
@@ -18,6 +19,11 @@
 @property (nonatomic, strong) UIButton *lastTypebtn;
 @property (nonatomic, weak) UIButton *lastPaybtn;
 @property (nonatomic, weak) UIButton *lastSexbtn;
+@property (weak, nonatomic) IBOutlet UIView *typeView;
+
+@property (weak, nonatomic) IBOutlet UIView *payView;
+
+@property (weak, nonatomic) IBOutlet UIView *sexView;
 
 @end
 
@@ -27,7 +33,9 @@
 {
     [self.confirmBtn setCornerRadius:20];
     [self.bgView setCornerRadius:10];
-
+    [self.typeView setCornerRadius:3];
+    [self.payView setCornerRadius:3];
+    [self.sexView setCornerRadius:3];
     
     ZYNewButton(closeBtn);
     [closeBtn setImage:[UIImage imageNamed:@"icon_close_shaixuan"] forState:UIControlStateNormal];
@@ -59,12 +67,41 @@
 
 + (void)showWithParams:(ConfirmBtnClick)click
 {
-    
     CPSelectView *view = [[NSBundle mainBundle] loadNibNamed:@"CPSelectView" owner:nil options:nil].lastObject;
+    CPSelectModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:CPSelectModelFilePath];
+    
+    if (model) {
         
-    [view typeBtnClick:(UIButton *)[view viewWithTag:11]];
-    [view payTypeClick:(UIButton *)[view viewWithTag:23]];
-    [view sexBtnClick:(UIButton *)[view viewWithTag:33]];
+        for (UIButton *btn in view.typeView.subviews) {
+            if ([btn.currentTitle isEqualToString:model.type]) {
+                
+                [view typeBtnClick:btn];
+                break;
+            }
+        }
+        for (UIButton *btn in view.payView.subviews) {
+            if ([btn.currentTitle isEqualToString:model.pay]) {
+                
+                [view payTypeClick:btn];
+                break;
+            }
+        }
+        for (UIButton *btn in view.sexView.subviews) {
+            if ([btn.currentTitle isEqualToString:model.sex]) {
+                
+                [view sexBtnClick:btn];
+                break;
+            }
+        }
+        view.transferBtn.selected = model.transfer;
+        
+    }else{
+        
+        [view typeBtnClick:(UIButton *)[view viewWithTag:11]];
+        [view payTypeClick:(UIButton *)[view viewWithTag:23]];
+        [view sexBtnClick:(UIButton *)[view viewWithTag:33]];
+    }
+    
     view.click = click;
     ZYNewButton(cover);
     [cover setBackgroundColor:ZYColor(0, 0, 0, 0.5)];
@@ -93,6 +130,7 @@
     model.sex = self.lastSexbtn.currentTitle;
     model.type = self.lastTypebtn.currentTitle;
     model.transfer = self.transferBtn.isSelected;
+    [NSKeyedArchiver archiveRootObject:model toFile:CPSelectModelFilePath];
     [UIView animateWithDuration:0.25 animations:^{
         self.superview.alpha = 0;
     }completion:^(BOOL finished) {

@@ -35,14 +35,15 @@
 //        city = 南京市,
 //        street = 玄武大道
 //    },
-@property (nonatomic, copy) NSString *activityId;
+@property (nonatomic, copy) NSString *officialActivityId;
 //   covers
 @property (nonatomic, strong) NSArray *covers;
 //    start = 1444652636457,
 @property (nonatomic, assign) long long start;
-
+@property (nonatomic, copy) NSString *startStr;
 //    end = 1444662636453,
 @property (nonatomic, assign) long long end;
+@property (nonatomic, copy) NSString *endStr;
 //    price = 200,
 @property (nonatomic, assign) double price;
 //    subsidyPrice = ,
@@ -65,5 +66,7 @@
 @property (nonatomic, assign) NSUInteger femaleLimit;
 //"femaleNum" : 3,
 @property (nonatomic, assign) NSUInteger femaleNum;
+@property (nonatomic, copy) NSString *extraDesc;
 @property (nonatomic, strong) CPUser *organizer;
+@property (nonatomic, strong) NSArray *members;
 @end

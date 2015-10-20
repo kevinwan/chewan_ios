@@ -17,7 +17,7 @@
 @interface CPRecommendController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) CPNoDataTipView *noDataView;
-@property (nonatomic, strong) NSMutableArray *datas;
+@property (nonatomic, strong) NSMutableArray<CPRecommendModel *> *datas;
 @property (nonatomic, assign) BOOL isHasRefreshHeader;
 @property (nonatomic, assign) NSUInteger ignore;
 @end
@@ -146,6 +146,7 @@ static NSString *ID = @"cell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CPActivityDetailViewController *activityVc = [UIStoryboard storyboardWithName:@"CPActivityDetailViewController" bundle:nil].instantiateInitialViewController;
+    activityVc.officialActivityId = self.datas[indexPath.item].officialActivityId;
     [self.navigationController pushViewController:activityVc animated:YES];
 }
 

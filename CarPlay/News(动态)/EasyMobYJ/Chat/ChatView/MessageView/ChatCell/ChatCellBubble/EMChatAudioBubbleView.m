@@ -65,16 +65,28 @@ NSString *const kRouterEventAudioBubbleTapEventName = @"kRouterEventAudioBubbleT
     [super layoutSubviews];
     
     CGRect frame = _animationImageView.frame;
+    NSInteger time = self.model.time;
+    if (time>60) {
+        self.width = 71+120;
+    }else{
+        self.width = 71+time*2;
+    }
+    //test audio cell的高度
+    self.height = 36;
+
+    
+    
     if (self.model.isSender) {
+        self.x = self.x-self.width+71;
+        self.backgroundColor = [UIColor clearColor];
         frame.origin.x = self.frame.size.width - BUBBLE_ARROW_WIDTH - frame.size.width - BUBBLE_VIEW_PADDING;
         frame.origin.y = self.frame.size.height / 2 - frame.size.height / 2;
         _animationImageView.frame = frame;
         
         frame = _timeLabel.frame;
-        frame.origin.x = _animationImageView.frame.origin.x - ANIMATION_TIME_IMAGEVIEW_PADDING - ANIMATION_TIME_LABEL_WIDHT;
+        frame.origin.x = - ANIMATION_TIME_IMAGEVIEW_PADDING - ANIMATION_TIME_LABEL_WIDHT;
         frame.origin.y = _animationImageView.center.y - frame.size.height / 2;
         _timeLabel.frame = frame;
-
     }
     else {
         _animationImageView.image = [UIImage imageNamed:RECEIVER_ANIMATION_IMAGEVIEW_IMAGE_DEFAULT];
@@ -84,14 +96,22 @@ NSString *const kRouterEventAudioBubbleTapEventName = @"kRouterEventAudioBubbleT
         _animationImageView.frame = frame;
         
         frame = _timeLabel.frame;
-        frame.origin.x = ANIMATION_TIME_IMAGEVIEW_PADDING + BUBBLE_ARROW_WIDTH + _animationImageView.frame.size.width + _animationImageView.frame.origin.x;
+//        frame.origin.x = ANIMATION_TIME_IMAGEVIEW_PADDING + BUBBLE_ARROW_WIDTH + _animationImageView.frame.size.width + _animationImageView.frame.origin.x;
+        frame.origin.x = self.width+ANIMATION_TIME_IMAGEVIEW_PADDING;
         frame.origin.y = _animationImageView.center.y - frame.size.height / 2;
         _timeLabel.frame = frame;
-        frame.origin.x += frame.size.width - _isReadView.frame.size.width / 2;
+//        frame.origin.x += frame.size.width - _isReadView.frame.size.width / 2;
+        frame.origin.x = self.width-_isReadView.frame.size.width / 2;
         frame.origin.y = - _isReadView.frame.size.height / 2;
         frame.size = _isReadView.frame.size;
         _isReadView.frame = frame;
+        
+        //
+
+        
+        
     }
+
 }
 
 #pragma mark - setter
@@ -119,6 +139,7 @@ NSString *const kRouterEventAudioBubbleTapEventName = @"kRouterEventAudioBubbleT
         _animationImageView.image = [UIImage imageNamed:RECEIVER_ANIMATION_IMAGEVIEW_IMAGE_DEFAULT];
         _animationImageView.animationImages = _recevierAnimationImages;
     }
+ 
     
     if (self.model.isPlaying)
     {

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CPActivityDetailViewController : UIViewController
-
+@property (nonatomic, copy) NSString *officialActivityId;
 @end

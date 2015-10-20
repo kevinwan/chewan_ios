@@ -7,23 +7,29 @@
 //
 
 #import "CPActivityDetailViewController.h"
+#import "CPRecommendModel.h"
+#import "CPActivityDetailHeaderView.h"
+#import "CPActivityDetailFooterView.h"
+#import "CPActivityDetailMiddleView.h"
+#import "CPActivityPartnerCell.h"
+#import "CPActivityPathCell.h"
 
 @interface CPActivityDetailViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIView *footerView;
-@property (weak, nonatomic) IBOutlet UIView *headerView;
-@property (nonatomic, assign) BOOL open;
+@property (strong, nonatomic) CPActivityDetailFooterView *footerView;
+@property (strong, nonatomic) CPActivityDetailHeaderView *headerView;
+@property (nonatomic, assign) BOOL isActivityPathOpen;
+@property (nonatomic, strong) CPRecommendModel *model;
+@property (nonatomic, assign) CGFloat activityPathHeight;
+@property (nonatomic, strong) NSMutableArray *datas;
 @end
 
+static NSString *ID = @"partCell";
 @implementation CPActivityDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self.view addSubview:self.tableView];
-    
-    self.tableView.frame = self.view.bounds;
-    
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.tableFooterView = self.footerView;
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"laile" action:^{
@@ -32,89 +38,99 @@
         self.footerView.height = 200;
         self.tableView.tableFooterView = self.footerView;
     }];
+    self.title = @"活动详情";
+    [self loadData];
+}
+
+- (void)loadData
+{
+    NSString *url = [NSString stringWithFormat:@"official/activity/%@/info",self.officialActivityId];
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"userId"] = CPUserId;
+    param[@"token"] = CPToken;
+    [ZYNetWorkTool getWithUrl:url params:param success:^(id responseObject) {
+        self.model = [CPRecommendModel objectWithKeyValues:responseObject[@"data"]];
+        [self reloadData];
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
+- (void)reloadData
+{
+    self.headerView.model = self.model;
+    self.tableView.tableHeaderView = self.headerView;
+    self.footerView.model = self.model;
+    [self.tableView reloadData];
+}
+
+- (void)superViewWillRecive:(NSString *)notifyName info:(id)userInfo
+{
+    if ([notifyName isEqualToString:CPActivityDetailOpenPathKey]) {
+        self.isActivityPathOpen = !self.isActivityPathOpen;
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
+    }else if ([notifyName isEqualToString:CPActivityDetailHeaderDetailOpenKey]){
+        self.tableView.tableHeaderView = self.headerView;
+    }else if ([notifyName isEqualToString:CPActivityFooterViewOpenKey]){
+        self.tableView.tableFooterView = self.footerView;
+    }
 }
 
 #pragma mark - delegate & datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 1) {
-        if (self.open) {
-            return 10;
-        }
-        return 0;
-    }
     return 10;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 2;
+    return 110;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        cell.textLabel.text = @"fsdakldasfjkladfsj";
-    }
-    return cell;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    if (indexPath.section == 0) {
     
-    [[btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        NSLog(@"展开.....");
-        self.open = !self.open;
-        [self.tableView reloadData];
-    }];
-
-    return btn;
+        CPActivityPartnerCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        return cell;
+//    }else{
+//        
+//        CPActivityPathCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+//        if (cell == nil) {
+//            cell = [[CPActivityPathCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+//        }
+//        
+//        cell.activityPathText = @"啊看来的时间考虑的是否健康来打发时间来看打发时间来看的方式了肯定撒风景拉斯加福利卡的是减肥了打扫房间大放送骄傲的发生了空间的罚款了巨大是法律进阿飞的说了句反倒是徕卡的时间来看打发时间来看打发时间看来大家看了都放假快乐的方式健康的法律纠纷的刻录机发哦ijfaifjifdjiadf";
+//        return cell;
+//    }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    
-    return 50;
-}
 
 #pragma mark - lazy
 
-- (UITableView *)tableView
-{
-    if (_tableView == nil) {
-        _tableView = [[UITableView alloc] init];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-    }
-    return _tableView;
-}
-
-- (UIView *)headerView
+- (CPActivityDetailHeaderView *)headerView
 {
     if (_headerView == nil) {
-        _headerView = [[UIView alloc] init];
-        _headerView.backgroundColor = [UIColor redColor];
-        _headerView.width = ZYScreenWidth;
-        
-        UIImageView *logoV = [UIImageView new];
-        logoV.image = [UIImage imageNamed:@"ceo头像"];
-        
+        _headerView =  [CPActivityDetailHeaderView activityDetailHeaderView];
     }
     return _headerView;
 }
 
-- (UIView *)footerView
+- (CPActivityDetailFooterView *)footerView
 {
     if (_footerView == nil) {
-        _footerView = [[UIView alloc] init];
-        _footerView.backgroundColor = [UIColor blueColor];
-        _footerView.height = 100;
-        _footerView.width = ZYScreenWidth;
+        _footerView = [CPActivityDetailFooterView activityDetailFooterView];
     }
     return _footerView;
+}
+
+#pragma mark - lazy
+- (NSMutableArray *)datas
+{
+    if (_datas == nil) {
+        _datas = [[NSMutableArray alloc] init];
+    }
+    return _datas;
 }
 
 @end
