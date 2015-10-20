@@ -81,16 +81,19 @@
 		6BDA2C851BD4DABA0032FFF1 /* CPNameIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDA2C841BD4DABA0032FFF1 /* CPNameIndex.m */; settings = {ASSET_TAGS = (); }; };
 		6BDA2C871BD511F10032FFF1 /* OtherMatchingSelectView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BDA2C861BD511F10032FFF1 /* OtherMatchingSelectView.storyboard */; settings = {ASSET_TAGS = (); }; };
 		6BDA2C8A1BD514780032FFF1 /* OtherMatchingSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDA2C891BD514780032FFF1 /* OtherMatchingSelectView.m */; settings = {ASSET_TAGS = (); }; };
+		6BDA2C901BD6102C0032FFF1 /* CPEditInfoViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BDA2C8F1BD6102C0032FFF1 /* CPEditInfoViewController.storyboard */; settings = {ASSET_TAGS = (); }; };
+		6BDA2C931BD610550032FFF1 /* CPEditInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDA2C921BD610550032FFF1 /* CPEditInfoViewController.m */; settings = {ASSET_TAGS = (); }; };
+		6BDA2C9D1BD644870032FFF1 /* CPEditUsername.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDA2C9C1BD644870032FFF1 /* CPEditUsername.m */; settings = {ASSET_TAGS = (); }; };
+		6BDA2C9F1BD644990032FFF1 /* CPEditUsername.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BDA2C9E1BD644990032FFF1 /* CPEditUsername.storyboard */; settings = {ASSET_TAGS = (); }; };
+		6BDA2CA11BD66E970032FFF1 /* MatchingSelectView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BDA2CA01BD66E970032FFF1 /* MatchingSelectView.storyboard */; settings = {ASSET_TAGS = (); }; };
+		6BDA2CA41BD670660032FFF1 /* MatchingSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDA2CA31BD670660032FFF1 /* MatchingSelectView.m */; settings = {ASSET_TAGS = (); }; };
 		6BE2E6121BC67C8C00D1D928 /* CPNPSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2E6111BC67C8C00D1D928 /* CPNPSButton.m */; settings = {ASSET_TAGS = (); }; };
 		6BE2E61A1BC67CB000D1D928 /* CPMatching.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BE2E6131BC67CB000D1D928 /* CPMatching.storyboard */; settings = {ASSET_TAGS = (); }; };
 		6BE2E61B1BC67CB000D1D928 /* CPMatchingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2E6151BC67CB000D1D928 /* CPMatchingViewController.m */; settings = {ASSET_TAGS = (); }; };
 		6BE2E61C1BC67CB000D1D928 /* CPTakeALook.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BE2E6171BC67CB000D1D928 /* CPTakeALook.storyboard */; settings = {ASSET_TAGS = (); }; };
 		6BE2E61D1BC67CB000D1D928 /* CPTakeALookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2E6191BC67CB000D1D928 /* CPTakeALookViewController.m */; settings = {ASSET_TAGS = (); }; };
-		6BF14C301BD0AB12008D2E74 /* MatchingSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BF14C2F1BD0AB12008D2E74 /* MatchingSelectView.xib */; settings = {ASSET_TAGS = (); }; };
-		6BF14C331BD0CB32008D2E74 /* MatchingSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF14C321BD0CB32008D2E74 /* MatchingSelectView.m */; settings = {ASSET_TAGS = (); }; };
 		6BF14C371BD125DF008D2E74 /* ExerciseMatchingSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BF14C351BD125DF008D2E74 /* ExerciseMatchingSelectView.xib */; settings = {ASSET_TAGS = (); }; };
 		6BF14C381BD125DF008D2E74 /* ExerciseMatchingSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF14C361BD125DF008D2E74 /* ExerciseMatchingSelectView.m */; settings = {ASSET_TAGS = (); }; };
-		6BF14C3D1BD12671008D2E74 /* OtherMatchingSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BF14C3A1BD12671008D2E74 /* OtherMatchingSelectView.xib */; settings = {ASSET_TAGS = (); }; };
 		6BF14C431BD23331008D2E74 /* CPExerciseMatchingSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF14C421BD23331008D2E74 /* CPExerciseMatchingSelectButton.m */; settings = {ASSET_TAGS = (); }; };
 		6D2ABF851BCE582100201A8E /* EMAudioPlayerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2ABE4B1BCE582100201A8E /* EMAudioPlayerUtil.m */; settings = {ASSET_TAGS = (); }; };
 		6D2ABF861BCE582100201A8E /* EMAudioRecorderUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2ABE4D1BCE582100201A8E /* EMAudioRecorderUtil.m */; settings = {ASSET_TAGS = (); }; };
@@ -676,6 +679,15 @@
 		6BDA2C861BD511F10032FFF1 /* OtherMatchingSelectView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OtherMatchingSelectView.storyboard; sourceTree = "<group>"; };
 		6BDA2C881BD514780032FFF1 /* OtherMatchingSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherMatchingSelectView.h; sourceTree = "<group>"; };
 		6BDA2C891BD514780032FFF1 /* OtherMatchingSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherMatchingSelectView.m; sourceTree = "<group>"; };
+		6BDA2C8F1BD6102C0032FFF1 /* CPEditInfoViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPEditInfoViewController.storyboard; sourceTree = "<group>"; };
+		6BDA2C911BD610550032FFF1 /* CPEditInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPEditInfoViewController.h; sourceTree = "<group>"; };
+		6BDA2C921BD610550032FFF1 /* CPEditInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPEditInfoViewController.m; sourceTree = "<group>"; };
+		6BDA2C9B1BD644870032FFF1 /* CPEditUsername.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPEditUsername.h; sourceTree = "<group>"; };
+		6BDA2C9C1BD644870032FFF1 /* CPEditUsername.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPEditUsername.m; sourceTree = "<group>"; };
+		6BDA2C9E1BD644990032FFF1 /* CPEditUsername.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPEditUsername.storyboard; sourceTree = "<group>"; };
+		6BDA2CA01BD66E970032FFF1 /* MatchingSelectView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MatchingSelectView.storyboard; sourceTree = "<group>"; };
+		6BDA2CA21BD670660032FFF1 /* MatchingSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchingSelectView.h; sourceTree = "<group>"; };
+		6BDA2CA31BD670660032FFF1 /* MatchingSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchingSelectView.m; sourceTree = "<group>"; };
 		6BE2E6101BC67C8C00D1D928 /* CPNPSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNPSButton.h; sourceTree = "<group>"; };
 		6BE2E6111BC67C8C00D1D928 /* CPNPSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNPSButton.m; sourceTree = "<group>"; };
 		6BE2E6131BC67CB000D1D928 /* CPMatching.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMatching.storyboard; sourceTree = "<group>"; };
@@ -684,13 +696,9 @@
 		6BE2E6171BC67CB000D1D928 /* CPTakeALook.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPTakeALook.storyboard; sourceTree = "<group>"; };
 		6BE2E6181BC67CB000D1D928 /* CPTakeALookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTakeALookViewController.h; sourceTree = "<group>"; };
 		6BE2E6191BC67CB000D1D928 /* CPTakeALookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTakeALookViewController.m; sourceTree = "<group>"; };
-		6BF14C2F1BD0AB12008D2E74 /* MatchingSelectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchingSelectView.xib; sourceTree = "<group>"; };
-		6BF14C311BD0CB32008D2E74 /* MatchingSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchingSelectView.h; sourceTree = "<group>"; };
-		6BF14C321BD0CB32008D2E74 /* MatchingSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchingSelectView.m; sourceTree = "<group>"; };
 		6BF14C341BD125DF008D2E74 /* ExerciseMatchingSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseMatchingSelectView.h; sourceTree = "<group>"; };
 		6BF14C351BD125DF008D2E74 /* ExerciseMatchingSelectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExerciseMatchingSelectView.xib; sourceTree = "<group>"; };
 		6BF14C361BD125DF008D2E74 /* ExerciseMatchingSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseMatchingSelectView.m; sourceTree = "<group>"; };
-		6BF14C3A1BD12671008D2E74 /* OtherMatchingSelectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OtherMatchingSelectView.xib; sourceTree = "<group>"; };
 		6BF14C411BD23331008D2E74 /* CPExerciseMatchingSelectButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPExerciseMatchingSelectButton.h; sourceTree = "<group>"; };
 		6BF14C421BD23331008D2E74 /* CPExerciseMatchingSelectButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPExerciseMatchingSelectButton.m; sourceTree = "<group>"; };
 		6D2ABE461BCE582100201A8E /* EMCDDeviceManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCDDeviceManagerDelegate.h; sourceTree = "<group>"; };
@@ -1751,6 +1759,27 @@
 				6BCFFBB71BBA456900C082B2 /* CPTopButton.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		6BDA2C8B1BD610080032FFF1 /* CPEditInfo(编辑资料) */ = {
+			isa = PBXGroup;
+			children = (
+				6BDA2C9A1BD6446E0032FFF1 /* CPEditUsername */,
+				6BDA2C911BD610550032FFF1 /* CPEditInfoViewController.h */,
+				6BDA2C921BD610550032FFF1 /* CPEditInfoViewController.m */,
+				6BDA2C8F1BD6102C0032FFF1 /* CPEditInfoViewController.storyboard */,
+			);
+			path = "CPEditInfo(编辑资料)";
+			sourceTree = "<group>";
+		};
+		6BDA2C9A1BD6446E0032FFF1 /* CPEditUsername */ = {
+			isa = PBXGroup;
+			children = (
+				6BDA2C9B1BD644870032FFF1 /* CPEditUsername.h */,
+				6BDA2C9C1BD644870032FFF1 /* CPEditUsername.m */,
+				6BDA2C9E1BD644990032FFF1 /* CPEditUsername.storyboard */,
+			);
+			path = CPEditUsername;
 			sourceTree = "<group>";
 		};
 		6BE2E60F1BC67C8C00D1D928 /* CPNPSButton(文字图片垂直排列) */ = {
@@ -3256,15 +3285,14 @@
 				6BF14C341BD125DF008D2E74 /* ExerciseMatchingSelectView.h */,
 				6BF14C361BD125DF008D2E74 /* ExerciseMatchingSelectView.m */,
 				6BF14C351BD125DF008D2E74 /* ExerciseMatchingSelectView.xib */,
-				6BF14C311BD0CB32008D2E74 /* MatchingSelectView.h */,
-				6BF14C321BD0CB32008D2E74 /* MatchingSelectView.m */,
-				6BF14C2F1BD0AB12008D2E74 /* MatchingSelectView.xib */,
+				6BDA2CA21BD670660032FFF1 /* MatchingSelectView.h */,
+				6BDA2CA31BD670660032FFF1 /* MatchingSelectView.m */,
+				6BDA2CA01BD66E970032FFF1 /* MatchingSelectView.storyboard */,
 				6BDA2C881BD514780032FFF1 /* OtherMatchingSelectView.h */,
 				6BDA2C891BD514780032FFF1 /* OtherMatchingSelectView.m */,
 				6BDA2C861BD511F10032FFF1 /* OtherMatchingSelectView.storyboard */,
 				6BF14C411BD23331008D2E74 /* CPExerciseMatchingSelectButton.h */,
 				6BF14C421BD23331008D2E74 /* CPExerciseMatchingSelectButton.m */,
-				6BF14C3A1BD12671008D2E74 /* OtherMatchingSelectView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3272,6 +3300,7 @@
 		E3A471051BB3A85300973197 /* My(我的) */ = {
 			isa = PBXGroup;
 			children = (
+				6BDA2C8B1BD610080032FFF1 /* CPEditInfo(编辑资料) */,
 				6B364CB61BCF7EB5005A4AF9 /* CPAvatarAuthentication */,
 				6B364C8A1BCF43B8005A4AF9 /* CPSetting */,
 				6B1387CC1BCD0A6C00FAC462 /* CarOwnersCertification */,
@@ -3828,7 +3857,7 @@
 				6D2AC14B1BCE5A5100201A8E /* chatBar_more_locationSelected@2x.png in Resources */,
 				6D2AC0EF1BCE5A5100201A8E /* VoiceSearchFeedback010@2x.png in Resources */,
 				6D2AC1781BCE5A5100201A8E /* group_participant_addHL@2x.png in Resources */,
-				6BF14C3D1BD12671008D2E74 /* OtherMatchingSelectView.xib in Resources */,
+				6BDA2C901BD6102C0032FFF1 /* CPEditInfoViewController.storyboard in Resources */,
 				6D2AC16E1BCE5A5100201A8E /* back@2x.png in Resources */,
 				6BE2E61C1BC67CB000D1D928 /* CPTakeALook.storyboard in Resources */,
 				E37C10B41BBB79E700E1A6A2 /* CPMyVisitorViewController.storyboard in Resources */,
@@ -3914,6 +3943,7 @@
 				6D2AD8CD1BCF72A30099CFD7 /* InterestAdmin@2x.png in Resources */,
 				6D2AD8D31BCF72A30099CFD7 /* UserViewAdmin@2x.png in Resources */,
 				6D2AC10F1BCE5A5100201A8E /* chatBar_more_card@2x.png in Resources */,
+				6BDA2CA11BD66E970032FFF1 /* MatchingSelectView.storyboard in Resources */,
 				6D2AD8D01BCF72A30099CFD7 /* OfficialAdmin@3x.png in Resources */,
 				6D2AC0F61BCE5A5100201A8E /* VoiceSearchFeedback014.png in Resources */,
 				6D2AC13D1BCE5A5100201A8E /* chatBar_colorMore_locationSelected@2x.png in Resources */,
@@ -3972,7 +4002,6 @@
 				6D2AC15B1BCE5A5100201A8E /* chat_receiver_bg.png in Resources */,
 				6D2AC12B1BCE5A5100201A8E /* chatBar_keyboardSelected@2x.png in Resources */,
 				6B364CA11BCF442E005A4AF9 /* CPMyBaseCell.xib in Resources */,
-				6BF14C301BD0AB12008D2E74 /* MatchingSelectView.xib in Resources */,
 				6D2AC1421BCE5A5100201A8E /* chatBar_colorMore_videoCallSelected@2x.png in Resources */,
 				6D2AC0F91BCE5A5100201A8E /* VoiceSearchFeedback015@2x.png in Resources */,
 				6B364CA71BCF4BA8005A4AF9 /* CPSetting.storyboard in Resources */,
@@ -3984,6 +4013,7 @@
 				6BF14C371BD125DF008D2E74 /* ExerciseMatchingSelectView.xib in Resources */,
 				6B364C971BCF43B8005A4AF9 /* CPAbout.storyboard in Resources */,
 				6D2AC1701BCE5A5100201A8E /* group_detail@2x.png in Resources */,
+				6BDA2C9F1BD644990032FFF1 /* CPEditUsername.storyboard in Resources */,
 				6D2AC1851BCE5A5100201A8E /* tabbar_setting.png in Resources */,
 				6D2AC1061BCE5A5100201A8E /* call_out_h.png in Resources */,
 				E3E6B8921BB4FD54006B4F8A /* CPLoginViewController.storyboard in Resources */,
@@ -4083,7 +4113,6 @@
 				E359EDBD1BCF75C20004B17D /* ZYImageVIew.m in Sources */,
 				6B153EFC1BB5692500560935 /* CPMyViewController.m in Sources */,
 				6D2ABFDB1BCE582100201A8E /* MessageModel.m in Sources */,
-				6BF14C331BD0CB32008D2E74 /* MatchingSelectView.m in Sources */,
 				6B906F7D1BC7C98B0048A806 /* ZHAppDelegate.m in Sources */,
 				6D2ABFE41BCE582100201A8E /* GroupSettingViewController.m in Sources */,
 				6B364CB91BCF7ED0005A4AF9 /* CPAvatarAuthenticationController.m in Sources */,
@@ -4101,6 +4130,7 @@
 				E3E6B8951BB514A2006B4F8A /* AppDelegate.m in Sources */,
 				6D2ABFE31BCE582100201A8E /* GroupListViewController.m in Sources */,
 				6D2ABFA31BCE582100201A8E /* UIButton+EMWebCache.m in Sources */,
+				6BDA2C9D1BD644870032FFF1 /* CPEditUsername.m in Sources */,
 				6D2ABFAD1BCE582100201A8E /* PSTCollectionViewController.m in Sources */,
 				E3A471801BB3A85300973197 /* NSTimer+ZY.m in Sources */,
 				6D2ABF851BCE582100201A8E /* EMAudioPlayerUtil.m in Sources */,
@@ -4124,6 +4154,7 @@
 				6B906F7E1BC7C98B0048A806 /* ZHPickView.m in Sources */,
 				6B364CA51BCF4748005A4AF9 /* UserProfileViewController.m in Sources */,
 				6D2ABFB41BCE582100201A8E /* PSTGridLayoutItem.m in Sources */,
+				6BDA2C931BD610550032FFF1 /* CPEditInfoViewController.m in Sources */,
 				E31B13401BB9312D00B51696 /* NSDate+Extend.m in Sources */,
 				6D2ABFE11BCE582100201A8E /* CreateGroupViewController.m in Sources */,
 				6D2ABFB51BCE582100201A8E /* PSTGridLayoutRow.m in Sources */,
@@ -4217,6 +4248,7 @@
 				6D2ABFCF1BCE582100201A8E /* FacialView.m in Sources */,
 				6D2ABF921BCE582100201A8E /* MWGridCell.m in Sources */,
 				E31B134E1BB9312D00B51696 /* UIWindow+Launch.m in Sources */,
+				6BDA2CA41BD670660032FFF1 /* MatchingSelectView.m in Sources */,
 				6D2ABFE91BCE582100201A8E /* ChatroomListViewController.m in Sources */,
 				E31B134C1BB9312D00B51696 /* UITableViewCell+Extend.m in Sources */,
 				E32B5DDF1BCE41B50057FD71 /* ZYProgressView.m in Sources */,

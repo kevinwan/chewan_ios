@@ -19,6 +19,7 @@
 #import "CPSettingController.h"
 #import "CPCarOwnersCertificationController.h"
 #import "CPAvatarAuthenticationController.h"
+#import "CPEditInfoViewController.h"
 
 @interface CPMyViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate, UzysAssetsPickerControllerDelegate, UIAlertViewDelegate,UINavigationControllerDelegate>
 {
@@ -145,7 +146,8 @@
 
 //完善
 - (IBAction)improveBtnClick:(id)sender {
-    
+    CPEditInfoViewController *editInfo=[UIStoryboard storyboardWithName:@"CPEditInfoViewController" bundle:nil].instantiateInitialViewController;
+    [self.navigationController pushViewController:editInfo animated:YES];
 }
 
 //我的活动

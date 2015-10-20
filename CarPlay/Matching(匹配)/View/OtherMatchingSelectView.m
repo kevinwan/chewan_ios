@@ -8,6 +8,7 @@
 
 #import "OtherMatchingSelectView.h"
 #import "CPNameIndex.h"
+#import "CPpinyin.h"
 
 @interface OtherMatchingSelectView ()
 
@@ -38,7 +39,7 @@
     [self.selectPlace setTitleEdgeInsets:UIEdgeInsetsMake(0, -self.selectPlace.imageView.size.width, 0, self.selectPlace.imageView.size.width)];
     [self.selectPlace setImageEdgeInsets:UIEdgeInsetsMake(0, self.selectPlace.titleLabel.bounds.size.width, 0, -self.selectPlace.titleLabel.bounds.size.width)];
     self.areaList=[[NSMutableArray alloc]init];
-//    [self addMJindex];
+    [self addMJindex];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -140,9 +141,12 @@
     [ZYNetWorkTool getWithUrl:path params:nil success:^(id responseObject) {
         if (CPSuccess) {
             NSLog(@"%@",responseObject);
-            _areaListBeforeSort=responseObject[@"data"];
-            [self reloadData];
-            //            [_addressTableView reloadData];
+            [_areaListBeforeSort removeAllObjects];
+            _areaListBeforeSort=[[NSMutableArray alloc]initWithArray:responseObject[@"data"]];
+            if ([_areaListBeforeSort count]>0) {
+                [self reloadData];
+                [_addressTableView reloadData];
+            }
         }else{
             
         }
@@ -161,6 +165,7 @@
     for (int i = 0; i<[_areaListBeforeSort count]; i++) {
         CPNameIndex *item = [[CPNameIndex alloc] init];
         item._lastName = [_areaListBeforeSort objectAtIndex:i][@"name"];
+        item._code=[_areaListBeforeSort objectAtIndex:i][@"code"];
         item._originIndex = i;
         [temp addObject:item];
     }
@@ -186,11 +191,16 @@
     for (CPNameIndex *item in temp) {
         [(NSMutableArray *)[sectionArrays objectAtIndex:item._sectionNum] addObject:item];
     }
-    //进行排序后，加入到数据源中
+    //进行排序后，加入到数据源中  先清空原来数据
+    [self.areaList removeAllObjects];
     for (NSMutableArray *sectionArray in sectionArrays) {
         NSArray *sortedSection = [theCollation sortedArrayFromArray:sectionArray collationStringSelector:@selector(getFirstName)]; //按firstName进行排序
-        [self.areaList addObject:sortedSection];//这里friendsList是自己定义的列表数据源
+        if ([sortedSection count]>0) {
+            [self.areaList addObject:sortedSection];//这里friendsList是自己定义的列表数据源
+        }
     }
+    
+    
     [self.addressTableView reloadData];
     [self.indexView refreshIndexItems];
 }
@@ -201,55 +211,36 @@
 - (NSArray *)sectionIndexTitlesForMJNIndexView:(MJNIndexView *)indexView {
     
     NSMutableArray * existTitles = [NSMutableArray array];
-    NSArray * allTitles = [[UILocalizedIndexedCollation currentCollation]sectionTitles];
-    //section数组为空的title过滤掉，不显示
-    for (int i=0; i<[allTitles count]; i++) {
-        if ([self.areaList count] >i && [[self.areaList objectAtIndex:i] count] > 0) {
-            [existTitles addObject:[allTitles objectAtIndex:i]];
-        }
+    for (NSArray *nameIndex in self.areaList) {
+        CPNameIndex *n = nameIndex.firstObject;
+        char c = pinyinFirstLetter([n._lastName characterAtIndex:0]);
+        NSString *s = [NSString stringWithFormat:@"%c",c-32];
+        [existTitles addObject:s];
+        
     }
     return existTitles;
 }
 
 - (void)sectionForSectionMJNIndexTitle:(NSString *)title atIndex:(NSInteger)index
 {
-    NSLog(@"%zd----",index);
-    
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//    
-//            [_addressTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:index] atScrollPosition:UITableViewScrollPositionNone animated:YES];
-//        });
+
         if (self.areaList.count > 0) {
             NSIndexPath *scrollIndexPath =  [NSIndexPath indexPathForRow:0 inSection:index];
-    //        NSLog(@"%@",scrollIndexPath);
-    //        NSLog(@"%ld",(long)index);
+            NSLog(@"%@",title);
             if (scrollIndexPath) {
                 [_addressTableView scrollToRowAtIndexPath:scrollIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
             }
         }
 }
-//
--(NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView{
-    NSMutableArray * existTitles = [NSMutableArray array];
-    NSArray * allTitles = [[UILocalizedIndexedCollation currentCollation]sectionTitles];
-    //section数组为空的title过滤掉，不显示
-    for (int i=0; i<[allTitles count]; i++) {
-        if ([self.areaList count] >i && [[self.areaList objectAtIndex:i] count] > 0) {
-            [existTitles addObject:[allTitles objectAtIndex:i]];
-        }
-    }
-    return existTitles;
-}
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [self.areaList count];
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if ([[self.areaList objectAtIndex:section] count] > 0) {
-        return [[[UILocalizedIndexedCollation currentCollation] sectionTitles] objectAtIndex:section];
-    }
-    return nil;
+    CPNameIndex *n = [self.areaList[section] firstObject];
+    char c = pinyinFirstLetter([n._lastName characterAtIndex:0]);
+    NSString *s = [NSString stringWithFormat:@"%c",c-32];
+    return s;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
@@ -272,15 +263,20 @@
     
     cell.textLabel.text = [NSString stringWithFormat:@"%@",((CPNameIndex*)[[self.areaList objectAtIndex:indexPath.section] objectAtIndex:indexPath.row])._lastName];
     cell.textLabel.font = [UIFont systemFontOfSize:10.0];
-    cell.textLabel.textColor=[Tools getColor:@"74ced6"];
+    cell.textLabel.textColor=[Tools getColor:@"666666"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.accessoryType = UITableViewCellAccessoryNone;
     
     return cell;
 }
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    NSLog(@"响应了");
+    NSString *code=[NSString stringWithFormat:@"%@",((CPNameIndex*)[[self.areaList objectAtIndex:indexPath.section] objectAtIndex:indexPath.row])._code];
+    if ([code length]<10) {
+        _parentId=[code intValue];
+        [self getArea];
+    }
 }
 
 @end
