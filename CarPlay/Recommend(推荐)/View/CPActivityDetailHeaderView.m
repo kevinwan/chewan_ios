@@ -45,6 +45,7 @@
 
 - (void)awakeFromNib
 {
+    [self.iconView setCornerRadius:15];
     self.titleLabel.preferredMaxLayoutWidth = ZYScreenWidth - 20;
     self.descLabel.preferredMaxLayoutWidth = ZYScreenWidth - 20;
 }
@@ -52,6 +53,9 @@
 -  (void)setModel:(CPRecommendModel *)model
 {
     _model = model;
+    if (model.title.length == 0) {
+        return;
+    }
     [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.organizer.avatar] forState:UIControlStateNormal placeholderImage:CPPlaceHolderImage];
     self.nameLabel.text = model.organizer.nickname;
     self.titleLabel.attributedText = model.titleAttrText;
@@ -94,22 +98,29 @@
     [self.addressLabel setText:model.destination[@"detail"]];
     NSMutableParagraphStyle *paragraphStyle1 = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle1 setLineSpacing:7];
-    self.descLabel.attributedText = [[NSAttributedString alloc] initWithString:model.desc attributes:@{NSParagraphStyleAttributeName : paragraphStyle1}];
+    self.descLabel.attributedText = [[NSAttributedString alloc] initWithString:model.title attributes:@{NSParagraphStyleAttributeName : paragraphStyle1}];
     [self layoutIfNeeded];
+    
+    self.height = self.tipPartLabel.bottom;
 }
 
 - (IBAction)openDetailLabel:(UIButton *)sender {
     
+    sender.selected = !sender.isSelected;
     if (sender.selected) {
-        self.descHCons.constant = 109;
-    }else{
+        
         
         CGSize contentSize = [self.descLabel.attributedText boundingRectWithSize:CGSizeMake(ZYScreenWidth - 20, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
         self.descHCons.constant = contentSize.height;
+    }else{
+        self.descHCons.constant = 109;
     }
-    sender.selected = !sender.isSelected;
+    
+        
     [self layoutIfNeeded];
+    
     self.height = self.tipPartLabel.bottom;
+    [self superViewWillRecive:CPActivityDetailHeaderDetailOpenKey info:nil];
 }
 
 

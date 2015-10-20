@@ -47,7 +47,7 @@ static NSString *ID = @"cell";
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"筛选" target:self action:@selector(filter)];
     [self.view addSubview:self.tableView];
     [self tipView];
-    
+    [ZYLoadingView showLoadingView];
     if (CPUnLogin) {
         [self loadDataWithHeader:nil];
     }else{
@@ -115,6 +115,7 @@ static NSString *ID = @"cell";
             }
                 
             NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
+            NSLog(@"gggg%zd",arr.count);
             [self.datas addObjectsFromArray:arr];
 
             if (self.datas.count == 0) {
@@ -148,7 +149,7 @@ static NSString *ID = @"cell";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.datas.count > 2?2:0;
+    return self.datas.count;
 }
 
 -(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
@@ -433,11 +434,15 @@ static NSString *ID = @"cell";
 - (CPNearParams *)params
 {
     if (_params == nil) {
+//        latitude=39.97762675234624&limit=10&longitude=116.3317536236968
         _params = [[CPNearParams alloc] init];
         _params.userId = CPUserId;
         _params.token = CPToken;
-        _params.longitude = ZYLongitude;
-        _params.latitude = ZYLatitude;
+        _params.longitude = 116.3317536236968;
+        _params.latitude = 39.97762675234624;
+        
+//        _params.longitude = ZYLongitude;
+//        _params.latitude = ZYLatitude;
         _params.ignore = 0;
         _params.limit = 10;
         _params.maxDistance = 5000;

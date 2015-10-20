@@ -24,6 +24,7 @@
 }
 
 - (IBAction)openActivityPath:(UIButton *)sender {
+    sender.selected = !sender.isSelected;
     [self superViewWillRecive:CPActivityDetailOpenPathKey info:nil];
 }
 @end

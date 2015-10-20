@@ -155,8 +155,8 @@
                                     <mask key="constraints">
                                         <exclude reference="5uz-Aw-Muf"/>
                                         <exclude reference="eyc-lb-KpC"/>
-                                        <exclude reference="KdU-PG-4SL"/>
                                         <exclude reference="9Sb-qZ-XXy"/>
+                                        <exclude reference="KdU-PG-4SL"/>
                                         <exclude reference="Oqm-rx-fww"/>
                                         <exclude reference="WKm-T3-G60"/>
                                     </mask>
@@ -364,9 +364,9 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="NvU-TT-dlh"/>
                                         <exclude reference="YbV-2p-Ahd"/>
                                         <exclude reference="cbN-eQ-tiu"/>
-                                        <exclude reference="NvU-TT-dlh"/>
                                     </mask>
                                 </variation>
                             </view>

@@ -9,5 +9,5 @@
 #import "CPSelectModel.h"
 
 @implementation CPSelectModel
-
+MJCodingImplementation
 @end

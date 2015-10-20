@@ -2,16 +2,20 @@
 //  MatchingSelectView.m
 //  CarPlay
 //
-//  Created by 公平价 on 15/10/16.
+//  Created by 公平价 on 15/10/20.
 //  Copyright © 2015年 chewan. All rights reserved.
 //
 
 #import "MatchingSelectView.h"
 
+@interface MatchingSelectView ()
+
+@end
+
 @implementation MatchingSelectView
 
-- (void)awakeFromNib
-{
+- (void)viewDidLoad {
+    [super viewDidLoad];
     self.whetherShuttle=@"0";
     [self.selectView.layer setMasksToBounds:YES];
     [self.selectView.layer setCornerRadius:10.0];
@@ -23,6 +27,12 @@
     [self.matchingBtn.layer setCornerRadius:20.0];
     [self.selectPlace setTitleEdgeInsets:UIEdgeInsetsMake(0, -self.selectPlace.imageView.size.width, 0, self.selectPlace.imageView.size.width)];
     [self.selectPlace setImageEdgeInsets:UIEdgeInsetsMake(0, self.selectPlace.titleLabel.bounds.size.width, 0, -self.selectPlace.titleLabel.bounds.size.width)];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hidenself)];
+    [self.view addGestureRecognizer:tapGesture];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
 }
 
 - (IBAction)shuttle:(id)sender {
@@ -60,24 +70,11 @@
     }];
 }
 
-+(void)show:(NSString *)colorStr{
-    MatchingSelectView *view= [[NSBundle mainBundle] loadNibNamed:@"MatchingSelectView" owner:nil options:nil].lastObject;
-    view.backgroundColor=[Tools getColor:colorStr];
-    view.frame = [ZYKeyWindow bounds];
-    [ZYKeyWindow addSubview:view];
-    view.alpha = 0.0;
-    [UIView animateWithDuration:0.3 animations:^{
-        view.alpha = 1.0;
+-(void)hidenself{
+    [UIView animateWithDuration:0.25 animations:^{
+        self.view.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        [ self.view removeFromSuperview];
     }];
-    UITapGestureRecognizer *tap = [UITapGestureRecognizer new];
-    [tap.rac_gestureSignal subscribeNext:^(id x) {
-        [UIView animateWithDuration:0.25 animations:^{
-            view.alpha = 0.0;
-        } completion:^(BOOL finished) {
-            [view removeFromSuperview];
-        }];
-    }];
-    [view addGestureRecognizer:tap];
 }
-
 @end

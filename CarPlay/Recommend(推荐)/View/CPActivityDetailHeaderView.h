@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CPRecommendModel.h"
 
+#define CPActivityDetailHeaderDetailOpenKey @"CPActivityDetailHeaderDetailOpenKey"
 @interface CPActivityDetailHeaderView : UIView
 
 + (instancetype)activityDetailHeaderView;

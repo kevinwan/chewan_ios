@@ -12,15 +12,19 @@
 #import "CPActivityDetailFooterView.h"
 #import "CPActivityDetailMiddleView.h"
 #import "CPActivityPartnerCell.h"
+#import "CPActivityPathCell.h"
 
 @interface CPActivityDetailViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) CPActivityDetailFooterView *footerView;
 @property (strong, nonatomic) CPActivityDetailHeaderView *headerView;
-@property (nonatomic, assign) BOOL open;
+@property (nonatomic, assign) BOOL isActivityPathOpen;
 @property (nonatomic, strong) CPRecommendModel *model;
+@property (nonatomic, assign) CGFloat activityPathHeight;
+@property (nonatomic, strong) NSMutableArray *datas;
 @end
 
+static NSString *ID = @"partCell";
 @implementation CPActivityDetailViewController
 
 - (void)viewDidLoad {
@@ -56,66 +60,51 @@
 {
     self.headerView.model = self.model;
     self.tableView.tableHeaderView = self.headerView;
+    self.footerView.model = self.model;
     [self.tableView reloadData];
 }
 
 - (void)superViewWillRecive:(NSString *)notifyName info:(id)userInfo
 {
     if ([notifyName isEqualToString:CPActivityDetailOpenPathKey]) {
-        self.open = !self.open;
-        [self.tableView reloadData];
+        self.isActivityPathOpen = !self.isActivityPathOpen;
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
+    }else if ([notifyName isEqualToString:CPActivityDetailHeaderDetailOpenKey]){
+        self.tableView.tableHeaderView = self.headerView;
+    }else if ([notifyName isEqualToString:CPActivityFooterViewOpenKey]){
+        self.tableView.tableFooterView = self.footerView;
     }
 }
 
 #pragma mark - delegate & datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 1) {
-        if (self.open) {
-            return 10;
-        }else{
-            return 0;
-        }
-    }
     return 10;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 2;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    if (section == 1) {
-        return 98;
-    }
-    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
-        return 110;
-    }else{
-        return 100;
-    }
+    return 110;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CPActivityPartnerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"partCell"];
-    return cell;
+//    if (indexPath.section == 0) {
+    
+        CPActivityPartnerCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        return cell;
+//    }else{
+//        
+//        CPActivityPathCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+//        if (cell == nil) {
+//            cell = [[CPActivityPathCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+//        }
+//        
+//        cell.activityPathText = @"啊看来的时间考虑的是否健康来打发时间来看打发时间来看的方式了肯定撒风景拉斯加福利卡的是减肥了打扫房间大放送骄傲的发生了空间的罚款了巨大是法律进阿飞的说了句反倒是徕卡的时间来看打发时间来看打发时间看来大家看了都放假快乐的方式健康的法律纠纷的刻录机发哦ijfaifjifdjiadf";
+//        return cell;
+//    }
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    if (section == 1) {
-        return [CPActivityDetailMiddleView activityDetailMiddleView];
-    }else{
-        return nil;
-    }
-}
 
 #pragma mark - lazy
 
@@ -131,20 +120,17 @@
 {
     if (_footerView == nil) {
         _footerView = [CPActivityDetailFooterView activityDetailFooterView];
-        [_footerView layoutIfNeeded];
-        _footerView.width = ZYScreenWidth;
     }
     return _footerView;
 }
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+
+#pragma mark - lazy
+- (NSMutableArray *)datas
 {
-    CGFloat sectionHeaderHeight = 98;
-    if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
-        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+    if (_datas == nil) {
+        _datas = [[NSMutableArray alloc] init];
     }
-    else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
-        scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
-    }
+    return _datas;
 }
 
 @end
