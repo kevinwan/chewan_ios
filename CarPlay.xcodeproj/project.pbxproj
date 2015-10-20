@@ -527,6 +527,9 @@
 		E3E6B8951BB514A2006B4F8A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6B8941BB514A2006B4F8A /* AppDelegate.m */; settings = {ASSET_TAGS = (); }; };
 		E3E6B8981BB515F1006B4F8A /* CPSexView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6B8971BB515F1006B4F8A /* CPSexView.m */; settings = {ASSET_TAGS = (); }; };
 		E3EA1A021BC8DF43007ECECA /* CPRecommendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EA1A011BC8DF43007ECECA /* CPRecommendModel.m */; settings = {ASSET_TAGS = (); }; };
+		E3FE39E91BD64EF90022FDA3 /* CPComeOnTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FE39E71BD64EF90022FDA3 /* CPComeOnTipView.m */; settings = {ASSET_TAGS = (); }; };
+		E3FE39EA1BD64EF90022FDA3 /* CPComeOnTipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3FE39E81BD64EF90022FDA3 /* CPComeOnTipView.xib */; settings = {ASSET_TAGS = (); }; };
+		E3FE39ED1BD64F060022FDA3 /* CPPartnerMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FE39EC1BD64F060022FDA3 /* CPPartnerMemberCell.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1373,6 +1376,11 @@
 		E3E6B8971BB515F1006B4F8A /* CPSexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSexView.m; sourceTree = "<group>"; };
 		E3EA1A001BC8DF43007ECECA /* CPRecommendModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRecommendModel.h; sourceTree = "<group>"; };
 		E3EA1A011BC8DF43007ECECA /* CPRecommendModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRecommendModel.m; sourceTree = "<group>"; };
+		E3FE39E61BD64EF90022FDA3 /* CPComeOnTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPComeOnTipView.h; sourceTree = "<group>"; };
+		E3FE39E71BD64EF90022FDA3 /* CPComeOnTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPComeOnTipView.m; sourceTree = "<group>"; };
+		E3FE39E81BD64EF90022FDA3 /* CPComeOnTipView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPComeOnTipView.xib; sourceTree = "<group>"; };
+		E3FE39EB1BD64F060022FDA3 /* CPPartnerMemberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPartnerMemberCell.h; sourceTree = "<group>"; };
+		E3FE39EC1BD64F060022FDA3 /* CPPartnerMemberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPPartnerMemberCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3322,6 +3330,11 @@
 		E3A471141BB3A85300973197 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E3FE39EB1BD64F060022FDA3 /* CPPartnerMemberCell.h */,
+				E3FE39EC1BD64F060022FDA3 /* CPPartnerMemberCell.m */,
+				E3FE39E61BD64EF90022FDA3 /* CPComeOnTipView.h */,
+				E3FE39E71BD64EF90022FDA3 /* CPComeOnTipView.m */,
+				E3FE39E81BD64EF90022FDA3 /* CPComeOnTipView.xib */,
 				E3884D631BD1FFDD00A65BE0 /* CPRecommentViewCell.h */,
 				E3884D641BD1FFDD00A65BE0 /* CPRecommentViewCell.m */,
 				E31137201BD096EC004EF249 /* CPRecommendCells.xib */,
@@ -3718,6 +3731,7 @@
 				6D2AC1441BCE5A5100201A8E /* chatBar_more_camera.png in Resources */,
 				E3606F0D1BC76FF100797968 /* CPRecommendCell.xib in Resources */,
 				6D2AC16D1BCE5A5100201A8E /* add@2x.png in Resources */,
+				E3FE39EA1BD64EF90022FDA3 /* CPComeOnTipView.xib in Resources */,
 				6D7F6FBE1BD5189200945F1B /* chatBar_record@3x.png in Resources */,
 				6D2AC1391BCE5A5100201A8E /* chatBar_colorMore_audioCallSelected@2x.png in Resources */,
 				6D2AC11F1BCE5A5100201A8E /* chat_location_preview@2x.png in Resources */,
@@ -3970,6 +3984,7 @@
 				6B364C9A1BCF43B8005A4AF9 /* CPVersionIntroduction.m in Sources */,
 				E31B13551BB9312D00B51696 /* LFRoundProgressView.m in Sources */,
 				6D2ABFE71BCE582100201A8E /* PublicGroupListViewController.m in Sources */,
+				E3FE39E91BD64EF90022FDA3 /* CPComeOnTipView.m in Sources */,
 				6D2ABFE51BCE582100201A8E /* GroupSubjectChangingViewController.m in Sources */,
 				E3A471831BB3A85300973197 /* UIImage+Extension.m in Sources */,
 				E31B12DF1BB9311700B51696 /* UIView+PBExtend.m in Sources */,
@@ -4202,6 +4217,7 @@
 				E3884D5A1BD1FEB700A65BE0 /* UIScrollView+Extension.m in Sources */,
 				6D2ABFFF1BCE582100201A8E /* EMRotbotChatViewCell.m in Sources */,
 				6D2ABFA91BCE582100201A8E /* UIView+EMWebCacheOperation.m in Sources */,
+				E3FE39ED1BD64F060022FDA3 /* CPPartnerMemberCell.m in Sources */,
 				6D2ABFF21BCE582100201A8E /* InvitationManager.m in Sources */,
 				E3A4717C1BB3A85300973197 /* NSFileManager+ZY.m in Sources */,
 				6D2ABFA21BCE582100201A8E /* NSData+EMImageContentType.m in Sources */,
