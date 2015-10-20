@@ -269,6 +269,9 @@
             if (responseObject[@"data"][@"token"]) {
                 [ZYUserDefaults setObject:responseObject[@"data"][@"token"] forKey:Token];
             }
+            [ZYUserDefaults setObject:responseObject[@"data"][@"nickname"] forKey:kUserNickName];
+            [ZYUserDefaults setObject:responseObject[@"data"][@"avatar"] forKey:kUserHeadUrl];
+
             [ZYNotificationCenter postNotificationName:NOTIFICATION_LOGINSUCCESS object:nil userInfo:@{NOTIFICATION_LOGINSUCCESS:@(YES)}];
         }else{
             [ZYNotificationCenter postNotificationName:NOTIFICATION_LOGINSUCCESS object:nil userInfo:@{NOTIFICATION_LOGINSUCCESS:@(NO)}];
