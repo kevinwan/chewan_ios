@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CPRecommendModel.h"
 
 @interface CPActivityPartnerCell : ZYTableViewCell
-
+@property (nonatomic, strong) CPRecommendModel *model;
 @end

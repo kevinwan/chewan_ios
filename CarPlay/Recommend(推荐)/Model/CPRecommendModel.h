@@ -66,5 +66,7 @@
 @property (nonatomic, assign) NSUInteger femaleLimit;
 //"femaleNum" : 3,
 @property (nonatomic, assign) NSUInteger femaleNum;
+@property (nonatomic, copy) NSString *extraDesc;
 @property (nonatomic, strong) CPUser *organizer;
+@property (nonatomic, strong) NSArray *members;
 @end

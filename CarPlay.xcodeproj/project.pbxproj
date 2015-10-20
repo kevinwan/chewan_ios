@@ -484,6 +484,8 @@
 		E356F0F51BD4F22500D5BE07 /* CPActivityDetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E356F0F41BD4F22500D5BE07 /* CPActivityDetailFooterView.m */; settings = {ASSET_TAGS = (); }; };
 		E356F0F81BD51DE400D5BE07 /* CPActivityPartnerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E356F0F71BD51DE400D5BE07 /* CPActivityPartnerCell.m */; settings = {ASSET_TAGS = (); }; };
 		E359EDBD1BCF75C20004B17D /* ZYImageVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = E359EDBC1BCF75C20004B17D /* ZYImageVIew.m */; settings = {ASSET_TAGS = (); }; };
+		E35FA8891BD639F500F792B5 /* CPComeOnTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35FA8881BD639F500F792B5 /* CPComeOnTipView.m */; settings = {ASSET_TAGS = (); }; };
+		E35FA88B1BD63A0F00F792B5 /* CPComeOnTipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E35FA88A1BD63A0F00F792B5 /* CPComeOnTipView.xib */; settings = {ASSET_TAGS = (); }; };
 		E3606F0D1BC76FF100797968 /* CPRecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */; settings = {ASSET_TAGS = (); }; };
 		E3606F121BC78C7300797968 /* CPBaseViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F111BC78C7300797968 /* CPBaseViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		E369E2B11BCB952E000A12B5 /* CPSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E369E2B01BCB952E000A12B5 /* CPSelectView.xib */; settings = {ASSET_TAGS = (); }; };
@@ -557,6 +559,8 @@
 		E3E6B8921BB4FD54006B4F8A /* CPLoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3E6B8901BB4FD54006B4F8A /* CPLoginViewController.storyboard */; settings = {ASSET_TAGS = (); }; };
 		E3E6B8951BB514A2006B4F8A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6B8941BB514A2006B4F8A /* AppDelegate.m */; settings = {ASSET_TAGS = (); }; };
 		E3E6B8981BB515F1006B4F8A /* CPSexView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6B8971BB515F1006B4F8A /* CPSexView.m */; settings = {ASSET_TAGS = (); }; };
+		E3E88AF01BD5DB5100703553 /* CPPartnerMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E88AEF1BD5DB5100703553 /* CPPartnerMemberCell.m */; settings = {ASSET_TAGS = (); }; };
+		E3E88AF31BD5ED4B00703553 /* CPActivityPathCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E88AF21BD5ED4B00703553 /* CPActivityPathCell.m */; settings = {ASSET_TAGS = (); }; };
 		E3EA1A021BC8DF43007ECECA /* CPRecommendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3EA1A011BC8DF43007ECECA /* CPRecommendModel.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -1293,6 +1297,9 @@
 		E356F0F71BD51DE400D5BE07 /* CPActivityPartnerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityPartnerCell.m; sourceTree = "<group>"; };
 		E359EDBB1BCF75C20004B17D /* ZYImageVIew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYImageVIew.h; sourceTree = "<group>"; };
 		E359EDBC1BCF75C20004B17D /* ZYImageVIew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYImageVIew.m; sourceTree = "<group>"; };
+		E35FA8871BD639F500F792B5 /* CPComeOnTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPComeOnTipView.h; sourceTree = "<group>"; };
+		E35FA8881BD639F500F792B5 /* CPComeOnTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPComeOnTipView.m; sourceTree = "<group>"; };
+		E35FA88A1BD63A0F00F792B5 /* CPComeOnTipView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPComeOnTipView.xib; sourceTree = "<group>"; };
 		E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPRecommendCell.xib; sourceTree = "<group>"; };
 		E3606F111BC78C7300797968 /* CPBaseViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPBaseViewCell.xib; sourceTree = "<group>"; };
 		E369E2B01BCB952E000A12B5 /* CPSelectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPSelectView.xib; sourceTree = "<group>"; };
@@ -1433,6 +1440,10 @@
 		E3E6B8941BB514A2006B4F8A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E3E6B8961BB515F1006B4F8A /* CPSexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSexView.h; sourceTree = "<group>"; };
 		E3E6B8971BB515F1006B4F8A /* CPSexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSexView.m; sourceTree = "<group>"; };
+		E3E88AEE1BD5DB5100703553 /* CPPartnerMemberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPartnerMemberCell.h; sourceTree = "<group>"; };
+		E3E88AEF1BD5DB5100703553 /* CPPartnerMemberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPPartnerMemberCell.m; sourceTree = "<group>"; };
+		E3E88AF11BD5ED4B00703553 /* CPActivityPathCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityPathCell.h; sourceTree = "<group>"; };
+		E3E88AF21BD5ED4B00703553 /* CPActivityPathCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityPathCell.m; sourceTree = "<group>"; };
 		E3EA1A001BC8DF43007ECECA /* CPRecommendModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRecommendModel.h; sourceTree = "<group>"; };
 		E3EA1A011BC8DF43007ECECA /* CPRecommendModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRecommendModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -3432,6 +3443,13 @@
 				E356F0F41BD4F22500D5BE07 /* CPActivityDetailFooterView.m */,
 				E356F0F61BD51DE400D5BE07 /* CPActivityPartnerCell.h */,
 				E356F0F71BD51DE400D5BE07 /* CPActivityPartnerCell.m */,
+				E3E88AEE1BD5DB5100703553 /* CPPartnerMemberCell.h */,
+				E3E88AEF1BD5DB5100703553 /* CPPartnerMemberCell.m */,
+				E3E88AF11BD5ED4B00703553 /* CPActivityPathCell.h */,
+				E3E88AF21BD5ED4B00703553 /* CPActivityPathCell.m */,
+				E35FA8871BD639F500F792B5 /* CPComeOnTipView.h */,
+				E35FA8881BD639F500F792B5 /* CPComeOnTipView.m */,
+				E35FA88A1BD63A0F00F792B5 /* CPComeOnTipView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3764,7 +3782,7 @@
 				TargetAttributes = {
 					E31E4BD11BAD47A500902B34 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = K89RQ3A2PQ;
+						DevelopmentTeam = KKHZA7GEFH;
 					};
 				};
 			};
@@ -4032,6 +4050,7 @@
 				6B440CE71BBA86E600CF8410 /* CPMyInfoThrCell.xib in Resources */,
 				6D2ABFB81BCE582100201A8E /* sr_refresh.png in Resources */,
 				6D2AC1891BCE5A5100201A8E /* tabbarBackground.png in Resources */,
+				E35FA88B1BD63A0F00F792B5 /* CPComeOnTipView.xib in Resources */,
 				6D2AC0EC1BCE5A5100201A8E /* VoiceSearchFeedback009.png in Resources */,
 				6D2AC0D61BCE5A5100201A8E /* 29.png in Resources */,
 				6D2AC1861BCE5A5100201A8E /* tabbar_setting@2x.png in Resources */,
@@ -4098,6 +4117,7 @@
 				E3A471831BB3A85300973197 /* UIImage+Extension.m in Sources */,
 				E31B12DF1BB9311700B51696 /* UIView+PBExtend.m in Sources */,
 				6D2ABF891BCE582100201A8E /* EMCDDeviceManager+ProximitySensor.m in Sources */,
+				E35FA8891BD639F500F792B5 /* CPComeOnTipView.m in Sources */,
 				6D2ABFCD1BCE582100201A8E /* DXMessageToolBar.m in Sources */,
 				E31B12E91BB9311700B51696 /* PhotoItemView.m in Sources */,
 				6D2ABFCE1BCE582100201A8E /* DXFaceView.m in Sources */,
@@ -4129,6 +4149,7 @@
 				E31B13451BB9312D00B51696 /* UIDevice+Extend.m in Sources */,
 				6D2ABF9A1BCE582100201A8E /* EMSDImageCache.m in Sources */,
 				E3A471961BB3A85300973197 /* Tools.m in Sources */,
+				E3E88AF01BD5DB5100703553 /* CPPartnerMemberCell.m in Sources */,
 				6D2ABF8A1BCE582100201A8E /* EMCDDeviceManager+Remind.m in Sources */,
 				6D2ABFBB1BCE582100201A8E /* SRSlimeView.m in Sources */,
 				E3E6B8951BB514A2006B4F8A /* AppDelegate.m in Sources */,
@@ -4147,6 +4168,7 @@
 				E31B12E61BB9311700B51696 /* PBSaveBtn.m in Sources */,
 				6D2ABFBD1BCE582100201A8E /* TTGlobalUICommon.m in Sources */,
 				6D2ABF8E1BCE582100201A8E /* EmojiEmoticons.m in Sources */,
+				E3E88AF31BD5ED4B00703553 /* CPActivityPathCell.m in Sources */,
 				E3A471871BB3A85300973197 /* UITableView+ZYExtension.m in Sources */,
 				E3A471911BB3A85300973197 /* ZYNetWorkTool.m in Sources */,
 				6D2ABFB11BCE582100201A8E /* PSTCollectionViewLayout.m in Sources */,
@@ -4507,7 +4529,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.77iland.carplay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8069fa66-9ad4-4073-aeb7-7075cf514c89";
 			};
 			name = Debug;
 		};
@@ -4536,7 +4558,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.77iland.carplay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8069fa66-9ad4-4073-aeb7-7075cf514c89";
 			};
 			name = Release;
 		};

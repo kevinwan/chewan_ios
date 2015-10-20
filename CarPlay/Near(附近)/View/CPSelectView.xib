@@ -368,7 +368,10 @@
             <connections>
                 <outlet property="bgView" destination="MTQ-UG-WvG" id="wNX-ez-c4A"/>
                 <outlet property="confirmBtn" destination="oWc-G7-7AN" id="FZJ-1z-ya6"/>
+                <outlet property="payView" destination="6ZB-3X-9Jk" id="qNe-Wm-pDf"/>
+                <outlet property="sexView" destination="3bo-3e-scG" id="z0P-Op-2Jv"/>
                 <outlet property="transferBtn" destination="vCk-8k-4iP" id="68t-6d-gEV"/>
+                <outlet property="typeView" destination="PCi-zi-YbF" id="RWh-Yh-zsQ"/>
             </connections>
             <point key="canvasLocation" x="306" y="221"/>
         </view>

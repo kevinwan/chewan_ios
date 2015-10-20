@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CPRecommendModel.h"
 
 #define CPActivityComePartKey @"CPActivityComePartKey"
+#define CPActivityFooterViewOpenKey @"CPActivityFooterViewOpenKey"
 
 @interface CPActivityDetailFooterView : UIView
 + (instancetype)activityDetailFooterView;
+@property (nonatomic, strong) CPRecommendModel *model;
+@property (nonatomic, copy) NSString *officialActivityId;
 @end
