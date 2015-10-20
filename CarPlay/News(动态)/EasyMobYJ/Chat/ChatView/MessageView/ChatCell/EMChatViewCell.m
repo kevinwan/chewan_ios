@@ -42,7 +42,7 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
     
     CGRect bubbleFrame = _bubbleView.frame;
     bubbleFrame.origin.y = self.headImageView.frame.origin.y;
-    
+    NSLog(@"cell.height  = %f",self.height);
     if (self.messageModel.isSender) {
         bubbleFrame.origin.y = self.headImageView.frame.origin.y;
         // 菊花状态 （因不确定菊花具体位置，要在子类中实现位置的修改）
