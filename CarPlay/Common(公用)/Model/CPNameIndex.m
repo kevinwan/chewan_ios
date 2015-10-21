@@ -11,7 +11,7 @@
 
 @implementation CPNameIndex
 
-@synthesize _firstName, _lastName;
+@synthesize _firstName, _lastName, _code;
 @synthesize _sectionNum, _originIndex;
 
 - (NSString *) getFirstName {

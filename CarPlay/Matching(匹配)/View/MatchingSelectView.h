@@ -2,13 +2,14 @@
 //  MatchingSelectView.h
 //  CarPlay
 //
-//  Created by 公平价 on 15/10/16.
+//  Created by 公平价 on 15/10/20.
 //  Copyright © 2015年 chewan. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "MJNIndexView.h"
 
-@interface MatchingSelectView : UIView
+@interface MatchingSelectView : UIViewController<UITableViewDataSource,UITableViewDelegate,MJNIndexViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *selectView;
 @property (weak, nonatomic) IBOutlet UIButton *selectPlace;
 - (IBAction)shuttle:(id)sender;
@@ -18,5 +19,26 @@
 //1包接送  0不包接送
 @property (nonatomic, strong) NSString *whetherShuttle;
 - (IBAction)matchingBtnClick:(id)sender;
-+(void)show:(NSString *)colorStr;
+
+@property (weak, nonatomic) IBOutlet UIView *locationAddressView;
+
+@property (weak, nonatomic) IBOutlet UIView *addressSelection;
+- (IBAction)closeLocatoinAddressView:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *addressLable;
+@property (weak, nonatomic) IBOutlet UIButton *confirmButton;
+@property (weak, nonatomic) IBOutlet UIButton *reSelectionButton;
+- (IBAction)confirm:(id)sender;
+- (IBAction)reSelection:(id)sender;
+
+- (IBAction)closeAddressSelectionView:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *locationAddressLable;
+@property (weak, nonatomic) IBOutlet UITableView *addressTableView;
+@property (nonatomic, assign) NSInteger parentId;
+//排序后
+@property (nonatomic, strong) NSMutableArray *areaList;
+//排序前
+@property (nonatomic, strong) NSMutableArray *areaListBeforeSort;
+
+@property (nonatomic, strong) MJNIndexView *indexView;
+
 @end

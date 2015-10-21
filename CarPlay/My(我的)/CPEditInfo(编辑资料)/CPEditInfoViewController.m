@@ -1,0 +1,149 @@
+//
+//  CPEditInfoViewController.m
+//  CarPlay
+//
+//  Created by 公平价 on 15/10/20.
+//  Copyright © 2015年 chewan. All rights reserved.
+//
+
+#import "CPEditInfoViewController.h"
+#import "CPAvatarAuthenticationController.h"
+#import "CPCarOwnersCertificationController.h"
+#import "CPUser.h"
+#import "CPEditUsername.h"
+
+@interface CPEditInfoViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate>
+{
+    UIImage *editedImage;
+    CPUser *user;
+    NSString *path;
+}
+@end
+
+@implementation CPEditInfoViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self.navigationItem setTitle:@"编辑资料"];
+//    [self setRightNavigationBarItemWithTitle:@"保存" Image:nil highImage:nil target:self action:@selector(rightClick)];
+    [self.avatar.layer setMasksToBounds:YES];
+    [self.avatar.layer setCornerRadius:20.0];
+    [self.tableView setBackgroundColor:[Tools getColor:@"efefef"]];
+    path=[[NSString alloc]initWithFormat:@"%@.info",[Tools getUserId]];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    user=[NSKeyedUnarchiver unarchiveObjectWithFile:path.documentPath];
+    [self.avatar sd_setImageWithURL:[NSURL URLWithString:user.avatar]];
+    [self.nickName setText:user.nickname];
+    [self.sex setText:user.gender];
+    [self.age setText:[NSString stringWithFormat:@"%ld",user.age]];
+    [self.photoAuthStatus setText:user.photoAuthStatus];
+    [self.licenseAuthStatus setText:user.licenseAuthStatus];
+    self.tableView.tableFooterView=[[UIView alloc]initWithFrame:CGRectZero];
+    [self.tableView setFrame:CGRectMake(0, 10, ZYScreenWidth, ZYScreenHeight-10)];
+}
+#pragma tableViewDeleget
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    switch (indexPath.row) {
+        case 1:
+        {
+            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择相片" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"相册", nil];
+            actionSheet.tag=1;
+            [actionSheet showInView:self.view];
+        }
+            break;
+        case 2:
+        {
+            CPEditUsername *editNickName=[UIStoryboard storyboardWithName:@"CPEditUsername" bundle:nil].instantiateInitialViewController;
+            editNickName.user=user;
+            [self.navigationController pushViewController:editNickName animated:YES];
+        }
+            break;
+        case 4:
+            
+            break;
+        case 5:
+        {
+            CPAvatarAuthenticationController *CPAvatarAuthenticationController = [UIStoryboard storyboardWithName:@"CPAvatarAuthenticationController" bundle:nil].instantiateInitialViewController;
+            [self.navigationController pushViewController:CPAvatarAuthenticationController animated:YES];
+        }
+            break;
+        case 6:
+        {
+            CPCarOwnersCertificationController *CPCarOwnersCertification = [UIStoryboard storyboardWithName:@"CPCarOwnersCertification" bundle:nil].instantiateInitialViewController;
+            [self.navigationController pushViewController:CPCarOwnersCertification animated:YES];
+        }
+            break;
+        default:
+            break;
+    }
+}
+
+
+#pragma actionSheetDelegate
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+
+        if (buttonIndex ==1) {
+            UIImagePickerController *picker=[[UIImagePickerController alloc]init];
+            picker.delegate=self;
+            picker.allowsEditing=YES;
+            picker.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
+            [self presentViewController:picker animated:YES completion:^{
+            }];
+        }else if (buttonIndex == 0){
+            if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                DLog(@"相机不可用");
+                return;
+            }
+            UIImagePickerController *picker=[[UIImagePickerController alloc]init];
+            picker.delegate=self;
+            picker.allowsEditing=YES;
+            picker.sourceType=UIImagePickerControllerSourceTypeCamera;
+            [self presentViewController:picker animated:YES completion:^{
+            }];
+        }else
+            return;
+    
+}
+
+#pragma PickerController
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    editedImage=[info objectForKey:UIImagePickerControllerEditedImage];
+    [picker dismissViewControllerAnimated:YES completion:^{
+        NSData *data=UIImageJPEGRepresentation(editedImage, 0.4);
+        [self upLoadImageWithBase64Encodeing:data];
+        
+    }];
+}
+
+//上传头像
+-(void)upLoadImageWithBase64Encodeing:(NSData *)encodedImageData{
+    ZYHttpFile *file=[[ZYHttpFile alloc]init];
+    file.name=@"attach";
+    file.data=encodedImageData;
+    file.filename=@"avatar.jpg";
+    file.mimeType=@"image/jpeg";
+    NSArray *files=[[NSArray alloc]initWithObjects:file, nil];
+    NSString *urlPath=[NSString stringWithFormat:@"user/%@/avatar?token=%@",[Tools getUserId],[Tools getToken]];
+    [self showLoading];
+    [ZYNetWorkTool postFileWithUrl:urlPath params:nil files:files success:^(id responseObject){
+        if (CPSuccess) {
+            user.avatar=responseObject[@"data"][@"photoUrl"];
+            user.avatarId=responseObject[@"data"][@"photoId"];
+            [ZYUserDefaults setObject:responseObject[@"data"][@"nickname"] forKey:kUserNickName];
+//            [ZYUserDefaults setObject:responseObject[@"data"][@"avatar"] forKey:kUserHeadUrl];
+            [NSKeyedArchiver archiveRootObject:user toFile:path.documentPath];
+            [self.avatar setImage:editedImage];
+        }else{
+            [[[UIAlertView alloc]initWithTitle:@"提示" message:@"上传失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        }
+        [self disMiss];
+    }failure:^(NSError *erro){
+        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        [self disMiss];
+    }];
+}
+
+@end

@@ -19,6 +19,7 @@
 #import "CPSettingController.h"
 #import "CPCarOwnersCertificationController.h"
 #import "CPAvatarAuthenticationController.h"
+#import "CPEditInfoViewController.h"
 
 @interface CPMyViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate, UzysAssetsPickerControllerDelegate, UIAlertViewDelegate,UINavigationControllerDelegate>
 {
@@ -99,6 +100,11 @@
             NSString *path=[[NSString alloc]initWithFormat:@"%@.info",[Tools getUserId]];
             [NSKeyedArchiver archiveRootObject:user toFile:path.documentPath];
             [self reloadData];
+            if (user.album.count > 0) {
+                [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
+            }else{
+                [ZYUserDefaults setBool:NO forKey:CPHasAlbum];
+            }
         }else{
             NSString *errmsg =[responseObject objectForKey:@"errmsg"];
             [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
@@ -145,7 +151,8 @@
 
 //完善
 - (IBAction)improveBtnClick:(id)sender {
-    
+    CPEditInfoViewController *editInfo=[UIStoryboard storyboardWithName:@"CPEditInfoViewController" bundle:nil].instantiateInitialViewController;
+    [self.navigationController pushViewController:editInfo animated:YES];
 }
 
 //我的活动
@@ -279,6 +286,7 @@
                     albumModel.url=responseObject[@"data"][@"photoUrl"];
                     [albums insertObject:albumModel atIndex:0];
                     user.album=albums;
+                    [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
                     [self reloadAlbumsScrollView];
                 }else{
                     [self showError:responseObject[@"errmsg"]];

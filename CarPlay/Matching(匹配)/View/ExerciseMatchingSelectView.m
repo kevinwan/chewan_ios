@@ -1,22 +1,21 @@
 //
-//  MatchingSelectView.m
+//  ExerciseMatchingSelectView.m
 //  CarPlay
 //
-//  Created by 公平价 on 15/10/16.
+//  Created by 公平价 on 15/10/21.
 //  Copyright © 2015年 chewan. All rights reserved.
 //
 
 #import "ExerciseMatchingSelectView.h"
 
 @interface ExerciseMatchingSelectView ()
-@property (nonatomic, strong) UIButton *lastTypebtn;
-@end
 
+@end
 
 @implementation ExerciseMatchingSelectView
 
-- (void)awakeFromNib
-{
+- (void)viewDidLoad {
+    [super viewDidLoad];
     self.whetherShuttle=@"0";
     [self.selectView.layer setMasksToBounds:YES];
     [self.selectView.layer setCornerRadius:10.0];
@@ -28,6 +27,11 @@
     [self.matchingBtn.layer setCornerRadius:20.0];
     [self.selectPlace setTitleEdgeInsets:UIEdgeInsetsMake(0, -self.selectPlace.imageView.size.width, 0, self.selectPlace.imageView.size.width)];
     [self.selectPlace setImageEdgeInsets:UIEdgeInsetsMake(0, self.selectPlace.titleLabel.bounds.size.width, 0, -self.selectPlace.titleLabel.bounds.size.width)];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)shuttle:(id)sender {
@@ -65,30 +69,5 @@
     }];
 }
 
-+(void)show:(NSString *)colorStr{
-    ExerciseMatchingSelectView *view= [[NSBundle mainBundle] loadNibNamed:@"ExerciseMatchingSelectView" owner:nil options:nil].lastObject;
-    view.backgroundColor=[Tools getColor:colorStr];
-    view.frame = [ZYKeyWindow bounds];
-    [ZYKeyWindow addSubview:view];
-    view.alpha = 0.0;
-    [UIView animateWithDuration:0.3 animations:^{
-        view.alpha = 1.0;
-    }];
-    UITapGestureRecognizer *tap = [UITapGestureRecognizer new];
-    [tap.rac_gestureSignal subscribeNext:^(id x) {
-        [UIView animateWithDuration:0.25 animations:^{
-            view.alpha = 0.0;
-        } completion:^(BOOL finished) {
-            [view removeFromSuperview];
-        }];
-    }];
-    [view addGestureRecognizer:tap];
-}
-
-- (IBAction)exerciseBtnClick:(UIButton *)sender {
-    self.lastTypebtn.selected = NO;
-    sender.selected = YES;
-    self.lastTypebtn = sender;
-}
 
 @end

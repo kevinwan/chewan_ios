@@ -2,16 +2,22 @@
 //  MatchingSelectView.m
 //  CarPlay
 //
-//  Created by 公平价 on 15/10/16.
+//  Created by 公平价 on 15/10/20.
 //  Copyright © 2015年 chewan. All rights reserved.
 //
 
 #import "MatchingSelectView.h"
+#import "CPNameIndex.h"
+#import "CPpinyin.h"
+
+@interface MatchingSelectView ()
+
+@end
 
 @implementation MatchingSelectView
 
-- (void)awakeFromNib
-{
+- (void)viewDidLoad {
+    [super viewDidLoad];
     self.whetherShuttle=@"0";
     [self.selectView.layer setMasksToBounds:YES];
     [self.selectView.layer setCornerRadius:10.0];
@@ -23,7 +29,45 @@
     [self.matchingBtn.layer setCornerRadius:20.0];
     [self.selectPlace setTitleEdgeInsets:UIEdgeInsetsMake(0, -self.selectPlace.imageView.size.width, 0, self.selectPlace.imageView.size.width)];
     [self.selectPlace setImageEdgeInsets:UIEdgeInsetsMake(0, self.selectPlace.titleLabel.bounds.size.width, 0, -self.selectPlace.titleLabel.bounds.size.width)];
+    
+    [self.locationAddressView.layer setMasksToBounds:YES];
+    [self.locationAddressView.layer setCornerRadius:20.0];
+    [self.addressSelection.layer setMasksToBounds:YES];
+    [self.addressSelection.layer setCornerRadius:20.0];
+    [self.confirmButton.layer setMasksToBounds:YES];
+    [self.confirmButton.layer setCornerRadius:20.0];
+    [self.reSelectionButton.layer setMasksToBounds:YES];
+    [self.reSelectionButton.layer setCornerRadius:20.0];
+    
+    [self.selectPlace setTitleEdgeInsets:UIEdgeInsetsMake(0, -self.selectPlace.imageView.size.width, 0, self.selectPlace.imageView.size.width)];
+    [self.selectPlace setImageEdgeInsets:UIEdgeInsetsMake(0, self.selectPlace.titleLabel.bounds.size.width, 0, -self.selectPlace.titleLabel.bounds.size.width)];
+    self.areaList=[[NSMutableArray alloc]init];
+    [self addMJindex];
+    
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hidenself)];
+    [self.view addGestureRecognizer:tapGesture];
+    
+    _addressLable.text=[[NSString alloc]initWithFormat:@"%@  %@  %@  %@",[ZYUserDefaults stringForKey:Province],[ZYUserDefaults stringForKey:City],[ZYUserDefaults stringForKey:District],[ZYUserDefaults stringForKey:Street]];
+    _locationAddressLable.text=[[NSString alloc]initWithFormat:@"%@  %@  %@  %@",[ZYUserDefaults stringForKey:Province],[ZYUserDefaults stringForKey:City],[ZYUserDefaults stringForKey:District],[ZYUserDefaults stringForKey:Street]];
 }
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+-(void)addMJindex{
+    self.indexView = [[MJNIndexView alloc] initWithFrame:CGRectMake(190.0/320.0*ZYScreenWidth, 170.0/568.0*ZYScreenHeight, 100.0/320.0*ZYScreenWidth, 230.0/568.0*ZYScreenHeight)];
+    //    }
+    _indexView.dataSource = self;
+    _indexView.fontColor = [Tools getColor:@"48d1d5"];
+    _indexView.font = [UIFont systemFontOfSize:11.0f];
+    _indexView.minimumGapBetweenItems = 0.f;
+    _indexView.ergonomicHeight = NO;
+    _indexView.selectedItemFontColor=[Tools getColor:@"48d1d5"];
+    [self.view addSubview:_indexView];
+}
+
 
 - (IBAction)shuttle:(id)sender {
     if ([self.whetherShuttle isEqualToString:@"0"]) {
@@ -38,7 +82,8 @@
 }
 //选择地址
 - (IBAction)selectPlaceClick:(id)sender {
-    
+    _locationAddressView.alpha=1.0;
+    _selectView.alpha=0.0;
 }
 //
 - (IBAction)matchingBtnClick:(id)sender {
@@ -60,24 +105,175 @@
     }];
 }
 
-+(void)show:(NSString *)colorStr{
-    MatchingSelectView *view= [[NSBundle mainBundle] loadNibNamed:@"MatchingSelectView" owner:nil options:nil].lastObject;
-    view.backgroundColor=[Tools getColor:colorStr];
-    view.frame = [ZYKeyWindow bounds];
-    [ZYKeyWindow addSubview:view];
-    view.alpha = 0.0;
-    [UIView animateWithDuration:0.3 animations:^{
-        view.alpha = 1.0;
-    }];
-    UITapGestureRecognizer *tap = [UITapGestureRecognizer new];
-    [tap.rac_gestureSignal subscribeNext:^(id x) {
-        [UIView animateWithDuration:0.25 animations:^{
-            view.alpha = 0.0;
-        } completion:^(BOOL finished) {
-            [view removeFromSuperview];
-        }];
-    }];
-    [view addGestureRecognizer:tap];
+- (IBAction)closeLocatoinAddressView:(id)sender {
+    _locationAddressView.alpha=0.0;
+    _selectView.alpha=1.0;
+}
+- (IBAction)confirm:(id)sender {
+    
 }
 
+- (IBAction)reSelection:(id)sender {
+    _locationAddressView.alpha=0.0;
+    _addressSelection.alpha=1.0;
+    _parentId=0;
+    _indexView.alpha=1.0;
+    [self getArea];
+}
+- (IBAction)closeAddressSelectionView:(id)sender {
+    
+}
+
+//获取省市列表
+-(void)getArea{
+    NSString *path=[[NSString alloc]initWithFormat:@"area/list?parentId=%ld",(long)_parentId];
+    [ZYNetWorkTool getWithUrl:path params:nil success:^(id responseObject) {
+        if (CPSuccess) {
+            NSLog(@"%@",responseObject);
+            [_areaListBeforeSort removeAllObjects];
+            _areaListBeforeSort=[[NSMutableArray alloc]initWithArray:responseObject[@"data"]];
+            if ([_areaListBeforeSort count]>0) {
+                [self reloadData];
+                [_addressTableView reloadData];
+            }
+        }else{
+            
+        }
+    } failure:^(NSError *error) {
+        
+        NSLog(@"%@",error);
+    }];
+}
+
+-(void)reloadData{
+    UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];//这个是建立索引的核心
+    NSMutableArray *temp = [NSMutableArray arrayWithCapacity:0];
+    
+    
+    
+    for (int i = 0; i<[_areaListBeforeSort count]; i++) {
+        CPNameIndex *item = [[CPNameIndex alloc] init];
+        item._lastName = [_areaListBeforeSort objectAtIndex:i][@"name"];
+        item._code=[_areaListBeforeSort objectAtIndex:i][@"code"];
+        item._originIndex = i;
+        [temp addObject:item];
+    }
+    
+    
+    //名字分section
+    for (CPNameIndex *item in temp) {
+        //getUserName是实现中文拼音检索的核心，见NameIndex类
+        NSInteger sect = [theCollation sectionForObject:item collationStringSelector:@selector(getLastName)];
+        //设定姓的索引编号
+        item._sectionNum = sect;
+    }
+    
+    //返回27，是a－z和＃
+    NSInteger highSection = [[theCollation sectionTitles] count];
+    //tableView 会被分成27个section
+    NSMutableArray *sectionArrays = [NSMutableArray arrayWithCapacity:highSection];
+    for (int i=0; i<=highSection; i++) {
+        NSMutableArray *sectionArray = [NSMutableArray arrayWithCapacity:1];
+        [sectionArrays addObject:sectionArray];
+    }
+    //根据sectionNum把名字加入到对应section数组里
+    for (CPNameIndex *item in temp) {
+        [(NSMutableArray *)[sectionArrays objectAtIndex:item._sectionNum] addObject:item];
+    }
+    //进行排序后，加入到数据源中  先清空原来数据
+    [self.areaList removeAllObjects];
+    for (NSMutableArray *sectionArray in sectionArrays) {
+        NSArray *sortedSection = [theCollation sortedArrayFromArray:sectionArray collationStringSelector:@selector(getFirstName)]; //按firstName进行排序
+        if ([sortedSection count]>0) {
+            [self.areaList addObject:sortedSection];//这里friendsList是自己定义的列表数据源
+        }
+    }
+    
+    
+    [self.addressTableView reloadData];
+    [self.indexView refreshIndexItems];
+}
+
+#pragma UITableViewDataSource UITableViewDelegate
+#pragma mark - IndexViewDataSource
+
+- (NSArray *)sectionIndexTitlesForMJNIndexView:(MJNIndexView *)indexView {
+    
+    NSMutableArray * existTitles = [NSMutableArray array];
+    for (NSArray *nameIndex in self.areaList) {
+        CPNameIndex *n = nameIndex.firstObject;
+        char c = pinyinFirstLetter([n._lastName characterAtIndex:0]);
+        NSString *s = [NSString stringWithFormat:@"%c",c-32];
+        [existTitles addObject:s];
+        
+    }
+    return existTitles;
+}
+
+- (void)sectionForSectionMJNIndexTitle:(NSString *)title atIndex:(NSInteger)index
+{
+    
+    if (self.areaList.count > 0) {
+        NSIndexPath *scrollIndexPath =  [NSIndexPath indexPathForRow:0 inSection:index];
+        NSLog(@"%@",title);
+        if (scrollIndexPath) {
+            [_addressTableView scrollToRowAtIndexPath:scrollIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        }
+    }
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return [self.areaList count];
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    CPNameIndex *n = [self.areaList[section] firstObject];
+    char c = pinyinFirstLetter([n._lastName characterAtIndex:0]);
+    NSString *s = [NSString stringWithFormat:@"%c",c-32];
+    return s;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
+{
+    return [[UILocalizedIndexedCollation currentCollation] sectionForSectionIndexTitleAtIndex:index];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [[self.areaList objectAtIndex:section] count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if(cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"%@",((CPNameIndex*)[[self.areaList objectAtIndex:indexPath.section] objectAtIndex:indexPath.row])._lastName];
+    cell.textLabel.font = [UIFont systemFontOfSize:10.0];
+    cell.textLabel.textColor=[Tools getColor:@"666666"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    NSString *code=[NSString stringWithFormat:@"%@",((CPNameIndex*)[[self.areaList objectAtIndex:indexPath.section] objectAtIndex:indexPath.row])._code];
+    if ([code length]<10) {
+        _parentId=[code intValue];
+        [self getArea];
+    }
+}
+
+
+-(void)hidenself{
+    [UIView animateWithDuration:0.25 animations:^{
+        self.view.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        
+    }];
+}
 @end

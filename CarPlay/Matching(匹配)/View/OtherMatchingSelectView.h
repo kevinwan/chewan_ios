@@ -36,7 +36,9 @@
 //排序后
 @property (nonatomic, strong) NSMutableArray *areaList;
 //排序前
-@property (nonatomic, strong) NSArray *areaListBeforeSort;
+@property (nonatomic, strong) NSMutableArray *areaListBeforeSort;
+- (IBAction)typeBtnClick:(UIButton *)sender;
+
 
 @property (nonatomic, strong) MJNIndexView *indexView;
 
