@@ -87,6 +87,7 @@
 		6BDA2C9F1BD644990032FFF1 /* CPEditUsername.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BDA2C9E1BD644990032FFF1 /* CPEditUsername.storyboard */; settings = {ASSET_TAGS = (); }; };
 		6BDA2CA11BD66E970032FFF1 /* MatchingSelectView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BDA2CA01BD66E970032FFF1 /* MatchingSelectView.storyboard */; settings = {ASSET_TAGS = (); }; };
 		6BDA2CA41BD670660032FFF1 /* MatchingSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDA2CA31BD670660032FFF1 /* MatchingSelectView.m */; settings = {ASSET_TAGS = (); }; };
+		6BDA2CA71BD729370032FFF1 /* CPActivityPathCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDA2CA61BD729370032FFF1 /* CPActivityPathCell.m */; settings = {ASSET_TAGS = (); }; };
 		6BE2E6121BC67C8C00D1D928 /* CPNPSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2E6111BC67C8C00D1D928 /* CPNPSButton.m */; settings = {ASSET_TAGS = (); }; };
 		6BE2E61A1BC67CB000D1D928 /* CPMatching.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BE2E6131BC67CB000D1D928 /* CPMatching.storyboard */; settings = {ASSET_TAGS = (); }; };
 		6BE2E61B1BC67CB000D1D928 /* CPMatchingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2E6151BC67CB000D1D928 /* CPMatchingViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -393,7 +394,6 @@
 		6D7F6FE61BD5EF6E00945F1B /* chat_receiver_audio_playing002@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7F6FE31BD5EF6E00945F1B /* chat_receiver_audio_playing002@3x.png */; settings = {ASSET_TAGS = (); }; };
 		6D7F6FE71BD5EF6E00945F1B /* chat_receiver_audio_playing003@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7F6FE41BD5EF6E00945F1B /* chat_receiver_audio_playing003@3x.png */; settings = {ASSET_TAGS = (); }; };
 		6D9724033DC4D258BAD49B6C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8695309F427E7B2C9007D66B /* libPods.a */; };
-		6DC384131BD72BB500E93FFD /* CPActivityPathCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC384121BD72BB500E93FFD /* CPActivityPathCell.m */; settings = {ASSET_TAGS = (); }; };
 		E311371F1BD09309004EF249 /* CPLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = E311371E1BD09309004EF249 /* CPLoadingView.m */; settings = {ASSET_TAGS = (); }; };
 		E31137211BD096EC004EF249 /* CPRecommendCells.xib in Resources */ = {isa = PBXBuildFile; fileRef = E31137201BD096EC004EF249 /* CPRecommendCells.xib */; settings = {ASSET_TAGS = (); }; };
 		E31B12DF1BB9311700B51696 /* UIView+PBExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = E31B12C01BB9311700B51696 /* UIView+PBExtend.m */; settings = {ASSET_TAGS = (); }; };
@@ -668,6 +668,8 @@
 		6BDA2CA01BD66E970032FFF1 /* MatchingSelectView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MatchingSelectView.storyboard; sourceTree = "<group>"; };
 		6BDA2CA21BD670660032FFF1 /* MatchingSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchingSelectView.h; sourceTree = "<group>"; };
 		6BDA2CA31BD670660032FFF1 /* MatchingSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchingSelectView.m; sourceTree = "<group>"; };
+		6BDA2CA51BD729370032FFF1 /* CPActivityPathCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityPathCell.h; sourceTree = "<group>"; };
+		6BDA2CA61BD729370032FFF1 /* CPActivityPathCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityPathCell.m; sourceTree = "<group>"; };
 		6BE2E6101BC67C8C00D1D928 /* CPNPSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNPSButton.h; sourceTree = "<group>"; };
 		6BE2E6111BC67C8C00D1D928 /* CPNPSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNPSButton.m; sourceTree = "<group>"; };
 		6BE2E6131BC67CB000D1D928 /* CPMatching.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMatching.storyboard; sourceTree = "<group>"; };
@@ -1123,8 +1125,6 @@
 		6D7F6FE21BD5EF6E00945F1B /* chat_receiver_audio_playing001@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_receiver_audio_playing001@3x.png"; sourceTree = "<group>"; };
 		6D7F6FE31BD5EF6E00945F1B /* chat_receiver_audio_playing002@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_receiver_audio_playing002@3x.png"; sourceTree = "<group>"; };
 		6D7F6FE41BD5EF6E00945F1B /* chat_receiver_audio_playing003@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_receiver_audio_playing003@3x.png"; sourceTree = "<group>"; };
-		6DC384111BD72BB500E93FFD /* CPActivityPathCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityPathCell.h; sourceTree = "<group>"; };
-		6DC384121BD72BB500E93FFD /* CPActivityPathCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityPathCell.m; sourceTree = "<group>"; };
 		8695309F427E7B2C9007D66B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1B028500DCBF99DF280B6AC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E311371D1BD09309004EF249 /* CPLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLoadingView.h; sourceTree = "<group>"; };
@@ -3362,8 +3362,8 @@
 		E3A471141BB3A85300973197 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6DC384111BD72BB500E93FFD /* CPActivityPathCell.h */,
-				6DC384121BD72BB500E93FFD /* CPActivityPathCell.m */,
+				6BDA2CA51BD729370032FFF1 /* CPActivityPathCell.h */,
+				6BDA2CA61BD729370032FFF1 /* CPActivityPathCell.m */,
 				E3FE39EB1BD64F060022FDA3 /* CPPartnerMemberCell.h */,
 				E3FE39EC1BD64F060022FDA3 /* CPPartnerMemberCell.m */,
 				E3FE39E61BD64EF90022FDA3 /* CPComeOnTipView.h */,
@@ -3718,7 +3718,7 @@
 				TargetAttributes = {
 					E31E4BD11BAD47A500902B34 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = K89RQ3A2PQ;
+						DevelopmentTeam = KKHZA7GEFH;
 					};
 				};
 			};
@@ -4023,7 +4023,7 @@
 				6D2ABFE51BCE582100201A8E /* GroupSubjectChangingViewController.m in Sources */,
 				E3A471831BB3A85300973197 /* UIImage+Extension.m in Sources */,
 				E31B12DF1BB9311700B51696 /* UIView+PBExtend.m in Sources */,
-				6DC384131BD72BB500E93FFD /* CPActivityPathCell.m in Sources */,
+				6BDA2CA71BD729370032FFF1 /* CPActivityPathCell.m in Sources */,
 				6D2ABF891BCE582100201A8E /* EMCDDeviceManager+ProximitySensor.m in Sources */,
 				6D2ABFCD1BCE582100201A8E /* DXMessageToolBar.m in Sources */,
 				E31B12E91BB9311700B51696 /* PhotoItemView.m in Sources */,
@@ -4418,8 +4418,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Hao Sun (VBUTLMUHXY)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hao Sun (VBUTLMUHXY)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4447,8 +4447,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Hao Sun (VBUTLMUHXY)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hao Sun (VBUTLMUHXY)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
