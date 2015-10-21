@@ -12,6 +12,8 @@
 #import "MatchingSelectView.h"
 #import "ExerciseMatchingSelectView.h"
 #import "OtherMatchingSelectView.h"
+#import "MatchingSelectView.h"
+#import "ExerciseMatchingSelectView.h"
 
 
 @interface CPMatchingViewController ()<UIGestureRecognizerDelegate,UITableViewDataSource,UITableViewDelegate>
@@ -22,6 +24,7 @@
     NSUInteger takeALookAnimationIndex;
     CPTakeALookViewController *takeALook;
     OtherMatchingSelectView *matchingSelectView;
+    MatchingSelectView *signMatchingSelectView;
     NSInteger index;
 }
 
@@ -125,7 +128,8 @@
     UITapGestureRecognizer*tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hidenScrollView)];
     [self.scrollView addGestureRecognizer:tapGesture];
     matchingSelectView=[UIStoryboard storyboardWithName:@"OtherMatchingSelectView" bundle:nil].instantiateInitialViewController;
-
+    signMatchingSelectView=[UIStoryboard storyboardWithName:@"MatchingSelectView" bundle:nil].instantiateInitialViewController;
+    
 }
 
 -(void)animationContent{
@@ -342,7 +346,7 @@
             case 7:
                 colorRGB=@"f48c60";
                 type=@"遛狗";
-                [MatchingSelectView show:colorRGB];
+//                [MatchingSelectView show:colorRGB];
                 break;
             case 8:
                 colorRGB=@"1cc1a0";
@@ -359,7 +363,7 @@
             case 10:
                 colorRGB=@"fb7b9b";
                 type=@"购物";
-                [MatchingSelectView show:colorRGB];
+//                [MatchingSelectView show:colorRGB];
                 break;
                 
             default:
@@ -452,29 +456,4 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma UITableViewDataSource UITableViewDelegate
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 0;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return @"北京";
-}
-
-- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index{
-    return 0;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell=[UITableViewCell new];
-    return cell;
-}
 @end
