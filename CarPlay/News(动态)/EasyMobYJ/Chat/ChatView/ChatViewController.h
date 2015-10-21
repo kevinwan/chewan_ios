@@ -22,6 +22,7 @@
 
 @interface ChatViewController : UIViewController
 @property (strong, nonatomic, readonly) NSString *chatter;
+@property (nonatomic,copy)NSString *HerHeadStr;
 @property (strong, nonatomic) NSMutableArray *dataSource;//tableView数据源
 @property (nonatomic) BOOL isInvisible;
 @property (nonatomic, assign) id <ChatViewControllerDelegate> delelgate;

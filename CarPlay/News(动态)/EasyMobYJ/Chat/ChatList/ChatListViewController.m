@@ -575,10 +575,10 @@
             cell.HeadIV.image = [UIImage imageNamed:@"OfficialAdmin"];
 
         }else{
+                cell.name = [conversation.latestMessageFromOthers.ext valueForKey:kUserNickName];
+                [cell.HeadIV sd_setImageWithURL:[NSURL URLWithString:[conversation.latestMessageFromOthers.ext valueForKey:kUserHeadUrl]] placeholderImage:nil];
+           
             
-            cell.name = [conversation.latestMessage.ext valueForKey:kUserNickName];
-            [cell.HeadIV sd_setImageWithURL:[NSURL URLWithString:[conversation.latestMessage.ext valueForKey:kUserHeadUrl]] placeholderImage:nil];
-
         }
 
 
@@ -612,6 +612,7 @@
     
     if (![conversation.chatter isEqualToString:@"interestadmin"]) {
         cell.time = [self lastMessageTimeByConversation:conversation];
+        cell.interestIV.image = nil;
     }else{
         cell.time = nil;
     }
@@ -669,7 +670,8 @@
 //            default:
 //                break;
 //        }
-        chatController.title = [conversation.latestMessage.ext valueForKey:kUserNickName];;
+        chatController.title = [conversation.latestMessageFromOthers.ext valueForKey:kUserNickName];
+        chatController.HerHeadStr =[conversation.latestMessageFromOthers.ext valueForKey:kUserHeadUrl];
     }
     
     chatController.delelgate = self;

@@ -514,7 +514,15 @@
             return timeCell;
         }
         else{
+            
             MessageModel *model = (MessageModel *)obj;
+            //在这里应该已经有头像和昵称的信息了。
+            if (model.isSender) {
+                model.headImageURL = [NSURL URLWithString:[ZYUserDefaults valueForKey:kUserHeadUrl]];
+            }else{
+                model.headImageURL = [NSURL URLWithString:[model.message.ext valueForKey:kUserHeadUrl]];
+                model.nickName = [model.message.ext valueForKey:kUserNickName];
+            }
             NSString *cellIdentifier = [EMChatViewCell cellIdentifierForMessageModel:model];
             EMChatViewCell *cell = (EMChatViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
             if (cell == nil) {
