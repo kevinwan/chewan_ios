@@ -10,5 +10,6 @@
 #import "CPBaseViewCell.h"
 
 @interface CPNearCollectionViewCell : UICollectionViewCell
+@property (nonatomic, strong) NSIndexPath *indexPath;
 @property (nonatomic, strong) CPActivityModel *model;
 @end

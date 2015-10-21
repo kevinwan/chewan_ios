@@ -408,6 +408,19 @@ typedef enum
         
         offset=CGPointMake(self.collectionView.contentOffset.x, self.collectionView.contentOffset.y+ReduceOrAdd);
     }
+    
+    // 滚动越界检测
+    if (self.LayoutDirection == UICollectionLayoutScrollDirectionHorizontal) {
+        
+        if (offset.x > self.collectionView.contentSizeWidth - self.collectionView.width) {
+            return;
+        }
+    }else{
+        if (offset.y > self.collectionView.contentSizeHeight - self.collectionView.height) {
+            return;
+        }
+    }
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.collectionView setContentOffset:offset animated:YES];
     });

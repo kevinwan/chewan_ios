@@ -40,6 +40,12 @@ static NSString *ID = @"cell";
     }
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [ZYLoadingView dismissLoadingView];
+}
+
 - (void)setUpRefresh
 {
     if (self.isHasRefreshHeader) {
@@ -49,8 +55,12 @@ static NSString *ID = @"cell";
     ZYWeakSelf
     AAPullToRefresh *tv = [_collectionView addPullToRefreshPosition:AAPullToRefreshPositionLeft actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
-        [self.collectionView setContentOffset:CGPointMake(-44, 0) animated:YES];
+        ZYMainThread(^{
+            
+            [self.collectionView setContentOffset:CGPointMake(-44, 0) animated:YES];
+        });
         self.ignore = 0;
+        
         [self loadDataWithHeader:v];
     }];
     tv.imageIcon = [UIImage imageNamed:@"车轮"];
@@ -59,12 +69,16 @@ static NSString *ID = @"cell";
     // bottom
     AAPullToRefresh *bv = [_collectionView addPullToRefreshPosition:AAPullToRefreshPositionRight actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
-        [self.collectionView setContentOffset:CGPointMake(_collectionView.contentSize.width + 44 - _collectionView.width, 0) animated:YES];
         
+        ZYMainThread(^{
+           [self.collectionView setContentOffset:CGPointMake(_collectionView.contentSize.width + 44 - _collectionView.width, 0) animated:YES];
+        });
         if (self.datas.count >= CPPageNum) {
             self.ignore += CPPageNum;
+            
             [self loadDataWithHeader:v];
         }else{
+            
             [v stopIndicatorAnimation];
         }
     }];
@@ -145,16 +159,17 @@ static NSString *ID = @"cell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    CPGoLogin(@"查看活动详情");
     CPActivityDetailViewController *activityVc = [UIStoryboard storyboardWithName:@"CPActivityDetailViewController" bundle:nil].instantiateInitialViewController;
     activityVc.officialActivityId = self.datas[indexPath.item].officialActivityId;
     [self.navigationController pushViewController:activityVc animated:YES];
 }
 
-//-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-//{
-//    UICollectionView3DLayout *layout=(UICollectionView3DLayout*)self.collectionView.collectionViewLayout;
-//    [layout EndAnchorMove];
-//}
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    UICollectionView3DLayout *layout=(UICollectionView3DLayout*)self.collectionView.collectionViewLayout;
+    [layout EndAnchorMove];
+}
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {

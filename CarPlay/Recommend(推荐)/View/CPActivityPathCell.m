@@ -32,7 +32,6 @@
     return self;
 }
 
-
 - (void)setActivityPathText:(NSString *)activityPathText
 {
     _activityPathText = [activityPathText copy];

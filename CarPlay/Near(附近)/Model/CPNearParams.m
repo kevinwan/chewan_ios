@@ -9,5 +9,14 @@
 #import "CPNearParams.h"
 
 @implementation CPNearParams
+- (NSString *)userId
+{
+    return CPUserId;
+}
+
+- (NSString *)token
+{
+    return CPToken;
+}
 
 @end

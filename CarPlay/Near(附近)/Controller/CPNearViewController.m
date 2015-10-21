@@ -17,6 +17,7 @@
 #import "CPLoadingView.h"
 #import "UICollectionView3DLayout.h"
 #import "CPNearCollectionViewCell.h"
+#import "CPAlbum.h"
 
 @interface CPNearViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate>
 @property (nonatomic, strong) UICollectionView *tableView;
@@ -26,6 +27,8 @@
 @property (nonatomic, strong) CPNearParams *params;
 @property (nonatomic, assign) BOOL isHasRefreshHeader;
 @property (nonatomic, strong) CPNoDataTipView *noDataView;
+@property (nonatomic, weak)   AAPullToRefresh *headerView;
+@property (nonatomic, weak)   AAPullToRefresh *footerView;
 @end
 
 static NSString *ID = @"cell";
@@ -61,6 +64,14 @@ static NSString *ID = @"cell";
     }
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (self.datas.count == 0) {
+        [self loadDataWithHeader:nil];
+    }
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -73,18 +84,25 @@ static NSString *ID = @"cell";
         return;
     }
     ZYWeakSelf
-    AAPullToRefresh *tv = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionTop actionHandler:^(AAPullToRefresh *v){
+    self.headerView = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionTop actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
+        ZYMainThread(^{
+            [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, -44) animated:YES];
+        });
         self.params.ignore = 0;
         [self loadDataWithHeader:v];
     }];
-    tv.imageIcon = [UIImage imageNamed:@"车轮"];
-    tv.borderColor = [UIColor whiteColor];
+    self.headerView.imageIcon = [UIImage imageNamed:@"车轮"];
+    self.headerView.borderColor = [UIColor whiteColor];
     
     // bottom
-    AAPullToRefresh *bv = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionBottom actionHandler:^(AAPullToRefresh *v){
+    self.footerView = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionBottom actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
-        [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, self.tableView.contentSizeHeight - self.tableView.height + 44) animated:YES];
+        ZYMainThread(^{
+            
+            [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, self.tableView.contentSizeHeight - self.tableView.height + 44) animated:YES];
+        });
+        
         if (self.datas.count >= CPPageNum) {
             self.params.ignore += CPPageNum;
             [self loadDataWithHeader:v];
@@ -92,8 +110,8 @@ static NSString *ID = @"cell";
             [v stopIndicatorAnimation];
         }
     }];
-    bv.imageIcon = [UIImage imageNamed:@"车轮"];
-    bv.borderColor = [UIColor whiteColor];
+    self.footerView.imageIcon = [UIImage imageNamed:@"车轮"];
+    self.footerView.borderColor = [UIColor whiteColor];
     self.isHasRefreshHeader = YES;
 }
 
@@ -143,6 +161,7 @@ static NSString *ID = @"cell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CPNearCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
+    cell.indexPath = indexPath;
     cell.model = self.datas[indexPath.item];
     return cell;
 }
@@ -152,12 +171,21 @@ static NSString *ID = @"cell";
     return self.datas.count;
 }
 
--(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
-{
-    UICollectionView3DLayout *layout=(UICollectionView3DLayout*)self.tableView.collectionViewLayout;
-    [layout EndAnchorMove];
-}
+//-(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+//{
+////    if (self.headerView.state == AAPullToRefreshStateLoading || self.footerView.state == AAPullToRefreshStateLoading) {
+////        return;
+////    }
+//    UICollectionView3DLayout *layout=(UICollectionView3DLayout*)self.tableView.collectionViewLayout;
+//
+//    [layout EndAnchorMove];
+//}
 
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
+{
+    
+}
 
 #pragma mark - 事件交互
 
@@ -261,15 +289,33 @@ static NSString *ID = @"cell";
     
     NSString *path=[[NSString alloc]initWithFormat:@"user/%@/album/upload?token=%@",[Tools getUserId],[Tools getToken]];
     [self showLoading];
+    __block NSUInteger count = 0;
+    NSMutableArray *albums = [NSMutableArray array];
     for (int i = 0; i < arr.count; i++) {
         ZYHttpFile *imageFile = [ZYHttpFile fileWithName:@"attach" data:UIImageJPEGRepresentation(arr[i], 0.4) mimeType:@"image/jpeg" filename:@"a1.jpg"];
         [ZYNetWorkTool postFileWithUrl:path params:nil files:@[imageFile] success:^(id responseObject) {
             if (CPSuccess) {
-                [self disMiss];
-                [self.tableView reloadData];
+                [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
+                
+                count++;
+                
+                CPAlbum *album = [CPAlbum objectWithKeyValues:responseObject[@"data"]];
+                [albums addObject:album];
+                if (count == arr.count) {
+                    [self disMiss];
+                    
+                    NSString *filePath = [NSString stringWithFormat:@"%@.info",CPUserId];
+                    CPUser *user = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath.documentPath];
+
+                    [albums insertObjects:user.album atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, user.album.count)]];
+                    user.album = [albums copy];
+                    [NSKeyedArchiver archiveRootObject:user toFile:filePath.documentPath];
+                    [self.tableView reloadData];
+                }
             }else{
                 [self showError:responseObject[@"errmsg"]];
             }
+         
         } failure:^(NSError *error) {
             [self showError:@"照片上传失败"];
         }];
@@ -302,7 +348,8 @@ static NSString *ID = @"cell";
     //        },
     //        “transfer”:”$transfer”
     //    }
-    CPActivityModel *model = userInfo;
+    NSIndexPath *indexPath = userInfo;
+    CPActivityModel *model = self.datas[indexPath.row];
     NSString *url = [NSString stringWithFormat:@"activity/%@/join",model.activityId];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[UserId] = CPUserId;
@@ -311,6 +358,8 @@ static NSString *ID = @"cell";
     [CPNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
         if (CPSuccess) {
             [self showInfo:@"邀请已发出"];
+            model.applyFlag = 1;
+            [self.tableView reloadItemsAtIndexPaths:@[indexPath]];
         }else if ([CPErrorMsg contains:@"申请中"]){
             [self showInfo:@"正在申请中"];
         }
@@ -326,10 +375,12 @@ static NSString *ID = @"cell";
 - (void)filter
 {
     [CPSelectView showWithParams:^(CPSelectModel *selectModel) {
-        NSLog(@"%@",selectModel.keyValues);
         
         self.params.type = selectModel.type;
         self.params.pay = selectModel.pay;
+        self.params.gender = selectModel.sex;
+        self.params.transfer = selectModel.transfer;
+        self.params.ignore = 0;
         [self loadDataWithHeader:nil];
     }];
     
@@ -342,6 +393,7 @@ static NSString *ID = @"cell";
 {
     if (_tableView == nil) {
         UICollectionView3DLayout *layout = [UICollectionView3DLayout new];
+//        UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
         _tableView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
         _tableView.alwaysBounceVertical = YES;
         _tableView.backgroundColor = [UIColor clearColor];
@@ -352,6 +404,7 @@ static NSString *ID = @"cell";
         _tableView.dataSource = self;
         CGSize itemSzie= CGSizeMake(ZYScreenWidth - 20, 383 + self.offset);
         layout.itemSize = itemSzie;
+//        layout.scrollDirection = UICollectionLayoutScrollDirectionVertical;
         layout.itemScale = 0.96;
         layout.LayoutDirection=UICollectionLayoutScrollDirectionVertical;
         self.view.backgroundColor = [Tools getColor:@"efefef"];
@@ -394,14 +447,25 @@ static NSString *ID = @"cell";
         [freeTimeBtn setOffImage:[UIImage imageNamed:@"btn_meikong"]];
         freeTimeBtn.on = [ZYUserDefaults boolForKey:FreeTimeKey];
         [_tipView addSubview:freeTimeBtn];
+        NSString *url = [NSString stringWithFormat:@"user/%@/info?token=%@",CPUserId,CPToken];
         [[freeTimeBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(CPMySwitch *btn) {
+            CPGoLogin(@"修改状态");
             btn.on = !btn.on;
             [ZYUserDefaults setBool:btn.on forKey:FreeTimeKey];
             if (btn.on) {
                 textL.text = @"有空,其他人可以邀请你参加活动";
+                [ZYNetWorkTool postJsonWithUrl:url params:@{@"idle" : @(YES)} success:^(id responseObject) {
+                    
+                } failed:^(NSError *error) {
+                    
+                }];
             }else{
                 textL.text = @"没空,你将接受不到任何活动邀请";
-                
+                [ZYNetWorkTool postJsonWithUrl:url params:@{@"idle" : @(NO)} success:^(id responseObject) {
+                    
+                } failed:^(NSError *error) {
+                    
+                }];
             }
         }];
         [freeTimeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -436,8 +500,6 @@ static NSString *ID = @"cell";
     if (_params == nil) {
 //        latitude=39.97762675234624&limit=10&longitude=116.3317536236968
         _params = [[CPNearParams alloc] init];
-        _params.userId = CPUserId;
-        _params.token = CPToken;
         _params.longitude = 116.3317536236968;
         _params.latitude = 39.97762675234624;
         
@@ -445,7 +507,6 @@ static NSString *ID = @"cell";
 //        _params.latitude = ZYLatitude;
         _params.ignore = 0;
         _params.limit = 10;
-        _params.maxDistance = 5000;
     }
     return _params;
 }

@@ -98,7 +98,6 @@
 @interface AAPullToRefresh()
 
 @property (nonatomic, assign) BOOL isUserAction;
-@property (nonatomic, assign) AAPullToRefreshState state;
 @property (nonatomic, assign, readonly) BOOL isSidePosition;
 @property (nonatomic, strong) AAPullToRefreshBackgroundLayer *backgroundLayer;
 @property (nonatomic, strong) CAShapeLayer *shapeLayer;
@@ -218,7 +217,7 @@
     if (self.position == AAPullToRefreshPositionTop){
         ZYMainThread(^{
             
-            [self.scrollView setContentOffset:CGPointZero animated:YES];
+            [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentOffsetX, 0) animated:YES];
         });
     }else if (self.position == AAPullToRefreshPositionLeft){
         ZYMainThread(^{
@@ -226,8 +225,9 @@
             [self.scrollView setContentOffset:CGPointMake(0, self.scrollView.contentOffset.y) animated:YES];
         });
     }else if (self.position == AAPullToRefreshPositionBottom){
-        
-        [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentOffset.x, self.scrollView.contentSize.height - self.scrollView.bounds.size.height) animated:YES];
+//        ZYMainThread(^{
+            [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentOffset.x, self.scrollView.contentSize.height - self.scrollView.bounds.size.height) animated:YES];
+//        });
     }else if (self.position == AAPullToRefreshPositionRight){
         ZYMainThread(^{
             
@@ -241,24 +241,24 @@
 
 - (void)setScrollViewContentInset:(UIEdgeInsets)contentInset handler:(actionHandler)handler
 {
-    if (self.position == AAPullToRefreshPositionTop) {
-        ZYMainThread(^{
-            
-            [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentOffsetX, -self.scrollView.contentInsetTop) animated:YES];
-        });
-    }else if (self.position == AAPullToRefreshPositionLeft){
-        ZYMainThread(^{
-            
-            [self.scrollView setContentOffset:CGPointMake(-self.scrollView.contentInsetLeft,self.scrollView.contentOffsetY) animated:YES];
-        });
-    }else if (self.position == AAPullToRefreshPositionBottom){
-     
-    }else if (self.position == AAPullToRefreshPositionRight){
-        ZYMainThread(^{
-            
-            [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentSizeWidth - self.scrollView.width - 44,self.scrollView.contentOffsetY) animated:YES];
-        });
-    }
+//    if (self.position == AAPullToRefreshPositionTop) {
+//        ZYMainThread(^{
+//            
+//            [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentOffsetX, -self.scrollView.contentInsetTop) animated:YES];
+//        });
+//    }else if (self.position == AAPullToRefreshPositionLeft){
+//        ZYMainThread(^{
+//            
+//            [self.scrollView setContentOffset:CGPointMake(-self.scrollView.contentInsetLeft,self.scrollView.contentOffsetY) animated:YES];
+//        });
+//    }else if (self.position == AAPullToRefreshPositionBottom){
+//     
+//    }else if (self.position == AAPullToRefreshPositionRight){
+//        ZYMainThread(^{
+//            
+//            [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentSizeWidth - self.scrollView.width - 44,self.scrollView.contentOffsetY) animated:YES];
+//        });
+//    }
     if (handler) {
         handler();
     }
@@ -427,13 +427,13 @@
 {
     self.state = AAPullToRefreshStateLoading;
     
-    [UIView animateWithDuration:0.1f delay:0.0f
-                        options:UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionAllowUserInteraction
-                     animations:^{
+//    [UIView animateWithDuration:0.1f delay:0.0f
+//                        options:UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionAllowUserInteraction
+//                     animations:^{
                          [self setLayerOpacity:0.0f];
-                     } completion:^(BOOL finished) {
+//                     } completion:^(BOOL finished) {
                          [self setLayerHidden:YES];
-                     }];
+//                     }];
     
     [self.activityIndicatorView setHidden:NO];
     [self setupScrollViewContentInsetForLoadingIndicator:nil];
@@ -443,6 +443,14 @@
 
 - (void)actionStopState
 {
+    [self.activityIndicatorView setHidden:YES];
+    [self resetScrollViewContentInset:^{
+        self.activityIndicatorView.transform = CGAffineTransformIdentity;
+        [self setLayerHidden:NO];
+        [self setLayerOpacity:1.0f];
+        self.state = AAPullToRefreshStateNormal;
+    }];
+    return;
     [UIView animateWithDuration:0.2f
                           delay:0.0f
                         options:UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionAllowUserInteraction

@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface CPCar : NSObject
+//"brand": "大众",
+@property (nonatomic, copy) NSString *brand;
+//"slug": "dazhong-cc"
+@property (nonatomic, copy) NSString *slug;
 @property (nonatomic, copy) NSString *logo;
 @property (nonatomic, copy) NSString *model;
 @end
@@ -51,6 +55,9 @@
 @property (nonatomic, assign) BOOL subscribeFlag;
 
 @property (nonatomic, strong) NSArray *album;
+
+@property (nonatomic, assign, readonly) BOOL isHasAlubm;
+
 //个人资料完成程度1-100
 @property (nonatomic, assign) NSUInteger completion;
 

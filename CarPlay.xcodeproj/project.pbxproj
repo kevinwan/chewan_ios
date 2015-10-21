@@ -530,6 +530,7 @@
 		E3FE39E91BD64EF90022FDA3 /* CPComeOnTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FE39E71BD64EF90022FDA3 /* CPComeOnTipView.m */; settings = {ASSET_TAGS = (); }; };
 		E3FE39EA1BD64EF90022FDA3 /* CPComeOnTipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3FE39E81BD64EF90022FDA3 /* CPComeOnTipView.xib */; settings = {ASSET_TAGS = (); }; };
 		E3FE39ED1BD64F060022FDA3 /* CPPartnerMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FE39EC1BD64F060022FDA3 /* CPPartnerMemberCell.m */; settings = {ASSET_TAGS = (); }; };
+		E3FE39F01BD6699B0022FDA3 /* CPActivityPathCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FE39EF1BD6699B0022FDA3 /* CPActivityPathCell.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1381,6 +1382,8 @@
 		E3FE39E81BD64EF90022FDA3 /* CPComeOnTipView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPComeOnTipView.xib; sourceTree = "<group>"; };
 		E3FE39EB1BD64F060022FDA3 /* CPPartnerMemberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPartnerMemberCell.h; sourceTree = "<group>"; };
 		E3FE39EC1BD64F060022FDA3 /* CPPartnerMemberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPPartnerMemberCell.m; sourceTree = "<group>"; };
+		E3FE39EE1BD6699B0022FDA3 /* CPActivityPathCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityPathCell.h; sourceTree = "<group>"; };
+		E3FE39EF1BD6699B0022FDA3 /* CPActivityPathCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityPathCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3352,6 +3355,8 @@
 				E356F0F41BD4F22500D5BE07 /* CPActivityDetailFooterView.m */,
 				E356F0F61BD51DE400D5BE07 /* CPActivityPartnerCell.h */,
 				E356F0F71BD51DE400D5BE07 /* CPActivityPartnerCell.m */,
+				E3FE39EE1BD6699B0022FDA3 /* CPActivityPathCell.h */,
+				E3FE39EF1BD6699B0022FDA3 /* CPActivityPathCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4048,6 +4053,7 @@
 				6D2ABFF81BCE582100201A8E /* BaseViewController.m in Sources */,
 				6B906F7E1BC7C98B0048A806 /* ZHPickView.m in Sources */,
 				6B364CA51BCF4748005A4AF9 /* UserProfileViewController.m in Sources */,
+				E3FE39F01BD6699B0022FDA3 /* CPActivityPathCell.m in Sources */,
 				6D2ABFB41BCE582100201A8E /* PSTGridLayoutItem.m in Sources */,
 				E31B13401BB9312D00B51696 /* NSDate+Extend.m in Sources */,
 				6D2ABFE11BCE582100201A8E /* CreateGroupViewController.m in Sources */,

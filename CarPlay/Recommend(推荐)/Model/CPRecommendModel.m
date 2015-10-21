@@ -17,7 +17,7 @@
 
 + (NSDictionary *)objectClassInArray
 {
-    return @{@"members" : [CPUser class]};
+    return @{@"members" : [CPPartMember class]};
 }
 
 - (NSString *)desc
@@ -99,6 +99,39 @@
 - (NSString *)extraDesc
 {
     return @"啊看来的时间考虑的是否健康来打发时间来看打发时间来看的方式了肯定撒风景拉斯加福利卡的是减肥了打扫房间大放送骄傲的发生了空间的罚款了巨大是法律进阿飞的说了句反倒是徕卡的时间来看打发时间来看打发时间看来大家看了都放假快乐的方式健康的法律纠纷的刻录机发哦ijfaifjifdjiadfsdf交水电费可骄傲的方式来看";
+}
+
+@end
+
+@implementation CPPartMember
+
++ (NSDictionary *)objectClassInArray
+{
+    return @{@"acceptMembers" : [CPUser class]};
+}
+
+
+- (void)setDistance:(double)distance
+{
+    _distance = distance;
+    if (_distance >= 1000) {
+        CGFloat dis = distance / 1000.0;
+        _distanceStr = [NSString stringWithFormat:@"%.1fkm",dis];
+    }else{
+        _distanceStr = [NSString stringWithFormat:@"%zdm",distance];
+    }
+}
+
+- (void)setInvitedCount:(NSUInteger)invitedCount
+{
+    _invitedCount = invitedCount;
+    
+    NSMutableAttributedString *invitedStr = [[NSMutableAttributedString alloc] initWithString:@"已被" attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"999999"]}];
+    NSAttributedString *countStr = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%zd人",invitedCount] attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"fe5967"]}];
+    NSAttributedString *lastStr = [[NSAttributedString alloc] initWithString:@"邀请同去" attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"999999"]}];
+    [invitedStr appendAttributedString:countStr];
+    [invitedStr appendAttributedString:lastStr];
+    _invitedCountStr = [invitedStr copy];
 }
 
 @end

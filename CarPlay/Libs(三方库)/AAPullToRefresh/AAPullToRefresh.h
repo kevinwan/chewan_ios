@@ -31,6 +31,7 @@ typedef NS_ENUM(NSUInteger, AAPullToRefreshPosition) {
 @property (nonatomic, assign) CGFloat borderWidth;
 @property (nonatomic, strong) ZYRefreshView *activityIndicatorView;
 
+@property (nonatomic, assign) AAPullToRefreshState state;
 - (id)initWithImage:(UIImage *)image position:(AAPullToRefreshPosition)position;
 - (void)stopIndicatorAnimation;
 - (void)manuallyTriggered;

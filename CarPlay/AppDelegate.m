@@ -254,9 +254,10 @@
     [ZYNetWorkTool postJsonWithUrl:@"user/login" params:paras success:^(id responseObject) {
         if (CPSuccess) {
             CPUser *user = [CPUser objectWithKeyValues:responseObject[@"data"]];
-            if (user.album.count) {
+            if (user.album.count > 0) {
                 
                 [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
+                
             }else{
                 
                 [ZYUserDefaults setBool:NO forKey:CPHasAlbum];
