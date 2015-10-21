@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <scenes>
+        <!--Exercise Matching Select View-->
+        <scene sceneID="pVw-8j-42V">
+            <objects>
+                <viewController id="Z3w-Uc-SQQ" customClass="ExerciseMatchingSelectView" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CJb-xw-ZXE"/>
+                        <viewControllerLayoutGuide type="bottom" id="G3K-zT-mVc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PEJ-Fc-33x">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JVF-dO-2w3">
+                                <rect key="frame" x="38" y="115" width="245" height="320"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="意向选择" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1d-KJ-vRv">
+                                        <rect key="frame" x="90" y="8" width="64" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="64" id="Py3-CV-pei"/>
+                                            <constraint firstAttribute="height" constant="20" id="xBi-9M-qc5"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" red="0.98039215690000003" green="0.1843137255" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n4O-Jg-sJ2">
+                                        <rect key="frame" x="0.0" y="39" width="245" height="1"/>
+                                        <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="cTK-2d-hhP"/>
+                                            <constraint firstAttribute="width" constant="245" id="rbS-Wq-O4x"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MEA-V1-kcI">
+                                        <rect key="frame" x="57" y="230" width="130" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="22" id="c2U-uI-I8G"/>
+                                            <constraint firstAttribute="width" constant="130" id="sE3-FC-gsw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="包接送" image="初始效果">
+                                            <color key="titleColor" red="0.21960784310000001" green="0.70980392160000005" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wBS-RC-b0I">
+                                        <rect key="frame" x="16" y="186" width="213" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="gdl-vf-TrT"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <inset key="titleEdgeInsets" minX="-36" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="140" minY="0.0" maxX="-17" maxY="-2"/>
+                                        <state key="normal" title="什么地方(选填)" image="下箭头">
+                                            <color key="titleColor" red="0.90588235289999997" green="0.90588235289999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YH6-rO-ggx">
+                                        <rect key="frame" x="15" y="261" width="215" height="40"/>
+                                        <color key="backgroundColor" red="0.98039215690000003" green="0.1843137255" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Y6r-Zk-4K0"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <state key="normal" title="匹配意向">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SgD-VO-vo5" customClass="CPExerciseMatchingSelectButton">
+                                        <rect key="frame" x="15" y="56" width="66" height="58"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="58" id="XAY-F0-xNh"/>
+                                            <constraint firstAttribute="width" constant="66" id="yKV-yY-ReD"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <inset key="contentEdgeInsets" minX="-6" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="足球" backgroundImage="运动未选">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5od-hF-zCQ" customClass="CPExerciseMatchingSelectButton">
+                                        <rect key="frame" x="90" y="56" width="66" height="58"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="58" id="PI7-gC-IdH"/>
+                                            <constraint firstAttribute="width" constant="66" id="ght-oQ-B7w"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <inset key="contentEdgeInsets" minX="-6" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="篮球" backgroundImage="运动未选">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yyk-W1-4b2" customClass="CPExerciseMatchingSelectButton">
+                                        <rect key="frame" x="165" y="56" width="66" height="58"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="58" id="7xk-rG-4jb"/>
+                                            <constraint firstAttribute="width" constant="66" id="j0D-0O-iaS"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <inset key="contentEdgeInsets" minX="-6" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="羽毛球" backgroundImage="运动未选">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x8i-dY-1vC" customClass="CPExerciseMatchingSelectButton">
+                                        <rect key="frame" x="15" y="122" width="66" height="58"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="58" id="KD3-E3-Ius"/>
+                                            <constraint firstAttribute="width" constant="66" id="Zat-wz-e8p"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <inset key="contentEdgeInsets" minX="-6" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="桌球" backgroundImage="运动未选">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PXH-df-Rlm" customClass="CPExerciseMatchingSelectButton">
+                                        <rect key="frame" x="89" y="122" width="66" height="58"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="58" id="9iw-E3-HCT"/>
+                                            <constraint firstAttribute="width" constant="66" id="mAH-su-L2y"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <inset key="contentEdgeInsets" minX="-6" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="健身" backgroundImage="运动未选">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="PXH-df-Rlm" firstAttribute="top" secondItem="5od-hF-zCQ" secondAttribute="bottom" constant="8" id="04v-ao-O4E"/>
+                                    <constraint firstAttribute="trailing" secondItem="yyk-W1-4b2" secondAttribute="trailing" constant="14" id="1ak-B7-aA9"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="320" id="3Cy-Hv-hII"/>
+                                    <constraint firstItem="5od-hF-zCQ" firstAttribute="top" secondItem="n4O-Jg-sJ2" secondAttribute="bottom" constant="16" id="6Ng-QB-ksF"/>
+                                    <constraint firstItem="n4O-Jg-sJ2" firstAttribute="top" secondItem="P1d-KJ-vRv" secondAttribute="bottom" constant="11" id="75t-bp-dx6"/>
+                                    <constraint firstItem="PXH-df-Rlm" firstAttribute="centerX" secondItem="JVF-dO-2w3" secondAttribute="centerX" id="DOD-JQ-O5B"/>
+                                    <constraint firstAttribute="trailing" secondItem="wBS-RC-b0I" secondAttribute="trailing" constant="16" id="DhW-gB-WEm"/>
+                                    <constraint firstItem="wBS-RC-b0I" firstAttribute="leading" secondItem="JVF-dO-2w3" secondAttribute="leading" constant="16" id="Dz7-lp-rvu"/>
+                                    <constraint firstItem="SgD-VO-vo5" firstAttribute="top" secondItem="n4O-Jg-sJ2" secondAttribute="bottom" constant="16" id="JWe-pZ-z3J"/>
+                                    <constraint firstItem="x8i-dY-1vC" firstAttribute="leading" secondItem="JVF-dO-2w3" secondAttribute="leading" constant="15" id="LO3-z5-reE"/>
+                                    <constraint firstItem="P1d-KJ-vRv" firstAttribute="centerX" secondItem="JVF-dO-2w3" secondAttribute="centerX" id="S1h-ak-qhG"/>
+                                    <constraint firstItem="MEA-V1-kcI" firstAttribute="centerX" secondItem="JVF-dO-2w3" secondAttribute="centerX" id="TEy-gC-D9q"/>
+                                    <constraint firstItem="YH6-rO-ggx" firstAttribute="centerX" secondItem="JVF-dO-2w3" secondAttribute="centerX" id="WOH-dR-04T"/>
+                                    <constraint firstItem="P1d-KJ-vRv" firstAttribute="top" secondItem="JVF-dO-2w3" secondAttribute="top" constant="8" id="Wzl-Ta-CrC"/>
+                                    <constraint firstAttribute="height" constant="320" id="XVk-kH-42f"/>
+                                    <constraint firstItem="5od-hF-zCQ" firstAttribute="centerX" secondItem="JVF-dO-2w3" secondAttribute="centerX" id="aTS-eI-79a"/>
+                                    <constraint firstItem="MEA-V1-kcI" firstAttribute="top" secondItem="wBS-RC-b0I" secondAttribute="bottom" constant="14" id="cGH-qg-We8"/>
+                                    <constraint firstAttribute="bottom" secondItem="YH6-rO-ggx" secondAttribute="bottom" constant="19" id="d8e-rh-vbm"/>
+                                    <constraint firstItem="YH6-rO-ggx" firstAttribute="leading" secondItem="JVF-dO-2w3" secondAttribute="leading" constant="15" id="eZu-HZ-D44"/>
+                                    <constraint firstItem="SgD-VO-vo5" firstAttribute="leading" secondItem="JVF-dO-2w3" secondAttribute="leading" constant="15" id="fAv-Zy-2hW"/>
+                                    <constraint firstItem="n4O-Jg-sJ2" firstAttribute="leading" secondItem="JVF-dO-2w3" secondAttribute="leading" id="gbR-Xy-nQx"/>
+                                    <constraint firstAttribute="trailing" secondItem="n4O-Jg-sJ2" secondAttribute="trailing" id="jxg-qs-rNH"/>
+                                    <constraint firstItem="x8i-dY-1vC" firstAttribute="top" secondItem="SgD-VO-vo5" secondAttribute="bottom" constant="8" id="kKj-WK-X8j"/>
+                                    <constraint firstItem="wBS-RC-b0I" firstAttribute="top" secondItem="PXH-df-Rlm" secondAttribute="bottom" constant="6" id="qut-IU-4Be"/>
+                                    <constraint firstItem="yyk-W1-4b2" firstAttribute="top" secondItem="n4O-Jg-sJ2" secondAttribute="bottom" constant="16" id="uNf-DK-IUf"/>
+                                    <constraint firstAttribute="trailing" secondItem="YH6-rO-ggx" secondAttribute="trailing" constant="15" id="v1J-MA-e7Q"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="JVF-dO-2w3" secondAttribute="trailing" constant="37" id="K1Z-bf-iVL"/>
+                            <constraint firstItem="JVF-dO-2w3" firstAttribute="leading" secondItem="PEJ-Fc-33x" secondAttribute="leading" constant="38" id="Vbg-tw-dw3"/>
+                            <constraint firstItem="JVF-dO-2w3" firstAttribute="top" secondItem="PEJ-Fc-33x" secondAttribute="top" constant="115" id="hB4-Mp-fqa"/>
+                            <constraint firstItem="JVF-dO-2w3" firstAttribute="centerX" secondItem="PEJ-Fc-33x" secondAttribute="centerX" id="iss-25-ywo"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dvz-Ne-yO6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="542" y="-35"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="下箭头" width="20" height="12"/>
+        <image name="初始效果" width="22" height="22"/>
+        <image name="运动未选" width="66" height="58"/>
+    </resources>
+</document>

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CPNoHighLightButton.h"
 
 @interface CPExerciseMatchingSelectButton : UIButton
 

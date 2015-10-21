@@ -11,7 +11,7 @@
 #import "CPpinyin.h"
 
 @interface OtherMatchingSelectView ()
-
+@property (nonatomic, strong) UIButton *lastTypebtn;
 @end
 
 @implementation OtherMatchingSelectView
@@ -40,6 +40,11 @@
     [self.selectPlace setImageEdgeInsets:UIEdgeInsetsMake(0, self.selectPlace.titleLabel.bounds.size.width, 0, -self.selectPlace.titleLabel.bounds.size.width)];
     self.areaList=[[NSMutableArray alloc]init];
     [self addMJindex];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hidenself)];
+    [self.view addGestureRecognizer:tapGesture];
+    
+    _addressLable.text=[[NSString alloc]initWithFormat:@"%@  %@  %@  %@",[ZYUserDefaults stringForKey:Province],[ZYUserDefaults stringForKey:City],[ZYUserDefaults stringForKey:District],[ZYUserDefaults stringForKey:Street]];
+    _locationAddressLable.text=[[NSString alloc]initWithFormat:@"%@  %@  %@  %@",[ZYUserDefaults stringForKey:Province],[ZYUserDefaults stringForKey:City],[ZYUserDefaults stringForKey:District],[ZYUserDefaults stringForKey:Street]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -74,8 +79,6 @@
 - (IBAction)selectPlaceClick:(id)sender {
     _locationAddressView.alpha=1.0;
     _selectView.alpha=0.0;
-    _addressLable.text=[[NSString alloc]initWithFormat:@"%@  %@  %@  %@",[ZYUserDefaults stringForKey:Province],[ZYUserDefaults stringForKey:City],[ZYUserDefaults stringForKey:District],[ZYUserDefaults stringForKey:Street]];
-    _locationAddressLable.text=[[NSString alloc]initWithFormat:@"%@  %@  %@  %@",[ZYUserDefaults stringForKey:Province],[ZYUserDefaults stringForKey:City],[ZYUserDefaults stringForKey:District],[ZYUserDefaults stringForKey:Street]];
 }
 //
 - (IBAction)matchingBtnClick:(id)sender {
@@ -97,26 +100,6 @@
     }];
 }
 
-//+(void)show:(NSString *)colorStr{
-//    OtherMatchingSelectView *view= [[NSBundle mainBundle] loadNibNamed:@"OtherMatchingSelectView" owner:nil options:nil].lastObject;
-//    view.backgroundColor=[Tools getColor:colorStr];
-//    view.frame = [ZYKeyWindow bounds];
-//    [ZYKeyWindow addSubview:view];
-//    view.alpha = 0.0;
-//    [UIView animateWithDuration:0.3 animations:^{
-//        view.alpha = 1.0;
-//    }];
-//    UITapGestureRecognizer *tap = [UITapGestureRecognizer new];
-//    [tap.rac_gestureSignal subscribeNext:^(id x) {
-//        [UIView animateWithDuration:0.25 animations:^{
-//            view.alpha = 0.0;
-//        } completion:^(BOOL finished) {
-//            [view removeFromSuperview];
-//        }];
-//    }];
-//    [view addGestureRecognizer:tap];
-//}
-
 - (IBAction)closeLocatoinAddressView:(id)sender {
     _locationAddressView.alpha=0.0;
     _selectView.alpha=1.0;
@@ -129,8 +112,10 @@
     _locationAddressView.alpha=0.0;
     _addressSelection.alpha=1.0;
     _parentId=0;
+    _indexView.alpha=1.0;
     [self getArea];
 }
+
 - (IBAction)closeAddressSelectionView:(id)sender {
     
 }
@@ -279,4 +264,18 @@
     }
 }
 
+-(void)hidenself{
+    [UIView animateWithDuration:0.25 animations:^{
+        self.view.alpha = 0.0;
+    } completion:^(BOOL finished) {
+//        [ self.view removeFromSuperview];
+//        [self removeFromParentViewController];
+    }];
+}
+
+- (IBAction)typeBtnClick:(UIButton *)sender {
+    self.lastTypebtn.selected = NO;
+    sender.selected = YES;
+    self.lastTypebtn = sender;
+}
 @end

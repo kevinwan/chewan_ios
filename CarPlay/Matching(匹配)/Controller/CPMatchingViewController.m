@@ -23,7 +23,7 @@
     NSTimer *takeALookViewTimer;
     NSUInteger takeALookAnimationIndex;
     CPTakeALookViewController *takeALook;
-    OtherMatchingSelectView *matchingSelectView;
+    OtherMatchingSelectView *otherMatchingSelectView;
     MatchingSelectView *signMatchingSelectView;
     NSInteger index;
 }
@@ -127,7 +127,7 @@
     
     UITapGestureRecognizer*tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hidenScrollView)];
     [self.scrollView addGestureRecognizer:tapGesture];
-    matchingSelectView=[UIStoryboard storyboardWithName:@"OtherMatchingSelectView" bundle:nil].instantiateInitialViewController;
+    otherMatchingSelectView=[UIStoryboard storyboardWithName:@"OtherMatchingSelectView" bundle:nil].instantiateInitialViewController;
     signMatchingSelectView=[UIStoryboard storyboardWithName:@"MatchingSelectView" bundle:nil].instantiateInitialViewController;
     
 }
@@ -304,56 +304,98 @@
     if (sender.tag!=100) {
         switch (sender.tag) {
             case 1:
-                matchingSelectView.view.backgroundColor=[Tools getColor:colorRGB];
-                [self.view addSubview:matchingSelectView.view];
-                [self addChildViewController:matchingSelectView];
+                otherMatchingSelectView.view.backgroundColor=[Tools getColor:colorRGB];
+                otherMatchingSelectView.view.alpha=1.0;
+                otherMatchingSelectView.selectView.alpha=1.0;
+                otherMatchingSelectView.locationAddressView.alpha=0.0;
+                otherMatchingSelectView.addressSelection.alpha=0.0;
+                otherMatchingSelectView.indexView.alpha=0.0;
+                [self.view addSubview:otherMatchingSelectView.view];
+                [self addChildViewController:otherMatchingSelectView];
                 break;
             case 2:
                 colorRGB=@"5f99c0";
                 type=@"夜宵";
-                matchingSelectView.view.backgroundColor=[Tools getColor:colorRGB];
-                [self.view addSubview:matchingSelectView.view];
-                [self addChildViewController:matchingSelectView];
+                otherMatchingSelectView.view.backgroundColor=[Tools getColor:colorRGB];
+                otherMatchingSelectView.view.alpha=1.0;
+                otherMatchingSelectView.selectView.alpha=1.0;
+                otherMatchingSelectView.locationAddressView.alpha=0.0;
+                otherMatchingSelectView.addressSelection.alpha=0.0;
+                otherMatchingSelectView.indexView.alpha=0.0;
+                [self.view addSubview:otherMatchingSelectView.view];
+                [self addChildViewController:otherMatchingSelectView];
                 break;
             case 3:
                 colorRGB=@"fddb64";
                 type=@"唱歌";
-                matchingSelectView.view.backgroundColor=[Tools getColor:colorRGB];
-                [self.view addSubview:matchingSelectView.view];
-                [self addChildViewController:matchingSelectView];
+                otherMatchingSelectView.view.backgroundColor=[Tools getColor:colorRGB];
+                otherMatchingSelectView.view.alpha=1.0;
+                otherMatchingSelectView.selectView.alpha=1.0;
+                otherMatchingSelectView.locationAddressView.alpha=0.0;
+                otherMatchingSelectView.addressSelection.alpha=0.0;
+                otherMatchingSelectView.indexView.alpha=0.0;
+                [self.view addSubview:otherMatchingSelectView.view];
+                [self addChildViewController:otherMatchingSelectView];
                 break;
             case 4:
                 colorRGB=@"5adad0";
                 type=@"夜店";
-                matchingSelectView.view.backgroundColor=[Tools getColor:colorRGB];
-                [self.view addSubview:matchingSelectView.view];
-                [self addChildViewController:matchingSelectView];
+                otherMatchingSelectView.view.backgroundColor=[Tools getColor:colorRGB];
+                otherMatchingSelectView.view.alpha=1.0;
+                otherMatchingSelectView.selectView.alpha=1.0;
+                otherMatchingSelectView.locationAddressView.alpha=0.0;
+                otherMatchingSelectView.addressSelection.alpha=0.0;
+                otherMatchingSelectView.indexView.alpha=0.0;
+                [self.view addSubview:otherMatchingSelectView.view];
+                [self addChildViewController:otherMatchingSelectView];
                 break;
             case 5:
                 colorRGB=@"cd97dd";
                 type=@"看电影";
-                matchingSelectView.view.backgroundColor=[Tools getColor:colorRGB];
-                [self.view addSubview:matchingSelectView.view];
-                [self addChildViewController:matchingSelectView];
+                otherMatchingSelectView.view.backgroundColor=[Tools getColor:colorRGB];
+                otherMatchingSelectView.view.alpha=1.0;
+                otherMatchingSelectView.selectView.alpha=1.0;
+                otherMatchingSelectView.locationAddressView.alpha=0.0;
+                otherMatchingSelectView.addressSelection.alpha=0.0;
+                otherMatchingSelectView.indexView.alpha=0.0;
+                [self.view addSubview:otherMatchingSelectView.view];
+                [self addChildViewController:otherMatchingSelectView];
                 break;
             case 6:
                 colorRGB=@"ea6f6f";
                 type=@"喝咖啡";
-                matchingSelectView.view.backgroundColor=[Tools getColor:colorRGB];
-                [self.view addSubview:matchingSelectView.view];
-                [self addChildViewController:matchingSelectView];
+                otherMatchingSelectView.view.backgroundColor=[Tools getColor:colorRGB];
+                otherMatchingSelectView.view.alpha=1.0;
+                otherMatchingSelectView.selectView.alpha=1.0;
+                otherMatchingSelectView.locationAddressView.alpha=0.0;
+                otherMatchingSelectView.addressSelection.alpha=0.0;
+                otherMatchingSelectView.indexView.alpha=0.0;
+                [self.view addSubview:otherMatchingSelectView.view];
+                [self addChildViewController:otherMatchingSelectView];
                 break;
             case 7:
                 colorRGB=@"f48c60";
                 type=@"遛狗";
-//                [MatchingSelectView show:colorRGB];
+                signMatchingSelectView.view.backgroundColor=[Tools getColor:colorRGB];
+                signMatchingSelectView.view.alpha=1.0;
+                signMatchingSelectView.selectView.alpha=1.0;
+                signMatchingSelectView.locationAddressView.alpha=0.0;
+                signMatchingSelectView.addressSelection.alpha=0.0;
+                signMatchingSelectView.indexView.alpha=0.0;
+                [self.view addSubview:signMatchingSelectView.view];
+                [self addChildViewController:signMatchingSelectView];
                 break;
             case 8:
                 colorRGB=@"1cc1a0";
                 type=@"喝酒";
-                matchingSelectView.view.backgroundColor=[Tools getColor:colorRGB];
-                [self.view addSubview:matchingSelectView.view];
-                [self addChildViewController:matchingSelectView];
+                otherMatchingSelectView.view.backgroundColor=[Tools getColor:colorRGB];
+                otherMatchingSelectView.view.alpha=1.0;
+                otherMatchingSelectView.selectView.alpha=1.0;
+                otherMatchingSelectView.locationAddressView.alpha=0.0;
+                otherMatchingSelectView.addressSelection.alpha=0.0;
+                otherMatchingSelectView.indexView.alpha=0.0;
+                [self.view addSubview:otherMatchingSelectView.view];
+                [self addChildViewController:otherMatchingSelectView];
                 break;
             case 9:
                 colorRGB=@"98d872";
@@ -363,7 +405,14 @@
             case 10:
                 colorRGB=@"fb7b9b";
                 type=@"购物";
-//                [MatchingSelectView show:colorRGB];
+                signMatchingSelectView.view.backgroundColor=[Tools getColor:colorRGB];
+                signMatchingSelectView.view.alpha=1.0;
+                signMatchingSelectView.selectView.alpha=1.0;
+                signMatchingSelectView.locationAddressView.alpha=0.0;
+                signMatchingSelectView.addressSelection.alpha=0.0;
+                signMatchingSelectView.indexView.alpha=0.0;
+                [self.view addSubview:signMatchingSelectView.view];
+                [self addChildViewController:signMatchingSelectView];
                 break;
                 
             default:

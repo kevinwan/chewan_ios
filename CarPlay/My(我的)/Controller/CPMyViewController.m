@@ -100,6 +100,11 @@
             NSString *path=[[NSString alloc]initWithFormat:@"%@.info",[Tools getUserId]];
             [NSKeyedArchiver archiveRootObject:user toFile:path.documentPath];
             [self reloadData];
+            if (user.album.count > 0) {
+                [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
+            }else{
+                [ZYUserDefaults setBool:NO forKey:CPHasAlbum];
+            }
         }else{
             NSString *errmsg =[responseObject objectForKey:@"errmsg"];
             [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
@@ -281,6 +286,7 @@
                     albumModel.url=responseObject[@"data"][@"photoUrl"];
                     [albums insertObject:albumModel atIndex:0];
                     user.album=albums;
+                    [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
                     [self reloadAlbumsScrollView];
                 }else{
                     [self showError:responseObject[@"errmsg"]];

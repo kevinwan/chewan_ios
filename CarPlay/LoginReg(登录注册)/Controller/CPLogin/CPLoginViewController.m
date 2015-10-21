@@ -87,6 +87,11 @@
                                 [ZYUserDefaults setObject:[Tools md5EncryptWithString:self.passwordField.text] forKey:@"password"];
                                 [ZYNotificationCenter postNotificationName:NOTIFICATION_HASLOGIN object:nil];
                                 [self.navigationController popToRootViewControllerAnimated:NO];
+                                if (user.album.count > 0) {
+                                    [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
+                                }else{
+                                    [ZYUserDefaults setBool:NO forKey:CPHasAlbum];
+                                }
                             }
                         } onQueue:nil];
 
