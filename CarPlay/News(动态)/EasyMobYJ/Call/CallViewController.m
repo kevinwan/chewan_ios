@@ -181,11 +181,11 @@
     bgImageView.image = [UIImage imageNamed:@"callBg.png"];
     [self.view addSubview:bgImageView];
     
-    _topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 150)];
-    _topView.backgroundColor = [UIColor clearColor];
+    _topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 250)];
+    _topView.backgroundColor = [UIColor redColor];
     [self.view addSubview:_topView];
     
-    _statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 20, _topView.frame.size.width - 20, 20)];
+    _statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 25, _topView.frame.size.width - 20, 20)];
     _statusLabel.font = [UIFont systemFontOfSize:15.0];
     _statusLabel.backgroundColor = [UIColor clearColor];
     _statusLabel.textColor = [UIColor whiteColor];
@@ -199,7 +199,7 @@
     _timeLabel.textAlignment = NSTextAlignmentCenter;
     [_topView addSubview:_timeLabel];
     
-    _headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake((_topView.frame.size.width - 50) / 2, CGRectGetMaxY(_statusLabel.frame) + 20, 50, 50)];
+    _headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake((_topView.frame.size.width - 100) / 2, CGRectGetMaxY(_statusLabel.frame) + 70, 100, 100)];
     _headerImageView.image = [UIImage imageNamed:@"chatListCellHead"];
     [_topView addSubview:_headerImageView];
     
@@ -216,29 +216,7 @@
     [self.view addSubview:_actionView];
 
     CGFloat tmpWidth = _actionView.frame.size.width / 2;
-    _silenceButton = [[UIButton alloc] initWithFrame:CGRectMake((tmpWidth - 40) / 2, 20, 40, 40)];
-    [_silenceButton setImage:[UIImage imageNamed:@"call_silence"] forState:UIControlStateNormal];
-    [_silenceButton setImage:[UIImage imageNamed:@"call_silence_h"] forState:UIControlStateSelected];
-    [_silenceButton addTarget:self action:@selector(silenceAction) forControlEvents:UIControlEventTouchUpInside];
     
-    _silenceLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, CGRectGetMaxY(_silenceButton.frame) + 5, tmpWidth - 60, 20)];
-    _silenceLabel.backgroundColor = [UIColor clearColor];
-    _silenceLabel.textColor = [UIColor whiteColor];
-    _silenceLabel.font = [UIFont systemFontOfSize:13.0];
-    _silenceLabel.textAlignment = NSTextAlignmentCenter;
-    _silenceLabel.text = NSLocalizedString(@"call.silence", @"Silence");
-    
-    _speakerOutButton = [[UIButton alloc] initWithFrame:CGRectMake(tmpWidth + (tmpWidth - 40) / 2, _silenceButton.frame.origin.y, 40, 40)];
-    [_speakerOutButton setImage:[UIImage imageNamed:@"call_out"] forState:UIControlStateNormal];
-    [_speakerOutButton setImage:[UIImage imageNamed:@"call_out_h"] forState:UIControlStateSelected];
-    [_speakerOutButton addTarget:self action:@selector(speakerOutAction) forControlEvents:UIControlEventTouchUpInside];
-    
-    _speakerOutLabel = [[UILabel alloc] initWithFrame:CGRectMake(tmpWidth + 30, CGRectGetMaxY(_speakerOutButton.frame) + 5, tmpWidth - 60, 20)];
-    _speakerOutLabel.backgroundColor = [UIColor clearColor];
-    _speakerOutLabel.textColor = [UIColor whiteColor];
-    _speakerOutLabel.font = [UIFont systemFontOfSize:13.0];
-    _speakerOutLabel.textAlignment = NSTextAlignmentCenter;
-    _speakerOutLabel.text = NSLocalizedString(@"call.speaker", @"Speaker");
     
     _rejectButton = [[UIButton alloc] initWithFrame:CGRectMake((tmpWidth - 100) / 2, CGRectGetMaxY(_speakerOutLabel.frame) + 30, 100, 40)];
     [_rejectButton setTitle:NSLocalizedString(@"call.reject", @"Reject") forState:UIControlStateNormal];
@@ -250,12 +228,59 @@
     [_answerButton setBackgroundColor:[UIColor colorWithRed:191 / 255.0 green:48 / 255.0 blue:49 / 255.0 alpha:1.0]];;
     [_answerButton addTarget:self action:@selector(answerAction) forControlEvents:UIControlEventTouchUpInside];
     
-    _hangupButton = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 200) / 2, _rejectButton.frame.origin.y, 200, 40)];
-    [_hangupButton setTitle:NSLocalizedString(@"call.hangup", @"Hangup") forState:UIControlStateNormal];
-    [_hangupButton setBackgroundColor:[UIColor colorWithRed:191 / 255.0 green:48 / 255.0 blue:49 / 255.0 alpha:1.0]];;
+    _hangupButton = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 115) / 2, _rejectButton.frame.origin.y, 115, 40)];
+//    [_hangupButton setTitle:NSLocalizedString(@"call.hangup", @"Hangup") forState:UIControlStateNormal];
+    [_hangupButton setImage:[UIImage imageNamed:@"refuse"] forState:UIControlStateNormal];
+    _hangupButton.backgroundColor = UIColorFromRGB(0xfe5969);
+    _hangupButton.layer.cornerRadius = 20;
     [_hangupButton addTarget:self action:@selector(hangupAction) forControlEvents:UIControlEventTouchUpInside];
-}
+    
+    //静音
+    _silenceButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMidX(_hangupButton.frame)-80, CGRectGetMidY(_hangupButton.frame), 40, 40)];
+    [_silenceButton setImage:[UIImage imageNamed:@"call_silence"] forState:UIControlStateNormal];
+    [_silenceButton setImage:[UIImage imageNamed:@"call_silence_h"] forState:UIControlStateSelected];
+    [_silenceButton addTarget:self action:@selector(silenceAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    _silenceLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMidX(_silenceButton.frame), CGRectGetMaxY(_silenceButton.frame) + 5, 60, 20)];
+    _silenceLabel.backgroundColor = [UIColor clearColor];
+    _silenceLabel.textColor = [UIColor whiteColor];
+    _silenceLabel.font = [UIFont systemFontOfSize:13.0];
+    _silenceLabel.textAlignment = NSTextAlignmentCenter;
+    _silenceLabel.text = NSLocalizedString(@"call.silence", @"Silence");
+    
+    //免提
+    _speakerOutButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMidX(_hangupButton.frame)+80, CGRectGetMidY(_hangupButton.frame), 40, 40)];
+    [_speakerOutButton setImage:[UIImage imageNamed:@"call_out"] forState:UIControlStateNormal];
+    [_speakerOutButton setImage:[UIImage imageNamed:@"call_out_h"] forState:UIControlStateSelected];
+    [_speakerOutButton addTarget:self action:@selector(speakerOutAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    _speakerOutLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMidX(_silenceButton.frame), CGRectGetMaxY(_silenceButton.frame) + 5, 60, 20)];
+    _speakerOutLabel.backgroundColor = [UIColor clearColor];
+    _speakerOutLabel.textColor = [UIColor whiteColor];
+    _speakerOutLabel.font = [UIFont systemFontOfSize:13.0];
+    _speakerOutLabel.textAlignment = NSTextAlignmentCenter;
+    _speakerOutLabel.text = NSLocalizedString(@"call.speaker", @"Speaker");
 
+    
+    
+    
+
+}
+- (void)viewDidAppear:(BOOL)animated
+{//test
+    _answerButton.hidden = NO;
+    _rejectButton.hidden = NO;
+    _speakerOutLabel.hidden = NO;
+    _speakerOutButton.hidden = NO;
+    _silenceButton.hidden = NO;
+    _silenceLabel.hidden = NO;
+    
+    [_actionView addSubview:_silenceButton];
+    [_actionView addSubview:_silenceLabel];
+    [_actionView addSubview:_speakerOutButton];
+    [_actionView addSubview:_speakerOutLabel];
+
+}
 - (void)_initializeCamera
 {
     //1.大窗口显示层

@@ -17,6 +17,7 @@
 #import "ChatListViewController.h"
 #import "CPRecommendController.h"
 #import "CallViewController.h"
+#import "ChatViewController.h"
 @interface CPTabBarController () <CPTabBarDelegate>
 
 @end
@@ -90,8 +91,10 @@
 {
     
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"callOutWithChatter" object:@{@"chatter":@"chewan123", @"type":[NSNumber numberWithInt:eCallSessionTypeAudio]}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"callOutWithChatter" object:@{@"chatter":@"b17ea9f2e64fa8702a39f32cfe8715af", @"type":[NSNumber numberWithInt:eCallSessionTypeAudio]}];
     return;
+    //小牛的环信id：
+//    b17ea9f2e64fa8702a39f32cfe8715af
     //test 测试语音聊天，暂时用下这个位置
     CPMatchingViewController *mathching=[UIStoryboard storyboardWithName:@"CPMatching" bundle:nil].instantiateInitialViewController;
      CPNavigationController *nav=[[CPNavigationController alloc]initWithRootViewController:mathching];
@@ -229,6 +232,49 @@
     
     [[EaseMob sharedInstance].callManager addDelegate:self delegateQueue:nil];
 }
+- (void)callSessionStatusChanged:(EMCallSession *)callSession changeReason:(EMCallStatusChangedReason)reason error:(EMError *)error
+{
+    if (callSession.status == eCallSessionStatusConnected)
+    {
+        EMError *error = nil;
+        do {
+            BOOL isShowPicker = [[[NSUserDefaults standardUserDefaults] objectForKey:@"isShowPicker"] boolValue];
+            if (isShowPicker) {
+                error = [EMError errorWithCode:EMErrorInitFailure andDescription:NSLocalizedString(@"call.initFailed", @"Establish call failure")];
+                break;
+            }
+            
+            if (![self canRecord]) {
+                error = [EMError errorWithCode:EMErrorInitFailure andDescription:NSLocalizedString(@"call.initFailed", @"Establish call failure")];
+                break;
+            }
+            
+#warning 在后台不能进行视频通话
+            if(callSession.type == eCallSessionTypeVideo && ([[UIApplication sharedApplication] applicationState] != UIApplicationStateActive || ![CallViewController canVideo])){
+                error = [EMError errorWithCode:EMErrorInitFailure andDescription:NSLocalizedString(@"call.initFailed", @"Establish call failure")];
+                break;
+            }
+            
+            if (!isShowPicker){
+                [[EaseMob sharedInstance].callManager removeDelegate:self];
+                CallViewController *callController = [[CallViewController alloc] initWithSession:callSession isIncoming:YES];
+                callController.modalPresentationStyle = UIModalPresentationOverFullScreen;
+                [self presentViewController:callController animated:NO completion:nil];
+                if ([self.navigationController.topViewController isKindOfClass:[ChatViewController class]])
+                {
+                    ChatViewController *chatVc = (ChatViewController *)self.navigationController.topViewController;
+                    chatVc.isInvisible = YES;
+                }
+            }
+        } while (0);
+        
+        if (error) {
+            [[EaseMob sharedInstance].callManager asyncEndCall:callSession.sessionId reason:eCallReasonHangup];
+            return;
+        }
+    }
+}
+
 
 - (void)dealloc
 {
