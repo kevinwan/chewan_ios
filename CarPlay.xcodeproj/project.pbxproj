@@ -90,6 +90,8 @@
 		6BDA2CAA1BD75EC20032FFF1 /* CPOtherMatchingSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDA2CA91BD75EC20032FFF1 /* CPOtherMatchingSelectView.m */; settings = {ASSET_TAGS = (); }; };
 		6BDA2CAC1BD7705B0032FFF1 /* ExerciseMatchingSelectView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BDA2CAB1BD7705B0032FFF1 /* ExerciseMatchingSelectView.storyboard */; settings = {ASSET_TAGS = (); }; };
 		6BDA2CAF1BD774050032FFF1 /* ExerciseMatchingSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDA2CAE1BD774050032FFF1 /* ExerciseMatchingSelectView.m */; settings = {ASSET_TAGS = (); }; };
+		6BDA2CB91BD8E46A0032FFF1 /* CPCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDA2CB71BD8E46A0032FFF1 /* CPCollectionViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		6BDA2CBA1BD8E46A0032FFF1 /* CPCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BDA2CB81BD8E46A0032FFF1 /* CPCollectionViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		6BE2E6121BC67C8C00D1D928 /* CPNPSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2E6111BC67C8C00D1D928 /* CPNPSButton.m */; settings = {ASSET_TAGS = (); }; };
 		6BE2E61A1BC67CB000D1D928 /* CPMatching.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BE2E6131BC67CB000D1D928 /* CPMatching.storyboard */; settings = {ASSET_TAGS = (); }; };
 		6BE2E61B1BC67CB000D1D928 /* CPMatchingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2E6151BC67CB000D1D928 /* CPMatchingViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -675,6 +677,9 @@
 		6BDA2CAB1BD7705B0032FFF1 /* ExerciseMatchingSelectView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ExerciseMatchingSelectView.storyboard; sourceTree = "<group>"; };
 		6BDA2CAD1BD774050032FFF1 /* ExerciseMatchingSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseMatchingSelectView.h; sourceTree = "<group>"; };
 		6BDA2CAE1BD774050032FFF1 /* ExerciseMatchingSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseMatchingSelectView.m; sourceTree = "<group>"; };
+		6BDA2CB61BD8E46A0032FFF1 /* CPCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCollectionViewCell.h; sourceTree = "<group>"; };
+		6BDA2CB71BD8E46A0032FFF1 /* CPCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCollectionViewCell.m; sourceTree = "<group>"; };
+		6BDA2CB81BD8E46A0032FFF1 /* CPCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPCollectionViewCell.xib; sourceTree = "<group>"; };
 		6BE2E6101BC67C8C00D1D928 /* CPNPSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNPSButton.h; sourceTree = "<group>"; };
 		6BE2E6111BC67C8C00D1D928 /* CPNPSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNPSButton.m; sourceTree = "<group>"; };
 		6BE2E6131BC67CB000D1D928 /* CPMatching.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMatching.storyboard; sourceTree = "<group>"; };
@@ -1753,6 +1758,16 @@
 				6BDA2C9E1BD644990032FFF1 /* CPEditUsername.storyboard */,
 			);
 			path = CPEditUsername;
+			sourceTree = "<group>";
+		};
+		6BDA2CB21BD8E43D0032FFF1 /* CPAlbumsCollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				6BDA2CB61BD8E46A0032FFF1 /* CPCollectionViewCell.h */,
+				6BDA2CB71BD8E46A0032FFF1 /* CPCollectionViewCell.m */,
+				6BDA2CB81BD8E46A0032FFF1 /* CPCollectionViewCell.xib */,
+			);
+			path = CPAlbumsCollectionCell;
 			sourceTree = "<group>";
 		};
 		6BE2E60F1BC67C8C00D1D928 /* CPNPSButton(文字图片垂直排列) */ = {
@@ -3280,6 +3295,7 @@
 		E3A4710C1BB3A85300973197 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6BDA2CB21BD8E43D0032FFF1 /* CPAlbumsCollectionCell */,
 				6B364C9C1BCF442E005A4AF9 /* CPMyBaseCell */,
 			);
 			path = View;
@@ -3950,6 +3966,7 @@
 				6D2AC13C1BCE5A5100201A8E /* chatBar_colorMore_location@2x.png in Resources */,
 				6D2ABFB91BCE582100201A8E /* sr_refresh@2X.png in Resources */,
 				6B364C971BCF43B8005A4AF9 /* CPAbout.storyboard in Resources */,
+				6BDA2CBA1BD8E46A0032FFF1 /* CPCollectionViewCell.xib in Resources */,
 				6D2AC1701BCE5A5100201A8E /* group_detail@2x.png in Resources */,
 				6BDA2C9F1BD644990032FFF1 /* CPEditUsername.storyboard in Resources */,
 				6D2AC1851BCE5A5100201A8E /* tabbar_setting.png in Resources */,
@@ -4255,6 +4272,7 @@
 				E3A4718F1BB3A85300973197 /* XMNetStatuesTool.m in Sources */,
 				6D2ABFF11BCE582100201A8E /* RealtimeSearchUtil.m in Sources */,
 				6BCD58621BBB87990025F995 /* CPMyInfoThrCell.m in Sources */,
+				6BDA2CB91BD8E46A0032FFF1 /* CPCollectionViewCell.m in Sources */,
 				6B364C631BCE401C005A4AF9 /* UzysAssetsPickerController.m in Sources */,
 				E3AF17011BBA317E00306ABF /* CPMySwitch.m in Sources */,
 				6D2AC0001BCE582100201A8E /* RobotChatViewController.m in Sources */,

@@ -21,8 +21,9 @@
 #import "CPAvatarAuthenticationController.h"
 #import "CPEditInfoViewController.h"
 #import "CPMyDateViewController.h"
+#import "CPCollectionViewCell.h"
 
-@interface CPMyViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate, UzysAssetsPickerControllerDelegate, UIAlertViewDelegate,UINavigationControllerDelegate>
+@interface CPMyViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate, UzysAssetsPickerControllerDelegate, UIAlertViewDelegate,UINavigationControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 {
     CPUser *user;
 }
@@ -45,6 +46,7 @@
 //    取消下划线
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+    [self.albumsCollectionView registerNib:[UINib nibWithNibName:@"CPCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
     //一个不透明类型的Quartz 2D绘画环境,相当于一个画布,你可以在上面任意绘画
 //    CGContextRef context = UIGraphicsGetCurrentContext();
     
@@ -59,10 +61,10 @@
     solidLine.path = solidPath;
     CGPathRelease(solidPath);
     [self.headImageBg.layer addSublayer:solidLine];
-    UIButton *addPhotoBtn=[[UIButton alloc]initWithFrame:CGRectMake(10, 15, 70, 70)];
-    [addPhotoBtn addTarget:self action:@selector(addPhoto) forControlEvents:UIControlEventTouchUpInside];
-    [addPhotoBtn setImage:[UIImage imageNamed:@"相机"] forState:UIControlStateNormal];
-    [self.albumsScrollView addSubview:addPhotoBtn];
+//    UIButton *addPhotoBtn=[[UIButton alloc]initWithFrame:CGRectMake(10, 15, 70, 70)];
+//    [addPhotoBtn addTarget:self action:@selector(addPhoto) forControlEvents:UIControlEventTouchUpInside];
+//    [addPhotoBtn setImage:[UIImage imageNamed:@"相机"] forState:UIControlStateNormal];
+////    [self.albumsScrollView addSubview:addPhotoBtn];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -129,25 +131,25 @@
     }
     [self.sex setTitle:[[NSString alloc]initWithFormat:@"%lu",(unsigned long)user.age] forState:UIControlStateNormal];
     
-    self.albumsScrollView.contentSize=CGSizeMake(0, 0);
-    self.albumsScrollView.pagingEnabled=NO;
-    [self reloadAlbumsScrollView];
+//    self.albumsScrollView.contentSize=CGSizeMake(0, 0);
+//    self.albumsScrollView.pagingEnabled=NO;
+//    [self reloadAlbumsScrollView];
 }
 
 -(void)reloadAlbumsScrollView{
-    for (int i=0; i<[user.album count]; i++) {
-        UIImageView *album=[[UIImageView alloc]initWithFrame:CGRectMake(85+75*i, 15, 70, 70)];
-        CPAlbum *albumModel=(CPAlbum *)user.album[i];
-        [album sd_setImageWithURL:[[NSURL alloc]initWithString:albumModel.url] placeholderImage:[UIImage imageNamed:@"logo"]];
-        UITapGestureRecognizer *singleTap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(photoBrowser)];
-        album.userInteractionEnabled = YES;
-        [album addGestureRecognizer:singleTap1];
-        [album.layer setMasksToBounds:YES];
-        [album.layer setCornerRadius:3.0];
-        [album setContentMode:UIViewContentModeScaleAspectFill];
-        [self.albumsScrollView addSubview:album];
-    }
-    self.albumsScrollView.contentSize=CGSizeMake(85+75*[user.album count], 100.0);
+//    for (int i=0; i<[user.album count]; i++) {
+//        UIImageView *album=[[UIImageView alloc]initWithFrame:CGRectMake(85+75*i, 15, 70, 70)];
+//        CPAlbum *albumModel=(CPAlbum *)user.album[i];
+//        [album sd_setImageWithURL:[[NSURL alloc]initWithString:albumModel.url] placeholderImage:[UIImage imageNamed:@"logo"]];
+//        UITapGestureRecognizer *singleTap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(photoBrowser)];
+//        album.userInteractionEnabled = YES;
+//        [album addGestureRecognizer:singleTap1];
+//        [album.layer setMasksToBounds:YES];
+//        [album.layer setCornerRadius:3.0];
+//        [album setContentMode:UIViewContentModeScaleAspectFill];
+//        [self.albumsScrollView addSubview:album];
+//    }
+//    self.albumsScrollView.contentSize=CGSizeMake(85+75*[user.album count], 100.0);
 }
 
 //完善
@@ -288,7 +290,7 @@
                     [albums insertObject:albumModel atIndex:0];
                     user.album=albums;
                     [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
-                    [self reloadAlbumsScrollView];
+                    [self.albumsCollectionView reloadData];
                 }else{
                     [self showError:responseObject[@"errmsg"]];
                 }
@@ -297,6 +299,33 @@
             }];
         }
     [self disMiss];
+}
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return [user.album count]+1;
+}
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"cell";
+     CPCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    if (indexPath.row==0) {
+        [cell.imageView setImage:[UIImage imageNamed:@"相机"]];
+    }else
+        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:user.album[indexPath.row]]];
+    return cell;
+}
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row==0) {
+        [self addPhoto];
+    }else{
+        
+    }
 }
 
 @end
