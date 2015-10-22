@@ -19,7 +19,6 @@
     // 1.创建一个请求管理者<单例不必考虑内存问题>
     ZYNetWorkManager *mgr = [ZYNetWorkManager sharedInstances];
     mgr.requestSerializer.timeoutInterval = 40;
-    
     // 2.发送一个POST请求
     [mgr POST:url parameters:params
       success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -41,12 +40,14 @@
                         failure(error);
                     }
                 }];
-              }else{
+              }
+          else{
               if (success) {
                   success(responseObject);
               }
           }
       } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+          NSLog(@"sssss%@",operation.request.URL.absoluteString);
           if (failure) {
               failure(error);
               
@@ -110,6 +111,10 @@
     
     // 网络超时时长
     mgr.requestSerializer.timeoutInterval = 40;
+    
+    if (jsonDict == nil) {
+        jsonDict = @{};
+    }
     
     [mgr POST:url parameters:jsonDict success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([responseObject[@"result"] intValue] && [responseObject[@"errmsg"] contains:@"口令已过期"]) {

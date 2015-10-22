@@ -11,6 +11,15 @@
 @interface NSString (Extension)
 
 /**
+ *  和匹配的字符串不相同
+ *
+ *  @param str 需要比较的字符串
+ *
+ *  @return BOOL
+ */
+- (BOOL)isDiffToString:(NSString *)str;
+
+/**
  *  根据字号计算文字大小
  *
  *  @param font font

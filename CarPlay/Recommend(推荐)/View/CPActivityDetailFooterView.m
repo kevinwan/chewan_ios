@@ -7,6 +7,7 @@
 //
 
 #import "CPActivityDetailFooterView.h"
+#import "AFNetworking.h"
 
 
 @interface CPActivityDetailFooterView()
@@ -67,6 +68,7 @@
     [paragraphStyle setLineSpacing:7];
     self.activityPathLabel.attributedText = [[NSAttributedString alloc] initWithString:model.desc attributes:@{NSParagraphStyleAttributeName : paragraphStyle}];
     self.explainLabel.attributedText = [[NSAttributedString alloc] initWithString:model.extraDesc attributes:@{NSParagraphStyleAttributeName : paragraphStyle}];
+    self.comePartBtn.enabled = !model.isMember;
 }
 
 - (IBAction)activityPathClick:(UIButton *)sender {
@@ -109,20 +111,15 @@
 
 
 - (IBAction)comePart:(UIButton *)sender {
-    [self superViewWillRecive:CPActivityComePartKey info:nil];
-    
-    NSString *url = [NSString stringWithFormat:@"official/activity/%@/join", self.officialActivityId];
-    [SVProgressHUD showWithStatus:@"努力加载中"];
-    [CPNetWorkTool postWithUrl:url params:nil success:^(id responseObject) {
+  
+    NSString *url = [NSString stringWithFormat:@"official/activity/%@/join?userId=%@&token=%@",self.officialActivityId, CPUserId, CPToken];
+    [ZYNetWorkTool postJsonWithUrl:url params:nil success:^(id responseObject) {
         if (CPSuccess) {
-            [SVProgressHUD showInfoWithStatus:@"报名成功"];
-            [sender setBackgroundColor:[Tools getColor:@"999999"]];
-        }else{
-            
-            [SVProgressHUD showInfoWithStatus:@"报名失败"];
+            [SVProgressHUD showInfoWithStatus:@"申请成功"];
+            sender.enabled = YES;
         }
-    } failure:^(NSError *error) {
-        [SVProgressHUD showInfoWithStatus:@"加载失败"];
+    } failed:^(NSError *error) {
+        [SVProgressHUD showInfoWithStatus:@"申请失败"];
     }];
 }
 

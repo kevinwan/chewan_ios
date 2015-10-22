@@ -233,19 +233,6 @@
                                         <action selector="payTypeClick:" destination="GYe-yI-VCc" eventType="touchUpInside" id="8Sy-tL-opY"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="23" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ANs-ob-tTD" customClass="CPSelectButton">
-                                    <rect key="frame" x="156" y="10" width="60" height="22"/>
-                                    <color key="backgroundColor" red="0.4549019608" green="0.80784313730000001" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="22" id="XPH-J9-ir1"/>
-                                        <constraint firstAttribute="width" constant="60" id="mj0-Ay-HYg"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                    <state key="normal" title="不限"/>
-                                    <connections>
-                                        <action selector="payTypeClick:" destination="GYe-yI-VCc" eventType="touchUpInside" id="1Kt-7g-Cvn"/>
-                                    </connections>
-                                </button>
                                 <button opaque="NO" tag="21" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="soC-wf-Qpn" customClass="CPSelectButton">
                                     <rect key="frame" x="9" y="10" width="60" height="22"/>
                                     <color key="backgroundColor" red="0.4549019608" green="0.80784313730000001" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -257,6 +244,19 @@
                                     <state key="normal" title="请我吧"/>
                                     <connections>
                                         <action selector="payTypeClick:" destination="GYe-yI-VCc" eventType="touchUpInside" id="uQE-Gu-VXA"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="23" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ANs-ob-tTD" customClass="CPSelectButton">
+                                    <rect key="frame" x="156" y="10" width="60" height="22"/>
+                                    <color key="backgroundColor" red="0.4549019608" green="0.80784313730000001" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="22" id="XPH-J9-ir1"/>
+                                        <constraint firstAttribute="width" constant="60" id="mj0-Ay-HYg"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <state key="normal" title="AA制"/>
+                                    <connections>
+                                        <action selector="payTypeClick:" destination="GYe-yI-VCc" eventType="touchUpInside" id="1Kt-7g-Cvn"/>
                                     </connections>
                                 </button>
                             </subviews>

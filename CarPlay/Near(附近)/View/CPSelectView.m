@@ -127,7 +127,9 @@
     
     CPSelectModel *model = [CPSelectModel new];
     model.pay = self.lastPaybtn.currentTitle;
-    model.sex = self.lastSexbtn.currentTitle;
+    if ([self.lastSexbtn.currentTitle isDiffToString:@"不限"]){
+        model.sex = self.lastSexbtn.currentTitle;
+    }
     model.type = self.lastTypebtn.currentTitle;
     model.transfer = self.transferBtn.isSelected;
     [NSKeyedArchiver archiveRootObject:model toFile:CPSelectModelFilePath];

@@ -7,7 +7,7 @@
 //
 
 #import "UITabBar+Extension.h"
-#define TabbarItemNums 3.0    //tabbar的数量
+#define TabbarItemNums 5.0    //tabbar的数量
 @implementation UITabBar (Extension)
 - (void)showBadgeOnItemIndex:(int)index{
     
@@ -15,11 +15,20 @@
     [self removeBadgeOnItemIndex:index];
     
     //新建小红点
-    UIView *badgeView = [[UIView alloc]init];
-    badgeView.tag = 888 + index;
+//    UIView *badgeView = [[UIView alloc]init];
+//    badgeView.tag = 888 + index;
+//    badgeView.layer.cornerRadius = 5;
+//    badgeView.backgroundColor = [UIColor redColor];
+//    CGRect tabFrame = self.frame;
+    
+        UIImageView *badgeView = [[UIImageView alloc]init];
+        badgeView.tag = 888 + index;
+        badgeView.backgroundColor = [UIColor clearColor];
     badgeView.layer.cornerRadius = 5;
-    badgeView.backgroundColor = [UIColor redColor];
-    CGRect tabFrame = self.frame;
+
+        badgeView.image = [UIImage imageNamed:@"dot"];
+        CGRect tabFrame = self.frame;
+
     
     //确定小红点的位置
     float percentX = (index + 0.6) / TabbarItemNums;

@@ -20,5 +20,4 @@
 @interface CPBaseViewCell : UIView
 @property (nonatomic, strong) NSIndexPath *indexPath;
 @property (nonatomic, strong) CPActivityModel *model;
-@property (nonatomic, assign) BOOL oneType;
 @end

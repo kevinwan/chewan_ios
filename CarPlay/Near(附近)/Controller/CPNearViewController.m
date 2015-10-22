@@ -143,6 +143,9 @@ static NSString *ID = @"cell";
                 self.noDataView.hidden = YES;
             }
             [self.tableView reloadData];
+            if (self.tableView.contentOffset.y > 60 && refresh != self.footerView) {
+                [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, 0) animated:YES];
+            }
         }
     } failure:^(NSError *error) {
         
@@ -354,8 +357,9 @@ static NSString *ID = @"cell";
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[UserId] = CPUserId;
     params[Token] = CPToken;
-    DLog(@"邀请%@",params);
+    [self showLoading];
     [CPNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
+        [self disMiss];
         if (CPSuccess) {
             [self showInfo:@"邀请已发出"];
             model.applyFlag = 1;
