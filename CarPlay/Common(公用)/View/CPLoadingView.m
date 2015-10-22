@@ -36,6 +36,7 @@ ZYSingleTonM
         [ZYKeyWindow addSubview:_refreshView];
         ZYRefreshView *rs = [[ZYRefreshView alloc] init];
         rs.center = _refreshView.centerInSelf;
+        [rs startAnimation];
         [_refreshView addSubview:rs];
     }
     return _refreshView;

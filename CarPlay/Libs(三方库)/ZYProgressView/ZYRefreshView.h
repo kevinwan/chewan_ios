@@ -10,4 +10,8 @@
 
 @interface ZYRefreshView : UIView
 
+- (void)startAnimation;
+
+- (void)stopAnimation;
+
 @end

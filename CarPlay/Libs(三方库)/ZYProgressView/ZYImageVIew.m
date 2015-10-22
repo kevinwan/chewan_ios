@@ -8,6 +8,10 @@
 
 #import "ZYImageVIew.h"
 
+@interface ZYImageVIew ()
+@property (nonatomic, strong) UIImageView *placeHloderImageView;
+@end
+
 @implementation ZYImageVIew
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -32,21 +36,35 @@
 - (void)setUp
 {
     self.backgroundColor = [Tools getColor:@"dddddd"];
-    self.contentMode = UIViewContentModeCenter;
+    self.contentMode = UIViewContentModeScaleAspectFill;
+    self.clipsToBounds = YES;
 }
 
 - (void)zy_setImageWithUrl:(NSString *)url completed:(completion)completed
 {
-    self.clipsToBounds = NO;
-    self.contentMode = UIStackViewAlignmentCenter;
+    self.placeHloderImageView.hidden = NO;
     [self sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"icon"] options:SDWebImageLowPriority | SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        self.contentMode = UIViewContentModeScaleAspectFill;
-        self.clipsToBounds = YES;
+        self.placeHloderImageView.hidden = YES;
         if (completed) {
             completed(image,error,cacheType,imageURL);
         }
     }];
     
 }
+
+- (UIImageView *)placeHloderImageView
+{
+    if (!_placeHloderImageView) {
+        _placeHloderImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon"]];
+    }
+    return _placeHloderImageView;
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    self.placeHloderImageView.center = self.centerInSelf;
+}
+
 
 @end

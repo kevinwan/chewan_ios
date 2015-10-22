@@ -182,11 +182,16 @@
 - (void)setModel:(CPActivityModel *)model
 {
     _model = model;
-    BOOL isHasAlubm = [ZYUserDefaults boolForKey:CPHasAlbum];
+    BOOL isHasAlubm;
+    if (CPUnLogin) {
+        isHasAlubm = NO;
+    }else{
+        isHasAlubm = [ZYUserDefaults boolForKey:CPHasAlbum];
+    }
     self.sexView.isMan = model.organizer.isMan;
     self.sexView.age = model.organizer.age;
 
-    [self.userIconView zy_setImageWithUrl:model.organizer.avatar completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) { self.userIconView.image = [image blurredImageWithRadius:10];
+    [self.userIconView zy_setImageWithUrl:model.organizer.avatar completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
          if (isHasAlubm && CPIsLogin) {
              self.userIconView.image = image;
          }else{
@@ -223,6 +228,20 @@
         self.tipView.hidden = YES;
     }else{
         self.tipView.hidden = NO;
+    }
+    
+    if (model.applyFlag == 0){
+        
+        self.dateAnim.haloLayerColor = RedColor.CGColor;
+        [self.dateButton setBackgroundColor:RedColor];
+        [self.dateButton setTitle:@"邀TA" forState:UIControlStateNormal];
+    }else if (model.applyFlag == 1){
+        
+        self.dateAnim.haloLayerColor= [Tools getColor:@"cccccc"].CGColor;
+        [self.dateButton setBackgroundColor:[Tools getColor:@"cccccc"]];
+        [self.dateButton setTitle:@"已邀请" forState:UIControlStateNormal];
+    }else if (model.applyFlag == 2){
+        
     }
 }
 
@@ -336,7 +355,7 @@
         _dateButton.layer.cornerRadius = 28;
         _dateButton.clipsToBounds = YES;
         [[_dateButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-            [self superViewWillRecive:DateBtnClickKey info:_model];
+            [self superViewWillRecive:DateBtnClickKey info:_indexPath];
         }];
     }
     return _dateButton;

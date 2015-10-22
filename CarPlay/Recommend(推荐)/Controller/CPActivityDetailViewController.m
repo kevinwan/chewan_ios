@@ -13,15 +13,17 @@
 #import "CPActivityDetailMiddleView.h"
 #import "CPActivityPartnerCell.h"
 #import "CPActivityPathCell.h"
+#import "CPTaInfo.h"
 
+#define CPMemberPageNum 4
 @interface CPActivityDetailViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) CPActivityDetailFooterView *footerView;
 @property (strong, nonatomic) CPActivityDetailHeaderView *headerView;
-@property (nonatomic, assign) BOOL isActivityPathOpen;
 @property (nonatomic, strong) CPRecommendModel *model;
 @property (nonatomic, assign) CGFloat activityPathHeight;
 @property (nonatomic, strong) NSMutableArray *datas;
+@property (nonatomic, assign) NSUInteger showMerberCount;
 @end
 
 static NSString *ID = @"partCell";
@@ -32,27 +34,23 @@ static NSString *ID = @"partCell";
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.tableFooterView = self.footerView;
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"laile" action:^{
-        self.headerView.height = 200;
-        self.tableView.tableHeaderView = self.headerView;
-        self.footerView.height = 200;
-        self.tableView.tableFooterView = self.footerView;
-    }];
     self.title = @"活动详情";
     [self loadData];
 }
 
 - (void)loadData
 {
+    [self showLoading];
     NSString *url = [NSString stringWithFormat:@"official/activity/%@/info",self.officialActivityId];
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     param[@"userId"] = CPUserId;
     param[@"token"] = CPToken;
     [ZYNetWorkTool getWithUrl:url params:param success:^(id responseObject) {
+        [self disMiss];
         self.model = [CPRecommendModel objectWithKeyValues:responseObject[@"data"]];
         [self reloadData];
     } failure:^(NSError *error) {
-        
+        [self showInfo:@"加载失败"];
     }];
 }
 
@@ -61,30 +59,48 @@ static NSString *ID = @"partCell";
     self.headerView.model = self.model;
     self.tableView.tableHeaderView = self.headerView;
     self.footerView.model = self.model;
+    self.footerView.officialActivityId = self.officialActivityId;
+    NSUInteger count = self.model.members.count;
+    self.showMerberCount = count > CPMemberPageNum ? CPMemberPageNum : count;
     [self.tableView reloadData];
 }
 
+#pragma mark - 事件交互
 - (void)superViewWillRecive:(NSString *)notifyName info:(id)userInfo
 {
-    if ([notifyName isEqualToString:CPActivityDetailOpenPathKey]) {
-        self.isActivityPathOpen = !self.isActivityPathOpen;
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
-    }else if ([notifyName isEqualToString:CPActivityDetailHeaderDetailOpenKey]){
+    if ([notifyName isEqualToString:CPActivityDetailHeaderDetailOpenKey]){
         self.tableView.tableHeaderView = self.headerView;
     }else if ([notifyName isEqualToString:CPActivityFooterViewOpenKey]){
         self.tableView.tableFooterView = self.footerView;
+    }else if ([notifyName isEqualToString:CPActivityDetailLoadMoreKey]){
+        if (self.showMerberCount + CPMemberPageNum > self.model.members.count) {
+            self.showMerberCount += CPMemberPageNum;
+        }else{
+            self.showMerberCount = self.model.members.count;
+        }
+        [self.tableView reloadData];
+    }else if ([notifyName isEqualToString:CPClickUserIcon]){
+        CPGoLogin(@"查看TA的详情");
+        CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
+        taVc.userId = userInfo;
+        [self.navigationController pushViewController:taVc animated:YES];
     }
 }
 
 #pragma mark - delegate & datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.showMerberCount;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 110;
+    CPPartMember *partM = self.model.members[indexPath.row];
+    if (partM.acceptCount > 0) {
+        return 110;
+    }else{
+        return 70;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

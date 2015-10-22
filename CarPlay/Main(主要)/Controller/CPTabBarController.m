@@ -35,7 +35,6 @@
     [self addChildVc:nearVc2 title:@"推荐" image:@"RecommendUnSelect" selectedImage:@"RecommendSelect"];
     
     ChatListViewController *vc3 = [[ChatListViewController alloc]init];
-    UINavigationController *nvc = [[UINavigationController alloc]initWithRootViewController:vc3];
     [self addChildVc:vc3 title:@"动态" image:@"DynamicUnSelect" selectedImage:@"DynamicSelect"];
     
     CPMyViewController *nearVc4 = [UIStoryboard storyboardWithName:@"CPMyViewController" bundle:nil].instantiateInitialViewController;
@@ -50,6 +49,8 @@
     
     UITabBarItem *itemApp = [UITabBarItem appearance];
     [itemApp setTitleTextAttributes:@{NSFontAttributeName : ZYFont12} forState:UIControlStateNormal];
+    
+    
 }
 
 

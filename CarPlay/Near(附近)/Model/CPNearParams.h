@@ -34,5 +34,7 @@
 //latitude	true	String	纬度
 @property (nonatomic, assign) double latitude;
 //maxDistance	true	String	最大距离
-@property (nonatomic, assign) NSUInteger maxDistance;
+//@property (nonatomic, assign) NSUInteger maxDistance;
+@property (nonatomic, assign) BOOL transfer;
+@property (nonatomic, copy) NSString *gender;
 @end

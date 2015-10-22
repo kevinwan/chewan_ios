@@ -25,9 +25,6 @@
 {
     return @{@"album":[CPAlbum class]};
 }
-
 MJCodingImplementation
-
-
 
 @end

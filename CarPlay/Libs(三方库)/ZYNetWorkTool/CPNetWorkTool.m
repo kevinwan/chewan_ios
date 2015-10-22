@@ -56,16 +56,16 @@
  */
 + (NSString *)dealUserIdTokenWithUrl:(NSString *)url
 {
-    NSString *userId = [[NSUserDefaults standardUserDefaults] stringForKey:@"userId"];
+    NSString *userId = CPUserId;
     if (userId.length == 0) {
-//        [CPNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
-//        [SVProgressHUD dismiss];
+        [ZYNotificationCenter postNotificationName:NOTIFICATION_GOLOGIN object:nil];
+        [SVProgressHUD dismiss];
         return nil;
     }
-    NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"token"];
+    NSString *token = CPToken;
     if (token.length == 0) {
-//        [ZYNotificationCenter postNotificationName:NOTIFICATION_LOGINCHANGE object:nil];
-//        [SVProgressHUD dismiss];
+        [ZYNotificationCenter postNotificationName:NOTIFICATION_GOLOGIN object:nil];
+        [SVProgressHUD dismiss];
         return nil;
     }
     NSString *userStr = [NSString stringWithFormat:@"?userId=%@&token=%@",userId, token];

@@ -66,7 +66,7 @@
 #define CPGoLogin(title) \
 if (CPUnLogin) {\
 NSString *message = [NSString stringWithFormat:@"你还未登录,登录后就可以%@",title];\
-UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"再想想" otherButtonTitles:@"去登录", nil];\
+UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:message delegate:nil cancelButtonTitle:@"再想想" otherButtonTitles:@"去登录", nil];\
 [alertView.rac_buttonClickedSignal subscribeNext:^(id x) {\
     if ([x integerValue] != 0) {\
         [ZYNotificationCenter postNotificationName:NOTIFICATION_GOLOGIN object:nil];\

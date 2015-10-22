@@ -9,16 +9,24 @@
 #import "CPActivityPartnerCell.h"
 #import "CPPartnerMemberCell.h"
 #import "CPComeOnTipView.h"
+#import "CPSexView.h"
 
 @interface CPActivityPartnerCell()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
+@property (nonatomic, strong) UIImageView *iconAuthView;
 @property (weak, nonatomic) IBOutlet UILabel *nicknameLabel;
+@property (weak, nonatomic) IBOutlet CPSexView *sexView;
+
+@property (weak, nonatomic) IBOutlet UIButton *carView;
+@property (weak, nonatomic) IBOutlet UILabel *cartypeLabel;
+
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *partNumLabel;
-@property (weak, nonatomic) IBOutlet UIButton *inviteBtn;
 @property (weak, nonatomic) IBOutlet UILabel *agreeLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *lineView;
+
+@property (weak, nonatomic) IBOutlet UIButton *inviteBtn;
 @property (nonatomic, strong) UIButton *msgButton;
 @property (nonatomic, strong) UIButton *phoneBtn;
 @property (nonatomic, strong) UICollectionView *partnersView;
@@ -32,6 +40,7 @@ static NSString *ID = @"memberIconCell";
     [self.contentView addSubview:self.msgButton];
     [self.contentView addSubview:self.phoneBtn];
     [self.contentView addSubview:self.partnersView];
+    [self.contentView addSubview:self.iconAuthView];
     [self beginLayout];
 }
 
@@ -55,19 +64,63 @@ static NSString *ID = @"memberIconCell";
         make.left.equalTo(self.agreeLabel.mas_right).offset(3);
         make.bottom.equalTo(0);
     }];
+    
+    [self.iconAuthView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.iconView).offset(32);
+        make.left.equalTo(self.iconView).offset(35);
+        make.size.equalTo(CGSizeMake(18, 18));
+    }];
 }
 
 - (IBAction)comeOnBaby:(UIButton *)sender {
     
     [CPComeOnTipView showWithActivityId:nil targetUserId:nil];
-    
 }
 
-
-- (void)setModel:(CPRecommendModel *)model
+- (void)setModel:(CPPartMember *)model
 {
     _model = model;
     
+    [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.avatar] placeholderImage:CPPlaceHolderImage options:SDWebImageLowPriority | SDWebImageRetryFailed];
+    
+    self.partNumLabel.attributedText = model.invitedCountStr;
+    
+    self.nicknameLabel.text = model.nickname;
+    
+    self.distanceLabel.text = model.distanceStr;
+    
+    self.agreeLabel.text = [NSString stringWithFormat:@"已接受 %zd",model.acceptCount];
+    
+    self.sexView.age = model.age;
+    self.sexView.isMan = model.isMan;
+    
+    if ([model.authentication isEqualToString:@"认证成功"]) {
+        
+        self.iconAuthView.hidden = NO;
+    }else{
+        
+        self.iconAuthView.hidden = YES;
+    }
+    
+    if (model.car.logo.length) {
+        self.carView.hidden = NO;
+        self.cartypeLabel.hidden = NO;
+        [self.carView sd_setImageWithURL:[NSURL URLWithString:model.car.logo] forState:UIControlStateNormal placeholderImage:CPPlaceHolderImage];
+        self.cartypeLabel.text = model.car.model;
+    }else{
+        self.cartypeLabel.hidden = YES;
+        self.carView.hidden = YES;
+    }
+    
+    if (model.acceptMe) {
+        self.inviteBtn.hidden = YES;
+        self.phoneBtn.hidden = NO;
+        self.msgButton.hidden = NO;
+    }else{
+        self.inviteBtn.hidden = NO;
+        self.phoneBtn.hidden = YES;
+        self.msgButton.hidden = YES;
+    }
     
     [self.partnersView reloadData];
 }
@@ -75,13 +128,20 @@ static NSString *ID = @"memberIconCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CPPartnerMemberCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
-    cell.iconView.image = [UIImage imageNamed:@"ceo头像"];
+    CPUser *member = self.model.acceptMembers[indexPath.item];
+    [cell.iconView sd_setImageWithURL:[NSURL URLWithString:member.avatar] placeholderImage:CPPlaceHolderImage options:SDWebImageLowPriority | SDWebImageRetryFailed];
     return cell;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 20;
+    return _model.acceptMembers.count;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CPUser *member = self.model.acceptMembers[indexPath.item];
+    [self superViewWillRecive:CPClickUserIcon info:member.userId];
 }
 
 #pragma mark - lazy
@@ -122,6 +182,15 @@ static NSString *ID = @"memberIconCell";
         [_partnersView registerClass:[CPPartnerMemberCell class] forCellWithReuseIdentifier:ID];
     }
     return _partnersView;
+}
+
+- (UIImageView *)iconAuthView
+{
+    if (_iconAuthView == nil) {
+        _iconAuthView = [[UIImageView alloc] init];
+        _iconAuthView.image = [UIImage imageNamed:@"头像图标"];
+    }
+    return _iconAuthView;
 }
 
 @end

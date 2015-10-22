@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CPRecommendModel.h"
-
+#define CPClickUserIcon @"CPClickUserIcon"
 @interface CPActivityPartnerCell : ZYTableViewCell
-@property (nonatomic, strong) CPRecommendModel *model;
+@property (nonatomic, strong) CPPartMember *model;
 @end
