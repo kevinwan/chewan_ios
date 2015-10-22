@@ -22,6 +22,7 @@
 #import "CPEditInfoViewController.h"
 #import "CPMyDateViewController.h"
 #import "CPCollectionViewCell.h"
+#import "CPAlbum.h"
 
 @interface CPMyViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate, UzysAssetsPickerControllerDelegate, UIAlertViewDelegate,UINavigationControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 {
@@ -130,26 +131,7 @@
         [self.sex setImage:[UIImage imageNamed:@"男"] forState:UIControlStateNormal];
     }
     [self.sex setTitle:[[NSString alloc]initWithFormat:@"%lu",(unsigned long)user.age] forState:UIControlStateNormal];
-    
-//    self.albumsScrollView.contentSize=CGSizeMake(0, 0);
-//    self.albumsScrollView.pagingEnabled=NO;
-//    [self reloadAlbumsScrollView];
-}
-
--(void)reloadAlbumsScrollView{
-//    for (int i=0; i<[user.album count]; i++) {
-//        UIImageView *album=[[UIImageView alloc]initWithFrame:CGRectMake(85+75*i, 15, 70, 70)];
-//        CPAlbum *albumModel=(CPAlbum *)user.album[i];
-//        [album sd_setImageWithURL:[[NSURL alloc]initWithString:albumModel.url] placeholderImage:[UIImage imageNamed:@"logo"]];
-//        UITapGestureRecognizer *singleTap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(photoBrowser)];
-//        album.userInteractionEnabled = YES;
-//        [album addGestureRecognizer:singleTap1];
-//        [album.layer setMasksToBounds:YES];
-//        [album.layer setCornerRadius:3.0];
-//        [album setContentMode:UIViewContentModeScaleAspectFill];
-//        [self.albumsScrollView addSubview:album];
-//    }
-//    self.albumsScrollView.contentSize=CGSizeMake(85+75*[user.album count], 100.0);
+    [self.albumsCollectionView reloadData];
 }
 
 //完善
@@ -315,8 +297,10 @@
      CPCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     if (indexPath.row==0) {
         [cell.imageView setImage:[UIImage imageNamed:@"相机"]];
-    }else
-        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:user.album[indexPath.row]]];
+    }else{
+        CPAlbum *ablum=(CPAlbum *)user.album[indexPath.row-1];
+        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:ablum.url]];
+    }
     return cell;
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

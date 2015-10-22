@@ -11,7 +11,8 @@
 @implementation CPCollectionViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    [self.imageView.layer setMasksToBounds:YES];
+    [self.imageView.layer setCornerRadius:3.0f];
 }
 
 @end

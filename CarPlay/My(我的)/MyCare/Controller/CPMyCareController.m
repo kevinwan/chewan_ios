@@ -196,6 +196,7 @@
     }
     ChatViewController *xiaoniuChatVc = [[ChatViewController alloc]initWithChatter:[Tools md5EncryptWithString:careUser.userId] conversationType:eConversationTypeChat];
     xiaoniuChatVc.title = careUser.nickname;
+    NSLog(@"---md5userID-----%@",[Tools md5EncryptWithString:CPUserId]);
     [self.navigationController pushViewController:xiaoniuChatVc animated:YES];
 }
 //打开语音
