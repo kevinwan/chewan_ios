@@ -194,7 +194,7 @@
     self.sexView.isMan = model.organizer.isMan;
     self.sexView.age = model.organizer.age;
 
-    [self.userIconView zy_setImageWithUrl:model.organizer.avatar completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [self.userIconView zy_setImageWithUrl:model.organizer.cover completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
          if (isHasAlubm && CPIsLogin) {
              self.userIconView.image = image;
          }else{
