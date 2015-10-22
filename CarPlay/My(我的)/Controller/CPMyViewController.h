@@ -21,7 +21,5 @@
 - (IBAction)myActivitiesBtnClick:(id)sender;
 - (IBAction)myAttentionBtnClick:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *headView;
-@property (weak, nonatomic) IBOutlet UIScrollView *albumsScrollView;
-
-
+@property (weak, nonatomic) IBOutlet UICollectionView *albumsCollectionView;
 @end

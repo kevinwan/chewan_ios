@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPTabBarController : UITabBarController<EMChatManagerDelegate>
+@interface CPTabBarController : UITabBarController<EMChatManagerDelegate,EMCallManagerDelegate>
 
 @end

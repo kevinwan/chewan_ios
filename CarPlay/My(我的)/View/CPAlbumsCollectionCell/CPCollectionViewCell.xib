@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CPCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PXl-EO-yum">
+                        <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="PXl-EO-yum" secondAttribute="bottom" id="oga-mS-mZa"/>
+                <constraint firstAttribute="trailing" secondItem="PXl-EO-yum" secondAttribute="trailing" id="pSK-0k-dOj"/>
+                <constraint firstItem="PXl-EO-yum" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="syl-8A-8eT"/>
+                <constraint firstItem="PXl-EO-yum" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="tzI-p8-0tI"/>
+            </constraints>
+            <connections>
+                <outlet property="imageView" destination="PXl-EO-yum" id="CDF-Mf-dMt"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+</document>

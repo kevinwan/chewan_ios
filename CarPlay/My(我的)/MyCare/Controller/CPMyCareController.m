@@ -11,6 +11,7 @@
 #import "MJExtension.h"
 #import "CPCareUser.h"
 #import "CPMyCareCell.h"
+#import "ChatViewController.h"
 
 @interface CPMyCareController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -113,6 +114,7 @@
             cell.chatBtn.tag=indexPath.row;
             cell.phoneBtn.tag=indexPath.row;
             cell.subscribeBtn.tag=indexPath.row;
+            [cell.subscribeBtn setBackgroundImage:[UIImage imageNamed:@"互相关注"] forState:UIControlStateNormal];
             [cell.chatBtn setHidden:NO];
             [cell.phoneBtn setHidden:NO];
             break;
@@ -134,6 +136,9 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 - (IBAction)careClick:(UIButton *)btn{
     // 切换按钮颜色
@@ -163,7 +168,6 @@
         [self.careMeBtn setTitleColor:[Tools getColor:@"fe5969"] forState:UIControlStateNormal];
         [self.threeLine setBackgroundColor:[Tools getColor:@"fe5969"]];
     }
-    
 }
 
 #pragma mark - 懒加载
@@ -176,7 +180,24 @@
 
 //打开聊天
 - (IBAction)chat:(UIButton *)sender {
-    
+    CPCareUser *careUser=[CPCareUser new];
+    switch (corentBtnTag) {
+        case 10:
+            careUser=_eachSubscribe[sender.tag];
+            break;
+        case 20:
+            careUser=_mySubscribe[sender.tag];
+            break;
+        case 30:
+            careUser=_beSubscribed[sender.tag];
+            break;
+        default:
+            break;
+    }
+    ChatViewController *xiaoniuChatVc = [[ChatViewController alloc]initWithChatter:[Tools md5EncryptWithString:careUser.userId] conversationType:eConversationTypeChat];
+    xiaoniuChatVc.title = careUser.nickname;
+    NSLog(@"---md5userID-----%@",[Tools md5EncryptWithString:CPUserId]);
+    [self.navigationController pushViewController:xiaoniuChatVc animated:YES];
 }
 //打开语音
 - (IBAction)phone:(UIButton *)sender {
@@ -208,8 +229,8 @@
     [ZYNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
         [self disMiss];
         if (CPSuccess) {
-            NSIndexPath *indexPath=[NSIndexPath indexPathForRow:sender.tag inSection:0];
-            [_tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//            NSIndexPath *indexPath=[NSIndexPath indexPathForRow:sender.tag inSection:0];
+//            [_tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
             switch (corentBtnTag) {
                 case 10:
                     [_eachSubscribe removeObjectAtIndex:sender.tag];
@@ -223,6 +244,7 @@
                 default:
                     break;
             }
+            [_tableView reloadData];
         }else{
             [[[UIAlertView alloc]initWithTitle:@"提示" message:responseObject[@"errmsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil] show];
         }

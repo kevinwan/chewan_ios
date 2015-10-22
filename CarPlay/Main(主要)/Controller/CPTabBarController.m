@@ -16,6 +16,7 @@
 #import "CPMatchingViewController.h"
 #import "ChatListViewController.h"
 #import "CPRecommendController.h"
+#import "CallViewController.h"
 @interface CPTabBarController () <CPTabBarDelegate>
 
 @end
@@ -51,8 +52,12 @@
     [itemApp setTitleTextAttributes:@{NSFontAttributeName : ZYFont12} forState:UIControlStateNormal];
     
     //设置未读消息数
-    [[EaseMob sharedInstance].chatManager addDelegate:self delegateQueue:nil];
+    [self registerNotifications];
     [self setupUnreadMessageCount];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callOutWithChatter:) name:@"callOutWithChatter" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callControllerClose:) name:@"callControllerClose" object:nil];
+    
+
 
 }
 
@@ -83,6 +88,11 @@
 #pragma mark - CPTabBarDelegate代理方法
 - (void)tabBarDidClickPlusButton:(CPTabBar *)tabBar
 {
+    
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"callOutWithChatter" object:@{@"chatter":@"chewan123", @"type":[NSNumber numberWithInt:eCallSessionTypeAudio]}];
+    return;
+    //test 测试语音聊天，暂时用下这个位置
     CPMatchingViewController *mathching=[UIStoryboard storyboardWithName:@"CPMatching" bundle:nil].instantiateInitialViewController;
      CPNavigationController *nav=[[CPNavigationController alloc]initWithRootViewController:mathching];
     [self presentViewController:nav animated:YES completion:nil];
@@ -138,5 +148,90 @@
 {
     [self setupUnreadMessageCount];
 }
+-(void)registerNotifications
+{
+    [self unregisterNotifications];
+    
+    [[EaseMob sharedInstance].chatManager addDelegate:self delegateQueue:nil];
+    [[EaseMob sharedInstance].callManager addDelegate:self delegateQueue:nil];
+}
 
+-(void)unregisterNotifications
+{
+    [[EaseMob sharedInstance].chatManager removeDelegate:self];
+    [[EaseMob sharedInstance].callManager removeDelegate:self];
+}
+#pragma mark - call
+
+- (BOOL)canRecord
+{
+    __block BOOL bCanRecord = YES;
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    if ([[[UIDevice currentDevice] systemVersion] compare:@"7.0"] != NSOrderedAscending)
+    {
+        if ([audioSession respondsToSelector:@selector(requestRecordPermission:)]) {
+            [audioSession performSelector:@selector(requestRecordPermission:) withObject:^(BOOL granted) {
+                bCanRecord = granted;
+            }];
+        }
+    }
+    
+    if (!bCanRecord) {
+        UIAlertView * alt = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"setting.microphoneNoAuthority", @"No microphone permissions") message:NSLocalizedString(@"setting.microphoneAuthority", @"Please open in \"Setting\"-\"Privacy\"-\"Microphone\".") delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"ok", @"OK"), nil];
+        [alt show];
+    }
+    
+    return bCanRecord;
+}
+
+- (void)callOutWithChatter:(NSNotification *)notification
+{
+    id object = notification.object;
+    if ([object isKindOfClass:[NSDictionary class]]) {
+        if (![self canRecord]) {
+            return;
+        }
+        
+        EMError *error = nil;
+        NSString *chatter = [object objectForKey:@"chatter"];
+        EMCallSessionType type = [[object objectForKey:@"type"] intValue];
+        EMCallSession *callSession = nil;
+        if (type == eCallSessionTypeAudio) {
+            callSession = [[EaseMob sharedInstance].callManager asyncMakeVoiceCall:chatter timeout:50 error:&error];
+        }
+        else if (type == eCallSessionTypeVideo){
+            if (![CallViewController canVideo]) {
+                return;
+            }
+            callSession = [[EaseMob sharedInstance].callManager asyncMakeVideoCall:chatter timeout:50 error:&error];
+        }
+        
+        if (callSession && !error) {
+            [[EaseMob sharedInstance].callManager removeDelegate:self];
+            
+            CallViewController *callController = [[CallViewController alloc] initWithSession:callSession isIncoming:NO];
+            callController.modalPresentationStyle = UIModalPresentationOverFullScreen;
+            [self presentViewController:callController animated:NO completion:nil];
+        }
+        
+        if (error) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"error", @"error") message:error.description delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", @"OK") otherButtonTitles:nil, nil];
+            [alertView show];
+        }
+    }
+}
+
+- (void)callControllerClose:(NSNotification *)notification
+{
+    //    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    //    [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
+    //    [audioSession setActive:YES error:nil];
+    
+    [[EaseMob sharedInstance].callManager addDelegate:self delegateQueue:nil];
+}
+
+- (void)dealloc
+{
+    [self unregisterNotifications];
+}
 @end

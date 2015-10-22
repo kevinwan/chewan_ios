@@ -632,8 +632,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
-    
-    ChatViewController *chatController;
+       ChatViewController *chatController;
     NSString *title = conversation.chatter;
     if (conversation.conversationType != eConversationTypeChat) {
         if ([[conversation.ext objectForKey:@"groupSubject"] length])

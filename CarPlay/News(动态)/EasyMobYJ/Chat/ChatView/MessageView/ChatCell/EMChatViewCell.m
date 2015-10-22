@@ -165,12 +165,12 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
         [_activityView addSubview:_activtiy];
 
         //已读
-        _hasRead = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SEND_STATUS_SIZE, SEND_STATUS_SIZE)];
-        _hasRead.text = NSLocalizedString(@"hasRead", @"Read");
-        _hasRead.textAlignment = NSTextAlignmentCenter;
-        _hasRead.font = [UIFont systemFontOfSize:12];
-        [_hasRead sizeToFit];
-        [_activityView addSubview:_hasRead];
+//        _hasRead = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SEND_STATUS_SIZE, SEND_STATUS_SIZE)];
+//        _hasRead.text = NSLocalizedString(@"hasRead", @"Read");
+//        _hasRead.textAlignment = NSTextAlignmentCenter;
+//        _hasRead.font = [UIFont systemFontOfSize:12];
+//        [_hasRead sizeToFit];
+//        [_activityView addSubview:_hasRead];
     }
     
     _bubbleView = [self bubbleViewForMessageModel:messageModel];
