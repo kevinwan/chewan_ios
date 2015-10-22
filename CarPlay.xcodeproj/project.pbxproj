@@ -536,6 +536,7 @@
 		E3FE39ED1BD64F060022FDA3 /* CPPartnerMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FE39EC1BD64F060022FDA3 /* CPPartnerMemberCell.m */; settings = {ASSET_TAGS = (); }; };
 		E3FE39F01BD6699B0022FDA3 /* CPActivityPathCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FE39EF1BD6699B0022FDA3 /* CPActivityPathCell.m */; settings = {ASSET_TAGS = (); }; };
 		EE3383111BD8BB7500BA4930 /* dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE3383101BD8BB7500BA4930 /* dot@2x.png */; settings = {ASSET_TAGS = (); }; };
+		EE3383141BD8E27500BA4930 /* CareMeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE3383131BD8E27500BA4930 /* CareMeTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1397,6 +1398,8 @@
 		E3FE39EE1BD6699B0022FDA3 /* CPActivityPathCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityPathCell.h; sourceTree = "<group>"; };
 		E3FE39EF1BD6699B0022FDA3 /* CPActivityPathCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityPathCell.m; sourceTree = "<group>"; };
 		EE3383101BD8BB7500BA4930 /* dot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dot@2x.png"; sourceTree = "<group>"; };
+		EE3383121BD8E27500BA4930 /* CareMeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CareMeTableViewCell.h; sourceTree = "<group>"; };
+		EE3383131BD8E27500BA4930 /* CareMeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CareMeTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3310,6 +3313,8 @@
 				E37C10B81BBB80C100E1A6A2 /* CPConcernMyController.h */,
 				E37C10B91BBB80C100E1A6A2 /* CPConcernMyController.m */,
 				E3A68BBA1BBB874D002F4F75 /* CPConcernMyController.storyboard */,
+				EE3383121BD8E27500BA4930 /* CareMeTableViewCell.h */,
+				EE3383131BD8E27500BA4930 /* CareMeTableViewCell.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -4040,6 +4045,7 @@
 				E31B13411BB9312D00B51696 /* NSObject+Extend.m in Sources */,
 				6D2ABFF51BCE582100201A8E /* EMSearchBar.m in Sources */,
 				6D2ABFCA1BCE582100201A8E /* ChatViewController.m in Sources */,
+				EE3383141BD8E27500BA4930 /* CareMeTableViewCell.m in Sources */,
 				6D2ABF931BCE582100201A8E /* MWGridViewController.m in Sources */,
 				6D2ABFE81BCE582100201A8E /* ChatroomDetailViewController.m in Sources */,
 				6D2AC0041BCE582100201A8E /* NSDateFormatter+Category.m in Sources */,
