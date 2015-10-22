@@ -205,7 +205,9 @@
     self.loveBtn.selected = model.organizer.subscribeFlag;
     self.payView.text = model.pay;
     self.sendView.hidden = !model.transfer;
-    [self.addressView setTitle:model.destination[@"street"] forState:UIControlStateNormal];
+    if ([model.destination isKindOfClass:[NSDictionary class]]) {
+        [self.addressView setTitle:model.destination[@"street"] forState:UIControlStateNormal];
+    }
     if (model.title.length) {
         self.titleLabel.text = model.title;
     }else{
