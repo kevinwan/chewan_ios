@@ -10,6 +10,11 @@
 
 @implementation NSString (Extension)
 
+- (BOOL)isDiffToString:(NSString *)str
+{
+    return ![self isEqualToString:str];
+}
+
 - (CGSize)sizeWithFont:(UIFont *)font maxW:(CGFloat)maxW
 {
     NSMutableDictionary *attrs = [NSMutableDictionary dictionary];

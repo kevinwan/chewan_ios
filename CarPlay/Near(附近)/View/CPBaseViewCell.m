@@ -113,6 +113,9 @@
  *  忽略的动画
  */
 @property (nonatomic, strong) MultiplePulsingHaloLayer *ignoreAnim;
+
+@property (nonatomic, assign) BOOL oneType;
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *marginCons;
 
 @end
@@ -235,11 +238,21 @@
         self.dateAnim.haloLayerColor = RedColor.CGColor;
         [self.dateButton setBackgroundColor:RedColor];
         [self.dateButton setTitle:@"邀TA" forState:UIControlStateNormal];
+        [self setOneType:YES];
     }else if (model.applyFlag == 1){
         
-        self.dateAnim.haloLayerColor= [Tools getColor:@"cccccc"].CGColor;
-        [self.dateButton setBackgroundColor:[Tools getColor:@"cccccc"]];
-        [self.dateButton setTitle:@"已邀请" forState:UIControlStateNormal];
+        if ([model.organizer.userId isEqualToString:CPUserId]) {
+            [self setOneType:NO];
+            self.invitedButton.hidden = NO;
+            self.ignoreButton.hidden = NO;
+            
+        }else{
+            
+            self.dateAnim.haloLayerColor= [Tools getColor:@"cccccc"].CGColor;
+            [self.dateButton setBackgroundColor:[Tools getColor:@"cccccc"]];
+            [self.dateButton setTitle:@"已邀请" forState:UIControlStateNormal];
+            [self setOneType:YES];
+        }
     }else if (model.applyFlag == 2){
         
     }
@@ -250,18 +263,18 @@
     _oneType = oneType;
     if (oneType) {
         self.dateButton.hidden = NO;
+        self.dateAnim.hidden = NO;
         self.invitedButton.hidden = YES;
         self.ignoreButton.hidden = YES;
-        [self dateAnim];
-        [self.ignoreAnim removeFromSuperlayer];
-        [self.inviAnim removeFromSuperlayer];
+        self.ignoreAnim.hidden = YES;
+        self.inviAnim.hidden = YES;
     }else{
         self.dateButton.hidden = YES;
+        self.dateAnim.hidden = YES;
         self.invitedButton.hidden = NO;
         self.ignoreButton.hidden = NO;
-        [self.dateAnim removeFromSuperlayer];
-        [self inviAnim];
-        [self ignoreAnim];
+        self.ignoreAnim.hidden = NO;
+        self.inviAnim.hidden = NO;
     }
 }
 
@@ -285,8 +298,9 @@
     if (sender.isSelected) {
         
         url = [NSString stringWithFormat:@"user/%@/unlisten?token=%@",CPUserId, CPToken];
-        
+        [SVProgressHUD showWithStatus:@"努力加载中"];
         [ZYNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
+            [SVProgressHUD dismiss];
             if (CPSuccess) {
                 DLog(@"取消关注成功");
                 sender.selected = NO;
@@ -295,14 +309,14 @@
                 [self superViewWillRecive:LoveBtnClickKey info:_model];
             }
         } failed:^(NSError *error) {
-            
+            [SVProgressHUD dismiss];
             DLog(@"取消关注失败%@",error);
         }];
         
     }else{
-        
+        [SVProgressHUD showWithStatus:@"努力加载中"];
         [ZYNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
-            
+            [SVProgressHUD dismiss];
             if (CPSuccess){
                 
                 DLog(@"关注成功");
@@ -312,8 +326,7 @@
                 [self superViewWillRecive:LoveBtnClickKey info:_model];
             }
         } failed:^(NSError *error) {
-            
-            DLog(@"关注失败%@",error);
+            [SVProgressHUD showInfoWithStatus:@"关注失败"];
         }];
     }
 }

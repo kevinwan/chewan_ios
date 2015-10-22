@@ -7,6 +7,7 @@
 //
 
 #import "CPActivityDetailFooterView.h"
+#import "AFNetworking.h"
 
 
 @interface CPActivityDetailFooterView()
@@ -109,21 +110,36 @@
 
 
 - (IBAction)comePart:(UIButton *)sender {
-    [self superViewWillRecive:CPActivityComePartKey info:nil];
-    
-    NSString *url = [NSString stringWithFormat:@"official/activity/%@/join", self.officialActivityId];
-    [SVProgressHUD showWithStatus:@"努力加载中"];
-    [CPNetWorkTool postWithUrl:url params:nil success:^(id responseObject) {
-        if (CPSuccess) {
-            [SVProgressHUD showInfoWithStatus:@"报名成功"];
-            [sender setBackgroundColor:[Tools getColor:@"999999"]];
-        }else{
-            
-            [SVProgressHUD showInfoWithStatus:@"报名失败"];
-        }
-    } failure:^(NSError *error) {
-        [SVProgressHUD showInfoWithStatus:@"加载失败"];
+  
+    NSString *url = [NSString stringWithFormat:@"official/activity/%@/join?userId=%@&token=%@",self.officialActivityId, CPUserId, CPToken];
+//    [SVProgressHUD showWithStatus:@"努力加载中"];
+//    NSDictionary *params = @{@"userId":CPUserId, @"token":CPToken};
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
+    [manager POST:[NSString stringWithFormat:@"%@%@",BASE_URL,url] parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        
     }];
+//    [ZYNetWorkTool postJsonWithUrl:url params:nil success:^(id responseObject) {
+//        
+//    } failed:^(NSError *error) {
+//        
+//    }];
+//    [ZYNetWorkTool postWithUrl:url params:nil success:^(id responseObject) {
+//        if (CPSuccess) {
+//            [SVProgressHUD showInfoWithStatus:@"报名成功"];
+//            [sender setBackgroundColor:[Tools getColor:@"999999"]];
+//            [self superViewWillRecive:CPActivityComePartKey info:nil];
+//        }else{
+//            
+//            [SVProgressHUD showInfoWithStatus:@"报名失败"];
+//        }
+//    } failure:^(NSError *error) {
+//        
+//        [SVProgressHUD showInfoWithStatus:@"加载失败"];
+//    }];
+    
 }
 
 @end
