@@ -20,6 +20,7 @@
 #import "CPCarOwnersCertificationController.h"
 #import "CPAvatarAuthenticationController.h"
 #import "CPEditInfoViewController.h"
+#import "CPMyDateViewController.h"
 
 @interface CPMyViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate, UzysAssetsPickerControllerDelegate, UIAlertViewDelegate,UINavigationControllerDelegate>
 {
@@ -157,7 +158,7 @@
 
 //我的活动
 - (IBAction)myActivitiesBtnClick:(id)sender {
-    
+    [self.navigationController pushViewController:[CPMyDateViewController new] animated:YES];
 }
 
 //我的关注
