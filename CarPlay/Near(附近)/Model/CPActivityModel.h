@@ -10,7 +10,7 @@
 #import "CPUser.h"
 @interface CPActivityModel : NSObject
 
-//"activityId": "0193a45f-bd62-457e-b262-5f185a94a781",
+@property (nonatomic, copy) NSString *activityCategory;
 @property (nonatomic, copy) NSString *activityId;
 //"type": "看电影",
 @property (nonatomic, copy) NSString *type;
@@ -36,4 +36,5 @@
 @property (nonatomic, copy, readonly) NSString *distanceStr;
 // organizer 组织者
 @property (nonatomic, strong) CPUser *organizer;
+@property (nonatomic, strong) CPUser *applicant;
 @end

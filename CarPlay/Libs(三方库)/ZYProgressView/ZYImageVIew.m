@@ -36,6 +36,7 @@
 - (void)setUp
 {
     self.backgroundColor = [Tools getColor:@"dddddd"];
+    [self addSubview:self.placeHloderImageView];
     self.contentMode = UIViewContentModeScaleAspectFill;
     self.clipsToBounds = YES;
 }
@@ -43,7 +44,7 @@
 - (void)zy_setImageWithUrl:(NSString *)url completed:(completion)completed
 {
     self.placeHloderImageView.hidden = NO;
-    [self sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"icon"] options:SDWebImageLowPriority | SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [self sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil options:SDWebImageLowPriority | SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         self.placeHloderImageView.hidden = YES;
         if (completed) {
             completed(image,error,cacheType,imageURL);

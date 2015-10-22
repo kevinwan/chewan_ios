@@ -32,7 +32,7 @@
 @property (nonatomic, assign) CGFloat ignore;
 @end
 
-static NSString *ID = @"cell";
+static NSString *ID = @"DateCell";
 @implementation CPMyDateViewController
 
 - (void)viewDidLoad
@@ -51,6 +51,7 @@ static NSString *ID = @"cell";
     [ZYLoadingView showLoadingView];
 }
 
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -63,6 +64,11 @@ static NSString *ID = @"cell";
 {
     [super viewWillDisappear:animated];
     [ZYLoadingView dismissLoadingView];
+}
+
+- (void)dealloc
+{
+    
 }
 
 - (void)setUpRefresh
@@ -113,10 +119,10 @@ static NSString *ID = @"cell";
     params[@"ignore"] = @(self.ignore);
     [ZYNetWorkTool getWithUrl:url params:params success:^(id responseObject) {
         
+        DLog(@"%@ ---- ",responseObject);
         [[CPLoadingView sharedInstance] dismissLoadingView];
         [self setUpRefresh];
         [refresh stopIndicatorAnimation];
-        DLog(@"%@ ---- ",responseObject);
         if (CPSuccess) {
             if (self.params.ignore == 0) {
                 [self.datas removeAllObjects];
@@ -133,9 +139,6 @@ static NSString *ID = @"cell";
                 self.noDataView.hidden = YES;
             }
             [self.tableView reloadData];
-            if (self.tableView.contentOffset.y > 60 && refresh != self.footerView) {
-                [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, 0) animated:YES];
-            }
         }
     } failure:^(NSError *error) {
         
@@ -281,13 +284,15 @@ static NSString *ID = @"cell";
                 [albums addObject:album];
                 if (count == arr.count) {
                     [self disMiss];
-                    
-                    NSString *filePath = [NSString stringWithFormat:@"%@.info",CPUserId];
-                    CPUser *user = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath.documentPath];
-                    
-                    [albums insertObjects:user.album atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, user.album.count)]];
-                    user.album = [albums copy];
-                    [NSKeyedArchiver archiveRootObject:user toFile:filePath.documentPath];
+                    ZYAsyncThead(^{
+                        NSString *filePath = [NSString stringWithFormat:@"%@.info",CPUserId];
+                        CPUser *user = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath.documentPath];
+                        
+                        [albums insertObjects:user.album atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, user.album.count)]];
+                        user.album = [albums copy];
+                        [NSKeyedArchiver archiveRootObject:user toFile:filePath.documentPath];
+                    });
+                   
                     [self.tableView reloadData];
                 }
             }else{
@@ -335,78 +340,6 @@ static NSString *ID = @"cell";
         _datas = [[NSMutableArray alloc] init];
     }
     return _datas;
-}
-
-- (UIView *)tipView
-{
-    if (_tipView == nil) {
-        _tipView = [[UIView alloc] init];
-        _tipView.backgroundColor = ZYColor(0, 0, 0, 0.7);
-        [self.view addSubview:_tipView];
-        [_tipView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(@64);
-            make.width.equalTo(self.view);
-            make.height.equalTo(@35);
-        }];
-        
-        UILabel *textL = [UILabel labelWithText:@"有空,其他人可以邀请你参加活动" textColor:[UIColor whiteColor] fontSize:14];
-        [_tipView addSubview:textL];
-        [textL mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(@10);
-            make.centerY.equalTo(_tipView);
-        }];
-        
-        CPMySwitch *freeTimeBtn = [CPMySwitch new];
-        [freeTimeBtn setOnImage:[UIImage imageNamed:@"btn_youkong"]];
-        [freeTimeBtn setOffImage:[UIImage imageNamed:@"btn_meikong"]];
-        freeTimeBtn.on = [ZYUserDefaults boolForKey:FreeTimeKey];
-        [_tipView addSubview:freeTimeBtn];
-        NSString *url = [NSString stringWithFormat:@"user/%@/info?token=%@",CPUserId,CPToken];
-        [[freeTimeBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(CPMySwitch *btn) {
-            CPGoLogin(@"修改状态");
-            btn.on = !btn.on;
-            [ZYUserDefaults setBool:btn.on forKey:FreeTimeKey];
-            if (btn.on) {
-                textL.text = @"有空,其他人可以邀请你参加活动";
-                [ZYNetWorkTool postJsonWithUrl:url params:@{@"idle" : @(YES)} success:^(id responseObject) {
-                    
-                } failed:^(NSError *error) {
-                    
-                }];
-            }else{
-                textL.text = @"没空,你将接受不到任何活动邀请";
-                [ZYNetWorkTool postJsonWithUrl:url params:@{@"idle" : @(NO)} success:^(id responseObject) {
-                    
-                } failed:^(NSError *error) {
-                    
-                }];
-            }
-        }];
-        [freeTimeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(_tipView);
-            make.right.equalTo(@-10);
-        }];
-        [RACObserve(self.tableView, contentOffset) subscribeNext:^(id x) {
-            CGPoint p = [x CGPointValue];
-            if (p.y <= 0 && p.y >= -10) {
-                if (_tipView.alpha == 0) {
-                    [UIView animateWithDuration:0.2 animations:^{
-                        _tipView.alpha = 1;
-                    }];
-                }
-            }else if (p.y > self.tableView.height - 383 - self.offset){
-                if (_tipView.alpha == 1) {
-                    [UIView animateWithDuration:0.2 animations:^{
-                        _tipView.alpha = 0;
-                    }];
-                }
-            }else if (p.y < -10){
-                _tipView.alpha = 0;
-            }
-        }];
-        
-    }
-    return _tipView;
 }
 
 - (CPNearParams *)params

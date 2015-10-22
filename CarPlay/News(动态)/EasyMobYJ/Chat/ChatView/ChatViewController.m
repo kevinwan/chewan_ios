@@ -1159,8 +1159,8 @@
 
 -(void)sendLocationLatitude:(double)latitude longitude:(double)longitude andAddress:(NSString *)address
 {
-    NSDictionary *ext = nil;
-    EMMessage *locationMessage = [ChatSendHelper sendLocationLatitude:latitude longitude:longitude address:address toUsername:_conversation.chatter messageType:[self messageType] requireEncryption:NO ext:ext];
+
+    EMMessage *locationMessage = [ChatSendHelper sendLocationLatitude:latitude longitude:longitude address:address toUsername:_conversation.chatter messageType:[self messageType] requireEncryption:NO ext:self.extDic];
     [self addMessage:locationMessage];
 }
 

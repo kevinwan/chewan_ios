@@ -270,21 +270,44 @@
     self.hidden = !showPullToRefresh;
     
     if (showPullToRefresh) {
-        if (!self.isObserving) {
-            [self.scrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
-            [self.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
-            [self.scrollView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
-            self.isObserving = YES;
-        }
-    } else {
-        if (self.isObserving) {
-            [self.scrollView removeObserver:self forKeyPath:@"contentOffset"];
-            [self.scrollView removeObserver:self forKeyPath:@"contentSize"];
-            [self.scrollView removeObserver:self forKeyPath:@"frame"];
-            self.isObserving = NO;
-        }
+        
+        [RACObserve(self.scrollView, contentOffset) subscribeNext:^(id x) {
+            
+            [self scrollViewDidScroll:[x CGPointValue]];
+        }];
+        
+        [RACObserve(self.scrollView, contentSize) subscribeNext:^(id x) {
+            [self setNeedsLayout];
+            [self setNeedsDisplay];
+        }];
+        
+        [RACObserve(self.scrollView, frame) subscribeNext:^(id x) {
+            [self setNeedsLayout];
+            [self setNeedsDisplay];
+        }];
+        
+//        if (!self.isObserving) {
+//            [self.scrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
+//            [self.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+//            [self.scrollView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
+//            self.isObserving = YES;
+//        }
+//    } else {
+//        if (self.isObserving) {
+//            [self.scrollView removeObserver:self forKeyPath:@"contentOffset"];
+//            [self.scrollView removeObserver:self forKeyPath:@"contentSize"];
+//            [self.scrollView removeObserver:self forKeyPath:@"frame"];
+//            self.isObserving = NO;
+//        }
     }
 }
+
+
+- (void)dealloc
+{
+    self.showPullToRefresh = NO;
+}
+
 
 - (void)willMoveToSuperview:(UIView *)newSuperview
 {

@@ -194,7 +194,7 @@
     self.sexView.isMan = model.organizer.isMan;
     self.sexView.age = model.organizer.age;
 
-    [self.userIconView zy_setImageWithUrl:model.organizer.avatar completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [self.userIconView zy_setImageWithUrl:model.organizer.cover completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
          if (isHasAlubm && CPIsLogin) {
              self.userIconView.image = image;
          }else{
@@ -205,7 +205,9 @@
     self.loveBtn.selected = model.organizer.subscribeFlag;
     self.payView.text = model.pay;
     self.sendView.hidden = !model.transfer;
-    [self.addressView setTitle:model.destination[@"street"] forState:UIControlStateNormal];
+    if ([model.destination isKindOfClass:[NSDictionary class]]) {
+        [self.addressView setTitle:model.destination[@"street"] forState:UIControlStateNormal];
+    }
     if (model.title.length) {
         self.titleLabel.text = model.title;
     }else{
