@@ -37,5 +37,5 @@
 #import <EaseMobSDKFull/EaseMob.h>
 #import <UIButton+WebCache.h>
 #import "CPLoadingView.h"
-
+#import "UITabBar+Extension.h"
 #endif

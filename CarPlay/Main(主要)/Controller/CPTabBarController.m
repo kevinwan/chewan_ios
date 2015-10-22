@@ -50,7 +50,10 @@
     UITabBarItem *itemApp = [UITabBarItem appearance];
     [itemApp setTitleTextAttributes:@{NSFontAttributeName : ZYFont12} forState:UIControlStateNormal];
     
-    
+    //设置未读消息数
+    [[EaseMob sharedInstance].chatManager addDelegate:self delegateQueue:nil];
+    [self setupUnreadMessageCount];
+
 }
 
 
@@ -70,7 +73,7 @@
     // 设置子控制器的图片
     childVc.tabBarItem.image = [UIImage imageNamed:image];
     childVc.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImage]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-//
+    
     // 先给外面传进来的小控制器 包装 一个导航控制器
     CPNavigationController *nav = [[CPNavigationController alloc] initWithRootViewController:childVc];
     // 添加为子控制器
@@ -85,5 +88,55 @@
     [self presentViewController:nav animated:YES completion:nil];
 }
 
+#pragma mark 动态未读消息提示
+// 统计未读消息数
+-(void)setupUnreadMessageCount
+{
+    NSArray *conversations = [[[EaseMob sharedInstance] chatManager] conversations];
+
+    
+            NSInteger unreadCount = 0;
+    for (EMConversation *conversation in conversations) {
+        unreadCount += conversation.unreadMessagesCount;
+    }
+    
+    if (unreadCount>0) {
+        
+        NSLog(@"=======有未读消息");
+        [self.tabBar showBadgeOnItemIndex:3];
+    }else{
+        NSLog(@"=======未读消息清空了");
+        [self.tabBar hideBadgeOnItemIndex:3];
+    }
+    
+//    if (_chatListVC) {
+//        if (unreadCount > 0) {
+//            _chatListVC.tabBarItem.badgeValue = [NSString stringWithFormat:@"%i",(int)unreadCount];
+//        }else{
+//            _chatListVC.tabBarItem.badgeValue = nil;
+//        }
+//    }
+    
+//    UIApplication *application = [UIApplication sharedApplication];
+//    [application setApplicationIconBadgeNumber:unreadCount];
+}
+#pragma mark - IChatManagerDelegate 消息变化
+
+- (void)didUpdateConversationList:(NSArray *)conversationList
+{
+    [self setupUnreadMessageCount];
+
+}
+
+// 未读消息数量变化回调
+-(void)didUnreadMessagesCountChanged
+{
+    [self setupUnreadMessageCount];
+}
+
+- (void)didFinishedReceiveOfflineMessages
+{
+    [self setupUnreadMessageCount];
+}
 
 @end

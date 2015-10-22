@@ -535,6 +535,7 @@
 		E3FE39EA1BD64EF90022FDA3 /* CPComeOnTipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3FE39E81BD64EF90022FDA3 /* CPComeOnTipView.xib */; settings = {ASSET_TAGS = (); }; };
 		E3FE39ED1BD64F060022FDA3 /* CPPartnerMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FE39EC1BD64F060022FDA3 /* CPPartnerMemberCell.m */; settings = {ASSET_TAGS = (); }; };
 		E3FE39F01BD6699B0022FDA3 /* CPActivityPathCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FE39EF1BD6699B0022FDA3 /* CPActivityPathCell.m */; settings = {ASSET_TAGS = (); }; };
+		EE3383111BD8BB7500BA4930 /* dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE3383101BD8BB7500BA4930 /* dot@2x.png */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1395,6 +1396,7 @@
 		E3FE39EC1BD64F060022FDA3 /* CPPartnerMemberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPPartnerMemberCell.m; sourceTree = "<group>"; };
 		E3FE39EE1BD6699B0022FDA3 /* CPActivityPathCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityPathCell.h; sourceTree = "<group>"; };
 		E3FE39EF1BD6699B0022FDA3 /* CPActivityPathCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityPathCell.m; sourceTree = "<group>"; };
+		EE3383101BD8BB7500BA4930 /* dot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dot@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2675,6 +2677,7 @@
 			isa = PBXGroup;
 			children = (
 				6D2AC0C41BCE5A5100201A8E /* tabbar_chats.png */,
+				EE3383101BD8BB7500BA4930 /* dot@2x.png */,
 				6D2AC0C51BCE5A5100201A8E /* tabbar_chats@2x.png */,
 				6D2AC0C61BCE5A5100201A8E /* tabbar_chatsHL.png */,
 				6D2AC0C71BCE5A5100201A8E /* tabbar_chatsHL@2x.png */,
@@ -3864,6 +3867,7 @@
 				6D2AC11C1BCE5A5100201A8E /* chat_location_detail_disclosureHL.png in Resources */,
 				6D7F6FC41BD519D000945F1B /* chatBar_keyboard@3x.png in Resources */,
 				6D7F6FE01BD5E4AB00945F1B /* VoiceCancel@2x.png in Resources */,
+				EE3383111BD8BB7500BA4930 /* dot@2x.png in Resources */,
 				6D2AC1141BCE5A5100201A8E /* chatBar_more_faceSelected.png in Resources */,
 				6D2AC1511BCE5A5100201A8E /* chat_receiver_audio_playing000.png in Resources */,
 				6D2AD8CB1BCF72A30099CFD7 /* ActivityStateAdmin@2x.png in Resources */,
