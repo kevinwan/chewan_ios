@@ -52,7 +52,7 @@
                                     <constraint firstAttribute="height" constant="18" id="ofF-1Y-yHb"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="丹丹" translatesAutoresizingMaskIntoConstraints="NO" id="pHv-nX-y26">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="丹丹" translatesAutoresizingMaskIntoConstraints="NO" id="pHv-nX-y26">
                                 <rect key="frame" x="40" y="83" width="240" height="240"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="pHv-nX-y26" secondAttribute="height" multiplier="1:1" id="S0r-ur-MtK"/>

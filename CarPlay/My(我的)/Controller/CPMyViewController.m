@@ -53,8 +53,8 @@
     solidLine.strokeColor = [Tools getColor:@"ffffff"].CGColor;
     solidLine.fillColor = [UIColor clearColor].CGColor;
     solidLine.opacity=0.2;
-    CGPathAddEllipseInRect(solidPath, nil, CGRectMake(100.0f,  22.0f, 120.0f, 120.0f));
-     CGPathAddEllipseInRect(solidPath, nil, CGRectMake(105.0f,  27.0f, 110.0f, 110.0f));
+    CGPathAddEllipseInRect(solidPath, nil, CGRectMake(100.0/320.0*ZYScreenWidth,  22.0/568.0*ZYScreenHeight, 120.0, 120.0));
+     CGPathAddEllipseInRect(solidPath, nil, CGRectMake(105.0/320.0*ZYScreenWidth,  27.0/568.0*ZYScreenHeight, 110.0, 110.0));
     solidLine.path = solidPath;
     CGPathRelease(solidPath);
     [self.headImageBg.layer addSublayer:solidLine];

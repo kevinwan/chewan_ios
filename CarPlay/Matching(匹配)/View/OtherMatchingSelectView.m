@@ -117,7 +117,10 @@
 }
 
 - (IBAction)closeAddressSelectionView:(id)sender {
-    
+    _locationAddressView.alpha=1.0;
+    _selectView.alpha=0.0;
+    _addressSelection.alpha=0.0;
+    _indexView.alpha=0.0;
 }
 
 //获取省市列表

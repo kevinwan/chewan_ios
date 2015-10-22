@@ -112,13 +112,13 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ahd-GC-9ok">
                                         <rect key="frame" x="0.0" y="0.0" width="245" height="40"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L0K-bi-8EB">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L0K-bi-8EB">
                                                 <rect key="frame" x="15" y="7" width="27" height="27"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="27" id="iGW-Di-SMs"/>
                                                     <constraint firstAttribute="height" constant="27" id="ptQ-U8-BRS"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="closeWhite"/>
+                                                <state key="normal" image="Close"/>
                                                 <connections>
                                                     <action selector="closeLocatoinAddressView:" destination="9Ea-U5-Hqu" eventType="touchUpInside" id="aC1-TG-pLQ"/>
                                                 </connections>
@@ -130,7 +130,7 @@
                                                     <constraint firstAttribute="height" constant="20" id="MDe-ku-Gg2"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" red="0.98039215690000003" green="0.1843137255" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -232,13 +232,13 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fPt-rf-K9V">
                                         <rect key="frame" x="-0.5" y="0.0" width="245" height="40"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8LA-dC-3bz">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8LA-dC-3bz">
                                                 <rect key="frame" x="15" y="7" width="27" height="27"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="27" id="3Mc-tJ-Whq"/>
                                                     <constraint firstAttribute="width" constant="27" id="4uI-wS-oJ8"/>
                                                 </constraints>
-                                                <state key="normal" backgroundImage="closeWhite"/>
+                                                <state key="normal" image="Close"/>
                                                 <connections>
                                                     <action selector="closeAddressSelectionView:" destination="9Ea-U5-Hqu" eventType="touchUpInside" id="CHM-Tj-iQ4"/>
                                                 </connections>
@@ -250,11 +250,11 @@
                                                     <constraint firstAttribute="height" constant="20" id="vg1-JQ-5T4"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" red="0.98039215690000003" green="0.1843137255" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.98039215690000003" green="0.1843137255" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="H3e-6L-PN5"/>
                                             <constraint firstItem="d2A-ap-Q2E" firstAttribute="top" secondItem="fPt-rf-K9V" secondAttribute="top" constant="10" id="U0Y-6M-63h"/>
@@ -282,7 +282,7 @@
                                         <color key="textColor" red="0.18039215689999999" green="0.18039215689999999" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="30" sectionHeaderHeight="20" sectionFooterHeight="20" translatesAutoresizingMaskIntoConstraints="NO" id="isU-cj-bQw">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="30" sectionHeaderHeight="20" sectionFooterHeight="20" translatesAutoresizingMaskIntoConstraints="NO" id="isU-cj-bQw">
                                         <rect key="frame" x="0.0" y="90" width="245" height="172"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -349,7 +349,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="closeWhite" width="27" height="27"/>
+        <image name="Close" width="27" height="27"/>
         <image name="下箭头" width="20" height="12"/>
         <image name="初始效果" width="22" height="22"/>
     </resources>

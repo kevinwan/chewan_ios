@@ -39,8 +39,6 @@
     [self.reSelectionButton.layer setMasksToBounds:YES];
     [self.reSelectionButton.layer setCornerRadius:20.0];
     
-    [self.selectPlace setTitleEdgeInsets:UIEdgeInsetsMake(0, -self.selectPlace.imageView.size.width, 0, self.selectPlace.imageView.size.width)];
-    [self.selectPlace setImageEdgeInsets:UIEdgeInsetsMake(0, self.selectPlace.titleLabel.bounds.size.width, 0, -self.selectPlace.titleLabel.bounds.size.width)];
     self.areaList=[[NSMutableArray alloc]init];
     [self addMJindex];
     
@@ -121,7 +119,10 @@
     [self getArea];
 }
 - (IBAction)closeAddressSelectionView:(id)sender {
-    
+    _locationAddressView.alpha=1.0;
+    _selectView.alpha=0.0;
+    _addressSelection.alpha=0.0;
+    _indexView.alpha=0.0;
 }
 
 //获取省市列表

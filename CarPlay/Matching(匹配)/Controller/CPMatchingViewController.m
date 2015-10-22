@@ -25,6 +25,7 @@
     CPTakeALookViewController *takeALook;
     OtherMatchingSelectView *otherMatchingSelectView;
     MatchingSelectView *signMatchingSelectView;
+    ExerciseMatchingSelectView *exerciseMatchingSelectView;
     NSInteger index;
 }
 
@@ -129,7 +130,7 @@
     [self.scrollView addGestureRecognizer:tapGesture];
     otherMatchingSelectView=[UIStoryboard storyboardWithName:@"OtherMatchingSelectView" bundle:nil].instantiateInitialViewController;
     signMatchingSelectView=[UIStoryboard storyboardWithName:@"MatchingSelectView" bundle:nil].instantiateInitialViewController;
-    
+    exerciseMatchingSelectView=[UIStoryboard storyboardWithName:@"ExerciseMatchingSelectView" bundle:nil].instantiateInitialViewController;
 }
 
 -(void)animationContent{
@@ -400,7 +401,14 @@
             case 9:
                 colorRGB=@"98d872";
                 type=@"运动";
-                [ExerciseMatchingSelectView show:colorRGB];
+                exerciseMatchingSelectView.view.backgroundColor=[Tools getColor:colorRGB];
+                exerciseMatchingSelectView.view.alpha=1.0;
+                exerciseMatchingSelectView.selectView.alpha=1.0;
+                exerciseMatchingSelectView.locationAddressView.alpha=0.0;
+                exerciseMatchingSelectView.addressSelection.alpha=0.0;
+                exerciseMatchingSelectView.indexView.alpha=0.0;
+                [self.view addSubview:exerciseMatchingSelectView.view];
+                [self addChildViewController:exerciseMatchingSelectView];
                 break;
             case 10:
                 colorRGB=@"fb7b9b";
