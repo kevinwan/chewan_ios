@@ -112,6 +112,10 @@
     // 网络超时时长
     mgr.requestSerializer.timeoutInterval = 40;
     
+    if (jsonDict == nil) {
+        jsonDict = @{};
+    }
+    
     [mgr POST:url parameters:jsonDict success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([responseObject[@"result"] intValue] && [responseObject[@"errmsg"] contains:@"口令已过期"]) {
             [self reLoginWithSuccess:^{

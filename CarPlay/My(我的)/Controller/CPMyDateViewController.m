@@ -29,6 +29,7 @@
 @property (nonatomic, strong) CPNoDataTipView *noDataView;
 @property (nonatomic, weak)   AAPullToRefresh *headerView;
 @property (nonatomic, weak)   AAPullToRefresh *footerView;
+@property (nonatomic, assign) CGFloat ignore;
 @end
 
 static NSString *ID = @"cell";
@@ -45,23 +46,9 @@ static NSString *ID = @"cell";
     }
     
     self.offset = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250;
-    
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"筛选" target:self action:@selector(filter)];
     [self.view addSubview:self.tableView];
-    [self tipView];
     [ZYLoadingView showLoadingView];
-    if (CPUnLogin) {
-        [self loadDataWithHeader:nil];
-    }else{
-        [[ZYNotificationCenter rac_addObserverForName:NOTIFICATION_LOGINSUCCESS object:nil] subscribeNext:^(NSNotification *notify) {
-            
-            BOOL loginSuccess = [notify.userInfo[NOTIFICATION_LOGINSUCCESS] boolValue];
-            if (loginSuccess) {
-                [self loadDataWithHeader:nil];
-            }
-        }];
-    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -120,8 +107,11 @@ static NSString *ID = @"cell";
  */
 - (void)loadDataWithHeader:(AAPullToRefresh *)refresh
 {
-    
-    [ZYNetWorkTool getWithUrl:@"activity/list" params:self.params.keyValues success:^(id responseObject) {
+//    user/$userId/appointment/list
+    NSString *url = [NSString stringWithFormat:@"user/%@/appointment/list?token=%@",CPUserId, CPToken];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"ignore"] = @(self.ignore);
+    [ZYNetWorkTool getWithUrl:url params:params success:^(id responseObject) {
         
         [[CPLoadingView sharedInstance] dismissLoadingView];
         [self setUpRefresh];
@@ -174,21 +164,6 @@ static NSString *ID = @"cell";
     return self.datas.count;
 }
 
-//-(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
-//{
-////    if (self.headerView.state == AAPullToRefreshStateLoading || self.footerView.state == AAPullToRefreshStateLoading) {
-////        return;
-////    }
-//    UICollectionView3DLayout *layout=(UICollectionView3DLayout*)self.tableView.collectionViewLayout;
-//
-//    [layout EndAnchorMove];
-//}
-
-
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
-{
-    
-}
 
 #pragma mark - 事件交互
 
@@ -200,7 +175,7 @@ static NSString *ID = @"cell";
     }else if([notifyName isEqualToString:PhotoBtnClickKey]){
         [self photoPresent];
     }else if([notifyName isEqualToString:DateBtnClickKey]){
-        [self dateClickWithInfo:userInfo];
+
     }else if([notifyName isEqualToString:InvitedBtnClickKey]){
         
     }else if([notifyName isEqualToString:IgnoreBtnClickKey]){
@@ -323,70 +298,6 @@ static NSString *ID = @"cell";
             [self showError:@"照片上传失败"];
         }];
     }
-    
-}
-
-/**
- *  处理约她的逻辑
- *
- *  @param userInfo user
- */
-- (void)dateClickWithInfo:(id)userInfo
-{
-    CPGoLogin(@"邀TA");
-    //    {
-    //        “type”:”$type”,
-    //        “pay”:”$pay”,
-    //        “destPoint”:
-    //        {
-    //            “longitude”:”$longitude”,
-    //            “latitude”:”$latitude”
-    //        },
-    //        “destination”:
-    //        {
-    //            “province”:”$province”,
-    //            “city”:”$city”,
-    //            “district”:”$district”,
-    //            “street”:”$street”
-    //        },
-    //        “transfer”:”$transfer”
-    //    }
-    NSIndexPath *indexPath = userInfo;
-    CPActivityModel *model = self.datas[indexPath.row];
-    NSString *url = [NSString stringWithFormat:@"activity/%@/join",model.activityId];
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[UserId] = CPUserId;
-    params[Token] = CPToken;
-    DLog(@"邀请%@",params);
-    [CPNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
-        if (CPSuccess) {
-            [self showInfo:@"邀请已发出"];
-            model.applyFlag = 1;
-            [self.tableView reloadItemsAtIndexPaths:@[indexPath]];
-        }else if ([CPErrorMsg contains:@"申请中"]){
-            [self showInfo:@"正在申请中"];
-        }
-    } failed:^(NSError *error) {
-        [self showInfo:@"邀请失败"];
-    }];
-    
-}
-
-/**
- *  筛选按钮点击
- */
-- (void)filter
-{
-    [CPSelectView showWithParams:^(CPSelectModel *selectModel) {
-        
-        self.params.type = selectModel.type;
-        self.params.pay = selectModel.pay;
-        self.params.gender = selectModel.sex;
-        self.params.transfer = selectModel.transfer;
-        self.params.ignore = 0;
-        [self loadDataWithHeader:nil];
-    }];
-    
     
 }
 
