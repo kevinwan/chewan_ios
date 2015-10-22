@@ -68,6 +68,7 @@
     [paragraphStyle setLineSpacing:7];
     self.activityPathLabel.attributedText = [[NSAttributedString alloc] initWithString:model.desc attributes:@{NSParagraphStyleAttributeName : paragraphStyle}];
     self.explainLabel.attributedText = [[NSAttributedString alloc] initWithString:model.extraDesc attributes:@{NSParagraphStyleAttributeName : paragraphStyle}];
+    self.comePartBtn.enabled = !model.isMember;
 }
 
 - (IBAction)activityPathClick:(UIButton *)sender {
@@ -112,58 +113,14 @@
 - (IBAction)comePart:(UIButton *)sender {
   
     NSString *url = [NSString stringWithFormat:@"official/activity/%@/join?userId=%@&token=%@",self.officialActivityId, CPUserId, CPToken];
-    
-    //*********以下是AF的post请求**********//
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.securityPolicy.allowInvalidCertificates = YES;
-        manager.requestSerializer = [AFHTTPRequestSerializer serializer];//这个是二进制，下面的是json
-    manager.responseSerializer = [AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingMutableContainers];//使接受到的数据是可变的
-    manager.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
-    [manager setRequestSerializer:[AFJSONRequestSerializer serializer]];
-    manager.requestSerializer.timeoutInterval = 10;//设置网络请求超时时间，这个位置很重要，放前面会被60s覆盖
-    NSDictionary *terminalDic = @{@"terminal_type": @"0",@"lastUpdateTime":@""};
-    NSDictionary *requestDic = @{@"@command": @"EPG_CHANNEL",@"param":terminalDic};
-    [manager POST:[NSString stringWithFormat:@"%@%@",BASE_URL,url] parameters:requestDic success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"responseObject = %@",responseObject);
-        NSLog(@"dic= %@",[responseObject objectForKey:@"serviceinfo"]);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"fail:errror = %@",error);
+    [ZYNetWorkTool postJsonWithUrl:url params:nil success:^(id responseObject) {
+        if (CPSuccess) {
+            [SVProgressHUD showInfoWithStatus:@"申请成功"];
+            sender.enabled = YES;
+        }
+    } failed:^(NSError *error) {
+        [SVProgressHUD showInfoWithStatus:@"申请失败"];
     }];
-    //***********以上是AF的post请求***************//
-    
-    
-    
-    
-    
-    
-//    [SVProgressHUD showWithStatus:@"努力加载中"];
-//    NSDictionary *params = @{@"userId":CPUserId, @"token":CPToken};
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-////    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
-//    [manager POST:[NSString stringWithFormat:@"%@%@",BASE_URL,url] parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-//        
-//    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
-//        
-//    }];
-//    [ZYNetWorkTool postJsonWithUrl:url params:nil success:^(id responseObject) {
-//        
-//    } failed:^(NSError *error) {
-//        
-//    }];
-//    [ZYNetWorkTool postWithUrl:url params:nil success:^(id responseObject) {
-//        if (CPSuccess) {
-//            [SVProgressHUD showInfoWithStatus:@"报名成功"];
-//            [sender setBackgroundColor:[Tools getColor:@"999999"]];
-//            [self superViewWillRecive:CPActivityComePartKey info:nil];
-//        }else{
-//            
-//            [SVProgressHUD showInfoWithStatus:@"报名失败"];
-//        }
-//    } failure:^(NSError *error) {
-//        
-//        [SVProgressHUD showInfoWithStatus:@"加载失败"];
-//    }];
-    
 }
 
 @end

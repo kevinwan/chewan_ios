@@ -29,9 +29,10 @@
 @property (nonatomic, strong) CPNoDataTipView *noDataView;
 @property (nonatomic, weak)   AAPullToRefresh *headerView;
 @property (nonatomic, weak)   AAPullToRefresh *footerView;
+@property (nonatomic, assign) CGFloat ignore;
 @end
 
-static NSString *ID = @"cell";
+static NSString *ID = @"DateCell";
 @implementation CPMyDateViewController
 
 - (void)viewDidLoad
@@ -45,24 +46,11 @@ static NSString *ID = @"cell";
     }
     
     self.offset = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250;
-    
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"筛选" target:self action:@selector(filter)];
     [self.view addSubview:self.tableView];
-    [self tipView];
     [ZYLoadingView showLoadingView];
-    if (CPUnLogin) {
-        [self loadDataWithHeader:nil];
-    }else{
-        [[ZYNotificationCenter rac_addObserverForName:NOTIFICATION_LOGINSUCCESS object:nil] subscribeNext:^(NSNotification *notify) {
-            
-            BOOL loginSuccess = [notify.userInfo[NOTIFICATION_LOGINSUCCESS] boolValue];
-            if (loginSuccess) {
-                [self loadDataWithHeader:nil];
-            }
-        }];
-    }
 }
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -76,6 +64,11 @@ static NSString *ID = @"cell";
 {
     [super viewWillDisappear:animated];
     [ZYLoadingView dismissLoadingView];
+}
+
+- (void)dealloc
+{
+    
 }
 
 - (void)setUpRefresh
@@ -120,13 +113,16 @@ static NSString *ID = @"cell";
  */
 - (void)loadDataWithHeader:(AAPullToRefresh *)refresh
 {
-    
-    [ZYNetWorkTool getWithUrl:@"activity/list" params:self.params.keyValues success:^(id responseObject) {
+//    user/$userId/appointment/list
+    NSString *url = [NSString stringWithFormat:@"user/%@/appointment/list?token=%@",CPUserId, CPToken];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"ignore"] = @(self.ignore);
+    [ZYNetWorkTool getWithUrl:url params:params success:^(id responseObject) {
         
+        DLog(@"%@ ---- ",responseObject);
         [[CPLoadingView sharedInstance] dismissLoadingView];
         [self setUpRefresh];
         [refresh stopIndicatorAnimation];
-        DLog(@"%@ ---- ",responseObject);
         if (CPSuccess) {
             if (self.params.ignore == 0) {
                 [self.datas removeAllObjects];
@@ -143,9 +139,6 @@ static NSString *ID = @"cell";
                 self.noDataView.hidden = YES;
             }
             [self.tableView reloadData];
-            if (self.tableView.contentOffset.y > 60 && refresh != self.footerView) {
-                [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, 0) animated:YES];
-            }
         }
     } failure:^(NSError *error) {
         
@@ -174,21 +167,6 @@ static NSString *ID = @"cell";
     return self.datas.count;
 }
 
-//-(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
-//{
-////    if (self.headerView.state == AAPullToRefreshStateLoading || self.footerView.state == AAPullToRefreshStateLoading) {
-////        return;
-////    }
-//    UICollectionView3DLayout *layout=(UICollectionView3DLayout*)self.tableView.collectionViewLayout;
-//
-//    [layout EndAnchorMove];
-//}
-
-
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
-{
-    
-}
 
 #pragma mark - 事件交互
 
@@ -200,7 +178,7 @@ static NSString *ID = @"cell";
     }else if([notifyName isEqualToString:PhotoBtnClickKey]){
         [self photoPresent];
     }else if([notifyName isEqualToString:DateBtnClickKey]){
-        [self dateClickWithInfo:userInfo];
+
     }else if([notifyName isEqualToString:InvitedBtnClickKey]){
         
     }else if([notifyName isEqualToString:IgnoreBtnClickKey]){
@@ -306,13 +284,15 @@ static NSString *ID = @"cell";
                 [albums addObject:album];
                 if (count == arr.count) {
                     [self disMiss];
-                    
-                    NSString *filePath = [NSString stringWithFormat:@"%@.info",CPUserId];
-                    CPUser *user = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath.documentPath];
-                    
-                    [albums insertObjects:user.album atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, user.album.count)]];
-                    user.album = [albums copy];
-                    [NSKeyedArchiver archiveRootObject:user toFile:filePath.documentPath];
+                    ZYAsyncThead(^{
+                        NSString *filePath = [NSString stringWithFormat:@"%@.info",CPUserId];
+                        CPUser *user = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath.documentPath];
+                        
+                        [albums insertObjects:user.album atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, user.album.count)]];
+                        user.album = [albums copy];
+                        [NSKeyedArchiver archiveRootObject:user toFile:filePath.documentPath];
+                    });
+                   
                     [self.tableView reloadData];
                 }
             }else{
@@ -323,70 +303,6 @@ static NSString *ID = @"cell";
             [self showError:@"照片上传失败"];
         }];
     }
-    
-}
-
-/**
- *  处理约她的逻辑
- *
- *  @param userInfo user
- */
-- (void)dateClickWithInfo:(id)userInfo
-{
-    CPGoLogin(@"邀TA");
-    //    {
-    //        “type”:”$type”,
-    //        “pay”:”$pay”,
-    //        “destPoint”:
-    //        {
-    //            “longitude”:”$longitude”,
-    //            “latitude”:”$latitude”
-    //        },
-    //        “destination”:
-    //        {
-    //            “province”:”$province”,
-    //            “city”:”$city”,
-    //            “district”:”$district”,
-    //            “street”:”$street”
-    //        },
-    //        “transfer”:”$transfer”
-    //    }
-    NSIndexPath *indexPath = userInfo;
-    CPActivityModel *model = self.datas[indexPath.row];
-    NSString *url = [NSString stringWithFormat:@"activity/%@/join",model.activityId];
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[UserId] = CPUserId;
-    params[Token] = CPToken;
-    DLog(@"邀请%@",params);
-    [CPNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
-        if (CPSuccess) {
-            [self showInfo:@"邀请已发出"];
-            model.applyFlag = 1;
-            [self.tableView reloadItemsAtIndexPaths:@[indexPath]];
-        }else if ([CPErrorMsg contains:@"申请中"]){
-            [self showInfo:@"正在申请中"];
-        }
-    } failed:^(NSError *error) {
-        [self showInfo:@"邀请失败"];
-    }];
-    
-}
-
-/**
- *  筛选按钮点击
- */
-- (void)filter
-{
-    [CPSelectView showWithParams:^(CPSelectModel *selectModel) {
-        
-        self.params.type = selectModel.type;
-        self.params.pay = selectModel.pay;
-        self.params.gender = selectModel.sex;
-        self.params.transfer = selectModel.transfer;
-        self.params.ignore = 0;
-        [self loadDataWithHeader:nil];
-    }];
-    
     
 }
 
@@ -424,78 +340,6 @@ static NSString *ID = @"cell";
         _datas = [[NSMutableArray alloc] init];
     }
     return _datas;
-}
-
-- (UIView *)tipView
-{
-    if (_tipView == nil) {
-        _tipView = [[UIView alloc] init];
-        _tipView.backgroundColor = ZYColor(0, 0, 0, 0.7);
-        [self.view addSubview:_tipView];
-        [_tipView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(@64);
-            make.width.equalTo(self.view);
-            make.height.equalTo(@35);
-        }];
-        
-        UILabel *textL = [UILabel labelWithText:@"有空,其他人可以邀请你参加活动" textColor:[UIColor whiteColor] fontSize:14];
-        [_tipView addSubview:textL];
-        [textL mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(@10);
-            make.centerY.equalTo(_tipView);
-        }];
-        
-        CPMySwitch *freeTimeBtn = [CPMySwitch new];
-        [freeTimeBtn setOnImage:[UIImage imageNamed:@"btn_youkong"]];
-        [freeTimeBtn setOffImage:[UIImage imageNamed:@"btn_meikong"]];
-        freeTimeBtn.on = [ZYUserDefaults boolForKey:FreeTimeKey];
-        [_tipView addSubview:freeTimeBtn];
-        NSString *url = [NSString stringWithFormat:@"user/%@/info?token=%@",CPUserId,CPToken];
-        [[freeTimeBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(CPMySwitch *btn) {
-            CPGoLogin(@"修改状态");
-            btn.on = !btn.on;
-            [ZYUserDefaults setBool:btn.on forKey:FreeTimeKey];
-            if (btn.on) {
-                textL.text = @"有空,其他人可以邀请你参加活动";
-                [ZYNetWorkTool postJsonWithUrl:url params:@{@"idle" : @(YES)} success:^(id responseObject) {
-                    
-                } failed:^(NSError *error) {
-                    
-                }];
-            }else{
-                textL.text = @"没空,你将接受不到任何活动邀请";
-                [ZYNetWorkTool postJsonWithUrl:url params:@{@"idle" : @(NO)} success:^(id responseObject) {
-                    
-                } failed:^(NSError *error) {
-                    
-                }];
-            }
-        }];
-        [freeTimeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(_tipView);
-            make.right.equalTo(@-10);
-        }];
-        [RACObserve(self.tableView, contentOffset) subscribeNext:^(id x) {
-            CGPoint p = [x CGPointValue];
-            if (p.y <= 0 && p.y >= -10) {
-                if (_tipView.alpha == 0) {
-                    [UIView animateWithDuration:0.2 animations:^{
-                        _tipView.alpha = 1;
-                    }];
-                }
-            }else if (p.y > self.tableView.height - 383 - self.offset){
-                if (_tipView.alpha == 1) {
-                    [UIView animateWithDuration:0.2 animations:^{
-                        _tipView.alpha = 0;
-                    }];
-                }
-            }else if (p.y < -10){
-                _tipView.alpha = 0;
-            }
-        }];
-        
-    }
-    return _tipView;
 }
 
 - (CPNearParams *)params

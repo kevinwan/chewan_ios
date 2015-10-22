@@ -69,6 +69,7 @@
 @property (nonatomic, copy) NSString *extraDesc;
 @property (nonatomic, strong) CPUser *organizer;
 @property (nonatomic, strong) NSArray *members;
+@property (nonatomic, assign) BOOL isMember;
 @end
 
 @interface CPPartMember : CPUser

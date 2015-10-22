@@ -243,8 +243,8 @@
 //
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (tableView == _brandTableView) {
-        CustomBrandCell *cell = (CustomBrandCell *)[tableView cellForRowAtIndexPath:indexPath];
         NSDictionary *data=[[sortedBrandData objectForKey:[brandArray objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
         
         NSString *brandName =[data objectForKey:@"slug"];

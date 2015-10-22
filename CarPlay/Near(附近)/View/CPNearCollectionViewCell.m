@@ -29,7 +29,11 @@
 
 - (void)setModel:(CPActivityModel *)model
 {
+    if (model.applicant) {
+        model.organizer = model.applicant;
+    }
     _model = model;
+    
     self.contentV.model = model;
 }
 

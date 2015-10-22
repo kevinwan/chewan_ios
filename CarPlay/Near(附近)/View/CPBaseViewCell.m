@@ -194,7 +194,7 @@
     self.sexView.isMan = model.organizer.isMan;
     self.sexView.age = model.organizer.age;
 
-    [self.userIconView zy_setImageWithUrl:model.organizer.avatar completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [self.userIconView zy_setImageWithUrl:model.organizer.cover completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
          if (isHasAlubm && CPIsLogin) {
              self.userIconView.image = image;
          }else{
@@ -205,7 +205,9 @@
     self.loveBtn.selected = model.organizer.subscribeFlag;
     self.payView.text = model.pay;
     self.sendView.hidden = !model.transfer;
-    [self.addressView setTitle:model.destination[@"street"] forState:UIControlStateNormal];
+    if ([model.destination isKindOfClass:[NSDictionary class]]) {
+        [self.addressView setTitle:model.destination[@"street"] forState:UIControlStateNormal];
+    }
     if (model.title.length) {
         self.titleLabel.text = model.title;
     }else{
@@ -243,9 +245,7 @@
         
         if ([model.organizer.userId isEqualToString:CPUserId]) {
             [self setOneType:NO];
-            self.invitedButton.hidden = NO;
-            self.ignoreButton.hidden = NO;
-            
+            [self setPhoneType:NO];
         }else{
             
             self.dateAnim.haloLayerColor= [Tools getColor:@"cccccc"].CGColor;
@@ -254,7 +254,7 @@
             [self setOneType:YES];
         }
     }else if (model.applyFlag == 2){
-        
+        [self setPhoneType:YES];
     }
 }
 
@@ -275,6 +275,26 @@
         self.ignoreButton.hidden = NO;
         self.ignoreAnim.hidden = NO;
         self.inviAnim.hidden = NO;
+    }
+}
+
+- (void)setPhoneType:(BOOL)phoneType
+{
+    if (phoneType) {
+        [self setOneType:NO];
+        self.inviAnim.haloLayerColor = [Tools getColor:@"77bbf2"].CGColor;
+        self.ignoreAnim.haloLayerColor = [Tools getColor:@"98d872"].CGColor;
+        self.invitedButton.selected = YES;
+        [self.invitedButton setBackgroundColor:[Tools getColor:@"77bbf2"]];
+        self.ignoreButton.selected = YES;
+        [self.ignoreButton setBackgroundColor:[Tools getColor:@"98d872"]];
+    }else{
+        self.inviAnim.haloLayerColor = RedColor.CGColor;
+        self.ignoreAnim.haloLayerColor = [Tools getColor:@"cccccc"].CGColor;
+        self.invitedButton.selected = NO;
+        [self.invitedButton setBackgroundColor:RedColor];
+        self.ignoreButton.selected = NO;
+        [self.ignoreButton setBackgroundColor:[Tools getColor:@"cccccc"]];
     }
 }
 
@@ -348,8 +368,7 @@
 {
     if (_invitedButton == nil) {
         _invitedButton = [UIButton buttonWithTitle:@"应邀" icon:nil titleColor:[UIColor whiteColor] fontSize:16];
-        
-        _invitedButton.backgroundColor = RedColor;
+        [_invitedButton setImage:[UIImage imageNamed:@"聊天"] forState:UIControlStateSelected];
         
         _invitedButton.layer.cornerRadius = 28;
         _invitedButton.clipsToBounds = YES;
@@ -362,7 +381,6 @@
 {
     if (_dateButton == nil) {
         _dateButton = [UIButton buttonWithTitle:@"邀Ta" icon:nil titleColor:[UIColor whiteColor] fontSize:16];
-        
         _dateButton.backgroundColor = RedColor;
         
         _dateButton.layer.cornerRadius = 28;
@@ -378,7 +396,8 @@
 {
     if (_ignoreButton == nil) {
         _ignoreButton = [UIButton buttonWithTitle:@"忽略" icon:nil titleColor:[UIColor whiteColor] fontSize:16];
-        _ignoreButton.backgroundColor = [Tools getColor:@"cccccc"];
+        
+        [_ignoreButton setImage:[UIImage imageNamed:@"电话"] forState:UIControlStateSelected];
         _ignoreButton.layer.cornerRadius = 28;
         _ignoreButton.clipsToBounds = YES;
         _ignoreButton.hidden = YES;
@@ -391,7 +410,7 @@
     if (_dateAnim == nil) {
         
         _dateAnim = [self multiLayer];
-        
+        _dateAnim.haloLayerColor = RedColor.CGColor;
         CGFloat x = (ZYScreenWidth - 20) * 0.5;
         CGFloat y = (ZYScreenWidth - 20) / 6.0 * 5.0 - 48;
         _dateAnim.position = CGPointMake(x, y);
@@ -421,7 +440,6 @@
     if (_ignoreAnim == nil) {
         
         _ignoreAnim = [self multiLayer];
-        _ignoreAnim.haloLayerColor = [Tools getColor:@"cccccc"].CGColor;
         CGFloat x = (ZYScreenWidth - 20) * 0.5 + 38;
         CGFloat y = (ZYScreenWidth - 20) / 6.0 * 5.0 - 48;
         _ignoreAnim.position = CGPointMake(x, y);
@@ -438,7 +456,6 @@
     multiLayer.useTimingFunction = NO;
     multiLayer.fromValueForAlpha = 1.0;
     [multiLayer buildSublayers];
-    [multiLayer setHaloLayerColor:RedColor.CGColor];
     return multiLayer;
     
 }
