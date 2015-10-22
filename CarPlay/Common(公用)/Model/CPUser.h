@@ -51,8 +51,14 @@
 @property (nonatomic, copy) NSString *licenseAuthStatus;
 //    "car":{   "logo":    "model": "奥迪A4L"}
 @property (nonatomic, strong) CPCar *car;
-
+// 驾驶证URL
 @property (nonatomic, copy) NSString *driverLicense;
+//驾驶证photoId
+@property (nonatomic, copy) NSString *driverLicenseId;
+//行驶证URL
+@property (nonatomic, copy) NSString *drivingLicense;
+//行驶证photoId
+@property (nonatomic, copy) NSString *drivingLicenseId;
 // 是不是被关注
 @property (nonatomic, assign) BOOL subscribeFlag;
 
