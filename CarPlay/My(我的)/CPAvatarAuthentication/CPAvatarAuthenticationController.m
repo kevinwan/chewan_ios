@@ -111,6 +111,8 @@
         } failed:^(NSError *error) {
             [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
         }];
+    }else{
+        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请上传您的头像!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
     }
 }
 

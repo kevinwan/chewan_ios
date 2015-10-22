@@ -78,6 +78,9 @@
                                     <state key="normal" title="提交认证">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="submit:" destination="cMq-5M-Vdk" eventType="touchUpInside" id="Tuj-uz-c40"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -200,7 +203,6 @@
                     </tableView>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="submit" destination="WJk-az-1cN" id="9xa-Ec-pdm"/>
                         <outlet property="submitBtn" destination="WJk-az-1cN" id="wGE-PU-gPX"/>
                     </connections>
                 </tableViewController>

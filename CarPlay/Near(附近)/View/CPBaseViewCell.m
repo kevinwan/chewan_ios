@@ -14,6 +14,7 @@
 #import "UIButton+WebCache.h"
 #import "CPNoHighLightButton.h"
 #import "ZYImageVIew.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface CPBaseViewCell ()
 /**
@@ -135,11 +136,19 @@
         [self superViewWillRecive:IconViewClickKey info:_model];
     }];
     [self.userIconView addGestureRecognizer:tapGes];
+    
+    [self.userIconView addSubview:self.userCoverView];
     [self.userIconView addSubview:self.tipView];
     [self.userIconView addSubview:self.dateButton];
     [self.userIconView addSubview:self.invitedButton];
     [self.userIconView addSubview:self.ignoreButton];
     [self dateAnim];
+
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
     [self beginLayoutSubviews];
 }
 
@@ -174,6 +183,7 @@
             make.height.equalTo(self.userIconView.mas_height).multipliedBy(0.46);
         }
     }];
+    self.userCoverView.frame = self.userIconView.bounds;
  
 }
 
@@ -194,12 +204,27 @@
     self.sexView.isMan = model.organizer.isMan;
     self.sexView.age = model.organizer.age;
 
+//    [self.userIconView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:model.organizer.cover]] placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
+//        
+//        self.userIconView.image = image;
+////        ZYAsyncThead(^{
+////            
+////            UIImage *img;
+////            if (isHasAlubm && CPIsLogin) {
+////                img = image;
+////            }else{
+////                img = [image blurredImageWithRadius:10];
+////            }
+////            ZYMainThread(^{
+////                self.userIconView.image = img;
+////            });
+////        });
+//    } failure:NULL];
+//    
+//    
     [self.userIconView zy_setImageWithUrl:model.organizer.cover completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-         if (isHasAlubm && CPIsLogin) {
-             self.userIconView.image = image;
-         }else{
-             self.userIconView.image = [image blurredImageWithRadius:10];
-         }
+        
+        self.userIconView.image = image;
     }];
     [self.distanceView setTitle:model.distanceStr forState:UIControlStateNormal];
     self.loveBtn.selected = model.organizer.subscribeFlag;
@@ -360,6 +385,7 @@
         _userCoverView.tintColor = [UIColor clearColor];
         [_userCoverView setBlurEnabled:YES];
         _userCoverView.blurRadius = 5;
+        [_userCoverView setDynamic:NO];
     }
     return _userCoverView;
 }

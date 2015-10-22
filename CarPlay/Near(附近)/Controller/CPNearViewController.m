@@ -186,10 +186,6 @@ static NSString *ID = @"cell";
 //}
 
 
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
-{
-    
-}
 
 #pragma mark - 事件交互
 
@@ -397,8 +393,8 @@ static NSString *ID = @"cell";
 - (UICollectionView *)tableView
 {
     if (_tableView == nil) {
-        UICollectionView3DLayout *layout = [UICollectionView3DLayout new];
-//        UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
+//        UICollectionView3DLayout *layout = [UICollectionView3DLayout new];
+        UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
         _tableView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
         _tableView.alwaysBounceVertical = YES;
         _tableView.backgroundColor = [UIColor clearColor];
@@ -409,9 +405,9 @@ static NSString *ID = @"cell";
         _tableView.dataSource = self;
         CGSize itemSzie= CGSizeMake(ZYScreenWidth - 20, 383 + self.offset);
         layout.itemSize = itemSzie;
-//        layout.scrollDirection = UICollectionLayoutScrollDirectionVertical;
-        layout.itemScale = 0.96;
-        layout.LayoutDirection=UICollectionLayoutScrollDirectionVertical;
+        layout.scrollDirection = UICollectionLayoutScrollDirectionVertical;
+//        layout.itemScale = 0.96;
+//        layout.LayoutDirection=UICollectionLayoutScrollDirectionVertical;
         self.view.backgroundColor = [Tools getColor:@"efefef"];
         [_tableView registerClass:[CPNearCollectionViewCell class] forCellWithReuseIdentifier:ID];
         _tableView.panGestureRecognizer.delaysTouchesBegan = _tableView.delaysContentTouches;
