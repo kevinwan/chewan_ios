@@ -87,7 +87,6 @@
 		6BDA2C9F1BD644990032FFF1 /* CPEditUsername.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BDA2C9E1BD644990032FFF1 /* CPEditUsername.storyboard */; settings = {ASSET_TAGS = (); }; };
 		6BDA2CA11BD66E970032FFF1 /* MatchingSelectView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BDA2CA01BD66E970032FFF1 /* MatchingSelectView.storyboard */; settings = {ASSET_TAGS = (); }; };
 		6BDA2CA41BD670660032FFF1 /* MatchingSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDA2CA31BD670660032FFF1 /* MatchingSelectView.m */; settings = {ASSET_TAGS = (); }; };
-		6BDA2CA71BD729370032FFF1 /* CPActivityPathCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDA2CA61BD729370032FFF1 /* CPActivityPathCell.m */; settings = {ASSET_TAGS = (); }; };
 		6BDA2CAA1BD75EC20032FFF1 /* CPOtherMatchingSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDA2CA91BD75EC20032FFF1 /* CPOtherMatchingSelectView.m */; settings = {ASSET_TAGS = (); }; };
 		6BDA2CAC1BD7705B0032FFF1 /* ExerciseMatchingSelectView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BDA2CAB1BD7705B0032FFF1 /* ExerciseMatchingSelectView.storyboard */; settings = {ASSET_TAGS = (); }; };
 		6BDA2CAF1BD774050032FFF1 /* ExerciseMatchingSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDA2CAE1BD774050032FFF1 /* ExerciseMatchingSelectView.m */; settings = {ASSET_TAGS = (); }; };
@@ -670,8 +669,6 @@
 		6BDA2CA01BD66E970032FFF1 /* MatchingSelectView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MatchingSelectView.storyboard; sourceTree = "<group>"; };
 		6BDA2CA21BD670660032FFF1 /* MatchingSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchingSelectView.h; sourceTree = "<group>"; };
 		6BDA2CA31BD670660032FFF1 /* MatchingSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchingSelectView.m; sourceTree = "<group>"; };
-		6BDA2CA51BD729370032FFF1 /* CPActivityPathCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityPathCell.h; sourceTree = "<group>"; };
-		6BDA2CA61BD729370032FFF1 /* CPActivityPathCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityPathCell.m; sourceTree = "<group>"; };
 		6BDA2CA81BD75EC20032FFF1 /* CPOtherMatchingSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPOtherMatchingSelectView.h; sourceTree = "<group>"; };
 		6BDA2CA91BD75EC20032FFF1 /* CPOtherMatchingSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPOtherMatchingSelectView.m; sourceTree = "<group>"; };
 		6BDA2CAB1BD7705B0032FFF1 /* ExerciseMatchingSelectView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ExerciseMatchingSelectView.storyboard; sourceTree = "<group>"; };
@@ -3370,8 +3367,6 @@
 		E3A471141BB3A85300973197 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6BDA2CA51BD729370032FFF1 /* CPActivityPathCell.h */,
-				6BDA2CA61BD729370032FFF1 /* CPActivityPathCell.m */,
 				E3FE39EB1BD64F060022FDA3 /* CPPartnerMemberCell.h */,
 				E3FE39EC1BD64F060022FDA3 /* CPPartnerMemberCell.m */,
 				E3FE39E61BD64EF90022FDA3 /* CPComeOnTipView.h */,
@@ -4033,7 +4028,6 @@
 				6D2ABFE51BCE582100201A8E /* GroupSubjectChangingViewController.m in Sources */,
 				E3A471831BB3A85300973197 /* UIImage+Extension.m in Sources */,
 				E31B12DF1BB9311700B51696 /* UIView+PBExtend.m in Sources */,
-				6BDA2CA71BD729370032FFF1 /* CPActivityPathCell.m in Sources */,
 				6D2ABF891BCE582100201A8E /* EMCDDeviceManager+ProximitySensor.m in Sources */,
 				6D2ABFCD1BCE582100201A8E /* DXMessageToolBar.m in Sources */,
 				E31B12E91BB9311700B51696 /* PhotoItemView.m in Sources */,
