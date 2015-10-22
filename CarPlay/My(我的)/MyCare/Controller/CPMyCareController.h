@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface CPMyCareController : UIViewController
-
+- (IBAction)chat:(UIButton *)sender;
+- (IBAction)phone:(UIButton *)sender;
+- (IBAction)subscribe:(UIButton *)sender;
 @end

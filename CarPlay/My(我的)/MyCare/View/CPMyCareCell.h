@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "CPCareUser.h"
+#import "ZYTableViewCell.h"
 
-@interface CPMyCareCell : UITableViewCell
+@interface CPMyCareCell : ZYTableViewCell
 
 @property (nonatomic,strong) CPCareUser *careUser;
+@property (weak, nonatomic) IBOutlet UIButton *chatBtn;
+@property (weak, nonatomic) IBOutlet UIButton *phoneBtn;
+@property (weak, nonatomic) IBOutlet UIButton *subscribeBtn;
 
 + (NSString *)identifier;
 

@@ -62,10 +62,12 @@
     self.genderAndAge.age = careUser.age;
     
     // 设置距离
-    self.distance.text = [NSString stringWithFormat:@"%ldm",careUser.distance];
-    
-
-    
+    if (careUser.distance >= 1000) {
+        CGFloat dis = careUser.distance / 1000.0;
+        self.distance.text = [NSString stringWithFormat:@"%.1fkm",dis];
+    }else{
+        self.distance.text = [NSString stringWithFormat:@"%zdm",careUser.distance];
+    }
 }
 
 
