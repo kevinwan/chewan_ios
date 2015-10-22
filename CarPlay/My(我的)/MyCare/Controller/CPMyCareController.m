@@ -113,6 +113,8 @@
             cell.chatBtn.tag=indexPath.row;
             cell.phoneBtn.tag=indexPath.row;
             cell.subscribeBtn.tag=indexPath.row;
+            [cell.chatBtn setHidden:NO];
+            [cell.phoneBtn setHidden:NO];
             break;
         case 20:
             cell.careUser = _mySubscribe[indexPath.row];
