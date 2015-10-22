@@ -123,7 +123,6 @@ static NSString *ID = @"cell";
 
     [ZYNetWorkTool getWithUrl:@"activity/list" params:self.params.keyValues success:^(id responseObject) {
         
-        [[CPLoadingView sharedInstance] dismissLoadingView];
         [self setUpRefresh];
         [refresh stopIndicatorAnimation];
         DLog(@"%@ ---- ",responseObject);
@@ -147,6 +146,8 @@ static NSString *ID = @"cell";
                 [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, 0) animated:YES];
             }
         }
+        
+        [[CPLoadingView sharedInstance] dismissLoadingView];
     } failure:^(NSError *error) {
         
         [self setUpRefresh];

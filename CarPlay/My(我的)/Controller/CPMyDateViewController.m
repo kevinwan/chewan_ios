@@ -32,7 +32,7 @@
 @property (nonatomic, assign) CGFloat ignore;
 @end
 
-static NSString *ID = @"cell";
+static NSString *ID = @"DateCell";
 @implementation CPMyDateViewController
 
 - (void)viewDidLoad
