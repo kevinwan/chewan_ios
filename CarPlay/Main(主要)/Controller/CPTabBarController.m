@@ -90,8 +90,8 @@
 {
     
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"callOutWithChatter" object:@{@"chatter":@"chewan123", @"type":[NSNumber numberWithInt:eCallSessionTypeAudio]}];
-    return;
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"callOutWithChatter" object:@{@"chatter":@"chewan123", @"type":[NSNumber numberWithInt:eCallSessionTypeAudio]}];
+//    return;
     //test 测试语音聊天，暂时用下这个位置
     CPMatchingViewController *mathching=[UIStoryboard storyboardWithName:@"CPMatching" bundle:nil].instantiateInitialViewController;
      CPNavigationController *nav=[[CPNavigationController alloc]initWithRootViewController:mathching];

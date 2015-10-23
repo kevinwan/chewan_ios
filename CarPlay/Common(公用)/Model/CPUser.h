@@ -67,4 +67,8 @@
 
 @property (nonatomic, copy) NSString *authentication;
 
+@property (nonatomic, assign) double distance;
+
+@property (nonatomic, copy) NSString *distanceStr;
+
 @end

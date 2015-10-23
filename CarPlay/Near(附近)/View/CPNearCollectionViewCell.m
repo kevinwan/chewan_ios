@@ -36,10 +36,12 @@
 
 - (void)setModel:(CPActivityModel *)model
 {
-    if (model.applicant) {
-        model.organizer = model.applicant;
-    }
     self.contentV.model = model;
+}
+
+- (void)setMyDateModel:(CPMyDateModel *)myDateModel
+{
+    self.contentV.myDateModel = myDateModel;
 }
 
 - (void)setIndexPath:(NSIndexPath *)indexPath

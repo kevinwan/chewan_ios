@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CPActivityModel.h"
+#import "CPMyDateModel.h"
 
 #define CameraBtnClickKey   @"CameraBtnClickKey"
 #define PhotoBtnClickKey    @"PhotoBtnClickKey"
@@ -20,4 +21,5 @@
 @interface CPBaseViewCell : UIView
 @property (nonatomic, strong) NSIndexPath *indexPath;
 @property (nonatomic, strong) CPActivityModel *model;
+@property (nonatomic, strong) CPMyDateModel *myDateModel;
 @end

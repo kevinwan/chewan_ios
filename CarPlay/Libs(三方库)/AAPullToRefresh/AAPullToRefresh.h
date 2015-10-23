@@ -26,15 +26,11 @@ typedef NS_ENUM(NSUInteger, AAPullToRefreshPosition) {
 // user customizable.
 @property (nonatomic, assign) BOOL showPullToRefresh;
 @property (nonatomic, assign) CGFloat threshold;
-@property (nonatomic, strong) UIImage *imageIcon;
-@property (nonatomic, strong) UIColor *borderColor;
-@property (nonatomic, assign) CGFloat borderWidth;
 @property (nonatomic, strong) ZYRefreshView *activityIndicatorView;
 
 @property (nonatomic, assign) AAPullToRefreshState state;
 - (id)initWithImage:(UIImage *)image position:(AAPullToRefreshPosition)position;
 - (void)stopIndicatorAnimation;
-- (void)manuallyTriggered;
 - (void)setSize:(CGSize)size;
 
 @end

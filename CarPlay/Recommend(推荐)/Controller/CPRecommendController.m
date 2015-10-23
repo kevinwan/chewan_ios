@@ -63,9 +63,6 @@ static NSString *ID = @"cell";
         
         [self loadDataWithHeader:v];
     }];
-    tv.imageIcon = [UIImage imageNamed:@"车轮"];
-    tv.borderColor = [UIColor whiteColor];
-    
     // bottom
     AAPullToRefresh *bv = [_collectionView addPullToRefreshPosition:AAPullToRefreshPositionRight actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
@@ -82,9 +79,6 @@ static NSString *ID = @"cell";
             [v stopIndicatorAnimation];
         }
     }];
-    
-    bv.imageIcon = [UIImage imageNamed:@"车轮"];
-    bv.borderColor = [UIColor whiteColor];
     
     self.isHasRefreshHeader = YES;
 }

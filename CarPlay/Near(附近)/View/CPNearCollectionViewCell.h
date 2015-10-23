@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "CPBaseViewCell.h"
+#import "CPMyDateModel.h"
 
 @interface CPNearCollectionViewCell : UICollectionViewCell
 @property (nonatomic, strong) NSIndexPath *indexPath;
 @property (nonatomic, strong) CPActivityModel *model;
+@property (nonatomic, strong) CPMyDateModel *myDateModel;
 @end
