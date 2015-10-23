@@ -818,8 +818,6 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     if (_headAnim == nil) {
         
         _headAnim = [self multiLayer];
-//        CGFloat x = (ZYScreenWidth - 20) * 0.5 + 38;
-//        CGFloat y = (ZYScreenWidth - 20) / 6.0 * 5.0 - 48;
         _headAnim.position = CGPointMake(ZYScreenWidth/2, 165.0);
         _headAnim.haloLayerColor = [Tools getColor:@"98d872"].CGColor;
         [_topView.layer insertSublayer:_headAnim below:_headerImageView.layer];
