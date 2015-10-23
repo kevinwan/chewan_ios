@@ -101,9 +101,9 @@
     [ZYNetWorkTool getWithUrl:path params:nil success:^(id responseObject) {
         if (CPSuccess) {
             user = [CPUser objectWithKeyValues:responseObject[@"data"]];
-            if ([responseObject[@"data"][@"car"] isEqualToString:@""]) {
-                user.car=[CPCar new];
-            }
+//            if ([responseObject[@"data"][@"car"] isEqualToString:@""]) {
+//                user.car=[CPCar new];
+//            }
             NSString *path=[[NSString alloc]initWithFormat:@"%@.info",[Tools getUserId]];
             [NSKeyedArchiver archiveRootObject:user toFile:path.documentPath];
             [self reloadData];
