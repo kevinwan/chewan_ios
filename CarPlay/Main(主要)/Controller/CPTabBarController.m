@@ -212,11 +212,27 @@
         }
         
         if (callSession && !error) {
-            [[EaseMob sharedInstance].callManager removeDelegate:self];
+            //获取对方的头像和昵称
+            [ZYNetWorkTool getWithUrl:[NSString stringWithFormat:@"user/emchatInfo?userId=%@&token=%@&emchatName=%@",CPUserId,CPToken,chatter] params:nil success:^(id responseObject) {
+                if (CPSuccess) {
+                    NSDictionary *dic = [responseObject objectForKey:@"data"];
+                    [ZYUserDefaults setObject:[dic objectForKey:@"avatar"] forKey:kReceiverHeadUrl];
+                    [ZYUserDefaults setObject:[dic objectForKey:@"nickname"] forKey:kReceiverNickName];
+                    
+                    
+                    
+                    [[EaseMob sharedInstance].callManager removeDelegate:self];
+                    CallViewController *callController = [[CallViewController alloc] initWithSession:callSession isIncoming:NO];
+                    callController.modalPresentationStyle = UIModalPresentationOverFullScreen;
+                    [self presentViewController:callController animated:NO completion:nil];
+
+                }
+            } failure:^(NSError *error) {
+                ;
+            }];
             
-            CallViewController *callController = [[CallViewController alloc] initWithSession:callSession isIncoming:NO];
-            callController.modalPresentationStyle = UIModalPresentationOverFullScreen;
-            [self presentViewController:callController animated:NO completion:nil];
+            
+            
         }
         
         if (error) {
