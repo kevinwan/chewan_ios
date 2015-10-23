@@ -65,14 +65,24 @@
     
     return self;
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [super viewWillAppear:animated];
 
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     [self _setupSubviews];
     
-    _nameLabel.text = _chatter;
+
     if (_callSession.type == eCallSessionTypeVideo) {
         [self _initializeCamera];
         [_session startRunning];
@@ -95,8 +105,27 @@
         _statusLabel.text = NSLocalizedString(@"call.connecting", @"Connecting...");
         [_actionView addSubview:_hangupButton];
     }
-}
+    [NSTimer scheduledTimerWithTimeInterval:.1 target:self selector:@selector(startAnimations) userInfo:nil repeats:YES];
 
+}
+- (void)startAnimations
+{
+
+        UIImageView *dotView = [[UIImageView alloc]initWithFrame:CGRectMake(10+arc4random()%320, 20+arc4random()%150, 1, 1)];
+        dotView.image = [UIImage imageNamed:@"Call_bg_small_dot"];
+        [self.view addSubview:dotView];
+    
+    
+     [UIView animateWithDuration:arc4random()%10+3 animations:^{
+          dotView.frame = CGRectMake(-200+arc4random()%700, 1100, 1, 1);
+     } completion:^(BOOL finished) {
+         [dotView removeFromSuperview];
+
+     }];
+    
+    
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -206,7 +235,8 @@
         //别人打过来的
             [_headerImageView sd_setImageWithURL:[NSURL URLWithString:[ZYUserDefaults valueForKey:kSendCallHeadURL]] placeholderImage: [UIImage imageNamed:@"chatListCellHead"]];
     }else{
-    [_headerImageView sd_setImageWithURL:[NSURL URLWithString:[ZYUserDefaults valueForKey:kReceiverHeadUrl]] placeholderImage: [UIImage imageNamed:@"chatListCellHead"]];
+        NSString *headURl =[ZYUserDefaults valueForKey:kReceiverHeadUrl];
+        [_headerImageView sd_setImageWithURL:[NSURL URLWithString:headURl] placeholderImage: [UIImage imageNamed:@"chatListCellHead"]];
     }
 
     [_topView addSubview:_headerImageView];
@@ -227,7 +257,7 @@
     _actionView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_actionView];
 
-    CGFloat tmpWidth = _actionView.frame.size.width / 2;
+
     
     //拒绝按钮
     _rejectButton = [[UIButton alloc] initWithFrame:CGRectMake(30, 90, 100, 40)];

@@ -543,6 +543,7 @@
 		EE7F81781BD9D1E0003E7B3B /* call_out_h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7F81761BD9D1E0003E7B3B /* call_out_h@3x.png */; settings = {ASSET_TAGS = (); }; };
 		EE7F81791BD9D1E0003E7B3B /* call_silence_h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7F81771BD9D1E0003E7B3B /* call_silence_h@3x.png */; settings = {ASSET_TAGS = (); }; };
 		EE7F817B1BD9E74D003E7B3B /* answerTel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7F817A1BD9E74D003E7B3B /* answerTel@2x.png */; settings = {ASSET_TAGS = (); }; };
+		EEEEACD21BDA27940076BC4E /* Call_bg_small_dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EEEEACD11BDA27940076BC4E /* Call_bg_small_dot@2x.png */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1416,6 +1417,7 @@
 		EE7F81761BD9D1E0003E7B3B /* call_out_h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_out_h@3x.png"; sourceTree = "<group>"; };
 		EE7F81771BD9D1E0003E7B3B /* call_silence_h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_silence_h@3x.png"; sourceTree = "<group>"; };
 		EE7F817A1BD9E74D003E7B3B /* answerTel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "answerTel@2x.png"; sourceTree = "<group>"; };
+		EEEEACD11BDA27940076BC4E /* Call_bg_small_dot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Call_bg_small_dot@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2477,6 +2479,7 @@
 			children = (
 				6D2AC0161BCE5A5000201A8E /* audio */,
 				6D2AC0401BCE5A5000201A8E /* call_out@2x.png */,
+				EEEEACD11BDA27940076BC4E /* Call_bg_small_dot@2x.png */,
 				EE7F81761BD9D1E0003E7B3B /* call_out_h@3x.png */,
 				EE7F81771BD9D1E0003E7B3B /* call_silence_h@3x.png */,
 				EE3383151BD9141200BA4930 /* call_silence@3x.png */,
@@ -3815,6 +3818,7 @@
 				E3FE39EA1BD64EF90022FDA3 /* CPComeOnTipView.xib in Resources */,
 				6D7F6FBE1BD5189200945F1B /* chatBar_record@3x.png in Resources */,
 				6D2AC1391BCE5A5100201A8E /* chatBar_colorMore_audioCallSelected@2x.png in Resources */,
+				EEEEACD21BDA27940076BC4E /* Call_bg_small_dot@2x.png in Resources */,
 				6D2AC11F1BCE5A5100201A8E /* chat_location_preview@2x.png in Resources */,
 				6BCFFBB91BBA456900C082B2 /* CPMyCareController.storyboard in Resources */,
 				6D2AC1481BCE5A5100201A8E /* chatBar_more_location.png in Resources */,
