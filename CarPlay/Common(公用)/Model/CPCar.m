@@ -9,5 +9,5 @@
 #import "CPCar.h"
 
 @implementation CPCar
-
+MJCodingImplementation
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B0B2B641BD9DD2E00A6CA02 /* CPCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0B2B631BD9DD2E00A6CA02 /* CPCar.m */; settings = {ASSET_TAGS = (); }; };
 		6B1387DC1BCD0A6C00FAC462 /* CPBrandModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1387D21BCD0A6C00FAC462 /* CPBrandModelViewController.m */; settings = {ASSET_TAGS = (); }; };
 		6B1387DD1BCD0A6C00FAC462 /* CPBrandModelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B1387D31BCD0A6C00FAC462 /* CPBrandModelViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		6B1387DE1BCD0A6C00FAC462 /* CustomBrandCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1387D51BCD0A6C00FAC462 /* CustomBrandCell.m */; settings = {ASSET_TAGS = (); }; };
@@ -543,6 +544,8 @@
 
 /* Begin PBXFileReference section */
 		67D41D30DFBFAF45C8B1AB7F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		6B0B2B621BD9DD2E00A6CA02 /* CPCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCar.h; sourceTree = "<group>"; };
+		6B0B2B631BD9DD2E00A6CA02 /* CPCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCar.m; sourceTree = "<group>"; };
 		6B1387D11BCD0A6C00FAC462 /* CPBrandModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPBrandModelViewController.h; sourceTree = "<group>"; };
 		6B1387D21BCD0A6C00FAC462 /* CPBrandModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPBrandModelViewController.m; sourceTree = "<group>"; };
 		6B1387D31BCD0A6C00FAC462 /* CPBrandModelViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPBrandModelViewController.xib; sourceTree = "<group>"; };
@@ -3500,6 +3503,8 @@
 				6BDA2C811BD4DA420032FFF1 /* CPpinyin.m */,
 				6BDA2C831BD4DABA0032FFF1 /* CPNameIndex.h */,
 				6BDA2C841BD4DABA0032FFF1 /* CPNameIndex.m */,
+				6B0B2B621BD9DD2E00A6CA02 /* CPCar.h */,
+				6B0B2B631BD9DD2E00A6CA02 /* CPCar.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4121,6 +4126,7 @@
 				6BDA2C931BD610550032FFF1 /* CPEditInfoViewController.m in Sources */,
 				E31B13401BB9312D00B51696 /* NSDate+Extend.m in Sources */,
 				6D2ABFE11BCE582100201A8E /* CreateGroupViewController.m in Sources */,
+				6B0B2B641BD9DD2E00A6CA02 /* CPCar.m in Sources */,
 				6D2ABFB51BCE582100201A8E /* PSTGridLayoutRow.m in Sources */,
 				E3A471861BB3A85300973197 /* UITabBar+Extension.m in Sources */,
 				6BCFFBBC1BBA456900C082B2 /* CPTopButton.m in Sources */,
