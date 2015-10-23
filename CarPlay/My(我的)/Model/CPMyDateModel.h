@@ -15,6 +15,7 @@
 @property (nonatomic, copy) NSString *invitedUserId;
 //    applyUserId = 561f755b0cf24f3b99211d12,
 @property (nonatomic, copy) NSString *applyUserId;
+@property (nonatomic, copy) NSString *appointmentId;
 
 @property (nonatomic, assign) NSInteger status;
 

@@ -463,6 +463,33 @@
         _invitedButton.layer.cornerRadius = 28;
         _invitedButton.clipsToBounds = YES;
         _invitedButton.hidden = YES;
+        [[_invitedButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            if (_myDateModel.status == 1){
+                
+                if ([_myDateModel.invitedUserId isEqualToString:CPUserId]) {
+                    
+//                    application/$appointmentId/process?userId=$userId&token=$token
+                    NSString *url = [NSString stringWithFormat:@"application/%@/process?userId=%@&token=%@", _myDateModel.appointmentId, CPUserId, CPToken];
+                    [CPNetWorkTool postJsonWithUrl:url params:@{@"accept" : @(YES)} success:^(id responseObject) {
+                        if (CPSuccess) {
+                            [self setPhoneType:YES];
+                        }
+                    } failed:^(NSError *error) {
+                        
+                    }];
+                    
+                }else{
+                    
+                }
+            }else if (_myDateModel.status == 2){
+                
+                [self superViewWillRecive:InvitedButtonClickKey info:_indexPath];
+            }
+            
+            if ([_myDateModel.invitedUserId isEqualToString:CPUserId]) {
+                
+            }
+        }];
     }
     return _invitedButton;
 }
@@ -491,6 +518,30 @@
         _ignoreButton.layer.cornerRadius = 28;
         _ignoreButton.clipsToBounds = YES;
         _ignoreButton.hidden = YES;
+        [[_ignoreButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            
+            if (_myDateModel.status == 1){
+                
+                if ([_myDateModel.invitedUserId isEqualToString:CPUserId]) {
+                    NSString *url = [NSString stringWithFormat:@"application/%@/process?userId=%@&token=%@", _myDateModel.appointmentId, CPUserId, CPToken];
+                    [CPNetWorkTool postJsonWithUrl:url params:@{@"accept" : @(NO)} success:^(id responseObject) {
+                        if (CPSuccess) {
+                            
+                            [self superViewWillRecive:IgnoreButtonClickKey info:_indexPath];
+                        }
+                    } failed:^(NSError *error) {
+                        
+                    }];
+                    
+                }else{
+                    
+                }
+            }
+            else if (_myDateModel.status == 2){
+                
+                [self superViewWillRecive:InvitedButtonClickKey info:_indexPath];
+            }
+        }];
     }
     return _ignoreButton;
 }
