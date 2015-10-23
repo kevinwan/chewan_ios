@@ -92,9 +92,6 @@ static NSString *ID = @"cell";
         self.params.ignore = 0;
         [self loadDataWithHeader:v];
     }];
-    self.headerView.imageIcon = [UIImage imageNamed:@"车轮"];
-    self.headerView.borderColor = [UIColor whiteColor];
-    
     // bottom
     self.footerView = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionBottom actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
@@ -102,7 +99,7 @@ static NSString *ID = @"cell";
             
             [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, self.tableView.contentSizeHeight - self.tableView.height + 44) animated:YES];
         });
-        
+            
         if (self.datas.count >= CPPageNum) {
             self.params.ignore += CPPageNum;
             [self loadDataWithHeader:v];
@@ -110,8 +107,6 @@ static NSString *ID = @"cell";
             [v stopIndicatorAnimation];
         }
     }];
-    self.footerView.imageIcon = [UIImage imageNamed:@"车轮"];
-    self.footerView.borderColor = [UIColor whiteColor];
     self.isHasRefreshHeader = YES;
 }
 
@@ -393,8 +388,8 @@ static NSString *ID = @"cell";
 - (UICollectionView *)tableView
 {
     if (_tableView == nil) {
-//        UICollectionView3DLayout *layout = [UICollectionView3DLayout new];
-        UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
+        UICollectionView3DLayout *layout = [UICollectionView3DLayout new];
+//        UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
         _tableView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
         _tableView.alwaysBounceVertical = YES;
         _tableView.backgroundColor = [UIColor clearColor];
@@ -405,9 +400,9 @@ static NSString *ID = @"cell";
         _tableView.dataSource = self;
         CGSize itemSzie= CGSizeMake(ZYScreenWidth - 20, 383 + self.offset);
         layout.itemSize = itemSzie;
-        layout.scrollDirection = UICollectionLayoutScrollDirectionVertical;
-//        layout.itemScale = 0.96;
-//        layout.LayoutDirection=UICollectionLayoutScrollDirectionVertical;
+//        layout.scrollDirection = UICollectionLayoutScrollDirectionVertical;
+        layout.itemScale = 0.96;
+        layout.LayoutDirection=UICollectionLayoutScrollDirectionVertical;
         self.view.backgroundColor = [Tools getColor:@"efefef"];
         [_tableView registerClass:[CPNearCollectionViewCell class] forCellWithReuseIdentifier:ID];
         _tableView.panGestureRecognizer.delaysTouchesBegan = _tableView.delaysContentTouches;

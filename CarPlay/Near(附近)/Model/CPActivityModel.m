@@ -9,7 +9,19 @@
 #import "CPActivityModel.h"
 
 @implementation CPActivityModel
+- (void)setDestination:(NSDictionary *)destination
+{
+    if ([destination isKindOfClass:[NSDictionary class]]) {
+        _destination = destination;
+    }
+}
 
+- (void)setOrganizer:(CPUser *)organizer
+{
+    if ([organizer isKindOfClass:[CPUser class]]) {
+        _organizer = organizer;
+    }
+}
 - (NSString *)title
 {
     return [NSString stringWithFormat:@"%@想邀请你%@",_organizer.nickname, _type];

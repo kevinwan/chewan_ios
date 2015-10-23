@@ -18,10 +18,11 @@
 #import "UICollectionView3DLayout.h"
 #import "CPNearCollectionViewCell.h"
 #import "CPAlbum.h"
+#import "CPMyDateModel.h"
 
 @interface CPMyDateViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate>
 @property (nonatomic, strong) UICollectionView *tableView;
-@property (nonatomic, strong) NSMutableArray<CPActivityModel *> *datas;
+@property (nonatomic, strong) NSMutableArray<CPMyDateModel *> *datas;
 @property (nonatomic, strong) UIView *tipView;
 @property (nonatomic, assign) CGFloat offset;
 @property (nonatomic, strong) CPNearParams *params;
@@ -38,7 +39,7 @@ static NSString *ID = @"DateCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.title = @"我的活动";
     if (CPNoNetWork) {
         
         [ZYProgressView showMessage:@"网络连接失败,请检查网络"];
@@ -85,8 +86,6 @@ static NSString *ID = @"DateCell";
         self.params.ignore = 0;
         [self loadDataWithHeader:v];
     }];
-    self.headerView.imageIcon = [UIImage imageNamed:@"车轮"];
-    self.headerView.borderColor = [UIColor whiteColor];
     
     // bottom
     self.footerView = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionBottom actionHandler:^(AAPullToRefresh *v){
@@ -103,8 +102,6 @@ static NSString *ID = @"DateCell";
             [v stopIndicatorAnimation];
         }
     }];
-    self.footerView.imageIcon = [UIImage imageNamed:@"车轮"];
-    self.footerView.borderColor = [UIColor whiteColor];
     self.isHasRefreshHeader = YES;
 }
 
@@ -128,7 +125,7 @@ static NSString *ID = @"DateCell";
                 [self.datas removeAllObjects];
             }
             
-            NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
+            NSArray *arr = [CPMyDateModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
             NSLog(@"gggg%zd",arr.count);
             [self.datas addObjectsFromArray:arr];
             
@@ -158,7 +155,7 @@ static NSString *ID = @"DateCell";
 {
     CPNearCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
     cell.indexPath = indexPath;
-    cell.model = self.datas[indexPath.item];
+    cell.myDateModel = self.datas[indexPath.item];
     return cell;
 }
 
