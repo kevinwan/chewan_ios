@@ -193,10 +193,6 @@ static NSString *ID = @"cell";
         [self photoPresent];
     }else if([notifyName isEqualToString:DateBtnClickKey]){
         [self dateClickWithInfo:userInfo];
-    }else if([notifyName isEqualToString:InvitedButtonClickKey]){
-        
-    }else if([notifyName isEqualToString:IgnoreButtonClickKey]){
-        
     }else if([notifyName isEqualToString:LoveBtnClickKey]){
         [self loveBtnClickWithInfo:(CPActivityModel *)userInfo];
     }else if ([notifyName isEqualToString:IconViewClickKey]){
