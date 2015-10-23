@@ -15,6 +15,8 @@
 #import "CPNoHighLightButton.h"
 #import "ZYImageVIew.h"
 #import "UIImageView+AFNetworking.h"
+#import "UIImageView+LBBlurredImage.h"
+#import "UIImage+ImageEffects.h"
 
 @interface CPBaseViewCell ()
 /**
@@ -136,14 +138,11 @@
         [self superViewWillRecive:IconViewClickKey info:_model];
     }];
     [self.userIconView addGestureRecognizer:tapGes];
-    
-    [self.userIconView addSubview:self.userCoverView];
     [self.userIconView addSubview:self.tipView];
     [self.userIconView addSubview:self.dateButton];
     [self.userIconView addSubview:self.invitedButton];
     [self.userIconView addSubview:self.ignoreButton];
     [self dateAnim];
-
 }
 
 - (void)layoutSubviews
@@ -183,7 +182,6 @@
             make.height.equalTo(self.userIconView.mas_height).multipliedBy(0.46);
         }
     }];
-    self.userCoverView.frame = self.userIconView.bounds;
  
 }
 
@@ -204,27 +202,20 @@
     self.sexView.isMan = model.organizer.isMan;
     self.sexView.age = model.organizer.age;
 
-//    [self.userIconView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:model.organizer.cover]] placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
-//        
-//        self.userIconView.image = image;
-////        ZYAsyncThead(^{
-////            
-////            UIImage *img;
-////            if (isHasAlubm && CPIsLogin) {
-////                img = image;
-////            }else{
-////                img = [image blurredImageWithRadius:10];
-////            }
-////            ZYMainThread(^{
-////                self.userIconView.image = img;
-////            });
-////        });
-//    } failure:NULL];
-//    
-//    
+    
     [self.userIconView zy_setImageWithUrl:model.organizer.cover completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        
-        self.userIconView.image = image;
+        ZYAsyncThead(^{
+            UIImage *img = nil;
+            if (isHasAlubm) {
+                img = image;
+            }else{
+                img = [image blurredImageWithRadius:20.0 iterations:1 tintColor:[UIColor clearColor]];
+            }
+            
+            ZYMainThread(^{
+                self.userIconView.image = img;
+            });
+        });
     }];
     [self.distanceView setTitle:model.distanceStr forState:UIControlStateNormal];
     self.loveBtn.selected = model.organizer.subscribeFlag;
@@ -283,6 +274,91 @@
     }
 }
 
+- (void)setMyDateModel:(CPMyDateModel *)myDateModel
+{
+    _myDateModel = myDateModel;
+    BOOL isHasAlubm;
+    if (CPUnLogin) {
+        isHasAlubm = NO;
+    }else{
+        isHasAlubm = [ZYUserDefaults boolForKey:CPHasAlbum];
+    }
+    self.sexView.isMan = myDateModel.applicant.isMan;
+    self.sexView.age = myDateModel.applicant.age;
+    
+    
+    [self.userIconView zy_setImageWithUrl:myDateModel.applicant.cover completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        ZYAsyncThead(^{
+            UIImage *img = nil;
+            if (isHasAlubm) {
+                img = image;
+            }else{
+                img = [image blurredImageWithRadius:20.0 iterations:1 tintColor:[UIColor clearColor]];
+            }
+            
+            ZYMainThread(^{
+                self.userIconView.image = img;
+            });
+        });
+    }];
+    [self.distanceView setTitle:myDateModel.distanceStr forState:UIControlStateNormal];
+    self.loveBtn.selected = myDateModel.applicant.subscribeFlag;
+    self.payView.text = myDateModel.pay;
+    self.sendView.hidden = !myDateModel.transfer;
+    if ([myDateModel.destination isKindOfClass:[NSDictionary class]]) {
+        [self.addressView setTitle:myDateModel.destination[@"street"] forState:UIControlStateNormal];
+    }
+    if (myDateModel.title.length) {
+        self.titleLabel.text = myDateModel.title;
+    }else{
+        self.titleLabel.text = @"";
+    }
+    
+    if ([myDateModel.applicant.photoAuthStatus isEqualToString:@"认证通过"]) {
+        [self.authView setImage:[UIImage imageNamed:@"头像已认证"] forState:UIControlStateNormal];
+    }else{
+        [self.authView setImage:[UIImage imageNamed:@"未认证-审核中"] forState:UIControlStateNormal];
+    }
+    
+    if ([myDateModel.applicant.licenseAuthStatus isEqualToString:@"认证通过"]) {
+        self.carView.hidden = NO;
+        self.carTypeView.hidden = NO;
+        [self.carView sd_setImageWithURL:[NSURL URLWithString:myDateModel.applicant.car.logo] forState:UIControlStateNormal placeholderImage:CPPlaceHolderImage];
+        self.carTypeView.text = myDateModel.applicant.car.model;
+    }else{
+        self.carView.hidden = YES;
+        self.carTypeView.hidden = YES;
+    }
+    if (isHasAlubm && CPIsLogin) {
+        self.tipView.hidden = YES;
+    }else{
+        self.tipView.hidden = NO;
+    }
+    
+    if (myDateModel.status == 0){
+        
+        self.dateAnim.haloLayerColor = RedColor.CGColor;
+        [self.dateButton setBackgroundColor:RedColor];
+        [self.dateButton setTitle:@"邀TA" forState:UIControlStateNormal];
+        [self setOneType:YES];
+    }else if (myDateModel.status == 1){
+        
+        if ([myDateModel.invitedUserId isEqualToString:CPUserId]) {
+            [self setOneType:NO];
+            [self setPhoneType:NO];
+        }else{
+            
+            self.dateAnim.haloLayerColor= [Tools getColor:@"cccccc"].CGColor;
+            [self.dateButton setBackgroundColor:[Tools getColor:@"cccccc"]];
+            [self.dateButton setTitle:@"已邀请" forState:UIControlStateNormal];
+            [self setOneType:YES];
+        }
+    }else if (myDateModel.status == 2){
+        [self setPhoneType:YES];
+    }
+
+}
+
 - (void)setOneType:(BOOL)oneType
 {
     _oneType = oneType;
@@ -311,15 +387,24 @@
         self.ignoreAnim.haloLayerColor = [Tools getColor:@"98d872"].CGColor;
         self.invitedButton.selected = YES;
         [self.invitedButton setBackgroundColor:[Tools getColor:@"77bbf2"]];
+        [_invitedButton setTitle:@"" forState:UIControlStateNormal];
+        [_invitedButton setImage:[UIImage imageNamed:@"聊天-1"] forState:UIControlStateNormal];
         self.ignoreButton.selected = YES;
         [self.ignoreButton setBackgroundColor:[Tools getColor:@"98d872"]];
+        [_ignoreButton setImage:[UIImage imageNamed:@"电话-1"] forState:UIControlStateNormal];
+        [_ignoreButton setTitle:@"" forState:UIControlStateNormal];
     }else{
         self.inviAnim.haloLayerColor = RedColor.CGColor;
         self.ignoreAnim.haloLayerColor = [Tools getColor:@"cccccc"].CGColor;
         self.invitedButton.selected = NO;
         [self.invitedButton setBackgroundColor:RedColor];
+        [_invitedButton setTitle:@"应邀" forState:UIControlStateNormal];
+        [_invitedButton setImage:nil forState:UIControlStateNormal];
         self.ignoreButton.selected = NO;
         [self.ignoreButton setBackgroundColor:[Tools getColor:@"cccccc"]];
+        
+        [_ignoreButton setImage:nil forState:UIControlStateNormal];
+        [_ignoreButton setTitle:@"忽略" forState:UIControlStateNormal];
     }
 }
 
@@ -378,27 +463,42 @@
 
 
 #pragma mark - lazy
-- (FXBlurView *)userCoverView
-{
-    if (_userCoverView == nil) {
-        _userCoverView = [[FXBlurView alloc] init];
-        _userCoverView.tintColor = [UIColor clearColor];
-        [_userCoverView setBlurEnabled:YES];
-        _userCoverView.blurRadius = 5;
-        [_userCoverView setDynamic:NO];
-    }
-    return _userCoverView;
-}
-
 - (UIButton *)invitedButton
 {
     if (_invitedButton == nil) {
         _invitedButton = [UIButton buttonWithTitle:@"应邀" icon:nil titleColor:[UIColor whiteColor] fontSize:16];
-        [_invitedButton setImage:[UIImage imageNamed:@"聊天"] forState:UIControlStateSelected];
         
         _invitedButton.layer.cornerRadius = 28;
         _invitedButton.clipsToBounds = YES;
         _invitedButton.hidden = YES;
+        ZYWeakSelf
+        [[_invitedButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            ZYStrongSelf
+            if (_myDateModel.status == 1){
+                
+                if ([_myDateModel.invitedUserId isEqualToString:CPUserId]) {
+                    
+                    NSString *url = [NSString stringWithFormat:@"application/%@/process?userId=%@&token=%@", _myDateModel.appointmentId, CPUserId, CPToken];
+                    [ZYNetWorkTool postJsonWithUrl:url params:@{@"accept" : @(YES)} success:^(id responseObject) {
+                        if (CPSuccess) {
+                            [self setPhoneType:YES];
+                        }
+                    } failed:^(NSError *error) {
+                        
+                    }];
+                    
+                }else{
+                    
+                }
+            }else if (_myDateModel.status == 2){
+                
+                [self superViewWillRecive:InvitedButtonClickKey info:_indexPath];
+            }
+            
+            if ([_myDateModel.invitedUserId isEqualToString:CPUserId]) {
+                
+            }
+        }];
     }
     return _invitedButton;
 }
@@ -422,11 +522,34 @@
 {
     if (_ignoreButton == nil) {
         _ignoreButton = [UIButton buttonWithTitle:@"忽略" icon:nil titleColor:[UIColor whiteColor] fontSize:16];
-        
-        [_ignoreButton setImage:[UIImage imageNamed:@"电话"] forState:UIControlStateSelected];
         _ignoreButton.layer.cornerRadius = 28;
         _ignoreButton.clipsToBounds = YES;
         _ignoreButton.hidden = YES;
+        ZYWeakSelf
+        [[_ignoreButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            ZYStrongSelf
+            if (_myDateModel.status == 1){
+                
+                if ([_myDateModel.invitedUserId isEqualToString:CPUserId]) {
+                    NSString *url = [NSString stringWithFormat:@"application/%@/process?userId=%@&token=%@", _myDateModel.appointmentId, CPUserId, CPToken];
+                    [ZYNetWorkTool postJsonWithUrl:url params:@{@"accept" : @(NO)} success:^(id responseObject) {
+                        NSLog(@"%@",responseObject);
+                        if (CPSuccess) {
+                            
+                            [self superViewWillRecive:IgnoreButtonClickKey info:_indexPath];
+                        }
+                    } failed:^(NSError *error) {
+                        
+                    }];
+                    
+                }else{
+                    
+                }
+            }
+            else if (_myDateModel.status == 2){
+                
+            }
+        }];
     }
     return _ignoreButton;
 }

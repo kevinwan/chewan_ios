@@ -1,15 +1,25 @@
 //
-//  CPActivityModel.h
+//  CPMyDateModel.h
 //  CarPlay
 //
-//  Created by chewan on 9/25/15.
+//  Created by chewan on 10/23/15.
 //  Copyright © 2015 chewan. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "CPUser.h"
-@interface CPActivityModel : NSObject
 
+#import "CPUser.h"
+@interface CPMyDateModel : NSObject
+
+//    invitedUserId = 561b8a040cf2429fb48e86b0,
+@property (nonatomic, copy) NSString *invitedUserId;
+//    applyUserId = 561f755b0cf24f3b99211d12,
+@property (nonatomic, copy) NSString *applyUserId;
+@property (nonatomic, copy) NSString *appointmentId;
+
+@property (nonatomic, assign) NSInteger status;
+
+@property (nonatomic, copy) NSString *activityCategory;
 @property (nonatomic, copy) NSString *activityId;
 //"type": "看电影",
 @property (nonatomic, copy) NSString *type;
@@ -29,10 +39,8 @@
 @property (nonatomic, assign) NSInteger applyFlag;
 //"transfer": true,
 @property (nonatomic, assign) BOOL transfer;
-//"distance": 20,
-@property (nonatomic, assign) NSUInteger distance;
 
 @property (nonatomic, copy, readonly) NSString *distanceStr;
 // organizer 组织者
-@property (nonatomic, strong) CPUser *organizer;
+@property (nonatomic, strong) CPUser *applicant;
 @end

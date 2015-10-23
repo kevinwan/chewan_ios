@@ -92,9 +92,6 @@ static NSString *ID = @"cell";
         self.params.ignore = 0;
         [self loadDataWithHeader:v];
     }];
-    self.headerView.imageIcon = [UIImage imageNamed:@"车轮"];
-    self.headerView.borderColor = [UIColor whiteColor];
-    
     // bottom
     self.footerView = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionBottom actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
@@ -102,7 +99,7 @@ static NSString *ID = @"cell";
             
             [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, self.tableView.contentSizeHeight - self.tableView.height + 44) animated:YES];
         });
-        
+            
         if (self.datas.count >= CPPageNum) {
             self.params.ignore += CPPageNum;
             [self loadDataWithHeader:v];
@@ -110,8 +107,6 @@ static NSString *ID = @"cell";
             [v stopIndicatorAnimation];
         }
     }];
-    self.footerView.imageIcon = [UIImage imageNamed:@"车轮"];
-    self.footerView.borderColor = [UIColor whiteColor];
     self.isHasRefreshHeader = YES;
 }
 
@@ -198,10 +193,6 @@ static NSString *ID = @"cell";
         [self photoPresent];
     }else if([notifyName isEqualToString:DateBtnClickKey]){
         [self dateClickWithInfo:userInfo];
-    }else if([notifyName isEqualToString:InvitedBtnClickKey]){
-        
-    }else if([notifyName isEqualToString:IgnoreBtnClickKey]){
-        
     }else if([notifyName isEqualToString:LoveBtnClickKey]){
         [self loveBtnClickWithInfo:(CPActivityModel *)userInfo];
     }else if ([notifyName isEqualToString:IconViewClickKey]){
@@ -331,32 +322,20 @@ static NSString *ID = @"cell";
 - (void)dateClickWithInfo:(id)userInfo
 {
     CPGoLogin(@"邀TA");
-    //    {
-    //        “type”:”$type”,
-    //        “pay”:”$pay”,
-    //        “destPoint”:
-    //        {
-    //            “longitude”:”$longitude”,
-    //            “latitude”:”$latitude”
-    //        },
-    //        “destination”:
-    //        {
-    //            “province”:”$province”,
-    //            “city”:”$city”,
-    //            “district”:”$district”,
-    //            “street”:”$street”
-    //        },
-    //        “transfer”:”$transfer”
-    //    }
     NSIndexPath *indexPath = userInfo;
     CPActivityModel *model = self.datas[indexPath.row];
     NSString *url = [NSString stringWithFormat:@"activity/%@/join",model.activityId];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"destPoint"] = @{@"longitude" : @(CPLongitude),
+                             @"latitude" : @(CPLatitude)};
+    params[@"transfer"] = @(model.transfer);
+    params[@"type"] = model.type;
+    params[@"pay"] = model.pay;
+    params[@"destination"] = model.destination;
     params[UserId] = CPUserId;
     params[Token] = CPToken;
     [self showLoading];
     [CPNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
-        [self disMiss];
         if (CPSuccess) {
             [self showInfo:@"邀请已发出"];
             model.applyFlag = 1;
@@ -393,8 +372,8 @@ static NSString *ID = @"cell";
 - (UICollectionView *)tableView
 {
     if (_tableView == nil) {
-//        UICollectionView3DLayout *layout = [UICollectionView3DLayout new];
-        UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
+        UICollectionView3DLayout *layout = [UICollectionView3DLayout new];
+//        UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
         _tableView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
         _tableView.alwaysBounceVertical = YES;
         _tableView.backgroundColor = [UIColor clearColor];
@@ -405,9 +384,9 @@ static NSString *ID = @"cell";
         _tableView.dataSource = self;
         CGSize itemSzie= CGSizeMake(ZYScreenWidth - 20, 383 + self.offset);
         layout.itemSize = itemSzie;
-        layout.scrollDirection = UICollectionLayoutScrollDirectionVertical;
-//        layout.itemScale = 0.96;
-//        layout.LayoutDirection=UICollectionLayoutScrollDirectionVertical;
+//        layout.scrollDirection = UICollectionLayoutScrollDirectionVertical;
+        layout.itemScale = 0.96;
+        layout.LayoutDirection=UICollectionLayoutScrollDirectionVertical;
         self.view.backgroundColor = [Tools getColor:@"efefef"];
         [_tableView registerClass:[CPNearCollectionViewCell class] forCellWithReuseIdentifier:ID];
         _tableView.panGestureRecognizer.delaysTouchesBegan = _tableView.delaysContentTouches;

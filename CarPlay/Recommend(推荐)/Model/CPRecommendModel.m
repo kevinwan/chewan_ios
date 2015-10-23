@@ -111,17 +111,6 @@
 }
 
 
-- (void)setDistance:(double)distance
-{
-    _distance = distance;
-    if (_distance >= 1000) {
-        CGFloat dis = distance / 1000.0;
-        _distanceStr = [NSString stringWithFormat:@"%.1fkm",dis];
-    }else{
-        _distanceStr = [NSString stringWithFormat:@"%zdm",distance];
-    }
-}
-
 - (void)setInvitedCount:(NSUInteger)invitedCount
 {
     _invitedCount = invitedCount;

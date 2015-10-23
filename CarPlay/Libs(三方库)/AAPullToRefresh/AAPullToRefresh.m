@@ -68,30 +68,6 @@
     return self;
 }
 
-- (void)drawInContext:(CGContextRef)ctx
-{
-    //Draw white circle
-    CGContextSetFillColor(ctx, CGColorGetComponents([UIColor colorWithWhite:1.0f alpha:0.8f].CGColor));
-    CGContextFillEllipseInRect(ctx,CGRectInset(self.bounds, self.outlineWidth, self.outlineWidth));
-    
-    //Draw circle outline
-    CGContextSetStrokeColorWithColor(ctx, [UIColor colorWithWhite:0.4f alpha:0.9f].CGColor);
-    CGContextSetLineWidth(ctx, self.outlineWidth);
-    CGContextStrokeEllipseInRect(ctx, CGRectInset(self.bounds, self.outlineWidth, self.outlineWidth));
-}
-
-- (void)setOutlineWidth:(CGFloat)outlineWidth
-{
-    _outlineWidth = outlineWidth;
-    [self setNeedsDisplay];
-}
-
-- (void)setGlow:(BOOL)glow
-{
-    self.shadowOpacity = glow ? 1.0 : 0.0;
-    _glow = glow;
-}
-
 @end
 
 /*-----------------------------------------------------------------*/
@@ -99,9 +75,6 @@
 
 @property (nonatomic, assign) BOOL isUserAction;
 @property (nonatomic, assign, readonly) BOOL isSidePosition;
-@property (nonatomic, strong) AAPullToRefreshBackgroundLayer *backgroundLayer;
-@property (nonatomic, strong) CAShapeLayer *shapeLayer;
-@property (nonatomic, strong) CALayer *imageLayer;
 @property (nonatomic, assign) double progress;
 @property (nonatomic, assign) double prevProgress;
 
@@ -114,7 +87,6 @@
 {
     if ((self = [super init])) {
         _position = position;
-        self.imageIcon = image;
         [self _commonInit];
     }
     return self;
@@ -122,8 +94,6 @@
 
 - (void)_commonInit
 {
-    self.borderColor = [UIColor colorWithRed:203/255.0 green:32/255.0 blue:39/255.0 alpha:1];
-    self.borderWidth = 2.0f;
     self.threshold = 60.0f;
     self.isUserAction = NO;
     self.contentMode = UIViewContentModeRedraw;
@@ -133,61 +103,16 @@
     else
         self.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     self.backgroundColor = [UIColor clearColor];
-    //init actitvity indicator
-//    _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-//    _activityIndicatorView.hidesWhenStopped = YES;
     _activityIndicatorView = [ZYRefreshView new];
     _activityIndicatorView.center = self.centerInSelf;
-    [_activityIndicatorView setHidden:YES];
     [self addSubview:_activityIndicatorView];
-    
-    //init background layer
-    AAPullToRefreshBackgroundLayer *backgroundLayer = [[AAPullToRefreshBackgroundLayer alloc] initWithBorderWidth:self.borderWidth];
-    backgroundLayer.frame = self.bounds;
-    [self.layer addSublayer:backgroundLayer];
-    self.backgroundLayer = backgroundLayer;
-    
-    if (!self.imageIcon)
-        self.imageIcon = [UIImage imageNamed:@"centerIcon"];
-    
-    //init icon layer
-    CALayer *imageLayer = [CALayer layer];
-    imageLayer.contentsScale = [UIScreen mainScreen].scale;
-    imageLayer.frame = CGRectInset(self.bounds, self.borderWidth, self.borderWidth);
-    imageLayer.contents = (id)self.imageIcon.CGImage;
-    [self.layer addSublayer:imageLayer];
-    self.imageLayer = imageLayer;
-    
-    //init arc draw layer
-    CAShapeLayer *shapeLayer = [[CAShapeLayer alloc] init];
-    shapeLayer.frame = self.bounds;
-    shapeLayer.fillColor = nil;
-    shapeLayer.strokeColor = self.borderColor.CGColor;
-    shapeLayer.strokeEnd = 0.0f;
-    shapeLayer.shadowColor = [UIColor colorWithWhite:1 alpha:0.8f].CGColor;
-    shapeLayer.shadowOpacity = 0.7f;
-    shapeLayer.shadowRadius = 20.0f;
-    shapeLayer.contentsScale = [UIScreen mainScreen].scale;
-    shapeLayer.lineWidth = self.borderWidth;
-    shapeLayer.lineCap = kCALineCapRound;
-    
-    [self.layer addSublayer:shapeLayer];
-    self.shapeLayer = shapeLayer;
+
 }
 
 #pragma mark - layout
 - (void)layoutSubviews{
     [super layoutSubviews];
-    self.shapeLayer.frame = self.bounds;
-    [self updatePath];
-}
-
-- (void)updatePath {
-    CGPoint center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
-    
-    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithArcCenter:center radius:(self.bounds.size.width/2.0f - self.borderWidth)  startAngle:DEGREES_TO_RADIANS(-90) endAngle:DEGREES_TO_RADIANS(360-90) clockwise:YES];
-    
-    self.shapeLayer.path = bezierPath.CGPath;
+    _activityIndicatorView.center = self.centerInSelf;
 }
 
 #pragma mark - ScrollViewInset
@@ -207,13 +132,6 @@
 
 - (void)resetScrollViewContentInset:(actionHandler)handler
 {
-    UIEdgeInsets currentInsets = self.scrollView.contentInset;
-    if (self.position == AAPullToRefreshPositionTop) {
-        currentInsets.top = self.originalInsetTop;
-    } else {
-        currentInsets.bottom = self.originalInsetBottom;
-    }
-    
     if (self.position == AAPullToRefreshPositionTop){
         ZYMainThread(^{
             
@@ -241,28 +159,9 @@
 
 - (void)setScrollViewContentInset:(UIEdgeInsets)contentInset handler:(actionHandler)handler
 {
-//    if (self.position == AAPullToRefreshPositionTop) {
-//        ZYMainThread(^{
-//            
-//            [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentOffsetX, -self.scrollView.contentInsetTop) animated:YES];
-//        });
-//    }else if (self.position == AAPullToRefreshPositionLeft){
-//        ZYMainThread(^{
-//            
-//            [self.scrollView setContentOffset:CGPointMake(-self.scrollView.contentInsetLeft,self.scrollView.contentOffsetY) animated:YES];
-//        });
-//    }else if (self.position == AAPullToRefreshPositionBottom){
-//     
-//    }else if (self.position == AAPullToRefreshPositionRight){
-//        ZYMainThread(^{
-//            
-//            [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentSizeWidth - self.scrollView.width - 44,self.scrollView.contentOffsetY) animated:YES];
-//        });
-//    }
     if (handler) {
         handler();
     }
-    
 }
 #pragma mark - property
 - (void)setShowPullToRefresh:(BOOL)showPullToRefresh
@@ -286,19 +185,6 @@
             [self setNeedsDisplay];
         }];
         
-//        if (!self.isObserving) {
-//            [self.scrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
-//            [self.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
-//            [self.scrollView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
-//            self.isObserving = YES;
-//        }
-//    } else {
-//        if (self.isObserving) {
-//            [self.scrollView removeObserver:self forKeyPath:@"contentOffset"];
-//            [self.scrollView removeObserver:self forKeyPath:@"contentSize"];
-//            [self.scrollView removeObserver:self forKeyPath:@"frame"];
-//            self.isObserving = NO;
-//        }
     }
 }
 
@@ -323,35 +209,8 @@
 
 - (void)setProgress:(double)progress
 {
-    if (progress > 1.0) {
-        progress = 1.0;
-        self.backgroundLayer.glow = YES;
-    } else {
-        self.backgroundLayer.glow = NO;
-    }
-    
     self.alpha = 1.0 * progress;
     
-    if (progress >= 0 && progress <= 1.0f) {
-        //rotation Animation
-        CABasicAnimation *animationImage = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
-        animationImage.fromValue = [NSNumber numberWithFloat:DEGREES_TO_RADIANS(180+180*self.prevProgress)];
-        animationImage.toValue = [NSNumber numberWithFloat:DEGREES_TO_RADIANS(180+180*progress)];
-        animationImage.duration = 0.1f;
-        animationImage.removedOnCompletion = NO;
-        animationImage.fillMode = kCAFillModeForwards;
-        [self.imageLayer addAnimation:animationImage forKey:@"animation"];
-        
-        //strokeAnimation
-        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
-        animation.fromValue = [NSNumber numberWithFloat:((CAShapeLayer *)self.shapeLayer.presentationLayer).strokeEnd];
-        animation.toValue = [NSNumber numberWithFloat:progress];
-        animation.duration = 0.1f;
-        animation.removedOnCompletion = NO;
-        animation.fillMode = kCAFillModeForwards;
-        animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
-        [self.shapeLayer addAnimation:animation forKey:@"animation"];
-    }
     self.prevProgress = self.progress;
     _progress = progress;
 }
@@ -359,35 +218,6 @@
 - (BOOL)isSidePosition
 {
     return (self.position == AAPullToRefreshPositionLeft || self.position == AAPullToRefreshPositionRight);
-}
-
-#pragma mark misc.
-- (void)setLayerOpacity:(CGFloat)opacity
-{
-    self.imageLayer.opacity = opacity;
-    self.backgroundLayer.opacity = opacity;
-    self.shapeLayer.opacity = opacity;
-}
-
-- (void)setLayerHidden:(BOOL)hidden
-{
-    self.imageLayer.hidden = hidden;
-    self.shapeLayer.hidden = hidden;
-    self.backgroundLayer.hidden = hidden;
-}
-
-#pragma mark - KVO
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if ([keyPath isEqualToString:@"contentOffset"]) {
-        [self scrollViewDidScroll:[[change valueForKey:NSKeyValueChangeNewKey] CGPointValue]];
-    } else if ([keyPath isEqualToString:@"contentSize"]) {
-        [self setNeedsLayout];
-        [self setNeedsDisplay];
-    } else if ([keyPath isEqualToString:@"frame"]) {
-        [self setNeedsLayout];
-        [self setNeedsDisplay];
-    }
 }
 
 - (void)scrollViewDidScroll:(CGPoint)contentOffset
@@ -453,12 +283,12 @@
 //    [UIView animateWithDuration:0.1f delay:0.0f
 //                        options:UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionAllowUserInteraction
 //                     animations:^{
-                         [self setLayerOpacity:0.0f];
+//                         [self setLayerOpacity:0.0f];
 //                     } completion:^(BOOL finished) {
-                         [self setLayerHidden:YES];
+//                         [self setLayerHidden:YES];
 //                     }];
     
-    [self.activityIndicatorView setHidden:NO];
+    [self.activityIndicatorView startAnimation];
     [self setupScrollViewContentInsetForLoadingIndicator:nil];
     if (self.pullToRefreshHandler)
         self.pullToRefreshHandler(self);
@@ -466,28 +296,11 @@
 
 - (void)actionStopState
 {
-    [self.activityIndicatorView setHidden:YES];
+    [self.activityIndicatorView stopAnimation];
     [self resetScrollViewContentInset:^{
         self.activityIndicatorView.transform = CGAffineTransformIdentity;
-        [self setLayerHidden:NO];
-        [self setLayerOpacity:1.0f];
         self.state = AAPullToRefreshStateNormal;
     }];
-    return;
-    [UIView animateWithDuration:0.2f
-                          delay:0.0f
-                        options:UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionAllowUserInteraction
-                     animations:^{
-                         self.activityIndicatorView.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
-                     } completion:^(BOOL finished) {
-                         [self.activityIndicatorView setHidden:YES];
-                         [self resetScrollViewContentInset:^{
-                             self.activityIndicatorView.transform = CGAffineTransformIdentity;
-                             [self setLayerHidden:NO];
-                             [self setLayerOpacity:1.0f];
-                             self.state = AAPullToRefreshStateNormal;
-                         }];
-                     }];
 }
 
 #pragma mark - public method
@@ -496,66 +309,21 @@
     [self actionStopState];
 }
 
-- (void)manuallyTriggered
-{
-    [self setLayerOpacity:0.0f];
-    
-    UIEdgeInsets currentInsets = self.scrollView.contentInset;
-    currentInsets.top = self.originalInsetTop + self.bounds.size.height + 20.0f;
-    [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.scrollView.contentOffset = CGPointMake(self.scrollView.contentOffset.x, -currentInsets.top);
-    } completion:^(BOOL finished) {
-        [self actionTriggeredState];
-    }];
-}
-
 - (void)setSize:(CGSize) size
 {
     CGRect rect = CGRectMake((self.scrollView.bounds.size.width - size.width)/2.0f,
                              -size.height, size.width, size.height);
     
     self.frame = rect;
-    self.shapeLayer.frame = self.bounds;
     self.activityIndicatorView.center = self.centerInSelf;
-    self.imageLayer.frame = CGRectInset(self.bounds, self.borderWidth, self.borderWidth);
-    
-    self.backgroundLayer.frame = self.bounds;
-    [self.backgroundLayer setNeedsDisplay];
 }
 
-- (void)setImageIcon:(UIImage *)imageIcon
-{
-    _imageIcon = imageIcon;
-    _imageLayer.contents = (id)_imageIcon.CGImage;
-    _imageLayer.frame = CGRectInset(self.bounds, self.borderWidth, self.borderWidth);
-    
-    [self setSize:_imageIcon.size];
-}
-
-- (void)setBorderWidth:(CGFloat)borderWidth
-{
-    _borderWidth = borderWidth;
-    
-    _backgroundLayer.outlineWidth = _borderWidth;
-    [_backgroundLayer setNeedsDisplay];
-    
-    _shapeLayer.lineWidth = _borderWidth;
-    _imageLayer.frame = CGRectInset(self.bounds, self.borderWidth, self.borderWidth);
-}
-
-- (void)setBorderColor:(UIColor *)borderColor
-{
-    _borderColor = borderColor;
-    _shapeLayer.strokeColor = _borderColor.CGColor;
-}
 
 - (void)setActivityIndicatorView:(ZYRefreshView *)activityIndicatorView
 {
     if(_activityIndicatorView)
         [activityIndicatorView removeFromSuperview];
     _activityIndicatorView = activityIndicatorView;
-//    _activityIndicatorView.hidesWhenStopped = YES;
-//    _activityIndicatorView.frame = self.bounds;
     _activityIndicatorView.center = self.centerInSelf;
     [self addSubview:_activityIndicatorView];
     

@@ -73,8 +73,6 @@
 @end
 
 @interface CPPartMember : CPUser
-@property (nonatomic, assign) double distance;
-@property (nonatomic, copy)   NSString *distanceStr;
 @property (nonatomic, assign) NSUInteger acceptCount;
 @property (nonatomic, strong) NSArray *acceptMembers;
 @property (nonatomic, assign) BOOL acceptMe;

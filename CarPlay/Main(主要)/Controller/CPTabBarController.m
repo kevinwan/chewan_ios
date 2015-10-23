@@ -91,8 +91,10 @@
 {
     
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"callOutWithChatter" object:@{@"chatter":@"b17ea9f2e64fa8702a39f32cfe8715af", @"type":[NSNumber numberWithInt:eCallSessionTypeAudio]}];
-    return;
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"callOutWithChatter" object:@{@"chatter":@"chewan123", @"type":[NSNumber numberWithInt:eCallSessionTypeAudio]}];
+//    return;
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"callOutWithChatter" object:@{@"chatter":@"b17ea9f2e64fa8702a39f32cfe8715af", @"type":[NSNumber numberWithInt:eCallSessionTypeAudio]}];
+//    return;
     //小牛的环信id：
 //    b17ea9f2e64fa8702a39f32cfe8715af
     //test 测试语音聊天，暂时用下这个位置
