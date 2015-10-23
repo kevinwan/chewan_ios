@@ -20,6 +20,12 @@
 //用户昵称和头像的存储
 #define kUserNickName @"kUserNickName"
 #define kUserHeadUrl @"kUserHeadUrl"
+//发送语音通话时，接收方的头像和昵称
+#define kReceiverHeadUrl @"kReceiverHeadUrl"
+#define kReceiverNickName @"kReceiverNickName"
+
+#define kSendCallHeadURL @"kSendCallHeadURL"
+#define kSendCallNickName @"kSendCallNickName"
 
 typedef enum _BasicViewControllerInfo {
     eBasicControllerInfo_Title,

@@ -258,6 +258,7 @@
             }
             
             if (!isShowPicker){
+                
                 [[EaseMob sharedInstance].callManager removeDelegate:self];
                 CallViewController *callController = [[CallViewController alloc] initWithSession:callSession isIncoming:YES];
                 callController.modalPresentationStyle = UIModalPresentationOverFullScreen;

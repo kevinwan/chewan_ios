@@ -88,6 +88,8 @@
         _statusLabel.text = NSLocalizedString(@"call.waiting", @"Waiting to answer...");
         [_actionView addSubview:_answerButton];
         [_actionView addSubview:_rejectButton];
+        [_actionView addSubview:_answerLabel];
+        [_actionView addSubview:_rejectLabel];
     }
     else{
         _statusLabel.text = NSLocalizedString(@"call.connecting", @"Connecting...");
@@ -182,7 +184,7 @@
     [self.view addSubview:bgImageView];
     
     _topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 250)];
-    _topView.backgroundColor = [UIColor redColor];
+    _topView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_topView];
     
     _statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 25, _topView.frame.size.width - 20, 20)];
@@ -200,7 +202,13 @@
     [_topView addSubview:_timeLabel];
     
     _headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake((_topView.frame.size.width - 100) / 2, CGRectGetMaxY(_statusLabel.frame) + 70, 100, 100)];
-    _headerImageView.image = [UIImage imageNamed:@"chatListCellHead"];
+    if (_isIncoming) {
+        //别人打过来的
+            [_headerImageView sd_setImageWithURL:[NSURL URLWithString:[ZYUserDefaults valueForKey:kSendCallHeadURL]] placeholderImage: [UIImage imageNamed:@"chatListCellHead"]];
+    }else{
+    [_headerImageView sd_setImageWithURL:[NSURL URLWithString:[ZYUserDefaults valueForKey:kReceiverHeadUrl]] placeholderImage: [UIImage imageNamed:@"chatListCellHead"]];
+    }
+
     [_topView addSubview:_headerImageView];
     
     _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_headerImageView.frame) + 5, _topView.frame.size.width, 20)];
@@ -208,7 +216,11 @@
     _nameLabel.backgroundColor = [UIColor clearColor];
     _nameLabel.textColor = [UIColor whiteColor];
     _nameLabel.textAlignment = NSTextAlignmentCenter;
-    _nameLabel.text = _chatter;
+    if (_isIncoming) {
+        _nameLabel.text = [ZYUserDefaults valueForKey:kSendCallNickName];
+    }else{
+        _nameLabel.text = [ZYUserDefaults valueForKey:kReceiverNickName];
+    }
     [_topView addSubview:_nameLabel];
     
     _actionView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 180, self.view.frame.size.width, 180)];
@@ -217,18 +229,34 @@
 
     CGFloat tmpWidth = _actionView.frame.size.width / 2;
     
-    
-    _rejectButton = [[UIButton alloc] initWithFrame:CGRectMake((tmpWidth - 100) / 2, CGRectGetMaxY(_speakerOutLabel.frame) + 30, 100, 40)];
-    [_rejectButton setTitle:NSLocalizedString(@"call.reject", @"Reject") forState:UIControlStateNormal];
-    [_rejectButton setBackgroundColor:[UIColor colorWithRed:191 / 255.0 green:48 / 255.0 blue:49 / 255.0 alpha:1.0]];;
+    //拒绝按钮
+    _rejectButton = [[UIButton alloc] initWithFrame:CGRectMake(30, 90, 100, 40)];
+    _rejectButton.layer.cornerRadius = 20;
+    [_rejectButton setImage:[UIImage imageNamed:@"refuse"] forState:UIControlStateNormal];
+    [_rejectButton setBackgroundColor: UIColorFromRGB(0xfe5969)];
     [_rejectButton addTarget:self action:@selector(rejectAction) forControlEvents:UIControlEventTouchUpInside];
     
-    _answerButton = [[UIButton alloc] initWithFrame:CGRectMake(tmpWidth + (tmpWidth - 100) / 2, _rejectButton.frame.origin.y, 100, 40)];
-    [_answerButton setTitle:NSLocalizedString(@"call.answer", @"Answer") forState:UIControlStateNormal];
-    [_answerButton setBackgroundColor:[UIColor colorWithRed:191 / 255.0 green:48 / 255.0 blue:49 / 255.0 alpha:1.0]];;
+    _rejectLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 90+40, 100, 40)];
+    _rejectLabel.backgroundColor = [UIColor clearColor];
+    _rejectLabel.textColor = [UIColor whiteColor];
+    _rejectLabel.font = [UIFont systemFontOfSize:14.0];
+    _rejectLabel.textAlignment = NSTextAlignmentCenter;
+    _rejectLabel.text =@"拒绝";
+    //接听按钮
+    _answerButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-30-100, 90, 100, 40)];
+    _answerButton.layer.cornerRadius   = 20;
+    [_answerButton setImage:[UIImage imageNamed:@"answerTel"] forState:UIControlStateNormal];
+    [_answerButton setBackgroundColor:UIColorFromRGB(0x98d872)];
     [_answerButton addTarget:self action:@selector(answerAction) forControlEvents:UIControlEventTouchUpInside];
-    
-    _hangupButton = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 115) / 2, _rejectButton.frame.origin.y, 115, 40)];
+    _answerLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width-30-100, 90+40, 100, 40)];
+    _answerLabel.backgroundColor = [UIColor clearColor];
+    _answerLabel.textColor = [UIColor whiteColor];
+    _answerLabel.font = [UIFont systemFontOfSize:15.0];
+    _answerLabel.textAlignment = NSTextAlignmentCenter;
+    _answerLabel.text =@"接听";
+
+    //父类是180的高度
+    _hangupButton = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 115) / 2,90, 115, 40)];
 //    [_hangupButton setTitle:NSLocalizedString(@"call.hangup", @"Hangup") forState:UIControlStateNormal];
     [_hangupButton setImage:[UIImage imageNamed:@"refuse"] forState:UIControlStateNormal];
     _hangupButton.backgroundColor = UIColorFromRGB(0xfe5969);
@@ -236,12 +264,12 @@
     [_hangupButton addTarget:self action:@selector(hangupAction) forControlEvents:UIControlEventTouchUpInside];
     
     //静音
-    _silenceButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMidX(_hangupButton.frame)-80, CGRectGetMidY(_hangupButton.frame), 40, 40)];
+    _silenceButton = [[UIButton alloc] initWithFrame:CGRectMake(30, 85, 40, 40)];
     [_silenceButton setImage:[UIImage imageNamed:@"call_silence"] forState:UIControlStateNormal];
     [_silenceButton setImage:[UIImage imageNamed:@"call_silence_h"] forState:UIControlStateSelected];
     [_silenceButton addTarget:self action:@selector(silenceAction) forControlEvents:UIControlEventTouchUpInside];
     
-    _silenceLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMidX(_silenceButton.frame), CGRectGetMaxY(_silenceButton.frame) + 5, 60, 20)];
+    _silenceLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 85+16+20, 40, 20)];
     _silenceLabel.backgroundColor = [UIColor clearColor];
     _silenceLabel.textColor = [UIColor whiteColor];
     _silenceLabel.font = [UIFont systemFontOfSize:13.0];
@@ -249,12 +277,12 @@
     _silenceLabel.text = NSLocalizedString(@"call.silence", @"Silence");
     
     //免提
-    _speakerOutButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMidX(_hangupButton.frame)+80, CGRectGetMidY(_hangupButton.frame), 40, 40)];
+    _speakerOutButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-40-30, 85, 40, 40)];
     [_speakerOutButton setImage:[UIImage imageNamed:@"call_out"] forState:UIControlStateNormal];
     [_speakerOutButton setImage:[UIImage imageNamed:@"call_out_h"] forState:UIControlStateSelected];
     [_speakerOutButton addTarget:self action:@selector(speakerOutAction) forControlEvents:UIControlEventTouchUpInside];
     
-    _speakerOutLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMidX(_silenceButton.frame), CGRectGetMaxY(_silenceButton.frame) + 5, 60, 20)];
+    _speakerOutLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width-40-30,85+16+20, 40, 20)];
     _speakerOutLabel.backgroundColor = [UIColor clearColor];
     _speakerOutLabel.textColor = [UIColor whiteColor];
     _speakerOutLabel.font = [UIFont systemFontOfSize:13.0];
@@ -264,21 +292,6 @@
     
     
     
-
-}
-- (void)viewDidAppear:(BOOL)animated
-{//test
-    _answerButton.hidden = NO;
-    _rejectButton.hidden = NO;
-    _speakerOutLabel.hidden = NO;
-    _speakerOutButton.hidden = NO;
-    _silenceButton.hidden = NO;
-    _silenceLabel.hidden = NO;
-    
-    [_actionView addSubview:_silenceButton];
-    [_actionView addSubview:_silenceLabel];
-    [_actionView addSubview:_speakerOutButton];
-    [_actionView addSubview:_speakerOutLabel];
 
 }
 - (void)_initializeCamera
@@ -643,6 +656,8 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         {
             [_answerButton removeFromSuperview];
             [_rejectButton removeFromSuperview];
+            [_answerLabel removeFromSuperview];
+            [_rejectLabel removeFromSuperview];
             [_actionView addSubview:_hangupButton];
         }
         [_actionView addSubview:_silenceButton];
@@ -679,6 +694,11 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 - (void)silenceAction
 {
     _silenceButton.selected = !_silenceButton.selected;
+    if (_silenceButton.selected) {
+        _silenceLabel.textColor =UIColorFromRGB(0x77c0f7);
+    }else{
+        _silenceLabel.textColor =[UIColor whiteColor];
+    }
     [[EaseMob sharedInstance].callManager markCallSession:_callSession.sessionId asSilence:_silenceButton.selected];
 }
 
@@ -687,8 +707,12 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     if (_speakerOutButton.selected) {
         [audioSession overrideOutputAudioPort:AVAudioSessionPortOverrideNone error:nil];
+        _speakerOutLabel.textColor  = [UIColor whiteColor];
+
     }else {
         [audioSession overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:nil];
+        _speakerOutLabel.textColor  = UIColorFromRGB(0x77c0f7);
+
     }
     [audioSession setActive:YES error:nil];
     _speakerOutButton.selected = !_speakerOutButton.selected;

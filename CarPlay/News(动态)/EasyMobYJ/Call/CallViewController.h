@@ -41,7 +41,9 @@ static CTCallCenter *g_callCenter;
     UILabel *_speakerOutLabel;
     
     UIButton *_rejectButton;
+    UILabel  *_rejectLabel;
     UIButton *_answerButton;
+    UILabel  *_answerLabel;
     
     UIButton *_hangupButton;
     
