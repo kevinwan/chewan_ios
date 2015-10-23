@@ -193,9 +193,9 @@ static NSString *ID = @"cell";
         [self photoPresent];
     }else if([notifyName isEqualToString:DateBtnClickKey]){
         [self dateClickWithInfo:userInfo];
-    }else if([notifyName isEqualToString:InvitedBtnClickKey]){
+    }else if([notifyName isEqualToString:InvitedButtonClickKey]){
         
-    }else if([notifyName isEqualToString:IgnoreBtnClickKey]){
+    }else if([notifyName isEqualToString:IgnoreButtonClickKey]){
         
     }else if([notifyName isEqualToString:LoveBtnClickKey]){
         [self loveBtnClickWithInfo:(CPActivityModel *)userInfo];
@@ -326,32 +326,20 @@ static NSString *ID = @"cell";
 - (void)dateClickWithInfo:(id)userInfo
 {
     CPGoLogin(@"邀TA");
-    //    {
-    //        “type”:”$type”,
-    //        “pay”:”$pay”,
-    //        “destPoint”:
-    //        {
-    //            “longitude”:”$longitude”,
-    //            “latitude”:”$latitude”
-    //        },
-    //        “destination”:
-    //        {
-    //            “province”:”$province”,
-    //            “city”:”$city”,
-    //            “district”:”$district”,
-    //            “street”:”$street”
-    //        },
-    //        “transfer”:”$transfer”
-    //    }
     NSIndexPath *indexPath = userInfo;
     CPActivityModel *model = self.datas[indexPath.row];
     NSString *url = [NSString stringWithFormat:@"activity/%@/join",model.activityId];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"destPoint"] = @{@"longitude" : @(CPLongitude),
+                             @"latitude" : @(CPLatitude)};
+    params[@"transfer"] = @(model.transfer);
+    params[@"type"] = model.type;
+    params[@"pay"] = model.pay;
+    params[@"destination"] = model.destination;
     params[UserId] = CPUserId;
     params[Token] = CPToken;
     [self showLoading];
     [CPNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
-        [self disMiss];
         if (CPSuccess) {
             [self showInfo:@"邀请已发出"];
             model.applyFlag = 1;

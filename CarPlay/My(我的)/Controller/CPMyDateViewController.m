@@ -40,6 +40,8 @@ static NSString *ID = @"DateCell";
 {
     [super viewDidLoad];
     self.title = @"我的活动";
+    self.view.backgroundColor = [UIColor whiteColor];
+
     if (CPNoNetWork) {
         
         [ZYProgressView showMessage:@"网络连接失败,请检查网络"];
@@ -176,9 +178,9 @@ static NSString *ID = @"DateCell";
         [self photoPresent];
     }else if([notifyName isEqualToString:DateBtnClickKey]){
 
-    }else if([notifyName isEqualToString:InvitedBtnClickKey]){
+    }else if([notifyName isEqualToString:InvitedButtonClickKey]){
         
-    }else if([notifyName isEqualToString:IgnoreBtnClickKey]){
+    }else if([notifyName isEqualToString:IgnoreButtonClickKey]){
         
     }else if([notifyName isEqualToString:LoveBtnClickKey]){
         [self loveBtnClickWithInfo:(CPActivityModel *)userInfo];
