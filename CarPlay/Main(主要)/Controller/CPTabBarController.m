@@ -266,8 +266,8 @@
                 [ZYNetWorkTool getWithUrl:[NSString stringWithFormat:@"user/emchatInfo?userId=%@&token=%@&emchatName=%@",CPUserId,CPToken,callSession.sessionChatter] params:nil success:^(id responseObject) {
                     if (CPSuccess) {
                         NSDictionary *dic = [responseObject objectForKey:@"data"];
-                        [ZYUserDefaults setObject:[dic objectForKey:@"avatar"] forKey:kReceiverHeadUrl];
-                        [ZYUserDefaults setObject:[dic objectForKey:@"nickname"] forKey:kReceiverNickName];
+                        [ZYUserDefaults setObject:[dic objectForKey:@"avatar"] forKey:kSendCallHeadURL];
+                        [ZYUserDefaults setObject:[dic objectForKey:@"nickname"] forKey:kSendCallNickName];
                         
                         
                         
