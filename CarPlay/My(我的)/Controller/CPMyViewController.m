@@ -57,11 +57,20 @@
     solidLine.strokeColor = [Tools getColor:@"ffffff"].CGColor;
     solidLine.fillColor = [UIColor clearColor].CGColor;
     solidLine.opacity=0.2;
-    CGPathAddEllipseInRect(solidPath, nil, CGRectMake(102.0/320.0*ZYScreenWidth,  20.0/568.0*ZYScreenHeight, 120.0, 120.0));
-     CGPathAddEllipseInRect(solidPath, nil, CGRectMake(107.0/320.0*ZYScreenWidth,  25.0/568.0*ZYScreenHeight, 110.0, 110.0));
+    CGPathAddEllipseInRect(solidPath, nil, CGRectMake(ZYScreenWidth/2-60,  22.0, 120.0, 120.0));
+     CGPathAddEllipseInRect(solidPath, nil, CGRectMake(ZYScreenWidth/2-55,  26.0, 110.0, 110.0));
     solidLine.path = solidPath;
     CGPathRelease(solidPath);
     [self.headImageBg.layer addSublayer:solidLine];
+    
+    UITapGestureRecognizer *tapGes=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(improveInfo)];
+    [self.headImage addGestureRecognizer:tapGes];
+    
+    for (id view in self.toolbar.subviews) {
+        if ([view isKindOfClass:[UIImageView class]]) {
+            [view removeFromSuperview];
+        }
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -132,10 +141,26 @@
     [self.albumsCollectionView reloadData];
     self.photoAuthStatus.text=user.photoAuthStatus;
     self.licenseAuthStatus.text=user.licenseAuthStatus;
+    if (user.completion<100) {
+       self.completionLabel.text=[NSString stringWithFormat:@"资料完成度%lu%%,越高越吸引人",(unsigned long)user.completion];
+    }else{
+        self.completionLabel.text=@"非常棒,显示资料完成100%";
+    }
+    self.status.text=user.photoAuthStatus;
+    if ([user.photoAuthStatus isEqualToString:@"认证通过"]) {
+        [self.status setBackgroundColor:[Tools getColor:@"fdbc4f"]];
+        self.status.text=@"已认证";
+    }
 }
 
 //完善
 - (IBAction)improveBtnClick:(id)sender {
+    CPEditInfoViewController *editInfo=[UIStoryboard storyboardWithName:@"CPEditInfoViewController" bundle:nil].instantiateInitialViewController;
+    [self.navigationController pushViewController:editInfo animated:YES];
+}
+
+//编辑资料
+-(void)improveInfo{
     CPEditInfoViewController *editInfo=[UIStoryboard storyboardWithName:@"CPEditInfoViewController" bundle:nil].instantiateInitialViewController;
     [self.navigationController pushViewController:editInfo animated:YES];
 }

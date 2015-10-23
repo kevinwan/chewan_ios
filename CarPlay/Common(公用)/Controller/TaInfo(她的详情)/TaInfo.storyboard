@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="bLO-eZ-b4h">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="bLO-eZ-b4h">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
         <!--Ta Info-->
@@ -93,7 +93,7 @@
                                     <rect key="frame" x="0.0" y="388" width="320" height="88"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LeA-WY-uZe">
-                                            <rect key="frame" x="131.5" y="15" width="58" height="58"/>
+                                            <rect key="frame" x="131" y="15" width="58" height="58"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="58" id="Qa0-Ff-1Ol"/>
                                                 <constraint firstAttribute="width" constant="58" id="gag-fz-UWs"/>
@@ -131,7 +131,7 @@
                                         <action selector="attentionBtnClick:" destination="bLO-eZ-b4h" eventType="touchUpInside" id="L2Z-uA-xND"/>
                                     </connections>
                                 </button>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YS7-Xd-bem">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="YS7-Xd-bem">
                                     <rect key="frame" x="132" y="190" width="18" height="18"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="18" id="ITA-rh-yO2"/>
@@ -179,11 +179,10 @@
                                 <constraint firstItem="Kdc-aC-xKf" firstAttribute="leading" secondItem="YS7-Xd-bem" secondAttribute="trailing" constant="10" id="4Ym-ge-P31"/>
                                 <constraint firstItem="LQ3-2c-1Ig" firstAttribute="top" secondItem="JSB-tv-V6c" secondAttribute="bottom" constant="8" id="56m-hh-7y3"/>
                                 <constraint firstAttribute="trailing" secondItem="LQ3-2c-1Ig" secondAttribute="trailing" id="5Y9-qF-gyn"/>
-                                <constraint firstAttribute="trailing" secondItem="Kdc-aC-xKf" secondAttribute="trailing" constant="75" id="5jL-yV-cr8"/>
                                 <constraint firstItem="YS7-Xd-bem" firstAttribute="top" secondItem="ZwR-bd-dAu" secondAttribute="bottom" constant="49" id="6kT-UU-wOX"/>
                                 <constraint firstItem="ZwR-bd-dAu" firstAttribute="centerX" secondItem="gvh-2W-CfD" secondAttribute="centerX" id="775-XC-lIl"/>
-                                <constraint firstItem="Kdc-aC-xKf" firstAttribute="centerX" secondItem="gvh-2W-CfD" secondAttribute="centerX" id="8Tz-7z-yCT"/>
                                 <constraint firstItem="pLD-ZQ-BrO" firstAttribute="top" secondItem="Kdc-aC-xKf" secondAttribute="bottom" constant="16" id="ALW-Ro-X0q"/>
+                                <constraint firstItem="YS7-Xd-bem" firstAttribute="centerX" secondItem="gvh-2W-CfD" secondAttribute="centerX" constant="-19" id="DqU-RX-Gaz"/>
                                 <constraint firstItem="Jci-jR-nlg" firstAttribute="leading" secondItem="gvh-2W-CfD" secondAttribute="leading" id="HNp-nm-eom"/>
                                 <constraint firstItem="JSB-tv-V6c" firstAttribute="top" secondItem="Jci-jR-nlg" secondAttribute="bottom" constant="10" id="JVV-96-rI1"/>
                                 <constraint firstItem="Kdc-aC-xKf" firstAttribute="top" secondItem="LIe-nR-7fD" secondAttribute="bottom" id="Jj8-x9-Y0j"/>
@@ -195,10 +194,8 @@
                                 <constraint firstAttribute="trailing" secondItem="6Sz-pP-dkP" secondAttribute="trailing" id="V52-wm-YsM"/>
                                 <constraint firstAttribute="trailing" secondItem="JSB-tv-V6c" secondAttribute="trailing" id="ad7-5i-8Ar"/>
                                 <constraint firstItem="LIe-nR-7fD" firstAttribute="top" secondItem="ZwR-bd-dAu" secondAttribute="bottom" constant="6" id="c40-NE-d9n"/>
-                                <constraint firstItem="Kdc-aC-xKf" firstAttribute="leading" secondItem="gvh-2W-CfD" secondAttribute="leading" constant="76" id="eAf-VE-Gxe"/>
                                 <constraint firstItem="LIe-nR-7fD" firstAttribute="leading" secondItem="gvh-2W-CfD" secondAttribute="leading" id="fA5-MC-Kiu"/>
                                 <constraint firstItem="LQ3-2c-1Ig" firstAttribute="leading" secondItem="gvh-2W-CfD" secondAttribute="leading" id="feW-dL-uyR"/>
-                                <constraint firstItem="YS7-Xd-bem" firstAttribute="leading" secondItem="gvh-2W-CfD" secondAttribute="leading" constant="132" id="gQT-aW-MOS"/>
                                 <constraint firstItem="6Sz-pP-dkP" firstAttribute="leading" secondItem="gvh-2W-CfD" secondAttribute="leading" id="pgK-i6-BB3"/>
                                 <constraint firstItem="JSB-tv-V6c" firstAttribute="leading" secondItem="gvh-2W-CfD" secondAttribute="leading" id="plf-bC-rDC"/>
                                 <constraint firstItem="6Sz-pP-dkP" firstAttribute="top" secondItem="Jci-jR-nlg" secondAttribute="bottom" constant="10" id="rF8-Wn-bQH"/>
@@ -206,13 +203,6 @@
                                 <constraint firstItem="Jci-jR-nlg" firstAttribute="top" secondItem="gvh-2W-CfD" secondAttribute="top" id="v6e-Iq-gtn"/>
                                 <constraint firstAttribute="trailing" secondItem="Jci-jR-nlg" secondAttribute="trailing" id="zn3-cT-toU"/>
                             </constraints>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="5jL-yV-cr8"/>
-                                    <exclude reference="8Tz-7z-yCT"/>
-                                    <exclude reference="eAf-VE-Gxe"/>
-                                </mask>
-                            </variation>
                         </view>
                         <connections>
                             <outlet property="dataSource" destination="bLO-eZ-b4h" id="DDX-bN-DmG"/>
@@ -231,6 +221,7 @@
                         <outlet property="nickname" destination="XCz-As-8y9" id="zzX-g1-xuN"/>
                         <outlet property="noImgView" destination="6Sz-pP-dkP" id="vVC-yA-AHN"/>
                         <outlet property="sexAndAge" destination="Uq8-Qi-NcR" id="Cri-fV-lLO"/>
+                        <outlet property="toolbar" destination="LIe-nR-7fD" id="Q9w-II-86B"/>
                         <outlet property="uploadBtn" destination="yEw-TE-TZ0" id="HG7-e5-27N"/>
                         <outlet property="uploadBtnClick" destination="yEw-TE-TZ0" id="SxU-FT-KJ9"/>
                     </connections>
@@ -241,6 +232,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="logo" width="60" height="60"/>
         <image name="我的活动" width="30" height="30"/>
         <image name="男" width="40" height="15"/>
     </resources>

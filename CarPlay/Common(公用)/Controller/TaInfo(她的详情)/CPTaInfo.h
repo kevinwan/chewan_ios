@@ -23,5 +23,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *uploadBtnClick;
 - (IBAction)taActivityClick:(id)sender;
 @property (weak, nonatomic) IBOutlet UIScrollView *albumsScrollView;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, strong) NSString *userId;
 @end

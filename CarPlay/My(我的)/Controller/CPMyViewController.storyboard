@@ -24,7 +24,7 @@
                                         <constraint firstAttribute="height" constant="270" id="ILF-nt-YGI"/>
                                     </constraints>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xt3-WQ-bH7">
+                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xt3-WQ-bH7">
                                     <rect key="frame" x="110" y="30" width="100" height="100"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="100" id="Gxw-vm-FoY"/>
@@ -166,14 +166,13 @@
                                 <constraint firstItem="kdB-GL-J6X" firstAttribute="top" secondItem="IrA-I0-60N" secondAttribute="bottom" constant="10" id="BT0-HF-j9g"/>
                                 <constraint firstItem="Nlf-fQ-XzN" firstAttribute="top" secondItem="xHm-Q1-zPE" secondAttribute="bottom" constant="8" id="DKn-Kn-9QW"/>
                                 <constraint firstItem="kdB-GL-J6X" firstAttribute="leading" secondItem="Of7-U9-xHw" secondAttribute="leading" id="I8O-I1-GnC"/>
+                                <constraint firstItem="xHm-Q1-zPE" firstAttribute="centerX" secondItem="Of7-U9-xHw" secondAttribute="centerX" id="JrP-hv-GSW"/>
                                 <constraint firstItem="0bK-yj-Cpi" firstAttribute="leading" secondItem="Of7-U9-xHw" secondAttribute="leading" id="PfK-Ll-ByC"/>
                                 <constraint firstItem="IrA-I0-60N" firstAttribute="top" secondItem="AM0-lr-x6W" secondAttribute="bottom" constant="10" id="Q41-2W-gPe"/>
                                 <constraint firstAttribute="trailing" secondItem="0bK-yj-Cpi" secondAttribute="trailing" id="Q7k-s6-uZw"/>
                                 <constraint firstItem="AM0-lr-x6W" firstAttribute="leading" secondItem="Of7-U9-xHw" secondAttribute="leading" id="QlZ-f6-OTG"/>
-                                <constraint firstAttribute="trailing" secondItem="xHm-Q1-zPE" secondAttribute="trailing" constant="75" id="UY5-gv-plR"/>
                                 <constraint firstAttribute="trailing" secondItem="IrA-I0-60N" secondAttribute="trailing" id="a5h-3F-shX"/>
                                 <constraint firstItem="0bK-yj-Cpi" firstAttribute="top" secondItem="8js-XT-MEe" secondAttribute="bottom" constant="6" id="bAV-Iz-Fz2"/>
-                                <constraint firstItem="xHm-Q1-zPE" firstAttribute="leading" secondItem="Of7-U9-xHw" secondAttribute="leading" constant="76" id="cN7-Tn-hXc"/>
                                 <constraint firstItem="IrA-I0-60N" firstAttribute="leading" secondItem="Of7-U9-xHw" secondAttribute="leading" id="cvb-1h-GSY"/>
                                 <constraint firstItem="kdB-GL-J6X" firstAttribute="centerX" secondItem="Of7-U9-xHw" secondAttribute="centerX" id="dnE-8z-pOb"/>
                                 <constraint firstItem="Nlf-fQ-XzN" firstAttribute="centerX" secondItem="Of7-U9-xHw" secondAttribute="centerX" id="elT-ge-ml9"/>
@@ -308,6 +307,7 @@
                         <outlet property="photoAuthStatus" destination="ian-E5-Tfy" id="WB0-JK-66u"/>
                         <outlet property="sex" destination="zvq-le-NbR" id="QDf-1J-zpy"/>
                         <outlet property="status" destination="8js-XT-MEe" id="nlx-qB-uxn"/>
+                        <outlet property="toolbar" destination="0bK-yj-Cpi" id="nDv-6K-NEO"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qqe-Fq-OKh" userLabel="First Responder" sceneMemberID="firstResponder"/>

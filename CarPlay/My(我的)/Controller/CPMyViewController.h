@@ -24,5 +24,6 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *albumsCollectionView;
 @property (weak, nonatomic) IBOutlet UILabel *photoAuthStatus;
 @property (weak, nonatomic) IBOutlet UILabel *licenseAuthStatus;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
 @end

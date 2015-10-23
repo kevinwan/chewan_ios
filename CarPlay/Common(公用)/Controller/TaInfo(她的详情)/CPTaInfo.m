@@ -32,6 +32,11 @@
     [self.headStatus.layer setMasksToBounds:YES];
     [self.headStatus.layer setCornerRadius:11.0];
     self.noImgView.alpha=0.35;
+    for (id view in self.toolbar.subviews) {
+        if ([view isKindOfClass:[UIImageView class]]) {
+            [view removeFromSuperview];
+        }
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated{
