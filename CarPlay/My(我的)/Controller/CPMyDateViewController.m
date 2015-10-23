@@ -7,9 +7,6 @@
 //
 
 #import "CPMyDateViewController.h"
-#import "CPMySwitch.h"
-#import "CPSelectView.h"
-#import "CPNearParams.h"
 #import "AAPullToRefresh.h"
 #import "ZYProgressView.h"
 #import "CPNoDataTipView.h"
@@ -23,9 +20,7 @@
 @interface CPMyDateViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate>
 @property (nonatomic, strong) UICollectionView *tableView;
 @property (nonatomic, strong) NSMutableArray<CPMyDateModel *> *datas;
-@property (nonatomic, strong) UIView *tipView;
 @property (nonatomic, assign) CGFloat offset;
-@property (nonatomic, strong) CPNearParams *params;
 @property (nonatomic, assign) BOOL isHasRefreshHeader;
 @property (nonatomic, strong) CPNoDataTipView *noDataView;
 @property (nonatomic, weak)   AAPullToRefresh *headerView;
@@ -71,7 +66,7 @@ static NSString *ID = @"DateCell";
 
 - (void)dealloc
 {
-    
+    NSLog(@"%@从内存中销毁了😭",[self class]);
 }
 
 - (void)setUpRefresh
@@ -85,7 +80,7 @@ static NSString *ID = @"DateCell";
         ZYMainThread(^{
             [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, -44) animated:YES];
         });
-        self.params.ignore = 0;
+        self.ignore = 0;
         [self loadDataWithHeader:v];
     }];
     
@@ -98,7 +93,7 @@ static NSString *ID = @"DateCell";
         });
         
         if (self.datas.count >= CPPageNum) {
-            self.params.ignore += CPPageNum;
+            self.ignore += CPPageNum;
             [self loadDataWithHeader:v];
         }else{
             [v stopIndicatorAnimation];
@@ -123,7 +118,7 @@ static NSString *ID = @"DateCell";
         [self setUpRefresh];
         [refresh stopIndicatorAnimation];
         if (CPSuccess) {
-            if (self.params.ignore == 0) {
+            if (self.ignore == 0) {
                 [self.datas removeAllObjects];
             }
             
@@ -143,7 +138,7 @@ static NSString *ID = @"DateCell";
         
         [self setUpRefresh];
         DLog(@"%@---",error);
-        self.params.ignore -= CPPageNum;
+        self.ignore -= CPPageNum;
         [refresh stopIndicatorAnimation];
         [self showError:@"加载失败"];
         self.noDataView.netWorkFailtype = NO;
@@ -181,9 +176,10 @@ static NSString *ID = @"DateCell";
     }else if([notifyName isEqualToString:InvitedButtonClickKey]){
         
     }else if([notifyName isEqualToString:IgnoreButtonClickKey]){
-        
+        [self.datas removeObjectAtIndex:[userInfo row]];
+        [self.tableView deleteItemsAtIndexPaths:@[userInfo]];
     }else if([notifyName isEqualToString:LoveBtnClickKey]){
-        [self loveBtnClickWithInfo:(CPActivityModel *)userInfo];
+        [self loveBtnClickWithInfo:(CPMyDateModel *)userInfo];
     }else if ([notifyName isEqualToString:IconViewClickKey]){
         CPGoLogin(@"查看TA的详情");
         CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
@@ -198,16 +194,16 @@ static NSString *ID = @"DateCell";
  *
  *  @param model model description
  */
-- (void)loveBtnClickWithInfo:(CPActivityModel *)model
+- (void)loveBtnClickWithInfo:(CPMyDateModel *)model
 {
     ZYAsyncThead(^{
         
         NSMutableArray *indexPaths = [NSMutableArray array];
         
         for (int i = 0;i < self.datas.count; i++) {
-            CPActivityModel *obj = self.datas[i];
-            if ([obj.organizer.userId isEqualToString:model.organizer.userId] && ![obj.activityId isEqualToString:model.activityId]) {
-                obj.organizer.subscribeFlag = model.organizer.subscribeFlag;
+            CPMyDateModel *obj = self.datas[i];
+            if ([obj.applyUserId isEqualToString:model.applyUserId] && ![obj.activityId isEqualToString:model.activityId]) {
+                obj.applicant.subscribeFlag = model.applicant.subscribeFlag;
                 [indexPaths addObject:[NSIndexPath indexPathForItem:i inSection:0]];
             }
             
@@ -339,22 +335,6 @@ static NSString *ID = @"DateCell";
         _datas = [[NSMutableArray alloc] init];
     }
     return _datas;
-}
-
-- (CPNearParams *)params
-{
-    if (_params == nil) {
-        //        latitude=39.97762675234624&limit=10&longitude=116.3317536236968
-        _params = [[CPNearParams alloc] init];
-        _params.longitude = 116.3317536236968;
-        _params.latitude = 39.97762675234624;
-        
-        //        _params.longitude = ZYLongitude;
-        //        _params.latitude = ZYLatitude;
-        _params.ignore = 0;
-        _params.limit = 10;
-    }
-    return _params;
 }
 
 - (CPNoDataTipView *)noDataView

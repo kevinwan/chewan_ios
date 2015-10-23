@@ -387,15 +387,24 @@
         self.ignoreAnim.haloLayerColor = [Tools getColor:@"98d872"].CGColor;
         self.invitedButton.selected = YES;
         [self.invitedButton setBackgroundColor:[Tools getColor:@"77bbf2"]];
+        [_invitedButton setTitle:@"" forState:UIControlStateNormal];
+        [_invitedButton setImage:[UIImage imageNamed:@"聊天-1"] forState:UIControlStateNormal];
         self.ignoreButton.selected = YES;
         [self.ignoreButton setBackgroundColor:[Tools getColor:@"98d872"]];
+        [_ignoreButton setImage:[UIImage imageNamed:@"电话-1"] forState:UIControlStateNormal];
+        [_ignoreButton setTitle:@"" forState:UIControlStateNormal];
     }else{
         self.inviAnim.haloLayerColor = RedColor.CGColor;
         self.ignoreAnim.haloLayerColor = [Tools getColor:@"cccccc"].CGColor;
         self.invitedButton.selected = NO;
         [self.invitedButton setBackgroundColor:RedColor];
+        [_invitedButton setTitle:@"应邀" forState:UIControlStateNormal];
+        [_invitedButton setImage:nil forState:UIControlStateNormal];
         self.ignoreButton.selected = NO;
         [self.ignoreButton setBackgroundColor:[Tools getColor:@"cccccc"]];
+        
+        [_ignoreButton setImage:nil forState:UIControlStateNormal];
+        [_ignoreButton setTitle:@"忽略" forState:UIControlStateNormal];
     }
 }
 
@@ -458,19 +467,19 @@
 {
     if (_invitedButton == nil) {
         _invitedButton = [UIButton buttonWithTitle:@"应邀" icon:nil titleColor:[UIColor whiteColor] fontSize:16];
-        [_invitedButton setImage:[UIImage imageNamed:@"聊天"] forState:UIControlStateSelected];
         
         _invitedButton.layer.cornerRadius = 28;
         _invitedButton.clipsToBounds = YES;
         _invitedButton.hidden = YES;
+        ZYWeakSelf
         [[_invitedButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            ZYStrongSelf
             if (_myDateModel.status == 1){
                 
                 if ([_myDateModel.invitedUserId isEqualToString:CPUserId]) {
                     
-//                    application/$appointmentId/process?userId=$userId&token=$token
                     NSString *url = [NSString stringWithFormat:@"application/%@/process?userId=%@&token=%@", _myDateModel.appointmentId, CPUserId, CPToken];
-                    [CPNetWorkTool postJsonWithUrl:url params:@{@"accept" : @(YES)} success:^(id responseObject) {
+                    [ZYNetWorkTool postJsonWithUrl:url params:@{@"accept" : @(YES)} success:^(id responseObject) {
                         if (CPSuccess) {
                             [self setPhoneType:YES];
                         }
@@ -513,18 +522,18 @@
 {
     if (_ignoreButton == nil) {
         _ignoreButton = [UIButton buttonWithTitle:@"忽略" icon:nil titleColor:[UIColor whiteColor] fontSize:16];
-        
-        [_ignoreButton setImage:[UIImage imageNamed:@"电话"] forState:UIControlStateSelected];
         _ignoreButton.layer.cornerRadius = 28;
         _ignoreButton.clipsToBounds = YES;
         _ignoreButton.hidden = YES;
+        ZYWeakSelf
         [[_ignoreButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-            
+            ZYStrongSelf
             if (_myDateModel.status == 1){
                 
                 if ([_myDateModel.invitedUserId isEqualToString:CPUserId]) {
                     NSString *url = [NSString stringWithFormat:@"application/%@/process?userId=%@&token=%@", _myDateModel.appointmentId, CPUserId, CPToken];
-                    [CPNetWorkTool postJsonWithUrl:url params:@{@"accept" : @(NO)} success:^(id responseObject) {
+                    [ZYNetWorkTool postJsonWithUrl:url params:@{@"accept" : @(NO)} success:^(id responseObject) {
+                        NSLog(@"%@",responseObject);
                         if (CPSuccess) {
                             
                             [self superViewWillRecive:IgnoreButtonClickKey info:_indexPath];
@@ -539,7 +548,6 @@
             }
             else if (_myDateModel.status == 2){
                 
-                [self superViewWillRecive:InvitedButtonClickKey info:_indexPath];
             }
         }];
     }
