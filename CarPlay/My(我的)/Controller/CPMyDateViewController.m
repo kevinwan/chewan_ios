@@ -174,10 +174,25 @@ static NSString *ID = @"DateCell";
     }else if([notifyName isEqualToString:DateBtnClickKey]){
 
     }else if([notifyName isEqualToString:InvitedButtonClickKey]){
+        NSIndexPath *indexPath = userInfo;
+        CPMyDateModel *model = self.datas[indexPath.row];
+
+        if (model.status == 1){
+            
+        }else if (model.status == 2){
+            
+        }
         
     }else if([notifyName isEqualToString:IgnoreButtonClickKey]){
-        [self.datas removeObjectAtIndex:[userInfo row]];
-        [self.tableView deleteItemsAtIndexPaths:@[userInfo]];
+        NSIndexPath *indexPath = userInfo;
+        CPMyDateModel *model = self.datas[indexPath.row];
+        if (model.status == 1) {
+            
+            [self.datas removeObjectAtIndex:[userInfo row]];
+            [self.tableView deleteItemsAtIndexPaths:@[userInfo]];
+        }else{
+            
+        }
     }else if([notifyName isEqualToString:LoveBtnClickKey]){
         [self loveBtnClickWithInfo:(CPMyDateModel *)userInfo];
     }else if ([notifyName isEqualToString:IconViewClickKey]){

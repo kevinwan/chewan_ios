@@ -479,24 +479,26 @@
                 if ([_myDateModel.invitedUserId isEqualToString:CPUserId]) {
                     
                     NSString *url = [NSString stringWithFormat:@"application/%@/process?userId=%@&token=%@", _myDateModel.appointmentId, CPUserId, CPToken];
+                    [SVProgressHUD showWithStatus:@"努力加载中"];
                     [ZYNetWorkTool postJsonWithUrl:url params:@{@"accept" : @(YES)} success:^(id responseObject) {
                         if (CPSuccess) {
+                            [SVProgressHUD dismiss];
+                            _myDateModel.status = 2;
                             [self setPhoneType:YES];
+                        }else{
+                            [SVProgressHUD showInfoWithStatus:CPErrorMsg];
                         }
                     } failed:^(NSError *error) {
-                        
+                        [SVProgressHUD showErrorWithStatus:@"加载失败"];
                     }];
                     
                 }else{
                     
                 }
-            }else if (_myDateModel.status == 2){
+            }
+            else if (_myDateModel.status == 2){
                 
                 [self superViewWillRecive:InvitedButtonClickKey info:_indexPath];
-            }
-            
-            if ([_myDateModel.invitedUserId isEqualToString:CPUserId]) {
-                
             }
         }];
     }
@@ -531,15 +533,19 @@
             if (_myDateModel.status == 1){
                 
                 if ([_myDateModel.invitedUserId isEqualToString:CPUserId]) {
+                    [SVProgressHUD showWithStatus:@"努力加载中"];
                     NSString *url = [NSString stringWithFormat:@"application/%@/process?userId=%@&token=%@", _myDateModel.appointmentId, CPUserId, CPToken];
                     [ZYNetWorkTool postJsonWithUrl:url params:@{@"accept" : @(NO)} success:^(id responseObject) {
                         NSLog(@"%@",responseObject);
                         if (CPSuccess) {
                             
+                            [SVProgressHUD dismiss];
                             [self superViewWillRecive:IgnoreButtonClickKey info:_indexPath];
+                        }else{
+                            [SVProgressHUD showInfoWithStatus:CPErrorMsg];
                         }
                     } failed:^(NSError *error) {
-                        
+                        [SVProgressHUD showErrorWithStatus:@"加载失败"];
                     }];
                     
                 }else{
@@ -547,7 +553,7 @@
                 }
             }
             else if (_myDateModel.status == 2){
-                
+                [self superViewWillRecive:IgnoreButtonClickKey info:_indexPath];
             }
         }];
     }
