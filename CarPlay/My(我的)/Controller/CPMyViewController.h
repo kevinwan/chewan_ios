@@ -22,4 +22,7 @@
 - (IBAction)myAttentionBtnClick:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *headView;
 @property (weak, nonatomic) IBOutlet UICollectionView *albumsCollectionView;
+@property (weak, nonatomic) IBOutlet UILabel *photoAuthStatus;
+@property (weak, nonatomic) IBOutlet UILabel *licenseAuthStatus;
+
 @end

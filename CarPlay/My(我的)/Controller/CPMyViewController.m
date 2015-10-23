@@ -57,15 +57,11 @@
     solidLine.strokeColor = [Tools getColor:@"ffffff"].CGColor;
     solidLine.fillColor = [UIColor clearColor].CGColor;
     solidLine.opacity=0.2;
-    CGPathAddEllipseInRect(solidPath, nil, CGRectMake(100.0/320.0*ZYScreenWidth,  22.0/568.0*ZYScreenHeight, 120.0, 120.0));
-     CGPathAddEllipseInRect(solidPath, nil, CGRectMake(105.0/320.0*ZYScreenWidth,  27.0/568.0*ZYScreenHeight, 110.0, 110.0));
+    CGPathAddEllipseInRect(solidPath, nil, CGRectMake(102.0/320.0*ZYScreenWidth,  20.0/568.0*ZYScreenHeight, 120.0, 120.0));
+     CGPathAddEllipseInRect(solidPath, nil, CGRectMake(107.0/320.0*ZYScreenWidth,  25.0/568.0*ZYScreenHeight, 110.0, 110.0));
     solidLine.path = solidPath;
     CGPathRelease(solidPath);
     [self.headImageBg.layer addSublayer:solidLine];
-//    UIButton *addPhotoBtn=[[UIButton alloc]initWithFrame:CGRectMake(10, 15, 70, 70)];
-//    [addPhotoBtn addTarget:self action:@selector(addPhoto) forControlEvents:UIControlEventTouchUpInside];
-//    [addPhotoBtn setImage:[UIImage imageNamed:@"相机"] forState:UIControlStateNormal];
-////    [self.albumsScrollView addSubview:addPhotoBtn];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -101,9 +97,9 @@
     [ZYNetWorkTool getWithUrl:path params:nil success:^(id responseObject) {
         if (CPSuccess) {
             user = [CPUser objectWithKeyValues:responseObject[@"data"]];
-            if ([responseObject[@"data"][@"car"] length]==0) {
-                user.car=[CPCar new];
-            }
+//            if ([responseObject[@"data"][@"car"] isEqualToString:@""]) {
+//                user.car=[CPCar new];
+//            }
             NSString *path=[[NSString alloc]initWithFormat:@"%@.info",[Tools getUserId]];
             [NSKeyedArchiver archiveRootObject:user toFile:path.documentPath];
             [self reloadData];
@@ -122,7 +118,6 @@
 }
 
 -(void)reloadData{
-//    [self.headImageBg sd_setImageWithURL:[[NSURL alloc]initWithString:user.avatar]];
     [self.headImageBg sd_setImageWithURL:[[NSURL alloc]initWithString:user.avatar] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         self.headImageBg.image=[image blurredImageWithRadius:20];
     }];
@@ -135,6 +130,8 @@
     }
     [self.sex setTitle:[[NSString alloc]initWithFormat:@"%lu",(unsigned long)user.age] forState:UIControlStateNormal];
     [self.albumsCollectionView reloadData];
+    self.photoAuthStatus.text=user.photoAuthStatus;
+    self.licenseAuthStatus.text=user.licenseAuthStatus;
 }
 
 //完善

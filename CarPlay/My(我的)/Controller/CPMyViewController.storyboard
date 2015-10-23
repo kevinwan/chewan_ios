@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2wV-Ac-95j">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2wV-Ac-95j">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
         <!--My View Controller-->
@@ -303,7 +303,9 @@
                         <outlet property="headImageBg" destination="AM0-lr-x6W" id="p1T-ZN-fjq"/>
                         <outlet property="headView" destination="Of7-U9-xHw" id="42u-pB-eVX"/>
                         <outlet property="improveBtn" destination="Nlf-fQ-XzN" id="I5J-me-jjR"/>
+                        <outlet property="licenseAuthStatus" destination="fvO-AU-elf" id="Cjw-z2-wGJ"/>
                         <outlet property="nickname" destination="swf-hU-Y5m" id="bDh-aH-7bh"/>
+                        <outlet property="photoAuthStatus" destination="ian-E5-Tfy" id="WB0-JK-66u"/>
                         <outlet property="sex" destination="zvq-le-NbR" id="QDf-1J-zpy"/>
                         <outlet property="status" destination="8js-XT-MEe" id="nlx-qB-uxn"/>
                     </connections>

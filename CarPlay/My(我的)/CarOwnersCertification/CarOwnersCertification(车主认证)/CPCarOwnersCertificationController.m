@@ -129,7 +129,8 @@
                 [self showLoading];
                 [ZYNetWorkTool postJsonWithUrl:urlPath params:params success:^(id responseObject) {
                     if (CPSuccess) {
-                        NSLog(@"成功了");
+                        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"车主认证申请成功！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                        [self.navigationController popViewControllerAnimated:YES];
                     }else{
                         [[[UIAlertView alloc]initWithTitle:@"提示" message:responseObject[@"errmsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                     }

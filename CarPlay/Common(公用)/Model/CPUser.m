@@ -21,12 +21,19 @@
     }
 }
 
+- (void)setCar:(CPCar *)car
+{
+    if ([car isKindOfClass:[CPCar class]]) {
+        _car = car;
+    }
+}
+
 + (NSDictionary *)objectClassInArray
 {
     return @{@"album":[CPAlbum class]};
 }
 
-- (void)setDistance:(NSUInteger)distance
+- (void)setDistance:(double)distance
 {
     _distance = distance;
     
