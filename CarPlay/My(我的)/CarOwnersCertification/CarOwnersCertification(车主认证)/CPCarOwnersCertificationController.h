@@ -10,5 +10,5 @@
 
 @interface CPCarOwnersCertificationController : UITableViewController
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
-@property (weak, nonatomic) IBOutlet UIButton *submit;
+- (IBAction)submit:(id)sender;
 @end

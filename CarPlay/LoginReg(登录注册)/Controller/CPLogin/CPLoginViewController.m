@@ -62,7 +62,7 @@
                 [self showLoading];
                 [ZYNetWorkTool postJsonWithUrl:@"user/login" params:paras success:^(id responseObject) {
                     if (CPSuccess) {
-
+                        
                         //登陆环信
                         NSLog(@"环信账号是:%@,密码是:%@",[Tools md5EncryptWithString:responseObject[@"data"][@"userId"]],[Tools md5EncryptWithString:self.passwordField.text]);
 
@@ -93,13 +93,14 @@
                                     [ZYUserDefaults setBool:NO forKey:CPHasAlbum];
                                 }
                             }
+                            [self disMiss];
                         } onQueue:nil];
 
                     }else{
+                        [self disMiss];
                         NSString *errmsg =[responseObject objectForKey:@"errmsg"];
                         [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                     }
-                    [self disMiss];
                 } failed:^(NSError *error) {
                     [self disMiss];
                     [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];

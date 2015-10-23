@@ -11,6 +11,7 @@
 #import "CustomSlideCell.h"
 #import "MJNIndexView.h"
 #import "CustomSectionView.h"
+#import "CPUser.h"
 
 @interface CPBrandModelViewController ()<MJNIndexViewDataSource,UITableViewDataSource,UITableViewDelegate>
 {
@@ -19,6 +20,8 @@
     NSMutableDictionary *sortedBrandData;
     NSString *currentBrandName;
     NSString *currentBrandUrl;
+    CPUser *user;
+    NSString *path;
 }
 
 @end
@@ -29,44 +32,16 @@
     [super viewDidLoad];
     brandArray=[[NSArray alloc]init];
     modelArray=[[NSArray alloc]init];
-    
-//    NSInteger index = 1;
-//    self.indexPathNumberArray = [NSMutableArray array];
-//    if (self.type != SelectBrandTypeReckon && self.type != SelectBrandTypeModel) {
-//        [brandArray addObject:@[[NSNull null]]];
-//        [brandArray addObject:@"#"];
-//        [_indexPathNumberArray addObject:@(index++)];
-//    }
-//    for (char c = 'A'; c <= 'Z'; c++) {
-//        NSString *initial = [NSString stringWithFormat:@"%c", c];
-//        NSArray *brand = [NSMutableArray arrayWithArray:[Interface brandsWithFirstLetter:initial]];
-//        if (brand.count > 0) {
-//            [self.allBrands addObject:brand];
-//            [brandArray addObject:initial];
-//            [_indexPathNumberArray addObject:@(index++)];
-//        }
-//    }
-    
+    path=[NSString stringWithFormat:@"%@.info",CPUserId];
+    user=[NSKeyedUnarchiver unarchiveObjectWithFile:path.documentPath];
     sortedBrandData=[[NSMutableDictionary alloc]init];
-//    if (!_fromMy || ![_fromMy isEqualToString:@"1"]) {
-//        self.brandTableView.contentInset=UIEdgeInsetsMake(64, 0, 0, 0);
-//    }
     //隐藏视图
     self.modelSlideView = [UIView new];
     _modelSlideView.hidden = YES;
     _modelSlideView.userInteractionEnabled = YES;
     [self.view addSubview:_modelSlideView];
-    [_modelSlideView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f));
-    }];
-//    [_modelSlideView setFrame:CGRectMake(60.0f, 0, SCREEN_WIDTH-60.0f,SCREEN_HEIGHT)];
-    
-    // 第三方控件视图我就不修改了
-//    if (!_fromMy || ![_fromMy isEqualToString:@"1"]) {
-//        self.indexView = [[MJNIndexView alloc] initWithFrame:CGRectMake(0, 60, SCREEN_WIDTH, SCREEN_HEIGHT - 60)];
-//    }else{
-        self.indexView = [[MJNIndexView alloc] initWithFrame:CGRectMake(0, 0, ZYScreenWidth, ZYScreenHeight-64)];
-//    }
+    _modelSlideView.frame = self.view.bounds;
+    self.indexView = [[MJNIndexView alloc] initWithFrame:CGRectMake(0, 0, ZYScreenWidth, ZYScreenHeight-64)];
     _indexView.dataSource = self;
     _indexView.fontColor = [Tools getColor:@"aab2bd"];
     _indexView.font = [UIFont systemFontOfSize:11.0f];
@@ -78,7 +53,6 @@
     // DetailsTbView
     
     self.modelTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-//    _modelTableView.bounces = NO;
     _modelTableView.sectionHeaderHeight=50.0f;
     _modelTableView.delegate = self;
     _modelTableView.dataSource = self;
@@ -88,23 +62,15 @@
     [_modelSlideView addSubview:_modelTableView];
     _modelSlideView.backgroundColor=[UIColor colorWithWhite:0.3 alpha:0.8];
     _modelTableView.tableFooterView = [UIView new];
-//    [_modelTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.edges.equalTo(_modelSlideView).with.insets(UIEdgeInsetsMake(66.0f, 0.5f, 0.0f, 0.0f));
-//    }];
-//    if (!_fromMy || ![_fromMy isEqualToString:@"1"]) {
-//        self.modelTableView.frame=CGRectMake(60, 64, SCREEN_WIDTH-60, SCREEN_HEIGHT-64);
-//    }else{
-        self.modelTableView.frame=CGRectMake(60, 0, ZYScreenWidth-60, ZYScreenHeight-64);
-//    }
+    self.modelTableView.frame=CGRectMake(60, 0, ZYScreenWidth-60, ZYScreenHeight-64);
     // 清扫手势
-    UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipes:)];
-    swipeGesture.numberOfTouchesRequired = 1;
+    
+    UIPanGestureRecognizer *swipeGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipes:)];
     [_modelSlideView addGestureRecognizer:swipeGesture];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBar.translucent=NO;
-//    organizer = [NSKeyedUnarchiver unarchiveObjectWithFile:CPDocmentPath(_fileName)];
     [self getData];
 }
 
@@ -200,42 +166,6 @@
         if ([data objectForKey:@"name"]) {
             cell.carNameLabel.text =[data objectForKey:@"name"];
         }
-        
-//        if ((indexPath.row == 0) && (self.type == SelectBrandTypeBuyCar)) {
-//            cell.picImage.image = [UIImage imageNamed:@"kuanxingbuxian"];
-//            cell.picImage.contentMode = UIViewContentModeScaleAspectFit;
-//     }
-//        NSURL *url=[[NSURL alloc]initWithString:[cellData objectForKey:@"logo_img"]];
-        
-//        if ([data objectForKey:@"name"]) {
-//            cell.picImage sd_setImageWithURL
-//        }
-        
-//            if (_slugString) {
-//                NSString * brandSlug = [[[MD_DataBaseTool findAllObject:[brand_json class] conditions:@"name=?" args:[NSArray arrayWithObject:_slugString] order:nil] lastObject] slug];
-//                
-//                NSMutableArray * logoImages =[NSMutableArray arrayWithArray:[MD_DataBaseTool findAllObject:[model_json class] conditions:@"parent=?" args:[NSArray arrayWithObject:brandSlug] order:nil]];
-//                if (self.type == SelectBrandTypeBuyCar) {
-//                    [logoImages insertObject:@"不限车型" atIndex:0];
-//                }
-//                
-//                if ((indexPath.row == 0) && (self.type == SelectBrandTypeBuyCar)) {
-//                    cell.carNameLabel.text = [logoImages objectAtIndex:indexPath.row];
-//                    cell.picImage.image = [UIImage imageNamed:@"kuanxingbuxian"];
-//                    cell.picImage.contentMode = UIViewContentModeScaleAspectFit;
-//                    
-//                }else{
-//                    
-//                    if ([logoImages[indexPath.row] thumbnail].length==0 || [[logoImages[indexPath.row] thumbnail] isEqualToString:@""]) {
-//                        [cell.picImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",kImageHost,logoImageURL,kPlaceholder]]];
-//                    }
-//                    else {
-//                        [cell.picImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",kImageHost,logoImageURL,[logoImages[indexPath.row] thumbnail]]]];
-//                    }
-//                    
-//                    cell.carNameLabel.text = [logoImages[indexPath.row] name];
-//                }
-//            }
             return cell;
         }
     return nil;
@@ -250,44 +180,30 @@
         NSString *brandName =[data objectForKey:@"slug"];
         currentBrandName = [data objectForKey:@"name"];
         currentBrandUrl = [data objectForKey:@"logo_img"];
-//        [Tools setValueForKey:currentBrandName key:@"brandName"];
-//        [Tools setValueForKey:currentBrandUrl key:@"brandUrl"];
+        user.car.brand=[data objectForKey:@"name"];
+        user.car.slug=[data objectForKey:@"slug"];
+        user.car.logo=[data objectForKey:@"logo_img"];
         [UIView animateWithDuration:0.25 animations:^{
             // 把第三层滚回去
             _modelSlideView.hidden = NO;
             _indexView.hidden=YES;
             _modelSlideView.frame = CGRectMake(0, 0, ZYScreenWidth, _brandTableView.height);
+        }completion:^(BOOL finished) {
+            [self getModelData:brandName];
         }];
-        [self getModelData:brandName];
     }
     else if (tableView == _modelTableView) {
         CustomSlideCell *cell = (CustomSlideCell *)[tableView cellForRowAtIndexPath:indexPath];
-        NSString *modelName = cell.carNameLabel.text;
-//        [Tools setValueForKey:modelName key:@"modelName"];
-        NSString *slug=[[modelArray objectAtIndex:indexPath.row] objectForKey:@"slug"];
-//        [Tools setValueForKey:slug key:@"slug"];
-//        organizer.carModel = modelName;
-//        organizer.slug = slug;
-//        organizer.carBrand = currentBrandName;
-//        organizer.carBrandLogo = currentBrandUrl;
-        
-//        [NSKeyedArchiver archiveRootObject:organizer toFile:CPDocmentPath(_fileName)];
+        user.car.model =cell.carNameLabel.text;
+        [NSKeyedArchiver archiveRootObject:user toFile:path.documentPath];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
-//-(NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
-//{
-//    return brandArray;
-//}
-
-
 #pragma mark - IndexViewDataSource
 
 - (NSArray *)sectionIndexTitlesForMJNIndexView:(MJNIndexView *)indexView {
-    
     if ([brandArray count] > 0) {
-        
         return brandArray;
     }
     return brandArray;
@@ -303,7 +219,6 @@
 
 #pragma privateMethods
 -(void)getData{
-
     [ZYNetWorkTool getWithUrl:@"car/brand" params:nil success:^(id responseObject) {
 
         NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
@@ -360,15 +275,42 @@
     }];
 }
 
-- (void)handleSwipes:(UISwipeGestureRecognizer *)swipe
+- (void)handleSwipes:(UIPanGestureRecognizer *)swipe
 {
-    if (swipe.direction == UISwipeGestureRecognizerDirectionRight) {
-        [UIView animateWithDuration:0.25 animations:^{
-            // 如果拖动model，则detail也要一起滚
-            [swipe.view setX:ZYScreenWidth];
-            _indexView.hidden=NO;
-        }];
+    
+    CGPoint p = [swipe translationInView:_modelSlideView];
+    switch (swipe.state) {
+        case UIGestureRecognizerStateBegan:
+        case UIGestureRecognizerStateChanged:
+        {
+            _modelSlideView.x+=p.x;
+            if (_modelSlideView.x > ZYScreenWidth) {
+                _modelSlideView.x = ZYScreenWidth;
+            }else if (_modelSlideView.x < 0){
+                _modelSlideView.x = 0;
+            }
+            break;
+        }
+        case UIGestureRecognizerStateCancelled :
+        case UIGestureRecognizerStateEnded:
+        {
+            if (_modelSlideView.x > ZYScreenWidth * 0.4) {
+                [UIView animateWithDuration:0.25 animations:^{
+                    _modelSlideView.x = ZYScreenWidth;
+                }completion:^(BOOL finished) {
+                    _indexView.hidden = NO;
+                }];
+            }else{
+                [UIView animateWithDuration:0.25 animations:^{
+                    _modelSlideView.x = 0;
+                }];
+            }
+            break;
+        }
+        default:
+            break;
     }
+    [swipe setTranslation:CGPointZero inView:swipe.view];
 }
 
 @end
