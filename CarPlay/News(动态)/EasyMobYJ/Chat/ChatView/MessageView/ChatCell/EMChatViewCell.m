@@ -146,7 +146,10 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
     
     if (messageModel.isSender) {
         // 发送进度显示view
-        _activityView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SEND_STATUS_SIZE, SEND_STATUS_SIZE)];
+        //test
+//        _activityView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SEND_STATUS_SIZE, SEND_STATUS_SIZE)];
+        _activityView = [[UIView alloc] initWithFrame:CGRectMake(-SEND_STATUS_SIZE, 0, SEND_STATUS_SIZE, SEND_STATUS_SIZE)];
+
         [_activityView setHidden:YES];
         [self.contentView addSubview:_activityView];
         
