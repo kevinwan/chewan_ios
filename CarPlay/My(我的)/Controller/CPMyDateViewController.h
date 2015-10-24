@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CPMyDateViewController : UIViewController
-@property (nonatomic, copy) NSString *targetUerId;
+
 @end

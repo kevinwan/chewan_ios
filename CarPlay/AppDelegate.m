@@ -140,7 +140,7 @@
 }
 
 -(void)getLocation{
-    [self setViewCycleAop];
+//    [self setViewCycleAop];
     self.mgr.delegate = self;
     // 判断是否是iOS8
     if([[UIDevice currentDevice].systemVersion doubleValue] >= 8.0)

@@ -17,8 +17,9 @@
 #import "CPAlbum.h"
 #import "ChatViewController.h"
 #import "CPMyDateModel.h"
+#import "ZYWaterflowLayout.h"
 
-@interface CPMyDateViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate>
+@interface CPMyDateViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate,ZYWaterflowLayoutDelegate>
 @property (nonatomic, strong) UICollectionView *tableView;
 @property (nonatomic, strong) NSMutableArray<CPMyDateModel *> *datas;
 @property (nonatomic, assign) CGFloat offset;
@@ -45,9 +46,10 @@ static NSString *ID = @"DateCell";
     }
     
     self.offset = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250;
-    self.automaticallyAdjustsScrollViewInsets = NO;
+//    self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.tableView];
     [ZYLoadingView showLoadingView];
+//    [self setEdgesForExtendedLayout:UIRectEdgeNone];
 }
 
 
@@ -57,6 +59,7 @@ static NSString *ID = @"DateCell";
     if (self.datas.count == 0) {
         [self loadDataWithHeader:nil];
     }
+//    [self.tableView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -100,6 +103,7 @@ static NSString *ID = @"DateCell";
             [v stopIndicatorAnimation];
         }
     }];
+    self.footerView.isNoAnimation = YES;
     self.isHasRefreshHeader = YES;
 }
 
@@ -109,7 +113,7 @@ static NSString *ID = @"DateCell";
 - (void)loadDataWithHeader:(AAPullToRefresh *)refresh
 {
 //    user/$userId/appointment/list
-    NSString *url = [NSString stringWithFormat:@"user/%@/appointment/list?token=%@",self.targetUerId, CPToken];
+    NSString *url = [NSString stringWithFormat:@"user/%@/appointment/list?token=%@",CPUserId, CPToken];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"ignore"] = @(self.ignore);
     [ZYNetWorkTool getWithUrl:url params:params success:^(id responseObject) {
@@ -152,14 +156,19 @@ static NSString *ID = @"DateCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CPNearCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
-    cell.indexPath = indexPath;
-    cell.myDateModel = self.datas[indexPath.item];
+    cell.contentV.indexPath = indexPath;
+    cell.contentV.myDateModel = self.datas[indexPath.item];
     return cell;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return self.datas.count;
+}
+
+- (CGFloat)waterflowLayout:(ZYWaterflowLayout *)waterflowLayout heightForWidth:(CGFloat)width atIndexPath:(NSIndexPath *)indexPath
+{
+    return self.offset + 383;
 }
 
 
@@ -338,8 +347,11 @@ static NSString *ID = @"DateCell";
 - (UICollectionView *)tableView
 {
     if (_tableView == nil) {
-        UICollectionView3DLayout *layout = [UICollectionView3DLayout new];
-        //        UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
+//        UICollectionView3DLayout *layout = [UICollectionView3DLayout new];
+        ZYWaterflowLayout *layout = [ZYWaterflowLayout new];
+        layout.columnsCount = 1;
+        layout.delegate = self;
+//                UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
         _tableView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
         _tableView.alwaysBounceVertical = YES;
         _tableView.backgroundColor = [UIColor clearColor];
@@ -349,10 +361,10 @@ static NSString *ID = @"DateCell";
         _tableView.delegate = self;
         _tableView.dataSource = self;
         CGSize itemSzie= CGSizeMake(ZYScreenWidth - 20, 383 + self.offset);
-        layout.itemSize = itemSzie;
+//        layout.itemSize = itemSzie;
         //        layout.scrollDirection = UICollectionLayoutScrollDirectionVertical;
-        layout.itemScale = 0.96;
-        layout.LayoutDirection=UICollectionLayoutScrollDirectionVertical;
+//        layout.itemScale = 0.96;
+//        layout.LayoutDirection=UICollectionLayoutScrollDirectionVertical;
         self.view.backgroundColor = [Tools getColor:@"efefef"];
         [_tableView registerClass:[CPNearCollectionViewCell class] forCellWithReuseIdentifier:ID];
         _tableView.panGestureRecognizer.delaysTouchesBegan = _tableView.delaysContentTouches;

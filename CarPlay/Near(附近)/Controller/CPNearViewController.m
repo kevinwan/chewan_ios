@@ -18,6 +18,7 @@
 #import "UICollectionView3DLayout.h"
 #import "CPNearCollectionViewCell.h"
 #import "CPAlbum.h"
+#import "CPMyInterestViewController.h"
 
 @interface CPNearViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate>
 @property (nonatomic, strong) UICollectionView *tableView;
@@ -160,8 +161,8 @@ static NSString *ID = @"cell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CPNearCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
-    cell.indexPath = indexPath;
-    cell.model = self.datas[indexPath.item];
+    cell.contentV.indexPath = indexPath;
+    cell.contentV.model = self.datas[indexPath.item];
     return cell;
 }
 
@@ -198,8 +199,8 @@ static NSString *ID = @"cell";
     }else if ([notifyName isEqualToString:IconViewClickKey]){
         CPGoLogin(@"查看TA的详情");
         CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
-        CPActivityModel *model = userInfo;
-        taVc.userId = model.organizer.userId;
+        NSIndexPath *indexPath = userInfo;
+        taVc.userId = self.datas[indexPath.row].organizer.userId;
         [self.navigationController pushViewController:taVc animated:YES];
     }
 }
@@ -359,6 +360,8 @@ static NSString *ID = @"cell";
  */
 - (void)filter
 {
+    [self.navigationController pushViewController:[CPMyInterestViewController new] animated:YES];
+    return;
     [CPSelectView showWithParams:^(CPSelectModel *selectModel) {
         
         self.params.type = selectModel.type;

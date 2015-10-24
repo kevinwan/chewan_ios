@@ -21,7 +21,7 @@
 
 @interface CPMyInterestViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate>
 @property (nonatomic, strong) UICollectionView *tableView;
-@property (nonatomic, strong) NSMutableArray<CPActivityModel *> *datas;
+@property (nonatomic, strong) NSMutableArray<CPIntersterModel *> *datas;
 @property (nonatomic, strong) UIView *tipView;
 @property (nonatomic, assign) CGFloat offset;
 @property (nonatomic, assign) NSInteger ignore;
@@ -31,7 +31,7 @@
 @property (nonatomic, weak)   AAPullToRefresh *footerView;
 @end
 
-static NSString *ID = @"cell";
+static NSString *ID = @"myIntersterCell";
 @implementation CPMyInterestViewController
 
 - (void)viewDidLoad
@@ -118,7 +118,7 @@ static NSString *ID = @"cell";
                 [self.datas removeAllObjects];
             }
             
-            NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
+            NSArray *arr = [CPIntersterModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
             NSLog(@"gggg%zd",arr.count);
             [self.datas addObjectsFromArray:arr];
             
@@ -149,8 +149,8 @@ static NSString *ID = @"cell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CPNearCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
-    cell.indexPath = indexPath;
-    cell.model = self.datas[indexPath.item];
+    cell.contentV.indexPath = indexPath;
+    cell.contentV.intersterModel = self.datas[indexPath.item];
     return cell;
 }
 
@@ -172,12 +172,12 @@ static NSString *ID = @"cell";
     }else if([notifyName isEqualToString:DateBtnClickKey]){
         [self dateClickWithInfo:userInfo];
     }else if([notifyName isEqualToString:LoveBtnClickKey]){
-        [self loveBtnClickWithInfo:(CPActivityModel *)userInfo];
+        [self loveBtnClickWithInfo:(CPIntersterModel *)userInfo];
     }else if ([notifyName isEqualToString:IconViewClickKey]){
         CPGoLogin(@"查看TA的详情");
         CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
-        CPActivityModel *model = userInfo;
-        taVc.userId = model.organizer.userId;
+        NSIndexPath *indexPath = userInfo;
+        taVc.userId = self.datas[indexPath.row].user.userId;
         [self.navigationController pushViewController:taVc animated:YES];
     }
 }
@@ -187,16 +187,16 @@ static NSString *ID = @"cell";
  *
  *  @param model model description
  */
-- (void)loveBtnClickWithInfo:(CPActivityModel *)model
+- (void)loveBtnClickWithInfo:(CPIntersterModel *)model
 {
     ZYAsyncThead(^{
         
         NSMutableArray *indexPaths = [NSMutableArray array];
         
         for (int i = 0;i < self.datas.count; i++) {
-            CPActivityModel *obj = self.datas[i];
-            if ([obj.organizer.userId isEqualToString:model.organizer.userId] && ![obj.activityId isEqualToString:model.activityId]) {
-                obj.organizer.subscribeFlag = model.organizer.subscribeFlag;
+            CPIntersterModel *obj = self.datas[i];
+            if ([obj.user.userId isEqualToString:model.user.userId] && ![obj.activityId isEqualToString:model.activityId]) {
+                obj.user.subscribeFlag = model.user.subscribeFlag;
                 [indexPaths addObject:[NSIndexPath indexPathForItem:i inSection:0]];
             }
             
@@ -306,22 +306,22 @@ static NSString *ID = @"cell";
 {
     CPGoLogin(@"邀TA");
     NSIndexPath *indexPath = userInfo;
-    CPActivityModel *model = self.datas[indexPath.row];
+    CPIntersterModel *model = self.datas[indexPath.row];
     NSString *url = [NSString stringWithFormat:@"activity/%@/join",model.activityId];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"destPoint"] = @{@"longitude" : @(CPLongitude),
                              @"latitude" : @(CPLatitude)};
-    params[@"transfer"] = @(model.transfer);
-    params[@"type"] = model.type;
-    params[@"pay"] = model.pay;
-    params[@"destination"] = model.destination;
+    params[@"transfer"] = @(model.activityTransfer);
+    params[@"type"] = model.activityType;
+    params[@"pay"] = model.activityPay;
+    params[@"destination"] = model.activityDestination;
     params[UserId] = CPUserId;
     params[Token] = CPToken;
     [self showLoading];
     [CPNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
         if (CPSuccess) {
             [self showInfo:@"邀请已发出"];
-            model.applyFlag = 1;
+            model.status = 1;
             [self.tableView reloadItemsAtIndexPaths:@[indexPath]];
         }else if ([CPErrorMsg contains:@"申请中"]){
             [self showInfo:@"正在申请中"];

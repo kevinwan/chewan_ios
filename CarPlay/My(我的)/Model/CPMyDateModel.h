@@ -41,6 +41,8 @@
 @property (nonatomic, assign) BOOL transfer;
 
 @property (nonatomic, copy, readonly) NSString *distanceStr;
+
+@property (nonatomic, assign) double distance;
 // organizer 组织者
 @property (nonatomic, strong) CPUser *applicant;
 @end
