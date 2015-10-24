@@ -13,11 +13,48 @@
 - (void)awakeFromNib {
     // Initialization code
 }
+//高度 70
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        ;
+        
+        _headIV = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10 , 50, 50)];
+        _headIV.backgroundColor = [UIColor clearColor];
+        [self.contentView addSubview:_headIV];
+        
+        _nameLabel = [[UILabel alloc] init];
+        _nameLabel.frame = CGRectMake(CGRectGetMaxX(_headIV.frame)+10, 27, 80, 16);
+        _nameLabel.backgroundColor = [UIColor clearColor];
+        _nameLabel.textColor = [UIColor blackColor];
+        _nameLabel.textAlignment = NSTextAlignmentLeft;
+        _nameLabel.font = [UIFont systemFontOfSize:17];
+        [self.contentView addSubview:_nameLabel];
+        
+        _sexView = [[CPSexView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_nameLabel.frame)+10, 27, 40, 30)];
+        [self.contentView addSubview:_sexView];
+        
+        _timeLabel = [[UILabel alloc] init];
+        _timeLabel.frame = CGRectMake(kDeviceWidth-10-60, 21, 60, 9);
+        _timeLabel.backgroundColor = [UIColor clearColor];
+        _timeLabel.textColor = [UIColor grayColor];
+        _timeLabel.textAlignment = NSTextAlignmentRight;
+        _timeLabel.font = [UIFont systemFontOfSize:12];
+        [self.contentView addSubview:_timeLabel];
+        
+        _distanceLabel = [[UILabel alloc] init];
+        _distanceLabel.frame = CGRectMake(kDeviceWidth-10-60, CGRectGetMaxY(_timeLabel.frame)+5, 60, 9);
+        _distanceLabel.backgroundColor = [UIColor clearColor];
+        _distanceLabel.textColor = [UIColor grayColor];
+        _distanceLabel.textAlignment = NSTextAlignmentRight;
+        _distanceLabel.font = [UIFont systemFontOfSize:12];
+        [self.contentView addSubview:_distanceLabel];
+        
+        //分割线
+        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 69, kDeviceWidth, 1)];
+        lineView.backgroundColor = [UIColor grayColor];
+        [self.contentView addSubview:lineView];
+        
     }
     return self;
 

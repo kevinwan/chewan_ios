@@ -545,6 +545,7 @@
 		EE7F81791BD9D1E0003E7B3B /* call_silence_h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7F81771BD9D1E0003E7B3B /* call_silence_h@3x.png */; settings = {ASSET_TAGS = (); }; };
 		EE7F817B1BD9E74D003E7B3B /* answerTel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7F817A1BD9E74D003E7B3B /* answerTel@2x.png */; settings = {ASSET_TAGS = (); }; };
 		EEEEACD21BDA27940076BC4E /* Call_bg_small_dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EEEEACD11BDA27940076BC4E /* Call_bg_small_dot@2x.png */; settings = {ASSET_TAGS = (); }; };
+		EEEEACD51BDB35510076BC4E /* CPCareMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEEEACD41BDB35510076BC4E /* CPCareMeViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1421,6 +1422,8 @@
 		EE7F81771BD9D1E0003E7B3B /* call_silence_h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_silence_h@3x.png"; sourceTree = "<group>"; };
 		EE7F817A1BD9E74D003E7B3B /* answerTel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "answerTel@2x.png"; sourceTree = "<group>"; };
 		EEEEACD11BDA27940076BC4E /* Call_bg_small_dot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Call_bg_small_dot@2x.png"; sourceTree = "<group>"; };
+		EEEEACD31BDB35510076BC4E /* CPCareMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCareMeViewController.h; sourceTree = "<group>"; };
+		EEEEACD41BDB35510076BC4E /* CPCareMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCareMeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3351,6 +3354,8 @@
 				E3A68BBA1BBB874D002F4F75 /* CPConcernMyController.storyboard */,
 				EE3383121BD8E27500BA4930 /* CareMeTableViewCell.h */,
 				EE3383131BD8E27500BA4930 /* CareMeTableViewCell.m */,
+				EEEEACD31BDB35510076BC4E /* CPCareMeViewController.h */,
+				EEEEACD41BDB35510076BC4E /* CPCareMeViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -4224,6 +4229,7 @@
 				6D2ABFAE1BCE582100201A8E /* PSTCollectionViewData.m in Sources */,
 				6D2ABFFC1BCE582100201A8E /* XHMessageTextView.m in Sources */,
 				6D2ABFC81BCE582100201A8E /* ChatSendHelper.m in Sources */,
+				EEEEACD51BDB35510076BC4E /* CPCareMeViewController.m in Sources */,
 				E31B134A1BB9312D00B51696 /* UIImage+FixOrientation.m in Sources */,
 				6D2ABFB01BCE582100201A8E /* PSTCollectionViewItemKey.m in Sources */,
 				6D2ABFE21BCE582100201A8E /* GroupBansViewController.m in Sources */,

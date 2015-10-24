@@ -23,6 +23,7 @@
 #import "UserProfileManager.h"
 #import "RobotChatViewController.h"
 #import "UIImageView+EMWebCache.h"
+#import "CPCareMeViewController.h"
 @implementation EMConversation (search)
 
 //根据用户昵称,环信机器人名称,群名称进行搜索
@@ -630,6 +631,13 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    //test
+    
+    CPCareMeViewController *careMeVC = [[CPCareMeViewController alloc]init];
+    [self.navigationController pushViewController:careMeVC animated:YES];
+    return;
+    
+    
     
     EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
        ChatViewController *chatController;
@@ -649,32 +657,25 @@
                 }
             }
         }
-    } else if (conversation.conversationType == eConversationTypeChat) {
+    }
+    else if (conversation.conversationType == eConversationTypeChat) {
         title = [[UserProfileManager sharedInstance] getNickNameWithUsername:conversation.chatter];
     }
     
     NSString *chatter = conversation.chatter;
-    if ([[RobotManager sharedInstance] isRobotWithUsername:chatter]) {
-        chatController = [[RobotChatViewController alloc] initWithChatter:chatter
-                                                    conversationType:conversation.conversationType];
-        chatController.title = [[RobotManager sharedInstance] getRobotNickWithUsername:chatter];
+    if ([chatter isEqualToString:@"subscribeadmin"]) {
+        CPCareMeViewController *careMeVC = [[CPCareMeViewController alloc]init];
+        [self.navigationController pushViewController:careMeVC animated:YES];
     }else {
         chatController = [[ChatViewController alloc] initWithChatter:chatter
                                                     conversationType:conversation.conversationType];
-//        switch (indexPath.row) {
-//            case 0://感兴趣的
-//                
-//                break;
-//                
-//            default:
-//                break;
-//        }
         chatController.title = [conversation.latestMessageFromOthers.ext valueForKey:kUserNickName];
         chatController.HerHeadStr =[conversation.latestMessageFromOthers.ext valueForKey:kUserHeadUrl];
+        chatController.delelgate = self;
+        [self.navigationController pushViewController:chatController animated:YES];
+
     }
     
-    chatController.delelgate = self;
-    [self.navigationController pushViewController:chatController animated:YES];
 }
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
