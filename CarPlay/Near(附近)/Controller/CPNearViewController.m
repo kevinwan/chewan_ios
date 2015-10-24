@@ -314,6 +314,11 @@ static NSString *ID = @"cell";
     
 }
 
+- (void)didReceiveMemoryWarning
+{
+    NSLog(@"didReceiveMemoryWarning");
+}
+
 /**
  *  处理约她的逻辑
  *

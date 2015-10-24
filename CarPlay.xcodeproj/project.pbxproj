@@ -446,7 +446,6 @@
 		E35428511BCF94D100D4A07A /* CPNoDataTipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E35428501BCF94D100D4A07A /* CPNoDataTipView.xib */; settings = {ASSET_TAGS = (); }; };
 		E35428541BCF965600D4A07A /* CPNoDataTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35428531BCF965600D4A07A /* CPNoDataTipView.m */; settings = {ASSET_TAGS = (); }; };
 		E356F0E11BD4851A00D5BE07 /* CPActivityDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E356F0E01BD4851A00D5BE07 /* CPActivityDetailViewController.storyboard */; settings = {ASSET_TAGS = (); }; };
-		E356F0E61BD4D8D600D5BE07 /* CPActivityDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E356F0E51BD4D8D600D5BE07 /* CPActivityDetailModel.m */; settings = {ASSET_TAGS = (); }; };
 		E356F0E91BD4DB5000D5BE07 /* CPActivityDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E356F0E81BD4DB5000D5BE07 /* CPActivityDetailHeaderView.m */; settings = {ASSET_TAGS = (); }; };
 		E356F0EB1BD4DBF700D5BE07 /* CPActivityDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E356F0EA1BD4DBF700D5BE07 /* CPActivityDetailHeaderView.xib */; settings = {ASSET_TAGS = (); }; };
 		E356F0EE1BD4ED7A00D5BE07 /* CPActivityDetailMiddleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E356F0ED1BD4ED7A00D5BE07 /* CPActivityDetailMiddleView.m */; settings = {ASSET_TAGS = (); }; };
@@ -457,13 +456,14 @@
 		E359EDBD1BCF75C20004B17D /* ZYImageVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = E359EDBC1BCF75C20004B17D /* ZYImageVIew.m */; settings = {ASSET_TAGS = (); }; };
 		E3606F0D1BC76FF100797968 /* CPRecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */; settings = {ASSET_TAGS = (); }; };
 		E3606F121BC78C7300797968 /* CPBaseViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F111BC78C7300797968 /* CPBaseViewCell.xib */; settings = {ASSET_TAGS = (); }; };
-		E36945F61BD9D0E800ABF3F5 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = E36945F31BD9D0E800ABF3F5 /* UIImage+ImageEffects.m */; settings = {ASSET_TAGS = (); }; };
-		E36945F71BD9D0E800ABF3F5 /* UIImageView+LBBlurredImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E36945F51BD9D0E800ABF3F5 /* UIImageView+LBBlurredImage.m */; settings = {ASSET_TAGS = (); }; };
 		E36945FA1BD9E3B000ABF3F5 /* CPMyDateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E36945F91BD9E3B000ABF3F5 /* CPMyDateModel.m */; settings = {ASSET_TAGS = (); }; };
 		E369E2B11BCB952E000A12B5 /* CPSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E369E2B01BCB952E000A12B5 /* CPSelectView.xib */; settings = {ASSET_TAGS = (); }; };
 		E369E2B41BCB985A000A12B5 /* CPSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E369E2B31BCB985A000A12B5 /* CPSelectButton.m */; settings = {ASSET_TAGS = (); }; };
 		E369E2B81BCB9F87000A12B5 /* CPSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = E369E2B71BCB9F87000A12B5 /* CPSelectView.m */; settings = {ASSET_TAGS = (); }; };
 		E369E2BB1BCBB997000A12B5 /* CPSelectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E369E2BA1BCBB997000A12B5 /* CPSelectModel.m */; settings = {ASSET_TAGS = (); }; };
+		E3719A771BDA275C00465DF2 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3719A761BDA275C00465DF2 /* FXBlurView.m */; settings = {ASSET_TAGS = (); }; };
+		E3719AAC1BDA5D9000465DF2 /* DRNRealTimeBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3719AA91BDA5D9000465DF2 /* DRNRealTimeBlurView.m */; settings = {ASSET_TAGS = (); }; };
+		E3719AAD1BDA5D9000465DF2 /* UIImage+BoxBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = E3719AAB1BDA5D9000465DF2 /* UIImage+BoxBlur.m */; settings = {ASSET_TAGS = (); }; };
 		E37C10B21BBB79D800E1A6A2 /* CPMyVisitorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E37C10B11BBB79D800E1A6A2 /* CPMyVisitorViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E37C10B41BBB79E700E1A6A2 /* CPMyVisitorViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E37C10B31BBB79E700E1A6A2 /* CPMyVisitorViewController.storyboard */; settings = {ASSET_TAGS = (); }; };
 		E37C10B71BBB7CEB00E1A6A2 /* CPMyVistorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E37C10B61BBB7CEB00E1A6A2 /* CPMyVistorCell.m */; settings = {ASSET_TAGS = (); }; };
@@ -526,7 +526,6 @@
 		E3AF16FE1BBA296C00306ABF /* CPNoHighLightButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AF16FD1BBA296C00306ABF /* CPNoHighLightButton.m */; settings = {ASSET_TAGS = (); }; };
 		E3AF17011BBA317E00306ABF /* CPMySwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AF17001BBA317E00306ABF /* CPMySwitch.m */; settings = {ASSET_TAGS = (); }; };
 		E3C5F1911BC92C790021E33D /* CPActivityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C5F1901BC92C790021E33D /* CPActivityDetailViewController.m */; settings = {ASSET_TAGS = (); }; };
-		E3E6B88C1BB4F7FA006B4F8A /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6B88B1BB4F7FA006B4F8A /* FXBlurView.m */; settings = {ASSET_TAGS = (); }; };
 		E3E6B8911BB4FD54006B4F8A /* CPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6B88F1BB4FD54006B4F8A /* CPLoginViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E3E6B8921BB4FD54006B4F8A /* CPLoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3E6B8901BB4FD54006B4F8A /* CPLoginViewController.storyboard */; settings = {ASSET_TAGS = (); }; };
 		E3E6B8951BB514A2006B4F8A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6B8941BB514A2006B4F8A /* AppDelegate.m */; settings = {ASSET_TAGS = (); }; };
@@ -1238,8 +1237,6 @@
 		E35428521BCF965600D4A07A /* CPNoDataTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNoDataTipView.h; sourceTree = "<group>"; };
 		E35428531BCF965600D4A07A /* CPNoDataTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNoDataTipView.m; sourceTree = "<group>"; };
 		E356F0E01BD4851A00D5BE07 /* CPActivityDetailViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPActivityDetailViewController.storyboard; sourceTree = "<group>"; };
-		E356F0E41BD4D8D600D5BE07 /* CPActivityDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityDetailModel.h; sourceTree = "<group>"; };
-		E356F0E51BD4D8D600D5BE07 /* CPActivityDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityDetailModel.m; sourceTree = "<group>"; };
 		E356F0E71BD4DB5000D5BE07 /* CPActivityDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityDetailHeaderView.h; sourceTree = "<group>"; };
 		E356F0E81BD4DB5000D5BE07 /* CPActivityDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityDetailHeaderView.m; sourceTree = "<group>"; };
 		E356F0EA1BD4DBF700D5BE07 /* CPActivityDetailHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPActivityDetailHeaderView.xib; sourceTree = "<group>"; };
@@ -1255,10 +1252,6 @@
 		E359EDBC1BCF75C20004B17D /* ZYImageVIew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYImageVIew.m; sourceTree = "<group>"; };
 		E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPRecommendCell.xib; sourceTree = "<group>"; };
 		E3606F111BC78C7300797968 /* CPBaseViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPBaseViewCell.xib; sourceTree = "<group>"; };
-		E36945F21BD9D0E800ABF3F5 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
-		E36945F31BD9D0E800ABF3F5 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
-		E36945F41BD9D0E800ABF3F5 /* UIImageView+LBBlurredImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LBBlurredImage.h"; sourceTree = "<group>"; };
-		E36945F51BD9D0E800ABF3F5 /* UIImageView+LBBlurredImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+LBBlurredImage.m"; sourceTree = "<group>"; };
 		E36945F81BD9E3B000ABF3F5 /* CPMyDateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyDateModel.h; sourceTree = "<group>"; };
 		E36945F91BD9E3B000ABF3F5 /* CPMyDateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyDateModel.m; sourceTree = "<group>"; };
 		E369E2B01BCB952E000A12B5 /* CPSelectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPSelectView.xib; sourceTree = "<group>"; };
@@ -1268,6 +1261,12 @@
 		E369E2B71BCB9F87000A12B5 /* CPSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSelectView.m; sourceTree = "<group>"; };
 		E369E2B91BCBB997000A12B5 /* CPSelectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSelectModel.h; sourceTree = "<group>"; };
 		E369E2BA1BCBB997000A12B5 /* CPSelectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSelectModel.m; sourceTree = "<group>"; };
+		E3719A751BDA275C00465DF2 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
+		E3719A761BDA275C00465DF2 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
+		E3719AA81BDA5D9000465DF2 /* DRNRealTimeBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRNRealTimeBlurView.h; sourceTree = "<group>"; };
+		E3719AA91BDA5D9000465DF2 /* DRNRealTimeBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRNRealTimeBlurView.m; sourceTree = "<group>"; };
+		E3719AAA1BDA5D9000465DF2 /* UIImage+BoxBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BoxBlur.h"; sourceTree = "<group>"; };
+		E3719AAB1BDA5D9000465DF2 /* UIImage+BoxBlur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BoxBlur.m"; sourceTree = "<group>"; };
 		E37C10B01BBB79D800E1A6A2 /* CPMyVisitorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyVisitorViewController.h; sourceTree = "<group>"; };
 		E37C10B11BBB79D800E1A6A2 /* CPMyVisitorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyVisitorViewController.m; sourceTree = "<group>"; };
 		E37C10B31BBB79E700E1A6A2 /* CPMyVisitorViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMyVisitorViewController.storyboard; sourceTree = "<group>"; };
@@ -1390,8 +1389,6 @@
 		E3AF17001BBA317E00306ABF /* CPMySwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMySwitch.m; sourceTree = "<group>"; };
 		E3C5F18F1BC92C790021E33D /* CPActivityDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityDetailViewController.h; sourceTree = "<group>"; };
 		E3C5F1901BC92C790021E33D /* CPActivityDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityDetailViewController.m; sourceTree = "<group>"; };
-		E3E6B88A1BB4F7FA006B4F8A /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
-		E3E6B88B1BB4F7FA006B4F8A /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 		E3E6B88E1BB4FD54006B4F8A /* CPLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLoginViewController.h; sourceTree = "<group>"; };
 		E3E6B88F1BB4FD54006B4F8A /* CPLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPLoginViewController.m; sourceTree = "<group>"; };
 		E3E6B8901BB4FD54006B4F8A /* CPLoginViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPLoginViewController.storyboard; sourceTree = "<group>"; };
@@ -3396,8 +3393,6 @@
 			children = (
 				E3EA1A001BC8DF43007ECECA /* CPRecommendModel.h */,
 				E3EA1A011BC8DF43007ECECA /* CPRecommendModel.m */,
-				E356F0E41BD4D8D600D5BE07 /* CPActivityDetailModel.h */,
-				E356F0E51BD4D8D600D5BE07 /* CPActivityDetailModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3710,12 +3705,12 @@
 		E3E6B8891BB4F7FA006B4F8A /* FXBlurView(模糊效果) */ = {
 			isa = PBXGroup;
 			children = (
-				E36945F21BD9D0E800ABF3F5 /* UIImage+ImageEffects.h */,
-				E36945F31BD9D0E800ABF3F5 /* UIImage+ImageEffects.m */,
-				E36945F41BD9D0E800ABF3F5 /* UIImageView+LBBlurredImage.h */,
-				E36945F51BD9D0E800ABF3F5 /* UIImageView+LBBlurredImage.m */,
-				E3E6B88A1BB4F7FA006B4F8A /* FXBlurView.h */,
-				E3E6B88B1BB4F7FA006B4F8A /* FXBlurView.m */,
+				E3719AA81BDA5D9000465DF2 /* DRNRealTimeBlurView.h */,
+				E3719AA91BDA5D9000465DF2 /* DRNRealTimeBlurView.m */,
+				E3719AAA1BDA5D9000465DF2 /* UIImage+BoxBlur.h */,
+				E3719AAB1BDA5D9000465DF2 /* UIImage+BoxBlur.m */,
+				E3719A751BDA275C00465DF2 /* FXBlurView.h */,
+				E3719A761BDA275C00465DF2 /* FXBlurView.m */,
 			);
 			name = "FXBlurView(模糊效果)";
 			path = FXBlurView;
@@ -4120,7 +4115,6 @@
 				6D2ABFF01BCE582100201A8E /* ApplyViewController.m in Sources */,
 				6D2ABFD61BCE582100201A8E /* EMChatTextBubbleView.m in Sources */,
 				E31B133E1BB9312D00B51696 /* CALayer+Transition.m in Sources */,
-				E356F0E61BD4D8D600D5BE07 /* CPActivityDetailModel.m in Sources */,
 				6B1387DE1BCD0A6C00FAC462 /* CustomBrandCell.m in Sources */,
 				E31B12E61BB9311700B51696 /* PBSaveBtn.m in Sources */,
 				6D2ABFBD1BCE582100201A8E /* TTGlobalUICommon.m in Sources */,
@@ -4199,7 +4193,6 @@
 				E31B13481BB9312D00B51696 /* UIImage+Cut.m in Sources */,
 				6B364CA01BCF442E005A4AF9 /* CPMyBaseCell.m in Sources */,
 				E31B13521BB9312D00B51696 /* UIImageView+SD.m in Sources */,
-				E36945F61BD9D0E800ABF3F5 /* UIImage+ImageEffects.m in Sources */,
 				E3A471881BB3A85300973197 /* UITableViewCell+ZYExtension.m in Sources */,
 				E369E2B81BCB9F87000A12B5 /* CPSelectView.m in Sources */,
 				E37C10B71BBB7CEB00E1A6A2 /* CPMyVistorCell.m in Sources */,
@@ -4264,6 +4257,7 @@
 				E3A4717A1BB3A85300973197 /* NSDate+Extension.m in Sources */,
 				6B364C771BCE4077005A4AF9 /* MJPhoto.m in Sources */,
 				E3A471811BB3A85300973197 /* UIBarButtonItem+Extension.m in Sources */,
+				E3719AAC1BDA5D9000465DF2 /* DRNRealTimeBlurView.m in Sources */,
 				E31B12E11BB9311700B51696 /* PhotoBroswerLayout.m in Sources */,
 				E37C10B21BBB79D800E1A6A2 /* CPMyVisitorViewController.m in Sources */,
 				E369E2BB1BCBB997000A12B5 /* CPSelectModel.m in Sources */,
@@ -4325,7 +4319,6 @@
 				E31B13541BB9312D00B51696 /* CoreSVP.m in Sources */,
 				E3A471921BB3A85300973197 /* CPNavigationController.m in Sources */,
 				E31B12E51BB9311700B51696 /* PBPGView.m in Sources */,
-				E36945F71BD9D0E800ABF3F5 /* UIImageView+LBBlurredImage.m in Sources */,
 				6D2ABFD91BCE582100201A8E /* EMChatViewBaseCell.m in Sources */,
 				6D2ABFD81BCE582100201A8E /* EMChatTimeCell.m in Sources */,
 				6D2ABFCB1BCE582100201A8E /* ConvertToCommonEmoticonsHelper.m in Sources */,
@@ -4351,8 +4344,8 @@
 				6D2ABF911BCE582100201A8E /* MWCaptionView.m in Sources */,
 				E356F0EE1BD4ED7A00D5BE07 /* CPActivityDetailMiddleView.m in Sources */,
 				6D2ABFF71BCE582100201A8E /* EMRemarkImageView.m in Sources */,
-				E3E6B88C1BB4F7FA006B4F8A /* FXBlurView.m in Sources */,
 				6D2ABFD01BCE582100201A8E /* DXChatBarMoreView.m in Sources */,
+				E3719AAD1BDA5D9000465DF2 /* UIImage+BoxBlur.m in Sources */,
 				E39627C11BB54D91005E0CF2 /* MultiplePulsingHaloLayer.m in Sources */,
 				6D2ABFEB1BCE582100201A8E /* ChineseToPinyin.m in Sources */,
 				6D2ABFAC1BCE582100201A8E /* PSTCollectionViewCell.m in Sources */,
@@ -4361,6 +4354,7 @@
 				E3A4717E1BB3A85300973197 /* NSString+Directory.m in Sources */,
 				E311371F1BD09309004EF249 /* CPLoadingView.m in Sources */,
 				6D2ABFEA1BCE582100201A8E /* MyChatroomListViewController.m in Sources */,
+				E3719A771BDA275C00465DF2 /* FXBlurView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

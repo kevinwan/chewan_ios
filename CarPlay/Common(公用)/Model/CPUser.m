@@ -26,7 +26,7 @@
     return @{@"album":[CPAlbum class]};
 }
 
-- (void)setDistance:(NSUInteger)distance
+- (void)setDistance:(double)distance
 {
     _distance = distance;
     
@@ -37,6 +37,7 @@
         _distanceStr = [NSString stringWithFormat:@"%zdm",distance];
     }
 }
+
 
 
 MJCodingImplementation

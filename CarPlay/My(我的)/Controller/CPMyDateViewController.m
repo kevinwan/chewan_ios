@@ -108,7 +108,7 @@ static NSString *ID = @"DateCell";
 - (void)loadDataWithHeader:(AAPullToRefresh *)refresh
 {
 //    user/$userId/appointment/list
-    NSString *url = [NSString stringWithFormat:@"user/%@/appointment/list?token=%@",CPUserId, CPToken];
+    NSString *url = [NSString stringWithFormat:@"user/%@/appointment/list?token=%@",self.targetUerId, CPToken];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"ignore"] = @(self.ignore);
     [ZYNetWorkTool getWithUrl:url params:params success:^(id responseObject) {
