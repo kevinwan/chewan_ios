@@ -19,5 +19,6 @@
 @property (weak, nonatomic) IBOutlet CPNPSButton *person8;
 @property (weak, nonatomic) IBOutlet CPNPSButton *person9;
 @property (weak, nonatomic) IBOutlet CPNPSButton *person10;
-- (IBAction)personBtnClick:(id)sender;
+- (IBAction)personBtnClick:(CPNPSButton *)sender;
+- (IBAction)close:(id)sender;
 @end

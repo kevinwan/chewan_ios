@@ -85,7 +85,7 @@
             [[[UIAlertView alloc]initWithTitle:@"提示" message:@"您还没有登陆，是否登陆？" delegate:self cancelButtonTitle:@"再想想" otherButtonTitles:@"去登陆", nil] show];
         }
     }else{
-        [[[UIAlertView alloc]initWithTitle:@"你个傻逼" message:@"没传UserId过来要什么自行车" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"没传UserId过来要什么自行车" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
     }
 }
 

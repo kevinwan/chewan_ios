@@ -201,7 +201,24 @@
 }
 //打开语音
 - (IBAction)phone:(UIButton *)sender {
+    CPCareUser *careUser=[CPCareUser new];
+    switch (corentBtnTag) {
+        case 10:
+            careUser=_eachSubscribe[sender.tag];
+            break;
+        case 20:
+            careUser=_mySubscribe[sender.tag];
+            break;
+        case 30:
+            careUser=_beSubscribed[sender.tag];
+            break;
+        default:
+            break;
+    }
     
+    [ZYUserDefaults setValue:careUser.avatar forKey:kReceiverHeadUrl];
+    [ZYUserDefaults setValue: careUser.nickname forKey:kReceiverNickName];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"callOutWithChatter" object:@{@"chatter":[Tools md5EncryptWithString:careUser.userId], @"type":[NSNumber numberWithInt:eCallSessionTypeAudio]}];
 }
 //关注、取消关注
 - (IBAction)subscribe:(UIButton *)sender {

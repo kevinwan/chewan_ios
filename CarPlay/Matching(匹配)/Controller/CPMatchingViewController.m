@@ -14,6 +14,7 @@
 #import "OtherMatchingSelectView.h"
 #import "MatchingSelectView.h"
 #import "ExerciseMatchingSelectView.h"
+#import "CPActivityModel.h"
 
 
 @interface CPMatchingViewController ()<UIGestureRecognizerDelegate,UITableViewDataSource,UITableViewDelegate>
@@ -429,83 +430,13 @@
         
         [ZYUserDefaults setObject:type forKey:LastType];
     }else{
+        //加载随便看看页面
         [self.view addSubview:takeALook.view];
-        [UIView animateWithDuration:0.1
-                         animations:^{
-                             takeALook.view.transform = CGAffineTransformMakeScale(0.0, 0.0);
-                         }completion:^(BOOL finish){
-                             [UIView animateWithDuration:0.7
-                                              animations:^{
-                                                  takeALook.view.transform = CGAffineTransformMakeScale(1, 1);
-                                              }completion:^(BOOL finish){
-                                                  [takeALook.person1 setFrame:CGRectMake(53.0/320.0*ZYScreenWidth, 35.0/568.0*ZYScreenHeight, 59.0, 59.0)];
-                                                  takeALookAnimationIndex=1;
-                                                  takeALookViewTimer =  [NSTimer scheduledTimerWithTimeInterval:.2 target:self selector:@selector(takeALookAnimation) userInfo:nil repeats:YES];
-                                              }];
-                         }];
         [self addChildViewController:takeALook];
-    }
-}
-
-//随便看看页面动画
--(void)takeALookAnimation{
-//    [UIView beginAnimations:@"takeALookAnimation" context:nil];
-//    //动画持续时间
-//    [UIView setAnimationDuration:.2];
-//    //设置动画的回调函数，设置后可以使用回调方法
-//    [UIView setAnimationDelegate:self];
-//    [UIView setAnimationDelay:0];
-//    [self takeALookAnimationDetail];
-    
-    [UIView animateWithDuration:0.2 animations:^{
-//        [takeALook.person1 setFrame:CGRectMake(53.0/320.0*ZYScreenWidth, 35.0/568.0*ZYScreenHeight, 59.0, 59.0)];
-//        takeALook.person1.height=59.0;
-//        takeALook.person1.width=59.0;
-        [takeALook.person1 setBackgroundColor:[UIColor yellowColor]];
-    }];
-    
-    //提交UIView动画
-//    [UIView commitAnimations];
-}
-//随便看看页面逐步动画
--(void)takeALookAnimationDetail{
-    switch (takeALookAnimationIndex % 10) {
-        case 1:
-            [takeALook.person1 setFrame:CGRectMake(53.0/320.0*ZYScreenWidth, 35.0/568.0*ZYScreenHeight, 59.0, 59.0)];
-            break;
-        case 2:
-           [takeALook.person2 setFrame:CGRectMake(182.0/320.0*ZYScreenWidth, 59.0/568.0*ZYScreenHeight, 59.0, 59.0)];
-            break;
-        case 3:
-            [takeALook.person3 setFrame:CGRectMake(80.0/320.0*ZYScreenWidth, 115.0/568.0*ZYScreenHeight, 62.0, 62.0)];
-            break;
-        case 4:
-          [takeALook.person4 setFrame:CGRectMake(233.0/320.0*ZYScreenWidth, 148.0/568.0*ZYScreenHeight, 69.0, 69.0)];
-            break;
-        case 5:
-           [takeALook.person5 setFrame:CGRectMake(130.0/320.0*ZYScreenWidth, 196.0/568.0*ZYScreenHeight, 59.0, 59.0)];
-            break;
-        case 6:
-           [takeALook.person6 setFrame:CGRectMake(27.0/320.0*ZYScreenWidth, 206.0/568.0*ZYScreenHeight, 59.0, 59.0)];
-            break;
-        case 7:
-            [takeALook.person7 setFrame:CGRectMake(214.0/320.0*ZYScreenWidth, 261.0/568.0*ZYScreenHeight, 59.0, 59.0)];
-            break;
-        case 8:
-            [takeALook.person8 setFrame:CGRectMake(32.0/320.0*ZYScreenWidth, 313.0/568.0*ZYScreenHeight, 59.0, 59.0)];
-            break;
-        case 9:
-           [takeALook.person9 setFrame:CGRectMake(125.0/320.0*ZYScreenWidth, 326.0/568.0*ZYScreenHeight, 69.0, 69.0)];
-            break;
-        case 0:
-            [takeALook.person10 setFrame:CGRectMake(232.0/320.0*ZYScreenWidth, 349.0/568.0*ZYScreenHeight, 59.0, 59.0)];
-            break;
-        default:
-            break;
-    }
-    takeALookAnimationIndex++;
-    if (takeALookAnimationIndex>10) {
-        takeALookAnimationIndex=1;
+        takeALook.view.transform = CGAffineTransformMakeScale(0.0, 0.0);
+        [UIView animateWithDuration:0.5 animations:^{
+            takeALook.view.transform = CGAffineTransformMakeScale(1.0, 1.0);
+        } completion:nil];
     }
 }
 
