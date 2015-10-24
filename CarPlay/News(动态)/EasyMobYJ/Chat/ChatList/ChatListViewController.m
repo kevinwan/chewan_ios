@@ -24,6 +24,7 @@
 #import "RobotChatViewController.h"
 #import "UIImageView+EMWebCache.h"
 #import "CPCareMeViewController.h"
+#import "CPVisitorViewController.h"
 @implementation EMConversation (search)
 
 //根据用户昵称,环信机器人名称,群名称进行搜索
@@ -635,6 +636,9 @@
     
     CPCareMeViewController *careMeVC = [[CPCareMeViewController alloc]init];
     [self.navigationController pushViewController:careMeVC animated:YES];
+//        CPVisitorViewController *careMeVC = [[CPVisitorViewController alloc]init];
+//        [self.navigationController pushViewController:careMeVC animated:YES];
+
     return;
     
     

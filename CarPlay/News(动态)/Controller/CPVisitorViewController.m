@@ -1,53 +1,55 @@
 //
-//  CPCareMeViewController.m
+//  CPVisitorViewController.m
 //  CarPlay
 //
 //  Created by jiang on 15/10/24.
 //  Copyright © 2015年 chewan. All rights reserved.
 //
 
-#import "CPCareMeViewController.h"
-#import "CareMeTableViewCell.h"
+#import "CPVisitorViewController.h"
+#import "CPVisitorTableViewCell.h"
 #import "NSDate+Category.h"
-@interface CPCareMeViewController ()
-@property (nonatomic, strong)UITableView *careMeTableview;
+@interface CPVisitorViewController ()
+{
+    NSInteger _limit;
+    NSInteger _page;
+}
+@property (nonatomic, strong)UITableView *visitorTableview;
 @property (nonatomic, strong)NSMutableArray *dataSource;
+
 @end
 
-@implementation CPCareMeViewController
+@implementation CPVisitorViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _limit = 20;
+    _page = 0;
     self.view.backgroundColor = GrayColor;
-    self.title = @"谁关注我";
     [self setEdgesForExtendedLayout:UIRectEdgeNone];
-    self.careMeTableview = [[UITableView alloc]initWithFrame:CGRectMake(0,10, self.view.frame.size.width, self.view.frame.size.height-10) style:UITableViewStylePlain];
-    _careMeTableview.delegate = self;
-
-    _careMeTableview.tableFooterView = [[UIView alloc]init];
-    _careMeTableview.backgroundColor = [UIColor whiteColor];
-    _careMeTableview.dataSource  = self;
-    [_careMeTableview setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    [self.view addSubview:_careMeTableview];
+    self.title = @"最近访客";
+    self.visitorTableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 10, self.view.frame.size.width, self.view.frame.size.height-10) style:UITableViewStylePlain];
+    _visitorTableview.delegate = self;
+    _visitorTableview.dataSource  = self;
+    [_visitorTableview setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self.view addSubview:_visitorTableview];
     [self showLoading];
-    [ZYNetWorkTool getWithUrl:[NSString stringWithFormat:@"user/%@/subscribe/history?token=%@",CPUserId,CPToken] params:nil success:^(id responseObject) {
+    
+    [ZYNetWorkTool getWithUrl:[NSString stringWithFormat:@"user/%@/view/history?token=%@&limit=%ld&ignore=%ld",CPUserId,CPToken,(long)_limit,(long)_page] params:nil success:^(id responseObject) {
         [self disMiss];
         if (CPSuccess) {
             self.dataSource = [responseObject objectForKey:@"data"];
-            [_careMeTableview reloadData];
+            [_visitorTableview reloadData];
         }
     } failure:^(NSError *error) {
         [self disMiss];
     }];
-    
+
 }
-- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    return nil;
-}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    
+    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark tableview delegate
@@ -66,22 +68,23 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *identify = @"CareMeCell";
-    CareMeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
+    CPVisitorTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
     
     if (!cell) {
-        cell = [[CareMeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
+        cell = [[CPVisitorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
     }
     if (indexPath.row<self.dataSource.count) {
         NSDictionary *dic = [self.dataSource objectAtIndex:indexPath.row];
         [cell.headIV sd_setImageWithURL:[NSURL URLWithString:[dic objectForKey:@"avatar"]] placeholderImage:[UIImage imageNamed:@"chatListCellHead"]];
         cell.nameLabel.text = [dic objectForKey:@"nickname"];
+        cell.messageLabel.text = @"看过我";
         cell.sexView.age = [[dic objectForKey:@"age"] integerValue];
         cell.sexView.gender = [dic objectForKey:@"gender"];
         cell.distanceLabel.text =[self getDidstanceStrWithDistance:[[dic objectForKey:@"distance"] integerValue]];
         
         
-        cell.timeLabel.text =[NSDate formattedTimeFromTimeInterval:[[dic objectForKey:@"subscribeTime"] longLongValue]];;
-
+//        cell.timeLabel.text =[NSDate formattedTimeFromTimeInterval:[[dic objectForKey:@"subscribeTime"] longLongValue]];;
+        
     }
     
     return cell;
@@ -93,10 +96,11 @@
     }else{
         return [NSString stringWithFormat:@"%.fkm",distance/1000.0];
     }
-
+    
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"row = %d",indexPath.row);
 }
+
 @end

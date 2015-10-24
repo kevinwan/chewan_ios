@@ -1,18 +1,15 @@
 //
-//  CareMeTableViewCell.m
+//  CPVisitorTableViewCell.m
 //  CarPlay
 //
-//  Created by jiang on 15/10/22.
+//  Created by jiang on 15/10/24.
 //  Copyright © 2015年 chewan. All rights reserved.
 //
 
-#import "CareMeTableViewCell.h"
+#import "CPVisitorTableViewCell.h"
 
-@implementation CareMeTableViewCell
+@implementation CPVisitorTableViewCell
 
-- (void)awakeFromNib {
-    // Initialization code
-}
 //高度 70
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -26,14 +23,23 @@
         [self.contentView addSubview:_headIV];
         
         _nameLabel = [[UILabel alloc] init];
-        _nameLabel.frame = CGRectMake(CGRectGetMaxX(_headIV.frame)+10, 27, 60, 16);
+        _nameLabel.frame = CGRectMake(CGRectGetMaxX(_headIV.frame)+10, 17, 60, 16);
         _nameLabel.backgroundColor = [UIColor clearColor];
         _nameLabel.textColor = [UIColor blackColor];
         _nameLabel.textAlignment = NSTextAlignmentLeft;
         _nameLabel.font = [UIFont systemFontOfSize:17];
         [self.contentView addSubview:_nameLabel];
         
-        _sexView = [[CPSexView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_nameLabel.frame)+5, 27, 45, 17)];
+        _messageLabel = [[UILabel alloc] init];
+        _messageLabel.frame = CGRectMake(CGRectGetMaxX(_headIV.frame)+10, 5+CGRectGetMaxY(_nameLabel.frame), 60, 16);
+        _messageLabel.backgroundColor = [UIColor clearColor];
+        _messageLabel.textColor = UIColorFromRGB(0x999999);
+        _messageLabel.textAlignment = NSTextAlignmentLeft;
+        _messageLabel.font = [UIFont systemFontOfSize:12];
+        [self.contentView addSubview:_messageLabel];
+
+        
+        _sexView = [[CPSexView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_nameLabel.frame)+5, 17, 45, 17)];
         [self.contentView addSubview:_sexView];
         
         _timeLabel = [[UILabel alloc] init];
@@ -59,8 +65,12 @@
         lineView.alpha = 0.7;
     }
     return self;
-
+    
 }
+- (void)awakeFromNib {
+    // Initialization code
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

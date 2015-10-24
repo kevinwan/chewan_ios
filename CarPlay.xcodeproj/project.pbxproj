@@ -540,6 +540,8 @@
 		EE3383141BD8E27500BA4930 /* CareMeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE3383131BD8E27500BA4930 /* CareMeTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		EE3383171BD9141200BA4930 /* call_silence@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE3383151BD9141200BA4930 /* call_silence@3x.png */; settings = {ASSET_TAGS = (); }; };
 		EE3383181BD9141200BA4930 /* refuse@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE3383161BD9141200BA4930 /* refuse@2x.png */; settings = {ASSET_TAGS = (); }; };
+		EE72E7AC1BDB6BC10094521F /* CPVisitorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE72E7AB1BDB6BC10094521F /* CPVisitorViewController.m */; settings = {ASSET_TAGS = (); }; };
+		EE72E7AF1BDB6BDF0094521F /* CPVisitorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE72E7AE1BDB6BDF0094521F /* CPVisitorTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		EE7F81781BD9D1E0003E7B3B /* call_out_h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7F81761BD9D1E0003E7B3B /* call_out_h@3x.png */; settings = {ASSET_TAGS = (); }; };
 		EE7F81791BD9D1E0003E7B3B /* call_silence_h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7F81771BD9D1E0003E7B3B /* call_silence_h@3x.png */; settings = {ASSET_TAGS = (); }; };
 		EE7F817B1BD9E74D003E7B3B /* answerTel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7F817A1BD9E74D003E7B3B /* answerTel@2x.png */; settings = {ASSET_TAGS = (); }; };
@@ -1416,6 +1418,10 @@
 		EE3383131BD8E27500BA4930 /* CareMeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CareMeTableViewCell.m; sourceTree = "<group>"; };
 		EE3383151BD9141200BA4930 /* call_silence@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_silence@3x.png"; sourceTree = "<group>"; };
 		EE3383161BD9141200BA4930 /* refuse@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refuse@2x.png"; sourceTree = "<group>"; };
+		EE72E7AA1BDB6BC10094521F /* CPVisitorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPVisitorViewController.h; sourceTree = "<group>"; };
+		EE72E7AB1BDB6BC10094521F /* CPVisitorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPVisitorViewController.m; sourceTree = "<group>"; };
+		EE72E7AD1BDB6BDF0094521F /* CPVisitorTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPVisitorTableViewCell.h; sourceTree = "<group>"; };
+		EE72E7AE1BDB6BDF0094521F /* CPVisitorTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPVisitorTableViewCell.m; sourceTree = "<group>"; };
 		EE7F81761BD9D1E0003E7B3B /* call_out_h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_out_h@3x.png"; sourceTree = "<group>"; };
 		EE7F81771BD9D1E0003E7B3B /* call_silence_h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_silence_h@3x.png"; sourceTree = "<group>"; };
 		EE7F817A1BD9E74D003E7B3B /* answerTel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "answerTel@2x.png"; sourceTree = "<group>"; };
@@ -3356,6 +3362,10 @@
 				EE3383131BD8E27500BA4930 /* CareMeTableViewCell.m */,
 				EEEEACD31BDB35510076BC4E /* CPCareMeViewController.h */,
 				EEEEACD41BDB35510076BC4E /* CPCareMeViewController.m */,
+				EE72E7AA1BDB6BC10094521F /* CPVisitorViewController.h */,
+				EE72E7AB1BDB6BC10094521F /* CPVisitorViewController.m */,
+				EE72E7AD1BDB6BDF0094521F /* CPVisitorTableViewCell.h */,
+				EE72E7AE1BDB6BDF0094521F /* CPVisitorTableViewCell.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -4136,6 +4146,7 @@
 				6D2ABF8E1BCE582100201A8E /* EmojiEmoticons.m in Sources */,
 				E3A471871BB3A85300973197 /* UITableView+ZYExtension.m in Sources */,
 				E3A471911BB3A85300973197 /* ZYNetWorkTool.m in Sources */,
+				EE72E7AF1BDB6BDF0094521F /* CPVisitorTableViewCell.m in Sources */,
 				6D2ABFB11BCE582100201A8E /* PSTCollectionViewLayout.m in Sources */,
 				6D2ABFD11BCE582100201A8E /* DXRecordView.m in Sources */,
 				6BCD585C1BBB87750025F995 /* CPMyInfoFirCell.m in Sources */,
@@ -4345,6 +4356,7 @@
 				E3E6B8981BB515F1006B4F8A /* CPSexView.m in Sources */,
 				E3A471891BB3A85300973197 /* UIView+Extension.m in Sources */,
 				6B364C891BCF3FDC005A4AF9 /* CPAlbum.m in Sources */,
+				EE72E7AC1BDB6BC10094521F /* CPVisitorViewController.m in Sources */,
 				E3A4E0C71BCCCC1300850AA7 /* CPNearParams.m in Sources */,
 				6D2AC0091BCE582100201A8E /* UIViewController+HUD.m in Sources */,
 				E39627B21BB5265A005E0CF2 /* UIImage+Blur.m in Sources */,
