@@ -15,6 +15,7 @@
 #import "UICollectionView3DLayout.h"
 #import "CPNearCollectionViewCell.h"
 #import "CPAlbum.h"
+#import "ChatViewController.h"
 #import "CPMyDateModel.h"
 
 @interface CPMyDateViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate>
@@ -178,9 +179,18 @@ static NSString *ID = @"DateCell";
         CPMyDateModel *model = self.datas[indexPath.row];
 
         if (model.status == 1){
-            
+            //
         }else if (model.status == 2){
+            //消息
+//            NSString *userID = model.applyUserId;
+//            if (![userID isEqualToString:CPUserId]) {
+//                userID = model.invitedUserId;
+//            }
+            NSString *userID=[model.applyUserId isEqualToString:CPUserId]?model.invitedUserId:model.applyUserId;
             
+            ChatViewController *xiaoniuChatVc = [[ChatViewController alloc]initWithChatter:[Tools md5EncryptWithString:userID] conversationType:eConversationTypeChat];
+            xiaoniuChatVc.title = model.applicant.nickname;
+            [self.navigationController pushViewController:xiaoniuChatVc animated:YES];
         }
         
     }else if([notifyName isEqualToString:IgnoreButtonClickKey]){
@@ -190,8 +200,15 @@ static NSString *ID = @"DateCell";
             
             [self.datas removeObjectAtIndex:[userInfo row]];
             [self.tableView deleteItemsAtIndexPaths:@[userInfo]];
-        }else{
-            
+        }else if (model.status == 2){
+            //电话
+            NSString *userID=[model.applyUserId isEqualToString:CPUserId]?model.invitedUserId:model.applyUserId;
+
+            [ZYUserDefaults setValue:model.applicant.avatar forKey:kReceiverHeadUrl];
+            [ZYUserDefaults setValue: model.applicant.nickname forKey:kReceiverNickName];
+            NSLog(@"电话头像URL = %@",model.applicant.avatar);
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"callOutWithChatter" object:@{@"chatter":[Tools md5EncryptWithString:userID], @"type":[NSNumber numberWithInt:eCallSessionTypeAudio]}];
+
         }
     }else if([notifyName isEqualToString:LoveBtnClickKey]){
         [self loveBtnClickWithInfo:(CPMyDateModel *)userInfo];

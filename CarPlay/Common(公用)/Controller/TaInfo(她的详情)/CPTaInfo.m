@@ -10,8 +10,10 @@
 #import "CPUser.h"
 #import "CPAlbum.h"
 #import "UIImage+Blur.h"
+#import "CPCollectionViewCell.h"
+#import "CPMyDateViewController.h"
 
-@interface CPTaInfo ()<UIAlertViewDelegate>
+@interface CPTaInfo ()<UIAlertViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 {
     CPUser *user;
 }
@@ -31,7 +33,27 @@
     [self.headImg.layer setCornerRadius:50.0];
     [self.headStatus.layer setMasksToBounds:YES];
     [self.headStatus.layer setCornerRadius:11.0];
-    self.noImgView.alpha=0.35;
+//    self.noImgView.alpha=0.35;
+    [self.noImgView setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.35]];
+    UIColor *bgColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"blurBg"]];
+    [self.noImgView setBackgroundColor:bgColor];
+    [self.albumsCollectionView registerNib:[UINib nibWithNibName:@"CPCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
+    for (id view in self.toolbar.subviews) {
+        if ([view isKindOfClass:[UIImageView class]]) {
+            [view removeFromSuperview];
+        }
+    }
+    CAShapeLayer *solidLine =  [CAShapeLayer layer];
+    CGMutablePathRef solidPath =  CGPathCreateMutable();
+    solidLine.lineWidth = 1.0f ;
+    solidLine.strokeColor = [Tools getColor:@"ffffff"].CGColor;
+    solidLine.fillColor = [UIColor clearColor].CGColor;
+    solidLine.opacity=0.2;
+    CGPathAddEllipseInRect(solidPath, nil, CGRectMake(ZYScreenWidth/2-60,  22.0, 120.0, 120.0));
+    CGPathAddEllipseInRect(solidPath, nil, CGRectMake(ZYScreenWidth/2-55,  26.0, 110.0, 110.0));
+    solidLine.path = solidPath;
+    CGPathRelease(solidPath);
+    [self.headImgBg.layer addSublayer:solidLine];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -73,6 +95,10 @@
     }];
     [self.headImg sd_setImageWithURL:[[NSURL alloc]initWithString:user.avatar]];
     self.headStatus.text=user.photoAuthStatus;
+    if ([user.photoAuthStatus isEqualToString:@"认证通过"]) {
+        [self.headStatus setBackgroundColor:[Tools getColor:@"fdbc4f"]];
+        self.headStatus.text=@"已认证";
+    }
     [self.nickname setTitle:user.nickname forState:UIControlStateNormal];
     if ([user.gender isEqualToString:@"女"]) {
         [self.sexAndAge setImage:[UIImage imageNamed:@"女"] forState:UIControlStateNormal];
@@ -83,28 +109,14 @@
     if ([user.role isEqualToString:@"普通用户"]) {
         
     }
-    [self reloadAlbumsScrollView];
-}
-
--(void)reloadAlbumsScrollView{
-    for (int i=0; i<[user.album count]; i++) {
-        UIImageView *album=[[UIImageView alloc]initWithFrame:CGRectMake(10+75*i, 15, 70, 70)];
-        CPAlbum *albumModel=(CPAlbum *)user.album[i];
-        [album sd_setImageWithURL:[[NSURL alloc]initWithString:albumModel.url] placeholderImage:[UIImage imageNamed:@"logo"]];
-        UITapGestureRecognizer *singleTap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(photoBrowser)];
-        album.userInteractionEnabled = YES;
-        [album addGestureRecognizer:singleTap1];
-        [album.layer setMasksToBounds:YES];
-        [album.layer setCornerRadius:3.0];
-        [album setContentMode:UIViewContentModeScaleAspectFill];
-        [self.albumsScrollView addSubview:album];
+    
+    [self.carLogoImg sd_setImageWithURL:[NSURL URLWithString:user.car.logo]];
+    [self.albumsCollectionView reloadData];
+    
+    if (user.subscribeFlag) {
+        [self.attentionBtn setTitle:@"已关注" forState:UIControlStateNormal];
+        [self.attentionBtn setBackgroundColor:[Tools getColor:@"dddddd"]];
     }
-    self.albumsScrollView.contentSize=CGSizeMake(85+75*[user.album count], 100.0);
-}
-
-//图片大图浏览
--(void)photoBrowser{
-    NSLog(@"photoBrowser");
 }
 
 #pragma uialertDetelage
@@ -118,9 +130,55 @@
 
 #pragma mark - Table view data source
 - (IBAction)attentionBtnClick:(id)sender {
-    
+    NSString *url = [NSString stringWithFormat:@"user/%@/listen?token=%@",CPUserId, CPToken];
+    if (user.subscribeFlag) {
+        url = [NSString stringWithFormat:@"user/%@/unlisten?token=%@",CPUserId, CPToken];
+    }
+    NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:user.userId,@"targetUserId",nil];
+    [self showLoading];
+    [ZYNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
+        [self disMiss];
+        if (CPSuccess) {
+            if (user) {
+                if (user.subscribeFlag) {
+                    [self.attentionBtn setTitle:@"已关注" forState:UIControlStateNormal];
+                    [self.attentionBtn setBackgroundColor:[Tools getColor:@"dddddd"]];
+                }else{
+                    [self.attentionBtn setTitle:@"关注" forState:UIControlStateNormal];
+                    [self.attentionBtn setBackgroundColor:[Tools getColor:@"fe5969"]];
+                }
+            }
+        }else{
+            [[[UIAlertView alloc]initWithTitle:@"提示" message:responseObject[@"errmsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil] show];
+        }
+    } failed:^(NSError *error) {
+        [self disMiss];
+        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil] show];
+    }];
 }
 - (IBAction)taActivityClick:(id)sender {
+    [self.navigationController pushViewController:[CPMyDateViewController new] animated:YES];
+}
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return [user.album count];
+}
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"cell";
+    CPCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+        CPAlbum *ablum=(CPAlbum *)user.album[indexPath.row];
+        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:ablum.url]];
+    return cell;
+}
+//图片大图浏览
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
     
 }
 @end

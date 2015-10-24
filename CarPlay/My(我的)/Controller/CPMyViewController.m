@@ -57,15 +57,20 @@
     solidLine.strokeColor = [Tools getColor:@"ffffff"].CGColor;
     solidLine.fillColor = [UIColor clearColor].CGColor;
     solidLine.opacity=0.2;
-    CGPathAddEllipseInRect(solidPath, nil, CGRectMake(100.0/320.0*ZYScreenWidth,  22.0/568.0*ZYScreenHeight, 120.0, 120.0));
-     CGPathAddEllipseInRect(solidPath, nil, CGRectMake(105.0/320.0*ZYScreenWidth,  27.0/568.0*ZYScreenHeight, 110.0, 110.0));
+    CGPathAddEllipseInRect(solidPath, nil, CGRectMake(ZYScreenWidth/2-60,  22.0, 120.0, 120.0));
+     CGPathAddEllipseInRect(solidPath, nil, CGRectMake(ZYScreenWidth/2-55,  26.0, 110.0, 110.0));
     solidLine.path = solidPath;
     CGPathRelease(solidPath);
     [self.headImageBg.layer addSublayer:solidLine];
-//    UIButton *addPhotoBtn=[[UIButton alloc]initWithFrame:CGRectMake(10, 15, 70, 70)];
-//    [addPhotoBtn addTarget:self action:@selector(addPhoto) forControlEvents:UIControlEventTouchUpInside];
-//    [addPhotoBtn setImage:[UIImage imageNamed:@"相机"] forState:UIControlStateNormal];
-////    [self.albumsScrollView addSubview:addPhotoBtn];
+    
+    UITapGestureRecognizer *tapGes=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(improveInfo)];
+    [self.headImage addGestureRecognizer:tapGes];
+    
+    for (id view in self.toolbar.subviews) {
+        if ([view isKindOfClass:[UIImageView class]]) {
+            [view removeFromSuperview];
+        }
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -101,6 +106,9 @@
     [ZYNetWorkTool getWithUrl:path params:nil success:^(id responseObject) {
         if (CPSuccess) {
             user = [CPUser objectWithKeyValues:responseObject[@"data"]];
+//            if ([responseObject[@"data"][@"car"] isEqualToString:@""]) {
+//                user.car=[CPCar new];
+//            }
             NSString *path=[[NSString alloc]initWithFormat:@"%@.info",[Tools getUserId]];
             [NSKeyedArchiver archiveRootObject:user toFile:path.documentPath];
             [self reloadData];
@@ -119,7 +127,6 @@
 }
 
 -(void)reloadData{
-//    [self.headImageBg sd_setImageWithURL:[[NSURL alloc]initWithString:user.avatar]];
     [self.headImageBg sd_setImageWithURL:[[NSURL alloc]initWithString:user.avatar] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         self.headImageBg.image=[image blurredImageWithRadius:20];
     }];
@@ -132,10 +139,28 @@
     }
     [self.sex setTitle:[[NSString alloc]initWithFormat:@"%lu",(unsigned long)user.age] forState:UIControlStateNormal];
     [self.albumsCollectionView reloadData];
+    self.photoAuthStatus.text=user.photoAuthStatus;
+    self.licenseAuthStatus.text=user.licenseAuthStatus;
+    if (user.completion<100) {
+       self.completionLabel.text=[NSString stringWithFormat:@"资料完成度%lu%%,越高越吸引人",(unsigned long)user.completion];
+    }else{
+        self.completionLabel.text=@"非常棒,显示资料完成100%";
+    }
+    self.status.text=user.photoAuthStatus;
+    if ([user.photoAuthStatus isEqualToString:@"认证通过"]) {
+        [self.status setBackgroundColor:[Tools getColor:@"fdbc4f"]];
+        self.status.text=@"已认证";
+    }
 }
 
 //完善
 - (IBAction)improveBtnClick:(id)sender {
+    CPEditInfoViewController *editInfo=[UIStoryboard storyboardWithName:@"CPEditInfoViewController" bundle:nil].instantiateInitialViewController;
+    [self.navigationController pushViewController:editInfo animated:YES];
+}
+
+//编辑资料
+-(void)improveInfo{
     CPEditInfoViewController *editInfo=[UIStoryboard storyboardWithName:@"CPEditInfoViewController" bundle:nil].instantiateInitialViewController;
     [self.navigationController pushViewController:editInfo animated:YES];
 }

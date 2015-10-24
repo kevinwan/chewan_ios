@@ -13,6 +13,7 @@
 #import <CoreTelephony/CTCallCenter.h>
 #import <CoreTelephony/CTCall.h>
 #import "CallViewController.h"
+#import "MultiplePulsingHaloLayer.h"
 
 #define kAlertViewTag_Close 100
 
@@ -28,7 +29,10 @@
     UILabel *_localBitrateLabel;
     NSTimer *_propertyTimer;
 }
-
+/**
+ *  头像的动画
+ */
+@property (nonatomic, strong) MultiplePulsingHaloLayer *headAnim;
 @end
 
 @implementation CallViewController
@@ -65,14 +69,25 @@
     
     return self;
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [super viewWillAppear:animated];
+    [self headAnim];
 
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     [self _setupSubviews];
     
-    _nameLabel.text = _chatter;
+
     if (_callSession.type == eCallSessionTypeVideo) {
         [self _initializeCamera];
         [_session startRunning];
@@ -95,8 +110,27 @@
         _statusLabel.text = NSLocalizedString(@"call.connecting", @"Connecting...");
         [_actionView addSubview:_hangupButton];
     }
-}
+    [NSTimer scheduledTimerWithTimeInterval:.1 target:self selector:@selector(startAnimations) userInfo:nil repeats:YES];
 
+}
+- (void)startAnimations
+{
+
+        UIImageView *dotView = [[UIImageView alloc]initWithFrame:CGRectMake(10+arc4random()%320, 20+arc4random()%150, 1, 1)];
+        dotView.image = [UIImage imageNamed:@"Call_bg_small_dot"];
+        [self.view addSubview:dotView];
+    
+    
+     [UIView animateWithDuration:arc4random()%10+3 animations:^{
+          dotView.frame = CGRectMake(-200+arc4random()%700, 1100, 1, 1);
+     } completion:^(BOOL finished) {
+         [dotView removeFromSuperview];
+
+     }];
+    
+    
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -202,14 +236,18 @@
     [_topView addSubview:_timeLabel];
     
     _headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake((_topView.frame.size.width - 100) / 2, CGRectGetMaxY(_statusLabel.frame) + 70, 100, 100)];
+    _headerImageView.layer.cornerRadius = 50;
+    [_headerImageView.layer setMasksToBounds:YES];
     if (_isIncoming) {
         //别人打过来的
             [_headerImageView sd_setImageWithURL:[NSURL URLWithString:[ZYUserDefaults valueForKey:kSendCallHeadURL]] placeholderImage: [UIImage imageNamed:@"chatListCellHead"]];
     }else{
-    [_headerImageView sd_setImageWithURL:[NSURL URLWithString:[ZYUserDefaults valueForKey:kReceiverHeadUrl]] placeholderImage: [UIImage imageNamed:@"chatListCellHead"]];
+        NSString *headURl =[ZYUserDefaults valueForKey:kReceiverHeadUrl];
+        [_headerImageView sd_setImageWithURL:[NSURL URLWithString:headURl] placeholderImage: [UIImage imageNamed:@"chatListCellHead"]];
     }
 
     [_topView addSubview:_headerImageView];
+    _headerImageView.backgroundColor = [UIColor clearColor];
     
     _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_headerImageView.frame) + 5, _topView.frame.size.width, 20)];
     _nameLabel.font = [UIFont systemFontOfSize:14.0];
@@ -227,7 +265,7 @@
     _actionView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_actionView];
 
-    CGFloat tmpWidth = _actionView.frame.size.width / 2;
+
     
     //拒绝按钮
     _rejectButton = [[UIButton alloc] initWithFrame:CGRectMake(30, 90, 100, 40)];
@@ -772,6 +810,31 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     }
     
     return YES;
+}
+
+#pragma 头像动画
+- (MultiplePulsingHaloLayer *)headAnim
+{
+    if (_headAnim == nil) {
+        
+        _headAnim = [self multiLayer];
+        _headAnim.position = CGPointMake(ZYScreenWidth/2, 165.0);
+        _headAnim.haloLayerColor = [Tools getColor:@"98d872"].CGColor;
+        [_topView.layer insertSublayer:_headAnim below:_headerImageView.layer];
+    }
+    return _headAnim;
+}
+
+- (MultiplePulsingHaloLayer *)multiLayer
+{
+    MultiplePulsingHaloLayer *multiLayer = [[MultiplePulsingHaloLayer alloc] initWithHaloLayerNum:3 andStartInterval:0.9];
+    multiLayer.fromValueForRadius = 0.7;
+    multiLayer.radius = 70;
+    multiLayer.useTimingFunction = NO;
+    multiLayer.fromValueForAlpha = 0.8;
+    [multiLayer buildSublayers];
+    return multiLayer;
+    
 }
 
 @end

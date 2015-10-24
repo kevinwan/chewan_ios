@@ -23,11 +23,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     path=[NSString stringWithFormat:@"%@.info",CPUserId];
-    user=[NSKeyedUnarchiver unarchiveObjectWithFile:path.documentPath];
     selectRow=1;
     [self.submitBtn.layer setMasksToBounds:YES];
     [self.submitBtn.layer setCornerRadius:20.0];
     [self.navigationItem setTitle:@"车主认证"];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    user=[NSKeyedUnarchiver unarchiveObjectWithFile:path.documentPath];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,6 +47,8 @@
     }else{
         if (indexPath.row==2) {
             selectRow=2;
+        }else{
+            selectRow=1;
         }
         UIActionSheet *sheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从相册选择",nil];
         [sheet showInView:self.view];
@@ -94,33 +100,43 @@
     if (selectRow==2) {
         urlPath=[NSString stringWithFormat:@"user/%@/driverLicense/upload?token=%@",CPUserId,CPToken];
     }
+    [self showLoading];
     [ZYNetWorkTool postFileWithUrl:urlPath params:nil files:files success:^(id responseObject){
         if (CPSuccess) {
-            user.drivingLicenseId=responseObject[@"data"][@"photoId"];
             if (selectRow==2) {
                 user.driverLicenseId=responseObject[@"data"][@"photoId"];
+            }else{
+                user.drivingLicenseId=responseObject[@"data"][@"photoId"];
             }
+            [NSKeyedArchiver archiveRootObject:user toFile:path.documentPath];
         }else{
             [[[UIAlertView alloc]initWithTitle:@"提示" message:@"上传失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
         }
+        [self disMiss];
     }failure:^(NSError *erro){
+        [self disMiss];
         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
     }];
 }
 - (IBAction)submit:(id)sender {
-    if (user.car) {
-        if (user.drivingLicenseId) {
-            if (user.driverLicenseId) {
-                NSString *urlPath=[NSString stringWithFormat:@"/user/%@/license/authentication?token=%@",CPUserId,CPToken];
-                NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:user.car.brand,@"brand",user.car.model,@"model",user.car.logo,@"logo",user.drivingLicenseId,@"drivingLicense",user.driverLicenseId,@"driverLicense", nil];
+    CPUser *lastDataUser=[NSKeyedUnarchiver unarchiveObjectWithFile:path.documentPath];
+    
+    if (lastDataUser.car) {
+        if (lastDataUser.drivingLicenseId) {
+            if (lastDataUser.driverLicenseId) {
+                NSString *urlPath=[NSString stringWithFormat:@"user/%@/license/authentication?token=%@",CPUserId,CPToken];
+                NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:lastDataUser.car.brand,@"brand",lastDataUser.car.model,@"model",lastDataUser.car.logo,@"logo",lastDataUser.drivingLicenseId,@"drivingLicense",lastDataUser.driverLicenseId,@"driverLicense", nil];
                 [self showLoading];
                 [ZYNetWorkTool postJsonWithUrl:urlPath params:params success:^(id responseObject) {
                     if (CPSuccess) {
-                        
+                        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"车主认证申请成功！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                        [self.navigationController popViewControllerAnimated:YES];
                     }else{
-                        
+                        [[[UIAlertView alloc]initWithTitle:@"提示" message:responseObject[@"errmsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                     }
+                    [self disMiss];
                 } failed:^(NSError *error) {
+                    [self disMiss];
                     [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请您的检查手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                 }];
             }else{

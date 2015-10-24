@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B0B2B641BD9DD2E00A6CA02 /* CPCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0B2B631BD9DD2E00A6CA02 /* CPCar.m */; settings = {ASSET_TAGS = (); }; };
 		6B1387DC1BCD0A6C00FAC462 /* CPBrandModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1387D21BCD0A6C00FAC462 /* CPBrandModelViewController.m */; settings = {ASSET_TAGS = (); }; };
 		6B1387DD1BCD0A6C00FAC462 /* CPBrandModelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B1387D31BCD0A6C00FAC462 /* CPBrandModelViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		6B1387DE1BCD0A6C00FAC462 /* CustomBrandCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1387D51BCD0A6C00FAC462 /* CustomBrandCell.m */; settings = {ASSET_TAGS = (); }; };
@@ -542,10 +543,13 @@
 		EE7F81781BD9D1E0003E7B3B /* call_out_h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7F81761BD9D1E0003E7B3B /* call_out_h@3x.png */; settings = {ASSET_TAGS = (); }; };
 		EE7F81791BD9D1E0003E7B3B /* call_silence_h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7F81771BD9D1E0003E7B3B /* call_silence_h@3x.png */; settings = {ASSET_TAGS = (); }; };
 		EE7F817B1BD9E74D003E7B3B /* answerTel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7F817A1BD9E74D003E7B3B /* answerTel@2x.png */; settings = {ASSET_TAGS = (); }; };
+		EEEEACD21BDA27940076BC4E /* Call_bg_small_dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EEEEACD11BDA27940076BC4E /* Call_bg_small_dot@2x.png */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		67D41D30DFBFAF45C8B1AB7F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		6B0B2B621BD9DD2E00A6CA02 /* CPCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCar.h; sourceTree = "<group>"; };
+		6B0B2B631BD9DD2E00A6CA02 /* CPCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCar.m; sourceTree = "<group>"; };
 		6B1387D11BCD0A6C00FAC462 /* CPBrandModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPBrandModelViewController.h; sourceTree = "<group>"; };
 		6B1387D21BCD0A6C00FAC462 /* CPBrandModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPBrandModelViewController.m; sourceTree = "<group>"; };
 		6B1387D31BCD0A6C00FAC462 /* CPBrandModelViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPBrandModelViewController.xib; sourceTree = "<group>"; };
@@ -1413,6 +1417,7 @@
 		EE7F81761BD9D1E0003E7B3B /* call_out_h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_out_h@3x.png"; sourceTree = "<group>"; };
 		EE7F81771BD9D1E0003E7B3B /* call_silence_h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_silence_h@3x.png"; sourceTree = "<group>"; };
 		EE7F817A1BD9E74D003E7B3B /* answerTel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "answerTel@2x.png"; sourceTree = "<group>"; };
+		EEEEACD11BDA27940076BC4E /* Call_bg_small_dot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Call_bg_small_dot@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2474,6 +2479,7 @@
 			children = (
 				6D2AC0161BCE5A5000201A8E /* audio */,
 				6D2AC0401BCE5A5000201A8E /* call_out@2x.png */,
+				EEEEACD11BDA27940076BC4E /* Call_bg_small_dot@2x.png */,
 				EE7F81761BD9D1E0003E7B3B /* call_out_h@3x.png */,
 				EE7F81771BD9D1E0003E7B3B /* call_silence_h@3x.png */,
 				EE3383151BD9141200BA4930 /* call_silence@3x.png */,
@@ -3509,6 +3515,8 @@
 				6BDA2C811BD4DA420032FFF1 /* CPpinyin.m */,
 				6BDA2C831BD4DABA0032FFF1 /* CPNameIndex.h */,
 				6BDA2C841BD4DABA0032FFF1 /* CPNameIndex.m */,
+				6B0B2B621BD9DD2E00A6CA02 /* CPCar.h */,
+				6B0B2B631BD9DD2E00A6CA02 /* CPCar.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3810,6 +3818,7 @@
 				E3FE39EA1BD64EF90022FDA3 /* CPComeOnTipView.xib in Resources */,
 				6D7F6FBE1BD5189200945F1B /* chatBar_record@3x.png in Resources */,
 				6D2AC1391BCE5A5100201A8E /* chatBar_colorMore_audioCallSelected@2x.png in Resources */,
+				EEEEACD21BDA27940076BC4E /* Call_bg_small_dot@2x.png in Resources */,
 				6D2AC11F1BCE5A5100201A8E /* chat_location_preview@2x.png in Resources */,
 				6BCFFBB91BBA456900C082B2 /* CPMyCareController.storyboard in Resources */,
 				6D2AC1481BCE5A5100201A8E /* chatBar_more_location.png in Resources */,
@@ -4134,6 +4143,7 @@
 				6BDA2C931BD610550032FFF1 /* CPEditInfoViewController.m in Sources */,
 				E31B13401BB9312D00B51696 /* NSDate+Extend.m in Sources */,
 				6D2ABFE11BCE582100201A8E /* CreateGroupViewController.m in Sources */,
+				6B0B2B641BD9DD2E00A6CA02 /* CPCar.m in Sources */,
 				6D2ABFB51BCE582100201A8E /* PSTGridLayoutRow.m in Sources */,
 				E3A471861BB3A85300973197 /* UITabBar+Extension.m in Sources */,
 				6BCFFBBC1BBA456900C082B2 /* CPTopButton.m in Sources */,

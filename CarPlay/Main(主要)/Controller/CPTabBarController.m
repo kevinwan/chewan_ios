@@ -212,11 +212,14 @@
         }
         
         if (callSession && !error) {
-            [[EaseMob sharedInstance].callManager removeDelegate:self];
             
+            [[EaseMob sharedInstance].callManager removeDelegate:self];
             CallViewController *callController = [[CallViewController alloc] initWithSession:callSession isIncoming:NO];
             callController.modalPresentationStyle = UIModalPresentationOverFullScreen;
             [self presentViewController:callController animated:NO completion:nil];
+            
+
+            
         }
         
         if (error) {
@@ -259,15 +262,33 @@
             
             if (!isShowPicker){
                 
-                [[EaseMob sharedInstance].callManager removeDelegate:self];
-                CallViewController *callController = [[CallViewController alloc] initWithSession:callSession isIncoming:YES];
-                callController.modalPresentationStyle = UIModalPresentationOverFullScreen;
-                [self presentViewController:callController animated:NO completion:nil];
-                if ([self.navigationController.topViewController isKindOfClass:[ChatViewController class]])
-                {
-                    ChatViewController *chatVc = (ChatViewController *)self.navigationController.topViewController;
-                    chatVc.isInvisible = YES;
-                }
+                //获取对方的头像和昵称
+                [ZYNetWorkTool getWithUrl:[NSString stringWithFormat:@"user/emchatInfo?userId=%@&token=%@&emchatName=%@",CPUserId,CPToken,callSession.sessionChatter] params:nil success:^(id responseObject) {
+                    if (CPSuccess) {
+                        NSDictionary *dic = [responseObject objectForKey:@"data"];
+                        [ZYUserDefaults setObject:[dic objectForKey:@"avatar"] forKey:kSendCallHeadURL];
+                        [ZYUserDefaults setObject:[dic objectForKey:@"nickname"] forKey:kSendCallNickName];
+                        
+                        
+                        
+                        
+                        [[EaseMob sharedInstance].callManager removeDelegate:self];
+                        CallViewController *callController = [[CallViewController alloc] initWithSession:callSession isIncoming:YES];
+                        callController.modalPresentationStyle = UIModalPresentationOverFullScreen;
+                        [self presentViewController:callController animated:NO completion:nil];
+                        if ([self.navigationController.topViewController isKindOfClass:[ChatViewController class]])
+                        {
+                            ChatViewController *chatVc = (ChatViewController *)self.navigationController.topViewController;
+                            chatVc.isInvisible = YES;
+                        }
+
+                        
+                    }
+                } failure:^(NSError *error) {
+                    ;
+                }];
+                
+
             }
         } while (0);
         
