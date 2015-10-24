@@ -517,16 +517,11 @@
 - (BOOL)shouldUpdate
 {
     __strong CALayer *underlyingLayer = [self underlyingLayer];
-    BOOL isEmpty;
-    if (self.layer.presentationLayer) {
-        isEmpty = CGRectIsEmpty(CGRectZero);
-    }else{
-        isEmpty = CGRectIsEmpty(self.layer.bounds);
-    }
+
     return
     underlyingLayer && !underlyingLayer.hidden &&
     self.blurEnabled && [FXBlurScheduler sharedInstance].blurEnabled &&
-    !isEmpty && !CGRectIsEmpty(underlyingLayer.bounds);
+    !CGRectIsEmpty(self.layer.presentationLayer ?CGRectNull: [self.layer bounds]) && !CGRectIsEmpty(underlyingLayer.bounds);
 }
 
 - (void)displayLayer:(__unused CALayer *)layer

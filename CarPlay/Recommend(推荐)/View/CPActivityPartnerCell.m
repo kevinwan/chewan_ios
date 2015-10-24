@@ -37,6 +37,13 @@ static NSString *ID = @"memberIconCell";
 
 - (void)awakeFromNib {
     [self.inviteBtn setCornerRadius:15];
+    [self.iconView setCornerRadius:25];
+    
+    UITapGestureRecognizer *tap = [UITapGestureRecognizer new];
+    [tap.rac_gestureSignal subscribeNext:^(id x) {
+        [self superViewWillRecive:CPClickUserIcon info:_model.userId];
+    }];
+    [self.iconView addGestureRecognizer:tap];
     [self.contentView addSubview:self.msgButton];
     [self.contentView addSubview:self.phoneBtn];
     [self.contentView addSubview:self.partnersView];

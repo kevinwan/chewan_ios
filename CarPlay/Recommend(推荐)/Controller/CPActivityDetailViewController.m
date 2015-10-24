@@ -108,6 +108,7 @@ static NSString *ID = @"partCell";
 //    if (indexPath.section == 0) {
     
         CPActivityPartnerCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        cell.model = self.model.members[indexPath.row];
         return cell;
 //    }else{
 //        

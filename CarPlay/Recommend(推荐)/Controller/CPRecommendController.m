@@ -21,7 +21,7 @@
 @property (nonatomic, assign) BOOL isHasRefreshHeader;
 @property (nonatomic, assign) NSUInteger ignore;
 @end
-static NSString *ID = @"cell";
+static NSString *ID = @"RecommentCell";
 @implementation CPRecommendController
 
 - (void)viewDidLoad {
@@ -44,6 +44,11 @@ static NSString *ID = @"cell";
 {
     [super viewDidDisappear:animated];
     [ZYLoadingView dismissLoadingView];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [[SDImageCache sharedImageCache] clearMemory];
 }
 
 - (void)setUpRefresh
@@ -92,12 +97,20 @@ static NSString *ID = @"cell";
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[UserId] = CPUserId;
     params[Token] = CPToken;
-    //    params[@"province"] = [ZYUserDefaults stringForKey:Province];
-    //    params[@"city"] = [ZYUserDefaults stringForKey:City];
+        params[@"province"] = @"北京";
+        params[@"city"] = @"北京";
     //    params[@"district"] = [ZYUserDefaults stringForKey:District];
-    params[@"province"] = @"江苏省";
-    params[@"city"] = @"南京市";
-    //    params[@"district"] = [ZYUserDefaults stringForKey:District];
+    
+//    NSString *province = [[ZYUserDefaults stringForKey:Province] stringByReplacingOccurrencesOfString:@"省" withString:@""];
+//    province = [province stringByReplacingOccurrencesOfString:@"市" withString:@""];
+//    NSString *city = [[ZYUserDefaults stringForKey:City] stringByReplacingOccurrencesOfString:@"市" withString:@""];
+//    if (province.trimLength) {
+//        params[@"province"] = province;
+//    }
+//    if (city.trimLength) {
+//        params[@"city"] = city;
+//    }
+//    
     [ZYNetWorkTool getWithUrl:@"official/activity/list" params:params success:^(id responseObject) {
         [ZYLoadingView dismissLoadingView];
         [self setUpRefresh];
