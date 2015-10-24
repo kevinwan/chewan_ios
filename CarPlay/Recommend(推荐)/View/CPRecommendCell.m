@@ -70,8 +70,8 @@
         self.female.hidden = NO;
         self.femaleLabel.hidden = NO;
         
-        self.maleLabel.text = [NSString stringWithFormat:@"%zd / %zd",model.maleNum,model.maleLimit];
-           self.femaleLabel.text = [NSString stringWithFormat:@"%zd / %zd",model.femaleNum,model.femaleLimit];
+        self.maleLabel.text = [NSString stringWithFormat:@"%zd/ %zd",model.maleNum,model.maleLimit];
+           self.femaleLabel.text = [NSString stringWithFormat:@"%zd/ %zd",model.femaleNum,model.femaleLimit];
     }
     [self.bgImageView zy_setImageWithUrl:model.covers.firstObject completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         self.bgImageView.image = image;
@@ -95,6 +95,9 @@
     [self addSubview:self.priceLabel];
     [self addSubview:self.bgTip];
     [self beginLayout];
+    
+    self.bgImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.bgImageView.clipsToBounds = YES;
     
 }
 

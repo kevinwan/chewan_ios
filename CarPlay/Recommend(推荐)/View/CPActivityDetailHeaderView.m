@@ -98,7 +98,7 @@
     [self.addressLabel setText:model.destination[@"detail"]];
     NSMutableParagraphStyle *paragraphStyle1 = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle1 setLineSpacing:7];
-    self.descLabel.attributedText = [[NSAttributedString alloc] initWithString:model.title attributes:@{NSParagraphStyleAttributeName : paragraphStyle1}];
+    self.descLabel.attributedText = [[NSAttributedString alloc] initWithString:model.instruction attributes:@{NSParagraphStyleAttributeName : paragraphStyle1}];
     [self layoutIfNeeded];
     
     self.height = self.tipPartLabel.bottom;

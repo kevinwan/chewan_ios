@@ -394,7 +394,6 @@
 		6D7F6FE71BD5EF6E00945F1B /* chat_receiver_audio_playing003@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7F6FE41BD5EF6E00945F1B /* chat_receiver_audio_playing003@3x.png */; settings = {ASSET_TAGS = (); }; };
 		6D9724033DC4D258BAD49B6C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8695309F427E7B2C9007D66B /* libPods.a */; };
 		E311371F1BD09309004EF249 /* CPLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = E311371E1BD09309004EF249 /* CPLoadingView.m */; settings = {ASSET_TAGS = (); }; };
-		E31137211BD096EC004EF249 /* CPRecommendCells.xib in Resources */ = {isa = PBXBuildFile; fileRef = E31137201BD096EC004EF249 /* CPRecommendCells.xib */; settings = {ASSET_TAGS = (); }; };
 		E31B12DF1BB9311700B51696 /* UIView+PBExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = E31B12C01BB9311700B51696 /* UIView+PBExtend.m */; settings = {ASSET_TAGS = (); }; };
 		E31B12E01BB9311700B51696 /* PBConst.m in Sources */ = {isa = PBXBuildFile; fileRef = E31B12C31BB9311700B51696 /* PBConst.m */; settings = {ASSET_TAGS = (); }; };
 		E31B12E11BB9311700B51696 /* PhotoBroswerLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E31B12C61BB9311700B51696 /* PhotoBroswerLayout.m */; settings = {ASSET_TAGS = (); }; };
@@ -438,6 +437,7 @@
 		E31B13551BB9312D00B51696 /* LFRoundProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E31B133A1BB9312D00B51696 /* LFRoundProgressView.m */; settings = {ASSET_TAGS = (); }; };
 		E31B135A1BB9313A00B51696 /* CPTestPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E31B13571BB9313A00B51696 /* CPTestPhotoViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E31B135B1BB9313A00B51696 /* PhotoCotentView.m in Sources */ = {isa = PBXBuildFile; fileRef = E31B13591BB9313A00B51696 /* PhotoCotentView.m */; settings = {ASSET_TAGS = (); }; };
+		E31CCEF91BDB53A500386F70 /* CPMyInterestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E31CCEF81BDB53A500386F70 /* CPMyInterestViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E31E4BD71BAD47A500902B34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E31E4BD61BAD47A500902B34 /* main.m */; };
 		E31E4BE21BAD47A500902B34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E31E4BE11BAD47A500902B34 /* Assets.xcassets */; };
 		E31E4BE51BAD47A500902B34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E31E4BE31BAD47A500902B34 /* LaunchScreen.storyboard */; };
@@ -1140,7 +1140,6 @@
 		A1B028500DCBF99DF280B6AC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E311371D1BD09309004EF249 /* CPLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLoadingView.h; sourceTree = "<group>"; };
 		E311371E1BD09309004EF249 /* CPLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPLoadingView.m; sourceTree = "<group>"; };
-		E31137201BD096EC004EF249 /* CPRecommendCells.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPRecommendCells.xib; sourceTree = "<group>"; };
 		E31B12BF1BB9311700B51696 /* UIView+PBExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PBExtend.h"; sourceTree = "<group>"; };
 		E31B12C01BB9311700B51696 /* UIView+PBExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+PBExtend.m"; sourceTree = "<group>"; };
 		E31B12C21BB9311700B51696 /* PBConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBConst.h; sourceTree = "<group>"; };
@@ -1224,6 +1223,8 @@
 		E31B13571BB9313A00B51696 /* CPTestPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTestPhotoViewController.m; sourceTree = "<group>"; };
 		E31B13581BB9313A00B51696 /* PhotoCotentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCotentView.h; sourceTree = "<group>"; };
 		E31B13591BB9313A00B51696 /* PhotoCotentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCotentView.m; sourceTree = "<group>"; };
+		E31CCEF71BDB53A500386F70 /* CPMyInterestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyInterestViewController.h; sourceTree = "<group>"; };
+		E31CCEF81BDB53A500386F70 /* CPMyInterestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyInterestViewController.m; sourceTree = "<group>"; };
 		E31E4BD21BAD47A500902B34 /* CarPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E31E4BD61BAD47A500902B34 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E31E4BE11BAD47A500902B34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -3299,6 +3300,8 @@
 				6B153EF91BB5692500560935 /* CPMyViewController.h */,
 				6B153EFA1BB5692500560935 /* CPMyViewController.m */,
 				6B153EFB1BB5692500560935 /* CPMyViewController.storyboard */,
+				E31CCEF71BDB53A500386F70 /* CPMyInterestViewController.h */,
+				E31CCEF81BDB53A500386F70 /* CPMyInterestViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3413,7 +3416,6 @@
 				E3FE39E81BD64EF90022FDA3 /* CPComeOnTipView.xib */,
 				E3884D631BD1FFDD00A65BE0 /* CPRecommentViewCell.h */,
 				E3884D641BD1FFDD00A65BE0 /* CPRecommentViewCell.m */,
-				E31137201BD096EC004EF249 /* CPRecommendCells.xib */,
 				E3AEFE361BC64E5B009C9438 /* CPRecommendCell.h */,
 				E3AEFE371BC64E5B009C9438 /* CPRecommendCell.m */,
 				E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */,
@@ -3888,7 +3890,6 @@
 				6D2AC14F1BCE5A5100201A8E /* chatBar_more_photoSelected@2x.png in Resources */,
 				6D7F6FCF1BD5216500945F1B /* chatBar_colorMore_cameraSelected@3x.png in Resources */,
 				6D2AC1771BCE5A5100201A8E /* group_participant_add@2x.png in Resources */,
-				E31137211BD096EC004EF249 /* CPRecommendCells.xib in Resources */,
 				6D2AC14C1BCE5A5100201A8E /* chatBar_more_photo.png in Resources */,
 				6D2AC13B1BCE5A5100201A8E /* chatBar_colorMore_cameraSelected@2x.png in Resources */,
 				6D7F6FDD1BD5DB4400945F1B /* VoiceSearchFeedback005@3x.png in Resources */,
@@ -4153,6 +4154,7 @@
 				E3A471731BB3A85300973197 /* CPNearViewController.m in Sources */,
 				E31B13441BB9312D00B51696 /* UIColor+Extend.m in Sources */,
 				6B153EF71BB5690900560935 /* CPRegViewController.m in Sources */,
+				E31CCEF91BDB53A500386F70 /* CPMyInterestViewController.m in Sources */,
 				6D2ABFBC1BCE582100201A8E /* THProgressView.m in Sources */,
 				6B2411171BCB569E0014468D /* CPMyInfoController.m in Sources */,
 				E31B12E81BB9311700B51696 /* PhotoImageView.m in Sources */,
