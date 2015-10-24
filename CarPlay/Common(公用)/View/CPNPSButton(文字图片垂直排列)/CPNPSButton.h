@@ -10,4 +10,6 @@
 
 @interface CPNPSButton : UIButton
 
+@property (nonatomic ,strong) UILabel *label;
+
 @end

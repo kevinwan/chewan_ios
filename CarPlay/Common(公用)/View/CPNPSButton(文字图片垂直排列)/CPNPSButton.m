@@ -8,26 +8,24 @@
 
 #import "CPNPSButton.h"
 
+
 @implementation CPNPSButton
+
+- (void)awakeFromNib
+{
+    _label = [UILabel new];
+    _label.textColor = [Tools getColor:@"333333"];
+    _label.font = ZYFont10;
+    _label.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:_label];
+}
+
 -(void)layoutSubviews {
     [super layoutSubviews];
-    // Center image
-    CGPoint center = self.imageView.center;
-    center.x = self.frame.size.width/2;
-    center.y = self.imageView.frame.size.height/2;
-    self.imageView.center = center;
-    self.imageView.layer.masksToBounds=YES;
-    self.imageView.layer.borderColor=[UIColor whiteColor].CGColor;
-    self.imageView.layer.borderWidth=1;
-    self.imageView.layer.cornerRadius=self.frame.size.width/2-10;
-    
-    //Center text
-    CGRect newFrame = [self titleLabel].frame;
-    newFrame.origin.x = 0;
-    newFrame.origin.y = self.imageView.frame.size.height + 5;
-    newFrame.size.width = self.frame.size.width;
-    
-    self.titleLabel.frame = newFrame;
-    self.titleLabel.textAlignment = UITextAlignmentCenter;
+    [_label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(@0);
+        make.left.right.equalTo(@0);
+        make.height.equalTo(@20);
+    }];
 }
 @end
