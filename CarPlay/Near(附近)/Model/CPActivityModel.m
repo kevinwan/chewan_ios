@@ -27,7 +27,7 @@
     return [NSString stringWithFormat:@"%@想邀请你%@",_organizer.nickname, _type];
 }
 
-- (void)setDistance:(NSUInteger)distance
+- (void)setDistance:(double)distance
 {
     _distance = distance;
 
