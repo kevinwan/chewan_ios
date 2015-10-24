@@ -170,15 +170,15 @@ static NSString *ID = @"cell";
     return self.datas.count;
 }
 
-//-(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
-//{
-////    if (self.headerView.state == AAPullToRefreshStateLoading || self.footerView.state == AAPullToRefreshStateLoading) {
-////        return;
-////    }
-//    UICollectionView3DLayout *layout=(UICollectionView3DLayout*)self.tableView.collectionViewLayout;
-//
-//    [layout EndAnchorMove];
-//}
+-(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+//    if (self.headerView.state == AAPullToRefreshStateLoading || self.footerView.state == AAPullToRefreshStateLoading) {
+//        return;
+//    }
+    UICollectionView3DLayout *layout=(UICollectionView3DLayout*)self.tableView.collectionViewLayout;
+
+    [layout EndAnchorMove];
+}
 
 
 
@@ -312,6 +312,11 @@ static NSString *ID = @"cell";
         }];
     }
     
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [[SDImageCache sharedImageCache] clearMemory];
 }
 
 /**

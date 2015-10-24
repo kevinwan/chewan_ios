@@ -1,12 +1,15 @@
 //
-//  CPNearViewController.m
+//  CPMyInterestViewController.m
 //  CarPlay
 //
-//  Created by chewan on 15/9/23.
-//  Copyright © 2015年 chewan. All rights reserved.
+//  Created by chewan on 10/24/15.
+//  Copyright © 2015 chewan. All rights reserved.
 //
 
-#import "CPMyDateViewController.h"
+#import "CPMyInterestViewController.h"
+#import "CPMySwitch.h"
+#import "CPSelectView.h"
+#import "CPNearParams.h"
 #import "AAPullToRefresh.h"
 #import "ZYProgressView.h"
 #import "CPNoDataTipView.h"
@@ -15,29 +18,26 @@
 #import "UICollectionView3DLayout.h"
 #import "CPNearCollectionViewCell.h"
 #import "CPAlbum.h"
-#import "ChatViewController.h"
-#import "CPMyDateModel.h"
 
-@interface CPMyDateViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate>
+@interface CPMyInterestViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate>
 @property (nonatomic, strong) UICollectionView *tableView;
-@property (nonatomic, strong) NSMutableArray<CPMyDateModel *> *datas;
+@property (nonatomic, strong) NSMutableArray<CPActivityModel *> *datas;
+@property (nonatomic, strong) UIView *tipView;
 @property (nonatomic, assign) CGFloat offset;
+@property (nonatomic, assign) NSInteger ignore;
 @property (nonatomic, assign) BOOL isHasRefreshHeader;
 @property (nonatomic, strong) CPNoDataTipView *noDataView;
 @property (nonatomic, weak)   AAPullToRefresh *headerView;
 @property (nonatomic, weak)   AAPullToRefresh *footerView;
-@property (nonatomic, assign) CGFloat ignore;
 @end
 
-static NSString *ID = @"DateCell";
-@implementation CPMyDateViewController
+static NSString *ID = @"cell";
+@implementation CPMyInterestViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"我的活动";
-    self.view.backgroundColor = [UIColor whiteColor];
-
+    
     if (CPNoNetWork) {
         
         [ZYProgressView showMessage:@"网络连接失败,请检查网络"];
@@ -45,11 +45,13 @@ static NSString *ID = @"DateCell";
     }
     
     self.offset = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250;
+    
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"筛选" target:self action:@selector(filter)];
     [self.view addSubview:self.tableView];
+    [self tipView];
     [ZYLoadingView showLoadingView];
 }
-
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -63,11 +65,6 @@ static NSString *ID = @"DateCell";
 {
     [super viewWillDisappear:animated];
     [ZYLoadingView dismissLoadingView];
-}
-
-- (void)dealloc
-{
-    NSLog(@"%@从内存中销毁了😭",[self class]);
 }
 
 - (void)setUpRefresh
@@ -84,7 +81,6 @@ static NSString *ID = @"DateCell";
         self.ignore = 0;
         [self loadDataWithHeader:v];
     }];
-    
     // bottom
     self.footerView = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionBottom actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
@@ -108,22 +104,21 @@ static NSString *ID = @"DateCell";
  */
 - (void)loadDataWithHeader:(AAPullToRefresh *)refresh
 {
-//    user/$userId/appointment/list
-    NSString *url = [NSString stringWithFormat:@"user/%@/appointment/list?token=%@",self.targetUerId, CPToken];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"token"] = CPToken;
     params[@"ignore"] = @(self.ignore);
+    NSString *url = [NSString stringWithFormat:@"user/%@/interest/list",CPUserId];
     [ZYNetWorkTool getWithUrl:url params:params success:^(id responseObject) {
         
-        DLog(@"%@ ---- ",responseObject);
-        [[CPLoadingView sharedInstance] dismissLoadingView];
         [self setUpRefresh];
         [refresh stopIndicatorAnimation];
+        DLog(@"%@ ---- ",responseObject);
         if (CPSuccess) {
             if (self.ignore == 0) {
                 [self.datas removeAllObjects];
             }
             
-            NSArray *arr = [CPMyDateModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
+            NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
             NSLog(@"gggg%zd",arr.count);
             [self.datas addObjectsFromArray:arr];
             
@@ -135,6 +130,8 @@ static NSString *ID = @"DateCell";
             }
             [self.tableView reloadData];
         }
+        
+        [[CPLoadingView sharedInstance] dismissLoadingView];
     } failure:^(NSError *error) {
         
         [self setUpRefresh];
@@ -153,7 +150,7 @@ static NSString *ID = @"DateCell";
 {
     CPNearCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
     cell.indexPath = indexPath;
-    cell.myDateModel = self.datas[indexPath.item];
+    cell.model = self.datas[indexPath.item];
     return cell;
 }
 
@@ -173,45 +170,9 @@ static NSString *ID = @"DateCell";
     }else if([notifyName isEqualToString:PhotoBtnClickKey]){
         [self photoPresent];
     }else if([notifyName isEqualToString:DateBtnClickKey]){
-
-    }else if([notifyName isEqualToString:InvitedButtonClickKey]){
-        NSIndexPath *indexPath = userInfo;
-        CPMyDateModel *model = self.datas[indexPath.row];
-
-        if (model.status == 1){
-            //
-        }else if (model.status == 2){
-            //消息
-//            NSString *userID = model.applyUserId;
-//            if (![userID isEqualToString:CPUserId]) {
-//                userID = model.invitedUserId;
-//            }
-            NSString *userID=[model.applyUserId isEqualToString:CPUserId]?model.invitedUserId:model.applyUserId;
-            
-            ChatViewController *xiaoniuChatVc = [[ChatViewController alloc]initWithChatter:[Tools md5EncryptWithString:userID] conversationType:eConversationTypeChat];
-            xiaoniuChatVc.title = model.applicant.nickname;
-            [self.navigationController pushViewController:xiaoniuChatVc animated:YES];
-        }
-        
-    }else if([notifyName isEqualToString:IgnoreButtonClickKey]){
-        NSIndexPath *indexPath = userInfo;
-        CPMyDateModel *model = self.datas[indexPath.row];
-        if (model.status == 1) {
-            
-            [self.datas removeObjectAtIndex:[userInfo row]];
-            [self.tableView deleteItemsAtIndexPaths:@[userInfo]];
-        }else if (model.status == 2){
-            //电话
-            NSString *userID=[model.applyUserId isEqualToString:CPUserId]?model.invitedUserId:model.applyUserId;
-
-            [ZYUserDefaults setValue:model.applicant.avatar forKey:kReceiverHeadUrl];
-            [ZYUserDefaults setValue: model.applicant.nickname forKey:kReceiverNickName];
-            NSLog(@"电话头像URL = %@",model.applicant.avatar);
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"callOutWithChatter" object:@{@"chatter":[Tools md5EncryptWithString:userID], @"type":[NSNumber numberWithInt:eCallSessionTypeAudio]}];
-
-        }
+        [self dateClickWithInfo:userInfo];
     }else if([notifyName isEqualToString:LoveBtnClickKey]){
-        [self loveBtnClickWithInfo:(CPMyDateModel *)userInfo];
+        [self loveBtnClickWithInfo:(CPActivityModel *)userInfo];
     }else if ([notifyName isEqualToString:IconViewClickKey]){
         CPGoLogin(@"查看TA的详情");
         CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
@@ -226,16 +187,16 @@ static NSString *ID = @"DateCell";
  *
  *  @param model model description
  */
-- (void)loveBtnClickWithInfo:(CPMyDateModel *)model
+- (void)loveBtnClickWithInfo:(CPActivityModel *)model
 {
     ZYAsyncThead(^{
         
         NSMutableArray *indexPaths = [NSMutableArray array];
         
         for (int i = 0;i < self.datas.count; i++) {
-            CPMyDateModel *obj = self.datas[i];
-            if ([obj.applyUserId isEqualToString:model.applyUserId] && ![obj.activityId isEqualToString:model.activityId]) {
-                obj.applicant.subscribeFlag = model.applicant.subscribeFlag;
+            CPActivityModel *obj = self.datas[i];
+            if ([obj.organizer.userId isEqualToString:model.organizer.userId] && ![obj.activityId isEqualToString:model.activityId]) {
+                obj.organizer.subscribeFlag = model.organizer.subscribeFlag;
                 [indexPaths addObject:[NSIndexPath indexPathForItem:i inSection:0]];
             }
             
@@ -311,15 +272,13 @@ static NSString *ID = @"DateCell";
                 [albums addObject:album];
                 if (count == arr.count) {
                     [self disMiss];
-                    ZYAsyncThead(^{
-                        NSString *filePath = [NSString stringWithFormat:@"%@.info",CPUserId];
-                        CPUser *user = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath.documentPath];
-                        
-                        [albums insertObjects:user.album atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, user.album.count)]];
-                        user.album = [albums copy];
-                        [NSKeyedArchiver archiveRootObject:user toFile:filePath.documentPath];
-                    });
-                   
+                    
+                    NSString *filePath = [NSString stringWithFormat:@"%@.info",CPUserId];
+                    CPUser *user = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath.documentPath];
+                    
+                    [albums insertObjects:user.album atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, user.album.count)]];
+                    user.album = [albums copy];
+                    [NSKeyedArchiver archiveRootObject:user toFile:filePath.documentPath];
                     [self.tableView reloadData];
                 }
             }else{
@@ -332,6 +291,47 @@ static NSString *ID = @"DateCell";
     }
     
 }
+
+- (void)didReceiveMemoryWarning
+{
+    [[SDImageCache sharedImageCache] clearMemory];
+}
+
+/**
+ *  处理约她的逻辑
+ *
+ *  @param userInfo user
+ */
+- (void)dateClickWithInfo:(id)userInfo
+{
+    CPGoLogin(@"邀TA");
+    NSIndexPath *indexPath = userInfo;
+    CPActivityModel *model = self.datas[indexPath.row];
+    NSString *url = [NSString stringWithFormat:@"activity/%@/join",model.activityId];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"destPoint"] = @{@"longitude" : @(CPLongitude),
+                             @"latitude" : @(CPLatitude)};
+    params[@"transfer"] = @(model.transfer);
+    params[@"type"] = model.type;
+    params[@"pay"] = model.pay;
+    params[@"destination"] = model.destination;
+    params[UserId] = CPUserId;
+    params[Token] = CPToken;
+    [self showLoading];
+    [CPNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
+        if (CPSuccess) {
+            [self showInfo:@"邀请已发出"];
+            model.applyFlag = 1;
+            [self.tableView reloadItemsAtIndexPaths:@[indexPath]];
+        }else if ([CPErrorMsg contains:@"申请中"]){
+            [self showInfo:@"正在申请中"];
+        }
+    } failed:^(NSError *error) {
+        [self showInfo:@"邀请失败"];
+    }];
+    
+}
+
 
 #pragma mark - 加载子控件
 

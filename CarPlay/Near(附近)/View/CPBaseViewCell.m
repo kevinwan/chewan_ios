@@ -15,8 +15,7 @@
 #import "CPNoHighLightButton.h"
 #import "ZYImageVIew.h"
 #import "UIImageView+AFNetworking.h"
-#import "UIImageView+LBBlurredImage.h"
-#import "UIImage+ImageEffects.h"
+#import "DRNRealTimeBlurView.h"
 
 @interface CPBaseViewCell ()
 /**
@@ -121,6 +120,8 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *marginCons;
 
+
+
 @end
 
 @implementation CPBaseViewCell
@@ -138,6 +139,7 @@
         [self superViewWillRecive:IconViewClickKey info:_model];
     }];
     [self.userIconView addGestureRecognizer:tapGes];
+//    [self.userIconView addSubview:self.userCoverView];
     [self.userIconView addSubview:self.tipView];
     [self.userIconView addSubview:self.dateButton];
     [self.userIconView addSubview:self.invitedButton];
@@ -153,6 +155,8 @@
 
 - (void)beginLayoutSubviews
 {
+    _userCoverView.frame = self.userIconView.frame;
+    
     [self.dateButton mas_makeConstraints:^(MASConstraintMaker *make){
         make.centerX.equalTo(self.userIconView);
         make.size.equalTo(CGSizeMake(56, 56));
@@ -170,7 +174,6 @@
         make.centerY.equalTo(self.invitedButton);
         make.centerX.equalTo(self.userIconView).with.offset(@38);
     }];
-    
     [self.tipView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.and.left.and.top.equalTo(@0);
         
@@ -182,7 +185,9 @@
             make.height.equalTo(self.userIconView.mas_height).multipliedBy(0.46);
         }
     }];
- 
+//    [self.userCoverView updateAsynchronously:YES completion:^{
+//        self.userCoverView.frame = self.userIconView.bounds;
+//    }];
 }
 
 /**
@@ -202,21 +207,22 @@
     self.sexView.isMan = model.organizer.isMan;
     self.sexView.age = model.organizer.age;
 
+//    ZYWeakSelf
+//    [self.userIconView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:model.organizer.cover]] placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
+//        ZYStrongSelf
+////        self.userIconView.placeHloderImageView.hidden = YES;
+//        self.userIconView.backgroundColor = [UIColor clearColor];
+//        [self.userIconView setImage:image];
+//        self.userCoverView.blurRadius = 20;
+//    } failure:NULL];
     
-    [self.userIconView zy_setImageWithUrl:model.organizer.cover completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        ZYAsyncThead(^{
-            UIImage *img = nil;
-            if (isHasAlubm) {
-                img = image;
-            }else{
-                img = [image blurredImageWithRadius:20.0 iterations:1 tintColor:[UIColor clearColor]];
-            }
-            
-            ZYMainThread(^{
-                self.userIconView.image = img;
-            });
-        });
-    }];
+//    [self.userIconView setImageWithURL:[NSURL URLWithString:model.organizer.cover]];
+//    return;
+    [self.userIconView sd_setImageWithURL:[NSURL URLWithString:model.organizer.cover]];
+//    [self.userIconView zy_setImageWithUrl:model.organizer.cover completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//        self.userIconView.image = image;
+//        self.userCoverView.hidden= NO;
+//    }];
     [self.distanceView setTitle:model.distanceStr forState:UIControlStateNormal];
     self.loveBtn.selected = model.organizer.subscribeFlag;
     self.payView.text = model.pay;
@@ -287,19 +293,11 @@
     self.sexView.age = myDateModel.applicant.age;
     
     
+    ZYWeakSelf
     [self.userIconView zy_setImageWithUrl:myDateModel.applicant.cover completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        ZYAsyncThead(^{
-            UIImage *img = nil;
-            if (isHasAlubm) {
-                img = image;
-            }else{
-                img = [image blurredImageWithRadius:20.0 iterations:1 tintColor:[UIColor clearColor]];
-            }
-            
-            ZYMainThread(^{
-                self.userIconView.image = img;
-            });
-        });
+        ZYStrongSelf
+        self.userCoverView.hidden = NO;
+        self.userIconView.image = image;
     }];
     [self.distanceView setTitle:myDateModel.distanceStr forState:UIControlStateNormal];
     self.loveBtn.selected = myDateModel.applicant.subscribeFlag;
@@ -725,6 +723,18 @@
        
     }
     return _tipView;
+}
+
+- (FXBlurView *)userCoverView
+{
+    if (_userCoverView == nil) {
+        _userCoverView = [[FXBlurView alloc] initWithFrame:self.userIconView.bounds];
+        [_userCoverView setBlurRadius:20];
+        [_userCoverView setTintColor:[UIColor clearColor]];
+        [_userCoverView setDynamic:NO];
+        [_userCoverView setHidden:YES];
+    }
+    return _userCoverView;
 }
 
 @end
