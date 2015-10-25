@@ -17,6 +17,10 @@
 @property (nonatomic, strong)UITableView *visitorTableview;
 @property (nonatomic, strong)NSMutableArray *dataSource;
 
+@property (nonatomic, weak)   AAPullToRefresh *headerView;
+@property (nonatomic, weak)   AAPullToRefresh *footerView;
+
+
 @end
 
 @implementation CPVisitorViewController

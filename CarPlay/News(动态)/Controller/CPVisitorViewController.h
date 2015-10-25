@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "AAPullToRefresh.h"
 @interface CPVisitorViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 @end
