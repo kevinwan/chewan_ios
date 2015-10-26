@@ -61,9 +61,7 @@
     self.titleLabel.attributedText = model.titleAttrText;
     self.priceLabel.text = model.priceDesc;
 
-    [self.photoView zy_setImageWithUrl:model.covers.firstObject completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        self.photoView.image = image;
-    }];
+    [self.photoView zy_setImageWithUrl:model.covers.firstObject];
     
     if (model.limitType == 0) {
         

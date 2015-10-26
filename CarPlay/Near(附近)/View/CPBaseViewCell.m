@@ -63,11 +63,6 @@
 @property (weak, nonatomic) IBOutlet ZYImageVIew *userIconView;
 
 /**
- *  用户图像的模糊效果View
- */
-@property (nonatomic, strong) FXBlurView *userCoverView;
-
-/**
  *  显示地点的View
  */
 @property (weak, nonatomic) IBOutlet UIButton *addressView;
@@ -163,8 +158,6 @@
 
 - (void)beginLayoutSubviews
 {
-    _userCoverView.frame = self.userIconView.frame;
-    
     [self.dateButton mas_makeConstraints:^(MASConstraintMaker *make){
         make.centerX.equalTo(self.userIconView);
         make.size.equalTo(CGSizeMake(56, 56));
@@ -224,13 +217,8 @@
     }
     self.sexView.isMan = model.organizer.isMan;
     self.sexView.age = model.organizer.age;
-    if (isHasAlubm) {
-        self.userIconView.showImage = NO;
-    }else{
-        self.userIconView.showImage = YES;
-    }
-    [self.userIconView zy_setImageWithUrl:model.organizer.cover completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-    }];
+    self.userIconView.showBlurView = !isHasAlubm;
+    [self.userIconView zy_setImageWithUrl:model.organizer.cover];
     [self.distanceView setTitle:model.distanceStr forState:UIControlStateNormal];
     self.loveBtn.selected = model.organizer.subscribeFlag;
     self.payView.text = model.pay;
@@ -302,13 +290,8 @@
     self.sexView.isMan = myDateModel.applicant.isMan;
     self.sexView.age = myDateModel.applicant.age;
     
-    
-    ZYWeakSelf
-    [self.userIconView zy_setImageWithUrl:myDateModel.applicant.cover completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        ZYStrongSelf
-        self.userCoverView.hidden = NO;
-        self.userIconView.image = image;
-    }];
+    self.userIconView.showBlurView = !isHasAlubm;
+    [self.userIconView zy_setImageWithUrl:myDateModel.applicant.cover];
     [self.distanceView setTitle:myDateModel.distanceStr forState:UIControlStateNormal];
     self.loveBtn.selected = myDateModel.applicant.subscribeFlag;
     self.payView.text = myDateModel.pay;
@@ -378,13 +361,7 @@
     self.sexView.isMan = intersterModel.user.isMan;
     self.sexView.age = intersterModel.user.age;
     
-    
-    ZYWeakSelf
-    [self.userIconView zy_setImageWithUrl:intersterModel.user.cover completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        ZYStrongSelf
-        self.userCoverView.hidden = NO;
-        self.userIconView.image = image;
-    }];
+    [self.userIconView zy_setImageWithUrl:intersterModel.user.cover];
     [self.distanceView setTitle:intersterModel.distanceStr forState:UIControlStateNormal];
     self.loveBtn.selected = intersterModel.user.subscribeFlag;
     self.payView.text = intersterModel.activityPay;
@@ -805,18 +782,6 @@
        
     }
     return _tipView;
-}
-
-- (FXBlurView *)userCoverView
-{
-    if (_userCoverView == nil) {
-        _userCoverView = [[FXBlurView alloc] initWithFrame:self.userIconView.bounds];
-        [_userCoverView setBlurRadius:20];
-        [_userCoverView setTintColor:[UIColor clearColor]];
-        [_userCoverView setDynamic:NO];
-        [_userCoverView setHidden:YES];
-    }
-    return _userCoverView;
 }
 
 - (UIView *)titleView

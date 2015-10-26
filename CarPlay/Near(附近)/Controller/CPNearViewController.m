@@ -422,23 +422,31 @@ static NSString *ID = @"cell";
         _tipView = [[UIView alloc] init];
         _tipView.backgroundColor = ZYColor(0, 0, 0, 0.7);
         [self.view addSubview:_tipView];
-        [_tipView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(@64);
-            make.width.equalTo(self.view);
-            make.height.equalTo(@35);
-        }];
-        
+        _tipView.width = self.view.width;
+        _tipView.height = 35;
+        _tipView.y = 64;
+        _tipView.x = 0;
+//        [_tipView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(@64);
+//            make.width.equalTo(self.view);
+//            make.height.equalTo(@35);
+//        }];
+//        
         UILabel *textL = [UILabel labelWithText:@"有空,其他人可以邀请你参加活动" textColor:[UIColor whiteColor] fontSize:14];
         [_tipView addSubview:textL];
-        [textL mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(@10);
-            make.centerY.equalTo(_tipView);
-        }];
+        [textL sizeToFit];
+        textL.x = 10;
+        textL.centerY = _tipView.middleY;
+//        [textL mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.equalTo(@10);
+//            make.centerY.equalTo(_tipView);
+//        }];
         
         CPMySwitch *freeTimeBtn = [CPMySwitch new];
         [freeTimeBtn setOnImage:[UIImage imageNamed:@"btn_youkong"]];
         [freeTimeBtn setOffImage:[UIImage imageNamed:@"btn_meikong"]];
         freeTimeBtn.on = [ZYUserDefaults boolForKey:FreeTimeKey];
+        [freeTimeBtn sizeToFit];
         [_tipView addSubview:freeTimeBtn];
         NSString *url = [NSString stringWithFormat:@"user/%@/info?token=%@",CPUserId,CPToken];
         [[freeTimeBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(CPMySwitch *btn) {
@@ -461,22 +469,26 @@ static NSString *ID = @"cell";
                 }];
             }
         }];
-        [freeTimeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(_tipView);
-            make.right.equalTo(@-10);
-        }];
+        freeTimeBtn.centerY = _tipView.middleY;
+        freeTimeBtn.x = _tipView.width - freeTimeBtn.width - 10;
+//        [freeTimeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.centerY.equalTo(_tipView);
+//            make.right.equalTo(@-10);
+//        }];
         [RACObserve(self.tableView, contentOffset) subscribeNext:^(id x) {
             CGPoint p = [x CGPointValue];
             if (p.y <= 0 && p.y >= -10) {
                 if (_tipView.alpha == 0) {
                     [UIView animateWithDuration:0.2 animations:^{
                         _tipView.alpha = 1;
+                        _tipView.y = 64;
                     }];
                 }
             }else if (p.y > self.tableView.height - 383 - self.offset){
                 if (_tipView.alpha == 1) {
                 [UIView animateWithDuration:0.2 animations:^{
                     _tipView.alpha = 0;
+                    _tipView.y = 64 - _tipView.height;
                 }];
                 }
             }else if (p.y < -10){

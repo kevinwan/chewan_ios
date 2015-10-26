@@ -12,10 +12,10 @@
 typedef void(^completion)(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL);
 
 @interface ZYImageVIew : UIImageView
-- (void)zy_setImageWithUrl:(NSString *)url completed:(completion)completed;
+- (void)zy_setImageWithUrl:(NSString *)url;
 
 @property (nonatomic, strong) UIImageView *placeHloderImageView;
 
 @property (nonatomic, strong) FXBlurView *userCoverView;
-@property (nonatomic, assign) BOOL showImage;
+@property (nonatomic, assign) BOOL showBlurView;
 @end
