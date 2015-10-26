@@ -145,9 +145,9 @@ static NSString *ID = @"cell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CPNearCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
-    cell.indexPath = indexPath;
-    cell.model = self.datas[indexPath.item];
+    CPNearCollectionViewCell *cell = (CPNearCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
+    cell.contentV.indexPath = indexPath;
+    cell.contentV.model = self.datas[indexPath.item];
     return cell;
 }
 

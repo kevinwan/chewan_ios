@@ -67,7 +67,7 @@
 }
 
 -(void)addMJindex{
-    self.indexView = [[MJNIndexView alloc] initWithFrame:CGRectMake(190.0/320.0*ZYScreenWidth, 170.0/568.0*ZYScreenHeight, 100.0/320.0*ZYScreenWidth, 230.0/568.0*ZYScreenHeight)];
+    self.indexView = [[MJNIndexView alloc] initWithFrame:CGRectMake(190.0/320.0*ZYScreenWidth, 170.0, 100.0/320.0*ZYScreenWidth, 230.0)];
     //    }
     _indexView.dataSource = self;
     _indexView.fontColor = [Tools getColor:@"48d1d5"];
