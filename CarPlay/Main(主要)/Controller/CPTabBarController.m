@@ -42,6 +42,9 @@
     CPMyViewController *nearVc4 = [UIStoryboard storyboardWithName:@"CPMyViewController" bundle:nil].instantiateInitialViewController;
     [self addChildVc:nearVc4 title:@"我的" image:@"MineUnSelect" selectedImage:@"MineSelect"];
 
+    CPMatchingViewController *mathching=[UIStoryboard storyboardWithName:@"CPMatching" bundle:nil].instantiateInitialViewController;
+    CPNavigationController *nav=[[CPNavigationController alloc]initWithRootViewController:mathching];
+    [self addChildVc:nav title:@"匹配" image:@"MineUnSelect" selectedImage:@"MineSelect"];
     // 2.更换系统自带的tabbar
     CPTabBar *tabBar = [[CPTabBar alloc] init];
     tabBar.frame = self.tabBar.bounds;
@@ -100,6 +103,8 @@
     //test 测试语音聊天，暂时用下这个位置
     CPMatchingViewController *mathching=[UIStoryboard storyboardWithName:@"CPMatching" bundle:nil].instantiateInitialViewController;
      CPNavigationController *nav=[[CPNavigationController alloc]initWithRootViewController:mathching];
+//    NSLog(@"%@",self.childViewControllers);
+    [self setSelectedIndex:4];
     [self presentViewController:nav animated:YES completion:nil];
 }
 
