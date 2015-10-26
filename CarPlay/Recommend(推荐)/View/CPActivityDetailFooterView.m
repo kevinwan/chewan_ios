@@ -75,6 +75,8 @@
         
         [self.comePartBtn setTitle:@"报名参加" forState:UIControlStateNormal];
     }
+
+
 }
 
 - (IBAction)activityPathClick:(UIButton *)sender {
