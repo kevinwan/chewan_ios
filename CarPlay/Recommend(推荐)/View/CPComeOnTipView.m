@@ -38,7 +38,7 @@
         
         CGRect rect = [userInfo[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
         
-        CGFloat offset = rect.origin.y -  self.bottom + 44;
+        CGFloat offset = rect.origin.y -  self.bottom ;
         if (offset < 0) {
             [UIView animateWithDuration:0.25 animations:^{
                 self.y += offset;
@@ -66,11 +66,17 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"invitedUserId"] = self.targetUserId;
     params[@"transfer"] = @(self.transfer.isSelected);
+    params[@"message"] = self.textField.text;
     [CPNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
         if (CPSuccess) {
             [SVProgressHUD showInfoWithStatus:@"邀请已发出"];
+            [UIView animateWithDuration:0.25 animations:^{
+                self.superview.alpha = 0.0;
+            } completion:^(BOOL finished) {
+                [self.superview removeFromSuperview];
+            }];
         }else{
-            [SVProgressHUD showInfoWithStatus:@"邀请失败"];
+            [SVProgressHUD showInfoWithStatus:CPErrorMsg];
         }
     } failed:^(NSError *error) {
         
@@ -78,13 +84,13 @@
     }];
 }
 
-
 + (void)showWithActivityId:(NSString *)activityId targetUserId:(NSString *)targetUserId
 {
     ZYNewButton(cover);
     [cover setBackgroundColor:ZYColor(0, 0, 0, 0.5)];
-    [ZYKeyWindow addSubview:cover];
-    cover.frame = [ZYKeyWindow bounds];
+    UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+    [keyWindow addSubview:cover];
+    cover.frame = [keyWindow bounds];
     [[cover rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         [UIView animateWithDuration:0.25 animations:^{
             cover.alpha = 0.0;

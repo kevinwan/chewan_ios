@@ -547,39 +547,57 @@
         cell = [[ChatListCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identify];
     }
     EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
-    NSLog(@"===========title = %@,indexPath = %ld",conversation.chatter,(long)indexPath.row);
+//    NSLog(@"===========title = %@,indexPath = %ld",conversation.chatter,(long)indexPath.row);
 
-    cell.name = conversation.chatter;
+//    cell.name  = @"";
     if (conversation.conversationType == eConversationTypeChat) {
         if ([conversation.chatter isEqualToString:@"interestadmin"]) {
-            cell.name = @"感兴趣的";
+            cell.textLabel.text = @"感兴趣的";
             cell.HeadIV.image = [UIImage imageNamed:@"InterestAdmin"];
             NSURL *url = [NSURL URLWithString:[conversation.latestMessage.ext valueForKey:@"avatar"]];
             [cell.interestIV sd_setImageWithURL:url placeholderImage:nil];
-        }else if ([conversation.chatter isEqualToString:@"activitystateadmin"])
+        }
+        else if ([conversation.chatter isEqualToString:@"activitystateadmin"])
         {
-            cell.name = @"活动动态";
+            cell.textLabel.text = @"活动动态";
             cell.HeadIV.image = [UIImage imageNamed:@"ActivityStateAdmin"];
             
         }else if ([conversation.chatter isEqualToString:@"userviewadmin"])
         {
-            cell.name = @"最近访客";
+            cell.textLabel.text = @"最近访客";
             cell.HeadIV.image = [UIImage imageNamed:@"UserViewAdmin"];
             
         }else if ([conversation.chatter isEqualToString:@"subscribeadmin"])
         {
-            cell.name = @"谁关注我";
+            cell.textLabel.text = @"谁关注我";
             cell.HeadIV.image = [UIImage imageNamed:@"SubscribeAdmin"];
             
         }else if ([conversation.chatter isEqualToString:@"officialadmin"])
         {
-            cell.name = @"活动官方";
+            cell.textLabel.text = @"活动官方";
             cell.HeadIV.image = [UIImage imageNamed:@"OfficialAdmin"];
 
         }else{
-                cell.name = [conversation.latestMessageFromOthers.ext valueForKey:kUserNickName];
+            //从我的关注过来的消息，没有头像。
+            if (conversation.latestMessageFromOthers.ext == nil) {
+                //获取对方的头像和昵称
+                [ZYNetWorkTool getWithUrl:[NSString stringWithFormat:@"user/emchatInfo?userId=%@&token=%@&emchatName=%@",CPUserId,CPToken,conversation.chatter] params:nil success:^(id responseObject) {
+                    if (CPSuccess) {
+                        NSDictionary *dic = [responseObject objectForKey:@"data"];
+                        cell.textLabel.text = [dic objectForKey:@"nickname"];
+                        [cell.HeadIV sd_setImageWithURL:[NSURL URLWithString:[dic objectForKey:@"avatar"]] placeholderImage:nil];
+                        NSLog(@"-=-=-=请求回来的昵称是：%@,row = %ld",cell.name,indexPath.row);
+                        [self tableView:tableView canEditRowAtIndexPath:indexPath];
+                    }
+                } failure:^(NSError *error) {
+                    ;
+                }];
+
+            }else{
+                cell.textLabel.text = [conversation.latestMessageFromOthers.ext valueForKey:kUserNickName];
                 [cell.HeadIV sd_setImageWithURL:[NSURL URLWithString:[conversation.latestMessageFromOthers.ext valueForKey:kUserHeadUrl]] placeholderImage:nil];
-           
+
+            }
             
         }
 
@@ -592,7 +610,7 @@
             NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
             for (EMGroup *group in groupArray) {
                 if ([group.groupId isEqualToString:conversation.chatter]) {
-                    cell.name = group.groupSubject;
+                    cell.textLabel.text = group.groupSubject;
                     imageName = group.isPublic ? @"groupPublicHeader" : @"groupPrivateHeader";
 
                     NSMutableDictionary *ext = [NSMutableDictionary dictionaryWithDictionary:conversation.ext];
@@ -605,7 +623,7 @@
         }
         else
         {
-            cell.name = [conversation.ext objectForKey:@"groupSubject"];
+            cell.textLabel.text = [conversation.ext objectForKey:@"groupSubject"];
             imageName = [[conversation.ext objectForKey:@"isPublic"] boolValue] ? @"groupPublicHeader" : @"groupPrivateHeader";
         }
         cell.placeholderImage = [UIImage imageNamed:imageName];

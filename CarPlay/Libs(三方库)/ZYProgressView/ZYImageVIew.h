@@ -17,4 +17,5 @@ typedef void(^completion)(UIImage *image, NSError *error, SDImageCacheType cache
 @property (nonatomic, strong) UIImageView *placeHloderImageView;
 
 @property (nonatomic, strong) FXBlurView *userCoverView;
+@property (nonatomic, assign) BOOL showImage;
 @end

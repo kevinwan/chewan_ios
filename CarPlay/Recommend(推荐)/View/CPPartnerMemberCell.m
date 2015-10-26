@@ -14,6 +14,7 @@
 {
     if (self = [super initWithFrame:frame]) {
         self.iconView = [UIImageView new];
+        [self setCornerRadius:15];
         [self.contentView addSubview:self.iconView];
         [self.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(UIEdgeInsetsZero);

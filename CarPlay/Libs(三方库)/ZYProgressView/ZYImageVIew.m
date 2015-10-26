@@ -37,16 +37,17 @@
 {
     self.backgroundColor = [Tools getColor:@"dddddd"];
     [self addSubview:self.placeHloderImageView];
-//    [self addSubview:self.userCoverView];
     self.contentMode = UIViewContentModeScaleAspectFill;
     self.clipsToBounds = YES;
-    
 }
 
 - (void)setImage:(UIImage *)image
 {
-    [super setImage:image];
     self.placeHloderImageView.hidden = YES;
+    [super setImage:image];
+    if (image && self.showImage ) {
+        [self insertSubview:self.userCoverView atIndex:0];
+    }
 }
 - (void)zy_setImageWithUrl:(NSString *)url completed:(completion)completed
 {
@@ -77,7 +78,7 @@
 - (FXBlurView *)userCoverView
 {
     if (_userCoverView == nil) {
-        _userCoverView = [[FXBlurView alloc] init];
+        _userCoverView = [[FXBlurView alloc] initWithFrame:self.bounds];
         _userCoverView.tintColor = [UIColor clearColor];
         [_userCoverView setBlurEnabled:YES];
         _userCoverView.blurRadius = 5;

@@ -49,7 +49,6 @@
 @property (nonatomic, assign) CGFloat outlineWidth;
 @property (nonatomic, assign, getter = isGlow) BOOL glow;
 - (id)initWithBorderWidth:(CGFloat)width;
-
 @end
 
 @implementation AAPullToRefreshBackgroundLayer
@@ -78,6 +77,7 @@
 @property (nonatomic, assign) double progress;
 @property (nonatomic, assign) double prevProgress;
 
+@property (nonatomic, strong) NSDate *startDate;
 @end
 
 @implementation AAPullToRefresh
@@ -96,12 +96,11 @@
 {
     self.threshold = 60.0f;
     self.isUserAction = NO;
-    self.contentMode = UIViewContentModeRedraw;
     self.state = AAPullToRefreshStateNormal;
-    if (self.isSidePosition)
-        self.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    else
-        self.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+//    if (self.isSidePosition)
+//        self.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+//    else
+//        self.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     self.backgroundColor = [UIColor clearColor];
     _activityIndicatorView = [ZYRefreshView new];
     _activityIndicatorView.center = self.centerInSelf;
@@ -143,9 +142,7 @@
             [self.scrollView setContentOffset:CGPointMake(0, self.scrollView.contentOffset.y) animated:YES];
         });
     }else if (self.position == AAPullToRefreshPositionBottom){
-//        ZYMainThread(^{
-            [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentOffset.x, self.scrollView.contentSize.height - self.scrollView.bounds.size.height) animated:YES];
-//        });
+            [self.scrollView setContentOffset:CGPointMake(0, self.scrollView.contentSize.height - self.scrollView.bounds.size.height) animated:YES];
     }else if (self.position == AAPullToRefreshPositionRight){
         ZYMainThread(^{
             
@@ -238,6 +235,9 @@
             centerX = self.scrollView.center.x + xOffset;
             CGFloat itemH = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250 + 383;
             CGFloat ss = self.scrollView.height - itemH - 20 - 49;
+            if (self.isNoAnimation) {
+                ss = - 36;
+            }
             centerY = self.scrollView.frame.size.height + self.frame.size.height / 2.0f + yOffset - ss;
             if (overBottomOffsetY >= 0.0f) {
                 centerY -= overBottomOffsetY / 1.5f;
@@ -279,7 +279,6 @@
 - (void)actionTriggeredState
 {
     self.state = AAPullToRefreshStateLoading;
-    
 //    [UIView animateWithDuration:0.1f delay:0.0f
 //                        options:UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionAllowUserInteraction
 //                     animations:^{
@@ -289,18 +288,30 @@
 //                     }];
     
     [self.activityIndicatorView startAnimation];
-    [self setupScrollViewContentInsetForLoadingIndicator:nil];
+//    [self setupScrollViewContentInsetForLoadingIndicator:nil];
     if (self.pullToRefreshHandler)
         self.pullToRefreshHandler(self);
+    self.startDate = [NSDate date];
 }
 
 - (void)actionStopState
 {
+    
     [self.activityIndicatorView stopAnimation];
     [self resetScrollViewContentInset:^{
         self.activityIndicatorView.transform = CGAffineTransformIdentity;
         self.state = AAPullToRefreshStateNormal;
     }];
+    return ;
+//    CGFloat duration = 0.0;
+//    CGFloat offsetDuration = [NSDate date].timeIntervalSince1970 - self.startDate.timeIntervalSince1970;
+//    if (offsetDuration < 2.0) {
+//        duration = 2.0 - offsetDuration;
+//    }
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        self.startDate = nil;
+//        };
+//    });
 }
 
 #pragma mark - public method

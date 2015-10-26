@@ -120,15 +120,22 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *marginCons;
 
+@property (nonatomic, strong) UIView *titleView;
 
+@property (nonatomic, strong) UILabel *titleExtraText;
 
 @end
 
 @implementation CPBaseViewCell
 
++ (instancetype)baseCell
+{
+    return [[NSBundle mainBundle] loadNibNamed:@"CPBaseViewCell" owner:nil options:nil].lastObject;;
+}
+
 - (void)awakeFromNib
 {
-    self.marginCons.constant = 12;
+    self.titleView.hidden = YES;
     // 进行初始化设置
     [self.bgView setCornerRadius:5];
     self.distanceView.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 6);
@@ -136,15 +143,16 @@
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] init];
     [tapGes.rac_gestureSignal subscribeNext:^(id x) {
         
-        [self superViewWillRecive:IconViewClickKey info:_model];
+        [self superViewWillRecive:IconViewClickKey info:_indexPath];
     }];
     [self.userIconView addGestureRecognizer:tapGes];
-//    [self.userIconView addSubview:self.userCoverView];
     [self.userIconView addSubview:self.tipView];
     [self.userIconView addSubview:self.dateButton];
     [self.userIconView addSubview:self.invitedButton];
     [self.userIconView addSubview:self.ignoreButton];
     [self dateAnim];
+    [self.bgView addSubview:self.titleView];
+    [self.titleView addSubview:self.titleExtraText];
 }
 
 - (void)layoutSubviews
@@ -185,9 +193,17 @@
             make.height.equalTo(self.userIconView.mas_height).multipliedBy(0.46);
         }
     }];
-//    [self.userCoverView updateAsynchronously:YES completion:^{
-//        self.userCoverView.frame = self.userIconView.bounds;
-//    }];
+    
+    [self.titleView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(@0);
+        make.top.equalTo(self.userIconView);
+        make.height.equalTo(@40);
+    }];
+    
+    [self.titleExtraText mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(@10);
+        make.centerY.equalTo(self.titleView);
+    }];
 }
 
 /**
@@ -198,6 +214,8 @@
 - (void)setModel:(CPActivityModel *)model
 {
     _model = model;
+    
+    self.marginCons.constant = 12;
     BOOL isHasAlubm;
     if (CPUnLogin) {
         isHasAlubm = NO;
@@ -206,23 +224,13 @@
     }
     self.sexView.isMan = model.organizer.isMan;
     self.sexView.age = model.organizer.age;
-
-//    ZYWeakSelf
-//    [self.userIconView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:model.organizer.cover]] placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
-//        ZYStrongSelf
-////        self.userIconView.placeHloderImageView.hidden = YES;
-//        self.userIconView.backgroundColor = [UIColor clearColor];
-//        [self.userIconView setImage:image];
-//        self.userCoverView.blurRadius = 20;
-//    } failure:NULL];
-    
-//    [self.userIconView setImageWithURL:[NSURL URLWithString:model.organizer.cover]];
-//    return;
-    [self.userIconView sd_setImageWithURL:[NSURL URLWithString:model.organizer.cover]];
-//    [self.userIconView zy_setImageWithUrl:model.organizer.cover completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-//        self.userIconView.image = image;
-//        self.userCoverView.hidden= NO;
-//    }];
+    if (isHasAlubm) {
+        self.userIconView.showImage = NO;
+    }else{
+        self.userIconView.showImage = YES;
+    }
+    [self.userIconView zy_setImageWithUrl:model.organizer.cover completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    }];
     [self.distanceView setTitle:model.distanceStr forState:UIControlStateNormal];
     self.loveBtn.selected = model.organizer.subscribeFlag;
     self.payView.text = model.pay;
@@ -243,12 +251,12 @@
     }
     
     if ([model.organizer.licenseAuthStatus isEqualToString:@"认证通过"]) {
-        self.carView.hidden = NO;
         self.carTypeView.hidden = NO;
         [self.carView sd_setImageWithURL:[NSURL URLWithString:model.organizer.car.logo] forState:UIControlStateNormal placeholderImage:CPPlaceHolderImage];
         self.carTypeView.text = model.organizer.car.model;
     }else{
-        self.carView.hidden = YES;
+        
+        [self.carView setImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
         self.carTypeView.hidden = YES;
     }
     if (isHasAlubm && CPIsLogin) {
@@ -283,6 +291,8 @@
 - (void)setMyDateModel:(CPMyDateModel *)myDateModel
 {
     _myDateModel = myDateModel;
+    
+    self.marginCons.constant = 0;
     BOOL isHasAlubm;
     if (CPUnLogin) {
         isHasAlubm = NO;
@@ -319,12 +329,10 @@
     }
     
     if ([myDateModel.applicant.licenseAuthStatus isEqualToString:@"认证通过"]) {
-        self.carView.hidden = NO;
-        self.carTypeView.hidden = NO;
         [self.carView sd_setImageWithURL:[NSURL URLWithString:myDateModel.applicant.car.logo] forState:UIControlStateNormal placeholderImage:CPPlaceHolderImage];
         self.carTypeView.text = myDateModel.applicant.car.model;
     }else{
-        self.carView.hidden = YES;
+        [self.carView setImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
         self.carTypeView.hidden = YES;
     }
     if (isHasAlubm && CPIsLogin) {
@@ -355,6 +363,80 @@
         [self setPhoneType:YES];
     }
 
+}
+
+- (void)setIntersterModel:(CPIntersterModel *)intersterModel
+{
+    _intersterModel = intersterModel;
+    self.marginCons.constant = 0;
+    BOOL isHasAlubm;
+    if (CPUnLogin) {
+        isHasAlubm = NO;
+    }else{
+        isHasAlubm = [ZYUserDefaults boolForKey:CPHasAlbum];
+    }
+    self.sexView.isMan = intersterModel.user.isMan;
+    self.sexView.age = intersterModel.user.age;
+    
+    
+    ZYWeakSelf
+    [self.userIconView zy_setImageWithUrl:intersterModel.user.cover completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        ZYStrongSelf
+        self.userCoverView.hidden = NO;
+        self.userIconView.image = image;
+    }];
+    [self.distanceView setTitle:intersterModel.distanceStr forState:UIControlStateNormal];
+    self.loveBtn.selected = intersterModel.user.subscribeFlag;
+    self.payView.text = intersterModel.activityPay;
+    self.sendView.hidden = !intersterModel.activityTransfer;
+    [self.addressView setTitle:intersterModel.activityDestination[@"street"] forState:UIControlStateNormal];
+    if (intersterModel.title.length) {
+        self.titleLabel.text = intersterModel.title;
+    }else{
+        self.titleLabel.text = @"";
+    }
+    
+    if ([intersterModel.user.photoAuthStatus isEqualToString:@"认证通过"]) {
+        [self.authView setImage:[UIImage imageNamed:@"头像已认证"] forState:UIControlStateNormal];
+    }else{
+        [self.authView setImage:[UIImage imageNamed:@"未认证-审核中"] forState:UIControlStateNormal];
+    }
+    
+    if ([intersterModel.user.licenseAuthStatus isEqualToString:@"认证通过"]) {
+        self.carTypeView.hidden = NO;
+        [self.carView sd_setImageWithURL:[NSURL URLWithString:intersterModel.user.car.logo] forState:UIControlStateNormal placeholderImage:CPPlaceHolderImage];
+        self.carTypeView.text = intersterModel.user.car.model;
+    }else{
+        [self.carView setImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
+        self.carTypeView.hidden = YES;
+    }
+    if (isHasAlubm && CPIsLogin) {
+        self.tipView.hidden = YES;
+    }else{
+        self.tipView.hidden = NO;
+    }
+    
+    if (intersterModel.status == 0){
+        
+        self.dateAnim.haloLayerColor = RedColor.CGColor;
+        [self.dateButton setBackgroundColor:RedColor];
+        [self.dateButton setTitle:@"邀TA" forState:UIControlStateNormal];
+        [self setOneType:YES];
+    }else if (intersterModel.status == 1){
+        
+//        if ([intersterModel.invitedUserId isEqualToString:CPUserId]) {
+//            [self setOneType:NO];
+//            [self setPhoneType:NO];
+//        }else{
+//            
+//            self.dateAnim.haloLayerColor= [Tools getColor:@"cccccc"].CGColor;
+//            [self.dateButton setBackgroundColor:[Tools getColor:@"cccccc"]];
+//            [self.dateButton setTitle:@"已邀请" forState:UIControlStateNormal];
+//            [self setOneType:YES];
+//        }
+    }else if (intersterModel.status == 2){
+        [self setPhoneType:YES];
+    }
 }
 
 - (void)setOneType:(BOOL)oneType
@@ -735,6 +817,26 @@
         [_userCoverView setHidden:YES];
     }
     return _userCoverView;
+}
+
+- (UIView *)titleView
+{
+    if (!_titleView) {
+        _titleView = [UIView new];
+        _titleView.backgroundColor = ZYColor(0, 0, 0, 0.5);
+    }
+    return _titleView;
+}
+
+- (UILabel *)titleExtraText
+{
+    if (!_titleExtraText) {
+        _titleExtraText = [UILabel new];
+        _titleExtraText.textColor = [UIColor whiteColor];
+        _titleExtraText.font = ZYFont12;
+        [_titleExtraText sizeToFit];
+    }
+    return _titleExtraText;
 }
 
 @end

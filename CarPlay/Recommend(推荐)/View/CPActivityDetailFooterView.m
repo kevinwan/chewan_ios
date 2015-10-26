@@ -69,6 +69,12 @@
     self.activityPathLabel.attributedText = [[NSAttributedString alloc] initWithString:model.desc attributes:@{NSParagraphStyleAttributeName : paragraphStyle}];
     self.explainLabel.attributedText = [[NSAttributedString alloc] initWithString:model.extraDesc attributes:@{NSParagraphStyleAttributeName : paragraphStyle}];
     self.comePartBtn.enabled = !model.isMember;
+    if (model.isMember){
+        [self.comePartBtn setTitle:@"进入群聊" forState:UIControlStateNormal];
+    }else{
+        
+        [self.comePartBtn setTitle:@"报名参加" forState:UIControlStateNormal];
+    }
 }
 
 - (IBAction)activityPathClick:(UIButton *)sender {
@@ -79,7 +85,9 @@
         self.activityPathLCons.constant = contentSize.height + 2;
         self.activityPathTopCons.constant = 13;
         self.line1TopCons.constant = 20;
+        self.activityPathLabel.hidden = NO;
     }else{
+        self.activityPathLabel.hidden = YES;
         self.activityPathLCons.constant = 0;
         self.activityPathTopCons.constant = 0;
         self.line1TopCons.constant = 0;
@@ -99,7 +107,9 @@
         self.explainLCons.constant = contentSize.height + 2;
         self.explainTopCons.constant = 13;
         self.line2TopCons.constant = 20;
+        self.explainLabel.hidden = NO;
     }else{
+        self.explainLabel.hidden = YES;
         self.explainLCons.constant = 0;
         self.explainTopCons.constant = 0;
         self.line2TopCons.constant = 0;
@@ -112,15 +122,22 @@
 
 - (IBAction)comePart:(UIButton *)sender {
   
-    NSString *url = [NSString stringWithFormat:@"official/activity/%@/join?userId=%@&token=%@",self.officialActivityId, CPUserId, CPToken];
-    [ZYNetWorkTool postJsonWithUrl:url params:nil success:^(id responseObject) {
-        if (CPSuccess) {
-            [SVProgressHUD showInfoWithStatus:@"申请成功"];
-            sender.enabled = YES;
-        }
-    } failed:^(NSError *error) {
-        [SVProgressHUD showInfoWithStatus:@"申请失败"];
-    }];
+    if ([sender.currentTitle isEqualToString:@"报名参加"]){
+        
+        NSString *url = [NSString stringWithFormat:@"official/activity/%@/join?userId=%@&token=%@",self.officialActivityId, CPUserId, CPToken];
+        [ZYNetWorkTool postJsonWithUrl:url params:nil success:^(id responseObject) {
+            if (CPSuccess) {
+                [SVProgressHUD showInfoWithStatus:@"申请成功"];
+                [self superViewWillRecive:CPJionOfficeActivityKey info:nil];
+                [sender setTitle:@"进入群聊" forState:UIControlStateNormal];
+            }
+        } failed:^(NSError *error) {
+            [SVProgressHUD showInfoWithStatus:@"申请失败"];
+        }];
+    }else{
+        // 进入群聊接口
+        
+    }
 }
 
 @end

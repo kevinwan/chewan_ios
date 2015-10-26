@@ -18,6 +18,7 @@
 #import "UICollectionView3DLayout.h"
 #import "CPNearCollectionViewCell.h"
 #import "CPAlbum.h"
+#import "CPMyInterestViewController.h"
 
 @interface CPNearViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate>
 @property (nonatomic, strong) UICollectionView *tableView;
@@ -87,6 +88,7 @@ static NSString *ID = @"cell";
     self.headerView = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionTop actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
         ZYMainThread(^{
+            
             [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, -44) animated:YES];
         });
         self.params.ignore = 0;
@@ -100,11 +102,15 @@ static NSString *ID = @"cell";
             [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, self.tableView.contentSizeHeight - self.tableView.height + 44) animated:YES];
         });
             
-        if (self.datas.count >= CPPageNum) {
+        if (self.datas.count % CPPageNum == 0) {
             self.params.ignore += CPPageNum;
             [self loadDataWithHeader:v];
         }else{
-            [v stopIndicatorAnimation];
+           
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                [v stopIndicatorAnimation];
+            });
         }
     }];
     self.isHasRefreshHeader = YES;
@@ -160,8 +166,8 @@ static NSString *ID = @"cell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CPNearCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
-    cell.indexPath = indexPath;
-    cell.model = self.datas[indexPath.item];
+    cell.contentV.indexPath = indexPath;
+    cell.contentV.model = self.datas[indexPath.item];
     return cell;
 }
 
@@ -172,9 +178,9 @@ static NSString *ID = @"cell";
 
 -(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {
-//    if (self.headerView.state == AAPullToRefreshStateLoading || self.footerView.state == AAPullToRefreshStateLoading) {
-//        return;
-//    }
+    if (iPhone4) {
+        return;
+    }
     UICollectionView3DLayout *layout=(UICollectionView3DLayout*)self.tableView.collectionViewLayout;
 
     [layout EndAnchorMove];
@@ -198,8 +204,8 @@ static NSString *ID = @"cell";
     }else if ([notifyName isEqualToString:IconViewClickKey]){
         CPGoLogin(@"查看TA的详情");
         CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
-        CPActivityModel *model = userInfo;
-        taVc.userId = model.organizer.userId;
+        NSIndexPath *indexPath = userInfo;
+        taVc.userId = self.datas[indexPath.row].organizer.userId;
         [self.navigationController pushViewController:taVc animated:YES];
     }
 }
@@ -359,6 +365,8 @@ static NSString *ID = @"cell";
  */
 - (void)filter
 {
+    [self.navigationController pushViewController:[CPMyInterestViewController new] animated:YES];
+    return;
     [CPSelectView showWithParams:^(CPSelectModel *selectModel) {
         
         self.params.type = selectModel.type;

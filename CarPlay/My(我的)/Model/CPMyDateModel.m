@@ -25,7 +25,17 @@
 
 - (NSString *)title
 {
-    return [NSString stringWithFormat:@"%@想邀请你%@",_applicant.nickname, _type];
+    return [NSString stringWithFormat:@"%@想找人一块%@",_applicant.nickname, _type];
 }
-
+- (void)setDistance:(double)distance
+{
+    _distance = distance;
+    
+    if (_distance >= 1000) {
+        CGFloat dis = distance / 1000.0;
+        _distanceStr = [NSString stringWithFormat:@"%.1fkm",dis];
+    }else{
+        _distanceStr = [NSString stringWithFormat:@"%.1fm",distance];
+    }
+}
 @end

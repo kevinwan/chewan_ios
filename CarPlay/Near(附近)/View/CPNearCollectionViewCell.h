@@ -9,9 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "CPBaseViewCell.h"
 #import "CPMyDateModel.h"
+#import "CPIntersterModel.h"
 
 @interface CPNearCollectionViewCell : UICollectionViewCell
-@property (nonatomic, strong) NSIndexPath *indexPath;
-@property (nonatomic, strong) CPActivityModel *model;
-@property (nonatomic, strong) CPMyDateModel *myDateModel;
+@property (nonatomic, weak) CPBaseViewCell *contentV;
 @end

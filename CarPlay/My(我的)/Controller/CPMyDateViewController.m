@@ -17,8 +17,10 @@
 #import "CPAlbum.h"
 #import "ChatViewController.h"
 #import "CPMyDateModel.h"
+#import "ZYWaterflowLayout.h"
+#import "CPRecommentViewCell.h"
 
-@interface CPMyDateViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate>
+@interface CPMyDateViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate,ZYWaterflowLayoutDelegate>
 @property (nonatomic, strong) UICollectionView *tableView;
 @property (nonatomic, strong) NSMutableArray<CPMyDateModel *> *datas;
 @property (nonatomic, assign) CGFloat offset;
@@ -29,7 +31,8 @@
 @property (nonatomic, assign) CGFloat ignore;
 @end
 
-static NSString *ID = @"DateCell";
+static NSString *ID1 = @"DateCell1";
+static NSString *ID2 = @"DateCell2";
 @implementation CPMyDateViewController
 
 - (void)viewDidLoad
@@ -57,6 +60,7 @@ static NSString *ID = @"DateCell";
     if (self.datas.count == 0) {
         [self loadDataWithHeader:nil];
     }
+//    [self.tableView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -89,17 +93,19 @@ static NSString *ID = @"DateCell";
     self.footerView = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionBottom actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
         ZYMainThread(^{
-            
             [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, self.tableView.contentSizeHeight - self.tableView.height + 44) animated:YES];
         });
         
-        if (self.datas.count >= CPPageNum) {
+        if (self.datas.count % CPPageNum == 0) {
             self.ignore += CPPageNum;
             [self loadDataWithHeader:v];
         }else{
-            [v stopIndicatorAnimation];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [v stopIndicatorAnimation];
+            });
         }
     }];
+    self.footerView.isNoAnimation = YES;
     self.isHasRefreshHeader = YES;
 }
 
@@ -109,7 +115,7 @@ static NSString *ID = @"DateCell";
 - (void)loadDataWithHeader:(AAPullToRefresh *)refresh
 {
 //    user/$userId/appointment/list
-    NSString *url = [NSString stringWithFormat:@"user/%@/appointment/list?token=%@",self.targetUerId, CPToken];
+    NSString *url = [NSString stringWithFormat:@"user/%@/appointment/list?token=%@",CPUserId, CPToken];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"ignore"] = @(self.ignore);
     [ZYNetWorkTool getWithUrl:url params:params success:^(id responseObject) {
@@ -151,15 +157,42 @@ static NSString *ID = @"DateCell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CPNearCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
-    cell.indexPath = indexPath;
-    cell.myDateModel = self.datas[indexPath.item];
-    return cell;
+    CPMyDateModel *model = self.datas[indexPath.item];
+    if ([model.activityCategory isEqualToString:@"普通活动"]) {
+        CPNearCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID1 forIndexPath:indexPath];
+        cell.contentV.indexPath = indexPath;
+        cell.contentV.myDateModel = model;
+        return cell;
+    }else{
+        
+        CPRecommentViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID2 forIndexPath:indexPath];
+        return cell;
+    }
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return self.datas.count;
+}
+
+- (CGFloat)waterflowLayout:(ZYWaterflowLayout *)waterflowLayout heightForWidth:(CGFloat)width atIndexPath:(NSIndexPath *)indexPath
+{
+    CGSize itemSize;
+    if (iPhone4) {
+        itemSize = CGSizeMake(ZYScreenWidth - 36,345);
+    }else{
+        
+        itemSize = CGSizeMake(ZYScreenWidth - 36,ZYScreenWidth + 100);
+    }
+    
+    CPMyDateModel *model = self.datas[indexPath.item];
+    
+    if ([model.activityCategory isEqualToString:@"普通活动"]) {
+        return self.offset + 380;
+    }else{
+        return itemSize.height;
+    }
+    
 }
 
 
@@ -204,19 +237,24 @@ static NSString *ID = @"DateCell";
             //电话
             NSString *userID=[model.applyUserId isEqualToString:CPUserId]?model.invitedUserId:model.applyUserId;
 
-            [ZYUserDefaults setValue:model.applicant.avatar forKey:kReceiverHeadUrl];
-            [ZYUserDefaults setValue: model.applicant.nickname forKey:kReceiverNickName];
+            [ZYUserDefaults setObject:model.applicant.avatar forKey:kReceiverHeadUrl];
+            [ZYUserDefaults setObject: model.applicant.nickname forKey:kReceiverNickName];
             NSLog(@"电话头像URL = %@",model.applicant.avatar);
             [[NSNotificationCenter defaultCenter] postNotificationName:@"callOutWithChatter" object:@{@"chatter":[Tools md5EncryptWithString:userID], @"type":[NSNumber numberWithInt:eCallSessionTypeAudio]}];
 
         }
     }else if([notifyName isEqualToString:LoveBtnClickKey]){
-        [self loveBtnClickWithInfo:(CPMyDateModel *)userInfo];
+        
+        NSIndexPath *indexPath = userInfo;
+        CPMyDateModel *model = self.datas[indexPath.row];
+        [self loveBtnClickWithInfo:(CPMyDateModel *)model];
     }else if ([notifyName isEqualToString:IconViewClickKey]){
+        
+        NSIndexPath *indexPath = userInfo;
+        CPMyDateModel *model = self.datas[indexPath.row];
         CPGoLogin(@"查看TA的详情");
         CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
-        CPActivityModel *model = userInfo;
-        taVc.userId = model.organizer.userId;
+        taVc.userId = model.applicant.userId;
         [self.navigationController pushViewController:taVc animated:YES];
     }
 }
@@ -338,23 +376,28 @@ static NSString *ID = @"DateCell";
 - (UICollectionView *)tableView
 {
     if (_tableView == nil) {
-        UICollectionView3DLayout *layout = [UICollectionView3DLayout new];
-        //        UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
+//        UICollectionView3DLayout *layout = [UICollectionView3DLayout new];
+        ZYWaterflowLayout *layout = [ZYWaterflowLayout new];
+        layout.columnsCount = 1;
+        layout.delegate = self;
+//                UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
         _tableView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
         _tableView.alwaysBounceVertical = YES;
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.showsHorizontalScrollIndicator = NO;
         _tableView.showsVerticalScrollIndicator = NO;
-        self.automaticallyAdjustsScrollViewInsets = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        CGSize itemSzie= CGSizeMake(ZYScreenWidth - 20, 383 + self.offset);
-        layout.itemSize = itemSzie;
+        layout.rowMargin = 20;
+        layout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
+        layout.columnsCount = 1;
+//        layout.itemSize = itemSzie;
         //        layout.scrollDirection = UICollectionLayoutScrollDirectionVertical;
-        layout.itemScale = 0.96;
-        layout.LayoutDirection=UICollectionLayoutScrollDirectionVertical;
+//        layout.itemScale = 0.96;
+//        layout.LayoutDirection=UICollectionLayoutScrollDirectionVertical;
         self.view.backgroundColor = [Tools getColor:@"efefef"];
-        [_tableView registerClass:[CPNearCollectionViewCell class] forCellWithReuseIdentifier:ID];
+        [_tableView registerClass:[CPNearCollectionViewCell class] forCellWithReuseIdentifier:ID1];
+        [_tableView registerClass:[CPRecommentViewCell class] forCellWithReuseIdentifier:ID2];
         _tableView.panGestureRecognizer.delaysTouchesBegan = _tableView.delaysContentTouches;
         
     }
