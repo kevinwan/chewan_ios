@@ -368,8 +368,6 @@ static NSString *ID = @"cell";
         self.params.ignore = 0;
         [self loadDataWithHeader:nil];
     }];
-    
-    
 }
 
 #pragma mark - 加载子控件

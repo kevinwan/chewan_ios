@@ -19,6 +19,7 @@
 		6B153EF81BB5690900560935 /* CPRegViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B153EF41BB5690900560935 /* CPRegViewController.storyboard */; };
 		6B153EFC1BB5692500560935 /* CPMyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B153EFA1BB5692500560935 /* CPMyViewController.m */; };
 		6B153EFD1BB5692500560935 /* CPMyViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B153EFB1BB5692500560935 /* CPMyViewController.storyboard */; };
+		6B204BAC1BDDF2350005C197 /* CPMatchingResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B204BAB1BDDF2350005C197 /* CPMatchingResultController.m */; };
 		6B2411171BCB569E0014468D /* CPMyInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2411161BCB569E0014468D /* CPMyInfoController.m */; };
 		6B2411191BCB56AC0014468D /* CPMyInfoController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B2411181BCB56AC0014468D /* CPMyInfoController.storyboard */; };
 		6B2E36221BCD24A00053459E /* MJNIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2E36211BCD24A00053459E /* MJNIndexView.m */; };
@@ -572,6 +573,8 @@
 		6B153EF91BB5692500560935 /* CPMyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyViewController.h; sourceTree = "<group>"; };
 		6B153EFA1BB5692500560935 /* CPMyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyViewController.m; sourceTree = "<group>"; };
 		6B153EFB1BB5692500560935 /* CPMyViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMyViewController.storyboard; sourceTree = "<group>"; };
+		6B204BAA1BDDF2350005C197 /* CPMatchingResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMatchingResultController.h; sourceTree = "<group>"; };
+		6B204BAB1BDDF2350005C197 /* CPMatchingResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMatchingResultController.m; sourceTree = "<group>"; };
 		6B2411151BCB569E0014468D /* CPMyInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyInfoController.h; sourceTree = "<group>"; };
 		6B2411161BCB569E0014468D /* CPMyInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyInfoController.m; sourceTree = "<group>"; };
 		6B2411181BCB56AC0014468D /* CPMyInfoController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMyInfoController.storyboard; sourceTree = "<group>"; };
@@ -1506,6 +1509,15 @@
 				6B153EF41BB5690900560935 /* CPRegViewController.storyboard */,
 			);
 			path = "CPReg(注册)";
+			sourceTree = "<group>";
+		};
+		6B204BA91BDDF0700005C197 /* CPMatchingResult(匹配结果) */ = {
+			isa = PBXGroup;
+			children = (
+				6B204BAA1BDDF2350005C197 /* CPMatchingResultController.h */,
+				6B204BAB1BDDF2350005C197 /* CPMatchingResultController.m */,
+			);
+			path = "CPMatchingResult(匹配结果)";
 			sourceTree = "<group>";
 		};
 		6B2E361F1BCD24A00053459E /* MJIndexView */ = {
@@ -3255,6 +3267,7 @@
 		E3A471021BB3A85300973197 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6B204BA91BDDF0700005C197 /* CPMatchingResult(匹配结果) */,
 				6BE2E6131BC67CB000D1D928 /* CPMatching.storyboard */,
 				6BE2E6141BC67CB000D1D928 /* CPMatchingViewController.h */,
 				6BE2E6151BC67CB000D1D928 /* CPMatchingViewController.m */,
@@ -4164,6 +4177,7 @@
 				6D2ABFB41BCE582100201A8E /* PSTGridLayoutItem.m in Sources */,
 				6BDA2C931BD610550032FFF1 /* CPEditInfoViewController.m in Sources */,
 				E31B13401BB9312D00B51696 /* NSDate+Extend.m in Sources */,
+				6B204BAC1BDDF2350005C197 /* CPMatchingResultController.m in Sources */,
 				6D2ABFE11BCE582100201A8E /* CreateGroupViewController.m in Sources */,
 				6B0B2B641BD9DD2E00A6CA02 /* CPCar.m in Sources */,
 				6D2ABFB51BCE582100201A8E /* PSTGridLayoutRow.m in Sources */,

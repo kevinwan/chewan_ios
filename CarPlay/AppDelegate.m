@@ -65,7 +65,14 @@
             return NO;
         }
     }
+    
     return YES;
+}
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
+    if (tabBarController.selectedIndex !=4) {
+        [ZYUserDefaults setInteger:tabBarController.selectedIndex forKey:TabLastSelectIndex];
+    }
 }
 
 #pragma UIAlertViewDelegate

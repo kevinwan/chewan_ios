@@ -15,6 +15,7 @@
 #import "MatchingSelectView.h"
 #import "ExerciseMatchingSelectView.h"
 #import "CPActivityModel.h"
+#import "CPTabBarController.h"
 
 
 @interface CPMatchingViewController ()<UIGestureRecognizerDelegate,UITableViewDataSource,UITableViewDelegate>
@@ -441,6 +442,8 @@
 }
 
 -(void)hidenScrollView{
+    CPTabBarController *tab = (CPTabBarController *)self.view.window.rootViewController;
+    [tab setSelectedIndex:[ZYUserDefaults integerForKey:TabLastSelectIndex]];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

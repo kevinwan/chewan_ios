@@ -22,3 +22,5 @@ ZYEXTENSION_EXTERN NSString * const FreeTimeKey;
 ZYEXTENSION_EXTERN NSString * const LastType;
 //意向匹配最后一次包接送否
 ZYEXTENSION_EXTERN NSString * const Transfer;
+// UITabBar 上一次选中的序号
+ZYEXTENSION_EXTERN NSString * const TabLastSelectIndex;
