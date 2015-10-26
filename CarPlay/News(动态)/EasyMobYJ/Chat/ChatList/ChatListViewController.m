@@ -574,9 +574,14 @@
             
         }else if ([conversation.chatter isEqualToString:@"officialadmin"])
         {
-            cell.textLabel.text = @"活动官方";
+            cell.textLabel.text = @"车玩官方";
             cell.HeadIV.image = [UIImage imageNamed:@"OfficialAdmin"];
 
+        }else if ([conversation.chatter isEqualToString:@"nearbyadmin"])
+        {
+            cell.textLabel.text = @"附近";
+            cell.HeadIV.image = [UIImage imageNamed:@"nearbyadmin"];
+            
         }else{
             //从我的关注过来的消息，没有头像。
             if (conversation.latestMessageFromOthers.ext == nil) {
@@ -650,17 +655,6 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    //test
-    
-    CPCareMeViewController *careMeVC = [[CPCareMeViewController alloc]init];
-    [self.navigationController pushViewController:careMeVC animated:YES];
-//        CPVisitorViewController *careMeVC = [[CPVisitorViewController alloc]init];
-//        [self.navigationController pushViewController:careMeVC animated:YES];
-
-    return;
-    
-    
-    
     EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
        ChatViewController *chatController;
     NSString *title = conversation.chatter;
@@ -680,19 +674,49 @@
             }
         }
     }
-    else if (conversation.conversationType == eConversationTypeChat) {
-        title = [[UserProfileManager sharedInstance] getNickNameWithUsername:conversation.chatter];
-    }
-    
+
+    //****注意，官方活动的自定义的数据要手动取消未读消息数量****//
     NSString *chatter = conversation.chatter;
     if ([chatter isEqualToString:@"subscribeadmin"]) {
+        //关注我的
         CPCareMeViewController *careMeVC = [[CPCareMeViewController alloc]init];
         [self.navigationController pushViewController:careMeVC animated:YES];
-    }else {
+        [conversation markAllMessagesAsRead:YES];
+    }else if ([chatter isEqualToString:@"userviewadmin"])
+    {//最近访客
+        CPVisitorViewController *careMeVC = [[CPVisitorViewController alloc]init];
+        [self.navigationController pushViewController:careMeVC animated:YES];
+        [conversation markAllMessagesAsRead:YES];
+
+    }else if ([chatter isEqualToString:@"interestadmin"])
+    {//感兴趣的
+        [conversation markAllMessagesAsRead:YES];
+        
+    }else if ([chatter isEqualToString:@"activitystateadmin"])
+    {//活动动态
+        [conversation markAllMessagesAsRead:YES];
+        
+    }else if ([chatter isEqualToString:@"officialadmin"])
+    {//车玩官方
+        [conversation markAllMessagesAsRead:YES];
+        chatController = [[ChatViewController alloc] initWithChatter:chatter
+                                                    conversationType:conversation.conversationType];
+        chatController.title = @"车玩官方";
+        chatController.HerHeadStr =@"OfficialAdmin";
+        chatController.HerName = @"车玩官方";
+        chatController.delelgate = self;
+        [self.navigationController pushViewController:chatController animated:YES];
+
+        
+    }else if ([chatter isEqualToString:@"nearbyadmin"])
+    {//附近
+        [conversation markAllMessagesAsRead:YES];
+        
+    }
+    else {
         chatController = [[ChatViewController alloc] initWithChatter:chatter
                                                     conversationType:conversation.conversationType];
         chatController.title = [conversation.latestMessageFromOthers.ext valueForKey:kUserNickName];
-        chatController.HerHeadStr =[conversation.latestMessageFromOthers.ext valueForKey:kUserHeadUrl];
         chatController.delelgate = self;
         [self.navigationController pushViewController:chatController animated:YES];
 

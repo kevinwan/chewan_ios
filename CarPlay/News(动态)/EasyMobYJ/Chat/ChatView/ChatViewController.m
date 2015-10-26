@@ -165,7 +165,6 @@
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
         self.edgesForExtendedLayout =  UIRectEdgeNone;
     }
-    
 #warning 以下三行代码必须写，注册为SDK的ChatManager的delegate
     [EMCDDeviceManager sharedInstance].delegate = self;
     [[EaseMob sharedInstance].chatManager removeDelegate:self];
@@ -519,7 +518,13 @@
             //在这里应该已经有头像和昵称的信息了。
             if (model.isSender) {
                 model.headImageURL = [NSURL URLWithString:[ZYUserDefaults valueForKey:kUserHeadUrl]];
-            }else{
+            }else if(self.HerHeadStr != nil){
+                NSString *imagePath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@@2x",self.HerHeadStr] ofType:@"png"];
+
+                model.headImageURL = [NSURL fileURLWithPath:imagePath];
+                model.nickName = self.HerName;
+            }else
+            {
                 model.headImageURL = [NSURL URLWithString:[model.message.ext valueForKey:kUserHeadUrl]];
                 model.nickName = [model.message.ext valueForKey:kUserNickName];
             }
