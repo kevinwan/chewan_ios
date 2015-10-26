@@ -8,7 +8,7 @@
 
 #import "CPActivityDetailFooterView.h"
 #import "AFNetworking.h"
-
+#import "ChatViewController.h"
 
 @interface CPActivityDetailFooterView()
 @property (weak, nonatomic) IBOutlet UILabel *activityPathLabel;
@@ -136,7 +136,9 @@
         }];
     }else{
         // 进入群聊接口
-        
+
+        [self superViewWillRecive:CPGroupChatClickKey info:_model];
+
     }
 }
 

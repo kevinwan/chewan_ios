@@ -36,6 +36,8 @@
 //        street = 玄武大道
 //    },
 @property (nonatomic, copy) NSString *officialActivityId;
+
+@property (nonatomic, copy) NSString *emchatGroupId;
 //   covers
 @property (nonatomic, strong) NSArray *covers;
 //    start = 1444652636457,

@@ -12,6 +12,7 @@
 #define CPActivityComePartKey @"CPActivityComePartKey"
 #define CPActivityFooterViewOpenKey @"CPActivityFooterViewOpenKey"
 #define CPJionOfficeActivityKey @"CPJionOfficeActivityKey"
+#define CPGroupChatClickKey @"CPGroupChatClickKey"
 @interface CPActivityDetailFooterView : UIView
 + (instancetype)activityDetailFooterView;
 @property (nonatomic, strong) CPRecommendModel *model;
