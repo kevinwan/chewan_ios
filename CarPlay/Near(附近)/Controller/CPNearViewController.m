@@ -102,11 +102,15 @@ static NSString *ID = @"cell";
             [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, self.tableView.contentSizeHeight - self.tableView.height + 44) animated:YES];
         });
             
-        if (self.datas.count >= CPPageNum) {
+        if (self.datas.count % CPPageNum == 0) {
             self.params.ignore += CPPageNum;
             [self loadDataWithHeader:v];
         }else{
-            [v stopIndicatorAnimation];
+           
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                [v stopIndicatorAnimation];
+            });
         }
     }];
     self.isHasRefreshHeader = YES;
@@ -174,9 +178,9 @@ static NSString *ID = @"cell";
 
 -(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {
-//    if (self.headerView.state == AAPullToRefreshStateLoading || self.footerView.state == AAPullToRefreshStateLoading) {
-//        return;
-//    }
+    if (iPhone4) {
+        return;
+    }
     UICollectionView3DLayout *layout=(UICollectionView3DLayout*)self.tableView.collectionViewLayout;
 
     [layout EndAnchorMove];

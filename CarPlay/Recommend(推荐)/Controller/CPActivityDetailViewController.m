@@ -125,6 +125,7 @@ static NSString *ID = @"partCell";
     
         CPActivityPartnerCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
         cell.model = self.model.members[indexPath.row];
+        cell.activityId = self.officialActivityId;
         return cell;
 //    }else{
 //        

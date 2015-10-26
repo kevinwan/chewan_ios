@@ -48,10 +48,9 @@ static NSString *ID2 = @"DateCell2";
     }
     
     self.offset = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250;
-//    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.tableView];
     [ZYLoadingView showLoadingView];
-//    [self setEdgesForExtendedLayout:UIRectEdgeNone];
 }
 
 
@@ -94,15 +93,16 @@ static NSString *ID2 = @"DateCell2";
     self.footerView = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionBottom actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
         ZYMainThread(^{
-            
             [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, self.tableView.contentSizeHeight - self.tableView.height + 44) animated:YES];
         });
         
-        if (self.datas.count >= CPPageNum) {
+        if (self.datas.count % CPPageNum == 0) {
             self.ignore += CPPageNum;
             [self loadDataWithHeader:v];
         }else{
-            [v stopIndicatorAnimation];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [v stopIndicatorAnimation];
+            });
         }
     }];
     self.footerView.isNoAnimation = YES;
@@ -157,17 +157,17 @@ static NSString *ID2 = @"DateCell2";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row % 2 == 0) {
-        
+    CPMyDateModel *model = self.datas[indexPath.item];
+    if ([model.activityCategory isEqualToString:@"普通活动"]) {
         CPNearCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID1 forIndexPath:indexPath];
         cell.contentV.indexPath = indexPath;
-        cell.contentV.myDateModel = self.datas[indexPath.item];
+        cell.contentV.myDateModel = model;
         return cell;
     }else{
+        
         CPRecommentViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID2 forIndexPath:indexPath];
         return cell;
     }
-    
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -187,9 +187,8 @@ static NSString *ID2 = @"DateCell2";
     
     CPMyDateModel *model = self.datas[indexPath.item];
     
-//    if ([model.activityCategory isEqualToString:@"普通活动"]) {
-    if (indexPath.row % 2 == 0) {
-        return self.offset + 383;
+    if ([model.activityCategory isEqualToString:@"普通活动"]) {
+        return self.offset + 380;
     }else{
         return itemSize.height;
     }
@@ -387,10 +386,11 @@ static NSString *ID2 = @"DateCell2";
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.showsHorizontalScrollIndicator = NO;
         _tableView.showsVerticalScrollIndicator = NO;
-        self.automaticallyAdjustsScrollViewInsets = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        CGSize itemSzie= CGSizeMake(ZYScreenWidth - 20, 383 + self.offset);
+        layout.rowMargin = 20;
+        layout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
+        layout.columnsCount = 1;
 //        layout.itemSize = itemSzie;
         //        layout.scrollDirection = UICollectionLayoutScrollDirectionVertical;
 //        layout.itemScale = 0.96;

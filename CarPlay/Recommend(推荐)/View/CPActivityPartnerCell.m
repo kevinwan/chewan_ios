@@ -68,7 +68,7 @@ static NSString *ID = @"memberIconCell";
     [self.partnersView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(@0);
         make.top.equalTo(self.lineView.mas_bottom);
-        make.left.equalTo(self.agreeLabel.mas_right).offset(3);
+        make.left.equalTo(self.agreeLabel.mas_right).offset(12);
         make.bottom.equalTo(0);
     }];
     
@@ -81,7 +81,7 @@ static NSString *ID = @"memberIconCell";
 
 - (IBAction)comeOnBaby:(UIButton *)sender {
     
-    [CPComeOnTipView showWithActivityId:nil targetUserId:nil];
+    [CPComeOnTipView showWithActivityId:self.activityId targetUserId:_model.userId];
 }
 
 - (void)setModel:(CPPartMember *)model
@@ -117,12 +117,11 @@ static NSString *ID = @"memberIconCell";
     
     if (model.car.logo.length) {
         self.carView.hidden = NO;
-        self.cartypeLabel.hidden = NO;
-        [self.carView sd_setImageWithURL:[NSURL URLWithString:model.car.logo] forState:UIControlStateNormal placeholderImage:CPPlaceHolderImage];
+        [self.carView sd_setImageWithURL:[NSURL URLWithString:model.car.logo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"车主未认证"]];
         self.cartypeLabel.text = model.car.model;
     }else{
         self.cartypeLabel.hidden = YES;
-        self.carView.hidden = YES;
+        [self.carView setImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
     }
     
     if (model.acceptMe) {

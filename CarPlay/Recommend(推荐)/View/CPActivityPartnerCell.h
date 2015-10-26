@@ -12,5 +12,6 @@
 #define CPOfficeActivityMsgButtonClick @"CPOfficeActivityMsgButtonClick"
 #define CPOfficeActivityPhoneButtonClick @"CPOfficeActivityPhoneButtonClick"
 @interface CPActivityPartnerCell : ZYTableViewCell
+@property (nonatomic, copy) NSString *activityId;
 @property (nonatomic, strong) CPPartMember *model;
 @end

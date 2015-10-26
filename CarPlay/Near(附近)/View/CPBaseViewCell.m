@@ -135,6 +135,7 @@
 
 - (void)awakeFromNib
 {
+    self.titleView.hidden = YES;
     // 进行初始化设置
     [self.bgView setCornerRadius:5];
     self.distanceView.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 6);
@@ -145,7 +146,6 @@
         [self superViewWillRecive:IconViewClickKey info:_indexPath];
     }];
     [self.userIconView addGestureRecognizer:tapGes];
-//    [self.userIconView addSubview:self.userCoverView];
     [self.userIconView addSubview:self.tipView];
     [self.userIconView addSubview:self.dateButton];
     [self.userIconView addSubview:self.invitedButton];
@@ -224,23 +224,13 @@
     }
     self.sexView.isMan = model.organizer.isMan;
     self.sexView.age = model.organizer.age;
-
-//    ZYWeakSelf
-//    [self.userIconView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:model.organizer.cover]] placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
-//        ZYStrongSelf
-////        self.userIconView.placeHloderImageView.hidden = YES;
-//        self.userIconView.backgroundColor = [UIColor clearColor];
-//        [self.userIconView setImage:image];
-//        self.userCoverView.blurRadius = 20;
-//    } failure:NULL];
-    
-//    [self.userIconView setImageWithURL:[NSURL URLWithString:model.organizer.cover]];
-//    return;
-    [self.userIconView sd_setImageWithURL:[NSURL URLWithString:model.organizer.cover]];
-//    [self.userIconView zy_setImageWithUrl:model.organizer.cover completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-//        self.userIconView.image = image;
-//        self.userCoverView.hidden= NO;
-//    }];
+    if (isHasAlubm) {
+        self.userIconView.showImage = NO;
+    }else{
+        self.userIconView.showImage = YES;
+    }
+    [self.userIconView zy_setImageWithUrl:model.organizer.cover completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    }];
     [self.distanceView setTitle:model.distanceStr forState:UIControlStateNormal];
     self.loveBtn.selected = model.organizer.subscribeFlag;
     self.payView.text = model.pay;
@@ -261,12 +251,12 @@
     }
     
     if ([model.organizer.licenseAuthStatus isEqualToString:@"认证通过"]) {
-        self.carView.hidden = NO;
         self.carTypeView.hidden = NO;
         [self.carView sd_setImageWithURL:[NSURL URLWithString:model.organizer.car.logo] forState:UIControlStateNormal placeholderImage:CPPlaceHolderImage];
         self.carTypeView.text = model.organizer.car.model;
     }else{
-        self.carView.hidden = YES;
+        
+        [self.carView setImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
         self.carTypeView.hidden = YES;
     }
     if (isHasAlubm && CPIsLogin) {
@@ -339,12 +329,10 @@
     }
     
     if ([myDateModel.applicant.licenseAuthStatus isEqualToString:@"认证通过"]) {
-        self.carView.hidden = NO;
-        self.carTypeView.hidden = NO;
         [self.carView sd_setImageWithURL:[NSURL URLWithString:myDateModel.applicant.car.logo] forState:UIControlStateNormal placeholderImage:CPPlaceHolderImage];
         self.carTypeView.text = myDateModel.applicant.car.model;
     }else{
-        self.carView.hidden = YES;
+        [self.carView setImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
         self.carTypeView.hidden = YES;
     }
     if (isHasAlubm && CPIsLogin) {
@@ -380,7 +368,7 @@
 - (void)setIntersterModel:(CPIntersterModel *)intersterModel
 {
     _intersterModel = intersterModel;
-    
+    self.marginCons.constant = 0;
     BOOL isHasAlubm;
     if (CPUnLogin) {
         isHasAlubm = NO;
@@ -415,12 +403,11 @@
     }
     
     if ([intersterModel.user.licenseAuthStatus isEqualToString:@"认证通过"]) {
-        self.carView.hidden = NO;
         self.carTypeView.hidden = NO;
         [self.carView sd_setImageWithURL:[NSURL URLWithString:intersterModel.user.car.logo] forState:UIControlStateNormal placeholderImage:CPPlaceHolderImage];
         self.carTypeView.text = intersterModel.user.car.model;
     }else{
-        self.carView.hidden = YES;
+        [self.carView setImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
         self.carTypeView.hidden = YES;
     }
     if (isHasAlubm && CPIsLogin) {

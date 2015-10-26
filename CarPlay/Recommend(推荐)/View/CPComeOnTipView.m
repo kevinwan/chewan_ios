@@ -70,15 +70,19 @@
     [CPNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
         if (CPSuccess) {
             [SVProgressHUD showInfoWithStatus:@"邀请已发出"];
+            [UIView animateWithDuration:0.25 animations:^{
+                self.superview.alpha = 0.0;
+            } completion:^(BOOL finished) {
+                [self.superview removeFromSuperview];
+            }];
         }else{
-            [SVProgressHUD showInfoWithStatus:@"邀请失败"];
+            [SVProgressHUD showInfoWithStatus:CPErrorMsg];
         }
     } failed:^(NSError *error) {
         
         [SVProgressHUD showInfoWithStatus:@"邀请失败"];
     }];
 }
-
 
 + (void)showWithActivityId:(NSString *)activityId targetUserId:(NSString *)targetUserId
 {
