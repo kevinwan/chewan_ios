@@ -22,7 +22,8 @@
 - (UIImageView *)gifView
 {
     if (!_gifView) { 
-        UIImageView *gifView = [[UIImageView alloc] init]; 
+        UIImageView *gifView = [[UIImageView alloc] init];
+
         [self addSubview:_gifView = gifView]; 
     } 
     return _gifView; 
@@ -76,13 +77,16 @@
     NSUInteger index =  images.count * pullingPercent;
     if (index >= images.count) index = images.count - 1;
     self.gifView.image = images[index];
+
 }
 
 - (void)placeSubviews
 {
     [super placeSubviews];
-    
+
     self.gifView.frame = self.bounds;
+
+    NSLog(@"-=-=-gifview.frame= %@",NSStringFromCGRect(self.gifView.frame));
     if (self.stateLabel.hidden && self.lastUpdatedTimeLabel.hidden) {
         self.gifView.contentMode = UIViewContentModeCenter;
     } else {

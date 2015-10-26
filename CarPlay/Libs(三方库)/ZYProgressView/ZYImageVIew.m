@@ -8,10 +8,6 @@
 
 #import "ZYImageVIew.h"
 
-@interface ZYImageVIew ()
-
-@end
-
 @implementation ZYImageVIew
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -43,21 +39,19 @@
 
 - (void)setImage:(UIImage *)image
 {
-    self.placeHloderImageView.hidden = YES;
-    [super setImage:image];
-    if (image && self.showImage ) {
+    if (image) {
+        self.placeHloderImageView.hidden = YES;
+        [super setImage:image];
+    }
+    if (image && self.showBlurView) {
         [self insertSubview:self.userCoverView atIndex:0];
     }
 }
-- (void)zy_setImageWithUrl:(NSString *)url completed:(completion)completed
+- (void)zy_setImageWithUrl:(NSString *)url
 {
     self.placeHloderImageView.hidden = NO;
-    [self sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil options:SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        if (completed) {
-            completed(image,error,cacheType,imageURL);
-        }
-    }];
     
+    [self sd_setImageWithURL:[NSURL URLWithString:url]];
 }
 
 - (UIImageView *)placeHloderImageView

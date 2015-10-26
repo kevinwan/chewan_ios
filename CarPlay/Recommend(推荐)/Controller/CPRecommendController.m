@@ -58,7 +58,7 @@ static NSString *ID = @"RecommentCell";
     }
     // 设置刷新控件
     ZYWeakSelf
-    AAPullToRefresh *tv = [_collectionView addPullToRefreshPosition:AAPullToRefreshPositionLeft actionHandler:^(AAPullToRefresh *v){
+    [_collectionView addPullToRefreshPosition:AAPullToRefreshPositionLeft actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
         ZYMainThread(^{
             
@@ -69,7 +69,7 @@ static NSString *ID = @"RecommentCell";
         [self loadDataWithHeader:v];
     }];
     // bottom
-    AAPullToRefresh *bv = [_collectionView addPullToRefreshPosition:AAPullToRefreshPositionRight actionHandler:^(AAPullToRefresh *v){
+    [_collectionView addPullToRefreshPosition:AAPullToRefreshPositionRight actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
         
         ZYMainThread(^{
@@ -80,8 +80,10 @@ static NSString *ID = @"RecommentCell";
             
             [self loadDataWithHeader:v];
         }else{
-            
-            [v stopIndicatorAnimation];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                [v stopIndicatorAnimation];
+            });
         }
     }];
     
