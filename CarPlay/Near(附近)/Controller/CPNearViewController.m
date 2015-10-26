@@ -88,6 +88,7 @@ static NSString *ID = @"cell";
     self.headerView = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionTop actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
         ZYMainThread(^{
+            
             [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, -44) animated:YES];
         });
         self.params.ignore = 0;
@@ -101,11 +102,15 @@ static NSString *ID = @"cell";
             [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, self.tableView.contentSizeHeight - self.tableView.height + 44) animated:YES];
         });
             
-        if (self.datas.count >= CPPageNum) {
+        if (self.datas.count % CPPageNum == 0) {
             self.params.ignore += CPPageNum;
             [self loadDataWithHeader:v];
         }else{
-            [v stopIndicatorAnimation];
+           
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                [v stopIndicatorAnimation];
+            });
         }
     }];
     self.isHasRefreshHeader = YES;
@@ -173,9 +178,9 @@ static NSString *ID = @"cell";
 
 -(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {
-//    if (self.headerView.state == AAPullToRefreshStateLoading || self.footerView.state == AAPullToRefreshStateLoading) {
-//        return;
-//    }
+    if (iPhone4) {
+        return;
+    }
     UICollectionView3DLayout *layout=(UICollectionView3DLayout*)self.tableView.collectionViewLayout;
 
     [layout EndAnchorMove];
@@ -371,8 +376,6 @@ static NSString *ID = @"cell";
         self.params.ignore = 0;
         [self loadDataWithHeader:nil];
     }];
-    
-    
 }
 
 #pragma mark - 加载子控件
@@ -417,23 +420,31 @@ static NSString *ID = @"cell";
         _tipView = [[UIView alloc] init];
         _tipView.backgroundColor = ZYColor(0, 0, 0, 0.7);
         [self.view addSubview:_tipView];
-        [_tipView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(@64);
-            make.width.equalTo(self.view);
-            make.height.equalTo(@35);
-        }];
-        
+        _tipView.width = self.view.width;
+        _tipView.height = 35;
+        _tipView.y = 64;
+        _tipView.x = 0;
+//        [_tipView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(@64);
+//            make.width.equalTo(self.view);
+//            make.height.equalTo(@35);
+//        }];
+//        
         UILabel *textL = [UILabel labelWithText:@"有空,其他人可以邀请你参加活动" textColor:[UIColor whiteColor] fontSize:14];
         [_tipView addSubview:textL];
-        [textL mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(@10);
-            make.centerY.equalTo(_tipView);
-        }];
+        [textL sizeToFit];
+        textL.x = 10;
+        textL.centerY = _tipView.middleY;
+//        [textL mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.equalTo(@10);
+//            make.centerY.equalTo(_tipView);
+//        }];
         
         CPMySwitch *freeTimeBtn = [CPMySwitch new];
         [freeTimeBtn setOnImage:[UIImage imageNamed:@"btn_youkong"]];
         [freeTimeBtn setOffImage:[UIImage imageNamed:@"btn_meikong"]];
         freeTimeBtn.on = [ZYUserDefaults boolForKey:FreeTimeKey];
+        [freeTimeBtn sizeToFit];
         [_tipView addSubview:freeTimeBtn];
         NSString *url = [NSString stringWithFormat:@"user/%@/info?token=%@",CPUserId,CPToken];
         [[freeTimeBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(CPMySwitch *btn) {
@@ -456,22 +467,26 @@ static NSString *ID = @"cell";
                 }];
             }
         }];
-        [freeTimeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(_tipView);
-            make.right.equalTo(@-10);
-        }];
+        freeTimeBtn.centerY = _tipView.middleY;
+        freeTimeBtn.x = _tipView.width - freeTimeBtn.width - 10;
+//        [freeTimeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.centerY.equalTo(_tipView);
+//            make.right.equalTo(@-10);
+//        }];
         [RACObserve(self.tableView, contentOffset) subscribeNext:^(id x) {
             CGPoint p = [x CGPointValue];
             if (p.y <= 0 && p.y >= -10) {
                 if (_tipView.alpha == 0) {
                     [UIView animateWithDuration:0.2 animations:^{
                         _tipView.alpha = 1;
+                        _tipView.y = 64;
                     }];
                 }
             }else if (p.y > self.tableView.height - 383 - self.offset){
                 if (_tipView.alpha == 1) {
                 [UIView animateWithDuration:0.2 animations:^{
                     _tipView.alpha = 0;
+                    _tipView.y = 64 - _tipView.height;
                 }];
                 }
             }else if (p.y < -10){

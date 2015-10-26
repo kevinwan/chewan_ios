@@ -8,10 +8,6 @@
 
 #import "ZYImageVIew.h"
 
-@interface ZYImageVIew ()
-
-@end
-
 @implementation ZYImageVIew
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -37,26 +33,25 @@
 {
     self.backgroundColor = [Tools getColor:@"dddddd"];
     [self addSubview:self.placeHloderImageView];
-//    [self addSubview:self.userCoverView];
     self.contentMode = UIViewContentModeScaleAspectFill;
     self.clipsToBounds = YES;
-    
 }
 
 - (void)setImage:(UIImage *)image
 {
-    [super setImage:image];
-    self.placeHloderImageView.hidden = YES;
+    if (image) {
+        self.placeHloderImageView.hidden = YES;
+        [super setImage:image];
+    }
+    if (image && self.showBlurView) {
+        [self insertSubview:self.userCoverView atIndex:0];
+    }
 }
-- (void)zy_setImageWithUrl:(NSString *)url completed:(completion)completed
+- (void)zy_setImageWithUrl:(NSString *)url
 {
     self.placeHloderImageView.hidden = NO;
-    [self sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil options:SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        if (completed) {
-            completed(image,error,cacheType,imageURL);
-        }
-    }];
     
+    [self sd_setImageWithURL:[NSURL URLWithString:url]];
 }
 
 - (UIImageView *)placeHloderImageView
@@ -77,7 +72,7 @@
 - (FXBlurView *)userCoverView
 {
     if (_userCoverView == nil) {
-        _userCoverView = [[FXBlurView alloc] init];
+        _userCoverView = [[FXBlurView alloc] initWithFrame:self.bounds];
         _userCoverView.tintColor = [UIColor clearColor];
         [_userCoverView setBlurEnabled:YES];
         _userCoverView.blurRadius = 5;

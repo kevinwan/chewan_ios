@@ -68,7 +68,7 @@ static NSString *ID = @"memberIconCell";
     [self.partnersView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(@0);
         make.top.equalTo(self.lineView.mas_bottom);
-        make.left.equalTo(self.agreeLabel.mas_right).offset(3);
+        make.left.equalTo(self.agreeLabel.mas_right).offset(12);
         make.bottom.equalTo(0);
     }];
     
@@ -81,12 +81,18 @@ static NSString *ID = @"memberIconCell";
 
 - (IBAction)comeOnBaby:(UIButton *)sender {
     
-    [CPComeOnTipView showWithActivityId:nil targetUserId:nil];
+    [CPComeOnTipView showWithActivityId:self.activityId targetUserId:_model.userId];
 }
 
 - (void)setModel:(CPPartMember *)model
 {
     _model = model;
+    
+    if ([model.userId isEqualToString:CPUserId]) {
+        self.inviteBtn.hidden = YES;
+    }else{
+        self.inviteBtn.hidden = NO;
+    }
     
     [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.avatar] placeholderImage:CPPlaceHolderImage options:SDWebImageLowPriority | SDWebImageRetryFailed];
     
@@ -111,12 +117,11 @@ static NSString *ID = @"memberIconCell";
     
     if (model.car.logo.length) {
         self.carView.hidden = NO;
-        self.cartypeLabel.hidden = NO;
-        [self.carView sd_setImageWithURL:[NSURL URLWithString:model.car.logo] forState:UIControlStateNormal placeholderImage:CPPlaceHolderImage];
+        [self.carView sd_setImageWithURL:[NSURL URLWithString:model.car.logo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"车主未认证"]];
         self.cartypeLabel.text = model.car.model;
     }else{
         self.cartypeLabel.hidden = YES;
-        self.carView.hidden = YES;
+        [self.carView setImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
     }
     
     if (model.acceptMe) {
@@ -124,7 +129,11 @@ static NSString *ID = @"memberIconCell";
         self.phoneBtn.hidden = NO;
         self.msgButton.hidden = NO;
     }else{
-        self.inviteBtn.hidden = NO;
+        if ([model.userId isEqualToString:CPUserId]) {
+            self.inviteBtn.hidden = YES;
+        }else{
+            self.inviteBtn.hidden = NO;
+        }
         self.phoneBtn.hidden = YES;
         self.msgButton.hidden = YES;
     }
@@ -157,6 +166,9 @@ static NSString *ID = @"memberIconCell";
     if (_msgButton == nil) {
         _msgButton = [[UIButton alloc] init];
         [_msgButton setImage:[UIImage imageNamed:@"聊天"] forState:UIControlStateNormal];
+        [[_msgButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            [self superViewWillRecive:CPOfficeActivityMsgButtonClick info:_model];
+        }];
         _msgButton.hidden = YES;
     }
     return _msgButton;
@@ -168,6 +180,9 @@ static NSString *ID = @"memberIconCell";
         _phoneBtn = [[UIButton alloc] init];
         
         [_phoneBtn setImage:[UIImage imageNamed:@"电话"] forState:UIControlStateNormal];
+        [[_phoneBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            [self superViewWillRecive:CPOfficeActivityPhoneButtonClick info:_model];
+        }];
         _phoneBtn.hidden = YES;
     }
     return _phoneBtn;

@@ -14,6 +14,7 @@
 #import "CPActivityPartnerCell.h"
 #import "CPActivityPathCell.h"
 #import "CPTaInfo.h"
+#import "ChatViewController.h"
 
 #define CPMemberPageNum 4
 @interface CPActivityDetailViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -84,6 +85,21 @@ static NSString *ID = @"partCell";
         CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
         taVc.userId = userInfo;
         [self.navigationController pushViewController:taVc animated:YES];
+    }else if ([notifyName isEqualToString:CPOfficeActivityMsgButtonClick]){
+        CPPartMember *meber = userInfo;
+        
+        ChatViewController *xiaoniuChatVc = [[ChatViewController alloc]initWithChatter:[Tools md5EncryptWithString:meber.userId] conversationType:eConversationTypeChat];
+        xiaoniuChatVc.title = meber.nickname;
+        [self.navigationController pushViewController:xiaoniuChatVc animated:YES];
+    }else if ([notifyName isEqualToString:CPOfficeActivityPhoneButtonClick]){
+        CPPartMember *meber = userInfo;
+        //电话
+        
+        [ZYUserDefaults setObject:meber.avatar forKey:kReceiverHeadUrl];
+        [ZYUserDefaults setObject: meber.nickname forKey:kReceiverNickName];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"callOutWithChatter" object:@{@"chatter":[Tools md5EncryptWithString:meber.userId], @"type":[NSNumber numberWithInt:eCallSessionTypeAudio]}];
+    }else if ([notifyName isEqualToString:CPJionOfficeActivityKey]){
+        [self loadData];
     }
 }
 
@@ -109,6 +125,7 @@ static NSString *ID = @"partCell";
     
         CPActivityPartnerCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
         cell.model = self.model.members[indexPath.row];
+        cell.activityId = self.officialActivityId;
         return cell;
 //    }else{
 //        

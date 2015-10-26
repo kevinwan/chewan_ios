@@ -61,9 +61,7 @@
     self.titleLabel.attributedText = model.titleAttrText;
     self.priceLabel.text = model.priceDesc;
 
-    [self.photoView zy_setImageWithUrl:model.covers.firstObject completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        self.photoView.image = image;
-    }];
+    [self.photoView zy_setImageWithUrl:model.covers.firstObject];
     
     if (model.limitType == 0) {
         
@@ -99,9 +97,8 @@
     NSMutableParagraphStyle *paragraphStyle1 = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle1 setLineSpacing:7];
     self.descLabel.attributedText = [[NSAttributedString alloc] initWithString:model.instruction attributes:@{NSParagraphStyleAttributeName : paragraphStyle1}];
-    [self layoutIfNeeded];
     
-    self.height = self.tipPartLabel.bottom;
+    self.height = 701 + ZYScreenWidth / 64.0 * 30.0 - 150;
 }
 
 - (IBAction)openDetailLabel:(UIButton *)sender {
@@ -111,15 +108,12 @@
         
         
         CGSize contentSize = [self.descLabel.attributedText boundingRectWithSize:CGSizeMake(ZYScreenWidth - 20, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
-        self.descHCons.constant = contentSize.height;
+        self.descHCons.constant = contentSize.height + 20;
     }else{
         self.descHCons.constant = 109;
     }
     
-        
-    [self layoutIfNeeded];
-    
-    self.height = self.tipPartLabel.bottom;
+    self.height = 701 + self.descHCons.constant - 109 + ZYScreenWidth / 64.0 * 30.0 - 150;
     [self superViewWillRecive:CPActivityDetailHeaderDetailOpenKey info:nil];
 }
 

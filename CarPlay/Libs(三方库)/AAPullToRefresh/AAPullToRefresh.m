@@ -142,9 +142,7 @@
             [self.scrollView setContentOffset:CGPointMake(0, self.scrollView.contentOffset.y) animated:YES];
         });
     }else if (self.position == AAPullToRefreshPositionBottom){
-//        ZYMainThread(^{
-            [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentOffset.x, self.scrollView.contentSize.height - self.scrollView.bounds.size.height) animated:YES];
-//        });
+            [self.scrollView setContentOffset:CGPointMake(0, self.scrollView.contentSize.height - self.scrollView.bounds.size.height) animated:YES];
     }else if (self.position == AAPullToRefreshPositionRight){
         ZYMainThread(^{
             
@@ -290,7 +288,7 @@
 //                     }];
     
     [self.activityIndicatorView startAnimation];
-    [self setupScrollViewContentInsetForLoadingIndicator:nil];
+//    [self setupScrollViewContentInsetForLoadingIndicator:nil];
     if (self.pullToRefreshHandler)
         self.pullToRefreshHandler(self);
     self.startDate = [NSDate date];
@@ -298,19 +296,22 @@
 
 - (void)actionStopState
 {
-    CGFloat duration = 0.0;
-    CGFloat offsetDuration = [NSDate date].timeIntervalSince1970 - self.startDate.timeIntervalSince1970;
-    if (offsetDuration < 2.0) {
-        duration = 2.0 - offsetDuration;
-    }
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.startDate = nil;
-        [self.activityIndicatorView stopAnimation];
-        [self resetScrollViewContentInset:^{
-            self.activityIndicatorView.transform = CGAffineTransformIdentity;
-            self.state = AAPullToRefreshStateNormal;
-        }];
-    });
+    
+    [self.activityIndicatorView stopAnimation];
+    [self resetScrollViewContentInset:^{
+        self.activityIndicatorView.transform = CGAffineTransformIdentity;
+        self.state = AAPullToRefreshStateNormal;
+    }];
+    return ;
+//    CGFloat duration = 0.0;
+//    CGFloat offsetDuration = [NSDate date].timeIntervalSince1970 - self.startDate.timeIntervalSince1970;
+//    if (offsetDuration < 2.0) {
+//        duration = 2.0 - offsetDuration;
+//    }
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        self.startDate = nil;
+//        };
+//    });
 }
 
 #pragma mark - public method

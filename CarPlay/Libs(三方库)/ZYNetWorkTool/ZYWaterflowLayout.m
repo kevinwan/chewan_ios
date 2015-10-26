@@ -86,7 +86,7 @@
             maxColumn = column;
         }
     }];
-    return CGSizeMake(0, [self.maxYDict[maxColumn] floatValue] + self.sectionInset.bottom);
+    return CGSizeMake(0, [self.maxYDict[maxColumn] floatValue] + self.sectionInset.bottom + 64);
 }
 
 /**

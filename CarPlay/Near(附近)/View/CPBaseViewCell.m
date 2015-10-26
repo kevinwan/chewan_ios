@@ -63,11 +63,6 @@
 @property (weak, nonatomic) IBOutlet ZYImageVIew *userIconView;
 
 /**
- *  用户图像的模糊效果View
- */
-@property (nonatomic, strong) FXBlurView *userCoverView;
-
-/**
  *  显示地点的View
  */
 @property (weak, nonatomic) IBOutlet UIButton *addressView;
@@ -135,7 +130,7 @@
 
 - (void)awakeFromNib
 {
-    self.marginCons.constant = 12;
+    self.titleView.hidden = YES;
     // 进行初始化设置
     [self.bgView setCornerRadius:5];
     self.distanceView.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 6);
@@ -146,7 +141,6 @@
         [self superViewWillRecive:IconViewClickKey info:_indexPath];
     }];
     [self.userIconView addGestureRecognizer:tapGes];
-//    [self.userIconView addSubview:self.userCoverView];
     [self.userIconView addSubview:self.tipView];
     [self.userIconView addSubview:self.dateButton];
     [self.userIconView addSubview:self.invitedButton];
@@ -164,8 +158,6 @@
 
 - (void)beginLayoutSubviews
 {
-    _userCoverView.frame = self.userIconView.frame;
-    
     [self.dateButton mas_makeConstraints:^(MASConstraintMaker *make){
         make.centerX.equalTo(self.userIconView);
         make.size.equalTo(CGSizeMake(56, 56));
@@ -215,6 +207,8 @@
 - (void)setModel:(CPActivityModel *)model
 {
     _model = model;
+    
+    self.marginCons.constant = 12;
     BOOL isHasAlubm;
     if (CPUnLogin) {
         isHasAlubm = NO;
@@ -223,23 +217,8 @@
     }
     self.sexView.isMan = model.organizer.isMan;
     self.sexView.age = model.organizer.age;
-
-//    ZYWeakSelf
-//    [self.userIconView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:model.organizer.cover]] placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
-//        ZYStrongSelf
-////        self.userIconView.placeHloderImageView.hidden = YES;
-//        self.userIconView.backgroundColor = [UIColor clearColor];
-//        [self.userIconView setImage:image];
-//        self.userCoverView.blurRadius = 20;
-//    } failure:NULL];
-    
-//    [self.userIconView setImageWithURL:[NSURL URLWithString:model.organizer.cover]];
-//    return;
-    [self.userIconView sd_setImageWithURL:[NSURL URLWithString:model.organizer.cover]];
-//    [self.userIconView zy_setImageWithUrl:model.organizer.cover completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-//        self.userIconView.image = image;
-//        self.userCoverView.hidden= NO;
-//    }];
+    self.userIconView.showBlurView = !isHasAlubm;
+    [self.userIconView zy_setImageWithUrl:model.organizer.cover];
     [self.distanceView setTitle:model.distanceStr forState:UIControlStateNormal];
     self.loveBtn.selected = model.organizer.subscribeFlag;
     self.payView.text = model.pay;
@@ -260,12 +239,12 @@
     }
     
     if ([model.organizer.licenseAuthStatus isEqualToString:@"认证通过"]) {
-        self.carView.hidden = NO;
         self.carTypeView.hidden = NO;
         [self.carView sd_setImageWithURL:[NSURL URLWithString:model.organizer.car.logo] forState:UIControlStateNormal placeholderImage:CPPlaceHolderImage];
         self.carTypeView.text = model.organizer.car.model;
     }else{
-        self.carView.hidden = YES;
+        
+        [self.carView setImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
         self.carTypeView.hidden = YES;
     }
     if (isHasAlubm && CPIsLogin) {
@@ -300,6 +279,8 @@
 - (void)setMyDateModel:(CPMyDateModel *)myDateModel
 {
     _myDateModel = myDateModel;
+    
+    self.marginCons.constant = 0;
     BOOL isHasAlubm;
     if (CPUnLogin) {
         isHasAlubm = NO;
@@ -309,13 +290,8 @@
     self.sexView.isMan = myDateModel.applicant.isMan;
     self.sexView.age = myDateModel.applicant.age;
     
-    
-    ZYWeakSelf
-    [self.userIconView zy_setImageWithUrl:myDateModel.applicant.cover completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        ZYStrongSelf
-        self.userCoverView.hidden = NO;
-        self.userIconView.image = image;
-    }];
+    self.userIconView.showBlurView = !isHasAlubm;
+    [self.userIconView zy_setImageWithUrl:myDateModel.applicant.cover];
     [self.distanceView setTitle:myDateModel.distanceStr forState:UIControlStateNormal];
     self.loveBtn.selected = myDateModel.applicant.subscribeFlag;
     self.payView.text = myDateModel.pay;
@@ -336,12 +312,10 @@
     }
     
     if ([myDateModel.applicant.licenseAuthStatus isEqualToString:@"认证通过"]) {
-        self.carView.hidden = NO;
-        self.carTypeView.hidden = NO;
         [self.carView sd_setImageWithURL:[NSURL URLWithString:myDateModel.applicant.car.logo] forState:UIControlStateNormal placeholderImage:CPPlaceHolderImage];
         self.carTypeView.text = myDateModel.applicant.car.model;
     }else{
-        self.carView.hidden = YES;
+        [self.carView setImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
         self.carTypeView.hidden = YES;
     }
     if (isHasAlubm && CPIsLogin) {
@@ -377,7 +351,7 @@
 - (void)setIntersterModel:(CPIntersterModel *)intersterModel
 {
     _intersterModel = intersterModel;
-    
+    self.marginCons.constant = 0;
     BOOL isHasAlubm;
     if (CPUnLogin) {
         isHasAlubm = NO;
@@ -387,13 +361,7 @@
     self.sexView.isMan = intersterModel.user.isMan;
     self.sexView.age = intersterModel.user.age;
     
-    
-    ZYWeakSelf
-    [self.userIconView zy_setImageWithUrl:intersterModel.user.cover completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        ZYStrongSelf
-        self.userCoverView.hidden = NO;
-        self.userIconView.image = image;
-    }];
+    [self.userIconView zy_setImageWithUrl:intersterModel.user.cover];
     [self.distanceView setTitle:intersterModel.distanceStr forState:UIControlStateNormal];
     self.loveBtn.selected = intersterModel.user.subscribeFlag;
     self.payView.text = intersterModel.activityPay;
@@ -412,12 +380,11 @@
     }
     
     if ([intersterModel.user.licenseAuthStatus isEqualToString:@"认证通过"]) {
-        self.carView.hidden = NO;
         self.carTypeView.hidden = NO;
         [self.carView sd_setImageWithURL:[NSURL URLWithString:intersterModel.user.car.logo] forState:UIControlStateNormal placeholderImage:CPPlaceHolderImage];
         self.carTypeView.text = intersterModel.user.car.model;
     }else{
-        self.carView.hidden = YES;
+        [self.carView setImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
         self.carTypeView.hidden = YES;
     }
     if (isHasAlubm && CPIsLogin) {
@@ -815,18 +782,6 @@
        
     }
     return _tipView;
-}
-
-- (FXBlurView *)userCoverView
-{
-    if (_userCoverView == nil) {
-        _userCoverView = [[FXBlurView alloc] initWithFrame:self.userIconView.bounds];
-        [_userCoverView setBlurRadius:20];
-        [_userCoverView setTintColor:[UIColor clearColor]];
-        [_userCoverView setDynamic:NO];
-        [_userCoverView setHidden:YES];
-    }
-    return _userCoverView;
 }
 
 - (UIView *)titleView
