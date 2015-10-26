@@ -66,6 +66,7 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"invitedUserId"] = self.targetUserId;
     params[@"transfer"] = @(self.transfer.isSelected);
+    params[@"message"] = self.textField.text;
     [CPNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
         if (CPSuccess) {
             [SVProgressHUD showInfoWithStatus:@"邀请已发出"];

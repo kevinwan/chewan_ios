@@ -99,8 +99,8 @@
     NSMutableParagraphStyle *paragraphStyle1 = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle1 setLineSpacing:7];
     self.descLabel.attributedText = [[NSAttributedString alloc] initWithString:model.instruction attributes:@{NSParagraphStyleAttributeName : paragraphStyle1}];
-    [self layoutIfNeeded];
     
+    [self layoutIfNeeded];
     self.height = self.tipPartLabel.bottom;
 }
 
@@ -111,11 +111,10 @@
         
         
         CGSize contentSize = [self.descLabel.attributedText boundingRectWithSize:CGSizeMake(ZYScreenWidth - 20, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
-        self.descHCons.constant = contentSize.height;
+        self.descHCons.constant = contentSize.height + 20;
     }else{
         self.descHCons.constant = 109;
     }
-    
         
     [self layoutIfNeeded];
     

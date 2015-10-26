@@ -9,7 +9,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="gAW-07-KLe" customClass="CPActivityDetailHeaderView">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="698"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="701"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="车玩官方" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ibA-tJ-OeZ">
@@ -299,7 +299,7 @@
                 <outlet property="tipPartLabel" destination="rUL-ya-nF5" id="a0t-Vw-fgt"/>
                 <outlet property="titleLabel" destination="J91-0h-HgW" id="dL3-W5-Tao"/>
             </connections>
-            <point key="canvasLocation" x="208" y="-39"/>
+            <point key="canvasLocation" x="208" y="-37.5"/>
         </view>
     </objects>
     <resources>

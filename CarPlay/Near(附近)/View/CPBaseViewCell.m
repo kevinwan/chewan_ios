@@ -135,7 +135,6 @@
 
 - (void)awakeFromNib
 {
-    self.marginCons.constant = 12;
     // 进行初始化设置
     [self.bgView setCornerRadius:5];
     self.distanceView.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 6);
@@ -215,6 +214,8 @@
 - (void)setModel:(CPActivityModel *)model
 {
     _model = model;
+    
+    self.marginCons.constant = 12;
     BOOL isHasAlubm;
     if (CPUnLogin) {
         isHasAlubm = NO;
@@ -300,6 +301,8 @@
 - (void)setMyDateModel:(CPMyDateModel *)myDateModel
 {
     _myDateModel = myDateModel;
+    
+    self.marginCons.constant = 0;
     BOOL isHasAlubm;
     if (CPUnLogin) {
         isHasAlubm = NO;

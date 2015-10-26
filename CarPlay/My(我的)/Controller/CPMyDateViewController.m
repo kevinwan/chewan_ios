@@ -18,6 +18,7 @@
 #import "ChatViewController.h"
 #import "CPMyDateModel.h"
 #import "ZYWaterflowLayout.h"
+#import "CPRecommentViewCell.h"
 
 @interface CPMyDateViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate,ZYWaterflowLayoutDelegate>
 @property (nonatomic, strong) UICollectionView *tableView;
@@ -30,7 +31,8 @@
 @property (nonatomic, assign) CGFloat ignore;
 @end
 
-static NSString *ID = @"DateCell";
+static NSString *ID1 = @"DateCell1";
+static NSString *ID2 = @"DateCell2";
 @implementation CPMyDateViewController
 
 - (void)viewDidLoad
@@ -155,10 +157,17 @@ static NSString *ID = @"DateCell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CPNearCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
-    cell.contentV.indexPath = indexPath;
-    cell.contentV.myDateModel = self.datas[indexPath.item];
-    return cell;
+    if (indexPath.row % 2 == 0) {
+        
+        CPNearCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID1 forIndexPath:indexPath];
+        cell.contentV.indexPath = indexPath;
+        cell.contentV.myDateModel = self.datas[indexPath.item];
+        return cell;
+    }else{
+        CPRecommentViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID2 forIndexPath:indexPath];
+        return cell;
+    }
+    
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -168,7 +177,23 @@ static NSString *ID = @"DateCell";
 
 - (CGFloat)waterflowLayout:(ZYWaterflowLayout *)waterflowLayout heightForWidth:(CGFloat)width atIndexPath:(NSIndexPath *)indexPath
 {
-    return self.offset + 383;
+    CGSize itemSize;
+    if (iPhone4) {
+        itemSize = CGSizeMake(ZYScreenWidth - 36,345);
+    }else{
+        
+        itemSize = CGSizeMake(ZYScreenWidth - 36,ZYScreenWidth + 100);
+    }
+    
+    CPMyDateModel *model = self.datas[indexPath.item];
+    
+//    if ([model.activityCategory isEqualToString:@"普通活动"]) {
+    if (indexPath.row % 2 == 0) {
+        return self.offset + 383;
+    }else{
+        return itemSize.height;
+    }
+    
 }
 
 
@@ -213,19 +238,24 @@ static NSString *ID = @"DateCell";
             //电话
             NSString *userID=[model.applyUserId isEqualToString:CPUserId]?model.invitedUserId:model.applyUserId;
 
-            [ZYUserDefaults setValue:model.applicant.avatar forKey:kReceiverHeadUrl];
-            [ZYUserDefaults setValue: model.applicant.nickname forKey:kReceiverNickName];
+            [ZYUserDefaults setObject:model.applicant.avatar forKey:kReceiverHeadUrl];
+            [ZYUserDefaults setObject: model.applicant.nickname forKey:kReceiverNickName];
             NSLog(@"电话头像URL = %@",model.applicant.avatar);
             [[NSNotificationCenter defaultCenter] postNotificationName:@"callOutWithChatter" object:@{@"chatter":[Tools md5EncryptWithString:userID], @"type":[NSNumber numberWithInt:eCallSessionTypeAudio]}];
 
         }
     }else if([notifyName isEqualToString:LoveBtnClickKey]){
-        [self loveBtnClickWithInfo:(CPMyDateModel *)userInfo];
+        
+        NSIndexPath *indexPath = userInfo;
+        CPMyDateModel *model = self.datas[indexPath.row];
+        [self loveBtnClickWithInfo:(CPMyDateModel *)model];
     }else if ([notifyName isEqualToString:IconViewClickKey]){
+        
+        NSIndexPath *indexPath = userInfo;
+        CPMyDateModel *model = self.datas[indexPath.row];
         CPGoLogin(@"查看TA的详情");
         CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
-        CPActivityModel *model = userInfo;
-        taVc.userId = model.organizer.userId;
+        taVc.userId = model.applicant.userId;
         [self.navigationController pushViewController:taVc animated:YES];
     }
 }
@@ -366,7 +396,8 @@ static NSString *ID = @"DateCell";
 //        layout.itemScale = 0.96;
 //        layout.LayoutDirection=UICollectionLayoutScrollDirectionVertical;
         self.view.backgroundColor = [Tools getColor:@"efefef"];
-        [_tableView registerClass:[CPNearCollectionViewCell class] forCellWithReuseIdentifier:ID];
+        [_tableView registerClass:[CPNearCollectionViewCell class] forCellWithReuseIdentifier:ID1];
+        [_tableView registerClass:[CPRecommentViewCell class] forCellWithReuseIdentifier:ID2];
         _tableView.panGestureRecognizer.delaysTouchesBegan = _tableView.delaysContentTouches;
         
     }

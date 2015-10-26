@@ -157,6 +157,9 @@ static NSString *ID = @"memberIconCell";
     if (_msgButton == nil) {
         _msgButton = [[UIButton alloc] init];
         [_msgButton setImage:[UIImage imageNamed:@"聊天"] forState:UIControlStateNormal];
+        [[_msgButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            [self superViewWillRecive:CPOfficeActivityMsgButtonClick info:_model];
+        }];
         _msgButton.hidden = YES;
     }
     return _msgButton;
@@ -168,6 +171,9 @@ static NSString *ID = @"memberIconCell";
         _phoneBtn = [[UIButton alloc] init];
         
         [_phoneBtn setImage:[UIImage imageNamed:@"电话"] forState:UIControlStateNormal];
+        [[_phoneBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            [self superViewWillRecive:CPOfficeActivityPhoneButtonClick info:_model];
+        }];
         _phoneBtn.hidden = YES;
     }
     return _phoneBtn;

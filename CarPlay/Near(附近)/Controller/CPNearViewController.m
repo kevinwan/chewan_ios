@@ -88,6 +88,7 @@ static NSString *ID = @"cell";
     self.headerView = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionTop actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
         ZYMainThread(^{
+            
             [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, -44) animated:YES];
         });
         self.params.ignore = 0;
