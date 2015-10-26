@@ -49,7 +49,6 @@
 @property (nonatomic, assign) CGFloat outlineWidth;
 @property (nonatomic, assign, getter = isGlow) BOOL glow;
 - (id)initWithBorderWidth:(CGFloat)width;
-
 @end
 
 @implementation AAPullToRefreshBackgroundLayer
@@ -78,6 +77,7 @@
 @property (nonatomic, assign) double progress;
 @property (nonatomic, assign) double prevProgress;
 
+@property (nonatomic, strong) NSDate *startDate;
 @end
 
 @implementation AAPullToRefresh
@@ -281,7 +281,6 @@
 - (void)actionTriggeredState
 {
     self.state = AAPullToRefreshStateLoading;
-    
 //    [UIView animateWithDuration:0.1f delay:0.0f
 //                        options:UIViewAnimationOptionCurveEaseInOut|UIViewAnimationOptionAllowUserInteraction
 //                     animations:^{
@@ -294,15 +293,24 @@
     [self setupScrollViewContentInsetForLoadingIndicator:nil];
     if (self.pullToRefreshHandler)
         self.pullToRefreshHandler(self);
+    self.startDate = [NSDate date];
 }
 
 - (void)actionStopState
 {
-    [self.activityIndicatorView stopAnimation];
-    [self resetScrollViewContentInset:^{
-        self.activityIndicatorView.transform = CGAffineTransformIdentity;
-        self.state = AAPullToRefreshStateNormal;
-    }];
+    CGFloat duration = 0.0;
+    CGFloat offsetDuration = [NSDate date].timeIntervalSince1970 - self.startDate.timeIntervalSince1970;
+    if (offsetDuration < 2.0) {
+        duration = 2.0 - offsetDuration;
+    }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.startDate = nil;
+        [self.activityIndicatorView stopAnimation];
+        [self resetScrollViewContentInset:^{
+            self.activityIndicatorView.transform = CGAffineTransformIdentity;
+            self.state = AAPullToRefreshStateNormal;
+        }];
+    });
 }
 
 #pragma mark - public method
