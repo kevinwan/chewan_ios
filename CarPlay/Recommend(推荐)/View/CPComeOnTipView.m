@@ -38,7 +38,7 @@
         
         CGRect rect = [userInfo[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
         
-        CGFloat offset = rect.origin.y -  self.bottom + 44;
+        CGFloat offset = rect.origin.y -  self.bottom ;
         if (offset < 0) {
             [UIView animateWithDuration:0.25 animations:^{
                 self.y += offset;
@@ -84,8 +84,9 @@
 {
     ZYNewButton(cover);
     [cover setBackgroundColor:ZYColor(0, 0, 0, 0.5)];
-    [ZYKeyWindow addSubview:cover];
-    cover.frame = [ZYKeyWindow bounds];
+    UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+    [keyWindow addSubview:cover];
+    cover.frame = [keyWindow bounds];
     [[cover rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         [UIView animateWithDuration:0.25 animations:^{
             cover.alpha = 0.0;

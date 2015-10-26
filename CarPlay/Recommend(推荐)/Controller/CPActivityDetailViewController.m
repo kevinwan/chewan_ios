@@ -98,6 +98,8 @@ static NSString *ID = @"partCell";
         [ZYUserDefaults setObject:meber.avatar forKey:kReceiverHeadUrl];
         [ZYUserDefaults setObject: meber.nickname forKey:kReceiverNickName];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"callOutWithChatter" object:@{@"chatter":[Tools md5EncryptWithString:meber.userId], @"type":[NSNumber numberWithInt:eCallSessionTypeAudio]}];
+    }else if ([notifyName isEqualToString:CPJionOfficeActivityKey]){
+        [self loadData];
     }
 }
 

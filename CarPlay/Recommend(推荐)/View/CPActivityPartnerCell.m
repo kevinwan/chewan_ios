@@ -88,6 +88,12 @@ static NSString *ID = @"memberIconCell";
 {
     _model = model;
     
+    if ([model.userId isEqualToString:CPUserId]) {
+        self.inviteBtn.hidden = YES;
+    }else{
+        self.inviteBtn.hidden = NO;
+    }
+    
     [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.avatar] placeholderImage:CPPlaceHolderImage options:SDWebImageLowPriority | SDWebImageRetryFailed];
     
     self.partNumLabel.attributedText = model.invitedCountStr;
@@ -124,7 +130,11 @@ static NSString *ID = @"memberIconCell";
         self.phoneBtn.hidden = NO;
         self.msgButton.hidden = NO;
     }else{
-        self.inviteBtn.hidden = NO;
+        if ([model.userId isEqualToString:CPUserId]) {
+            self.inviteBtn.hidden = YES;
+        }else{
+            self.inviteBtn.hidden = NO;
+        }
         self.phoneBtn.hidden = YES;
         self.msgButton.hidden = YES;
     }

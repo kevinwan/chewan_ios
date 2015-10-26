@@ -85,7 +85,9 @@
         self.activityPathLCons.constant = contentSize.height + 2;
         self.activityPathTopCons.constant = 13;
         self.line1TopCons.constant = 20;
+        self.activityPathLabel.hidden = NO;
     }else{
+        self.activityPathLabel.hidden = YES;
         self.activityPathLCons.constant = 0;
         self.activityPathTopCons.constant = 0;
         self.line1TopCons.constant = 0;
@@ -105,7 +107,9 @@
         self.explainLCons.constant = contentSize.height + 2;
         self.explainTopCons.constant = 13;
         self.line2TopCons.constant = 20;
+        self.explainLabel.hidden = NO;
     }else{
+        self.explainLabel.hidden = YES;
         self.explainLCons.constant = 0;
         self.explainTopCons.constant = 0;
         self.line2TopCons.constant = 0;
@@ -124,6 +128,7 @@
         [ZYNetWorkTool postJsonWithUrl:url params:nil success:^(id responseObject) {
             if (CPSuccess) {
                 [SVProgressHUD showInfoWithStatus:@"申请成功"];
+                [self superViewWillRecive:CPJionOfficeActivityKey info:nil];
                 [sender setTitle:@"进入群聊" forState:UIControlStateNormal];
             }
         } failed:^(NSError *error) {

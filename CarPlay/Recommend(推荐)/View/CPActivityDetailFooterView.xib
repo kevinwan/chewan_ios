@@ -60,7 +60,7 @@
                         <constraint firstAttribute="height" constant="10" id="mum-9T-Wrt"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YDE-WP-tgo">
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YDE-WP-tgo">
                     <rect key="frame" x="10" y="152" width="29.5" height="0.0"/>
                     <constraints>
                         <constraint firstAttribute="height" id="aMv-3h-unk"/>
@@ -107,7 +107,7 @@
                         <action selector="activityPathClick:" destination="Idb-Bj-9QZ" eventType="touchUpInside" id="eYK-GC-RQY"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMD-Eg-WJB">
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMD-Eg-WJB">
                     <rect key="frame" x="10" y="98" width="31" height="0.0"/>
                     <constraints>
                         <constraint firstAttribute="height" id="COe-0h-zcL"/>

@@ -100,8 +100,7 @@
     [paragraphStyle1 setLineSpacing:7];
     self.descLabel.attributedText = [[NSAttributedString alloc] initWithString:model.instruction attributes:@{NSParagraphStyleAttributeName : paragraphStyle1}];
     
-    [self layoutIfNeeded];
-    self.height = self.tipPartLabel.bottom;
+    self.height = 701 + ZYScreenWidth / 64.0 * 30.0 - 150;
 }
 
 - (IBAction)openDetailLabel:(UIButton *)sender {
@@ -115,10 +114,8 @@
     }else{
         self.descHCons.constant = 109;
     }
-        
-    [self layoutIfNeeded];
     
-    self.height = self.tipPartLabel.bottom;
+    self.height = 701 + self.descHCons.constant - 109 + ZYScreenWidth / 64.0 * 30.0 - 150;
     [self superViewWillRecive:CPActivityDetailHeaderDetailOpenKey info:nil];
 }
 
