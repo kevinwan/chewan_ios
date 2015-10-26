@@ -24,28 +24,45 @@ static NSString *ID = @"cell";
     [self.view addSubview:self.tableView];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self.navigationController.view removeFromSuperview];
+    [self.navigationController removeFromParentViewController];
 }
 
 - (UICollectionView *)tableView
 {
     if (_tableView == nil) {
         UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
-        _tableView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
-        _tableView.alwaysBounceVertical = YES;
+        _tableView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, ZYScreenWidth - 20, 383+self.offset) collectionViewLayout:layout];
+        _tableView.centerX = self.view.middleX;
+        _tableView.centerY = self.view.middleY;
+        _tableView.alwaysBounceVertical = NO;
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.showsHorizontalScrollIndicator = NO;
         _tableView.showsVerticalScrollIndicator = NO;
         self.automaticallyAdjustsScrollViewInsets = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
+//        [_tableView setContentInsetTop:(ZYScreenHeight-383-self.offset)/2];
         CGSize itemSzie= CGSizeMake(ZYScreenWidth - 20, 383 + self.offset);
         layout.itemSize = itemSzie;
-        //        layout.scrollDirection = UICollectionLayoutScrollDirectionVertical;
-//        layout.itemScale = 1;
         layout.scrollDirection=UICollectionViewScrollDirectionVertical;
-        self.view.backgroundColor = [Tools getColor:@"efefef"];
+        self.view.backgroundColor =  [UIColor colorWithWhite:0 alpha:0.7];
         [_tableView registerClass:[CPNearCollectionViewCell class] forCellWithReuseIdentifier:ID];
         _tableView.panGestureRecognizer.delaysTouchesBegan = _tableView.delaysContentTouches;
         

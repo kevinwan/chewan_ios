@@ -18,6 +18,7 @@
 #import "CPRecommendController.h"
 #import "CallViewController.h"
 #import "ChatViewController.h"
+#import "CPMatchingResultController.h"
 @interface CPTabBarController () <CPTabBarDelegate>
 
 @end
@@ -42,6 +43,8 @@
     CPMyViewController *nearVc4 = [UIStoryboard storyboardWithName:@"CPMyViewController" bundle:nil].instantiateInitialViewController;
     [self addChildVc:nearVc4 title:@"我的" image:@"MineUnSelect" selectedImage:@"MineSelect"];
 
+    CPMatchingResultController *nearVc5 = [[CPMatchingResultController alloc] init];
+    [self addChildVc:nearVc5 title:@"匹配结果" image:@"MineUnSelect" selectedImage:@"MineSelect"];
     // 2.更换系统自带的tabbar
     CPTabBar *tabBar = [[CPTabBar alloc] init];
     tabBar.frame = self.tabBar.bounds;
@@ -57,9 +60,6 @@
     [self setupUnreadMessageCount];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callOutWithChatter:) name:@"callOutWithChatter" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callControllerClose:) name:@"callControllerClose" object:nil];
-    
-
-
 }
 
 
@@ -100,6 +100,8 @@
     //test 测试语音聊天，暂时用下这个位置
     CPMatchingViewController *mathching=[UIStoryboard storyboardWithName:@"CPMatching" bundle:nil].instantiateInitialViewController;
      CPNavigationController *nav=[[CPNavigationController alloc]initWithRootViewController:mathching];
+//    NSLog(@"%@",self.childViewControllers);
+    [self setSelectedIndex:4];
     [self presentViewController:nav animated:YES completion:nil];
 }
 

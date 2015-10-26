@@ -21,7 +21,7 @@
         [_plusBtn setImage:[UIImage imageNamed:@"Wheel"] forState:UIControlStateNormal];
         [_plusBtn setBackgroundColor:[UIColor clearColor]];
         CABasicAnimation *anima=[CABasicAnimation animationWithKeyPath:@"transform"];
-        anima.duration=0.4;
+        anima.duration=0.8;
         anima.toValue=[NSValue valueWithCATransform3D:CATransform3DMakeRotation(M_PI_2, 0, 0, 1)];
         anima.removedOnCompletion=NO;
         anima.fillMode=kCAFillModeForwards;

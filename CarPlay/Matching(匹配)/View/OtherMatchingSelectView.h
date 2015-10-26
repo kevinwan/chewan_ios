@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MJNIndexView.h"
+#import "CPOtherMatchingSelectView.h"
 
 @interface OtherMatchingSelectView : UIViewController<UITableViewDataSource,UITableViewDelegate,MJNIndexViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *selectView;
@@ -37,9 +38,8 @@
 @property (nonatomic, strong) NSMutableArray *areaList;
 //排序前
 @property (nonatomic, strong) NSMutableArray *areaListBeforeSort;
-- (IBAction)typeBtnClick:(UIButton *)sender;
-
-
+- (IBAction)typeBtnClick:(CPOtherMatchingSelectView *)sender;
+@property (weak, nonatomic) IBOutlet CPOtherMatchingSelectView *type1Btn;
 @property (nonatomic, strong) MJNIndexView *indexView;
 
 @end

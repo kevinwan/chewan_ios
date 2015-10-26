@@ -10,6 +10,7 @@
 #import "CPActivityModel.h"
 #import "CPNearCollectionViewCell.h"
 #import "CPTakeALookResultController.h"
+#import "CPNavigationController.h"
 
 @interface CPTakeALookViewController ()
 {
@@ -49,8 +50,10 @@
 - (IBAction)personBtnClick:(CPNPSButton *)sender {
     CPTakeALookResultController *takeALookResult=[CPTakeALookResultController new];
     takeALookResult.activity=activities[sender.tag-1];
-    [self.view addSubview:takeALookResult.view];
-    [self addChildViewController:takeALookResult];
+    CPNavigationController *nav=[[CPNavigationController alloc]initWithRootViewController:takeALookResult];
+    
+    [self addChildViewController:nav];
+    [self.view addSubview:nav.view];
 }
 
 - (IBAction)close:(id)sender {

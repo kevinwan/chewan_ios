@@ -9,6 +9,7 @@
 #import "ExerciseMatchingSelectView.h"
 #import "CPNameIndex.h"
 #import "CPpinyin.h"
+#import "CPTabBarController.h"
 
 @interface ExerciseMatchingSelectView ()<UIGestureRecognizerDelegate>
 {
@@ -103,8 +104,9 @@
     NSString *path=[[NSString alloc]initWithFormat:@"activity/register?userId=%@&token=%@",[Tools getUserId],[Tools getToken]];
     [ZYNetWorkTool postJsonWithUrl:path params:params success:^(id responseObject) {
         if (CPSuccess) {
-            NSLog(@"%@",responseObject);
-            [[[UIAlertView alloc]initWithTitle:@"测试提示" message:@"发布成功了，手动点击空白出退回先" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+            [self dismissViewControllerAnimated:YES completion:nil];
+            CPTabBarController *tab = (CPTabBarController *)self.view.window.rootViewController;
+            [tab setSelectedIndex:4];
         }else{
             NSString *errmsg =[responseObject objectForKey:@"errmsg"];
             [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];

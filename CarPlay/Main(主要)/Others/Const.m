@@ -19,3 +19,4 @@ NSString * const District = @"district";
 NSString * const Street = @"street";
 NSString * const LastType = @"lastType";
 NSString * const Transfer = @"transfer";
+NSString * const TabLastSelectIndex = @"tabLastSelectIndex";

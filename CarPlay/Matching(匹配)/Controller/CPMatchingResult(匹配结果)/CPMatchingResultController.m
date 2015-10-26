@@ -1,11 +1,12 @@
 //
-//  CPNearViewController.m
+//  CPMatchingResultController.m
 //  CarPlay
 //
-//  Created by chewan on 15/9/23.
+//  Created by 公平价 on 15/10/26.
 //  Copyright © 2015年 chewan. All rights reserved.
 //
 
+#import "CPMatchingResultController.h"
 #import "CPNearViewController.h"
 #import "CPMySwitch.h"
 #import "CPSelectView.h"
@@ -18,27 +19,24 @@
 #import "UICollectionView3DLayout.h"
 #import "CPNearCollectionViewCell.h"
 #import "CPAlbum.h"
-#import "CPMyInterestViewController.h"
 
-@interface CPNearViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate>
+@interface CPMatchingResultController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate>
 @property (nonatomic, strong) UICollectionView *tableView;
 @property (nonatomic, strong) NSMutableArray<CPActivityModel *> *datas;
 @property (nonatomic, strong) UIView *tipView;
 @property (nonatomic, assign) CGFloat offset;
 @property (nonatomic, strong) CPNearParams *params;
 @property (nonatomic, assign) BOOL isHasRefreshHeader;
-@property (nonatomic, strong) CPNoDataTipView *noDataView;
 @property (nonatomic, weak)   AAPullToRefresh *headerView;
 @property (nonatomic, weak)   AAPullToRefresh *footerView;
+
 @end
-
 static NSString *ID = @"cell";
-@implementation CPNearViewController
 
-- (void)viewDidLoad
-{
+@implementation CPMatchingResultController
+
+- (void)viewDidLoad {
     [super viewDidLoad];
-    
     if (CPNoNetWork) {
         
         [ZYProgressView showMessage:@"网络连接失败,请检查网络"];
@@ -48,9 +46,7 @@ static NSString *ID = @"cell";
     self.offset = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250;
     
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"筛选" target:self action:@selector(filter)];
     [self.view addSubview:self.tableView];
-    [self tipView];
     [ZYLoadingView showLoadingView];
     if (CPUnLogin) {
         [self loadDataWithHeader:nil];
@@ -88,7 +84,6 @@ static NSString *ID = @"cell";
     self.headerView = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionTop actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
         ZYMainThread(^{
-            
             [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, -44) animated:YES];
         });
         self.params.ignore = 0;
@@ -101,16 +96,12 @@ static NSString *ID = @"cell";
             
             [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, self.tableView.contentSizeHeight - self.tableView.height + 44) animated:YES];
         });
-            
-        if (self.datas.count % CPPageNum == 0) {
+        
+        if (self.datas.count >= CPPageNum) {
             self.params.ignore += CPPageNum;
             [self loadDataWithHeader:v];
         }else{
-           
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                
-                [v stopIndicatorAnimation];
-            });
+            [v stopIndicatorAnimation];
         }
     }];
     self.isHasRefreshHeader = YES;
@@ -121,44 +112,33 @@ static NSString *ID = @"cell";
  */
 - (void)loadDataWithHeader:(AAPullToRefresh *)refresh
 {
-
-    [ZYNetWorkTool getWithUrl:@"activity/list" params:self.params.keyValues success:^(id responseObject) {
+    if (_type) {
+        NSDictionary *param=[NSDictionary dictionaryWithObjectsAndKeys:_type,@"type",CPUserId,UserId,CPToken,Token,nil];
         
-        [self setUpRefresh];
-        [refresh stopIndicatorAnimation];
-        DLog(@"%@ ---- ",responseObject);
-        if (CPSuccess) {
-            if (self.params.ignore == 0) {
-                [self.datas removeAllObjects];
+        [ZYNetWorkTool getWithUrl:@"activity/list" params:param success:^(id responseObject) {
+            
+            [self setUpRefresh];
+            [refresh stopIndicatorAnimation];
+            if (CPSuccess) {
+                if (self.params.ignore == 0) {
+                    [self.datas removeAllObjects];
+                }
+                NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
+                [self.datas addObjectsFromArray:arr];
+                [self.tableView reloadData];
+                if (self.tableView.contentOffset.y > 60 && refresh != self.footerView) {
+                    [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, 0) animated:YES];
+                }
             }
-                
-            NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
-            NSLog(@"gggg%zd",arr.count);
-            [self.datas addObjectsFromArray:arr];
-
-            if (self.datas.count == 0) {
-                self.noDataView.netWorkFailtype = NO;
-                self.noDataView.hidden = NO;
-            }else{
-                self.noDataView.hidden = YES;
-            }
-            [self.tableView reloadData];
-            if (self.tableView.contentOffset.y > 60 && refresh != self.footerView) {
-                [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, 0) animated:YES];
-            }
-        }
-        
-        [[CPLoadingView sharedInstance] dismissLoadingView];
-    } failure:^(NSError *error) {
-        
-        [self setUpRefresh];
-        DLog(@"%@---",error);
-        self.params.ignore -= CPPageNum;
-        [refresh stopIndicatorAnimation];
-        [self showError:@"加载失败"];
-        self.noDataView.netWorkFailtype = NO;
-        [ZYLoadingView dismissLoadingView];
-    }];
+            [[CPLoadingView sharedInstance] dismissLoadingView];
+        } failure:^(NSError *error) {
+            [self setUpRefresh];
+            self.params.ignore -= CPPageNum;
+            [refresh stopIndicatorAnimation];
+            [self showError:@"加载失败"];
+            [ZYLoadingView dismissLoadingView];
+        }];
+    }
 }
 
 #pragma mark - UICollectionViewDelegate &dataSource
@@ -166,8 +146,8 @@ static NSString *ID = @"cell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CPNearCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
-    cell.contentV.indexPath = indexPath;
-    cell.contentV.model = self.datas[indexPath.item];
+    cell.indexPath = indexPath;
+    cell.model = self.datas[indexPath.item];
     return cell;
 }
 
@@ -178,11 +158,11 @@ static NSString *ID = @"cell";
 
 -(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {
-    if (iPhone4) {
-        return;
-    }
+    //    if (self.headerView.state == AAPullToRefreshStateLoading || self.footerView.state == AAPullToRefreshStateLoading) {
+    //        return;
+    //    }
     UICollectionView3DLayout *layout=(UICollectionView3DLayout*)self.tableView.collectionViewLayout;
-
+    
     [layout EndAnchorMove];
 }
 
@@ -204,8 +184,8 @@ static NSString *ID = @"cell";
     }else if ([notifyName isEqualToString:IconViewClickKey]){
         CPGoLogin(@"查看TA的详情");
         CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
-        NSIndexPath *indexPath = userInfo;
-        taVc.userId = self.datas[indexPath.row].organizer.userId;
+        CPActivityModel *model = userInfo;
+        taVc.userId = model.organizer.userId;
         [self.navigationController pushViewController:taVc animated:YES];
     }
 }
@@ -303,7 +283,7 @@ static NSString *ID = @"cell";
                     
                     NSString *filePath = [NSString stringWithFormat:@"%@.info",CPUserId];
                     CPUser *user = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath.documentPath];
-
+                    
                     [albums insertObjects:user.album atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, user.album.count)]];
                     user.album = [albums copy];
                     [NSKeyedArchiver archiveRootObject:user toFile:filePath.documentPath];
@@ -312,7 +292,7 @@ static NSString *ID = @"cell";
             }else{
                 [self showError:responseObject[@"errmsg"]];
             }
-         
+            
         } failure:^(NSError *error) {
             [self showError:@"照片上传失败"];
         }];
@@ -360,31 +340,13 @@ static NSString *ID = @"cell";
     
 }
 
-/**
- *  筛选按钮点击
- */
-- (void)filter
-{
-    [self.navigationController pushViewController:[CPMyInterestViewController new] animated:YES];
-    return;
-    [CPSelectView showWithParams:^(CPSelectModel *selectModel) {
-        
-        self.params.type = selectModel.type;
-        self.params.pay = selectModel.pay;
-        self.params.gender = selectModel.sex;
-        self.params.transfer = selectModel.transfer;
-        self.params.ignore = 0;
-        [self loadDataWithHeader:nil];
-    }];
-}
-
 #pragma mark - 加载子控件
 
 - (UICollectionView *)tableView
 {
     if (_tableView == nil) {
         UICollectionView3DLayout *layout = [UICollectionView3DLayout new];
-//        UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
+        //        UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
         _tableView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
         _tableView.alwaysBounceVertical = YES;
         _tableView.backgroundColor = [UIColor clearColor];
@@ -395,13 +357,13 @@ static NSString *ID = @"cell";
         _tableView.dataSource = self;
         CGSize itemSzie= CGSizeMake(ZYScreenWidth - 20, 383 + self.offset);
         layout.itemSize = itemSzie;
-//        layout.scrollDirection = UICollectionLayoutScrollDirectionVertical;
+        //        layout.scrollDirection = UICollectionLayoutScrollDirectionVertical;
         layout.itemScale = 0.96;
         layout.LayoutDirection=UICollectionLayoutScrollDirectionVertical;
         self.view.backgroundColor = [Tools getColor:@"efefef"];
         [_tableView registerClass:[CPNearCollectionViewCell class] forCellWithReuseIdentifier:ID];
         _tableView.panGestureRecognizer.delaysTouchesBegan = _tableView.delaysContentTouches;
-
+        
     }
     return _tableView;
 }
@@ -414,113 +376,20 @@ static NSString *ID = @"cell";
     return _datas;
 }
 
-- (UIView *)tipView
-{
-    if (_tipView == nil) {
-        _tipView = [[UIView alloc] init];
-        _tipView.backgroundColor = ZYColor(0, 0, 0, 0.7);
-        [self.view addSubview:_tipView];
-        _tipView.width = self.view.width;
-        _tipView.height = 35;
-        _tipView.y = 64;
-        _tipView.x = 0;
-//        [_tipView mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.top.equalTo(@64);
-//            make.width.equalTo(self.view);
-//            make.height.equalTo(@35);
-//        }];
-//        
-        UILabel *textL = [UILabel labelWithText:@"有空,其他人可以邀请你参加活动" textColor:[UIColor whiteColor] fontSize:14];
-        [_tipView addSubview:textL];
-        [textL sizeToFit];
-        textL.x = 10;
-        textL.centerY = _tipView.middleY;
-//        [textL mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left.equalTo(@10);
-//            make.centerY.equalTo(_tipView);
-//        }];
-        
-        CPMySwitch *freeTimeBtn = [CPMySwitch new];
-        [freeTimeBtn setOnImage:[UIImage imageNamed:@"btn_youkong"]];
-        [freeTimeBtn setOffImage:[UIImage imageNamed:@"btn_meikong"]];
-        freeTimeBtn.on = [ZYUserDefaults boolForKey:FreeTimeKey];
-        [freeTimeBtn sizeToFit];
-        [_tipView addSubview:freeTimeBtn];
-        NSString *url = [NSString stringWithFormat:@"user/%@/info?token=%@",CPUserId,CPToken];
-        [[freeTimeBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(CPMySwitch *btn) {
-            CPGoLogin(@"修改状态");
-            btn.on = !btn.on;
-            [ZYUserDefaults setBool:btn.on forKey:FreeTimeKey];
-            if (btn.on) {
-                textL.text = @"有空,其他人可以邀请你参加活动";
-                [ZYNetWorkTool postJsonWithUrl:url params:@{@"idle" : @(YES)} success:^(id responseObject) {
-                    
-                } failed:^(NSError *error) {
-                    
-                }];
-            }else{
-                textL.text = @"没空,你将接受不到任何活动邀请";
-                [ZYNetWorkTool postJsonWithUrl:url params:@{@"idle" : @(NO)} success:^(id responseObject) {
-                    
-                } failed:^(NSError *error) {
-                    
-                }];
-            }
-        }];
-        freeTimeBtn.centerY = _tipView.middleY;
-        freeTimeBtn.x = _tipView.width - freeTimeBtn.width - 10;
-//        [freeTimeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.centerY.equalTo(_tipView);
-//            make.right.equalTo(@-10);
-//        }];
-        [RACObserve(self.tableView, contentOffset) subscribeNext:^(id x) {
-            CGPoint p = [x CGPointValue];
-            if (p.y <= 0 && p.y >= -10) {
-                if (_tipView.alpha == 0) {
-                    [UIView animateWithDuration:0.2 animations:^{
-                        _tipView.alpha = 1;
-                        _tipView.y = 64;
-                    }];
-                }
-            }else if (p.y > self.tableView.height - 383 - self.offset){
-                if (_tipView.alpha == 1) {
-                [UIView animateWithDuration:0.2 animations:^{
-                    _tipView.alpha = 0;
-                    _tipView.y = 64 - _tipView.height;
-                }];
-                }
-            }else if (p.y < -10){
-                _tipView.alpha = 0;
-            }
-        }];
-
-    }
-    return _tipView;
-}
-
 - (CPNearParams *)params
 {
     if (_params == nil) {
-//        latitude=39.97762675234624&limit=10&longitude=116.3317536236968
+        //        latitude=39.97762675234624&limit=10&longitude=116.3317536236968
         _params = [[CPNearParams alloc] init];
         _params.longitude = 116.3317536236968;
         _params.latitude = 39.97762675234624;
         
-//        _params.longitude = ZYLongitude;
-//        _params.latitude = ZYLatitude;
+        //        _params.longitude = ZYLongitude;
+        //        _params.latitude = ZYLatitude;
         _params.ignore = 0;
         _params.limit = 10;
     }
     return _params;
-}
-
-- (CPNoDataTipView *)noDataView
-{    if (_noDataView == nil) {
-        _noDataView = [CPNoDataTipView noDataTipViewWithTitle:@"已经没有活动了,请放宽条件再试试"];
-        [self.view addSubview:_noDataView];
-        _noDataView.frame = self.tableView.bounds;
-    }
-    return _noDataView;
 }
 
 @end

@@ -11,6 +11,9 @@
 #import "CPpinyin.h"
 
 @interface OtherMatchingSelectView ()
+{
+    NSString *pay;
+}
 @property (nonatomic, strong) UIButton *lastTypebtn;
 @end
 
@@ -35,6 +38,9 @@
     [self.confirmButton.layer setCornerRadius:20.0];
     [self.reSelectionButton.layer setMasksToBounds:YES];
     [self.reSelectionButton.layer setCornerRadius:20.0];
+    [self.type1Btn setSelected:YES];
+    self.lastTypebtn=self.type1Btn;
+    pay=@"我请客";
 
     [self.selectPlace setTitleEdgeInsets:UIEdgeInsetsMake(0, -self.selectPlace.imageView.size.width, 0, self.selectPlace.imageView.size.width)];
     [self.selectPlace setImageEdgeInsets:UIEdgeInsetsMake(0, self.selectPlace.titleLabel.bounds.size.width, 0, -self.selectPlace.titleLabel.bounds.size.width)];
@@ -85,7 +91,7 @@
     NSDictionary *estabPoint=[[NSDictionary alloc]initWithObjectsAndKeys:@([Tools getLongitude]),@"longitude",@([Tools getLatitude]),@"latitude", nil];
     
     NSDictionary *establish=[[NSDictionary alloc]initWithObjectsAndKeys:[ZYUserDefaults stringForKey:Province],@"province",[ZYUserDefaults stringForKey:City],@"city",[ZYUserDefaults stringForKey:District],@"district",[ZYUserDefaults stringForKey:Street],@"street", nil];
-    NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:[ZYUserDefaults stringForKey:LastType],@"type",@([ZYUserDefaults boolForKey:Transfer]),@"transfer",establish,@"establish",estabPoint,@"estabPoint",estabPoint,@"destPoint",establish,@"destination",@"AA制",@"pay", nil];
+    NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:[ZYUserDefaults stringForKey:LastType],@"type",@([ZYUserDefaults boolForKey:Transfer]),@"transfer",establish,@"establish",estabPoint,@"estabPoint",estabPoint,@"destPoint",establish,@"destination",pay,@"pay", nil];
     NSString *path=[[NSString alloc]initWithFormat:@"activity/register?userId=%@&token=%@",[Tools getUserId],[Tools getToken]];
     [ZYNetWorkTool postJsonWithUrl:path params:params success:^(id responseObject) {
         if (CPSuccess) {
@@ -276,9 +282,26 @@
     }];
 }
 
-- (IBAction)typeBtnClick:(UIButton *)sender {
-    self.lastTypebtn.selected = NO;
-    sender.selected = YES;
-    self.lastTypebtn = sender;
+
+- (IBAction)typeBtnClick:(CPOtherMatchingSelectView *)sender {
+    if (!sender.selected) {
+        self.lastTypebtn.selected = NO;
+        sender.selected = YES;
+        self.lastTypebtn = sender;
+        switch (sender.tag) {
+            case 1:
+                pay=@"我请客";
+                break;
+            case 2:
+                pay=@"AA制";
+                break;
+            case 3:
+                pay=@"请我吧";
+                break;
+            default:
+                break;
+        }
+        
+    }
 }
 @end
