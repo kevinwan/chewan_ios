@@ -22,7 +22,11 @@
 
 @interface ChatViewController : UIViewController
 @property (strong, nonatomic, readonly) NSString *chatter;
+//特定情况下用来存储对方的昵称和头像（如，官方活动的头像和昵称，服务器没有通过拓展传送，只能自己传送了）
+//在cellForRow中，通过HerHeadStr来判断是不是要去本地加载头像
 @property (nonatomic,copy)NSString *HerHeadStr;
+@property (nonatomic,copy)NSString *HerName;
+
 @property (strong, nonatomic) NSMutableArray *dataSource;//tableView数据源
 @property (nonatomic) BOOL isInvisible;
 @property (nonatomic, assign) id <ChatViewControllerDelegate> delelgate;

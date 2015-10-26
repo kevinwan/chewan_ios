@@ -23,6 +23,8 @@
 
 @end
 
+
+
 @implementation CPCareMeViewController
 
 - (void)viewDidLoad {
@@ -31,15 +33,21 @@
     self.title = @"谁关注我";
     [self setEdgesForExtendedLayout:UIRectEdgeNone];
     [self initTableview];
+    [self initRefreshImages];
     [self getCareMeData];
     [self MJ];
     
 }
+- (void)initRefreshImages
+{
+    //车轮的效果不好，可以换成切换图片的形式，明天跟UED商量。
+    idleImages =[NSArray arrayWithObjects:[UIImage imageNamed:@"wheel0"], nil];
+    pullingImages = [NSArray arrayWithObjects:[UIImage imageNamed:@"wheel0"], nil];
+    refreshingImages  = [NSArray arrayWithObjects:[UIImage imageNamed:@"wheel1"],[UIImage imageNamed:@"wheel2"],[UIImage imageNamed:@"wheel3"], [UIImage imageNamed:@"wheel4"],[UIImage imageNamed:@"wheel5"],[UIImage imageNamed:@"wheel6"],[UIImage imageNamed:@"wheel7"],[UIImage imageNamed:@"wheel8"],[UIImage imageNamed:@"wheel9"],[UIImage imageNamed:@"wheel10"],[UIImage imageNamed:@"wheel11"],[UIImage imageNamed:@"wheel12"],[UIImage imageNamed:@"wheel13"],nil];
+
+}
 - (void)MJ
-{//车轮的效果不好，可以换成切换图片的形式，明天跟UED商量。
-    idleImages =[NSArray arrayWithObjects:[UIImage imageNamed:@"车轮"], nil];
-    pullingImages = [NSArray arrayWithObjects:[UIImage imageNamed:@"call_tou_h"], nil];
-    refreshingImages  = [NSArray arrayWithObjects:[UIImage imageNamed:@"call_silence_h"], nil];
+{
     
     //头
     header= [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
@@ -48,33 +56,43 @@
     // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
     [header setImages:pullingImages forState:MJRefreshStatePulling];
     // 设置正在刷新状态的动画图片
-    [header setImages:refreshingImages duration:2 forState:MJRefreshStateRefreshing];
+    [header setImages:refreshingImages duration:0.5 forState:MJRefreshStateRefreshing];
     // 设置header
     self.careMeTableview.header = header;
     header.lastUpdatedTimeLabel.hidden = YES;
     header.stateLabel.hidden = YES;
     
     //尾巴
-    footer= [MJRefreshAutoGifFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
-    // 设置刷新图片
-    [footer setImages:refreshingImages forState:MJRefreshStateRefreshing];
-    [footer setImages:refreshingImages forState:MJRefreshStatePulling];
-    [footer setImages:refreshingImages forState:MJRefreshStateWillRefresh];
-    [footer setImages:idleImages forState:MJRefreshStateIdle];
-    footer.stateLabel.hidden = YES;
-    //使图片居中
-    footer.refreshingTitleHidden = YES;
-    // 设置尾部
-    self.careMeTableview.footer = footer;
+//    footer= [MJRefreshAutoGifFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+//    // 设置刷新图片
+//    [footer setImages:refreshingImages forState:MJRefreshStateRefreshing];
+//    [footer setImages:refreshingImages forState:MJRefreshStatePulling];
+//    [footer setImages:refreshingImages forState:MJRefreshStateWillRefresh];
+//    [footer setImages:idleImages forState:MJRefreshStateIdle];
+//    footer.stateLabel.hidden = YES;
+//    //使图片居中
+//    footer.refreshingTitleHidden = YES;
+//    // 设置尾部
+//    self.careMeTableview.footer = footer;
 
 }
 - (void)loadNewData
 {
-    NSLog(@"-=-=-=-=-=加载了");
-}
-- (void)loadMoreData
-{
+    
     NSLog(@"上啦加载了");
+    [ZYNetWorkTool getWithUrl:[NSString stringWithFormat:@"user/%@/subscribe/history?token=%@",CPUserId,CPToken] params:nil success:^(id responseObject) {
+        [self disMiss];
+        [header endRefreshing];
+
+        if (CPSuccess) {
+            self.dataSource = [responseObject objectForKey:@"data"];
+            [_careMeTableview reloadData];
+        }
+    } failure:^(NSError *error) {
+        [self disMiss];
+        [header endRefreshing];
+
+    }];
 }
 - (void)initTableview
 {
