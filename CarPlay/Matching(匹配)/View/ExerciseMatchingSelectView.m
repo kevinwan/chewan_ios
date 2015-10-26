@@ -58,7 +58,6 @@
     [self.view addGestureRecognizer:tapGesture];
     
     _addressLable.text=[[NSString alloc]initWithFormat:@"%@  %@  %@  %@",[ZYUserDefaults stringForKey:Province],[ZYUserDefaults stringForKey:City],[ZYUserDefaults stringForKey:District],[ZYUserDefaults stringForKey:Street]];
-    _locationAddressLable.text=[[NSString alloc]initWithFormat:@"%@  %@  %@  %@",[ZYUserDefaults stringForKey:Province],[ZYUserDefaults stringForKey:City],[ZYUserDefaults stringForKey:District],[ZYUserDefaults stringForKey:Street]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,7 +66,7 @@
 }
 
 -(void)addMJindex{
-    self.indexView = [[MJNIndexView alloc] initWithFrame:CGRectMake(190.0/320.0*ZYScreenWidth, 170.0/568.0*ZYScreenHeight, 100.0/320.0*ZYScreenWidth, 230.0/568.0*ZYScreenHeight)];
+    self.indexView = [[MJNIndexView alloc] initWithFrame:CGRectMake(190.0/320.0*ZYScreenWidth, 170.0, 100.0/320.0*ZYScreenWidth, 230.0)];
     //    }
     _indexView.dataSource = self;
     _indexView.fontColor = [Tools getColor:@"48d1d5"];
@@ -100,7 +99,7 @@
     NSDictionary *estabPoint=[[NSDictionary alloc]initWithObjectsAndKeys:@([Tools getLongitude]),@"longitude",@([Tools getLatitude]),@"latitude", nil];
     
     NSDictionary *establish=[[NSDictionary alloc]initWithObjectsAndKeys:[ZYUserDefaults stringForKey:Province],@"province",[ZYUserDefaults stringForKey:City],@"city",[ZYUserDefaults stringForKey:District],@"district",[ZYUserDefaults stringForKey:Street],@"street", nil];
-    NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:[ZYUserDefaults stringForKey:LastType],@"type",@([ZYUserDefaults boolForKey:Transfer]),@"transfer",establish,@"establish",estabPoint,@"estabPoint",estabPoint,@"destPoint",establish,@"destination",@"AA制",@"pay", nil];
+    NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:[ZYUserDefaults stringForKey:LastType],@"majorType",@([ZYUserDefaults boolForKey:Transfer]),@"transfer",establish,@"establish",estabPoint,@"estabPoint",estabPoint,@"destPoint",establish,@"destination",@"AA制",@"pay",@"足球",@"type", nil];
     NSString *path=[[NSString alloc]initWithFormat:@"activity/register?userId=%@&token=%@",[Tools getUserId],[Tools getToken]];
     [ZYNetWorkTool postJsonWithUrl:path params:params success:^(id responseObject) {
         if (CPSuccess) {
@@ -137,6 +136,9 @@
     _parentId=0;
     _indexView.alpha=1.0;
     corentView=_addressSelection;
+    [lastParentIds removeAllObjects];
+    [selectArea removeAllObjects];
+    _locationAddressLable.text=[[NSString alloc]initWithFormat:@"%@  %@  %@  %@",[ZYUserDefaults stringForKey:Province],[ZYUserDefaults stringForKey:City],[ZYUserDefaults stringForKey:District],[ZYUserDefaults stringForKey:Street]];
     [self getArea];
 }
 - (IBAction)closeAddressSelectionView:(id)sender {
@@ -150,13 +152,7 @@
 
 //获取省市列表
 -(void)getArea{
-    NSMutableString *areas=[[NSMutableString alloc]init];
-    for (NSString *area in selectArea) {
-        [areas appendFormat:@" %@ ",area];
-    }
-    if ([areas length]>0) {
-        self.locationAddressLable.text=areas;
-    }
+    
     NSString *path=[[NSString alloc]initWithFormat:@"area/list?parentId=%ld",(long)_parentId];
     [ZYNetWorkTool getWithUrl:path params:nil success:^(id responseObject) {
         if (CPSuccess) {
@@ -298,8 +294,23 @@
         lastParentId = [code intValue];
         _parentId=[code intValue];
         [selectArea addObject:area];
-        [self getArea];
+        NSMutableString *areas=[[NSMutableString alloc]init];
+        for (NSString *area in selectArea) {
+            [areas appendFormat:@" %@ ",area];
+        }
+        if ([areas length]>0) {
+            self.locationAddressLable.text=areas;
+            [self.selectPlace setTitle:areas forState:UIControlStateNormal];
+        }
         self.lastStepBtn.hidden=NO;
+        if ((lastParentId >1000000)) {
+            _locationAddressView.alpha=0.0;
+            _selectView.alpha=1.0;
+            _addressSelection.alpha=0.0;
+            _indexView.alpha=0.0;
+        }else{
+            [self getArea];
+        }
     }
 }
 
@@ -326,6 +337,7 @@
     _parentId=[[lastParentIds lastObject] integerValue];
     [self getArea];
     [lastParentIds removeLastObject];
+    lastParentId = [lastParentIds lastObject];
     [selectArea removeLastObject];
     if (![lastParentIds count]) {
         self.lastStepBtn.hidden=YES;
