@@ -9,10 +9,16 @@
 #import "OtherMatchingSelectView.h"
 #import "CPNameIndex.h"
 #import "CPpinyin.h"
+#import "CPTabBarController.h"
 
-@interface OtherMatchingSelectView ()
+@interface OtherMatchingSelectView ()<UIGestureRecognizerDelegate>
 {
     NSString *pay;
+    UIView *corentView;
+    NSMutableArray *lastParentIds;
+    NSMutableArray *selectArea;
+    NSInteger lastParentId;
+    NSString *majorType;
 }
 @property (nonatomic, strong) UIButton *lastTypebtn;
 @end
@@ -22,6 +28,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.whetherShuttle=@"0";
+    lastParentIds=[[NSMutableArray alloc]init];
+    selectArea=[[NSMutableArray alloc]init];
     [self.selectView.layer setMasksToBounds:YES];
     [self.selectView.layer setCornerRadius:10.0];
     [self.selectPlace.layer setMasksToBounds:YES];
@@ -46,7 +54,8 @@
     [self.selectPlace setImageEdgeInsets:UIEdgeInsetsMake(0, self.selectPlace.titleLabel.bounds.size.width, 0, -self.selectPlace.titleLabel.bounds.size.width)];
     self.areaList=[[NSMutableArray alloc]init];
     [self addMJindex];
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hidenself)];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hidenself:)];
+    tapGesture.delegate=self;
     [self.view addGestureRecognizer:tapGesture];
     
     _addressLable.text=[[NSString alloc]initWithFormat:@"%@  %@  %@  %@",[ZYUserDefaults stringForKey:Province],[ZYUserDefaults stringForKey:City],[ZYUserDefaults stringForKey:District],[ZYUserDefaults stringForKey:Street]];
@@ -95,8 +104,11 @@
     NSString *path=[[NSString alloc]initWithFormat:@"activity/register?userId=%@&token=%@",[Tools getUserId],[Tools getToken]];
     [ZYNetWorkTool postJsonWithUrl:path params:params success:^(id responseObject) {
         if (CPSuccess) {
-            NSLog(@"%@",responseObject);
-            [[[UIAlertView alloc]initWithTitle:@"测试提示" message:@"发布成功了，手动点击空白出退回先" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+            [self dismissViewControllerAnimated:YES completion:nil];
+            CPTabBarController *tab = (CPTabBarController *)self.view.window.rootViewController;
+            [ZYNotificationCenter postNotificationName:NOTIFICATION_STARTMATCHING object:nil];
+            
+            [tab setSelectedIndex:4];
         }else{
             NSString *errmsg =[responseObject objectForKey:@"errmsg"];
             [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
@@ -111,7 +123,20 @@
     _selectView.alpha=1.0;
 }
 - (IBAction)confirm:(id)sender {
-    
+    _locationAddressView.alpha=0.0;
+    _addressSelection.alpha=0.0;
+    _selectView.alpha=1.0;
+    _indexView.alpha=0.0;
+    NSString *area=[[NSString alloc]initWithFormat:@"%@  %@  %@",[ZYUserDefaults stringForKey:City],[ZYUserDefaults stringForKey:District],[ZYUserDefaults stringForKey:Street]];
+    [self.selectPlace setTitle:area forState:UIControlStateNormal];
+    [self.selectPlace setImage:nil forState:UIControlStateNormal];
+    [self.selectPlace setTitleColor:[Tools getColor:@"333333"] forState:UIControlStateNormal];
+    [self.selectPlace setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
+    CGSize titleSize = [area sizeWithFont:ZYFont14 maxW:MAXFLOAT];
+    if (titleSize.width > _selectPlace.width) {
+        [self.selectPlace setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
+    }
+
 }
 
 - (IBAction)reSelection:(id)sender {
@@ -119,6 +144,10 @@
     _addressSelection.alpha=1.0;
     _parentId=0;
     _indexView.alpha=1.0;
+    corentView=_addressSelection;
+    [lastParentIds removeAllObjects];
+    [selectArea removeAllObjects];
+    _locationAddressLable.text=[[NSString alloc]initWithFormat:@"%@  %@  %@  %@",[ZYUserDefaults stringForKey:Province],[ZYUserDefaults stringForKey:City],[ZYUserDefaults stringForKey:District],[ZYUserDefaults stringForKey:Street]];
     [self getArea];
 }
 
@@ -127,10 +156,13 @@
     _selectView.alpha=0.0;
     _addressSelection.alpha=0.0;
     _indexView.alpha=0.0;
+    corentView=_locationAddressView;
+    [lastParentIds removeAllObjects];
 }
 
 //获取省市列表
 -(void)getArea{
+    
     NSString *path=[[NSString alloc]initWithFormat:@"area/list?parentId=%ld",(long)_parentId];
     [ZYNetWorkTool getWithUrl:path params:nil success:^(id responseObject) {
         if (CPSuccess) {
@@ -149,6 +181,7 @@
         NSLog(@"%@",error);
     }];
 }
+
 
 -(void)reloadData{
     UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];//这个是建立索引的核心
@@ -267,19 +300,54 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
     NSString *code=[NSString stringWithFormat:@"%@",((CPNameIndex*)[[self.areaList objectAtIndex:indexPath.section] objectAtIndex:indexPath.row])._code];
-    if ([code length]<10) {
+    NSString *area=[NSString stringWithFormat:@"%@",((CPNameIndex*)[[self.areaList objectAtIndex:indexPath.section] objectAtIndex:indexPath.row])._lastName];
+    if ([code length]<10 && lastParentId!=[code intValue]) {
+        [lastParentIds addObject:@(_parentId)];
+        lastParentId = [code intValue];
         _parentId=[code intValue];
-        [self getArea];
+        [selectArea addObject:area];
+        self.lastStepBtn.hidden=NO;
+        
+        NSMutableString *areas=[[NSMutableString alloc]init];
+        for (NSString *area in selectArea) {
+            [areas appendFormat:@" %@ ",area];
+        }
+        if ([areas length]>0) {
+            self.locationAddressLable.text=areas;
+        }
+        if ((lastParentId >1000000)) {
+            _locationAddressView.alpha=0.0;
+            _selectView.alpha=1.0;
+            _addressSelection.alpha=0.0;
+            _indexView.alpha=0.0;
+            [self.selectPlace setTitle:areas forState:UIControlStateNormal];
+            [self.selectPlace setImage:nil forState:UIControlStateNormal];
+            [self.selectPlace setTitleColor:[Tools getColor:@"333333"] forState:UIControlStateNormal];
+        }else{
+            [self getArea];
+        }
     }
 }
 
--(void)hidenself{
-    [UIView animateWithDuration:0.25 animations:^{
-        self.view.alpha = 0.0;
-    } completion:^(BOOL finished) {
-//        [ self.view removeFromSuperview];
-//        [self removeFromParentViewController];
-    }];
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    if (touch.view != [self view]) {
+        return NO;
+    }
+    return YES;
+}
+
+
+-(void)hidenself:(UITapGestureRecognizer *)tapGes{
+    CGPoint p = [tapGes locationInView:tapGes.view];
+    CGFloat topBottomY=corentView.y;
+    CGFloat bottomTopY=corentView.y+corentView.height;
+    
+    if (CGRectContainsPoint(CGRectMake(0, 0, ZYScreenWidth, topBottomY), p) || CGRectContainsPoint(CGRectMake(0, bottomTopY, ZYScreenWidth, ZYScreenHeight-bottomTopY), p)) {
+        [UIView animateWithDuration:0.25 animations:^{
+            self.view.alpha = 0.0;
+        } completion:^(BOOL finished) {
+        }];
+    }
 }
 
 
@@ -302,6 +370,17 @@
                 break;
         }
         
+    }
+}
+
+- (IBAction)lastStep:(id)sender {
+    _parentId=[[lastParentIds lastObject] integerValue];
+    [self getArea];
+    [lastParentIds removeLastObject];
+    lastParentId = [lastParentIds lastObject];
+    [selectArea removeLastObject];
+    if (![lastParentIds count]) {
+        self.lastStepBtn.hidden=YES;
     }
 }
 @end
