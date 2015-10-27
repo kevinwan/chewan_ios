@@ -22,7 +22,7 @@
 
 @interface CPMyDateViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate,ZYWaterflowLayoutDelegate>
 @property (nonatomic, strong) UICollectionView *tableView;
-@property (nonatomic, strong) NSMutableArray<CPMyDateModel *> *datas;
+@property (nonatomic, strong) NSMutableArray *datas;
 @property (nonatomic, assign) CGFloat offset;
 @property (nonatomic, assign) BOOL isHasRefreshHeader;
 @property (nonatomic, strong) CPNoDataTipView *noDataView;
@@ -42,7 +42,6 @@ static NSString *ID2 = @"DateCell2";
     self.view.backgroundColor = [UIColor whiteColor];
 
     if (CPNoNetWork) {
-        
         [ZYProgressView showMessage:@"网络连接失败,请检查网络"];
         return;
     }
@@ -60,7 +59,6 @@ static NSString *ID2 = @"DateCell2";
     if (self.datas.count == 0) {
         [self loadDataWithHeader:nil];
     }
-//    [self.tableView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -114,7 +112,6 @@ static NSString *ID2 = @"DateCell2";
  */
 - (void)loadDataWithHeader:(AAPullToRefresh *)refresh
 {
-//    user/$userId/appointment/list
     NSString *url = [NSString stringWithFormat:@"user/%@/appointment/list?token=%@",CPUserId, CPToken];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"ignore"] = @(self.ignore);
@@ -176,11 +173,18 @@ static NSString *ID2 = @"DateCell2";
         cell.contentV.indexPath = indexPath;
         cell.contentV.myDateModel = model;
         return cell;
-    }else{
+    }else if ([model.activityCategory isEqualToString:@"官方活动"]){
         
         CPRecommentViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID2 forIndexPath:indexPath];
+        cell.model = self.datas[indexPath.item];
+        return cell;
+    }else if ([model.activityCategory isEqualToString:@"邀请同去"]){
+        CPNearCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID1 forIndexPath:indexPath];
+        cell.contentV.indexPath = indexPath;
+        cell.contentV.model = self.datas[indexPath.item];
         return cell;
     }
+    return nil;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section

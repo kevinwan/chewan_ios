@@ -28,6 +28,13 @@
     return _desc;
 }
 
+- (void)setCovers:(NSArray *)covers
+{
+    if ([covers isKindOfClass:[NSArray class]]) {
+        _covers = covers;
+    }
+}
+
 - (void)setStart:(long long)start
 {
     _start = start;
@@ -110,7 +117,6 @@
 {
     return @{@"acceptMembers" : [CPUser class]};
 }
-
 
 - (void)setInvitedCount:(NSUInteger)invitedCount
 {

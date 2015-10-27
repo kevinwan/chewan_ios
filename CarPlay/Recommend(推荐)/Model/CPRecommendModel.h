@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface CPRecommendModel : NSObject
+@property (nonatomic, copy) NSString *activityCategory;
 //    description = 测试官方活动Description,
 @property (nonatomic, copy) NSString *desc;
 //    femaleNum = ,

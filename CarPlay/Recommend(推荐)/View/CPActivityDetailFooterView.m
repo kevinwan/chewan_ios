@@ -68,7 +68,6 @@
     [paragraphStyle setLineSpacing:7];
     self.activityPathLabel.attributedText = [[NSAttributedString alloc] initWithString:model.desc attributes:@{NSParagraphStyleAttributeName : paragraphStyle}];
     self.explainLabel.attributedText = [[NSAttributedString alloc] initWithString:model.extraDesc attributes:@{NSParagraphStyleAttributeName : paragraphStyle}];
-    self.comePartBtn.enabled = !model.isMember;
     if (model.isMember){
         [self.comePartBtn setTitle:@"进入群聊" forState:UIControlStateNormal];
     }else{
