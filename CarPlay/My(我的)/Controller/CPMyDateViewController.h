@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CPMyDateViewController : CPViewController
-
+@property (nonatomic, assign) BOOL isDynamic;
 @end

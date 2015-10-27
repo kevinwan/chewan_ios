@@ -39,7 +39,11 @@ static NSString *ID2 = @"DateCell2";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"我的活动";
+    if (self.isDynamic) {
+        self.title = @"活动动态";
+    }else{
+        self.title = @"我的活动";
+    }
     self.view.backgroundColor = [UIColor whiteColor];
 
     if (CPNoNetWork) {
@@ -216,6 +220,16 @@ static NSString *ID2 = @"DateCell2";
 
 
 #pragma mark - 事件交互
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    id model = self.datas[indexPath.row];
+    if ([[model activityCategory] isEqualToString:@"官方活动"]) {
+        CPActivityDetailViewController *activityVc = [UIStoryboard storyboardWithName:@"CPActivityDetailViewController" bundle:nil].instantiateInitialViewController;
+        activityVc.officialActivityId = [model officialActivityId];
+        [self.navigationController pushViewController:activityVc animated:YES];
+    }
+}
 
 - (void)superViewWillRecive:(NSString *)notifyName info:(id)userInfo
 {
@@ -409,8 +423,17 @@ static NSString *ID2 = @"DateCell2";
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        CGFloat topInset = 0;
+        if (self.isDynamic) {
+            UILabel *tipL = [UILabel labelWithText:@"越早联系成功率越高" textColor:[Tools getColor:@"999999"] fontSize:16];
+            [tipL sizeToFit];
+            [_tableView addSubview:tipL];
+            tipL.centerX = _tableView.centerX;
+            tipL.y = 74;
+            topInset = 20;
+        }
         layout.rowMargin = 20;
-        layout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
+        layout.sectionInset = UIEdgeInsetsMake(topInset, 10, 0, 10);
         layout.columnsCount = 1;
 //        layout.itemSize = itemSzie;
         //        layout.scrollDirection = UICollectionLayoutScrollDirectionVertical;
