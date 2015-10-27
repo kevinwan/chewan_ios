@@ -100,6 +100,12 @@ static NSString *ID = @"partCell";
         [[NSNotificationCenter defaultCenter] postNotificationName:@"callOutWithChatter" object:@{@"chatter":[Tools md5EncryptWithString:meber.userId], @"type":[NSNumber numberWithInt:eCallSessionTypeAudio]}];
     }else if ([notifyName isEqualToString:CPJionOfficeActivityKey]){
         [self loadData];
+    }else if ([notifyName isEqualToString:CPGroupChatClickKey]){
+        
+        ChatViewController *  chatController = [[ChatViewController alloc] initWithChatter:_model.emchatGroupId
+                                                                          conversationType:eConversationTypeGroupChat];
+        chatController.title = _model.title;
+        [self.navigationController pushViewController:chatController animated:YES];
     }
 }
 

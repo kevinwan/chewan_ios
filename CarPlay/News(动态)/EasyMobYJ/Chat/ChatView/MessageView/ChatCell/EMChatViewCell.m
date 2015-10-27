@@ -94,7 +94,11 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
         }
         else
         {
-            frame.size.width = _hasRead.frame.size.width;
+//            frame.size.width = _hasRead.frame.size.width;
+            //test
+            //注释掉了已读提示，所以导致重发按钮错位，这里吧frame临时改变下。
+            frame.size.width = SEND_STATUS_SIZE;
+
         }
         frame.origin.x = bubbleFrame.origin.x - frame.size.width - ACTIVTIYVIEW_BUBBLE_PADDING;
         frame.origin.y = _bubbleView.center.y - frame.size.height / 2;
@@ -147,8 +151,8 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
     if (messageModel.isSender) {
         // 发送进度显示view
         //test
-//        _activityView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SEND_STATUS_SIZE, SEND_STATUS_SIZE)];
-        _activityView = [[UIView alloc] initWithFrame:CGRectMake(-SEND_STATUS_SIZE, 0, SEND_STATUS_SIZE, SEND_STATUS_SIZE)];
+        _activityView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SEND_STATUS_SIZE, SEND_STATUS_SIZE)];
+//        _activityView = [[UIView alloc] initWithFrame:CGRectMake(-SEND_STATUS_SIZE, 0, SEND_STATUS_SIZE, SEND_STATUS_SIZE)];
 
         [_activityView setHidden:YES];
         [self.contentView addSubview:_activityView];
@@ -156,6 +160,9 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
         // 重发按钮
         _retryButton = [UIButton buttonWithType:UIButtonTypeSystem];
         _retryButton.frame = CGRectMake(0, 0, SEND_STATUS_SIZE, SEND_STATUS_SIZE);
+        //test
+//        _retryButton.frame = CGRectMake(-SEND_STATUS_SIZE, 0, SEND_STATUS_SIZE, SEND_STATUS_SIZE);
+
         [_retryButton addTarget:self action:@selector(retryButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 //        [_retryButton setImage:[UIImage imageNamed:@"messageSendFail.png"] forState:UIControlStateNormal];
         [_retryButton setBackgroundImage:[UIImage imageNamed:@"messageSendFail.png"] forState:UIControlStateNormal];
