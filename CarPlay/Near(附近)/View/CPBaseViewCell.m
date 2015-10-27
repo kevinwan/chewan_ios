@@ -220,7 +220,11 @@
 {
     _model = model;
     
-    self.marginCons.constant = 12;
+    if (model.isDynamic){
+        self.marginCons.constant = 0;
+    }else{
+        self.marginCons.constant = 12;
+    }
     BOOL isHasAlubm;
     if (CPUnLogin) {
         isHasAlubm = NO;
@@ -574,7 +578,7 @@
 - (UIButton *)invitedButton
 {
     if (_invitedButton == nil) {
-        _invitedButton = [UIButton buttonWithTitle:@"应邀" icon:nil titleColor:[UIColor whiteColor] fontSize:16];
+        _invitedButton = [UIButton buttonWithTitle:@"应邀" icon:nil titleColor:[Tools getColor:@"ffffff"] fontSize:16];
         
         _invitedButton.layer.cornerRadius = 28;
         _invitedButton.clipsToBounds = YES;
@@ -616,7 +620,7 @@
 - (UIButton *)dateButton
 {
     if (_dateButton == nil) {
-        _dateButton = [UIButton buttonWithTitle:@"邀Ta" icon:nil titleColor:[UIColor whiteColor] fontSize:16];
+        _dateButton = [UIButton buttonWithTitle:@"邀Ta" icon:nil titleColor:[Tools getColor:@"ffffff"] fontSize:16];
         _dateButton.backgroundColor = RedColor;
         
         _dateButton.layer.cornerRadius = 28;
@@ -631,7 +635,7 @@
 - (UIButton *)ignoreButton
 {
     if (_ignoreButton == nil) {
-        _ignoreButton = [UIButton buttonWithTitle:@"忽略" icon:nil titleColor:[UIColor whiteColor] fontSize:16];
+        _ignoreButton = [UIButton buttonWithTitle:@"忽略" icon:nil titleColor:[Tools getColor:@"ffffff"] fontSize:16];
         _ignoreButton.layer.cornerRadius = 28;
         _ignoreButton.clipsToBounds = YES;
         _ignoreButton.hidden = YES;

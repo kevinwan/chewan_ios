@@ -447,6 +447,7 @@
 		E329DD721BDF298B005CD13D /* CPByTicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E329DD711BDF298B005CD13D /* CPByTicketViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E329DD751BDF2B7E005CD13D /* CPLoadingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E329DD741BDF2B7E005CD13D /* CPLoadingButton.m */; settings = {ASSET_TAGS = (); }; };
 		E329DD781BDF8348005CD13D /* CPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E329DD771BDF8348005CD13D /* CPViewController.m */; settings = {ASSET_TAGS = (); }; };
+		E329DD7B1BDF98BC005CD13D /* CPDynamicNearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E329DD7A1BDF98BC005CD13D /* CPDynamicNearViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E32B5DD81BCE39CC0057FD71 /* UIViewController+ZY.m in Sources */ = {isa = PBXBuildFile; fileRef = E32B5DD71BCE39CC0057FD71 /* UIViewController+ZY.m */; };
 		E32B5DDF1BCE41B50057FD71 /* ZYProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E32B5DDE1BCE41B50057FD71 /* ZYProgressView.m */; };
 		E32B5DE21BCE41CA0057FD71 /* ZYRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = E32B5DE11BCE41CA0057FD71 /* ZYRefreshView.m */; };
@@ -1272,6 +1273,8 @@
 		E329DD741BDF2B7E005CD13D /* CPLoadingButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPLoadingButton.m; sourceTree = "<group>"; };
 		E329DD761BDF8348005CD13D /* CPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPViewController.h; sourceTree = "<group>"; };
 		E329DD771BDF8348005CD13D /* CPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPViewController.m; sourceTree = "<group>"; };
+		E329DD791BDF98BC005CD13D /* CPDynamicNearViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPDynamicNearViewController.h; sourceTree = "<group>"; };
+		E329DD7A1BDF98BC005CD13D /* CPDynamicNearViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPDynamicNearViewController.m; sourceTree = "<group>"; };
 		E32B5DD61BCE39CC0057FD71 /* UIViewController+ZY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZY.h"; sourceTree = "<group>"; };
 		E32B5DD71BCE39CC0057FD71 /* UIViewController+ZY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZY.m"; sourceTree = "<group>"; };
 		E32B5DDD1BCE41B50057FD71 /* ZYProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYProgressView.h; sourceTree = "<group>"; };
@@ -3568,6 +3571,8 @@
 				E31B13591BB9313A00B51696 /* PhotoCotentView.m */,
 				E3A471171BB3A85300973197 /* CPNearViewController.h */,
 				E3A471181BB3A85300973197 /* CPNearViewController.m */,
+				E329DD791BDF98BC005CD13D /* CPDynamicNearViewController.h */,
+				E329DD7A1BDF98BC005CD13D /* CPDynamicNearViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -4210,6 +4215,7 @@
 				E3A471831BB3A85300973197 /* UIImage+Extension.m in Sources */,
 				E31B12DF1BB9311700B51696 /* UIView+PBExtend.m in Sources */,
 				6D2ABF891BCE582100201A8E /* EMCDDeviceManager+ProximitySensor.m in Sources */,
+				E329DD7B1BDF98BC005CD13D /* CPDynamicNearViewController.m in Sources */,
 				6D2ABFCD1BCE582100201A8E /* DXMessageToolBar.m in Sources */,
 				E31B12E91BB9311700B51696 /* PhotoItemView.m in Sources */,
 				6D2ABFCE1BCE582100201A8E /* DXFaceView.m in Sources */,

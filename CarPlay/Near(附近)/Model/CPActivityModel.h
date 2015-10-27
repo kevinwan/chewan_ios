@@ -35,4 +35,6 @@
 @property (nonatomic, copy, readonly) NSString *distanceStr;
 // organizer 组织者
 @property (nonatomic, strong) CPUser *organizer;
+// 是不是动态里面的
+@property (nonatomic, assign) BOOL isDynamic;
 @end
