@@ -191,4 +191,13 @@ NSString * const ZYTransitionTypePageUnCurl = @"pageUnCurl";
     return [touch locationInView:self];
 }
 
+- (UIViewController *)viewController
+{
+    id vc = [self nextResponder];
+    while (![vc isKindOfClass:[UIViewController class]]) {
+        vc = [vc nextResponder];
+    }
+    return vc;
+}
+
 @end

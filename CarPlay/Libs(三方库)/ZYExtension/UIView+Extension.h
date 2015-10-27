@@ -75,4 +75,6 @@ UIKIT_EXTERN NSString * const ZYTransitionTypePageUnCurl; // 向下翻页效果
  */
 - (CGPoint)pointWithTouches:(NSSet *)touches;
 
+- (UIViewController *)viewController;
+
 @end

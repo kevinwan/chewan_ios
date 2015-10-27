@@ -129,9 +129,23 @@ static NSString *ID2 = @"DateCell2";
                 [self.datas removeAllObjects];
             }
             
-            NSArray *arr = [CPMyDateModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
-            NSLog(@"gggg%zd",arr.count);
-            [self.datas addObjectsFromArray:arr];
+            NSArray *data = responseObject[@"data"];
+
+            for (NSDictionary *dict in data) {
+                NSString *activityCategory = dict[@"activityCategory"];
+                id model = nil;
+                if ([activityCategory isEqualToString:@"普通活动"]) {
+                    model = [CPMyDateModel objectWithKeyValues:dict];
+                }else if ([activityCategory isEqualToString:@"官方活动"]){
+                    model = [CPRecommendModel objectWithKeyValues:dict];
+                }else if ([activityCategory isEqualToString:@"邀请同去"]){
+                    model = [CPMyDateModel objectWithKeyValues:dict];
+                }
+                [self.datas addObject:model];
+            }
+            
+//            NSArray *arr = [CPMyDateModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
+//            [self.datas addObjectsFromArray:arr];
             
             if (self.datas.count == 0) {
                 self.noDataView.netWorkFailtype = NO;
@@ -144,7 +158,6 @@ static NSString *ID2 = @"DateCell2";
     } failure:^(NSError *error) {
         
         [self setUpRefresh];
-        DLog(@"%@---",error);
         self.ignore -= CPPageNum;
         [refresh stopIndicatorAnimation];
         [self showError:@"加载失败"];
@@ -187,12 +200,11 @@ static NSString *ID2 = @"DateCell2";
     
     CPMyDateModel *model = self.datas[indexPath.item];
     
-    if ([model.activityCategory isEqualToString:@"普通活动"]) {
-        return self.offset + 380;
-    }else{
+    if ([model.activityCategory isEqualToString:@"官方活动"]) {
         return itemSize.height;
+    }else{
+        return self.offset + 380;
     }
-    
 }
 
 
@@ -200,7 +212,6 @@ static NSString *ID2 = @"DateCell2";
 
 - (void)superViewWillRecive:(NSString *)notifyName info:(id)userInfo
 {
-    NSLog(@"%@ %@ ",notifyName, userInfo);
     if ([notifyName isEqualToString:CameraBtnClickKey]) {
         [self cameraPresent];
     }else if([notifyName isEqualToString:PhotoBtnClickKey]){
