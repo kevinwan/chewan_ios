@@ -126,14 +126,12 @@ static NSString *ID = @"cell";
         
         [self setUpRefresh];
         [refresh stopIndicatorAnimation];
-        DLog(@"%@ ---- ",responseObject);
         if (CPSuccess) {
             if (self.params.ignore == 0) {
                 [self.datas removeAllObjects];
             }
                 
             NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
-            NSLog(@"gggg%zd",arr.count);
             [self.datas addObjectsFromArray:arr];
 
             if (self.datas.count == 0) {
@@ -143,9 +141,9 @@ static NSString *ID = @"cell";
                 self.noDataView.hidden = YES;
             }
             [self.tableView reloadData];
-            if (self.tableView.contentOffset.y > 60 && refresh != self.footerView) {
-                [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, 0) animated:YES];
-            }
+//            if (self.tableView.contentOffset.y > 60 && refresh != self.footerView) {
+//                [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, 0) animated:YES];
+//            }
         }else{
             [self showInfo:CPErrorMsg];
         }
@@ -369,11 +367,9 @@ static NSString *ID = @"cell";
  */
 - (void)filter
 {
-    [self.navigationController pushViewController:[CPMyInterestViewController new] animated:YES];
-    return;
     [CPSelectView showWithParams:^(CPSelectModel *selectModel) {
         
-        self.params.type = selectModel.type;
+        self.params.majorType = selectModel.type;
         self.params.pay = selectModel.pay;
         self.params.gender = selectModel.sex;
         self.params.transfer = selectModel.transfer;
@@ -481,7 +477,7 @@ static NSString *ID = @"cell";
             CGPoint p = [x CGPointValue];
             if (p.y <= 0 && p.y >= -10) {
                 if (_tipView.alpha == 0) {
-                    [UIView animateWithDuration:0.2 animations:^{
+                    [UIView animateWithDuration:0.5 animations:^{
                         _tipView.alpha = 1;
                         _tipView.y = 64;
                     }];

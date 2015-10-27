@@ -14,6 +14,7 @@
 //token	false	String	访问者的 token
 @property (nonatomic, copy) NSString *token;
 //type	false	String	twsdsewerewesf
+@property (nonatomic, copy) NSString *majorType;
 @property (nonatomic, copy) NSString *type;
 //pay	false	String	付费类型
 @property (nonatomic, copy) NSString *pay;
