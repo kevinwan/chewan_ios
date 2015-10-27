@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPMyInterestViewController : UIViewController
+@interface CPMyInterestViewController : CPViewController
 
 @end

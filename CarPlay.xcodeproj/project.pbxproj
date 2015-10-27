@@ -446,6 +446,7 @@
 		E31E4BE51BAD47A500902B34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E31E4BE31BAD47A500902B34 /* LaunchScreen.storyboard */; };
 		E329DD721BDF298B005CD13D /* CPByTicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E329DD711BDF298B005CD13D /* CPByTicketViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E329DD751BDF2B7E005CD13D /* CPLoadingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E329DD741BDF2B7E005CD13D /* CPLoadingButton.m */; settings = {ASSET_TAGS = (); }; };
+		E329DD781BDF8348005CD13D /* CPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E329DD771BDF8348005CD13D /* CPViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E32B5DD81BCE39CC0057FD71 /* UIViewController+ZY.m in Sources */ = {isa = PBXBuildFile; fileRef = E32B5DD71BCE39CC0057FD71 /* UIViewController+ZY.m */; };
 		E32B5DDF1BCE41B50057FD71 /* ZYProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E32B5DDE1BCE41B50057FD71 /* ZYProgressView.m */; };
 		E32B5DE21BCE41CA0057FD71 /* ZYRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = E32B5DE11BCE41CA0057FD71 /* ZYRefreshView.m */; };
@@ -1269,6 +1270,8 @@
 		E329DD711BDF298B005CD13D /* CPByTicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPByTicketViewController.m; sourceTree = "<group>"; };
 		E329DD731BDF2B7E005CD13D /* CPLoadingButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLoadingButton.h; sourceTree = "<group>"; };
 		E329DD741BDF2B7E005CD13D /* CPLoadingButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPLoadingButton.m; sourceTree = "<group>"; };
+		E329DD761BDF8348005CD13D /* CPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPViewController.h; sourceTree = "<group>"; };
+		E329DD771BDF8348005CD13D /* CPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPViewController.m; sourceTree = "<group>"; };
 		E32B5DD61BCE39CC0057FD71 /* UIViewController+ZY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZY.h"; sourceTree = "<group>"; };
 		E32B5DD71BCE39CC0057FD71 /* UIViewController+ZY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZY.m"; sourceTree = "<group>"; };
 		E32B5DDD1BCE41B50057FD71 /* ZYProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYProgressView.h; sourceTree = "<group>"; };
@@ -3609,6 +3612,8 @@
 			isa = PBXGroup;
 			children = (
 				6B364CBC1BCFC388005A4AF9 /* TaInfo(她的详情) */,
+				E329DD761BDF8348005CD13D /* CPViewController.h */,
+				E329DD771BDF8348005CD13D /* CPViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -4483,6 +4488,7 @@
 				E31B12E21BB9311700B51696 /* PhotoModel.m in Sources */,
 				E31B133C1BB9312D00B51696 /* CoreArchive.m in Sources */,
 				6D2ABFD31BCE582100201A8E /* EMChatBaseBubbleView.m in Sources */,
+				E329DD781BDF8348005CD13D /* CPViewController.m in Sources */,
 				6D2ABFDD1BCE582100201A8E /* MessageReadManager.m in Sources */,
 				6B364C681BCE401C005A4AF9 /* UzysWrapperPickerController.m in Sources */,
 				E329DD751BDF2B7E005CD13D /* CPLoadingButton.m in Sources */,

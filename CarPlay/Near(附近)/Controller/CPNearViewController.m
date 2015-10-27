@@ -322,11 +322,6 @@ static NSString *ID = @"cell";
     
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [[SDImageCache sharedImageCache] clearMemory];
-}
-
 /**
  *  处理约她的逻辑
  *

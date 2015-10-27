@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPRecommendController : UIViewController
+@interface CPRecommendController : CPViewController
 
 @end

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPMyDateViewController : UIViewController
+@interface CPMyDateViewController : CPViewController
 
 @end
