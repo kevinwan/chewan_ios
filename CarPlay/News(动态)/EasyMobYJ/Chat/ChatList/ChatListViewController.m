@@ -25,6 +25,9 @@
 #import "UIImageView+EMWebCache.h"
 #import "CPCareMeViewController.h"
 #import "CPVisitorViewController.h"
+#import "CPMyInterestViewController.h"
+#import "CPMyDateViewController.h"
+
 @implementation EMConversation (search)
 
 //根据用户昵称,环信机器人名称,群名称进行搜索
@@ -840,10 +843,12 @@
     }else if ([chatter isEqualToString:@"interestadmin"])
     {//感兴趣的
         [conversation markAllMessagesAsRead:YES];
-        
+        [self.navigationController pushViewController:[CPMyInterestViewController new] animated:YES];
     }else if ([chatter isEqualToString:@"activitystateadmin"])
     {//活动动态
         [conversation markAllMessagesAsRead:YES];
+        [self.navigationController pushViewController:[CPMyDateViewController new] animated:YES];
+        
         
     }else if ([chatter isEqualToString:@"officialadmin"])
     {//车玩官方
