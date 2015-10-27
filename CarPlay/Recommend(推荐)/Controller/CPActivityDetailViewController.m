@@ -127,22 +127,11 @@ static NSString *ID = @"partCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (indexPath.section == 0) {
+    CPActivityPartnerCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    cell.model = self.model.members[indexPath.row];
+    cell.activityId = self.officialActivityId;
+    return cell;
     
-        CPActivityPartnerCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-        cell.model = self.model.members[indexPath.row];
-        cell.activityId = self.officialActivityId;
-        return cell;
-//    }else{
-//        
-//        CPActivityPathCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-//        if (cell == nil) {
-//            cell = [[CPActivityPathCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-//        }
-//        
-//        cell.activityPathText = @"啊看来的时间考虑的是否健康来打发时间来看打发时间来看的方式了肯定撒风景拉斯加福利卡的是减肥了打扫房间大放送骄傲的发生了空间的罚款了巨大是法律进阿飞的说了句反倒是徕卡的时间来看打发时间来看打发时间看来大家看了都放假快乐的方式健康的法律纠纷的刻录机发哦ijfaifjifdjiadf";
-//        return cell;
-//    }
 }
 
 

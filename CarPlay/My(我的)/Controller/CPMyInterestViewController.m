@@ -91,7 +91,7 @@ static NSString *ID = @"myIntersterCell";
             [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, self.tableView.contentSizeHeight - self.tableView.height + 44) animated:YES];
         });
         
-        if (self.datas.count >= CPPageNum) {
+        if (self.datas.count % CPPageNum == 0) {
             self.ignore += CPPageNum;
             [self loadDataWithHeader:v];
         }else{
