@@ -656,13 +656,13 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    //test
-    
-    ChatViewController *  chatController1 = [[ChatViewController alloc] initWithChatter:@"120639016805597672"
-                                                                      conversationType:eConversationTypeGroupChat];
-    chatController1.title = @"test";
-    [self.navigationController pushViewController:chatController1 animated:YES];
-    return;
+//    //test
+//    
+//    ChatViewController *  chatController1 = [[ChatViewController alloc] initWithChatter:@"120639016805597672"
+//                                                                      conversationType:eConversationTypeGroupChat];
+//    chatController1.title = @"test";
+//    [self.navigationController pushViewController:chatController1 animated:YES];
+//    return;
     
     
     
@@ -727,7 +727,7 @@
         
     }
     else {
-        //test 测试群聊
+
         chatController = [[ChatViewController alloc] initWithChatter:chatter
                                                     conversationType:conversation.conversationType];
         chatController.title = [conversation.latestMessageFromOthers.ext valueForKey:kUserNickName];
