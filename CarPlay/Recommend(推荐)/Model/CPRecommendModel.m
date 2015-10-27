@@ -20,19 +20,17 @@
     return @{@"members" : [CPPartMember class]};
 }
 
-- (NSString *)desc
-{
-    if (!_desc.length){
-        return  @"没有活动流程";
-    }
-    return _desc;
-}
-
 - (void)setCovers:(NSArray *)covers
 {
     if ([covers isKindOfClass:[NSArray class]]) {
         _covers = covers;
     }
+}
+
+- (void)setCreateTime:(long long)createTime
+{
+    _createTime = createTime;
+    
 }
 
 - (void)setStart:(long long)start
@@ -47,9 +45,14 @@
 {
     _end = end;
     
-    NSDateFormatter *format = [NSDateFormatter new];
-    format.dateFormat = @"yyyy-MM-dd";
-    _endStr = [format stringFromDate:[NSDate dateWithTimeIntervalSince1970:end / 1000]];
+    if (end) {
+        
+        NSDateFormatter *format = [NSDateFormatter new];
+        format.dateFormat = @"yyyy-MM-dd";
+        _endStr = [format stringFromDate:[NSDate dateWithTimeIntervalSince1970:end / 1000]];
+    }else{
+        _endStr = @"待定";
+    }
 }
 
 - (void)setPrice:(double)price
@@ -99,14 +102,6 @@
     [str appendAttributedString:title];
    
     _titleAttrText = [str copy];
-}
-
-- (NSString *)extraDesc
-{
-    if (!_extraDesc.length) {
-        return @"没有活动说明";
-    }
-    return _extraDesc;
 }
 
 @end

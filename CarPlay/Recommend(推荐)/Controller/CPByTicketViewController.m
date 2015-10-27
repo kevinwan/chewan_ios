@@ -8,7 +8,7 @@
 
 #import "CPByTicketViewController.h"
 
-@interface CPByTicketViewController ()
+@interface CPByTicketViewController ()<UIWebViewDelegate>
 
 @end
 
@@ -19,6 +19,7 @@
     self.title = @"购票";
     UIWebView *webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:webView];
+    webView.delegate = self;
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.url]];
     [webView loadRequest:request];
 }

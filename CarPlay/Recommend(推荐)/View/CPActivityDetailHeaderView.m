@@ -59,7 +59,6 @@
     [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.organizer.avatar] forState:UIControlStateNormal placeholderImage:CPPlaceHolderImage];
     self.nameLabel.text = model.organizer.nickname;
     self.titleLabel.attributedText = model.titleAttrText;
-    self.priceLabel.text = model.priceDesc;
 
     [self.photoView zy_setImageWithUrl:model.covers.firstObject];
     
@@ -90,7 +89,17 @@
         self.maleLabel.text = [NSString stringWithFormat:@"%zd / %zd",model.maleNum,model.maleLimit];
         self.femaleLabel.text = [NSString stringWithFormat:@"%zd / %zd",model.femaleNum,model.femaleLimit];
     }
-    self.priceLabel.attributedText = model.priceText;
+    
+    if (model.subsidyPrice) {
+        
+        NSMutableAttributedString *priceStr = [[NSMutableAttributedString alloc] initWithAttributedString:model.priceText];
+        
+        NSAttributedString *subPrice = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" (现在报名力减%f元)",model.subsidyPrice] attributes: @{NSForegroundColorAttributeName : [Tools getColor:@"fe5967"]}];
+        [priceStr appendAttributedString:subPrice];
+        self.priceLabel.attributedText = [priceStr copy];
+    }else{
+        self.priceLabel.attributedText = model.priceText;
+    }
     self.startLabel.text = model.startStr;
     self.endLabel.text = model.endStr;
     [self.addressLabel setText:model.destination[@"detail"]];
