@@ -303,11 +303,6 @@ static NSString *ID = @"myIntersterCell";
     
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [[SDImageCache sharedImageCache] clearMemory];
-}
-
 /**
  *  处理约她的逻辑
  *
