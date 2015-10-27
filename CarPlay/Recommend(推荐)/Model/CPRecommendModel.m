@@ -118,12 +118,12 @@
     return @{@"acceptMembers" : [CPUser class]};
 }
 
-- (void)setInvitedCount:(NSUInteger)invitedCount
+- (void)setBeInvitedCount:(NSUInteger)beInvitedCount
 {
-    _invitedCount = invitedCount;
+    _beInvitedCount = beInvitedCount;
     
     NSMutableAttributedString *invitedStr = [[NSMutableAttributedString alloc] initWithString:@"已被" attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"999999"]}];
-    NSAttributedString *countStr = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%zd人",invitedCount] attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"fe5967"]}];
+    NSAttributedString *countStr = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%zd人",beInvitedCount] attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"fe5967"]}];
     NSAttributedString *lastStr = [[NSAttributedString alloc] initWithString:@"邀请同去" attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"999999"]}];
     [invitedStr appendAttributedString:countStr];
     [invitedStr appendAttributedString:lastStr];

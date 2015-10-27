@@ -134,6 +134,8 @@ static NSString *ID = @"myIntersterCell";
                 self.noDataView.hidden = YES;
             }
             [self.tableView reloadData];
+        }else{
+            [self showInfo:CPErrorMsg];
         }
         
         [[CPLoadingView sharedInstance] dismissLoadingView];
@@ -291,7 +293,7 @@ static NSString *ID = @"myIntersterCell";
                     [self.tableView reloadData];
                 }
             }else{
-                [self showError:responseObject[@"errmsg"]];
+                [self showInfo:CPErrorMsg];
             }
             
         } failure:^(NSError *error) {

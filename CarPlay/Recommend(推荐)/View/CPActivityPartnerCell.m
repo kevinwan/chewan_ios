@@ -8,7 +8,6 @@
 
 #import "CPActivityPartnerCell.h"
 #import "CPPartnerMemberCell.h"
-#import "CPComeOnTipView.h"
 #import "CPSexView.h"
 
 @interface CPActivityPartnerCell()<UICollectionViewDelegate, UICollectionViewDataSource>
@@ -67,9 +66,9 @@ static NSString *ID = @"memberIconCell";
     
     [self.partnersView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(@0);
-        make.top.equalTo(self.lineView.mas_bottom);
         make.left.equalTo(self.agreeLabel.mas_right).offset(12);
-        make.bottom.equalTo(0);
+        make.centerY.equalTo(self.agreeLabel);
+        make.height.equalTo(@38);
     }];
     
     [self.iconAuthView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -81,7 +80,7 @@ static NSString *ID = @"memberIconCell";
 
 - (IBAction)comeOnBaby:(UIButton *)sender {
     
-    [CPComeOnTipView showWithActivityId:self.activityId targetUserId:_model.userId];
+    [self superViewWillRecive:CPComeOnBabyClickKey info:_model.userId];
 }
 
 - (void)setModel:(CPPartMember *)model
@@ -95,7 +94,6 @@ static NSString *ID = @"memberIconCell";
     }
     
     [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.avatar] placeholderImage:CPPlaceHolderImage options:SDWebImageLowPriority | SDWebImageRetryFailed];
-    
     self.partNumLabel.attributedText = model.invitedCountStr;
     
     self.nicknameLabel.text = model.nickname;

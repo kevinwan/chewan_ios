@@ -23,9 +23,32 @@
     }
 }
 
-- (NSString *)title
+- (NSAttributedString *)title
 {
-    return [NSString stringWithFormat:@"%@想找人一块%@",_applicant.nickname, _type];
+    if ([_activityCategory isEqualToString:@"邀请同去"]) {
+        NSString *typeS = nil;
+        if (_type.length>5) {
+            typeS = [_type substringToIndex:5];
+        }else{
+            typeS = _type;
+        }
+        if (_isApplicant){
+            NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"我想邀%@同去",_applicant.nickname]];
+            NSAttributedString *append = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@",_type] attributes:@{NSForegroundColorAttributeName : RedColor}];
+            [str appendAttributedString:append];
+            
+            [str addAttributes:@{NSFontAttributeName : ZYFont16} range:NSMakeRange(0, str.length)];
+            return [str copy];
+        }else{
+            NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@想邀我同去",_applicant.nickname]];
+            NSAttributedString *append = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@",_type] attributes:@{NSForegroundColorAttributeName : RedColor}];
+            [str appendAttributedString:append];
+            [str addAttributes:@{NSFontAttributeName : ZYFont16} range:NSMakeRange(0, str.length)];
+            return [str copy];
+        }
+    }
+    
+    return [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@想找人一块%@",_applicant.nickname, _type]];
 }
 - (void)setDistance:(double)distance
 {

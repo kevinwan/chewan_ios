@@ -19,6 +19,7 @@
 #define LoveBtnClickKey     @"LoveBtnClickKey"
 #define AddressBtnClickKey  @"AddressBtnClickKey"
 #define IconViewClickKey    @"IconViewClickKey"
+#define TitleLabelClickKey    @"TitleLabelClickKey"
 @interface CPBaseViewCell : UIView
 @property (nonatomic, strong) NSIndexPath *indexPath;
 @property (nonatomic, strong) CPActivityModel *model;

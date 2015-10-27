@@ -444,6 +444,8 @@
 		E31E4BD71BAD47A500902B34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E31E4BD61BAD47A500902B34 /* main.m */; };
 		E31E4BE21BAD47A500902B34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E31E4BE11BAD47A500902B34 /* Assets.xcassets */; };
 		E31E4BE51BAD47A500902B34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E31E4BE31BAD47A500902B34 /* LaunchScreen.storyboard */; };
+		E329DD721BDF298B005CD13D /* CPByTicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E329DD711BDF298B005CD13D /* CPByTicketViewController.m */; settings = {ASSET_TAGS = (); }; };
+		E329DD751BDF2B7E005CD13D /* CPLoadingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E329DD741BDF2B7E005CD13D /* CPLoadingButton.m */; settings = {ASSET_TAGS = (); }; };
 		E32B5DD81BCE39CC0057FD71 /* UIViewController+ZY.m in Sources */ = {isa = PBXBuildFile; fileRef = E32B5DD71BCE39CC0057FD71 /* UIViewController+ZY.m */; };
 		E32B5DDF1BCE41B50057FD71 /* ZYProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E32B5DDE1BCE41B50057FD71 /* ZYProgressView.m */; };
 		E32B5DE21BCE41CA0057FD71 /* ZYRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = E32B5DE11BCE41CA0057FD71 /* ZYRefreshView.m */; };
@@ -452,8 +454,6 @@
 		E356F0E11BD4851A00D5BE07 /* CPActivityDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E356F0E01BD4851A00D5BE07 /* CPActivityDetailViewController.storyboard */; };
 		E356F0E91BD4DB5000D5BE07 /* CPActivityDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E356F0E81BD4DB5000D5BE07 /* CPActivityDetailHeaderView.m */; };
 		E356F0EB1BD4DBF700D5BE07 /* CPActivityDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E356F0EA1BD4DBF700D5BE07 /* CPActivityDetailHeaderView.xib */; };
-		E356F0EE1BD4ED7A00D5BE07 /* CPActivityDetailMiddleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E356F0ED1BD4ED7A00D5BE07 /* CPActivityDetailMiddleView.m */; };
-		E356F0F01BD4ED9100D5BE07 /* CPActivityDetailMiddleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E356F0EF1BD4ED9100D5BE07 /* CPActivityDetailMiddleView.xib */; };
 		E356F0F21BD4F21400D5BE07 /* CPActivityDetailFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E356F0F11BD4F21400D5BE07 /* CPActivityDetailFooterView.xib */; };
 		E356F0F51BD4F22500D5BE07 /* CPActivityDetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E356F0F41BD4F22500D5BE07 /* CPActivityDetailFooterView.m */; };
 		E356F0F81BD51DE400D5BE07 /* CPActivityPartnerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E356F0F71BD51DE400D5BE07 /* CPActivityPartnerCell.m */; };
@@ -1265,6 +1265,10 @@
 		E31E4BE61BAD47A500902B34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E31E4C491BAD48D600902B34 /* CP_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CP_Prefix.pch; sourceTree = "<group>"; };
 		E31E4C4E1BAD507E00902B34 /* macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = macro.h; sourceTree = "<group>"; };
+		E329DD701BDF298B005CD13D /* CPByTicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPByTicketViewController.h; sourceTree = "<group>"; };
+		E329DD711BDF298B005CD13D /* CPByTicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPByTicketViewController.m; sourceTree = "<group>"; };
+		E329DD731BDF2B7E005CD13D /* CPLoadingButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLoadingButton.h; sourceTree = "<group>"; };
+		E329DD741BDF2B7E005CD13D /* CPLoadingButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPLoadingButton.m; sourceTree = "<group>"; };
 		E32B5DD61BCE39CC0057FD71 /* UIViewController+ZY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZY.h"; sourceTree = "<group>"; };
 		E32B5DD71BCE39CC0057FD71 /* UIViewController+ZY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZY.m"; sourceTree = "<group>"; };
 		E32B5DDD1BCE41B50057FD71 /* ZYProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYProgressView.h; sourceTree = "<group>"; };
@@ -1278,9 +1282,6 @@
 		E356F0E71BD4DB5000D5BE07 /* CPActivityDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityDetailHeaderView.h; sourceTree = "<group>"; };
 		E356F0E81BD4DB5000D5BE07 /* CPActivityDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityDetailHeaderView.m; sourceTree = "<group>"; };
 		E356F0EA1BD4DBF700D5BE07 /* CPActivityDetailHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPActivityDetailHeaderView.xib; sourceTree = "<group>"; };
-		E356F0EC1BD4ED7A00D5BE07 /* CPActivityDetailMiddleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityDetailMiddleView.h; sourceTree = "<group>"; };
-		E356F0ED1BD4ED7A00D5BE07 /* CPActivityDetailMiddleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityDetailMiddleView.m; sourceTree = "<group>"; };
-		E356F0EF1BD4ED9100D5BE07 /* CPActivityDetailMiddleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPActivityDetailMiddleView.xib; sourceTree = "<group>"; };
 		E356F0F11BD4F21400D5BE07 /* CPActivityDetailFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPActivityDetailFooterView.xib; sourceTree = "<group>"; };
 		E356F0F31BD4F22500D5BE07 /* CPActivityDetailFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityDetailFooterView.h; sourceTree = "<group>"; };
 		E356F0F41BD4F22500D5BE07 /* CPActivityDetailFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityDetailFooterView.m; sourceTree = "<group>"; };
@@ -3501,6 +3502,8 @@
 				E3C5F18F1BC92C790021E33D /* CPActivityDetailViewController.h */,
 				E3C5F1901BC92C790021E33D /* CPActivityDetailViewController.m */,
 				E356F0E01BD4851A00D5BE07 /* CPActivityDetailViewController.storyboard */,
+				E329DD701BDF298B005CD13D /* CPByTicketViewController.h */,
+				E329DD711BDF298B005CD13D /* CPByTicketViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3530,9 +3533,6 @@
 				E356F0E71BD4DB5000D5BE07 /* CPActivityDetailHeaderView.h */,
 				E356F0E81BD4DB5000D5BE07 /* CPActivityDetailHeaderView.m */,
 				E356F0EA1BD4DBF700D5BE07 /* CPActivityDetailHeaderView.xib */,
-				E356F0EC1BD4ED7A00D5BE07 /* CPActivityDetailMiddleView.h */,
-				E356F0ED1BD4ED7A00D5BE07 /* CPActivityDetailMiddleView.m */,
-				E356F0EF1BD4ED9100D5BE07 /* CPActivityDetailMiddleView.xib */,
 				E356F0F11BD4F21400D5BE07 /* CPActivityDetailFooterView.xib */,
 				E356F0F31BD4F22500D5BE07 /* CPActivityDetailFooterView.h */,
 				E356F0F41BD4F22500D5BE07 /* CPActivityDetailFooterView.m */,
@@ -3540,6 +3540,8 @@
 				E356F0F71BD51DE400D5BE07 /* CPActivityPartnerCell.m */,
 				E3FE39EE1BD6699B0022FDA3 /* CPActivityPathCell.h */,
 				E3FE39EF1BD6699B0022FDA3 /* CPActivityPathCell.m */,
+				E329DD731BDF2B7E005CD13D /* CPLoadingButton.h */,
+				E329DD741BDF2B7E005CD13D /* CPLoadingButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4084,7 +4086,6 @@
 				6D2AC0DF1BCE5A5100201A8E /* VoiceSearchFeedback002@2x.png in Resources */,
 				EE3383181BD9141200BA4930 /* refuse@2x.png in Resources */,
 				6D2AC16B1BCE5A5100201A8E /* password.png in Resources */,
-				E356F0F01BD4ED9100D5BE07 /* CPActivityDetailMiddleView.xib in Resources */,
 				6D2AC0E11BCE5A5100201A8E /* VoiceSearchFeedback003@2x.png in Resources */,
 				EEFD12931BDDF6D0009EA6CC /* wheel5@2x.png in Resources */,
 				6B2411191BCB56AC0014468D /* CPMyInfoController.storyboard in Resources */,
@@ -4405,6 +4406,7 @@
 				E37C10B21BBB79D800E1A6A2 /* CPMyVisitorViewController.m in Sources */,
 				E369E2BB1BCBB997000A12B5 /* CPSelectModel.m in Sources */,
 				E3A471771BB3A85300973197 /* CAAnimation+ZY.m in Sources */,
+				E329DD721BDF298B005CD13D /* CPByTicketViewController.m in Sources */,
 				6B1387DF1BCD0A6C00FAC462 /* CustomSectionView.m in Sources */,
 				6D2ABFC51BCE582100201A8E /* CallViewController.m in Sources */,
 				E31B13471BB9312D00B51696 /* UIImage+Color.m in Sources */,
@@ -4483,11 +4485,11 @@
 				6D2ABFD31BCE582100201A8E /* EMChatBaseBubbleView.m in Sources */,
 				6D2ABFDD1BCE582100201A8E /* MessageReadManager.m in Sources */,
 				6B364C681BCE401C005A4AF9 /* UzysWrapperPickerController.m in Sources */,
+				E329DD751BDF2B7E005CD13D /* CPLoadingButton.m in Sources */,
 				6D2ABFD51BCE582100201A8E /* EMChatLocationBubbleView.m in Sources */,
 				E3A471851BB3A85300973197 /* UIResponder+Extension.m in Sources */,
 				6D2ABFBA1BCE582100201A8E /* SRRefreshView.m in Sources */,
 				6D2ABF911BCE582100201A8E /* MWCaptionView.m in Sources */,
-				E356F0EE1BD4ED7A00D5BE07 /* CPActivityDetailMiddleView.m in Sources */,
 				6D2ABFF71BCE582100201A8E /* EMRemarkImageView.m in Sources */,
 				6D2ABFD01BCE582100201A8E /* DXChatBarMoreView.m in Sources */,
 				E3719AAD1BDA5D9000465DF2 /* UIImage+BoxBlur.m in Sources */,
