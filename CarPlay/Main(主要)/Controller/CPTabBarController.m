@@ -300,6 +300,49 @@
         }
     }
 }
+#pragma mark - IChatManagerDelegate
+// 开始自动登录回调
+-(void)willAutoLoginWithInfo:(NSDictionary *)loginInfo error:(EMError *)error
+{
+    UIAlertView *alertView = nil;
+    if (error) {
+//        alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"prompt", @"Prompt") message:NSLocalizedString(@"login.errorAutoLogin", @"Automatic logon failure") delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", @"OK") otherButtonTitles:nil, nil];
+        
+        //发送自动登陆状态通知
+        [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
+    }
+    else{
+//        alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"prompt", @"Prompt") message:NSLocalizedString(@"login.beginAutoLogin", @"Start automatic login...") delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", @"OK") otherButtonTitles:nil, nil];
+        
+        
+        // 旧数据转换 (如果您的sdk是由2.1.2版本升级过来的，需要家这句话)
+        [[EaseMob sharedInstance].chatManager importDataToNewDatabase];
+        //获取数据库中的数据
+        [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
+    }
+    
+    [alertView show];
+}
+
+// 结束自动登录回调
+-(void)didAutoLoginWithInfo:(NSDictionary *)loginInfo error:(EMError *)error
+{
+    UIAlertView *alertView = nil;
+    if (error) {
+//        alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"prompt", @"Prompt") message:NSLocalizedString(@"login.errorAutoLogin", @"Automatic logon failure") delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", @"OK") otherButtonTitles:nil, nil];
+        
+        //发送自动登陆状态通知
+        [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
+    }
+    else{
+        //获取群组列表
+        [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
+        
+//        alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"prompt", @"Prompt") message:NSLocalizedString(@"login.endAutoLogin", @"End automatic login...") delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", @"OK") otherButtonTitles:nil, nil];
+    }
+    
+    [alertView show];
+}
 
 
 - (void)dealloc

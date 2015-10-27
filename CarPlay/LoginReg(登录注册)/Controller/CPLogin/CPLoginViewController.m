@@ -76,7 +76,8 @@
                                 [ZYUserDefaults setObject:responseObject[@"data"][@"avatar"] forKey:kUserHeadUrl];
                                 // 设置自动登录
                                 [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
-                                
+                                [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
+
                                 if (responseObject[@"data"][@"userId"]) {
                                     [ZYUserDefaults setObject:responseObject[@"data"][@"userId"] forKey:UserId];
                                 }
