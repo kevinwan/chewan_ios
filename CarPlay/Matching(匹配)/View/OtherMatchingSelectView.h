@@ -41,5 +41,7 @@
 - (IBAction)typeBtnClick:(CPOtherMatchingSelectView *)sender;
 @property (weak, nonatomic) IBOutlet CPOtherMatchingSelectView *type1Btn;
 @property (nonatomic, strong) MJNIndexView *indexView;
+@property (weak, nonatomic) IBOutlet UIButton *lastStepBtn;
+- (IBAction)lastStep:(id)sender;
 
 @end
