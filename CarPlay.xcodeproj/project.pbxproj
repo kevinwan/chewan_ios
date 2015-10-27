@@ -570,6 +570,7 @@
 		EEFD129C1BDDF6D0009EA6CC /* wheel14@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EEFD12901BDDF6D0009EA6CC /* wheel14@2x.png */; settings = {ASSET_TAGS = (); }; };
 		EEFD129F1BDE261D009EA6CC /* nearbyadmin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EEFD129D1BDE261D009EA6CC /* nearbyadmin@2x.png */; settings = {ASSET_TAGS = (); }; };
 		EEFD12A01BDE261D009EA6CC /* nearbyadmin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EEFD129E1BDE261D009EA6CC /* nearbyadmin@3x.png */; settings = {ASSET_TAGS = (); }; };
+		EEFD12A21BDF5BD1009EA6CC /* 群头像背景@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EEFD12A11BDF5BD1009EA6CC /* 群头像背景@2x.png */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1480,6 +1481,7 @@
 		EEFD12901BDDF6D0009EA6CC /* wheel14@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wheel14@2x.png"; sourceTree = "<group>"; };
 		EEFD129D1BDE261D009EA6CC /* nearbyadmin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nearbyadmin@2x.png"; sourceTree = "<group>"; };
 		EEFD129E1BDE261D009EA6CC /* nearbyadmin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nearbyadmin@3x.png"; sourceTree = "<group>"; };
+		EEFD12A11BDF5BD1009EA6CC /* 群头像背景@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "群头像背景@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2548,6 +2550,7 @@
 			children = (
 				6D2AD8C11BCF72A30099CFD7 /* ActivityStateAdmin@2x.png */,
 				6D2AD8C21BCF72A30099CFD7 /* ActivityStateAdmin@3x.png */,
+				EEFD12A11BDF5BD1009EA6CC /* 群头像背景@2x.png */,
 				6D2AD8C31BCF72A30099CFD7 /* InterestAdmin@2x.png */,
 				6D2AD8C41BCF72A30099CFD7 /* InterestAdmin@3x.png */,
 				6D2AD8C51BCF72A30099CFD7 /* OfficialAdmin@2x.png */,
@@ -4056,6 +4059,7 @@
 				6D7F6FD31BD5216500945F1B /* chatBar_colorMore_photoSelected@3x.png in Resources */,
 				6D2AD8CD1BCF72A30099CFD7 /* InterestAdmin@2x.png in Resources */,
 				6D2AD8D31BCF72A30099CFD7 /* UserViewAdmin@2x.png in Resources */,
+				EEFD12A21BDF5BD1009EA6CC /* 群头像背景@2x.png in Resources */,
 				6D2AC10F1BCE5A5100201A8E /* chatBar_more_card@2x.png in Resources */,
 				6BDA2CA11BD66E970032FFF1 /* MatchingSelectView.storyboard in Resources */,
 				6D2AD8D01BCF72A30099CFD7 /* OfficialAdmin@3x.png in Resources */,

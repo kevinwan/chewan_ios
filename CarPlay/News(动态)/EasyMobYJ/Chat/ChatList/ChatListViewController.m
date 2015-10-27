@@ -46,7 +46,10 @@
 @end
 
 @interface ChatListViewController ()<UITableViewDelegate,UITableViewDataSource, UISearchDisplayDelegate,SRRefreshDelegate, UISearchBarDelegate, IChatManagerDelegate,ChatViewControllerDelegate>
+{
+    SDWebImageManager *manager;
 
+}
 @property (strong, nonatomic) NSMutableArray        *dataSource;
 
 @property (strong, nonatomic) UITableView           *tableView;
@@ -72,7 +75,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    manager = [SDWebImageManager sharedManager];
+
     [[EaseMob sharedInstance].chatManager loadAllConversationsFromDatabaseWithAppend2Chat:NO];
     [self removeEmptyConversationsFromDB];
 
@@ -547,7 +551,7 @@
         cell = [[ChatListCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identify];
     }
     EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
-//    NSLog(@"===========title = %@,indexPath = %ld",conversation.chatter,(long)indexPath.row);
+    NSLog(@"===========title = %@,indexPath = %ld",conversation.chatter,(long)indexPath.row);
 
 //    cell.name  = @"";
     if (conversation.conversationType == eConversationTypeChat) {
@@ -609,29 +613,161 @@
 
     }
     else{//群聊
-        NSString *imageName = @"groupPublicHeader";
-        if (![conversation.ext objectForKey:@"groupSubject"] || ![conversation.ext objectForKey:@"isPublic"])
-        {
-            NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
-            for (EMGroup *group in groupArray) {
-                if ([group.groupId isEqualToString:conversation.chatter]) {
-                    cell.textLabel.text = group.groupSubject;
-                    imageName = group.isPublic ? @"groupPublicHeader" : @"groupPrivateHeader";
 
-                    NSMutableDictionary *ext = [NSMutableDictionary dictionaryWithDictionary:conversation.ext];
-                    [ext setObject:group.groupSubject forKey:@"groupSubject"];
-                    [ext setObject:[NSNumber numberWithBool:group.isPublic] forKey:@"isPublic"];
-                    conversation.ext = ext;
-                    break;
+//        NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
+        NSArray *groupArray = [[EaseMob sharedInstance].chatManager loadAllMyGroupsFromDatabaseWithAppend2Chat:NO];
+
+        NSLog(@"当下的groupid = %@",conversation.chatter);
+        for (EMGroup *group in groupArray) {
+            NSLog(@"====group.id = %@",group.groupId);
+            if ([group.groupId isEqualToString:conversation.chatter]) {
+                //有时候拿不到groupDescription。比如没有人发过消息
+                if (group.groupDescription.length>0) {
+                    //设置群聊头像
+                    NSString *headStr = [group.groupDescription stringByReplacingOccurrencesOfString:@"|" withString:@"/"];
+                    NSArray *photos = [headStr componentsSeparatedByString:@";"];
+                    //用；分割以后，比正常数组多了一个空对象，所以下面的case从2开始，后期做优化的时候修改。
+                    switch ([photos count]) {
+                        case 2:
+                            [cell.HeadIV sd_setImageWithURL:[NSURL URLWithString:photos[0]] placeholderImage:nil];
+                            break;
+                            
+                        case 3:
+                        {
+                            [manager downloadImageWithURL:[NSURL URLWithString:photos[0]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                UIImage *image1 = [UIImage imageWithBgImage:[UIImage imageNamed:@"群头像背景"] waterImage:[self shearToCircleImage:image] frame:CGRectMake(6.5, 16, 17, 17) angle:0];
+                                [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                    UIImage *image2 = [UIImage imageWithBgImage:image1 waterImage:[self shearToCircleImage:image] frame:CGRectMake(26.5, 16, 17, 17) angle:0];
+                                    [cell.HeadIV setImage:image2];
+                                }];
+                            }];
+                        }
+                            
+                            break;
+                            
+                        case 4:
+                        {
+                            [manager downloadImageWithURL:[NSURL URLWithString:photos[0]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                UIImage *image1 = [UIImage imageWithBgImage:[UIImage imageNamed:@"群头像背景"] waterImage:[self shearToCircleImage:image] frame:CGRectMake(16, 7, 17, 17) angle:0];
+                                [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                    UIImage *image2 = [UIImage imageWithBgImage:image1 waterImage:[self shearToCircleImage:image] frame:CGRectMake(6.5, 26, 17, 17) angle:0];
+                                    [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                        UIImage *image3 = [UIImage imageWithBgImage:image2 waterImage:[self shearToCircleImage:image] frame:CGRectMake(26.5, 26, 17, 17) angle:0];
+                                        [cell.HeadIV setImage:image3];
+                                        
+                                    }];
+                                }];
+                            }];
+                        }
+                            break;
+                            
+                        case 5:
+                        {
+                            [manager downloadImageWithURL:[NSURL URLWithString:photos[0]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                UIImage *image1 = [UIImage imageWithBgImage:[UIImage imageNamed:@"群头像背景"] waterImage:[self shearToCircleImage:image] frame:CGRectMake(5, 5, 14, 14) angle:0];
+                                [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                    UIImage *image2 = [UIImage imageWithBgImage:image1 waterImage:[self shearToCircleImage:image] frame:CGRectMake(5+14+2, 5, 14, 14) angle:0];
+                                    [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                        UIImage *image3 = [UIImage imageWithBgImage:image2 waterImage:[self shearToCircleImage:image] frame:CGRectMake(5, 14+5+2, 14, 14) angle:0];
+                                        [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                            UIImage *image4 = [UIImage imageWithBgImage:image3 waterImage:[self shearToCircleImage:image] frame:CGRectMake(5+14+2, 5+14+2, 14, 14) angle:0];
+                                            [cell.HeadIV setImage:image4];
+                                        }];
+                                    }];
+                                }];
+                            }];
+                        }
+                            break;
+                    }
+                    
+                }else{
+                    [[EaseMob sharedInstance].chatManager asyncFetchGroupInfo:conversation.chatter completion:^(EMGroup *group, EMError *error) {
+                        
+                        //设置群聊头像
+                        NSString *headStr = [group.groupDescription stringByReplacingOccurrencesOfString:@"|" withString:@"/"];
+                        NSArray *photos = [headStr componentsSeparatedByString:@";"];
+                        switch ([photos count]) {
+                            case 2:
+                                [cell.HeadIV sd_setImageWithURL:[NSURL URLWithString:photos[0]] placeholderImage:nil];
+                                break;
+                                
+                            case 3:
+                            {
+                                [manager downloadImageWithURL:[NSURL URLWithString:photos[0]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                    UIImage *image1 = [UIImage imageWithBgImage:[UIImage imageNamed:@"群头像背景"] waterImage:[self shearToCircleImage:image] frame:CGRectMake(6.5, 16, 17, 17) angle:0];
+                                    [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                        UIImage *image2 = [UIImage imageWithBgImage:image1 waterImage:[self shearToCircleImage:image] frame:CGRectMake(26.5, 16, 17, 17) angle:0];
+                                        [cell.HeadIV setImage:image2];
+                                    }];
+                                }];
+                            }
+                                
+                                break;
+                                
+                            case 4:
+                            {
+                                [manager downloadImageWithURL:[NSURL URLWithString:photos[0]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                    UIImage *image1 = [UIImage imageWithBgImage:[UIImage imageNamed:@"群头像背景"] waterImage:[self shearToCircleImage:image] frame:CGRectMake(16, 7, 17, 17) angle:0];
+                                    [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                        UIImage *image2 = [UIImage imageWithBgImage:image1 waterImage:[self shearToCircleImage:image] frame:CGRectMake(6.5, 26, 17, 17) angle:0];
+                                        [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                            UIImage *image3 = [UIImage imageWithBgImage:image2 waterImage:[self shearToCircleImage:image] frame:CGRectMake(26.5, 26, 17, 17) angle:0];
+                                            [cell.HeadIV setImage:image3];
+                                            
+                                        }];
+                                    }];
+                                }];
+                            }
+                                break;
+                                
+                            case 5:
+                            {
+                                [manager downloadImageWithURL:[NSURL URLWithString:photos[0]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                    UIImage *image1 = [UIImage imageWithBgImage:[UIImage imageNamed:@"群头像背景"] waterImage:[self shearToCircleImage:image] frame:CGRectMake(5, 5, 14, 14) angle:0];
+                                    [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                        UIImage *image2 = [UIImage imageWithBgImage:image1 waterImage:[self shearToCircleImage:image] frame:CGRectMake(5+14+2, 5, 14, 14) angle:0];
+                                        [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                            UIImage *image3 = [UIImage imageWithBgImage:image2 waterImage:[self shearToCircleImage:image] frame:CGRectMake(5, 14+5+2, 14, 14) angle:0];
+                                            [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                                UIImage *image4 = [UIImage imageWithBgImage:image3 waterImage:[self shearToCircleImage:image] frame:CGRectMake(5+14+2, 5+14+2, 14, 14) angle:0];
+                                                [cell.HeadIV setImage:image4];
+                                            }];
+                                        }];
+                                    }];
+                                }];
+                            }
+                                break;
+                        }
+                        
+                        
+                    } onQueue:dispatch_get_main_queue()];
+
                 }
+                break;//跳出for循环
             }
         }
-        else
-        {
-            cell.textLabel.text = [conversation.ext objectForKey:@"groupSubject"];
-            imageName = [[conversation.ext objectForKey:@"isPublic"] boolValue] ? @"groupPublicHeader" : @"groupPrivateHeader";
-        }
-        cell.placeholderImage = [UIImage imageNamed:imageName];
+//        if (![conversation.ext objectForKey:@"groupSubject"] || ![conversation.ext objectForKey:@"isPublic"])
+//        {
+//            NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
+//            for (EMGroup *group in groupArray) {
+//                if ([group.groupId isEqualToString:conversation.chatter]) {
+//                    cell.textLabel.text = group.groupSubject;
+//                    imageName = group.isPublic ? @"groupPublicHeader" : @"groupPrivateHeader";
+//
+//                    NSMutableDictionary *ext = [NSMutableDictionary dictionaryWithDictionary:conversation.ext];
+//                    [ext setObject:group.groupSubject forKey:@"groupSubject"];
+//                    [ext setObject:[NSNumber numberWithBool:group.isPublic] forKey:@"isPublic"];
+//                    conversation.ext = ext;
+//                    break;
+//                }
+//            }
+//        }
+//        else
+//        {
+//            cell.textLabel.text = [conversation.ext objectForKey:@"groupSubject"];
+//            imageName = [[conversation.ext objectForKey:@"isPublic"] boolValue] ? @"groupPublicHeader" : @"groupPrivateHeader";
+//        }
+        cell.textLabel.text = [conversation.latestMessage.ext objectForKey:kUserNickName];
     }
     cell.detailMsg = [self subTitleMessageByConversation:conversation];
     
@@ -727,7 +863,7 @@
         
     }
     else {
-
+        //test 测试群聊
         chatController = [[ChatViewController alloc] initWithChatter:chatter
                                                     conversationType:conversation.conversationType];
         chatController.title = [conversation.latestMessageFromOthers.ext valueForKey:kUserNickName];
@@ -892,6 +1028,40 @@
 // 根据环信id得到要显示用户名，如果返回nil，则默认显示环信id
 - (NSString *)nickNameWithChatter:(NSString *)chatter{
     return chatter;
+}
+-(UIImage *)shearToCircleImage:(UIImage *)image{
+    CGFloat sizeW = image.size.width;
+    CGFloat sizeH = image.size.height;
+    CGSize size =  CGSizeMake(sizeW, sizeH);
+    // 创建bit上下文
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
+    CGContextRef ctf = UIGraphicsGetCurrentContext();
+    
+    // 画出外边的大圆
+    CGFloat bigX = sizeW * 0.5;
+    CGFloat bigY = sizeH * 0.5;
+    CGFloat radius = bigX;
+    CGContextAddArc(ctf, bigX, bigY, radius, 0, M_PI * 2, NO);
+    
+    // 将上下文渲染到图层
+    CGContextFillPath(ctf);
+    
+    // 画小圆
+    CGFloat smallX = bigX;
+    CGFloat smallY = bigY;
+    CGContextAddArc(ctf, smallX, smallY, radius, 0, M_PI * 2, NO);
+    CGContextClip(ctf);
+    
+    // 画图
+    [image drawInRect:CGRectMake(0.0, 0.0, image.size.width, image.size.height)];
+    
+    // 获得上下文中的图形
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    // 关闭上下文
+    UIGraphicsEndImageContext();
+    
+    return newImage;
 }
 
 @end
