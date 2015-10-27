@@ -70,6 +70,7 @@
  *  显示距离的view
  */
 @property (weak, nonatomic) IBOutlet UIButton *distanceView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleLWCons;
 
 /**
  *  约她
@@ -131,6 +132,8 @@
 - (void)awakeFromNib
 {
     self.titleView.hidden = YES;
+    
+    self.titleLWCons.constant = ZYScreenWidth - 150;
     // 进行初始化设置
     [self.bgView setCornerRadius:5];
     self.distanceView.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 6);
@@ -148,6 +151,15 @@
     [self dateAnim];
     [self.bgView addSubview:self.titleView];
     [self.titleView addSubview:self.titleExtraText];
+    
+    self.titleLabel.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapL = [[UITapGestureRecognizer alloc] init];
+    [tapL.rac_gestureSignal subscribeNext:^(id x) {
+        if ([_myDateModel.activityCategory isEqualToString:@"邀请同去"]) {
+            [self superViewWillRecive:TitleLabelClickKey info:_myDateModel.activityId];
+        }
+    }];
+    [self.titleLabel addGestureRecognizer:tapL];
 }
 
 - (void)layoutSubviews
@@ -228,6 +240,12 @@
     }
     if (model.title.length) {
         self.titleLabel.text = model.title;
+        [self.titleLabel sizeToFit];
+        if (self.titleLabel.width > ZYScreenWidth - 150) {
+            self.titleLWCons.constant = ZYScreenWidth - 150;
+        }else{
+            self.titleLWCons.constant = self.titleLabel.width;
+        }
     }else{
         self.titleLabel.text = @"";
     }
@@ -300,7 +318,14 @@
         [self.addressView setTitle:myDateModel.destination[@"street"] forState:UIControlStateNormal];
     }
     if (myDateModel.title.length) {
-        self.titleLabel.text = myDateModel.title;
+        
+        self.titleLabel.attributedText = myDateModel.title;
+        [self.titleLabel sizeToFit];
+        if (self.titleLabel.width > ZYScreenWidth - 150) {
+            self.titleLWCons.constant = ZYScreenWidth - 150;
+        }else{
+            self.titleLWCons.constant = self.titleLabel.width;
+        }
     }else{
         self.titleLabel.text = @"";
     }
@@ -369,6 +394,12 @@
     [self.addressView setTitle:intersterModel.activityDestination[@"street"] forState:UIControlStateNormal];
     if (intersterModel.title.length) {
         self.titleLabel.text = intersterModel.title;
+        [self.titleLabel sizeToFit];
+        if (self.titleLabel.width > ZYScreenWidth - 150) {
+            self.titleLWCons.constant = ZYScreenWidth - 150;
+        }else{
+            self.titleLWCons.constant = self.titleLabel.width;
+        }
     }else{
         self.titleLabel.text = @"";
     }
@@ -479,8 +510,11 @@
     CPGoLogin(@"关注");
     NSString *url = [NSString stringWithFormat:@"user/%@/listen?token=%@",CPUserId, CPToken];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"targetUserId"] = _model.organizer.userId;
-    params[@"token"] = CPToken;
+    if (!_model.organizer.userId) {
+        params[@"targetUserId"] = _myDateModel.applicant.userId;
+    }else{
+        params[@"targetUserId"] = _model.organizer.userId;
+    }
     
     if (sender.isSelected) {
         
@@ -492,8 +526,17 @@
                 DLog(@"取消关注成功");
                 sender.selected = NO;
                 [sender addAnimation:[CAAnimation scaleFrom:1.0 toScale:1.2 durTimes:0.2 rep:1]];
-                _model.organizer.subscribeFlag = 0;
-                [self superViewWillRecive:LoveBtnClickKey info:_model];
+                if (_model.organizer.userId) {
+                    
+                    _model.organizer.subscribeFlag = 0;
+                }else{
+                    
+                    _myDateModel.applicant.subscribeFlag = 0;
+                }
+                
+                [self superViewWillRecive:LoveBtnClickKey info:_indexPath];
+            }else{
+                [SVProgressHUD showInfoWithStatus:CPErrorMsg];
             }
         } failed:^(NSError *error) {
             [SVProgressHUD dismiss];
@@ -509,8 +552,16 @@
                 DLog(@"关注成功");
                 sender.selected = YES;
                 [sender addAnimation:[CAAnimation scaleFrom:1.0 toScale:1.2 durTimes:0.2 rep:1]];
-                _model.organizer.subscribeFlag = 1;
-                [self superViewWillRecive:LoveBtnClickKey info:_model];
+                if (_model.organizer.userId) {
+                    
+                    _model.organizer.subscribeFlag = 1;
+                }else{
+                    
+                    _myDateModel.applicant.subscribeFlag = 1;
+                }
+                [self superViewWillRecive:LoveBtnClickKey info:_indexPath];
+            }else{
+                [SVProgressHUD showInfoWithStatus:CPErrorMsg];
             }
         } failed:^(NSError *error) {
             [SVProgressHUD showInfoWithStatus:@"关注失败"];
@@ -681,7 +732,6 @@
         _tipView = [[UIImageView alloc] init];
         _tipView.userInteractionEnabled = YES;
         _tipView.image = [UIImage imageNamed:@"bg_pic"];
-        
         
         CPNoHighLightButton *uploadBtn = [CPNoHighLightButton buttonWithType:UIButtonTypeCustom];
         uploadBtn.titleLabel.font = ZYFont14;

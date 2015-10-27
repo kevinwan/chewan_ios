@@ -73,12 +73,13 @@
 @property (nonatomic, strong) CPUser *organizer;
 @property (nonatomic, strong) NSArray *members;
 @property (nonatomic, assign) BOOL isMember;
+@property (nonatomic, copy) NSString *linkTicketUrl;
 @end
 
 @interface CPPartMember : CPUser
 @property (nonatomic, assign) NSUInteger acceptCount;
 @property (nonatomic, strong) NSArray *acceptMembers;
 @property (nonatomic, assign) BOOL acceptMe;
-@property (nonatomic, assign) NSUInteger invitedCount;
+@property (nonatomic, assign) NSUInteger beInvitedCount;
 @property (nonatomic, copy)   NSAttributedString *invitedCountStr;
 @end

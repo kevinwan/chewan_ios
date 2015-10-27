@@ -10,11 +10,12 @@
 #import "CPRecommendModel.h"
 #import "CPActivityDetailHeaderView.h"
 #import "CPActivityDetailFooterView.h"
-#import "CPActivityDetailMiddleView.h"
 #import "CPActivityPartnerCell.h"
 #import "CPActivityPathCell.h"
 #import "CPTaInfo.h"
 #import "ChatViewController.h"
+#import "CPByTicketViewController.h"
+#import "CPComeOnTipView.h"
 
 #define CPMemberPageNum 4
 @interface CPActivityDetailViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -47,6 +48,7 @@ static NSString *ID = @"partCell";
     param[@"userId"] = CPUserId;
     param[@"token"] = CPToken;
     [ZYNetWorkTool getWithUrl:url params:param success:^(id responseObject) {
+        DLog(@"%@",responseObject);
         [self disMiss];
         self.model = [CPRecommendModel objectWithKeyValues:responseObject[@"data"]];
         [self reloadData];
@@ -74,10 +76,16 @@ static NSString *ID = @"partCell";
     }else if ([notifyName isEqualToString:CPActivityFooterViewOpenKey]){
         self.tableView.tableFooterView = self.footerView;
     }else if ([notifyName isEqualToString:CPActivityDetailLoadMoreKey]){
-        if (self.showMerberCount + CPMemberPageNum > self.model.members.count) {
-            self.showMerberCount += CPMemberPageNum;
-        }else{
+        
+        if (self.showMerberCount == self.model.members.count) {
+            return;
+        }
+        if (self.showMerberCount + CPMemberPageNum >= self.model.members.count) {
+            
             self.showMerberCount = self.model.members.count;
+        }else{
+            
+            self.showMerberCount += CPMemberPageNum;
         }
         [self.tableView reloadData];
     }else if ([notifyName isEqualToString:CPClickUserIcon]){
@@ -106,7 +114,43 @@ static NSString *ID = @"partCell";
                                                                           conversationType:eConversationTypeGroupChat];
         chatController.title = _model.title;
         [self.navigationController pushViewController:chatController animated:YES];
+    }else if ([notifyName isEqualToString:CPGoByTicketClickKey]){
+        
+        CPByTicketViewController *byTicketVc = [CPByTicketViewController new];
+        byTicketVc.url = _model.linkTicketUrl;
+        [self.navigationController pushViewController:byTicketVc animated:YES];
+    }else if ([notifyName isEqualToString:CPComeOnBabyClickKey]){
+        
+        if (_model.isMember) {
+            
+            [CPComeOnTipView showWithActivityId:_officialActivityId targetUserId:userInfo];
+        }else{
+            
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"报名参加活动以后才能邀请TA参加活动" delegate:nil cancelButtonTitle:@"再想想" otherButtonTitles:@"报名参加", nil];
+            [alertView.rac_buttonClickedSignal subscribeNext:^(id x) {
+                if ([x integerValue] != 0) {
+                    
+                    [self joinOfficeActivity];
+                }
+            }];
+            [alertView show];
+        }
     }
+}
+
+- (void)joinOfficeActivity
+{
+    NSString *url = [NSString stringWithFormat:@"official/activity/%@/join?userId=%@&token=%@",self.officialActivityId, CPUserId, CPToken];
+    [ZYNetWorkTool postJsonWithUrl:url params:nil success:^(id responseObject) {
+        if (CPSuccess) {
+            [SVProgressHUD showInfoWithStatus:@"申请成功"];
+            [self superViewWillRecive:CPJionOfficeActivityKey info:nil];
+        }else{
+            [SVProgressHUD showInfoWithStatus:CPErrorMsg];
+        }
+    } failed:^(NSError *error) {
+        [SVProgressHUD showInfoWithStatus:@"申请失败"];
+    }];
 }
 
 #pragma mark - delegate & datasource

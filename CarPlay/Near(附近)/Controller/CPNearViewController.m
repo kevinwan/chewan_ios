@@ -146,6 +146,8 @@ static NSString *ID = @"cell";
             if (self.tableView.contentOffset.y > 60 && refresh != self.footerView) {
                 [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, 0) animated:YES];
             }
+        }else{
+            [self showInfo:CPErrorMsg];
         }
         
         [[CPLoadingView sharedInstance] dismissLoadingView];
@@ -200,7 +202,8 @@ static NSString *ID = @"cell";
     }else if([notifyName isEqualToString:DateBtnClickKey]){
         [self dateClickWithInfo:userInfo];
     }else if([notifyName isEqualToString:LoveBtnClickKey]){
-        [self loveBtnClickWithInfo:(CPActivityModel *)userInfo];
+        CPActivityModel *model = self.datas[[userInfo row]];
+        [self loveBtnClickWithInfo:model];
     }else if ([notifyName isEqualToString:IconViewClickKey]){
         CPGoLogin(@"查看TA的详情");
         CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
@@ -310,8 +313,9 @@ static NSString *ID = @"cell";
                     [self.tableView reloadData];
                 }
             }else{
-                [self showError:responseObject[@"errmsg"]];
+                [self showInfo:CPErrorMsg];
             }
+            
          
         } failure:^(NSError *error) {
             [self showError:@"照片上传失败"];

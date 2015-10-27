@@ -11,6 +11,7 @@
 #define CPClickUserIcon @"CPClickUserIcon"
 #define CPOfficeActivityMsgButtonClick @"CPOfficeActivityMsgButtonClick"
 #define CPOfficeActivityPhoneButtonClick @"CPOfficeActivityPhoneButtonClick"
+#define CPComeOnBabyClickKey @"CPComeOnBabyClickKey"
 @interface CPActivityPartnerCell : ZYTableViewCell
 @property (nonatomic, copy) NSString *activityId;
 @property (nonatomic, strong) CPPartMember *model;
