@@ -14,7 +14,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <MobileCoreServices/MobileCoreServices.h>
-
+#import "CPTaInfo.h"
 #import "SRRefreshView.h"
 #import "DXChatBarMoreView.h"
 #import "DXRecordView.h"
@@ -678,8 +678,20 @@
 
 - (void)chatHeadImagePressed:(MessageModel *)model
 {
-    UserProfileViewController *userprofile = [[UserProfileViewController alloc] initWithUsername:model.username];
-    [self.navigationController pushViewController:userprofile animated:YES];
+    
+    //获取对方的头像和昵称
+    [ZYNetWorkTool getWithUrl:[NSString stringWithFormat:@"user/emchatInfo?userId=%@&token=%@&emchatName=%@",CPUserId,CPToken,model.username] params:nil success:^(id responseObject) {
+        if (CPSuccess) {
+            NSDictionary *dic = [responseObject objectForKey:@"data"];
+            CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
+            taVc.userId =[dic objectForKey:@"userId"];
+            [self.navigationController pushViewController:taVc animated:YES];
+            
+        }
+    } failure:^(NSError *error) {
+        ;
+    }];
+    
 }
 
 //链接被点击

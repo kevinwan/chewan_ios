@@ -74,6 +74,8 @@
                                 [NSKeyedArchiver archiveRootObject:user toFile:path.documentPath];
                                 [ZYUserDefaults setObject:responseObject[@"data"][@"nickname"] forKey:kUserNickName];
                                 [ZYUserDefaults setObject:responseObject[@"data"][@"avatar"] forKey:kUserHeadUrl];
+                                [ZYUserDefaults setObject:responseObject[@"data"][@"age"] forKey:kUserAge];
+                                [ZYUserDefaults setObject:responseObject[@"data"][@"gender"] forKey:KUserSex];
                                 // 设置自动登录
                                 [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
                                 [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
