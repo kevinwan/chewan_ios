@@ -10,4 +10,5 @@
 
 @interface CPMatchingResultController : UIViewController
 @property (nonatomic , strong)NSString *type;
+-(void)start;
 @end

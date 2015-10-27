@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MJNIndexView.h"
+#import "CPExerciseMatchingSelectButton.h"
 
 @interface ExerciseMatchingSelectView : UIViewController<UITableViewDataSource,UITableViewDelegate,MJNIndexViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *selectView;
@@ -31,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *reSelectionButton;
 - (IBAction)confirm:(id)sender;
 - (IBAction)reSelection:(id)sender;
+@property (weak, nonatomic) IBOutlet CPExerciseMatchingSelectButton *footBallBtn;
 
 - (IBAction)closeAddressSelectionView:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *locationAddressLable;
