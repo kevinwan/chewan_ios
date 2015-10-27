@@ -75,9 +75,8 @@ static NSString *ID = @"RecommentCell";
         ZYMainThread(^{
            [self.collectionView setContentOffset:CGPointMake(_collectionView.contentSize.width + 44 - _collectionView.width, 0) animated:YES];
         });
-        if (self.datas.count >= CPPageNum) {
+        if (self.datas.count % CPPageNum == 0) {
             self.ignore += CPPageNum;
-            
             [self loadDataWithHeader:v];
         }else{
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -230,7 +229,7 @@ static NSString *ID = @"RecommentCell";
 {    if (_noDataView == nil) {
         _noDataView = [CPNoDataTipView noDataTipViewWithTitle:@"暂时没有活动了"];
         [self.view addSubview:_noDataView];
-        _noDataView.frame = self.collectionView.bounds;
+        _noDataView.frame = self.view.bounds;
     }
     return _noDataView;
 }

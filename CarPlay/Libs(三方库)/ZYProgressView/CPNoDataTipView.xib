@@ -32,18 +32,12 @@
             <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="6eb-hL-rXY" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-20" id="MvQ-W7-HMR"/>
-                <constraint firstItem="6eb-hL-rXY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="OGm-Zb-Tfz"/>
                 <constraint firstItem="kXO-Zo-Pie" firstAttribute="top" secondItem="6eb-hL-rXY" secondAttribute="bottom" constant="15" id="URv-aj-pmT"/>
                 <constraint firstItem="6eb-hL-rXY" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="gDw-ot-Tz8"/>
                 <constraint firstItem="kXO-Zo-Pie" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="z1R-1L-5Hl"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="OGm-Zb-Tfz"/>
-                </mask>
-            </variation>
             <connections>
                 <outlet property="tipLabel" destination="kXO-Zo-Pie" id="3t3-Hr-0ht"/>
             </connections>

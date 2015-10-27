@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface CPRecommendModel : NSObject
+@property (nonatomic, copy) NSString *activityCategory;
 //    description = 测试官方活动Description,
 @property (nonatomic, copy) NSString *desc;
 //    femaleNum = ,
@@ -36,6 +37,8 @@
 //        street = 玄武大道
 //    },
 @property (nonatomic, copy) NSString *officialActivityId;
+
+@property (nonatomic, copy) NSString *emchatGroupId;
 //   covers
 @property (nonatomic, strong) NSArray *covers;
 //    start = 1444652636457,

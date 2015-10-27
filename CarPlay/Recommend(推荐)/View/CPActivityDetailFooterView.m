@@ -8,7 +8,7 @@
 
 #import "CPActivityDetailFooterView.h"
 #import "AFNetworking.h"
-
+#import "ChatViewController.h"
 
 @interface CPActivityDetailFooterView()
 @property (weak, nonatomic) IBOutlet UILabel *activityPathLabel;
@@ -68,13 +68,14 @@
     [paragraphStyle setLineSpacing:7];
     self.activityPathLabel.attributedText = [[NSAttributedString alloc] initWithString:model.desc attributes:@{NSParagraphStyleAttributeName : paragraphStyle}];
     self.explainLabel.attributedText = [[NSAttributedString alloc] initWithString:model.extraDesc attributes:@{NSParagraphStyleAttributeName : paragraphStyle}];
-    self.comePartBtn.enabled = !model.isMember;
     if (model.isMember){
         [self.comePartBtn setTitle:@"进入群聊" forState:UIControlStateNormal];
     }else{
         
         [self.comePartBtn setTitle:@"报名参加" forState:UIControlStateNormal];
     }
+
+
 }
 
 - (IBAction)activityPathClick:(UIButton *)sender {
@@ -136,7 +137,9 @@
         }];
     }else{
         // 进入群聊接口
-        
+
+        [self superViewWillRecive:CPGroupChatClickKey info:_model];
+
     }
 }
 

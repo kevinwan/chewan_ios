@@ -518,7 +518,7 @@ static NSString *ID = @"cell";
 {    if (_noDataView == nil) {
         _noDataView = [CPNoDataTipView noDataTipViewWithTitle:@"已经没有活动了,请放宽条件再试试"];
         [self.view addSubview:_noDataView];
-        _noDataView.frame = self.tableView.bounds;
+        _noDataView.frame = self.view.bounds;
     }
     return _noDataView;
 }
