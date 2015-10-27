@@ -31,6 +31,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *line1TopCons;
 @property (weak, nonatomic) IBOutlet UIButton *byTheTicketButton;
 @property (weak, nonatomic) IBOutlet UIButton *toGroupChatButton;
+@property (weak, nonatomic) IBOutlet UIButton *openDescButton;
+@property (weak, nonatomic) IBOutlet UIButton *openExtraButton;
 
 @end
 
@@ -67,6 +69,9 @@
 - (void)setModel:(CPRecommendModel *)model
 {
     _model = model;
+    
+    self.openDescButton.hidden = !model.desc.trimLength;
+    self.openExtraButton.hidden = !model.extraDesc.trimLength;
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle setLineSpacing:7];
     self.activityPathLabel.attributedText = [[NSAttributedString alloc] initWithString:model.desc attributes:@{NSParagraphStyleAttributeName : paragraphStyle}];

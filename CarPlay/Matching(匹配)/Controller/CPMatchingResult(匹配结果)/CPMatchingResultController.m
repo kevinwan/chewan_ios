@@ -19,8 +19,19 @@
 #import "UICollectionView3DLayout.h"
 #import "CPNearCollectionViewCell.h"
 #import "CPAlbum.h"
+#import "CPWheelView.h"
+#import<CoreText/CoreText.h>
 
-@interface CPMatchingResultController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate>
+@interface CPMatchingResultController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate>{
+    UILabel *countdownLabel;
+    UILabel *countLabel;
+    NSMutableAttributedString *countText;
+    NSTimer *timer;
+    NSTimer *startUp;
+    int startUpFrom;
+    int timeout;
+    int totalCount;
+}
 @property (nonatomic, strong) UICollectionView *tableView;
 @property (nonatomic, strong) NSMutableArray<CPActivityModel *> *datas;
 @property (nonatomic, strong) UIView *tipView;
@@ -29,7 +40,7 @@
 @property (nonatomic, assign) BOOL isHasRefreshHeader;
 @property (nonatomic, weak)   AAPullToRefresh *headerView;
 @property (nonatomic, weak)   AAPullToRefresh *footerView;
-
+@property (nonatomic, strong)   UIView *loadingView;
 @end
 static NSString *ID = @"cell";
 
@@ -37,36 +48,43 @@ static NSString *ID = @"cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    countdownLabel=[UILabel new];
+    countLabel=[UILabel new];
+    timeout=60;
+    totalCount=0;
+    startUpFrom=0;
     if (CPNoNetWork) {
-        
         [ZYProgressView showMessage:@"网络连接失败,请检查网络"];
         return;
     }
-    
     self.offset = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250;
-    
-    self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.tableView];
-    [ZYLoadingView showLoadingView];
-    if (CPUnLogin) {
-        [self loadDataWithHeader:nil];
-    }else{
-        [[ZYNotificationCenter rac_addObserverForName:NOTIFICATION_LOGINSUCCESS object:nil] subscribeNext:^(NSNotification *notify) {
-            
-            BOOL loginSuccess = [notify.userInfo[NOTIFICATION_LOGINSUCCESS] boolValue];
-            if (loginSuccess) {
-                [self loadDataWithHeader:nil];
-            }
-        }];
-    }
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    [self.view addSubview:self.loadingView];
+    timer =  [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countdown) userInfo:nil repeats:YES];
+    startUp = [NSTimer scheduledTimerWithTimeInterval:.2 target:self selector:@selector(startUp) userInfo:nil repeats:YES];
+    [ZYNotificationCenter addObserver:self selector:@selector(start) name:NOTIFICATION_STARTMATCHING object:nil];
+}
+
+-(void)start{
+    
+    NSDictionary *param=[NSDictionary dictionaryWithObjectsAndKeys:[ZYUserDefaults stringForKey:LastType],@"majorType",CPUserId,UserId,CPToken,Token,@(CPLongitude),@"longitude",@(CPLatitude),@"latitude",@(300),@"limit",nil];
+    
+    [ZYNetWorkTool getWithUrl:@"activity/count" params:param success:^(id responseObject) {
+        if (CPSuccess) {
+            totalCount = [responseObject[@"data"][@"count"] intValue];
+            [startUp setFireDate:[NSDate distantPast]];
+            [timer setFireDate:[NSDate distantPast]];
+        }
+    } failure:^(NSError *error) {
+        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if (self.datas.count == 0) {
-        [self loadDataWithHeader:nil];
-    }
+    [self.tableView setHidden:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -112,14 +130,15 @@ static NSString *ID = @"cell";
  */
 - (void)loadDataWithHeader:(AAPullToRefresh *)refresh
 {
-    if (_type) {
-        NSDictionary *param=[NSDictionary dictionaryWithObjectsAndKeys:_type,@"type",CPUserId,UserId,CPToken,Token,nil];
+    if ([ZYUserDefaults stringForKey:LastType]) {
+        NSDictionary *param=[NSDictionary dictionaryWithObjectsAndKeys:[ZYUserDefaults stringForKey:LastType],@"majorType",CPUserId,UserId,CPToken,Token,@(CPLongitude),@"longitude",@(CPLatitude),@"latitude",nil];
         
         [ZYNetWorkTool getWithUrl:@"activity/list" params:param success:^(id responseObject) {
             
             [self setUpRefresh];
             [refresh stopIndicatorAnimation];
             if (CPSuccess) {
+//                [self.tableView setHidden:NO];
                 if (self.params.ignore == 0) {
                     [self.datas removeAllObjects];
                 }
@@ -130,6 +149,8 @@ static NSString *ID = @"cell";
                     [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, 0) animated:YES];
                 }
             }
+            
+            [ZYUserDefaults setObject:nil forKey:LastType];
             [[CPLoadingView sharedInstance] dismissLoadingView];
         } failure:^(NSError *error) {
             [self setUpRefresh];
@@ -376,6 +397,53 @@ static NSString *ID = @"cell";
     return _datas;
 }
 
+-(UIView *)loadingView{
+    if (_loadingView == nil) {
+        _loadingView = [UIView new];
+        
+//        添加‘正在匹配活动’提示
+        UILabel *macthLabel=[UILabel new];
+        [macthLabel setFrame:CGRectMake(0, 166/538.0*ZYScreenHeight, ZYScreenWidth, 16)];
+        [macthLabel setText:@"正在匹配活动"];
+        [macthLabel setTextColor:[Tools getColor:@"999999"]];
+        [macthLabel setTextAlignment:NSTextAlignmentCenter];
+        [macthLabel setBackgroundColor:[UIColor clearColor]];
+        [macthLabel setFont:ZYFont16];
+        [self.loadingView addSubview:macthLabel];
+        
+//        添加车轮
+        CPWheelView *wheelView=[CPWheelView new];
+        [wheelView setCenter:CGPointMake(ZYScreenWidth/2, 264.5/528.0*ZYScreenHeight)];
+        [self.loadingView addSubview:wheelView];
+        [wheelView startAnimation];
+        [self.navigationController setNavigationBarHidden:YES];
+        [self.loadingView setBackgroundColor:[Tools getColor:@"efefef"]];
+        [self.loadingView setFrame: self.view.bounds];
+        
+//        添加倒计时
+        [countdownLabel setFrame:CGRectMake(0, wheelView.bottom+14.0, ZYScreenWidth, 14)];
+        [countdownLabel setText:@"60S"];
+        [countdownLabel setTextColor:[Tools getColor:@"cbcbcb"]];
+        [countdownLabel setTextAlignment:NSTextAlignmentCenter];
+        [countdownLabel setBackgroundColor:[UIColor clearColor]];
+        [countdownLabel setFont:ZYFont14];
+        [self.loadingView addSubview:countdownLabel];
+        
+//        添加匹配活动个数提示
+       
+        [countLabel setFrame:CGRectMake(0,countdownLabel.bottom+40, ZYScreenWidth, 14)];
+        countText=[[NSMutableAttributedString alloc]initWithString:@"已匹配到附近 0 个活动"];
+        [countLabel setTextColor:[Tools getColor:@"999999"]];
+        [countText addAttribute:NSForegroundColorAttributeName value:[Tools getColor:@"333333"] range:NSMakeRange(6, 3)];
+        [countLabel setAttributedText:countText];
+        [countLabel setTextAlignment:NSTextAlignmentCenter];
+        [countLabel setBackgroundColor:[UIColor clearColor]];
+        [countLabel setFont:ZYFont14];
+        [self.loadingView addSubview:countLabel];
+    }
+    return _loadingView;
+}
+
 - (CPNearParams *)params
 {
     if (_params == nil) {
@@ -390,6 +458,48 @@ static NSString *ID = @"cell";
         _params.limit = 10;
     }
     return _params;
+}
+
+//倒计时
+-(void)countdown{
+    NSString *strTime = [NSString stringWithFormat:@"%.2dS", timeout];
+    [countdownLabel setText:strTime];
+    if (timeout==0) {
+        [timer setFireDate:[NSDate distantFuture]];
+        [self loadDataWithHeader:nil];
+        [self.loadingView removeFromSuperview];
+        [self.tableView setHidden:NO];
+        [self.navigationController setNavigationBarHidden:NO];
+    }
+    timeout--;
+}
+
+//数字开始涨
+-(void)startUp{
+    if (startUpFrom > totalCount) {
+        [startUp setFireDate:[NSDate distantFuture]];
+    }else{
+        NSString *numStr=[NSString stringWithFormat:@"已匹配到附近 %d 个活动",startUpFrom];
+        
+        countText=[[NSMutableAttributedString alloc]initWithString:numStr];
+        if (startUpFrom<10) {
+            [countText addAttribute:NSForegroundColorAttributeName value:[Tools getColor:@"333333"] range:NSMakeRange(6, 3)];
+        }else if (startUpFrom <100){
+            [countText addAttribute:NSForegroundColorAttributeName value:[Tools getColor:@"333333"] range:NSMakeRange(6, 4)];
+        }else{
+            [countText addAttribute:NSForegroundColorAttributeName value:[Tools getColor:@"333333"] range:NSMakeRange(6, 5)];
+        }
+        [countLabel setAttributedText:countText];
+        if (startUpFrom == 300) {
+            [startUp setFireDate:[NSDate distantFuture]];
+            [timer setFireDate:[NSDate distantFuture]];
+            [self loadDataWithHeader:nil];
+            [self.loadingView removeFromSuperview];
+            [self.tableView setHidden:NO];
+            [self.navigationController setNavigationBarHidden:NO];
+        }
+        startUpFrom++;
+    }
 }
 
 @end

@@ -70,8 +70,8 @@
         self.female.hidden = NO;
         self.femaleLabel.hidden = NO;
         
-        self.maleLabel.text = [NSString stringWithFormat:@"%zd/ %zd",model.maleNum,model.maleLimit];
-           self.femaleLabel.text = [NSString stringWithFormat:@"%zd/ %zd",model.femaleNum,model.femaleLimit];
+        self.maleLabel.text = [NSString stringWithFormat:@"%zd / %zd",model.maleNum,model.maleLimit];
+           self.femaleLabel.text = [NSString stringWithFormat:@"%zd / %zd",model.femaleNum,model.femaleLimit];
     }
     [self.bgImageView zy_setImageWithUrl:model.covers.firstObject];
     self.priceLabel.attributedText = model.priceText;

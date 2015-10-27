@@ -134,7 +134,13 @@
     if (self.position == AAPullToRefreshPositionTop){
         ZYMainThread(^{
             
-            [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentOffsetX, 0) animated:YES];
+            if (iPhone4) {
+                
+                [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentOffsetX, -self.scrollView.contentInsetTop) animated:YES];
+            }else{
+                
+                [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentOffsetX, 0) animated:YES];
+            }
         });
     }else if (self.position == AAPullToRefreshPositionLeft){
         ZYMainThread(^{
@@ -142,7 +148,13 @@
             [self.scrollView setContentOffset:CGPointMake(0, self.scrollView.contentOffset.y) animated:YES];
         });
     }else if (self.position == AAPullToRefreshPositionBottom){
+        if (iPhone4) {
+            
+            [self.scrollView setContentOffset:CGPointMake(0, self.scrollView.contentSize.height - self.scrollView.bounds.size.height + self.scrollView.contentInsetTop) animated:YES];
+        }else{
+            
             [self.scrollView setContentOffset:CGPointMake(0, self.scrollView.contentSize.height - self.scrollView.bounds.size.height) animated:YES];
+        }
     }else if (self.position == AAPullToRefreshPositionRight){
         ZYMainThread(^{
             
