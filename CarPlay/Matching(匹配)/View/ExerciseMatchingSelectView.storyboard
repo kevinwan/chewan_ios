@@ -90,7 +90,7 @@
                                             <action selector="matchingBtnClick:" destination="Z3w-Uc-SQQ" eventType="touchUpInside" id="MC2-CW-A1T"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SgD-VO-vo5" customClass="CPExerciseMatchingSelectButton">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SgD-VO-vo5" customClass="CPExerciseMatchingSelectButton">
                                         <rect key="frame" x="15" y="56" width="66" height="58"/>
                                         <animations/>
                                         <constraints>
@@ -100,14 +100,14 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <inset key="contentEdgeInsets" minX="-6" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="足球" backgroundImage="运动已选">
+                                        <state key="normal" title="足球" backgroundImage="运动未选">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="exerciseBtnClick:" destination="Z3w-Uc-SQQ" eventType="touchUpInside" id="P6O-FH-Prp"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5od-hF-zCQ" customClass="CPExerciseMatchingSelectButton">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5od-hF-zCQ" customClass="CPExerciseMatchingSelectButton">
                                         <rect key="frame" x="90" y="56" width="66" height="58"/>
                                         <animations/>
                                         <constraints>
@@ -124,7 +124,7 @@
                                             <action selector="exerciseBtnClick:" destination="Z3w-Uc-SQQ" eventType="touchUpInside" id="lA7-0W-rND"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yyk-W1-4b2" customClass="CPExerciseMatchingSelectButton">
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yyk-W1-4b2" customClass="CPExerciseMatchingSelectButton">
                                         <rect key="frame" x="165" y="56" width="66" height="58"/>
                                         <animations/>
                                         <constraints>
@@ -141,7 +141,7 @@
                                             <action selector="exerciseBtnClick:" destination="Z3w-Uc-SQQ" eventType="touchUpInside" id="ca1-Hv-LPd"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x8i-dY-1vC" customClass="CPExerciseMatchingSelectButton">
+                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x8i-dY-1vC" customClass="CPExerciseMatchingSelectButton">
                                         <rect key="frame" x="15" y="122" width="66" height="58"/>
                                         <animations/>
                                         <constraints>
@@ -158,7 +158,7 @@
                                             <action selector="exerciseBtnClick:" destination="Z3w-Uc-SQQ" eventType="touchUpInside" id="qu5-YQ-xl9"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PXH-df-Rlm" customClass="CPExerciseMatchingSelectButton">
+                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PXH-df-Rlm" customClass="CPExerciseMatchingSelectButton">
                                         <rect key="frame" x="89" y="122" width="66" height="58"/>
                                         <animations/>
                                         <constraints>
@@ -253,7 +253,7 @@
                                                     <constraint firstAttribute="width" constant="27" id="2ae-vC-ei2"/>
                                                     <constraint firstAttribute="height" constant="27" id="zdt-aO-IQK"/>
                                                 </constraints>
-                                                <state key="normal" image="Close" backgroundImage="74838C49-6DA2-49B4-9662-65FA24C2B6FB"/>
+                                                <state key="normal" image="Close" backgroundImage="342FE505-969D-4B79-B6E1-4DBBFE86DBC8"/>
                                                 <connections>
                                                     <action selector="closeAddressSelectionView:" destination="Z3w-Uc-SQQ" eventType="touchUpInside" id="tLo-lf-hud"/>
                                                 </connections>
@@ -470,6 +470,7 @@
                         <outlet property="addressSelection" destination="Wvd-IK-0BY" id="RXM-4Q-e4G"/>
                         <outlet property="addressTableView" destination="N5n-GG-Wgs" id="OWt-ip-tea"/>
                         <outlet property="confirmButton" destination="36Z-yT-vL4" id="4uK-zp-hdy"/>
+                        <outlet property="footBallBtn" destination="SgD-VO-vo5" id="6qi-rH-Lz8"/>
                         <outlet property="lastStepBtn" destination="TdA-nh-tvZ" id="njb-eJ-C1C"/>
                         <outlet property="locationAddressLable" destination="dl7-bO-RCS" id="y9J-Yg-S9i"/>
                         <outlet property="locationAddressView" destination="gbR-qm-i5y" id="cKU-HT-TDg"/>
@@ -486,7 +487,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="74838C49-6DA2-49B4-9662-65FA24C2B6FB" width="27" height="27">
+        <image name="342FE505-969D-4B79-B6E1-4DBBFE86DBC8" width="27" height="27">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -588,7 +589,6 @@ AgEAAAAAAAAAQQAAAAAAAAAAAAAAAAAAFYA
         <image name="Close" width="27" height="27"/>
         <image name="下箭头" width="20" height="12"/>
         <image name="初始效果" width="22" height="22"/>
-        <image name="运动已选" width="66" height="58"/>
         <image name="运动未选" width="66" height="58"/>
     </resources>
 </document>

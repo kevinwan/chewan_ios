@@ -17,6 +17,7 @@
     NSMutableArray *lastParentIds;
     NSMutableArray *selectArea;
     NSInteger lastParentId;
+    NSString *majorType;
 }
 @property (nonatomic, strong) UIButton *lastTypebtn;
 @end
@@ -26,6 +27,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.whetherShuttle=@"0";
+    majorType=@"足球";
+    _lastTypebtn = self.footBallBtn;
+    [self.footBallBtn setSelected:YES];
     lastParentIds=[[NSMutableArray alloc]init];
     selectArea=[[NSMutableArray alloc]init];
     [self.selectView.layer setMasksToBounds:YES];
@@ -105,6 +109,8 @@
         if (CPSuccess) {
             [self dismissViewControllerAnimated:YES completion:nil];
             CPTabBarController *tab = (CPTabBarController *)self.view.window.rootViewController;
+            [ZYNotificationCenter postNotificationName:NOTIFICATION_STARTMATCHING object:nil];
+            
             [tab setSelectedIndex:4];
         }else{
             NSString *errmsg =[responseObject objectForKey:@"errmsg"];
@@ -121,13 +127,46 @@
     corentView=_selectView;
 }
 - (IBAction)confirm:(id)sender {
-    
+    _locationAddressView.alpha=0.0;
+    _addressSelection.alpha=0.0;
+    _selectView.alpha=1.0;
+    _indexView.alpha=0.0;
+    NSString *area=[[NSString alloc]initWithFormat:@"%@  %@  %@",[ZYUserDefaults stringForKey:City],[ZYUserDefaults stringForKey:District],[ZYUserDefaults stringForKey:Street]];
+    [self.selectPlace setTitle:area forState:UIControlStateNormal];
+    [self.selectPlace setImage:nil forState:UIControlStateNormal];
+    [self.selectPlace setTitleColor:[Tools getColor:@"333333"] forState:UIControlStateNormal];
+    [self.selectPlace setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
+    CGSize titleSize = [area sizeWithFont:ZYFont14 maxW:MAXFLOAT];
+    if (titleSize.width > _selectPlace.width) {
+        [self.selectPlace setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
+    }
 }
 
 - (IBAction)exerciseBtnClick:(UIButton *)sender {
-    self.lastTypebtn.selected = NO;
-    sender.selected = YES;
-    self.lastTypebtn = sender;
+    if (!sender.selected) {
+        self.lastTypebtn.selected = NO;
+        sender.selected = YES;
+        self.lastTypebtn = sender;
+        switch (sender.tag) {
+            case 1:
+                majorType=@"足球";
+                break;
+            case 2:
+                majorType=@"蓝球";
+                break;
+            case 3:
+                majorType=@"羽毛球";
+                break;
+            case 4:
+                majorType=@"桌球";
+                break;
+            case 5:
+                majorType=@"健身";
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 - (IBAction)reSelection:(id)sender {
@@ -294,20 +333,23 @@
         lastParentId = [code intValue];
         _parentId=[code intValue];
         [selectArea addObject:area];
+        self.lastStepBtn.hidden=NO;
+        
         NSMutableString *areas=[[NSMutableString alloc]init];
         for (NSString *area in selectArea) {
             [areas appendFormat:@" %@ ",area];
         }
         if ([areas length]>0) {
             self.locationAddressLable.text=areas;
-            [self.selectPlace setTitle:areas forState:UIControlStateNormal];
         }
-        self.lastStepBtn.hidden=NO;
         if ((lastParentId >1000000)) {
             _locationAddressView.alpha=0.0;
             _selectView.alpha=1.0;
             _addressSelection.alpha=0.0;
             _indexView.alpha=0.0;
+            [self.selectPlace setTitle:areas forState:UIControlStateNormal];
+            [self.selectPlace setImage:nil forState:UIControlStateNormal];
+            [self.selectPlace setTitleColor:[Tools getColor:@"333333"] forState:UIControlStateNormal];
         }else{
             [self getArea];
         }

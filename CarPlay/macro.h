@@ -63,6 +63,10 @@
 #define NOTIFICATION_LOGINSUCCESS @"loginSuccess"
 #define THIRDPARTYLOGINACCOUNT @"3partyLoginAccount"
 #define CPReRefreshNotification @"CPReRefreshNotification"
+
+//开始意向匹配
+#define NOTIFICATION_STARTMATCHING @"startMatching"
+
 #define CPGoLogin(title) \
 if (CPUnLogin) {\
 NSString *message = [NSString stringWithFormat:@"你还未登录,登录后就可以%@",title];\

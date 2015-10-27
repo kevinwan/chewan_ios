@@ -279,6 +279,8 @@
             }
             [ZYUserDefaults setObject:responseObject[@"data"][@"nickname"] forKey:kUserNickName];
             [ZYUserDefaults setObject:responseObject[@"data"][@"avatar"] forKey:kUserHeadUrl];
+            [ZYUserDefaults setObject:responseObject[@"data"][@"age"] forKey:kUserAge];
+            [ZYUserDefaults setObject:responseObject[@"data"][@"gender"] forKey:KUserSex];
 
             [ZYNotificationCenter postNotificationName:NOTIFICATION_LOGINSUCCESS object:nil userInfo:@{NOTIFICATION_LOGINSUCCESS:@(YES)}];
         }else{

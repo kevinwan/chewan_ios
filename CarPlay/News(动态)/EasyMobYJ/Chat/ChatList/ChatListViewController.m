@@ -25,6 +25,9 @@
 #import "UIImageView+EMWebCache.h"
 #import "CPCareMeViewController.h"
 #import "CPVisitorViewController.h"
+#import "CPMyInterestViewController.h"
+#import "CPMyDateViewController.h"
+
 @implementation EMConversation (search)
 
 //根据用户昵称,环信机器人名称,群名称进行搜索
@@ -552,7 +555,7 @@
     }
     EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
     NSLog(@"===========title = %@,indexPath = %ld",conversation.chatter,(long)indexPath.row);
-
+    cell.cpSexView.hidden = YES;
 //    cell.name  = @"";
     if (conversation.conversationType == eConversationTypeChat) {
         if ([conversation.chatter isEqualToString:@"interestadmin"]) {
@@ -587,6 +590,8 @@
             cell.HeadIV.image = [UIImage imageNamed:@"nearbyadmin"];
             
         }else{
+        //如果是1v1聊天，展示性别view
+            cell.cpSexView.hidden = NO;
             //从我的关注过来的消息，没有头像。
             if (conversation.latestMessageFromOthers.ext == nil) {
                 //获取对方的头像和昵称
@@ -594,9 +599,16 @@
                     if (CPSuccess) {
                         NSDictionary *dic = [responseObject objectForKey:@"data"];
                         cell.textLabel.text = [dic objectForKey:@"nickname"];
+                        cell.cpSexView.age = [[dic objectForKey:@"age"] integerValue];
+                        cell.cpSexView.gender = [dic objectForKey:@"gender"];
                         [cell.HeadIV sd_setImageWithURL:[NSURL URLWithString:[dic objectForKey:@"avatar"]] placeholderImage:nil];
                         NSLog(@"-=-=-=请求回来的昵称是：%@,row = %ld",cell.name,indexPath.row);
                         [self tableView:tableView canEditRowAtIndexPath:indexPath];
+                        //cpsexview的位置由名字的长度绝对，距离名字最后一个字10像素，而名字是这里得到的，所以只能在这里重置位置
+                        //65是textLabel的x，即是初始值。
+                        CGSize size =  [cell.textLabel.text sizeWithFont:cell.textLabel.font maxW:200];
+                        cell.cpSexView.x = 65+size.width+10;
+
                     }
                 } failure:^(NSError *error) {
                     ;
@@ -605,6 +617,13 @@
             }else{
                 cell.textLabel.text = [conversation.latestMessageFromOthers.ext valueForKey:kUserNickName];
                 [cell.HeadIV sd_setImageWithURL:[NSURL URLWithString:[conversation.latestMessageFromOthers.ext valueForKey:kUserHeadUrl]] placeholderImage:nil];
+                cell.cpSexView.age = [[conversation.latestMessageFromOthers.ext valueForKey:kUserAge] integerValue];
+                cell.cpSexView.gender = [conversation.latestMessageFromOthers.ext valueForKey:KUserSex];
+                //cpsexview的位置由名字的长度绝对，距离名字最后一个字10像素，而名字是这里得到的，所以只能在这里重置位置
+                //65是textLabel的x，即是初始值。
+                CGSize size =  [cell.textLabel.text sizeWithFont:cell.textLabel.font maxW:200];
+                cell.cpSexView.x = 65+size.width+10;
+
 
             }
             
@@ -840,10 +859,14 @@
     }else if ([chatter isEqualToString:@"interestadmin"])
     {//感兴趣的
         [conversation markAllMessagesAsRead:YES];
-        
+        [self.navigationController pushViewController:[CPMyInterestViewController new] animated:YES];
     }else if ([chatter isEqualToString:@"activitystateadmin"])
     {//活动动态
         [conversation markAllMessagesAsRead:YES];
+        CPMyDateViewController *myDateVC = [[CPMyDateViewController alloc]init];
+        myDateVC.isDynamic = YES;
+        [self.navigationController pushViewController:myDateVC animated:YES];
+        
         
     }else if ([chatter isEqualToString:@"officialadmin"])
     {//车玩官方

@@ -11,7 +11,7 @@
   */
 
 #import <UIKit/UIKit.h>
-
+#import "CPSexView.h"
 @interface ChatListCell : UITableViewCell
 @property (nonatomic, strong) NSURL *imageURL;
 @property (nonatomic, strong) UIImage *placeholderImage;
@@ -21,6 +21,8 @@
 @property (nonatomic, strong) UIImageView *interestIV;
 @property (nonatomic, strong) UIImageView *HeadIV;
 @property (nonatomic) NSInteger unreadCount;
+//列表要增加年龄和性别的选项
+@property (nonatomic, strong) CPSexView *cpSexView;
 
 +(CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath;
