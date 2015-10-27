@@ -16,14 +16,14 @@
 //    applyUserId = 561f755b0cf24f3b99211d12,
 @property (nonatomic, copy) NSString *applyUserId;
 @property (nonatomic, copy) NSString *appointmentId;
-
+@property (nonatomic, assign) BOOL isApplicant;
 @property (nonatomic, assign) NSInteger status;
 
 @property (nonatomic, copy) NSString *activityCategory;
 @property (nonatomic, copy) NSString *activityId;
 //"type": "看电影",
 @property (nonatomic, copy) NSString *type;
-@property (nonatomic, copy, readonly) NSString *title;
+@property (nonatomic, copy, readonly) NSAttributedString *title;
 //"destination":{
 //    "province": "江苏省",
 //    "city": "南京市",

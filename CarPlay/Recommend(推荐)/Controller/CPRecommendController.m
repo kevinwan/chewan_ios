@@ -46,11 +46,6 @@ static NSString *ID = @"RecommentCell";
     [ZYLoadingView dismissLoadingView];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [[SDImageCache sharedImageCache] clearMemory];
-}
-
 - (void)setUpRefresh
 {
     if (self.isHasRefreshHeader) {

@@ -9,6 +9,7 @@
 #import "CPActivityDetailFooterView.h"
 #import "AFNetworking.h"
 #import "ChatViewController.h"
+#import "CPLoadingButton.h"
 
 @interface CPActivityDetailFooterView()
 @property (weak, nonatomic) IBOutlet UILabel *activityPathLabel;
@@ -28,6 +29,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *line2TopCons;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *line1TopCons;
+@property (weak, nonatomic) IBOutlet UIButton *byTheTicketButton;
+@property (weak, nonatomic) IBOutlet UIButton *toGroupChatButton;
 
 @end
 
@@ -69,10 +72,13 @@
     self.activityPathLabel.attributedText = [[NSAttributedString alloc] initWithString:model.desc attributes:@{NSParagraphStyleAttributeName : paragraphStyle}];
     self.explainLabel.attributedText = [[NSAttributedString alloc] initWithString:model.extraDesc attributes:@{NSParagraphStyleAttributeName : paragraphStyle}];
     if (model.isMember){
-        [self.comePartBtn setTitle:@"进入群聊" forState:UIControlStateNormal];
+        self.comePartBtn.hidden = YES;
+        self.byTheTicketButton.hidden = NO;
+        self.toGroupChatButton.hidden = NO;
     }else{
-        
-        [self.comePartBtn setTitle:@"报名参加" forState:UIControlStateNormal];
+        self.comePartBtn.hidden = NO;
+        self.byTheTicketButton.hidden = YES;
+        self.toGroupChatButton.hidden = YES;
     }
 
 
@@ -120,27 +126,40 @@
     [self superViewWillRecive:CPActivityFooterViewOpenKey info:nil];
 }
 
+- (IBAction)loadMoreButtonClick:(CPLoadingButton *)sender {
+    [sender startLoading];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [sender stopLoading];
+        [self superViewWillRecive:CPActivityDetailLoadMoreKey info:nil];
+    });
+}
 
 - (IBAction)comePart:(UIButton *)sender {
   
-    if ([sender.currentTitle isEqualToString:@"报名参加"]){
-        
-        NSString *url = [NSString stringWithFormat:@"official/activity/%@/join?userId=%@&token=%@",self.officialActivityId, CPUserId, CPToken];
-        [ZYNetWorkTool postJsonWithUrl:url params:nil success:^(id responseObject) {
-            if (CPSuccess) {
-                [SVProgressHUD showInfoWithStatus:@"申请成功"];
-                [self superViewWillRecive:CPJionOfficeActivityKey info:nil];
-                [sender setTitle:@"进入群聊" forState:UIControlStateNormal];
-            }
-        } failed:^(NSError *error) {
-            [SVProgressHUD showInfoWithStatus:@"申请失败"];
-        }];
-    }else{
-        // 进入群聊接口
+    NSString *url = [NSString stringWithFormat:@"official/activity/%@/join?userId=%@&token=%@",self.officialActivityId, CPUserId, CPToken];
+    [ZYNetWorkTool postJsonWithUrl:url params:nil success:^(id responseObject) {
+        if (CPSuccess) {
+            [SVProgressHUD showInfoWithStatus:@"申请成功"];
+            [self superViewWillRecive:CPJionOfficeActivityKey info:nil];
+        }else{
+            [SVProgressHUD showInfoWithStatus:CPErrorMsg];
+        }
+    } failed:^(NSError *error) {
+        [SVProgressHUD showInfoWithStatus:@"申请失败"];
+    }];
+}
 
-        [self superViewWillRecive:CPGroupChatClickKey info:_model];
+- (IBAction)byTheTicket:(id)sender {
+    // 进入买票页面
+    [self superViewWillRecive:CPGoByTicketClickKey info:_model];
+}
 
-    }
+- (IBAction)toGroupChat:(id)sender {
+    
+    // 进入群聊接口
+    
+    [self superViewWillRecive:CPGroupChatClickKey info:_model];
 }
 
 @end

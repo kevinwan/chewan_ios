@@ -22,6 +22,7 @@
         _organizer = organizer;
     }
 }
+
 - (NSString *)title
 {
     return [NSString stringWithFormat:@"%@想找人一起%@",_organizer.nickname, _type];
@@ -38,5 +39,6 @@
         _distanceStr = [NSString stringWithFormat:@"%.1fm",distance];
     }
 }
+
 
 @end

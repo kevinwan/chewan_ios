@@ -38,4 +38,6 @@
 #import <UIButton+WebCache.h>
 #import "CPLoadingView.h"
 #import "UITabBar+Extension.h"
+#import "CPViewController.h"
+
 #endif

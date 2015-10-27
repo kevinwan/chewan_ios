@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPActivityDetailViewController : UIViewController
+@interface CPActivityDetailViewController : CPViewController
 @property (nonatomic, copy) NSString *officialActivityId;
 @end

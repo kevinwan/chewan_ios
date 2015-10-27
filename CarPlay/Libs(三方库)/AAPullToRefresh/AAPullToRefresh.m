@@ -236,7 +236,7 @@
             CGFloat itemH = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250 + 383;
             CGFloat ss = self.scrollView.height - itemH - 20 - 49;
             if (self.isNoAnimation) {
-                ss = - 36;
+                ss = 2;
             }
             centerY = self.scrollView.frame.size.height + self.frame.size.height / 2.0f + yOffset - ss;
             if (overBottomOffsetY >= 0.0f) {

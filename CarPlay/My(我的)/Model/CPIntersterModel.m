@@ -12,7 +12,7 @@
 
 + (NSDictionary *)replacedKeyFromPropertyName
 {
-    return @{@"id" : @"activityId"};
+    return @{@"activityId" : @"id"};
 }
 
 - (void)setActivityDestination:(NSDictionary *)activityDestination

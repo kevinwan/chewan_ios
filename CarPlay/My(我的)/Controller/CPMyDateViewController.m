@@ -19,6 +19,7 @@
 #import "CPMyDateModel.h"
 #import "ZYWaterflowLayout.h"
 #import "CPRecommentViewCell.h"
+#import "CPActivityDetailViewController.h"
 
 @interface CPMyDateViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate,ZYWaterflowLayoutDelegate>
 @property (nonatomic, strong) UICollectionView *tableView;
@@ -38,7 +39,11 @@ static NSString *ID2 = @"DateCell2";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"我的活动";
+    if (self.isDynamic) {
+        self.title = @"活动动态";
+    }else{
+        self.title = @"我的活动";
+    }
     self.view.backgroundColor = [UIColor whiteColor];
 
     if (CPNoNetWork) {
@@ -151,6 +156,8 @@ static NSString *ID2 = @"DateCell2";
                 self.noDataView.hidden = YES;
             }
             [self.tableView reloadData];
+        }else{
+            [self showInfo:CPErrorMsg];
         }
     } failure:^(NSError *error) {
         
@@ -167,21 +174,21 @@ static NSString *ID2 = @"DateCell2";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CPMyDateModel *model = self.datas[indexPath.item];
-    if ([model.activityCategory isEqualToString:@"普通活动"]) {
+    id model = self.datas[indexPath.item];
+    if ([[model activityCategory] isEqualToString:@"普通活动"]) {
         CPNearCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID1 forIndexPath:indexPath];
         cell.contentV.indexPath = indexPath;
         cell.contentV.myDateModel = model;
         return cell;
-    }else if ([model.activityCategory isEqualToString:@"官方活动"]){
+    }else if ([[model activityCategory] isEqualToString:@"官方活动"]){
         
         CPRecommentViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID2 forIndexPath:indexPath];
-        cell.model = self.datas[indexPath.item];
+        cell.model = model;
         return cell;
-    }else if ([model.activityCategory isEqualToString:@"邀请同去"]){
+    }else if ([[model activityCategory] isEqualToString:@"邀请同去"]){
         CPNearCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID1 forIndexPath:indexPath];
         cell.contentV.indexPath = indexPath;
-        cell.contentV.model = self.datas[indexPath.item];
+        cell.contentV.myDateModel = model;
         return cell;
     }
     return nil;
@@ -213,6 +220,16 @@ static NSString *ID2 = @"DateCell2";
 
 
 #pragma mark - 事件交互
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    id model = self.datas[indexPath.row];
+    if ([[model activityCategory] isEqualToString:@"官方活动"]) {
+        CPActivityDetailViewController *activityVc = [UIStoryboard storyboardWithName:@"CPActivityDetailViewController" bundle:nil].instantiateInitialViewController;
+        activityVc.officialActivityId = [model officialActivityId];
+        [self.navigationController pushViewController:activityVc animated:YES];
+    }
+}
 
 - (void)superViewWillRecive:(NSString *)notifyName info:(id)userInfo
 {
@@ -259,7 +276,6 @@ static NSString *ID2 = @"DateCell2";
 
         }
     }else if([notifyName isEqualToString:LoveBtnClickKey]){
-        
         NSIndexPath *indexPath = userInfo;
         CPMyDateModel *model = self.datas[indexPath.row];
         [self loveBtnClickWithInfo:(CPMyDateModel *)model];
@@ -271,6 +287,10 @@ static NSString *ID2 = @"DateCell2";
         CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
         taVc.userId = model.applicant.userId;
         [self.navigationController pushViewController:taVc animated:YES];
+    }else if ([notifyName isEqualToString:TitleLabelClickKey]){
+        CPActivityDetailViewController *activityVc = [UIStoryboard storyboardWithName:@"CPActivityDetailViewController" bundle:nil].instantiateInitialViewController;
+        activityVc.officialActivityId = userInfo;
+        [self.navigationController pushViewController:activityVc animated:YES];
     }
 }
 
@@ -287,14 +307,14 @@ static NSString *ID2 = @"DateCell2";
         
         for (int i = 0;i < self.datas.count; i++) {
             CPMyDateModel *obj = self.datas[i];
-            if ([obj.applyUserId isEqualToString:model.applyUserId] && ![obj.activityId isEqualToString:model.activityId]) {
+            if ([obj isKindOfClass:[CPMyDateModel class]]&& [obj.applicant.userId isEqualToString:model.applicant.userId] && ![obj.activityId isEqualToString:model.activityId]) {
                 obj.applicant.subscribeFlag = model.applicant.subscribeFlag;
                 [indexPaths addObject:[NSIndexPath indexPathForItem:i inSection:0]];
             }
             
         }
         ZYMainThread(^{
-            [self.tableView reloadItemsAtIndexPaths:indexPaths];
+            [self.tableView reloadData];
         });
         
     });
@@ -376,11 +396,11 @@ static NSString *ID2 = @"DateCell2";
                     [self.tableView reloadData];
                 }
             }else{
-                [self showError:responseObject[@"errmsg"]];
+                [self showError:CPErrorMsg];
             }
             
         } failure:^(NSError *error) {
-            [self showError:@"照片上传失败"];
+            [self showInfo:@"照片上传失败"];
         }];
     }
     
@@ -403,8 +423,17 @@ static NSString *ID2 = @"DateCell2";
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        CGFloat topInset = 0;
+        if (self.isDynamic) {
+            UILabel *tipL = [UILabel labelWithText:@"越早联系成功率越高" textColor:[Tools getColor:@"999999"] fontSize:16];
+            [tipL sizeToFit];
+            [_tableView addSubview:tipL];
+            tipL.centerX = _tableView.centerX;
+            tipL.y = 74;
+            topInset = 20;
+        }
         layout.rowMargin = 20;
-        layout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
+        layout.sectionInset = UIEdgeInsetsMake(topInset, 10, 0, 10);
         layout.columnsCount = 1;
 //        layout.itemSize = itemSzie;
         //        layout.scrollDirection = UICollectionLayoutScrollDirectionVertical;

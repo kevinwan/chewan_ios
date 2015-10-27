@@ -45,6 +45,9 @@
     }
     if (image && self.showBlurView) {
         [self insertSubview:self.userCoverView atIndex:0];
+        self.userCoverView.hidden = NO;
+    }else{
+        self.userCoverView.hidden = YES;
     }
 }
 - (void)zy_setImageWithUrl:(NSString *)url

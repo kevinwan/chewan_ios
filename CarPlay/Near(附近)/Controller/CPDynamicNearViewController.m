@@ -1,12 +1,12 @@
 //
-//  CPMyInterestViewController.m
+//  CPNearViewController.m
 //  CarPlay
 //
-//  Created by chewan on 10/24/15.
-//  Copyright © 2015 chewan. All rights reserved.
+//  Created by chewan on 15/9/23.
+//  Copyright © 2015年 chewan. All rights reserved.
 //
 
-#import "CPMyInterestViewController.h"
+#import "CPDynamicNearViewController.h"
 #import "CPMySwitch.h"
 #import "CPSelectView.h"
 #import "CPNearParams.h"
@@ -18,28 +18,27 @@
 #import "UICollectionView3DLayout.h"
 #import "CPNearCollectionViewCell.h"
 #import "CPAlbum.h"
+#import "CPMyInterestViewController.h"
 #import "ZYWaterflowLayout.h"
 
-@interface CPMyInterestViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate,ZYWaterflowLayoutDelegate>
+@interface CPDynamicNearViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate,ZYWaterflowLayoutDelegate>
 @property (nonatomic, strong) UICollectionView *tableView;
-@property (nonatomic, strong) NSMutableArray<CPIntersterModel *> *datas;
+@property (nonatomic, strong) NSMutableArray<CPActivityModel *> *datas;
 @property (nonatomic, strong) UIView *tipView;
 @property (nonatomic, assign) CGFloat offset;
-@property (nonatomic, assign) NSInteger ignore;
+@property (nonatomic, strong) CPNearParams *params;
 @property (nonatomic, assign) BOOL isHasRefreshHeader;
 @property (nonatomic, strong) CPNoDataTipView *noDataView;
 @property (nonatomic, weak)   AAPullToRefresh *headerView;
 @property (nonatomic, weak)   AAPullToRefresh *footerView;
 @end
 
-static NSString *ID = @"myIntersterCell";
-@implementation CPMyInterestViewController
+static NSString *ID = @"cell";
+@implementation CPDynamicNearViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.title = @"感兴趣的";
     
     if (CPNoNetWork) {
         
@@ -48,9 +47,8 @@ static NSString *ID = @"myIntersterCell";
     }
     
     self.offset = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250;
-    
+    self.title = @"附近";
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"筛选" target:self action:@selector(filter)];
     [self.view addSubview:self.tableView];
     [ZYLoadingView showLoadingView];
 }
@@ -78,11 +76,13 @@ static NSString *ID = @"myIntersterCell";
     self.headerView = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionTop actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
         ZYMainThread(^{
+            
             [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, -44) animated:YES];
         });
-        self.ignore = 0;
+        self.params.ignore = 0;
         [self loadDataWithHeader:v];
     }];
+    self.headerView.isNoAnimation = YES;
     // bottom
     self.footerView = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionBottom actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
@@ -92,10 +92,12 @@ static NSString *ID = @"myIntersterCell";
         });
         
         if (self.datas.count % CPPageNum == 0) {
-            self.ignore += CPPageNum;
+            self.params.ignore += CPPageNum;
             [self loadDataWithHeader:v];
         }else{
+            
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
                 [v stopIndicatorAnimation];
             });
         }
@@ -109,22 +111,18 @@ static NSString *ID = @"myIntersterCell";
  */
 - (void)loadDataWithHeader:(AAPullToRefresh *)refresh
 {
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"token"] = CPToken;
-    params[@"ignore"] = @(self.ignore);
-    NSString *url = [NSString stringWithFormat:@"user/%@/interest/list",CPUserId];
-    [ZYNetWorkTool getWithUrl:url params:params success:^(id responseObject) {
+//    http://cwapi.gongpingjia.com/v2/activity/pushInfo?userId=846de312-306c-4916-91c1-a5e69b158014&token=846de312-306c-4916-91c1-a5e69b158014
+    NSString *url = [NSString stringWithFormat:@"activity/pushInfo?userId=%@&token=%@",CPUserId,CPToken];
+    [ZYNetWorkTool getWithUrl:url params:nil success:^(id responseObject) {
         
         [self setUpRefresh];
         [refresh stopIndicatorAnimation];
-        DLog(@"%@ ---- ",responseObject);
         if (CPSuccess) {
-            if (self.ignore == 0) {
+            if (self.params.ignore == 0) {
                 [self.datas removeAllObjects];
             }
             
-            NSArray *arr = [CPIntersterModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
-            NSLog(@"gggg%zd",arr.count);
+            NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
             [self.datas addObjectsFromArray:arr];
             
             if (self.datas.count == 0) {
@@ -143,7 +141,7 @@ static NSString *ID = @"myIntersterCell";
         
         [self setUpRefresh];
         DLog(@"%@---",error);
-        self.ignore -= CPPageNum;
+        self.params.ignore -= CPPageNum;
         [refresh stopIndicatorAnimation];
         [self showError:@"加载失败"];
         self.noDataView.netWorkFailtype = NO;
@@ -157,7 +155,8 @@ static NSString *ID = @"myIntersterCell";
 {
     CPNearCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
     cell.contentV.indexPath = indexPath;
-    cell.contentV.intersterModel = self.datas[indexPath.item];
+    self.datas[indexPath.item].isDynamic = YES;
+    cell.contentV.model = self.datas[indexPath.item];
     return cell;
 }
 
@@ -168,14 +167,13 @@ static NSString *ID = @"myIntersterCell";
 
 - (CGFloat)waterflowLayout:(ZYWaterflowLayout *)waterflowLayout heightForWidth:(CGFloat)width atIndexPath:(NSIndexPath *)indexPath
 {
-    return self.offset + 380;
+    return self.offset + 383;
 }
 
 #pragma mark - 事件交互
 
 - (void)superViewWillRecive:(NSString *)notifyName info:(id)userInfo
 {
-    NSLog(@"%@ %@ ",notifyName, userInfo);
     if ([notifyName isEqualToString:CameraBtnClickKey]) {
         [self cameraPresent];
     }else if([notifyName isEqualToString:PhotoBtnClickKey]){
@@ -183,12 +181,13 @@ static NSString *ID = @"myIntersterCell";
     }else if([notifyName isEqualToString:DateBtnClickKey]){
         [self dateClickWithInfo:userInfo];
     }else if([notifyName isEqualToString:LoveBtnClickKey]){
-        [self loveBtnClickWithInfo:(CPIntersterModel *)userInfo];
+        CPActivityModel *model = self.datas[[userInfo row]];
+        [self loveBtnClickWithInfo:model];
     }else if ([notifyName isEqualToString:IconViewClickKey]){
         CPGoLogin(@"查看TA的详情");
         CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
         NSIndexPath *indexPath = userInfo;
-        taVc.userId = self.datas[indexPath.row].user.userId;
+        taVc.userId = self.datas[indexPath.row].organizer.userId;
         [self.navigationController pushViewController:taVc animated:YES];
     }
 }
@@ -198,16 +197,16 @@ static NSString *ID = @"myIntersterCell";
  *
  *  @param model model description
  */
-- (void)loveBtnClickWithInfo:(CPIntersterModel *)model
+- (void)loveBtnClickWithInfo:(CPActivityModel *)model
 {
     ZYAsyncThead(^{
         
         NSMutableArray *indexPaths = [NSMutableArray array];
         
         for (int i = 0;i < self.datas.count; i++) {
-            CPIntersterModel *obj = self.datas[i];
-            if ([obj.user.userId isEqualToString:model.user.userId] && ![obj.activityId isEqualToString:model.activityId]) {
-                obj.user.subscribeFlag = model.user.subscribeFlag;
+            CPActivityModel *obj = self.datas[i];
+            if ([obj.organizer.userId isEqualToString:model.organizer.userId] && ![obj.activityId isEqualToString:model.activityId]) {
+                obj.organizer.subscribeFlag = model.organizer.subscribeFlag;
                 [indexPaths addObject:[NSIndexPath indexPathForItem:i inSection:0]];
             }
             
@@ -296,6 +295,7 @@ static NSString *ID = @"myIntersterCell";
                 [self showInfo:CPErrorMsg];
             }
             
+            
         } failure:^(NSError *error) {
             [self showError:@"照片上传失败"];
         }];
@@ -312,22 +312,22 @@ static NSString *ID = @"myIntersterCell";
 {
     CPGoLogin(@"邀TA");
     NSIndexPath *indexPath = userInfo;
-    CPIntersterModel *model = self.datas[indexPath.row];
+    CPActivityModel *model = self.datas[indexPath.row];
     NSString *url = [NSString stringWithFormat:@"activity/%@/join",model.activityId];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"destPoint"] = @{@"longitude" : @(CPLongitude),
                              @"latitude" : @(CPLatitude)};
-    params[@"transfer"] = @(model.activityTransfer);
-    params[@"type"] = model.activityType;
-    params[@"pay"] = model.activityPay;
-    params[@"destination"] = model.activityDestination;
+    params[@"transfer"] = @(model.transfer);
+    params[@"type"] = model.type;
+    params[@"pay"] = model.pay;
+    params[@"destination"] = model.destination;
     params[UserId] = CPUserId;
     params[Token] = CPToken;
     [self showLoading];
     [CPNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
         if (CPSuccess) {
             [self showInfo:@"邀请已发出"];
-            model.status = 1;
+            model.applyFlag = 1;
             [self.tableView reloadItemsAtIndexPaths:@[indexPath]];
         }else if ([CPErrorMsg contains:@"申请中"]){
             [self showInfo:@"正在申请中"];
@@ -337,7 +337,6 @@ static NSString *ID = @"myIntersterCell";
     }];
     
 }
-
 
 #pragma mark - 加载子控件
 
@@ -351,16 +350,11 @@ static NSString *ID = @"myIntersterCell";
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.showsHorizontalScrollIndicator = NO;
         _tableView.showsVerticalScrollIndicator = NO;
+        self.automaticallyAdjustsScrollViewInsets = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
         layout.rowMargin = 20;
         layout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
-        layout.columnsCount = 1;
-//        CGSize itemSzie= CGSizeMake(ZYScreenWidth - 20, 383 + self.offset);
-//        layout.itemSize = itemSzie;
-        //        layout.scrollDirection = UICollectionLayoutScrollDirectionVertical;
-//        layout.itemScale = 0.96;
-//        layout.LayoutDirection=UICollectionLayoutScrollDirectionVertical;
         self.view.backgroundColor = [Tools getColor:@"efefef"];
         [_tableView registerClass:[CPNearCollectionViewCell class] forCellWithReuseIdentifier:ID];
         _tableView.panGestureRecognizer.delaysTouchesBegan = _tableView.delaysContentTouches;
@@ -381,7 +375,7 @@ static NSString *ID = @"myIntersterCell";
 {    if (_noDataView == nil) {
     _noDataView = [CPNoDataTipView noDataTipViewWithTitle:@"已经没有活动了,请放宽条件再试试"];
     [self.view addSubview:_noDataView];
-    _noDataView.frame = self.tableView.bounds;
+    _noDataView.frame = self.view.bounds;
 }
     return _noDataView;
 }

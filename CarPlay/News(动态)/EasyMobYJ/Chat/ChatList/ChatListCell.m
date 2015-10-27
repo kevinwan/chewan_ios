@@ -13,7 +13,7 @@
 
 #import "ChatListCell.h"
 #import "UIImageView+HeadImage.h"
-
+#import "NSString+Extend.h"
 @interface ChatListCell (){
     UILabel *_timeLabel;
     UILabel *_unreadLabel;
@@ -55,6 +55,10 @@
         [self.contentView addSubview:_detailLabel];
         
         self.textLabel.backgroundColor = [UIColor clearColor];
+        //显示性别年龄
+        self.cpSexView = [[CPSexView alloc]initWithFrame:CGRectMake(68, 7, 45, 17)];
+        [self.contentView addSubview:_cpSexView];
+        
         
         _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,kDeviceWidth, 1)];
         _lineView.backgroundColor = RGBACOLOR(207, 210, 213, 0.7);
@@ -113,8 +117,14 @@
 //    self.imageView.layer.cornerRadius = 22;
 //    self.textLabel.text = _name;
 //    [self.textLabel setTextWithUsername:_name];
-    self.textLabel.frame = CGRectMake(65, 7, 175, 20);
     
+    CGSize size =  [self.textLabel.text sizeWithFont:self.textLabel.font maxW:200];
+    NSLog(@"size = %@",NSStringFromCGSize(size));
+    
+    self.textLabel.frame = CGRectMake(65, 7, 175, 20);
+//    _cpSexView.frame = CGRectMake(68, 7, 45, 17);
+    
+   
     _detailLabel.text = _detailMsg;
     _timeLabel.text = _time;
     if (_unreadCount > 0) {

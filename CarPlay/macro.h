@@ -51,7 +51,7 @@
 #define CPIsLogin       ([Tools isLogin])   // 是否登录成功
 #define CPUnLogin       ([Tools isUnLogin]) // 是否登录成功
 #define CPSuccess       ([responseObject[@"result"] intValue] == 0)
-#define CPErrorMsg responseObject[@"errmsg"]
+#define CPErrorMsg      responseObject[@"errmsg"]
 #define CPFailure       ([responseObject[@"result"] intValue] == 1)
 #define CPPlaceHolderImage [UIImage imageNamed:@"未认证-审核中"]
 #define CPHasAlbum @"CPHasAlbum"
