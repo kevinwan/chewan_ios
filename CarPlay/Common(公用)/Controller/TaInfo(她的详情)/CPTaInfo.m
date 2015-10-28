@@ -293,7 +293,7 @@
 - (IBAction)taActivityClick:(id)sender {
     CPHisDateViewController *taInfoVC=[CPHisDateViewController new];
     taInfoVC.targetUser=user;
-    [self.navigationController pushViewController:[CPHisDateViewController new] animated:YES];
+    [self.navigationController pushViewController:taInfoVC animated:YES];
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
