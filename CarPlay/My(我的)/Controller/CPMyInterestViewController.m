@@ -50,17 +50,8 @@ static NSString *ID = @"myIntersterCell";
     self.offset = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250;
     
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"筛选" target:self action:@selector(filter)];
     [self.view addSubview:self.tableView];
     [ZYLoadingView showLoadingView];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    if (self.datas.count == 0) {
-        [self loadDataWithHeader:nil];
-    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -77,7 +68,7 @@ static NSString *ID = @"myIntersterCell";
     ZYWeakSelf
     self.headerView = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionTop actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
-        ZYMainThread(^{
+        ZYMainOperation(^{
             [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, -44) animated:YES];
         });
         self.ignore = 0;
@@ -86,7 +77,7 @@ static NSString *ID = @"myIntersterCell";
     // bottom
     self.footerView = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionBottom actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
-        ZYMainThread(^{
+        ZYMainOperation(^{
             
             [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, self.tableView.contentSizeHeight - self.tableView.height + 44) animated:YES];
         });
@@ -212,7 +203,7 @@ static NSString *ID = @"myIntersterCell";
             }
             
         }
-        ZYMainThread(^{
+        ZYMainOperation(^{
             [self.tableView reloadItemsAtIndexPaths:indexPaths];
         });
         

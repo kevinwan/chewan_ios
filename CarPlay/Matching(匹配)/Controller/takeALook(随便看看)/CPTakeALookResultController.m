@@ -119,7 +119,7 @@ static NSString *ID = @"cell";
 //            }
 //            
 //        }
-//        ZYMainThread(^{
+//        ZYMainOperation(^{
 //            [self.tableView reloadItemsAtIndexPaths:indexPaths];
 //        });
 //        
