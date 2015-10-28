@@ -27,7 +27,7 @@
 #import "CPVisitorViewController.h"
 #import "CPMyInterestViewController.h"
 #import "CPMyDateViewController.h"
-
+#import "CPDynamicNearViewController.h"
 @implementation EMConversation (search)
 
 //根据用户昵称,环信机器人名称,群名称进行搜索
@@ -644,14 +644,17 @@
                 if (group.groupDescription.length>0) {
                     //设置群聊头像
                     NSString *headStr = [group.groupDescription stringByReplacingOccurrencesOfString:@"|" withString:@"/"];
+                    NSLog(@"headstr = %@",headStr);
+
                     NSArray *photos = [headStr componentsSeparatedByString:@";"];
+                    NSLog(@"photos = %@",photos);
                     //用；分割以后，比正常数组多了一个空对象，所以下面的case从2开始，后期做优化的时候修改。
                     switch ([photos count]) {
-                        case 2:
+                        case 1:
                             [cell.HeadIV sd_setImageWithURL:[NSURL URLWithString:photos[0]] placeholderImage:nil];
                             break;
                             
-                        case 3:
+                        case 2:
                         {
                             [manager downloadImageWithURL:[NSURL URLWithString:photos[0]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                                 UIImage *image1 = [UIImage imageWithBgImage:[UIImage imageNamed:@"群头像背景"] waterImage:[self shearToCircleImage:image] frame:CGRectMake(6.5, 16, 17, 17) angle:0];
@@ -664,13 +667,13 @@
                             
                             break;
                             
-                        case 4:
+                        case 3:
                         {
                             [manager downloadImageWithURL:[NSURL URLWithString:photos[0]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                                 UIImage *image1 = [UIImage imageWithBgImage:[UIImage imageNamed:@"群头像背景"] waterImage:[self shearToCircleImage:image] frame:CGRectMake(16, 7, 17, 17) angle:0];
                                 [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                                     UIImage *image2 = [UIImage imageWithBgImage:image1 waterImage:[self shearToCircleImage:image] frame:CGRectMake(6.5, 26, 17, 17) angle:0];
-                                    [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                    [manager downloadImageWithURL:[NSURL URLWithString:photos[2]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                                         UIImage *image3 = [UIImage imageWithBgImage:image2 waterImage:[self shearToCircleImage:image] frame:CGRectMake(26.5, 26, 17, 17) angle:0];
                                         [cell.HeadIV setImage:image3];
                                         
@@ -680,15 +683,15 @@
                         }
                             break;
                             
-                        case 5:
+                        case 4:
                         {
                             [manager downloadImageWithURL:[NSURL URLWithString:photos[0]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                                 UIImage *image1 = [UIImage imageWithBgImage:[UIImage imageNamed:@"群头像背景"] waterImage:[self shearToCircleImage:image] frame:CGRectMake(5, 5, 14, 14) angle:0];
                                 [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                                     UIImage *image2 = [UIImage imageWithBgImage:image1 waterImage:[self shearToCircleImage:image] frame:CGRectMake(5+14+2, 5, 14, 14) angle:0];
-                                    [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                    [manager downloadImageWithURL:[NSURL URLWithString:photos[2]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                                         UIImage *image3 = [UIImage imageWithBgImage:image2 waterImage:[self shearToCircleImage:image] frame:CGRectMake(5, 14+5+2, 14, 14) angle:0];
-                                        [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                        [manager downloadImageWithURL:[NSURL URLWithString:photos[3]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                                             UIImage *image4 = [UIImage imageWithBgImage:image3 waterImage:[self shearToCircleImage:image] frame:CGRectMake(5+14+2, 5+14+2, 14, 14) angle:0];
                                             [cell.HeadIV setImage:image4];
                                         }];
@@ -706,11 +709,11 @@
                         NSString *headStr = [group.groupDescription stringByReplacingOccurrencesOfString:@"|" withString:@"/"];
                         NSArray *photos = [headStr componentsSeparatedByString:@";"];
                         switch ([photos count]) {
-                            case 2:
+                            case 1:
                                 [cell.HeadIV sd_setImageWithURL:[NSURL URLWithString:photos[0]] placeholderImage:nil];
                                 break;
                                 
-                            case 3:
+                            case 2:
                             {
                                 [manager downloadImageWithURL:[NSURL URLWithString:photos[0]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                                     UIImage *image1 = [UIImage imageWithBgImage:[UIImage imageNamed:@"群头像背景"] waterImage:[self shearToCircleImage:image] frame:CGRectMake(6.5, 16, 17, 17) angle:0];
@@ -723,13 +726,13 @@
                                 
                                 break;
                                 
-                            case 4:
+                            case 3:
                             {
                                 [manager downloadImageWithURL:[NSURL URLWithString:photos[0]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                                     UIImage *image1 = [UIImage imageWithBgImage:[UIImage imageNamed:@"群头像背景"] waterImage:[self shearToCircleImage:image] frame:CGRectMake(16, 7, 17, 17) angle:0];
                                     [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                                         UIImage *image2 = [UIImage imageWithBgImage:image1 waterImage:[self shearToCircleImage:image] frame:CGRectMake(6.5, 26, 17, 17) angle:0];
-                                        [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                        [manager downloadImageWithURL:[NSURL URLWithString:photos[2]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                                             UIImage *image3 = [UIImage imageWithBgImage:image2 waterImage:[self shearToCircleImage:image] frame:CGRectMake(26.5, 26, 17, 17) angle:0];
                                             [cell.HeadIV setImage:image3];
                                             
@@ -739,15 +742,15 @@
                             }
                                 break;
                                 
-                            case 5:
+                            case 4:
                             {
                                 [manager downloadImageWithURL:[NSURL URLWithString:photos[0]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                                     UIImage *image1 = [UIImage imageWithBgImage:[UIImage imageNamed:@"群头像背景"] waterImage:[self shearToCircleImage:image] frame:CGRectMake(5, 5, 14, 14) angle:0];
                                     [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                                         UIImage *image2 = [UIImage imageWithBgImage:image1 waterImage:[self shearToCircleImage:image] frame:CGRectMake(5+14+2, 5, 14, 14) angle:0];
-                                        [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                        [manager downloadImageWithURL:[NSURL URLWithString:photos[2]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                                             UIImage *image3 = [UIImage imageWithBgImage:image2 waterImage:[self shearToCircleImage:image] frame:CGRectMake(5, 14+5+2, 14, 14) angle:0];
-                                            [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                                            [manager downloadImageWithURL:[NSURL URLWithString:photos[3]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                                                 UIImage *image4 = [UIImage imageWithBgImage:image3 waterImage:[self shearToCircleImage:image] frame:CGRectMake(5+14+2, 5+14+2, 14, 14) angle:0];
                                                 [cell.HeadIV setImage:image4];
                                             }];
@@ -883,7 +886,7 @@
     }else if ([chatter isEqualToString:@"nearbyadmin"])
     {//附近
         [conversation markAllMessagesAsRead:YES];
-        
+        [self.navigationController pushViewController:[CPDynamicNearViewController new] animated:YES];
     }
     else {
         //test 测试群聊

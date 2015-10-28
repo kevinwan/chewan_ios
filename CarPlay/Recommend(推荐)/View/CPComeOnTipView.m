@@ -65,7 +65,7 @@
     NSString *url = [NSString stringWithFormat:@"official/activity/%@/invite",self.activityId];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"invitedUserId"] = self.targetUserId;
-    params[@"transfer"] = @(self.transfer.isSelected);
+    params[@"transfer"] = @(!self.transfer.isSelected);
     params[@"message"] = self.textField.text;
     [CPNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
         if (CPSuccess) {

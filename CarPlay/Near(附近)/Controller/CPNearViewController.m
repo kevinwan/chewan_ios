@@ -65,14 +65,6 @@ static NSString *ID = @"cell";
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    if (self.datas.count == 0) {
-        [self loadDataWithHeader:nil];
-    }
-}
-
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -89,8 +81,9 @@ static NSString *ID = @"cell";
         ZYStrongSelf
         ZYMainThread(^{
             
-            [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, -44) animated:YES];
+            [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, -44 - self.tableView.contentInsetTop) animated:YES];
         });
+        
         self.params.ignore = 0;
         [self loadDataWithHeader:v];
     }];
@@ -99,7 +92,7 @@ static NSString *ID = @"cell";
         ZYStrongSelf
         ZYMainThread(^{
             
-            [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, self.tableView.contentSizeHeight - self.tableView.height + 44) animated:YES];
+            [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, self.tableView.contentSizeHeight - self.tableView.height + 44 + self.tableView.contentInsetTop) animated:YES];
         });
             
         if (self.datas.count % CPPageNum == 0) {
@@ -390,7 +383,10 @@ static NSString *ID = @"cell";
         _tableView.dataSource = self;
         CGSize itemSzie= CGSizeMake(ZYScreenWidth - 20, 383 + self.offset);
         layout.itemSize = itemSzie;
-//        layout.scrollDirection = UICollectionLayoutScrollDirectionVertical;
+        
+        if (iPhone4) {
+            [_tableView setContentInset:UIEdgeInsetsMake(20, 0, 0, 0)];
+        }
         layout.itemScale = 0.96;
         layout.LayoutDirection=UICollectionLayoutScrollDirectionVertical;
         self.view.backgroundColor = [Tools getColor:@"efefef"];
@@ -419,21 +415,12 @@ static NSString *ID = @"cell";
         _tipView.height = 35;
         _tipView.y = 64;
         _tipView.x = 0;
-//        [_tipView mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.top.equalTo(@64);
-//            make.width.equalTo(self.view);
-//            make.height.equalTo(@35);
-//        }];
-//        
+      
         UILabel *textL = [UILabel labelWithText:@"有空,其他人可以邀请你参加活动" textColor:[UIColor whiteColor] fontSize:14];
         [_tipView addSubview:textL];
         [textL sizeToFit];
         textL.x = 10;
         textL.centerY = _tipView.middleY;
-//        [textL mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left.equalTo(@10);
-//            make.centerY.equalTo(_tipView);
-//        }];
         
         CPMySwitch *freeTimeBtn = [CPMySwitch new];
         [freeTimeBtn setOnImage:[UIImage imageNamed:@"btn_youkong"]];
@@ -468,23 +455,25 @@ static NSString *ID = @"cell";
 //            make.centerY.equalTo(_tipView);
 //            make.right.equalTo(@-10);
 //        }];
+        CGFloat originY = 64;
+        
         [RACObserve(self.tableView, contentOffset) subscribeNext:^(id x) {
             CGPoint p = [x CGPointValue];
             if (p.y <= 0 && p.y >= -10) {
                 if (_tipView.alpha == 0) {
                     [UIView animateWithDuration:0.5 animations:^{
                         _tipView.alpha = 1;
-                        _tipView.y = 64;
+                        _tipView.y = originY;
                     }];
                 }
             }else if (p.y > self.tableView.height - 383 - self.offset){
                 if (_tipView.alpha == 1) {
                 [UIView animateWithDuration:0.2 animations:^{
                     _tipView.alpha = 0;
-                    _tipView.y = 64 - _tipView.height;
+                    _tipView.y = originY - _tipView.height;
                 }];
                 }
-            }else if (p.y < -10){
+            }else if (p.y < -10 && !iPhone4){
                 _tipView.alpha = 0;
             }
         }];
@@ -496,7 +485,6 @@ static NSString *ID = @"cell";
 - (CPNearParams *)params
 {
     if (_params == nil) {
-//        latitude=39.97762675234624&limit=10&longitude=116.3317536236968
         _params = [[CPNearParams alloc] init];
         _params.longitude = 116.3317536236968;
         _params.latitude = 39.97762675234624;

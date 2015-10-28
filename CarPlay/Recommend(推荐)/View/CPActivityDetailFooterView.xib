@@ -202,6 +202,8 @@
                 <outlet property="explainTopCons" destination="J1v-QI-uWW" id="QIU-4h-Bt0"/>
                 <outlet property="line1TopCons" destination="WtK-rX-eXd" id="diZ-At-Q0J"/>
                 <outlet property="line2TopCons" destination="w62-0k-hml" id="8L6-B5-fa3"/>
+                <outlet property="openDescButton" destination="vKO-sb-7KZ" id="f37-4c-JJY"/>
+                <outlet property="openExtraButton" destination="Tw1-78-DuV" id="y38-Zd-Ctr"/>
                 <outlet property="pathTipLabel" destination="MgC-Fx-DOC" id="nDQ-Hm-1Zu"/>
                 <outlet property="toGroupChatButton" destination="Nn8-Rz-eiK" id="8KR-ik-s3I"/>
             </connections>

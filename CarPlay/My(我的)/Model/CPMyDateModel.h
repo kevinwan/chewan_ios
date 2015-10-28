@@ -45,4 +45,5 @@
 @property (nonatomic, assign) double distance;
 // organizer 组织者
 @property (nonatomic, strong) CPUser *applicant;
+@property (nonatomic, copy) NSString *message;
 @end

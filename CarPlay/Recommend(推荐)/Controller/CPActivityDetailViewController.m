@@ -17,7 +17,7 @@
 #import "CPByTicketViewController.h"
 #import "CPComeOnTipView.h"
 
-#define CPMemberPageNum 4
+#define CPMemberPageNum 6
 @interface CPActivityDetailViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) CPActivityDetailFooterView *footerView;
@@ -78,7 +78,7 @@ static NSString *ID = @"partCell";
     }else if ([notifyName isEqualToString:CPActivityDetailLoadMoreKey]){
         
         if (self.showMerberCount == self.model.members.count) {
-            return;
+            [self showInfo:@"已无更多数据"];
         }
         if (self.showMerberCount + CPMemberPageNum >= self.model.members.count) {
             

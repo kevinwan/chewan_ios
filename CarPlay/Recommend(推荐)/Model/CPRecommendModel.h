@@ -41,6 +41,8 @@
 @property (nonatomic, copy) NSString *emchatGroupId;
 //   covers
 @property (nonatomic, strong) NSArray *covers;
+@property (nonatomic, assign) long long createTime;
+@property (nonatomic, copy) NSString *createTimeStr;
 //    start = 1444652636457,
 @property (nonatomic, assign) long long start;
 @property (nonatomic, copy) NSString *startStr;
