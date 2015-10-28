@@ -110,6 +110,7 @@
                 CPNavigationController *nav=[[CPNavigationController alloc]initWithRootViewController:login];
                 self.view.window.rootViewController = nav;
                 [self.view.window makeKeyAndVisible];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"DID_LOG_OUT_SUCCESS" object:nil];
             }
         } onQueue:nil];
         

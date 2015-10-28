@@ -641,7 +641,7 @@
             NSLog(@"====group.id = %@",group.groupId);
             if ([group.groupId isEqualToString:conversation.chatter]) {
                 //有时候拿不到groupDescription。比如没有人发过消息
-                if (group.groupDescription.length>0) {
+                if (NO) {
                     //设置群聊头像
                     NSString *headStr = [group.groupDescription stringByReplacingOccurrencesOfString:@"|" withString:@"/"];
                     NSLog(@"headstr = %@",headStr);
@@ -716,9 +716,9 @@
                             case 2:
                             {
                                 [manager downloadImageWithURL:[NSURL URLWithString:photos[0]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                                    UIImage *image1 = [UIImage imageWithBgImage:[UIImage imageNamed:@"群头像背景"] waterImage:[self shearToCircleImage:image] frame:CGRectMake(6.5, 16, 17, 17) angle:0];
+                                    UIImage *image1 = [UIImage imageWithBgImage:[UIImage imageNamed:@"群头像背景"] waterImage:[self shearToCircleImage:image] frame:CGRectMake(5.5, 14, 14, 14) angle:0];
                                     [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                                        UIImage *image2 = [UIImage imageWithBgImage:image1 waterImage:[self shearToCircleImage:image] frame:CGRectMake(26.5, 16, 17, 17) angle:0];
+                                        UIImage *image2 = [UIImage imageWithBgImage:image1 waterImage:[self shearToCircleImage:image] frame:CGRectMake(5.5+14+2, 14, 14, 14) angle:0];
                                         [cell.HeadIV setImage:image2];
                                     }];
                                 }];
@@ -729,11 +729,11 @@
                             case 3:
                             {
                                 [manager downloadImageWithURL:[NSURL URLWithString:photos[0]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                                    UIImage *image1 = [UIImage imageWithBgImage:[UIImage imageNamed:@"群头像背景"] waterImage:[self shearToCircleImage:image] frame:CGRectMake(16, 7, 17, 17) angle:0];
+                                    UIImage *image1 = [UIImage imageWithBgImage:[UIImage imageNamed:@"群头像背景"] waterImage:[self shearToCircleImage:image] frame:CGRectMake(14, 3.5, 14, 14) angle:0];
                                     [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                                        UIImage *image2 = [UIImage imageWithBgImage:image1 waterImage:[self shearToCircleImage:image] frame:CGRectMake(6.5, 26, 17, 17) angle:0];
+                                        UIImage *image2 = [UIImage imageWithBgImage:image1 waterImage:[self shearToCircleImage:image] frame:CGRectMake(6.5, 20, 14, 14) angle:0];
                                         [manager downloadImageWithURL:[NSURL URLWithString:photos[2]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                                            UIImage *image3 = [UIImage imageWithBgImage:image2 waterImage:[self shearToCircleImage:image] frame:CGRectMake(26.5, 26, 17, 17) angle:0];
+                                            UIImage *image3 = [UIImage imageWithBgImage:image2 waterImage:[self shearToCircleImage:image] frame:CGRectMake(23.5, 20, 14, 14) angle:0];
                                             [cell.HeadIV setImage:image3];
                                             
                                         }];

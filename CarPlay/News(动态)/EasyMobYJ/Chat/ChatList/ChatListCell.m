@@ -73,7 +73,7 @@
         
         _HeadIV = [[UIImageView alloc]initWithFrame:CGRectMake(10, 7, 45, 45)];
         _HeadIV.backgroundColor = [UIColor clearColor];
-        _HeadIV.layer.cornerRadius = 22;
+        _HeadIV.layer.cornerRadius = 22.5;
         [_HeadIV setClipsToBounds:YES];
         [self.contentView addSubview:_HeadIV];
         
