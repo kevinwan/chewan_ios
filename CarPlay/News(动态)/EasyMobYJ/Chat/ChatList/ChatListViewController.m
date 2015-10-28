@@ -704,7 +704,9 @@
                     
                 }else{
                     [[EaseMob sharedInstance].chatManager asyncFetchGroupInfo:conversation.chatter completion:^(EMGroup *group, EMError *error) {
-                        
+                        //设置群名称
+                        cell.textLabel.text = group.groupSubject;
+
                         //设置群聊头像
                         NSString *headStr = [group.groupDescription stringByReplacingOccurrencesOfString:@"|" withString:@"/"];
                         NSArray *photos = [headStr componentsSeparatedByString:@";"];
@@ -789,7 +791,7 @@
 //            cell.textLabel.text = [conversation.ext objectForKey:@"groupSubject"];
 //            imageName = [[conversation.ext objectForKey:@"isPublic"] boolValue] ? @"groupPublicHeader" : @"groupPrivateHeader";
 //        }
-        cell.textLabel.text = [conversation.latestMessage.ext objectForKey:kUserNickName];
+
     }
     cell.detailMsg = [self subTitleMessageByConversation:conversation];
     
@@ -813,17 +815,6 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-//    //test
-//    
-//    ChatViewController *  chatController1 = [[ChatViewController alloc] initWithChatter:@"120639016805597672"
-//                                                                      conversationType:eConversationTypeGroupChat];
-//    chatController1.title = @"test";
-//    [self.navigationController pushViewController:chatController1 animated:YES];
-//    return;
-    
-    
-    
     
     
     EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
@@ -892,7 +883,15 @@
         //test 测试群聊
         chatController = [[ChatViewController alloc] initWithChatter:chatter
                                                     conversationType:conversation.conversationType];
+        //如果是群聊，进入以后显示的名字是textLabel.text
+        if (conversation.conversationType == eConversationTypeGroupChat) {
+            UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+            chatController.title =cell.textLabel.text;
+
+        }else{
         chatController.title = [conversation.latestMessageFromOthers.ext valueForKey:kUserNickName];
+
+        }
         chatController.delelgate = self;
         [self.navigationController pushViewController:chatController animated:YES];
 

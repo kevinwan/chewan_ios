@@ -20,6 +20,9 @@
 
 extern NSString *const kRouterEventTextURLTapEventName;
 extern NSString *const kRouterEventMenuTapEventName;
+//点击文字跳转到重新认证界面或者TA的详情界面
+extern NSString *const kRouterEventOffecialAdminTapEventName;
+
 
 @interface EMChatTextBubbleView : EMChatBaseBubbleView{
     NSDataDetector *_detector;

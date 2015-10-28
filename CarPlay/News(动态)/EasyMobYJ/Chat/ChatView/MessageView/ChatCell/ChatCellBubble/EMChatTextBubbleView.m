@@ -16,6 +16,7 @@
 
 NSString *const kRouterEventMenuTapEventName = @"kRouterEventMenuTapEventName";
 NSString *const kRouterEventTextURLTapEventName = @"kRouterEventTextURLTapEventName";
+NSString *const kRouterEventOffecialAdminTapEventName = @"kRouterEventOffecialAdminTapEventName";
 
 @interface EMChatTextBubbleView ()
 
@@ -254,6 +255,11 @@ NSString *const kRouterEventTextURLTapEventName = @"kRouterEventTextURLTapEventN
     CFIndex charIndex = [self characterIndexAtPoint:point];
     
     [self highlightLinksWithIndex:NSNotFound];
+    
+    
+    //这里为了配合官方活动中的 重新认证 和  查看TA专门给点击时间一个方法
+    [self routerEventWithName:kRouterEventOffecialAdminTapEventName userInfo:@{KMESSAGEKEY:self.model}];
+
     
     for (NSTextCheckingResult *match in _urlMatches) {
         

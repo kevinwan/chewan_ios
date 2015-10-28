@@ -674,9 +674,53 @@
         [self sendTextMessage:[userInfo objectForKey:@"text"]];
     }else if ([eventName isEqualToString:kRouterEventChatHeadImageTapEventName]) {
         [self chatHeadImagePressed:model];
+    }else if ([eventName isEqualToString:kRouterEventOffecialAdminTapEventName])
+    {
+        NSLog(@"modelext = %@",model.message.ext);
+        [self tapOfficialActivityBubble:model];
     }
 }
+- (void)tapOfficialActivityBubble:(MessageModel *)model
+{
+    NSDictionary *dic = model.message.ext;
+//    type 1头像认证 2 车主认证 3 身份证认真 4 约会信息认证
+//    result 1表示 通过 0 表示未通过
+    switch ([[dic objectForKey:@"type"] integerValue]) {
+        case 1:
+        {
+            if ([[dic objectForKey:@"result"] integerValue] == 0) {
+                //跳转到头像认证页面。
+            }
+        }
+            
+            break;
+        case 2:
+        {
+            if ([[dic objectForKey:@"result"] integerValue] == 0) {
+                //跳转到头像认证页面。
+            }
 
+        }
+            break;
+        case 3:
+        {
+            if ([[dic objectForKey:@"result"] integerValue] == 0) {
+                //跳转到头像认证页面。
+            }
+
+        }
+            break;
+        case 4:
+        {//只要是4类型，直接跳转到他的详情。对方userid =
+            [dic objectForKey:@"userId"];
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+}
 - (void)chatHeadImagePressed:(MessageModel *)model
 {
     
