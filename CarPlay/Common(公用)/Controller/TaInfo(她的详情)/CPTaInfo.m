@@ -12,10 +12,12 @@
 #import "UIImage+Blur.h"
 #import "CPCollectionViewCell.h"
 #import "CPMyDateViewController.h"
+#import "UzysAssetsPickerController.h"
 
-@interface CPTaInfo ()<UIAlertViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
+@interface CPTaInfo ()<UIAlertViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate, UzysAssetsPickerControllerDelegate>
 {
     CPUser *user;
+    CPUser *currentUser;
 }
 @end
 
@@ -24,6 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     user=[[CPUser alloc]init];
+    currentUser=[[CPUser alloc]init];
     [self.navigationItem setTitle:@"TA的详情"];
     [self.attentionBtn.layer setMasksToBounds:YES];
     [self.attentionBtn.layer setCornerRadius:17.0];
@@ -35,8 +38,7 @@
     [self.headStatus.layer setCornerRadius:11.0];
 //    self.noImgView.alpha=0.35;
     [self.noImgView setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.35]];
-    UIColor *bgColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"blurBg"]];
-    [self.noImgView setBackgroundColor:bgColor];
+   
     [self.albumsCollectionView registerNib:[UINib nibWithNibName:@"CPCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
     for (id view in self.toolbar.subviews) {
         if ([view isKindOfClass:[UIImageView class]]) {
@@ -59,6 +61,8 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
+    NSString *path=[NSString stringWithFormat:@"%@.info",CPUserId];
+    currentUser=[NSKeyedUnarchiver unarchiveObjectWithFile:path.documentPath];
     [self getData];
 }
 
@@ -117,6 +121,7 @@
     if (user.subscribeFlag) {
         [self.attentionBtn setTitle:@"已关注" forState:UIControlStateNormal];
         [self.attentionBtn setBackgroundColor:[Tools getColor:@"dddddd"]];
+        [self.attentionBtn setEnabled:NO];
     }
 }
 
@@ -132,21 +137,17 @@
 #pragma mark - Table view data source
 - (IBAction)attentionBtnClick:(id)sender {
     NSString *url = [NSString stringWithFormat:@"user/%@/listen?token=%@",CPUserId, CPToken];
-    if (user.subscribeFlag) {
-        url = [NSString stringWithFormat:@"user/%@/unlisten?token=%@",CPUserId, CPToken];
-    }
     NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:user.userId,@"targetUserId",nil];
     [self showLoading];
     [ZYNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
         [self disMiss];
         if (CPSuccess) {
             if (user) {
-                if (user.subscribeFlag) {
+                if (!user.subscribeFlag) {
+                    user.subscribeFlag=YES;
                     [self.attentionBtn setTitle:@"已关注" forState:UIControlStateNormal];
                     [self.attentionBtn setBackgroundColor:[Tools getColor:@"dddddd"]];
-                }else{
-                    [self.attentionBtn setTitle:@"关注" forState:UIControlStateNormal];
-                    [self.attentionBtn setBackgroundColor:[Tools getColor:@"fe5969"]];
+                    [self.attentionBtn setEnabled:NO];
                 }
             }
         }else{
@@ -157,6 +158,134 @@
         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil] show];
     }];
 }
+- (IBAction)uploadBtnClick:(id)sender {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择照片" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"相册", nil];
+    [actionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 2) {
+        return;
+    }
+    if (buttonIndex == 0) {
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            
+            UIImagePickerController *pick = [[UIImagePickerController alloc] init];
+            pick.delegate = self;
+            pick.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self presentViewController:pick animated:YES completion:nil];
+        }else{
+            [[[UIAlertView alloc]initWithTitle:@"提示" message:@"相机不可用" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        }
+    }else{
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+            UzysAssetsPickerController *picker = [[UzysAssetsPickerController alloc] init];
+            picker.delegate = self;
+            picker.maximumNumberOfSelectionPhoto = 30-[currentUser.album count];
+            [self presentViewController:picker animated:YES completion:nil];
+        }
+    }
+}
+/**
+ *  照片选择完毕
+ *
+ *  @param picker picker description
+ *  @param info   info description
+ */
+
+#pragma mark - <UZYImagePickerController>
+
+- (void)uzysAssetsPickerController:(UzysAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets
+{
+    NSMutableArray *arr = [NSMutableArray array];
+    [assets enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        ALAsset *representation = obj;
+        
+        UIImage *img = [UIImage imageWithCGImage:representation.defaultRepresentation.fullResolutionImage
+                                           scale:representation.defaultRepresentation.scale
+                                     orientation:(UIImageOrientation)representation.defaultRepresentation.orientation];
+        [arr addObject:img];
+    }];
+    [self addPhoto:arr];
+    //    [SVProgressHUD showWithStatus:@"加载中"];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //        [SVProgressHUD dismiss];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    });
+    
+}
+
+- (void)uzysAssetsPickerControllerDidExceedMaximumNumberOfSelection:(UzysAssetsPickerController *)picker
+{
+    [self showAlert];
+}
+
+- (void)showAlert
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                    message:@"您最多只能上传30张图片"
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+    
+}
+
+- (void)uzysAssetsPickerControllerDidCancel:(UzysAssetsPickerController *)picker
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+/**
+ *  系统的拍照完毕方法
+ */
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *portraitImg = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    [self addPhoto:@[portraitImg]];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    DLog(@"系统的....");
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+/**
+ *  添加图片
+ */
+- (void)addPhoto:(NSArray *)arr
+{
+    NSString *path=[[NSString alloc]initWithFormat:@"user/%@/album/upload?token=%@",CPUserId,CPToken];
+    NSMutableArray *albums=[[NSMutableArray alloc] initWithArray:currentUser.album];
+    CPAlbum *albumModel=[[CPAlbum alloc]init];
+    [self showLoading];
+    for (int i = 0; i < arr.count; i++) {
+        ZYHttpFile *imageFile = [ZYHttpFile fileWithName:@"attach" data:UIImageJPEGRepresentation(arr[i], 0.4) mimeType:@"image/jpeg" filename:@"a1.jpg"];
+        [self showLoading];
+        [ZYNetWorkTool postFileWithUrl:path params:nil files:@[imageFile] success:^(id responseObject) {
+            if (CPSuccess) {
+                albumModel.key=responseObject[@"data"][@"photoKey"];
+                albumModel.url=responseObject[@"data"][@"photoUrl"];
+                [albums insertObject:albumModel atIndex:0];
+                user.album=albums;
+                [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
+                [self.albumsCollectionView reloadData];
+            }else{
+                [self showError:responseObject[@"errmsg"]];
+            }
+        } failure:^(NSError *error) {
+            [self showError:@"照片上传失败"];
+        }];
+    }
+    [self disMiss];
+}
+
+
+
 - (IBAction)taActivityClick:(id)sender {
     [self.navigationController pushViewController:[CPMyDateViewController new] animated:YES];
 }

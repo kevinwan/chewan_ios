@@ -188,6 +188,9 @@
                                             <state key="normal" title="立即上传">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="uploadBtnClick:" destination="bLO-eZ-b4h" eventType="touchUpInside" id="Jbc-8S-DHd"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <animations/>
@@ -252,7 +255,6 @@
                         <outlet property="sexAndAge" destination="Uq8-Qi-NcR" id="Cri-fV-lLO"/>
                         <outlet property="toolbar" destination="LIe-nR-7fD" id="Q9w-II-86B"/>
                         <outlet property="uploadBtn" destination="yEw-TE-TZ0" id="HG7-e5-27N"/>
-                        <outlet property="uploadBtnClick" destination="yEw-TE-TZ0" id="SxU-FT-KJ9"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3kh-tq-Pkq" userLabel="First Responder" sceneMemberID="firstResponder"/>

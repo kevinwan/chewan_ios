@@ -20,7 +20,8 @@
 - (IBAction)attentionBtnClick:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *noImgView;
 @property (weak, nonatomic) IBOutlet UIButton *uploadBtn;
-@property (weak, nonatomic) IBOutlet UIButton *uploadBtnClick;
+- (IBAction)uploadBtnClick:(id)sender;
+
 - (IBAction)taActivityClick:(id)sender;
 @property (weak, nonatomic) IBOutlet UICollectionView *albumsCollectionView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
