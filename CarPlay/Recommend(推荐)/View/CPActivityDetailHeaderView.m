@@ -89,16 +89,17 @@
         self.maleLabel.text = [NSString stringWithFormat:@"%zd / %zd",model.maleNum,model.maleLimit];
         self.femaleLabel.text = [NSString stringWithFormat:@"%zd / %zd",model.femaleNum,model.femaleLimit];
     }
+    self.createTimeLabel.text = model.createTimeStr;
     
     if (model.subsidyPrice) {
+
+        NSMutableAttributedString *priceStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.0f元/人",model.price]];
         
-        NSMutableAttributedString *priceStr = [[NSMutableAttributedString alloc] initWithAttributedString:model.priceText];
-        
-        NSAttributedString *subPrice = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" (现在报名力减%f元)",model.subsidyPrice] attributes: @{NSForegroundColorAttributeName : [Tools getColor:@"fe5967"]}];
+        NSAttributedString *subPrice = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" (现在报名立减%.0f元! )",model.subsidyPrice] attributes: @{NSForegroundColorAttributeName : [Tools getColor:@"fe5967"]}];
         [priceStr appendAttributedString:subPrice];
         self.priceLabel.attributedText = [priceStr copy];
     }else{
-        self.priceLabel.attributedText = model.priceText;
+        self.priceLabel.text = [NSString stringWithFormat:@"%.0f元/人",model.price];
     }
     self.startLabel.text = model.startStr;
     self.endLabel.text = model.endStr;

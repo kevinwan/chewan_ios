@@ -116,6 +116,9 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *marginCons;
 
+/**
+ *  显示message
+ */
 @property (nonatomic, strong) UIView *titleView;
 
 @property (nonatomic, strong) UILabel *titleExtraText;
@@ -202,7 +205,7 @@
     [self.titleView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(@0);
         make.top.equalTo(self.userIconView);
-        make.height.equalTo(@40);
+        make.height.equalTo(@30);
     }];
     
     [self.titleExtraText mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -244,11 +247,11 @@
     }
     if (model.title.length) {
         self.titleLabel.text = model.title;
-        [self.titleLabel sizeToFit];
-        if (self.titleLabel.width > ZYScreenWidth - 150) {
+        CGFloat width = [model.title sizeWithFont:self.titleLabel.font].width + 2;
+        if (width > ZYScreenWidth - 150) {
             self.titleLWCons.constant = ZYScreenWidth - 150;
         }else{
-            self.titleLWCons.constant = self.titleLabel.width;
+            self.titleLWCons.constant = width;
         }
     }else{
         self.titleLabel.text = @"";
@@ -296,12 +299,13 @@
     }else if (model.applyFlag == 2){
         [self setPhoneType:YES];
     }
+    
 }
 
 - (void)setMyDateModel:(CPMyDateModel *)myDateModel
 {
     _myDateModel = myDateModel;
-    
+
     self.marginCons.constant = 0;
     BOOL isHasAlubm;
     if (CPUnLogin) {
@@ -324,11 +328,11 @@
     if (myDateModel.title.length) {
         
         self.titleLabel.attributedText = myDateModel.title;
-        [self.titleLabel sizeToFit];
-        if (self.titleLabel.width > ZYScreenWidth - 150) {
+        CGFloat width = [myDateModel.title.string sizeWithFont:self.titleLabel.font].width + 5;
+        if (width > ZYScreenWidth - 150) {
             self.titleLWCons.constant = ZYScreenWidth - 150;
         }else{
-            self.titleLWCons.constant = self.titleLabel.width;
+            self.titleLWCons.constant = width;
         }
     }else{
         self.titleLabel.text = @"";
@@ -374,6 +378,13 @@
     }else if (myDateModel.status == 2){
         [self setPhoneType:YES];
     }
+    
+    if (myDateModel.message.trimLength) {
+        self.titleView.hidden = NO;
+        self.titleExtraText.text = [NSString stringWithFormat:@"附加消息: %@",myDateModel.message];
+    }else{
+        self.titleView.hidden = YES;
+    }
 
 }
 
@@ -398,11 +409,11 @@
     [self.addressView setTitle:intersterModel.activityDestination[@"street"] forState:UIControlStateNormal];
     if (intersterModel.title.length) {
         self.titleLabel.text = intersterModel.title;
-        [self.titleLabel sizeToFit];
-        if (self.titleLabel.width > ZYScreenWidth - 150) {
+        CGFloat width = [intersterModel.title sizeWithFont:self.titleLabel.font].width + 5;
+        if (width > ZYScreenWidth - 150) {
             self.titleLWCons.constant = ZYScreenWidth - 150;
         }else{
-            self.titleLWCons.constant = self.titleLabel.width;
+            self.titleLWCons.constant = width;
         }
     }else{
         self.titleLabel.text = @"";
