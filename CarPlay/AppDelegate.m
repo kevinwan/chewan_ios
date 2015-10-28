@@ -36,7 +36,7 @@
     [self.window makeKeyAndVisible];
     [ZYNotificationCenter addObserver:self selector:@selector(loginStateChang) name:NOTIFICATION_HASLOGIN object:nil];
     [ZYNotificationCenter addObserver:self selector:@selector(goLogin) name:NOTIFICATION_GOLOGIN object:nil];
-    
+    [ZYNotificationCenter addObserver:self selector:@selector(loginOut) name:NOTIFICATION_LOGINOUT object:nil];
     [SVProgressHUD setBackgroundColor:ZYColor(0, 0, 0, 0.8)];
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
     // 设置点击空白区域退出键盘
@@ -155,6 +155,11 @@
     CPLoginViewController *login = [UIStoryboard storyboardWithName:@"CPLoginViewController" bundle:nil].instantiateInitialViewController;
     CPNavigationController *nav=[[CPNavigationController alloc]initWithRootViewController:login];
     self.window.rootViewController = nav;
+    [self.window makeKeyAndVisible];
+}
+-(void)loginOut{
+    self.window.rootViewController = _tabVc;
+    [_tabVc setSelectedIndex:0];
     [self.window makeKeyAndVisible];
 }
 

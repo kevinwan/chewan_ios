@@ -65,14 +65,6 @@ static NSString *ID = @"cell";
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    if (self.datas.count == 0) {
-        [self loadDataWithHeader:nil];
-    }
-}
-
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];

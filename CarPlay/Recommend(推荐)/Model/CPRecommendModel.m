@@ -7,6 +7,7 @@
 //
 
 #import "CPRecommendModel.h"
+#import "NSDate+Category.h"
 
 @implementation CPRecommendModel
 
@@ -38,7 +39,7 @@
 - (void)setCreateTime:(long long)createTime
 {
     _createTime = createTime;
-    
+    _createTimeStr = [NSDate formattedTimeFromTimeInterval:createTime / 1000];
 }
 
 - (void)setStart:(long long)start
@@ -103,7 +104,6 @@
 
 - (void)setTitleAttrbuteText
 {
-//    _title = @"离开的时间风口浪尖地方撒刻录机啊但是拉萨的会计法离开的撒娇了东风科技啊是阿双方的骄傲是发动机拉萨到家里的发生时空裂缝的家里大事件两款发动机阿里山的发生地方";
     NSString *city = _destination[@"city"];
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@" [%@] ",city] attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"fe5966"]}];
     NSAttributedString *title = [[NSAttributedString alloc] initWithString:_title attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"333333"]}];

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="K4n-CO-GbR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="K4n-CO-GbR">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
@@ -19,9 +19,11 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="takeALookBg" translatesAutoresizingMaskIntoConstraints="NO" id="AGK-Fq-8lS">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <animations/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fEO-oV-5vo">
                                 <rect key="frame" x="10" y="29" width="27" height="27"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="27" id="d4g-lR-UYM"/>
                                     <constraint firstAttribute="height" constant="27" id="ttt-nz-Mrw"/>
@@ -33,6 +35,7 @@
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6wm-Fo-flS" customClass="CPNPSButton">
                                 <rect key="frame" x="53" y="55" width="61" height="61"/>
+                                <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="61" id="X5Z-wN-uc5"/>
@@ -47,6 +50,7 @@
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QQX-SQ-N2t" customClass="CPNPSButton">
                                 <rect key="frame" x="180" y="79" width="61" height="61"/>
+                                <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="61" id="4KM-F9-HWH"/>
@@ -61,6 +65,7 @@
                             </button>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wsn-0M-9JI" customClass="CPNPSButton">
                                 <rect key="frame" x="80" y="135" width="64" height="64"/>
+                                <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="Fr6-Bj-1pK"/>
@@ -75,6 +80,7 @@
                             </button>
                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rK9-1m-GhM" customClass="CPNPSButton">
                                 <rect key="frame" x="231" y="168" width="71" height="71"/>
+                                <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="71" id="hIi-nV-b04"/>
@@ -89,6 +95,7 @@
                             </button>
                             <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ik7-BA-jV0" customClass="CPNPSButton">
                                 <rect key="frame" x="27" y="226" width="61" height="61"/>
+                                <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="61" id="5xt-YE-abX"/>
@@ -103,6 +110,7 @@
                             </button>
                             <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="90Z-Vh-gEa" customClass="CPNPSButton">
                                 <rect key="frame" x="140" y="216" width="61" height="61"/>
+                                <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="61" id="c9l-ur-BL7"/>
@@ -117,6 +125,7 @@
                             </button>
                             <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tg5-vo-Guz" customClass="CPNPSButton">
                                 <rect key="frame" x="212" y="281" width="61" height="61"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="61" id="Ejz-U9-wUJ"/>
                                     <constraint firstAttribute="height" constant="61" id="WWa-5E-g2m"/>
@@ -130,6 +139,7 @@
                             </button>
                             <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pgn-EV-2PZ" customClass="CPNPSButton">
                                 <rect key="frame" x="32" y="333" width="61" height="61"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="61" id="4jI-Bb-kLY"/>
                                     <constraint firstAttribute="width" constant="61" id="Qxs-Jg-Qmk"/>
@@ -143,6 +153,7 @@
                             </button>
                             <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WRD-0Z-o2R" customClass="CPNPSButton">
                                 <rect key="frame" x="125" y="356" width="71" height="71"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="71" id="SIx-ob-dOi"/>
                                     <constraint firstAttribute="height" constant="71" id="bbc-gY-tbD"/>
@@ -156,6 +167,7 @@
                             </button>
                             <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="odi-OX-92v" customClass="CPNPSButton">
                                 <rect key="frame" x="230" y="369" width="64" height="64"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="czl-xa-5k3"/>
                                     <constraint firstAttribute="width" constant="64" id="lJW-St-a4C"/>
@@ -168,6 +180,7 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="fEO-oV-5vo" firstAttribute="top" secondItem="QOC-bI-2lz" secondAttribute="bottom" constant="9" id="3Fj-n4-0Eu"/>

@@ -75,6 +75,7 @@ static NSString *ID = @"cell";
             totalCount = [responseObject[@"data"][@"count"] intValue];
             [startUp setFireDate:[NSDate distantPast]];
             [timer setFireDate:[NSDate distantPast]];
+            startUpFrom=0;
         }
     } failure:^(NSError *error) {
         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show];
