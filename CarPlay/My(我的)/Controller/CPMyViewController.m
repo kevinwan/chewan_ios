@@ -86,11 +86,15 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 1) {
-       CPCarOwnersCertificationController *CPCarOwnersCertification = [UIStoryboard storyboardWithName:@"CPCarOwnersCertification" bundle:nil].instantiateInitialViewController;
-        [self.navigationController pushViewController:CPCarOwnersCertification animated:YES];
+        if ([user.licenseAuthStatus isEqualToString:@"认证中"]) {
+            CPCarOwnersCertificationController *CPCarOwnersCertification = [UIStoryboard storyboardWithName:@"CPCarOwnersCertification" bundle:nil].instantiateInitialViewController;
+            [self.navigationController pushViewController:CPCarOwnersCertification animated:YES];
+        }
     }else {
-        CPAvatarAuthenticationController *CPAvatarAuthenticationController = [UIStoryboard storyboardWithName:@"CPAvatarAuthenticationController" bundle:nil].instantiateInitialViewController;
-        [self.navigationController pushViewController:CPAvatarAuthenticationController animated:YES];
+        if ([user.photoAuthStatus isEqualToString:@"认证中"]) {
+            CPAvatarAuthenticationController *CPAvatarAuthenticationController = [UIStoryboard storyboardWithName:@"CPAvatarAuthenticationController" bundle:nil].instantiateInitialViewController;
+            [self.navigationController pushViewController:CPAvatarAuthenticationController animated:YES];
+        }
     }
 }
 #pragma privateMethod

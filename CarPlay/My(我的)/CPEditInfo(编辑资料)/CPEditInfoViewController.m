@@ -122,8 +122,8 @@
     editedImage=[info objectForKey:UIImagePickerControllerEditedImage];
     [picker dismissViewControllerAnimated:YES completion:^{
         NSData *data=UIImageJPEGRepresentation(editedImage, 0.4);
+        [[SDImageCache sharedImageCache] removeImageForKey:user.avatar];
         [self upLoadImageWithBase64Encodeing:data];
-        
     }];
 }
 
