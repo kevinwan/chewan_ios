@@ -50,9 +50,7 @@ static NSString *ID = @"cell";
     [super viewDidLoad];
     countdownLabel=[UILabel new];
     countLabel=[UILabel new];
-    timeout=60;
-    totalCount=0;
-    startUpFrom=0;
+    
     if (CPNoNetWork) {
         [ZYProgressView showMessage:@"网络连接失败,请检查网络"];
         return;
@@ -75,7 +73,11 @@ static NSString *ID = @"cell";
             totalCount = [responseObject[@"data"][@"count"] intValue];
             [startUp setFireDate:[NSDate distantPast]];
             [timer setFireDate:[NSDate distantPast]];
+            timeout=60;
+            totalCount=0;
             startUpFrom=0;
+            startUpFrom=0;
+            [self.loadingView setHidden:NO];
         }
     } failure:^(NSError *error) {
         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show];
@@ -468,7 +470,7 @@ static NSString *ID = @"cell";
     if (timeout==0) {
         [timer setFireDate:[NSDate distantFuture]];
         [self loadDataWithHeader:nil];
-        [self.loadingView removeFromSuperview];
+        [self.loadingView setHidden:YES];
         [self.tableView setHidden:NO];
         [self.navigationController setNavigationBarHidden:NO];
     }
@@ -495,7 +497,7 @@ static NSString *ID = @"cell";
             [startUp setFireDate:[NSDate distantFuture]];
             [timer setFireDate:[NSDate distantFuture]];
             [self loadDataWithHeader:nil];
-            [self.loadingView removeFromSuperview];
+            [self.loadingView setHidden:YES];
             [self.tableView setHidden:NO];
             [self.navigationController setNavigationBarHidden:NO];
         }

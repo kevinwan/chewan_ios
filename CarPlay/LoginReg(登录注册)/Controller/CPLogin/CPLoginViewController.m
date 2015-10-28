@@ -79,6 +79,7 @@
                                 // 设置自动登录
                                 [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
                                 [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
+                                [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
 
                                 if (responseObject[@"data"][@"userId"]) {
                                     [ZYUserDefaults setObject:responseObject[@"data"][@"userId"] forKey:UserId];

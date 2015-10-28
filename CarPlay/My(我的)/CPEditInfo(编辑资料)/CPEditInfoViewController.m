@@ -11,8 +11,9 @@
 #import "CPCarOwnersCertificationController.h"
 #import "CPUser.h"
 #import "CPEditUsername.h"
+#import "ZHPickView.h"
 
-@interface CPEditInfoViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate>
+@interface CPEditInfoViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,ZHPickViewDelegate>
 {
     UIImage *editedImage;
     CPUser *user;
@@ -62,7 +63,15 @@
         }
             break;
         case 4:
-            
+//        {
+//            NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+//            NSString *str = @"1990年01月01号";
+//            fmt.dateFormat = @"yyyy年MM月dd号";
+//            NSDate *defualtDate = [fmt dateFromString:str];
+//            _pickview=[[ZHPickView alloc] initDatePickWithDate:defualtDate datePickerMode:UIDatePickerModeDate isHaveNavControler:NO];
+//            _pickview.delegate=self;
+//            [_pickview show];
+//        }
             break;
         case 5:
         {
@@ -145,5 +154,35 @@
         [self disMiss];
     }];
 }
+
+#pragma mark ZhpickVIewDelegate
+//
+//-(void)toobarDonBtnHaveClick:(ZHPickView *)pickView resultString:(NSString *)resultString{
+//    
+//    NSDateFormatter *dateFormtter=[[NSDateFormatter alloc] init];
+//    [dateFormtter setDateFormat:@"yyyy-MM-dd"];
+//    NSDate *date = [dateFormtter dateFromString:resultString];
+//    user.brithDay=date.timeIntervalSince1970 * 1000;
+//    NSString *urlPath=[NSString stringWithFormat:@"user/%@/info?token=%@",CPUserId,CPToken];
+//    NSString *savePath=[[NSString alloc]initWithFormat:@"%@.info",[Tools getUserId]];
+//    NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:@(user.brithDay),@"birthday", nil];
+//    [self showLoading];
+//    [ZYNetWorkTool postJsonWithUrl:urlPath params:params success:^(id responseObject) {
+//        [self disMiss];
+//        if (CPSuccess) {
+//            NSCalendar *calendar = [NSCalendar currentCalendar];
+//            NSDateComponents *cmps = [calendar components:NSCalendarUnitYear fromDate:date toDate:[NSDate date] options:0];
+//            user.age=[cmps year];
+//            [NSKeyedArchiver archiveRootObject:user toFile:savePath.documentPath];
+//            [self.age setText:[NSString stringWithFormat:@"%ld",user.age]];
+//        }else{
+//            [self showInfo:@"年龄修改失败，请稍候再试"];
+//        }
+//        
+//    } failed:^(NSError *error) {
+//        [self disMiss];
+//        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"保存资料失败，请检查您的手机网络!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+//    }];
+//}
 
 @end

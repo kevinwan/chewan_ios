@@ -159,7 +159,8 @@
     [super viewDidLoad];
     [self registerBecomeActive];
     //获取头像和昵称
-    self.extDic = [NSDictionary dictionaryWithObjectsAndKeys:[ZYUserDefaults valueForKey:kUserNickName],kUserNickName,[ZYUserDefaults valueForKey:kUserHeadUrl],kUserHeadUrl, nil];
+    self.extDic = [NSDictionary dictionaryWithObjectsAndKeys:[ZYUserDefaults valueForKey:kUserNickName],kUserNickName,[ZYUserDefaults valueForKey:kUserHeadUrl],kUserHeadUrl,[ZYUserDefaults objectForKey:kUserAge],kUserAge,[ZYUserDefaults objectForKey:KUserSex],KUserSex, nil];
+
     // Do any additional setup after loading the view.
     self.view.backgroundColor = RGBACOLOR(248, 248, 248, 1);
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {

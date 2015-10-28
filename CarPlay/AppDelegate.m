@@ -13,7 +13,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "CPLoginViewController.h"
 #import "CPNavigationController.h"
-
+#import "ChatListViewController.h"
 @interface AppDelegate ()<UITabBarControllerDelegate,CLLocationManagerDelegate,UIAlertViewDelegate>
 
 /**
@@ -26,7 +26,7 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+
     _tabVc = [CPTabBarController new];
     
     _tabVc.delegate = self;
@@ -58,6 +58,14 @@
 {
     UINavigationController *nav = (UINavigationController *)viewController;
     if ([nav.childViewControllers.firstObject isKindOfClass:[CPMyViewController class]]) {
+        if (CPIsLogin) {
+            return YES;
+        }else{
+            [[[UIAlertView alloc]initWithTitle:@"提示" message:@"您还没有登录是否登录？" delegate:self cancelButtonTitle:@"在想想" otherButtonTitles:@"去登录", nil] show];
+            return NO;
+        }
+    }else if ([nav.childViewControllers.firstObject isKindOfClass:[ChatListViewController class]])
+    {
         if (CPIsLogin) {
             return YES;
         }else{
@@ -120,6 +128,9 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
 [[EaseMob sharedInstance] applicationDidEnterBackground:application];
+    
+
+
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -132,6 +143,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     [[EaseMob sharedInstance] applicationWillTerminate:application];
+
 }
 
 -(void)loginStateChang{

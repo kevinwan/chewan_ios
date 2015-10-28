@@ -60,6 +60,7 @@
     [self setupUnreadMessageCount];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callOutWithChatter:) name:@"callOutWithChatter" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callControllerClose:) name:@"callControllerClose" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ClearUnreadMessageCount) name:@"DID_LOG_OUT_SUCCESS" object:nil];
 }
 
 
@@ -136,6 +137,12 @@
     
 //    UIApplication *application = [UIApplication sharedApplication];
 //    [application setApplicationIconBadgeNumber:unreadCount];
+}
+//当用户退出时，去掉动态的未读消息提示
+- (void)ClearUnreadMessageCount
+{
+    [self.tabBar hideBadgeOnItemIndex:3];
+
 }
 #pragma mark - IChatManagerDelegate 消息变化
 
@@ -348,5 +355,6 @@
 - (void)dealloc
 {
     [self unregisterNotifications];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end

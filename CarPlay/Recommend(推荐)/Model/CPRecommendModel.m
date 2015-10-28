@@ -21,6 +21,14 @@
     return @{@"members" : [CPPartMember class]};
 }
 
+- (NSString *)desc
+{
+    if (_desc.trimLength) {
+        return _desc;
+    }
+    return @"";
+}
+
 - (void)setCovers:(NSArray *)covers
 {
     if ([covers isKindOfClass:[NSArray class]]) {

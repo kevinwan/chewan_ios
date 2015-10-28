@@ -144,7 +144,7 @@
     // 切换按钮颜色
     [self changeColor:btn.tag];
     corentBtnTag=btn.tag;
-    [self.tableView reloadData];
+    [self setupMyCare];
 }
 
 // 切换颜色
@@ -227,7 +227,7 @@
     switch (corentBtnTag) {
         case 10:
             careUser=_eachSubscribe[sender.tag];
-            url = [NSString stringWithFormat:@"user/%@/listen?token=%@",CPUserId, CPToken];
+            url = [NSString stringWithFormat:@"user/%@/unlisten?token=%@",CPUserId, CPToken];
             break;
         case 20:
             careUser=_mySubscribe[sender.tag];
@@ -246,8 +246,6 @@
     [ZYNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
         [self disMiss];
         if (CPSuccess) {
-//            NSIndexPath *indexPath=[NSIndexPath indexPathForRow:sender.tag inSection:0];
-//            [_tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
             switch (corentBtnTag) {
                 case 10:
                     [_eachSubscribe removeObjectAtIndex:sender.tag];
