@@ -117,6 +117,7 @@
     }
     
     [mgr POST:url parameters:jsonDict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"postJson%@ %@==",operation.request.URL.absoluteString,operation.request.allHTTPHeaderFields);
         if ([responseObject[@"result"] intValue] && [responseObject[@"errmsg"] contains:@"口令已过期"]) {
             [self reLoginWithSuccess:^{
                 // 请求类型为json

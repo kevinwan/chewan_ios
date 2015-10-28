@@ -62,12 +62,13 @@
     sender.selected = !sender.isSelected;
 }
 - (IBAction)sendComeOnClick:(id)sender {
-    NSString *url = [NSString stringWithFormat:@"official/activity/%@/invite",self.activityId];
+    
+    NSString *url = [NSString stringWithFormat:@"official/activity/%@/invite?userId=%@&token=%@",self.activityId,CPUserId,CPToken];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"invitedUserId"] = self.targetUserId;
     params[@"transfer"] = @(!self.transfer.isSelected);
     params[@"message"] = self.textField.text;
-    [CPNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
+    [ZYNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
         if (CPSuccess) {
             [SVProgressHUD showInfoWithStatus:@"邀请已发出"];
             [UIView animateWithDuration:0.25 animations:^{
@@ -79,7 +80,7 @@
             [SVProgressHUD showInfoWithStatus:CPErrorMsg];
         }
     } failed:^(NSError *error) {
-        
+        NSLog(@"%@",error);
         [SVProgressHUD showInfoWithStatus:@"邀请失败"];
     }];
 }
