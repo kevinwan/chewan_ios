@@ -13,6 +13,7 @@
 #import "CPCollectionViewCell.h"
 #import "CPMyDateViewController.h"
 #import "UzysAssetsPickerController.h"
+#import "CPHisDateViewController.h"
 
 @interface CPTaInfo ()<UIAlertViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate, UzysAssetsPickerControllerDelegate>
 {
@@ -75,6 +76,7 @@
     if (_userId) {
         if(CPIsLogin){
             NSString *path=[[NSString alloc]initWithFormat:@"user/%@/info?viewUser=%@&token=%@",_userId,[Tools getUserId],[Tools getToken]];
+            [self showLoading];
             [ZYNetWorkTool getWithUrl:path params:nil success:^(id responseObject) {
                 if (CPSuccess) {
                     user = [CPUser objectWithKeyValues:responseObject[@"data"]];
@@ -83,7 +85,9 @@
                     NSString *errmsg =[responseObject objectForKey:@"errmsg"];
                     [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                 }
+                [self disMiss];
             } failure:^(NSError *error) {
+                [self disMiss];
                 [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
             }];
         }else{
@@ -287,7 +291,9 @@
 
 
 - (IBAction)taActivityClick:(id)sender {
-    [self.navigationController pushViewController:[CPMyDateViewController new] animated:YES];
+    CPHisDateViewController *taInfoVC=[CPHisDateViewController new];
+    taInfoVC.targetUser=user;
+    [self.navigationController pushViewController:[CPHisDateViewController new] animated:YES];
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
