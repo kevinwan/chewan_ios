@@ -99,7 +99,7 @@
         
         [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES completion:^(NSDictionary *info, EMError *error) {
             if (error) {
-                [self showError:error.description];
+                [self showInfo:@"退出失败，请稍后重试"];
             }
             else{
                 //注销成功之后清理useid和token

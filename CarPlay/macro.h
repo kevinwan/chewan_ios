@@ -59,6 +59,7 @@
 #define NOTIFICATION_LOGINCHANGE @"loginStatusChange"
 #define NOTIFICATION_ROOTCONTROLLERCHANGETOTAB @"rootControllerChangeToTab"
 #define NOTIFICATION_HASLOGIN @"hasLogin"
+#define NOTIFICATION_LOGINOUT @"loginOut"
 #define NOTIFICATION_GOLOGIN @"goLogin"
 #define NOTIFICATION_LOGINSUCCESS @"loginSuccess"
 #define THIRDPARTYLOGINACCOUNT @"3partyLoginAccount"

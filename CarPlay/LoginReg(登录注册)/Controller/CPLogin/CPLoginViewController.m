@@ -160,4 +160,7 @@
             break;
     }
 }
+- (IBAction)close:(id)sender {
+    [ZYNotificationCenter postNotificationName:NOTIFICATION_LOGINOUT object:nil];
+}
 @end
