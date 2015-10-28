@@ -24,4 +24,6 @@
 - (IBAction)womanBtnClick:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *truePortraitLabel;
 @property (weak, nonatomic) IBOutlet UILabel *promptLabel;
+@property (weak, nonatomic) IBOutlet UIView *headView;
+
 @end

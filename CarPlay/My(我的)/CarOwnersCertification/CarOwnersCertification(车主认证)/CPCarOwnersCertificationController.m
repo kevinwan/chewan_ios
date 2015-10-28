@@ -125,7 +125,9 @@
         if (lastDataUser.drivingLicenseId) {
             if (lastDataUser.driverLicenseId) {
                 NSString *urlPath=[NSString stringWithFormat:@"user/%@/license/authentication?token=%@",CPUserId,CPToken];
-                NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:lastDataUser.car.brand,@"brand",lastDataUser.car.model,@"model",lastDataUser.car.logo,@"logo",lastDataUser.drivingLicenseId,@"drivingLicense",lastDataUser.driverLicenseId,@"driverLicense", nil];
+                NSArray *array = [lastDataUser.car.logo componentsSeparatedByString:@"/"]; //从字符A中分隔成2个元素的数组
+                
+                NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:lastDataUser.car.brand,@"brand",lastDataUser.car.model,@"model",[array lastObject],@"logo",lastDataUser.drivingLicenseId,@"drivingLicense",lastDataUser.driverLicenseId,@"driverLicense", nil];
                 [self showLoading];
                 [ZYNetWorkTool postJsonWithUrl:urlPath params:params success:^(id responseObject) {
                     if (CPSuccess) {

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZHPickView.h"
 
 @interface CPEditInfoViewController : UITableViewController
 @property (weak, nonatomic) IBOutlet UIImageView *avatar;
@@ -15,4 +16,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *age;
 @property (weak, nonatomic) IBOutlet UILabel *photoAuthStatus;
 @property (weak, nonatomic) IBOutlet UILabel *licenseAuthStatus;
+@property(nonatomic,strong)ZHPickView *pickview;
 @end

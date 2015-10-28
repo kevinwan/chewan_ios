@@ -6,7 +6,7 @@
 //  Copyright © 2015年 chewan. All rights reserved.
 //
 
-#import "CPDynamicNearViewController.h"
+#import "CPHisDateViewController.h"
 #import "CPMySwitch.h"
 #import "CPSelectView.h"
 #import "CPNearParams.h"
@@ -21,7 +21,7 @@
 #import "CPMyInterestViewController.h"
 #import "ZYWaterflowLayout.h"
 
-@interface CPDynamicNearViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate,ZYWaterflowLayoutDelegate>
+@interface CPHisDateViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate,ZYWaterflowLayoutDelegate>
 @property (nonatomic, strong) UICollectionView *tableView;
 @property (nonatomic, strong) NSMutableArray<CPActivityModel *> *datas;
 @property (nonatomic, strong) UIView *tipView;
@@ -33,8 +33,8 @@
 @property (nonatomic, weak)   AAPullToRefresh *footerView;
 @end
 
-static NSString *ID = @"cell";
-@implementation CPDynamicNearViewController
+static NSString *ID = @"HisDateCell";
+@implementation CPHisDateViewController
 
 - (void)viewDidLoad
 {
@@ -47,18 +47,10 @@ static NSString *ID = @"cell";
     }
     
     self.offset = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250;
-    self.title = @"附近";
+    self.title = @"TA的活动";
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.tableView];
     [ZYLoadingView showLoadingView];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    if (self.datas.count == 0) {
-        [self loadDataWithHeader:nil];
-    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -111,27 +103,29 @@ static NSString *ID = @"cell";
  */
 - (void)loadDataWithHeader:(AAPullToRefresh *)refresh
 {
-//    http://cwapi.gongpingjia.com/v2/activity/pushInfo?userId=846de312-306c-4916-91c1-a5e69b158014&token=846de312-306c-4916-91c1-a5e69b158014
-    NSString *url = [NSString stringWithFormat:@"activity/pushInfo?userId=%@&token=%@",CPUserId,CPToken];
-    [ZYNetWorkTool getWithUrl:url params:nil success:^(id responseObject) {
-        
+    //    http://cwapi.gongpingjia.com/v2/activity/pushInfo?userId=846de312-306c-4916-91c1-a5e69b158014&token=846de312-306c-4916-91c1-a5e69b158014
+    NSString *url = [NSString stringWithFormat:@"user/%@/activity/list?userId=%@&token=%@",self.targetUser.userId,CPUserId,CPToken];
+    [ZYNetWorkTool getWithUrl:url params:@{@"ignore" : @(self.ignore)} success:^(id responseObject) {
+        DLog(@"%@",responseObject);
         [self setUpRefresh];
         [refresh stopIndicatorAnimation];
         if (CPSuccess) {
             if (self.ignore == 0) {
                 [self.datas removeAllObjects];
             }
+
             
-            NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
-            [self.datas addObjectsFromArray:arr];
             
-            if (self.datas.count == 0) {
-                self.noDataView.netWorkFailtype = NO;
-                self.noDataView.hidden = NO;
-            }else{
-                self.noDataView.hidden = YES;
-            }
-            [self.tableView reloadData];
+//            NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
+//            [self.datas addObjectsFromArray:arr];
+//            
+//            if (self.datas.count == 0) {
+//                self.noDataView.netWorkFailtype = NO;
+//                self.noDataView.hidden = NO;
+//            }else{
+//                self.noDataView.hidden = YES;
+//            }
+//            [self.tableView reloadData];
         }else{
             [self showInfo:CPErrorMsg];
         }

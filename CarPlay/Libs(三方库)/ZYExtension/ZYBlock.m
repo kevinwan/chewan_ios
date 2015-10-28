@@ -11,9 +11,19 @@
 void ZYAsyncThead(dispatch_block_t block)
 {
     dispatch_async(dispatch_get_global_queue(0, 0),block);    
-};
+}
 
-void ZYMainThread(dispatch_block_t block)
+void ZYMainThead(dispatch_block_t block)
 {
     dispatch_async(dispatch_get_main_queue(), block);
+}
+
+void ZYMainOperation(ZYVoidBlock block)
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:block];
+}
+
+void ZYAsyncOperation(ZYVoidBlock block)
+{
+    [[[NSOperationQueue alloc] init] addOperationWithBlock:block];
 }

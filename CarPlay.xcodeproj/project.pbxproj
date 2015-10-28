@@ -463,6 +463,7 @@
 		E359EDBD1BCF75C20004B17D /* ZYImageVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = E359EDBC1BCF75C20004B17D /* ZYImageVIew.m */; };
 		E3606F0D1BC76FF100797968 /* CPRecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */; };
 		E3606F121BC78C7300797968 /* CPBaseViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F111BC78C7300797968 /* CPBaseViewCell.xib */; };
+		E365747F1BE0BD3000BA7E63 /* CPHisDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E365747E1BE0BD3000BA7E63 /* CPHisDateViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E36945FA1BD9E3B000ABF3F5 /* CPMyDateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E36945F91BD9E3B000ABF3F5 /* CPMyDateModel.m */; };
 		E369E2B11BCB952E000A12B5 /* CPSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E369E2B01BCB952E000A12B5 /* CPSelectView.xib */; };
 		E369E2B41BCB985A000A12B5 /* CPSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E369E2B31BCB985A000A12B5 /* CPSelectButton.m */; };
@@ -1300,6 +1301,8 @@
 		E359EDBC1BCF75C20004B17D /* ZYImageVIew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYImageVIew.m; sourceTree = "<group>"; };
 		E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPRecommendCell.xib; sourceTree = "<group>"; };
 		E3606F111BC78C7300797968 /* CPBaseViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPBaseViewCell.xib; sourceTree = "<group>"; };
+		E365747D1BE0BD3000BA7E63 /* CPHisDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHisDateViewController.h; sourceTree = "<group>"; };
+		E365747E1BE0BD3000BA7E63 /* CPHisDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHisDateViewController.m; sourceTree = "<group>"; };
 		E36945F81BD9E3B000ABF3F5 /* CPMyDateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyDateModel.h; sourceTree = "<group>"; };
 		E36945F91BD9E3B000ABF3F5 /* CPMyDateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyDateModel.m; sourceTree = "<group>"; };
 		E369E2B01BCB952E000A12B5 /* CPSelectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPSelectView.xib; sourceTree = "<group>"; };
@@ -3410,6 +3413,8 @@
 				6B153EFB1BB5692500560935 /* CPMyViewController.storyboard */,
 				E31CCEF71BDB53A500386F70 /* CPMyInterestViewController.h */,
 				E31CCEF81BDB53A500386F70 /* CPMyInterestViewController.m */,
+				E365747D1BE0BD3000BA7E63 /* CPHisDateViewController.h */,
+				E365747E1BE0BD3000BA7E63 /* CPHisDateViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -4513,6 +4518,7 @@
 				E39627C11BB54D91005E0CF2 /* MultiplePulsingHaloLayer.m in Sources */,
 				6D2ABFEB1BCE582100201A8E /* ChineseToPinyin.m in Sources */,
 				E34A8D4C1BDE51C8002CBBA7 /* CPNoDataTipView.m in Sources */,
+				E365747F1BE0BD3000BA7E63 /* CPHisDateViewController.m in Sources */,
 				6D2ABFAC1BCE582100201A8E /* PSTCollectionViewCell.m in Sources */,
 				E3A4718C1BB3A85300973197 /* ZYChildUserDefaults.m in Sources */,
 				6D2ABFD41BCE582100201A8E /* EMChatImageBubbleView.m in Sources */,

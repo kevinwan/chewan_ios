@@ -27,6 +27,7 @@
 @property (nonatomic, assign) CGFloat offset;
 @property (nonatomic, strong) CPNearParams *params;
 @property (nonatomic, assign) BOOL isHasRefreshHeader;
+@property (nonatomic, assign) BOOL isLoginSuccess;
 @property (nonatomic, strong) CPNoDataTipView *noDataView;
 @property (nonatomic, weak)   AAPullToRefresh *headerView;
 @property (nonatomic, weak)   AAPullToRefresh *footerView;
@@ -51,17 +52,27 @@ static NSString *ID = @"cell";
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"筛选" target:self action:@selector(filter)];
     [self.view addSubview:self.tableView];
     [self tipView];
+    
+    [[ZYNotificationCenter rac_addObserverForName:NOTIFICATION_LOGINSUCCESS object:nil] subscribeNext:^(NSNotification *notify) {
+        
+        BOOL loginSuccess = [notify.userInfo[NOTIFICATION_LOGINSUCCESS] boolValue];
+        self.isLoginSuccess = loginSuccess;
+        if (loginSuccess) {
+            [self loadDataWithHeader:nil];
+        }
+    }];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     [ZYLoadingView showLoadingView];
     if (CPUnLogin) {
         [self loadDataWithHeader:nil];
     }else{
-        [[ZYNotificationCenter rac_addObserverForName:NOTIFICATION_LOGINSUCCESS object:nil] subscribeNext:^(NSNotification *notify) {
-            
-            BOOL loginSuccess = [notify.userInfo[NOTIFICATION_LOGINSUCCESS] boolValue];
-            if (loginSuccess) {
-                [self loadDataWithHeader:nil];
-            }
-        }];
+        if (self.isLoginSuccess) {
+            [self loadDataWithHeader:nil];
+        }
     }
 }
 
@@ -79,7 +90,7 @@ static NSString *ID = @"cell";
     ZYWeakSelf
     self.headerView = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionTop actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
-        ZYMainThread(^{
+        ZYMainOperation(^{
             
             [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, -44 - self.tableView.contentInsetTop) animated:YES];
         });
@@ -90,7 +101,7 @@ static NSString *ID = @"cell";
     // bottom
     self.footerView = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionBottom actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
-        ZYMainThread(^{
+        ZYMainOperation(^{
             
             [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, self.tableView.contentSizeHeight - self.tableView.height + 44 + self.tableView.contentInsetTop) animated:YES];
         });
@@ -223,7 +234,7 @@ static NSString *ID = @"cell";
             }
             
         }
-        ZYMainThread(^{
+        ZYMainOperation(^{
             [self.tableView reloadItemsAtIndexPaths:indexPaths];
         });
         
