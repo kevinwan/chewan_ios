@@ -25,5 +25,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *photoAuthStatus;
 @property (weak, nonatomic) IBOutlet UILabel *licenseAuthStatus;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
-
+@property (weak, nonatomic) IBOutlet UIImageView *arrowView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightJuli;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightJuli1;
+@property (weak, nonatomic) IBOutlet UIImageView *arrowView1;
 @end

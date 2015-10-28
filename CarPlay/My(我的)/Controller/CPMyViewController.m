@@ -85,13 +85,14 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == 1) {
-        if ([user.licenseAuthStatus isEqualToString:@"认证中"]) {
+        if ([user.licenseAuthStatus isEqualToString:@"未认证"]) {
             CPCarOwnersCertificationController *CPCarOwnersCertification = [UIStoryboard storyboardWithName:@"CPCarOwnersCertification" bundle:nil].instantiateInitialViewController;
             [self.navigationController pushViewController:CPCarOwnersCertification animated:YES];
         }
     }else {
-        if ([user.photoAuthStatus isEqualToString:@"认证中"]) {
+        if ([user.photoAuthStatus isEqualToString:@"未认证"]) {
             CPAvatarAuthenticationController *CPAvatarAuthenticationController = [UIStoryboard storyboardWithName:@"CPAvatarAuthenticationController" bundle:nil].instantiateInitialViewController;
             [self.navigationController pushViewController:CPAvatarAuthenticationController animated:YES];
         }
@@ -145,6 +146,16 @@
     [self.albumsCollectionView reloadData];
     self.photoAuthStatus.text=user.photoAuthStatus;
     self.licenseAuthStatus.text=user.licenseAuthStatus;
+    if (![user.photoAuthStatus isEqualToString:@"未认证"]) {
+        [self.arrowView setHidden:YES];
+        self.rightJuli.constant=-8.0;
+    }
+    
+    if (![user.licenseAuthStatus isEqualToString:@"未认证"]) {
+        [self.arrowView1 setHidden:YES];
+        self.rightJuli1.constant=-8.0;
+    }
+    
     if (user.completion<100) {
        self.completionLabel.text=[NSString stringWithFormat:@"资料完成度%lu%%,越高越吸引人",(unsigned long)user.completion];
     }else{
