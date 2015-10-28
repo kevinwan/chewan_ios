@@ -23,8 +23,15 @@
     self.navigationItem.title=@"个人信息";
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"完成" target:self action:@selector(finish)];
     self.tableView.tableFooterView=[[UIView alloc]initWithFrame:CGRectZero];
+    
     self.view.backgroundColor=[Tools getColor:@"efefef"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+//    [self.headView setHeight:230.0f];
+//    [self.tableView.tableHeaderView setHeight:230.0f];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,10 +61,16 @@
     NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
     fmt.dateFormat = @"yyyy年MM月dd日";
 //    NSDate *brithDay=[[NSDate alloc]initWithTimeIntervalSinceNow:[resultString doubleValue]];
-//    NSString * dateToString = [fmt stringFromDate:resultString];
-//    self.brithDay.text=dateToString;
+    
 //    long brith=[resultString longLongValue]*1000;
 //    _user.brithDay=brith;
+    
+    NSDateFormatter *dateFormtter=[[NSDateFormatter alloc] init];
+    [dateFormtter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *date = [dateFormtter dateFromString:resultString];
+    _user.brithDay=date.timeIntervalSince1970 * 1000;
+    NSString * dateToString = [fmt stringFromDate:date];
+    self.brithDay.text=dateToString;
 }
 
 - (void)finish{
@@ -71,13 +84,39 @@
                     
                     [ZYNetWorkTool postJsonWithUrl:@"user/register" params:paras success:^(id responseObject) {
                         if (CPSuccess) {
-                            if (responseObject[@"data"][@"userId"]) {
-                                [ZYUserDefaults setObject:responseObject[@"data"][@"userId"] forKey:UserId];
-                            }
-                            if (responseObject[@"data"][@"token"]) {
-                                [ZYUserDefaults setObject:responseObject[@"data"][@"token"] forKey:Token];
-                            }
-                            [ZYNotificationCenter postNotificationName:NOTIFICATION_HASLOGIN object:nil];
+                            [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:[Tools md5EncryptWithString:responseObject[@"data"][@"userId"]] password:_password completion:^(NSDictionary *loginInfo, EMError *error) {
+                                if (!error) {
+                                    //存储个人信息
+                                    CPUser * user = [CPUser objectWithKeyValues:responseObject[@"data"]];
+                                    NSString *path=[[NSString alloc]initWithFormat:@"%@.info",[Tools getUserId]];
+                                    [NSKeyedArchiver archiveRootObject:user toFile:path.documentPath];
+                                    [ZYUserDefaults setObject:responseObject[@"data"][@"nickname"] forKey:kUserNickName];
+                                    [ZYUserDefaults setObject:responseObject[@"data"][@"avatar"] forKey:kUserHeadUrl];
+                                    [ZYUserDefaults setObject:responseObject[@"data"][@"age"] forKey:kUserAge];
+                                    [ZYUserDefaults setObject:responseObject[@"data"][@"gender"] forKey:KUserSex];
+                                    // 设置自动登录
+                                    [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+                                    [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
+                                    [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
+                                    
+                                    if (responseObject[@"data"][@"userId"]) {
+                                        [ZYUserDefaults setObject:responseObject[@"data"][@"userId"] forKey:UserId];
+                                    }
+                                    if (responseObject[@"data"][@"token"]) {
+                                        [ZYUserDefaults setObject:responseObject[@"data"][@"token"] forKey:Token];
+                                    }
+                                    [ZYUserDefaults setObject:_user.phone forKey:@"phone"];
+                                    [ZYUserDefaults setObject:[Tools md5EncryptWithString:_password] forKey:@"password"];
+                                    [ZYNotificationCenter postNotificationName:NOTIFICATION_HASLOGIN object:nil];
+                                    [self.navigationController popToRootViewControllerAnimated:NO];
+                                    if (user.album.count > 0) {
+                                        [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
+                                    }else{
+                                        [ZYUserDefaults setBool:NO forKey:CPHasAlbum];
+                                    }
+                                }
+                                [self disMiss];
+                            } onQueue:nil];
                             
                         }else{
                             NSString *errmsg =[responseObject objectForKey:@"errmsg"];
