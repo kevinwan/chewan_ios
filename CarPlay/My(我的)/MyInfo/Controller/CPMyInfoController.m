@@ -53,11 +53,11 @@
     
     NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
     fmt.dateFormat = @"yyyy年MM月dd日";
-    NSDate *brithDay=[[NSDate alloc]initWithTimeIntervalSinceNow:[resultString doubleValue]];
-    NSString * dateToString = [fmt stringFromDate:brithDay];
-    self.brithDay.text=dateToString;
-    long brith=[resultString longLongValue];
-    _user.brithDay=brith;
+//    NSDate *brithDay=[[NSDate alloc]initWithTimeIntervalSinceNow:[resultString doubleValue]];
+//    NSString * dateToString = [fmt stringFromDate:resultString];
+//    self.brithDay.text=dateToString;
+//    long brith=[resultString longLongValue]*1000;
+//    _user.brithDay=brith;
 }
 
 - (void)finish{
