@@ -55,7 +55,7 @@ static NSString *ID = @"RecommentCell";
     ZYWeakSelf
     [_collectionView addPullToRefreshPosition:AAPullToRefreshPositionLeft actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
-        ZYMainThread(^{
+        ZYMainOperation(^{
             
             [self.collectionView setContentOffset:CGPointMake(-44, 0) animated:YES];
         });
@@ -67,7 +67,7 @@ static NSString *ID = @"RecommentCell";
     [_collectionView addPullToRefreshPosition:AAPullToRefreshPositionRight actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
         
-        ZYMainThread(^{
+        ZYMainOperation(^{
            [self.collectionView setContentOffset:CGPointMake(_collectionView.contentSize.width + 44 - _collectionView.width, 0) animated:YES];
         });
         if (self.datas.count % CPPageNum == 0) {

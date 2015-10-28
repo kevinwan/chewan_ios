@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^ZYVoidBlock)();
+
 /**
  *  简化的异步线程
  *
@@ -20,4 +22,10 @@ extern void ZYAsyncThead(dispatch_block_t block);
  *
  *  @param block 需要在此线程执行的操作
  */
-extern void ZYMainThread(dispatch_block_t block);
+extern void ZYMainThead(dispatch_block_t block);
+
+/**
+ *  底层使用NSOperation
+ */
+extern void ZYMainOperation(ZYVoidBlock block);
+extern void ZYAsyncOperation(ZYVoidBlock block);

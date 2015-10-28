@@ -57,15 +57,6 @@ static NSString *ID2 = @"DateCell2";
     [ZYLoadingView showLoadingView];
 }
 
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    if (self.datas.count == 0) {
-        [self loadDataWithHeader:nil];
-    }
-}
-
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -85,17 +76,16 @@ static NSString *ID2 = @"DateCell2";
     ZYWeakSelf
     self.headerView = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionTop actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
-        ZYMainThread(^{
+        ZYMainOperation(^{
             [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, -44) animated:YES];
         });
         self.ignore = 0;
         [self loadDataWithHeader:v];
     }];
-    
     // bottom
     self.footerView = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionBottom actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
-        ZYMainThread(^{
+        ZYMainOperation(^{
             [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, self.tableView.contentSizeHeight - self.tableView.height + 44) animated:YES];
         });
         
@@ -313,7 +303,7 @@ static NSString *ID2 = @"DateCell2";
             }
             
         }
-        ZYMainThread(^{
+        ZYMainOperation(^{
             [self.tableView reloadData];
         });
         

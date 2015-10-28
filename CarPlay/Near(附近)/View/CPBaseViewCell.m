@@ -242,9 +242,15 @@
     self.loveBtn.selected = model.organizer.subscribeFlag;
     self.payView.text = model.pay;
     self.sendView.hidden = !model.transfer;
-    if ([model.destination isKindOfClass:[NSDictionary class]]) {
-        [self.addressView setTitle:model.destination[@"street"] forState:UIControlStateNormal];
+    
+    NSString *street = model.destination[@"street"];
+    
+    if (street.trimLength) {
+        street = [NSString stringWithFormat:@"%@周边",street];
+    }else{
+        street = @"未知";
     }
+    [self.addressView setTitle:street forState:UIControlStateNormal];
     if (model.title.length) {
         self.titleLabel.text = model.title;
         CGFloat width = [model.title sizeWithFont:self.titleLabel.font].width + 2;
@@ -322,9 +328,14 @@
     self.loveBtn.selected = myDateModel.applicant.subscribeFlag;
     self.payView.text = myDateModel.pay;
     self.sendView.hidden = !myDateModel.transfer;
-    if ([myDateModel.destination isKindOfClass:[NSDictionary class]]) {
-        [self.addressView setTitle:myDateModel.destination[@"street"] forState:UIControlStateNormal];
+    NSString *street = myDateModel.destination[@"street"];
+    
+    if (street.trimLength) {
+        street = [NSString stringWithFormat:@"%@周边",street];
+    }else{
+        street = @"未知";
     }
+    [self.addressView setTitle:street forState:UIControlStateNormal];
     if (myDateModel.title.length) {
         
         self.titleLabel.attributedText = myDateModel.title;
@@ -406,7 +417,14 @@
     self.loveBtn.selected = intersterModel.user.subscribeFlag;
     self.payView.text = intersterModel.activityPay;
     self.sendView.hidden = !intersterModel.activityTransfer;
-    [self.addressView setTitle:intersterModel.activityDestination[@"street"] forState:UIControlStateNormal];
+    NSString *street = intersterModel.activityDestination[@"street"];
+    
+    if (street.trimLength) {
+        street = [NSString stringWithFormat:@"%@周边",street];
+    }else{
+        street = @"未知";
+    }
+    [self.addressView setTitle:street forState:UIControlStateNormal];
     if (intersterModel.title.length) {
         self.titleLabel.text = intersterModel.title;
         CGFloat width = [intersterModel.title sizeWithFont:self.titleLabel.font].width + 5;

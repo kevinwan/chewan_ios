@@ -457,7 +457,7 @@ typedef enum
         {
             offsetValue=offsetDistance;
         }
-        ZYMainThread(^{
+        ZYMainOperation(^{
             
             [self.collectionView setContentOffset:CGPointMake(self.collectionView.contentOffset.x+offsetValue, self.collectionView.contentOffset.y) animated:YES];
         });
@@ -474,7 +474,7 @@ typedef enum
         {
             offsetValue=offsetDistance;
         }
-        ZYMainThread(^{
+        ZYMainOperation(^{
             
             [self.collectionView setContentOffset:CGPointMake(self.collectionView.contentOffset.x, self.collectionView.contentOffset.y+offsetValue) animated:YES];
         });

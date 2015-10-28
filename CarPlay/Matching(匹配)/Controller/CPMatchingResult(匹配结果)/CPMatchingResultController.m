@@ -102,7 +102,7 @@ static NSString *ID = @"cell";
     ZYWeakSelf
     self.headerView = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionTop actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
-        ZYMainThread(^{
+        ZYMainOperation(^{
             [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, -44) animated:YES];
         });
         self.params.ignore = 0;
@@ -111,7 +111,7 @@ static NSString *ID = @"cell";
     // bottom
     self.footerView = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionBottom actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
-        ZYMainThread(^{
+        ZYMainOperation(^{
             
             [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, self.tableView.contentSizeHeight - self.tableView.height + 44) animated:YES];
         });
@@ -231,7 +231,7 @@ static NSString *ID = @"cell";
             }
             
         }
-        ZYMainThread(^{
+        ZYMainOperation(^{
             [self.tableView reloadItemsAtIndexPaths:indexPaths];
         });
         
