@@ -801,7 +801,14 @@
     }else{
         cell.time = nil;
     }
+
+    if (conversation.conversationType == eConversationTypeGroupChat) {
+        cell.isGroup = YES;
+    }else{
+        cell.isGroup = NO;
+    }
     cell.unreadCount = [self unreadMessageCountByConversation:conversation];
+ 
     return cell;
 }
 

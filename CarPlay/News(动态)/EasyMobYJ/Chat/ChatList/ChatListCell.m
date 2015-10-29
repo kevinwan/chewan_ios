@@ -16,8 +16,8 @@
 #import "NSString+Extend.h"
 @interface ChatListCell (){
     UILabel *_timeLabel;
-    UILabel *_unreadLabel;
     UILabel *_detailLabel;
+    UILabel *_unreadLabel;
     UIView *_lineView;
 }
 
@@ -38,13 +38,13 @@
         _timeLabel.backgroundColor = [UIColor clearColor];
         [self.contentView addSubview:_timeLabel];
         
-        _unreadLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 0, 20, 20)];
-        _unreadLabel.backgroundColor = [UIColor redColor];
+        _unreadLabel = [[UILabel alloc] initWithFrame:CGRectMake(45-5, 5, 17, 17)];
+        _unreadLabel.backgroundColor = UIColorFromRGB(0xfe5969);
         _unreadLabel.textColor = [UIColor whiteColor];
         
         _unreadLabel.textAlignment = NSTextAlignmentCenter;
         _unreadLabel.font = [UIFont systemFontOfSize:11];
-        _unreadLabel.layer.cornerRadius = 10;
+        _unreadLabel.layer.cornerRadius = 8.5;
         _unreadLabel.clipsToBounds = YES;
         [self.contentView addSubview:_unreadLabel];
         
@@ -93,14 +93,14 @@
 {
     [super setSelected:selected animated:animated];
     if (![_unreadLabel isHidden]) {
-        _unreadLabel.backgroundColor = [UIColor redColor];
+        _unreadLabel.backgroundColor = UIColorFromRGB(0xfe5969);
     }
 }
 
 -(void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
     [super setHighlighted:highlighted animated:animated];
     if (![_unreadLabel isHidden]) {
-        _unreadLabel.backgroundColor = [UIColor redColor];
+        _unreadLabel.backgroundColor = UIColorFromRGB(0xfe5969);
     }
 }
 
@@ -124,10 +124,9 @@
     self.textLabel.frame = CGRectMake(65, 7, 175, 20);
 //    _cpSexView.frame = CGRectMake(68, 7, 45, 17);
     
-   
     _detailLabel.text = _detailMsg;
     _timeLabel.text = _time;
-    if (_unreadCount > 0) {
+    if (_unreadCount > 0 && !_isGroup) {
         if (_unreadCount < 9) {
             _unreadLabel.font = [UIFont systemFontOfSize:13];
         }else if(_unreadCount > 9 && _unreadCount < 99){
@@ -136,9 +135,21 @@
             _unreadLabel.font = [UIFont systemFontOfSize:10];
         }
         [_unreadLabel setHidden:NO];
+        _unreadLabel.frame =CGRectMake(45-5, 5, 17, 17);
+        _unreadLabel.layer.cornerRadius = 8.5;
+
         [self.contentView bringSubviewToFront:_unreadLabel];
         _unreadLabel.text = [NSString stringWithFormat:@"%ld",(long)_unreadCount];
-    }else{
+    }else if (_unreadCount >0 && _isGroup){
+        
+        _unreadLabel.frame = CGRectMake(43, 7, 11, 11);
+        _unreadLabel.layer.cornerRadius = 5.5;
+        _unreadLabel.hidden = NO;
+        [self.contentView bringSubviewToFront:_unreadLabel];
+        _unreadLabel.text = @"";
+
+    }
+    else{
         [_unreadLabel setHidden:YES];
     }
     
