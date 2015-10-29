@@ -554,7 +554,7 @@
         cell = [[ChatListCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identify];
     }
     EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
-    NSLog(@"===========title = %@,indexPath = %ld",conversation.chatter,(long)indexPath.row);
+//    NSLog(@"===========title = %@,indexPath = %ld",conversation.chatter,(long)indexPath.row);
     cell.cpSexView.hidden = YES;
 //    cell.name  = @"";
     if (conversation.conversationType == eConversationTypeChat) {

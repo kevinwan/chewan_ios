@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface CPHisDateViewController : UIViewController
-@property (nonatomic, strong) CPUser *targetUser;
+
+/**
+ *  需要显示的user的信息
+ */
+@property (nonatomic,strong) CPUser *targetUser;
+
 @end

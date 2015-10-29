@@ -65,7 +65,7 @@
         if (CPIsLogin) {
             return YES;
         }else{
-            [[[UIAlertView alloc]initWithTitle:@"提示" message:@"您还没有登录是否登录？" delegate:self cancelButtonTitle:@"在想想" otherButtonTitles:@"去登录", nil] show];
+            [[[UIAlertView alloc]initWithTitle:@"提示" message:@"您还没有登录是否登录？" delegate:self cancelButtonTitle:@"再想想" otherButtonTitles:@"去登录", nil] show];
             return NO;
         }
     }else if ([nav.childViewControllers.firstObject isKindOfClass:[ChatListViewController class]])
@@ -73,7 +73,7 @@
         if (CPIsLogin) {
             return YES;
         }else{
-            [[[UIAlertView alloc]initWithTitle:@"提示" message:@"您还没有登录是否登录？" delegate:self cancelButtonTitle:@"在想想" otherButtonTitles:@"去登录", nil] show];
+            [[[UIAlertView alloc]initWithTitle:@"提示" message:@"您还没有登录是否登录？" delegate:self cancelButtonTitle:@"再想想" otherButtonTitles:@"去登录", nil] show];
             return NO;
         }
     }
