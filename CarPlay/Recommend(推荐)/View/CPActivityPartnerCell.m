@@ -121,19 +121,36 @@ static NSString *ID = @"memberIconCell";
         self.cartypeLabel.hidden = YES;
         [self.carView setImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
     }
+    //inviteStatus        当前登录用户 邀请 该用户的 状态；
+    //0 没有邀请过           1 邀请中
+    //2 邀请同意             3 邀请被拒绝
     
-    if (model.acceptMe) {
-        self.inviteBtn.hidden = YES;
-        self.phoneBtn.hidden = NO;
-        self.msgButton.hidden = NO;
-    }else{
-        if ([model.userId isEqualToString:CPUserId]) {
-            self.inviteBtn.hidden = YES;
-        }else{
-            self.inviteBtn.hidden = NO;
-        }
+    
+    //beInvitedStatus      该用户是否邀请过 登录用户
+    //0 没有邀请过           1 邀请中
+    //2 邀请同意             3 邀请被拒绝
+    if (model.inviteStatus == 0) {
+        
         self.phoneBtn.hidden = YES;
         self.msgButton.hidden = YES;
+        self.inviteBtn.hidden = NO;
+        [self.inviteBtn setTitle:@"邀请同去" forState:UIControlStateNormal];
+    }else if (model.inviteStatus == 1){
+        
+        self.phoneBtn.hidden = YES;
+        self.msgButton.hidden = YES;
+        self.inviteBtn.hidden = NO;
+        [self.inviteBtn setTitle:@"邀请中" forState:UIControlStateNormal];
+    }else if (model.inviteStatus == 2){
+        
+        self.phoneBtn.hidden = YES;
+        self.msgButton.hidden = YES;
+        self.inviteBtn.hidden = NO;
+    }else if (model.inviteStatus == 3){
+        self.phoneBtn.hidden = YES;
+        self.msgButton.hidden = YES;
+        self.inviteBtn.hidden = NO;
+        [self.inviteBtn setTitle:@"拒绝" forState:UIControlStateNormal];
     }
     
     [self.partnersView reloadData];

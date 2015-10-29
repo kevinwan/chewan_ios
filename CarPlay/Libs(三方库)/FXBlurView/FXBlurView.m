@@ -680,7 +680,7 @@
 
 - (void)updateAsynchronously:(BOOL)async completion:(void (^)())completion
 {
-    if ([self shouldUpdate])
+    if (YES)
     {
         UIImage *snapshot = [self snapshotOfUnderlyingView];
         if (async)

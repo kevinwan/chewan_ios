@@ -23,6 +23,7 @@
 @property (strong, nonatomic) CPActivityDetailFooterView *footerView;
 @property (strong, nonatomic) CPActivityDetailHeaderView *headerView;
 @property (nonatomic, strong) CPRecommendModel *model;
+@property (nonatomic, strong) NSMutableArray<CPPartMember *> *members;
 @property (nonatomic, assign) CGFloat activityPathHeight;
 @property (nonatomic, strong) NSMutableArray *datas;
 @property (nonatomic, assign) NSUInteger showMerberCount;
@@ -48,11 +49,38 @@ static NSString *ID = @"partCell";
     param[@"userId"] = CPUserId;
     param[@"token"] = CPToken;
     [ZYNetWorkTool getWithUrl:url params:param success:^(id responseObject) {
-        DLog(@"%@",responseObject);
-        [self disMiss];
-        self.model = [CPRecommendModel objectWithKeyValues:responseObject[@"data"]];
-        [self reloadData];
+        if (CPSuccess) {
+            
+            self.model = [CPRecommendModel objectWithKeyValues:responseObject[@"data"]];
+            [self loadMembersWithIgnore:0];
+        }else{
+            [self showInfo:CPErrorMsg];
+        }
+        
     } failure:^(NSError *error) {
+        [self showInfo:@"加载失败"];
+    }];
+    
+}
+
+- (void)loadMembersWithIgnore:(NSInteger)ignore
+{
+    NSString *url = [NSString stringWithFormat:@"official/activity/%@/members", self.officialActivityId];
+    [ZYNetWorkTool getWithUrl:url params:@{UserId : CPUserId, Token :CPToken, @"ignore" : @(ignore),@"limit" : @(CPMemberPageNum)} success:^(id responseObject) {
+        if (CPSuccess) {
+            if (ignore == 0) {
+                [self.members removeAllObjects];
+            }
+            self.model.isMember = [responseObject[@"data"][@"isMember"] integerValue];
+            NSArray *arr = [CPPartMember objectArrayWithKeyValuesArray:responseObject[@"data"][@"members"]];
+            [self.members addObjectsFromArray:arr];
+            [self reloadData];
+            [self disMiss];
+        }else{
+            [self showInfo:CPErrorMsg];
+        }
+    } failure:^(NSError *error) {
+        
         [self showInfo:@"加载失败"];
     }];
 }
@@ -63,8 +91,6 @@ static NSString *ID = @"partCell";
     self.tableView.tableHeaderView = self.headerView;
     self.footerView.model = self.model;
     self.footerView.officialActivityId = self.officialActivityId;
-    NSUInteger count = self.model.members.count;
-    self.showMerberCount = count > CPMemberPageNum ? CPMemberPageNum : count;
     [self.tableView reloadData];
 }
 
@@ -77,17 +103,13 @@ static NSString *ID = @"partCell";
         self.tableView.tableFooterView = self.footerView;
     }else if ([notifyName isEqualToString:CPActivityDetailLoadMoreKey]){
         
-        if (self.showMerberCount == self.model.members.count) {
-            [self showInfo:@"已无更多数据"];
-        }
-        if (self.showMerberCount + CPMemberPageNum >= self.model.members.count) {
-            
-            self.showMerberCount = self.model.members.count;
-        }else{
+        if (self.members.count % CPMemberPageNum == 0) {
             
             self.showMerberCount += CPMemberPageNum;
+            [self loadMembersWithIgnore:self.showMerberCount];
+        }else{
+            [self showInfo:@"已无更多数据"];
         }
-        [self.tableView reloadData];
     }else if ([notifyName isEqualToString:CPClickUserIcon]){
         CPGoLogin(@"查看TA的详情");
         CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
@@ -156,13 +178,12 @@ static NSString *ID = @"partCell";
 #pragma mark - delegate & datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.showMerberCount;
+    return self.members.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CPPartMember *partM = self.model.members[indexPath.row];
-    if (partM.acceptCount > 0) {
+    if (self.members[indexPath.row].acceptCount > 0) {
         return 110;
     }else{
         return 70;
@@ -172,7 +193,7 @@ static NSString *ID = @"partCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CPActivityPartnerCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    cell.model = self.model.members[indexPath.row];
+    cell.model = self.members[indexPath.row];
     cell.activityId = self.officialActivityId;
     return cell;
     
@@ -204,6 +225,14 @@ static NSString *ID = @"partCell";
         _datas = [[NSMutableArray alloc] init];
     }
     return _datas;
+}
+
+- (NSMutableArray *)members
+{
+    if (_members == nil) {
+        _members = [[NSMutableArray alloc] init];
+    }
+    return _members;
 }
 
 @end

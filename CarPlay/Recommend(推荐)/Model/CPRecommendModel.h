@@ -73,7 +73,7 @@
 @property (nonatomic, assign) NSUInteger femaleNum;
 @property (nonatomic, copy) NSString *extraDesc;
 @property (nonatomic, strong) CPUser *organizer;
-@property (nonatomic, strong) NSArray *members;
+//@property (nonatomic, strong) NSArray *members;
 @property (nonatomic, assign) BOOL isMember;
 @property (nonatomic, copy) NSString *linkTicketUrl;
 @end
@@ -82,6 +82,18 @@
 @property (nonatomic, assign) NSUInteger acceptCount;
 @property (nonatomic, strong) NSArray *acceptMembers;
 @property (nonatomic, assign) BOOL acceptMe;
+//beInvitedCount      是该用户别 其他用户邀请的次数；
 @property (nonatomic, assign) NSUInteger beInvitedCount;
 @property (nonatomic, copy)   NSAttributedString *invitedCountStr;
+
+//inviteStatus        当前登录用户 邀请 该用户的 状态；
+//0 没有邀请过           1 邀请中
+//2 邀请同意             3 邀请被拒绝
+
+@property (nonatomic, assign) NSInteger inviteStatus;
+
+//beInvitedStatus      该用户是否邀请过 登录用户
+//0 没有邀请过           1 邀请中
+//2 邀请同意             3 邀请被拒绝
+@property (nonatomic, assign) NSInteger beInvitedStatus;
 @end
