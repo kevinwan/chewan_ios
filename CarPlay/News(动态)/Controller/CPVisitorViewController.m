@@ -9,6 +9,7 @@
 #import "CPVisitorViewController.h"
 #import "CPVisitorTableViewCell.h"
 #import "NSDate+Category.h"
+#import "CPTaInfo.h"
 @interface CPVisitorViewController ()
 {
     NSInteger _limit;
@@ -192,7 +193,13 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"row = %d",indexPath.row);
+    NSDictionary *dic = [self.dataSource objectAtIndex:indexPath.row];
+    
+    CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
+    taVc.userId =[dic objectForKey:@"userId"];
+    [self.navigationController pushViewController:taVc animated:YES];
+
+
 }
 
 @end
