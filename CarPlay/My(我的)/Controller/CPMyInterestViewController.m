@@ -52,6 +52,7 @@ static NSString *ID = @"myIntersterCell";
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.tableView];
     [ZYLoadingView showLoadingView];
+        [self loadDataWithHeader:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
