@@ -731,8 +731,12 @@
     
 }
 - (void)chatHeadImagePressed:(MessageModel *)model
-{
-    
+{   //如果点击的是我自己的头像，那么不跳转
+
+    NSString *headStr = [model.headImageURL absoluteString];
+    if ([headStr isEqualToString:[ZYUserDefaults objectForKey:kUserHeadUrl]]) {
+        return;
+    }
     //获取对方的头像和昵称
     [ZYNetWorkTool getWithUrl:[NSString stringWithFormat:@"user/emchatInfo?userId=%@&token=%@&emchatName=%@",CPUserId,CPToken,model.username] params:nil success:^(id responseObject) {
         if (CPSuccess) {
