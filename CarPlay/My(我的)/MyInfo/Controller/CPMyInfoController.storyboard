@@ -30,7 +30,7 @@
                                         <constraint firstAttribute="height" constant="84" id="MpC-P7-fk2"/>
                                         <constraint firstAttribute="width" constant="84" id="lWU-qK-Nkv"/>
                                     </constraints>
-                                    <state key="normal" image="icon_cemare" backgroundImage="7180167B-4FEB-497E-98D8-0C39375BD8EE"/>
+                                    <state key="normal" image="icon_cemare" backgroundImage="CF3C0B86-9A51-49FA-B947-37517FF4A21F"/>
                                     <connections>
                                         <action selector="headIconBtnClick:" destination="Ngq-HX-lPw" eventType="touchUpInside" id="LwN-Ei-OV0"/>
                                     </connections>
@@ -253,7 +253,7 @@
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gdw-jq-i11" userLabel="相册">
                             <rect key="frame" x="118" y="47" width="84" height="84"/>
                             <animations/>
-                            <state key="normal" image="icon_cemare" backgroundImage="DBEC5537-3833-47F2-AA0D-BA3F97658128"/>
+                            <state key="normal" image="icon_cemare" backgroundImage="6CFAB8D0-335F-4F78-9528-A85A6ADE0F32"/>
                             <connections>
                                 <action selector="headIconBtnClick:" destination="Ngq-HX-lPw" eventType="touchUpInside" id="v0c-n5-nYk"/>
                             </connections>
@@ -281,7 +281,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="7180167B-4FEB-497E-98D8-0C39375BD8EE" width="84" height="84">
+        <image name="6CFAB8D0-335F-4F78-9528-A85A6ADE0F32" width="84" height="84">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -802,7 +802,7 @@ d9h34Hfjd+h393f7eAJ4CngXeBx4HnggeCV4LXgweDV4PXhAeFJ4VXhaAAAAAAAAAgEAAAAAAAAAQQAA
 AAAAAAAAAAAAAAAAeFw
 </mutableData>
         </image>
-        <image name="DBEC5537-3833-47F2-AA0D-BA3F97658128" width="84" height="84">
+        <image name="CF3C0B86-9A51-49FA-B947-37517FF4A21F" width="84" height="84">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
