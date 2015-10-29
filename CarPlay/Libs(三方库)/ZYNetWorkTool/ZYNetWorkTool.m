@@ -109,6 +109,8 @@
     // 请求类型为json
     mgr.requestSerializer = [AFJSONRequestSerializer serializer];
     
+    [mgr.requestSerializer setValue:@"application/json; charset=UTF-8" forHTTPHeaderField:@"Accept"];
+    
     // 网络超时时长
     mgr.requestSerializer.timeoutInterval = 40;
     

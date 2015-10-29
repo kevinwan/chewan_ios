@@ -61,13 +61,18 @@
 - (IBAction)transferBtnClick:(UIButton *)sender {
     sender.selected = !sender.isSelected;
 }
-- (IBAction)sendComeOnClick:(id)sender {
-    
-    NSString *url = [NSString stringWithFormat:@"official/activity/%@/invite?userId=%@&token=%@",self.activityId,CPUserId,CPToken];
+- (IBAction)sendComeOnClick:(UIButton *)sender {
+    NSString *url = [NSString stringWithFormat:@"official/activity/%@/invite?userId=%@&token=%@",self.activityId,CPUserId, CPToken];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"invitedUserId"] = self.targetUserId;
-    params[@"transfer"] = @(!self.transfer.isSelected);
+    
+    if (sender.selected) {
+        params[@"transfer"] = @(NO);
+    }else{
+        params[@"transfer"] = @(YES);
+    }
     params[@"message"] = self.textField.text;
+
     [ZYNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
         if (CPSuccess) {
             [SVProgressHUD showInfoWithStatus:@"邀请已发出"];
