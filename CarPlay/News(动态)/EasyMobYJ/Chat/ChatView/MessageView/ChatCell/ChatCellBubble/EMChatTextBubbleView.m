@@ -16,6 +16,7 @@
 
 NSString *const kRouterEventMenuTapEventName = @"kRouterEventMenuTapEventName";
 NSString *const kRouterEventTextURLTapEventName = @"kRouterEventTextURLTapEventName";
+NSString *const kRouterEventOffecialAdminTapEventName = @"kRouterEventOffecialAdminTapEventName";
 
 @interface EMChatTextBubbleView ()
 
@@ -97,6 +98,18 @@ NSString *const kRouterEventTextURLTapEventName = @"kRouterEventTextURLTapEventN
     [attributedString addAttribute:NSParagraphStyleAttributeName
                              value:paragraphStyle
                              range:NSMakeRange(0, [self.model.content length])];
+    //如果是车主认证的的cell，重新认证 查看TA 这俩个词要标红
+    if ([model.message.from isEqualToString:@"officialadmin"]) {
+        NSRange range = [model.content rangeOfString:@"重新认证"];
+        if (range.length != 0) {
+            [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:range];
+        }
+        NSRange range2 = [model.content rangeOfString:@"去看TA"];
+        if (range2.length != 0) {
+            [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:range];
+        }
+    }
+    
     [_textLabel setAttributedText:attributedString];
     [self highlightLinksWithIndex:NSNotFound];
 }
@@ -254,6 +267,11 @@ NSString *const kRouterEventTextURLTapEventName = @"kRouterEventTextURLTapEventN
     CFIndex charIndex = [self characterIndexAtPoint:point];
     
     [self highlightLinksWithIndex:NSNotFound];
+    
+    
+    //这里为了配合官方活动中的 重新认证 和  查看TA专门给点击时间一个方法
+    [self routerEventWithName:kRouterEventOffecialAdminTapEventName userInfo:@{KMESSAGEKEY:self.model}];
+
     
     for (NSTextCheckingResult *match in _urlMatches) {
         

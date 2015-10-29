@@ -9,7 +9,7 @@
 #import "CPCareMeViewController.h"
 #import "CareMeTableViewCell.h"
 #import "NSDate+Category.h"
-
+#import "CPTaInfo.h"
 @interface CPCareMeViewController ()
 {
     NSArray *idleImages;
@@ -168,8 +168,10 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"row = %d",indexPath.row);
-    [header endRefreshing];
-    [footer endRefreshing];
+    NSDictionary *dic = [self.dataSource objectAtIndex:indexPath.row];
+    
+    CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
+    taVc.userId =[dic objectForKey:@"userId"];
+    [self.navigationController pushViewController:taVc animated:YES];
 }
 @end
