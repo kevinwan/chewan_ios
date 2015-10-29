@@ -14,6 +14,8 @@
 #import "CPLoginViewController.h"
 #import "CPNavigationController.h"
 #import "ChatListViewController.h"
+#import "UMSocial.h"
+
 @interface AppDelegate ()<UITabBarControllerDelegate,CLLocationManagerDelegate,UIAlertViewDelegate>
 
 /**
@@ -41,6 +43,8 @@
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
     // 设置点击空白区域退出键盘
     [[IQKeyboardManager sharedManager] setShouldResignOnTouchOutside:YES];
+//    友盟第三方登录
+    [UMSocialData setAppKey:@"507fcab25270157b37000010"];
     
     [self getLocation];
     //环信
