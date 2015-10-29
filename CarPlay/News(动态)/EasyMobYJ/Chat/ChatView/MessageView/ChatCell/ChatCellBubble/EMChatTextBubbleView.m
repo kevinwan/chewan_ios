@@ -98,6 +98,18 @@ NSString *const kRouterEventOffecialAdminTapEventName = @"kRouterEventOffecialAd
     [attributedString addAttribute:NSParagraphStyleAttributeName
                              value:paragraphStyle
                              range:NSMakeRange(0, [self.model.content length])];
+    //如果是车主认证的的cell，重新认证 查看TA 这俩个词要标红
+    if ([model.message.from isEqualToString:@"officialadmin"]) {
+        NSRange range = [model.content rangeOfString:@"重新认证"];
+        if (range.length != 0) {
+            [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:range];
+        }
+        NSRange range2 = [model.content rangeOfString:@"去看TA"];
+        if (range2.length != 0) {
+            [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:range];
+        }
+    }
+    
     [_textLabel setAttributedText:attributedString];
     [self highlightLinksWithIndex:NSNotFound];
 }

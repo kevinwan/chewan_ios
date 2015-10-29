@@ -36,7 +36,8 @@
 #import "EMCDDeviceManagerDelegate.h"
 #import "UserProfileViewController.h"
 #import "UserProfileManager.h"
-
+#import "CPAvatarAuthenticationController.h"
+#import "CPCarOwnersCertificationController.h"
 #define KPageCount 20
 #define KHintAdjustY    50
 
@@ -690,6 +691,9 @@
         {
             if ([[dic objectForKey:@"result"] integerValue] == 0) {
                 //跳转到头像认证页面。
+                CPAvatarAuthenticationController *CPAvatarAuthenticationController = [UIStoryboard storyboardWithName:@"CPAvatarAuthenticationController" bundle:nil].instantiateInitialViewController;
+                [self.navigationController pushViewController:CPAvatarAuthenticationController animated:YES];
+                
             }
         }
             
@@ -697,7 +701,10 @@
         case 2:
         {
             if ([[dic objectForKey:@"result"] integerValue] == 0) {
-                //跳转到头像认证页面。
+                //跳转到车主认证页面。
+                CPCarOwnersCertificationController *CPCarOwnersCertification = [UIStoryboard storyboardWithName:@"CPCarOwnersCertification" bundle:nil].instantiateInitialViewController;
+                [self.navigationController pushViewController:CPCarOwnersCertification animated:YES];
+                
             }
 
         }
@@ -705,14 +712,16 @@
         case 3:
         {
             if ([[dic objectForKey:@"result"] integerValue] == 0) {
-                //跳转到头像认证页面。
+                //跳转到身份证认证页面。
             }
 
         }
             break;
         case 4:
         {//只要是4类型，直接跳转到他的详情。对方userid =
-            [dic objectForKey:@"userId"];
+            CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
+            taVc.userId =[dic objectForKey:@"userId"];
+            [self.navigationController pushViewController:taVc animated:YES];
         }
             break;
             
