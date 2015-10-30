@@ -40,7 +40,8 @@
 {
     _model = model;
     
-    [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.organizer.avatar] forState:UIControlStateNormal placeholderImage:CPPlaceHolderImage];
+    [self.iconView zySetImageWithUrl:model.organizer.avatar placeholderImage:CPPlaceHolderImage forState:UIControlStateNormal];
+    
     self.titleLabel.text = model.organizer.nickname;
     self.contentTextL.attributedText = model.titleAttrText;
     self.priceLabel.text = model.priceDesc;

@@ -35,10 +35,10 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     user=[NSKeyedUnarchiver unarchiveObjectWithFile:path.documentPath];
-    [self.avatar sd_setImageWithURL:[NSURL URLWithString:user.avatar]];
+    [self.avatar zySetImageWithUrl:user.avatar placeholderImage:nil];
     [self.nickName setText:user.nickname];
     [self.sex setText:user.gender];
-    [self.age setText:[NSString stringWithFormat:@"%ld",user.age]];
+    [self.age setText:[NSString stringWithFormat:@"%zd",user.age]];
     [self.photoAuthStatus setText:user.photoAuthStatus];
     [self.licenseAuthStatus setText:user.licenseAuthStatus];
     self.tableView.tableFooterView=[[UIView alloc]initWithFrame:CGRectZero];
@@ -122,7 +122,7 @@
     editedImage=[info objectForKey:UIImagePickerControllerEditedImage];
     [picker dismissViewControllerAnimated:YES completion:^{
         NSData *data=UIImageJPEGRepresentation(editedImage, 0.4);
-        [[SDImageCache sharedImageCache] removeImageForKey:user.avatar];
+//        [[SDImageCache sharedImageCache] removeImageForKey:user.avatar];
         [self upLoadImageWithBase64Encodeing:data];
     }];
 }

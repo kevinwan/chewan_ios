@@ -99,10 +99,10 @@
 }
 
 -(void)reloadData{
-    [self.headImgBg sd_setImageWithURL:[[NSURL alloc]initWithString:user.avatar] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [self.headImg zySetImageWithUrl:user.avatar placeholderImage:nil completion:^(UIImage *image) {
         self.headImgBg.image=[image blurredImageWithRadius:20];
     }];
-    [self.headImg sd_setImageWithURL:[[NSURL alloc]initWithString:user.avatar]];
+    [self.headImg zySetImageWithUrl:user.avatar placeholderImage:nil];
     self.headStatus.text=user.photoAuthStatus;
     if ([user.photoAuthStatus isEqualToString:@"认证通过"]) {
         [self.headStatus setBackgroundColor:[Tools getColor:@"fdbc4f"]];
@@ -119,7 +119,8 @@
         
     }
     
-    [self.carLogoImg sd_setImageWithURL:[NSURL URLWithString:user.car.logo]];
+    [self.carLogoImg zySetImageWithUrl:user.car.logo placeholderImage:nil];
+    
     [self.albumsCollectionView reloadData];
     
     if (user.subscribeFlag) {
@@ -309,7 +310,7 @@
     static NSString *cellIdentifier = @"cell";
     CPCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
         CPAlbum *ablum=(CPAlbum *)user.album[indexPath.row];
-        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:ablum.url]];
+    [cell.imageView zySetImageWithUrl:ablum.url placeholderImage:nil];
     return cell;
 }
 //图片大图浏览

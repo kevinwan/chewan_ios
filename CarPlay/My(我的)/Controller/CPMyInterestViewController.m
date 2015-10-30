@@ -75,6 +75,9 @@ static NSString *ID = @"myIntersterCell";
         self.ignore = 0;
         [self loadDataWithHeader:v];
     }];
+    if (self.datas.count <= 1) {
+        return;
+    }
     // bottom
     self.footerView = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionBottom actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf

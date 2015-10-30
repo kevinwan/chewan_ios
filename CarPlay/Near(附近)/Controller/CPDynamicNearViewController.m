@@ -84,11 +84,15 @@ static NSString *ID = @"cell";
     }];
     self.headerView.isNoAnimation = YES;
     // bottom
+    if (self.datas.count <= 1) {
+        return;
+    }
+    
     self.footerView = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionBottom actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
         ZYMainOperation(^{
             
-            [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, self.tableView.contentSizeHeight - self.tableView.height + 44) animated:YES];
+            [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, self.tableView.contentSizeHeight - self.tableView.height + 44 + self.tableView.contentInsetTop) animated:YES];
         });
         
         if (self.datas.count % CPPageNum == 0) {
@@ -353,6 +357,7 @@ static NSString *ID = @"cell";
         self.automaticallyAdjustsScrollViewInsets = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        layout.columnsCount = 1;
         layout.rowMargin = 20;
         layout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
         self.view.backgroundColor = [Tools getColor:@"efefef"];

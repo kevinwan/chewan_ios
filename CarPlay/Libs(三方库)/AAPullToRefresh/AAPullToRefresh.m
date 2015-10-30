@@ -246,7 +246,12 @@
             self.progress = overBottomOffsetY / self.threshold;
             centerX = self.scrollView.center.x + xOffset;
             CGFloat itemH = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250 + 383;
-            CGFloat ss = self.scrollView.height - itemH - 20 - 49;
+            
+            CGFloat height = self.scrollView.height;
+            if (self.scrollView.contentSizeHeight < height) {
+                height = self.scrollView.contentSizeHeight;
+            }
+            CGFloat ss = height - itemH - 20 - 49;
             if (self.isNoAnimation) {
                 ss = 2;
             }

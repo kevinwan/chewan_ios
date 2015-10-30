@@ -59,8 +59,7 @@
     if (imageName != _imageName) {
         _imageName = imageName;
 //        [_brandImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", kImageHost, [Interface brandModelLogoImageLink], _imageName]] placeholderImage:nil];
-        [_brandImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",imageName]]];
-        
+        [_brandImage zySetImageWithUrl:imageName placeholderImage:nil];
     }
 }
 

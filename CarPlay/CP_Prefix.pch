@@ -10,7 +10,6 @@
 #define CarPlay_CP_Prefix_pch
 
 #import "macro.h"
-#import <SDWebImage/UIImageView+WebCache.h>
 #import <Masonry.h>
 #import <MJExtension/MJExtension.h>
 #import "ZYExtension.h"
@@ -35,9 +34,9 @@
 #import "UIViewController+DismissKeyboard.h"
 #import "NSString+Valid.h"
 #import <EaseMobSDKFull/EaseMob.h>
-#import <UIButton+WebCache.h>
 #import "CPLoadingView.h"
 #import "UITabBar+Extension.h"
 #import "CPViewController.h"
-
+#import "UIImageView+ZYWebCache.h"
+#import "UIButton+ZYWebCache.h"
 #endif

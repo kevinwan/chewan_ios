@@ -44,4 +44,5 @@
         _distanceStr = [NSString stringWithFormat:@"%.1fm",distance];
     }
 }
+
 @end

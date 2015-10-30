@@ -93,7 +93,8 @@ static NSString *ID = @"memberIconCell";
         self.inviteBtn.hidden = NO;
     }
     
-    [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.avatar] placeholderImage:CPPlaceHolderImage options:SDWebImageLowPriority | SDWebImageRetryFailed];
+    [self.iconView zySetImageWithUrl:model.avatar placeholderImage:CPPlaceHolderImage];
+    
     self.partNumLabel.attributedText = model.invitedCountStr;
     
     self.nicknameLabel.text = model.nickname;
@@ -115,7 +116,8 @@ static NSString *ID = @"memberIconCell";
     
     if (model.car.logo.length) {
         self.carView.hidden = NO;
-        [self.carView sd_setImageWithURL:[NSURL URLWithString:model.car.logo] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"车主未认证"]];
+        [self.carView zySetImageWithUrl:model.car.logo placeholderImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
+        
         self.cartypeLabel.text = model.car.model;
     }else{
         self.cartypeLabel.hidden = YES;
@@ -160,7 +162,8 @@ static NSString *ID = @"memberIconCell";
 {
     CPPartnerMemberCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
     CPUser *member = self.model.acceptMembers[indexPath.item];
-    [cell.iconView sd_setImageWithURL:[NSURL URLWithString:member.avatar] placeholderImage:CPPlaceHolderImage options:SDWebImageLowPriority | SDWebImageRetryFailed];
+    
+    [cell.iconView zySetImageWithUrl:member.avatar placeholderImage:CPPlaceHolderImage];
     return cell;
 }
 

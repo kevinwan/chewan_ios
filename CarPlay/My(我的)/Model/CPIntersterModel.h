@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CPIntersterModel : NSObject
+@interface CPIntersterModel : NSObject<NSCopying>
 
 @property (nonatomic, copy) NSString *relatedId;
 @property (nonatomic, strong) CPUser *user;

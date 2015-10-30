@@ -238,7 +238,7 @@
     self.sexView.isMan = model.organizer.isMan;
     self.sexView.age = model.organizer.age;
 //    [self.userIconView downloadIMGWithAddr:model.organizer.cover];
-    self.userIconView.showBlurView = !isHasAlubm;
+//    self.userIconView.showBlurView = !isHasAlubm;
     
     [self.userIconView zy_setImageWithUrl:model.organizer.cover];
     [self.distanceView setTitle:model.distanceStr forState:UIControlStateNormal];
@@ -274,7 +274,8 @@
     
     if ([model.organizer.licenseAuthStatus isEqualToString:@"认证通过"]) {
         self.carTypeView.hidden = NO;
-        [self.carView sd_setImageWithURL:[NSURL URLWithString:model.organizer.car.logo] forState:UIControlStateNormal placeholderImage:CPPlaceHolderImage];
+        
+        [self.carView zySetImageWithUrl:model.organizer.car.logo placeholderImage:CPPlaceHolderImage forState:UIControlStateNormal];
         self.carTypeView.text = model.organizer.car.model;
     }else{
         
@@ -359,7 +360,7 @@
     }
     
     if ([myDateModel.applicant.licenseAuthStatus isEqualToString:@"认证通过"]) {
-        [self.carView sd_setImageWithURL:[NSURL URLWithString:myDateModel.applicant.car.logo] forState:UIControlStateNormal placeholderImage:CPPlaceHolderImage];
+        [self.carView zySetImageWithUrl:myDateModel.applicant.car.logo placeholderImage:CPPlaceHolderImage forState:UIControlStateNormal];
         self.carTypeView.text = myDateModel.applicant.car.model;
     }else{
         [self.carView setImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
@@ -448,7 +449,8 @@
     
     if ([intersterModel.user.licenseAuthStatus isEqualToString:@"认证通过"]) {
         self.carTypeView.hidden = NO;
-        [self.carView sd_setImageWithURL:[NSURL URLWithString:intersterModel.user.car.logo] forState:UIControlStateNormal placeholderImage:CPPlaceHolderImage];
+        [self.carView zySetImageWithUrl:intersterModel.user.car.logo placeholderImage:CPPlaceHolderImage forState:UIControlStateNormal];
+        
         self.carTypeView.text = intersterModel.user.car.model;
     }else{
         [self.carView setImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
