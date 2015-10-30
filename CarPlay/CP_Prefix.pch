@@ -10,8 +10,6 @@
 #define CarPlay_CP_Prefix_pch
 
 #import "macro.h"
-#import "UIImageView+WebCache.h"
-#import "UIButton+WebCache.h"
 #import <Masonry.h>
 #import <MJExtension/MJExtension.h>
 #import "ZYExtension.h"
@@ -40,4 +38,5 @@
 #import "UITabBar+Extension.h"
 #import "CPViewController.h"
 #import "UIImageView+ZYWebCache.h"
+#import "UIButton+ZYWebCache.h"
 #endif

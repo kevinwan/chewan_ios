@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FXBlurView.h"
-
+#import "UIImageView+WebCache.h"
 typedef void(^completion)(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL);
 
 @interface ZYImageVIew : UIImageView

@@ -12,6 +12,16 @@
 
 - (void)zySetImageWithUrl:(NSString *)url placeholderImage:(UIImage *)placeholderImage
 {
-    [self setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]] placeholderImage:placeholderImage success:nil failure:nil];
+    [self zySetImageWithUrl:url placeholderImage:placeholderImage completion:nil];
 }
+
+- (void)zySetImageWithUrl:(NSString *)url placeholderImage:(UIImage *)placeholderImage completion:(void (^)(UIImage *))completion
+{
+     [self setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]] placeholderImage:placeholderImage success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
+         if(completion){
+             completion(image);
+         }
+     } failure:nil];
+}
+
 @end

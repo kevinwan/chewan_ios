@@ -20,7 +20,6 @@
 #import "CPAlbum.h"
 #import "CPMyInterestViewController.h"
 #import "NSObject+Copying.h"
-#import "EMSDImageCache.h"
 
 @interface CPNearViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate>
 @property (nonatomic, strong) UICollectionView *tableView;

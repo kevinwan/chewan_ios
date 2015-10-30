@@ -10,6 +10,8 @@
 
 @interface UIImageView (ZYWebCache)
 
+- (void)zySetImageWithUrl:(NSString *)url placeholderImage:(UIImage *)placeholderImage completion:(void (^)(UIImage *image))completion;
+
 - (void)zySetImageWithUrl:(NSString *)url placeholderImage:(UIImage *)placeholderImage;
 
 @end

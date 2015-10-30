@@ -274,6 +274,9 @@
     
     if ([model.organizer.licenseAuthStatus isEqualToString:@"认证通过"]) {
         self.carTypeView.hidden = NO;
+        
+        [self.carView zysetimage];
+        
         [self.carView sd_setImageWithURL:[NSURL URLWithString:model.organizer.car.logo] forState:UIControlStateNormal placeholderImage:CPPlaceHolderImage];
         self.carTypeView.text = model.organizer.car.model;
     }else{

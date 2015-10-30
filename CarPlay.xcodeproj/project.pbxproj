@@ -475,10 +475,6 @@
 		E3606F0D1BC76FF100797968 /* CPRecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */; };
 		E3606F121BC78C7300797968 /* CPBaseViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F111BC78C7300797968 /* CPBaseViewCell.xib */; };
 		E365747F1BE0BD3000BA7E63 /* CPHisDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E365747E1BE0BD3000BA7E63 /* CPHisDateViewController.m */; };
-		E36574891BE0D54200BA7E63 /* HMDownloadIMGManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E36574821BE0D54200BA7E63 /* HMDownloadIMGManager.m */; };
-		E365748A1BE0D54200BA7E63 /* HMDownloadIMGOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E36574841BE0D54200BA7E63 /* HMDownloadIMGOperation.m */; };
-		E365748B1BE0D54200BA7E63 /* NSString+Path.m in Sources */ = {isa = PBXBuildFile; fileRef = E36574861BE0D54200BA7E63 /* NSString+Path.m */; };
-		E365748C1BE0D54200BA7E63 /* UIImageView+webCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E36574881BE0D54200BA7E63 /* UIImageView+webCache.m */; };
 		E36574901BE0E9BF00BA7E63 /* ZYDownloadImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E365748F1BE0E9BF00BA7E63 /* ZYDownloadImageOperation.m */; };
 		E36574931BE0EE0100BA7E63 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = E36574921BE0EE0100BA7E63 /* UIImage+ImageEffects.m */; };
 		E36945FA1BD9E3B000ABF3F5 /* CPMyDateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E36945F91BD9E3B000ABF3F5 /* CPMyDateModel.m */; };
@@ -557,6 +553,7 @@
 		E3BEEAFB1BE20F23006B80EA /* NSObject+Copying.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BEEAFA1BE20F23006B80EA /* NSObject+Copying.m */; settings = {ASSET_TAGS = (); }; };
 		E3BEEAFE1BE220DB006B80EA /* NSObject+Copying.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BEEAFD1BE220DB006B80EA /* NSObject+Copying.m */; settings = {ASSET_TAGS = (); }; };
 		E3C5F1911BC92C790021E33D /* CPActivityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C5F1901BC92C790021E33D /* CPActivityDetailViewController.m */; };
+		E3DF66541BE31C9B00B9239D /* UIButton+ZYWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DF66531BE31C9B00B9239D /* UIButton+ZYWebCache.m */; settings = {ASSET_TAGS = (); }; };
 		E3E6B8911BB4FD54006B4F8A /* CPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6B88F1BB4FD54006B4F8A /* CPLoginViewController.m */; };
 		E3E6B8921BB4FD54006B4F8A /* CPLoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3E6B8901BB4FD54006B4F8A /* CPLoginViewController.storyboard */; };
 		E3E6B8951BB514A2006B4F8A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6B8941BB514A2006B4F8A /* AppDelegate.m */; };
@@ -1346,14 +1343,6 @@
 		E3606F111BC78C7300797968 /* CPBaseViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPBaseViewCell.xib; sourceTree = "<group>"; };
 		E365747D1BE0BD3000BA7E63 /* CPHisDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHisDateViewController.h; sourceTree = "<group>"; };
 		E365747E1BE0BD3000BA7E63 /* CPHisDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPHisDateViewController.m; sourceTree = "<group>"; };
-		E36574811BE0D54200BA7E63 /* HMDownloadIMGManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMDownloadIMGManager.h; sourceTree = "<group>"; };
-		E36574821BE0D54200BA7E63 /* HMDownloadIMGManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMDownloadIMGManager.m; sourceTree = "<group>"; };
-		E36574831BE0D54200BA7E63 /* HMDownloadIMGOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMDownloadIMGOperation.h; sourceTree = "<group>"; };
-		E36574841BE0D54200BA7E63 /* HMDownloadIMGOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMDownloadIMGOperation.m; sourceTree = "<group>"; };
-		E36574851BE0D54200BA7E63 /* NSString+Path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Path.h"; sourceTree = "<group>"; };
-		E36574861BE0D54200BA7E63 /* NSString+Path.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Path.m"; sourceTree = "<group>"; };
-		E36574871BE0D54200BA7E63 /* UIImageView+webCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+webCache.h"; sourceTree = "<group>"; };
-		E36574881BE0D54200BA7E63 /* UIImageView+webCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+webCache.m"; sourceTree = "<group>"; };
 		E365748E1BE0E9BF00BA7E63 /* ZYDownloadImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYDownloadImageOperation.h; sourceTree = "<group>"; };
 		E365748F1BE0E9BF00BA7E63 /* ZYDownloadImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYDownloadImageOperation.m; sourceTree = "<group>"; };
 		E36574911BE0EE0100BA7E63 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
@@ -1507,6 +1496,8 @@
 		E3BEEAFD1BE220DB006B80EA /* NSObject+Copying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+Copying.m"; path = "My(我的)/Model/NSObject+Copying.m"; sourceTree = "<group>"; };
 		E3C5F18F1BC92C790021E33D /* CPActivityDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityDetailViewController.h; sourceTree = "<group>"; };
 		E3C5F1901BC92C790021E33D /* CPActivityDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityDetailViewController.m; sourceTree = "<group>"; };
+		E3DF66521BE31C9B00B9239D /* UIButton+ZYWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+ZYWebCache.h"; sourceTree = "<group>"; };
+		E3DF66531BE31C9B00B9239D /* UIButton+ZYWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+ZYWebCache.m"; sourceTree = "<group>"; };
 		E3E6B88E1BB4FD54006B4F8A /* CPLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLoginViewController.h; sourceTree = "<group>"; };
 		E3E6B88F1BB4FD54006B4F8A /* CPLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPLoginViewController.m; sourceTree = "<group>"; };
 		E3E6B8901BB4FD54006B4F8A /* CPLoginViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPLoginViewController.storyboard; sourceTree = "<group>"; };
@@ -3377,21 +3368,6 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
-		E36574801BE0D54200BA7E63 /* webimage */ = {
-			isa = PBXGroup;
-			children = (
-				E36574811BE0D54200BA7E63 /* HMDownloadIMGManager.h */,
-				E36574821BE0D54200BA7E63 /* HMDownloadIMGManager.m */,
-				E36574831BE0D54200BA7E63 /* HMDownloadIMGOperation.h */,
-				E36574841BE0D54200BA7E63 /* HMDownloadIMGOperation.m */,
-				E36574851BE0D54200BA7E63 /* NSString+Path.h */,
-				E36574861BE0D54200BA7E63 /* NSString+Path.m */,
-				E36574871BE0D54200BA7E63 /* UIImageView+webCache.h */,
-				E36574881BE0D54200BA7E63 /* UIImageView+webCache.m */,
-			);
-			path = webimage;
-			sourceTree = "<group>";
-		};
 		E365748D1BE0E99400BA7E63 /* ZYWebImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -3841,7 +3817,6 @@
 				E35AAF231BE24A0600A802A3 /* SDWebImage */,
 				6BA62E441BE1FECE002B6006 /* UMSocial_Sdk_4.3 */,
 				E365748D1BE0E99400BA7E63 /* ZYWebImage */,
-				E36574801BE0D54200BA7E63 /* webimage */,
 				E3884D5B1BD1FF1E00A65BE0 /* AAPullToRefresh */,
 				E3884D541BD1FE9900A65BE0 /* JWLayout */,
 				E32B5DDC1BCE41B50057FD71 /* ZYProgressView */,
@@ -3939,6 +3914,8 @@
 				E3A471601BB3A85300973197 /* ZYNetWorkTool.m */,
 				E38742D11BE309EC00C5D514 /* UIImageView+ZYWebCache.h */,
 				E38742D21BE309EC00C5D514 /* UIImageView+ZYWebCache.m */,
+				E3DF66521BE31C9B00B9239D /* UIButton+ZYWebCache.h */,
+				E3DF66531BE31C9B00B9239D /* UIButton+ZYWebCache.m */,
 			);
 			path = ZYNetWorkTool;
 			sourceTree = "<group>";
@@ -4446,8 +4423,6 @@
 				E3C5F1911BC92C790021E33D /* CPActivityDetailViewController.m in Sources */,
 				E31B13451BB9312D00B51696 /* UIDevice+Extend.m in Sources */,
 				E35AAF491BE24A0700A802A3 /* SDWebImageDecoder.m in Sources */,
-				6D2ABF9A1BCE582100201A8E /* EMSDImageCache.m in Sources */,
-				E365748C1BE0D54200BA7E63 /* UIImageView+webCache.m in Sources */,
 				E3A471961BB3A85300973197 /* Tools.m in Sources */,
 				6D2ABF8A1BCE582100201A8E /* EMCDDeviceManager+Remind.m in Sources */,
 				6D2ABFBB1BCE582100201A8E /* SRSlimeView.m in Sources */,
@@ -4534,7 +4509,6 @@
 				E39627B81BB5352D005E0CF2 /* CPActivityModel.m in Sources */,
 				6BCFFBBB1BBA456900C082B2 /* CPMyCareCell.m in Sources */,
 				6B364C7C1BCE4077005A4AF9 /* MJPhotoToolbar.m in Sources */,
-				E365748A1BE0D54200BA7E63 /* HMDownloadIMGOperation.m in Sources */,
 				E36574931BE0EE0100BA7E63 /* UIImage+ImageEffects.m in Sources */,
 				E3A4717D1BB3A85300973197 /* NSMutableArray+ZY.m in Sources */,
 				E39627B51BB53357005E0CF2 /* CPUser.m in Sources */,
@@ -4557,7 +4531,6 @@
 				E3A471881BB3A85300973197 /* UITableViewCell+ZYExtension.m in Sources */,
 				E369E2B81BCB9F87000A12B5 /* CPSelectView.m in Sources */,
 				E37C10B71BBB7CEB00E1A6A2 /* CPMyVistorCell.m in Sources */,
-				E36574891BE0D54200BA7E63 /* HMDownloadIMGManager.m in Sources */,
 				E36945FA1BD9E3B000ABF3F5 /* CPMyDateModel.m in Sources */,
 				E31CCEFC1BDB5CE900386F70 /* CPIntersterModel.m in Sources */,
 				6B1387DC1BCD0A6C00FAC462 /* CPBrandModelViewController.m in Sources */,
@@ -4581,7 +4554,6 @@
 				6BDA2C8A1BD514780032FFF1 /* OtherMatchingSelectView.m in Sources */,
 				6BE405171BDB953700CF164C /* CPTakeALookResultController.m in Sources */,
 				E35AAF461BE24A0700A802A3 /* NSData+ImageContentType.m in Sources */,
-				6D2ABFA41BCE582100201A8E /* UIImage+EMGIF.m in Sources */,
 				E3A4718B1BB3A85300973197 /* ZYBlock.m in Sources */,
 				6D2AC0031BCE582100201A8E /* NSDate+Category.m in Sources */,
 				E3A68BC11BBB8EE4002F4F75 /* ZYTableViewCell.m in Sources */,
@@ -4621,6 +4593,7 @@
 				E3A471811BB3A85300973197 /* UIBarButtonItem+Extension.m in Sources */,
 				E3719AAC1BDA5D9000465DF2 /* DRNRealTimeBlurView.m in Sources */,
 				E31B12E11BB9311700B51696 /* PhotoBroswerLayout.m in Sources */,
+				E3DF66541BE31C9B00B9239D /* UIButton+ZYWebCache.m in Sources */,
 				E37C10B21BBB79D800E1A6A2 /* CPMyVisitorViewController.m in Sources */,
 				E369E2BB1BCBB997000A12B5 /* CPSelectModel.m in Sources */,
 				E3A471771BB3A85300973197 /* CAAnimation+ZY.m in Sources */,
@@ -4631,7 +4604,6 @@
 				E3A68BBE1BBB8846002F4F75 /* CPConcernMyCell.m in Sources */,
 				E31B134F1BB9312D00B51696 /* UIImage+ReMake.m in Sources */,
 				E37C10BA1BBB80C100E1A6A2 /* CPConcernMyController.m in Sources */,
-				E365748B1BE0D54200BA7E63 /* NSString+Path.m in Sources */,
 				E3A471931BB3A85300973197 /* CPTabBarController.m in Sources */,
 				6D2ABFFA1BCE582100201A8E /* EMNavigationController.m in Sources */,
 				6D2ABFC11BCE582100201A8E /* EMVoiceConverter.mm in Sources */,
