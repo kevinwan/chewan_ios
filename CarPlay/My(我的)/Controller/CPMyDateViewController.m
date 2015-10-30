@@ -83,6 +83,9 @@ static NSString *ID2 = @"DateCell2";
         self.ignore = 0;
         [self loadDataWithHeader:v];
     }];
+    if (self.datas.count <= 1) {
+        return;
+    }
     // bottom
     self.footerView = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionBottom actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
@@ -102,7 +105,7 @@ static NSString *ID2 = @"DateCell2";
     self.footerView.isNoAnimation = YES;
     self.isHasRefreshHeader = YES;
 }
-
+MJCodingImplementation
 /**
  *  加载网络数据
  */

@@ -238,7 +238,7 @@
     self.sexView.isMan = model.organizer.isMan;
     self.sexView.age = model.organizer.age;
 //    [self.userIconView downloadIMGWithAddr:model.organizer.cover];
-    self.userIconView.showBlurView = !isHasAlubm;
+//    self.userIconView.showBlurView = !isHasAlubm;
     
     [self.userIconView zy_setImageWithUrl:model.organizer.cover];
     [self.distanceView setTitle:model.distanceStr forState:UIControlStateNormal];
@@ -274,6 +274,9 @@
     
     if ([model.organizer.licenseAuthStatus isEqualToString:@"认证通过"]) {
         self.carTypeView.hidden = NO;
+        
+        [self.carView zysetimage];
+        
         [self.carView sd_setImageWithURL:[NSURL URLWithString:model.organizer.car.logo] forState:UIControlStateNormal placeholderImage:CPPlaceHolderImage];
         self.carTypeView.text = model.organizer.car.model;
     }else{

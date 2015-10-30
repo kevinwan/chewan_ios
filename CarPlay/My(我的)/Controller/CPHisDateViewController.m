@@ -77,6 +77,9 @@ static NSString *ID = @"HisDateCell";
     }];
     self.headerView.isNoAnimation = YES;
     // bottom
+    if (self.datas.count <= 1) {
+        return;
+    }
     self.footerView = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionBottom actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
         ZYMainOperation(^{
@@ -105,8 +108,8 @@ static NSString *ID = @"HisDateCell";
 - (void)loadDataWithHeader:(AAPullToRefresh *)refresh
 {
     //    http://cwapi.gongpingjia.com/v2/activity/pushInfo?userId=846de312-306c-4916-91c1-a5e69b158014&token=846de312-306c-4916-91c1-a5e69b158014
-    NSString *url = [NSString stringWithFormat:@"user/%@/activity/list?userId=%@&token=%@&ignore=%zd",self.targetUser.userId,CPUserId,CPToken,self.ignore];
-    [ZYNetWorkTool getWithUrl:url params:nil success:^(id responseObject) {
+    NSString *url = [NSString stringWithFormat:@"user/%@/activity/list?userId=%@&token=%@",self.targetUser.userId,CPUserId,CPToken];
+    [ZYNetWorkTool getWithUrl:url params:@{@"ignore":@(self.ignore)} success:^(id responseObject) {
         DLog(@"%@",responseObject);
         [self setUpRefresh];
         [refresh stopIndicatorAnimation];

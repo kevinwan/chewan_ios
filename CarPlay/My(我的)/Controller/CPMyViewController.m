@@ -12,7 +12,7 @@
 #import "CPNavigationController.h"
 #import "UIImage+Blur.h"
 #import "UIButton+SD.h"
-#import <UIButton+WebCache.h>
+//#import <UIButton+WebCache.h>
 #import "CPMyCareController.h"
 #import "UzysAssetsPickerController.h"
 #import "CPAlbum.h"
@@ -132,10 +132,11 @@
 }
 
 -(void)reloadData{
-    [self.headImageBg sd_setImageWithURL:[[NSURL alloc]initWithString:user.avatar] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        self.headImageBg.image=[image blurredImageWithRadius:20];
+    
+    [self.headImageBg zySetImageWithUrl:user.avatar placeholderImage:nil completion:^(UIImage *image) {
+                self.headImageBg.image=[image blurredImageWithRadius:20];
     }];
-    [self.headImage sd_setImageWithURL:[[NSURL alloc]initWithString:user.avatar]];
+    [self.headImage zySetImageWithUrl:user.avatar placeholderImage:nil];
     [self.nickname setTitle:user.nickname forState:UIControlStateNormal];
     if ([user.gender isEqualToString:@"女"]) {
         [self.sex setImage:[UIImage imageNamed:@"女"] forState:UIControlStateNormal];
@@ -339,7 +340,7 @@
         [cell.imageView setImage:[UIImage imageNamed:@"相机"]];
     }else{
         CPAlbum *ablum=(CPAlbum *)user.album[indexPath.row-1];
-        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:ablum.url]];
+        [cell.imageView zySetImageWithUrl:ablum.url placeholderImage:nil];
     }
     return cell;
 }

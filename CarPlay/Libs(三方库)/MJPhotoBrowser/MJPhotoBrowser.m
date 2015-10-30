@@ -8,7 +8,7 @@
 #import "MJPhoto.h"
 #import "MJPhotoView.h"
 #import "MJPhotoToolbar.h"
-#import <SDWebImage/SDWebImagePrefetcher.h>
+#import "SDWebImagePrefetcher.h"
 
 #define kPadding 10
 #define kPhotoViewTagOffset 1000
