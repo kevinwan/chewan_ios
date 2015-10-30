@@ -249,7 +249,7 @@
     if (street.trimLength) {
         street = [NSString stringWithFormat:@"%@周边",street];
     }else{
-        street = @"未知";
+        street = @"地点待定";
     }
     [self.addressView setTitle:street forState:UIControlStateNormal];
     if (model.title.length) {
@@ -334,7 +334,7 @@
     if (street.trimLength) {
         street = [NSString stringWithFormat:@"%@周边",street];
     }else{
-        street = @"未知";
+        street = @"地点待定";
     }
     [self.addressView setTitle:street forState:UIControlStateNormal];
     if (myDateModel.title.length) {
@@ -423,7 +423,7 @@
     if (street.trimLength) {
         street = [NSString stringWithFormat:@"%@周边",street];
     }else{
-        street = @"未知";
+        street = @"地点待定";
     }
     [self.addressView setTitle:street forState:UIControlStateNormal];
     if (intersterModel.title.length) {
