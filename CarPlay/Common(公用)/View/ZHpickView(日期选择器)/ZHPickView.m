@@ -196,7 +196,7 @@
     }else {
         toolViewY= [UIScreen mainScreen].bounds.size.height-toolViewH;
     }
-    CGFloat toolViewW = [UIScreen mainScreen].bounds.size.width;
+    CGFloat toolViewW = ZYScreenWidth;
     self.frame = CGRectMake(toolViewX, toolViewY, toolViewW, toolViewH);
 }
 -(void)setUpPickView{
@@ -230,7 +230,7 @@
         [datePicker setDate:_defaulDate];
     }
     _datePicker=datePicker;
-    datePicker.frame=CGRectMake(0, ZHToobarHeight, datePicker.frame.size.width, datePicker.frame.size.height);
+    datePicker.frame=CGRectMake(0, ZHToobarHeight, ZYScreenWidth, datePicker.frame.size.height);
     _pickeviewHeight=datePicker.frame.size.height;
     [self addSubview:datePicker];
 }

@@ -82,7 +82,6 @@
                                     myInfoVC.user=user;
                                     myInfoVC.password=[Tools md5EncryptWithString:self.passwordField.text];
                                     [self.navigationController pushViewController:myInfoVC animated:YES];
-                                    
                                 }else{
                                     NSString *errmsg =[responseObject objectForKey:@"errmsg"];
                                     [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
