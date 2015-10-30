@@ -13,6 +13,7 @@
 #import "CPLoginViewController.h"
 #import "CPNavigationController.h"
 #import "SDImageCache.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface CPSettingController ()<UIAlertViewDelegate>
 {
@@ -71,13 +72,25 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row==0) {
         [activityIndicator startAnimating];
-        [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
-            [self.tableview reloadData];
-            [SVProgressHUD showImage:[UIImage imageNamed:@"清理成功"] status:@"清理成功"];
+        [(NSCache *)[UIImageView sharedImageCache] removeAllObjects];
+        
+        ZYAsyncOperation(^{
+            NSString *afCachePath = [NSString stringWithFormat:@"%@/fsCachedData",BundleId].cachePath;
             
-            [activityIndicator stopAnimating];
-        }];
-    }else if (indexPath.row==1){
+            BOOL comple = [[NSFileManager defaultManager] removeItemAtPath:afCachePath error:nil];
+            if (comple) {
+                ZYMainOperation(^{
+                    [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
+                        [self.tableview reloadData];
+                        [SVProgressHUD showImage:[UIImage imageNamed:@"清理成功"] status:@"清理成功"];
+                        
+                        [activityIndicator stopAnimating];
+                    }];
+
+                });
+            }
+        });
+           }else if (indexPath.row==1){
         NSString *str = [NSString stringWithFormat:@"http://itunes.apple.com/us/app/id%d", 1034646246];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
         
@@ -106,7 +119,8 @@
                 //注销成功之后清理useid和token
                 [ZYUserDefaults setObject:nil forKey:Token];
                 [ZYUserDefaults setObject:nil forKey:UserId];
-                
+                [[SDImageCache sharedImageCache]  clearMemory];
+                [[SDImageCache sharedImageCache] cleanDisk];
                 CPLoginViewController *login = [UIStoryboard storyboardWithName:@"CPLoginViewController" bundle:nil].instantiateInitialViewController;
                 CPNavigationController *nav=[[CPNavigationController alloc]initWithRootViewController:login];
                 [self.navigationController popViewControllerAnimated:NO];

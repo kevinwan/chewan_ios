@@ -304,17 +304,31 @@
         NSString *path=[[NSString alloc]initWithFormat:@"user/%@/album/upload?token=%@",[Tools getUserId],[Tools getToken]];
         NSMutableArray *albums=[[NSMutableArray alloc] initWithArray:user.album];
         CPAlbum *albumModel=[[CPAlbum alloc]init];
-    [self showLoading];
+        [self showLoading];
+        __block NSUInteger compleCount = 0;
+    
         for (int i = 0; i < arr.count; i++) {
             ZYHttpFile *imageFile = [ZYHttpFile fileWithName:@"attach" data:UIImageJPEGRepresentation(arr[i], 0.4) mimeType:@"image/jpeg" filename:@"a1.jpg"];
             [self showLoading];
             [ZYNetWorkTool postFileWithUrl:path params:nil files:@[imageFile] success:^(id responseObject) {
                 if (CPSuccess) {
+                    compleCount++;
                     albumModel.key=responseObject[@"data"][@"photoKey"];
                     albumModel.url=responseObject[@"data"][@"photoUrl"];
                     [albums insertObject:albumModel atIndex:0];
                     user.album=albums;
-                    [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
+                    if (compleCount == arr.count) {
+                        if ([ZYUserDefaults boolForKey:CPHasAlbum] == NO) {
+                            [[SDImageCache sharedImageCache] clearMemory];
+                            [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
+                                [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
+                            }];
+                        }else{
+                            
+                            [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
+                        }
+                    }
+                    
                     [self.albumsCollectionView reloadData];
                 }else{
                     [self showError:responseObject[@"errmsg"]];

@@ -79,6 +79,18 @@ static NSString *ID = @"memberIconCell";
 }
 
 - (IBAction)comeOnBaby:(UIButton *)sender {
+    //inviteStatus        当前登录用户 邀请 该用户的 状态；
+    //0 没有邀请过           1 邀请中
+    //2 邀请同意             3 邀请被拒绝
+    
+    
+    //beInvitedStatus      该用户是否邀请过 登录用户
+    //0 没有邀请过           1 邀请中
+    //2 邀请同意             3 邀请被拒绝
+    if (_model.inviteStatus == 0 && _model.beInvitedStatus == 1) {
+        [SVProgressHUD showInfoWithStatus:@"该用户已经邀请了您,快去动态中查看吧"];
+        return;
+    }
     
     [self superViewWillRecive:CPComeOnBabyClickKey info:_model.userId];
 }
@@ -143,11 +155,11 @@ static NSString *ID = @"memberIconCell";
         self.msgButton.hidden = YES;
         self.inviteBtn.hidden = NO;
         [self.inviteBtn setTitle:@"邀请中" forState:UIControlStateNormal];
-    }else if (model.inviteStatus == 2){
+    }else if (model.inviteStatus == 2 && model.beInvitedStatus == 2){
         
-        self.phoneBtn.hidden = YES;
-        self.msgButton.hidden = YES;
-        self.inviteBtn.hidden = NO;
+        self.phoneBtn.hidden = NO;
+        self.msgButton.hidden = NO;
+        self.inviteBtn.hidden = YES;
     }else if (model.inviteStatus == 3){
         self.phoneBtn.hidden = YES;
         self.msgButton.hidden = YES;
