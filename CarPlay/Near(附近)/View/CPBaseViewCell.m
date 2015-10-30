@@ -238,7 +238,7 @@
     self.sexView.isMan = model.organizer.isMan;
     self.sexView.age = model.organizer.age;
 //    [self.userIconView downloadIMGWithAddr:model.organizer.cover];
-    self.userIconView.showBlurView = !isHasAlubm;
+//    self.userIconView.showBlurView = !isHasAlubm;
     
     [self.userIconView zy_setImageWithUrl:model.organizer.cover];
     [self.distanceView setTitle:model.distanceStr forState:UIControlStateNormal];

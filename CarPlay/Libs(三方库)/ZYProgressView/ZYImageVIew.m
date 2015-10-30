@@ -39,27 +39,27 @@
     [FXBlurView setUpdatesEnabled];
 }
 
-- (void)setImage:(UIImage *)image
-{
-    if (image) {
-        self.placeHloderImageView.hidden = YES;
-        [super setImage:image];
-        
-    }
-    
-    if (image && self.showBlurView) {
-        
-        [self insertSubview:self.userCoverView atIndex:0];
-        
-        self.userCoverView.hidden = NO;
-//        [self.userCoverView updateAsynchronously:YES completion:^{
-//            [self.userCoverView setNeedsDisplay];
-//        }];
-        
-    }else{
-        self.userCoverView.hidden = YES;
-    }
-}
+//- (void)setImage:(UIImage *)image
+//{
+//    if (image) {
+//        self.placeHloderImageView.hidden = YES;
+//        [super setImage:image];
+//        
+//    }
+//    
+//    if (image && self.showBlurView) {
+//        
+//        [self insertSubview:self.userCoverView atIndex:0];
+//        
+//        self.userCoverView.hidden = NO;
+////        [self.userCoverView updateAsynchronously:YES completion:^{
+////            [self.userCoverView setNeedsDisplay];
+////        }];
+//        
+//    }else{
+//        self.userCoverView.hidden = YES;
+//    }
+//}
 - (void)zy_setImageWithUrl:(NSString *)url
 {
     self.placeHloderImageView.hidden = NO;

@@ -1,0 +1,15 @@
+//
+//  UIImageView+ZYWebCache.h
+//  CarPlay
+//
+//  Created by chewan on 10/30/15.
+//  Copyright © 2015 chewan. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface UIImageView (ZYWebCache)
+
+- (void)zySetImageWithUrl:(NSString *)url placeholderImage:(UIImage *)placeholderImage;
+
+@end

@@ -19,6 +19,8 @@
 #import "CPNearCollectionViewCell.h"
 #import "CPAlbum.h"
 #import "CPMyInterestViewController.h"
+#import "NSObject+Copying.h"
+#import "EMSDImageCache.h"
 
 @interface CPNearViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate>
 @property (nonatomic, strong) UICollectionView *tableView;
@@ -59,6 +61,8 @@ static NSString *ID = @"cell";
         self.isLoginSuccess = loginSuccess;
         if (loginSuccess) {
             [self loadDataWithHeader:nil];
+        }else{
+            [self loadDataWithHeader:nil];
         }
     }];
 }
@@ -66,11 +70,14 @@ static NSString *ID = @"cell";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [ZYLoadingView showLoadingView];
     if (CPUnLogin) {
+        
+        [ZYLoadingView showLoadingView];
         [self loadDataWithHeader:nil];
     }else{
         if (self.isLoginSuccess) {
+            
+            [ZYLoadingView showLoadingView];
             [self loadDataWithHeader:nil];
         }
     }
@@ -98,11 +105,15 @@ static NSString *ID = @"cell";
         self.params.ignore = 0;
         [self loadDataWithHeader:v];
     }];
+    
+    if (self.datas.count <= 1) {
+        return;
+    }
+    
     // bottom
     self.footerView = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionBottom actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
         ZYMainOperation(^{
-            
             [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, self.tableView.contentSizeHeight - self.tableView.height + 44 + self.tableView.contentInsetTop) animated:YES];
         });
             
@@ -131,6 +142,7 @@ static NSString *ID = @"cell";
         [self setUpRefresh];
         [refresh stopIndicatorAnimation];
         if (CPSuccess) {
+            DLog(@"%@",responseObject);
             if (self.params.ignore == 0) {
                 [self.datas removeAllObjects];
             }
@@ -189,8 +201,6 @@ static NSString *ID = @"cell";
 
     [layout EndAnchorMove];
 }
-
-
 
 #pragma mark - 事件交互
 
@@ -366,6 +376,31 @@ static NSString *ID = @"cell";
  */
 - (void)filter
 {
+//    ZYMainOperation(^{
+//        
+//        [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
+//            [[SDImageCache sharedImageCache] clearMemory];
+//        }];
+//        [[NSURLCache sharedURLCache] removeAllCachedResponses];
+//        [self loadDataWithHeader:nil];
+//    });
+//    return;
+    
+    [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
+    
+    [[SDImageCache sharedImageCache] clearMemory];
+    [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
+        [self.tableView reloadData];
+    }];
+//    [self.datas enumerateObjectsUsingBlock:^(CPActivityModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        
+//        [[SDImageCache sharedImageCache] removeImageForKey:obj.organizer.cover fromDisk:YES withCompletion:^{
+//            [self.tableView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:idx inSection:0]]];
+//        }];
+//    }];
+
+//    [self.tableView reloadData];
+    return;
     [CPSelectView showWithParams:^(CPSelectModel *selectModel) {
         
         self.params.majorType = selectModel.type;

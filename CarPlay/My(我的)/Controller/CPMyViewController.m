@@ -12,7 +12,7 @@
 #import "CPNavigationController.h"
 #import "UIImage+Blur.h"
 #import "UIButton+SD.h"
-#import <UIButton+WebCache.h>
+//#import <UIButton+WebCache.h>
 #import "CPMyCareController.h"
 #import "UzysAssetsPickerController.h"
 #import "CPAlbum.h"
