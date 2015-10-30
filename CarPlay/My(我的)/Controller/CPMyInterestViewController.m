@@ -19,6 +19,7 @@
 #import "CPNearCollectionViewCell.h"
 #import "CPAlbum.h"
 #import "ZYWaterflowLayout.h"
+#import "SDImageCache.h"
 
 @interface CPMyInterestViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate,ZYWaterflowLayoutDelegate>
 @property (nonatomic, strong) UICollectionView *tableView;
@@ -110,7 +111,6 @@ static NSString *ID = @"myIntersterCell";
     NSString *url = [NSString stringWithFormat:@"user/%@/interest/list",CPUserId];
     [ZYNetWorkTool getWithUrl:url params:params success:^(id responseObject) {
         
-        [self setUpRefresh];
         [refresh stopIndicatorAnimation];
         DLog(@"%@ ---- ",responseObject);
         if (CPSuccess) {
@@ -122,6 +122,7 @@ static NSString *ID = @"myIntersterCell";
             NSLog(@"gggg%zd",arr.count);
             [self.datas addObjectsFromArray:arr];
             
+            [self setUpRefresh];
             if (self.datas.count == 0) {
                 self.noDataView.netWorkFailtype = NO;
                 self.noDataView.hidden = NO;
@@ -130,6 +131,8 @@ static NSString *ID = @"myIntersterCell";
             }
             [self.tableView reloadData];
         }else{
+            
+            [self setUpRefresh];
             [self showInfo:CPErrorMsg];
         }
         
@@ -270,7 +273,6 @@ static NSString *ID = @"myIntersterCell";
         ZYHttpFile *imageFile = [ZYHttpFile fileWithName:@"attach" data:UIImageJPEGRepresentation(arr[i], 0.4) mimeType:@"image/jpeg" filename:@"a1.jpg"];
         [ZYNetWorkTool postFileWithUrl:path params:nil files:@[imageFile] success:^(id responseObject) {
             if (CPSuccess) {
-                [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
                 
                 count++;
                 
@@ -285,7 +287,14 @@ static NSString *ID = @"myIntersterCell";
                     [albums insertObjects:user.album atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, user.album.count)]];
                     user.album = [albums copy];
                     [NSKeyedArchiver archiveRootObject:user toFile:filePath.documentPath];
-                    [self.tableView reloadData];
+                    if ([ZYUserDefaults boolForKey:CPHasAlbum] == NO) {
+                        [[SDImageCache sharedImageCache] clearMemory];
+                        [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
+                            [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
+                            [self.tableView reloadData];
+                        }];
+                    }
+                    
                 }
             }else{
                 [self showInfo:CPErrorMsg];

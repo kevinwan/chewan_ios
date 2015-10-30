@@ -20,6 +20,7 @@
 #import "CPAlbum.h"
 #import "CPMyInterestViewController.h"
 #import "ZYWaterflowLayout.h"
+#import "SDImageCache.h"
 
 @interface CPHisDateViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate,ZYWaterflowLayoutDelegate>
 @property (nonatomic, strong) UICollectionView *tableView;
@@ -111,26 +112,34 @@ static NSString *ID = @"HisDateCell";
     NSString *url = [NSString stringWithFormat:@"user/%@/activity/list?userId=%@&token=%@",self.targetUser.userId,CPUserId,CPToken];
     [ZYNetWorkTool getWithUrl:url params:@{@"ignore":@(self.ignore)} success:^(id responseObject) {
         DLog(@"%@",responseObject);
-        [self setUpRefresh];
         [refresh stopIndicatorAnimation];
         if (CPSuccess) {
             if (self.ignore == 0) {
                 [self.datas removeAllObjects];
             }
 
+            NSString *cover = responseObject[@"data"][@"cover"];
+            double distance = [responseObject[@"distance"] doubleValue];
             
-            
-//            NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
-//            [self.datas addObjectsFromArray:arr];
-//            
-//            if (self.datas.count == 0) {
-//                self.noDataView.netWorkFailtype = NO;
-//                self.noDataView.hidden = NO;
-//            }else{
-//                self.noDataView.hidden = YES;
-//            }
-//            [self.tableView reloadData];
+            NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"][@"activities"]];
+            for (CPActivityModel *model in arr) {
+                model.organizer = self.targetUser;
+                model.organizer.distance = distance;
+                model.organizer.cover = cover;
+            }
+            [self.datas addObjectsFromArray:arr];
+            //
+            [self setUpRefresh];
+            if (self.datas.count == 0) {
+                self.noDataView.netWorkFailtype = NO;
+                self.noDataView.hidden = NO;
+            }else{
+                self.noDataView.hidden = YES;
+            }
+            [self.tableView reloadData];
         }else{
+            
+            [self setUpRefresh];
             [self showInfo:CPErrorMsg];
         }
         
@@ -197,23 +206,25 @@ static NSString *ID = @"HisDateCell";
  */
 - (void)loveBtnClickWithInfo:(CPActivityModel *)model
 {
-    ZYAsyncThead(^{
-        
-        NSMutableArray *indexPaths = [NSMutableArray array];
-        
-        for (int i = 0;i < self.datas.count; i++) {
-            CPActivityModel *obj = self.datas[i];
-            if ([obj.organizer.userId isEqualToString:model.organizer.userId] && ![obj.activityId isEqualToString:model.activityId]) {
-                obj.organizer.subscribeFlag = model.organizer.subscribeFlag;
-                [indexPaths addObject:[NSIndexPath indexPathForItem:i inSection:0]];
-            }
-            
-        }
-        ZYMainOperation(^{
-            [self.tableView reloadItemsAtIndexPaths:indexPaths];
-        });
-        
-    });
+    [self loadDataWithHeader:nil];
+    
+//    ZYAsyncThead(^{
+//        
+//        NSMutableArray *indexPaths = [NSMutableArray array];
+//        
+//        for (int i = 0;i < self.datas.count; i++) {
+//            CPActivityModel *obj = self.datas[i];
+//            if ([obj.organizer.userId isEqualToString:model.organizer.userId] && ![obj.activityId isEqualToString:model.activityId]) {
+//                obj.organizer.subscribeFlag = model.organizer.subscribeFlag;
+//                [indexPaths addObject:[NSIndexPath indexPathForItem:i inSection:0]];
+//            }
+//            
+//        }
+//        ZYMainOperation(^{
+//            [self.tableView reloadItemsAtIndexPaths:indexPaths];
+//        });
+//        
+//    });
 }
 
 /**
@@ -272,8 +283,6 @@ static NSString *ID = @"HisDateCell";
         ZYHttpFile *imageFile = [ZYHttpFile fileWithName:@"attach" data:UIImageJPEGRepresentation(arr[i], 0.4) mimeType:@"image/jpeg" filename:@"a1.jpg"];
         [ZYNetWorkTool postFileWithUrl:path params:nil files:@[imageFile] success:^(id responseObject) {
             if (CPSuccess) {
-                [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
-                
                 count++;
                 
                 CPAlbum *album = [CPAlbum objectWithKeyValues:responseObject[@"data"]];
@@ -287,7 +296,13 @@ static NSString *ID = @"HisDateCell";
                     [albums insertObjects:user.album atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, user.album.count)]];
                     user.album = [albums copy];
                     [NSKeyedArchiver archiveRootObject:user toFile:filePath.documentPath];
-                    [self.tableView reloadData];
+                    if ([ZYUserDefaults boolForKey:CPHasAlbum] == NO) {
+                        [[SDImageCache sharedImageCache] clearMemory];
+                        [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
+                            [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
+                            [self.tableView reloadData];
+                        }];
+                    }
                 }
             }else{
                 [self showInfo:CPErrorMsg];
@@ -351,6 +366,7 @@ static NSString *ID = @"HisDateCell";
         self.automaticallyAdjustsScrollViewInsets = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        layout.columnsCount = 1;
         layout.rowMargin = 20;
         layout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
         self.view.backgroundColor = [Tools getColor:@"efefef"];

@@ -74,6 +74,9 @@
  */
 - (void)addChildVc:(UIViewController *)childVc title:(NSString *)title image:(NSString *)image selectedImage:(NSString *)selectedImage
 {
+    if (!childVc) {
+        return;
+    }
     // 设置子控制器的文字
     childVc.title = title; // 同时设置tabbar和navigationBar的文字
     
