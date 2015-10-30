@@ -108,6 +108,7 @@
                 
                 CPLoginViewController *login = [UIStoryboard storyboardWithName:@"CPLoginViewController" bundle:nil].instantiateInitialViewController;
                 CPNavigationController *nav=[[CPNavigationController alloc]initWithRootViewController:login];
+                [self.navigationController popViewControllerAnimated:NO];
                 self.view.window.rootViewController = nav;
                 [self.view.window makeKeyAndVisible];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"DID_LOG_OUT_SUCCESS" object:nil];
