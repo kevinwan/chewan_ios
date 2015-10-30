@@ -23,6 +23,8 @@
 @property (nonatomic) NSInteger unreadCount;
 //列表要增加年龄和性别的选项
 @property (nonatomic, strong) CPSexView *cpSexView;
+//这个属性本来是实例变量，但是设计要求如果群组的话，变成小点。所以拿出来。
+@property (nonatomic, assign) BOOL isGroup;
 
 +(CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath;

@@ -55,16 +55,31 @@ NSString *const kRouterEventImageBubbleTapEventName = @"kRouterEventImageBubbleT
 {
     [super layoutSubviews];
     
+//    CGRect frame = self.bounds;
+//    frame.size.width -= BUBBLE_ARROW_WIDTH;
+//    frame = CGRectInset(frame, BUBBLE_VIEW_PADDING, BUBBLE_VIEW_PADDING);
+//    if (self.model.isSender) {
+//        frame.origin.x = BUBBLE_VIEW_PADDING;
+//    }else{
+//        frame.origin.x = BUBBLE_VIEW_PADDING + BUBBLE_ARROW_WIDTH;
+//    }
+//    
+//    frame.origin.y = BUBBLE_VIEW_PADDING;
+//    [self.imageView setFrame:frame];
+    
+    //图片距离编剧太宽。重新设置
     CGRect frame = self.bounds;
-    frame.size.width -= BUBBLE_ARROW_WIDTH;
-    frame = CGRectInset(frame, BUBBLE_VIEW_PADDING, BUBBLE_VIEW_PADDING);
+    NSInteger padding = 2;
+
+    frame.size.width -= BUBBLE_ARROW_WIDTH+padding;
+    frame = CGRectInset(frame, padding,padding);
     if (self.model.isSender) {
-        frame.origin.x = BUBBLE_VIEW_PADDING;
+        frame.origin.x = padding;
     }else{
-        frame.origin.x = BUBBLE_VIEW_PADDING + BUBBLE_ARROW_WIDTH;
+        frame.origin.x = 2*padding+ BUBBLE_ARROW_WIDTH;
     }
     
-    frame.origin.y = BUBBLE_VIEW_PADDING;
+    frame.origin.y = padding;
     [self.imageView setFrame:frame];
 }
 
