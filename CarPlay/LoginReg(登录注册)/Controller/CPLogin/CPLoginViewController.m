@@ -10,6 +10,7 @@
 #import "CPRegViewController.h"
 #import "CPForgetPasswordViewController.h"
 #import "CPNavigationController.h"
+#import "SDImageCache.h"
 
 @interface CPLoginViewController ()
 
@@ -55,11 +56,14 @@
 */
 #pragma mark - 登录
 - (IBAction)loginBtnClick:(id)sender {
+    
     if (self.accountField.text && ![self.accountField.text isEqualToString:@""]) {
         if ([Tools isValidateMobile:self.accountField.text]) {
             if (self.passwordField.text && ![self.passwordField.text isEqualToString:@""]) {
                 NSDictionary *paras=[[NSDictionary alloc]initWithObjectsAndKeys:self.accountField.text,@"phone",[Tools md5EncryptWithString:self.passwordField.text],@"password",nil];
                 [self showLoading];
+                [[SDImageCache sharedImageCache] clearMemory];
+                [[SDImageCache sharedImageCache] cleanDisk];
                 [ZYNetWorkTool postJsonWithUrl:@"user/login" params:paras success:^(id responseObject) {
                     if (CPSuccess) {
                         

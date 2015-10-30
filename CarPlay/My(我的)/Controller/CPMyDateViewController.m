@@ -20,6 +20,7 @@
 #import "ZYWaterflowLayout.h"
 #import "CPRecommentViewCell.h"
 #import "CPActivityDetailViewController.h"
+#import "SDImageCache.h"
 
 @interface CPMyDateViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate,ZYWaterflowLayoutDelegate>
 @property (nonatomic, strong) UICollectionView *tableView;
@@ -105,7 +106,7 @@ static NSString *ID2 = @"DateCell2";
     self.footerView.isNoAnimation = YES;
     self.isHasRefreshHeader = YES;
 }
-MJCodingImplementation
+
 /**
  *  加载网络数据
  */
@@ -118,7 +119,6 @@ MJCodingImplementation
         
         DLog(@"%@ ---- ",responseObject);
         [[CPLoadingView sharedInstance] dismissLoadingView];
-        [self setUpRefresh];
         [refresh stopIndicatorAnimation];
         if (CPSuccess) {
             if (self.ignore == 0) {
@@ -140,6 +140,7 @@ MJCodingImplementation
                 [self.datas addObject:model];
             }
             
+            [self setUpRefresh];
 //            NSArray *arr = [CPMyDateModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
 //            [self.datas addObjectsFromArray:arr];
             
@@ -151,6 +152,8 @@ MJCodingImplementation
             }
             [self.tableView reloadData];
         }else{
+            
+            [self setUpRefresh];
             [self showInfo:CPErrorMsg];
         }
     } failure:^(NSError *error) {
@@ -370,7 +373,6 @@ MJCodingImplementation
         ZYHttpFile *imageFile = [ZYHttpFile fileWithName:@"attach" data:UIImageJPEGRepresentation(arr[i], 0.4) mimeType:@"image/jpeg" filename:@"a1.jpg"];
         [ZYNetWorkTool postFileWithUrl:path params:nil files:@[imageFile] success:^(id responseObject) {
             if (CPSuccess) {
-                [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
                 
                 count++;
                 
@@ -386,8 +388,13 @@ MJCodingImplementation
                         user.album = [albums copy];
                         [NSKeyedArchiver archiveRootObject:user toFile:filePath.documentPath];
                     });
-                   
-                    [self.tableView reloadData];
+                    if ([ZYUserDefaults boolForKey:CPHasAlbum] == NO) {
+                        [[SDImageCache sharedImageCache] clearMemory];
+                        [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
+                            [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
+                            [self.tableView reloadData];
+                        }];
+                    }
                 }
             }else{
                 [self showError:CPErrorMsg];

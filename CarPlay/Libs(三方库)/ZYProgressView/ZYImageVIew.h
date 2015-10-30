@@ -13,6 +13,7 @@ typedef void(^completion)(UIImage *image, NSError *error, SDImageCacheType cache
 
 @interface ZYImageVIew : UIImageView
 - (void)zy_setImageWithUrl:(NSString *)url;
+- (void)zy_setBlurImageWithUrl:(NSString *)url;
 
 @property (nonatomic, strong) UIImageView *placeHloderImageView;
 

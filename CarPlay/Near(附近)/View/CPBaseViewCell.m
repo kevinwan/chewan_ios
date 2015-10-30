@@ -237,10 +237,8 @@
     }
     self.sexView.isMan = model.organizer.isMan;
     self.sexView.age = model.organizer.age;
-//    [self.userIconView downloadIMGWithAddr:model.organizer.cover];
-//    self.userIconView.showBlurView = !isHasAlubm;
     
-    [self.userIconView zy_setImageWithUrl:model.organizer.cover];
+    [self.userIconView zy_setBlurImageWithUrl:model.organizer.cover];
     [self.distanceView setTitle:model.distanceStr forState:UIControlStateNormal];
     self.loveBtn.selected = model.organizer.subscribeFlag;
     self.payView.text = model.pay;
@@ -326,8 +324,7 @@
     self.sexView.isMan = myDateModel.applicant.isMan;
     self.sexView.age = myDateModel.applicant.age;
     
-    self.userIconView.showBlurView = !isHasAlubm;
-    [self.userIconView zy_setImageWithUrl:myDateModel.applicant.cover];
+    [self.userIconView zy_setBlurImageWithUrl:myDateModel.applicant.cover];
     [self.distanceView setTitle:myDateModel.distanceStr forState:UIControlStateNormal];
     self.loveBtn.selected = myDateModel.applicant.subscribeFlag;
     self.payView.text = myDateModel.pay;
@@ -416,7 +413,7 @@
     self.sexView.isMan = intersterModel.user.isMan;
     self.sexView.age = intersterModel.user.age;
     
-    [self.userIconView zy_setImageWithUrl:intersterModel.user.cover];
+    [self.userIconView zy_setBlurImageWithUrl:intersterModel.user.cover];
     [self.distanceView setTitle:intersterModel.distanceStr forState:UIControlStateNormal];
     self.loveBtn.selected = intersterModel.user.subscribeFlag;
     self.payView.text = intersterModel.activityPay;

@@ -76,7 +76,6 @@ static NSString *ID = @"cell";
         [self loadDataWithHeader:nil];
     }else{
         if (self.isLoginSuccess) {
-            
             [ZYLoadingView showLoadingView];
             [self loadDataWithHeader:nil];
         }
@@ -139,7 +138,6 @@ static NSString *ID = @"cell";
 
     [ZYNetWorkTool getWithUrl:@"activity/list" params:self.params.keyValues success:^(id responseObject) {
         
-        [self setUpRefresh];
         [refresh stopIndicatorAnimation];
         if (CPSuccess) {
             DLog(@"%@",responseObject);
@@ -149,7 +147,8 @@ static NSString *ID = @"cell";
                 
             NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
             [self.datas addObjectsFromArray:arr];
-
+            
+            [self setUpRefresh];
             if (self.datas.count == 0) {
                 self.noDataView.netWorkFailtype = NO;
                 self.noDataView.hidden = NO;
@@ -161,6 +160,8 @@ static NSString *ID = @"cell";
 //                [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, 0) animated:YES];
 //            }
         }else{
+            
+            [self setUpRefresh];
             [self showInfo:CPErrorMsg];
         }
         
@@ -307,7 +308,6 @@ static NSString *ID = @"cell";
         ZYHttpFile *imageFile = [ZYHttpFile fileWithName:@"attach" data:UIImageJPEGRepresentation(arr[i], 0.4) mimeType:@"image/jpeg" filename:@"a1.jpg"];
         [ZYNetWorkTool postFileWithUrl:path params:nil files:@[imageFile] success:^(id responseObject) {
             if (CPSuccess) {
-                [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
                 
                 count++;
                 
@@ -322,7 +322,13 @@ static NSString *ID = @"cell";
                     [albums insertObjects:user.album atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, user.album.count)]];
                     user.album = [albums copy];
                     [NSKeyedArchiver archiveRootObject:user toFile:filePath.documentPath];
-                    [self.tableView reloadData];
+                    if ([ZYUserDefaults boolForKey:CPHasAlbum] == NO) {
+                        [[SDImageCache sharedImageCache] clearMemory];
+                        [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
+                            [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
+                            [self.tableView reloadData];
+                        }];
+                    }
                 }
             }else{
                 [self showInfo:CPErrorMsg];
@@ -376,31 +382,6 @@ static NSString *ID = @"cell";
  */
 - (void)filter
 {
-//    ZYMainOperation(^{
-//        
-//        [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
-//            [[SDImageCache sharedImageCache] clearMemory];
-//        }];
-//        [[NSURLCache sharedURLCache] removeAllCachedResponses];
-//        [self loadDataWithHeader:nil];
-//    });
-//    return;
-    
-    [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
-    
-    [[SDImageCache sharedImageCache] clearMemory];
-    [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
-        [self.tableView reloadData];
-    }];
-//    [self.datas enumerateObjectsUsingBlock:^(CPActivityModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//        
-//        [[SDImageCache sharedImageCache] removeImageForKey:obj.organizer.cover fromDisk:YES withCompletion:^{
-//            [self.tableView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:idx inSection:0]]];
-//        }];
-//    }];
-
-//    [self.tableView reloadData];
-    return;
     [CPSelectView showWithParams:^(CPSelectModel *selectModel) {
         
         self.params.majorType = selectModel.type;
