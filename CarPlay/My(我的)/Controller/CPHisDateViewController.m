@@ -118,19 +118,25 @@ static NSString *ID = @"HisDateCell";
                 [self.datas removeAllObjects];
             }
 
+            NSString *cover = responseObject[@"data"][@"cover"];
+            double distance = [responseObject[@"distance"] doubleValue];
             
-            
-//            NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
-//            [self.datas addObjectsFromArray:arr];
+            NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"][@"activities"]];
+            for (CPActivityModel *model in arr) {
+                model.organizer = self.targetUser;
+                model.organizer.distance = distance;
+                model.organizer.cover = cover;
+            }
+            [self.datas addObjectsFromArray:arr];
             //
-//            [self setUpRefresh];
-//            if (self.datas.count == 0) {
-//                self.noDataView.netWorkFailtype = NO;
-//                self.noDataView.hidden = NO;
-//            }else{
-//                self.noDataView.hidden = YES;
-//            }
-//            [self.tableView reloadData];
+            [self setUpRefresh];
+            if (self.datas.count == 0) {
+                self.noDataView.netWorkFailtype = NO;
+                self.noDataView.hidden = NO;
+            }else{
+                self.noDataView.hidden = YES;
+            }
+            [self.tableView reloadData];
         }else{
             
             [self setUpRefresh];
@@ -200,23 +206,25 @@ static NSString *ID = @"HisDateCell";
  */
 - (void)loveBtnClickWithInfo:(CPActivityModel *)model
 {
-    ZYAsyncThead(^{
-        
-        NSMutableArray *indexPaths = [NSMutableArray array];
-        
-        for (int i = 0;i < self.datas.count; i++) {
-            CPActivityModel *obj = self.datas[i];
-            if ([obj.organizer.userId isEqualToString:model.organizer.userId] && ![obj.activityId isEqualToString:model.activityId]) {
-                obj.organizer.subscribeFlag = model.organizer.subscribeFlag;
-                [indexPaths addObject:[NSIndexPath indexPathForItem:i inSection:0]];
-            }
-            
-        }
-        ZYMainOperation(^{
-            [self.tableView reloadItemsAtIndexPaths:indexPaths];
-        });
-        
-    });
+    [self loadDataWithHeader:nil];
+    
+//    ZYAsyncThead(^{
+//        
+//        NSMutableArray *indexPaths = [NSMutableArray array];
+//        
+//        for (int i = 0;i < self.datas.count; i++) {
+//            CPActivityModel *obj = self.datas[i];
+//            if ([obj.organizer.userId isEqualToString:model.organizer.userId] && ![obj.activityId isEqualToString:model.activityId]) {
+//                obj.organizer.subscribeFlag = model.organizer.subscribeFlag;
+//                [indexPaths addObject:[NSIndexPath indexPathForItem:i inSection:0]];
+//            }
+//            
+//        }
+//        ZYMainOperation(^{
+//            [self.tableView reloadItemsAtIndexPaths:indexPaths];
+//        });
+//        
+//    });
 }
 
 /**
@@ -358,6 +366,7 @@ static NSString *ID = @"HisDateCell";
         self.automaticallyAdjustsScrollViewInsets = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        layout.columnsCount = 1;
         layout.rowMargin = 20;
         layout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
         self.view.backgroundColor = [Tools getColor:@"efefef"];
