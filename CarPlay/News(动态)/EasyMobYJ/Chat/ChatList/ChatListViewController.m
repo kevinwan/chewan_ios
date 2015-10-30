@@ -22,7 +22,7 @@
 #import "RobotManager.h"
 #import "UserProfileManager.h"
 #import "RobotChatViewController.h"
-#import "UIImageView+EMWebCache.h"
+#import "UIImageView+WebCache.h"
 #import "CPCareMeViewController.h"
 #import "CPVisitorViewController.h"
 #import "CPMyInterestViewController.h"

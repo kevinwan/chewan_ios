@@ -14,7 +14,7 @@
 #import "UIImageView+HeadImage.h"
 
 #import "UserProfileManager.h"
-#import "UIImageView+EMWebCache.h"
+#import "UIImageView+WebCache.h"
 
 @implementation UIImageView (HeadImage)
 
