@@ -148,8 +148,7 @@
         NSArray *datas=[sortedBrandData objectForKey:[brandArray objectAtIndex:indexPath.section]];
         NSDictionary *cellData=[datas objectAtIndex:indexPath.row];
         if ([cellData objectForKey:@"logo_img"]) {
-            NSURL *url=[[NSURL alloc]initWithString:[cellData objectForKey:@"logo_img"]];
-            [cell.thumbnailView sd_setImageWithURL:url];
+            [cell.thumbnailView zySetImageWithUrl:[cellData objectForKey:@"logo_img"] placeholderImage:nil];
         }
         
         if ([cellData objectForKey:@"name"]) {

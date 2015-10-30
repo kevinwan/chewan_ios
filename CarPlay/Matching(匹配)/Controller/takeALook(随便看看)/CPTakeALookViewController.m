@@ -69,7 +69,7 @@
             for (int i=1; i<11; i++) {
                 CPNPSButton *btn = [self.view viewWithTag:i];
                 CPActivityModel *activity = activities[i-1];
-                [btn sd_setImageWithURL:[NSURL URLWithString:activity.organizer.avatar] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"Logo"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                [btn zySetImageWithUrl:activity.organizer.avatar placeholderImage:[UIImage imageNamed:@"Logo"] completion:^(UIImage *image) {
                     btn.imageView.layer.borderColor=[UIColor whiteColor].CGColor;
                     btn.imageView.layer.borderWidth=1;
                     [btn.imageView setCornerRadius:(btn.height - 20) * 0.5];
@@ -78,7 +78,7 @@
                     btn.label.text = [NSString stringWithFormat:@"我想%@",activity.type];
                     [btn setImage:image forState:UIControlStateNormal];
                     btn.layer.masksToBounds = NO;
-                }];
+                } forState:UIControlStateNormal];
             }
             [self doAnmi];
         }else{
