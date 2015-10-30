@@ -12,6 +12,7 @@
 #import "CPVersionIntroduction.h"
 #import "CPLoginViewController.h"
 #import "CPNavigationController.h"
+#import "SDImageCache.h"
 
 @interface CPSettingController ()<UIAlertViewDelegate>
 {

@@ -20,11 +20,6 @@
 {
     [super setBool:value forKey:defaultName];
     [self synchronize];
-    if ([defaultName isEqualToString:CPHasAlbum]) {
-        [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
-            [[SDImageCache sharedImageCache] clearMemory];
-        }];
-    }
 }
 
 - (void)setInteger:(NSInteger)value forKey:(NSString *)defaultName

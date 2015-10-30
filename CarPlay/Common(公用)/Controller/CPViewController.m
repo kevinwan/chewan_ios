@@ -7,6 +7,7 @@
 //
 
 #import "CPViewController.h"
+#import "SDImageCache.h"
 
 @interface CPViewController ()
 
