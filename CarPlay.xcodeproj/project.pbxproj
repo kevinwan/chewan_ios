@@ -4058,7 +4058,7 @@
 				TargetAttributes = {
 					E31E4BD11BAD47A500902B34 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = KKHZA7GEFH;
+						DevelopmentTeam = K89RQ3A2PQ;
 					};
 				};
 			};
@@ -4843,9 +4843,9 @@
 					"$(PROJECT_DIR)/CarPlay/News(动态)/3rdparty/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/CarPlay/Libs(三方库)/UMSocial_Sdk_4.3",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.77iland.carplay;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gongpingjia.carchatinhouse;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8069fa66-9ad4-4073-aeb7-7075cf514c89";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -4873,9 +4873,9 @@
 					"$(PROJECT_DIR)/CarPlay/News(动态)/3rdparty/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/CarPlay/Libs(三方库)/UMSocial_Sdk_4.3",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.77iland.carplay;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gongpingjia.carchatinhouse;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8069fa66-9ad4-4073-aeb7-7075cf514c89";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
