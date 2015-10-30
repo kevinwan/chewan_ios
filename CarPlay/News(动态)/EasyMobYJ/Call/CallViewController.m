@@ -240,10 +240,12 @@
     [_headerImageView.layer setMasksToBounds:YES];
     if (_isIncoming) {
         //别人打过来的
-            [_headerImageView sd_setImageWithURL:[NSURL URLWithString:[ZYUserDefaults valueForKey:kSendCallHeadURL]] placeholderImage: [UIImage imageNamed:@"chatListCellHead"]];
+        [_headerImageView zySetImageWithUrl:[ZYUserDefaults valueForKey:kSendCallHeadURL] placeholderImage:[UIImage imageNamed:@"chatListCellHead"]];
+
     }else{
         NSString *headURl =[ZYUserDefaults valueForKey:kReceiverHeadUrl];
-        [_headerImageView sd_setImageWithURL:[NSURL URLWithString:headURl] placeholderImage: [UIImage imageNamed:@"chatListCellHead"]];
+        [_headerImageView zySetImageWithUrl:headURl placeholderImage:[UIImage imageNamed:@"chatListCellHead"]];
+
     }
 
     [_topView addSubview:_headerImageView];

@@ -234,13 +234,13 @@
     [self.navigationItem setLeftBarButtonItem:backItem];
     
     //群聊的详情和个人聊天的删除聊天记录去掉。
-//    if (self.isChatGroup) {
-////        暂时禁止掉群详情页面
-////        UIButton *detailButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
-////        [detailButton setImage:[UIImage imageNamed:@"group_detail"] forState:UIControlStateNormal];
-////        [detailButton addTarget:self action:@selector(showRoomContact:) forControlEvents:UIControlEventTouchUpInside];
-////        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:detailButton];
-//    }
+    if (self.isChatGroup) {
+
+        UIButton *detailButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
+        [detailButton setImage:[UIImage imageNamed:@"group_detail"] forState:UIControlStateNormal];
+        [detailButton addTarget:self action:@selector(showRoomContact:) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:detailButton];
+    }
 //    else{
 //        UIButton *clearButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
 //        [clearButton setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
@@ -1660,8 +1660,10 @@
 {
     [self.view endEditing:YES];
     if (self.conversationType == eConversationTypeGroupChat) {
-        ChatGroupDetailViewController *detailController = [[ChatGroupDetailViewController alloc] initWithGroupId:_chatter];
-        [self.navigationController pushViewController:detailController animated:YES];
+//        ChatGroupDetailViewController *detailController = [[ChatGroupDetailViewController alloc] initWithGroupId:_chatter];
+//        [self.navigationController pushViewController:detailController animated:YES];
+        //群聊详情页面，不包括显示群主等信息。所以这边简单的做个tableview就好了。
+        
     }
     else if (self.conversationType == eConversationTypeChatRoom)
     {
