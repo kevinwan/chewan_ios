@@ -87,7 +87,7 @@
     if (password.length<6 || password.length>15) {
         validate = FALSE;
     }
-    return [passWordPredicate evaluateWithObject:password];
+    return validate;
 }
 
 + (NSString *)md5EncryptWithString:(NSString*)string
