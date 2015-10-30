@@ -564,6 +564,9 @@
 		E3FE39EA1BD64EF90022FDA3 /* CPComeOnTipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3FE39E81BD64EF90022FDA3 /* CPComeOnTipView.xib */; };
 		E3FE39ED1BD64F060022FDA3 /* CPPartnerMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FE39EC1BD64F060022FDA3 /* CPPartnerMemberCell.m */; };
 		E3FE39F01BD6699B0022FDA3 /* CPActivityPathCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FE39EF1BD6699B0022FDA3 /* CPActivityPathCell.m */; };
+		EE0DBBAC1BE33ECF00D1F972 /* group_detail@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE0DBBAB1BE33ECF00D1F972 /* group_detail@3x.png */; settings = {ASSET_TAGS = (); }; };
+		EE0DBBB11BE3479E00D1F972 /* CPChatGroupDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE0DBBAE1BE3479E00D1F972 /* CPChatGroupDetailViewController.m */; settings = {ASSET_TAGS = (); }; };
+		EE0DBBB21BE3479E00D1F972 /* CPGroupDetailTBCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE0DBBB01BE3479E00D1F972 /* CPGroupDetailTBCell.m */; settings = {ASSET_TAGS = (); }; };
 		EE3383111BD8BB7500BA4930 /* dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE3383101BD8BB7500BA4930 /* dot@2x.png */; };
 		EE3383141BD8E27500BA4930 /* CareMeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE3383131BD8E27500BA4930 /* CareMeTableViewCell.m */; };
 		EE3383171BD9141200BA4930 /* call_silence@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE3383151BD9141200BA4930 /* call_silence@3x.png */; };
@@ -1517,6 +1520,11 @@
 		E3FE39EC1BD64F060022FDA3 /* CPPartnerMemberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPPartnerMemberCell.m; sourceTree = "<group>"; };
 		E3FE39EE1BD6699B0022FDA3 /* CPActivityPathCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityPathCell.h; sourceTree = "<group>"; };
 		E3FE39EF1BD6699B0022FDA3 /* CPActivityPathCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityPathCell.m; sourceTree = "<group>"; };
+		EE0DBBAB1BE33ECF00D1F972 /* group_detail@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group_detail@3x.png"; sourceTree = "<group>"; };
+		EE0DBBAD1BE3479E00D1F972 /* CPChatGroupDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPChatGroupDetailViewController.h; sourceTree = "<group>"; };
+		EE0DBBAE1BE3479E00D1F972 /* CPChatGroupDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPChatGroupDetailViewController.m; sourceTree = "<group>"; };
+		EE0DBBAF1BE3479E00D1F972 /* CPGroupDetailTBCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPGroupDetailTBCell.h; sourceTree = "<group>"; };
+		EE0DBBB01BE3479E00D1F972 /* CPGroupDetailTBCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPGroupDetailTBCell.m; sourceTree = "<group>"; };
 		EE3383101BD8BB7500BA4930 /* dot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dot@2x.png"; sourceTree = "<group>"; };
 		EE3383121BD8E27500BA4930 /* CareMeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CareMeTableViewCell.h; sourceTree = "<group>"; };
 		EE3383131BD8E27500BA4930 /* CareMeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CareMeTableViewCell.m; sourceTree = "<group>"; };
@@ -2422,6 +2430,10 @@
 			children = (
 				6D2ABF211BCE582100201A8E /* ChatGroupDetailViewController.h */,
 				6D2ABF221BCE582100201A8E /* ChatGroupDetailViewController.m */,
+				EE0DBBAD1BE3479E00D1F972 /* CPChatGroupDetailViewController.h */,
+				EE0DBBAE1BE3479E00D1F972 /* CPChatGroupDetailViewController.m */,
+				EE0DBBAF1BE3479E00D1F972 /* CPGroupDetailTBCell.h */,
+				EE0DBBB01BE3479E00D1F972 /* CPGroupDetailTBCell.m */,
 				6D2ABF231BCE582100201A8E /* ContactSelectionViewController.h */,
 				6D2ABF241BCE582100201A8E /* ContactSelectionViewController.m */,
 				6D2ABF251BCE582100201A8E /* ContactView.h */,
@@ -2849,6 +2861,7 @@
 				6D2AC0B31BCE5A5000201A8E /* back@2x.png */,
 				6D2AC0B41BCE5A5000201A8E /* delete@2x.png */,
 				6D2AC0B51BCE5A5000201A8E /* group_detail@2x.png */,
+				EE0DBBAB1BE33ECF00D1F972 /* group_detail@3x.png */,
 				6D2AC0B61BCE5A5000201A8E /* titleBar.png */,
 				6D2AC0B71BCE5A5000201A8E /* titleBar@2x.png */,
 			);
@@ -4273,6 +4286,7 @@
 				6D2AC0E11BCE5A5100201A8E /* VoiceSearchFeedback003@2x.png in Resources */,
 				EEFD12931BDDF6D0009EA6CC /* wheel5@2x.png in Resources */,
 				6B2411191BCB56AC0014468D /* CPMyInfoController.storyboard in Resources */,
+				EE0DBBAC1BE33ECF00D1F972 /* group_detail@3x.png in Resources */,
 				6D2AC1621BCE5A5100201A8E /* chat_sender_audio_playing_002@2x.png in Resources */,
 				6D2AC0D81BCE5A5100201A8E /* 58.png in Resources */,
 				6D2AC14D1BCE5A5100201A8E /* chatBar_more_photo@2x.png in Resources */,
@@ -4506,11 +4520,13 @@
 				E3A4718D1BB3A85300973197 /* CPNetWorkTool.m in Sources */,
 				6D2ABF8F1BCE582100201A8E /* MBProgressHUD+Add.m in Sources */,
 				6D2ABFDC1BCE582100201A8E /* MessageModelManager.m in Sources */,
+				EE0DBBB21BE3479E00D1F972 /* CPGroupDetailTBCell.m in Sources */,
 				6D2ABF871BCE582100201A8E /* EMCDDeviceManager+Media.m in Sources */,
 				6B364C651BCE401C005A4AF9 /* UzysAssetsViewCell.m in Sources */,
 				E39063991BD8CF8800988F8E /* CPMyDateViewController.m in Sources */,
 				6D2ABF901BCE582100201A8E /* MBProgressHUD.m in Sources */,
 				6BF14C431BD23331008D2E74 /* CPExerciseMatchingSelectButton.m in Sources */,
+				EE0DBBB11BE3479E00D1F972 /* CPChatGroupDetailViewController.m in Sources */,
 				E39627B81BB5352D005E0CF2 /* CPActivityModel.m in Sources */,
 				6BCFFBBB1BBA456900C082B2 /* CPMyCareCell.m in Sources */,
 				6B364C7C1BCE4077005A4AF9 /* MJPhotoToolbar.m in Sources */,
