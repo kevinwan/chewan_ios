@@ -168,7 +168,7 @@
     }
     if (indexPath.row<self.dataSource.count) {
         NSDictionary *dic = [self.dataSource objectAtIndex:indexPath.row];
-        [cell.headIV sd_setImageWithURL:[NSURL URLWithString:[dic objectForKey:@"avatar"]] placeholderImage:[UIImage imageNamed:@"chatListCellHead"]];
+        [cell.headIV zySetImageWithUrl:[dic objectForKey:@"avatar"] placeholderImage:[UIImage imageNamed:@"chatListCellHead"]];
         cell.nameLabel.text = [dic objectForKey:@"nickname"];
         cell.messageLabel.text = @"看过我";
         cell.sexView.age = [[dic objectForKey:@"age"] integerValue];

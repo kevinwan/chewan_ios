@@ -561,8 +561,8 @@
         if ([conversation.chatter isEqualToString:@"interestadmin"]) {
             cell.textLabel.text = @"感兴趣的";
             cell.HeadIV.image = [UIImage imageNamed:@"InterestAdmin"];
-            NSURL *url = [NSURL URLWithString:[conversation.latestMessage.ext valueForKey:@"avatar"]];
-            [cell.interestIV sd_setImageWithURL:url placeholderImage:nil];
+            [cell.interestIV zySetImageWithUrl:[conversation.latestMessage.ext valueForKey:@"avatar"] placeholderImage:nil];
+
         }
         else if ([conversation.chatter isEqualToString:@"activitystateadmin"])
         {
@@ -601,7 +601,7 @@
                         cell.textLabel.text = [dic objectForKey:@"nickname"];
                         cell.cpSexView.age = [[dic objectForKey:@"age"] integerValue];
                         cell.cpSexView.gender = [dic objectForKey:@"gender"];
-                        [cell.HeadIV sd_setImageWithURL:[NSURL URLWithString:[dic objectForKey:@"avatar"]] placeholderImage:nil];
+                        [cell.HeadIV zySetImageWithUrl:[dic objectForKey:@"avatar"] placeholderImage:nil];
                         NSLog(@"-=-=-=请求回来的昵称是：%@,row = %ld",cell.name,indexPath.row);
                         [self tableView:tableView canEditRowAtIndexPath:indexPath];
                         //cpsexview的位置由名字的长度绝对，距离名字最后一个字10像素，而名字是这里得到的，所以只能在这里重置位置
@@ -616,7 +616,7 @@
 
             }else{
                 cell.textLabel.text = [conversation.latestMessageFromOthers.ext valueForKey:kUserNickName];
-                [cell.HeadIV sd_setImageWithURL:[NSURL URLWithString:[conversation.latestMessageFromOthers.ext valueForKey:kUserHeadUrl]] placeholderImage:nil];
+                [cell.HeadIV zySetImageWithUrl:[conversation.latestMessageFromOthers.ext valueForKey:kUserHeadUrl] placeholderImage:nil];
                 cell.cpSexView.age = [[conversation.latestMessageFromOthers.ext valueForKey:kUserAge] integerValue];
                 cell.cpSexView.gender = [conversation.latestMessageFromOthers.ext valueForKey:KUserSex];
                 //cpsexview的位置由名字的长度绝对，距离名字最后一个字10像素，而名字是这里得到的，所以只能在这里重置位置
@@ -651,7 +651,7 @@
                     //用；分割以后，比正常数组多了一个空对象，所以下面的case从2开始，后期做优化的时候修改。
                     switch ([photos count]) {
                         case 1:
-                            [cell.HeadIV sd_setImageWithURL:[NSURL URLWithString:photos[0]] placeholderImage:nil];
+                            [cell.HeadIV zySetImageWithUrl:photos[0] placeholderImage:nil];
                             break;
                             
                         case 2:
@@ -712,11 +712,11 @@
                         NSArray *photos = [headStr componentsSeparatedByString:@";"];
                         switch ([photos count]) {
                             case 1:
-                                [cell.HeadIV sd_setImageWithURL:[NSURL URLWithString:photos[0]] placeholderImage:nil];
+                                [cell.HeadIV zySetImageWithUrl:photos[0] placeholderImage:nil];
                                 break;
                                 
                             case 2:
-                            {
+                            {   //12345
                                 [manager downloadImageWithURL:[NSURL URLWithString:photos[0]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                                     UIImage *image1 = [UIImage imageWithBgImage:[UIImage imageNamed:@"群头像背景"] waterImage:[self shearToCircleImage:image] frame:CGRectMake(5.5, 14, 14, 14) angle:0];
                                     [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
@@ -729,7 +729,7 @@
                                 break;
                                 
                             case 3:
-                            {
+                            {   //12345
                                 [manager downloadImageWithURL:[NSURL URLWithString:photos[0]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                                     UIImage *image1 = [UIImage imageWithBgImage:[UIImage imageNamed:@"群头像背景"] waterImage:[self shearToCircleImage:image] frame:CGRectMake(14, 3.5, 14, 14) angle:0];
                                     [manager downloadImageWithURL:[NSURL URLWithString:photos[1]] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {

@@ -230,6 +230,6 @@
 - (void)dealloc
 {
     // 取消请求
-    [_imageView sd_setImageWithURL:[NSURL URLWithString:@"file:///abc"]];
+    [_imageView zySetImageWithUrl:@"file:///abc" placeholderImage:nil];
 }
 @end

@@ -93,7 +93,7 @@ NSString *const kRouterEventImageBubbleTapEventName = @"kRouterEventImageBubbleT
     if (!image) {
         image = _model.image;
         if (!image) {
-            [self.imageView sd_setImageWithURL:_model.imageRemoteURL placeholderImage:[UIImage imageNamed:@"imageDownloadFail.png"]];
+            [self.imageView zySetImageWithUrl:[_model.imageRemoteURL absoluteString] placeholderImage:[UIImage imageNamed:@"imageDownloadFail.png"]];
         } else {
              self.imageView.image = image;
         }
