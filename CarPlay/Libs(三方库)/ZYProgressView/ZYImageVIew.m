@@ -35,35 +35,25 @@
     [self addSubview:self.placeHloderImageView];
     self.contentMode = UIViewContentModeScaleAspectFill;
     self.clipsToBounds = YES;
-    [FXBlurView setBlurEnabled:YES];
-    [FXBlurView setUpdatesEnabled];
 }
 
-//- (void)setImage:(UIImage *)image
-//{
-//    if (image) {
-//        self.placeHloderImageView.hidden = YES;
-//        [super setImage:image];
-//        
-//    }
-//    
-//    if (image && self.showBlurView) {
-//        
-//        [self insertSubview:self.userCoverView atIndex:0];
-//        
-//        self.userCoverView.hidden = NO;
-////        [self.userCoverView updateAsynchronously:YES completion:^{
-////            [self.userCoverView setNeedsDisplay];
-////        }];
-//        
-//    }else{
-//        self.userCoverView.hidden = YES;
-//    }
-//}
+- (void)setImage:(UIImage *)image
+{
+    if (image) {
+        [super setImage:image];
+        self.placeHloderImageView.hidden = YES;
+    }
+}
 - (void)zy_setImageWithUrl:(NSString *)url
 {
     self.placeHloderImageView.hidden = NO;
     
+    [self zySetImageWithUrl:url placeholderImage:nil];
+}
+
+- (void)zy_setBlurImageWithUrl:(NSString *)url
+{
+    self.placeHloderImageView.hidden = NO;
     [self sd_setImageWithURL:[NSURL URLWithString:url]];
 }
 
@@ -79,7 +69,6 @@
 {
     [super layoutSubviews];
     self.placeHloderImageView.center = self.centerInSelf;
-    self.userCoverView.frame = self.bounds;
 }
 
 - (FXBlurView *)userCoverView

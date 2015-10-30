@@ -51,6 +51,8 @@
     //一个不透明类型的Quartz 2D绘画环境,相当于一个画布,你可以在上面任意绘画
 //    CGContextRef context = UIGraphicsGetCurrentContext();
     
+//    UIBezierPath bezierPathWithArcCenter:<#(CGPoint)#> radius:<#(CGFloat)#> startAngle:<#(CGFloat)#> endAngle:<#(CGFloat)#> clockwise:<#(BOOL)#>
+    
     CAShapeLayer *solidLine =  [CAShapeLayer layer];
     CGMutablePathRef solidPath =  CGPathCreateMutable();
     solidLine.lineWidth = 1.0f ;

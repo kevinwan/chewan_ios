@@ -74,7 +74,7 @@
         self.maleLabel.text = [NSString stringWithFormat:@"%zd / %zd",model.maleNum,model.maleLimit];
            self.femaleLabel.text = [NSString stringWithFormat:@"%zd / %zd",model.femaleNum,model.femaleLimit];
     }
-    [self.bgImageView zy_setImageWithUrl:model.covers.firstObject];
+    [self.bgImageView zySetImageWithUrl:model.covers.firstObject placeholderImage:nil];
     self.priceLabel.attributedText = model.priceText;
     [self.addressView setTitle:model.destination[@"detail"] forState:UIControlStateNormal];
 }

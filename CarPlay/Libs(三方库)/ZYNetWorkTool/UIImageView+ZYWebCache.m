@@ -17,9 +17,13 @@
 
 - (void)zySetImageWithUrl:(NSString *)url placeholderImage:(UIImage *)placeholderImage completion:(void (^)(UIImage *))completion
 {
+    ZYWeakSelf
      [self setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]] placeholderImage:placeholderImage success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
+         ZYStrongSelf
          if(completion){
              completion(image);
+         }else{
+             self.image = image;
          }
      } failure:nil];
 }

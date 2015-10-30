@@ -38,12 +38,11 @@
         
         BOOL hasAblum;
         
-        hasAblum = [ZYUserDefaults boolForKey:CPHasAlbum];
-//        if (CPUnLogin) {
-//            hasAblum = NO;
-//        }else{
-//            hasAblum = [ZYUserDefaults boolForKey:CPHasAlbum];
-//        }
+        if (CPUnLogin) {
+            hasAblum = NO;
+        }else{
+            hasAblum = [ZYUserDefaults boolForKey:CPHasAlbum];
+        }
         if (hasAblum == NO) {
             image = [image blurredImageWithRadius:10 iterations:10 tintColor:[UIColor clearColor]];
         }
