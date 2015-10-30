@@ -56,7 +56,7 @@
     if (model.title.length == 0) {
         return;
     }
-    [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.organizer.avatar] forState:UIControlStateNormal placeholderImage:CPPlaceHolderImage];
+    [self.iconView zySetImageWithUrl:model.organizer.avatar placeholderImage:CPPlaceHolderImage forState:UIControlStateNormal];
     self.nameLabel.text = model.organizer.nickname;
     self.titleLabel.attributedText = model.titleAttrText;
 
