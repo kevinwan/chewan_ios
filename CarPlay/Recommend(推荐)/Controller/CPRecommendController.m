@@ -162,7 +162,7 @@ static NSString *ID = @"RecommentCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CPGoLogin(@"查看活动详情");
+//    CPGoLogin(@"查看活动详情");
     CPActivityDetailViewController *activityVc = [UIStoryboard storyboardWithName:@"CPActivityDetailViewController" bundle:nil].instantiateInitialViewController;
     activityVc.officialActivityId = self.datas[indexPath.item].officialActivityId;
     [self.navigationController pushViewController:activityVc animated:YES];
