@@ -54,23 +54,23 @@
 {
     static NSString *identify = @"CareMeCell";
     CPGroupDetailTBCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
-    
-    if (!cell) {
-        cell = [[CPGroupDetailTBCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
-    }
-    if (indexPath.row<self.dataSource.count) {
-        NSDictionary *dic = [self.dataSource objectAtIndex:indexPath.row];
-        [cell.headIV zySetImageWithUrl:[dic objectForKey:@"avatar"] placeholderImage:[UIImage imageNamed:@"chatListCellHead"]];
-        cell.nameLabel.text = [dic objectForKey:@"nickname"];
-        cell.messageLabel.text = @"看过我";
-        cell.sexView.age = [[dic objectForKey:@"age"] integerValue];
-        cell.sexView.gender = [dic objectForKey:@"gender"];
-        cell.distanceLabel.text =[self getDidstanceStrWithDistance:[[dic objectForKey:@"distance"] integerValue]];
-        
-        
-        //        cell.timeLabel.text =[NSDate formattedTimeFromTimeInterval:[[dic objectForKey:@"subscribeTime"] longLongValue]];;
-        
-    }
+//    
+//    if (!cell) {
+//        cell = [[CPGroupDetailTBCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
+//    }
+//    if (indexPath.row<self.dataSource.count) {
+//        NSDictionary *dic = [self.dataSource objectAtIndex:indexPath.row];
+//        [cell.headIV zySetImageWithUrl:[dic objectForKey:@"avatar"] placeholderImage:[UIImage imageNamed:@"chatListCellHead"]];
+//        cell.nameLabel.text = [dic objectForKey:@"nickname"];
+//        cell.messageLabel.text = @"看过我";
+//        cell.sexView.age = [[dic objectForKey:@"age"] integerValue];
+//        cell.sexView.gender = [dic objectForKey:@"gender"];
+//        cell.distanceLabel.text =[self getDidstanceStrWithDistance:[[dic objectForKey:@"distance"] integerValue]];
+//        
+//        
+//        //        cell.timeLabel.text =[NSDate formattedTimeFromTimeInterval:[[dic objectForKey:@"subscribeTime"] longLongValue]];;
+//        
+//    }
     
     return cell;
 }

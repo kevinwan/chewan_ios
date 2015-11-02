@@ -102,7 +102,7 @@
         NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:photoId,@"photoId", nil];
         [ZYNetWorkTool postJsonWithUrl:path params:params success:^(id responseObject) {
             if (CPSuccess) {
-                [[[UIAlertView alloc]initWithTitle:@"提示" message:@"提交认证成功，请等待审核" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                [[[UIAlertView alloc]initWithTitle:@"提示" message:@"认证提交成功，请等待审核" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }else{
                 NSString *msg=[NSString stringWithFormat:@"%@",responseObject[@"errmsg"]];
