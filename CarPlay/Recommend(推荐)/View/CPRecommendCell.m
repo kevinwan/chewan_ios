@@ -129,17 +129,19 @@
         }];
         
         [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(self.bgImageView.mas_bottom).offset(-10);
+//            make.bottom.equalTo(self.bgImageView.mas_bottom).offset(-10);
+            make.centerY.equalTo(self.addressView);
             make.left.equalTo(@10);
         }];
         
     }else{
         [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.contentTextL.mas_bottom).offset(10);
+//            make.top.equalTo(self.contentTextL.mas_bottom).offset(10);
+            make.centerY.equalTo(self.bgTip);
             make.leading.equalTo(self.contentTextL);
         }];
         [self.bgTip mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.contentTextL.mas_bottom).offset(10);
+            make.top.equalTo(self.contentTextL.mas_bottom).offset(6);
             make.right.equalTo(@0);
             make.size.equalTo(CGSizeMake(111, 20));
         }];

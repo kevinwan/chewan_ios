@@ -192,7 +192,7 @@ static NSString *ID = @"RecommentCell";
             itemSize = CGSizeMake(ZYScreenWidth - 36,345);
         }else{
             
-            itemSize = CGSizeMake(ZYScreenWidth - 36,ZYScreenWidth + 100);
+            itemSize = CGSizeMake(ZYScreenWidth - 36,ZYScreenWidth + 93);
         }
         
         layout.itemSize = itemSize;

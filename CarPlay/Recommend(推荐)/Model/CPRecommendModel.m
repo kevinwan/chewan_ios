@@ -76,7 +76,7 @@
         _priceText = [str copy];
     }else{
         
-        NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"免费" attributes:@{NSFontAttributeName : ZYFont16, NSForegroundColorAttributeName : [Tools getColor:@"fe5966"]}];
+        NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@" 免费" attributes:@{NSFontAttributeName : ZYFont16, NSForegroundColorAttributeName : [Tools getColor:@"fe5966"]}];
         
         _priceText = [str copy];
     }
