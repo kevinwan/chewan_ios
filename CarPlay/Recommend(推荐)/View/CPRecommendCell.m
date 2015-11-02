@@ -46,7 +46,7 @@
     self.contentTextL.attributedText = model.titleAttrText;
     self.priceLabel.text = model.priceDesc;
     self.tipLabel.text = [NSString stringWithFormat:@"官方补贴%.0f元/人",model.subsidyPrice];
-    
+
     if (model.limitType == 0) {
         
         self.partLabel.hidden = NO;
@@ -54,7 +54,7 @@
         self.maleLabel.hidden = YES;
         self.female.hidden = YES;
         self.femaleLabel.hidden = YES;
-        self.partLabel.text = @"无限制";
+        self.partLabel.text = [NSString stringWithFormat:@"%zd / 不限",model.nowJoinNum];
     }else if (model.limitType == 1){
         
         self.partLabel.hidden = NO;

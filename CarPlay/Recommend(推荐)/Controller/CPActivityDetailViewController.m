@@ -48,6 +48,9 @@ static NSString *ID = @"partCell";
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     param[@"userId"] = CPUserId;
     param[@"token"] = CPToken;
+    if (CPUnLogin) {
+        param = nil;
+    }
     [ZYNetWorkTool getWithUrl:url params:param success:^(id responseObject) {
         if (CPSuccess) {
             
@@ -162,6 +165,7 @@ static NSString *ID = @"partCell";
 
 - (void)joinOfficeActivity
 {
+    CPGoLogin(@"报名官方活动");
     NSString *url = [NSString stringWithFormat:@"official/activity/%@/join?userId=%@&token=%@",self.officialActivityId, CPUserId, CPToken];
     [ZYNetWorkTool postJsonWithUrl:url params:nil success:^(id responseObject) {
         if (CPSuccess) {

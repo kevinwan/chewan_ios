@@ -191,11 +191,11 @@ static NSString *ID = @"HisDateCell";
         CPActivityModel *model = self.datas[[userInfo row]];
         [self loveBtnClickWithInfo:model];
     }else if ([notifyName isEqualToString:IconViewClickKey]){
-        CPGoLogin(@"查看TA的详情");
-        CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
-        NSIndexPath *indexPath = userInfo;
-        taVc.userId = self.datas[indexPath.row].organizer.userId;
-        [self.navigationController pushViewController:taVc animated:YES];
+//        CPGoLogin(@"查看TA的详情");
+//        CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
+//        NSIndexPath *indexPath = userInfo;
+//        taVc.userId = self.datas[indexPath.row].organizer.userId;
+//        [self.navigationController pushViewController:taVc animated:YES];
     }
 }
 

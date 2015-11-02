@@ -447,7 +447,7 @@
 		E32B5DD81BCE39CC0057FD71 /* UIViewController+ZY.m in Sources */ = {isa = PBXBuildFile; fileRef = E32B5DD71BCE39CC0057FD71 /* UIViewController+ZY.m */; };
 		E32B5DDF1BCE41B50057FD71 /* ZYProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E32B5DDE1BCE41B50057FD71 /* ZYProgressView.m */; };
 		E32B5DE21BCE41CA0057FD71 /* ZYRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = E32B5DE11BCE41CA0057FD71 /* ZYRefreshView.m */; };
-		E33274921BE3401E00904368 /* CPUserTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E33274911BE3401E00904368 /* CPUserTool.m */; settings = {ASSET_TAGS = (); }; };
+		E33274921BE3401E00904368 /* CPUserTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E33274911BE3401E00904368 /* CPUserTool.m */; };
 		E34A8D4C1BDE51C8002CBBA7 /* CPNoDataTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = E34A8D4A1BDE51C8002CBBA7 /* CPNoDataTipView.m */; };
 		E34A8D4D1BDE51C8002CBBA7 /* CPNoDataTipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E34A8D4B1BDE51C8002CBBA7 /* CPNoDataTipView.xib */; };
 		E356F0E11BD4851A00D5BE07 /* CPActivityDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E356F0E01BD4851A00D5BE07 /* CPActivityDetailViewController.storyboard */; };
@@ -457,22 +457,22 @@
 		E356F0F51BD4F22500D5BE07 /* CPActivityDetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E356F0F41BD4F22500D5BE07 /* CPActivityDetailFooterView.m */; };
 		E356F0F81BD51DE400D5BE07 /* CPActivityPartnerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E356F0F71BD51DE400D5BE07 /* CPActivityPartnerCell.m */; };
 		E359EDBD1BCF75C20004B17D /* ZYImageVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = E359EDBC1BCF75C20004B17D /* ZYImageVIew.m */; };
-		E35AAF451BE24A0700A802A3 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF251BE24A0600A802A3 /* MKAnnotationView+WebCache.m */; settings = {ASSET_TAGS = (); }; };
-		E35AAF461BE24A0700A802A3 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF271BE24A0600A802A3 /* NSData+ImageContentType.m */; settings = {ASSET_TAGS = (); }; };
-		E35AAF471BE24A0700A802A3 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF291BE24A0600A802A3 /* SDImageCache.m */; settings = {ASSET_TAGS = (); }; };
-		E35AAF481BE24A0700A802A3 /* SDWebImageCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF2B1BE24A0700A802A3 /* SDWebImageCompat.m */; settings = {ASSET_TAGS = (); }; };
-		E35AAF491BE24A0700A802A3 /* SDWebImageDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF2D1BE24A0700A802A3 /* SDWebImageDecoder.m */; settings = {ASSET_TAGS = (); }; };
-		E35AAF4A1BE24A0700A802A3 /* SDWebImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF2F1BE24A0700A802A3 /* SDWebImageDownloader.m */; settings = {ASSET_TAGS = (); }; };
-		E35AAF4B1BE24A0700A802A3 /* SDWebImageDownloaderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF311BE24A0700A802A3 /* SDWebImageDownloaderOperation.m */; settings = {ASSET_TAGS = (); }; };
-		E35AAF4C1BE24A0700A802A3 /* SDWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF331BE24A0700A802A3 /* SDWebImageManager.m */; settings = {ASSET_TAGS = (); }; };
-		E35AAF4D1BE24A0700A802A3 /* SDWebImagePrefetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF361BE24A0700A802A3 /* SDWebImagePrefetcher.m */; settings = {ASSET_TAGS = (); }; };
-		E35AAF4E1BE24A0700A802A3 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF381BE24A0700A802A3 /* UIButton+WebCache.m */; settings = {ASSET_TAGS = (); }; };
-		E35AAF4F1BE24A0700A802A3 /* UIImage+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF3A1BE24A0700A802A3 /* UIImage+GIF.m */; settings = {ASSET_TAGS = (); }; };
-		E35AAF501BE24A0700A802A3 /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF3C1BE24A0700A802A3 /* UIImage+MultiFormat.m */; settings = {ASSET_TAGS = (); }; };
-		E35AAF511BE24A0700A802A3 /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF3E1BE24A0700A802A3 /* UIImage+WebP.m */; settings = {ASSET_TAGS = (); }; };
-		E35AAF521BE24A0700A802A3 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF401BE24A0700A802A3 /* UIImageView+HighlightedWebCache.m */; settings = {ASSET_TAGS = (); }; };
-		E35AAF531BE24A0700A802A3 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF421BE24A0700A802A3 /* UIImageView+WebCache.m */; settings = {ASSET_TAGS = (); }; };
-		E35AAF541BE24A0700A802A3 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF441BE24A0700A802A3 /* UIView+WebCacheOperation.m */; settings = {ASSET_TAGS = (); }; };
+		E35AAF451BE24A0700A802A3 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF251BE24A0600A802A3 /* MKAnnotationView+WebCache.m */; };
+		E35AAF461BE24A0700A802A3 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF271BE24A0600A802A3 /* NSData+ImageContentType.m */; };
+		E35AAF471BE24A0700A802A3 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF291BE24A0600A802A3 /* SDImageCache.m */; };
+		E35AAF481BE24A0700A802A3 /* SDWebImageCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF2B1BE24A0700A802A3 /* SDWebImageCompat.m */; };
+		E35AAF491BE24A0700A802A3 /* SDWebImageDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF2D1BE24A0700A802A3 /* SDWebImageDecoder.m */; };
+		E35AAF4A1BE24A0700A802A3 /* SDWebImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF2F1BE24A0700A802A3 /* SDWebImageDownloader.m */; };
+		E35AAF4B1BE24A0700A802A3 /* SDWebImageDownloaderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF311BE24A0700A802A3 /* SDWebImageDownloaderOperation.m */; };
+		E35AAF4C1BE24A0700A802A3 /* SDWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF331BE24A0700A802A3 /* SDWebImageManager.m */; };
+		E35AAF4D1BE24A0700A802A3 /* SDWebImagePrefetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF361BE24A0700A802A3 /* SDWebImagePrefetcher.m */; };
+		E35AAF4E1BE24A0700A802A3 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF381BE24A0700A802A3 /* UIButton+WebCache.m */; };
+		E35AAF4F1BE24A0700A802A3 /* UIImage+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF3A1BE24A0700A802A3 /* UIImage+GIF.m */; };
+		E35AAF501BE24A0700A802A3 /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF3C1BE24A0700A802A3 /* UIImage+MultiFormat.m */; };
+		E35AAF511BE24A0700A802A3 /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF3E1BE24A0700A802A3 /* UIImage+WebP.m */; };
+		E35AAF521BE24A0700A802A3 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF401BE24A0700A802A3 /* UIImageView+HighlightedWebCache.m */; };
+		E35AAF531BE24A0700A802A3 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF421BE24A0700A802A3 /* UIImageView+WebCache.m */; };
+		E35AAF541BE24A0700A802A3 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF441BE24A0700A802A3 /* UIView+WebCacheOperation.m */; };
 		E3606F0D1BC76FF100797968 /* CPRecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */; };
 		E3606F121BC78C7300797968 /* CPBaseViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F111BC78C7300797968 /* CPBaseViewCell.xib */; };
 		E365747F1BE0BD3000BA7E63 /* CPHisDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E365747E1BE0BD3000BA7E63 /* CPHisDateViewController.m */; };
@@ -490,7 +490,7 @@
 		E37C10B41BBB79E700E1A6A2 /* CPMyVisitorViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E37C10B31BBB79E700E1A6A2 /* CPMyVisitorViewController.storyboard */; };
 		E37C10B71BBB7CEB00E1A6A2 /* CPMyVistorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E37C10B61BBB7CEB00E1A6A2 /* CPMyVistorCell.m */; };
 		E37C10BA1BBB80C100E1A6A2 /* CPConcernMyController.m in Sources */ = {isa = PBXBuildFile; fileRef = E37C10B91BBB80C100E1A6A2 /* CPConcernMyController.m */; };
-		E38742D31BE309EC00C5D514 /* UIImageView+ZYWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E38742D21BE309EC00C5D514 /* UIImageView+ZYWebCache.m */; settings = {ASSET_TAGS = (); }; };
+		E38742D31BE309EC00C5D514 /* UIImageView+ZYWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E38742D21BE309EC00C5D514 /* UIImageView+ZYWebCache.m */; };
 		E3884D571BD1FE9900A65BE0 /* UICollectionView3DLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E3884D561BD1FE9900A65BE0 /* UICollectionView3DLayout.m */; };
 		E3884D5A1BD1FEB700A65BE0 /* UIScrollView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E3884D591BD1FEB700A65BE0 /* UIScrollView+Extension.m */; };
 		E3884D601BD1FF1E00A65BE0 /* AAPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = E3884D5D1BD1FF1E00A65BE0 /* AAPullToRefresh.m */; };
@@ -551,10 +551,10 @@
 		E3AEFE391BC64E5B009C9438 /* CPRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AEFE371BC64E5B009C9438 /* CPRecommendCell.m */; };
 		E3AF16FE1BBA296C00306ABF /* CPNoHighLightButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AF16FD1BBA296C00306ABF /* CPNoHighLightButton.m */; };
 		E3AF17011BBA317E00306ABF /* CPMySwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AF17001BBA317E00306ABF /* CPMySwitch.m */; };
-		E3BEEAFB1BE20F23006B80EA /* NSObject+Copying.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BEEAFA1BE20F23006B80EA /* NSObject+Copying.m */; settings = {ASSET_TAGS = (); }; };
-		E3BEEAFE1BE220DB006B80EA /* NSObject+Copying.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BEEAFD1BE220DB006B80EA /* NSObject+Copying.m */; settings = {ASSET_TAGS = (); }; };
+		E3BEEAFB1BE20F23006B80EA /* NSObject+Copying.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BEEAFA1BE20F23006B80EA /* NSObject+Copying.m */; };
+		E3BEEAFE1BE220DB006B80EA /* NSObject+Copying.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BEEAFD1BE220DB006B80EA /* NSObject+Copying.m */; };
 		E3C5F1911BC92C790021E33D /* CPActivityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C5F1901BC92C790021E33D /* CPActivityDetailViewController.m */; };
-		E3DF66541BE31C9B00B9239D /* UIButton+ZYWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DF66531BE31C9B00B9239D /* UIButton+ZYWebCache.m */; settings = {ASSET_TAGS = (); }; };
+		E3DF66541BE31C9B00B9239D /* UIButton+ZYWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DF66531BE31C9B00B9239D /* UIButton+ZYWebCache.m */; };
 		E3E6B8911BB4FD54006B4F8A /* CPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6B88F1BB4FD54006B4F8A /* CPLoginViewController.m */; };
 		E3E6B8921BB4FD54006B4F8A /* CPLoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3E6B8901BB4FD54006B4F8A /* CPLoginViewController.storyboard */; };
 		E3E6B8951BB514A2006B4F8A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6B8941BB514A2006B4F8A /* AppDelegate.m */; };
@@ -564,9 +564,9 @@
 		E3FE39EA1BD64EF90022FDA3 /* CPComeOnTipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3FE39E81BD64EF90022FDA3 /* CPComeOnTipView.xib */; };
 		E3FE39ED1BD64F060022FDA3 /* CPPartnerMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FE39EC1BD64F060022FDA3 /* CPPartnerMemberCell.m */; };
 		E3FE39F01BD6699B0022FDA3 /* CPActivityPathCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3FE39EF1BD6699B0022FDA3 /* CPActivityPathCell.m */; };
-		EE0DBBAC1BE33ECF00D1F972 /* group_detail@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE0DBBAB1BE33ECF00D1F972 /* group_detail@3x.png */; settings = {ASSET_TAGS = (); }; };
-		EE0DBBB11BE3479E00D1F972 /* CPChatGroupDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE0DBBAE1BE3479E00D1F972 /* CPChatGroupDetailViewController.m */; settings = {ASSET_TAGS = (); }; };
-		EE0DBBB21BE3479E00D1F972 /* CPGroupDetailTBCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE0DBBB01BE3479E00D1F972 /* CPGroupDetailTBCell.m */; settings = {ASSET_TAGS = (); }; };
+		EE0DBBAC1BE33ECF00D1F972 /* group_detail@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE0DBBAB1BE33ECF00D1F972 /* group_detail@3x.png */; };
+		EE0DBBB11BE3479E00D1F972 /* CPChatGroupDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE0DBBAE1BE3479E00D1F972 /* CPChatGroupDetailViewController.m */; };
+		EE0DBBB21BE3479E00D1F972 /* CPGroupDetailTBCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE0DBBB01BE3479E00D1F972 /* CPGroupDetailTBCell.m */; };
 		EE3383111BD8BB7500BA4930 /* dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE3383101BD8BB7500BA4930 /* dot@2x.png */; };
 		EE3383141BD8E27500BA4930 /* CareMeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE3383131BD8E27500BA4930 /* CareMeTableViewCell.m */; };
 		EE3383171BD9141200BA4930 /* call_silence@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE3383151BD9141200BA4930 /* call_silence@3x.png */; };
@@ -4839,7 +4839,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Hao Sun (VBUTLMUHXY)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hao Sun (VBUTLMUHXY)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4857,7 +4857,7 @@
 					"$(PROJECT_DIR)/CarPlay/News(动态)/3rdparty/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/CarPlay/Libs(三方库)/UMSocial_Sdk_4.3",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.77iland.carplayinhouse;
+				PRODUCT_BUNDLE_IDENTIFIER = com.77iland.carplay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "8069fa66-9ad4-4073-aeb7-7075cf514c89";
 			};
@@ -4869,7 +4869,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Hao Sun (VBUTLMUHXY)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Nanjing Jiagong Information Technology Co., Ltd.";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4887,7 +4887,7 @@
 					"$(PROJECT_DIR)/CarPlay/News(动态)/3rdparty/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/CarPlay/Libs(三方库)/UMSocial_Sdk_4.3",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.77iland.carplayinhouse;
+				PRODUCT_BUNDLE_IDENTIFIER = com.77iland.carplay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "8069fa66-9ad4-4073-aeb7-7075cf514c89";
 			};

@@ -1664,7 +1664,6 @@
 //        ChatGroupDetailViewController *detailController = [[ChatGroupDetailViewController alloc] initWithGroupId:_chatter];
 //        [self.navigationController pushViewController:detailController animated:YES];
         //群聊详情页面，不包括显示群主等信息。所以这边简单的做个tableview就好了。
-        return;
         CPChatGroupDetailViewController *detailController = [[CPChatGroupDetailViewController alloc]init];
         detailController.groupID =  self.chatter;
         [self.navigationController pushViewController:detailController animated:YES];

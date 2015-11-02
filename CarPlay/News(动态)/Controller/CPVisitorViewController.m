@@ -107,7 +107,7 @@
 - (void)getVisitMeData
 {
     [self showLoading];
-    [ZYNetWorkTool getWithUrl:[NSString stringWithFormat:@"user/%@/view/history?token=%@&limit=%ld&ignore=%ld",CPUserId,CPToken,(long)_limit,(long)_ignore] params:nil success:^(id responseObject) {
+    [ZYNetWorkTool getWithUrl:[NSString stringWithFormat:@"user/%@/view/history?token=%@&limit=20&ignore=0",CPUserId,CPToken] params:nil success:^(id responseObject) {
         [header endRefreshing];
         [self disMiss];
         if (CPSuccess) {

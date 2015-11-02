@@ -34,6 +34,7 @@
 static NSString *ID = @"memberIconCell";
 @implementation CPActivityPartnerCell
 
+#pragma mark - 布局
 - (void)awakeFromNib {
     [self.inviteBtn setCornerRadius:15];
     [self.iconView setCornerRadius:25];
@@ -77,7 +78,7 @@ static NSString *ID = @"memberIconCell";
         make.size.equalTo(CGSizeMake(18, 18));
     }];
 }
-
+#pragma mark - 事件交互
 - (IBAction)comeOnBaby:(UIButton *)sender {
     //inviteStatus        当前登录用户 邀请 该用户的 状态；
     //0 没有邀请过           1 邀请中
@@ -91,10 +92,17 @@ static NSString *ID = @"memberIconCell";
         [SVProgressHUD showInfoWithStatus:@"该用户已经邀请了您,快去动态中查看吧"];
         return;
     }
+    if ([sender.currentTitle isEqualToString:@"已拒绝"]) {
+        return;
+    }
+    if ([sender.currentTitle isEqualToString:@"邀请中"]) {
+        return;
+    }
     
     [self superViewWillRecive:CPComeOnBabyClickKey info:_model.userId];
 }
 
+#pragma mark - 模型赋值
 - (void)setModel:(CPPartMember *)model
 {
     _model = model;
@@ -139,7 +147,6 @@ static NSString *ID = @"memberIconCell";
     //0 没有邀请过           1 邀请中
     //2 邀请同意             3 邀请被拒绝
     
-    
     if ([model.userId isDiffToString:CPUserId]) {
         if (model.inviteStatus == 0) {
             
@@ -148,6 +155,7 @@ static NSString *ID = @"memberIconCell";
             self.inviteBtn.hidden = NO;
             [self.inviteBtn setTitle:@"邀请同去" forState:UIControlStateNormal];
             [self.inviteBtn setBackgroundColor:[Tools getColor:@"74ced6"]];
+            [self.inviteBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         }else if (model.inviteStatus == 1){
             
             self.phoneBtn.hidden = YES;
@@ -155,6 +163,7 @@ static NSString *ID = @"memberIconCell";
             self.inviteBtn.hidden = NO;
             [self.inviteBtn setTitle:@"邀请中" forState:UIControlStateNormal];
             [self.inviteBtn setBackgroundColor:[Tools getColor:@"74ced6"]];
+            [self.inviteBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         }else if (model.inviteStatus == 2 && model.beInvitedStatus == 2){
             
             self.phoneBtn.hidden = NO;
@@ -164,8 +173,9 @@ static NSString *ID = @"memberIconCell";
             self.phoneBtn.hidden = YES;
             self.msgButton.hidden = YES;
             self.inviteBtn.hidden = NO;
-            [self.inviteBtn setTitle:@"拒绝" forState:UIControlStateNormal];
-            [self.inviteBtn setBackgroundColor:[Tools getColor:@"ff6262"]];
+            [self.inviteBtn setTitle:@"已拒绝" forState:UIControlStateNormal];
+            [self.inviteBtn setTitleColor:GrayColor forState:UIControlStateNormal];
+            [self.inviteBtn setBackgroundColor:[UIColor clearColor]];
         }
 
     }else{
@@ -176,6 +186,7 @@ static NSString *ID = @"memberIconCell";
     [self.partnersView reloadData];
 }
 
+#pragma mark - 数据源方法
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CPPartnerMemberCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
