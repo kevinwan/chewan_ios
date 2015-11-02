@@ -12,6 +12,7 @@
 #import "CPCareUser.h"
 #import "CPMyCareCell.h"
 #import "ChatViewController.h"
+#import "CPTaInfo.h"
 
 @interface CPMyCareController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -113,7 +114,6 @@
             cell.careUser = _eachSubscribe[indexPath.row];
             cell.chatBtn.tag=indexPath.row;
             cell.phoneBtn.tag=indexPath.row;
-            cell.subscribeBtn.tag=indexPath.row;
             [cell.subscribeBtn setBackgroundImage:[UIImage imageNamed:@"互相关注"] forState:UIControlStateNormal];
             [cell.chatBtn setHidden:NO];
             [cell.phoneBtn setHidden:NO];
@@ -123,16 +123,17 @@
             [cell.chatBtn setHidden:YES];
             [cell.phoneBtn setHidden:YES];
             [cell.subscribeBtn setBackgroundImage:[UIImage imageNamed:@"我的关注_h"] forState:UIControlStateNormal];
-            cell.subscribeBtn.tag=indexPath.row;
             break;
         case 30:
             cell.careUser = _beSubscribed[indexPath.row];
             [cell.chatBtn setHidden:YES];
             [cell.phoneBtn setHidden:YES];
             [cell.subscribeBtn setBackgroundImage:[UIImage imageNamed:@"关注我的"] forState:UIControlStateNormal];
-            cell.subscribeBtn.tag=indexPath.row;
+            
             break;
     }
+    cell.avatar.tag=indexPath.row;
+    cell.subscribeBtn.tag=indexPath.row;
     return cell;
 }
 
@@ -267,5 +268,27 @@
         [self disMiss];
         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil] show];
     }];
+}
+
+-(void)taInfo:(UIButton *)sender{
+    CPCareUser *careUser=[CPCareUser new];
+    switch (corentBtnTag) {
+        case 10:
+            careUser=_eachSubscribe[sender.tag];
+            break;
+        case 20:
+            careUser=_mySubscribe[sender.tag];
+            break;
+        case 30:
+            careUser=_beSubscribed[sender.tag];
+            break;
+        default:
+            break;
+    }
+    
+    CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
+    taVc.userId = careUser.userId;
+    NSLog(@"%@",self.navigationController);
+    [self.navigationController pushViewController:taVc animated:YES];
 }
 @end

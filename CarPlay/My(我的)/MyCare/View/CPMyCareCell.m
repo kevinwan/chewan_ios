@@ -11,8 +11,6 @@
 #import "CPSexView.h"
 
 @interface CPMyCareCell ()
-// 头像
-@property (weak, nonatomic) IBOutlet UIButton *avatar;
 
 // 昵称
 @property (weak, nonatomic) IBOutlet UILabel *nickname;
@@ -49,6 +47,7 @@
     NSURL *imageUrl = [NSURL URLWithString:careUser.avatar];
     [self.avatar sd_setBackgroundImageWithURL:imageUrl forState:UIControlStateNormal placeholderImage:nil];
     
+    [self.avatar addTarget:self.superview action:@selector(taInfo:) forControlEvents:UIControlEventTouchUpInside];
     // 设置昵称
     self.nickname.text = careUser.nickname;
     
