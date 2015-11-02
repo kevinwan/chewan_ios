@@ -65,8 +65,8 @@
     NSString *url = [NSString stringWithFormat:@"official/activity/%@/invite?userId=%@&token=%@",self.activityId,CPUserId, CPToken];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"invitedUserId"] = self.partMemberModel.userId;
-    
-    if (sender.selected) {
+    // 去包接送按钮的状态
+    if (self.transfer.selected) {
         params[@"transfer"] = @(NO);
     }else{
         params[@"transfer"] = @(YES);
