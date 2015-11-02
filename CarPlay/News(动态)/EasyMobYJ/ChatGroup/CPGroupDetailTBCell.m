@@ -91,6 +91,11 @@
     return self;
     
 }
+- (void)layoutSubviews{
+    [super layoutSubviews];
+
+
+}
 - (void)awakeFromNib {
     // Initialization code
 }

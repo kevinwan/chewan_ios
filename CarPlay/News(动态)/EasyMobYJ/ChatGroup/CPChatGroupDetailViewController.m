@@ -7,7 +7,7 @@
 //
 
 #import "CPChatGroupDetailViewController.h"
-
+#import "CPComeOnTipView.h"
 @interface CPChatGroupDetailViewController ()<UITableViewDataSource,UITableViewDelegate,GroupDetailDelegeta>
 {
     NSInteger _limit;
@@ -190,10 +190,42 @@
         cell.distanceLabel.text =[self getDidstanceStrWithDistance:[[dic objectForKey:@"distance"] integerValue]];
         switch ([[dic objectForKey:@"inviteStatus"] integerValue ]) {
             case 0:
-                [cell.inviteBtn setTitle:@"邀请同去" forState:UIControlStateNormal];
+            {
+                switch ([[dic objectForKey:@"beInvitedStatus"] integerValue ]) {
+                    case 0:
+                        [cell.inviteBtn setTitle:@"邀请同去" forState:UIControlStateNormal];
+                        cell.inviteBtn.backgroundColor = UIColorFromRGB(0x74ced6);
+
+                        break;
+                    case 1:
+                        //这个时候点击按钮的话，提示去动态处理
+                        [cell.inviteBtn setTitle:@"邀请同去" forState:UIControlStateNormal];
+                        cell.inviteBtn.backgroundColor = UIColorFromRGB(0x74ced6);
+
+                        break;
+
+                    case 2:
+                        cell.inviteBtn.hidden = YES;
+                        cell.SendMessageBtn.hidden = NO;
+                        cell.TelBtn.hidden  = NO;
+                        break;
+
+                    case 3:
+                        [cell.inviteBtn setTitle:@"已拒绝" forState:UIControlStateNormal];
+                        cell.inviteBtn.backgroundColor = UIColorFromRGB(0x999999);
+                        break;
+
+                        
+                    default:
+                        break;
+                }
+                
+            }
                 break;
             case 1:
                 [cell.inviteBtn setTitle:@"邀请中" forState:UIControlStateNormal];
+                cell.inviteBtn.backgroundColor = UIColorFromRGB(0x74ced6);
+
                 break;
             case 2:
                 cell.inviteBtn.hidden = YES;
@@ -236,6 +268,28 @@
     UITableViewCell *cell = (UITableViewCell *)button.superview.superview;
     NSIndexPath *indexPath = [_membersTableview indexPathForCell:cell];
     NSLog(@"---%d",indexPath.row);
+    NSDictionary *dic = [self.dataSource objectAtIndex:indexPath.row];
+    switch (button.tag) {
+        case 1:
+        {
+            if ([[dic objectForKey:@"beInvitedStatus"] integerValue ] == 1) {
+                [self showInfo:[NSString stringWithFormat:@"%@已邀请你，去活动动态里处理邀请",[dic objectForKey:@"nickname"]]];
+            }else if([button.titleLabel.text isEqualToString:@"邀请同去"]){
+                NSLog(@"可以了");
+//                CPComeOnTipView showWithActivityId:<#(NSString *)#> targetUserId:<#(NSString *)#>
+            }
+        }
+            break;
+        case 2:
+            ;
+            break;
+        case 3:
+            ;
+            break;
+            
+        default:
+            break;
+    }
     
 }
 
