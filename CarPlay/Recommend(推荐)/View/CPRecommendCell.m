@@ -136,7 +136,7 @@
     }else{
         [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.contentTextL.mas_bottom).offset(10);
-            make.left.equalTo(@10);
+            make.leading.equalTo(self.contentTextL);
         }];
         [self.bgTip mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.contentTextL.mas_bottom).offset(10);

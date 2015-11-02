@@ -121,11 +121,9 @@ static NSString *ID = @"memberIconCell";
     self.sexView.age = model.age;
     self.sexView.isMan = model.isMan;
     
-    if ([model.authentication isEqualToString:@"认证成功"]) {
-        
+    if ([model.photoAuthStatus isEqualToString:@"认证通过"]) {
         self.iconAuthView.hidden = NO;
     }else{
-        
         self.iconAuthView.hidden = YES;
     }
     
