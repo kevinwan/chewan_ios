@@ -23,10 +23,14 @@
 #import "CPMyDateViewController.h"
 #import "CPCollectionViewCell.h"
 #import "CPAlbum.h"
+#import "SDPhotoBrowser.h"
+#import "PhotoBroswerVC.h"
 
-@interface CPMyViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate, UzysAssetsPickerControllerDelegate, UIAlertViewDelegate,UINavigationControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
+@interface CPMyViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate, UzysAssetsPickerControllerDelegate, UIAlertViewDelegate,UINavigationControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,SDPhotoBrowserDelegate>
 {
     CPUser *user;
+    SDPhotoBrowser *browser;
+    NSMutableArray *allAlbumsUrl;
 }
 @end
 
@@ -35,6 +39,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     user=[[CPUser alloc]init];
+    browser = [[SDPhotoBrowser alloc] init];
+    allAlbumsUrl=[[NSMutableArray alloc]init];
     [self setRightNavigationBarItemWithTitle:nil Image:@"设置" highImage:@"设置" target:self action:@selector(rightClick)];
     [self.improveBtn.layer setMasksToBounds:YES];
     [self.improveBtn.layer setCornerRadius:17.0];
@@ -174,6 +180,11 @@
         [self.status setBackgroundColor:[Tools getColor:@"fdbc4f"]];
         self.status.text=@"已认证";
     }
+    [allAlbumsUrl removeAllObjects];
+    for (CPAlbum *album in user.album) {
+        [allAlbumsUrl addObject:album.url];
+    }
+    
 }
 
 //完善
@@ -361,7 +372,7 @@
         [cell.imageView setImage:[UIImage imageNamed:@"相机"]];
     }else{
         CPAlbum *ablum=(CPAlbum *)user.album[indexPath.row-1];
-        [cell.imageView zySetImageWithUrl:ablum.url placeholderImage:nil];
+        [cell.imageView zySetImageWithUrl:ablum.url placeholderImage:[UIImage imageNamed:@"logo"]];
     }
     return cell;
 }
@@ -370,8 +381,55 @@
     if (indexPath.row==0) {
         [self addPhoto];
     }else{
+        __weak typeof(self) weakSelf=self;
+        [PhotoBroswerVC show:self userId:CPUserId type:PhotoBroswerVCTypePush index:indexPath.row-1 photoModelBlock:^NSArray *{
+            NSArray *networkImages=[[NSArray alloc]initWithArray:allAlbumsUrl];
+            
+            NSMutableArray *modelsM = [NSMutableArray arrayWithCapacity:networkImages.count];
+            for (NSUInteger i = 0; i< networkImages.count; i++) {
+                
+                PhotoModel *pbModel=[[PhotoModel alloc] init];
+                pbModel.mid = i + 1;
+                pbModel.title = [NSString stringWithFormat:@"这是标题%@",@(i+1)];
+                pbModel.desc = [NSString stringWithFormat:@"我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字%@",@(i+1)];
+                pbModel.image_HD_U = networkImages[i];
+                
+                UIImageView *imagevC=[[UIImageView alloc]init];
+                [imagevC setContentMode:UIViewContentModeScaleToFill];
+                [imagevC zySetImageWithUrl:networkImages[i] placeholderImage:[UIImage imageNamed:@"logo"]];
+                
+                pbModel.sourceImageView = imagevC;
+                
+                [modelsM addObject:pbModel];
+            }
+            
+            return modelsM;
+        }];
+
+        
+        
+//        
+//        CPTestPhotoViewController *test=[CPTestPhotoViewController new];
+//        [self.navigationController pushViewController:test animated:YES];
         
     }
+}
+
+#pragma mark - photobrowser代理方法
+
+// 返回临时占位图片（即原来的小图）
+- (UIImage *)photoBrowser:(SDPhotoBrowser *)browser placeholderImageForIndex:(NSInteger)index
+{
+    return [UIImage imageNamed:@"logo"];
+}
+
+
+// 返回高质量图片的url
+- (NSURL *)photoBrowser:(SDPhotoBrowser *)browser highQualityImageURLForIndex:(NSInteger)index
+{
+    CPAlbum *album=user.album[index];
+    NSString *urlStr = album.url;
+    return [NSURL URLWithString:urlStr];
 }
 
 @end

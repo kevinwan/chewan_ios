@@ -74,10 +74,10 @@ static NSString *ID = @"cell";
             [startUp setFireDate:[NSDate distantPast]];
             [timer setFireDate:[NSDate distantPast]];
             timeout=60;
-            totalCount=0;
-            startUpFrom=0;
             startUpFrom=0;
             [self.loadingView setHidden:NO];
+        }else{
+            [[[UIAlertView alloc]initWithTitle:@"提示" message:responseObject[@"errmsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show];
         }
     } failure:^(NSError *error) {
         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show];
