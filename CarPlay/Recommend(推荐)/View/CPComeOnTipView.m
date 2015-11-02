@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UIButton *sendComeOnBtn;
 @property (nonatomic, copy) NSString *activityId;
-@property (nonatomic, copy) NSString *targetUserId;
+@property (nonatomic, strong) CPPartMember *partMemberModel;
 @end
 
 @implementation CPComeOnTipView
@@ -64,7 +64,7 @@
 - (IBAction)sendComeOnClick:(UIButton *)sender {
     NSString *url = [NSString stringWithFormat:@"official/activity/%@/invite?userId=%@&token=%@",self.activityId,CPUserId, CPToken];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"invitedUserId"] = self.targetUserId;
+    params[@"invitedUserId"] = self.partMemberModel.userId;
     
     if (sender.selected) {
         params[@"transfer"] = @(NO);
@@ -76,6 +76,8 @@
     [ZYNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
         if (CPSuccess) {
             [SVProgressHUD showInfoWithStatus:@"邀请已发出"];
+            self.partMemberModel.beInvitedStatus = 1;
+            [ZYNotificationCenter postNotificationName:CPInvitedSuccessKey object:nil];
             [UIView animateWithDuration:0.25 animations:^{
                 self.superview.alpha = 0.0;
             } completion:^(BOOL finished) {
@@ -90,7 +92,7 @@
     }];
 }
 
-+ (void)showWithActivityId:(NSString *)activityId targetUserId:(NSString *)targetUserId
++ (void)showWithActivityId:(NSString *)activityId partMemberModel:(CPPartMember *)model
 {
     ZYNewButton(cover);
     [cover setBackgroundColor:ZYColor(0, 0, 0, 0.5)];
@@ -106,7 +108,7 @@
     }];
     CPComeOnTipView *view = [[NSBundle mainBundle] loadNibNamed:@"CPComeOnTipView" owner:nil options:nil].lastObject;
     view.activityId = activityId;
-    view.targetUserId = targetUserId;
+    view.partMemberModel = model;
     view.center = cover.centerInSelf;
     [cover addSubview:view];
     cover.alpha = 0.0;

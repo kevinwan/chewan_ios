@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CPRecommendModel.h"
+#define CPInvitedSuccessKey @"CPInvitedSuccessKey"
 @interface CPComeOnTipView : UIView
-+ (void)showWithActivityId:(NSString *)activityId targetUserId:(NSString *)targetUserId;
++ (void)showWithActivityId:(NSString *)activityId partMemberModel:(CPPartMember *)model;
 @end

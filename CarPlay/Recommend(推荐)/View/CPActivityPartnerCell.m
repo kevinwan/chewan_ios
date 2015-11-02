@@ -99,7 +99,7 @@ static NSString *ID = @"memberIconCell";
         return;
     }
     
-    [self superViewWillRecive:CPComeOnBabyClickKey info:_model.userId];
+    [self superViewWillRecive:CPComeOnBabyClickKey info:_model];
 }
 
 #pragma mark - 模型赋值
@@ -147,16 +147,44 @@ static NSString *ID = @"memberIconCell";
     //0 没有邀请过           1 邀请中
     //2 邀请同意             3 邀请被拒绝
     
-    if ([model.userId isDiffToString:CPUserId]) {
+    
+    if ([model.userId isDiffToString:CPUserId]){
         if (model.inviteStatus == 0) {
             
-            self.phoneBtn.hidden = YES;
-            self.msgButton.hidden = YES;
-            self.inviteBtn.hidden = NO;
-            [self.inviteBtn setTitle:@"邀请同去" forState:UIControlStateNormal];
-            [self.inviteBtn setBackgroundColor:[Tools getColor:@"74ced6"]];
-            [self.inviteBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        }else if (model.inviteStatus == 1){
+            if (model.beInvitedStatus == 0) {
+                
+                self.phoneBtn.hidden = YES;
+                self.msgButton.hidden = YES;
+                self.inviteBtn.hidden = NO;
+                [self.inviteBtn setTitle:@"邀请同去" forState:UIControlStateNormal];
+                [self.inviteBtn setBackgroundColor:[Tools getColor:@"74ced6"]];
+                [self.inviteBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                
+                
+            }else if (model.beInvitedStatus == 1){
+                
+                self.phoneBtn.hidden = YES;
+                self.msgButton.hidden = YES;
+                self.inviteBtn.hidden = NO;
+                [self.inviteBtn setTitle:@"邀请中" forState:UIControlStateNormal];
+                [self.inviteBtn setBackgroundColor:[Tools getColor:@"74ced6"]];
+                [self.inviteBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            }else if (model.beInvitedStatus == 2){
+                
+                self.phoneBtn.hidden = NO;
+                self.msgButton.hidden = NO;
+                self.inviteBtn.hidden = YES;
+            }else if (model.beInvitedStatus == 3){
+                self.phoneBtn.hidden = YES;
+                self.msgButton.hidden = YES;
+                self.inviteBtn.hidden = NO;
+                [self.inviteBtn setTitle:@"已拒绝" forState:UIControlStateNormal];
+                [self.inviteBtn setTitleColor:GrayColor forState:UIControlStateNormal];
+                [self.inviteBtn setBackgroundColor:[UIColor clearColor]];
+            }
+            
+        }
+        else if (model.inviteStatus == 1){
             
             self.phoneBtn.hidden = YES;
             self.msgButton.hidden = YES;
@@ -164,12 +192,14 @@ static NSString *ID = @"memberIconCell";
             [self.inviteBtn setTitle:@"邀请中" forState:UIControlStateNormal];
             [self.inviteBtn setBackgroundColor:[Tools getColor:@"74ced6"]];
             [self.inviteBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        }else if (model.inviteStatus == 2 && model.beInvitedStatus == 2){
+        }
+        else if (model.inviteStatus == 2){
             
             self.phoneBtn.hidden = NO;
             self.msgButton.hidden = NO;
             self.inviteBtn.hidden = YES;
-        }else if (model.inviteStatus == 3){
+        }
+        else if (model.inviteStatus == 3){
             self.phoneBtn.hidden = YES;
             self.msgButton.hidden = YES;
             self.inviteBtn.hidden = NO;
@@ -177,11 +207,9 @@ static NSString *ID = @"memberIconCell";
             [self.inviteBtn setTitleColor:GrayColor forState:UIControlStateNormal];
             [self.inviteBtn setBackgroundColor:[UIColor clearColor]];
         }
-
     }else{
         self.inviteBtn.hidden = YES;
     }
-    
     
     [self.partnersView reloadData];
 }

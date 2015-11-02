@@ -70,6 +70,9 @@ static NSString *ID = @"cell";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    if (self.datas.count == 0) {
+        [ZYLoadingView showLoadingView];
+    }
     if (CPUnLogin) {
         
         [ZYLoadingView showLoadingView];
