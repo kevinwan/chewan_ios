@@ -89,12 +89,12 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == 1) {
-        if ([user.licenseAuthStatus isEqualToString:@"未认证"]) {
+        if ([user.licenseAuthStatus isEqualToString:@"未认证"] || [user.licenseAuthStatus isEqualToString:@"认证未通过"]) {
             CPCarOwnersCertificationController *CPCarOwnersCertification = [UIStoryboard storyboardWithName:@"CPCarOwnersCertification" bundle:nil].instantiateInitialViewController;
             [self.navigationController pushViewController:CPCarOwnersCertification animated:YES];
         }
     }else {
-        if ([user.photoAuthStatus isEqualToString:@"未认证"]) {
+        if ([user.photoAuthStatus isEqualToString:@"未认证"] || [user.photoAuthStatus isEqualToString:@"认证未通过"]) {
             CPAvatarAuthenticationController *CPAvatarAuthenticationController = [UIStoryboard storyboardWithName:@"CPAvatarAuthenticationController" bundle:nil].instantiateInitialViewController;
             [self.navigationController pushViewController:CPAvatarAuthenticationController animated:YES];
         }
@@ -147,14 +147,19 @@
     }
     [self.sex setTitle:[[NSString alloc]initWithFormat:@"%lu",(unsigned long)user.age] forState:UIControlStateNormal];
     [self.albumsCollectionView reloadData];
-    self.photoAuthStatus.text=user.photoAuthStatus;
-    self.licenseAuthStatus.text=user.licenseAuthStatus;
-    if (![user.photoAuthStatus isEqualToString:@"未认证"]) {
+    if (user.photoAuthStatus && ![user.photoAuthStatus isEqualToString:@""]) {
+        self.photoAuthStatus.text=user.photoAuthStatus;
+    }
+    
+    if (user.licenseAuthStatus && ![user.licenseAuthStatus isEqualToString:@""]) {
+        self.licenseAuthStatus.text=user.licenseAuthStatus;
+    }
+    if ([user.photoAuthStatus isEqualToString:@"认证通过"] || [user.photoAuthStatus isEqualToString:@"认证中"]) {
         [self.arrowView setHidden:YES];
         self.rightJuli.constant=-8.0;
     }
     
-    if (![user.licenseAuthStatus isEqualToString:@"未认证"]) {
+    if ([user.licenseAuthStatus isEqualToString:@"认证通过"] || [user.licenseAuthStatus isEqualToString:@"认证中"]) {
         [self.arrowView1 setHidden:YES];
         self.rightJuli1.constant=-8.0;
     }
