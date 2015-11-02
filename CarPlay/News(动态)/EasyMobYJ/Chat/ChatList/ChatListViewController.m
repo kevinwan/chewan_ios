@@ -164,8 +164,8 @@
         _slimeView.slime.bodyColor = [UIColor grayColor];
         _slimeView.slime.skinColor = [UIColor grayColor];
         _slimeView.slime.lineWith = 1;
-        _slimeView.slime.shadowBlur = 4;
-        _slimeView.slime.shadowColor = [UIColor grayColor];
+        _slimeView.slime.shadowBlur = 0;
+        _slimeView.slime.shadowColor = [UIColor whiteColor];
         _slimeView.backgroundColor = [UIColor whiteColor];
     }
     

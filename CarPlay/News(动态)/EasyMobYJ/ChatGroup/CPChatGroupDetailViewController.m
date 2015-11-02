@@ -8,6 +8,9 @@
 
 #import "CPChatGroupDetailViewController.h"
 #import "CPComeOnTipView.h"
+#import "ChatViewController.h"
+#import "CPRecommendModel.h"
+#import "CPMySwitch.h"
 @interface CPChatGroupDetailViewController ()<UITableViewDataSource,UITableViewDelegate,GroupDetailDelegeta>
 {
     NSInteger _limit;
@@ -15,11 +18,19 @@
     NSArray *idleImages;
     NSArray *pullingImages;
     NSArray *refreshingImages;
-    MJRefreshGifHeader *header;
+//    MJRefreshGifHeader *header;
     MJRefreshAutoGifFooter *footer;
 }
 @property (nonatomic, strong)UITableView *membersTableview;
 @property (nonatomic, strong)NSMutableArray *dataSource;
+@property (nonatomic, copy)NSString *officialActivityId;
+
+//记录邀请对方同去的index，如果邀请成功，把本地数据的“邀请同去”换成“邀请中”
+@property (nonatomic,assign)NSInteger inviteIndex;
+//用来判断，此群的群信息是否被屏蔽了
+@property (nonatomic,assign)BOOL isBlocked;
+@property (nonatomic,strong)CPMySwitch *myswitch;
+@property (nonatomic,strong)UIView * bgview;//tableHeaderView
 
 @end
 
@@ -27,9 +38,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[EaseMob sharedInstance].chatManager asyncFetchGroupInfo:self.groupID completion:^(EMGroup *group, EMError *error) {
+        self.isBlocked = group.isBlocked;
+        _myswitch.on = self.isBlocked;
+    } onQueue:dispatch_get_main_queue()];
+    
     _limit = 10;
     _ignore   = 0;
-    self.view.backgroundColor = GrayColor;
+    _inviteIndex = -1;
+    self.view.backgroundColor = UIColorFromRGB(0xefefef);
     [self setEdgesForExtendedLayout:UIRectEdgeNone];
     self.dataSource = [[NSMutableArray alloc]init];
     self.title = @"成员";
@@ -41,25 +58,29 @@
     [self showLoading];
     [self getDetailMembersData];
     
- 
+    [ZYNotificationCenter addObserver:self selector:@selector(inviteSuccess) name:CPInvitedSuccessKey object:nil];
     
     
+}
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 - (void)MJ
 {
     
     //头
-    header= [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(getDetailMembersData)];
-    // 设置普通状态的动画图片
-    [header setImages:idleImages forState:MJRefreshStateIdle];
-    // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
-    [header setImages:pullingImages forState:MJRefreshStatePulling];
-    // 设置正在刷新状态的动画图片
-    [header setImages:refreshingImages duration:0.5 forState:MJRefreshStateRefreshing];
-    // 设置header
-    self.membersTableview.header = header;
-    header.lastUpdatedTimeLabel.hidden = YES;
-    header.stateLabel.hidden = YES;
+//    header= [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(getDetailMembersData)];
+//    // 设置普通状态的动画图片
+//    [header setImages:idleImages forState:MJRefreshStateIdle];
+//    // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
+//    [header setImages:pullingImages forState:MJRefreshStatePulling];
+//    // 设置正在刷新状态的动画图片
+//    [header setImages:refreshingImages duration:0.5 forState:MJRefreshStateRefreshing];
+//    // 设置header
+//    self.membersTableview.header = header;
+//    header.lastUpdatedTimeLabel.hidden = YES;
+//    header.stateLabel.hidden = YES;
     
     //尾巴
     footer= [MJRefreshAutoGifFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
@@ -127,12 +148,13 @@
     NSString *urlStr = [NSString stringWithFormat:@"official/activity/%ld/members?userId=%@&token=%@&limit=20&ignore=0&idType=1",(long)[self.groupID integerValue],CPUserId,CPToken];
     [ZYNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
         [self disMiss];
-        [header endRefreshing];
 
         if ([[[responseObject objectForKey:@"data"] objectForKey:@"result"] integerValue] == 0) {
             NSLog(@"res = %@",responseObject);
             [self.dataSource removeAllObjects];
+            self.title  = [NSString stringWithFormat:@"成员(%ld人)",[[[responseObject objectForKey:@"data"] objectForKey:@"memberSize"] integerValue]];
             self.dataSource =[NSMutableArray arrayWithArray:[[responseObject objectForKey:@"data"] objectForKey:@"members"]];
+            self.officialActivityId = [[responseObject objectForKey:@"data"] objectForKey:@"officialActivityId"];
             [_membersTableview reloadData];
         }else{
             [self showInfo:@"加载失败"];
@@ -141,7 +163,7 @@
         }
        
     } failure:^(NSError *error) {
-        [header endRefreshing];
+
 
         [self showInfo:@"加载失败"];
     }];
@@ -149,10 +171,10 @@
 
 - (void)initTableview
 {
-    self.membersTableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 10, self.view.frame.size.width, self.view.frame.size.height-10) style:UITableViewStylePlain];
+    self.membersTableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 10, self.view.frame.size.width, self.view.frame.size.height-10) style:UITableViewStyleGrouped];
     _membersTableview.delegate = self;
     _membersTableview.dataSource  = self;
-
+    [_membersTableview setBackgroundColor:UIColorFromRGB(0xefefef)];
     [_membersTableview setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.view addSubview:_membersTableview];
     
@@ -161,16 +183,83 @@
 #pragma mark tableview delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataSource.count;
+   
+        return self.dataSource.count;
+
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+   
     return 70;
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (self.bgview == nil) {
+        self.bgview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kDeviceWidth, 54)];
+        _bgview.backgroundColor = UIColorFromRGB(0xefefef);
+        
+        UIView *cellView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kDeviceWidth, 44)];
+        cellView.backgroundColor = [UIColor whiteColor];
+        
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(10, 12, 120, 20)];
+        [label setBackgroundColor:[UIColor clearColor]];
+        label.text = @"消息免打扰";
+        [label setTextAlignment:NSTextAlignmentLeft];
+        [label setFont:[UIFont systemFontOfSize:17]];
+        [label setTextColor:UIColorFromRGB(0x333333)];
+        [cellView addSubview:label];
+        
+        self.myswitch=  [[CPMySwitch alloc]initWithFrame:CGRectMake(kDeviceWidth-15-52, 12, 54, 22)];
+        [_myswitch setOnImage:[UIImage imageNamed:@"nodistrube"]];
+        [_myswitch setOffImage:[UIImage imageNamed:@"nodistrube_gray"]];
+        [_myswitch addTarget:self action:@selector(noDistrube:) forControlEvents:UIControlEventTouchUpInside];
+        _myswitch.on = self.isBlocked;
+        [cellView addSubview:_myswitch];
+        
+        [_bgview addSubview:cellView];
+    }
+    
+    return _bgview;
+}
+- (void)noDistrube:(CPMySwitch *)sender
+{
+    
+    if (sender.on == YES) {
+        NSLog(@"关掉");
+       [[EaseMob sharedInstance].chatManager asyncUnblockGroup:self.groupID completion:^(EMGroup *group, EMError *error) {
+           if (error) {
+               [self showInfo:@"网络出错，请稍后重试"];
+               return ;
+           }
+       } onQueue:nil];
+        
+    }else{
+        NSLog(@"开启免打扰");
+        [[EaseMob sharedInstance].chatManager asyncBlockGroup:self.groupID completion:^(EMGroup *group, EMError *error) {
+            if (error) {
+                [self showInfo:@"网络出错，请稍后重试"];
+                return ;
+            }
+        } onQueue:nil];
+
+    }
+    sender.on = !sender.on;
+
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+  
+    return 54;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
     return 0;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *identify = @"CareMeCell";
@@ -240,7 +329,12 @@
             default:
                 break;
         }
-        //        cell.timeLabel.text =[NSDate formattedTimeFromTimeInterval:[[dic objectForKey:@"subscribeTime"] longLongValue]];;
+        
+        if ([[dic objectForKey:@"userId"] isEqualToString:CPUserId]) {
+            cell.inviteBtn.hidden =YES;
+            cell.SendMessageBtn.hidden = YES;
+            cell.TelBtn.hidden = YES;
+        }
         
     }
     
@@ -276,15 +370,26 @@
                 [self showInfo:[NSString stringWithFormat:@"%@已邀请你，去活动动态里处理邀请",[dic objectForKey:@"nickname"]]];
             }else if([button.titleLabel.text isEqualToString:@"邀请同去"]){
                 NSLog(@"可以了");
-//                CPComeOnTipView showWithActivityId:<#(NSString *)#> targetUserId:<#(NSString *)#>
+                CPPartMember *model = [[CPPartMember alloc]init];
+                model.userId =[dic objectForKey:@"userId"];
+                self.inviteIndex = indexPath.row;
+                [CPComeOnTipView showWithActivityId:self.officialActivityId partMemberModel:model];
             }
         }
             break;
         case 2:
-            ;
+        {
+            ChatViewController *ChatVc = [[ChatViewController alloc]initWithChatter:[Tools md5EncryptWithString:[dic objectForKey:@"userId"]] conversationType:eConversationTypeChat];
+            ChatVc.title = [dic objectForKey:@"nickname"];
+            [self.navigationController pushViewController:ChatVc animated:YES];
+        }
             break;
         case 3:
-            ;
+        {
+            [ZYUserDefaults setValue:[dic objectForKey:@"avatar"] forKey:kReceiverHeadUrl];
+            [ZYUserDefaults setValue:[dic objectForKey:@"nickname"] forKey:kReceiverNickName];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"callOutWithChatter" object:@{@"chatter":[Tools md5EncryptWithString:[dic objectForKey:@"userId"]], @"type":[NSNumber numberWithInt:eCallSessionTypeAudio]}];
+        }
             break;
             
         default:
@@ -292,7 +397,14 @@
     }
     
 }
-
+- (void)inviteSuccess
+{
+    if (self.inviteIndex>=0) {
+        NSMutableDictionary *dic = [self.dataSource objectAtIndex:self.inviteIndex];
+        [dic setObject:@"1" forKey:@"inviteStatus"];
+        [self.membersTableview reloadData];
+    }
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
