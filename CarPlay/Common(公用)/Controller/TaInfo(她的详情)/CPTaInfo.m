@@ -14,11 +14,13 @@
 #import "CPMyDateViewController.h"
 #import "UzysAssetsPickerController.h"
 #import "CPHisDateViewController.h"
+#import "PhotoBroswerVC.h"
 
 @interface CPTaInfo ()<UIAlertViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate, UzysAssetsPickerControllerDelegate>
 {
     CPUser *user;
     CPUser *currentUser;
+    NSMutableArray *allAlbumsUrl;
 }
 @end
 
@@ -28,6 +30,7 @@
     [super viewDidLoad];
     user=[[CPUser alloc]init];
     currentUser=[[CPUser alloc]init];
+    allAlbumsUrl=[[NSMutableArray alloc]init];
     [self.navigationItem setTitle:@"TA的详情"];
     [self.attentionBtn.layer setMasksToBounds:YES];
     [self.attentionBtn.layer setCornerRadius:17.0];
@@ -123,10 +126,17 @@
     
     [self.albumsCollectionView reloadData];
     
+    if (CPHasAlbum) {
+        [self.noImgView setHidden:YES];
+    }
     if (user.subscribeFlag) {
         [self.attentionBtn setTitle:@"已关注" forState:UIControlStateNormal];
         [self.attentionBtn setBackgroundColor:[Tools getColor:@"dddddd"]];
         [self.attentionBtn setEnabled:NO];
+    }
+    [allAlbumsUrl removeAllObjects];
+    for (CPAlbum *album in user.album) {
+        [allAlbumsUrl addObject:album.url];
     }
 }
 
@@ -316,6 +326,29 @@
 //图片大图浏览
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    __weak typeof(self) weakSelf=self;
+    [PhotoBroswerVC show:self userId:user.userId type:PhotoBroswerVCTypePush index:indexPath.row photoModelBlock:^NSArray *{
+        NSArray *networkImages=[[NSArray alloc]initWithArray:allAlbumsUrl];
+        
+        NSMutableArray *modelsM = [NSMutableArray arrayWithCapacity:networkImages.count];
+        for (NSUInteger i = 0; i< networkImages.count; i++) {
+            
+            PhotoModel *pbModel=[[PhotoModel alloc] init];
+            pbModel.mid = i + 1;
+            pbModel.title = [NSString stringWithFormat:@"这是标题%@",@(i+1)];
+            pbModel.desc = [NSString stringWithFormat:@"我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字%@",@(i+1)];
+            pbModel.image_HD_U = networkImages[i];
+            
+            UIImageView *imagevC=[[UIImageView alloc]init];
+            [imagevC setContentMode:UIViewContentModeScaleToFill];
+            [imagevC zySetImageWithUrl:networkImages[i] placeholderImage:[UIImage imageNamed:@"logo"]];
+            
+            pbModel.sourceImageView = imagevC;
+            
+            [modelsM addObject:pbModel];
+        }
+        
+        return modelsM;
+    }];
 }
 @end

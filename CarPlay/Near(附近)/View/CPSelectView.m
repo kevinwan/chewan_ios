@@ -9,16 +9,12 @@
 #import "CPSelectView.h"
 #import "CPNoHighLightButton.h"
 
-#define   CPSelectModelFilePath @"selectModel.data".documentPath
 @interface CPSelectView ()
 
 @property (weak, nonatomic) IBOutlet UIButton *confirmBtn;
 @property (weak, nonatomic) IBOutlet UIView *bgView;
 @property (weak, nonatomic) IBOutlet CPNoHighLightButton *transferBtn;
 
-@property (nonatomic, strong) UIButton *lastTypebtn;
-@property (nonatomic, weak) UIButton *lastPaybtn;
-@property (nonatomic, weak) UIButton *lastSexbtn;
 @property (weak, nonatomic) IBOutlet UIView *typeView;
 
 @property (weak, nonatomic) IBOutlet UIView *payView;
@@ -29,6 +25,9 @@
 @property (weak, nonatomic) IBOutlet UIView *view;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bgViewHCons;
 
+@property (nonatomic, strong) UIButton *lastTypebtn;
+@property (nonatomic, weak) UIButton *lastPaybtn;
+@property (nonatomic, weak) UIButton *lastSexbtn;
 @end
 
 @implementation CPSelectView
@@ -184,6 +183,8 @@
         self.bgViewHCons.constant = 350;
     }
 }
+
+#pragma mark - 处理按钮切换
 - (IBAction)payTypeClick:(UIButton *)sender {
     if (sender == self.lastPaybtn) {
         return;

@@ -16,7 +16,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *chatBtn;
 @property (weak, nonatomic) IBOutlet UIButton *phoneBtn;
 @property (weak, nonatomic) IBOutlet UIButton *subscribeBtn;
-
+// 头像
+@property (weak, nonatomic) IBOutlet UIButton *avatar;
 + (NSString *)identifier;
 
 

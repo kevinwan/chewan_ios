@@ -117,8 +117,12 @@
             }
             else{
                 //注销成功之后清理useid和token
+        
                 [ZYUserDefaults setObject:nil forKey:Token];
                 [ZYUserDefaults setObject:nil forKey:UserId];
+                
+                // 清楚图片缓存和筛选条件
+                [[NSFileManager defaultManager] removeItemAtPath:CPSelectModelFilePath error:NULL];
                 [[SDImageCache sharedImageCache]  clearMemory];
                 [[SDImageCache sharedImageCache] cleanDisk];
                 CPLoginViewController *login = [UIStoryboard storyboardWithName:@"CPLoginViewController" bundle:nil].instantiateInitialViewController;
