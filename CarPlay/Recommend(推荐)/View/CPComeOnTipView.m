@@ -33,6 +33,7 @@
     [self.textField setCornerRadius:17];
     [self.sendComeOnBtn setCornerRadius:20];
     
+    // 监控键盘的弹出和隐藏
     [[ZYNotificationCenter rac_addObserverForName:UIKeyboardWillShowNotification object:nil] subscribeNext:^(NSNotification *notify) {
         NSDictionary *userInfo = notify.userInfo;
         
@@ -58,9 +59,11 @@
     }];
 }
 
+#pragma mark - 事件交互
 - (IBAction)transferBtnClick:(UIButton *)sender {
     sender.selected = !sender.isSelected;
 }
+
 - (IBAction)sendComeOnClick:(UIButton *)sender {
     NSString *url = [NSString stringWithFormat:@"official/activity/%@/invite?userId=%@&token=%@",self.activityId,CPUserId, CPToken];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -76,6 +79,7 @@
     [ZYNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
         if (CPSuccess) {
             [SVProgressHUD showInfoWithStatus:@"邀请已发出"];
+            // 更新模型状态
             self.partMemberModel.beInvitedStatus = 1;
             [ZYNotificationCenter postNotificationName:CPInvitedSuccessKey object:nil];
             [UIView animateWithDuration:0.25 animations:^{
@@ -92,8 +96,10 @@
     }];
 }
 
+
 + (void)showWithActivityId:(NSString *)activityId partMemberModel:(CPPartMember *)model
 {
+    // 展示邀她的View
     ZYNewButton(cover);
     [cover setBackgroundColor:ZYColor(0, 0, 0, 0.5)];
     UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;

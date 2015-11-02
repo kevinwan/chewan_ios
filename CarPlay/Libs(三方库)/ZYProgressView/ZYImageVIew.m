@@ -37,24 +37,23 @@
     self.clipsToBounds = YES;
 }
 
-- (void)setImage:(UIImage *)image
-{
-    if (image) {
-        [super setImage:image];
-        self.placeHloderImageView.hidden = YES;
-    }
-}
 - (void)zy_setImageWithUrl:(NSString *)url
 {
     self.placeHloderImageView.hidden = NO;
     
-    [self zySetImageWithUrl:url placeholderImage:nil];
+    [self zySetImageWithUrl:url placeholderImage:nil completion:^(UIImage *image) {
+        self.image = image;
+        self.placeHloderImageView.hidden = YES;
+    }];
 }
 
 - (void)zy_setBlurImageWithUrl:(NSString *)url
 {
     self.placeHloderImageView.hidden = NO;
-    [self sd_setImageWithURL:[NSURL URLWithString:url]];
+    [self sd_setImageWithURL:[NSURL URLWithString:url] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        self.image = image;
+        self.placeHloderImageView.hidden = YES;
+    }];
 }
 
 - (UIImageView *)placeHloderImageView
@@ -71,15 +70,4 @@
     self.placeHloderImageView.center = self.centerInSelf;
 }
 
-- (FXBlurView *)userCoverView
-{
-    if (_userCoverView == nil) {
-        _userCoverView = [[FXBlurView alloc] initWithFrame:self.bounds];
-        _userCoverView.tintColor = [UIColor clearColor];
-        [_userCoverView setBlurEnabled:YES];
-        _userCoverView.blurRadius = 5;
-        [_userCoverView setDynamic:NO];
-    }
-    return _userCoverView;
-}
 @end

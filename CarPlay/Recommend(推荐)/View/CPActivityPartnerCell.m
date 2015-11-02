@@ -147,8 +147,9 @@ static NSString *ID = @"memberIconCell";
     //0 没有邀请过           1 邀请中
     //2 邀请同意             3 邀请被拒绝
     
-    
+    // 如果不是自己
     if ([model.userId isDiffToString:CPUserId]){
+        // 1. 没有邀请状态,需要查看对方对我的邀请状态
         if (model.inviteStatus == 0) {
             
             if (model.beInvitedStatus == 0) {

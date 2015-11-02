@@ -65,6 +65,7 @@ static NSString *ID2 = @"DateCell2";
     [ZYLoadingView dismissLoadingView];
 }
 
+
 - (void)dealloc
 {
     NSLog(@"%@从内存中销毁了😭",[self class]);
@@ -115,6 +116,15 @@ static NSString *ID2 = @"DateCell2";
     NSString *url = [NSString stringWithFormat:@"user/%@/appointment/list?token=%@",CPUserId, CPToken];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"ignore"] = @(self.ignore);
+    if (self.isDynamic) {
+//        接口文档将原有的2.19接口拆分成2.19接口和2.58接口
+//        2.19接口为：  我的--获取我的活动信息， status传参数1,2,4
+//        2.58接口为：  动态--获取活动动态， status传参数1,2
+//        status为4：表示失效状态， 按照马成超《车玩活动失效规则和新BUG.docx》文档 新增加“失效”状态
+        params[@"status"] = @[@(1), @(2)];
+    }else{
+        params[@"status"] = @[@(1), @(2), @(4)];
+    }
     [ZYNetWorkTool getWithUrl:url params:params success:^(id responseObject) {
         
         DLog(@"%@ ---- ",responseObject);
@@ -417,7 +427,7 @@ static NSString *ID2 = @"DateCell2";
         layout.columnsCount = 1;
         layout.delegate = self;
 //                UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
-        _tableView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
+        _tableView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height) collectionViewLayout:layout];
         _tableView.alwaysBounceVertical = YES;
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.showsHorizontalScrollIndicator = NO;
@@ -436,10 +446,6 @@ static NSString *ID2 = @"DateCell2";
         layout.rowMargin = 20;
         layout.sectionInset = UIEdgeInsetsMake(topInset, 10, 0, 10);
         layout.columnsCount = 1;
-//        layout.itemSize = itemSzie;
-        //        layout.scrollDirection = UICollectionLayoutScrollDirectionVertical;
-//        layout.itemScale = 0.96;
-//        layout.LayoutDirection=UICollectionLayoutScrollDirectionVertical;
         self.view.backgroundColor = [Tools getColor:@"efefef"];
         [_tableView registerClass:[CPNearCollectionViewCell class] forCellWithReuseIdentifier:ID1];
         [_tableView registerClass:[CPRecommentViewCell class] forCellWithReuseIdentifier:ID2];
