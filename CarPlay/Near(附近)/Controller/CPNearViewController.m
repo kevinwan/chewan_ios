@@ -70,6 +70,9 @@ static NSString *ID = @"cell";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    if (self.datas.count == 0) {
+        [ZYLoadingView showLoadingView];
+    }
     if (CPUnLogin) {
         
         [ZYLoadingView showLoadingView];
@@ -399,7 +402,6 @@ static NSString *ID = @"cell";
 {
     if (_tableView == nil) {
         UICollectionView3DLayout *layout = [UICollectionView3DLayout new];
-//        UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
         _tableView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
         _tableView.alwaysBounceVertical = YES;
         _tableView.backgroundColor = [UIColor clearColor];

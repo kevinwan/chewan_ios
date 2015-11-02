@@ -23,7 +23,7 @@
 #    define DLog(...) /* */
 #endif
 
-// 定义这个宏可以使用一些更简洁的方法
+// 定义这个宏可以使用一些更简洁的方法,发现与ZYExtension冲突
 //#define MAS_SHORTHAND
 
 // 定义这个宏可以使用自动装箱功能
@@ -64,10 +64,11 @@
 #define NOTIFICATION_LOGINSUCCESS @"loginSuccess"
 #define THIRDPARTYLOGINACCOUNT @"3partyLoginAccount"
 #define CPReRefreshNotification @"CPReRefreshNotification"
-
+#define CPSelectModelFilePath @"selectModel.data".documentPath
 //开始意向匹配
 #define NOTIFICATION_STARTMATCHING @"startMatching"
 
+// 快速校验是否登录,弹框,跳转登录页面
 #define CPGoLogin(title) \
 if (CPUnLogin) {\
 NSString *message = [NSString stringWithFormat:@"你还未登录,登录后就可以%@",title];\

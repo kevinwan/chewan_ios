@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UIButton *sendComeOnBtn;
 @property (nonatomic, copy) NSString *activityId;
-@property (nonatomic, copy) NSString *targetUserId;
+@property (nonatomic, strong) CPPartMember *partMemberModel;
 @end
 
 @implementation CPComeOnTipView
@@ -33,6 +33,7 @@
     [self.textField setCornerRadius:17];
     [self.sendComeOnBtn setCornerRadius:20];
     
+    // 监控键盘的弹出和隐藏
     [[ZYNotificationCenter rac_addObserverForName:UIKeyboardWillShowNotification object:nil] subscribeNext:^(NSNotification *notify) {
         NSDictionary *userInfo = notify.userInfo;
         
@@ -58,15 +59,17 @@
     }];
 }
 
+#pragma mark - 事件交互
 - (IBAction)transferBtnClick:(UIButton *)sender {
     sender.selected = !sender.isSelected;
 }
+
 - (IBAction)sendComeOnClick:(UIButton *)sender {
     NSString *url = [NSString stringWithFormat:@"official/activity/%@/invite?userId=%@&token=%@",self.activityId,CPUserId, CPToken];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"invitedUserId"] = self.targetUserId;
-    
-    if (sender.selected) {
+    params[@"invitedUserId"] = self.partMemberModel.userId;
+    // 去包接送按钮的状态
+    if (self.transfer.selected) {
         params[@"transfer"] = @(NO);
     }else{
         params[@"transfer"] = @(YES);
@@ -76,6 +79,9 @@
     [ZYNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
         if (CPSuccess) {
             [SVProgressHUD showInfoWithStatus:@"邀请已发出"];
+            // 更新模型状态
+            self.partMemberModel.beInvitedStatus = 1;
+            [ZYNotificationCenter postNotificationName:CPInvitedSuccessKey object:nil];
             [UIView animateWithDuration:0.25 animations:^{
                 self.superview.alpha = 0.0;
             } completion:^(BOOL finished) {
@@ -90,8 +96,10 @@
     }];
 }
 
-+ (void)showWithActivityId:(NSString *)activityId targetUserId:(NSString *)targetUserId
+
++ (void)showWithActivityId:(NSString *)activityId partMemberModel:(CPPartMember *)model
 {
+    // 展示邀她的View
     ZYNewButton(cover);
     [cover setBackgroundColor:ZYColor(0, 0, 0, 0.5)];
     UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
@@ -106,7 +114,7 @@
     }];
     CPComeOnTipView *view = [[NSBundle mainBundle] loadNibNamed:@"CPComeOnTipView" owner:nil options:nil].lastObject;
     view.activityId = activityId;
-    view.targetUserId = targetUserId;
+    view.partMemberModel = model;
     view.center = cover.centerInSelf;
     [cover addSubview:view];
     cover.alpha = 0.0;

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FXBlurView.h"
 #import "UIImageView+WebCache.h"
 typedef void(^completion)(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL);
 
@@ -17,6 +16,4 @@ typedef void(^completion)(UIImage *image, NSError *error, SDImageCacheType cache
 
 @property (nonatomic, strong) UIImageView *placeHloderImageView;
 
-@property (nonatomic, strong) FXBlurView *userCoverView;
-@property (nonatomic, assign) BOOL showBlurView;
 @end

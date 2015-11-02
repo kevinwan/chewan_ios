@@ -68,10 +68,18 @@
 {
     _price = price;
     
-    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.0f",price] attributes:@{NSFontAttributeName : ZYFont16, NSForegroundColorAttributeName : [Tools getColor:@"fe5966"]}];
-    [str appendAttributedString:[[NSAttributedString alloc] initWithString:@"元/人" attributes:@{NSFontAttributeName : ZYFont12, NSForegroundColorAttributeName : [Tools getColor:@"666666"]}]];
-    
-    _priceText = [str copy];
+    if (price){
+        
+        NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.0f",price] attributes:@{NSFontAttributeName : ZYFont16, NSForegroundColorAttributeName : [Tools getColor:@"fe5966"]}];
+        [str appendAttributedString:[[NSAttributedString alloc] initWithString:@"元/人" attributes:@{NSFontAttributeName : ZYFont12, NSForegroundColorAttributeName : [Tools getColor:@"666666"]}]];
+        
+        _priceText = [str copy];
+    }else{
+        
+        NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@" 免费" attributes:@{NSFontAttributeName : ZYFont16, NSForegroundColorAttributeName : [Tools getColor:@"fe5966"]}];
+        
+        _priceText = [str copy];
+    }
 }
 
 - (void)setNowJoinNum:(NSUInteger)nowJoinNum
@@ -106,9 +114,10 @@
 {
     NSString *city = _destination[@"city"];
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@" [%@] ",city] attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"fe5966"]}];
-    NSAttributedString *title = [[NSAttributedString alloc] initWithString:_title attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"333333"]}];
+    NSAttributedString *title = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n",_title] attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"333333"]}];
+//     NSAttributedString *title = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"姐姐姐姐姐姐姐姐姐姐谁谁谁水水水水谁谁谁哦哦哦哦哦哈哈哈哈哈呃呃呃是姐姐姐姐姐姐姐姐"] attributes:@{NSForegroundColorAttributeName : [Tools getColor:@"333333"]}];
+    
     [str appendAttributedString:title];
-   
     _titleAttrText = [str copy];
 }
 
