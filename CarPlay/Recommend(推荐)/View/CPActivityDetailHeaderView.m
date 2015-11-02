@@ -99,7 +99,11 @@
         [priceStr appendAttributedString:subPrice];
         self.priceLabel.attributedText = [priceStr copy];
     }else{
-        self.priceLabel.text = [NSString stringWithFormat:@"%.0f元/人",model.price];
+        if (model.price) {
+            self.priceLabel.text = [NSString stringWithFormat:@"%.0f元/人",model.price];
+        }else{
+            self.priceLabel.text = @"免费";
+        }
     }
     self.startLabel.text = model.startStr;
     self.endLabel.text = model.endStr;

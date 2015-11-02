@@ -44,7 +44,6 @@
     
     self.titleLabel.text = model.organizer.nickname;
     self.contentTextL.attributedText = model.titleAttrText;
-    self.priceLabel.text = model.priceDesc;
     self.tipLabel.text = [NSString stringWithFormat:@"官方补贴%.0f元/人",model.subsidyPrice];
 
     if (model.limitType == 0) {
@@ -54,7 +53,11 @@
         self.maleLabel.hidden = YES;
         self.female.hidden = YES;
         self.femaleLabel.hidden = YES;
-        self.partLabel.text = [NSString stringWithFormat:@"%zd / 不限",model.nowJoinNum];
+        
+        NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%zd / ",model.nowJoinNum]];
+        NSAttributedString *noLimitStr = [[NSAttributedString alloc] initWithString:@"不限" attributes:@{NSForegroundColorAttributeName : GreenColor}];
+        [str appendAttributedString:noLimitStr];
+        self.partLabel.attributedText = str;
     }else if (model.limitType == 1){
         
         self.partLabel.hidden = NO;
@@ -74,7 +77,7 @@
         self.maleLabel.text = [NSString stringWithFormat:@"%zd / %zd",model.maleNum,model.maleLimit];
            self.femaleLabel.text = [NSString stringWithFormat:@"%zd / %zd",model.femaleNum,model.femaleLimit];
     }
-    [self.bgImageView zySetImageWithUrl:model.covers.firstObject placeholderImage:nil];
+    [self.bgImageView zy_setImageWithUrl:model.covers.firstObject];
     self.priceLabel.attributedText = model.priceText;
     [self.addressView setTitle:model.destination[@"detail"] forState:UIControlStateNormal];
 }

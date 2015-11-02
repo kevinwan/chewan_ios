@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CPRecommendModel.h"
+#define CPInvitedSuccessKey @"CPInvitedSuccessKey"
 @interface CPComeOnTipView : UIView
-+ (void)showWithActivityId:(NSString *)activityId targetUserId:(NSString *)targetUserId;
+/**
+ *  展示View
+ *
+ *  @param activityId 活动的activityId
+ *  @param model      对应cell的model
+ */
++ (void)showWithActivityId:(NSString *)activityId partMemberModel:(CPPartMember *)model;
+
 @end

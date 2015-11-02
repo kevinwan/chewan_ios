@@ -389,6 +389,10 @@
         }
     }else if (myDateModel.status == 2){
         [self setPhoneType:YES];
+    }else if (myDateModel.status == 4){ // 失效状态
+        [self setPhoneType:NO];
+        [self.dateButton setTitle:@"已失效" forState:UIControlStateNormal];
+        [self.dateButton setBackgroundColor:[Tools getColor:@"cccccc"]];
     }
     
     if (myDateModel.message.trimLength) {

@@ -39,6 +39,9 @@ static NSString *ID = @"partCell";
     self.tableView.tableFooterView = self.footerView;
     self.title = @"活动详情";
     [self loadData];
+    [[ZYNotificationCenter rac_addObserverForName:CPInvitedSuccessKey object:nil] subscribeNext:^(id x) {
+        [self.tableView reloadData];
+    }];
 }
 
 - (void)loadData
@@ -69,7 +72,16 @@ static NSString *ID = @"partCell";
 - (void)loadMembersWithIgnore:(NSInteger)ignore
 {
     NSString *url = [NSString stringWithFormat:@"official/activity/%@/members", self.officialActivityId];
-    [ZYNetWorkTool getWithUrl:url params:@{UserId : CPUserId, Token :CPToken, @"ignore" : @(ignore),@"limit" : @(CPMemberPageNum)} success:^(id responseObject) {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    if (CPUserId.trimLength) {
+        params[UserId] = CPUserId;
+    }
+    if (CPToken.trimLength) {
+        params[Token] = CPToken;
+    }
+    params[@"ignore"] = @(ignore);
+    params[@"limit"] = @(CPMemberPageNum);
+    [ZYNetWorkTool getWithUrl:url params:params success:^(id responseObject) {
         if (CPSuccess) {
             if (ignore == 0) {
                 [self.members removeAllObjects];
@@ -148,9 +160,9 @@ static NSString *ID = @"partCell";
         
         if (_model.isMember) {
             
-            [CPComeOnTipView showWithActivityId:_officialActivityId targetUserId:userInfo];
+            [CPComeOnTipView showWithActivityId:_officialActivityId partMemberModel:userInfo];
         }else{
-            
+            CPGoLogin(@"邀TA");
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"报名参加活动以后才能邀请TA参加活动" delegate:nil cancelButtonTitle:@"再想想" otherButtonTitles:@"报名参加", nil];
             [alertView.rac_buttonClickedSignal subscribeNext:^(id x) {
                 if ([x integerValue] != 0) {

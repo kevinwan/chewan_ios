@@ -77,11 +77,21 @@
     self.activityPathLabel.attributedText = [[NSAttributedString alloc] initWithString:model.desc attributes:@{NSParagraphStyleAttributeName : paragraphStyle}];
     self.explainLabel.attributedText = [[NSAttributedString alloc] initWithString:model.extraDesc attributes:@{NSParagraphStyleAttributeName : paragraphStyle}];
     if (model.isMember){
-        self.comePartBtn.hidden = YES;
-        self.byTheTicketButton.hidden = NO;
-        self.toGroupChatButton.hidden = NO;
+        if (model.price) {
+            self.comePartBtn.hidden = YES;
+            self.byTheTicketButton.hidden = NO;
+            self.toGroupChatButton.hidden = NO;
+        }else{
+            self.comePartBtn.hidden = NO;
+            [self.comePartBtn setTitle:@"进入群聊" forState:UIControlStateNormal];
+            [self.comePartBtn setBackgroundColor:[Tools getColor:@"F48C60"]];
+            self.byTheTicketButton.hidden = YES;
+            self.toGroupChatButton.hidden = YES;
+        }
     }else{
         self.comePartBtn.hidden = NO;
+        [self.comePartBtn setTitle:@"报名参加" forState:UIControlStateNormal];
+        [self.comePartBtn setBackgroundColor:RedColor];
         self.byTheTicketButton.hidden = YES;
         self.toGroupChatButton.hidden = YES;
     }
@@ -142,6 +152,12 @@
 
 - (IBAction)comePart:(UIButton *)sender {
   
+    CPGoLogin(@"报名参加");
+    if ([sender.currentTitle isEqualToString:@"进入群聊"]) {
+        [self superViewWillRecive:CPGroupChatClickKey info:_model];
+        return;
+    }
+    
     NSString *url = [NSString stringWithFormat:@"official/activity/%@/join?userId=%@&token=%@",self.officialActivityId, CPUserId, CPToken];
     [ZYNetWorkTool postJsonWithUrl:url params:nil success:^(id responseObject) {
         if (CPSuccess) {

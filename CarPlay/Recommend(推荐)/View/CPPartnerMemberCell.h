@@ -11,4 +11,5 @@
 @interface CPPartnerMemberCell : UICollectionViewCell
 
 @property (nonatomic, strong) UIImageView *iconView;
+
 @end
