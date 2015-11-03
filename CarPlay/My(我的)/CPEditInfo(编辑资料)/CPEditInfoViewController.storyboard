@@ -310,6 +310,10 @@
                         <outlet property="licenseAuthStatus" destination="5P7-5R-hWY" id="R8c-Aw-8Xe"/>
                         <outlet property="nickName" destination="TEp-px-LCr" id="Y05-dg-M1b"/>
                         <outlet property="photoAuthStatus" destination="5dx-9W-XK2" id="s9C-9i-O75"/>
+                        <outlet property="right1" destination="c9m-GU-Ebn" id="na4-BE-h1P"/>
+                        <outlet property="right2" destination="FYs-AI-WlX" id="xIO-dI-7Gj"/>
+                        <outlet property="rightArrow1" destination="wnB-TZ-TNW" id="FY5-Wm-6nP"/>
+                        <outlet property="rightArrow2" destination="A29-eZ-gre" id="Udb-rG-xjJ"/>
                         <outlet property="sex" destination="lgu-Qg-iSs" id="uH3-cl-WoH"/>
                     </connections>
                 </tableViewController>

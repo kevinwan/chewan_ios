@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
+#import "CPAlbum.h"
 #import "PhotoBroswerType.h"
 
 @interface PhotoModel : NSObject
@@ -24,7 +24,7 @@
  */
 
 /** 高清图地址 */
-@property (nonatomic,copy) NSString *image_HD_U;
+@property (nonatomic,strong) CPAlbum *album;
 
 
 

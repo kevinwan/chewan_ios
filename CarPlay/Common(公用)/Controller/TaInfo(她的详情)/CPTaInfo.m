@@ -337,7 +337,7 @@
             pbModel.mid = i + 1;
             pbModel.title = [NSString stringWithFormat:@"这是标题%@",@(i+1)];
             pbModel.desc = [NSString stringWithFormat:@"我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字%@",@(i+1)];
-            pbModel.image_HD_U = networkImages[i];
+            pbModel.image = networkImages[i];
             
             UIImageView *imagevC=[[UIImageView alloc]init];
             [imagevC setContentMode:UIViewContentModeScaleToFill];

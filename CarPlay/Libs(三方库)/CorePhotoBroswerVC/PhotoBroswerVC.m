@@ -330,7 +330,6 @@
     photoItemView.pageIndex = page;
     photoItemView.type = self.type;
     photoItemView.photoModel = self.photoModels[page];
-
     [self.scrollView addSubview:photoItemView];
     
     //    [UIView animateWithDuration:.01 animations:^{
@@ -592,31 +591,48 @@
 
 - (void)deletePhoto
 {
+    NSString *path=[NSString stringWithFormat:@"user/%@/album/photos?token=%@",CPUserId,CPToken];
+    PhotoModel *photo=self.photoModels[self.page];
+    NSArray *photos=[NSArray arrayWithObject:photo.album.photoId];
     
-    [self.photoModels removeObjectAtIndex:self.page];
-    // 清空缓存
-    [self.reusablePhotoItemViewSetM removeAllObjects];
-    
-    [self.visiblePhotoItemViewDictM removeAllObjects];
-    self.index = self.page;
-    if (self.page == self.pageCount - 1) {
-        self.index -= 1;
-    }
-    self.pageCount -= 1;
-    
-    [self vcPrepare];
-
-    //设置标题
-    NSString *text = [NSString stringWithFormat:@"%@ / %@", @(self.page + 1) , @(self.pageCount)];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        self.topBarLabel.text = text;
-        [self.topBarLabel setNeedsLayout];
-        [self.topBarLabel layoutIfNeeded];
-    });
-    
-    [SVProgressHUD showSuccessWithStatus:@"删除成功"];
+    [self showLoading];
+    [ZYNetWorkTool postJsonWithUrl:path params:[NSDictionary dictionaryWithObjectsAndKeys:photos,@"photos", nil] success:^(id responseObject) {
+        if (CPSuccess) {
+            [self.photoModels removeObjectAtIndex:self.page];
+            // 清空缓存
+            [self.reusablePhotoItemViewSetM removeAllObjects];
+            
+            [self.visiblePhotoItemViewDictM removeAllObjects];
+            
+            self.index = self.page;
+            if (self.page == self.pageCount - 1) {
+                self.index -= 1;
+            }
+            self.pageCount -= 1;
+            
+            if (self.pageCount==0) {
+                [self dismiss];
+            }else{
+                [self vcPrepare];
+                //设置标题
+                NSString *text = [NSString stringWithFormat:@"%@ / %@", @(self.page + 1) , @(self.pageCount)];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    self.topBarLabel.text = text;
+                    [self.topBarLabel setNeedsLayout];
+                    [self.topBarLabel layoutIfNeeded];
+                });
+            }
+            [SVProgressHUD showSuccessWithStatus:@"删除成功"];
+        }else{
+            [SVProgressHUD showErrorWithStatus:responseObject[@"errmsg"]];
+        }
+        [self disMiss];
+    } failed:^(NSError *error) {
+        [self disMiss];
+        [SVProgressHUD showErrorWithStatus:@"删除失败,请检查手机网络"];
+    }];
 }
 
 -(void)setIndex:(NSUInteger)index{
