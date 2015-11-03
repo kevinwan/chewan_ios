@@ -447,4 +447,9 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)closeBtnClick:(id)sender {
+    CPTabBarController *tab = (CPTabBarController *)self.view.window.rootViewController;
+    [tab setSelectedIndex:[ZYUserDefaults integerForKey:TabLastSelectIndex]];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end

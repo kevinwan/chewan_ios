@@ -32,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *shoppingBtn;
 @property (weak, nonatomic) IBOutlet UIView *beerBtnBgView;
 @property (weak, nonatomic) IBOutlet UIButton *beerBtn;
+- (IBAction)closeBtnClick:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIButton *takeALookBtn;
 - (IBAction)btnClick:(UIButton *)sender;
