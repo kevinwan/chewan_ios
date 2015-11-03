@@ -54,9 +54,9 @@ static NSString *ID = @"cell";
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"筛选" target:self action:@selector(filter)];
     [self.view addSubview:self.tableView];
     [self tipView];
-    
+    ZYWeakSelf
     [[ZYNotificationCenter rac_addObserverForName:NOTIFICATION_LOGINSUCCESS object:nil] subscribeNext:^(NSNotification *notify) {
-        
+        ZYStrongSelf
         BOOL loginSuccess = [notify.userInfo[NOTIFICATION_LOGINSUCCESS] boolValue];
         self.isLoginSuccess = loginSuccess;
         if (loginSuccess) {
@@ -65,22 +65,35 @@ static NSString *ID = @"cell";
             [self loadDataWithHeader:nil];
         }
     }];
+    
+    [[ZYNotificationCenter rac_addObserverForName:NOTIFICATION_HASLOGIN object:nil] subscribeNext:^(id x) {
+        ZYStrongSelf
+        [self.tableView reloadData];
+    }];
+    [[ZYNotificationCenter rac_addObserverForName:@"DID_LOG_OUT_SUCCESS" object:nil] subscribeNext:^(id x) {
+        ZYStrongSelf
+        self.params = [CPNearParams new];
+        [self loadDataWithHeader:nil];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if (self.datas.count == 0) {
-        [ZYLoadingView showLoadingView];
-    }
+//    if (self.datas.count == 0) {
+//        [ZYLoadingView showLoadingView];
+//    }
     if (CPUnLogin) {
-        
-        [ZYLoadingView showLoadingView];
-        [self loadDataWithHeader:nil];
-    }else{
-        if (self.isLoginSuccess) {
+        if (self.datas.count == 0) {
             [ZYLoadingView showLoadingView];
             [self loadDataWithHeader:nil];
+        }
+    }else{
+        if (self.isLoginSuccess) {
+            if (self.datas.count == 0) {
+                [ZYLoadingView showLoadingView];
+                [self loadDataWithHeader:nil];
+            }
         }
     }
 }
@@ -410,13 +423,12 @@ static NSString *ID = @"cell";
         self.automaticallyAdjustsScrollViewInsets = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        CGSize itemSzie= CGSizeMake(ZYScreenWidth - 20, 383 + self.offset);
+        CGSize itemSzie= CGSizeMake(ZYScreenWidth - 20, 390 + self.offset);
         layout.itemSize = itemSzie;
-        
         if (iPhone4) {
             [_tableView setContentInset:UIEdgeInsetsMake(20, 0, 0, 0)];
         }
-        layout.itemScale = 0.96;
+        layout.itemScale = 1.0;
         layout.LayoutDirection=UICollectionLayoutScrollDirectionVertical;
         self.view.backgroundColor = [Tools getColor:@"efefef"];
         [_tableView registerClass:[CPNearCollectionViewCell class] forCellWithReuseIdentifier:ID];
@@ -460,12 +472,13 @@ static NSString *ID = @"cell";
         NSString *url = [NSString stringWithFormat:@"user/%@/info?token=%@",CPUserId,CPToken];
         [[freeTimeBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(CPMySwitch *btn) {
             CPGoLogin(@"修改状态");
-            btn.on = !btn.on;
             [ZYUserDefaults setBool:btn.on forKey:FreeTimeKey];
+            btn.on = !btn.on;
             if (btn.on) {
                 textL.text = @"有空,其他人可以邀请你参加活动";
                 [ZYNetWorkTool postJsonWithUrl:url params:@{@"idle" : @(YES)} success:^(id responseObject) {
-                    
+                    if (CPSuccess){
+                    }
                 } failed:^(NSError *error) {
                     
                 }];

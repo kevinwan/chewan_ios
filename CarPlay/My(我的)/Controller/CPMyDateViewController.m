@@ -30,7 +30,7 @@
 @property (nonatomic, strong) CPNoDataTipView *noDataView;
 @property (nonatomic, weak)   AAPullToRefresh *headerView;
 @property (nonatomic, weak)   AAPullToRefresh *footerView;
-@property (nonatomic, assign) CGFloat ignore;
+@property (nonatomic, assign) NSInteger ignore;
 @end
 
 static NSString *ID1 = @"DateCell1";
@@ -64,7 +64,6 @@ static NSString *ID2 = @"DateCell2";
     [super viewWillDisappear:animated];
     [ZYLoadingView dismissLoadingView];
 }
-
 
 - (void)dealloc
 {
@@ -113,19 +112,21 @@ static NSString *ID2 = @"DateCell2";
  */
 - (void)loadDataWithHeader:(AAPullToRefresh *)refresh
 {
-    NSString *url = [NSString stringWithFormat:@"user/%@/appointment/list?token=%@",CPUserId, CPToken];
+    NSString *url = [NSString stringWithFormat:@"user/%@/appointment/list?token=%@&ignore=%zd",CPUserId, CPToken,self.ignore];
+    NSString *status = nil;
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"ignore"] = @(self.ignore);
     if (self.isDynamic) {
+        status = @"&status=1&status=2";
 //        接口文档将原有的2.19接口拆分成2.19接口和2.58接口
 //        2.19接口为：  我的--获取我的活动信息， status传参数1,2,4
 //        2.58接口为：  动态--获取活动动态， status传参数1,2
 //        status为4：表示失效状态， 按照马成超《车玩活动失效规则和新BUG.docx》文档 新增加“失效”状态
-        params[@"status"] = @[@(1), @(2)];
     }else{
-        params[@"status"] = @[@(1), @(2), @(4)];
+        status = @"&status=1&status=2&status=4";
     }
-    [ZYNetWorkTool getWithUrl:url params:params success:^(id responseObject) {
+    url = [url stringByAppendingString:status];
+    [ZYNetWorkTool getWithUrl:url params:nil success:^(id responseObject) {
         
         DLog(@"%@ ---- ",responseObject);
         [[CPLoadingView sharedInstance] dismissLoadingView];
@@ -151,8 +152,6 @@ static NSString *ID2 = @"DateCell2";
             }
             
             [self setUpRefresh];
-//            NSArray *arr = [CPMyDateModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
-//            [self.datas addObjectsFromArray:arr];
             
             if (self.datas.count == 0) {
                 self.noDataView.netWorkFailtype = NO;
@@ -221,7 +220,7 @@ static NSString *ID2 = @"DateCell2";
     if ([model.activityCategory isEqualToString:@"官方活动"]) {
         return itemSize.height;
     }else{
-        return self.offset + 380;
+        return self.offset + 370;
     }
 }
 
@@ -464,11 +463,12 @@ static NSString *ID2 = @"DateCell2";
 }
 
 - (CPNoDataTipView *)noDataView
-{    if (_noDataView == nil) {
-    _noDataView = [CPNoDataTipView noDataTipViewWithTitle:@"已经没有活动了,请放宽条件再试试"];
-    [self.view addSubview:_noDataView];
-    _noDataView.frame = self.tableView.bounds;
-}
+{
+    if (_noDataView == nil) {
+        _noDataView = [CPNoDataTipView noDataTipViewWithTitle:@"已经没有活动了,请放宽条件再试试"];
+        [self.view addSubview:_noDataView];
+        _noDataView.frame = self.tableView.bounds;
+    }
     return _noDataView;
 }
 

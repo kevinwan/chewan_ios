@@ -507,6 +507,8 @@
 		E39627B81BB5352D005E0CF2 /* CPActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E39627B71BB5352D005E0CF2 /* CPActivityModel.m */; };
 		E39627C11BB54D91005E0CF2 /* MultiplePulsingHaloLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E39627BE1BB54D91005E0CF2 /* MultiplePulsingHaloLayer.m */; };
 		E39627C21BB54D91005E0CF2 /* PulsingHaloLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E39627C01BB54D91005E0CF2 /* PulsingHaloLayer.m */; };
+		E3987EA31BE8B8BD00EBE487 /* CPActivityType.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3987EA21BE8B8BD00EBE487 /* CPActivityType.plist */; settings = {ASSET_TAGS = (); }; };
+		E3987EA61BE8BDBA00EBE487 /* NSString+activityType.m in Sources */ = {isa = PBXBuildFile; fileRef = E3987EA51BE8BDBA00EBE487 /* NSString+activityType.m */; settings = {ASSET_TAGS = (); }; };
 		E3A471731BB3A85300973197 /* CPNearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A471181BB3A85300973197 /* CPNearViewController.m */; };
 		E3A471741BB3A85300973197 /* CPBaseViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A4711C1BB3A85300973197 /* CPBaseViewCell.m */; };
 		E3A471761BB3A85300973197 /* Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A471251BB3A85300973197 /* Aspects.m */; };
@@ -1417,6 +1419,9 @@
 		E39627BE1BB54D91005E0CF2 /* MultiplePulsingHaloLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiplePulsingHaloLayer.m; sourceTree = "<group>"; };
 		E39627BF1BB54D91005E0CF2 /* PulsingHaloLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PulsingHaloLayer.h; sourceTree = "<group>"; };
 		E39627C01BB54D91005E0CF2 /* PulsingHaloLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PulsingHaloLayer.m; sourceTree = "<group>"; };
+		E3987EA21BE8B8BD00EBE487 /* CPActivityType.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CPActivityType.plist; sourceTree = "<group>"; };
+		E3987EA41BE8BDBA00EBE487 /* NSString+activityType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+activityType.h"; path = "../../NSString+activityType.h"; sourceTree = "<group>"; };
+		E3987EA51BE8BDBA00EBE487 /* NSString+activityType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+activityType.m"; path = "../../NSString+activityType.m"; sourceTree = "<group>"; };
 		E3A471171BB3A85300973197 /* CPNearViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNearViewController.h; sourceTree = "<group>"; };
 		E3A471181BB3A85300973197 /* CPNearViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNearViewController.m; sourceTree = "<group>"; };
 		E3A4711B1BB3A85300973197 /* CPBaseViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPBaseViewCell.h; sourceTree = "<group>"; };
@@ -1514,8 +1519,8 @@
 		E3AF17001BBA317E00306ABF /* CPMySwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMySwitch.m; sourceTree = "<group>"; };
 		E3BEEAF91BE20F23006B80EA /* NSObject+Copying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Copying.h"; sourceTree = "<group>"; };
 		E3BEEAFA1BE20F23006B80EA /* NSObject+Copying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Copying.m"; sourceTree = "<group>"; };
-		E3BEEAFC1BE220DB006B80EA /* NSObject+Copying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+Copying.h"; path = "My(我的)/Model/NSObject+Copying.h"; sourceTree = "<group>"; };
-		E3BEEAFD1BE220DB006B80EA /* NSObject+Copying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+Copying.m"; path = "My(我的)/Model/NSObject+Copying.m"; sourceTree = "<group>"; };
+		E3BEEAFC1BE220DB006B80EA /* NSObject+Copying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+Copying.h"; path = "../../My(我的)/Model/NSObject+Copying.h"; sourceTree = "<group>"; };
+		E3BEEAFD1BE220DB006B80EA /* NSObject+Copying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+Copying.m"; path = "../../My(我的)/Model/NSObject+Copying.m"; sourceTree = "<group>"; };
 		E3C5F18F1BC92C790021E33D /* CPActivityDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityDetailViewController.h; sourceTree = "<group>"; };
 		E3C5F1901BC92C790021E33D /* CPActivityDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityDetailViewController.m; sourceTree = "<group>"; };
 		E3DF66521BE31C9B00B9239D /* UIButton+ZYWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+ZYWebCache.h"; sourceTree = "<group>"; };
@@ -3353,8 +3358,6 @@
 		E31E4BD51BAD47A500902B34 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E3BEEAFC1BE220DB006B80EA /* NSObject+Copying.h */,
-				E3BEEAFD1BE220DB006B80EA /* NSObject+Copying.m */,
 				E3E6B8931BB514A2006B4F8A /* AppDelegate.h */,
 				E3E6B8941BB514A2006B4F8A /* AppDelegate.m */,
 				E31E4C4E1BAD507E00902B34 /* macro.h */,
@@ -3364,6 +3367,7 @@
 				E31E4BE31BAD47A500902B34 /* LaunchScreen.storyboard */,
 				E31E4BE61BAD47A500902B34 /* Info.plist */,
 				E31E4BD61BAD47A500902B34 /* main.m */,
+				E3987EA21BE8B8BD00EBE487 /* CPActivityType.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -4007,6 +4011,10 @@
 		E3A471621BB3A85300973197 /* Categaries(分类) */ = {
 			isa = PBXGroup;
 			children = (
+				E3987EA41BE8BDBA00EBE487 /* NSString+activityType.h */,
+				E3987EA51BE8BDBA00EBE487 /* NSString+activityType.m */,
+				E3BEEAFC1BE220DB006B80EA /* NSObject+Copying.h */,
+				E3BEEAFD1BE220DB006B80EA /* NSObject+Copying.m */,
 				E39627B01BB5265A005E0CF2 /* UIImage+Blur.h */,
 				E39627B11BB5265A005E0CF2 /* UIImage+Blur.m */,
 			);
@@ -4111,7 +4119,7 @@
 				TargetAttributes = {
 					E31E4BD11BAD47A500902B34 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = KKHZA7GEFH;
+						DevelopmentTeam = K89RQ3A2PQ;
 					};
 				};
 			};
@@ -4271,6 +4279,7 @@
 				EEFD129B1BDDF6D0009EA6CC /* wheel13@2x.png in Resources */,
 				6D7F6FE01BD5E4AB00945F1B /* VoiceCancel@2x.png in Resources */,
 				EE3383111BD8BB7500BA4930 /* dot@2x.png in Resources */,
+				E3987EA31BE8B8BD00EBE487 /* CPActivityType.plist in Resources */,
 				EE7F81781BD9D1E0003E7B3B /* call_out_h@3x.png in Resources */,
 				6D2AC1141BCE5A5100201A8E /* chatBar_more_faceSelected.png in Resources */,
 				6D2AC1511BCE5A5100201A8E /* chat_receiver_audio_playing000.png in Resources */,
@@ -4750,6 +4759,7 @@
 				6B364C681BCE401C005A4AF9 /* UzysWrapperPickerController.m in Sources */,
 				E329DD751BDF2B7E005CD13D /* CPLoadingButton.m in Sources */,
 				6D2ABFD51BCE582100201A8E /* EMChatLocationBubbleView.m in Sources */,
+				E3987EA61BE8BDBA00EBE487 /* NSString+activityType.m in Sources */,
 				E3A471851BB3A85300973197 /* UIResponder+Extension.m in Sources */,
 				6D2ABFBA1BCE582100201A8E /* SRRefreshView.m in Sources */,
 				6D2ABF911BCE582100201A8E /* MWCaptionView.m in Sources */,

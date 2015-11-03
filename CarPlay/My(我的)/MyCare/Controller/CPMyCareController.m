@@ -90,6 +90,16 @@
     }];
 }
 
+#pragma mark - 事件交互
+
+- (void)superViewWillRecive:(NSString *)notifyName info:(id)userInfo
+{
+    if ([notifyName isEqualToString:CPMyCareIconViewClickKey]){
+        CPTaInfo *taInfo = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
+        taInfo.userId = [userInfo userId];
+        [self.navigationController pushViewController:taInfo animated:YES];
+    }
+}
 
 #pragma mark - 数据源方法
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -133,6 +143,7 @@
             break;
     }
     cell.avatar.tag=indexPath.row;
+    
     cell.subscribeBtn.tag=indexPath.row;
     return cell;
 }
@@ -268,27 +279,5 @@
         [self disMiss];
         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil] show];
     }];
-}
-
--(void)taInfo:(UIButton *)sender{
-    CPCareUser *careUser=[CPCareUser new];
-    switch (corentBtnTag) {
-        case 10:
-            careUser=_eachSubscribe[sender.tag];
-            break;
-        case 20:
-            careUser=_mySubscribe[sender.tag];
-            break;
-        case 30:
-            careUser=_beSubscribed[sender.tag];
-            break;
-        default:
-            break;
-    }
-    
-    CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
-    taVc.userId = careUser.userId;
-    NSLog(@"%@",self.navigationController);
-    [self.navigationController pushViewController:taVc animated:YES];
 }
 @end

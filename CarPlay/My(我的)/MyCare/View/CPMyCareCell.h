@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CPCareUser.h"
 #import "ZYTableViewCell.h"
-
+#define CPMyCareIconViewClickKey @"CPMyCareIconViewClickKey"
 @interface CPMyCareCell : ZYTableViewCell
 
 @property (nonatomic,strong) CPCareUser *careUser;

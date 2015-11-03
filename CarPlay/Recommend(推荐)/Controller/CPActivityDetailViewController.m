@@ -18,6 +18,7 @@
 #import "CPComeOnTipView.h"
 
 #define CPMemberPageNum 6
+#define CPWillGoLoginKey @"CPWillGoLoginKey"
 @interface CPActivityDetailViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) CPActivityDetailFooterView *footerView;
@@ -39,9 +40,17 @@ static NSString *ID = @"partCell";
     self.tableView.tableFooterView = self.footerView;
     self.title = @"活动详情";
     [self loadData];
+    ZYWeakSelf
     [[ZYNotificationCenter rac_addObserverForName:CPInvitedSuccessKey object:nil] subscribeNext:^(id x) {
+        ZYStrongSelf
         [self.tableView reloadData];
     }];
+    
+//    // 切换登录时返回根视图
+//    [[ZYNotificationCenter rac_addObserverForName:NOTIFICATION_HASLOGIN object:nil] subscribeNext:^(id x) {
+//        ZYStrongSelf
+//        [self.navigationController popToRootViewControllerAnimated:NO];
+//    }];
 }
 
 - (void)loadData
@@ -82,6 +91,7 @@ static NSString *ID = @"partCell";
     params[@"ignore"] = @(ignore);
     params[@"limit"] = @(CPMemberPageNum);
     [ZYNetWorkTool getWithUrl:url params:params success:^(id responseObject) {
+        DLog(@"%@",responseObject[@"data"]);
         if (CPSuccess) {
             if (ignore == 0) {
                 [self.members removeAllObjects];

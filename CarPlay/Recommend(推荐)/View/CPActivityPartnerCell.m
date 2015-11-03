@@ -114,28 +114,30 @@ static NSString *ID = @"memberIconCell";
     
     self.nicknameLabel.text = model.nickname;
     
-    self.distanceLabel.text = model.distanceStr;
+    self.distanceLabel.text = model.distanceStr.trimLength ? model.distanceStr : @"未知";
     
     self.agreeLabel.text = [NSString stringWithFormat:@"已接受 %zd",model.acceptCount];
     
     self.sexView.age = model.age;
     self.sexView.isMan = model.isMan;
-    
-    if ([model.photoAuthStatus isEqualToString:@"认证通过"]) {
+
+    if ([model.photoAuthStatus isEqualToString:@"认证通过"]){
         self.iconAuthView.hidden = NO;
     }else{
         self.iconAuthView.hidden = YES;
     }
     
-    if (model.car.logo.length) {
+    if ([model.licenseAuthStatus isEqualToString:@"认证未通过"]) {
+        self.cartypeLabel.hidden = YES;
+        [self.carView setImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
+    }else{
+        
         self.carView.hidden = NO;
         [self.carView zySetImageWithUrl:model.car.logo placeholderImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
         
         self.cartypeLabel.text = model.car.model;
-    }else{
-        self.cartypeLabel.hidden = YES;
-        [self.carView setImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
     }
+    
     //inviteStatus        当前登录用户 邀请 该用户的 状态；
     //0 没有邀请过           1 邀请中
     //2 邀请同意             3 邀请被拒绝
@@ -165,9 +167,10 @@ static NSString *ID = @"memberIconCell";
                 self.phoneBtn.hidden = YES;
                 self.msgButton.hidden = YES;
                 self.inviteBtn.hidden = NO;
-                [self.inviteBtn setTitle:@"邀请中" forState:UIControlStateNormal];
+                [self.inviteBtn setTitle:@"邀请同去" forState:UIControlStateNormal];
                 [self.inviteBtn setBackgroundColor:[Tools getColor:@"74ced6"]];
                 [self.inviteBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                
             }else if (model.beInvitedStatus == 2){
                 
                 self.phoneBtn.hidden = NO;
@@ -177,9 +180,9 @@ static NSString *ID = @"memberIconCell";
                 self.phoneBtn.hidden = YES;
                 self.msgButton.hidden = YES;
                 self.inviteBtn.hidden = NO;
-                [self.inviteBtn setTitle:@"已拒绝" forState:UIControlStateNormal];
-                [self.inviteBtn setTitleColor:GrayColor forState:UIControlStateNormal];
-                [self.inviteBtn setBackgroundColor:[UIColor clearColor]];
+                [self.inviteBtn setTitle:@"邀请同去" forState:UIControlStateNormal];
+                [self.inviteBtn setBackgroundColor:[Tools getColor:@"74ced6"]];
+                [self.inviteBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             }
             
         }
