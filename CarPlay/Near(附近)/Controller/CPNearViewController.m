@@ -423,9 +423,8 @@ static NSString *ID = @"cell";
         self.automaticallyAdjustsScrollViewInsets = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        CGSize itemSzie= CGSizeMake(ZYScreenWidth - 20, 385 + self.offset);
+        CGSize itemSzie= CGSizeMake(ZYScreenWidth - 20, 390 + self.offset);
         layout.itemSize = itemSzie;
-        
         if (iPhone4) {
             [_tableView setContentInset:UIEdgeInsetsMake(20, 0, 0, 0)];
         }
@@ -473,12 +472,13 @@ static NSString *ID = @"cell";
         NSString *url = [NSString stringWithFormat:@"user/%@/info?token=%@",CPUserId,CPToken];
         [[freeTimeBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(CPMySwitch *btn) {
             CPGoLogin(@"修改状态");
-            btn.on = !btn.on;
             [ZYUserDefaults setBool:btn.on forKey:FreeTimeKey];
+            btn.on = !btn.on;
             if (btn.on) {
                 textL.text = @"有空,其他人可以邀请你参加活动";
                 [ZYNetWorkTool postJsonWithUrl:url params:@{@"idle" : @(YES)} success:^(id responseObject) {
-                    
+                    if (CPSuccess){
+                    }
                 } failed:^(NSError *error) {
                     
                 }];

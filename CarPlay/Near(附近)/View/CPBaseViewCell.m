@@ -73,6 +73,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *distanceView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleLWCons;
 
+@property (weak, nonatomic) IBOutlet UIButton *titleDistanceView;
+
+
 /**
  *  约她
  */
@@ -136,6 +139,8 @@
 - (void)awakeFromNib
 {
     self.titleView.hidden = YES;
+    
+    self.titleDistanceView.hidden = YES;
     
     self.titleLWCons.constant = ZYScreenWidth - 150;
     // 进行初始化设置
@@ -415,8 +420,7 @@
     self.sexView.age = intersterModel.user.age;
     
     [self.userIconView zy_setBlurImageWithUrl:intersterModel.user.cover];
-    [self.distanceView setTitle:intersterModel.distanceStr.trimLength ? intersterModel.distanceStr : @"未知" forState:UIControlStateNormal];
-    self.loveBtn.selected = intersterModel.user.subscribeFlag;
+    self.loveBtn.hidden = YES;
     self.payView.text = intersterModel.activityPay;
     self.sendView.hidden = !intersterModel.activityTransfer;
     NSString *street = intersterModel.activityDestination[@"street"];
@@ -427,9 +431,18 @@
         street = @"地点待定";
     }
     [self.addressView setTitle:street forState:UIControlStateNormal];
-    if (intersterModel.title.length) {
-        self.titleLabel.text = intersterModel.title;
-        CGFloat width = [intersterModel.title sizeWithFont:self.titleLabel.font].width + 5;
+    
+    [self.titleDistanceView setTitle:intersterModel.distanceStr.trimLength?[NSString stringWithFormat:@" %@",intersterModel.distanceStr] :@" 未知" forState:UIControlStateNormal];
+    [self.distanceView setTitle:intersterModel.distanceStr.trimLength?intersterModel.distanceStr:@" 未知" forState:UIControlStateNormal];
+    NSString *titleStr = intersterModel.title;
+
+    if (intersterModel.type == 1) {
+        titleStr = [NSString stringWithFormat:@"%@上传了%zd张照片",intersterModel.user.nickname,intersterModel.photoCount];
+    }
+    
+    if (titleStr.length) {
+        self.titleLabel.text = titleStr;
+        CGFloat width = [titleStr sizeWithFont:self.titleLabel.font].width + 5;
         if (width > ZYScreenWidth - 150) {
             self.titleLWCons.constant = ZYScreenWidth - 150;
         }else{
@@ -480,6 +493,27 @@
 //        }
     }else if (intersterModel.status == 2){
         [self setPhoneType:YES];
+    }
+    
+    // 区分是上传相册还是发出活动
+    if (intersterModel.type == 0) {
+        // 活动信息
+        self.titleDistanceView.hidden = YES;
+        self.distanceView.hidden = NO;
+        self.addressView.hidden = NO;
+        self.dateButton.hidden = NO;
+        self.dateAnim.hidden = NO;
+        self.payView.hidden = NO;
+        self.sendView.hidden = NO;
+    }else if (intersterModel.type == 1){
+        // 上传相册信息
+        self.titleDistanceView.hidden = NO;
+        self.distanceView.hidden = YES;
+        self.addressView.hidden = YES;
+        self.dateButton.hidden = YES;
+        self.dateAnim.hidden = YES;
+        self.payView.hidden = YES;
+        self.sendView.hidden = YES;
     }
 }
 

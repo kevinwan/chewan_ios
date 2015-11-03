@@ -80,7 +80,7 @@
     // 选中筛选的类型
     if (model.type.trimLength){
         for (UIButton *btn in view.typeView.subviews) {
-            if ([btn.currentTitle isEqualToString:model.type]) {
+            if ([btn.currentTitle isEqualToString:model.type.noType]) {
                 [view typeBtnClick:btn];
                 break;
             }
@@ -141,7 +141,7 @@
     CPSelectModel *model = [CPSelectModel new];
     
     if ([self.lastTypebtn.currentTitle isDiffToString:@"不限"]){
-        model.type = self.lastTypebtn.currentTitle;
+        model.type = self.lastTypebtn.currentTitle.type;
     }
     
     if ([self.lastSexbtn.currentTitle isDiffToString:@"不限"]){

@@ -16,6 +16,15 @@
 
 @interface Tools : NSObject
 
+/**
+ *  添加动词
+ */
++ (NSString *)activityTypeWithString:(NSString *)type;
+/**
+ *  去除活动动词
+ */
++ (NSString *)activityNoTypeWithString:(NSString *)type;
+
 + (NSString *)getUserId;
 
 + (NSString *)getToken;

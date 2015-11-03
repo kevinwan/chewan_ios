@@ -65,7 +65,6 @@ static NSString *ID2 = @"DateCell2";
     [ZYLoadingView dismissLoadingView];
 }
 
-
 - (void)dealloc
 {
     NSLog(@"%@从内存中销毁了😭",[self class]);
@@ -123,10 +122,8 @@ static NSString *ID2 = @"DateCell2";
 //        2.19接口为：  我的--获取我的活动信息， status传参数1,2,4
 //        2.58接口为：  动态--获取活动动态， status传参数1,2
 //        status为4：表示失效状态， 按照马成超《车玩活动失效规则和新BUG.docx》文档 新增加“失效”状态
-//        params[@"status"] = @[@(1), @(2)];
     }else{
         status = @"&status=1&status=2&status=4";
-//        params[@"status"] = @[@(1), @(2), @(4)];
     }
     url = [url stringByAppendingString:status];
     [ZYNetWorkTool getWithUrl:url params:nil success:^(id responseObject) {
@@ -155,8 +152,6 @@ static NSString *ID2 = @"DateCell2";
             }
             
             [self setUpRefresh];
-//            NSArray *arr = [CPMyDateModel objectArrayWithKeyValuesArray:responseObject[@"data"]];
-//            [self.datas addObjectsFromArray:arr];
             
             if (self.datas.count == 0) {
                 self.noDataView.netWorkFailtype = NO;
@@ -225,7 +220,7 @@ static NSString *ID2 = @"DateCell2";
     if ([model.activityCategory isEqualToString:@"官方活动"]) {
         return itemSize.height;
     }else{
-        return self.offset + 380;
+        return self.offset + 370;
     }
 }
 
@@ -468,11 +463,12 @@ static NSString *ID2 = @"DateCell2";
 }
 
 - (CPNoDataTipView *)noDataView
-{    if (_noDataView == nil) {
-    _noDataView = [CPNoDataTipView noDataTipViewWithTitle:@"已经没有活动了,请放宽条件再试试"];
-    [self.view addSubview:_noDataView];
-    _noDataView.frame = self.tableView.bounds;
-}
+{
+    if (_noDataView == nil) {
+        _noDataView = [CPNoDataTipView noDataTipViewWithTitle:@"已经没有活动了,请放宽条件再试试"];
+        [self.view addSubview:_noDataView];
+        _noDataView.frame = self.tableView.bounds;
+    }
     return _noDataView;
 }
 
