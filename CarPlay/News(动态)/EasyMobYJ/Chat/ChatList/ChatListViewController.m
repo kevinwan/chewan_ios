@@ -166,7 +166,7 @@
         _slimeView.slime.lineWith = 1;
         _slimeView.slime.shadowBlur = 0;
         _slimeView.slime.shadowColor = [UIColor whiteColor];
-        _slimeView.backgroundColor = [UIColor whiteColor];
+        _slimeView.backgroundColor = UIColorFromRGB(0xefefef);
     }
     
     return _slimeView;
