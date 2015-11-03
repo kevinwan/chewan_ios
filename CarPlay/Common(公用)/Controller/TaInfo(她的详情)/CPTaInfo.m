@@ -326,25 +326,24 @@
 //图片大图浏览
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    __weak typeof(self) weakSelf=self;
+//    __weak typeof(self) weakSelf=self;
     [PhotoBroswerVC show:self userId:user.userId type:PhotoBroswerVCTypePush index:indexPath.row photoModelBlock:^NSArray *{
-        NSArray *networkImages=[[NSArray alloc]initWithArray:allAlbumsUrl];
+        //            NSArray *networkImages=[[NSArray alloc]initWithArray:allAlbumsUrl];
         
-        NSMutableArray *modelsM = [NSMutableArray arrayWithCapacity:networkImages.count];
-        for (NSUInteger i = 0; i< networkImages.count; i++) {
+        NSMutableArray *modelsM = [NSMutableArray arrayWithCapacity:user.album.count];
+        for (NSUInteger i = 0; i< user.album.count; i++) {
             
             PhotoModel *pbModel=[[PhotoModel alloc] init];
             pbModel.mid = i + 1;
-            pbModel.title = [NSString stringWithFormat:@"这是标题%@",@(i+1)];
-            pbModel.desc = [NSString stringWithFormat:@"我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字%@",@(i+1)];
-            pbModel.image = networkImages[i];
+            pbModel.album = user.album[i];
             
             UIImageView *imagevC=[[UIImageView alloc]init];
-            [imagevC setContentMode:UIViewContentModeScaleToFill];
-            [imagevC zySetImageWithUrl:networkImages[i] placeholderImage:[UIImage imageNamed:@"logo"]];
-            
+            [imagevC setContentMode:UIViewContentModeScaleAspectFill];
+            [imagevC zySetImageWithUrl:[user.album[i] url] placeholderImage:[UIImage imageNamed:@"logo"]];
+//            [imagevC zySetImageWithUrl:[user.album[i] url] placeholderImage:[UIImage imageNamed:@"logo"] completion:^(UIImage *image) {
+//                [imagevC setImage:image];
+//            }];
             pbModel.sourceImageView = imagevC;
-            
             [modelsM addObject:pbModel];
         }
         

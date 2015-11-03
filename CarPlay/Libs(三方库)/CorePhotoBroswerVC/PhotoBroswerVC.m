@@ -533,7 +533,6 @@
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"删除", nil];
         [actionSheet.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
             if (index.intValue == 0) {
-                
 #warning 删除有bug 因为缓存问题 待修改
                 [self deletePhoto];
                 
@@ -544,7 +543,16 @@
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"保存", nil];
         [actionSheet.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
             if (index.intValue == 0) {
-                [SVProgressHUD showSuccessWithStatus:@"保存成功"];
+                NSLog(@"%@",self.photoModels);
+                PhotoModel *photo=self.photoModels[self.page];
+                if (![photo read]) {
+                    [photo save];
+                    
+                    UIImage *image=self.currentItemView.photoImageView.image;
+                    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+                }else{
+                    [[[UIAlertView alloc]initWithTitle:@"提示" message:@"图片已经保存" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil] show];
+                }
             }
         }];
         [actionSheet showInView:self.view];
@@ -634,6 +642,9 @@
         [SVProgressHUD showErrorWithStatus:@"删除失败,请检查手机网络"];
     }];
 }
+
+
+
 
 -(void)setIndex:(NSUInteger)index{
     _index = index ;
@@ -797,5 +808,23 @@
     [self removeFromParentViewController];
 }
 
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *) error contextInfo:(void *)contextInfo
+
+{
+    NSString *msg = nil ;
+    if(error != NULL){
+        msg = @"保存图片失败" ;
+    }else{
+        msg = @"保存图片成功" ;
+    }
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                    message:msg
+                                                   delegate:nil
+                                          cancelButtonTitle:@"确定"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
 
 @end
