@@ -224,11 +224,7 @@
 {
     _model = model;
     
-    if (model.isDynamic){
-        self.marginCons.constant = 0;
-    }else{
-        self.marginCons.constant = 12;
-    }
+    self.marginCons.constant = 20;
     BOOL isHasAlubm;
     if (CPUnLogin) {
         isHasAlubm = NO;
@@ -239,7 +235,7 @@
     self.sexView.age = model.organizer.age;
     
     [self.userIconView zy_setBlurImageWithUrl:model.organizer.cover];
-    [self.distanceView setTitle:model.distanceStr forState:UIControlStateNormal];
+    [self.distanceView setTitle:model.distanceStr.trimLength?model.distanceStr:@"未知" forState:UIControlStateNormal];
     self.loveBtn.selected = model.organizer.subscribeFlag;
     self.payView.text = model.pay;
     self.sendView.hidden = !model.transfer;
@@ -325,7 +321,8 @@
     self.sexView.age = myDateModel.applicant.age;
     
     [self.userIconView zy_setBlurImageWithUrl:myDateModel.applicant.cover];
-    [self.distanceView setTitle:myDateModel.distanceStr forState:UIControlStateNormal];
+    
+    [self.distanceView setTitle:myDateModel.distanceStr.trimLength ? myDateModel.distanceStr : @"未知" forState:UIControlStateNormal];
     self.loveBtn.selected = myDateModel.applicant.subscribeFlag;
     self.payView.text = myDateModel.pay;
     self.sendView.hidden = !myDateModel.transfer;
@@ -418,7 +415,7 @@
     self.sexView.age = intersterModel.user.age;
     
     [self.userIconView zy_setBlurImageWithUrl:intersterModel.user.cover];
-    [self.distanceView setTitle:intersterModel.distanceStr forState:UIControlStateNormal];
+    [self.distanceView setTitle:intersterModel.distanceStr.trimLength ? intersterModel.distanceStr : @"未知" forState:UIControlStateNormal];
     self.loveBtn.selected = intersterModel.user.subscribeFlag;
     self.payView.text = intersterModel.activityPay;
     self.sendView.hidden = !intersterModel.activityTransfer;

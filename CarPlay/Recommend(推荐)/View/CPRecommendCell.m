@@ -44,7 +44,14 @@
     
     self.titleLabel.text = model.organizer.nickname;
     self.contentTextL.attributedText = model.titleAttrText;
-    self.tipLabel.text = [NSString stringWithFormat:@"官方补贴%.0f元/人",model.subsidyPrice];
+    
+    if (model.subsidyPrice){
+        
+        self.tipLabel.text = [NSString stringWithFormat:@"官方补贴%.0f元/人",model.subsidyPrice];
+    }else{
+        
+        self.tipLabel.text = @"官方暂无补贴";
+    }
 
     if (model.limitType == 0) {
         

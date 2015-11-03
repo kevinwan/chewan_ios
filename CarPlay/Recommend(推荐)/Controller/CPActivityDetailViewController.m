@@ -46,11 +46,11 @@ static NSString *ID = @"partCell";
         [self.tableView reloadData];
     }];
     
-    // 切换登录时返回根视图
-    [[ZYNotificationCenter rac_addObserverForName:NOTIFICATION_HASLOGIN object:nil] subscribeNext:^(id x) {
-        ZYStrongSelf
-        [self.navigationController popToRootViewControllerAnimated:NO];
-    }];
+//    // 切换登录时返回根视图
+//    [[ZYNotificationCenter rac_addObserverForName:NOTIFICATION_HASLOGIN object:nil] subscribeNext:^(id x) {
+//        ZYStrongSelf
+//        [self.navigationController popToRootViewControllerAnimated:NO];
+//    }];
 }
 
 - (void)loadData
@@ -91,6 +91,7 @@ static NSString *ID = @"partCell";
     params[@"ignore"] = @(ignore);
     params[@"limit"] = @(CPMemberPageNum);
     [ZYNetWorkTool getWithUrl:url params:params success:^(id responseObject) {
+        DLog(@"%@",responseObject[@"data"]);
         if (CPSuccess) {
             if (ignore == 0) {
                 [self.members removeAllObjects];

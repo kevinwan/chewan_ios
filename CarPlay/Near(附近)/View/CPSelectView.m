@@ -34,7 +34,6 @@
 
 - (void)awakeFromNib
 {
-    
     self.payViewHCons.constant = 0;
     self.payViewTopCons.constant = 0;
     self.bgViewHCons.constant = 298;
@@ -111,6 +110,7 @@
     }else{
         [view sexBtnClick:(UIButton *)[view viewWithTag:33]];
     }
+    view.transferBtn.selected = model.transfer;
 
     view.click = click;
     ZYNewButton(cover);

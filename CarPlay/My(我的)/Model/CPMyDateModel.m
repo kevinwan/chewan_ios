@@ -54,11 +54,6 @@
 {
     _distance = distance;
     
-    if (distance == 0.0){
-        _distanceStr = @"未知";
-        return;
-    }
-    
     if (_distance >= 1000) {
         CGFloat dis = distance / 1000.0;
         _distanceStr = [NSString stringWithFormat:@"%.1fkm",dis];

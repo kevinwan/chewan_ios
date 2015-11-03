@@ -85,7 +85,7 @@
                                 <action selector="distanceClick:" destination="gOg-uM-5H7" eventType="touchUpInside" id="VJ4-05-QaO"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RcY-th-q34">
+                        <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RcY-th-q34">
                             <rect key="frame" x="325" y="-3" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="1px-hs-5mh"/>
