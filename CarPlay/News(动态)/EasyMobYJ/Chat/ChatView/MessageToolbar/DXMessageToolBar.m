@@ -46,7 +46,7 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (frame.size.height < (kVerticalPadding * 2 + kInputTextViewMinHeight)) {
-        frame.size.height = kVerticalPadding * 2 + kInputTextViewMinHeight;
+        frame.size.height =  kVerticalPadding * 2 + kInputTextViewMinHeight;
     }
     self = [super initWithFrame:frame];
     if (self) {
@@ -263,13 +263,17 @@
     
     self.activityButtomView = nil;
     self.isShowButtomView = NO;
-    self.backgroundImageView.image = [[UIImage imageNamed:@"messageToolbarBg"] stretchableImageWithLeftCapWidth:0.5 topCapHeight:10];
-    [self addSubview:self.backgroundImageView];
+
+    self.backgroundColor = [UIColor whiteColor];
+    
+   
     
     self.toolbarView.frame = CGRectMake(0, 0, self.frame.size.width, kVerticalPadding * 2 + kInputTextViewMinHeight);
-    self.toolbarBackgroundImageView.frame = self.toolbarView.bounds;
+    self.toolbarView.backgroundColor = [UIColor whiteColor];
     [self.toolbarView addSubview:self.toolbarBackgroundImageView];
     [self addSubview:self.toolbarView];
+    
+    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
 }
@@ -280,9 +284,10 @@
     CGFloat textViewLeftMargin = 6.0;
     
     //转变输入样式
-    self.styleChangeButton = [[UIButton alloc] initWithFrame:CGRectMake(kHorizontalPadding, kVerticalPadding, kInputTextViewMinHeight, kInputTextViewMinHeight)];
+    self.styleChangeButton = [[UIButton alloc] initWithFrame:CGRectMake(kHorizontalPadding, kVerticalPadding-1, kInputTextViewMinHeight, kInputTextViewMinHeight)];
     self.styleChangeButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     [self.styleChangeButton setImage:[UIImage imageNamed:@"chatBar_record"] forState:UIControlStateNormal];
+    [self.styleChangeButton setImage:[UIImage imageNamed:@"chatBar_recordSelected"] forState:UIControlStateHighlighted];
     [self.styleChangeButton setImage:[UIImage imageNamed:@"chatBar_keyboard"] forState:UIControlStateSelected];
     [self.styleChangeButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     self.styleChangeButton.tag = 0;
@@ -290,11 +295,11 @@
     textViewLeftMargin += CGRectGetMaxX(self.styleChangeButton.frame);
     
     //更多
-    self.moreButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.bounds) - kHorizontalPadding - kInputTextViewMinHeight, kVerticalPadding, kInputTextViewMinHeight, kInputTextViewMinHeight)];
+    self.moreButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.bounds) - kHorizontalPadding - kInputTextViewMinHeight, kVerticalPadding-1, kInputTextViewMinHeight, kInputTextViewMinHeight)];
     self.moreButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin;
     [self.moreButton setImage:[UIImage imageNamed:@"chatBar_more"] forState:UIControlStateNormal];
     [self.moreButton setImage:[UIImage imageNamed:@"chatBar_moreSelected"] forState:UIControlStateHighlighted];
-    [self.moreButton setImage:[UIImage imageNamed:@"chatBar_keyboard"] forState:UIControlStateSelected];
+//    [self.moreButton setImage:[UIImage imageNamed:@"chatBar_keyboard"] forState:UIControlStateSelected];
     [self.moreButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     self.moreButton.tag = 2;
     allButtonWidth += CGRectGetWidth(self.moreButton.frame) + kHorizontalPadding * 2.5;
@@ -313,24 +318,25 @@
     // 输入框的高度和宽度
     CGFloat width = CGRectGetWidth(self.bounds) - (allButtonWidth ? allButtonWidth : (textViewLeftMargin * 2));
     // 初始化输入框
-    self.inputTextView = [[XHMessageTextView  alloc] initWithFrame:CGRectMake(textViewLeftMargin, kVerticalPadding, width, kInputTextViewMinHeight)];
+    self.inputTextView = [[XHMessageTextView  alloc] initWithFrame:CGRectMake(textViewLeftMargin, 10.5, width, 32)];
+    
     self.inputTextView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
 //    self.inputTextView.contentMode = UIViewContentModeCenter;
     _inputTextView.scrollEnabled = YES;
     _inputTextView.returnKeyType = UIReturnKeySend;
     _inputTextView.enablesReturnKeyAutomatically = YES; // UITextView内部判断send按钮是否可以用
-    _inputTextView.placeHolder = NSLocalizedString(@"message.toolBar.inputPlaceHolder", @"input a new message");
+    _inputTextView.placeHolder = @"周末有什么活动？";
     _inputTextView.delegate = self;
     _inputTextView.backgroundColor = [UIColor clearColor];
-    _inputTextView.layer.borderColor = [UIColor colorWithWhite:0.8f alpha:1.0f].CGColor;
-    _inputTextView.layer.borderWidth = 0.65f;
+    _inputTextView.layer.borderColor = UIColorFromRGB(0x999999).CGColor;
+    _inputTextView.layer.borderWidth = 1.0f;
     _inputTextView.layer.cornerRadius = 6.0f;
     _previousTextViewContentHeight = [self getTextViewContentH:_inputTextView];
     
     //录制
-    self.recordButton = [[UIButton alloc] initWithFrame:CGRectMake(textViewLeftMargin, kVerticalPadding, width, kInputTextViewMinHeight)];
+    self.recordButton = [[UIButton alloc] initWithFrame:CGRectMake(textViewLeftMargin, 13.5, width, 32)];
     self.recordButton.titleLabel.font = [UIFont systemFontOfSize:15.0];
-    [self.recordButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [self.recordButton setTitleColor:UIColorFromRGB(0x333333) forState:UIControlStateNormal];
     [self.recordButton setBackgroundImage:[[UIImage imageNamed:@"chatBar_recordBg"] stretchableImageWithLeftCapWidth:10 topCapHeight:10] forState:UIControlStateNormal];
     [self.recordButton setBackgroundImage:[[UIImage imageNamed:@"chatBar_recordSelectedBg"] stretchableImageWithLeftCapWidth:10 topCapHeight:10] forState:UIControlStateHighlighted];
     [self.recordButton setTitle:kTouchToRecord forState:UIControlStateNormal];
@@ -344,10 +350,18 @@
     self.recordButton.hidden = YES;
     self.recordButton.backgroundColor = [UIColor whiteColor];
     
+    UIView *topLine = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, 1)];
+    topLine.backgroundColor = UIColorFromRGB(0xcccccc);
+    
+    UIView *bottomLine = [[UIView alloc]initWithFrame:CGRectMake(0,CGRectGetMaxY(self.toolbarView.frame)-1, self.frame.size.width, 1)];
+    bottomLine.backgroundColor = UIColorFromRGB(0xcccccc);
+    bottomLine.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    
     if (!self.moreView) {
         self.moreView = [[DXChatBarMoreView alloc] initWithFrame:CGRectMake(0, (kVerticalPadding * 2 + kInputTextViewMinHeight), self.frame.size.width, 80) type:ChatMoreTypeGroupChat];
         self.moreView.backgroundColor = [UIColor whiteColor];
         self.moreView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+        
     }
     
     if (!self.faceView) {
@@ -366,6 +380,10 @@
     [self.toolbarView addSubview:self.faceButton];
     [self.toolbarView addSubview:self.inputTextView];
     [self.toolbarView addSubview:self.recordButton];
+    
+    [self.toolbarView addSubview:topLine];
+    [self.toolbarView addSubview:bottomLine];
+
 }
 
 #pragma mark - change frame

@@ -112,6 +112,12 @@ NSString *const kRouterEventOffecialAdminTapEventName = @"kRouterEventOffecialAd
     
     [_textLabel setAttributedText:attributedString];
     [self highlightLinksWithIndex:NSNotFound];
+    //添加字体颜色
+    if (model.isSender) {
+        self.textLabel.textColor = UIColorFromRGB(0xffffff);
+    }else{
+        self.textLabel.textColor = UIColorFromRGB(0x333333);
+    }
 }
 
 - (BOOL)isIndex:(CFIndex)index inRange:(NSRange)range

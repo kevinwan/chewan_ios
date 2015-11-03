@@ -13,5 +13,5 @@
 #import <UIKit/UIKit.h>
 
 @interface EMChatTimeCell : UITableViewCell
-
+@property (nonatomic, strong)UILabel *timeLabel;
 @end

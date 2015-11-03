@@ -28,7 +28,7 @@ NSString *const kRouterEventAudioBubbleTapEventName = @"kRouterEventAudioBubbleT
 - (id)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        _animationImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ANIMATION_IMAGEVIEW_SIZE, ANIMATION_IMAGEVIEW_SIZE)];
+        _animationImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ANIMATION_IMAGEVIEW_SIZE_WIDTH, ANIMATION_IMAGEVIEW_SIZE_HEIGH)];
         _animationImageView.animationDuration = ANIMATION_IMAGEVIEW_SPEED;
         [self addSubview:_animationImageView];
         

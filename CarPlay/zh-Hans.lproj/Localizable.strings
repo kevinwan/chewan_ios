@@ -217,11 +217,11 @@
 //message
 "message.image" = "图片";
 "message.location" = "位置";
-"message.voice" = "音频";
+"message.voice" = "语音";
 "message.video" = "视频";
 "message.image1" = "[图片]";
 "message.location1" = "[位置]";
-"message.voice1" = "[音频]";
+"message.voice1" = "[语音]";
 "message.video1" = "[视频]";
 "message.beginReceiveOffine" = "开始接收离线消息";
 "message.endReceiveOffine" = "离线消息接收成功";
