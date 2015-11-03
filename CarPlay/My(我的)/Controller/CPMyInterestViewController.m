@@ -320,7 +320,7 @@ static NSString *ID = @"myIntersterCell";
     CPGoLogin(@"邀TA");
     NSIndexPath *indexPath = userInfo;
     CPIntersterModel *model = self.datas[indexPath.row];
-    NSString *url = [NSString stringWithFormat:@"activity/%@/join?userId=%@&token=%@",model.activityId, CPUserId, CPToken];
+    NSString *url = [NSString stringWithFormat:@"activity/%@/join?userId=%@&token=%@",model.relatedId, CPUserId, CPToken];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"destPoint"] = @{@"longitude" : @(CPLongitude),
                              @"latitude" : @(CPLatitude)};
