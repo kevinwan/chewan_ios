@@ -103,7 +103,7 @@
     NSDictionary *estabPoint=[[NSDictionary alloc]initWithObjectsAndKeys:@([Tools getLongitude]),@"longitude",@([Tools getLatitude]),@"latitude", nil];
     
     NSDictionary *establish=[[NSDictionary alloc]initWithObjectsAndKeys:[ZYUserDefaults stringForKey:Province],@"province",[ZYUserDefaults stringForKey:City],@"city",[ZYUserDefaults stringForKey:District],@"district",[ZYUserDefaults stringForKey:Street],@"street", nil];
-    NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:majorType,@"majorType",@([ZYUserDefaults boolForKey:Transfer]),@"transfer",establish,@"establish",estabPoint,@"estabPoint",estabPoint,@"destPoint",establish,@"destination",@"AA制",@"pay",@"足球",@"type", nil];
+    NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:[ZYUserDefaults stringForKey:LastType],@"majorType",@([ZYUserDefaults boolForKey:Transfer]),@"transfer",establish,@"establish",estabPoint,@"estabPoint",estabPoint,@"destPoint",establish,@"destination",majorType,@"type", nil];
     NSString *path=[[NSString alloc]initWithFormat:@"activity/register?userId=%@&token=%@",[Tools getUserId],[Tools getToken]];
     [ZYNetWorkTool postJsonWithUrl:path params:params success:^(id responseObject) {
         if (CPSuccess) {
@@ -126,6 +126,7 @@
     _selectView.alpha=1.0;
     corentView=_selectView;
 }
+
 - (IBAction)confirm:(id)sender {
     _locationAddressView.alpha=0.0;
     _addressSelection.alpha=0.0;

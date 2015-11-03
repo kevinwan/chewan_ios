@@ -27,7 +27,7 @@
 @implementation CPMyCareCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    
 }
 
 
@@ -36,6 +36,10 @@
 }
 
 
+- (IBAction)iconViewClick:(id)sender {
+    
+    [self superViewWillRecive:CPMyCareIconViewClickKey info:_careUser];
+}
 
 - (void)setCareUser:(CPCareUser *)careUser{
     _careUser = careUser;
@@ -47,7 +51,7 @@
     NSURL *imageUrl = [NSURL URLWithString:careUser.avatar];
     [self.avatar sd_setBackgroundImageWithURL:imageUrl forState:UIControlStateNormal placeholderImage:nil];
     
-    [self.avatar addTarget:self.superview action:@selector(taInfo:) forControlEvents:UIControlEventTouchUpInside];
+    
     // 设置昵称
     self.nickname.text = careUser.nickname;
     
@@ -67,6 +71,7 @@
     }else{
         self.distance.text = [NSString stringWithFormat:@"%zdm",careUser.distance];
     }
+//    [self.avatar addTarget:self.su action:@selector(taInfo:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 
