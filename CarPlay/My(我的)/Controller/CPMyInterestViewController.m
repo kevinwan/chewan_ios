@@ -320,6 +320,9 @@ static NSString *ID = @"myIntersterCell";
     CPGoLogin(@"邀TA");
     NSIndexPath *indexPath = userInfo;
     CPIntersterModel *model = self.datas[indexPath.row];
+    if (model.type == 1) {
+        return;
+    }
     NSString *url = [NSString stringWithFormat:@"activity/%@/join?userId=%@&token=%@",model.relatedId, CPUserId, CPToken];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"destPoint"] = @{@"longitude" : @(CPLongitude),
