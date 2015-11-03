@@ -33,7 +33,7 @@
     [super viewDidLoad];
     _limit = 20;
     _ignore = 0;
-    self.view.backgroundColor = GrayColor;
+    self.view.backgroundColor = UIColorFromRGB(0xefefef);
     [self setEdgesForExtendedLayout:UIRectEdgeNone];
     self.title = @"最近访客";
     [self initTableview];
