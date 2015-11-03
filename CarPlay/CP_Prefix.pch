@@ -39,4 +39,5 @@
 #import "CPViewController.h"
 #import "UIImageView+ZYWebCache.h"
 #import "UIButton+ZYWebCache.h"
+#import "NSString+activityType.h"
 #endif

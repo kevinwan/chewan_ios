@@ -69,14 +69,14 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NUa-aQ-w4L">
-                            <rect key="frame" x="10" y="377" width="168" height="27"/>
+                            <rect key="frame" x="10" y="377" width="167.5" height="27"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <state key="normal">
                                 <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Lv-m2-sgM">
-                            <rect key="frame" x="197" y="383" width="167.5" height="15"/>
+                            <rect key="frame" x="197" y="383" width="167" height="15"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <state key="normal" title="22220m" image="距离">
                                 <color key="titleColor" red="0.56078431370000004" green="0.83921568629999999" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -105,6 +105,18 @@
                                 <constraint firstAttribute="width" secondItem="Cbc-fT-xgq" secondAttribute="height" multiplier="6:5" id="uJL-TA-FTd"/>
                             </constraints>
                         </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J2S-ie-7r3">
+                            <rect key="frame" x="197.5" y="28" width="167.5" height="15"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="167.5" id="Jlf-n8-cFZ"/>
+                                <constraint firstAttribute="height" constant="15" id="SfS-Yq-DS7"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <inset key="titleEdgeInsets" minX="6" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="22220m" image="距离">
+                                <color key="titleColor" red="0.56078431370000004" green="0.83921568629999999" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -132,6 +144,8 @@
                         <constraint firstItem="Cbc-fT-xgq" firstAttribute="top" secondItem="tng-NA-qzb" secondAttribute="bottom" constant="13" id="xIF-se-gu5"/>
                         <constraint firstAttribute="trailing" secondItem="RcY-th-q34" secondAttribute="trailing" constant="10" id="xff-Uh-XL1"/>
                         <constraint firstItem="U1j-NC-wz6" firstAttribute="leading" secondItem="Hka-Ug-5wx" secondAttribute="trailing" constant="10" id="yoU-cL-SLw"/>
+                        <constraint firstItem="J2S-ie-7r3" firstAttribute="centerY" secondItem="C5X-Kr-Lzn" secondAttribute="centerY" id="zKd-oI-aD8"/>
+                        <constraint firstAttribute="trailing" secondItem="J2S-ie-7r3" secondAttribute="trailing" constant="10" id="zRN-sJ-gs8"/>
                         <constraint firstItem="C5X-Kr-Lzn" firstAttribute="leading" secondItem="0fC-QX-Vzk" secondAttribute="leading" constant="10" id="zc0-sS-F5X"/>
                     </constraints>
                 </view>
@@ -157,6 +171,7 @@
                 <outlet property="payView" destination="WDr-aw-4W8" id="vQn-6d-Nga"/>
                 <outlet property="sendView" destination="tng-NA-qzb" id="Ux6-qt-b6j"/>
                 <outlet property="sexView" destination="C5X-Kr-Lzn" id="Myk-AP-vGU"/>
+                <outlet property="titleDistanceView" destination="J2S-ie-7r3" id="X2L-Lv-9tl"/>
                 <outlet property="titleLWCons" destination="aHH-Yo-gqT" id="hSf-2e-6q0"/>
                 <outlet property="titleLabel" destination="IkS-Kb-cbK" id="uO5-gJ-U8e"/>
                 <outlet property="userIconView" destination="Cbc-fT-xgq" id="cxG-mT-NdW"/>

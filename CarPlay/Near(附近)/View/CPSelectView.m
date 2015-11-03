@@ -34,7 +34,6 @@
 
 - (void)awakeFromNib
 {
-    
     self.payViewHCons.constant = 0;
     self.payViewTopCons.constant = 0;
     self.bgViewHCons.constant = 298;
@@ -81,7 +80,7 @@
     // 选中筛选的类型
     if (model.type.trimLength){
         for (UIButton *btn in view.typeView.subviews) {
-            if ([btn.currentTitle isEqualToString:model.type]) {
+            if ([btn.currentTitle isEqualToString:model.type.noType]) {
                 [view typeBtnClick:btn];
                 break;
             }
@@ -111,6 +110,7 @@
     }else{
         [view sexBtnClick:(UIButton *)[view viewWithTag:33]];
     }
+    view.transferBtn.selected = model.transfer;
 
     view.click = click;
     ZYNewButton(cover);
@@ -141,7 +141,7 @@
     CPSelectModel *model = [CPSelectModel new];
     
     if ([self.lastTypebtn.currentTitle isDiffToString:@"不限"]){
-        model.type = self.lastTypebtn.currentTitle;
+        model.type = self.lastTypebtn.currentTitle.type;
     }
     
     if ([self.lastSexbtn.currentTitle isDiffToString:@"不限"]){

@@ -279,18 +279,16 @@
         cell.distanceLabel.text =[self getDidstanceStrWithDistance:[[dic objectForKey:@"distance"] integerValue]];
         switch ([[dic objectForKey:@"inviteStatus"] integerValue ]) {
             case 0:
-            {
+            {//inviteStatus如果是0，就看beInvitedStatus的值。
                 switch ([[dic objectForKey:@"beInvitedStatus"] integerValue ]) {
                     case 0:
                         [cell.inviteBtn setTitle:@"邀请同去" forState:UIControlStateNormal];
                         cell.inviteBtn.backgroundColor = UIColorFromRGB(0x74ced6);
-
                         break;
                     case 1:
                         //这个时候点击按钮的话，提示去动态处理
                         [cell.inviteBtn setTitle:@"邀请同去" forState:UIControlStateNormal];
                         cell.inviteBtn.backgroundColor = UIColorFromRGB(0x74ced6);
-
                         break;
 
                     case 2:
@@ -300,10 +298,9 @@
                         break;
 
                     case 3:
-                        [cell.inviteBtn setTitle:@"已拒绝" forState:UIControlStateNormal];
-                        cell.inviteBtn.backgroundColor = UIColorFromRGB(0x999999);
+                        [cell.inviteBtn setTitle:@"邀请同去" forState:UIControlStateNormal];
+                        cell.inviteBtn.backgroundColor = UIColorFromRGB(0x74ced6);
                         break;
-
                         
                     default:
                         break;

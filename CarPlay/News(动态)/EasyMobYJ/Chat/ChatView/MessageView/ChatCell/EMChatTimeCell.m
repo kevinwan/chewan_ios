@@ -18,13 +18,16 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
+        // 18 height
     }
     self.backgroundColor = [UIColor clearColor];
-    self.textLabel.backgroundColor = [UIColor clearColor];
-    self.textLabel.textAlignment = NSTextAlignmentCenter;
-    self.textLabel.font = [UIFont systemFontOfSize:14];
-    self.textLabel.textColor = [UIColor grayColor];
+    self.timeLabel = [[UILabel alloc]init];
+    self.timeLabel.backgroundColor = UIColorFromRGB(0xcccccc);
+    self.timeLabel.textAlignment = NSTextAlignmentCenter;
+    self.timeLabel.font = [UIFont systemFontOfSize:10];
+    self.timeLabel.textColor = [UIColor whiteColor];
+    [self.timeLabel setNumberOfLines:0];
+    [self.contentView addSubview:_timeLabel];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return self;
@@ -39,6 +42,14 @@
 
 -(void)layoutSubviews
 {
+    UIFont *font = [UIFont systemFontOfSize:10];
+    CGSize size = CGSizeMake(320,2000);
+    CGSize labelsize = [self.timeLabel.text sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeCharacterWrap];
+    self.timeLabel.frame = CGRectMake(0.0, 12.0, labelsize.width+20, 18 );
+    self.timeLabel.centerX = kDeviceWidth/2;
+    self.timeLabel.layer.cornerRadius =9;
+    [self.timeLabel.layer setMasksToBounds:YES];
+
     [super layoutSubviews];
     
 }

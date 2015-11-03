@@ -507,6 +507,8 @@
 		E39627B81BB5352D005E0CF2 /* CPActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E39627B71BB5352D005E0CF2 /* CPActivityModel.m */; };
 		E39627C11BB54D91005E0CF2 /* MultiplePulsingHaloLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E39627BE1BB54D91005E0CF2 /* MultiplePulsingHaloLayer.m */; };
 		E39627C21BB54D91005E0CF2 /* PulsingHaloLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E39627C01BB54D91005E0CF2 /* PulsingHaloLayer.m */; };
+		E3987EA31BE8B8BD00EBE487 /* CPActivityType.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3987EA21BE8B8BD00EBE487 /* CPActivityType.plist */; settings = {ASSET_TAGS = (); }; };
+		E3987EA61BE8BDBA00EBE487 /* NSString+activityType.m in Sources */ = {isa = PBXBuildFile; fileRef = E3987EA51BE8BDBA00EBE487 /* NSString+activityType.m */; settings = {ASSET_TAGS = (); }; };
 		E3A471731BB3A85300973197 /* CPNearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A471181BB3A85300973197 /* CPNearViewController.m */; };
 		E3A471741BB3A85300973197 /* CPBaseViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A4711C1BB3A85300973197 /* CPBaseViewCell.m */; };
 		E3A471761BB3A85300973197 /* Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A471251BB3A85300973197 /* Aspects.m */; };
@@ -583,6 +585,8 @@
 		EED47E931BE7679000BC2DBC /* nodistrube_gray@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EED47E8F1BE7679000BC2DBC /* nodistrube_gray@3x.png */; };
 		EED47E941BE7679000BC2DBC /* nodistrube@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EED47E901BE7679000BC2DBC /* nodistrube@2x.png */; };
 		EED47E951BE7679000BC2DBC /* nodistrube@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EED47E911BE7679000BC2DBC /* nodistrube@3x.png */; };
+		EED47E971BE8BFBC00BC2DBC /* chat_sender_bg_high@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EED47E961BE8BFBC00BC2DBC /* chat_sender_bg_high@2x.png */; };
+		EED47E991BE8C05700BC2DBC /* chat_receiver_bg_high@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EED47E981BE8C05700BC2DBC /* chat_receiver_bg_high@2x.png */; };
 		EEEEACD21BDA27940076BC4E /* Call_bg_small_dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EEEEACD11BDA27940076BC4E /* Call_bg_small_dot@2x.png */; };
 		EEEEACD51BDB35510076BC4E /* CPCareMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEEEACD41BDB35510076BC4E /* CPCareMeViewController.m */; };
 		EEFD12761BDDEDFF009EA6CC /* wheel0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EEFD12671BDDEDFF009EA6CC /* wheel0@2x.png */; };
@@ -1415,6 +1419,9 @@
 		E39627BE1BB54D91005E0CF2 /* MultiplePulsingHaloLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiplePulsingHaloLayer.m; sourceTree = "<group>"; };
 		E39627BF1BB54D91005E0CF2 /* PulsingHaloLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PulsingHaloLayer.h; sourceTree = "<group>"; };
 		E39627C01BB54D91005E0CF2 /* PulsingHaloLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PulsingHaloLayer.m; sourceTree = "<group>"; };
+		E3987EA21BE8B8BD00EBE487 /* CPActivityType.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CPActivityType.plist; sourceTree = "<group>"; };
+		E3987EA41BE8BDBA00EBE487 /* NSString+activityType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+activityType.h"; path = "../../NSString+activityType.h"; sourceTree = "<group>"; };
+		E3987EA51BE8BDBA00EBE487 /* NSString+activityType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+activityType.m"; path = "../../NSString+activityType.m"; sourceTree = "<group>"; };
 		E3A471171BB3A85300973197 /* CPNearViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNearViewController.h; sourceTree = "<group>"; };
 		E3A471181BB3A85300973197 /* CPNearViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNearViewController.m; sourceTree = "<group>"; };
 		E3A4711B1BB3A85300973197 /* CPBaseViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPBaseViewCell.h; sourceTree = "<group>"; };
@@ -1512,8 +1519,8 @@
 		E3AF17001BBA317E00306ABF /* CPMySwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMySwitch.m; sourceTree = "<group>"; };
 		E3BEEAF91BE20F23006B80EA /* NSObject+Copying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Copying.h"; sourceTree = "<group>"; };
 		E3BEEAFA1BE20F23006B80EA /* NSObject+Copying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Copying.m"; sourceTree = "<group>"; };
-		E3BEEAFC1BE220DB006B80EA /* NSObject+Copying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+Copying.h"; path = "My(我的)/Model/NSObject+Copying.h"; sourceTree = "<group>"; };
-		E3BEEAFD1BE220DB006B80EA /* NSObject+Copying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+Copying.m"; path = "My(我的)/Model/NSObject+Copying.m"; sourceTree = "<group>"; };
+		E3BEEAFC1BE220DB006B80EA /* NSObject+Copying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+Copying.h"; path = "../../My(我的)/Model/NSObject+Copying.h"; sourceTree = "<group>"; };
+		E3BEEAFD1BE220DB006B80EA /* NSObject+Copying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+Copying.m"; path = "../../My(我的)/Model/NSObject+Copying.m"; sourceTree = "<group>"; };
 		E3C5F18F1BC92C790021E33D /* CPActivityDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityDetailViewController.h; sourceTree = "<group>"; };
 		E3C5F1901BC92C790021E33D /* CPActivityDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityDetailViewController.m; sourceTree = "<group>"; };
 		E3DF66521BE31C9B00B9239D /* UIButton+ZYWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+ZYWebCache.h"; sourceTree = "<group>"; };
@@ -1555,6 +1562,8 @@
 		EED47E8F1BE7679000BC2DBC /* nodistrube_gray@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nodistrube_gray@3x.png"; sourceTree = "<group>"; };
 		EED47E901BE7679000BC2DBC /* nodistrube@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nodistrube@2x.png"; sourceTree = "<group>"; };
 		EED47E911BE7679000BC2DBC /* nodistrube@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nodistrube@3x.png"; sourceTree = "<group>"; };
+		EED47E961BE8BFBC00BC2DBC /* chat_sender_bg_high@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_sender_bg_high@2x.png"; sourceTree = "<group>"; };
+		EED47E981BE8C05700BC2DBC /* chat_receiver_bg_high@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_receiver_bg_high@2x.png"; sourceTree = "<group>"; };
 		EEEEACD11BDA27940076BC4E /* Call_bg_small_dot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Call_bg_small_dot@2x.png"; sourceTree = "<group>"; };
 		EEEEACD31BDB35510076BC4E /* CPCareMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCareMeViewController.h; sourceTree = "<group>"; };
 		EEEEACD41BDB35510076BC4E /* CPCareMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCareMeViewController.m; sourceTree = "<group>"; };
@@ -2861,6 +2870,7 @@
 				6D2AC09A1BCE5A5000201A8E /* chat_receiver_audio_playing003@2x.png */,
 				6D2AC09C1BCE5A5000201A8E /* chat_receiver_audio_playing_full@2x.png */,
 				6D2AC09E1BCE5A5000201A8E /* chat_receiver_bg@2x.png */,
+				EED47E981BE8C05700BC2DBC /* chat_receiver_bg_high@2x.png */,
 			);
 			path = receiver_bubble;
 			sourceTree = "<group>";
@@ -2875,6 +2885,7 @@
 				6D2AC0A71BCE5A5000201A8E /* chat_sender_audio_playing_003@2x.png */,
 				6D2AC0A91BCE5A5000201A8E /* chat_sender_audio_playing_full@2x.png */,
 				6D2AC0AB1BCE5A5000201A8E /* chat_sender_bg@2x.png */,
+				EED47E961BE8BFBC00BC2DBC /* chat_sender_bg_high@2x.png */,
 			);
 			path = sender_bubble;
 			sourceTree = "<group>";
@@ -3347,8 +3358,6 @@
 		E31E4BD51BAD47A500902B34 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E3BEEAFC1BE220DB006B80EA /* NSObject+Copying.h */,
-				E3BEEAFD1BE220DB006B80EA /* NSObject+Copying.m */,
 				E3E6B8931BB514A2006B4F8A /* AppDelegate.h */,
 				E3E6B8941BB514A2006B4F8A /* AppDelegate.m */,
 				E31E4C4E1BAD507E00902B34 /* macro.h */,
@@ -3358,6 +3367,7 @@
 				E31E4BE31BAD47A500902B34 /* LaunchScreen.storyboard */,
 				E31E4BE61BAD47A500902B34 /* Info.plist */,
 				E31E4BD61BAD47A500902B34 /* main.m */,
+				E3987EA21BE8B8BD00EBE487 /* CPActivityType.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -4001,6 +4011,10 @@
 		E3A471621BB3A85300973197 /* Categaries(分类) */ = {
 			isa = PBXGroup;
 			children = (
+				E3987EA41BE8BDBA00EBE487 /* NSString+activityType.h */,
+				E3987EA51BE8BDBA00EBE487 /* NSString+activityType.m */,
+				E3BEEAFC1BE220DB006B80EA /* NSObject+Copying.h */,
+				E3BEEAFD1BE220DB006B80EA /* NSObject+Copying.m */,
 				E39627B01BB5265A005E0CF2 /* UIImage+Blur.h */,
 				E39627B11BB5265A005E0CF2 /* UIImage+Blur.m */,
 			);
@@ -4265,6 +4279,7 @@
 				EEFD129B1BDDF6D0009EA6CC /* wheel13@2x.png in Resources */,
 				6D7F6FE01BD5E4AB00945F1B /* VoiceCancel@2x.png in Resources */,
 				EE3383111BD8BB7500BA4930 /* dot@2x.png in Resources */,
+				E3987EA31BE8B8BD00EBE487 /* CPActivityType.plist in Resources */,
 				EE7F81781BD9D1E0003E7B3B /* call_out_h@3x.png in Resources */,
 				6D2AC1141BCE5A5100201A8E /* chatBar_more_faceSelected.png in Resources */,
 				6D2AC1511BCE5A5100201A8E /* chat_receiver_audio_playing000.png in Resources */,
@@ -4323,6 +4338,7 @@
 				6D2AC0DF1BCE5A5100201A8E /* VoiceSearchFeedback002@2x.png in Resources */,
 				EE3383181BD9141200BA4930 /* refuse@2x.png in Resources */,
 				6D2AC16B1BCE5A5100201A8E /* password.png in Resources */,
+				EED47E971BE8BFBC00BC2DBC /* chat_sender_bg_high@2x.png in Resources */,
 				6D2AC0E11BCE5A5100201A8E /* VoiceSearchFeedback003@2x.png in Resources */,
 				EEFD12931BDDF6D0009EA6CC /* wheel5@2x.png in Resources */,
 				6B2411191BCB56AC0014468D /* CPMyInfoController.storyboard in Resources */,
@@ -4376,6 +4392,7 @@
 				6D2AC1221BCE5A5100201A8E /* imageDownloadFail@2x.png in Resources */,
 				EE3383171BD9141200BA4930 /* call_silence@3x.png in Resources */,
 				EED47E921BE7679000BC2DBC /* nodistrube_gray@2x.png in Resources */,
+				EED47E991BE8C05700BC2DBC /* chat_receiver_bg_high@2x.png in Resources */,
 				6D2AC0DB1BCE5A5100201A8E /* chatListCellHead@2x.png in Resources */,
 				6D2AC1791BCE5A5100201A8E /* groupPrivateHeader@2x.png in Resources */,
 				6D2AC14A1BCE5A5100201A8E /* chatBar_more_locationSelected.png in Resources */,
@@ -4742,6 +4759,7 @@
 				6B364C681BCE401C005A4AF9 /* UzysWrapperPickerController.m in Sources */,
 				E329DD751BDF2B7E005CD13D /* CPLoadingButton.m in Sources */,
 				6D2ABFD51BCE582100201A8E /* EMChatLocationBubbleView.m in Sources */,
+				E3987EA61BE8BDBA00EBE487 /* NSString+activityType.m in Sources */,
 				E3A471851BB3A85300973197 /* UIResponder+Extension.m in Sources */,
 				6D2ABFBA1BCE582100201A8E /* SRRefreshView.m in Sources */,
 				6D2ABF911BCE582100201A8E /* MWCaptionView.m in Sources */,
@@ -4901,9 +4919,9 @@
 					"$(PROJECT_DIR)/CarPlay/News(动态)/3rdparty/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/CarPlay/Libs(三方库)/UMSocial_Sdk_4.3",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gongpingjia.carchatinhouse;
+				PRODUCT_BUNDLE_IDENTIFIER = com.77iland.carplayinhouse;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8069fa66-9ad4-4073-aeb7-7075cf514c89";
 			};
 			name = Debug;
 		};
@@ -4931,9 +4949,9 @@
 					"$(PROJECT_DIR)/CarPlay/News(动态)/3rdparty/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/CarPlay/Libs(三方库)/UMSocial_Sdk_4.3",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gongpingjia.carchatinhouse;
+				PRODUCT_BUNDLE_IDENTIFIER = com.77iland.carplayinhouse;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8069fa66-9ad4-4073-aeb7-7075cf514c89";
 			};
 			name = Release;
 		};

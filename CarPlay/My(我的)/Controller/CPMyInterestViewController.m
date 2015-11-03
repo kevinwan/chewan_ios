@@ -166,7 +166,10 @@ static NSString *ID = @"myIntersterCell";
 
 - (CGFloat)waterflowLayout:(ZYWaterflowLayout *)waterflowLayout heightForWidth:(CGFloat)width atIndexPath:(NSIndexPath *)indexPath
 {
-    return self.offset + 380;
+    if (self.datas[indexPath.row].type == 1) {
+        return self.offset + 350;
+    }
+    return self.offset + 370;
 }
 
 #pragma mark - 事件交互
@@ -317,7 +320,10 @@ static NSString *ID = @"myIntersterCell";
     CPGoLogin(@"邀TA");
     NSIndexPath *indexPath = userInfo;
     CPIntersterModel *model = self.datas[indexPath.row];
-    NSString *url = [NSString stringWithFormat:@"activity/%@/join",model.activityId];
+    if (model.type == 1) {
+        return;
+    }
+    NSString *url = [NSString stringWithFormat:@"activity/%@/join?userId=%@&token=%@",model.relatedId, CPUserId, CPToken];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"destPoint"] = @{@"longitude" : @(CPLongitude),
                              @"latitude" : @(CPLatitude)};
@@ -325,16 +331,14 @@ static NSString *ID = @"myIntersterCell";
     params[@"type"] = model.activityType;
     params[@"pay"] = model.activityPay;
     params[@"destination"] = model.activityDestination;
-    params[UserId] = CPUserId;
-    params[Token] = CPToken;
     [self showLoading];
-    [CPNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
+    [ZYNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
         if (CPSuccess) {
             [self showInfo:@"邀请已发出"];
             model.status = 1;
             [self.tableView reloadItemsAtIndexPaths:@[indexPath]];
-        }else if ([CPErrorMsg contains:@"申请中"]){
-            [self showInfo:@"正在申请中"];
+        }else{
+            [self showInfo:CPErrorMsg];
         }
     } failed:^(NSError *error) {
         [self showInfo:@"邀请失败"];

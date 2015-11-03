@@ -10,7 +10,7 @@
 #import "NSObject+Copying.h"
 
 @implementation CPActivityModel
-MJCopyingImplemention
+
 - (void)setDestination:(NSDictionary *)destination
 {
     if ([destination isKindOfClass:[NSDictionary class]]) {

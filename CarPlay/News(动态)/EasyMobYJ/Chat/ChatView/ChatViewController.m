@@ -71,6 +71,10 @@
 @property (strong, nonatomic) MessageReadManager *messageReadManager;//message阅读的管理者
 @property (strong, nonatomic) NSDate *chatTagDate;
 
+//聊天框顶部的提示view
+@property (nonatomic, strong) UIView *topCueView;
+
+
 @property (strong, nonatomic) NSMutableArray *messages;
 @property (nonatomic) BOOL isScrollToBottom;
 @property (nonatomic) BOOL isPlayingAudio;
@@ -190,7 +194,8 @@
     [self.view addSubview:self.tableView];
     [self.tableView addSubview:self.slimeView];
     [self.view addSubview:self.chatToolBar];
-    
+    [self.view addSubview:self.topCueView];
+    [self performSelector:@selector(removetopCueView) withObject:nil afterDelay:5];
     //将self注册为chatToolBar的moreView的代理
     if ([self.chatToolBar.moreView isKindOfClass:[DXChatBarMoreView class]]) {
         [(DXChatBarMoreView *)self.chatToolBar.moreView setDelegate:self];
@@ -403,7 +408,32 @@
     
     return _dataSource;
 }
-
+- (UIView *)topCueView
+{
+    if (_topCueView == nil) {
+        _topCueView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 35)];
+        _topCueView.backgroundColor = [UIColor whiteColor];
+        
+        UILabel *cueLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 7, 40, 21)];
+        cueLabel.backgroundColor = [UIColor clearColor];
+        cueLabel.font = [UIFont systemFontOfSize:14];
+        cueLabel.textColor = UIColorFromRGB(0xfe5969);
+        cueLabel.textAlignment = NSTextAlignmentLeft;
+        cueLabel.text = @"提示:";
+        
+        UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(cueLabel.frame)+5, 7, 220, 20)];
+        messageLabel.backgroundColor = [UIColor clearColor];
+        messageLabel.font = [UIFont systemFontOfSize:14];
+        messageLabel.textColor = UIColorFromRGB(0x333333);
+        messageLabel.textAlignment = NSTextAlignmentLeft;
+        messageLabel.text = @"发送地理位置对方可以快速找到你";
+        
+        [_topCueView addSubview:cueLabel];
+        [_topCueView addSubview:messageLabel];
+        
+    }
+    return _topCueView;
+}
 - (SRRefreshView *)slimeView
 {
     if (_slimeView == nil) {
@@ -513,7 +543,7 @@
                 timeCell.selectionStyle = UITableViewCellSelectionStyleNone;
             }
             
-            timeCell.textLabel.text = (NSString *)obj;
+            timeCell.timeLabel.text = (NSString *)obj;
             
             return timeCell;
         }
@@ -555,13 +585,19 @@
 {
     NSObject *obj = [self.dataSource objectAtIndex:indexPath.row];
     if ([obj isKindOfClass:[NSString class]]) {
-        return 40;
+        return 42;
     }
     else{
         return [EMChatViewCell tableView:tableView heightForRowAtIndexPath:indexPath withObject:(MessageModel *)obj];
     }
 }
-
+#pragma mine method
+- (void)removetopCueView
+{
+    if (_topCueView != nil) {
+        [_topCueView removeFromSuperview];
+    }
+}
 #pragma mark - scrollView delegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView

@@ -12,6 +12,37 @@
 #define CC_MD5_LENGTH 16
 
 @implementation Tools
+static NSDictionary *activityTypes;
++ (void)load
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        activityTypes = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"CPActivityType" ofType:@"plist"]];
+    });
+}
+
++ (NSString *)activityTypeWithString:(NSString *)type
+{
+    __block NSString *result = [type copy];
+    [activityTypes enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        if ([key isEqualToString:type]) {
+            result = type;
+        }
+    }];
+    return result;
+}
+
++ (NSString *)activityNoTypeWithString:(NSString *)type
+{
+    __block NSString *result = [type copy];
+    [activityTypes enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        if ([obj isEqualToString:type]) {
+            result = key;
+        }
+    }];
+    return result;
+}
+
 
 + (NSString *)getUserId
 {
