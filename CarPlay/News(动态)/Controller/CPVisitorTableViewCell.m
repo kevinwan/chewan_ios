@@ -59,10 +59,14 @@
         [self.contentView addSubview:_distanceLabel];
         
         //分割线
-        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 69.5, kDeviceWidth, 0.5)];
-        lineView.backgroundColor = [UIColor grayColor];
+        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 69, kDeviceWidth, 1)];
+        lineView.backgroundColor = UIColorFromRGB(0xefefef);
         [self.contentView addSubview:lineView];
-        lineView.alpha = 0.7;
+        
+        UIView *aView = [[UIView alloc] initWithFrame:self.contentView.frame];
+        aView.backgroundColor = UIColorFromRGB(0xf7f7f7);
+        
+        self.selectedBackgroundView = aView;
     }
     return self;
     

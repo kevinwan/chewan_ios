@@ -37,12 +37,11 @@
         bgView.alpha = 0.8;
         [self addSubview:bgView];
         
-        _recordAnimationView = [[UIImageView alloc] initWithFrame:CGRectMake(32, 20, self.bounds.size.width - 64, self.bounds.size.height - 40-25)];
+        _recordAnimationView = [[UIImageView alloc] initWithFrame:CGRectMake(39.5, 20, 61, 61)];
         _recordAnimationView.image = [UIImage imageNamed:@"VoiceSearchFeedback001"];
         [self addSubview:_recordAnimationView];
         
-        _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(5,
-                                                               self.bounds.size.height - 30,
+        _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(5,CGRectGetMaxY(_recordAnimationView.frame)+10,
                                                                self.bounds.size.width - 10,
                                                                25)];
         

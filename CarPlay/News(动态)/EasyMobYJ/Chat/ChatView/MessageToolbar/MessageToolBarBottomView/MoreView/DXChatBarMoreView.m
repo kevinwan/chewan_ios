@@ -38,7 +38,7 @@
     [self addSubview:bgview];
     
     _photoButton =[UIButton buttonWithType:UIButtonTypeCustom];
-    [_photoButton setFrame:CGRectMake(insets, 10, CHAT_BUTTON_SIZE , CHAT_BUTTON_SIZE)];
+    [_photoButton setFrame:CGRectMake(insets, 15, CHAT_BUTTON_SIZE , CHAT_BUTTON_SIZE)];
     [_photoButton setImage:[UIImage imageNamed:@"chatBar_colorMore_photo"] forState:UIControlStateNormal];
     [_photoButton setImage:[UIImage imageNamed:@"chatBar_colorMore_photoSelected"] forState:UIControlStateHighlighted];
     [_photoButton addTarget:self action:@selector(photoAction) forControlEvents:UIControlEventTouchUpInside];
@@ -56,7 +56,7 @@
     
     
     _locationButton =[UIButton buttonWithType:UIButtonTypeCustom];
-    [_locationButton setFrame:CGRectMake(insets * 3 + CHAT_BUTTON_SIZE * 2, 10, CHAT_BUTTON_SIZE , CHAT_BUTTON_SIZE)];
+    [_locationButton setFrame:CGRectMake(insets * 3 + CHAT_BUTTON_SIZE * 2, 15, CHAT_BUTTON_SIZE , CHAT_BUTTON_SIZE)];
     [_locationButton setImage:[UIImage imageNamed:@"chatBar_colorMore_location"] forState:UIControlStateNormal];
     [_locationButton setImage:[UIImage imageNamed:@"chatBar_colorMore_locationSelected"] forState:UIControlStateHighlighted];
     [_locationButton addTarget:self action:@selector(locationAction) forControlEvents:UIControlEventTouchUpInside];
@@ -73,7 +73,7 @@
     
     _takePicButton =[UIButton buttonWithType:UIButtonTypeCustom];
     [_takePicButton setImage:[UIImage imageNamed:@"chatBar_colorMore_camera"] forState:UIControlStateNormal];
-    [_takePicButton setFrame:CGRectMake(insets * 2 + CHAT_BUTTON_SIZE, 10, CHAT_BUTTON_SIZE , CHAT_BUTTON_SIZE)];
+    [_takePicButton setFrame:CGRectMake(insets * 2 + CHAT_BUTTON_SIZE, 15, CHAT_BUTTON_SIZE , CHAT_BUTTON_SIZE)];
     [_takePicButton setImage:[UIImage imageNamed:@"chatBar_colorMore_cameraSelected"] forState:UIControlStateHighlighted];
     [_takePicButton addTarget:self action:@selector(takePicAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_takePicButton];
@@ -89,7 +89,7 @@
     
     
     CGRect frame = self.frame;
-    frame.size.height = 86;
+    frame.size.height = 96;
     self.frame = frame;
 }
 
