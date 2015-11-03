@@ -94,8 +94,7 @@ static NSString *ID = @"cell";
     }else if ([notifyName isEqualToString:IconViewClickKey]){
         CPGoLogin(@"查看TA的详情");
         CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
-        CPActivityModel *model = userInfo;
-        taVc.userId = model.organizer.userId;
+        taVc.userId = _activity.organizer.userId;
         [self.navigationController pushViewController:taVc animated:YES];
     }
 }

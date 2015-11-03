@@ -23,6 +23,7 @@
     
     // 防止上传完json数据不能加载普通请求
     _manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    _manager.responseSerializer = [AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingMutableContainers];
     return _manager;
 }
 

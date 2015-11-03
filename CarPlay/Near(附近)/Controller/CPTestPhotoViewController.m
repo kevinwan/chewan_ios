@@ -71,7 +71,7 @@
     
     __weak typeof(self) weakSelf=self;
     
-    [PhotoBroswerVC show:self userId:CPUserId type:PhotoBroswerVCTypePush index:index photoModelBlock:^NSArray *{
+    [PhotoBroswerVC show:self userId:CPUserId type:PhotoBroswerVCTypePush index:2 photoModelBlock:^NSArray *{
         
         
         NSArray *networkImages=@[

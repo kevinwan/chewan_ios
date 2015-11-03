@@ -91,6 +91,11 @@
     return self;
     
 }
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    [self setClipsToBounds:YES];
+
+}
 - (void)awakeFromNib {
     // Initialization code
 }
