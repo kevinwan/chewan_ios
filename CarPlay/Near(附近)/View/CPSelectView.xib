@@ -105,7 +105,7 @@
                                         <constraint firstAttribute="height" constant="22" id="ps4-AM-9TE"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                    <state key="normal" title="夜宵"/>
+                                    <state key="normal" title="桌游"/>
                                     <connections>
                                         <action selector="typeBtnClick:" destination="GYe-yI-VCc" eventType="touchUpInside" id="mU9-4d-IoM"/>
                                     </connections>

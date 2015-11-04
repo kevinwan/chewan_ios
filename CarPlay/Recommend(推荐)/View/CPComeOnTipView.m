@@ -80,6 +80,7 @@
         if (CPSuccess) {
             [SVProgressHUD showInfoWithStatus:@"邀请已发出"];
             // 更新模型状态
+            self.partMemberModel.beInvitedCount+=1;
             self.partMemberModel.inviteStatus = 1;
             [ZYNotificationCenter postNotificationName:CPInvitedSuccessKey object:nil];
             [UIView animateWithDuration:0.25 animations:^{

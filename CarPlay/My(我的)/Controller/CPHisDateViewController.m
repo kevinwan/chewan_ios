@@ -124,8 +124,8 @@ static NSString *ID = @"HisDateCell";
             NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"][@"activities"]];
             for (CPActivityModel *model in arr) {
                 model.organizer = self.targetUser;
-                model.organizer.distance = distance;
                 model.organizer.cover = cover;
+                model.isHisDate = YES;
             }
             [self.datas addObjectsFromArray:arr];
             //
@@ -174,7 +174,7 @@ static NSString *ID = @"HisDateCell";
 
 - (CGFloat)waterflowLayout:(ZYWaterflowLayout *)waterflowLayout heightForWidth:(CGFloat)width atIndexPath:(NSIndexPath *)indexPath
 {
-    return self.offset + 370;
+    return self.offset + 390;
 }
 
 #pragma mark - 事件交互

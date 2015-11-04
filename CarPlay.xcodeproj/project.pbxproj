@@ -489,6 +489,8 @@
 		E3719A771BDA275C00465DF2 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3719A761BDA275C00465DF2 /* FXBlurView.m */; };
 		E3719AAC1BDA5D9000465DF2 /* DRNRealTimeBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3719AA91BDA5D9000465DF2 /* DRNRealTimeBlurView.m */; };
 		E3719AAD1BDA5D9000465DF2 /* UIImage+BoxBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = E3719AAB1BDA5D9000465DF2 /* UIImage+BoxBlur.m */; };
+		E371CA3C1BE9D9EC00B77723 /* CPGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = E371CA3B1BE9D9EC00B77723 /* CPGuideView.m */; settings = {ASSET_TAGS = (); }; };
+		E371CA3F1BE9FAA900B77723 /* CPNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E371CA3E1BE9FAA900B77723 /* CPNavigationBar.m */; settings = {ASSET_TAGS = (); }; };
 		E37C10B21BBB79D800E1A6A2 /* CPMyVisitorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E37C10B11BBB79D800E1A6A2 /* CPMyVisitorViewController.m */; };
 		E37C10B41BBB79E700E1A6A2 /* CPMyVisitorViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E37C10B31BBB79E700E1A6A2 /* CPMyVisitorViewController.storyboard */; };
 		E37C10B71BBB7CEB00E1A6A2 /* CPMyVistorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E37C10B61BBB7CEB00E1A6A2 /* CPMyVistorCell.m */; };
@@ -507,8 +509,8 @@
 		E39627B81BB5352D005E0CF2 /* CPActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E39627B71BB5352D005E0CF2 /* CPActivityModel.m */; };
 		E39627C11BB54D91005E0CF2 /* MultiplePulsingHaloLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E39627BE1BB54D91005E0CF2 /* MultiplePulsingHaloLayer.m */; };
 		E39627C21BB54D91005E0CF2 /* PulsingHaloLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E39627C01BB54D91005E0CF2 /* PulsingHaloLayer.m */; };
-		E3987EA31BE8B8BD00EBE487 /* CPActivityType.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3987EA21BE8B8BD00EBE487 /* CPActivityType.plist */; };
-		E3987EA61BE8BDBA00EBE487 /* NSString+activityType.m in Sources */ = {isa = PBXBuildFile; fileRef = E3987EA51BE8BDBA00EBE487 /* NSString+activityType.m */; };
+		E3987EA31BE8B8BD00EBE487 /* CPActivityType.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3987EA21BE8B8BD00EBE487 /* CPActivityType.plist */; settings = {ASSET_TAGS = (); }; };
+		E3987EA61BE8BDBA00EBE487 /* NSString+activityType.m in Sources */ = {isa = PBXBuildFile; fileRef = E3987EA51BE8BDBA00EBE487 /* NSString+activityType.m */; settings = {ASSET_TAGS = (); }; };
 		E3A471731BB3A85300973197 /* CPNearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A471181BB3A85300973197 /* CPNearViewController.m */; };
 		E3A471741BB3A85300973197 /* CPBaseViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A4711C1BB3A85300973197 /* CPBaseViewCell.m */; };
 		E3A471761BB3A85300973197 /* Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A471251BB3A85300973197 /* Aspects.m */; };
@@ -1386,6 +1388,10 @@
 		E3719AA91BDA5D9000465DF2 /* DRNRealTimeBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRNRealTimeBlurView.m; sourceTree = "<group>"; };
 		E3719AAA1BDA5D9000465DF2 /* UIImage+BoxBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BoxBlur.h"; sourceTree = "<group>"; };
 		E3719AAB1BDA5D9000465DF2 /* UIImage+BoxBlur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BoxBlur.m"; sourceTree = "<group>"; };
+		E371CA3A1BE9D9EC00B77723 /* CPGuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPGuideView.h; sourceTree = "<group>"; };
+		E371CA3B1BE9D9EC00B77723 /* CPGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPGuideView.m; sourceTree = "<group>"; };
+		E371CA3D1BE9FAA900B77723 /* CPNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNavigationBar.h; sourceTree = "<group>"; };
+		E371CA3E1BE9FAA900B77723 /* CPNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNavigationBar.m; sourceTree = "<group>"; };
 		E37C10B01BBB79D800E1A6A2 /* CPMyVisitorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyVisitorViewController.h; sourceTree = "<group>"; };
 		E37C10B11BBB79D800E1A6A2 /* CPMyVisitorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyVisitorViewController.m; sourceTree = "<group>"; };
 		E37C10B31BBB79E700E1A6A2 /* CPMyVisitorViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMyVisitorViewController.storyboard; sourceTree = "<group>"; };
@@ -3871,6 +3877,8 @@
 				E3AF16FD1BBA296C00306ABF /* CPNoHighLightButton.m */,
 				E311371D1BD09309004EF249 /* CPLoadingView.h */,
 				E311371E1BD09309004EF249 /* CPLoadingView.m */,
+				E371CA3A1BE9D9EC00B77723 /* CPGuideView.h */,
+				E371CA3B1BE9D9EC00B77723 /* CPGuideView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4055,6 +4063,8 @@
 			children = (
 				E3A471711BB3A85300973197 /* CPTabBar.h */,
 				E3A471721BB3A85300973197 /* CPTabBar.m */,
+				E371CA3D1BE9FAA900B77723 /* CPNavigationBar.h */,
+				E371CA3E1BE9FAA900B77723 /* CPNavigationBar.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4119,7 +4129,7 @@
 				TargetAttributes = {
 					E31E4BD11BAD47A500902B34 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = 5JY9THVFXV;
+						DevelopmentTeam = K89RQ3A2PQ;
 					};
 				};
 			};
@@ -4487,6 +4497,7 @@
 				6D2ABFEF1BCE582100201A8E /* ApplyFriendCell.m in Sources */,
 				E3884D601BD1FF1E00A65BE0 /* AAPullToRefresh.m in Sources */,
 				E359EDBD1BCF75C20004B17D /* ZYImageVIew.m in Sources */,
+				E371CA3F1BE9FAA900B77723 /* CPNavigationBar.m in Sources */,
 				6B153EFC1BB5692500560935 /* CPMyViewController.m in Sources */,
 				6D2ABFDB1BCE582100201A8E /* MessageModel.m in Sources */,
 				6B906F7D1BC7C98B0048A806 /* ZHAppDelegate.m in Sources */,
@@ -4736,6 +4747,7 @@
 				E3A471921BB3A85300973197 /* CPNavigationController.m in Sources */,
 				E31B12E51BB9311700B51696 /* PBPGView.m in Sources */,
 				6D2ABFD91BCE582100201A8E /* EMChatViewBaseCell.m in Sources */,
+				E371CA3C1BE9D9EC00B77723 /* CPGuideView.m in Sources */,
 				6D2ABFD81BCE582100201A8E /* EMChatTimeCell.m in Sources */,
 				6D2ABFCB1BCE582100201A8E /* ConvertToCommonEmoticonsHelper.m in Sources */,
 				E31B13461BB9312D00B51696 /* UIFont+Extend.m in Sources */,
@@ -4901,8 +4913,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Hao Sun (VBUTLMUHXY)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hao Sun (VBUTLMUHXY)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4921,7 +4933,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.77iland.carplayinhouse;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4631f3ee-4b3b-4d1b-88ed-960329279336";
+				PROVISIONING_PROFILE = "8069fa66-9ad4-4073-aeb7-7075cf514c89";
 			};
 			name = Debug;
 		};
@@ -4931,8 +4943,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Hao Sun (VBUTLMUHXY)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hao Sun (VBUTLMUHXY)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4951,7 +4963,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.77iland.carplayinhouse;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4631f3ee-4b3b-4d1b-88ed-960329279336";
+				PROVISIONING_PROFILE = "8069fa66-9ad4-4073-aeb7-7075cf514c89";
 			};
 			name = Release;
 		};

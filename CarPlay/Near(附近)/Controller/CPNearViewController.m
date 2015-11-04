@@ -72,7 +72,8 @@ static NSString *ID = @"cell";
     }];
     [[ZYNotificationCenter rac_addObserverForName:@"DID_LOG_OUT_SUCCESS" object:nil] subscribeNext:^(id x) {
         ZYStrongSelf
-        self.params = [CPNearParams new];
+        self.params = nil;
+        [self.datas removeAllObjects];
         [self loadDataWithHeader:nil];
     }];
 }
@@ -315,7 +316,6 @@ static NSString *ID = @"cell";
 
 - (void)addPhoto:(NSArray *)arr
 {
-    
     NSString *path=[[NSString alloc]initWithFormat:@"user/%@/album/upload?token=%@",[Tools getUserId],[Tools getToken]];
     [self showLoading];
     __block NSUInteger count = 0;
@@ -457,7 +457,7 @@ static NSString *ID = @"cell";
         _tipView.y = 64;
         _tipView.x = 0;
       
-        UILabel *textL = [UILabel labelWithText:@"有空,其他人可以邀请你参加活动" textColor:[UIColor whiteColor] fontSize:14];
+        UILabel *textL = [UILabel labelWithText:@"无聊中～小伙伴可以邀你～" textColor:[UIColor whiteColor] fontSize:14];
         [_tipView addSubview:textL];
         [textL sizeToFit];
         textL.x = 10;
@@ -469,34 +469,42 @@ static NSString *ID = @"cell";
         freeTimeBtn.on = [ZYUserDefaults boolForKey:FreeTimeKey];
         [freeTimeBtn sizeToFit];
         [_tipView addSubview:freeTimeBtn];
-        NSString *url = [NSString stringWithFormat:@"user/%@/info?token=%@",CPUserId,CPToken];
+        ZYWeakSelf
         [[freeTimeBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(CPMySwitch *btn) {
+            ZYStrongSelf
             CPGoLogin(@"修改状态");
+            
+            NSString *url = [NSString stringWithFormat:@"user/%@/info?token=%@",CPUserId,CPToken];
             [ZYUserDefaults setBool:btn.on forKey:FreeTimeKey];
             btn.on = !btn.on;
             if (btn.on) {
-                textL.text = @"有空,其他人可以邀请你参加活动";
+                textL.text = @"无聊中～小伙伴可以邀你～";
                 [ZYNetWorkTool postJsonWithUrl:url params:@{@"idle" : @(YES)} success:^(id responseObject) {
                     if (CPSuccess){
+                        [self showInfo:@"有空"];
+                    }else{
+                        btn.on = NO;
+                        [self showInfo:CPErrorMsg];
                     }
                 } failed:^(NSError *error) {
-                    
+                    btn.on = NO;
                 }];
             }else{
-                textL.text = @"没空,你将接受不到任何活动邀请";
+                textL.text = @"忙碌中～小伙伴不可邀你～";
                 [ZYNetWorkTool postJsonWithUrl:url params:@{@"idle" : @(NO)} success:^(id responseObject) {
-                    
+                    if (CPSuccess){
+                        [self showInfo:@"没空"];
+                    }else{
+                        btn.on = YES;
+                        [self showInfo:CPErrorMsg];
+                    }
                 } failed:^(NSError *error) {
-                    
+                    btn.on = YES;
                 }];
             }
         }];
         freeTimeBtn.centerY = _tipView.middleY;
         freeTimeBtn.x = _tipView.width - freeTimeBtn.width - 10;
-//        [freeTimeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.centerY.equalTo(_tipView);
-//            make.right.equalTo(@-10);
-//        }];
         CGFloat originY = 64;
         
         [RACObserve(self.tableView, contentOffset) subscribeNext:^(id x) {

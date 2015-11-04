@@ -10,6 +10,11 @@
 
 @implementation CPAlbum
 
++ (NSDictionary *)replacedKeyFromPropertyName
+{
+    return @{@"photoId" : @"id"};
+}
+
 MJCodingImplementation
 
 @end

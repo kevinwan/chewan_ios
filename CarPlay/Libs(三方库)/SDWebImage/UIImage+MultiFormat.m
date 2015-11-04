@@ -11,8 +11,9 @@
 #import "NSData+ImageContentType.h"
 #import <ImageIO/ImageIO.h>
 #import "FXBlurView.h"
-#ifdef SD_WEBP
 #import "UIImage+WebP.h"
+#import "UIImage+Blur.h"
+#ifdef SD_WEBP
 #endif
 
 @implementation UIImage (MultiFormat)
@@ -35,7 +36,7 @@
 #endif
     else {
         image = [[UIImage alloc] initWithData:data];
-        
+//        
         BOOL hasAblum;
         
         if (CPUnLogin) {
@@ -44,7 +45,7 @@
             hasAblum = [ZYUserDefaults boolForKey:CPHasAlbum];
         }
         if (hasAblum == NO) {
-            image = [image blurredImageWithRadius:10 iterations:10 tintColor:[UIColor clearColor]];
+            image = [image blurredImageWithRadius:20];
         }
         UIImageOrientation orientation = [self sd_imageOrientationFromImageData:data];
         if (orientation != UIImageOrientationUp) {

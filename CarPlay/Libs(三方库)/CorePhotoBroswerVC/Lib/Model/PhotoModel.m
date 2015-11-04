@@ -59,7 +59,7 @@
 /*
  *  保存
  */
--(void)save;{
+-(void)save{
     [CoreArchive setBool:YES key:[NSString stringWithFormat:@"%@",@(self.mid)]];
 }
 
