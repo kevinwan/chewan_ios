@@ -66,7 +66,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     path=[NSString stringWithFormat:@"%@.info",CPUserId];
     user=[NSKeyedUnarchiver unarchiveObjectWithFile:path.documentPath];
-    if (user.isMan) {
+    if (user.isMan || !CPIsLogin) {
         [self.shuttleBtn setImage:[UIImage imageNamed:@"点击效果"] forState:UIControlStateNormal];
         self.whetherShuttle=@"1";
         [ZYUserDefaults setBool:YES forKey:Transfer];
