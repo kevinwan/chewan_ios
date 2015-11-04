@@ -36,7 +36,7 @@
 #endif
     else {
         image = [[UIImage alloc] initWithData:data];
-        
+//        
         BOOL hasAblum;
         
         if (CPUnLogin) {
