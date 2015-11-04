@@ -41,7 +41,7 @@
     [self.headStatus.layer setMasksToBounds:YES];
     [self.headStatus.layer setCornerRadius:11.0];
 //    self.noImgView.alpha=0.35;
-    [self.noImgView setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.35]];
+//    [self.noImgView setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.35]];
    
     [self.albumsCollectionView registerNib:[UINib nibWithNibName:@"CPCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
     for (id view in self.toolbar.subviews) {
@@ -68,6 +68,11 @@
     NSString *path=[NSString stringWithFormat:@"%@.info",CPUserId];
     currentUser=[NSKeyedUnarchiver unarchiveObjectWithFile:path.documentPath];
     [self getData];
+    if ([ZYUserDefaults boolForKey:CPHasAlbum]) {
+        [self.noImgView setHidden:YES];
+    }else{
+        [self.noImgView setHidden:NO];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -123,12 +128,8 @@
     }
     
     [self.carLogoImg zySetImageWithUrl:user.car.logo placeholderImage:nil];
-    
     [self.albumsCollectionView reloadData];
     
-    if (CPHasAlbum) {
-        [self.noImgView setHidden:YES];
-    }
     if (user.subscribeFlag) {
         [self.attentionBtn setTitle:@"已关注" forState:UIControlStateNormal];
         [self.attentionBtn setBackgroundColor:[Tools getColor:@"dddddd"]];
@@ -320,7 +321,7 @@
     static NSString *cellIdentifier = @"cell";
     CPCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
         CPAlbum *ablum=(CPAlbum *)user.album[indexPath.row];
-    [cell.imageView zySetImageWithUrl:ablum.url placeholderImage:nil];
+    [cell.imageView zy_setBlurImageWithUrl:ablum.url];
     return cell;
 }
 //图片大图浏览
@@ -340,9 +341,6 @@
             UIImageView *imagevC=[[UIImageView alloc]init];
             [imagevC setContentMode:UIViewContentModeScaleAspectFill];
             [imagevC zySetImageWithUrl:[user.album[i] url] placeholderImage:[UIImage imageNamed:@"logo"]];
-//            [imagevC zySetImageWithUrl:[user.album[i] url] placeholderImage:[UIImage imageNamed:@"logo"] completion:^(UIImage *image) {
-//                [imagevC setImage:image];
-//            }];
             pbModel.sourceImageView = imagevC;
             [modelsM addObject:pbModel];
         }

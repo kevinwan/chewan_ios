@@ -176,7 +176,7 @@
         cell.distanceLabel.text =[self getDidstanceStrWithDistance:[[dic objectForKey:@"distance"] integerValue]];
         
         
-//        cell.timeLabel.text =[NSDate formattedTimeFromTimeInterval:[[dic objectForKey:@"subscribeTime"] longLongValue]];;
+        cell.timeLabel.text =[NSDate formattedTimeFromTimeInterval:[[dic objectForKey:@"viewTime"] longLongValue]];;
         
     }
     

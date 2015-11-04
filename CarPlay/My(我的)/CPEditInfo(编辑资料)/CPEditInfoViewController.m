@@ -159,7 +159,9 @@
             [ZYUserDefaults setObject:responseObject[@"data"][@"nickname"] forKey:kUserNickName];
 //            [ZYUserDefaults setObject:responseObject[@"data"][@"avatar"] forKey:kUserHeadUrl];
             [NSKeyedArchiver archiveRootObject:user toFile:path.documentPath];
-            [self.avatar setImage:editedImage];
+//            [self.avatar setImage:editedImage];
+            [self.avatar zySetReloadImageWithUrl:user.avatar placeholderImage:editedImage completion:nil];
+            
         }else{
             [[[UIAlertView alloc]initWithTitle:@"提示" message:@"上传失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
         }

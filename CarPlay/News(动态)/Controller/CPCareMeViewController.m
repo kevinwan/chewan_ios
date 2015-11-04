@@ -29,7 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = GrayColor;
+    self.view.backgroundColor = UIColorFromRGB(0xefefef);
     self.title = @"谁关注我";
     [self setEdgesForExtendedLayout:UIRectEdgeNone];
     [self initTableview];

@@ -28,4 +28,17 @@
      } failure:nil];
 }
 
+- (void)zySetReloadImageWithUrl:(NSString *)url placeholderImage:(UIImage *)placeholderImage completion:(void (^)(UIImage *))completion
+{
+    ZYWeakSelf
+    
+    [self setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:1000] placeholderImage:placeholderImage success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nonnull response, UIImage * _Nonnull image) {
+        ZYStrongSelf
+        if(completion){
+            completion(image);
+        }else{
+            self.image = image;
+        }
+    } failure:nil];
+}
 @end

@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *attentionBtn;
 - (IBAction)attentionBtnClick:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *noImgView;
+@property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UIButton *uploadBtn;
 - (IBAction)uploadBtnClick:(id)sender;
 

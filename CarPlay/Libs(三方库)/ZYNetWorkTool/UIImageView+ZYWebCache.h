@@ -12,6 +12,8 @@
 
 - (void)zySetImageWithUrl:(NSString *)url placeholderImage:(UIImage *)placeholderImage completion:(void (^)(UIImage *image))completion;
 
+- (void)zySetReloadImageWithUrl:(NSString *)url placeholderImage:(UIImage *)placeholderImage completion:(void (^)(UIImage *))completion;
+
 - (void)zySetImageWithUrl:(NSString *)url placeholderImage:(UIImage *)placeholderImage;
 
 @end
