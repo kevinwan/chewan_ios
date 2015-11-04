@@ -474,13 +474,13 @@ static NSString *ID = @"cell";
             ZYStrongSelf
             CPGoLogin(@"修改状态");
             
-            NSString *url = [NSString stringWithFormat:@"user/%@/info?token=%@",CPUserId,CPToken];
-            [ZYUserDefaults setBool:btn.on forKey:FreeTimeKey];
+            NSString *url = [NSString stringWithFormat:@"user/%@/info?token=%@",CPUserId, CPToken];
             btn.on = !btn.on;
             if (btn.on) {
                 textL.text = @"无聊中～小伙伴可以邀你～";
                 [ZYNetWorkTool postJsonWithUrl:url params:@{@"idle" : @(YES)} success:^(id responseObject) {
                     if (CPSuccess){
+                        [ZYUserDefaults setBool:btn.on forKey:FreeTimeKey];
                         [self showInfo:@"有空"];
                     }else{
                         btn.on = NO;
@@ -493,6 +493,7 @@ static NSString *ID = @"cell";
                 textL.text = @"忙碌中～小伙伴不可邀你～";
                 [ZYNetWorkTool postJsonWithUrl:url params:@{@"idle" : @(NO)} success:^(id responseObject) {
                     if (CPSuccess){
+                        [ZYUserDefaults setBool:btn.on forKey:FreeTimeKey];
                         [self showInfo:@"没空"];
                     }else{
                         btn.on = YES;
