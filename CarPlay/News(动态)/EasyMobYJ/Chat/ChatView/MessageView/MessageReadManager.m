@@ -74,6 +74,7 @@ static MessageReadManager *detailInstance = nil;
         _photoBrowser.zoomPhotosToFill = YES;
         _photoBrowser.enableGrid = NO;
         _photoBrowser.startOnGrid = NO;
+        _photoBrowser.enableSwipeToDismiss = YES;
         [_photoBrowser setCurrentPhotoIndex:0];
     }
     

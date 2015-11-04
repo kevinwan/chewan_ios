@@ -970,7 +970,7 @@
                 }
                 
             } onQueue:nil];
-        }
+        }//以上是图片
     }else if ([model.messageBody messageBodyType] == eMessageBodyType_Video) {
         //获取缩略图
         EMVideoMessageBody *videoBody = (EMVideoMessageBody *)model.messageBody;

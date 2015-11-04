@@ -489,8 +489,8 @@
 		E3719A771BDA275C00465DF2 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3719A761BDA275C00465DF2 /* FXBlurView.m */; };
 		E3719AAC1BDA5D9000465DF2 /* DRNRealTimeBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3719AA91BDA5D9000465DF2 /* DRNRealTimeBlurView.m */; };
 		E3719AAD1BDA5D9000465DF2 /* UIImage+BoxBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = E3719AAB1BDA5D9000465DF2 /* UIImage+BoxBlur.m */; };
-		E371CA3C1BE9D9EC00B77723 /* CPGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = E371CA3B1BE9D9EC00B77723 /* CPGuideView.m */; settings = {ASSET_TAGS = (); }; };
-		E371CA3F1BE9FAA900B77723 /* CPNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E371CA3E1BE9FAA900B77723 /* CPNavigationBar.m */; settings = {ASSET_TAGS = (); }; };
+		E371CA3C1BE9D9EC00B77723 /* CPGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = E371CA3B1BE9D9EC00B77723 /* CPGuideView.m */; };
+		E371CA3F1BE9FAA900B77723 /* CPNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E371CA3E1BE9FAA900B77723 /* CPNavigationBar.m */; };
 		E37C10B21BBB79D800E1A6A2 /* CPMyVisitorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E37C10B11BBB79D800E1A6A2 /* CPMyVisitorViewController.m */; };
 		E37C10B41BBB79E700E1A6A2 /* CPMyVisitorViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E37C10B31BBB79E700E1A6A2 /* CPMyVisitorViewController.storyboard */; };
 		E37C10B71BBB7CEB00E1A6A2 /* CPMyVistorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E37C10B61BBB7CEB00E1A6A2 /* CPMyVistorCell.m */; };
@@ -509,8 +509,8 @@
 		E39627B81BB5352D005E0CF2 /* CPActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E39627B71BB5352D005E0CF2 /* CPActivityModel.m */; };
 		E39627C11BB54D91005E0CF2 /* MultiplePulsingHaloLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E39627BE1BB54D91005E0CF2 /* MultiplePulsingHaloLayer.m */; };
 		E39627C21BB54D91005E0CF2 /* PulsingHaloLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E39627C01BB54D91005E0CF2 /* PulsingHaloLayer.m */; };
-		E3987EA31BE8B8BD00EBE487 /* CPActivityType.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3987EA21BE8B8BD00EBE487 /* CPActivityType.plist */; settings = {ASSET_TAGS = (); }; };
-		E3987EA61BE8BDBA00EBE487 /* NSString+activityType.m in Sources */ = {isa = PBXBuildFile; fileRef = E3987EA51BE8BDBA00EBE487 /* NSString+activityType.m */; settings = {ASSET_TAGS = (); }; };
+		E3987EA31BE8B8BD00EBE487 /* CPActivityType.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3987EA21BE8B8BD00EBE487 /* CPActivityType.plist */; };
+		E3987EA61BE8BDBA00EBE487 /* NSString+activityType.m in Sources */ = {isa = PBXBuildFile; fileRef = E3987EA51BE8BDBA00EBE487 /* NSString+activityType.m */; };
 		E3A471731BB3A85300973197 /* CPNearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A471181BB3A85300973197 /* CPNearViewController.m */; };
 		E3A471741BB3A85300973197 /* CPBaseViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A4711C1BB3A85300973197 /* CPBaseViewCell.m */; };
 		E3A471761BB3A85300973197 /* Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A471251BB3A85300973197 /* Aspects.m */; };
@@ -4129,7 +4129,7 @@
 				TargetAttributes = {
 					E31E4BD11BAD47A500902B34 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = K89RQ3A2PQ;
+						DevelopmentTeam = KKHZA7GEFH;
 					};
 				};
 			};
@@ -4913,8 +4913,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Hao Sun (VBUTLMUHXY)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hao Sun (VBUTLMUHXY)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4943,8 +4943,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Hao Sun (VBUTLMUHXY)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hao Sun (VBUTLMUHXY)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

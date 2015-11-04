@@ -10,7 +10,7 @@
 #import "CPVisitorTableViewCell.h"
 #import "NSDate+Category.h"
 #import "CPTaInfo.h"
-@interface CPVisitorViewController ()
+@interface CPVisitorViewController ()<headBtnClickdelegete>
 {
     NSInteger _limit;
     NSInteger _ignore;
@@ -174,7 +174,8 @@
         cell.sexView.age = [[dic objectForKey:@"age"] integerValue];
         cell.sexView.gender = [dic objectForKey:@"gender"];
         cell.distanceLabel.text =[self getDidstanceStrWithDistance:[[dic objectForKey:@"distance"] integerValue]];
-        
+        cell.headBtn.tag = indexPath.row;
+        cell.delegate = self;
         
         cell.timeLabel.text =[NSDate formattedTimeFromTimeInterval:[[dic objectForKey:@"viewTime"] longLongValue]];;
         
@@ -201,5 +202,8 @@
 
 
 }
-
+//- (void)headBtnClicked:(UIButton *)button
+//{
+//    NSDictionary *dic = [self.dataSource objectAtIndex:button.tag];
+//}
 @end
