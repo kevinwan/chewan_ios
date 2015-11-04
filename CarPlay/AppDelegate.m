@@ -39,6 +39,7 @@
     [ZYNotificationCenter addObserver:self selector:@selector(loginStateChang) name:NOTIFICATION_HASLOGIN object:nil];
     [ZYNotificationCenter addObserver:self selector:@selector(goLogin) name:NOTIFICATION_GOLOGIN object:nil];
     [ZYNotificationCenter addObserver:self selector:@selector(loginOut) name:NOTIFICATION_LOGINOUT object:nil];
+    [ZYNotificationCenter addObserver:self selector:@selector(clearSDWebImageCache) name:NOTIFICATION_LOGINOUT object:nil];
     [SVProgressHUD setBackgroundColor:ZYColor(0, 0, 0, 0.8)];
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
     // 设置点击空白区域退出键盘
@@ -123,6 +124,11 @@
         }
     }error:NULL];
      */
+}
+
+- (void)clearSDWebImageCache
+{
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

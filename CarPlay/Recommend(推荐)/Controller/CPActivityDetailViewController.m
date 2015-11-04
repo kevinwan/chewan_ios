@@ -46,11 +46,11 @@ static NSString *ID = @"partCell";
         [self.tableView reloadData];
     }];
     
-//    // 切换登录时返回根视图
-//    [[ZYNotificationCenter rac_addObserverForName:NOTIFICATION_HASLOGIN object:nil] subscribeNext:^(id x) {
-//        ZYStrongSelf
-//        [self.navigationController popToRootViewControllerAnimated:NO];
-//    }];
+    // 切换登录时返回根视图
+    [[ZYNotificationCenter rac_addObserverForName:NOTIFICATION_HASLOGIN object:nil] subscribeNext:^(id x) {
+        ZYStrongSelf
+        [self loadData];
+    }];
 }
 
 - (void)loadData
