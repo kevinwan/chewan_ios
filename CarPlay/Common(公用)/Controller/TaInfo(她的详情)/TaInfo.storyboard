@@ -165,6 +165,10 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Sz-pP-dkP">
                                     <rect key="frame" x="0.0" y="280" width="320" height="100"/>
                                     <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="相册蒙层" translatesAutoresizingMaskIntoConstraints="NO" id="Kvn-q0-7cy">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                            <animations/>
+                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="相册最少上传一张照片才能查看他的相册哟" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ujY-WY-5JI">
                                             <rect key="frame" x="46" y="40" width="228" height="15"/>
                                             <animations/>
@@ -196,9 +200,13 @@
                                     <animations/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
+                                        <constraint firstItem="Kvn-q0-7cy" firstAttribute="leading" secondItem="6Sz-pP-dkP" secondAttribute="leading" id="7gW-dh-Uu3"/>
                                         <constraint firstItem="ujY-WY-5JI" firstAttribute="centerX" secondItem="6Sz-pP-dkP" secondAttribute="centerX" id="MrS-do-2kQ"/>
+                                        <constraint firstAttribute="bottom" secondItem="Kvn-q0-7cy" secondAttribute="bottom" id="PMo-vu-Jj3"/>
                                         <constraint firstItem="yEw-TE-TZ0" firstAttribute="centerX" secondItem="6Sz-pP-dkP" secondAttribute="centerX" id="R3n-e1-RXH"/>
                                         <constraint firstAttribute="height" constant="100" id="j0g-U5-s1d"/>
+                                        <constraint firstItem="Kvn-q0-7cy" firstAttribute="top" secondItem="6Sz-pP-dkP" secondAttribute="top" id="kM5-Qf-vIj"/>
+                                        <constraint firstAttribute="trailing" secondItem="Kvn-q0-7cy" secondAttribute="trailing" id="nuU-OJ-Mii"/>
                                         <constraint firstItem="yEw-TE-TZ0" firstAttribute="top" secondItem="ujY-WY-5JI" secondAttribute="bottom" constant="7" id="rXB-IK-JG4"/>
                                         <constraint firstItem="ujY-WY-5JI" firstAttribute="top" secondItem="6Sz-pP-dkP" secondAttribute="top" constant="40" id="urG-hU-E9d"/>
                                     </constraints>
@@ -250,8 +258,9 @@
                         <outlet property="headImg" destination="3f9-7S-2sp" id="8Ku-Uv-rib"/>
                         <outlet property="headImgBg" destination="Jci-jR-nlg" id="jHU-V9-OUQ"/>
                         <outlet property="headStatus" destination="ZwR-bd-dAu" id="Xig-gF-i8M"/>
+                        <outlet property="imgView" destination="Kvn-q0-7cy" id="7hy-Xq-ZE8"/>
                         <outlet property="nickname" destination="XCz-As-8y9" id="zzX-g1-xuN"/>
-                        <outlet property="noImgView" destination="6Sz-pP-dkP" id="vVC-yA-AHN"/>
+                        <outlet property="noImgView" destination="6Sz-pP-dkP" id="zNs-il-KXM"/>
                         <outlet property="sexAndAge" destination="Uq8-Qi-NcR" id="Cri-fV-lLO"/>
                         <outlet property="toolbar" destination="LIe-nR-7fD" id="Q9w-II-86B"/>
                         <outlet property="uploadBtn" destination="yEw-TE-TZ0" id="HG7-e5-27N"/>
@@ -266,5 +275,6 @@
         <image name="logo" width="60" height="60"/>
         <image name="我的活动" width="30" height="30"/>
         <image name="男" width="40" height="15"/>
+        <image name="相册蒙层" width="320" height="100"/>
     </resources>
 </document>

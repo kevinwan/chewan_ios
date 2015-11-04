@@ -70,7 +70,8 @@
             //确定宽度
             calW = w * scale;
             calH = h * scale;
-            
+//            CGAffineTransform at =CGAffineTransformMakeRotation(M_PI/2);
+//            [self setTransform:at];
         }else if(w <= superW){//比屏幕窄，直接居中显示
             
             calW = w;
