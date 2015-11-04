@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZYImageVIew.h"
 
-@interface CPCollectionViewCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet ZYImageVIew *imageView;
+@interface CPCollectionViewCell1 : UICollectionViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @end

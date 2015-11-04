@@ -10,6 +10,7 @@
 #import "CPNameIndex.h"
 #import "CPpinyin.h"
 #import "CPTabBarController.h"
+#import "CPUser.h"
 
 @interface ExerciseMatchingSelectView ()<UIGestureRecognizerDelegate>
 {
@@ -18,6 +19,8 @@
     NSMutableArray *selectArea;
     NSInteger lastParentId;
     NSString *majorType;
+    CPUser *user;
+    NSString *path;
 }
 @property (nonatomic, strong) UIButton *lastTypebtn;
 @end
@@ -56,12 +59,25 @@
     self.areaList=[[NSMutableArray alloc]init];
     [self addMJindex];
     
-    
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hidenself:)];
     tapGesture.delegate=self;
     [self.view addGestureRecognizer:tapGesture];
     
     _addressLable.text=[[NSString alloc]initWithFormat:@"%@  %@  %@  %@",[ZYUserDefaults stringForKey:Province],[ZYUserDefaults stringForKey:City],[ZYUserDefaults stringForKey:District],[ZYUserDefaults stringForKey:Street]];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    path=[NSString stringWithFormat:@"%@.info",CPUserId];
+    user=[NSKeyedUnarchiver unarchiveObjectWithFile:path.documentPath];
+    if (user.isMan) {
+        [self.shuttleBtn setImage:[UIImage imageNamed:@"点击效果"] forState:UIControlStateNormal];
+        self.whetherShuttle=@"1";
+        [ZYUserDefaults setBool:YES forKey:Transfer];
+    }else{
+        [self.shuttleBtn setImage:[UIImage imageNamed:@"初始效果"] forState:UIControlStateNormal];
+        self.whetherShuttle=@"0";
+        [ZYUserDefaults setBool:NO forKey:Transfer];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -103,7 +119,7 @@
     NSDictionary *estabPoint=[[NSDictionary alloc]initWithObjectsAndKeys:@([Tools getLongitude]),@"longitude",@([Tools getLatitude]),@"latitude", nil];
     
     NSDictionary *establish=[[NSDictionary alloc]initWithObjectsAndKeys:[ZYUserDefaults stringForKey:Province],@"province",[ZYUserDefaults stringForKey:City],@"city",[ZYUserDefaults stringForKey:District],@"district",[ZYUserDefaults stringForKey:Street],@"street", nil];
-    NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:[ZYUserDefaults stringForKey:LastType],@"majorType",@([ZYUserDefaults boolForKey:Transfer]),@"transfer",establish,@"establish",estabPoint,@"estabPoint",estabPoint,@"destPoint",establish,@"destination",majorType,@"type", nil];
+    NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:[ZYUserDefaults stringForKey:LastType].type,@"majorType",@([ZYUserDefaults boolForKey:Transfer]),@"transfer",establish,@"establish",estabPoint,@"estabPoint",estabPoint,@"destPoint",establish,@"destination",majorType.type,@"type", nil];
     NSString *path=[[NSString alloc]initWithFormat:@"activity/register?userId=%@&token=%@",[Tools getUserId],[Tools getToken]];
     [ZYNetWorkTool postJsonWithUrl:path params:params success:^(id responseObject) {
         if (CPSuccess) {
@@ -153,7 +169,7 @@
                 majorType=@"足球";
                 break;
             case 2:
-                majorType=@"蓝球";
+                majorType=@"篮球";
                 break;
             case 3:
                 majorType=@"羽毛球";
@@ -376,6 +392,7 @@
         }];
     }
 }
+
 - (IBAction)lastStep:(id)sender {
     _parentId=[[lastParentIds lastObject] integerValue];
     [self getArea];

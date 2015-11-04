@@ -21,7 +21,7 @@
 #import "CPAvatarAuthenticationController.h"
 #import "CPEditInfoViewController.h"
 #import "CPMyDateViewController.h"
-#import "CPCollectionViewCell.h"
+#import "CPCollectionViewCell1.h"
 #import "CPAlbum.h"
 #import "SDPhotoBrowser.h"
 #import "PhotoBroswerVC.h"
@@ -53,7 +53,7 @@
 //    取消下划线
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    [self.albumsCollectionView registerNib:[UINib nibWithNibName:@"CPCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
+    [self.albumsCollectionView registerNib:[UINib nibWithNibName:@"CPCollectionViewCell1" bundle:nil] forCellWithReuseIdentifier:@"cell1"];
     //一个不透明类型的Quartz 2D绘画环境,相当于一个画布,你可以在上面任意绘画
 //    CGContextRef context = UIGraphicsGetCurrentContext();
     
@@ -374,8 +374,8 @@
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"cell";
-     CPCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    static NSString *cellIdentifier = @"cell1";
+     CPCollectionViewCell1 *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     if (indexPath.row==0) {
         [cell.imageView setImage:[UIImage imageNamed:@"相机"]];
     }else{

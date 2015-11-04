@@ -464,8 +464,8 @@ static NSString *ID = @"cell";
         textL.centerY = _tipView.middleY;
         
         CPMySwitch *freeTimeBtn = [CPMySwitch new];
-        [freeTimeBtn setOnImage:[UIImage imageNamed:@"btn_youkong"]];
-        [freeTimeBtn setOffImage:[UIImage imageNamed:@"btn_meikong"]];
+        [freeTimeBtn setOnImage:[UIImage imageNamed:@"btn_meikong"]];
+        [freeTimeBtn setOffImage:[UIImage imageNamed:@"btn_youkong"]];
         freeTimeBtn.on = [ZYUserDefaults boolForKey:FreeTimeKey];
         [freeTimeBtn sizeToFit];
         [_tipView addSubview:freeTimeBtn];
@@ -474,14 +474,14 @@ static NSString *ID = @"cell";
             ZYStrongSelf
             CPGoLogin(@"修改状态");
             
-            NSString *url = [NSString stringWithFormat:@"user/%@/info?token=%@",CPUserId,CPToken];
-            [ZYUserDefaults setBool:btn.on forKey:FreeTimeKey];
+            NSString *url = [NSString stringWithFormat:@"user/%@/info?token=%@",CPUserId, CPToken];
             btn.on = !btn.on;
             if (btn.on) {
-                textL.text = @"无聊中～小伙伴可以邀你～";
-                [ZYNetWorkTool postJsonWithUrl:url params:@{@"idle" : @(YES)} success:^(id responseObject) {
+                textL.text = @"忙碌中～小伙伴不可邀你～";
+                [ZYNetWorkTool postJsonWithUrl:url params:@{@"idle" : @(NO)} success:^(id responseObject) {
                     if (CPSuccess){
-                        [self showInfo:@"有空"];
+                        [ZYUserDefaults setBool:btn.on forKey:FreeTimeKey];
+                        [self showInfo:@"没空"];
                     }else{
                         btn.on = NO;
                         [self showInfo:CPErrorMsg];
@@ -490,10 +490,11 @@ static NSString *ID = @"cell";
                     btn.on = NO;
                 }];
             }else{
-                textL.text = @"忙碌中～小伙伴不可邀你～";
-                [ZYNetWorkTool postJsonWithUrl:url params:@{@"idle" : @(NO)} success:^(id responseObject) {
+                textL.text = @"无聊中～小伙伴可以邀你～";
+                [ZYNetWorkTool postJsonWithUrl:url params:@{@"idle" : @(YES)} success:^(id responseObject) {
                     if (CPSuccess){
-                        [self showInfo:@"没空"];
+                        [ZYUserDefaults setBool:btn.on forKey:FreeTimeKey];
+                        [self showInfo:@"有空"];
                     }else{
                         btn.on = YES;
                         [self showInfo:CPErrorMsg];

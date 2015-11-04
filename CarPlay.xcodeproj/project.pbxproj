@@ -94,6 +94,8 @@
 		6BD619DF1BE7411500A4589B /* SDBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD619D91BE7411500A4589B /* SDBrowserImageView.m */; };
 		6BD619E01BE7411500A4589B /* SDPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD619DB1BE7411500A4589B /* SDPhotoBrowser.m */; };
 		6BD619E11BE7411500A4589B /* SDWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD619DE1BE7411500A4589B /* SDWaitingView.m */; };
+		6BD619E51BEA269000A4589B /* CPCollectionViewCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BD619E31BEA269000A4589B /* CPCollectionViewCell1.xib */; };
+		6BD619E61BEA269000A4589B /* CPCollectionViewCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD619E41BEA269000A4589B /* CPCollectionViewCell1.m */; };
 		6BDA2C821BD4DA420032FFF1 /* CPpinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDA2C811BD4DA420032FFF1 /* CPpinyin.m */; };
 		6BDA2C851BD4DABA0032FFF1 /* CPNameIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDA2C841BD4DABA0032FFF1 /* CPNameIndex.m */; };
 		6BDA2C871BD511F10032FFF1 /* OtherMatchingSelectView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BDA2C861BD511F10032FFF1 /* OtherMatchingSelectView.storyboard */; };
@@ -763,6 +765,9 @@
 		6BD619DC1BE7411500A4589B /* SDPhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowserConfig.h; sourceTree = "<group>"; };
 		6BD619DD1BE7411500A4589B /* SDWaitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWaitingView.h; sourceTree = "<group>"; };
 		6BD619DE1BE7411500A4589B /* SDWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWaitingView.m; sourceTree = "<group>"; };
+		6BD619E21BEA269000A4589B /* CPCollectionViewCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPCollectionViewCell1.h; sourceTree = "<group>"; };
+		6BD619E31BEA269000A4589B /* CPCollectionViewCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPCollectionViewCell1.xib; sourceTree = "<group>"; };
+		6BD619E41BEA269000A4589B /* CPCollectionViewCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPCollectionViewCell1.m; sourceTree = "<group>"; };
 		6BDA2C801BD4DA420032FFF1 /* CPpinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPpinyin.h; sourceTree = "<group>"; };
 		6BDA2C811BD4DA420032FFF1 /* CPpinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPpinyin.m; sourceTree = "<group>"; };
 		6BDA2C831BD4DABA0032FFF1 /* CPNameIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNameIndex.h; sourceTree = "<group>"; };
@@ -2021,6 +2026,9 @@
 		6BDA2CB21BD8E43D0032FFF1 /* CPAlbumsCollectionCell */ = {
 			isa = PBXGroup;
 			children = (
+				6BD619E21BEA269000A4589B /* CPCollectionViewCell1.h */,
+				6BD619E41BEA269000A4589B /* CPCollectionViewCell1.m */,
+				6BD619E31BEA269000A4589B /* CPCollectionViewCell1.xib */,
 				6BDA2CB61BD8E46A0032FFF1 /* CPCollectionViewCell.h */,
 				6BDA2CB71BD8E46A0032FFF1 /* CPCollectionViewCell.m */,
 				6BDA2CB81BD8E46A0032FFF1 /* CPCollectionViewCell.xib */,
@@ -4328,6 +4336,7 @@
 				6D2AD8D01BCF72A30099CFD7 /* OfficialAdmin@3x.png in Resources */,
 				6D2AC13D1BCE5A5100201A8E /* chatBar_colorMore_locationSelected@2x.png in Resources */,
 				6D2AC1121BCE5A5100201A8E /* chatBar_more_face.png in Resources */,
+				6BD619E51BEA269000A4589B /* CPCollectionViewCell1.xib in Resources */,
 				6D2AC17A1BCE5A5100201A8E /* groupPublicHeader@2x.png in Resources */,
 				E3884D621BD1FF1E00A65BE0 /* launchpad@2x.png in Resources */,
 				6D2AC1381BCE5A5100201A8E /* chatBar_colorMore_audioCall@2x.png in Resources */,
@@ -4696,6 +4705,7 @@
 				E31B13471BB9312D00B51696 /* UIImage+Color.m in Sources */,
 				E3A68BBE1BBB8846002F4F75 /* CPConcernMyCell.m in Sources */,
 				E31B134F1BB9312D00B51696 /* UIImage+ReMake.m in Sources */,
+				6BD619E61BEA269000A4589B /* CPCollectionViewCell1.m in Sources */,
 				E37C10BA1BBB80C100E1A6A2 /* CPConcernMyController.m in Sources */,
 				E3A471931BB3A85300973197 /* CPTabBarController.m in Sources */,
 				6D2ABFFA1BCE582100201A8E /* EMNavigationController.m in Sources */,

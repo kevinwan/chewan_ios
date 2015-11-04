@@ -15,6 +15,7 @@
 #import "UzysAssetsPickerController.h"
 #import "CPHisDateViewController.h"
 #import "PhotoBroswerVC.h"
+#import "CPCollectionViewCell1.h"
 
 @interface CPTaInfo ()<UIAlertViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate, UzysAssetsPickerControllerDelegate>
 {
@@ -41,9 +42,10 @@
     [self.headStatus.layer setMasksToBounds:YES];
     [self.headStatus.layer setCornerRadius:11.0];
 //    self.noImgView.alpha=0.35;
-    [self.noImgView setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.35]];
+//    [self.noImgView setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.35]];
    
     [self.albumsCollectionView registerNib:[UINib nibWithNibName:@"CPCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
+    [self.albumsCollectionView registerNib:[UINib nibWithNibName:@"CPCollectionViewCell1" bundle:nil] forCellWithReuseIdentifier:@"cell1"];
     for (id view in self.toolbar.subviews) {
         if ([view isKindOfClass:[UIImageView class]]) {
             [view removeFromSuperview];
@@ -68,6 +70,7 @@
     NSString *path=[NSString stringWithFormat:@"%@.info",CPUserId];
     currentUser=[NSKeyedUnarchiver unarchiveObjectWithFile:path.documentPath];
     [self getData];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -76,6 +79,12 @@
 
 //获取TA的详情数据
 -(void)getData{
+    if ([ZYUserDefaults boolForKey:CPHasAlbum]) {
+        [self.noImgView setHidden:YES];
+    }else{
+        [self.noImgView setHidden:NO];
+    }
+    
     if (_userId) {
         if(CPIsLogin){
             NSString *path=[[NSString alloc]initWithFormat:@"user/%@/info?viewUser=%@&token=%@",_userId,[Tools getUserId],[Tools getToken]];
@@ -123,12 +132,8 @@
     }
     
     [self.carLogoImg zySetImageWithUrl:user.car.logo placeholderImage:nil];
-    
     [self.albumsCollectionView reloadData];
     
-    if (CPHasAlbum) {
-        [self.noImgView setHidden:YES];
-    }
     if (user.subscribeFlag) {
         [self.attentionBtn setTitle:@"已关注" forState:UIControlStateNormal];
         [self.attentionBtn setBackgroundColor:[Tools getColor:@"dddddd"]];
@@ -288,7 +293,9 @@
                 [albums insertObject:albumModel atIndex:0];
                 user.album=albums;
                 [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
-                [self.albumsCollectionView reloadData];
+                if (i==arr.count-1) {
+                    [self getData];
+                }
             }else{
                 [self showError:responseObject[@"errmsg"]];
             }
@@ -317,11 +324,19 @@
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"cell";
-    CPCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    if ([ZYUserDefaults boolForKey:CPHasAlbum]) {
+        static NSString *cellIdentifier = @"cell1";
+        CPCollectionViewCell1 *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
         CPAlbum *ablum=(CPAlbum *)user.album[indexPath.row];
-    [cell.imageView zySetImageWithUrl:ablum.url placeholderImage:nil];
-    return cell;
+        [cell.imageView zySetImageWithUrl:ablum.url placeholderImage:[UIImage imageNamed:@"logo"]];
+        return cell;
+    }else{
+        static NSString *cellIdentifier = @"cell";
+        CPCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+        CPAlbum *ablum=(CPAlbum *)user.album[indexPath.row];
+        [cell.imageView zy_setBlurImageWithUrl:ablum.url];
+        return cell;
+    }
 }
 //图片大图浏览
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -340,9 +355,6 @@
             UIImageView *imagevC=[[UIImageView alloc]init];
             [imagevC setContentMode:UIViewContentModeScaleAspectFill];
             [imagevC zySetImageWithUrl:[user.album[i] url] placeholderImage:[UIImage imageNamed:@"logo"]];
-//            [imagevC zySetImageWithUrl:[user.album[i] url] placeholderImage:[UIImage imageNamed:@"logo"] completion:^(UIImage *image) {
-//                [imagevC setImage:image];
-//            }];
             pbModel.sourceImageView = imagevC;
             [modelsM addObject:pbModel];
         }

@@ -15,6 +15,7 @@
 #import "CPNavigationController.h"
 #import "ChatListViewController.h"
 #import "UMSocial.h"
+#import "SDImageCache.h"
 
 @interface AppDelegate ()<UITabBarControllerDelegate,CLLocationManagerDelegate,UIAlertViewDelegate>
 
@@ -39,6 +40,7 @@
     [ZYNotificationCenter addObserver:self selector:@selector(loginStateChang) name:NOTIFICATION_HASLOGIN object:nil];
     [ZYNotificationCenter addObserver:self selector:@selector(goLogin) name:NOTIFICATION_GOLOGIN object:nil];
     [ZYNotificationCenter addObserver:self selector:@selector(loginOut) name:NOTIFICATION_LOGINOUT object:nil];
+    [ZYNotificationCenter addObserver:self selector:@selector(clearSDWebImageCache) name:NOTIFICATION_CLEANSDCACSHEIMAGE object:nil];
     [SVProgressHUD setBackgroundColor:ZYColor(0, 0, 0, 0.8)];
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
     // 设置点击空白区域退出键盘
@@ -123,6 +125,12 @@
         }
     }error:NULL];
      */
+}
+
+- (void)clearSDWebImageCache
+{
+    [[SDImageCache sharedImageCache] clearMemory];
+    [[SDImageCache sharedImageCache] cleanDisk];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -312,6 +320,11 @@
          [ZYNotificationCenter postNotificationName:NOTIFICATION_LOGINSUCCESS object:nil userInfo:@{NOTIFICATION_LOGINSUCCESS:@(NO)}];
     }];
     
+}
+
+- (void)dealloc
+{
+    [ZYNotificationCenter removeObserver:self];
 }
 
 @end

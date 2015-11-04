@@ -7,13 +7,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="gTV-IL-0wX" customClass="CPCollectionViewCell">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CPCollectionViewCell1">
             <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PXl-EO-yum" customClass="ZYImageVIew">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PXl-EO-yum">
                         <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                         <animations/>
                     </imageView>
@@ -29,7 +29,7 @@
                 <constraint firstItem="PXl-EO-yum" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="tzI-p8-0tI"/>
             </constraints>
             <connections>
-                <outlet property="imageView" destination="PXl-EO-yum" id="CDF-Mf-dMt"/>
+                <outlet property="imageView" destination="PXl-EO-yum" id="HVV-lO-3TX"/>
             </connections>
         </collectionViewCell>
     </objects>

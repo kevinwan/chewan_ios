@@ -55,6 +55,7 @@
 #define CPFailure       ([responseObject[@"result"] intValue] == 1)
 #define CPPlaceHolderImage [UIImage imageNamed:@"未认证-审核中"]
 #define CPHasAlbum @"CPHasAlbum"
+
 //登录状态改变
 #define NOTIFICATION_LOGINCHANGE @"loginStatusChange"
 #define NOTIFICATION_ROOTCONTROLLERCHANGETOTAB @"rootControllerChangeToTab"
@@ -65,6 +66,9 @@
 #define THIRDPARTYLOGINACCOUNT @"3partyLoginAccount"
 #define CPReRefreshNotification @"CPReRefreshNotification"
 #define CPSelectModelFilePath @"selectModel.data".documentPath
+
+//清理SD缓存图片
+#define NOTIFICATION_CLEANSDCACSHEIMAGE @"cleanSDCacheImage"
 //开始意向匹配
 #define NOTIFICATION_STARTMATCHING @"startMatching"
 
