@@ -72,7 +72,8 @@ static NSString *ID = @"cell";
     }];
     [[ZYNotificationCenter rac_addObserverForName:@"DID_LOG_OUT_SUCCESS" object:nil] subscribeNext:^(id x) {
         ZYStrongSelf
-        self.params = [CPNearParams new];
+        self.params = nil;
+        [self.datas removeAllObjects];
         [self loadDataWithHeader:nil];
     }];
 }
