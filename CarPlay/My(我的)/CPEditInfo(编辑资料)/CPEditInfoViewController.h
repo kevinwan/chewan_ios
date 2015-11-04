@@ -17,4 +17,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *photoAuthStatus;
 @property (weak, nonatomic) IBOutlet UILabel *licenseAuthStatus;
 @property(nonatomic,strong)ZHPickView *pickview;
+@property (weak, nonatomic) IBOutlet UIImageView *rightArrow1;
+@property (weak, nonatomic) IBOutlet UIImageView *rightArrow2;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *right2;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *right1;
 @end

@@ -41,6 +41,16 @@
     [self.age setText:[NSString stringWithFormat:@"%zd",user.age]];
     [self.photoAuthStatus setText:user.photoAuthStatus];
     [self.licenseAuthStatus setText:user.licenseAuthStatus];
+    if (![user.photoAuthStatus isEqualToString:@"未认证"] && ![user.photoAuthStatus isEqualToString:@"认证未通过"]) {
+        self.right1.constant=-8.0;
+        [self.rightArrow1 setHidden:YES];
+    }
+    
+    if (![user.licenseAuthStatus isEqualToString:@"未认证"] && ![user.licenseAuthStatus isEqualToString:@"认证未通过"]) {
+        self.right2.constant=-8.0;
+        [self.rightArrow2 setHidden:YES];
+    }
+    
     self.tableView.tableFooterView=[[UIView alloc]initWithFrame:CGRectZero];
     [self.tableView setFrame:CGRectMake(0, 10, ZYScreenWidth, ZYScreenHeight-10)];
 }
@@ -75,16 +85,21 @@
             break;
         case 5:
         {
-            CPAvatarAuthenticationController *CPAvatarAuthenticationController = [UIStoryboard storyboardWithName:@"CPAvatarAuthenticationController" bundle:nil].instantiateInitialViewController;
-            [self.navigationController pushViewController:CPAvatarAuthenticationController animated:YES];
-        }
+            if ([user.photoAuthStatus isEqualToString:@"未认证"] || [user.photoAuthStatus isEqualToString:@"认证未通过"]) {
+                CPAvatarAuthenticationController *CPAvatarAuthenticationController = [UIStoryboard storyboardWithName:@"CPAvatarAuthenticationController" bundle:nil].instantiateInitialViewController;
+                [self.navigationController pushViewController:CPAvatarAuthenticationController animated:YES];
+            }
             break;
+        }
         case 6:
         {
-            CPCarOwnersCertificationController *CPCarOwnersCertification = [UIStoryboard storyboardWithName:@"CPCarOwnersCertification" bundle:nil].instantiateInitialViewController;
-            [self.navigationController pushViewController:CPCarOwnersCertification animated:YES];
-        }
+            if ([user.licenseAuthStatus isEqualToString:@"未认证"] || [user.licenseAuthStatus isEqualToString:@"认证未通过"]) {
+                CPCarOwnersCertificationController *CPCarOwnersCertification = [UIStoryboard storyboardWithName:@"CPCarOwnersCertification" bundle:nil].instantiateInitialViewController;
+                [self.navigationController pushViewController:CPCarOwnersCertification animated:YES];
+            }
             break;
+        }
+            
         default:
             break;
     }

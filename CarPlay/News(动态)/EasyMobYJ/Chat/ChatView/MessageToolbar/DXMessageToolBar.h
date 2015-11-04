@@ -18,7 +18,8 @@
 #import "DXFaceView.h"
 #import "DXRecordView.h"
 
-#define kInputTextViewMinHeight 36
+//#define kInputTextViewMinHeight 36
+#define kInputTextViewMinHeight 43
 #define kInputTextViewMaxHeight 200
 #define kHorizontalPadding 8
 #define kVerticalPadding 5

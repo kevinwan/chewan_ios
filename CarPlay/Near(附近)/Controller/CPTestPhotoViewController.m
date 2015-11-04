@@ -97,7 +97,7 @@
             pbModel.mid = i + 1;
             pbModel.title = [NSString stringWithFormat:@"这是标题%@",@(i+1)];
             pbModel.desc = [NSString stringWithFormat:@"我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字%@",@(i+1)];
-            pbModel.image_HD_U = networkImages[i];
+//            pbModel.image_HD_U = networkImages[i];
             
             //源frame
             UIImageView *imageV =(UIImageView *) weakSelf.contentView.subviews[i];

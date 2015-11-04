@@ -11,5 +11,6 @@
 @interface CPAlbum : NSObject
 @property (nonatomic, copy) NSString *key;
 @property (nonatomic, copy) NSString *url;
+@property (nonatomic, copy) NSString *photoId;
 @property (nonatomic, assign) long long uploadTime;
 @end

@@ -50,7 +50,7 @@
         
         _detailLabel = [[UILabel alloc] initWithFrame:CGRectMake(65, 30, 175, 20)];
         _detailLabel.backgroundColor = [UIColor clearColor];
-        _detailLabel.font = [UIFont systemFontOfSize:15];
+        _detailLabel.font = [UIFont systemFontOfSize:12];
         _detailLabel.textColor = [UIColor lightGrayColor];
         [self.contentView addSubview:_detailLabel];
         
@@ -61,7 +61,7 @@
         
         
         _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,kDeviceWidth, 1)];
-        _lineView.backgroundColor = RGBACOLOR(207, 210, 213, 0.7);
+        _lineView.backgroundColor = UIColorFromRGB(0xefefef);
         
         //感兴趣的模块  需要显示头像
         ///
@@ -121,7 +121,7 @@
     CGSize size =  [self.textLabel.text sizeWithFont:self.textLabel.font maxW:200];
     NSLog(@"size = %@",NSStringFromCGSize(size));
     
-    self.textLabel.frame = CGRectMake(65, 7, 175, 20);
+    self.textLabel.frame = CGRectMake(CGRectGetMaxX(_HeadIV.frame)+10, 7, 175, 20);
 //    _cpSexView.frame = CGRectMake(68, 7, 45, 17);
     
     _detailLabel.text = _detailMsg;

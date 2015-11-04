@@ -324,7 +324,11 @@
         __block NSUInteger compleCount = 0;
     
         for (int i = 0; i < arr.count; i++) {
-            ZYHttpFile *imageFile = [ZYHttpFile fileWithName:@"attach" data:UIImageJPEGRepresentation(arr[i], 0.4) mimeType:@"image/jpeg" filename:@"a1.jpg"];
+            NSData *data = UIImageJPEGRepresentation(arr[i], 0.4);
+            NSData *data1 = UIImagePNGRepresentation(arr[i]);
+            DLog(@"%f",data.length/1024.0);
+            DLog(@"%lu",data1.length/1024);
+            ZYHttpFile *imageFile = [ZYHttpFile fileWithName:@"attach" data:data mimeType:@"image/jpeg" filename:@"a1.jpg"];
             [self showLoading];
             [ZYNetWorkTool postFileWithUrl:path params:nil files:@[imageFile] success:^(id responseObject) {
                 if (CPSuccess) {
@@ -345,7 +349,11 @@
                         }
                     }
                     
-                    [self.albumsCollectionView reloadData];
+                    if (i == arr.count-1) {
+                        [self getData];
+                    }
+                    
+//                    [self.albumsCollectionView reloadData];
                 }else{
                     [self showError:responseObject[@"errmsg"]];
                 }
@@ -383,20 +391,20 @@
     }else{
         __weak typeof(self) weakSelf=self;
         [PhotoBroswerVC show:self userId:CPUserId type:PhotoBroswerVCTypePush index:indexPath.row-1 photoModelBlock:^NSArray *{
-            NSArray *networkImages=[[NSArray alloc]initWithArray:allAlbumsUrl];
+//            NSArray *networkImages=[[NSArray alloc]initWithArray:allAlbumsUrl];
             
-            NSMutableArray *modelsM = [NSMutableArray arrayWithCapacity:networkImages.count];
-            for (NSUInteger i = 0; i< networkImages.count; i++) {
+            NSMutableArray *modelsM = [NSMutableArray arrayWithCapacity:user.album.count];
+            for (NSUInteger i = 0; i< user.album.count; i++) {
                 
                 PhotoModel *pbModel=[[PhotoModel alloc] init];
                 pbModel.mid = i + 1;
                 pbModel.title = [NSString stringWithFormat:@"这是标题%@",@(i+1)];
                 pbModel.desc = [NSString stringWithFormat:@"我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字我是一段很长的描述文字%@",@(i+1)];
-                pbModel.image_HD_U = networkImages[i];
+                pbModel.album = user.album[i];
                 
                 UIImageView *imagevC=[[UIImageView alloc]init];
-                [imagevC setContentMode:UIViewContentModeScaleToFill];
-                [imagevC zySetImageWithUrl:networkImages[i] placeholderImage:[UIImage imageNamed:@"logo"]];
+                [imagevC setContentMode:UIViewContentModeScaleAspectFill];
+                [imagevC zySetImageWithUrl:[user.album[i] url] placeholderImage:[UIImage imageNamed:@"logo"]];
                 
                 pbModel.sourceImageView = imagevC;
                 

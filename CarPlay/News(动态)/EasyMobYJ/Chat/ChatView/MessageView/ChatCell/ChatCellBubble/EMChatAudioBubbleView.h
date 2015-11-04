@@ -16,6 +16,9 @@
 
 #define ANIMATION_IMAGEVIEW_SIZE 15 // 小喇叭图片尺寸
 #define ANIMATION_IMAGEVIEW_SPEED 1 // 小喇叭动画播放速度
+//小喇叭宽高j
+#define ANIMATION_IMAGEVIEW_SIZE_WIDTH 10 // 小喇叭图片尺寸
+#define ANIMATION_IMAGEVIEW_SIZE_HEIGH 14 // 小喇叭图片尺寸
 
 
 #define ANIMATION_TIME_IMAGEVIEW_PADDING 5 // 时间与动画间距
