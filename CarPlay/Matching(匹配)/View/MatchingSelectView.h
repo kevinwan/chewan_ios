@@ -40,5 +40,7 @@
 @property (nonatomic, strong) NSMutableArray *areaListBeforeSort;
 
 @property (nonatomic, strong) MJNIndexView *indexView;
+- (IBAction)lastStep:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIButton *lastStepBtn;
 @end

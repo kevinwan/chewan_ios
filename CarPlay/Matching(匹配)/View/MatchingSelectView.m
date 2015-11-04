@@ -10,12 +10,19 @@
 #import "CPNameIndex.h"
 #import "CPpinyin.h"
 #import "CPUser.h"
+#import "CPTabBarController.h"
 
-@interface MatchingSelectView ()
+@interface MatchingSelectView ()<UIGestureRecognizerDelegate>
 {
-    NSString *path;
+    UIView *corentView;
+    NSMutableArray *lastParentIds;
+    NSMutableArray *selectArea;
+    NSInteger lastParentId;
+    NSString *majorType;
     CPUser *user;
+    NSString *path;
 }
+@property (nonatomic, strong) UIButton *lastTypebtn;
 @end
 
 @implementation MatchingSelectView
@@ -23,6 +30,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.whetherShuttle=@"0";
+    lastParentIds=[[NSMutableArray alloc]init];
+    selectArea=[[NSMutableArray alloc]init];
     [self.selectView.layer setMasksToBounds:YES];
     [self.selectView.layer setCornerRadius:10.0];
     [self.selectPlace.layer setMasksToBounds:YES];
@@ -46,12 +55,12 @@
     self.areaList=[[NSMutableArray alloc]init];
     [self addMJindex];
     
-    
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hidenself)];
-    [self.view addGestureRecognizer:tapGesture];
-    
     _addressLable.text=[[NSString alloc]initWithFormat:@"%@  %@  %@  %@",[ZYUserDefaults stringForKey:Province],[ZYUserDefaults stringForKey:City],[ZYUserDefaults stringForKey:District],[ZYUserDefaults stringForKey:Street]];
     _locationAddressLable.text=[[NSString alloc]initWithFormat:@"%@  %@  %@  %@",[ZYUserDefaults stringForKey:Province],[ZYUserDefaults stringForKey:City],[ZYUserDefaults stringForKey:District],[ZYUserDefaults stringForKey:Street]];
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hidenself:)];
+    tapGesture.delegate=self;
+    [self.view addGestureRecognizer:tapGesture];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -73,7 +82,7 @@
 }
 
 -(void)addMJindex{
-    self.indexView = [[MJNIndexView alloc] initWithFrame:CGRectMake(190.0/320.0*ZYScreenWidth, 170.0/568.0*ZYScreenHeight, 100.0/320.0*ZYScreenWidth, 230.0/568.0*ZYScreenHeight)];
+    self.indexView = [[MJNIndexView alloc] initWithFrame:CGRectMake(190.0/320.0*ZYScreenWidth, 170.0, 100.0/320.0*ZYScreenWidth, 230.0)];
     //    }
     _indexView.dataSource = self;
     _indexView.fontColor = [Tools getColor:@"48d1d5"];
@@ -100,18 +109,22 @@
 - (IBAction)selectPlaceClick:(id)sender {
     _locationAddressView.alpha=1.0;
     _selectView.alpha=0.0;
+    corentView=_locationAddressView;
 }
 //
 - (IBAction)matchingBtnClick:(id)sender {
     NSDictionary *estabPoint=[[NSDictionary alloc]initWithObjectsAndKeys:@([Tools getLongitude]),@"longitude",@([Tools getLatitude]),@"latitude", nil];
     
     NSDictionary *establish=[[NSDictionary alloc]initWithObjectsAndKeys:[ZYUserDefaults stringForKey:Province],@"province",[ZYUserDefaults stringForKey:City],@"city",[ZYUserDefaults stringForKey:District],@"district",[ZYUserDefaults stringForKey:Street],@"street", nil];
-    NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:[ZYUserDefaults stringForKey:LastType].type,@"majorType",[ZYUserDefaults stringForKey:LastType],@"type",@([ZYUserDefaults boolForKey:Transfer]),@"transfer",establish,@"establish",estabPoint,@"estabPoint",estabPoint,@"destPoint",establish,@"destination",@"AA制",@"pay", nil];
+    NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:[ZYUserDefaults stringForKey:LastType].type,@"majorType",[ZYUserDefaults stringForKey:LastType],@"type",@([ZYUserDefaults boolForKey:Transfer]),@"transfer",establish,@"establish",estabPoint,@"estabPoint",estabPoint,@"destPoint",establish,@"destination", nil];
     NSString *path=[[NSString alloc]initWithFormat:@"activity/register?userId=%@&token=%@",[Tools getUserId],[Tools getToken]];
     [ZYNetWorkTool postJsonWithUrl:path params:params success:^(id responseObject) {
         if (CPSuccess) {
-            NSLog(@"%@",responseObject);
-            [[[UIAlertView alloc]initWithTitle:@"测试提示" message:@"发布成功了，手动点击空白出退回先" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+            [self dismissViewControllerAnimated:YES completion:nil];
+            CPTabBarController *tab = (CPTabBarController *)self.view.window.rootViewController;
+            [ZYNotificationCenter postNotificationName:NOTIFICATION_STARTMATCHING object:nil];
+            
+            [tab setSelectedIndex:4];
         }else{
             NSString *errmsg =[responseObject objectForKey:@"errmsg"];
             [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
@@ -124,9 +137,22 @@
 - (IBAction)closeLocatoinAddressView:(id)sender {
     _locationAddressView.alpha=0.0;
     _selectView.alpha=1.0;
+    corentView=_selectView;
 }
 - (IBAction)confirm:(id)sender {
-    
+    _locationAddressView.alpha=0.0;
+    _addressSelection.alpha=0.0;
+    _selectView.alpha=1.0;
+    _indexView.alpha=0.0;
+    NSString *area=[[NSString alloc]initWithFormat:@"%@  %@  %@",[ZYUserDefaults stringForKey:City],[ZYUserDefaults stringForKey:District],[ZYUserDefaults stringForKey:Street]];
+    [self.selectPlace setTitle:area forState:UIControlStateNormal];
+    [self.selectPlace setImage:nil forState:UIControlStateNormal];
+    [self.selectPlace setTitleColor:[Tools getColor:@"333333"] forState:UIControlStateNormal];
+    [self.selectPlace setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
+    CGSize titleSize = [area sizeWithFont:ZYFont14 maxW:MAXFLOAT];
+    if (titleSize.width > _selectPlace.width) {
+        [self.selectPlace setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
+    }
 }
 
 - (IBAction)reSelection:(id)sender {
@@ -134,6 +160,11 @@
     _addressSelection.alpha=1.0;
     _parentId=0;
     _indexView.alpha=1.0;
+    corentView=_addressSelection;
+    [_lastStepBtn setHidden:YES];
+    [lastParentIds removeAllObjects];
+    [selectArea removeAllObjects];
+    _locationAddressLable.text=[[NSString alloc]initWithFormat:@"%@  %@  %@  %@",[ZYUserDefaults stringForKey:Province],[ZYUserDefaults stringForKey:City],[ZYUserDefaults stringForKey:District],[ZYUserDefaults stringForKey:Street]];
     [self getArea];
 }
 - (IBAction)closeAddressSelectionView:(id)sender {
@@ -141,6 +172,8 @@
     _selectView.alpha=0.0;
     _addressSelection.alpha=0.0;
     _indexView.alpha=0.0;
+    corentView=_locationAddressView;
+    [lastParentIds removeAllObjects];
 }
 
 //获取省市列表
@@ -281,18 +314,63 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
     NSString *code=[NSString stringWithFormat:@"%@",((CPNameIndex*)[[self.areaList objectAtIndex:indexPath.section] objectAtIndex:indexPath.row])._code];
-    if ([code length]<10) {
+    NSString *area=[NSString stringWithFormat:@"%@",((CPNameIndex*)[[self.areaList objectAtIndex:indexPath.section] objectAtIndex:indexPath.row])._lastName];
+    if ([code length]<10 && lastParentId!=[code intValue]) {
+        [lastParentIds addObject:@(_parentId)];
+        lastParentId = [code intValue];
         _parentId=[code intValue];
-        [self getArea];
+        [selectArea addObject:area];
+        self.lastStepBtn.hidden=NO;
+        
+        NSMutableString *areas=[[NSMutableString alloc]init];
+        for (NSString *area in selectArea) {
+            [areas appendFormat:@" %@ ",area];
+        }
+        if ([areas length]>0) {
+            self.locationAddressLable.text=areas;
+        }
+        if ((lastParentId >1000000)) {
+            _locationAddressView.alpha=0.0;
+            _selectView.alpha=1.0;
+            _addressSelection.alpha=0.0;
+            _indexView.alpha=0.0;
+            [self.selectPlace setTitle:areas forState:UIControlStateNormal];
+            [self.selectPlace setImage:nil forState:UIControlStateNormal];
+            [self.selectPlace setTitleColor:[Tools getColor:@"333333"] forState:UIControlStateNormal];
+        }else{
+            [self getArea];
+        }
     }
 }
 
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    if (touch.view != [self view]) {
+        return NO;
+    }
+    return YES;
+}
 
--(void)hidenself{
-    [UIView animateWithDuration:0.25 animations:^{
-        self.view.alpha = 0.0;
-    } completion:^(BOOL finished) {
-        
-    }];
+-(void)hidenself:(UITapGestureRecognizer *)tapGes{
+    CGPoint p = [tapGes locationInView:tapGes.view];
+    CGFloat topBottomY=corentView.y;
+    CGFloat bottomTopY=corentView.y+corentView.height;
+    
+    if (CGRectContainsPoint(CGRectMake(0, 0, ZYScreenWidth, topBottomY), p) || CGRectContainsPoint(CGRectMake(0, bottomTopY, ZYScreenWidth, ZYScreenHeight-bottomTopY), p)) {
+        [UIView animateWithDuration:0.25 animations:^{
+            self.view.alpha = 0.0;
+        } completion:^(BOOL finished) {
+        }];
+    }
+}
+
+- (IBAction)lastStep:(id)sender {
+    _parentId=[[lastParentIds lastObject] integerValue];
+    [self getArea];
+    [lastParentIds removeLastObject];
+    lastParentId = [lastParentIds lastObject];
+    [selectArea removeLastObject];
+    if (![lastParentIds count]) {
+        self.lastStepBtn.hidden=YES;
+    }
 }
 @end
