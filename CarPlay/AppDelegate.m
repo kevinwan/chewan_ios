@@ -322,4 +322,9 @@
     
 }
 
+- (void)dealloc
+{
+    [ZYNotificationCenter removeObserver:self];
+}
+
 @end
