@@ -7,6 +7,7 @@
 //
 
 #import "CPNavigationController.h"
+#import "CPNavigationBar.h"
 
 @interface CPNavigationController ()
 
@@ -25,7 +26,7 @@
     [super viewDidLoad];
     
 //    // 利用kvc对readonly的属性进行赋值 自定义navigationBar
-//    [self setValue:[[ZYNavigationBar alloc] init] forKey:@"navigationBar"];
+    [self setValue:[[CPNavigationBar alloc] init] forKey:@"navigationBar"];
     
     self.navigationBar.barTintColor = [UIColor whiteColor];
 

@@ -124,7 +124,6 @@ static NSString *ID = @"HisDateCell";
             NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"][@"activities"]];
             for (CPActivityModel *model in arr) {
                 model.organizer = self.targetUser;
-                model.organizer.distance = distance;
                 model.organizer.cover = cover;
                 model.isHisDate = YES;
             }
