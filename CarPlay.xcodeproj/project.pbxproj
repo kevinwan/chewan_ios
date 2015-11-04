@@ -507,8 +507,8 @@
 		E39627B81BB5352D005E0CF2 /* CPActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E39627B71BB5352D005E0CF2 /* CPActivityModel.m */; };
 		E39627C11BB54D91005E0CF2 /* MultiplePulsingHaloLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E39627BE1BB54D91005E0CF2 /* MultiplePulsingHaloLayer.m */; };
 		E39627C21BB54D91005E0CF2 /* PulsingHaloLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E39627C01BB54D91005E0CF2 /* PulsingHaloLayer.m */; };
-		E3987EA31BE8B8BD00EBE487 /* CPActivityType.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3987EA21BE8B8BD00EBE487 /* CPActivityType.plist */; settings = {ASSET_TAGS = (); }; };
-		E3987EA61BE8BDBA00EBE487 /* NSString+activityType.m in Sources */ = {isa = PBXBuildFile; fileRef = E3987EA51BE8BDBA00EBE487 /* NSString+activityType.m */; settings = {ASSET_TAGS = (); }; };
+		E3987EA31BE8B8BD00EBE487 /* CPActivityType.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3987EA21BE8B8BD00EBE487 /* CPActivityType.plist */; };
+		E3987EA61BE8BDBA00EBE487 /* NSString+activityType.m in Sources */ = {isa = PBXBuildFile; fileRef = E3987EA51BE8BDBA00EBE487 /* NSString+activityType.m */; };
 		E3A471731BB3A85300973197 /* CPNearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A471181BB3A85300973197 /* CPNearViewController.m */; };
 		E3A471741BB3A85300973197 /* CPBaseViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A4711C1BB3A85300973197 /* CPBaseViewCell.m */; };
 		E3A471761BB3A85300973197 /* Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A471251BB3A85300973197 /* Aspects.m */; };
@@ -4119,7 +4119,7 @@
 				TargetAttributes = {
 					E31E4BD11BAD47A500902B34 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = K89RQ3A2PQ;
+						DevelopmentTeam = 5JY9THVFXV;
 					};
 				};
 			};
@@ -4901,8 +4901,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Hao Sun (VBUTLMUHXY)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hao Sun (VBUTLMUHXY)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4921,7 +4921,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.77iland.carplayinhouse;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8069fa66-9ad4-4073-aeb7-7075cf514c89";
+				PROVISIONING_PROFILE = "4631f3ee-4b3b-4d1b-88ed-960329279336";
 			};
 			name = Debug;
 		};
@@ -4931,8 +4931,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Hao Sun (VBUTLMUHXY)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hao Sun (VBUTLMUHXY)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4951,7 +4951,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.77iland.carplayinhouse;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8069fa66-9ad4-4073-aeb7-7075cf514c89";
+				PROVISIONING_PROFILE = "4631f3ee-4b3b-4d1b-88ed-960329279336";
 			};
 			name = Release;
 		};

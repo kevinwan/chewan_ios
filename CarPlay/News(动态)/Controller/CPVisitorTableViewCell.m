@@ -43,19 +43,19 @@
         [self.contentView addSubview:_sexView];
         
         _timeLabel = [[UILabel alloc] init];
-        _timeLabel.frame = CGRectMake(kDeviceWidth-10-80, 21, 80, 9);
+        _timeLabel.frame = CGRectMake(kDeviceWidth-10-80, 20, 80, 9);
         _timeLabel.backgroundColor = [UIColor clearColor];
-        _timeLabel.textColor = [UIColor grayColor];
+        _timeLabel.textColor = UIColorFromRGB(0xaaaaaa);
         _timeLabel.textAlignment = NSTextAlignmentRight;
-        _timeLabel.font = [UIFont systemFontOfSize:12];
+        _timeLabel.font = [UIFont systemFontOfSize:10];
         [self.contentView addSubview:_timeLabel];
         
         _distanceLabel = [[UILabel alloc] init];
         _distanceLabel.frame = CGRectMake(kDeviceWidth-10-60, CGRectGetMaxY(_timeLabel.frame)+15, 60, 9);
         _distanceLabel.backgroundColor = [UIColor clearColor];
-        _distanceLabel.textColor = [UIColor grayColor];
+        _distanceLabel.textColor = UIColorFromRGB(0xaaaaaa);
         _distanceLabel.textAlignment = NSTextAlignmentRight;
-        _distanceLabel.font = [UIFont systemFontOfSize:12];
+        _distanceLabel.font = [UIFont systemFontOfSize:10];
         [self.contentView addSubview:_distanceLabel];
         
         //分割线
@@ -74,7 +74,15 @@
 - (void)awakeFromNib {
     // Initialization code
 }
-
+- (void)layoutSubviews
+{
+    UIFont *font = [UIFont systemFontOfSize:17];
+    CGSize size = CGSizeMake(320,2000);
+    CGSize labelsize = [self.nameLabel.text sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeCharacterWrap];
+//    self.timeLabel.frame = CGRectMake(0.0, 12.0, labelsize.width+20, 18 );
+    _nameLabel.width = labelsize.width;
+    _sexView.x = CGRectGetMaxX(_nameLabel.frame)+10;
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

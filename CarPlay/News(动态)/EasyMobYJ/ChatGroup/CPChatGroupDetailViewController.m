@@ -277,55 +277,71 @@
         cell.sexView.age = [[dic objectForKey:@"age"] integerValue];
         cell.sexView.gender = [dic objectForKey:@"gender"];
         cell.distanceLabel.text =[self getDidstanceStrWithDistance:[[dic objectForKey:@"distance"] integerValue]];
-        switch ([[dic objectForKey:@"inviteStatus"] integerValue ]) {
-            case 0:
-            {//inviteStatus如果是0，就看beInvitedStatus的值。
-                switch ([[dic objectForKey:@"beInvitedStatus"] integerValue ]) {
-                    case 0:
-                        [cell.inviteBtn setTitle:@"邀请同去" forState:UIControlStateNormal];
-                        cell.inviteBtn.backgroundColor = UIColorFromRGB(0x74ced6);
-                        break;
-                    case 1:
-                        //这个时候点击按钮的话，提示去动态处理
-                        [cell.inviteBtn setTitle:@"邀请同去" forState:UIControlStateNormal];
-                        cell.inviteBtn.backgroundColor = UIColorFromRGB(0x74ced6);
-                        break;
-
-                    case 2:
-                        cell.inviteBtn.hidden = YES;
-                        cell.SendMessageBtn.hidden = NO;
-                        cell.TelBtn.hidden  = NO;
-                        break;
-
-                    case 3:
-                        [cell.inviteBtn setTitle:@"邀请同去" forState:UIControlStateNormal];
-                        cell.inviteBtn.backgroundColor = UIColorFromRGB(0x74ced6);
-                        break;
-                        
-                    default:
-                        break;
+        /*
+         inviteStatus        当前登录用户 邀请 该用户的 状态；
+         0 没有邀请过           1 邀请中
+         2 邀请同意             3 邀请被拒绝
+         beInvitedStatus      该用户是否邀请过 登录用户
+         0 没有邀请过           1 邀请中
+         2 邀请同意             3 邀请被拒绝
+         */
+        //双方有任何有个是2，就显示聊天，否则再去判断
+        if ([[dic objectForKey:@"inviteStatus"] integerValue ] == 2 || [[dic objectForKey:@"beInvitedStatus"] integerValue ] ==2) {
+            cell.inviteBtn.hidden = YES;
+            cell.SendMessageBtn.hidden = NO;
+            cell.TelBtn.hidden  = NO;
+        }else{
+            switch ([[dic objectForKey:@"inviteStatus"] integerValue ]) {
+                case 0:
+                {//inviteStatus如果是0，就看beInvitedStatus的值。
+                    switch ([[dic objectForKey:@"beInvitedStatus"] integerValue ]) {
+                        case 0:
+                            [cell.inviteBtn setTitle:@"邀请同去" forState:UIControlStateNormal];
+                            cell.inviteBtn.backgroundColor = UIColorFromRGB(0x74ced6);
+                            break;
+                        case 1:
+                            //这个时候点击按钮的话，提示去动态处理
+                            [cell.inviteBtn setTitle:@"邀请同去" forState:UIControlStateNormal];
+                            cell.inviteBtn.backgroundColor = UIColorFromRGB(0x74ced6);
+                            break;
+                            
+                        case 2:
+                            cell.inviteBtn.hidden = YES;
+                            cell.SendMessageBtn.hidden = NO;
+                            cell.TelBtn.hidden  = NO;
+                            break;
+                            
+                        case 3:
+                            [cell.inviteBtn setTitle:@"邀请同去" forState:UIControlStateNormal];
+                            cell.inviteBtn.backgroundColor = UIColorFromRGB(0x74ced6);
+                            break;
+                            
+                        default:
+                            break;
+                    }
+                    
                 }
-                
+                    break;
+                case 1:
+                    [cell.inviteBtn setTitle:@"邀请中" forState:UIControlStateNormal];
+                    cell.inviteBtn.backgroundColor = UIColorFromRGB(0x74ced6);
+                    
+                    break;
+                case 2:
+                    cell.inviteBtn.hidden = YES;
+                    cell.SendMessageBtn.hidden = NO;
+                    cell.TelBtn.hidden  = NO;
+                    break;
+                case 3:
+                    [cell.inviteBtn setTitle:@"已拒绝" forState:UIControlStateNormal];
+                    cell.inviteBtn.backgroundColor = [UIColor clearColor];
+                    break;
+                    
+                default:
+                    break;
             }
-                break;
-            case 1:
-                [cell.inviteBtn setTitle:@"邀请中" forState:UIControlStateNormal];
-                cell.inviteBtn.backgroundColor = UIColorFromRGB(0x74ced6);
-
-                break;
-            case 2:
-                cell.inviteBtn.hidden = YES;
-                cell.SendMessageBtn.hidden = NO;
-                cell.TelBtn.hidden  = NO;
-                break;
-            case 3:
-                [cell.inviteBtn setTitle:@"已拒绝" forState:UIControlStateNormal];
-                cell.inviteBtn.backgroundColor = UIColorFromRGB(0x999999);
-                break;
-                
-            default:
-                break;
         }
+        
         
         if ([[dic objectForKey:@"userId"] isEqualToString:CPUserId]) {
             cell.inviteBtn.hidden =YES;

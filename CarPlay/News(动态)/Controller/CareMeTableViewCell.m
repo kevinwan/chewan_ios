@@ -37,9 +37,9 @@
         [self.contentView addSubview:_sexView];
         
         _timeLabel = [[UILabel alloc] init];
-        _timeLabel.frame = CGRectMake(kDeviceWidth-10-80, 21, 80, 9);
+        _timeLabel.frame = CGRectMake(kDeviceWidth-10-80, 20, 80, 9);
         _timeLabel.backgroundColor = [UIColor clearColor];
-        _timeLabel.textColor = [UIColor grayColor];
+        _timeLabel.textColor = UIColorFromRGB(0xaaaaaa);
         _timeLabel.textAlignment = NSTextAlignmentRight;
         _timeLabel.font = [UIFont systemFontOfSize:12];
         [self.contentView addSubview:_timeLabel];
@@ -47,16 +47,22 @@
         _distanceLabel = [[UILabel alloc] init];
         _distanceLabel.frame = CGRectMake(kDeviceWidth-10-60, CGRectGetMaxY(_timeLabel.frame)+15, 60, 9);
         _distanceLabel.backgroundColor = [UIColor clearColor];
-        _distanceLabel.textColor = [UIColor grayColor];
+        _distanceLabel.textColor = UIColorFromRGB(0xaaaaaa);
         _distanceLabel.textAlignment = NSTextAlignmentRight;
         _distanceLabel.font = [UIFont systemFontOfSize:12];
         [self.contentView addSubview:_distanceLabel];
         
         //分割线
-        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 69.5, kDeviceWidth, 0.5)];
-        lineView.backgroundColor = [UIColor grayColor];
+        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 69, kDeviceWidth, 1)];
+        lineView.backgroundColor = UIColorFromRGB(0xefefef);
         [self.contentView addSubview:lineView];
         lineView.alpha = 0.7;
+        
+        
+        UIView *aView = [[UIView alloc] initWithFrame:self.contentView.frame];
+        aView.backgroundColor = UIColorFromRGB(0xf7f7f7);
+        
+        self.selectedBackgroundView = aView;
     }
     return self;
 
@@ -66,5 +72,13 @@
 
     // Configure the view for the selected state
 }
-
+- (void)layoutSubviews
+{
+    UIFont *font = [UIFont systemFontOfSize:17];
+    CGSize size = CGSizeMake(320,2000);
+    CGSize labelsize = [self.nameLabel.text sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeCharacterWrap];
+    //    self.timeLabel.frame = CGRectMake(0.0, 12.0, labelsize.width+20, 18 );
+    _nameLabel.width = labelsize.width;
+    _sexView.x = CGRectGetMaxX(_nameLabel.frame)+10;
+}
 @end
