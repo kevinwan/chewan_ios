@@ -59,6 +59,13 @@ static NSString *ID2 = @"DateCell2";
     [self loadDataWithHeader:nil];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.tableView setContentInset:UIEdgeInsetsZero];
+    [self.tableView setContentOffset:CGPointZero];
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];

@@ -489,6 +489,7 @@
 		E3719A771BDA275C00465DF2 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3719A761BDA275C00465DF2 /* FXBlurView.m */; };
 		E3719AAC1BDA5D9000465DF2 /* DRNRealTimeBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3719AA91BDA5D9000465DF2 /* DRNRealTimeBlurView.m */; };
 		E3719AAD1BDA5D9000465DF2 /* UIImage+BoxBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = E3719AAB1BDA5D9000465DF2 /* UIImage+BoxBlur.m */; };
+		E371CA3C1BE9D9EC00B77723 /* CPGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = E371CA3B1BE9D9EC00B77723 /* CPGuideView.m */; settings = {ASSET_TAGS = (); }; };
 		E37C10B21BBB79D800E1A6A2 /* CPMyVisitorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E37C10B11BBB79D800E1A6A2 /* CPMyVisitorViewController.m */; };
 		E37C10B41BBB79E700E1A6A2 /* CPMyVisitorViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E37C10B31BBB79E700E1A6A2 /* CPMyVisitorViewController.storyboard */; };
 		E37C10B71BBB7CEB00E1A6A2 /* CPMyVistorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E37C10B61BBB7CEB00E1A6A2 /* CPMyVistorCell.m */; };
@@ -1386,6 +1387,8 @@
 		E3719AA91BDA5D9000465DF2 /* DRNRealTimeBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRNRealTimeBlurView.m; sourceTree = "<group>"; };
 		E3719AAA1BDA5D9000465DF2 /* UIImage+BoxBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BoxBlur.h"; sourceTree = "<group>"; };
 		E3719AAB1BDA5D9000465DF2 /* UIImage+BoxBlur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BoxBlur.m"; sourceTree = "<group>"; };
+		E371CA3A1BE9D9EC00B77723 /* CPGuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPGuideView.h; sourceTree = "<group>"; };
+		E371CA3B1BE9D9EC00B77723 /* CPGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPGuideView.m; sourceTree = "<group>"; };
 		E37C10B01BBB79D800E1A6A2 /* CPMyVisitorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMyVisitorViewController.h; sourceTree = "<group>"; };
 		E37C10B11BBB79D800E1A6A2 /* CPMyVisitorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMyVisitorViewController.m; sourceTree = "<group>"; };
 		E37C10B31BBB79E700E1A6A2 /* CPMyVisitorViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMyVisitorViewController.storyboard; sourceTree = "<group>"; };
@@ -3871,6 +3874,8 @@
 				E3AF16FD1BBA296C00306ABF /* CPNoHighLightButton.m */,
 				E311371D1BD09309004EF249 /* CPLoadingView.h */,
 				E311371E1BD09309004EF249 /* CPLoadingView.m */,
+				E371CA3A1BE9D9EC00B77723 /* CPGuideView.h */,
+				E371CA3B1BE9D9EC00B77723 /* CPGuideView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4736,6 +4741,7 @@
 				E3A471921BB3A85300973197 /* CPNavigationController.m in Sources */,
 				E31B12E51BB9311700B51696 /* PBPGView.m in Sources */,
 				6D2ABFD91BCE582100201A8E /* EMChatViewBaseCell.m in Sources */,
+				E371CA3C1BE9D9EC00B77723 /* CPGuideView.m in Sources */,
 				6D2ABFD81BCE582100201A8E /* EMChatTimeCell.m in Sources */,
 				6D2ABFCB1BCE582100201A8E /* ConvertToCommonEmoticonsHelper.m in Sources */,
 				E31B13461BB9312D00B51696 /* UIFont+Extend.m in Sources */,

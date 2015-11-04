@@ -128,7 +128,6 @@
     }
     
     [self.carLogoImg zySetImageWithUrl:user.car.logo placeholderImage:nil];
-    
     [self.albumsCollectionView reloadData];
     
     if (user.subscribeFlag) {
@@ -322,13 +321,7 @@
     static NSString *cellIdentifier = @"cell";
     CPCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
         CPAlbum *ablum=(CPAlbum *)user.album[indexPath.row];
-//    [cell.imageView zySetImageWithUrl:ablum.url placeholderImage:nil];
-    [cell.imageView zySetImageWithUrl:ablum.url placeholderImage:nil completion:^(UIImage *image) {
-        if (![ZYUserDefaults boolForKey:CPHasAlbum]) {
-            cell.imageView.image=[image blurredImageWithRadius:20];
-            [cell.imageView setContentMode:UIViewContentModeScaleAspectFill];
-        }
-    }];
+    [cell.imageView zy_setBlurImageWithUrl:ablum.url];
     return cell;
 }
 //图片大图浏览
@@ -348,9 +341,6 @@
             UIImageView *imagevC=[[UIImageView alloc]init];
             [imagevC setContentMode:UIViewContentModeScaleAspectFill];
             [imagevC zySetImageWithUrl:[user.album[i] url] placeholderImage:[UIImage imageNamed:@"logo"]];
-//            [imagevC zySetImageWithUrl:[user.album[i] url] placeholderImage:[UIImage imageNamed:@"logo"] completion:^(UIImage *image) {
-//                [imagevC setImage:image];
-//            }];
             pbModel.sourceImageView = imagevC;
             [modelsM addObject:pbModel];
         }

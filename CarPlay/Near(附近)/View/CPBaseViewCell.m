@@ -229,7 +229,11 @@
 {
     _model = model;
     
-    self.marginCons.constant = 20;
+    if (model.isHisDate) {
+        self.marginCons.constant = 0;
+    }else{
+        self.marginCons.constant = 20;
+    }
     BOOL isHasAlubm;
     if (CPUnLogin) {
         isHasAlubm = NO;
@@ -238,7 +242,10 @@
     }
     self.sexView.isMan = model.organizer.isMan;
     self.sexView.age = model.organizer.age;
-    
+
+    [self.userIconView sd_setImageWithURL:[NSURL URLWithString:model.organizer.cover] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        DLog(@"%zd----",UIImagePNGRepresentation(image).length/1024);
+    }];
     [self.userIconView zy_setBlurImageWithUrl:model.organizer.cover];
     [self.distanceView setTitle:model.distanceStr.trimLength?model.distanceStr:@"未知" forState:UIControlStateNormal];
     self.loveBtn.selected = model.organizer.subscribeFlag;
@@ -473,25 +480,19 @@
         self.tipView.hidden = NO;
     }
     
-    if (intersterModel.status == 0){
+    if (intersterModel.activityStatus == 0){
         
         self.dateAnim.haloLayerColor = RedColor.CGColor;
         [self.dateButton setBackgroundColor:RedColor];
         [self.dateButton setTitle:@"邀TA" forState:UIControlStateNormal];
         [self setOneType:YES];
-    }else if (intersterModel.status == 1){
+    }else if (intersterModel.activityStatus == 1){
         
-//        if ([intersterModel.invitedUserId isEqualToString:CPUserId]) {
-//            [self setOneType:NO];
-//            [self setPhoneType:NO];
-//        }else{
-//            
-//            self.dateAnim.haloLayerColor= [Tools getColor:@"cccccc"].CGColor;
-//            [self.dateButton setBackgroundColor:[Tools getColor:@"cccccc"]];
-//            [self.dateButton setTitle:@"已邀请" forState:UIControlStateNormal];
-//            [self setOneType:YES];
-//        }
-    }else if (intersterModel.status == 2){
+        self.dateAnim.haloLayerColor= [Tools getColor:@"cccccc"].CGColor;
+        [self.dateButton setBackgroundColor:[Tools getColor:@"cccccc"]];
+        [self.dateButton setTitle:@"已邀请" forState:UIControlStateNormal];
+        [self setOneType:YES];
+    }else if (intersterModel.activityStatus == 2){
         [self setPhoneType:YES];
     }
     
@@ -692,6 +693,9 @@
         _dateButton.layer.cornerRadius = 28;
         _dateButton.clipsToBounds = YES;
         [[_dateButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            if ([[x currentTitle] isEqualToString:@"已邀请"]) {
+                return;
+            }
             [self superViewWillRecive:DateBtnClickKey info:_indexPath];
         }];
     }

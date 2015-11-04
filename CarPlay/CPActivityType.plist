@@ -2,8 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>夜宵</key>
-	<string>吃夜宵</string>
+	<key>桌游</key>
+	<string>玩桌游</string>
 	<key>咖啡</key>
 	<string>喝咖啡</string>
 	<key>夜店</key>
