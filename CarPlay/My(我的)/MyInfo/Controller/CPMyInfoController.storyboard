@@ -30,7 +30,7 @@
                                         <constraint firstAttribute="height" constant="84" id="MpC-P7-fk2"/>
                                         <constraint firstAttribute="width" constant="84" id="lWU-qK-Nkv"/>
                                     </constraints>
-                                    <state key="normal" image="icon_cemare" backgroundImage="2D6284D3-D8F1-47B6-919E-9EC40DACD370"/>
+                                    <state key="normal" image="icon_cemare" backgroundImage="288D62D9-C494-4E2E-959C-DC9E404E0311"/>
                                     <connections>
                                         <action selector="headIconBtnClick:" destination="Ngq-HX-lPw" eventType="touchUpInside" id="LwN-Ei-OV0"/>
                                     </connections>
@@ -114,6 +114,9 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="Ngq-HX-lPw" id="edf-82-IRw"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <animations/>
@@ -247,7 +250,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="2D6284D3-D8F1-47B6-919E-9EC40DACD370" width="84" height="84">
+        <image name="288D62D9-C494-4E2E-959C-DC9E404E0311" width="84" height="84">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

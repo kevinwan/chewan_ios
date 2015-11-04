@@ -9,7 +9,7 @@
 #import "CPMyInfoController.h"
 #import "CPUser.h"
 
-@interface CPMyInfoController ()<UIImagePickerControllerDelegate,UIActionSheetDelegate,UIAlertViewDelegate>
+@interface CPMyInfoController ()<UIImagePickerControllerDelegate,UIActionSheetDelegate,UIAlertViewDelegate,UITextFieldDelegate>
 {
     UIImage *editedImage;
 }
@@ -208,5 +208,12 @@
     _user.gender=@"女";
     [self.manBtn setBackgroundImage:[UIImage imageNamed:@"btn_man_2"] forState:UIControlStateNormal];
     [self.womanBtn setBackgroundImage:[UIImage imageNamed:@"btn_woman_1"] forState:UIControlStateNormal];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    NSString *name=[self.nick.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if ([name length]>7) {
+        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"昵称最多包含7个字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil] show];
+    }
 }
 @end
