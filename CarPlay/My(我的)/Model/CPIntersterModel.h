@@ -18,7 +18,7 @@
 @property (nonatomic, copy) NSString *activityPay;
 @property (nonatomic, copy) NSString *activityType;
 @property (nonatomic, assign) NSInteger type;
-@property (nonatomic, assign) NSInteger status;
+@property (nonatomic, assign) NSInteger activityStatus;
 @property (nonatomic, assign) BOOL  activityTransfer;
 @property (nonatomic, assign) NSInteger photoCount;
 @property (nonatomic, assign) long long createTime;

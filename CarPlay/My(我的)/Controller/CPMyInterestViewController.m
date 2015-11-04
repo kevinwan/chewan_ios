@@ -335,8 +335,8 @@ static NSString *ID = @"myIntersterCell";
     [ZYNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
         if (CPSuccess) {
             [self showInfo:@"邀请已发出"];
-            model.status = 1;
-            [self.tableView reloadItemsAtIndexPaths:@[indexPath]];
+            model.activityStatus = 1;
+            [self.tableView reloadData];
         }else{
             [self showInfo:CPErrorMsg];
         }

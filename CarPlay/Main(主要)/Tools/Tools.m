@@ -8,10 +8,24 @@
 
 #import "Tools.h"
 #import <CommonCrypto/CommonDigest.h>
-
+#import <AFNetworking/UIImageView+AFNetworking.h>
 #define CC_MD5_LENGTH 16
 
 @implementation Tools
+
+- (void)clearAFImageCacheWithUrl:(NSString *)url
+{
+    id<AFImageCache> imageCache = [UIImageView sharedImageCache];
+    NSCache *cache = (NSCache *)imageCache;
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    [cache removeObjectForKey:request];
+}
+
+- (void)clearAFNetWorkingUrlCache
+{
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
+}
+
 static NSDictionary *activityTypes;
 + (void)load
 {
@@ -26,7 +40,7 @@ static NSDictionary *activityTypes;
     __block NSString *result = [type copy];
     [activityTypes enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
         if ([key isEqualToString:type]) {
-            result = type;
+            result = obj;
         }
     }];
     return result;

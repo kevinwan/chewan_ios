@@ -17,6 +17,18 @@
 @interface Tools : NSObject
 
 /**
+ *  清楚Af图片缓存
+ *
+ *  @param url key
+ */
+- (void)clearAFImageCacheWithUrl:(NSString *)url;
+
+/**
+ *  清楚af的网络缓存
+ */
+- (void)clearAFNetWorkingUrlCache;
+
+/**
  *  添加动词
  */
 + (NSString *)activityTypeWithString:(NSString *)type;

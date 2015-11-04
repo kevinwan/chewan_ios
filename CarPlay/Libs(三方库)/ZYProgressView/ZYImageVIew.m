@@ -40,8 +40,10 @@
 - (void)zy_setImageWithUrl:(NSString *)url
 {
     self.placeHloderImageView.hidden = NO;
-    
+    self.image = nil;
+    ZYWeakSelf
     [self zySetImageWithUrl:url placeholderImage:nil completion:^(UIImage *image) {
+        ZYStrongSelf
         self.image = image;
         self.placeHloderImageView.hidden = YES;
     }];
@@ -50,8 +52,10 @@
 - (void)zy_setBlurImageWithUrl:(NSString *)url
 {
     self.placeHloderImageView.hidden = NO;
+    self.image = nil;
+    ZYWeakSelf
     [self sd_setImageWithURL:[NSURL URLWithString:url] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        self.image = image;
+        ZYStrongSelf
         self.placeHloderImageView.hidden = YES;
     }];
 }
