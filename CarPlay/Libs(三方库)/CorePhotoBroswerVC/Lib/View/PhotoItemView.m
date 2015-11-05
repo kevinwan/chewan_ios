@@ -104,7 +104,7 @@
         
         if(image == nil) return;
         
-        [self.photoImageView imageWithUrlStr:_photoModel.album.url phImage:image progressBlock:^(NSInteger receivedSize, NSInteger expectedSize) {
+        [self.photoImageView imageWithUrlStr:[NSString stringWithFormat:@"%@?imageView2/1/w/800",_photoModel.album.url] phImage:image progressBlock:^(NSInteger receivedSize, NSInteger expectedSize) {
             
             _progressView.hidden = NO;
             

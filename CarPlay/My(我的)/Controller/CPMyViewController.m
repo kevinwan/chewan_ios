@@ -326,8 +326,6 @@
         for (int i = 0; i < arr.count; i++) {
             NSData *data = UIImageJPEGRepresentation(arr[i], 0.4);
             NSData *data1 = UIImagePNGRepresentation(arr[i]);
-            DLog(@"%f",data.length/1024.0);
-            DLog(@"%lu",data1.length/1024);
             ZYHttpFile *imageFile = [ZYHttpFile fileWithName:@"attach" data:data mimeType:@"image/jpeg" filename:@"a1.jpg"];
             [self showLoading];
             [ZYNetWorkTool postFileWithUrl:path params:nil files:@[imageFile] success:^(id responseObject) {
@@ -380,7 +378,7 @@
         [cell.imageView setImage:[UIImage imageNamed:@"相机"]];
     }else{
         CPAlbum *ablum=(CPAlbum *)user.album[indexPath.row-1];
-        [cell.imageView zySetImageWithUrl:ablum.url placeholderImage:[UIImage imageNamed:@"logo"]];
+        [cell.imageView zySetImageWithUrl:[NSString stringWithFormat:@"%@%@",ablum.url,@"?imageView2/1/w/200"] placeholderImage:[UIImage imageNamed:@"logo"]];
     }
     return cell;
 }
@@ -389,7 +387,6 @@
     if (indexPath.row==0) {
         [self addPhoto];
     }else{
-        __weak typeof(self) weakSelf=self;
         [PhotoBroswerVC show:self userId:CPUserId type:PhotoBroswerVCTypePush index:indexPath.row-1 photoModelBlock:^NSArray *{
 //            NSArray *networkImages=[[NSArray alloc]initWithArray:allAlbumsUrl];
             
@@ -404,7 +401,7 @@
                 
                 UIImageView *imagevC=[[UIImageView alloc]init];
                 [imagevC setContentMode:UIViewContentModeScaleAspectFill];
-                [imagevC zySetImageWithUrl:[user.album[i] url] placeholderImage:[UIImage imageNamed:@"logo"]];
+                [imagevC zySetImageWithUrl:[NSString stringWithFormat:@"%@%@",[user.album[i] url],@"?imageView2/1/w/800"] placeholderImage:[UIImage imageNamed:@"logo"]];
                 
                 pbModel.sourceImageView = imagevC;
                 

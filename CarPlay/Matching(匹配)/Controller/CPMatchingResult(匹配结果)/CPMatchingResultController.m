@@ -50,7 +50,7 @@ static NSString *ID = @"cell";
     [super viewDidLoad];
     countdownLabel=[UILabel new];
     countLabel=[UILabel new];
-    
+    timeout=-1;
     if (CPNoNetWork) {
         [ZYProgressView showMessage:@"网络连接失败,请检查网络"];
         return;
@@ -66,7 +66,7 @@ static NSString *ID = @"cell";
 
 -(void)start{
     
-    NSDictionary *param=[NSDictionary dictionaryWithObjectsAndKeys:[ZYUserDefaults stringForKey:LastType],@"majorType",CPUserId,UserId,CPToken,Token,@(CPLongitude),@"longitude",@(CPLatitude),@"latitude",@(300),@"limit",nil];
+    NSDictionary *param=[NSDictionary dictionaryWithObjectsAndKeys:[ZYUserDefaults stringForKey:LastType],@"majorType",@(CPLongitude),@"longitude",@(CPLatitude),@"latitude",@(300),@"limit",CPUserId,UserId,CPToken,Token,nil];
     
     [ZYNetWorkTool getWithUrl:@"activity/count" params:param success:^(id responseObject) {
         if (CPSuccess) {
@@ -134,7 +134,7 @@ static NSString *ID = @"cell";
 - (void)loadDataWithHeader:(AAPullToRefresh *)refresh
 {
     if ([ZYUserDefaults stringForKey:LastType]) {
-        NSDictionary *param=[NSDictionary dictionaryWithObjectsAndKeys:[ZYUserDefaults stringForKey:LastType],@"majorType",CPUserId,UserId,CPToken,Token,@(CPLongitude),@"longitude",@(CPLatitude),@"latitude",nil];
+        NSDictionary *param=[NSDictionary dictionaryWithObjectsAndKeys:[ZYUserDefaults stringForKey:LastType],@"majorType",@(CPLongitude),@"longitude",@(CPLatitude),@"latitude",CPUserId,UserId,CPToken,Token,nil];
         
         [ZYNetWorkTool getWithUrl:@"activity/list" params:param success:^(id responseObject) {
             
@@ -468,6 +468,10 @@ static NSString *ID = @"cell";
         [self.loadingView setHidden:YES];
         [self.tableView setHidden:NO];
         [self.navigationController setNavigationBarHidden:NO];
+    }
+    if (timeout < 0) {
+        [timer setFireDate:[NSDate distantFuture]];
+        [countdownLabel setText:@"0S"];
     }
     timeout--;
 }
