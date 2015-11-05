@@ -479,6 +479,7 @@
 		E35AAF531BE24A0700A802A3 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF421BE24A0700A802A3 /* UIImageView+WebCache.m */; };
 		E35AAF541BE24A0700A802A3 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF441BE24A0700A802A3 /* UIView+WebCacheOperation.m */; };
 		E35E12631BEB234700B1D621 /* CPGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35E12621BEB234700B1D621 /* CPGuideView.m */; settings = {ASSET_TAGS = (); }; };
+		E35E12661BEB2DEF00B1D621 /* CPNewfeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E35E12651BEB2DEF00B1D621 /* CPNewfeatureViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E3606F0D1BC76FF100797968 /* CPRecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */; };
 		E3606F121BC78C7300797968 /* CPBaseViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F111BC78C7300797968 /* CPBaseViewCell.xib */; };
 		E365747F1BE0BD3000BA7E63 /* CPHisDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E365747E1BE0BD3000BA7E63 /* CPHisDateViewController.m */; };
@@ -1373,6 +1374,8 @@
 		E35AAF441BE24A0700A802A3 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		E35E12611BEB234700B1D621 /* CPGuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPGuideView.h; sourceTree = "<group>"; };
 		E35E12621BEB234700B1D621 /* CPGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPGuideView.m; sourceTree = "<group>"; };
+		E35E12641BEB2DEE00B1D621 /* CPNewfeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNewfeatureViewController.h; sourceTree = "<group>"; };
+		E35E12651BEB2DEF00B1D621 /* CPNewfeatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNewfeatureViewController.m; sourceTree = "<group>"; };
 		E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPRecommendCell.xib; sourceTree = "<group>"; };
 		E3606F111BC78C7300797968 /* CPBaseViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPBaseViewCell.xib; sourceTree = "<group>"; };
 		E365747D1BE0BD3000BA7E63 /* CPHisDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHisDateViewController.h; sourceTree = "<group>"; };
@@ -4045,6 +4048,8 @@
 		E3A471631BB3A85300973197 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E35E12641BEB2DEE00B1D621 /* CPNewfeatureViewController.h */,
+				E35E12651BEB2DEF00B1D621 /* CPNewfeatureViewController.m */,
 				E3A471641BB3A85300973197 /* CPNavigationController.h */,
 				E3A471651BB3A85300973197 /* CPNavigationController.m */,
 				E3A471661BB3A85300973197 /* CPTabBarController.h */,
@@ -4669,6 +4674,7 @@
 				6D2ABFCC1BCE582100201A8E /* LocationViewController.m in Sources */,
 				6D2ABF861BCE582100201A8E /* EMAudioRecorderUtil.m in Sources */,
 				E3A4717F1BB3A85300973197 /* NSString+Extension.m in Sources */,
+				E35E12661BEB2DEF00B1D621 /* CPNewfeatureViewController.m in Sources */,
 				6D2ABFCF1BCE582100201A8E /* FacialView.m in Sources */,
 				6D2ABF921BCE582100201A8E /* MWGridCell.m in Sources */,
 				E31B134E1BB9312D00B51696 /* UIWindow+Launch.m in Sources */,

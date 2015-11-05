@@ -63,6 +63,9 @@
 
 -(void)getData{
     NSString *path=[NSString stringWithFormat:@"activity/randomLook?userId=%@&token=%@&limit=%@&longitude=%@&latitude=%@",CPUserId,CPToken,@"10",[NSString stringWithFormat:@"%f",CPLongitude],[NSString stringWithFormat:@"%f",CPLatitude]];
+    if (!CPIsLogin) {
+        path=[NSString stringWithFormat:@"activity/randomLook?limit=%@&longitude=%@&latitude=%@",@"10",[NSString stringWithFormat:@"%f",CPLongitude],[NSString stringWithFormat:@"%f",CPLatitude]];
+    }
     [ZYNetWorkTool getWithUrl:path params:nil success:^(id responseObject) {
         if (CPSuccess) {
             activities = [[NSArray alloc]initWithArray:[CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"]]];

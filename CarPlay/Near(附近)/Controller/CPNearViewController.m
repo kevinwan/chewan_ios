@@ -546,11 +546,11 @@ static NSString *ID = @"cell";
 {
     if (_params == nil) {
         _params = [[CPNearParams alloc] init];
-        _params.longitude = 116.3317536236968;
-        _params.latitude = 39.97762675234624;
+//        _params.longitude = 116.3317536236968;
+//        _params.latitude = 39.97762675234624;
         
-//        _params.longitude = ZYLongitude;
-//        _params.latitude = ZYLatitude;
+        _params.longitude = ZYLongitude;
+        _params.latitude = ZYLatitude;
         _params.ignore = 0;
         _params.limit = 10;
     }

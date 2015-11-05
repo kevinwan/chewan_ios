@@ -16,15 +16,15 @@
 
 + (void)showGuideViewWithImageName:(NSString *)imageName
 {
-    BOOL firstShow = [ZYUserDefaults boolForKey:[imageName stringByAppendingString:@"CPGuideViewKey"]];
+    NSString *imageKey = [imageName stringByAppendingString:@"CPGuideViewKey"];
+    BOOL firstShow = [ZYUserDefaults boolForKey:imageKey];
     
     if (firstShow == NO) {
         UIWindow *window = [UIApplication sharedApplication].windows.lastObject;
         CPGuideView *guideView = [[CPGuideView alloc] initWithFrame:[UIScreen mainScreen].bounds];
         guideView.image = [UIImage imageNamed:imageName];
         
-        [ZYUserDefaults setBool:YES forKey:imageName];
-        [ZYUserDefaults synchronize];
+        [ZYUserDefaults setBool:YES forKey:imageKey];
         [window addSubview:guideView];
     }
     
