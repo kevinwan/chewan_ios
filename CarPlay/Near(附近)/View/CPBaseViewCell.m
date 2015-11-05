@@ -231,6 +231,18 @@
     
     if (model.isHisDate) {
         self.marginCons.constant = 0;
+        if (model.organizer.idle) {
+            self.dateAnim.haloLayerColor = RedColor.CGColor;
+            [self.dateButton setBackgroundColor:RedColor];
+            [self.dateButton setTitle:@"邀TA" forState:UIControlStateNormal];
+            [self setOneType:YES];
+        }else{
+            
+            self.dateAnim.haloLayerColor= [Tools getColor:@"cccccc"].CGColor;
+            [self.dateButton setBackgroundColor:[Tools getColor:@"cccccc"]];
+            [self.dateButton setTitle:@"TA没空" forState:UIControlStateNormal];
+            [self setOneType:YES];
+        }
     }else{
         self.marginCons.constant = 20;
     }
@@ -243,9 +255,6 @@
     self.sexView.isMan = model.organizer.isMan;
     self.sexView.age = model.organizer.age;
 
-    [self.userIconView sd_setImageWithURL:[NSURL URLWithString:model.organizer.cover] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        DLog(@"%zd----",UIImagePNGRepresentation(image).length/1024);
-    }];
     [self.userIconView zy_setBlurImageWithUrl:model.organizer.cover];
     [self.distanceView setTitle:model.distanceStr.trimLength?model.distanceStr:@"未知" forState:UIControlStateNormal];
     self.loveBtn.selected = model.organizer.subscribeFlag;

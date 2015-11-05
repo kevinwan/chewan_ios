@@ -22,6 +22,13 @@
         [_headIV.layer setMasksToBounds:YES];
         [self.contentView addSubview:_headIV];
         
+        self.headBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _headBtn.backgroundColor =  [UIColor clearColor];
+        [_headBtn setFrame:CGRectMake(10, 10 , 50, 50)];
+        [self.contentView addSubview:_headBtn];
+        [_headBtn addTarget:self action:@selector(headBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        
+        
         _nameLabel = [[UILabel alloc] init];
         _nameLabel.frame = CGRectMake(CGRectGetMaxX(_headIV.frame)+10, 17, 60, 16);
         _nameLabel.backgroundColor = [UIColor clearColor];
@@ -63,10 +70,12 @@
         lineView.backgroundColor = UIColorFromRGB(0xefefef);
         [self.contentView addSubview:lineView];
         
-        UIView *aView = [[UIView alloc] initWithFrame:self.contentView.frame];
-        aView.backgroundColor = UIColorFromRGB(0xf7f7f7);
         
-        self.selectedBackgroundView = aView;
+       _selectdView = [[UIView alloc] initWithFrame:self.contentView.frame];
+        _selectdView.backgroundColor = UIColorFromRGB(0xf7f7f7);
+        self.selectedBackgroundView = _selectdView;
+
+       
     }
     return self;
     
@@ -82,11 +91,17 @@
 //    self.timeLabel.frame = CGRectMake(0.0, 12.0, labelsize.width+20, 18 );
     _nameLabel.width = labelsize.width;
     _sexView.x = CGRectGetMaxX(_nameLabel.frame)+10;
+    _selectdView.frame = self.contentView.frame;
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
 }
-
+- (void)headBtnClick:(UIButton *)button
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(headBtnClicked:)]) {
+        [_delegate headBtnClicked:button];
+    }
+}
 @end

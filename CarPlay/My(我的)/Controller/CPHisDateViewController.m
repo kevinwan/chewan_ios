@@ -51,6 +51,11 @@ static NSString *ID = @"HisDateCell";
     self.title = @"TA的活动";
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.tableView];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     [ZYLoadingView showLoadingView];
     [self loadDataWithHeader:nil];
 }
@@ -125,7 +130,9 @@ static NSString *ID = @"HisDateCell";
             for (CPActivityModel *model in arr) {
                 model.organizer = self.targetUser;
                 model.organizer.cover = cover;
+                model.distance = distance;
                 model.isHisDate = YES;
+                model.isDynamic = YES;
             }
             [self.datas addObjectsFromArray:arr];
             //
@@ -162,7 +169,6 @@ static NSString *ID = @"HisDateCell";
 {
     CPNearCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
     cell.contentV.indexPath = indexPath;
-    self.datas[indexPath.item].isDynamic = YES;
     cell.contentV.model = self.datas[indexPath.item];
     return cell;
 }

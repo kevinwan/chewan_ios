@@ -59,10 +59,9 @@
         lineView.alpha = 0.7;
         
         
-        UIView *aView = [[UIView alloc] initWithFrame:self.contentView.frame];
-        aView.backgroundColor = UIColorFromRGB(0xf7f7f7);
-        
-        self.selectedBackgroundView = aView;
+        _selectdView = [[UIView alloc] initWithFrame:self.contentView.frame];
+        _selectdView.backgroundColor = UIColorFromRGB(0xf7f7f7);
+        self.selectedBackgroundView = _selectdView;
     }
     return self;
 
@@ -80,5 +79,7 @@
     //    self.timeLabel.frame = CGRectMake(0.0, 12.0, labelsize.width+20, 18 );
     _nameLabel.width = labelsize.width;
     _sexView.x = CGRectGetMaxX(_nameLabel.frame)+10;
+    _selectdView.frame = self.contentView.frame;
+
 }
 @end

@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "CPSexView.h"
+
+@protocol headBtnClickdelegete <NSObject>
+
+- (void)headBtnClicked:(UIButton *)button;
+
+@end
+
 @interface CPVisitorTableViewCell : UITableViewCell
 
 @property (nonatomic, strong)CPSexView   *sexView;
@@ -16,5 +23,10 @@
 @property (nonatomic, strong) UILabel    *distanceLabel;
 @property (nonatomic, strong) UILabel    *timeLabel;
 @property (nonatomic, strong) UILabel    *messageLabel;
+@property (nonatomic, strong) UIButton   *headBtn;
+
+@property (nonatomic, strong)UIView *selectdView;
+
+@property (nonatomic, assign)id<headBtnClickdelegete>delegate;
 
 @end

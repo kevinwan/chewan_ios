@@ -22,6 +22,7 @@
 
 @property (nonatomic, assign) BOOL isMan;
 
+@property (nonatomic, assign) BOOL idle;
 
 @property (nonatomic, copy) NSString *cover;
 //    "age": 25,
