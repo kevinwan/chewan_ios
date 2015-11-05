@@ -4943,7 +4943,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.77iland.carplayinhouse;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8069fa66-9ad4-4073-aeb7-7075cf514c89";
+				PROVISIONING_PROFILE = "daeae9c3-0f26-4cc3-9a81-444e8892ac4c";
 			};
 			name = Debug;
 		};
@@ -4973,7 +4973,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.77iland.carplayinhouse;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8069fa66-9ad4-4073-aeb7-7075cf514c89";
+				PROVISIONING_PROFILE = "daeae9c3-0f26-4cc3-9a81-444e8892ac4c";
 			};
 			name = Release;
 		};
