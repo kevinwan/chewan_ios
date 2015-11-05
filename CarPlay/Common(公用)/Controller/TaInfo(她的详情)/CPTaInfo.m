@@ -328,13 +328,13 @@
         static NSString *cellIdentifier = @"cell1";
         CPCollectionViewCell1 *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
         CPAlbum *ablum=(CPAlbum *)user.album[indexPath.row];
-        [cell.imageView zySetImageWithUrl:ablum.url placeholderImage:[UIImage imageNamed:@"logo"]];
+        [cell.imageView zySetImageWithUrl:[NSString stringWithFormat:@"%@?imageView2/1/w/200",ablum.url] placeholderImage:[UIImage imageNamed:@"logo"]];
         return cell;
     }else{
         static NSString *cellIdentifier = @"cell";
         CPCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
         CPAlbum *ablum=(CPAlbum *)user.album[indexPath.row];
-        [cell.imageView zy_setBlurImageWithUrl:ablum.url];
+        [cell.imageView zy_setBlurImageWithUrl:[NSString stringWithFormat:@"%@?imageView2/1/w/200",ablum.url]];
         return cell;
     }
 }
@@ -354,7 +354,7 @@
             
             UIImageView *imagevC=[[UIImageView alloc]init];
             [imagevC setContentMode:UIViewContentModeScaleAspectFill];
-            [imagevC zySetImageWithUrl:[user.album[i] url] placeholderImage:[UIImage imageNamed:@"logo"]];
+            [imagevC zySetImageWithUrl:[NSString stringWithFormat:@"%@?imageView2/1/w/800",[user.album[i] url]] placeholderImage:[UIImage imageNamed:@"logo"]];
             pbModel.sourceImageView = imagevC;
             [modelsM addObject:pbModel];
         }
