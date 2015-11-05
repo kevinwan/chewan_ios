@@ -57,9 +57,8 @@
     
     [UMSocialWechatHandler setWXAppId:kWeiXinAppID appSecret:kWeiXinAppSecret url:nil];
     //QQ登录
-    [UMSocialQQHandler setQQWithAppId:@"1104728007" appKey:@"61BpHk8GQwH6FuCs" url:@"http://www.umeng.com/social"];
-
-    
+    [UMSocialQQHandler setQQWithAppId:@"1104948754" appKey:@"wxEzdsISx78YKqLH" url:@"http://www.umeng.com/social"];
+    [UMSocialData openLog:YES];
     [self getLocation];
     //环信
     //gongpingjia#carplayapp
@@ -126,6 +125,18 @@
     }
 }
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return  [UMSocialSnsService handleOpenURL:url];
+}
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    return  [UMSocialSnsService handleOpenURL:url];
+}
+
 - (void)setViewCycleAop
 {
     
@@ -181,13 +192,14 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    [UMSocialSnsService applicationDidBecomeActive];
+        [UMSocialSnsService  applicationDidBecomeActive];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     [[EaseMob sharedInstance] applicationWillTerminate:application];
 
 }
+
 
 -(void)loginStateChang{
     self.window.rootViewController = _tabVc;
@@ -353,18 +365,6 @@
     
 }
 
-- (BOOL)application:(UIApplication *)application
-            openURL:(NSURL *)url
-sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation
-{
-    // 如果你除了使用我们sdk之外还要处理另外的url，你可以把`handleOpenURL:wxApiDelegate:`的实现复制到你的代码里面，再添加你要处理的url。
-    return  [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
-}
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
-{
-    return  [UMSocialSnsService handleOpenURL:url];
-}
 - (void)dealloc
 {
     [ZYNotificationCenter removeObserver:self];
