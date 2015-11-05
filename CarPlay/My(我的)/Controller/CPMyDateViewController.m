@@ -63,7 +63,7 @@ static NSString *ID2 = @"DateCell2";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [CPLeadView showGuideViewWithImageName:@"3" centerX:self.view.middleX y:ZYScreenHeight - 286];
+    [CPLeadView showGuideViewWithImageName:@"3" centerX:self.view.middleX y:ZYScreenHeight - 340];
 }
 
 - (void)viewDidAppear:(BOOL)animated
