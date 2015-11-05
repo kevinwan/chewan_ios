@@ -70,4 +70,10 @@
 
 @property (nonatomic, copy) NSString *distanceStr;
 
+@property (nonatomic, copy) NSString *uid;
+
+@property (nonatomic, copy) NSString *channel;
+
+@property (nonatomic, copy) NSString *password;
+
 @end
