@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void (^ZYZipImageCompletion)(NSData *data);
+
 #define RedColor   [Tools getColor:@"fe5969"]
 #define GreenColor [Tools getColor:@"74ced6"]
 #define GrayColor  [Tools getColor:@"cccccc"]
@@ -15,6 +17,8 @@
 #define ZYLatitude [Tools getLatitude]
 
 @interface Tools : NSObject
+
++ (void)zipImage:(UIImage *)image completion:(ZYZipImageCompletion)completion;
 
 /**
  *  清楚Af图片缓存

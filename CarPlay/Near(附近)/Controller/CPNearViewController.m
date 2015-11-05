@@ -21,6 +21,7 @@
 #import "CPMyInterestViewController.h"
 #import "NSObject+Copying.h"
 #import "SDImageCache.h"
+#import "CPLeadView.h"
 
 @interface CPNearViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate>
 @property (nonatomic, strong) UICollectionView *tableView;
@@ -68,7 +69,8 @@ static NSString *ID = @"cell";
     
     [[ZYNotificationCenter rac_addObserverForName:NOTIFICATION_HASLOGIN object:nil] subscribeNext:^(id x) {
         ZYStrongSelf
-        [self.tableView reloadData];
+        [ZYLoadingView showLoadingView];
+        [self loadDataWithHeader:nil];
     }];
     [[ZYNotificationCenter rac_addObserverForName:@"DID_LOG_OUT_SUCCESS" object:nil] subscribeNext:^(id x) {
         ZYStrongSelf
@@ -84,6 +86,9 @@ static NSString *ID = @"cell";
 //    if (self.datas.count == 0) {
 //        [ZYLoadingView showLoadingView];
 //    }
+    
+    [CPLeadView showGuideViewWithImageName:@"1" centerX:self.view.middleX + 10 y:ZYScreenHeight - 208];
+    
     if (CPUnLogin) {
         if (self.datas.count == 0) {
             [ZYLoadingView showLoadingView];
@@ -478,29 +483,33 @@ static NSString *ID = @"cell";
             btn.on = !btn.on;
             if (btn.on) {
                 textL.text = @"忙碌中～小伙伴不可邀你～";
+                [self showLoading];
                 [ZYNetWorkTool postJsonWithUrl:url params:@{@"idle" : @(NO)} success:^(id responseObject) {
                     if (CPSuccess){
                         [ZYUserDefaults setBool:btn.on forKey:FreeTimeKey];
-                        [self showInfo:@"没空"];
+                        [self disMiss];
                     }else{
                         btn.on = NO;
                         [self showInfo:CPErrorMsg];
                     }
                 } failed:^(NSError *error) {
                     btn.on = NO;
+                    [self showError:@"加载失败"];
                 }];
             }else{
                 textL.text = @"无聊中～小伙伴可以邀你～";
+                [self showLoading];
                 [ZYNetWorkTool postJsonWithUrl:url params:@{@"idle" : @(YES)} success:^(id responseObject) {
                     if (CPSuccess){
                         [ZYUserDefaults setBool:btn.on forKey:FreeTimeKey];
-                        [self showInfo:@"有空"];
+                        [self disMiss];
                     }else{
                         btn.on = YES;
                         [self showInfo:CPErrorMsg];
                     }
                 } failed:^(NSError *error) {
                     btn.on = YES;
+                    [self showError:@"加载失败"];
                 }];
             }
         }];

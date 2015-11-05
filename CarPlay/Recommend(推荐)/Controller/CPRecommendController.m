@@ -93,20 +93,20 @@ static NSString *ID = @"RecommentCell";
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[UserId] = CPUserId;
     params[Token] = CPToken;
-        params[@"province"] = @"北京";
-        params[@"city"] = @"北京";
+//        params[@"province"] = @"北京";
+//        params[@"city"] = @"北京";
     //    params[@"district"] = [ZYUserDefaults stringForKey:District];
     
-//    NSString *province = [[ZYUserDefaults stringForKey:Province] stringByReplacingOccurrencesOfString:@"省" withString:@""];
-//    province = [province stringByReplacingOccurrencesOfString:@"市" withString:@""];
-//    NSString *city = [[ZYUserDefaults stringForKey:City] stringByReplacingOccurrencesOfString:@"市" withString:@""];
-//    if (province.trimLength) {
-//        params[@"province"] = province;
-//    }
-//    if (city.trimLength) {
-//        params[@"city"] = city;
-//    }
-//    
+    NSString *province = [[ZYUserDefaults stringForKey:Province] stringByReplacingOccurrencesOfString:@"省" withString:@""];
+    province = [province stringByReplacingOccurrencesOfString:@"市" withString:@""];
+    NSString *city = [[ZYUserDefaults stringForKey:City] stringByReplacingOccurrencesOfString:@"市" withString:@""];
+    if (province.trimLength) {
+        params[@"province"] = province;
+    }
+    if (city.trimLength) {
+        params[@"city"] = city;
+    }
+    
     [ZYNetWorkTool getWithUrl:@"official/activity/list" params:params success:^(id responseObject) {
         [ZYLoadingView dismissLoadingView];
         [self setUpRefresh];

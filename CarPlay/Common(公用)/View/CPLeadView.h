@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPGuideView : UIImageView
+@interface CPLeadView : NSObject
 
 + (void)showGuideViewWithImageName:(NSString *)imageName;
 
++ (void)showGuideViewWithImageName:(NSString *)imageName centerX:(CGFloat)centerX y:(CGFloat)y;
 @end

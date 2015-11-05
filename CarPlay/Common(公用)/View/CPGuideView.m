@@ -16,51 +16,38 @@
 
 + (void)showGuideViewWithImageName:(NSString *)imageName
 {
-    [self showGuideViewWithImageName:imageName frame:CGRectZero];
-}
-
-+ (void)showGuideViewWithImageName:(NSString *)imageName frame:(CGRect)frame
-{
-    BOOL firstShow = [[NSUserDefaults standardUserDefaults] boolForKey:imageName];
+    BOOL firstShow = [CPUserDefaults boolForKey:[imageName stringByAppendingString:@"CPGuideViewKey"]];
     
     if (firstShow == NO) {
         UIWindow *window = [UIApplication sharedApplication].windows.lastObject;
-        UIButton *guideView = [[UIButton alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        guideView.backgroundColor = ZYColor(0, 0, 0, 0.5);
-        [[guideView rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-            
-            [UIView animateWithDuration:0.25 animations:^{
-                guideView.alpha = 0;
-            }completion:^(BOOL finished) {
-                [guideView removeFromSuperview];
-            }];
-        }];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:imageName];
+        CPGuideView *guideView = [[CPGuideView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        guideView.image = [UIImage imageNamed:imageName];
         
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
-        [guideView addSubview:imageView];
-        if (CGRectIsEmpty(frame)) {
-            imageView.center = guideView.centerInSelf;
-        }else{
-            if (frame.origin.x) {
-                imageView.x = frame.origin.x;
-            }
-            
-            if (frame.origin.y) {
-                imageView.y = frame.origin.y;
-            }
-            
-            if (frame.size.width) {
-                imageView.width = frame.size.width;
-            }
-            
-            if (frame.size.height) {
-                imageView.height = frame.size.height;
-            }
-        }
+        [CPUserDefaults setBool:YES forKey:imageName];
+        [CPUserDefaults synchronize];
         [window addSubview:guideView];
     }
     
+}
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
+        self.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hide:)];
+        [self addGestureRecognizer:tap];
+    }
+    return self;
+}
+
+
+- (void)hide:(UITapGestureRecognizer *)tap
+{
+    [UIView animateWithDuration:0.25 animations:^{
+        tap.view.alpha = 0;
+    }completion:^(BOOL finished) {
+        [tap.view removeFromSuperview];
+    }];
 }
 
 @end
