@@ -115,7 +115,7 @@
                                 <animations/>
                                 <state key="normal" image="QQ"/>
                                 <connections>
-                                    <action selector="thirdpartyLogin:" destination="Cdn-Ce-Zhu" eventType="touchUpInside" id="WKB-JN-zU7"/>
+                                    <action selector="thirdpartyLogin:" destination="Cdn-Ce-Zhu" eventType="touchUpInside" id="eIv-fQ-bBI"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ppl-Er-XRL">
@@ -127,7 +127,7 @@
                                 <animations/>
                                 <state key="normal" image="Weibo"/>
                                 <connections>
-                                    <action selector="thirdpartyLogin:" destination="Cdn-Ce-Zhu" eventType="touchUpInside" id="Wmg-YV-rhG"/>
+                                    <action selector="thirdpartyLogin:" destination="Cdn-Ce-Zhu" eventType="touchUpInside" id="Vrn-iJ-T5s"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="第三方账号直接登录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vro-qp-m4C">
@@ -172,7 +172,7 @@
                                 </constraints>
                                 <state key="normal" image="Wechat"/>
                                 <connections>
-                                    <action selector="thirdpartyLogin:" destination="Cdn-Ce-Zhu" eventType="touchUpInside" id="M4Z-33-paK"/>
+                                    <action selector="thirdpartyLogin:" destination="Cdn-Ce-Zhu" eventType="touchUpInside" id="SIM-gk-ODI"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sa9-8t-p4B">

@@ -15,8 +15,14 @@
 #import "CPNavigationController.h"
 #import "ChatListViewController.h"
 #import "UMSocial.h"
+#import "UMSocialQQHandler.h"
 #import "SDImageCache.h"
 #import "CPNewfeatureViewController.h"
+#import "UMSocialWechatHandler.h"
+
+#define kCheWanAppID @"55a34ed367e58e6efc00285d"
+#define kWeiXinAppID @"wx4c127cf07bd7d80b"
+#define kWeiXinAppSecret @"315ce754c5a1096c5188b4b69a7b9f04"
 
 @interface AppDelegate ()<UITabBarControllerDelegate,CLLocationManagerDelegate,UIAlertViewDelegate>
 
@@ -48,6 +54,11 @@
     [[IQKeyboardManager sharedManager] setShouldResignOnTouchOutside:YES];
 //    友盟第三方登录
     [UMSocialData setAppKey:@"55a34ed367e58e6efc00285d"];
+    
+    [UMSocialWechatHandler setWXAppId:kWeiXinAppID appSecret:kWeiXinAppSecret url:nil];
+    //QQ登录
+    [UMSocialQQHandler setQQWithAppId:@"1104728007" appKey:@"61BpHk8GQwH6FuCs" url:@"http://www.umeng.com/social"];
+
     
     [self getLocation];
     //环信

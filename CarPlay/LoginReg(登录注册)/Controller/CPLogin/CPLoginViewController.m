@@ -11,6 +11,7 @@
 #import "CPForgetPasswordViewController.h"
 #import "CPNavigationController.h"
 #import "SDImageCache.h"
+#import "UMSocial.h"
 
 @interface CPLoginViewController ()
 
@@ -147,8 +148,115 @@
 }
 
 #pragma mark - 第三方登录
-- (IBAction)thirdpartyLogin:(id)sender {
-    
+- (IBAction)thirdpartyLogin:(UIButton *)sender {
+    switch (sender.tag) {
+        case 1:{
+            UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToWechatSession];
+            
+            snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
+                
+                if (response.responseCode == UMSResponseCodeSuccess) {
+                    
+                    UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary]valueForKey:UMShareToWechatSession];
+                    //            SQLog(@"username is %@, uid is %@, token is %@ url is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL);
+                    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+                    dict[@"uid"] = snsAccount.usid;
+                    dict[@"username"] = snsAccount.userName;
+                    dict[@"url"] = snsAccount.iconURL;
+                    dict[@"channel"] = @"wechat";
+                    NSString *sign = [NSString stringWithFormat:@"%@wechatcom.gongpingjia.carplay",snsAccount.usid];
+                    dict[@"sign"] = [Tools md5EncryptWithString:sign];
+//                    [self loginWithDict:dict];
+                }
+            });
+            break;
+        }
+            
+        case 2:{
+//            UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToQQ];
+//            
+//            snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
+//                
+//                //          获取微博用户名、uid、token等
+//                
+//                if (response.responseCode == UMSResponseCodeSuccess) {
+//                    
+//                    UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:UMShareToQQ];
+//                    
+//                    NSLog(@"username is %@, uid is %@, token is %@ url is %@ openId is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL,snsAccount.openId);
+//                    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+//                    dict[@"uid"] = snsAccount.usid;
+//                    dict[@"username"] = snsAccount.userName;
+//                    dict[@"url"] = snsAccount.iconURL;
+//                    dict[@"channel"] = @"qq";
+//                    NSString *sign = [NSString stringWithFormat:@"%@qqcom.gongpingjia.carplay",snsAccount.usid];
+//                    dict[@"sign"] = [Tools md5EncryptWithString:sign];
+////                    [self loginWithDict:dict];
+//                    
+//                }});
+
+            UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToQQ];
+            
+            snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
+                
+                //          获取微博用户名、uid、token等
+                
+                if (response.responseCode == UMSResponseCodeSuccess) {
+                    
+                    UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:UMShareToQQ];
+                    
+                    NSLog(@"username is %@, uid is %@, token is %@ url is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL);
+                    
+                }});
+            
+            
+            break;
+        }
+            
+        case 3:
+        {
+//            UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToSina];
+//            
+//            snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
+//                
+//                //          获取微博用户名、uid、token等
+//                
+//                if (response.responseCode == UMSResponseCodeSuccess) {
+//                    
+//                    UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:UMShareToSina];
+//                    
+//                    //            NSLog(@"username is %@, uid is %@, token is %@ url is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL);
+//                    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+//                    dict[@"uid"] = snsAccount.usid;
+//                    dict[@"username"] = snsAccount.userName;
+//                    dict[@"url"] = snsAccount.iconURL;
+//                    dict[@"channel"] = @"sinaWeibo";
+//                    NSString *sign = [NSString stringWithFormat:@"%@sinaWeibocom.gongpingjia.carplay",snsAccount.usid];
+//                    dict[@"sign"] = [Tools md5EncryptWithString:sign];
+////                    [self loginWithDict:dict];
+//                    
+//                }});
+//            break;
+
+        
+            UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToSina];
+            
+            snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
+                
+                //          获取微博用户名、uid、token等
+                
+                if (response.responseCode == UMSResponseCodeSuccess) {
+                    
+                    UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:UMShareToSina];
+                    
+                    NSLog(@"username is %@, uid is %@, token is %@ url is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL);
+                    
+                }});
+        
+        }
+        default:
+            break;
+    }
 }
 
 #pragma mark - customSwitch delegate
