@@ -477,8 +477,8 @@
 		E35AAF521BE24A0700A802A3 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF401BE24A0700A802A3 /* UIImageView+HighlightedWebCache.m */; };
 		E35AAF531BE24A0700A802A3 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF421BE24A0700A802A3 /* UIImageView+WebCache.m */; };
 		E35AAF541BE24A0700A802A3 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF441BE24A0700A802A3 /* UIView+WebCacheOperation.m */; };
-		E35E12631BEB234700B1D621 /* CPGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35E12621BEB234700B1D621 /* CPGuideView.m */; settings = {ASSET_TAGS = (); }; };
-		E35E12661BEB2DEF00B1D621 /* CPNewfeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E35E12651BEB2DEF00B1D621 /* CPNewfeatureViewController.m */; settings = {ASSET_TAGS = (); }; };
+		E35E12631BEB234700B1D621 /* CPGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35E12621BEB234700B1D621 /* CPGuideView.m */; };
+		E35E12661BEB2DEF00B1D621 /* CPNewfeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E35E12651BEB2DEF00B1D621 /* CPNewfeatureViewController.m */; };
 		E3606F0D1BC76FF100797968 /* CPRecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */; };
 		E3606F121BC78C7300797968 /* CPBaseViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F111BC78C7300797968 /* CPBaseViewCell.xib */; };
 		E365747F1BE0BD3000BA7E63 /* CPHisDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E365747E1BE0BD3000BA7E63 /* CPHisDateViewController.m */; };
@@ -4920,7 +4920,7 @@
 			baseConfigurationReference = A1B028500DCBF99DF280B6AC /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				ENABLE_BITCODE = NO;
@@ -4950,7 +4950,7 @@
 			baseConfigurationReference = 67D41D30DFBFAF45C8B1AB7F /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				ENABLE_BITCODE = NO;
