@@ -6,13 +6,13 @@
 //  Copyright (c) 2015年 gongpingjia. All rights reserved.
 //
 
-#import "CPGuideView.h"
+#import "CPLeadView.h"
 
-@interface CPGuideView ()
+@interface CPLeadView ()
 
 @end
 
-@implementation CPGuideView
+@implementation CPLeadView
 
 + (void)showGuideViewWithImageName:(NSString *)imageName
 {

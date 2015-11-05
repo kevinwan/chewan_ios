@@ -40,5 +40,4 @@
 #import "UIImageView+ZYWebCache.h"
 #import "UIButton+ZYWebCache.h"
 #import "NSString+activityType.h"
-#import "CPGuideView.h"
 #endif

@@ -13,6 +13,23 @@
 
 @implementation Tools
 
++ (void)zipImage:(UIImage *)image completion:(ZYZipImageCompletion)completion
+{
+    CGSize size = CGSizeMake(300, 250);
+    UIGraphicsBeginImageContext(size);  //size 为CGSize类型，即你所需要的图片尺寸
+    
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    
+    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    NSData *data = UIImageJPEGRepresentation(scaledImage, 1.0);
+    if (completion) {
+        completion(data);
+    }
+}
+
 - (void)clearAFImageCacheWithUrl:(NSString *)url
 {
     id<AFImageCache> imageCache = [UIImageView sharedImageCache];
