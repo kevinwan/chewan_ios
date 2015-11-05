@@ -28,6 +28,7 @@
 #import "CPMyInterestViewController.h"
 #import "CPMyDateViewController.h"
 #import "CPDynamicNearViewController.h"
+#import "CPGuideView.h"
 @implementation EMConversation (search)
 
 //根据用户昵称,环信机器人名称,群名称进行搜索
@@ -89,6 +90,8 @@
     [self networkStateView];
     self.view.backgroundColor = UIColorFromRGB(0xefefef);
     [self searchController];
+    //新手引导
+    [CPGuideView showGuideViewWithImageName:@"6"];
 }
 
 - (void)didReceiveMemoryWarning
