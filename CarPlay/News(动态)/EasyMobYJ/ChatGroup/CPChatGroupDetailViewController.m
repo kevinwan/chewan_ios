@@ -11,6 +11,7 @@
 #import "ChatViewController.h"
 #import "CPRecommendModel.h"
 #import "CPMySwitch.h"
+#import "CPTaInfo.h"
 @interface CPChatGroupDetailViewController ()<UITableViewDataSource,UITableViewDelegate,GroupDetailDelegeta>
 {
     NSInteger _limit;
@@ -364,8 +365,12 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
     NSDictionary *dic = [self.dataSource objectAtIndex:indexPath.row];
     
+    CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
+    taVc.userId =[dic objectForKey:@"userId"];
+    [self.navigationController pushViewController:taVc animated:YES];
     
 }
 

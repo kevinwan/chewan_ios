@@ -68,7 +68,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     path=[NSString stringWithFormat:@"%@.info",CPUserId];
     user=[NSKeyedUnarchiver unarchiveObjectWithFile:path.documentPath];
-    if (user.isMan) {
+    if (user.isMan || !CPIsLogin) {
         [self.shuttleBtn setImage:[UIImage imageNamed:@"点击效果"] forState:UIControlStateNormal];
         self.whetherShuttle=@"1";
         [ZYUserDefaults setBool:YES forKey:Transfer];
@@ -81,7 +81,7 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    // Dispose of any resources that can be recreated.   978762254
 }
 - (IBAction)shuttle:(id)sender {
     if ([self.whetherShuttle isEqualToString:@"0"]) {

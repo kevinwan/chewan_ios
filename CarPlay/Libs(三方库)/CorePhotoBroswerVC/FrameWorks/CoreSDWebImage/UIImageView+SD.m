@@ -42,10 +42,13 @@
     if(urlStr==nil) return;
     
     NSURL *url=[NSURL URLWithString:urlStr];
-    
-    SDWebImageOptions options = SDWebImageLowPriority | SDWebImageRetryFailed;
-
-    [self sd_setImageWithURL:url placeholderImage:phImage options:options progress:progressBlock completed:completedBlock];
+    if (![ZYUserDefaults boolForKey:CPHasAlbum]) {
+        SDWebImageOptions options = SDWebImageLowPriority | SDWebImageRetryFailed;
+        [self sd_setImageWithURL:url placeholderImage:phImage options:options progress:progressBlock completed:completedBlock];
+    }else{
+        SDWebImageOptions options = SDWebImageRefreshCached | SDWebImageRetryFailed;
+        [self sd_setImageWithURL:url placeholderImage:phImage options:options progress:progressBlock completed:completedBlock];
+    }
 }
 
 

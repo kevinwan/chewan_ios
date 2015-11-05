@@ -620,7 +620,7 @@
             if (self.pageCount==0) {
                 [self dismiss];
                 [ZYUserDefaults setBool:NO forKey:CPHasAlbum];
-                [ZYNotificationCenter postNotification:NOTIFICATION_CLEANSDCACSHEIMAGE];
+                [ZYNotificationCenter postNotificationName:NOTIFICATION_CLEANSDCACSHEIMAGE object:nil ];
             }else{
                 [self vcPrepare];
                 //设置标题

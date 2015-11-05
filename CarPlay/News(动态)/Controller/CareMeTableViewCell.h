@@ -15,5 +15,6 @@
 @property (nonatomic, strong) UILabel    *distanceLabel;
 @property (nonatomic, strong) UILabel    *timeLabel;
 
+@property (nonatomic, strong)UIView *selectdView;
 
 @end

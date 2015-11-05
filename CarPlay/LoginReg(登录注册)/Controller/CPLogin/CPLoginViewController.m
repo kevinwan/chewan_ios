@@ -74,7 +74,7 @@
                             if (!error) {
                                 //存储个人信息
                                CPUser * user = [CPUser objectWithKeyValues:responseObject[@"data"]];
-                                NSString *path=[[NSString alloc]initWithFormat:@"%@.info",[Tools getUserId]];
+                                NSString *path=[[NSString alloc]initWithFormat:@"%@.info",responseObject[@"data"][@"userId"]];
                                 [NSKeyedArchiver archiveRootObject:user toFile:path.documentPath];
                                 [ZYUserDefaults setObject:responseObject[@"data"][@"nickname"] forKey:kUserNickName];
                                 [ZYUserDefaults setObject:responseObject[@"data"][@"avatar"] forKey:kUserHeadUrl];
