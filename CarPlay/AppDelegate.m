@@ -181,6 +181,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [UMSocialSnsService applicationDidBecomeActive];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -352,6 +353,18 @@
     
 }
 
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    // 如果你除了使用我们sdk之外还要处理另外的url，你可以把`handleOpenURL:wxApiDelegate:`的实现复制到你的代码里面，再添加你要处理的url。
+    return  [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
+}
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return  [UMSocialSnsService handleOpenURL:url];
+}
 - (void)dealloc
 {
     [ZYNotificationCenter removeObserver:self];
