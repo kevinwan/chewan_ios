@@ -444,7 +444,6 @@
 		E31CCEFC1BDB5CE900386F70 /* CPIntersterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E31CCEFB1BDB5CE900386F70 /* CPIntersterModel.m */; };
 		E31E4BD71BAD47A500902B34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E31E4BD61BAD47A500902B34 /* main.m */; };
 		E31E4BE21BAD47A500902B34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E31E4BE11BAD47A500902B34 /* Assets.xcassets */; };
-		E31E4BE51BAD47A500902B34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E31E4BE31BAD47A500902B34 /* LaunchScreen.storyboard */; };
 		E329DD721BDF298B005CD13D /* CPByTicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E329DD711BDF298B005CD13D /* CPByTicketViewController.m */; };
 		E329DD751BDF2B7E005CD13D /* CPLoadingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E329DD741BDF2B7E005CD13D /* CPLoadingButton.m */; };
 		E329DD781BDF8348005CD13D /* CPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E329DD771BDF8348005CD13D /* CPViewController.m */; };
@@ -1176,7 +1175,6 @@
 		6D2AC0D11BCE5A5100201A8E /* tabbarBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbarBackground@2x.png"; sourceTree = "<group>"; };
 		6D2AC0D21BCE5A5100201A8E /* tabbarSelectBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbarSelectBg.png; sourceTree = "<group>"; };
 		6D2AC0D31BCE5A5100201A8E /* tabbarSelectBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbarSelectBg@2x.png"; sourceTree = "<group>"; };
-		6D2AC18D1BCE80C000201A8E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		6D2AC1911BCE824400201A8E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		6D2AC1931BCE825800201A8E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6D2AD8C11BCF72A30099CFD7 /* ActivityStateAdmin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ActivityStateAdmin@2x.png"; sourceTree = "<group>"; };
@@ -1305,7 +1303,6 @@
 		E31E4BD21BAD47A500902B34 /* CarPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E31E4BD61BAD47A500902B34 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E31E4BE11BAD47A500902B34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E31E4BE41BAD47A500902B34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E31E4BE61BAD47A500902B34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E31E4C491BAD48D600902B34 /* CP_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CP_Prefix.pch; sourceTree = "<group>"; };
 		E31E4C4E1BAD507E00902B34 /* macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = macro.h; sourceTree = "<group>"; };
@@ -3384,7 +3381,6 @@
 				E31E4C491BAD48D600902B34 /* CP_Prefix.pch */,
 				6D2AC1921BCE824400201A8E /* Localizable.strings */,
 				E31E4BE11BAD47A500902B34 /* Assets.xcassets */,
-				E31E4BE31BAD47A500902B34 /* LaunchScreen.storyboard */,
 				E31E4BE61BAD47A500902B34 /* Info.plist */,
 				E31E4BD61BAD47A500902B34 /* main.m */,
 				E3987EA21BE8B8BD00EBE487 /* CPActivityType.plist */,
@@ -4193,7 +4189,6 @@
 				6D2AC17D1BCE5A5100201A8E /* tabbar_chats.png in Resources */,
 				6D2ABFC41BCE582100201A8E /* callRing.mp3 in Resources */,
 				6D2AC1661BCE5A5100201A8E /* chat_sender_audio_playing_full@2x.png in Resources */,
-				E31E4BE51BAD47A500902B34 /* LaunchScreen.storyboard in Resources */,
 				6D2AC1441BCE5A5100201A8E /* chatBar_more_camera.png in Resources */,
 				E3606F0D1BC76FF100797968 /* CPRecommendCell.xib in Resources */,
 				6D2AC16D1BCE5A5100201A8E /* add@2x.png in Resources */,
@@ -4835,15 +4830,6 @@
 				6D2AC1931BCE825800201A8E /* en */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		E31E4BE31BAD47A500902B34 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E31E4BE41BAD47A500902B34 /* Base */,
-				6D2AC18D1BCE80C000201A8E /* zh-Hans */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
