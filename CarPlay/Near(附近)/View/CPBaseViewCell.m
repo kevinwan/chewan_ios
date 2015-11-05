@@ -255,7 +255,7 @@
     self.sexView.isMan = model.organizer.isMan;
     self.sexView.age = model.organizer.age;
 
-    [self.userIconView zy_setBlurImageWithUrl:model.organizer.cover];
+    [self.userIconView zy_setBlurImageWithUrl:[model.organizer.cover stringByAppendingString:@"?imageView2/1/w/500"]];
     [self.distanceView setTitle:model.distanceStr.trimLength?model.distanceStr:@"未知" forState:UIControlStateNormal];
     self.loveBtn.selected = model.organizer.subscribeFlag;
     self.payView.text = model.pay;
@@ -341,7 +341,7 @@
     self.sexView.isMan = myDateModel.applicant.isMan;
     self.sexView.age = myDateModel.applicant.age;
     
-    [self.userIconView zy_setBlurImageWithUrl:myDateModel.applicant.cover];
+    [self.userIconView zy_setBlurImageWithUrl:[myDateModel.applicant.cover stringByAppendingString:@"?imageView2/1/w/500"]];
     
     [self.distanceView setTitle:myDateModel.distanceStr.trimLength ? myDateModel.distanceStr : @"未知" forState:UIControlStateNormal];
     self.loveBtn.selected = myDateModel.applicant.subscribeFlag;
@@ -435,7 +435,7 @@
     self.sexView.isMan = intersterModel.user.isMan;
     self.sexView.age = intersterModel.user.age;
     
-    [self.userIconView zy_setBlurImageWithUrl:intersterModel.user.cover];
+    [self.userIconView zy_setBlurImageWithUrl:[intersterModel.user.cover stringByAppendingString:@"?imageView2/1/w/500"]];
     self.loveBtn.hidden = YES;
     self.payView.text = intersterModel.activityPay;
     self.sendView.hidden = !intersterModel.activityTransfer;

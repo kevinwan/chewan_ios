@@ -24,7 +24,7 @@
         [self.contentView addSubview:_headIV];
 
         _nameLabel = [[UILabel alloc] init];
-        _nameLabel.frame = CGRectMake(CGRectGetMaxX(_headIV.frame)+10, 17, 60, 16);
+        _nameLabel.frame = CGRectMake(CGRectGetMaxX(_headIV.frame)+10, 17, 120, 16);
         _nameLabel.backgroundColor = [UIColor clearColor];
         _nameLabel.textColor = UIColorFromRGB(0x333333);
         _nameLabel.textAlignment = NSTextAlignmentLeft;

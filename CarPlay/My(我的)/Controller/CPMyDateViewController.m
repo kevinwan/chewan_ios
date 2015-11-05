@@ -21,6 +21,7 @@
 #import "CPRecommentViewCell.h"
 #import "CPActivityDetailViewController.h"
 #import "SDImageCache.h"
+#import "CPLeadView.h"
 
 @interface CPMyDateViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate,ZYWaterflowLayoutDelegate>
 @property (nonatomic, strong) UICollectionView *tableView;
@@ -57,6 +58,12 @@ static NSString *ID2 = @"DateCell2";
     [self.view addSubview:self.tableView];
     [ZYLoadingView showLoadingView];
     [self loadDataWithHeader:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [CPLeadView showGuideViewWithImageName:@"3" centerX:self.view.middleX y:ZYScreenHeight - 286];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -428,11 +435,9 @@ static NSString *ID2 = @"DateCell2";
 - (UICollectionView *)tableView
 {
     if (_tableView == nil) {
-//        UICollectionView3DLayout *layout = [UICollectionView3DLayout new];
         ZYWaterflowLayout *layout = [ZYWaterflowLayout new];
         layout.columnsCount = 1;
         layout.delegate = self;
-//                UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
         _tableView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height) collectionViewLayout:layout];
         _tableView.alwaysBounceVertical = YES;
         _tableView.backgroundColor = [UIColor clearColor];
