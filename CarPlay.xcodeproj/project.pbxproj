@@ -478,6 +478,7 @@
 		E35AAF521BE24A0700A802A3 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF401BE24A0700A802A3 /* UIImageView+HighlightedWebCache.m */; };
 		E35AAF531BE24A0700A802A3 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF421BE24A0700A802A3 /* UIImageView+WebCache.m */; };
 		E35AAF541BE24A0700A802A3 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E35AAF441BE24A0700A802A3 /* UIView+WebCacheOperation.m */; };
+		E35E12631BEB234700B1D621 /* CPGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = E35E12621BEB234700B1D621 /* CPGuideView.m */; settings = {ASSET_TAGS = (); }; };
 		E3606F0D1BC76FF100797968 /* CPRecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */; };
 		E3606F121BC78C7300797968 /* CPBaseViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3606F111BC78C7300797968 /* CPBaseViewCell.xib */; };
 		E365747F1BE0BD3000BA7E63 /* CPHisDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E365747E1BE0BD3000BA7E63 /* CPHisDateViewController.m */; };
@@ -1370,6 +1371,8 @@
 		E35AAF421BE24A0700A802A3 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		E35AAF431BE24A0700A802A3 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		E35AAF441BE24A0700A802A3 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
+		E35E12611BEB234700B1D621 /* CPGuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPGuideView.h; sourceTree = "<group>"; };
+		E35E12621BEB234700B1D621 /* CPGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPGuideView.m; sourceTree = "<group>"; };
 		E3606F0C1BC76FF100797968 /* CPRecommendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPRecommendCell.xib; sourceTree = "<group>"; };
 		E3606F111BC78C7300797968 /* CPBaseViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPBaseViewCell.xib; sourceTree = "<group>"; };
 		E365747D1BE0BD3000BA7E63 /* CPHisDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHisDateViewController.h; sourceTree = "<group>"; };
@@ -3885,6 +3888,8 @@
 				E3AF16FD1BBA296C00306ABF /* CPNoHighLightButton.m */,
 				E311371D1BD09309004EF249 /* CPLoadingView.h */,
 				E311371E1BD09309004EF249 /* CPLoadingView.m */,
+				E35E12611BEB234700B1D621 /* CPGuideView.h */,
+				E35E12621BEB234700B1D621 /* CPGuideView.m */,
 				E371CA3A1BE9D9EC00B77723 /* CPLeadView.h */,
 				E371CA3B1BE9D9EC00B77723 /* CPLeadView.m */,
 			);
@@ -4470,6 +4475,7 @@
 				E3A471821BB3A85300973197 /* UIButton+ZY.m in Sources */,
 				6D2ABFC01BCE582100201A8E /* wav.mm in Sources */,
 				6D2ABF981BCE582100201A8E /* MWZoomingScrollView.m in Sources */,
+				E35E12631BEB234700B1D621 /* CPGuideView.m in Sources */,
 				E35AAF4B1BE24A0700A802A3 /* SDWebImageDownloaderOperation.m in Sources */,
 				E35AAF481BE24A0700A802A3 /* SDWebImageCompat.m in Sources */,
 				6D2ABFEE1BCE582100201A8E /* AddFriendViewController.m in Sources */,

@@ -16,12 +16,12 @@
 
 + (void)showGuideViewWithImageName:(NSString *)imageName
 {
-    [self showGuideViewWithImageName:imageName frame:CGRectZero];
+    [self showGuideViewWithImageName:imageName centerX:0 y:0];
 }
 
-+ (void)showGuideViewWithImageName:(NSString *)imageName frame:(CGRect)frame
++ (void)showGuideViewWithImageName:(NSString *)imageName centerX:(CGFloat)centerX y:(CGFloat)y
 {
-    BOOL firstShow = [[NSUserDefaults standardUserDefaults] boolForKey:imageName];
+    BOOL firstShow = [[NSUserDefaults standardUserDefaults] boolForKey:[imageName stringByAppendingString:@"CPLeadViewKey"]];
     
     if (firstShow == NO) {
         UIWindow *window = [UIApplication sharedApplication].windows.lastObject;
@@ -35,29 +35,19 @@
                 [guideView removeFromSuperview];
             }];
         }];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:imageName];
+//        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:imageName];
         
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
         [guideView addSubview:imageView];
-        if (CGRectIsEmpty(frame)) {
-            imageView.center = guideView.centerInSelf;
-        }else{
-            if (frame.origin.x) {
-                imageView.x = frame.origin.x;
-            }
-            
-            if (frame.origin.y) {
-                imageView.y = frame.origin.y;
-            }
-            
-            if (frame.size.width) {
-                imageView.width = frame.size.width;
-            }
-            
-            if (frame.size.height) {
-                imageView.height = frame.size.height;
-            }
+        imageView.center = guideView.centerInSelf;
+        
+        if (centerX) {
+            imageView.centerX = centerX;
         }
+        if (y) {
+            imageView.y = y;
+        }
+        
         [window addSubview:guideView];
     }
     

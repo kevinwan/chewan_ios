@@ -21,6 +21,7 @@
 #import "CPMyInterestViewController.h"
 #import "NSObject+Copying.h"
 #import "SDImageCache.h"
+#import "CPLeadView.h"
 
 @interface CPNearViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate>
 @property (nonatomic, strong) UICollectionView *tableView;
@@ -85,6 +86,9 @@ static NSString *ID = @"cell";
 //    if (self.datas.count == 0) {
 //        [ZYLoadingView showLoadingView];
 //    }
+    
+    [CPLeadView showGuideViewWithImageName:@"1" centerX:self.view.middleX + 10 y:ZYScreenHeight - 208];
+    
     if (CPUnLogin) {
         if (self.datas.count == 0) {
             [ZYLoadingView showLoadingView];
