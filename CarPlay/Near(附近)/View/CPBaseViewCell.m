@@ -290,7 +290,7 @@
     if ([model.organizer.licenseAuthStatus isEqualToString:@"认证通过"]) {
         self.carTypeView.hidden = NO;
         
-        [self.carView zySetImageWithUrl:model.organizer.car.logo placeholderImage:CPPlaceHolderImage forState:UIControlStateNormal];
+        [self.carView zySetImageWithUrl:model.organizer.car.logo placeholderImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
         self.carTypeView.text = model.organizer.car.model;
     }else{
         
@@ -375,7 +375,7 @@
     }
     
     if ([myDateModel.applicant.licenseAuthStatus isEqualToString:@"认证通过"]) {
-        [self.carView zySetImageWithUrl:myDateModel.applicant.car.logo placeholderImage:CPPlaceHolderImage forState:UIControlStateNormal];
+        [self.carView zySetImageWithUrl:myDateModel.applicant.car.logo placeholderImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
         self.carTypeView.text = myDateModel.applicant.car.model;
     }else{
         [self.carView setImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
