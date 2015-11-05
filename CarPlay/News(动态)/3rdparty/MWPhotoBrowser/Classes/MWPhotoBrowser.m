@@ -184,18 +184,18 @@
 {
     NSLog(@"aaaa");
     if (_saveActionsheet == nil) {
-        self.saveActionsheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"保存图片" otherButtonTitles:nil, nil];
+        self.saveActionsheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"保存图片", nil];
         self.saveActionsheet.delegate = self;
         self.saveActionsheet.tag = 10000;
     }
     [_saveActionsheet showInView:self.view];
     
 }
+
 #pragma mark - Action Sheet Delegate
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (actionSheet.tag  == 10000) {
-        NSLog(@"butindwx = %d",buttonIndex);
         if (actionSheet.cancelButtonIndex != buttonIndex) {
             [self savePhoto];
         }

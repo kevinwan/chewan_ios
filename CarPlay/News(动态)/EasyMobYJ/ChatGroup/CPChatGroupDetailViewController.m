@@ -278,6 +278,7 @@
         cell.sexView.age = [[dic objectForKey:@"age"] integerValue];
         cell.sexView.gender = [dic objectForKey:@"gender"];
         cell.distanceLabel.text =[self getDidstanceStrWithDistance:[[dic objectForKey:@"distance"] integerValue]];
+        [cell.inviteBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         /*
          inviteStatus        当前登录用户 邀请 该用户的 状态；
          0 没有邀请过           1 邀请中
@@ -336,6 +337,7 @@
                 case 3:
                     [cell.inviteBtn setTitle:@"已拒绝" forState:UIControlStateNormal];
                     cell.inviteBtn.backgroundColor = [UIColor clearColor];
+                    [cell.inviteBtn setTitleColor:UIColorFromRGB(0x999999) forState:UIControlStateNormal];
                     break;
                     
                 default:
