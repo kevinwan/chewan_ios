@@ -47,7 +47,7 @@
     // 设置点击空白区域退出键盘
     [[IQKeyboardManager sharedManager] setShouldResignOnTouchOutside:YES];
 //    友盟第三方登录
-    [UMSocialData setAppKey:@"507fcab25270157b37000010"];
+    [UMSocialData setAppKey:@"55a34ed367e58e6efc00285d"];
     
     [self getLocation];
     //环信

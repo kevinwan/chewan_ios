@@ -113,25 +113,32 @@
 }
 //
 - (IBAction)matchingBtnClick:(id)sender {
-    NSDictionary *estabPoint=[[NSDictionary alloc]initWithObjectsAndKeys:@([Tools getLongitude]),@"longitude",@([Tools getLatitude]),@"latitude", nil];
-    
-    NSDictionary *establish=[[NSDictionary alloc]initWithObjectsAndKeys:[ZYUserDefaults stringForKey:Province],@"province",[ZYUserDefaults stringForKey:City],@"city",[ZYUserDefaults stringForKey:District],@"district",[ZYUserDefaults stringForKey:Street],@"street", nil];
-    NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:[ZYUserDefaults stringForKey:LastType].type,@"majorType",[ZYUserDefaults stringForKey:LastType],@"type",@([ZYUserDefaults boolForKey:Transfer]),@"transfer",establish,@"establish",estabPoint,@"estabPoint",estabPoint,@"destPoint",establish,@"destination", nil];
-    NSString *path=[[NSString alloc]initWithFormat:@"activity/register?userId=%@&token=%@",[Tools getUserId],[Tools getToken]];
-    [ZYNetWorkTool postJsonWithUrl:path params:params success:^(id responseObject) {
-        if (CPSuccess) {
-            [self dismissViewControllerAnimated:YES completion:nil];
-            CPTabBarController *tab = (CPTabBarController *)self.view.window.rootViewController;
-            [ZYNotificationCenter postNotificationName:NOTIFICATION_STARTMATCHING object:nil];
-            
-            [tab setSelectedIndex:4];
-        }else{
-            NSString *errmsg =[responseObject objectForKey:@"errmsg"];
-            [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-        }
-    } failed:^(NSError *error) {
-        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-    }];
+    if (CPIsLogin) {
+        NSDictionary *estabPoint=[[NSDictionary alloc]initWithObjectsAndKeys:@([Tools getLongitude]),@"longitude",@([Tools getLatitude]),@"latitude", nil];
+        
+        NSDictionary *establish=[[NSDictionary alloc]initWithObjectsAndKeys:[ZYUserDefaults stringForKey:Province],@"province",[ZYUserDefaults stringForKey:City],@"city",[ZYUserDefaults stringForKey:District],@"district",[ZYUserDefaults stringForKey:Street],@"street", nil];
+        NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:[ZYUserDefaults stringForKey:LastType].type,@"majorType",[ZYUserDefaults stringForKey:LastType],@"type",@([ZYUserDefaults boolForKey:Transfer]),@"transfer",establish,@"establish",estabPoint,@"estabPoint",estabPoint,@"destPoint",establish,@"destination", nil];
+        NSString *path=[[NSString alloc]initWithFormat:@"activity/register?userId=%@&token=%@",[Tools getUserId],[Tools getToken]];
+        [ZYNetWorkTool postJsonWithUrl:path params:params success:^(id responseObject) {
+            if (CPSuccess) {
+                [self dismissViewControllerAnimated:YES completion:nil];
+                CPTabBarController *tab = (CPTabBarController *)self.view.window.rootViewController;
+                [ZYNotificationCenter postNotificationName:NOTIFICATION_STARTMATCHING object:nil];
+                
+                [tab setSelectedIndex:4];
+            }else{
+                NSString *errmsg =[responseObject objectForKey:@"errmsg"];
+                [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+            }
+        } failed:^(NSError *error) {
+            [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        }];
+    }else{
+        [self dismissViewControllerAnimated:YES completion:nil];
+        CPTabBarController *tab = (CPTabBarController *)self.view.window.rootViewController;
+        [ZYNotificationCenter postNotificationName:NOTIFICATION_STARTMATCHING object:nil];
+        [tab setSelectedIndex:4];
+    }
 }
 
 - (IBAction)closeLocatoinAddressView:(id)sender {
