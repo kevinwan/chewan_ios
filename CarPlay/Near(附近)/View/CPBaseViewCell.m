@@ -476,7 +476,7 @@
     
     if ([intersterModel.user.licenseAuthStatus isEqualToString:@"认证通过"]) {
         self.carTypeView.hidden = NO;
-        [self.carView zySetImageWithUrl:intersterModel.user.car.logo placeholderImage:CPPlaceHolderImage forState:UIControlStateNormal];
+        [self.carView zySetImageWithUrl:intersterModel.user.car.logo placeholderImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
         
         self.carTypeView.text = intersterModel.user.car.model;
     }else{

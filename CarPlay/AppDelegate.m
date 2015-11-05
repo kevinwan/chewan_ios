@@ -16,6 +16,7 @@
 #import "ChatListViewController.h"
 #import "UMSocial.h"
 #import "SDImageCache.h"
+#import "CPNewfeatureViewController.h"
 
 @interface AppDelegate ()<UITabBarControllerDelegate,CLLocationManagerDelegate,UIAlertViewDelegate>
 
@@ -56,6 +57,24 @@
     [[EaseMob sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     if (CPIsLogin) {
         [self upDateUserInfo];
+    }
+    // 如何知道第一次使用这个版本？比较上次的使用情况
+    NSString *versionKey = (__bridge NSString *)kCFBundleVersionKey;
+    
+    // 从沙盒中取出上次存储的软件版本号(取出用户上次的使用记录)
+    NSString *lastVersion = [[NSUserDefaults standardUserDefaults] objectForKey:versionKey];
+    // 获得当前打开软件的版本号
+    NSString *currentVersion = [NSBundle mainBundle].infoDictionary[versionKey];
+    
+    if ([currentVersion isEqualToString:lastVersion]) {
+        // 当前版本号 == 上次使用的版本：显示HMTabBarViewController
+        self.window.rootViewController = _tabVc;
+        [self.window makeKeyAndVisible];
+    } else { // 当前版本号 != 上次使用的版本：显示版本新特性
+        self.window.rootViewController = [[CPNewfeatureViewController alloc] init];
+        // 存储这次使用的软件版本
+        [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:versionKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
     return YES;
 }
