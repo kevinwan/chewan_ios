@@ -11,4 +11,8 @@
 @interface CPCarOwnersCertificationController : UITableViewController
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 - (IBAction)submit:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *bandName;
+@property (weak, nonatomic) IBOutlet UIImageView *logo;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bandNameWidth;
 @end

@@ -114,6 +114,9 @@
 		6BD61A441BEC775900A4589B /* CPBindingPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BD61A431BEC775900A4589B /* CPBindingPhone.storyboard */; };
 		6BD61A481BECA98900A4589B /* CPModifyPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD61A471BECA98900A4589B /* CPModifyPassword.m */; };
 		6BD61A4A1BECA99400A4589B /* CPModifyPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BD61A491BECA99400A4589B /* CPModifyPassword.storyboard */; };
+		6BD61A4D1BECC73300A4589B /* CPBRPGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD61A4C1BECC73300A4589B /* CPBRPGViewController.m */; };
+		6BD61A4F1BECC76400A4589B /* CPBRPGViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BD61A4E1BECC76400A4589B /* CPBRPGViewController.storyboard */; };
+		6BD61A551BECDA0700A4589B /* CPBRPGMatchingSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD61A541BECDA0700A4589B /* CPBRPGMatchingSelectButton.m */; };
 		6BDA2C821BD4DA420032FFF1 /* CPpinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDA2C811BD4DA420032FFF1 /* CPpinyin.m */; };
 		6BDA2C851BD4DABA0032FFF1 /* CPNameIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDA2C841BD4DABA0032FFF1 /* CPNameIndex.m */; };
 		6BDA2C871BD511F10032FFF1 /* OtherMatchingSelectView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BDA2C861BD511F10032FFF1 /* OtherMatchingSelectView.storyboard */; };
@@ -823,6 +826,11 @@
 		6BD61A461BECA98900A4589B /* CPModifyPassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPModifyPassword.h; sourceTree = "<group>"; };
 		6BD61A471BECA98900A4589B /* CPModifyPassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPModifyPassword.m; sourceTree = "<group>"; };
 		6BD61A491BECA99400A4589B /* CPModifyPassword.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPModifyPassword.storyboard; sourceTree = "<group>"; };
+		6BD61A4B1BECC73300A4589B /* CPBRPGViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPBRPGViewController.h; sourceTree = "<group>"; };
+		6BD61A4C1BECC73300A4589B /* CPBRPGViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPBRPGViewController.m; sourceTree = "<group>"; };
+		6BD61A4E1BECC76400A4589B /* CPBRPGViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPBRPGViewController.storyboard; sourceTree = "<group>"; };
+		6BD61A531BECDA0700A4589B /* CPBRPGMatchingSelectButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPBRPGMatchingSelectButton.h; sourceTree = "<group>"; };
+		6BD61A541BECDA0700A4589B /* CPBRPGMatchingSelectButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPBRPGMatchingSelectButton.m; sourceTree = "<group>"; };
 		6BDA2C801BD4DA420032FFF1 /* CPpinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPpinyin.h; sourceTree = "<group>"; };
 		6BDA2C811BD4DA420032FFF1 /* CPpinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPpinyin.m; sourceTree = "<group>"; };
 		6BDA2C831BD4DABA0032FFF1 /* CPNameIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNameIndex.h; sourceTree = "<group>"; };
@@ -3772,6 +3780,9 @@
 		E3A471041BB3A85300973197 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6BD61A4B1BECC73300A4589B /* CPBRPGViewController.h */,
+				6BD61A4C1BECC73300A4589B /* CPBRPGViewController.m */,
+				6BD61A4E1BECC76400A4589B /* CPBRPGViewController.storyboard */,
 				6BDA2CAD1BD774050032FFF1 /* ExerciseMatchingSelectView.h */,
 				6BDA2CAE1BD774050032FFF1 /* ExerciseMatchingSelectView.m */,
 				6BDA2CAB1BD7705B0032FFF1 /* ExerciseMatchingSelectView.storyboard */,
@@ -3785,6 +3796,8 @@
 				6BF14C421BD23331008D2E74 /* CPExerciseMatchingSelectButton.m */,
 				6BDA2CA81BD75EC20032FFF1 /* CPOtherMatchingSelectView.h */,
 				6BDA2CA91BD75EC20032FFF1 /* CPOtherMatchingSelectView.m */,
+				6BD61A531BECDA0700A4589B /* CPBRPGMatchingSelectButton.h */,
+				6BD61A541BECDA0700A4589B /* CPBRPGMatchingSelectButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4448,6 +4461,7 @@
 				6D2AC1881BCE5A5100201A8E /* tabbar_settingHL@2x.png in Resources */,
 				6D2AC14F1BCE5A5100201A8E /* chatBar_more_photoSelected@2x.png in Resources */,
 				6D7F6FCF1BD5216500945F1B /* chatBar_colorMore_cameraSelected@3x.png in Resources */,
+				6BD61A4F1BECC76400A4589B /* CPBRPGViewController.storyboard in Resources */,
 				6D2AC1771BCE5A5100201A8E /* group_participant_add@2x.png in Resources */,
 				6D2AC14C1BCE5A5100201A8E /* chatBar_more_photo.png in Resources */,
 				6D2AC13B1BCE5A5100201A8E /* chatBar_colorMore_cameraSelected@2x.png in Resources */,
@@ -4872,6 +4886,7 @@
 				6B364C771BCE4077005A4AF9 /* MJPhoto.m in Sources */,
 				E35AAF4D1BE24A0700A802A3 /* SDWebImagePrefetcher.m in Sources */,
 				E3A471811BB3A85300973197 /* UIBarButtonItem+Extension.m in Sources */,
+				6BD61A551BECDA0700A4589B /* CPBRPGMatchingSelectButton.m in Sources */,
 				E3719AAC1BDA5D9000465DF2 /* DRNRealTimeBlurView.m in Sources */,
 				E31B12E11BB9311700B51696 /* PhotoBroswerLayout.m in Sources */,
 				E3DF66541BE31C9B00B9239D /* UIButton+ZYWebCache.m in Sources */,
@@ -4931,6 +4946,7 @@
 				E3A471761BB3A85300973197 /* Aspects.m in Sources */,
 				6D2ABFD71BCE582100201A8E /* EMChatVideoBubbleView.m in Sources */,
 				E38742D31BE309EC00C5D514 /* UIImageView+ZYWebCache.m in Sources */,
+				6BD61A4D1BECC73300A4589B /* CPBRPGViewController.m in Sources */,
 				6D2ABFAA1BCE582100201A8E /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				E31B13541BB9312D00B51696 /* CoreSVP.m in Sources */,
 				E3A471921BB3A85300973197 /* CPNavigationController.m in Sources */,
@@ -5093,8 +5109,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5119,7 +5135,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.77iland.carsplay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "daeae9c3-0f26-4cc3-9a81-444e8892ac4c";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -5129,8 +5145,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Nanjing 77 island Mdt InfoTech Co., Ltd. (7B7Z8D7LY4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5155,7 +5171,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.77iland.carsplay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "daeae9c3-0f26-4cc3-9a81-444e8892ac4c";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

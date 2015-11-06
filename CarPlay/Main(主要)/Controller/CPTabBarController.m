@@ -354,6 +354,16 @@
     [alertView show];
 }
 
+#pragma mark - IChatManagerDelegate 登录状态变化
+
+- (void)didLoginFromOtherDevice
+{
+    [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:NO completion:^(NSDictionary *info, EMError *error) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您的账号在其他设备登录" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        alertView.tag = 100;
+        [alertView show];
+    } onQueue:nil];
+}
 
 - (void)dealloc
 {

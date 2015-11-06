@@ -10,12 +10,12 @@
 
 @implementation CPCar
 MJCodingImplementation
-
-- (NSString *)model
-{
-    if (_model.length > 4) {
-        return [[_model substringToIndex:4] stringByAppendingString:@".."];
-    }
-    return _model;
-}
+//
+//- (NSString *)model
+//{
+//    if (_model.length > 4) {
+//        return [[_model substringToIndex:4] stringByAppendingString:@".."];
+//    }
+//    return _model;
+//}
 @end

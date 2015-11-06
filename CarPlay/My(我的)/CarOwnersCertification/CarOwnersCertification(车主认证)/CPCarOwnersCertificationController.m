@@ -32,6 +32,15 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     user=[NSKeyedUnarchiver unarchiveObjectWithFile:path.documentPath];
+    if (user.car.brand) {
+        self.bandName.text=user.car.model;
+        CGSize labelsize = [user.car.model sizeWithFont:ZYFont12];
+        self.bandNameWidth.constant=labelsize.width+2;
+    }
+    if (user.car.logo) {
+        [self.logo zySetImageWithUrl:user.car.logo placeholderImage:[UIImage imageNamed:@"logo"]];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {

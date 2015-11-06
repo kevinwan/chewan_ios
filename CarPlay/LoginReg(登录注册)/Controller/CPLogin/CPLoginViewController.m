@@ -103,6 +103,8 @@
                                 }else{
                                     [ZYUserDefaults setBool:NO forKey:CPHasAlbum];
                                 }
+                            }else{
+                                  [[[UIAlertView alloc]initWithTitle:@"提示" message:error.description delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                             }
                             [self disMiss];
                         } onQueue:nil];
