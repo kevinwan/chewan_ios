@@ -98,10 +98,11 @@
                                 CPMyInfoController *info=[UIStoryboard storyboardWithName:@"CPMyInfoController" bundle:nil].instantiateInitialViewController;
                                 _user.phone=_phoneField.text;
                                 _user.code=_verificationCodeField.text;
+                                _user.password=_passwordField.text;
                                 info.user=_user;
                                 [self.navigationController pushViewController:info animated:YES];
                             }else{
-                                
+                                [[[UIAlertView alloc]initWithTitle:@"提示" message:@"密码为6-15位字母和数组的组合" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                             }
                         }else{
                              [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请输入您的密码" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
