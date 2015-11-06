@@ -96,7 +96,7 @@
             if ([Tools isValidateMobile:self.phoneField.text]) {
                 if (self.verificationCodeField.text && ![self.verificationCodeField.text isEqualToString:@""]){
                     if (self.verificationCodeField.text.length == 4) {
-                        NSDictionary *params=@{@"uid":_user.uid,@"channel":_user.channel,@"snsPassword":_user.password,@"phone":_phoneField.text,@"code":_verificationCodeField.text};
+                        NSDictionary *params=@{@"uid":_user.uid,@"channel":_user.channel,@"snsPassword":_user.snsPassword,@"phone":_phoneField.text,@"code":_verificationCodeField.text};
                         [self showLoading];
                         [ZYNetWorkTool postJsonWithUrl:@"user/phone/binding" params:params success:^(id responseObject) {
                             if (CPSuccess) {
@@ -122,7 +122,7 @@
                                             [ZYUserDefaults setObject:responseObject[@"data"][@"token"] forKey:Token];
                                         }
                                         [ZYUserDefaults setObject:_phoneField.text forKey:@"phone"];
-                                        [ZYUserDefaults setObject:[Tools md5EncryptWithString:self.passwordField.text] forKey:@"password"];
+                                        [ZYUserDefaults setObject:responseObject[@"data"][@"userId"] forKey:@"password"];
                                         [ZYNotificationCenter postNotificationName:NOTIFICATION_HASLOGIN object:nil];
                                         [self.navigationController popToRootViewControllerAnimated:NO];
                                         if (user.album.count > 0) {
