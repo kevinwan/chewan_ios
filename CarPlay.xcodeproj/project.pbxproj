@@ -605,6 +605,9 @@
 		EE7F81791BD9D1E0003E7B3B /* call_silence_h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7F81771BD9D1E0003E7B3B /* call_silence_h@3x.png */; };
 		EE7F817B1BD9E74D003E7B3B /* answerTel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7F817A1BD9E74D003E7B3B /* answerTel@2x.png */; };
 		EECA0F091BECFA4F0029F2D2 /* CPRightButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EECA0F081BECFA4F0029F2D2 /* CPRightButton.m */; };
+		EECA0F0F1BECFAC00029F2D2 /* CPBRPGMatchingSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EECA0F0B1BECFAC00029F2D2 /* CPBRPGMatchingSelectButton.m */; };
+		EECA0F101BECFAC00029F2D2 /* CPBRPGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EECA0F0D1BECFAC00029F2D2 /* CPBRPGViewController.m */; };
+		EECA0F111BECFAC00029F2D2 /* CPBRPGViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EECA0F0E1BECFAC00029F2D2 /* CPBRPGViewController.storyboard */; };
 		EED47E921BE7679000BC2DBC /* nodistrube_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EED47E8E1BE7679000BC2DBC /* nodistrube_gray@2x.png */; };
 		EED47E931BE7679000BC2DBC /* nodistrube_gray@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EED47E8F1BE7679000BC2DBC /* nodistrube_gray@3x.png */; };
 		EED47E941BE7679000BC2DBC /* nodistrube@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EED47E901BE7679000BC2DBC /* nodistrube@2x.png */; };
@@ -1629,6 +1632,11 @@
 		EE7F817A1BD9E74D003E7B3B /* answerTel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "answerTel@2x.png"; sourceTree = "<group>"; };
 		EECA0F071BECFA4F0029F2D2 /* CPRightButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRightButton.h; sourceTree = "<group>"; };
 		EECA0F081BECFA4F0029F2D2 /* CPRightButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRightButton.m; sourceTree = "<group>"; };
+		EECA0F0A1BECFAC00029F2D2 /* CPBRPGMatchingSelectButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPBRPGMatchingSelectButton.h; sourceTree = "<group>"; };
+		EECA0F0B1BECFAC00029F2D2 /* CPBRPGMatchingSelectButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPBRPGMatchingSelectButton.m; sourceTree = "<group>"; };
+		EECA0F0C1BECFAC00029F2D2 /* CPBRPGViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPBRPGViewController.h; sourceTree = "<group>"; };
+		EECA0F0D1BECFAC00029F2D2 /* CPBRPGViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPBRPGViewController.m; sourceTree = "<group>"; };
+		EECA0F0E1BECFAC00029F2D2 /* CPBRPGViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPBRPGViewController.storyboard; sourceTree = "<group>"; };
 		EED47E8E1BE7679000BC2DBC /* nodistrube_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nodistrube_gray@2x.png"; sourceTree = "<group>"; };
 		EED47E8F1BE7679000BC2DBC /* nodistrube_gray@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nodistrube_gray@3x.png"; sourceTree = "<group>"; };
 		EED47E901BE7679000BC2DBC /* nodistrube@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nodistrube@2x.png"; sourceTree = "<group>"; };
@@ -3777,6 +3785,11 @@
 			children = (
 				6BDA2CAD1BD774050032FFF1 /* ExerciseMatchingSelectView.h */,
 				6BDA2CAE1BD774050032FFF1 /* ExerciseMatchingSelectView.m */,
+				EECA0F0A1BECFAC00029F2D2 /* CPBRPGMatchingSelectButton.h */,
+				EECA0F0B1BECFAC00029F2D2 /* CPBRPGMatchingSelectButton.m */,
+				EECA0F0C1BECFAC00029F2D2 /* CPBRPGViewController.h */,
+				EECA0F0D1BECFAC00029F2D2 /* CPBRPGViewController.m */,
+				EECA0F0E1BECFAC00029F2D2 /* CPBRPGViewController.storyboard */,
 				6BDA2CAB1BD7705B0032FFF1 /* ExerciseMatchingSelectView.storyboard */,
 				6BDA2CA21BD670660032FFF1 /* MatchingSelectView.h */,
 				6BDA2CA31BD670660032FFF1 /* MatchingSelectView.m */,
@@ -4453,6 +4466,7 @@
 				6D2AC1881BCE5A5100201A8E /* tabbar_settingHL@2x.png in Resources */,
 				6D2AC14F1BCE5A5100201A8E /* chatBar_more_photoSelected@2x.png in Resources */,
 				6D7F6FCF1BD5216500945F1B /* chatBar_colorMore_cameraSelected@3x.png in Resources */,
+				EECA0F111BECFAC00029F2D2 /* CPBRPGViewController.storyboard in Resources */,
 				6D2AC1771BCE5A5100201A8E /* group_participant_add@2x.png in Resources */,
 				6D2AC14C1BCE5A5100201A8E /* chatBar_more_photo.png in Resources */,
 				6D2AC13B1BCE5A5100201A8E /* chatBar_colorMore_cameraSelected@2x.png in Resources */,
@@ -4877,6 +4891,7 @@
 				E3A4717A1BB3A85300973197 /* NSDate+Extension.m in Sources */,
 				6B364C771BCE4077005A4AF9 /* MJPhoto.m in Sources */,
 				E35AAF4D1BE24A0700A802A3 /* SDWebImagePrefetcher.m in Sources */,
+				EECA0F0F1BECFAC00029F2D2 /* CPBRPGMatchingSelectButton.m in Sources */,
 				E3A471811BB3A85300973197 /* UIBarButtonItem+Extension.m in Sources */,
 				E3719AAC1BDA5D9000465DF2 /* DRNRealTimeBlurView.m in Sources */,
 				E31B12E11BB9311700B51696 /* PhotoBroswerLayout.m in Sources */,
@@ -4909,6 +4924,7 @@
 				6D2ABFDA1BCE582100201A8E /* EMChatViewCell.m in Sources */,
 				E31B135A1BB9313A00B51696 /* CPTestPhotoViewController.m in Sources */,
 				E31B134B1BB9312D00B51696 /* UIImage+Water.m in Sources */,
+				EECA0F101BECFAC00029F2D2 /* CPBRPGViewController.m in Sources */,
 				E31B133B1BB9312D00B51696 /* NSString+File.m in Sources */,
 				6B364CAA1BCF4BC3005A4AF9 /* CPSettingController.m in Sources */,
 				E3A471951BB3A85300973197 /* Const.m in Sources */,
