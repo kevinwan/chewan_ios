@@ -168,7 +168,7 @@
                     dict[@"channel"] = @"wechat";
                     NSString *sign = [NSString stringWithFormat:@"%@wechatcom.gongpingjia.carplay",snsAccount.usid];
                     dict[@"password"] = [Tools md5EncryptWithString:sign];
-//                    [self loginWithDict:dict];
+                    [self loginWithDict:dict];
                 }
             });
             break;

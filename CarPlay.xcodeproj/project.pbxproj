@@ -112,6 +112,8 @@
 		6BD61A3E1BEB79B000A4589B /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6BD61A391BEB79B000A4589B /* WeiboSDK.bundle */; };
 		6BD61A421BEC774900A4589B /* CPBindingPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD61A411BEC774900A4589B /* CPBindingPhone.m */; };
 		6BD61A441BEC775900A4589B /* CPBindingPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BD61A431BEC775900A4589B /* CPBindingPhone.storyboard */; };
+		6BD61A481BECA98900A4589B /* CPModifyPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD61A471BECA98900A4589B /* CPModifyPassword.m */; };
+		6BD61A4A1BECA99400A4589B /* CPModifyPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BD61A491BECA99400A4589B /* CPModifyPassword.storyboard */; };
 		6BDA2C821BD4DA420032FFF1 /* CPpinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDA2C811BD4DA420032FFF1 /* CPpinyin.m */; };
 		6BDA2C851BD4DABA0032FFF1 /* CPNameIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDA2C841BD4DABA0032FFF1 /* CPNameIndex.m */; };
 		6BDA2C871BD511F10032FFF1 /* OtherMatchingSelectView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BDA2C861BD511F10032FFF1 /* OtherMatchingSelectView.storyboard */; };
@@ -818,6 +820,9 @@
 		6BD61A401BEC774900A4589B /* CPBindingPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPBindingPhone.h; sourceTree = "<group>"; };
 		6BD61A411BEC774900A4589B /* CPBindingPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPBindingPhone.m; sourceTree = "<group>"; };
 		6BD61A431BEC775900A4589B /* CPBindingPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPBindingPhone.storyboard; sourceTree = "<group>"; };
+		6BD61A461BECA98900A4589B /* CPModifyPassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPModifyPassword.h; sourceTree = "<group>"; };
+		6BD61A471BECA98900A4589B /* CPModifyPassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPModifyPassword.m; sourceTree = "<group>"; };
+		6BD61A491BECA99400A4589B /* CPModifyPassword.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPModifyPassword.storyboard; sourceTree = "<group>"; };
 		6BDA2C801BD4DA420032FFF1 /* CPpinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPpinyin.h; sourceTree = "<group>"; };
 		6BDA2C811BD4DA420032FFF1 /* CPpinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPpinyin.m; sourceTree = "<group>"; };
 		6BDA2C831BD4DABA0032FFF1 /* CPNameIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNameIndex.h; sourceTree = "<group>"; };
@@ -1814,6 +1819,7 @@
 		6B364C8A1BCF43B8005A4AF9 /* CPSetting */ = {
 			isa = PBXGroup;
 			children = (
+				6BD61A451BECA97700A4589B /* CPModifyPassword(修改密码) */,
 				6B364C8B1BCF43B8005A4AF9 /* CPAbout（关于我们） */,
 				6B364C921BCF43B8005A4AF9 /* CPVersionIntroduction(版本介绍) */,
 				6B364CA61BCF4BA8005A4AF9 /* CPSetting.storyboard */,
@@ -2148,6 +2154,16 @@
 				6BD61A431BEC775900A4589B /* CPBindingPhone.storyboard */,
 			);
 			path = "BindingPhone(绑定手机号)";
+			sourceTree = "<group>";
+		};
+		6BD61A451BECA97700A4589B /* CPModifyPassword(修改密码) */ = {
+			isa = PBXGroup;
+			children = (
+				6BD61A461BECA98900A4589B /* CPModifyPassword.h */,
+				6BD61A471BECA98900A4589B /* CPModifyPassword.m */,
+				6BD61A491BECA99400A4589B /* CPModifyPassword.storyboard */,
+			);
+			path = "CPModifyPassword(修改密码)";
 			sourceTree = "<group>";
 		};
 		6BDA2C8B1BD610080032FFF1 /* CPEditInfo(编辑资料) */ = {
@@ -4331,6 +4347,7 @@
 				6D7F6FBF1BD5189200945F1B /* chatBar_recordSelected@3x.png in Resources */,
 				6D2AC1711BCE5A5100201A8E /* titleBar.png in Resources */,
 				6D2AC1171BCE5A5100201A8E /* chatBar_textBg@2x.png in Resources */,
+				6BD61A4A1BECA99400A4589B /* CPModifyPassword.storyboard in Resources */,
 				6B153EFD1BB5692500560935 /* CPMyViewController.storyboard in Resources */,
 				E31B12EA1BB9311700B51696 /* PhotoItemView.xib in Resources */,
 				6D2AC15A1BCE5A5100201A8E /* chat_receiver_audio_playing_full@2x.png in Resources */,
@@ -4806,6 +4823,7 @@
 				E31B134A1BB9312D00B51696 /* UIImage+FixOrientation.m in Sources */,
 				6D2ABFB01BCE582100201A8E /* PSTCollectionViewItemKey.m in Sources */,
 				E33274921BE3401E00904368 /* CPUserTool.m in Sources */,
+				6BD61A481BECA98900A4589B /* CPModifyPassword.m in Sources */,
 				6D2ABFE21BCE582100201A8E /* GroupBansViewController.m in Sources */,
 				E31B13491BB9312D00B51696 /* UIImage+Extend.m in Sources */,
 				6BD619E01BE7411500A4589B /* SDPhotoBrowser.m in Sources */,

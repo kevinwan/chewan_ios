@@ -13,6 +13,7 @@
 #import "CPLoginViewController.h"
 #import "CPNavigationController.h"
 #import "SDImageCache.h"
+#import "CPModifyPassword.h"
 #import "UIImageView+AFNetworking.h"
 
 @interface CPSettingController ()<UIAlertViewDelegate>
@@ -26,7 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    titleArray=[[NSArray alloc]initWithObjects:@"清理缓存",@"喜欢我们打分鼓励",@"关于我们",@"版本介绍",@"当前版本", nil];
+    titleArray=[[NSArray alloc]initWithObjects:@"清理缓存",@"喜欢我们打分鼓励",@"关于我们",@"版本介绍",@"修改密码", nil];
     [self.loginOutBtn.layer setMasksToBounds:YES];
     [self.loginOutBtn.layer setCornerRadius:20.0];
 }
@@ -42,7 +43,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -97,9 +98,12 @@
     }else if (indexPath.row == 2){
         CPAbout *CPAbout=[UIStoryboard storyboardWithName:@"CPAbout" bundle:nil].instantiateInitialViewController;
         [self.navigationController pushViewController:CPAbout animated:YES];
-    }else{
+    }else if(indexPath.row == 3){
         CPVersionIntroduction *CPVersionIntroduction=[UIStoryboard storyboardWithName:@"CPVersionIntroduction" bundle:nil].instantiateInitialViewController;
         [self.navigationController pushViewController:CPVersionIntroduction animated:YES];
+    }else if (indexPath.row == 4){
+        CPModifyPassword *modifyPassword=[UIStoryboard storyboardWithName:@"CPModifyPassword" bundle:nil].instantiateInitialViewController;
+        [self.navigationController pushViewController:modifyPassword animated:YES];
     }
 }
 

@@ -64,6 +64,7 @@
                 if (self.verificationCodeField.text && ![self.verificationCodeField.text isEqualToString:@""]){
                     if (self.verificationCodeField.text.length == 4) {
                         NSDictionary *params=@{@"uid":_user.uid,@"channel":_user.channel,@"snsPassword":_user.password,@"phone":_phoneField.text,@"code":_verificationCodeField.text};
+                        [self showLoading];
                         [ZYNetWorkTool postJsonWithUrl:@"user/phone/binding" params:params success:^(id responseObject) {
                             if (CPSuccess) {
                                 [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:[Tools md5EncryptWithString:responseObject[@"data"][@"userId"]] password:[Tools md5EncryptWithString:self.passwordField.text] completion:^(NSDictionary *loginInfo, EMError *error) {
@@ -100,9 +101,11 @@
                                     [self disMiss];
                                 } onQueue:nil];
                             } else {
+                                [self disMiss];
                                 [[[UIAlertView alloc]initWithTitle:nil message:responseObject[@"errmsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil] show];
                             }
                         } failed:^(NSError *error) {
+                            [self disMiss];
                              [[[UIAlertView alloc]initWithTitle:nil message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil] show];
                         }];
                     }else{
