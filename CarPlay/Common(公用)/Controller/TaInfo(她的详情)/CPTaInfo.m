@@ -134,7 +134,7 @@
     [self.carLogoImg zySetImageWithUrl:user.car.logo placeholderImage:nil];
     [self.carName setText:user.car.brand];
     if (user.car.brand) {
-        CGSize labelsize = [user.car.model sizeWithFont:ZYFont12];
+        CGSize labelsize = [user.car.brand sizeWithFont:ZYFont12];
         self.carNameWidth.constant=labelsize.width+2;
         self.carLogoCenter.constant=-19-(labelsize.width-38)/2;
     }
