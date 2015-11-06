@@ -14,6 +14,30 @@
 
 @implementation CPTabBar
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder]) {
+        [self setUp];
+    }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
+        [self setUp];
+    }
+    return self;
+}
+
+/**
+ *  进行初始化设置
+ */
+- (void)setUp
+{
+    self.translucent = NO;
+}
+
 - (UIButton *)plusBtn
 {
     if (_plusBtn == nil) {

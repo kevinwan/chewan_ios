@@ -463,8 +463,8 @@ static NSString *ID = @"cell";
         _tipView.x = 0;
       
         UILabel *textL = [UILabel labelWithText:@"无聊中～小伙伴可以邀你～" textColor:[UIColor whiteColor] fontSize:14];
-        [_tipView addSubview:textL];
         [textL sizeToFit];
+        [_tipView addSubview:textL];
         textL.x = 10;
         textL.centerY = _tipView.middleY;
         
@@ -472,6 +472,11 @@ static NSString *ID = @"cell";
         [freeTimeBtn setOnImage:[UIImage imageNamed:@"btn_meikong"]];
         [freeTimeBtn setOffImage:[UIImage imageNamed:@"btn_youkong"]];
         freeTimeBtn.on = ![ZYUserDefaults boolForKey:FreeTimeKey];
+        if (freeTimeBtn.on) {
+            textL.text = @"忙碌中～小伙伴不可邀你～";
+        }else{
+            textL.text = @"无聊中～小伙伴可以邀你～";
+        }
         [freeTimeBtn sizeToFit];
         [_tipView addSubview:freeTimeBtn];
         ZYWeakSelf
