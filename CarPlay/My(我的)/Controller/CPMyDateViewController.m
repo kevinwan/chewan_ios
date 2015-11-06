@@ -136,7 +136,7 @@ static NSString *ID2 = @"DateCell2";
     [ZYNetWorkTool getWithUrl:url params:nil success:^(id responseObject) {
         
         DLog(@"%@ ---- ",responseObject);
-        [[CPLoadingView sharedInstance] dismissLoadingView];
+        [self dismissLoadingView];
         [refresh stopIndicatorAnimation];
         if (CPSuccess) {
             if (self.ignore == 0) {

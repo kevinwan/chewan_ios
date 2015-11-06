@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPMatchingResultController : UIViewController
+@interface CPMatchingResultController : CPViewController
 @property (nonatomic , strong)NSString *type;
 -(void)start;
 @end

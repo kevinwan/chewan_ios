@@ -53,6 +53,13 @@
  *  显示性别和年龄的View
  */
 @property (weak, nonatomic) IBOutlet CPSexView *sexView;
+
+/**
+ *  请我吧label的left
+ */
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *payViewLeftCons;
+
+
 /**
  *  请客的View
  */
@@ -231,18 +238,6 @@
     
     if (model.isHisDate) {
         self.marginCons.constant = 0;
-        if (model.organizer.idle) {
-            self.dateAnim.haloLayerColor = RedColor.CGColor;
-            [self.dateButton setBackgroundColor:RedColor];
-            [self.dateButton setTitle:@"邀Ta" forState:UIControlStateNormal];
-            [self setOneType:YES];
-        }else{
-            
-            self.dateAnim.haloLayerColor= [Tools getColor:@"cccccc"].CGColor;
-            [self.dateButton setBackgroundColor:[Tools getColor:@"cccccc"]];
-            [self.dateButton setTitle:@"Ta没空" forState:UIControlStateNormal];
-            [self setOneType:YES];
-        }
     }else{
         self.marginCons.constant = 20;
     }
@@ -258,7 +253,14 @@
     [self.userIconView zy_setBlurImageWithUrl:[model.organizer.cover stringByAppendingString:@"?imageView2/1/w/500"]];
     [self.distanceView setTitle:model.distanceStr.trimLength?model.distanceStr:@"未知" forState:UIControlStateNormal];
     self.loveBtn.selected = model.organizer.subscribeFlag;
-    self.payView.text = model.pay;
+
+    
+    if (model.pay.trimLength){
+        self.payView.text = model.pay;
+    }else{
+        self.payViewLeftCons.constant = 0;
+        self.payView.text = @"";
+    }
     self.sendView.hidden = !model.transfer;
     
     NSString *street = model.destination[@"street"];
@@ -294,6 +296,7 @@
         
         [self.carView setImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
     }
+    // 上传相册的View
     if (isHasAlubm && CPIsLogin) {
         self.tipView.hidden = YES;
     }else{
@@ -301,11 +304,26 @@
     }
     
     if (model.applyFlag == 0){
-        
-        self.dateAnim.haloLayerColor = RedColor.CGColor;
-        [self.dateButton setBackgroundColor:RedColor];
-        [self.dateButton setTitle:@"邀Ta" forState:UIControlStateNormal];
-        [self setOneType:YES];
+        if (model.isHisDate) {
+            
+            if (model.organizer.idle) {
+                self.dateAnim.haloLayerColor = RedColor.CGColor;
+                [self.dateButton setBackgroundColor:RedColor];
+                [self.dateButton setTitle:@"邀Ta" forState:UIControlStateNormal];
+                [self setOneType:YES];
+            }else{
+                
+                self.dateAnim.haloLayerColor= [Tools getColor:@"cccccc"].CGColor;
+                [self.dateButton setBackgroundColor:[Tools getColor:@"cccccc"]];
+                [self.dateButton setTitle:@"Ta没空" forState:UIControlStateNormal];
+                [self setOneType:YES];
+            }
+        }else{
+            self.dateAnim.haloLayerColor = RedColor.CGColor;
+            [self.dateButton setBackgroundColor:RedColor];
+            [self.dateButton setTitle:@"邀Ta" forState:UIControlStateNormal];
+            [self setOneType:YES];
+        }
     }else if (model.applyFlag == 1){
         
         if ([model.organizer.userId isEqualToString:CPUserId]) {
@@ -342,7 +360,14 @@
     
     [self.distanceView setTitle:myDateModel.distanceStr.trimLength ? myDateModel.distanceStr : @"未知" forState:UIControlStateNormal];
     self.loveBtn.selected = myDateModel.applicant.subscribeFlag;
-    self.payView.text = myDateModel.pay;
+    
+    if (myDateModel.pay.trimLength){
+        self.payView.text = myDateModel.pay;
+    }else{
+        self.payViewLeftCons.constant = 0;
+        self.payView.text = @"";
+    }
+    
     self.sendView.hidden = !myDateModel.transfer;
     NSString *street = myDateModel.destination[@"street"];
     
@@ -432,6 +457,13 @@
     [self.userIconView zy_setBlurImageWithUrl:[intersterModel.user.cover stringByAppendingString:@"?imageView2/1/w/500"]];
     self.loveBtn.hidden = YES;
     self.payView.text = intersterModel.activityPay;
+    
+    if (intersterModel.activityPay.trimLength){
+        self.payView.text = intersterModel.activityPay;
+    }else{
+        self.payViewLeftCons.constant = 0;
+        self.payView.text = @"";
+    }
     self.sendView.hidden = !intersterModel.activityTransfer;
     NSString *street = intersterModel.activityDestination[@"street"];
     

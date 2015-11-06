@@ -154,7 +154,7 @@ static NSString *ID = @"cell";
             }
             
             [ZYUserDefaults setObject:nil forKey:LastType];
-            [[CPLoadingView sharedInstance] dismissLoadingView];
+            [self dismissLoadingView];
         } failure:^(NSError *error) {
             [self setUpRefresh];
             self.params.ignore -= CPPageNum;

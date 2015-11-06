@@ -55,7 +55,7 @@
 //    友盟第三方登录
     [UMSocialData setAppKey:@"55a34ed367e58e6efc00285d"];
     
-    [UMSocialWechatHandler setWXAppId:kWeiXinAppID appSecret:kWeiXinAppSecret url:nil];
+    [UMSocialWechatHandler setWXAppId:@"wx4c127cf07bd7d80b" appSecret:@"315ce754c5a1096c5188b4b69a7b9f04" url:@"http://www.umeng.com/social"];
     //QQ登录
     [UMSocialQQHandler setQQWithAppId:@"1104728007" appKey:@"61BpHk8GQwH6FuCs" url:@"http://www.umeng.com/social"];
     [UMSocialData openLog:YES];
@@ -87,7 +87,7 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     //友盟
-    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:@"2493231538" RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
+//    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:@"2389475444" RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
 
     return YES;
 }

@@ -169,6 +169,7 @@
                 <outlet property="loveBtn" destination="RcY-th-q34" id="etp-qa-XQD"/>
                 <outlet property="marginCons" destination="sLa-Ef-mQd" id="ctS-B9-Rik"/>
                 <outlet property="payView" destination="WDr-aw-4W8" id="vQn-6d-Nga"/>
+                <outlet property="payViewLeftCons" destination="QG8-ZR-YIi" id="VWX-bs-dRg"/>
                 <outlet property="sendView" destination="tng-NA-qzb" id="Ux6-qt-b6j"/>
                 <outlet property="sexView" destination="C5X-Kr-Lzn" id="Myk-AP-vGU"/>
                 <outlet property="titleDistanceView" destination="J2S-ie-7r3" id="X2L-Lv-9tl"/>

@@ -136,7 +136,7 @@ static NSString *ID = @"myIntersterCell";
             [self showInfo:CPErrorMsg];
         }
         
-        [[CPLoadingView sharedInstance] dismissLoadingView];
+        [self dismissLoadingView];
     } failure:^(NSError *error) {
         
         [self setUpRefresh];

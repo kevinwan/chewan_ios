@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPHisDateViewController : UIViewController
+@interface CPHisDateViewController : CPViewController
 
 /**
  *  需要显示的user的信息
