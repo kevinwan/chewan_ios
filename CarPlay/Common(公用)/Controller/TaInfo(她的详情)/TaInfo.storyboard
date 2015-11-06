@@ -79,7 +79,7 @@
                                         <barButtonItem style="plain" systemItem="flexibleSpace" id="8zK-cV-l8t"/>
                                     </items>
                                 </toolbar>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="奥迪A4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kdc-aC-xKf">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kdc-aC-xKf">
                                     <rect key="frame" x="160" y="191" width="40" height="15"/>
                                     <animations/>
                                     <constraints>
@@ -154,7 +154,7 @@
                                         <action selector="attentionBtnClick:" destination="bLO-eZ-b4h" eventType="touchUpInside" id="L2Z-uA-xND"/>
                                     </connections>
                                 </button>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="YS7-Xd-bem">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YS7-Xd-bem">
                                     <rect key="frame" x="132" y="190" width="18" height="18"/>
                                     <animations/>
                                     <constraints>
@@ -253,8 +253,10 @@
                     <connections>
                         <outlet property="albumsCollectionView" destination="u4V-MW-6oV" id="bpg-gB-43W"/>
                         <outlet property="attentionBtn" destination="pLD-ZQ-BrO" id="Wae-Bj-IeJ"/>
+                        <outlet property="carLogoCenter" destination="DqU-RX-Gaz" id="2mU-lj-aNY"/>
                         <outlet property="carLogoImg" destination="YS7-Xd-bem" id="lEK-gh-qBZ"/>
                         <outlet property="carName" destination="Kdc-aC-xKf" id="zuj-Uh-z0U"/>
+                        <outlet property="carNameWidth" destination="HWR-jL-t95" id="QeC-Kq-Ucf"/>
                         <outlet property="headImg" destination="3f9-7S-2sp" id="8Ku-Uv-rib"/>
                         <outlet property="headImgBg" destination="Jci-jR-nlg" id="jHU-V9-OUQ"/>
                         <outlet property="headStatus" destination="ZwR-bd-dAu" id="Xig-gF-i8M"/>
@@ -272,7 +274,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo" width="60" height="60"/>
         <image name="我的活动" width="30" height="30"/>
         <image name="男" width="40" height="15"/>
         <image name="相册蒙层" width="320" height="100"/>
