@@ -150,7 +150,7 @@ static NSString *ID = @"HisDateCell";
             [self showInfo:CPErrorMsg];
         }
         
-        [[CPLoadingView sharedInstance] dismissLoadingView];
+        [self dismissLoadingView];
     } failure:^(NSError *error) {
         
         [self setUpRefresh];
