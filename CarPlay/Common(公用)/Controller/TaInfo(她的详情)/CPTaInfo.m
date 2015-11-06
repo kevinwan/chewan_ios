@@ -121,6 +121,10 @@
         self.headStatus.text=@"已认证";
     }
     [self.nickname setTitle:user.nickname forState:UIControlStateNormal];
+    
+    CGSize labelsize = [user.nickname sizeWithFont:[UIFont systemFontOfSize:15]];
+    self.nickname.width=labelsize.width+2;
+    
     if ([user.gender isEqualToString:@"女"]) {
         [self.sexAndAge setImage:[UIImage imageNamed:@"女"] forState:UIControlStateNormal];
     }else{
