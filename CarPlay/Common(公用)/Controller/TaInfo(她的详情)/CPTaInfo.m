@@ -132,6 +132,7 @@
     }
     
     [self.carLogoImg zySetImageWithUrl:user.car.logo placeholderImage:nil];
+    [self.carName setText:user.car.brand];
     [self.albumsCollectionView reloadData];
     
     if (user.subscribeFlag) {

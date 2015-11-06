@@ -8,6 +8,7 @@
 
 #import "CPMyInfoController.h"
 #import "CPUser.h"
+#import "CPLeadView.h"
 
 @interface CPMyInfoController ()<UIImagePickerControllerDelegate,UIActionSheetDelegate,UIAlertViewDelegate,UITextFieldDelegate>
 {
@@ -30,6 +31,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [CPLeadView showGuideViewWithImageName:@"4" centerX:self.view.middleX y:240];
     if (_user) {
         [self.userHeadIcon zySetImageWithUrl:_user.avatar placeholderImage:nil];
         [self.nick setText:_user.nickname];
@@ -80,11 +82,11 @@
             if (_user.gender && ![_user.gender isEqualToString:@""]) {
                 if (_user.brithDay) {
                     NSDictionary *landmark=[[NSDictionary alloc]initWithObjectsAndKeys:@(ZYLongitude),@"longitude",@(ZYLatitude),@"latitude", nil];
-                    NSDictionary *paras=[[NSDictionary alloc]initWithObjectsAndKeys:_user.phone,@"phone",_user.code,@"code",_user.password,@"password",_user.nickname,@"nickname",_user.gender,@"gender",@(_user.brithDay),@"birthday",_user.avatarId,@"avatar",landmark,@"landmark",_user.snsPassword,@"snsPassword",_user.uid,@"uid",_user.channel,@"channel",nil];
-                    
+                    NSDictionary *paras=[[NSDictionary alloc]initWithObjectsAndKeys:_user.phone,@"phone",_user.code,@"code",[Tools md5EncryptWithString:_user.password],@"password",_user.nickname,@"nickname",_user.gender,@"gender",@(_user.brithDay),@"birthday",_user.avatarId,@"avatar",landmark,@"landmark",_user.snsPassword,@"snsPassword",_user.uid,@"uid",_user.channel,@"channel",nil];
+                    [self showLoading];
                     [ZYNetWorkTool postJsonWithUrl:@"user/register" params:paras success:^(id responseObject) {
                         if (CPSuccess) {
-                            [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:[Tools md5EncryptWithString:responseObject[@"data"][@"userId"]] password:_password completion:^(NSDictionary *loginInfo, EMError *error) {
+                            [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:[Tools md5EncryptWithString:responseObject[@"data"][@"userId"]] password:[Tools md5EncryptWithString:_user.password] completion:^(NSDictionary *loginInfo, EMError *error) {
                                 if (!error) {
                                     //存储个人信息
                                     CPUser * user = [CPUser objectWithKeyValues:responseObject[@"data"]];
@@ -106,7 +108,7 @@
                                         [ZYUserDefaults setObject:responseObject[@"data"][@"token"] forKey:Token];
                                     }
                                     [ZYUserDefaults setObject:_user.phone forKey:@"phone"];
-                                    [ZYUserDefaults setObject:[Tools md5EncryptWithString:_password] forKey:@"password"];
+                                    [ZYUserDefaults setObject:[Tools md5EncryptWithString:_user.password] forKey:@"password"];
                                     [ZYNotificationCenter postNotificationName:NOTIFICATION_HASLOGIN object:nil];
                                     [self.navigationController popToRootViewControllerAnimated:NO];
                                     if (user.album.count > 0) {
@@ -119,10 +121,12 @@
                             } onQueue:nil];
                             
                         }else{
+                            [self disMiss];
                             NSString *errmsg =[responseObject objectForKey:@"errmsg"];
                             [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                         }
                     } failed:^(NSError *error) {
+                        [self disMiss];
                         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                     }];
                 }else{

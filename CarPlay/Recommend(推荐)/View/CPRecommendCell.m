@@ -8,6 +8,7 @@
 
 #import "CPRecommendCell.h"
 #import "ZYImageVIew.h"
+#import "CPRightButton.h"
 
 @interface CPRecommendCell ()
 @property (strong, nonatomic) UILabel *priceLabel;
@@ -18,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet ZYImageVIew *bgImageView;
 
 @property (nonatomic, strong) UIImageView *blackView;
-@property (nonatomic, strong) UIButton *addressView;
+@property (nonatomic, strong) CPRightButton *addressView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageHCons;
 
 @property (weak, nonatomic) IBOutlet UILabel *partLabel;
@@ -92,8 +93,15 @@
     }
     
     [self.addressView setTitle:detail forState:UIControlStateNormal];
-    CGFloat w = [detail sizeWithFont:ZYFont10].width;
-    self.addressView.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, w);
+
+//    CGFloat w = [detail sizeWithFont:ZYFont10].width;
+//    self.addressView.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, w - 20);
+//    if (iPhone4) {
+//        
+//    }else{
+//        
+//        self.addressView.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 6);
+//    }
 }
 
 #pragma mark - 加载视图
@@ -193,19 +201,20 @@
     return _blackView;
 }
 
-- (UIButton *)addressView
+- (CPRightButton *)addressView
 {
     if (_addressView == nil) {
-        _addressView = [UIButton buttonWithType:UIButtonTypeCustom];
+        _addressView = [CPRightButton buttonWithType:UIButtonTypeCustom];
         [_addressView setImage:[UIImage imageNamed:@"距离"] forState:UIControlStateNormal];
         _addressView.titleLabel.font = ZYFont10;
         [_addressView setTitleColor:[Tools getColor:@"8dd685"] forState:UIControlStateNormal];
+        _addressView.titleLabel.textAlignment = NSTextAlignmentRight;
         [_addressView setTitle:@"国家体育馆" forState:UIControlStateNormal];
 //        _addressView.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 6);
-//        _addressView.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-        [[_addressView rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-            [self superViewWillRecive:RecommentAddressClickKey info:nil];
-        }];
+        _addressView.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+//        [[_addressView rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+//            [self superViewWillRecive:RecommentAddressClickKey info:nil];
+//        }];
     }
     return _addressView;
 }
@@ -224,6 +233,7 @@
     if (_bgTip == nil) {
         _bgTip = [[UIImageView alloc] init];
         _bgTip.image = [UIImage imageNamed:@"bg_tip"];
+        _bgTip.hidden = YES;
     }
     return _bgTip;
 }

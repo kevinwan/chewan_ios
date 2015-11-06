@@ -26,6 +26,10 @@
     [self.bindingBtn.layer setCornerRadius:20.0];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [self.bindingBtn setEnabled:NO];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -34,18 +38,47 @@
 - (IBAction)getVerificationCodeBtnClick:(id)sender {
     if (self.phoneField.text && ![self.phoneField.text isEqualToString:@""]) {
         if ([Tools isValidateMobile:self.phoneField.text]) {
-            NSString *path=[[NSString alloc]initWithFormat:@"phone/%@/verification",self.phoneField.text];
-            [ZYNetWorkTool getWithUrl:path params:@{@"type":@(newUser)} success:^(id responseObject) {
+            NSString *path1=[NSString stringWithFormat:@"user/%@/register",_phoneField.text];
+            [self showLoading];
+            [ZYNetWorkTool getWithUrl:path1 params:nil success:^(id responseObject) {
                 if (CPSuccess) {
-                    self.verificationCodeWeight.constant=53.0f;
-                    [self startTime];
-                }else{
-                    NSString *errmsg =[responseObject objectForKey:@"errmsg"];
-                    [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                    if ([responseObject[@"data"][@"exist"] boolValue]) {
+                        [UIView animateWithDuration:.2 animations:^{
+                            [self.passWordView setHidden:YES];
+                            self.bindingBtnTop.constant=24;
+                            newUser=1;
+                        }];
+                    }else{
+                        [UIView animateWithDuration:.2 animations:^{
+                            [self.passWordView setHidden:NO];
+                            self.bindingBtnTop.constant=89;
+                            newUser=0;
+                        }];
+                    }
+                    [self.bindingBtn setEnabled:YES];
+                    
+                    NSString *path=[[NSString alloc]initWithFormat:@"phone/%@/verification",self.phoneField.text];
+                    [ZYNetWorkTool getWithUrl:path params:@{@"type":@(newUser)} success:^(id responseObject) {
+                        if (CPSuccess) {
+                            self.verificationCodeWeight.constant=53.0f;
+                            [self startTime];
+                        }else{
+                            NSString *errmsg =[responseObject objectForKey:@"errmsg"];
+                            [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                        }
+                        [self disMiss];
+                    } failure:^(NSError *error) {
+                        [self disMiss];
+                        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                        
+                    }];
+                } else {
+                    [[[UIAlertView alloc]initWithTitle:nil message:responseObject[@"errmsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil] show];
                 }
+                [self disMiss];
             } failure:^(NSError *error) {
-                [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-                
+                [self disMiss];
+                [[[UIAlertView alloc]initWithTitle:nil message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil] show];
             }];
         }else{
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请正确输入手机号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
@@ -195,14 +228,19 @@
 }
 
 #pragma UITextFieldDelegate
+
 - (void)textFieldDidEndEditing:(UITextField *)textField{
+    [self validateMobile];
+}
+
+-(void)validateMobile{
     if (self.phoneField.text && ![self.phoneField.text isEqualToString:@""]) {
-        if ([Tools isValidateMobile:textField.text]) {
-            NSString *path=[NSString stringWithFormat:@"user/%@/register",textField.text];
+        if ([Tools isValidateMobile:_phoneField.text]) {
+            NSString *path=[NSString stringWithFormat:@"user/%@/register",_phoneField.text];
             [self showLoading];
             [ZYNetWorkTool getWithUrl:path params:nil success:^(id responseObject) {
                 if (CPSuccess) {
-                    if (responseObject[@"data"][@"exist"]) {
+                    if ([responseObject[@"data"][@"exist"] boolValue]) {
                         [UIView animateWithDuration:.2 animations:^{
                             [self.passWordView setHidden:YES];
                             self.bindingBtnTop.constant=24;
@@ -231,4 +269,5 @@
         [self.bindingBtn setEnabled:NO];
     }
 }
+
 @end

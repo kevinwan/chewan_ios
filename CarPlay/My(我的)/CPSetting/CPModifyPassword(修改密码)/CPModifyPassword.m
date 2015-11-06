@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title=@"修改密码";
+    [self.confimBtn.layer setMasksToBounds:YES];
+    [self.confimBtn.layer setCornerRadius:20.0];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,7 +38,7 @@
                             if (CPSuccess) {
                                 [self showInfo:@"密码修改成功"];
                                 [self.navigationController popViewControllerAnimated:YES];
-                                [ZYUserDefaults setObject:responseObject[@"data"][@"password"] forKey:@"password"];
+                                [ZYUserDefaults setObject:[Tools md5EncryptWithString:_password.text] forKey:@"password"];
                             }else{
                                 [[[UIAlertView alloc]initWithTitle:@"提示" message:responseObject[@"errmsg"]  delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil] show];
                             }

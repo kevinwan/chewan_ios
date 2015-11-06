@@ -69,7 +69,14 @@
         self.maleLabel.hidden = YES;
         self.female.hidden = YES;
         self.femaleLabel.hidden = YES;
-        self.partLabel.text = @"无限制";
+        NSTextAttachment *attachMent = [[NSTextAttachment alloc] init];
+        attachMent.image = [UIImage imageNamed:@"icon_person_gray"];
+        attachMent.bounds = CGRectMake(0, -4, 16,16 );
+        NSAttributedString *attr = [NSAttributedString attributedStringWithAttachment:attachMent];
+        NSMutableAttributedString *partNum = [[NSMutableAttributedString alloc] init];
+        [partNum appendAttributedString:attr];
+        [partNum appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" %zd / 人数不限", model.nowJoinNum]]];
+        self.partLabel.attributedText = partNum;
     }else if (model.limitType == 1){
         
         self.partLabel.hidden = NO;
@@ -93,21 +100,24 @@
     
     if (model.subsidyPrice) {
 
-        NSMutableAttributedString *priceStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.0f元/人",model.price]];
+        NSMutableAttributedString *priceStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.1f元/人",model.price]];
         
-        NSAttributedString *subPrice = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" (现在报名立减%.0f元! )",model.subsidyPrice] attributes: @{NSForegroundColorAttributeName : [Tools getColor:@"fe5967"]}];
+        NSAttributedString *subPrice = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" (现在报名立减%.1f元! )",model.subsidyPrice] attributes: @{NSForegroundColorAttributeName : [Tools getColor:@"fe5967"]}];
         [priceStr appendAttributedString:subPrice];
         self.priceLabel.attributedText = [priceStr copy];
     }else{
         if (model.price) {
-            self.priceLabel.text = [NSString stringWithFormat:@"%.0f元/人",model.price];
+            self.priceLabel.text = [NSString stringWithFormat:@"%.1f元/人",model.price];
         }else{
             self.priceLabel.text = @"免费";
         }
     }
     self.startLabel.text = model.startStr;
     self.endLabel.text = model.endStr;
-    [self.addressLabel setText:model.destination[@"detail"]];
+    
+    NSString *address = [NSString stringWithFormat:@"%@%@%@",model.destination[@"city"],model.destination[@"district"],model.destination[@"detail"]];
+    
+    [self.addressLabel setText:address];
     NSMutableParagraphStyle *paragraphStyle1 = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle1 setLineSpacing:7];
     self.descLabel.attributedText = [[NSAttributedString alloc] initWithString:model.instruction attributes:@{NSParagraphStyleAttributeName : paragraphStyle1}];

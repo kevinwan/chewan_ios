@@ -43,18 +43,13 @@
     _thumbnailView.contentMode = UIViewContentModeScaleAspectFit;
     [self.contentView addSubview:_thumbnailView];
 
-    self.brandNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.thumbnailView.frame) + 11 , 12, ZYScreenWidth - _thumbnailView.width - 11, _thumbnailView.height)];
+    self.brandNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(_thumbnailView.right + 10 , 12, ZYScreenWidth - _thumbnailView.width - 11, _thumbnailView.height)];
 
     _brandNameLabel.font = [UIFont systemFontOfSize:16.0f];
     _brandNameLabel.textAlignment = NSTextAlignmentLeft;
     self.brandNameLabel.textColor = [Tools getColor:@"434a53"];
     [self.contentView addSubview:_brandNameLabel];
     
-    
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 51.5, ZYScreenWidth, .5)];
-    line.backgroundColor = [Tools getColor:@"e6e9ed"];
-    [self.contentView addSubview:line];
-//    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 @end

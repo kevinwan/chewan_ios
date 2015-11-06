@@ -16,6 +16,7 @@
 #import "ExerciseMatchingSelectView.h"
 #import "CPActivityModel.h"
 #import "CPTabBarController.h"
+#import "CPBRPGViewController.h"
 
 
 @interface CPMatchingViewController ()<UIGestureRecognizerDelegate,UITableViewDataSource,UITableViewDelegate>
@@ -28,6 +29,7 @@
     OtherMatchingSelectView *otherMatchingSelectView;
     MatchingSelectView *signMatchingSelectView;
     ExerciseMatchingSelectView *exerciseMatchingSelectView;
+    CPBRPGViewController *BRPGViewController;
     NSInteger index;
 }
 
@@ -133,6 +135,8 @@
     otherMatchingSelectView=[UIStoryboard storyboardWithName:@"OtherMatchingSelectView" bundle:nil].instantiateInitialViewController;
     signMatchingSelectView=[UIStoryboard storyboardWithName:@"MatchingSelectView" bundle:nil].instantiateInitialViewController;
     exerciseMatchingSelectView=[UIStoryboard storyboardWithName:@"ExerciseMatchingSelectView" bundle:nil].instantiateInitialViewController;
+    BRPGViewController=[UIStoryboard storyboardWithName:@"CPBRPGViewController" bundle:nil].instantiateInitialViewController;
+    
 }
 
 -(void)animationContent{
@@ -319,14 +323,14 @@
             case 2:
                 colorRGB=@"5f99c0";
                 type=@"桌游";
-                otherMatchingSelectView.view.backgroundColor=[Tools getColor:colorRGB];
-                otherMatchingSelectView.view.alpha=1.0;
-                otherMatchingSelectView.selectView.alpha=1.0;
-                otherMatchingSelectView.locationAddressView.alpha=0.0;
-                otherMatchingSelectView.addressSelection.alpha=0.0;
-                otherMatchingSelectView.indexView.alpha=0.0;
-                [self.view addSubview:otherMatchingSelectView.view];
-                [self addChildViewController:otherMatchingSelectView];
+                BRPGViewController.view.backgroundColor=[Tools getColor:colorRGB];
+                BRPGViewController.view.alpha=1.0;
+//                BRPGViewController.selectView.alpha=1.0;
+//                BRPGViewController.locationAddressView.alpha=0.0;
+//                BRPGViewController.addressSelection.alpha=0.0;
+//                BRPGViewController.indexView.alpha=0.0;
+                [self.view addSubview:BRPGViewController.view];
+                [self addChildViewController:BRPGViewController];
                 break;
             case 3:
                 colorRGB=@"fddb64";

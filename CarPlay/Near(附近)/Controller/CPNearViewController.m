@@ -268,7 +268,7 @@ static NSString *ID = @"cell";
             
         }
         ZYMainOperation(^{
-            [self.tableView reloadItemsAtIndexPaths:indexPaths];
+            [self.tableView reloadData];
         });
         
     });
@@ -388,7 +388,7 @@ static NSString *ID = @"cell";
         if (CPSuccess) {
             [self showInfo:@"邀请已发出"];
             model.applyFlag = 1;
-            [self.tableView reloadItemsAtIndexPaths:@[indexPath]];
+            [self.tableView reloadData];
         }else if ([CPErrorMsg contains:@"申请中"]){
             [self showInfo:@"正在申请中"];
         }
