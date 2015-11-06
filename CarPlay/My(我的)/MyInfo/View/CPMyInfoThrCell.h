@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPMyInfoThrCell : UITableViewCell
+@interface CPMyInfoThrCell : ZYTableViewCell
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 @end

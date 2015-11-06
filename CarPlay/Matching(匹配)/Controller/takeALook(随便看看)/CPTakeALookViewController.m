@@ -69,7 +69,7 @@
     [ZYNetWorkTool getWithUrl:path params:nil success:^(id responseObject) {
         if (CPSuccess) {
             activities = [[NSArray alloc]initWithArray:[CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"]]];
-            for (int i=1; i<11; i++) {
+            for (int i=1; i<[activities count]; i++) {
                 CPNPSButton *btn = [self.view viewWithTag:i];
                 CPActivityModel *activity = activities[i-1];
                 [btn zySetImageWithUrl:activity.organizer.avatar placeholderImage:[UIImage imageNamed:@"Logo"] completion:^(UIImage *image) {

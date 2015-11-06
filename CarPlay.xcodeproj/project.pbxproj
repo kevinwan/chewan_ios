@@ -585,6 +585,7 @@
 		E3BEEAFB1BE20F23006B80EA /* NSObject+Copying.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BEEAFA1BE20F23006B80EA /* NSObject+Copying.m */; };
 		E3BEEAFE1BE220DB006B80EA /* NSObject+Copying.m in Sources */ = {isa = PBXBuildFile; fileRef = E3BEEAFD1BE220DB006B80EA /* NSObject+Copying.m */; };
 		E3C5F1911BC92C790021E33D /* CPActivityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C5F1901BC92C790021E33D /* CPActivityDetailViewController.m */; };
+		E3C9B9C01BECAA1B002A3A5E /* CPRightButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C9B9BF1BECAA1B002A3A5E /* CPRightButton.m */; settings = {ASSET_TAGS = (); }; };
 		E3DF66541BE31C9B00B9239D /* UIButton+ZYWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DF66531BE31C9B00B9239D /* UIButton+ZYWebCache.m */; };
 		E3E6B8911BB4FD54006B4F8A /* CPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E6B88F1BB4FD54006B4F8A /* CPLoginViewController.m */; };
 		E3E6B8921BB4FD54006B4F8A /* CPLoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3E6B8901BB4FD54006B4F8A /* CPLoginViewController.storyboard */; };
@@ -1599,6 +1600,8 @@
 		E3BEEAFD1BE220DB006B80EA /* NSObject+Copying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+Copying.m"; path = "../../My(我的)/Model/NSObject+Copying.m"; sourceTree = "<group>"; };
 		E3C5F18F1BC92C790021E33D /* CPActivityDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPActivityDetailViewController.h; sourceTree = "<group>"; };
 		E3C5F1901BC92C790021E33D /* CPActivityDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPActivityDetailViewController.m; sourceTree = "<group>"; };
+		E3C9B9BE1BECAA1B002A3A5E /* CPRightButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRightButton.h; sourceTree = "<group>"; };
+		E3C9B9BF1BECAA1B002A3A5E /* CPRightButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRightButton.m; sourceTree = "<group>"; };
 		E3DF66521BE31C9B00B9239D /* UIButton+ZYWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+ZYWebCache.h"; sourceTree = "<group>"; };
 		E3DF66531BE31C9B00B9239D /* UIButton+ZYWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+ZYWebCache.m"; sourceTree = "<group>"; };
 		E3E6B88E1BB4FD54006B4F8A /* CPLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLoginViewController.h; sourceTree = "<group>"; };
@@ -4070,6 +4073,8 @@
 				E35E12621BEB234700B1D621 /* CPGuideView.m */,
 				E371CA3A1BE9D9EC00B77723 /* CPLeadView.h */,
 				E371CA3B1BE9D9EC00B77723 /* CPLeadView.m */,
+				E3C9B9BE1BECAA1B002A3A5E /* CPRightButton.h */,
+				E3C9B9BF1BECAA1B002A3A5E /* CPRightButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4710,6 +4715,7 @@
 				E3C5F1911BC92C790021E33D /* CPActivityDetailViewController.m in Sources */,
 				E31B13451BB9312D00B51696 /* UIDevice+Extend.m in Sources */,
 				E35AAF491BE24A0700A802A3 /* SDWebImageDecoder.m in Sources */,
+				E3C9B9C01BECAA1B002A3A5E /* CPRightButton.m in Sources */,
 				E3A471961BB3A85300973197 /* Tools.m in Sources */,
 				6D2ABF8A1BCE582100201A8E /* EMCDDeviceManager+Remind.m in Sources */,
 				6D2ABFBB1BCE582100201A8E /* SRSlimeView.m in Sources */,

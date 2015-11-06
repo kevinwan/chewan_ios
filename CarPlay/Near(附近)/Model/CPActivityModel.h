@@ -27,6 +27,7 @@
 @property (nonatomic, copy) NSString *pay;
 // 活动的状态
 @property (nonatomic, assign) NSInteger applyFlag;
+@property (nonatomic, assign) NSInteger status;
 //"transfer": true,
 @property (nonatomic, assign) BOOL transfer;
 //"distance": 20,

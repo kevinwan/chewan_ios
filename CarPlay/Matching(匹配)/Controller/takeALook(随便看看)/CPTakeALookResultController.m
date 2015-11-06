@@ -48,7 +48,7 @@ static NSString *ID = @"cell";
 {
     if (_tableView == nil) {
         UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
-        _tableView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, ZYScreenWidth - 20, 383+self.offset) collectionViewLayout:layout];
+        _tableView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, ZYScreenWidth - 20, 390+self.offset) collectionViewLayout:layout];
         _tableView.centerX = self.view.middleX;
         _tableView.centerY = self.view.middleY;
         _tableView.alwaysBounceVertical = NO;
@@ -59,7 +59,7 @@ static NSString *ID = @"cell";
         _tableView.delegate = self;
         _tableView.dataSource = self;
 //        [_tableView setContentInsetTop:(ZYScreenHeight-383-self.offset)/2];
-        CGSize itemSzie= CGSizeMake(ZYScreenWidth - 20, 383 + self.offset);
+        CGSize itemSzie= CGSizeMake(ZYScreenWidth - 20, 390 + self.offset);
         layout.itemSize = itemSzie;
         layout.scrollDirection=UICollectionViewScrollDirectionVertical;
         self.view.backgroundColor =  [UIColor colorWithWhite:0 alpha:0.7];
@@ -149,7 +149,7 @@ static NSString *ID = @"cell";
         if (CPSuccess) {
             [self showInfo:@"邀请已发出"];
             _activity.applyFlag = 1;
-            [self.tableView reloadItemsAtIndexPaths:@[indexPath]];
+            [self.tableView reloadData];
         }else if ([CPErrorMsg contains:@"申请中"]){
             [self showInfo:@"正在申请中"];
         }

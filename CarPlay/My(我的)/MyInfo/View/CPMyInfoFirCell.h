@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPMyInfoFirCell : UITableViewCell
+@interface CPMyInfoFirCell : ZYTableViewCell
 
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 
