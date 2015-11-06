@@ -40,7 +40,7 @@
                         <action selector="sendComeOnClick:" destination="xLE-BG-Tdz" eventType="touchUpInside" id="4Ef-Ge-ZGT"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="说句话打动TA (选填)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zVj-7m-MaA">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="说句话打动Ta (选填)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zVj-7m-MaA">
                     <rect key="frame" x="10" y="62" width="235" height="34"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="34" id="04w-bL-gpB"/>

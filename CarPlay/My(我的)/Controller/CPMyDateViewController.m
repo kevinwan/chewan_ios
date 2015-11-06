@@ -54,8 +54,8 @@ static NSString *ID2 = @"DateCell2";
     }
     
     self.offset = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250;
-    self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.tableView];
+    self.tableView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
     [ZYLoadingView showLoadingView];
     [self loadDataWithHeader:nil];
 }
@@ -64,13 +64,6 @@ static NSString *ID2 = @"DateCell2";
 {
     [super viewWillAppear:animated];
     [CPLeadView showGuideViewWithImageName:@"3" centerX:self.view.middleX y:ZYScreenHeight - 340];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self.tableView setContentInset:UIEdgeInsetsZero];
-    [self.tableView setContentOffset:CGPointZero];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -438,7 +431,7 @@ static NSString *ID2 = @"DateCell2";
         ZYWaterflowLayout *layout = [ZYWaterflowLayout new];
         layout.columnsCount = 1;
         layout.delegate = self;
-        _tableView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height) collectionViewLayout:layout];
+        _tableView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
         _tableView.alwaysBounceVertical = YES;
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.showsHorizontalScrollIndicator = NO;

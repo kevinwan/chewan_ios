@@ -34,4 +34,10 @@
     self.contentV.model = model;
 }
 
+- (void)setIndexPath:(NSIndexPath *)indexPath
+{
+    _indexPath = indexPath;
+    self.contentV.indexPath = indexPath;
+}
+
 @end

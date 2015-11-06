@@ -471,7 +471,7 @@ static NSString *ID = @"cell";
         CPMySwitch *freeTimeBtn = [CPMySwitch new];
         [freeTimeBtn setOnImage:[UIImage imageNamed:@"btn_meikong"]];
         [freeTimeBtn setOffImage:[UIImage imageNamed:@"btn_youkong"]];
-        freeTimeBtn.on = [ZYUserDefaults boolForKey:FreeTimeKey];
+        freeTimeBtn.on = ![ZYUserDefaults boolForKey:FreeTimeKey];
         [freeTimeBtn sizeToFit];
         [_tipView addSubview:freeTimeBtn];
         ZYWeakSelf
@@ -479,14 +479,14 @@ static NSString *ID = @"cell";
             ZYStrongSelf
             CPGoLogin(@"修改状态");
             
-            NSString *url = [NSString stringWithFormat:@"user/%@/info?token=%@",CPUserId, CPToken];
+            NSString *url = [NSString stringWithFormat:@"user/%@/info?token=%@", CPUserId, CPToken];
             btn.on = !btn.on;
             if (btn.on) {
                 textL.text = @"忙碌中～小伙伴不可邀你～";
                 [self showLoading];
                 [ZYNetWorkTool postJsonWithUrl:url params:@{@"idle" : @(NO)} success:^(id responseObject) {
                     if (CPSuccess){
-                        [ZYUserDefaults setBool:btn.on forKey:FreeTimeKey];
+                        [ZYUserDefaults setBool:NO forKey:FreeTimeKey];
                         [self disMiss];
                     }else{
                         btn.on = NO;
@@ -501,7 +501,7 @@ static NSString *ID = @"cell";
                 [self showLoading];
                 [ZYNetWorkTool postJsonWithUrl:url params:@{@"idle" : @(YES)} success:^(id responseObject) {
                     if (CPSuccess){
-                        [ZYUserDefaults setBool:btn.on forKey:FreeTimeKey];
+                        [ZYUserDefaults setBool:YES forKey:FreeTimeKey];
                         [self disMiss];
                     }else{
                         btn.on = YES;

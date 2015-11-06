@@ -10,5 +10,6 @@
 #import "CPRecommendModel.h"
 #define RecommentAddressClickKey @"RecommentAddressClickKey"
 @interface CPRecommendCell : UIView
+@property (nonatomic, strong) NSIndexPath *indexPath;
 @property (nonatomic, strong) CPRecommendModel *model;
 @end

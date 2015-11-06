@@ -108,6 +108,12 @@
     self.bgImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.bgImageView.clipsToBounds = YES;
     
+    UITapGestureRecognizer *tapGes = [UITapGestureRecognizer new];
+    [tapGes.rac_gestureSignal subscribeNext:^(id x) {
+        [self superViewWillRecive:@"ImageClickKey" info:_indexPath];
+    }];
+    [self.bgImageView addGestureRecognizer:tapGes];
+    
 }
 
 - (void)beginLayout
