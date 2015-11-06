@@ -88,7 +88,6 @@
             [alert show];
         }
     } else {
-        
         if (self.phoneField.text && ![self.phoneField.text isEqualToString:@""]) {
             if ([Tools isValidateMobile:self.phoneField.text]) {
                 if (self.verificationCodeField.text && ![self.verificationCodeField.text isEqualToString:@""]){
