@@ -76,11 +76,11 @@
                             [ZYNetWorkTool postJsonWithUrl:path params:params success:^(id responseObject) {
                                 if (CPSuccess) {
                                     CPMyInfoController *myInfoVC = [UIStoryboard storyboardWithName:@"CPMyInfoController" bundle:nil].instantiateInitialViewController;
-                                    myInfoVC.code=self.verificationCodeField.text;
                                     CPUser *user=[[CPUser alloc]init];
                                     user.phone=self.phoneField.text;
+                                    user.code=self.verificationCodeField.text;
+                                    user.password=[Tools md5EncryptWithString:self.passwordField.text];
                                     myInfoVC.user=user;
-                                    myInfoVC.password=[Tools md5EncryptWithString:self.passwordField.text];
                                     [self.navigationController pushViewController:myInfoVC animated:YES];
                                 }else{
                                     NSString *errmsg =[responseObject objectForKey:@"errmsg"];

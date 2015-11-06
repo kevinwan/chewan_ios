@@ -110,6 +110,8 @@
 		6BD61A3C1BEB79B000A4589B /* libSocialSinaSSO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BD61A2E1BEB79B000A4589B /* libSocialSinaSSO.a */; };
 		6BD61A3D1BEB79B000A4589B /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BD61A2F1BEB79B000A4589B /* libWeiboSDK.a */; };
 		6BD61A3E1BEB79B000A4589B /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6BD61A391BEB79B000A4589B /* WeiboSDK.bundle */; };
+		6BD61A421BEC774900A4589B /* CPBindingPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD61A411BEC774900A4589B /* CPBindingPhone.m */; };
+		6BD61A441BEC775900A4589B /* CPBindingPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BD61A431BEC775900A4589B /* CPBindingPhone.storyboard */; };
 		6BDA2C821BD4DA420032FFF1 /* CPpinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDA2C811BD4DA420032FFF1 /* CPpinyin.m */; };
 		6BDA2C851BD4DABA0032FFF1 /* CPNameIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDA2C841BD4DABA0032FFF1 /* CPNameIndex.m */; };
 		6BDA2C871BD511F10032FFF1 /* OtherMatchingSelectView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BDA2C861BD511F10032FFF1 /* OtherMatchingSelectView.storyboard */; };
@@ -813,6 +815,9 @@
 		6BD61A391BEB79B000A4589B /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
 		6BD61A3A1BEB79B000A4589B /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
 		6BD61A3B1BEB79B000A4589B /* WeiboUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboUser.h; sourceTree = "<group>"; };
+		6BD61A401BEC774900A4589B /* CPBindingPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPBindingPhone.h; sourceTree = "<group>"; };
+		6BD61A411BEC774900A4589B /* CPBindingPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPBindingPhone.m; sourceTree = "<group>"; };
+		6BD61A431BEC775900A4589B /* CPBindingPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPBindingPhone.storyboard; sourceTree = "<group>"; };
 		6BDA2C801BD4DA420032FFF1 /* CPpinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPpinyin.h; sourceTree = "<group>"; };
 		6BDA2C811BD4DA420032FFF1 /* CPpinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPpinyin.m; sourceTree = "<group>"; };
 		6BDA2C831BD4DABA0032FFF1 /* CPNameIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNameIndex.h; sourceTree = "<group>"; };
@@ -1754,6 +1759,7 @@
 		6B3350931BB3DFD900AAA4A2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6BD61A3F1BEC772A00A4589B /* BindingPhone(绑定手机号) */,
 				6B153EED1BB5690900560935 /* CPForgetPassword(忘记密码) */,
 				6B153EF11BB5690900560935 /* CPReg(注册) */,
 				E3E6B88D1BB4FD54006B4F8A /* CPLogin */,
@@ -2132,6 +2138,16 @@
 				6BD61A3B1BEB79B000A4589B /* WeiboUser.h */,
 			);
 			path = SinaSSO;
+			sourceTree = "<group>";
+		};
+		6BD61A3F1BEC772A00A4589B /* BindingPhone(绑定手机号) */ = {
+			isa = PBXGroup;
+			children = (
+				6BD61A401BEC774900A4589B /* CPBindingPhone.h */,
+				6BD61A411BEC774900A4589B /* CPBindingPhone.m */,
+				6BD61A431BEC775900A4589B /* CPBindingPhone.storyboard */,
+			);
+			path = "BindingPhone(绑定手机号)";
 			sourceTree = "<group>";
 		};
 		6BDA2C8B1BD610080032FFF1 /* CPEditInfo(编辑资料) */ = {
@@ -4365,6 +4381,7 @@
 				6D2AC1291BCE5A5100201A8E /* chatBar_keyboard@2x.png in Resources */,
 				6D2AC13A1BCE5A5100201A8E /* chatBar_colorMore_camera@2x.png in Resources */,
 				6D2AC1251BCE5A5100201A8E /* chatBar_face@2x.png in Resources */,
+				6BD61A441BEC775900A4589B /* CPBindingPhone.storyboard in Resources */,
 				6BD61A191BEB594300A4589B /* UMSLoginViewController.xib in Resources */,
 				6B364CBE1BCFC399005A4AF9 /* TaInfo.storyboard in Resources */,
 				6BDA2CAC1BD7705B0032FFF1 /* ExerciseMatchingSelectView.storyboard in Resources */,
@@ -4730,6 +4747,7 @@
 				6B906F771BC773830048A806 /* UIView+Shake.m in Sources */,
 				E3A4718A1BB3A85300973197 /* UIViewController+ZYExtension.m in Sources */,
 				E3E6B8911BB4FD54006B4F8A /* CPLoginViewController.m in Sources */,
+				6BD61A421BEC774900A4589B /* CPBindingPhone.m in Sources */,
 				E31B12E71BB9311700B51696 /* PBScrollView.m in Sources */,
 				E356F0F51BD4F22500D5BE07 /* CPActivityDetailFooterView.m in Sources */,
 				6D2ABFFE1BCE582100201A8E /* EMRobotChatTextBubbleView.m in Sources */,

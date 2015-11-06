@@ -13,7 +13,7 @@
 #import "SDImageCache.h"
 #import "UMSocial.h"
 #import "CPUser.h"
-#import "CPMyInfoController.h"
+#import "CPBindingPhone.h"
 
 @interface CPLoginViewController ()
 
@@ -229,6 +229,7 @@
 }
 
 -(void)loginWithDict:(NSDictionary *)dict{
+    [self showLoading];
     [ZYNetWorkTool postJsonWithUrl:@"sns/login" params:dict success:^(id responseObject) {
         if (CPSuccess) {
             if (responseObject[@"data"][@"userId"]) {
@@ -266,13 +267,17 @@
                     [self disMiss];
                 } onQueue:nil];
             }else{
-                CPMyInfoController *userInfo = [UIStoryboard storyboardWithName:@"CPMyInfoController" bundle:nil].instantiateInitialViewController;
+                [self disMiss];
+                CPBindingPhone *bindingPhone = [UIStoryboard storyboardWithName:@"CPBindingPhone" bundle:nil].instantiateInitialViewController;
                 CPUser *user=[CPUser objectWithKeyValues:dict];
-                userInfo.user=user;
-                CPNavigationController *nav=[[CPNavigationController alloc]initWithRootViewController:userInfo];
+                user.avatarId=responseObject[@"data"][@"avatar"];
+                user.snsPassword=user.password;
+                bindingPhone.user=user;
+                CPNavigationController *nav=[[CPNavigationController alloc]initWithRootViewController:bindingPhone];
                 [self.navigationController presentViewController:nav animated:YES completion:nil];
             }
         }else{
+            [self disMiss];
             [[[UIAlertView alloc]initWithTitle:@"提示" message:responseObject[@"errmsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show];
         }
         

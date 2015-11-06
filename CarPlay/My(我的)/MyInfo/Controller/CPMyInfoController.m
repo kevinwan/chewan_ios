@@ -79,9 +79,8 @@
         if (self.nick.text && ![self.nick.text isEqualToString:@""]) {
             if (_user.gender && ![_user.gender isEqualToString:@""]) {
                 if (_user.brithDay) {
-                    NSLog(@"ZYLongitude%f,-------ZYLatitude%f",ZYLongitude,ZYLatitude);
                     NSDictionary *landmark=[[NSDictionary alloc]initWithObjectsAndKeys:@(ZYLongitude),@"longitude",@(ZYLatitude),@"latitude", nil];
-                    NSDictionary *paras=[[NSDictionary alloc]initWithObjectsAndKeys:_user.phone,@"phone",_code,@"code",_password,@"password",self.nick.text,@"nickname",_user.gender,@"gender",@(_user.brithDay),@"birthday",_user.avatarId,@"avatar",landmark,@"landmark",nil];
+                    NSDictionary *paras=[[NSDictionary alloc]initWithObjectsAndKeys:_user.phone,@"phone",_user.code,@"code",_user.password,@"password",_user.nickname,@"nickname",_user.gender,@"gender",@(_user.brithDay),@"birthday",_user.avatarId,@"avatar",landmark,@"landmark",nil];
                     
                     [ZYNetWorkTool postJsonWithUrl:@"user/register" params:paras success:^(id responseObject) {
                         if (CPSuccess) {
@@ -218,6 +217,8 @@
     NSString *name=[self.nick.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if ([name length]>7) {
         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"昵称最多包含7个字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil] show];
+    }else{
+        _user.nickname=_nick.text;
     }
 }
 @end
