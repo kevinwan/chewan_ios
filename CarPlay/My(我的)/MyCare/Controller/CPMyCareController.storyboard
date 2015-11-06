@@ -169,11 +169,11 @@
                                                     <rect key="frame" x="70" y="15" width="143" height="19.5"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ywe-x1-NEp" userLabel="性别和年龄" customClass="CPSexView">
-                                                    <rect key="frame" x="70" y="44" width="40" height="15"/>
+                                                    <rect key="frame" x="70" y="42.5" width="40" height="15"/>
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="1it-2Q-hRQ"/>
@@ -182,14 +182,14 @@
                                                     <state key="normal" backgroundImage="女"/>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5p-K1-x6g" userLabel="距离">
-                                                    <rect key="frame" x="120" y="44" width="25.5" height="14.5"/>
+                                                    <rect key="frame" x="120" y="42.5" width="25.5" height="14.5"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bpF-oV-3Cb" userLabel="互相关注">
-                                                    <rect key="frame" x="290" y="27" width="20" height="17"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bpF-oV-3Cb" userLabel="互相关注">
+                                                    <rect key="frame" x="290" y="27.5" width="20" height="16"/>
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="P5w-1r-wif"/>
@@ -237,7 +237,7 @@
                                                 <constraint firstItem="g5p-K1-x6g" firstAttribute="centerY" secondItem="Ywe-x1-NEp" secondAttribute="centerY" id="XYR-Df-9FD"/>
                                                 <constraint firstItem="xjy-I4-9FU" firstAttribute="top" secondItem="2L1-We-dHs" secondAttribute="top" constant="15" id="fzf-s6-9x9"/>
                                                 <constraint firstItem="bpF-oV-3Cb" firstAttribute="centerY" secondItem="2L1-We-dHs" secondAttribute="centerY" id="gnN-fL-xdx"/>
-                                                <constraint firstItem="Ywe-x1-NEp" firstAttribute="top" secondItem="xjy-I4-9FU" secondAttribute="bottom" constant="10" id="iwq-1d-IEZ"/>
+                                                <constraint firstItem="Ywe-x1-NEp" firstAttribute="top" secondItem="xjy-I4-9FU" secondAttribute="bottom" constant="8" id="iwq-1d-IEZ"/>
                                                 <constraint firstItem="10b-pI-ZFM" firstAttribute="centerY" secondItem="2L1-We-dHs" secondAttribute="centerY" id="mon-TI-qiA"/>
                                                 <constraint firstItem="Xrv-kr-BGO" firstAttribute="leading" secondItem="2L1-We-dHs" secondAttribute="leading" constant="10" id="nkM-f0-KSK"/>
                                                 <constraint firstItem="bpF-oV-3Cb" firstAttribute="leading" secondItem="uXq-RT-ihb" secondAttribute="trailing" constant="20" id="qNE-D9-8dY"/>
