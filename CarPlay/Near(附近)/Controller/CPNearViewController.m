@@ -471,7 +471,12 @@ static NSString *ID = @"cell";
         CPMySwitch *freeTimeBtn = [CPMySwitch new];
         [freeTimeBtn setOnImage:[UIImage imageNamed:@"btn_meikong"]];
         [freeTimeBtn setOffImage:[UIImage imageNamed:@"btn_youkong"]];
-        freeTimeBtn.on = ![ZYUserDefaults boolForKey:FreeTimeKey];
+        
+        if (CPIsLogin) {
+            freeTimeBtn.on = ![ZYUserDefaults boolForKey:FreeTimeKey];
+        }else{
+            freeTimeBtn.on = NO;
+        }
         if (freeTimeBtn.on) {
             textL.text = @"忙碌中～小伙伴不可邀你～";
         }else{
