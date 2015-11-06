@@ -231,18 +231,6 @@
     
     if (model.isHisDate) {
         self.marginCons.constant = 0;
-        if (model.organizer.idle) {
-            self.dateAnim.haloLayerColor = RedColor.CGColor;
-            [self.dateButton setBackgroundColor:RedColor];
-            [self.dateButton setTitle:@"邀Ta" forState:UIControlStateNormal];
-            [self setOneType:YES];
-        }else{
-            
-            self.dateAnim.haloLayerColor= [Tools getColor:@"cccccc"].CGColor;
-            [self.dateButton setBackgroundColor:[Tools getColor:@"cccccc"]];
-            [self.dateButton setTitle:@"Ta没空" forState:UIControlStateNormal];
-            [self setOneType:YES];
-        }
     }else{
         self.marginCons.constant = 20;
     }
@@ -294,6 +282,7 @@
         
         [self.carView setImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
     }
+    // 上传相册的View
     if (isHasAlubm && CPIsLogin) {
         self.tipView.hidden = YES;
     }else{
@@ -302,10 +291,18 @@
     
     if (model.applyFlag == 0){
         
-        self.dateAnim.haloLayerColor = RedColor.CGColor;
-        [self.dateButton setBackgroundColor:RedColor];
-        [self.dateButton setTitle:@"邀Ta" forState:UIControlStateNormal];
-        [self setOneType:YES];
+        if (model.organizer.idle) {
+            self.dateAnim.haloLayerColor = RedColor.CGColor;
+            [self.dateButton setBackgroundColor:RedColor];
+            [self.dateButton setTitle:@"邀Ta" forState:UIControlStateNormal];
+            [self setOneType:YES];
+        }else{
+            
+            self.dateAnim.haloLayerColor= [Tools getColor:@"cccccc"].CGColor;
+            [self.dateButton setBackgroundColor:[Tools getColor:@"cccccc"]];
+            [self.dateButton setTitle:@"Ta没空" forState:UIControlStateNormal];
+            [self setOneType:YES];
+        }
     }else if (model.applyFlag == 1){
         
         if ([model.organizer.userId isEqualToString:CPUserId]) {
