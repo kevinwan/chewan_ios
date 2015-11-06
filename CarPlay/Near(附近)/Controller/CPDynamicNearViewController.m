@@ -143,7 +143,7 @@ static NSString *ID = @"cell";
             [self showInfo:CPErrorMsg];
         }
         
-        [[CPLoadingView sharedInstance] dismissLoadingView];
+        [self dismissLoadingView];
     } failure:^(NSError *error) {
         
         [self setUpRefresh];
@@ -174,7 +174,7 @@ static NSString *ID = @"cell";
 
 - (CGFloat)waterflowLayout:(ZYWaterflowLayout *)waterflowLayout heightForWidth:(CGFloat)width atIndexPath:(NSIndexPath *)indexPath
 {
-    return self.offset + 370;
+    return self.offset + 390;
 }
 
 #pragma mark - 事件交互

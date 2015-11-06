@@ -10,4 +10,7 @@
 
 @interface CPViewController : UIViewController
 
+- (void)showLoadingView;
+- (void)dismissLoadingView;
+
 @end

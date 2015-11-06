@@ -8,9 +8,10 @@
 
 #import "CPViewController.h"
 #import "SDImageCache.h"
+#import "ZYRefreshView.h"
 
 @interface CPViewController ()
-
+@property (nonatomic, strong) UIView *refreshView;
 @end
 
 @implementation CPViewController
@@ -19,9 +20,39 @@
     [super viewDidLoad];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
+- (void)showLoadingView
 {
-    [super viewDidDisappear:animated];
+    self.refreshView.hidden = NO;
+}
+
+- (void)dismissLoadingView
+{
+    self.refreshView.hidden = YES;
+    [self.refreshView removeFromSuperview];
+}
+
+- (UIView *)refreshView
+{
+    if (_refreshView == nil) {
+        _refreshView = [[UIView alloc] init];
+        _refreshView.backgroundColor = [Tools getColor:@"efefef"];
+        _refreshView.y = 64;
+        _refreshView.x = 0;
+        _refreshView.width = ZYScreenWidth;
+        _refreshView.height = ZYScreenHeight - 64 - 68;
+        [ZYKeyWindow addSubview:_refreshView];
+        ZYRefreshView *rs = [[ZYRefreshView alloc] init];
+        rs.center = _refreshView.centerInSelf;
+        [rs startAnimation];
+        [_refreshView addSubview:rs];
+    }
+    return _refreshView;
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
     [self disMiss];
 }
 

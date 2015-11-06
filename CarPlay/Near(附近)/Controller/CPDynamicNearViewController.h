@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPDynamicNearViewController : UIViewController
+@interface CPDynamicNearViewController : CPViewController
 
 @end

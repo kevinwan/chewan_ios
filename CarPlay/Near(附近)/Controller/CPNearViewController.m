@@ -187,7 +187,7 @@ static NSString *ID = @"cell";
             [self showInfo:CPErrorMsg];
         }
         
-        [[CPLoadingView sharedInstance] dismissLoadingView];
+        [self dismissLoadingView];
     } failure:^(NSError *error) {
         
         [self setUpRefresh];
