@@ -15,8 +15,14 @@
 #import "CPNavigationController.h"
 #import "ChatListViewController.h"
 #import "UMSocial.h"
+#import "UMSocialQQHandler.h"
 #import "SDImageCache.h"
 #import "CPNewfeatureViewController.h"
+#import "UMSocialWechatHandler.h"
+
+#define kCheWanAppID @"55a34ed367e58e6efc00285d"
+#define kWeiXinAppID @"wx4c127cf07bd7d80b"
+#define kWeiXinAppSecret @"315ce754c5a1096c5188b4b69a7b9f04"
 
 @interface AppDelegate ()<UITabBarControllerDelegate,CLLocationManagerDelegate,UIAlertViewDelegate>
 
@@ -49,6 +55,10 @@
 //    友盟第三方登录
     [UMSocialData setAppKey:@"55a34ed367e58e6efc00285d"];
     
+    [UMSocialWechatHandler setWXAppId:kWeiXinAppID appSecret:kWeiXinAppSecret url:nil];
+    //QQ登录
+    [UMSocialQQHandler setQQWithAppId:@"1104948754" appKey:@"wxEzdsISx78YKqLH" url:@"http://www.umeng.com/social"];
+    [UMSocialData openLog:YES];
     [self getLocation];
     //环信
     //gongpingjia#carplayapp
@@ -115,6 +125,18 @@
     }
 }
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return  [UMSocialSnsService handleOpenURL:url];
+}
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    return  [UMSocialSnsService handleOpenURL:url];
+}
+
 - (void)setViewCycleAop
 {
     
@@ -170,12 +192,14 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        [UMSocialSnsService  applicationDidBecomeActive];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     [[EaseMob sharedInstance] applicationWillTerminate:application];
 
 }
+
 
 -(void)loginStateChang{
     self.window.rootViewController = _tabVc;

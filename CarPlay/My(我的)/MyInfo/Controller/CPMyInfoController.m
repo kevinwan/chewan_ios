@@ -30,6 +30,10 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    if (_user) {
+        [self.userHeadIcon zySetImageWithUrl:_user.avatar placeholderImage:nil];
+        [self.nick setText:_user.nickname];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

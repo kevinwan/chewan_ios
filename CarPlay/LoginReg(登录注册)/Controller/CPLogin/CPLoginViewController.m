@@ -11,6 +11,9 @@
 #import "CPForgetPasswordViewController.h"
 #import "CPNavigationController.h"
 #import "SDImageCache.h"
+#import "UMSocial.h"
+#import "CPUser.h"
+#import "CPMyInfoController.h"
 
 @interface CPLoginViewController ()
 
@@ -147,8 +150,135 @@
 }
 
 #pragma mark - 第三方登录
-- (IBAction)thirdpartyLogin:(id)sender {
-    
+- (IBAction)thirdpartyLogin:(UIButton *)sender {
+    switch (sender.tag) {
+        case 1:{
+            UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToWechatSession];
+            
+            snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
+                
+                if (response.responseCode == UMSResponseCodeSuccess) {
+                    
+                    UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary]valueForKey:UMShareToWechatSession];
+                    //            SQLog(@"username is %@, uid is %@, token is %@ url is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL);
+                    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+                    dict[@"uid"] = snsAccount.usid;
+                    dict[@"nickname"] = snsAccount.userName;
+                    dict[@"avatar"] = snsAccount.iconURL;
+                    dict[@"channel"] = @"wechat";
+                    NSString *sign = [NSString stringWithFormat:@"%@wechatcom.gongpingjia.carplay",snsAccount.usid];
+                    dict[@"password"] = [Tools md5EncryptWithString:sign];
+//                    [self loginWithDict:dict];
+                }
+            });
+            break;
+        }
+            
+        case 2:{
+            UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToQQ];
+            
+            snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
+                
+                //          获取微博用户名、uid、token等
+                
+                if (response.responseCode == UMSResponseCodeSuccess) {
+                    
+                    UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:UMShareToQQ];
+                    
+                    NSLog(@"username is %@, uid is %@, token is %@ url is %@ openId is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL,snsAccount.openId);
+                    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+                    dict[@"uid"] = snsAccount.usid;
+                    dict[@"nickname"] = snsAccount.userName;
+                    dict[@"avatar"] = snsAccount.iconURL;
+                    dict[@"channel"] = @"qq";
+                    NSString *sign = [NSString stringWithFormat:@"%@qqcom.gongpingjia.carplay",snsAccount.usid];
+                    dict[@"password"] = [Tools md5EncryptWithString:sign];
+                    [self loginWithDict:dict];
+                    
+                }});
+            
+            break;
+        }
+            
+        case 3:
+        {
+            UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToSina];
+            
+            snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
+                
+                //          获取微博用户名、uid、token等
+                
+                if (response.responseCode == UMSResponseCodeSuccess) {
+                    
+                    UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:UMShareToSina];
+                    
+                    //            NSLog(@"username is %@, uid is %@, token is %@ url is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL);
+                    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+                    dict[@"uid"] = snsAccount.usid;
+                    dict[@"nickname"] = snsAccount.userName;
+                    dict[@"avatar"] = snsAccount.iconURL;
+                    dict[@"channel"] = @"sinaWeibo";
+                    NSString *sign = [NSString stringWithFormat:@"%@sinaWeibocom.gongpingjia.carplay",snsAccount.usid];
+                    dict[@"password"] = [Tools md5EncryptWithString:sign];
+                    [self loginWithDict:dict];
+                    
+                }});
+            break;
+        }
+    }
+}
+
+-(void)loginWithDict:(NSDictionary *)dict{
+    [ZYNetWorkTool postJsonWithUrl:@"sns/login" params:dict success:^(id responseObject) {
+        if (CPSuccess) {
+            if (responseObject[@"data"][@"userId"]) {
+                [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:[Tools md5EncryptWithString:responseObject[@"data"][@"userId"]] password:[Tools md5EncryptWithString:self.passwordField.text] completion:^(NSDictionary *loginInfo, EMError *error) {
+                    if (!error) {
+                        //存储个人信息
+                        CPUser * user = [CPUser objectWithKeyValues:responseObject[@"data"]];
+                        NSString *path=[[NSString alloc]initWithFormat:@"%@.info",responseObject[@"data"][@"userId"]];
+                        [NSKeyedArchiver archiveRootObject:user toFile:path.documentPath];
+                        [ZYUserDefaults setObject:responseObject[@"data"][@"nickname"] forKey:kUserNickName];
+                        [ZYUserDefaults setObject:responseObject[@"data"][@"avatar"] forKey:kUserHeadUrl];
+                        [ZYUserDefaults setObject:responseObject[@"data"][@"age"] forKey:kUserAge];
+                        [ZYUserDefaults setObject:responseObject[@"data"][@"gender"] forKey:KUserSex];
+                        // 设置自动登录
+                        [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+                        [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
+                        [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
+                        
+                        if (responseObject[@"data"][@"userId"]) {
+                            [ZYUserDefaults setObject:responseObject[@"data"][@"userId"] forKey:UserId];
+                        }
+                        if (responseObject[@"data"][@"token"]) {
+                            [ZYUserDefaults setObject:responseObject[@"data"][@"token"] forKey:Token];
+                        }
+                        [ZYUserDefaults setObject:self.accountField.text forKey:@"phone"];
+                        [ZYUserDefaults setObject:[Tools md5EncryptWithString:self.passwordField.text] forKey:@"password"];
+                        [ZYNotificationCenter postNotificationName:NOTIFICATION_HASLOGIN object:nil];
+                        [self.navigationController popToRootViewControllerAnimated:NO];
+                        if (user.album.count > 0) {
+                            [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
+                        }else{
+                            [ZYUserDefaults setBool:NO forKey:CPHasAlbum];
+                        }
+                    }
+                    [self disMiss];
+                } onQueue:nil];
+            }else{
+                CPMyInfoController *userInfo = [UIStoryboard storyboardWithName:@"CPMyInfoController" bundle:nil].instantiateInitialViewController;
+                CPUser *user=[CPUser objectWithKeyValues:dict];
+                userInfo.user=user;
+                CPNavigationController *nav=[[CPNavigationController alloc]initWithRootViewController:userInfo];
+                [self.navigationController presentViewController:nav animated:YES completion:nil];
+            }
+        }else{
+            [[[UIAlertView alloc]initWithTitle:@"提示" message:responseObject[@"errmsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show];
+        }
+        
+    } failed:^(NSError *error) {
+        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show];
+    }];
 }
 
 #pragma mark - customSwitch delegate
