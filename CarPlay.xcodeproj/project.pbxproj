@@ -604,6 +604,7 @@
 		EE7F81781BD9D1E0003E7B3B /* call_out_h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7F81761BD9D1E0003E7B3B /* call_out_h@3x.png */; };
 		EE7F81791BD9D1E0003E7B3B /* call_silence_h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7F81771BD9D1E0003E7B3B /* call_silence_h@3x.png */; };
 		EE7F817B1BD9E74D003E7B3B /* answerTel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7F817A1BD9E74D003E7B3B /* answerTel@2x.png */; };
+		EECA0F091BECFA4F0029F2D2 /* CPRightButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EECA0F081BECFA4F0029F2D2 /* CPRightButton.m */; };
 		EED47E921BE7679000BC2DBC /* nodistrube_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EED47E8E1BE7679000BC2DBC /* nodistrube_gray@2x.png */; };
 		EED47E931BE7679000BC2DBC /* nodistrube_gray@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EED47E8F1BE7679000BC2DBC /* nodistrube_gray@3x.png */; };
 		EED47E941BE7679000BC2DBC /* nodistrube@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EED47E901BE7679000BC2DBC /* nodistrube@2x.png */; };
@@ -1626,6 +1627,8 @@
 		EE7F81761BD9D1E0003E7B3B /* call_out_h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_out_h@3x.png"; sourceTree = "<group>"; };
 		EE7F81771BD9D1E0003E7B3B /* call_silence_h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call_silence_h@3x.png"; sourceTree = "<group>"; };
 		EE7F817A1BD9E74D003E7B3B /* answerTel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "answerTel@2x.png"; sourceTree = "<group>"; };
+		EECA0F071BECFA4F0029F2D2 /* CPRightButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRightButton.h; sourceTree = "<group>"; };
+		EECA0F081BECFA4F0029F2D2 /* CPRightButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRightButton.m; sourceTree = "<group>"; };
 		EED47E8E1BE7679000BC2DBC /* nodistrube_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nodistrube_gray@2x.png"; sourceTree = "<group>"; };
 		EED47E8F1BE7679000BC2DBC /* nodistrube_gray@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nodistrube_gray@3x.png"; sourceTree = "<group>"; };
 		EED47E901BE7679000BC2DBC /* nodistrube@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nodistrube@2x.png"; sourceTree = "<group>"; };
@@ -4049,6 +4052,8 @@
 				6B5176781BB9502100D7A62E /* CustomSwitch */,
 				E3E6B8961BB515F1006B4F8A /* CPSexView.h */,
 				E3E6B8971BB515F1006B4F8A /* CPSexView.m */,
+				EECA0F071BECFA4F0029F2D2 /* CPRightButton.h */,
+				EECA0F081BECFA4F0029F2D2 /* CPRightButton.m */,
 				E3AF16FC1BBA296C00306ABF /* CPNoHighLightButton.h */,
 				E3AF16FD1BBA296C00306ABF /* CPNoHighLightButton.m */,
 				E311371D1BD09309004EF249 /* CPLoadingView.h */,
@@ -4704,6 +4709,7 @@
 				6BDA2C9D1BD644870032FFF1 /* CPEditUsername.m in Sources */,
 				6D2ABFAD1BCE582100201A8E /* PSTCollectionViewController.m in Sources */,
 				E3A471801BB3A85300973197 /* NSTimer+ZY.m in Sources */,
+				EECA0F091BECFA4F0029F2D2 /* CPRightButton.m in Sources */,
 				6D2ABF851BCE582100201A8E /* EMAudioPlayerUtil.m in Sources */,
 				E32B5DD81BCE39CC0057FD71 /* UIViewController+ZY.m in Sources */,
 				6BDA2CAF1BD774050032FFF1 /* ExerciseMatchingSelectView.m in Sources */,
