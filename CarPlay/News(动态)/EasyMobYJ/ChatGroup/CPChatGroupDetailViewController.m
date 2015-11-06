@@ -148,18 +148,18 @@
 {
     NSString *urlStr = [NSString stringWithFormat:@"official/activity/%ld/members?userId=%@&token=%@&limit=20&ignore=0&idType=1",(long)[self.groupID integerValue],CPUserId,CPToken];
     [ZYNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
-        [self disMiss];
-
-        if ([[[responseObject objectForKey:@"data"] objectForKey:@"result"] integerValue] == 0) {
+        
+        if (CPSuccess) {
+            
+            [self disMiss];
             NSLog(@"res = %@",responseObject);
             [self.dataSource removeAllObjects];
-            self.title  = [NSString stringWithFormat:@"成员(%ld人)",[[[responseObject objectForKey:@"data"] objectForKey:@"memberSize"] integerValue]];
+            self.title  = [NSString stringWithFormat:@"成员(%zd人)",[[[responseObject objectForKey:@"data"] objectForKey:@"memberSize"] integerValue]];
             self.dataSource =[NSMutableArray arrayWithArray:[[responseObject objectForKey:@"data"] objectForKey:@"members"]];
             self.officialActivityId = [[responseObject objectForKey:@"data"] objectForKey:@"officialActivityId"];
             [_membersTableview reloadData];
         }else{
-            [self showInfo:@"加载失败"];
-            
+            [self showInfo:CPErrorMsg];
 
         }
        
