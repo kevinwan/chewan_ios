@@ -27,4 +27,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *albumsCollectionView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, strong) NSString *userId;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *carNameWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *carLogoCenter;
+
 @end
