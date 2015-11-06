@@ -47,7 +47,6 @@
               }
           }
       } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-          NSLog(@"sssss%@",operation.request.URL.absoluteString);
           if (failure) {
               failure(error);
               

@@ -86,7 +86,14 @@
     }
     [self.bgImageView zy_setImageWithUrl:[model.covers.firstObject stringByAppendingString:@"?imageView2/1/w/700"]];
     self.priceLabel.attributedText = model.priceText;
-    [self.addressView setTitle:model.destination[@"detail"] forState:UIControlStateNormal];
+    NSString *detail = model.destination[@"detail"];
+    if (detail.trimLength > 10) {
+        detail = [detail substringToIndex:10];
+    }
+    
+    [self.addressView setTitle:detail forState:UIControlStateNormal];
+    CGFloat w = [detail sizeWithFont:ZYFont10].width;
+    self.addressView.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, w);
 }
 
 #pragma mark - 加载视图
@@ -194,8 +201,8 @@
         _addressView.titleLabel.font = ZYFont10;
         [_addressView setTitleColor:[Tools getColor:@"8dd685"] forState:UIControlStateNormal];
         [_addressView setTitle:@"国家体育馆" forState:UIControlStateNormal];
-        _addressView.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 6);
-        _addressView.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+//        _addressView.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 6);
+//        _addressView.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         [[_addressView rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
             [self superViewWillRecive:RecommentAddressClickKey info:nil];
         }];

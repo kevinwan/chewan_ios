@@ -70,10 +70,15 @@
 
 @property (nonatomic, copy) NSString *distanceStr;
 
+//第三方平台UID
 @property (nonatomic, copy) NSString *uid;
 
 @property (nonatomic, copy) NSString *channel;
-
+//第三方平台sign签名
 @property (nonatomic, copy) NSString *password;
+
+@property (nonatomic, copy) NSString *code;
+
+@property (nonatomic, copy) NSString *snsPassword;
 
 @end
