@@ -87,7 +87,7 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     //友盟
-//    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:@"2493231538" RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
+//    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:@"2389475444" RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
 
     return YES;
 }
