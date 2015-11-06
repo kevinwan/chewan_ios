@@ -61,10 +61,17 @@
     [UMSocialData openLog:YES];
     [self getLocation];
     //环信
+    
+    //环信注册推送
+    [self registerRemoteNotification];
     //gongpingjia#carplayapp
     //"easemob-demo#chatdemoui
-    [[EaseMob sharedInstance] registerSDKWithAppKey:@"gongpingjia#carplayapp" apnsCertName:@"istore_dev"];
+    //chewanvpnrelease
+    [[EaseMob sharedInstance] registerSDKWithAppKey:@"gongpingjia#carplayapp" apnsCertName:@"chewanvpntest"];
     [[EaseMob sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
+   
+    
+    
     if (CPIsLogin) {
         [self upDateUserInfo];
     }
@@ -372,5 +379,39 @@
 {
     [ZYNotificationCenter removeObserver:self];
 }
-
+#pragma mark huanxin
+// 注册推送
+- (void)registerRemoteNotification{
+    UIApplication *application = [UIApplication sharedApplication];
+    application.applicationIconBadgeNumber = 0;
+    
+    if([application respondsToSelector:@selector(registerUserNotificationSettings:)])
+    {
+        UIUserNotificationType notificationTypes = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:notificationTypes categories:nil];
+        [application registerUserNotificationSettings:settings];
+    }
+    
+#if !TARGET_IPHONE_SIMULATOR
+    //iOS8 注册APNS
+    if ([application respondsToSelector:@selector(registerForRemoteNotifications)]) {
+        [application registerForRemoteNotifications];
+    }else{
+        UIRemoteNotificationType notificationTypes = UIRemoteNotificationTypeBadge |
+        UIRemoteNotificationTypeSound |
+        UIRemoteNotificationTypeAlert;
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:notificationTypes];
+    }
+#endif
+}
+// 将得到的deviceToken传给SDK
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+    [[EaseMob sharedInstance] application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
+    NSLog(@"deviceToken是%@",deviceToken);
+}
+// 注册deviceToken失败
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
+    [[EaseMob sharedInstance] application:application didFailToRegisterForRemoteNotificationsWithError:error];
+    NSLog(@"error -- %@",error);
+}
 @end
