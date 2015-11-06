@@ -318,7 +318,7 @@
                 break;
             case 2:
                 colorRGB=@"5f99c0";
-                type=@"夜宵";
+                type=@"桌游";
                 otherMatchingSelectView.view.backgroundColor=[Tools getColor:colorRGB];
                 otherMatchingSelectView.view.alpha=1.0;
                 otherMatchingSelectView.selectView.alpha=1.0;

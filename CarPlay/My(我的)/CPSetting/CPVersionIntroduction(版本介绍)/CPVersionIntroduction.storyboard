@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="aMY-sM-pwM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="aMY-sM-pwM">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -13,17 +13,21 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="yRQ-8M-tl9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
                             <tableViewSection id="rhI-M4-juH">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="265" id="XCi-of-IR7" customClass="ZYTableViewCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="265"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XCi-of-IR7" id="w9I-ZT-Ekd">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="265"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="版本" translatesAutoresizingMaskIntoConstraints="NO" id="Vuj-v5-tT5">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="版本介绍" translatesAutoresizingMaskIntoConstraints="NO" id="Vuj-v5-tT5">
                                                     <rect key="frame" x="10" y="18" width="50" height="50"/>
+                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="Nmd-xx-BZ7"/>
                                                         <constraint firstAttribute="height" constant="50" id="Ug6-Mf-7cK"/>
@@ -31,6 +35,7 @@
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.05版本" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uVO-Tk-UZn">
                                                     <rect key="frame" x="70" y="32" width="69" height="21"/>
+                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="OHg-lW-Qz3"/>
                                                         <constraint firstAttribute="width" constant="69" id="eex-6g-IUI"/>
@@ -41,43 +46,44 @@
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Tr-hv-BI9">
                                                     <rect key="frame" x="70" y="62" width="242" height="184.5"/>
+                                                    <animations/>
                                                     <attributedString key="attributedText">
-                                                        <fragment content="同城活动：">
+                                                        <fragment content="推荐活动：">
                                                             <attributes>
                                                                 <color key="NSColor" red="0.6470588235294118" green="0.68235294117647061" blue="0.72549019607843135" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <font key="NSFont" size="14" name="STHeitiSC-Light"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                                             </attributes>
                                                         </fragment>
-                                                        <fragment content="最火爆的同城车友活动，自驾游吃饭...约上附近的车友一起各种happy ">
+                                                        <fragment content="官方精选的靠谱的活动，活跃度高，安全有保障 ">
                                                             <attributes>
                                                                 <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <font key="NSFont" size="14" name="STHeitiSC-Light"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                                             </attributes>
                                                         </fragment>
-                                                        <fragment content=" 发布活动：">
+                                                        <fragment content=" 附近活动：">
                                                             <attributes>
                                                                 <color key="NSColor" red="0.6470588235294118" green="0.68235294117647061" blue="0.72549019607843135" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <font key="NSFont" size="14" name="STHeitiSC-Light"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                                             </attributes>
                                                         </fragment>
-                                                        <fragment content="不管你有车还是没有车都可以参加 ">
+                                                        <fragment content="附近的Ta发布活动了，唱歌、吃饭、购物，还包接送 ">
                                                             <attributes>
                                                                 <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <font key="NSFont" size="14" name="STHeitiSC-Light"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                                             </attributes>
                                                         </fragment>
-                                                        <fragment content=" 抢车座：">
+                                                        <fragment content=" 匹配活动：">
                                                             <attributes>
                                                                 <color key="NSColor" red="0.6470588235294118" green="0.68235294117647061" blue="0.72549019607843135" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <font key="NSFont" size="14" name="STHeitiSC-Light"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                                             </attributes>
                                                         </fragment>
-                                                        <fragment content="加入活动可以抢坐在男神女神旁边活动成员聊天；活动的成员可以聚在一起，成为朋友 ">
+                                                        <fragment content="想去嗨皮？不用发完活动干等着，分分钟找到附近和你一起想去嗨皮的小伙伴 ">
                                                             <attributes>
                                                                 <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <font key="NSFont" size="14" name="STHeitiSC-Light"/>
@@ -91,7 +97,7 @@
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                                             </attributes>
                                                         </fragment>
-                                                        <fragment content="如果你有车，你就可以认证车主通过以后你将会更加有吸引力">
+                                                        <fragment content="百分百车主官方认证，交友出行100%有保障">
                                                             <attributes>
                                                                 <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <font key="NSFont" size="14" name="STHeitiSC-Light"/>
@@ -102,6 +108,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="0Tr-hv-BI9" firstAttribute="leading" secondItem="Vuj-v5-tT5" secondAttribute="trailing" constant="10" id="09K-b2-rp0"/>
                                                 <constraint firstItem="Vuj-v5-tT5" firstAttribute="leading" secondItem="w9I-ZT-Ekd" secondAttribute="leadingMargin" constant="2" id="AAp-ud-ska"/>
@@ -113,6 +120,7 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="0Tr-hv-BI9" secondAttribute="bottom" constant="10" id="xnk-qb-HsV"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -130,6 +138,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="版本" width="52" height="52"/>
+        <image name="版本介绍" width="50" height="50"/>
     </resources>
 </document>

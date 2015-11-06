@@ -233,7 +233,7 @@
     [ZYNetWorkTool postJsonWithUrl:@"sns/login" params:dict success:^(id responseObject) {
         if (CPSuccess) {
             if (responseObject[@"data"][@"userId"]) {
-                [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:[Tools md5EncryptWithString:responseObject[@"data"][@"userId"]] password:[Tools md5EncryptWithString:self.passwordField.text] completion:^(NSDictionary *loginInfo, EMError *error) {
+                [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:[Tools md5EncryptWithString:responseObject[@"data"][@"userId"]] password:responseObject[@"data"][@"password"] completion:^(NSDictionary *loginInfo, EMError *error) {
                     if (!error) {
                         //存储个人信息
                         CPUser * user = [CPUser objectWithKeyValues:responseObject[@"data"]];
