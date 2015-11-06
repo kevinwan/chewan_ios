@@ -19,7 +19,7 @@
 #import "SDImageCache.h"
 #import "CPNewfeatureViewController.h"
 #import "UMSocialWechatHandler.h"
-
+#import "UMSocialSinaSSOHandler.h"
 #define kCheWanAppID @"55a34ed367e58e6efc00285d"
 #define kWeiXinAppID @"wx4c127cf07bd7d80b"
 #define kWeiXinAppSecret @"315ce754c5a1096c5188b4b69a7b9f04"
@@ -57,7 +57,7 @@
     
     [UMSocialWechatHandler setWXAppId:kWeiXinAppID appSecret:kWeiXinAppSecret url:nil];
     //QQ登录
-    [UMSocialQQHandler setQQWithAppId:@"1104948754" appKey:@"wxEzdsISx78YKqLH" url:@"http://www.umeng.com/social"];
+    [UMSocialQQHandler setQQWithAppId:@"1104728007" appKey:@"61BpHk8GQwH6FuCs" url:@"http://www.umeng.com/social"];
     [UMSocialData openLog:YES];
     [self getLocation];
     //环信
@@ -86,6 +86,9 @@
         [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:versionKey];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
+    //友盟
+    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:@"2493231538" RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
+
     return YES;
 }
 
