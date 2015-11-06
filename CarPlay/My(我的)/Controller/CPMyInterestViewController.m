@@ -50,7 +50,7 @@ static NSString *ID = @"myIntersterCell";
     
     self.offset = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250;
     
-//    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.automaticallyAdjustsScrollViewInsets = NO;
 //      self.tableView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
     [self.view addSubview:self.tableView];
     [ZYLoadingView showLoadingView];
