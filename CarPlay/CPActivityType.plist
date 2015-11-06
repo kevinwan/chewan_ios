@@ -16,5 +16,15 @@
 	<string>打羽毛球</string>
 	<key>桌球</key>
 	<string>玩桌球</string>
+	<key>三国杀</key>
+	<string>玩三国杀</string>
+	<key>杀人游戏</key>
+	<string>玩杀人游戏</string>
+	<key>狼人杀</key>
+	<string>玩狼人杀</string>
+	<key>抵抗组织</key>
+	<string>玩抵抗组织</string>
+	<key>其他</key>
+	<string>玩桌游</string>
 </dict>
 </plist>
