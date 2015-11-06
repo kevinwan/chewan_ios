@@ -214,7 +214,7 @@ static NSString *ID = @"myIntersterCell";
             
         }
         ZYMainOperation(^{
-            [self.tableView reloadItemsAtIndexPaths:indexPaths];
+            [self.tableView reloadData];
         });
         
     });

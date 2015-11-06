@@ -12,6 +12,7 @@
 #import "CPTabBarController.h"
 #import "CPUser.h"
 #import "CPLeadView.h"
+#import "CPGuideView.h"
 
 @interface OtherMatchingSelectView ()<UIGestureRecognizerDelegate>
 {
@@ -78,7 +79,7 @@
         self.whetherShuttle=@"0";
         [ZYUserDefaults setBool:NO forKey:Transfer];
     }
-    [CPLeadView showGuideViewWithImageName:@"2" centerX:self.view.middleX + 10 y:ZYScreenHeight - 208];
+    [CPGuideView showGuideViewWithImageName:@"2"];
 }
 
 - (void)didReceiveMemoryWarning {

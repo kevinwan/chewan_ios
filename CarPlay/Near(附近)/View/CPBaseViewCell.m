@@ -464,12 +464,12 @@
     self.payView.text = intersterModel.activityPay;
     
     if (intersterModel.activityPay.trimLength){
+        self.payViewLeftCons.constant = 10;
         self.payView.text = intersterModel.activityPay;
     }else{
         self.payViewLeftCons.constant = 0;
         self.payView.text = @"";
     }
-    self.sendView.hidden = !intersterModel.activityTransfer;
     NSString *street = intersterModel.activityDestination[@"street"];
     
     if (street.trimLength) {
@@ -541,7 +541,7 @@
         self.dateButton.hidden = NO;
         self.dateAnim.hidden = NO;
         self.payView.hidden = NO;
-        self.sendView.hidden = NO;
+        self.sendView.hidden = !intersterModel.activityTransfer;
     }else if (intersterModel.type == 1){
         // 上传相册信息
         self.titleDistanceView.hidden = NO;

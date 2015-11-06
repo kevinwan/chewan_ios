@@ -234,7 +234,7 @@ static NSString *ID = @"cell";
             
         }
         ZYMainOperation(^{
-            [self.tableView reloadItemsAtIndexPaths:indexPaths];
+            [self.tableView reloadData];
         });
         
     });
@@ -349,7 +349,7 @@ static NSString *ID = @"cell";
         if (CPSuccess) {
             [self showInfo:@"邀请已发出"];
             model.applyFlag = 1;
-            [self.tableView reloadItemsAtIndexPaths:@[indexPath]];
+            [self.tableView reloadData];
         }else if ([CPErrorMsg contains:@"申请中"]){
             [self showInfo:@"正在申请中"];
         }
@@ -374,10 +374,10 @@ static NSString *ID = @"cell";
         self.automaticallyAdjustsScrollViewInsets = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        CGSize itemSzie= CGSizeMake(ZYScreenWidth - 20, 383 + self.offset);
+        CGSize itemSzie= CGSizeMake(ZYScreenWidth - 20, 390 + self.offset);
         layout.itemSize = itemSzie;
         //        layout.scrollDirection = UICollectionLayoutScrollDirectionVertical;
-        layout.itemScale = 0.96;
+        layout.itemScale = 1;
         layout.LayoutDirection=UICollectionLayoutScrollDirectionVertical;
         self.view.backgroundColor = [Tools getColor:@"efefef"];
         [_tableView registerClass:[CPNearCollectionViewCell class] forCellWithReuseIdentifier:ID];
