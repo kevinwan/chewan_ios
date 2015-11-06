@@ -724,7 +724,7 @@
         _dateButton.layer.cornerRadius = 28;
         _dateButton.clipsToBounds = YES;
         [[_dateButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-            if ([[x currentTitle] isEqualToString:@"已邀请"]) {
+            if ([[x currentTitle] isEqualToString:@"已邀请"] || [[x currentTitle] isEqualToString:@"Ta没空"]) {
                 return;
             }
             [self superViewWillRecive:DateBtnClickKey info:_indexPath];
