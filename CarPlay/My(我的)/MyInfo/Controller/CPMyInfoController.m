@@ -80,7 +80,7 @@
             if (_user.gender && ![_user.gender isEqualToString:@""]) {
                 if (_user.brithDay) {
                     NSDictionary *landmark=[[NSDictionary alloc]initWithObjectsAndKeys:@(ZYLongitude),@"longitude",@(ZYLatitude),@"latitude", nil];
-                    NSDictionary *paras=[[NSDictionary alloc]initWithObjectsAndKeys:_user.phone,@"phone",_user.code,@"code",_user.password,@"password",_user.nickname,@"nickname",_user.gender,@"gender",@(_user.brithDay),@"birthday",_user.avatarId,@"avatar",landmark,@"landmark",nil];
+                    NSDictionary *paras=[[NSDictionary alloc]initWithObjectsAndKeys:_user.phone,@"phone",_user.code,@"code",_user.password,@"password",_user.nickname,@"nickname",_user.gender,@"gender",@(_user.brithDay),@"birthday",_user.avatarId,@"avatar",landmark,@"landmark",_user.snsPassword,@"snsPassword",_user.uid,@"uid",_user.channel,@"channel",nil];
                     
                     [ZYNetWorkTool postJsonWithUrl:@"user/register" params:paras success:^(id responseObject) {
                         if (CPSuccess) {

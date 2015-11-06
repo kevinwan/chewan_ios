@@ -66,7 +66,39 @@
                         NSDictionary *params=@{@"uid":_user.uid,@"channel":_user.channel,@"snsPassword":_user.password,@"phone":_phoneField.text,@"code":_verificationCodeField.text};
                         [ZYNetWorkTool postJsonWithUrl:@"user/phone/binding" params:params success:^(id responseObject) {
                             if (CPSuccess) {
-                                NSLog(@"asdfasdfasdf%@",responseObject);
+                                [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:[Tools md5EncryptWithString:responseObject[@"data"][@"userId"]] password:[Tools md5EncryptWithString:self.passwordField.text] completion:^(NSDictionary *loginInfo, EMError *error) {
+                                    if (!error) {
+                                        //存储个人信息
+                                        CPUser * user = [CPUser objectWithKeyValues:responseObject[@"data"]];
+                                        NSString *path=[[NSString alloc]initWithFormat:@"%@.info",responseObject[@"data"][@"userId"]];
+                                        [NSKeyedArchiver archiveRootObject:user toFile:path.documentPath];
+                                        [ZYUserDefaults setObject:responseObject[@"data"][@"nickname"] forKey:kUserNickName];
+                                        [ZYUserDefaults setObject:responseObject[@"data"][@"avatar"] forKey:kUserHeadUrl];
+                                        [ZYUserDefaults setObject:responseObject[@"data"][@"age"] forKey:kUserAge];
+                                        [ZYUserDefaults setObject:responseObject[@"data"][@"gender"] forKey:KUserSex];
+                                        // 设置自动登录
+                                        [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+                                        [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
+                                        [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
+                                        
+                                        if (responseObject[@"data"][@"userId"]) {
+                                            [ZYUserDefaults setObject:responseObject[@"data"][@"userId"] forKey:UserId];
+                                        }
+                                        if (responseObject[@"data"][@"token"]) {
+                                            [ZYUserDefaults setObject:responseObject[@"data"][@"token"] forKey:Token];
+                                        }
+                                        [ZYUserDefaults setObject:_phoneField.text forKey:@"phone"];
+                                        [ZYUserDefaults setObject:[Tools md5EncryptWithString:self.passwordField.text] forKey:@"password"];
+                                        [ZYNotificationCenter postNotificationName:NOTIFICATION_HASLOGIN object:nil];
+                                        [self.navigationController popToRootViewControllerAnimated:NO];
+                                        if (user.album.count > 0) {
+                                            [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
+                                        }else{
+                                            [ZYUserDefaults setBool:NO forKey:CPHasAlbum];
+                                        }
+                                    }
+                                    [self disMiss];
+                                } onQueue:nil];
                             } else {
                                 [[[UIAlertView alloc]initWithTitle:nil message:responseObject[@"errmsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil] show];
                             }
