@@ -27,7 +27,7 @@
 
 - (NSString *)title
 {
-    return [NSString stringWithFormat:@"%@想找人一起%@",_organizer.nickname, _type];
+    return [NSString stringWithFormat:@"%@想找人%@",_organizer.nickname, _type];
 }
 
 - (void)setDistance:(double)distance

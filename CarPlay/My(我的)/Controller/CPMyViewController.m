@@ -119,6 +119,7 @@
     [ZYNetWorkTool getWithUrl:path params:nil success:^(id responseObject) {
         if (CPSuccess) {
             user = [CPUser objectWithKeyValues:responseObject[@"data"]];
+            DLog(@"%zd--- ",user.idle);
 //            if ([responseObject[@"data"][@"car"] isEqualToString:@""]) {
 //                user.car=[CPCar new];
 //            }

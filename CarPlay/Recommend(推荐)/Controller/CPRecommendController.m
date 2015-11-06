@@ -167,6 +167,12 @@ static NSString *ID = @"RecommentCell";
     [self.navigationController pushViewController:activityVc animated:YES];
 }
 
+/**
+ *  分页效果
+ *
+ *  @param scrollView scrollView
+ *  @param decelerate 减速方法
+ */
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     UICollectionView3DLayout *layout=(UICollectionView3DLayout*)self.collectionView.collectionViewLayout;

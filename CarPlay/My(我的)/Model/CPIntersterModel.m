@@ -30,7 +30,7 @@
 }
 - (NSString *)title
 {
-    return [NSString stringWithFormat:@"%@想找人一块%@",_user.nickname, _activityType];
+    return [NSString stringWithFormat:@"%@想找人%@",_user.nickname, _activityType];
 }
 
 - (void)setDistance:(double)distance

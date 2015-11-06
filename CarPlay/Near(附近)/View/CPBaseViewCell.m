@@ -288,14 +288,14 @@
     }
     
     if ([model.organizer.licenseAuthStatus isEqualToString:@"认证通过"]) {
-        self.carTypeView.hidden = NO;
         
         [self.carView zySetImageWithUrl:model.organizer.car.logo placeholderImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
-        self.carTypeView.text = model.organizer.car.model;
+//        self.carTypeView.hidden = NO;
+//        self.carTypeView.text = model.organizer.car.model;
     }else{
         
         [self.carView setImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
-        self.carTypeView.hidden = YES;
+//        self.carTypeView.hidden = YES;
     }
     if (isHasAlubm && CPIsLogin) {
         self.tipView.hidden = YES;
@@ -373,13 +373,13 @@
     }else{
         [self.authView setImage:[UIImage imageNamed:@"未认证-审核中"] forState:UIControlStateNormal];
     }
-    
     if ([myDateModel.applicant.licenseAuthStatus isEqualToString:@"认证通过"]) {
         [self.carView zySetImageWithUrl:myDateModel.applicant.car.logo placeholderImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
-        self.carTypeView.text = myDateModel.applicant.car.model;
+//         self.carTypeView.hidden = NO;
+//         self.carTypeView.text = myDateModel.applicant.car.model;
     }else{
         [self.carView setImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
-        self.carTypeView.hidden = YES;
+//        self.carTypeView.hidden = YES;
     }
     if (isHasAlubm && CPIsLogin) {
         self.tipView.hidden = YES;
@@ -477,11 +477,11 @@
     if ([intersterModel.user.licenseAuthStatus isEqualToString:@"认证通过"]) {
         self.carTypeView.hidden = NO;
         [self.carView zySetImageWithUrl:intersterModel.user.car.logo placeholderImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
-        
-        self.carTypeView.text = intersterModel.user.car.model;
+//        self.carTypeView.hidden = NO;
+//        self.carTypeView.text = intersterModel.user.car.model;
     }else{
         [self.carView setImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
-        self.carTypeView.hidden = YES;
+//        self.carTypeView.hidden = YES;
     }
     if (isHasAlubm && CPIsLogin) {
         self.tipView.hidden = YES;
