@@ -22,6 +22,15 @@
     if (firstShow == NO) {
         UIWindow *window = [UIApplication sharedApplication].windows.lastObject;
         CPGuideView *guideView = [[CPGuideView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        if (iPhone4) {
+            imageName = [imageName stringByAppendingString:@"_4"];
+        }else if (iPhone5){
+            imageName = [imageName stringByAppendingString:@"_5"];
+        }else if (iPhone6){
+            imageName = [imageName stringByAppendingString:@"_6"];
+        }else if (iPhone6P){
+            imageName = [imageName stringByAppendingString:@"_6p"];
+        }
         guideView.image = [UIImage imageNamed:imageName];
         
         [ZYUserDefaults setBool:YES forKey:imageKey];

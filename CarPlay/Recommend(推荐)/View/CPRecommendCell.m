@@ -233,6 +233,7 @@
     if (_bgTip == nil) {
         _bgTip = [[UIImageView alloc] init];
         _bgTip.image = [UIImage imageNamed:@"bg_tip"];
+        _bgTip.hidden = YES;
     }
     return _bgTip;
 }
