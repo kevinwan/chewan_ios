@@ -122,7 +122,7 @@
                                             [ZYUserDefaults setObject:responseObject[@"data"][@"token"] forKey:Token];
                                         }
                                         [ZYUserDefaults setObject:_phoneField.text forKey:@"phone"];
-                                        [ZYUserDefaults setObject:responseObject[@"data"][@"userId"] forKey:@"password"];
+                                        [ZYUserDefaults setObject:responseObject[@"data"][@"password"] forKey:@"password"];
                                         [ZYNotificationCenter postNotificationName:NOTIFICATION_HASLOGIN object:nil];
                                         [self.navigationController popToRootViewControllerAnimated:NO];
                                         if (user.album.count > 0) {
