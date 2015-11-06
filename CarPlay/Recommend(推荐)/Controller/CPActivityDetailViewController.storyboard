@@ -113,7 +113,7 @@
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PYd-0f-87G">
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PYd-0f-87G">
                                                     <rect key="frame" x="151" y="7" width="31" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -155,7 +155,6 @@
                                         <connections>
                                             <outlet property="agreeLabel" destination="sRA-pq-CxV" id="fxD-9M-k9B"/>
                                             <outlet property="carView" destination="Wv6-r2-JKn" id="EAX-NF-aWu"/>
-                                            <outlet property="cartypeLabel" destination="PYd-0f-87G" id="Pgi-Qx-sSp"/>
                                             <outlet property="distanceLabel" destination="Hld-co-OmD" id="TL1-oK-yy4"/>
                                             <outlet property="iconView" destination="OqR-mn-PBa" id="Bfa-ns-Jao"/>
                                             <outlet property="inviteBtn" destination="B0Y-fT-bCY" id="IKn-hl-oyg"/>

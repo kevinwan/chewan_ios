@@ -55,6 +55,7 @@ static NSString *ID2 = @"DateCell2";
     
     self.offset = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250;
     [self.view addSubview:self.tableView];
+    self.tableView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
     [ZYLoadingView showLoadingView];
     [self loadDataWithHeader:nil];
 }
@@ -62,15 +63,7 @@ static NSString *ID2 = @"DateCell2";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-        self.automaticallyAdjustsScrollViewInsets = NO;
     [CPLeadView showGuideViewWithImageName:@"3" centerX:self.view.middleX y:ZYScreenHeight - 340];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self.tableView setContentInsetTop:0];
-    [self.tableView setContentOffset:CGPointZero animated:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

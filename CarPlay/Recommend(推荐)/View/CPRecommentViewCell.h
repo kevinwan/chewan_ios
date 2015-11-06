@@ -10,5 +10,6 @@
 #import "CPRecommendCell.h"
 
 @interface CPRecommentViewCell : UICollectionViewCell
+@property (nonatomic, strong) NSIndexPath *indexPath;
 @property (nonatomic, strong) CPRecommendModel *model;
 @end

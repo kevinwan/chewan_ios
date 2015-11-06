@@ -144,6 +144,11 @@ static NSString *ID = @"RecommentCell";
 {
     if ([notifyName isEqualToString:RecommentAddressClickKey]) {
         NSLog(@"国家体育馆");
+    }else if ([notifyName isEqualToString:@"ImageClickKey"]){
+        NSIndexPath *indexPath = userInfo;
+        CPActivityDetailViewController *activityVc = [UIStoryboard storyboardWithName:@"CPActivityDetailViewController" bundle:nil].instantiateInitialViewController;
+        activityVc.officialActivityId = self.datas[indexPath.item].officialActivityId;
+        [self.navigationController pushViewController:activityVc animated:YES];
     }
 }
 
@@ -156,6 +161,7 @@ static NSString *ID = @"RecommentCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CPRecommentViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
+    cell.indexPath = indexPath;
     cell.model = self.datas[indexPath.item];
     return cell;
 }

@@ -17,7 +17,6 @@
 @property (weak, nonatomic) IBOutlet CPSexView *sexView;
 
 @property (weak, nonatomic) IBOutlet UIButton *carView;
-@property (weak, nonatomic) IBOutlet UILabel *cartypeLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *partNumLabel;
@@ -125,14 +124,9 @@ static NSString *ID = @"memberIconCell";
     }
     
     if ([model.licenseAuthStatus isEqualToString:@"认证未通过"]) {
-        self.cartypeLabel.hidden = YES;
         [self.carView setImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
     }else{
-        
-        self.carView.hidden = NO;
         [self.carView zySetImageWithUrl:model.car.logo placeholderImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
-        
-        self.cartypeLabel.text = model.car.model;
     }
     
     //inviteStatus        当前登录用户 邀请 该用户的 状态；
