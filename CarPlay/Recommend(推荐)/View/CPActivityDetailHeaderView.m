@@ -34,9 +34,22 @@
 @property (weak, nonatomic) IBOutlet UILabel *maleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *partLabel;
 @property (weak, nonatomic) IBOutlet UILabel *tipPartLabel;
-
+@property (nonatomic, strong) NSDictionary *attrbuite;
 @end
 @implementation CPActivityDetailHeaderView
+
+- (NSDictionary *)attrbuite
+{
+    if (_attrbuite == nil) {
+        NSMutableDictionary *attrbuites = [NSMutableDictionary dictionary];
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        [paragraphStyle setLineSpacing:7];
+        attrbuites[NSFontAttributeName] = ZYFont12;
+        attrbuites[NSParagraphStyleAttributeName] = paragraphStyle;
+        _attrbuite = [attrbuites copy];
+    }
+    return _attrbuite;
+}
 
 + (instancetype)activityDetailHeaderView
 {
@@ -118,26 +131,23 @@
     NSString *address = [NSString stringWithFormat:@"%@%@%@",model.destination[@"city"],model.destination[@"district"],model.destination[@"detail"]];
     
     [self.addressLabel setText:address];
-    NSMutableParagraphStyle *paragraphStyle1 = [[NSMutableParagraphStyle alloc] init];
-    [paragraphStyle1 setLineSpacing:7];
-    self.descLabel.attributedText = [[NSAttributedString alloc] initWithString:model.instruction attributes:@{NSParagraphStyleAttributeName : paragraphStyle1}];
+    self.descLabel.attributedText = [[NSAttributedString alloc] initWithString:model.instruction attributes:self.attrbuite];
     
-    self.height = 701 + ZYScreenWidth / 64.0 * 30.0 - 150;
+    self.height = 685 + ZYScreenWidth / 64.0 * 30.0 - 150;
 }
 
 - (IBAction)openDetailLabel:(UIButton *)sender {
-    
+    NSMutableParagraphStyle *paragraphStyle1 = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle1 setLineSpacing:7];
     sender.selected = !sender.isSelected;
     if (sender.selected) {
-        
-        
-        CGSize contentSize = [self.descLabel.attributedText boundingRectWithSize:CGSizeMake(ZYScreenWidth - 20, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
-        self.descHCons.constant = contentSize.height + 20;
+         CGSize contentSize = [self.descLabel.text boundingRectWithSize:CGSizeMake(ZYScreenWidth - 20, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:self.attrbuite context:NULL].size;
+        self.descHCons.constant = contentSize.height + 14;
     }else{
         self.descHCons.constant = 109;
     }
     
-    self.height = 701 + self.descHCons.constant - 109 + ZYScreenWidth / 64.0 * 30.0 - 150;
+    self.height = 685 + self.descHCons.constant - 109 + ZYScreenWidth / 64.0 * 30.0 - 150;
     [self superViewWillRecive:CPActivityDetailHeaderDetailOpenKey info:nil];
 }
 
