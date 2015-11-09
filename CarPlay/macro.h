@@ -11,9 +11,14 @@
 
 // 正式服务器接口地址
 #define BASE_URL @"http://chewanapi.gongpingjia.com/v2/"
+//环信的key和推送证书，同样是正式服务器中的
+#define Easy_Mob_Key @"gongpingjia#chewanapi"
+#define APNS_CER @"chewanvpnrelease"
 
 // 测试服务器接口地址
 //#define BASE_URL @"http://cwapi.gongpingjia.com:8080/v2/"
+//#define Easy_Mob_Key @"gongpingjia#carplayapp"
+//#define APNS_CER @"chewanvpntest"
 
 
 //==============================DLog/NSLog=====================
