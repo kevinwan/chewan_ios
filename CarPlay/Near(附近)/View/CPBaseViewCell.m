@@ -338,7 +338,7 @@
             
             self.dateAnim.haloLayerColor= [Tools getColor:@"cccccc"].CGColor;
             [self.dateButton setBackgroundColor:[Tools getColor:@"cccccc"]];
-            [self.dateButton setTitle:@"已邀请" forState:UIControlStateNormal];
+            [self.dateButton setTitle:@"邀请中" forState:UIControlStateNormal];
             [self setOneType:YES];
         }
     }else if (status == 2){
@@ -426,7 +426,7 @@
             
             self.dateAnim.haloLayerColor= [Tools getColor:@"cccccc"].CGColor;
             [self.dateButton setBackgroundColor:[Tools getColor:@"cccccc"]];
-            [self.dateButton setTitle:@"已邀请" forState:UIControlStateNormal];
+            [self.dateButton setTitle:@"邀请中" forState:UIControlStateNormal];
             [self setOneType:YES];
         }
     }else if (myDateModel.status == 2){
@@ -527,7 +527,7 @@
         
         self.dateAnim.haloLayerColor= [Tools getColor:@"cccccc"].CGColor;
         [self.dateButton setBackgroundColor:[Tools getColor:@"cccccc"]];
-        [self.dateButton setTitle:@"已邀请" forState:UIControlStateNormal];
+        [self.dateButton setTitle:@"邀请中" forState:UIControlStateNormal];
         [self setOneType:YES];
     }else if (intersterModel.activityStatus == 2){
         [self setPhoneType:YES];
@@ -730,7 +730,7 @@
         _dateButton.layer.cornerRadius = 28;
         _dateButton.clipsToBounds = YES;
         [[_dateButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-            if ([[x currentTitle] isEqualToString:@"已邀请"] || [[x currentTitle] isEqualToString:@"Ta没空"]) {
+            if ([[x currentTitle] isEqualToString:@"邀请中"] || [[x currentTitle] isEqualToString:@"Ta没空"]) {
                 return;
             }
             [self superViewWillRecive:DateBtnClickKey info:_indexPath];
