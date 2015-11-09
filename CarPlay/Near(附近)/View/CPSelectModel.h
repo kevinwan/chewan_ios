@@ -12,7 +12,7 @@
 
 @property (nonatomic, copy) NSString *type;
 @property (nonatomic, copy) NSString *pay;
-@property (nonatomic, assign) BOOL transfer;
+@property (nonatomic, assign) NSInteger transfer;
 @property (nonatomic, copy) NSString *sex;
 
 @end
