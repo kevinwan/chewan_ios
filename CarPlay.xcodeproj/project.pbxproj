@@ -4327,7 +4327,7 @@
 				TargetAttributes = {
 					E31E4BD11BAD47A500902B34 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = 7B7Z8D7LY4;
+						DevelopmentTeam = 478G6NTTAZ;
 					};
 				};
 			};
@@ -5143,7 +5143,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.77iland.carsplay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "6b11ee38-dd1b-40c5-9e01-f10d8750d6cd";
 			};
 			name = Debug;
 		};
@@ -5179,7 +5179,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.77iland.carsplay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "6b11ee38-dd1b-40c5-9e01-f10d8750d6cd";
 			};
 			name = Release;
 		};
