@@ -54,7 +54,7 @@ static NSString *ID = @"myIntersterCell";
 //      self.tableView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
     [self.view addSubview:self.tableView];
     [ZYLoadingView showLoadingView];
-        [self loadDataWithHeader:nil];
+    [self loadDataWithHeader:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
