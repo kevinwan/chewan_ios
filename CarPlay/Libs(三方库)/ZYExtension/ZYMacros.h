@@ -17,6 +17,7 @@
 #define ZYFont10 [UIFont systemFontOfSize:10]
 #define ZYFont12 [UIFont systemFontOfSize:12]
 #define ZYFont14 [UIFont systemFontOfSize:14]
+#define ZYFont15 [UIFont systemFontOfSize:15]
 #define ZYFont16 [UIFont systemFontOfSize:16]
 #define ZYFont18 [UIFont systemFontOfSize:18]
 #define ZYFont20 [UIFont systemFontOfSize:20]
