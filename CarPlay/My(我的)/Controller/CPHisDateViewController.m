@@ -194,7 +194,7 @@ static NSString *ID = @"HisDateCell";
 
 - (CGFloat)waterflowLayout:(ZYWaterflowLayout *)waterflowLayout heightForWidth:(CGFloat)width atIndexPath:(NSIndexPath *)indexPath
 {
-    return self.offset + 390;
+    return self.offset + 370;
 }
 
 #pragma mark - 事件交互

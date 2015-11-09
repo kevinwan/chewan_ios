@@ -78,9 +78,15 @@
     CPSelectModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:CPSelectModelFilePath];
     
     // 选中筛选的类型
+    NSString *type = nil;
     if (model.type.trimLength){
         for (UIButton *btn in view.typeView.subviews) {
-            if ([btn.currentTitle isEqualToString:model.type.noType]) {
+            if ([model.type isEqualToString:@"玩桌游"]) {
+                type = @"桌游";
+            }else{
+                type = model.type.noType;
+            }
+            if ([btn.currentTitle isEqualToString:type]) {
                 [view typeBtnClick:btn];
                 break;
             }
