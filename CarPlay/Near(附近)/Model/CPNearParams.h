@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface CPNearParams : NSObject
+@property (nonatomic, assign) BOOL noFirst;
 //userId	false	String	访问用户的userId
 @property (nonatomic, copy) NSString *userId;
 //token	false	String	访问者的 token

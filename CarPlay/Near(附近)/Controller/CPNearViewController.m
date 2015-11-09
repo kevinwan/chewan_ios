@@ -157,8 +157,12 @@ static NSString *ID = @"cell";
  */
 - (void)loadDataWithHeader:(AAPullToRefresh *)refresh
 {
-
-    [ZYNetWorkTool getWithUrl:@"activity/list" params:self.params.keyValues success:^(id responseObject) {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:self.params.keyValues];;
+    if (self.params.noFirst == NO) {
+        [params removeObjectForKey:@"transfer"];
+    }
+    
+    [ZYNetWorkTool getWithUrl:@"activity/list" params:params success:^(id responseObject) {
         
         [refresh stopIndicatorAnimation];
         if (CPSuccess) {
@@ -410,6 +414,7 @@ static NSString *ID = @"cell";
         self.params.gender = selectModel.sex;
         self.params.transfer = selectModel.transfer;
         self.params.ignore = 0;
+        self.params.noFirst = YES;
         [self loadDataWithHeader:nil];
     }];
 }
