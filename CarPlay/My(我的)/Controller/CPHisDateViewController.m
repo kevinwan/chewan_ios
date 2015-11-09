@@ -115,6 +115,11 @@ static NSString *ID = @"HisDateCell";
 - (void)loadDataWithHeader:(AAPullToRefresh *)refresh
 {
     //    http://cwapi.gongpingjia.com/v2/activity/pushInfo?userId=846de312-306c-4916-91c1-a5e69b158014&token=846de312-306c-4916-91c1-a5e69b158014
+    // 防止是你退
+    if (!self.targetUser.userId.trimLength) {
+        [ZYLoadingView dismissLoadingView];
+        return;
+    }
     NSString *url = [NSString stringWithFormat:@"user/%@/activity/list?userId=%@&token=%@",self.targetUser.userId,CPUserId,CPToken];
     [ZYNetWorkTool getWithUrl:url params:@{@"ignore":@(self.ignore)} success:^(id responseObject) {
         DLog(@"%@",responseObject);
