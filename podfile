@@ -1,6 +1,6 @@
 pod 'AFNetworking'
-pod 'MJExtension'
 pod 'MJRefresh'
+pod 'MJExtension'
 pod 'SVProgressHUD'
 pod 'Masonry'
 source 'https://github.com/CocoaPods/Specs.git'

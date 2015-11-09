@@ -28,7 +28,7 @@ PODS:
   - EaseMobSDKFull (2.2.0.1)
   - IQKeyboardManager (3.3.2)
   - Masonry (0.6.2)
-  - MJExtension (2.5.10)
+  - MJExtension (2.5.12)
   - MJRefresh (2.4.10)
   - ReactiveCocoa (2.5):
     - ReactiveCocoa/UI (= 2.5)
@@ -67,7 +67,7 @@ SPEC CHECKSUMS:
   EaseMobSDKFull: 397ac19a58d11856471d61937cbb03e6877e8cd8
   IQKeyboardManager: d863eb0bca424d1f6dad6bdd1f856af52664add8
   Masonry: 362e8a1cc0beada4a4c4832d5e863da2a51533be
-  MJExtension: 944fb5a12bceb9b866914527f66101566e66292b
+  MJExtension: 5ab633484e431f777387c70b676c80f993361f1b
   MJRefresh: e52328552ed9cbfce3501e3820b18bf7643c65cc
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1

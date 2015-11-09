@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CPByTicketViewController : UIViewController
+@interface CPByTicketViewController : CPViewController
 @property (nonatomic, copy) NSString *url;
 @end
