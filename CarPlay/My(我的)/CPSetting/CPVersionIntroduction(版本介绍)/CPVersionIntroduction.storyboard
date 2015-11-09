@@ -44,7 +44,7 @@
                                                     <color key="textColor" red="0.19215686269999999" green="0.77647058820000003" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Tr-hv-BI9">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Tr-hv-BI9">
                                                     <rect key="frame" x="70" y="62" width="242" height="184.5"/>
                                                     <animations/>
                                                     <attributedString key="attributedText">
@@ -117,8 +117,12 @@
                                                 <constraint firstItem="0Tr-hv-BI9" firstAttribute="top" secondItem="uVO-Tk-UZn" secondAttribute="bottom" constant="9" id="Ziq-jK-VtC"/>
                                                 <constraint firstItem="uVO-Tk-UZn" firstAttribute="top" secondItem="w9I-ZT-Ekd" secondAttribute="topMargin" constant="24" id="msf-gE-srP"/>
                                                 <constraint firstItem="0Tr-hv-BI9" firstAttribute="trailing" secondItem="w9I-ZT-Ekd" secondAttribute="trailingMargin" id="rrZ-fL-1VT"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="0Tr-hv-BI9" secondAttribute="bottom" constant="10" id="xnk-qb-HsV"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="rrZ-fL-1VT"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>
@@ -131,6 +135,9 @@
                         </connections>
                     </tableView>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="strLabel" destination="0Tr-hv-BI9" id="TMY-I0-MzY"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Cb-Mi-g4U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

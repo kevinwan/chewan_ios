@@ -147,6 +147,7 @@
     }];
     [self.headImage zySetImageWithUrl:user.avatar placeholderImage:nil];
     [self.nickname setTitle:user.nickname forState:UIControlStateNormal];
+    self.nickname.width=[user.nickname sizeWithFont:ZYFont15].width;
     if ([user.gender isEqualToString:@"女"]) {
         [self.sex setImage:[UIImage imageNamed:@"女"] forState:UIControlStateNormal];
     }else{
