@@ -5046,7 +5046,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Nanjing 77 island Mdt InfoTech Co., Ltd. (7B7Z8D7LY4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Nanjing 77 island Mdt InfoTech Co., Ltd. (7B7Z8D7LY4)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -5068,7 +5069,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "5f4fefed-544b-4169-acd3-fb98ee9561c7";
+				PROVISIONING_PROFILE = "a6549d36-c41c-49e3-a8ef-93ff05b0a2da";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -5090,7 +5091,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Nanjing 77 island Mdt InfoTech Co., Ltd. (7B7Z8D7LY4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Nanjing 77 island Mdt InfoTech Co., Ltd. (7B7Z8D7LY4)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -5105,7 +5107,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "5f4fefed-544b-4169-acd3-fb98ee9561c7";
+				PROVISIONING_PROFILE = "a6549d36-c41c-49e3-a8ef-93ff05b0a2da";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -5143,7 +5145,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.77iland.carsplay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6b11ee38-dd1b-40c5-9e01-f10d8750d6cd";
+				PROVISIONING_PROFILE = "bbed83d6-d7ed-428a-bfd9-6aaec5792643";
 			};
 			name = Debug;
 		};
@@ -5179,7 +5181,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.77iland.carsplay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6b11ee38-dd1b-40c5-9e01-f10d8750d6cd";
+				PROVISIONING_PROFILE = "bbed83d6-d7ed-428a-bfd9-6aaec5792643";
 			};
 			name = Release;
 		};
