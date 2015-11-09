@@ -128,11 +128,19 @@ static NSString *ID = @"HisDateCell";
             if (self.ignore == 0) {
                 [self.datas removeAllObjects];
             }
-
+            
+            if (![responseObject[@"data"] isKindOfClass:[NSDictionary class]]) {
+                [ZYLoadingView dismissLoadingView];
+                self.noDataView.netWorkFailtype = NO;
+                self.noDataView.hidden = NO;
+                return;
+            }
+            
+            NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"][@"activities"]];
+          
             NSString *cover = responseObject[@"data"][@"cover"];
             double distance = [responseObject[@"distance"] doubleValue];
             
-            NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"][@"activities"]];
             for (CPActivityModel *model in arr) {
                 model.organizer = self.targetUser;
                 model.organizer.cover = cover;
