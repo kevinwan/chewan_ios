@@ -197,6 +197,7 @@ static NSString *ID2 = @"DateCell2";
     }else if ([[model activityCategory] isEqualToString:@"官方活动"]){
         
         CPRecommentViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID2 forIndexPath:indexPath];
+        cell.indexPath = indexPath;
         cell.model = model;
         return cell;
     }else if ([[model activityCategory] isEqualToString:@"邀请同去"]){
@@ -305,6 +306,15 @@ static NSString *ID2 = @"DateCell2";
         CPActivityDetailViewController *activityVc = [UIStoryboard storyboardWithName:@"CPActivityDetailViewController" bundle:nil].instantiateInitialViewController;
         activityVc.officialActivityId = userInfo;
         [self.navigationController pushViewController:activityVc animated:YES];
+    }else if ([notifyName isEqualToString:@"ImageClickKey"]){
+        NSIndexPath *indexPath = userInfo;
+        
+        id model = self.datas[indexPath.row];
+        if ([[model activityCategory] isEqualToString:@"官方活动"]) {
+            CPActivityDetailViewController *activityVc = [UIStoryboard storyboardWithName:@"CPActivityDetailViewController" bundle:nil].instantiateInitialViewController;
+            activityVc.officialActivityId = [model officialActivityId];
+            [self.navigationController pushViewController:activityVc animated:YES];
+        }
     }
 }
 
