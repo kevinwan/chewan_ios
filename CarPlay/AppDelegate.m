@@ -67,7 +67,7 @@
     //gongpingjia#carplayapp
     //"easemob-demo#chatdemoui
     //
-    //    [[EaseMob sharedInstance] registerSDKWithAppKey:@"gongpingjia#chewanapi" apnsCertName:@"chewanvpnrelease"];
+//        [[EaseMob sharedInstance] registerSDKWithAppKey:@"gongpingjia#chewanapi" apnsCertName:@"chewanvpnrelease"];
 
     [[EaseMob sharedInstance] registerSDKWithAppKey:@"gongpingjia#carplayapp" apnsCertName:@"chewanvpntest"];
     [[EaseMob sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
