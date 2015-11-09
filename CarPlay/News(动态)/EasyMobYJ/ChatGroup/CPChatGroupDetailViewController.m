@@ -108,7 +108,7 @@
     }
     
     
-    NSString *urlStr = [NSString stringWithFormat:@"official/activity/%ld/members?userId=%@&token=%@&limit=20&ignore=0&idType=1",(long)[self.groupID integerValue],CPUserId,CPToken];
+    NSString *urlStr = [NSString stringWithFormat:@"official/activity/%@/members?userId=%@&token=%@&limit=20&ignore=0&idType=1",self.groupID,CPUserId,CPToken];
     [ZYNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
         [self disMiss];
         [footer endRefreshing];
@@ -146,7 +146,7 @@
 
 - (void)getDetailMembersData
 {
-    NSString *urlStr = [NSString stringWithFormat:@"official/activity/%ld/members?userId=%@&token=%@&limit=20&ignore=0&idType=1",(long)[self.groupID integerValue],CPUserId,CPToken];
+    NSString *urlStr = [NSString stringWithFormat:@"official/activity/%@/members?userId=%@&token=%@&limit=20&ignore=0&idType=1",self.groupID,CPUserId,CPToken];
     [ZYNetWorkTool getWithUrl:urlStr params:nil success:^(id responseObject) {
         
         if (CPSuccess) {

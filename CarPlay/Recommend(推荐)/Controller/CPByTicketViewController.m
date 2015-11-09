@@ -21,7 +21,14 @@
     [self.view addSubview:webView];
     webView.delegate = self;
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.url]];
+    
+    [self showLoading];
     [webView loadRequest:request];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [self disMiss];
 }
 
 @end

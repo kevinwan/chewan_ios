@@ -39,8 +39,12 @@ static NSString *ID = @"memberIconCell";
     [self.iconView setCornerRadius:25];
     
     UITapGestureRecognizer *tap = [UITapGestureRecognizer new];
+    ZYWeakSelf
     [tap.rac_gestureSignal subscribeNext:^(id x) {
-        [self superViewWillRecive:CPClickUserIcon info:_model.userId];
+        ZYStrongSelf
+        if ([_model.userId isDiffToString:CPUserId]) {
+            [self superViewWillRecive:CPClickUserIcon info:_model.userId];
+        }
     }];
     [self.iconView addGestureRecognizer:tap];
     [self.contentView addSubview:self.msgButton];

@@ -194,6 +194,9 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    NSLog(@"self.view= %@  self.tableview= %@",NSStringFromCGRect(self.view.frame),NSStringFromCGRect(_visitorTableview.frame));
+    return;
     NSDictionary *dic = [self.dataSource objectAtIndex:indexPath.row];
     
     CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
