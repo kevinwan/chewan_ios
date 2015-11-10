@@ -257,6 +257,7 @@
     
     if (model.pay.trimLength){
         self.payView.text = model.pay;
+        self.payViewLeftCons.constant = 10;
     }else{
         self.payViewLeftCons.constant = 0;
         self.payView.text = @"";
@@ -367,6 +368,7 @@
     self.loveBtn.selected = myDateModel.applicant.subscribeFlag;
     
     if (myDateModel.pay.trimLength){
+        self.payViewLeftCons.constant = 10;
         self.payView.text = myDateModel.pay;
     }else{
         self.payViewLeftCons.constant = 0;
