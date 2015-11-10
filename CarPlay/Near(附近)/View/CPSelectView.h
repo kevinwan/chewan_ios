@@ -10,10 +10,16 @@
 #import "CPSelectModel.h"
 
 typedef void(^ConfirmBtnClick)(CPSelectModel *selectModel);
-
 @interface CPSelectView : UIView
-+ (void)showWithParams:(ConfirmBtnClick)click;
 @property (nonatomic, copy) ConfirmBtnClick click;
+
+/**
+ *  展示筛选页面,回调数据
+ *
+ *  @param click 回调
+ */
++ (void)showWithParams:(ConfirmBtnClick)click;
+
 @end
 
 

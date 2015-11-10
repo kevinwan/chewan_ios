@@ -55,52 +55,52 @@ static NSString *ID = @"cell";
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"筛选" target:self action:@selector(filter)];
     [self.view addSubview:self.tableView];
     [self tipView];
+    [self refreshData];
+}
+
+/**
+ *  刷新数据
+ */
+- (void)refreshData
+{
+    // 自动登录成功,刷新数据
     ZYWeakSelf
     [[ZYNotificationCenter rac_addObserverForName:NOTIFICATION_LOGINSUCCESS object:nil] subscribeNext:^(NSNotification *notify) {
         ZYStrongSelf
         BOOL loginSuccess = [notify.userInfo[NOTIFICATION_LOGINSUCCESS] boolValue];
         self.isLoginSuccess = loginSuccess;
-        if (loginSuccess) {
-            [self loadDataWithHeader:nil];
-        }else{
-            [self loadDataWithHeader:nil];
-        }
+        [self loadDataWithHeader:nil];
     }];
     
+    // 跳转登录成功,刷新数据
     [[ZYNotificationCenter rac_addObserverForName:NOTIFICATION_HASLOGIN object:nil] subscribeNext:^(id x) {
         ZYStrongSelf
         [ZYLoadingView showLoadingView];
         [self loadDataWithHeader:nil];
     }];
+    
+    // 退出登录 清空筛选条件
     [[ZYNotificationCenter rac_addObserverForName:@"DID_LOG_OUT_SUCCESS" object:nil] subscribeNext:^(id x) {
         ZYStrongSelf
         self.params = nil;
         [self.datas removeAllObjects];
         [self loadDataWithHeader:nil];
     }];
+    
+    [ZYLoadingView showLoadingView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    if (self.datas.count == 0) {
-//        [ZYLoadingView showLoadingView];
-//    }
-    
+
+    // 添加新手引导页
     [CPLeadView showGuideViewWithImageName:@"1" centerX:self.view.middleX + 10 y:ZYScreenHeight - 208];
-    
-    if (CPUnLogin) {
-        if (self.datas.count == 0) {
-            [ZYLoadingView showLoadingView];
-            [self loadDataWithHeader:nil];
-        }
+    if (self.datas.count == 0) {
+        [ZYLoadingView showLoadingView];
+        [self loadDataWithHeader:nil];
     }else{
-        if (self.isLoginSuccess) {
-            if (self.datas.count == 0) {
-                [ZYLoadingView showLoadingView];
-                [self loadDataWithHeader:nil];
-            }
-        }
+        [self loadDataWithHeader:nil];
     }
 }
 
@@ -110,6 +110,9 @@ static NSString *ID = @"cell";
     [ZYLoadingView dismissLoadingView];
 }
 
+/**
+ *  设置刷新控件
+ */
 - (void)setUpRefresh
 {
     if (self.isHasRefreshHeader) {
@@ -157,6 +160,7 @@ static NSString *ID = @"cell";
  */
 - (void)loadDataWithHeader:(AAPullToRefresh *)refresh
 {
+    // 过滤第一次筛选
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:self.params.keyValues];;
     if (self.params.noFirst == NO) {
         [params removeObjectForKey:@"transfer"];
@@ -182,9 +186,6 @@ static NSString *ID = @"cell";
                 self.noDataView.hidden = YES;
             }
             [self.tableView reloadData];
-//            if (self.tableView.contentOffset.y > 60 && refresh != self.footerView) {
-//                [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, 0) animated:YES];
-//            }
         }else{
             
             [self setUpRefresh];
@@ -195,10 +196,8 @@ static NSString *ID = @"cell";
     } failure:^(NSError *error) {
         
         [self setUpRefresh];
-        DLog(@"%@---",error);
         self.params.ignore -= CPPageNum;
         [refresh stopIndicatorAnimation];
-        [self showError:@"加载失败"];
         self.noDataView.netWorkFailtype = NO;
         [ZYLoadingView dismissLoadingView];
     }];
@@ -219,21 +218,33 @@ static NSString *ID = @"cell";
     return self.datas.count;
 }
 
+/**
+ *  滑动分页效果
+ *
+ *  @param scrollView          scrollView description
+ */
 -(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {
     if (iPhone4) {
         return;
     }
+    
     UICollectionView3DLayout *layout=(UICollectionView3DLayout*)self.tableView.collectionViewLayout;
-
+    
     [layout EndAnchorMove];
+    
 }
 
 #pragma mark - 事件交互
 
+/**
+ *  接受从子控件传递过来的数据
+ *
+ *  @param notifyName 事件名称
+ *  @param userInfo   info
+ */
 - (void)superViewWillRecive:(NSString *)notifyName info:(id)userInfo
 {
-    NSLog(@"%@ %@ ",notifyName, userInfo);
     if ([notifyName isEqualToString:CameraBtnClickKey]) {
         [self cameraPresent];
     }else if([notifyName isEqualToString:PhotoBtnClickKey]){
@@ -244,6 +255,7 @@ static NSString *ID = @"cell";
         CPActivityModel *model = self.datas[[userInfo row]];
         [self loveBtnClickWithInfo:model];
     }else if ([notifyName isEqualToString:IconViewClickKey]){
+        // 跳转他的详情
         CPGoLogin(@"查看TA的详情");
         CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
         NSIndexPath *indexPath = userInfo;
@@ -259,6 +271,7 @@ static NSString *ID = @"cell";
  */
 - (void)loveBtnClickWithInfo:(CPActivityModel *)model
 {
+    // 筛选相同的userId
     ZYAsyncThead(^{
         
         NSMutableArray *indexPaths = [NSMutableArray array];
@@ -323,6 +336,7 @@ static NSString *ID = @"cell";
     
 }
 
+//上传图片
 - (void)addPhoto:(NSArray *)arr
 {
     NSString *path=[[NSString alloc]initWithFormat:@"user/%@/album/upload?token=%@",[Tools getUserId],[Tools getToken]];
@@ -456,6 +470,9 @@ static NSString *ID = @"cell";
     return _datas;
 }
 
+/**
+ *  顶部的提示条
+ */
 - (UIView *)tipView
 {
     if (_tipView == nil) {
@@ -532,6 +549,7 @@ static NSString *ID = @"cell";
         freeTimeBtn.x = _tipView.width - freeTimeBtn.width - 10;
         CGFloat originY = 64;
         
+        // 监听tableView的滚动,显示和隐藏顶部工具条
         [RACObserve(self.tableView, contentOffset) subscribeNext:^(id x) {
             CGPoint p = [x CGPointValue];
             if (p.y <= 0 && p.y >= -10) {
@@ -557,13 +575,13 @@ static NSString *ID = @"cell";
     return _tipView;
 }
 
+/**
+ *  网络请求的参数
+ */
 - (CPNearParams *)params
 {
     if (_params == nil) {
         _params = [[CPNearParams alloc] init];
-//        _params.longitude = 116.3317536236968;
-//        _params.latitude = 39.97762675234624;
-        
         _params.longitude = ZYLongitude;
         _params.latitude = ZYLatitude;
         _params.ignore = 0;
@@ -572,6 +590,11 @@ static NSString *ID = @"cell";
     return _params;
 }
 
+/**
+ *  数据加载失败的提示View
+ *
+ *  @return 没有数据View
+ */
 - (CPNoDataTipView *)noDataView
 {    if (_noDataView == nil) {
         _noDataView = [CPNoDataTipView noDataTipViewWithTitle:@"已经没有活动了,请放宽条件再试试"];

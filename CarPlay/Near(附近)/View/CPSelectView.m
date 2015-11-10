@@ -166,10 +166,12 @@
     [UIView animateWithDuration:0.25 animations:^{
         self.superview.alpha = 0;
     }completion:^(BOOL finished) {
+        // 执行回调
         !_click?:_click(model);
         [self.superview removeFromSuperview];
     }];
 }
+
 - (IBAction)typeBtnClick:(UIButton *)sender {
     
     if (sender == self.lastTypebtn) {

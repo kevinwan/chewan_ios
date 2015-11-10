@@ -156,10 +156,8 @@
             [self.scrollView setContentOffset:CGPointMake(0, self.scrollView.contentSize.height - self.scrollView.bounds.size.height) animated:YES];
         }
     }else if (self.position == AAPullToRefreshPositionRight){
-        ZYMainOperation(^{
-            
-            [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentSizeWidth - self.scrollView.width,self.scrollView.contentOffset.y) animated:YES];
-        });
+        
+        [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentSizeWidth - self.scrollView.width,self.scrollView.contentOffset.y) animated:YES];
     }
     if (handler) {
         handler();
