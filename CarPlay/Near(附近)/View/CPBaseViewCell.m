@@ -278,8 +278,8 @@
     if (model.title.length) {
         self.titleLabel.text = model.title;
         CGFloat width = [model.title sizeWithFont:self.titleLabel.font].width + 2;
-        if (width > ZYScreenWidth - 150) {
-            self.titleLWCons.constant = ZYScreenWidth - 150;
+        if (width > ZYScreenWidth - 50) {
+            self.titleLWCons.constant = ZYScreenWidth - 50;
         }else{
             self.titleLWCons.constant = width;
         }
@@ -391,8 +391,8 @@
         
         self.titleLabel.attributedText = myDateModel.title;
         CGFloat width = [myDateModel.title.string sizeWithFont:self.titleLabel.font].width + 5;
-        if (width > ZYScreenWidth - 150) {
-            self.titleLWCons.constant = ZYScreenWidth - 150;
+        if (width > ZYScreenWidth - 50) {
+            self.titleLWCons.constant = ZYScreenWidth - 50;
         }else{
             self.titleLWCons.constant = width;
         }
@@ -496,8 +496,8 @@
     if (titleStr.length) {
         self.titleLabel.text = titleStr;
         CGFloat width = [titleStr sizeWithFont:self.titleLabel.font].width + 5;
-        if (width > ZYScreenWidth - 150) {
-            self.titleLWCons.constant = ZYScreenWidth - 150;
+        if (width > ZYScreenWidth - 50) {
+            self.titleLWCons.constant = ZYScreenWidth - 50;
         }else{
             self.titleLWCons.constant = width;
         }
