@@ -228,9 +228,11 @@ static NSString *ID = @"cell";
     if (iPhone4) {
         return;
     }
+    
     UICollectionView3DLayout *layout=(UICollectionView3DLayout*)self.tableView.collectionViewLayout;
-
+    
     [layout EndAnchorMove];
+    
 }
 
 #pragma mark - 事件交互
