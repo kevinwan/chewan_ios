@@ -65,12 +65,16 @@ static NSString *ID = @"cell";
 {
     // 自动登录成功,刷新数据
     ZYWeakSelf
-    [[ZYNotificationCenter rac_addObserverForName:NOTIFICATION_LOGINSUCCESS object:nil] subscribeNext:^(NSNotification *notify) {
-        ZYStrongSelf
-        BOOL loginSuccess = [notify.userInfo[NOTIFICATION_LOGINSUCCESS] boolValue];
-        self.isLoginSuccess = loginSuccess;
+    if (CPUnLogin) {
         [self loadDataWithHeader:nil];
-    }];
+    }else{
+        [[ZYNotificationCenter rac_addObserverForName:NOTIFICATION_LOGINSUCCESS object:nil] subscribeNext:^(NSNotification *notify) {
+            ZYStrongSelf
+            BOOL loginSuccess = [notify.userInfo[NOTIFICATION_LOGINSUCCESS] boolValue];
+            self.isLoginSuccess = loginSuccess;
+            [self loadDataWithHeader:nil];
+        }];
+    }
     
     // 跳转登录成功,刷新数据
     [[ZYNotificationCenter rac_addObserverForName:NOTIFICATION_HASLOGIN object:nil] subscribeNext:^(id x) {
@@ -96,10 +100,7 @@ static NSString *ID = @"cell";
 
     // 添加新手引导页
     [CPLeadView showGuideViewWithImageName:@"1" centerX:self.view.middleX + 10 y:ZYScreenHeight - 208];
-    if (self.datas.count == 0) {
-        [ZYLoadingView showLoadingView];
-        [self loadDataWithHeader:nil];
-    }else{
+    if (self.isLoginSuccess){
         [self loadDataWithHeader:nil];
     }
 }
