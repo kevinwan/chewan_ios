@@ -133,7 +133,7 @@
 
 - (void)initTableview
 {
-    self.visitorTableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 10, self.view.frame.size.width, self.view.frame.size.height-10) style:UITableViewStylePlain];
+    self.visitorTableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 10, self.view.frame.size.width, self.view.frame.size.height-10-64) style:UITableViewStylePlain];
     _visitorTableview.delegate = self;
     _visitorTableview.dataSource  = self;
     [_visitorTableview setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -195,8 +195,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    NSLog(@"self.view= %@  self.tableview= %@",NSStringFromCGRect(self.view.frame),NSStringFromCGRect(_visitorTableview.frame));
-    return;
     NSDictionary *dic = [self.dataSource objectAtIndex:indexPath.row];
     
     CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
