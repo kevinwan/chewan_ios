@@ -333,7 +333,7 @@
             [self.dateButton setTitle:@"邀Ta" forState:UIControlStateNormal];
             [self setOneType:YES];
         }
-    }else if (status == 1){
+    }else if (status == 1 || status == 3){
         
         if ([model.organizer.userId isEqualToString:CPUserId]) {
             [self setOneType:NO];
@@ -422,7 +422,7 @@
         [self.dateButton setBackgroundColor:RedColor];
         [self.dateButton setTitle:@"邀Ta" forState:UIControlStateNormal];
         [self setOneType:YES];
-    }else if (myDateModel.status == 1){
+    }else if (myDateModel.status == 1 || myDateModel.status == 3){
         
         if ([myDateModel.invitedUserId isEqualToString:CPUserId]) {
             [self setOneType:NO];
@@ -528,7 +528,7 @@
         [self.dateButton setBackgroundColor:RedColor];
         [self.dateButton setTitle:@"邀Ta" forState:UIControlStateNormal];
         [self setOneType:YES];
-    }else if (intersterModel.activityStatus == 1){
+    }else if (intersterModel.activityStatus == 1 || intersterModel.activityStatus == 3){
         
         self.dateAnim.haloLayerColor= [Tools getColor:@"cccccc"].CGColor;
         [self.dateButton setBackgroundColor:[Tools getColor:@"cccccc"]];

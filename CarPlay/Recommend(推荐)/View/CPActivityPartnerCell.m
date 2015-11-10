@@ -239,7 +239,9 @@ static NSString *ID = @"memberIconCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CPUser *member = self.model.acceptMembers[indexPath.item];
-    [self superViewWillRecive:CPClickUserIcon info:member.userId];
+    if ([member.userId isDiffToString:CPUserId]) {
+        [self superViewWillRecive:CPClickUserIcon info:member.userId];
+    }
 }
 
 #pragma mark - lazy
