@@ -138,6 +138,7 @@
 
 @implementation CPBaseViewCell
 
+#pragma mark - 初始化方法
 + (instancetype)baseCell
 {
     return [[NSBundle mainBundle] loadNibNamed:@"CPBaseViewCell" owner:nil options:nil].lastObject;;
@@ -178,6 +179,7 @@
     [self.titleLabel addGestureRecognizer:tapL];
 }
 
+#pragma mark - 布局方法
 - (void)layoutSubviews
 {
     [super layoutSubviews];
@@ -227,6 +229,7 @@
     }];
 }
 
+#pragma mark - 设置数据
 /**
  *  根据model设置cell展示的数据
  *
@@ -557,6 +560,11 @@
     }
 }
 
+/**
+ *  是否显示一个按钮
+ *
+ *  @param oneType bool
+ */
 - (void)setOneType:(BOOL)oneType
 {
     _oneType = oneType;
