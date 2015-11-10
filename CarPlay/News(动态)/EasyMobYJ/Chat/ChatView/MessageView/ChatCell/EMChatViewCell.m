@@ -54,6 +54,7 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
                 [_retryButton setHidden:YES];
                 [_activtiy setHidden:NO];
                 [_activtiy startAnimating];
+
             }
                 break;
             case eMessageDeliveryState_Delivered:
@@ -100,8 +101,15 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
             frame.size.width = SEND_STATUS_SIZE;
 
         }
-        frame.origin.x = bubbleFrame.origin.x - frame.size.width - ACTIVTIYVIEW_BUBBLE_PADDING;
-        frame.origin.y = _bubbleView.center.y - frame.size.height / 2;
+//
+        //发送失败的时候，_timeLabel和activityView重合了，这里把activity前移28
+        if (self.messageModel.type == eMessageBodyType_Voice) {
+            frame.origin.x = bubbleFrame.origin.x - frame.size.width - ACTIVTIYVIEW_BUBBLE_PADDING-28;
+        }else{
+            frame.origin.x = bubbleFrame.origin.x - frame.size.width - ACTIVTIYVIEW_BUBBLE_PADDING;
+        }
+        //做+3微调
+        frame.origin.y = _bubbleView.center.y - frame.size.height / 2+3;
         self.activityView.frame = frame;
     }
     else{
@@ -150,9 +158,10 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
     
     if (messageModel.isSender) {
         // 发送进度显示view
-        //test
+
+        self.contentView.backgroundColor = [UIColor clearColor];
         _activityView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SEND_STATUS_SIZE, SEND_STATUS_SIZE)];
-//        _activityView = [[UIView alloc] initWithFrame:CGRectMake(-SEND_STATUS_SIZE, 0, SEND_STATUS_SIZE, SEND_STATUS_SIZE)];
+ 
 
         [_activityView setHidden:YES];
         [self.contentView addSubview:_activityView];
@@ -160,13 +169,11 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
         // 重发按钮
         _retryButton = [UIButton buttonWithType:UIButtonTypeSystem];
         _retryButton.frame = CGRectMake(0, 0, SEND_STATUS_SIZE, SEND_STATUS_SIZE);
-        //test
-//        _retryButton.frame = CGRectMake(-SEND_STATUS_SIZE, 0, SEND_STATUS_SIZE, SEND_STATUS_SIZE);
+
 
         [_retryButton addTarget:self action:@selector(retryButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-//        [_retryButton setImage:[UIImage imageNamed:@"messageSendFail.png"] forState:UIControlStateNormal];
         [_retryButton setBackgroundImage:[UIImage imageNamed:@"messageSendFail.png"] forState:UIControlStateNormal];
-        //[_retryButton setBackgroundColor:[UIColor redColor]];
+
         [_activityView addSubview:_retryButton];
         
         // 菊花
@@ -184,6 +191,9 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
     }
     
     _bubbleView = [self bubbleViewForMessageModel:messageModel];
+    
+
+
     [self.contentView addSubview:_bubbleView];
 }
 
