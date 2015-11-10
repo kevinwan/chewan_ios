@@ -106,7 +106,7 @@ static NSString *ID = @"RecommentCell";
     if (city.trimLength) {
         params[@"city"] = city;
     }
-    
+    params[@"ignore"] = @(self.ignore);
     [ZYNetWorkTool getWithUrl:@"official/activity/list" params:params success:^(id responseObject) {
         [ZYLoadingView dismissLoadingView];
         [self setUpRefresh];
@@ -132,7 +132,7 @@ static NSString *ID = @"RecommentCell";
         [self showInfo:@"加载失败"];
         [self setUpRefresh];
         [ZYLoadingView dismissLoadingView];
-        
+        self.ignore -=CPPageNum;
         self.noDataView.hidden = NO;
         [refreshView stopIndicatorAnimation];
         
