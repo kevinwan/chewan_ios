@@ -96,7 +96,7 @@
 }
 - (void)initTableview
 {
-    self.careMeTableview = [[UITableView alloc]initWithFrame:CGRectMake(0,10, self.view.frame.size.width, self.view.frame.size.height-10) style:UITableViewStylePlain];
+    self.careMeTableview = [[UITableView alloc]initWithFrame:CGRectMake(0,10, self.view.frame.size.width, self.view.frame.size.height-10-64) style:UITableViewStylePlain];
     _careMeTableview.delegate = self;
     
     _careMeTableview.tableFooterView = [[UIView alloc]init];

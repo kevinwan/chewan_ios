@@ -133,7 +133,7 @@
 
 - (void)initTableview
 {
-    self.visitorTableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 10, self.view.frame.size.width, self.view.frame.size.height-10) style:UITableViewStylePlain];
+    self.visitorTableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 10, self.view.frame.size.width, self.view.frame.size.height-10-64) style:UITableViewStylePlain];
     _visitorTableview.delegate = self;
     _visitorTableview.dataSource  = self;
     [_visitorTableview setSeparatorStyle:UITableViewCellSeparatorStyleNone];
