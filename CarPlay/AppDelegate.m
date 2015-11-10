@@ -58,7 +58,7 @@
     [UMSocialWechatHandler setWXAppId:@"wx4c127cf07bd7d80b" appSecret:@"315ce754c5a1096c5188b4b69a7b9f04" url:@"http://www.umeng.com/social"];
     //QQ登录
     [UMSocialQQHandler setQQWithAppId:@"1104728007" appKey:@"61BpHk8GQwH6FuCs" url:@"http://www.umeng.com/social"];
-    [UMSocialData openLog:YES];
+    [UMSocialData openLog:NO];
     [self getLocation];
     //环信
     

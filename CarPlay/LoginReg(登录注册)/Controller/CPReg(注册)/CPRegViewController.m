@@ -79,7 +79,7 @@
                                     CPUser *user=[[CPUser alloc]init];
                                     user.phone=self.phoneField.text;
                                     user.code=self.verificationCodeField.text;
-                                    user.password=[Tools md5EncryptWithString:self.passwordField.text];
+                                    user.password= self.passwordField.text;
                                     myInfoVC.user=user;
                                     [self.navigationController pushViewController:myInfoVC animated:YES];
                                 }else{
