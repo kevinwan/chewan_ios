@@ -151,5 +151,4 @@
     [self superViewWillRecive:CPActivityDetailHeaderDetailOpenKey info:nil];
 }
 
-
 @end
