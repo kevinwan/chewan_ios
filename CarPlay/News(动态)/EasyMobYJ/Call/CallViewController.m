@@ -76,6 +76,10 @@
     [self headAnim];
 
 }
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -83,6 +87,9 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlack];
+    
+
     // Do any additional setup after loading the view.
     
     [self _setupSubviews];
