@@ -89,7 +89,18 @@
     // 添加为子控制器
     [self addChildViewController:nav];
 }
-
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    //app第一次安装的时候，显示小红点
+    BOOL firstInstall = [ZYUserDefaults boolForKey:First_install_app];
+    if (!firstInstall) {
+        [self.tabBar showBadgeOnItemIndex:3];
+        if (CPIsLogin) {
+            [ZYUserDefaults setBool:YES forKey:First_install_app];
+        }
+    }
+}
 #pragma mark - CPTabBarDelegate代理方法
 - (void)tabBarDidClickPlusButton:(CPTabBar *)tabBar
 {

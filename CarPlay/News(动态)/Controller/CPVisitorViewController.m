@@ -186,7 +186,7 @@
 - (NSString *)getDidstanceStrWithDistance:(NSInteger )distance
 {
     if (distance<1000) {
-        return [NSString stringWithFormat:@"%ld米",(long)distance];
+        return [NSString stringWithFormat:@"%ldm",(long)distance];
     }else{
         return [NSString stringWithFormat:@"%.fkm",distance/1000.0];
     }
