@@ -107,7 +107,11 @@
     // 3.设置frame
     startButton.size = CGSizeMake(self.view.width * 0.5, 50);
     startButton.centerX = self.view.middleX;
-    startButton.y = self.view.height - 110;
+    if (iPhone4){
+        startButton.y = self.view.height - 80;
+    }else{
+        startButton.y = self.view.height - 110;
+    }
     startButton.backgroundColor=[UIColor clearColor];
     [startButton addTarget:self action:@selector(start) forControlEvents:UIControlEventTouchUpInside];
 }
