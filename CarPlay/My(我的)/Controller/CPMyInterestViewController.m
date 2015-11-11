@@ -20,6 +20,7 @@
 #import "CPAlbum.h"
 #import "ZYWaterflowLayout.h"
 #import "SDImageCache.h"
+#import "ChatViewController.h"
 
 @interface CPMyInterestViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate,ZYWaterflowLayoutDelegate>
 @property (nonatomic, strong) UICollectionView *tableView;
@@ -192,6 +193,38 @@ static NSString *ID = @"myIntersterCell";
         NSIndexPath *indexPath = userInfo;
         taVc.userId = self.datas[indexPath.row].user.userId;
         [self.navigationController pushViewController:taVc animated:YES];
+    }else if([notifyName isEqualToString:InvitedButtonClickKey]){
+        NSIndexPath *indexPath = userInfo;
+        CPIntersterModel *model = self.datas[indexPath.row];
+        
+        if (model.activityStatus == 1){
+            //
+        }else if (model.activityStatus == 2){
+            //消息
+            //            NSString *userID = model.applyUserId;
+            //            if (![userID isEqualToString:CPUserId]) {
+            //                userID = model.invitedUserId;
+            //            }
+//            NSString *userID=model.userid;
+            
+            ChatViewController *xiaoniuChatVc = [[ChatViewController alloc]initWithChatter:[Tools md5EncryptWithString:model.user.userId] conversationType:eConversationTypeChat];
+            xiaoniuChatVc.title = model.user.nickname;
+            [self.navigationController pushViewController:xiaoniuChatVc animated:YES];
+        }
+        
+    }else if([notifyName isEqualToString:IgnoreButtonClickKey]){
+        NSIndexPath *indexPath = userInfo;
+        CPIntersterModel *model = self.datas[indexPath.row];
+            //电话
+//            NSString *userID=[model.applyUserId isEqualToString:CPUserId]?model.invitedUserId:model.applyUserId;
+        if (model.activityStatus == 2) {
+            
+            [ZYUserDefaults setObject:model.user.avatar forKey:kReceiverHeadUrl];
+            [ZYUserDefaults setObject: model.user.nickname forKey:kReceiverNickName];
+            NSLog(@"电话头像URL = %@",model.user.avatar);
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"callOutWithChatter" object:@{@"chatter":[Tools md5EncryptWithString:model.user.userId], @"type":[NSNumber numberWithInt:eCallSessionTypeAudio]}];
+        }
+        
     }
 }
 

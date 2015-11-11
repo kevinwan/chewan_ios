@@ -278,8 +278,8 @@
     if (model.title.length) {
         self.titleLabel.text = model.title;
         CGFloat width = [model.title sizeWithFont:self.titleLabel.font].width + 2;
-        if (width > ZYScreenWidth - 50) {
-            self.titleLWCons.constant = ZYScreenWidth - 50;
+        if (width > ZYScreenWidth - 100) {
+            self.titleLWCons.constant = ZYScreenWidth - 100;
         }else{
             self.titleLWCons.constant = width;
         }
@@ -390,9 +390,9 @@
     if (myDateModel.title.length) {
         
         self.titleLabel.attributedText = myDateModel.title;
-        CGFloat width = [myDateModel.title.string sizeWithFont:self.titleLabel.font].width + 5;
-        if (width > ZYScreenWidth - 50) {
-            self.titleLWCons.constant = ZYScreenWidth - 50;
+        CGFloat width = [myDateModel.title.string boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : ZYFont16} context:NULL].size.width;
+        if (width > ZYScreenWidth - 100) {
+            self.titleLWCons.constant = ZYScreenWidth - 100;
         }else{
             self.titleLWCons.constant = width;
         }
@@ -496,8 +496,8 @@
     if (titleStr.length) {
         self.titleLabel.text = titleStr;
         CGFloat width = [titleStr sizeWithFont:self.titleLabel.font].width + 5;
-        if (width > ZYScreenWidth - 50) {
-            self.titleLWCons.constant = ZYScreenWidth - 50;
+        if (width > ZYScreenWidth - 100) {
+            self.titleLWCons.constant = ZYScreenWidth - 100;
         }else{
             self.titleLWCons.constant = width;
         }
@@ -522,22 +522,6 @@
         self.tipView.hidden = NO;
     }
     
-    if (intersterModel.activityStatus == 0){
-        
-        self.dateAnim.haloLayerColor = RedColor.CGColor;
-        [self.dateButton setBackgroundColor:RedColor];
-        [self.dateButton setTitle:@"邀Ta" forState:UIControlStateNormal];
-        [self setOneType:YES];
-    }else if (intersterModel.activityStatus == 1 || intersterModel.activityStatus == 3){
-        
-        self.dateAnim.haloLayerColor= [Tools getColor:@"cccccc"].CGColor;
-        [self.dateButton setBackgroundColor:[Tools getColor:@"cccccc"]];
-        [self.dateButton setTitle:@"邀请中" forState:UIControlStateNormal];
-        [self setOneType:YES];
-    }else if (intersterModel.activityStatus == 2){
-        [self setPhoneType:YES];
-    }
-    
     // 区分是上传相册还是发出活动
     if (intersterModel.type == 0) {
         // 活动信息
@@ -548,6 +532,23 @@
         self.dateAnim.hidden = NO;
         self.payView.hidden = NO;
         self.sendView.hidden = !intersterModel.activityTransfer;
+        if (intersterModel.activityStatus == 0){
+            
+            self.dateAnim.haloLayerColor = RedColor.CGColor;
+            [self.dateButton setBackgroundColor:RedColor];
+            [self.dateButton setTitle:@"邀Ta" forState:UIControlStateNormal];
+            [self setOneType:YES];
+        }else if (intersterModel.activityStatus == 1 || intersterModel.activityStatus == 3){
+            
+            self.dateAnim.haloLayerColor= [Tools getColor:@"cccccc"].CGColor;
+            [self.dateButton setBackgroundColor:[Tools getColor:@"cccccc"]];
+            [self.dateButton setTitle:@"邀请中" forState:UIControlStateNormal];
+            [self setOneType:YES];
+        }else if (intersterModel.activityStatus == 2){
+            [self setPhoneType:YES];
+            [self setOneType:NO];
+        }
+
     }else if (intersterModel.type == 1){
         // 上传相册信息
         self.titleDistanceView.hidden = NO;
@@ -558,6 +559,7 @@
         self.payView.hidden = YES;
         self.sendView.hidden = YES;
     }
+
 }
 
 /**
@@ -722,7 +724,7 @@
                     
                 }
             }
-            else if (_myDateModel.status == 2){
+            else if (_myDateModel.status == 2 || _model.status ==2 || _intersterModel.activityStatus == 2){
                 
                 [self superViewWillRecive:InvitedButtonClickKey info:_indexPath];
             }
@@ -781,7 +783,7 @@
                     
                 }
             }
-            else if (_myDateModel.status == 2){
+            else if (_myDateModel.status == 2 || _model.status ==2 || _intersterModel.activityStatus == 2){
                 [self superViewWillRecive:IgnoreButtonClickKey info:_indexPath];
             }
         }];
