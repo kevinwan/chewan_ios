@@ -96,4 +96,5 @@
 //0 没有邀请过           1 邀请中
 //2 邀请同意             3 邀请被拒绝
 @property (nonatomic, assign) NSInteger beInvitedStatus;
+
 @end
