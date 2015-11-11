@@ -41,7 +41,7 @@
         CGFloat dis = distance / 1000.0;
         _distanceStr = [NSString stringWithFormat:@"%.1fkm",dis];
     }else{
-        _distanceStr = [NSString stringWithFormat:@"%.1fm",distance];
+        _distanceStr = [NSString stringWithFormat:@"%.0f",distance];
     }
 }
 
