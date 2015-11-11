@@ -278,8 +278,8 @@
     if (model.title.length) {
         self.titleLabel.text = model.title;
         CGFloat width = [model.title sizeWithFont:self.titleLabel.font].width + 2;
-        if (width > ZYScreenWidth - 80) {
-            self.titleLWCons.constant = ZYScreenWidth - 80;
+        if (width > ZYScreenWidth - 100) {
+            self.titleLWCons.constant = ZYScreenWidth - 100;
         }else{
             self.titleLWCons.constant = width;
         }
@@ -390,9 +390,9 @@
     if (myDateModel.title.length) {
         
         self.titleLabel.attributedText = myDateModel.title;
-        CGFloat width = [myDateModel.title.string sizeWithFont:self.titleLabel.font].width + 5;
-        if (width > ZYScreenWidth - 80) {
-            self.titleLWCons.constant = ZYScreenWidth - 80;
+        CGFloat width = [myDateModel.title.string boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : ZYFont16} context:NULL].size.width;
+        if (width > ZYScreenWidth - 100) {
+            self.titleLWCons.constant = ZYScreenWidth - 100;
         }else{
             self.titleLWCons.constant = width;
         }
@@ -496,8 +496,8 @@
     if (titleStr.length) {
         self.titleLabel.text = titleStr;
         CGFloat width = [titleStr sizeWithFont:self.titleLabel.font].width + 5;
-        if (width > ZYScreenWidth - 80) {
-            self.titleLWCons.constant = ZYScreenWidth - 80;
+        if (width > ZYScreenWidth - 100) {
+            self.titleLWCons.constant = ZYScreenWidth - 100;
         }else{
             self.titleLWCons.constant = width;
         }
