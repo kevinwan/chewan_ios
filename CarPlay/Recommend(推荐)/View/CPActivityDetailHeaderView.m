@@ -133,7 +133,7 @@
     [self.addressLabel setText:address];
     self.descLabel.attributedText = [[NSAttributedString alloc] initWithString:model.instruction attributes:self.attrbuite];
     
-    self.height = 685 + ZYScreenWidth / 64.0 * 30.0 - 150;
+    self.height = 692 + ZYScreenWidth / 64.0 * 30.0 - 150;
 }
 
 - (IBAction)openDetailLabel:(UIButton *)sender {
@@ -147,7 +147,7 @@
         self.descHCons.constant = 109;
     }
     
-    self.height = 685 + self.descHCons.constant - 109 + ZYScreenWidth / 64.0 * 30.0 - 150;
+    self.height = 692 + self.descHCons.constant - 109 + ZYScreenWidth / 64.0 * 30.0 - 150;
     [self superViewWillRecive:CPActivityDetailHeaderDetailOpenKey info:nil];
 }
 

@@ -33,6 +33,13 @@
 @property (weak, nonatomic) IBOutlet UIButton *toGroupChatButton;
 @property (weak, nonatomic) IBOutlet UIButton *openDescButton;
 @property (weak, nonatomic) IBOutlet UIButton *openExtraButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *pathTitleHCons;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *extraTitleHCons;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *loadMoreBtnHCons;
+@property (weak, nonatomic) IBOutlet CPLoadingButton *loadMoreBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *lineViewCons1;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *lineViewCons2;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *lineViewCons3;
 
 @end
 
@@ -70,8 +77,35 @@
 {
     _model = model;
     
-    self.openDescButton.hidden = !model.desc.trimLength;
-    self.openExtraButton.hidden = !model.extraDesc.trimLength;
+    if (model.nowJoinNum > 6) {
+        self.loadMoreBtnHCons.constant = 44;
+        self.loadMoreBtn.hidden = NO;
+    }else{
+        self.loadMoreBtnHCons.constant = 0;
+        self.loadMoreBtn.hidden = YES;
+    }
+    
+    if (model.desc.trimLength) {
+        self.pathTitleHCons.constant = 44;
+        self.lineViewCons1.constant = 10;
+        self.openDescButton.hidden = NO;
+    }else{
+        self.openDescButton.hidden = YES;
+        self.pathTitleHCons.constant = 0;
+        self.lineViewCons1.constant = 0;
+    }
+    
+    if (model.extraDesc.trimLength) {
+        self.extraTitleHCons.constant = 44;
+        self.openExtraButton.hidden = NO;
+        self.lineViewCons2.constant = 10;
+    }else{
+        self.openExtraButton.hidden = YES;
+        self.lineViewCons2.constant = 0;
+        self.extraTitleHCons.constant = 0;
+    }
+//    self.openDescButton.hidden = !model.desc.trimLength;
+//    self.openExtraButton.hidden = !model.extraDesc.trimLength;
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle setLineSpacing:7];
     self.activityPathLabel.attributedText = [[NSAttributedString alloc] initWithString:model.desc attributes:@{NSParagraphStyleAttributeName : paragraphStyle}];
@@ -95,8 +129,8 @@
         self.byTheTicketButton.hidden = YES;
         self.toGroupChatButton.hidden = YES;
     }
-
-
+    [self layoutIfNeeded];
+    self.height = self.explainLabel.bottom;
 }
 
 - (IBAction)activityPathClick:(UIButton *)sender {
@@ -115,7 +149,7 @@
         self.line1TopCons.constant = 0;
     }
     [self layoutIfNeeded];
-    self.height = self.comePartBtn.bottom;
+    self.height = self.explainLabel.bottom;
     [self superViewWillRecive:CPActivityFooterViewOpenKey info:nil];
 }
 
@@ -126,7 +160,7 @@
     if (sender.isSelected) {
         CGSize contentSize = [self.explainLabel.attributedText boundingRectWithSize:CGSizeMake(ZYScreenWidth - 20, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
 
-        self.explainLCons.constant = contentSize.height + 2;
+        self.explainLCons.constant = contentSize.height + 12;
         self.explainTopCons.constant = 13;
         self.line2TopCons.constant = 20;
         self.explainLabel.hidden = NO;
@@ -137,7 +171,7 @@
         self.line2TopCons.constant = 0;
     }
     [self layoutIfNeeded];
-    self.height = self.comePartBtn.bottom;
+    self.height = self.explainLabel.bottom;
     [self superViewWillRecive:CPActivityFooterViewOpenKey info:nil];
 }
 
