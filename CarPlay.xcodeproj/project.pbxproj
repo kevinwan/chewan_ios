@@ -5143,9 +5143,9 @@
 					"$(PROJECT_DIR)/CarPlay/Libs(三方库)/UMeng/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/CarPlay/Libs(三方库)/UMeng/UMSocial_Sdk_Extra_Frameworks/SinaSSO",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.77iland.carsplay;
+				PRODUCT_BUNDLE_IDENTIFIER = com.77iland.carsplaya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "bbed83d6-d7ed-428a-bfd9-6aaec5792643";
+				PROVISIONING_PROFILE = "e70a5d3d-a998-43a1-a7f9-196145b5705a";
 			};
 			name = Debug;
 		};
@@ -5179,9 +5179,9 @@
 					"$(PROJECT_DIR)/CarPlay/Libs(三方库)/UMeng/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/CarPlay/Libs(三方库)/UMeng/UMSocial_Sdk_Extra_Frameworks/SinaSSO",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.77iland.carsplay;
+				PRODUCT_BUNDLE_IDENTIFIER = com.77iland.carsplaya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "bbed83d6-d7ed-428a-bfd9-6aaec5792643";
+				PROVISIONING_PROFILE = "e70a5d3d-a998-43a1-a7f9-196145b5705a";
 			};
 			name = Release;
 		};
