@@ -89,7 +89,9 @@
         self.pathTitleHCons.constant = 44;
         self.lineViewCons1.constant = 10;
         self.openDescButton.hidden = NO;
+        self.pathTipLabel.hidden = NO;
     }else{
+        self.pathTipLabel.hidden = YES;
         self.openDescButton.hidden = YES;
         self.pathTitleHCons.constant = 0;
         self.lineViewCons1.constant = 0;
@@ -99,7 +101,9 @@
         self.extraTitleHCons.constant = 44;
         self.openExtraButton.hidden = NO;
         self.lineViewCons2.constant = 10;
+        self.explainTipLabel.hidden = NO;
     }else{
+        self.explainTipLabel.hidden = YES;
         self.openExtraButton.hidden = YES;
         self.lineViewCons2.constant = 0;
         self.extraTitleHCons.constant = 0;
