@@ -29,6 +29,7 @@
 #import "CPMyDateViewController.h"
 #import "CPDynamicNearViewController.h"
 #import "CPGuideView.h"
+#import "EMCDDeviceManager.h"
 @implementation EMConversation (search)
 
 //根据用户昵称,环信机器人名称,群名称进行搜索
@@ -826,6 +827,9 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    //1111
+//    [[EMCDDeviceManager sharedInstance] playNewMessageSound];
+//    return;
     
     EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
        ChatViewController *chatController;

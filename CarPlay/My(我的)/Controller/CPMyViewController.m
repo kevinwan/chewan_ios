@@ -54,10 +54,6 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [self.albumsCollectionView registerNib:[UINib nibWithNibName:@"CPCollectionViewCell1" bundle:nil] forCellWithReuseIdentifier:@"cell1"];
-    //一个不透明类型的Quartz 2D绘画环境,相当于一个画布,你可以在上面任意绘画
-//    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-//    UIBezierPath bezierPathWithArcCenter:<#(CGPoint)#> radius:<#(CGFloat)#> startAngle:<#(CGFloat)#> endAngle:<#(CGFloat)#> clockwise:<#(BOOL)#>
     
     CAShapeLayer *solidLine =  [CAShapeLayer layer];
     CGMutablePathRef solidPath =  CGPathCreateMutable();
@@ -65,8 +61,8 @@
     solidLine.strokeColor = [Tools getColor:@"ffffff"].CGColor;
     solidLine.fillColor = [UIColor clearColor].CGColor;
     solidLine.opacity=0.2;
-    CGPathAddEllipseInRect(solidPath, nil, CGRectMake(ZYScreenWidth/2-60,  22.0, 120.0, 120.0));
-     CGPathAddEllipseInRect(solidPath, nil, CGRectMake(ZYScreenWidth/2-55,  26.0, 110.0, 110.0));
+    CGPathAddEllipseInRect(solidPath, nil, CGRectMake(ZYScreenWidth/2-60,  21.0, 120.0, 120.0));
+     CGPathAddEllipseInRect(solidPath, nil, CGRectMake(ZYScreenWidth/2-55,  25.0, 110.0, 110.0));
     solidLine.path = solidPath;
     CGPathRelease(solidPath);
     [self.headImageBg.layer addSublayer:solidLine];

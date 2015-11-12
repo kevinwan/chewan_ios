@@ -45,7 +45,7 @@
     [self.scrollView setContentSize:CGSizeMake(545.0/320.0*ZYScreenWidth, ZYScreenHeight-60)];
     [self.scrollView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"背景"]]];
     
-    [self.nowYouWantImg setCenter:CGPointMake(ZYScreenWidth/2.0, 45.0f)];
+    [self.nowYouWantImg setCenter:CGPointMake(ZYScreenWidth/2.0, 52.0f)];
     [self.eatBtn setCenter:CGPointMake(95.5/320.0*ZYScreenWidth, 131/568.0*ZYScreenHeight)];
     [self.eatBtn setSize:CGSizeMake(81.0/320.0*ZYScreenWidth, 81.0/320.0*ZYScreenWidth)];
     [self.eatBtnBgView setCenter:CGPointMake(95.5/320.0*ZYScreenWidth, 131/568.0*ZYScreenHeight)];
