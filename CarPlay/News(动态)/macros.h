@@ -29,6 +29,9 @@
 #define kSendCallHeadURL @"kSendCallHeadURL"
 #define kSendCallNickName @"kSendCallNickName"
 
+//第一次运行app的提示，版本升级的不算，第一次的在动态加个小红点
+#define First_install_app @"First_install_app"
+
 typedef enum _BasicViewControllerInfo {
     eBasicControllerInfo_Title,
     eBasicControllerInfo_ImageName,
