@@ -73,7 +73,7 @@ static NSString *ID = @"cell";
             totalCount = [responseObject[@"data"][@"count"] intValue];
             [startUp setFireDate:[NSDate distantPast]];
             [timer setFireDate:[NSDate distantPast]];
-            timeout=totalCount+1;
+            timeout=totalCount*0.2+1;
             startUpFrom=0;
             [self.loadingView setHidden:NO];
         }else{
@@ -87,7 +87,6 @@ static NSString *ID = @"cell";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.tableView setHidden:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -208,8 +207,8 @@ static NSString *ID = @"cell";
     }else if ([notifyName isEqualToString:IconViewClickKey]){
         CPGoLogin(@"查看TA的详情");
         CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
-        CPActivityModel *model = userInfo;
-        taVc.userId = model.organizer.userId;
+        NSIndexPath *indexPath = userInfo;
+        taVc.userId = self.datas[indexPath.row].organizer.userId;
         [self.navigationController pushViewController:taVc animated:YES];
     }
 }
