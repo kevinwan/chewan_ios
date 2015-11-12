@@ -57,8 +57,8 @@
     solidLine.strokeColor = [Tools getColor:@"ffffff"].CGColor;
     solidLine.fillColor = [UIColor clearColor].CGColor;
     solidLine.opacity=0.2;
-    CGPathAddEllipseInRect(solidPath, nil, CGRectMake(ZYScreenWidth/2-60,  22.0, 120.0, 120.0));
-    CGPathAddEllipseInRect(solidPath, nil, CGRectMake(ZYScreenWidth/2-55,  26.0, 110.0, 110.0));
+    CGPathAddEllipseInRect(solidPath, nil, CGRectMake(ZYScreenWidth/2-60,  21.0, 120.0, 120.0));
+    CGPathAddEllipseInRect(solidPath, nil, CGRectMake(ZYScreenWidth/2-55,  25.0, 110.0, 110.0));
     solidLine.path = solidPath;
     CGPathRelease(solidPath);
     [self.headImgBg.layer addSublayer:solidLine];
@@ -168,6 +168,9 @@
 #pragma mark - Table view data source
 - (IBAction)attentionBtnClick:(id)sender {
     NSString *url = [NSString stringWithFormat:@"user/%@/listen?token=%@",CPUserId, CPToken];
+    if (user.subscribeFlag) {
+        url = [NSString stringWithFormat:@"user/%@/unlisten?token=%@",CPUserId, CPToken];
+    }
     NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:user.userId,@"targetUserId",nil];
     [self showLoading];
     [ZYNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
@@ -176,9 +179,13 @@
             if (user) {
                 if (!user.subscribeFlag) {
                     user.subscribeFlag=YES;
-                    [self.attentionBtn setTitle:@"已关注" forState:UIControlStateNormal];
+                    [self.attentionBtn setTitle:@"取消关注" forState:UIControlStateNormal];
                     [self.attentionBtn setBackgroundColor:[Tools getColor:@"dddddd"]];
-                    [self.attentionBtn setEnabled:NO];
+//                    [self.attentionBtn setEnabled:NO];
+                }else{
+                    user.subscribeFlag=NO;
+                    [self.attentionBtn setTitle:@"关注" forState:UIControlStateNormal];
+                    [self.attentionBtn setBackgroundColor:[Tools getColor:@"fe5969"]];
                 }
             }
         }else{
