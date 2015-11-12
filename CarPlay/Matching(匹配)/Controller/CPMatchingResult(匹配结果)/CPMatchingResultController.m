@@ -73,7 +73,7 @@ static NSString *ID = @"cell";
             totalCount = [responseObject[@"data"][@"count"] intValue];
             [startUp setFireDate:[NSDate distantPast]];
             [timer setFireDate:[NSDate distantPast]];
-            timeout=30;
+            timeout=totalCount+1;
             startUpFrom=0;
             [self.loadingView setHidden:NO];
         }else{
@@ -420,7 +420,7 @@ static NSString *ID = @"cell";
         
 //        添加倒计时
         [countdownLabel setFrame:CGRectMake(0, wheelView.bottom+14.0, ZYScreenWidth, 14)];
-        [countdownLabel setText:@"30S"];
+        [countdownLabel setText:@"0S"];
         [countdownLabel setTextColor:[Tools getColor:@"cbcbcb"]];
         [countdownLabel setTextAlignment:NSTextAlignmentCenter];
         [countdownLabel setBackgroundColor:[UIColor clearColor]];
