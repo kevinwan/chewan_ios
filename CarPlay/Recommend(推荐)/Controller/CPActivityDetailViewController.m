@@ -324,6 +324,7 @@ static NSString *ID = @"partCell";
             }
             
             NSString *url = [NSString stringWithFormat:@"official/activity/%@/join?userId=%@&token=%@",self.officialActivityId, CPUserId, CPToken];
+            [self showLoading];
             [ZYNetWorkTool postJsonWithUrl:url params:nil success:^(id responseObject) {
                 if (CPSuccess) {
                     [SVProgressHUD showInfoWithStatus:@"申请成功"];
