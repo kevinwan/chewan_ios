@@ -15,6 +15,7 @@
 #import "SDImageCache.h"
 #import "CPModifyPassword.h"
 #import "UIImageView+AFNetworking.h"
+#import "CPMessageNotification.h"
 
 @interface CPSettingController ()<UIAlertViewDelegate>
 {
@@ -105,7 +106,8 @@
         CPModifyPassword *modifyPassword=[UIStoryboard storyboardWithName:@"CPModifyPassword" bundle:nil].instantiateInitialViewController;
         [self.navigationController pushViewController:modifyPassword animated:YES];
     }else if (indexPath.row == 5){
-        
+        CPMessageNotification *messageNotification=[UIStoryboard storyboardWithName:@"CPMessageNotification" bundle:nil].instantiateInitialViewController;
+        [self.navigationController pushViewController:messageNotification animated:YES];
     }
 }
 

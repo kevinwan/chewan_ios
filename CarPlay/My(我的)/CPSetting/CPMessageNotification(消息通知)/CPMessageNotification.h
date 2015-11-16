@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CPMySwitch.h"
 
 @interface CPMessageNotification : UITableViewController
+@property (weak, nonatomic) IBOutlet CPMySwitch *soundSwitch;
+@property (weak, nonatomic) IBOutlet CPMySwitch *vibrationSwitch;
 
 @end
