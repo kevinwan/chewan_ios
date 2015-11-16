@@ -48,7 +48,7 @@
         _unreadLabel.clipsToBounds = YES;
         [self.contentView addSubview:_unreadLabel];
         
-        _detailLabel = [[UILabel alloc] initWithFrame:CGRectMake(65, 30, 175, 20)];
+        _detailLabel = [[UILabel alloc] initWithFrame:CGRectMake(65, 31.5, 175, 20)];
         _detailLabel.backgroundColor = [UIColor clearColor];
         _detailLabel.font = [UIFont systemFontOfSize:12];
         _detailLabel.textColor = [UIColor lightGrayColor];
@@ -56,7 +56,7 @@
         
         self.textLabel.backgroundColor = [UIColor clearColor];
         //显示性别年龄
-        self.cpSexView = [[CPSexView alloc]initWithFrame:CGRectMake(68, 7, 45, 17)];
+        self.cpSexView = [[CPSexView alloc]initWithFrame:CGRectMake(68, 10, 45, 17)];
         [self.contentView addSubview:_cpSexView];
         
         
@@ -121,7 +121,7 @@
     CGSize size =  [self.textLabel.text sizeWithFont:self.textLabel.font maxW:200];
     NSLog(@"size = %@",NSStringFromCGSize(size));
     
-    self.textLabel.frame = CGRectMake(CGRectGetMaxX(_HeadIV.frame)+10, 7, 175, 20);
+    self.textLabel.frame = CGRectMake(CGRectGetMaxX(_HeadIV.frame)+10, 8.5, 175, 20);
 //    _cpSexView.frame = CGRectMake(68, 7, 45, 17);
     
     _detailLabel.text = _detailMsg;

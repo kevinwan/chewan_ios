@@ -19,7 +19,8 @@
 extern NSString *const kRouterEventChatCellBubbleTapEventName;
 
 #define BUBBLE_LEFT_IMAGE_NAME @"chat_receiver_bg" // bubbleView 的背景图片
-#define BUBBLE_RIGHT_IMAGE_NAME @"chat_sender_bg"
+#define BUBBLE_RIGHT_IMAGE_NAME_MAN @"chat_sender_bg"
+#define BUBBLE_RIGHT_IMAGE_NAME_WOMAN @"chat_sender_woman_bg"
 
 #define BUBBLE_HIGH_LEFT_IMAGE_NAME @"chat_receiver_bg_high" // bubbleView 的高亮情况下背景图片
 #define BUBBLE_HIGH_RIGHT_IMAGE_NAME @"chat_sender_bg_high"

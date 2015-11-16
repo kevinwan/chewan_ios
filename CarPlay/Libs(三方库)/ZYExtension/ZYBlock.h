@@ -29,3 +29,12 @@ extern void ZYMainThead(dispatch_block_t block);
  */
 extern void ZYMainOperation(ZYVoidBlock block);
 extern void ZYAsyncOperation(ZYVoidBlock block);
+
+/**
+ *  动画
+ */
+extern void ZYAnimaiton(NSTimeInterval time, ZYVoidBlock block);
+/**
+ *  延时的block
+ */
+extern void ZYAfter(NSTimeInterval time,ZYVoidBlock block);

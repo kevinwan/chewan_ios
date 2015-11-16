@@ -610,6 +610,8 @@
 		EECA0F0F1BECFAC00029F2D2 /* CPBRPGMatchingSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EECA0F0B1BECFAC00029F2D2 /* CPBRPGMatchingSelectButton.m */; };
 		EECA0F101BECFAC00029F2D2 /* CPBRPGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EECA0F0D1BECFAC00029F2D2 /* CPBRPGViewController.m */; };
 		EECA0F111BECFAC00029F2D2 /* CPBRPGViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EECA0F0E1BECFAC00029F2D2 /* CPBRPGViewController.storyboard */; };
+		EECA0F141BF5DF9A0029F2D2 /* chat_sender_woman_bg_high@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EECA0F121BF5DF990029F2D2 /* chat_sender_woman_bg_high@2x.png */; };
+		EECA0F151BF5DF9A0029F2D2 /* chat_sender_woman_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EECA0F131BF5DF9A0029F2D2 /* chat_sender_woman_bg@2x.png */; };
 		EED47E921BE7679000BC2DBC /* nodistrube_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EED47E8E1BE7679000BC2DBC /* nodistrube_gray@2x.png */; };
 		EED47E931BE7679000BC2DBC /* nodistrube_gray@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EED47E8F1BE7679000BC2DBC /* nodistrube_gray@3x.png */; };
 		EED47E941BE7679000BC2DBC /* nodistrube@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EED47E901BE7679000BC2DBC /* nodistrube@2x.png */; };
@@ -1642,6 +1644,8 @@
 		EECA0F0C1BECFAC00029F2D2 /* CPBRPGViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPBRPGViewController.h; sourceTree = "<group>"; };
 		EECA0F0D1BECFAC00029F2D2 /* CPBRPGViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPBRPGViewController.m; sourceTree = "<group>"; };
 		EECA0F0E1BECFAC00029F2D2 /* CPBRPGViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPBRPGViewController.storyboard; sourceTree = "<group>"; };
+		EECA0F121BF5DF990029F2D2 /* chat_sender_woman_bg_high@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_sender_woman_bg_high@2x.png"; sourceTree = "<group>"; };
+		EECA0F131BF5DF9A0029F2D2 /* chat_sender_woman_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_sender_woman_bg@2x.png"; sourceTree = "<group>"; };
 		EED47E8E1BE7679000BC2DBC /* nodistrube_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nodistrube_gray@2x.png"; sourceTree = "<group>"; };
 		EED47E8F1BE7679000BC2DBC /* nodistrube_gray@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nodistrube_gray@3x.png"; sourceTree = "<group>"; };
 		EED47E901BE7679000BC2DBC /* nodistrube@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nodistrube@2x.png"; sourceTree = "<group>"; };
@@ -3091,6 +3095,8 @@
 				6D2AC0A91BCE5A5000201A8E /* chat_sender_audio_playing_full@2x.png */,
 				6D2AC0AB1BCE5A5000201A8E /* chat_sender_bg@2x.png */,
 				EED47E961BE8BFBC00BC2DBC /* chat_sender_bg_high@2x.png */,
+				EECA0F121BF5DF990029F2D2 /* chat_sender_woman_bg_high@2x.png */,
+				EECA0F131BF5DF9A0029F2D2 /* chat_sender_woman_bg@2x.png */,
 			);
 			path = sender_bubble;
 			sourceTree = "<group>";
@@ -4412,6 +4418,7 @@
 				E31B12E31BB9311700B51696 /* PB.bundle in Resources */,
 				6B440CE51BBA86D100CF8410 /* CPMyInfoSecCell.xib in Resources */,
 				E31E4BE21BAD47A500902B34 /* Assets.xcassets in Resources */,
+				EECA0F151BF5DF9A0029F2D2 /* chat_sender_woman_bg@2x.png in Resources */,
 				6B440CE31BBA86C500CF8410 /* CPMyInfoFirCell.xib in Resources */,
 				6D2AC1831BCE5A5100201A8E /* tabbar_contactsHL.png in Resources */,
 				6D2AC11E1BCE5A5100201A8E /* chat_location_preview.png in Resources */,
@@ -4504,6 +4511,7 @@
 				6D2AC1411BCE5A5100201A8E /* chatBar_colorMore_videoCall@2x.png in Resources */,
 				6D2AC1491BCE5A5100201A8E /* chatBar_more_location@2x.png in Resources */,
 				6D2AC11C1BCE5A5100201A8E /* chat_location_detail_disclosureHL.png in Resources */,
+				EECA0F141BF5DF9A0029F2D2 /* chat_sender_woman_bg_high@2x.png in Resources */,
 				6D7F6FC41BD519D000945F1B /* chatBar_keyboard@3x.png in Resources */,
 				EEFD129B1BDDF6D0009EA6CC /* wheel13@2x.png in Resources */,
 				6D7F6FE01BD5E4AB00945F1B /* VoiceCancel@2x.png in Resources */,
@@ -5064,7 +5072,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Nanjing 77 island Mdt InfoTech Co., Ltd. (7B7Z8D7LY4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 77islanddeve@gongpingjia.com (8FRZ4CX6Y8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Nanjing 77 island Mdt InfoTech Co., Ltd. (7B7Z8D7LY4)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -5109,7 +5117,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Nanjing 77 island Mdt InfoTech Co., Ltd. (7B7Z8D7LY4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 77islanddeve@gongpingjia.com (8FRZ4CX6Y8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Nanjing 77 island Mdt InfoTech Co., Ltd. (7B7Z8D7LY4)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";

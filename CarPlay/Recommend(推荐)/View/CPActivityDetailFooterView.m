@@ -12,28 +12,35 @@
 #import "CPLoadingButton.h"
 
 @interface CPActivityDetailFooterView()
-@property (weak, nonatomic) IBOutlet UILabel *activityPathLabel;
 
+#pragma mark - 各种约束
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *activityPathLCons;
-
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *activityPathTopCons;
-
-@property (weak, nonatomic) IBOutlet UILabel *explainLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *explainLCons;
-
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *explainTopCons;
-@property (weak, nonatomic) IBOutlet UIButton *comePartBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *line2TopCons;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *line1TopCons;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *pathTitleHCons;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *extraTitleHCons;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *loadMoreBtnHCons;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *lineViewCons1;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *lineViewCons2;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *lineViewCons3;
+
+/**
+ *  展示文字的label
+ */
 @property (weak, nonatomic) IBOutlet UILabel *pathTipLabel;
 @property (weak, nonatomic) IBOutlet UILabel *explainTipLabel;
+@property (weak, nonatomic) IBOutlet UILabel *explainLabel;
+@property (weak, nonatomic) IBOutlet UILabel *activityPathLabel;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *line2TopCons;
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *line1TopCons;
-@property (weak, nonatomic) IBOutlet UIButton *byTheTicketButton;
-@property (weak, nonatomic) IBOutlet UIButton *toGroupChatButton;
+/**
+ *  各种交互的按钮
+ */
 @property (weak, nonatomic) IBOutlet UIButton *openDescButton;
 @property (weak, nonatomic) IBOutlet UIButton *openExtraButton;
-
+@property (weak, nonatomic) IBOutlet CPLoadingButton *loadMoreBtn;
 @end
 
 @implementation CPActivityDetailFooterView
@@ -70,35 +77,53 @@
 {
     _model = model;
     
-    self.openDescButton.hidden = !model.desc.trimLength;
-    self.openExtraButton.hidden = !model.extraDesc.trimLength;
+    if (model.nowJoinNum > 6) {
+        self.loadMoreBtnHCons.constant = 44;
+        self.loadMoreBtn.hidden = NO;
+    }else{
+        self.loadMoreBtnHCons.constant = 0;
+        self.loadMoreBtn.hidden = YES;
+    }
+    
+    if (model.desc.trimLength) {
+        self.pathTitleHCons.constant = 44;
+        self.lineViewCons1.constant = 10;
+        self.openDescButton.hidden = NO;
+        self.pathTipLabel.hidden = NO;
+    }else{
+        self.pathTipLabel.hidden = YES;
+        self.openDescButton.hidden = YES;
+        self.pathTitleHCons.constant = 0;
+        self.lineViewCons1.constant = 0;
+    }
+    
+    if (model.extraDesc.trimLength) {
+        self.extraTitleHCons.constant = 44;
+        self.openExtraButton.hidden = NO;
+        self.lineViewCons2.constant = 10;
+        self.explainTipLabel.hidden = NO;
+    }else{
+        self.explainTipLabel.hidden = YES;
+        self.openExtraButton.hidden = YES;
+        self.lineViewCons2.constant = 0;
+        self.extraTitleHCons.constant = 0;
+    }
+//    self.openDescButton.hidden = !model.desc.trimLength;
+//    self.openExtraButton.hidden = !model.extraDesc.trimLength;
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle setLineSpacing:7];
     self.activityPathLabel.attributedText = [[NSAttributedString alloc] initWithString:model.desc attributes:@{NSParagraphStyleAttributeName : paragraphStyle}];
     self.explainLabel.attributedText = [[NSAttributedString alloc] initWithString:model.extraDesc attributes:@{NSParagraphStyleAttributeName : paragraphStyle}];
-    if (model.isMember){
-        if (model.price) {
-            self.comePartBtn.hidden = YES;
-            self.byTheTicketButton.hidden = NO;
-            self.toGroupChatButton.hidden = NO;
-        }else{
-            self.comePartBtn.hidden = NO;
-            [self.comePartBtn setTitle:@"进入群聊" forState:UIControlStateNormal];
-            [self.comePartBtn setBackgroundColor:[Tools getColor:@"F48C60"]];
-            self.byTheTicketButton.hidden = YES;
-            self.toGroupChatButton.hidden = YES;
-        }
-    }else{
-        self.comePartBtn.hidden = NO;
-        [self.comePartBtn setTitle:@"报名参加" forState:UIControlStateNormal];
-        [self.comePartBtn setBackgroundColor:RedColor];
-        self.byTheTicketButton.hidden = YES;
-        self.toGroupChatButton.hidden = YES;
-    }
 
-
+    [self layoutIfNeeded];
+    self.height = self.explainLabel.bottom;
 }
 
+/**
+ *  展开活动流程
+ *
+ *  @param sender sender description
+ */
 - (IBAction)activityPathClick:(UIButton *)sender {
     sender.selected = !sender.isSelected;
     
@@ -115,18 +140,22 @@
         self.line1TopCons.constant = 0;
     }
     [self layoutIfNeeded];
-    self.height = self.comePartBtn.bottom;
+    self.height = self.explainLabel.bottom;
     [self superViewWillRecive:CPActivityFooterViewOpenKey info:nil];
 }
 
-
+/**
+ *  展开活动说明
+ *
+ *  @param sender sender description
+ */
 - (IBAction)openExplain:(UIButton *)sender {
     
     sender.selected = !sender.isSelected;
     if (sender.isSelected) {
         CGSize contentSize = [self.explainLabel.attributedText boundingRectWithSize:CGSizeMake(ZYScreenWidth - 20, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
 
-        self.explainLCons.constant = contentSize.height + 2;
+        self.explainLCons.constant = contentSize.height + 12;
         self.explainTopCons.constant = 13;
         self.line2TopCons.constant = 20;
         self.explainLabel.hidden = NO;
@@ -137,10 +166,13 @@
         self.line2TopCons.constant = 0;
     }
     [self layoutIfNeeded];
-    self.height = self.comePartBtn.bottom;
+    self.height = self.explainLabel.bottom;
     [self superViewWillRecive:CPActivityFooterViewOpenKey info:nil];
 }
 
+/**
+ *  点击加载更多
+ */
 - (IBAction)loadMoreButtonClick:(CPLoadingButton *)sender {
     [sender startLoading];
     
@@ -148,39 +180,6 @@
         [sender stopLoading];
         [self superViewWillRecive:CPActivityDetailLoadMoreKey info:nil];
     });
-}
-
-- (IBAction)comePart:(UIButton *)sender {
-  
-    CPGoLogin(@"报名参加");
-    if ([sender.currentTitle isEqualToString:@"进入群聊"]) {
-        [self superViewWillRecive:CPGroupChatClickKey info:_model];
-        return;
-    }
-    
-    NSString *url = [NSString stringWithFormat:@"official/activity/%@/join?userId=%@&token=%@",self.officialActivityId, CPUserId, CPToken];
-    [ZYNetWorkTool postJsonWithUrl:url params:nil success:^(id responseObject) {
-        if (CPSuccess) {
-            [SVProgressHUD showInfoWithStatus:@"申请成功"];
-            [self superViewWillRecive:CPJionOfficeActivityKey info:nil];
-        }else{
-            [SVProgressHUD showInfoWithStatus:CPErrorMsg];
-        }
-    } failed:^(NSError *error) {
-        [SVProgressHUD showInfoWithStatus:@"申请失败"];
-    }];
-}
-
-- (IBAction)byTheTicket:(id)sender {
-    // 进入买票页面
-    [self superViewWillRecive:CPGoByTicketClickKey info:_model];
-}
-
-- (IBAction)toGroupChat:(id)sender {
-    
-    // 进入群聊接口
-    
-    [self superViewWillRecive:CPGroupChatClickKey info:_model];
 }
 
 @end

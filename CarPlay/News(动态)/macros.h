@@ -17,6 +17,11 @@
 #define kDeviceWidth  [UIScreen mainScreen].bounds.size.width
 #define KDeviceHeight [UIScreen mainScreen].bounds.size.height
 
+//设备声音开启
+#define kRemindMessageSound @"kRemindMessageSound"
+//设备震动开启
+#define kRemindVibration @"kRemindVibration"
+
 //用户昵称和头像的存储
 #define kUserNickName @"kUserNickName"
 #define kUserHeadUrl @"kUserHeadUrl"

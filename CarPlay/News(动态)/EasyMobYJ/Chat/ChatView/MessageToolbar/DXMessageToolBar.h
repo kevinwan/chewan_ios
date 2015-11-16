@@ -19,14 +19,13 @@
 #import "DXRecordView.h"
 
 //#define kInputTextViewMinHeight 36
-#define kInputTextViewMinHeight 43
+#define kInputTextViewMinHeight 36
 #define kInputTextViewMaxHeight 200
-#define kHorizontalPadding 8
-#define kVerticalPadding 5
+#define kHorizontalPadding 10
+#define kVerticalPadding 8.5
 
-#define kTouchToRecord NSLocalizedString(@"message.toolBar.record.touch", @"hold down to talk")
-#define kTouchToFinish NSLocalizedString(@"message.toolBar.record.send", @"loosen to send")
-
+#define kTouchToRecord @"按住 说话"
+#define kTouchToFinish @"松开 结束"
 
 /**
  *  类说明：

@@ -284,7 +284,7 @@
     CGFloat textViewLeftMargin = 6.0;
     
     //转变输入样式
-    self.styleChangeButton = [[UIButton alloc] initWithFrame:CGRectMake(kHorizontalPadding, kVerticalPadding-1, kInputTextViewMinHeight, kInputTextViewMinHeight)];
+    self.styleChangeButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 13.5, 26, 26)];
     self.styleChangeButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     [self.styleChangeButton setImage:[UIImage imageNamed:@"chatBar_record"] forState:UIControlStateNormal];
     [self.styleChangeButton setImage:[UIImage imageNamed:@"chatBar_recordSelected"] forState:UIControlStateHighlighted];
@@ -295,7 +295,7 @@
     textViewLeftMargin += CGRectGetMaxX(self.styleChangeButton.frame);
     
     //更多
-    self.moreButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.bounds) - kHorizontalPadding - kInputTextViewMinHeight, kVerticalPadding-1, kInputTextViewMinHeight, kInputTextViewMinHeight)];
+    self.moreButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.bounds) - 10 - 26, 13.5, 26, 26)];
     self.moreButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin;
     [self.moreButton setImage:[UIImage imageNamed:@"chatBar_more"] forState:UIControlStateNormal];
     [self.moreButton setImage:[UIImage imageNamed:@"chatBar_moreSelected"] forState:UIControlStateHighlighted];
@@ -316,9 +316,10 @@
     
     
     // 输入框的高度和宽度
-    CGFloat width = CGRectGetWidth(self.bounds) - (allButtonWidth ? allButtonWidth : (textViewLeftMargin * 2));
+//    CGFloat width = CGRectGetWidth(self.bounds) - (allButtonWidth ? allButtonWidth : (textViewLeftMargin * 2));
+    CGFloat width = self.bounds.size.width-(10+26+10)*2;
     // 初始化输入框
-    self.inputTextView = [[XHMessageTextView  alloc] initWithFrame:CGRectMake(textViewLeftMargin, 10.5, width, 32)];
+    self.inputTextView = [[XHMessageTextView  alloc] initWithFrame:CGRectMake(46, 8.5, width, 36)];
     
     self.inputTextView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
 //    self.inputTextView.contentMode = UIViewContentModeCenter;
@@ -334,8 +335,8 @@
     _previousTextViewContentHeight = [self getTextViewContentH:_inputTextView];
     
     //录制
-    self.recordButton = [[UIButton alloc] initWithFrame:CGRectMake(textViewLeftMargin, 13.5, width, 32)];
-    self.recordButton.titleLabel.font = [UIFont systemFontOfSize:15.0];
+    self.recordButton = [[UIButton alloc] initWithFrame:CGRectMake(46, 8.5, width, 36)];
+    self.recordButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
     [self.recordButton setTitleColor:UIColorFromRGB(0x333333) forState:UIControlStateNormal];
     [self.recordButton setBackgroundImage:[[UIImage imageNamed:@"chatBar_recordBg"] stretchableImageWithLeftCapWidth:10 topCapHeight:10] forState:UIControlStateNormal];
     [self.recordButton setBackgroundImage:[[UIImage imageNamed:@"chatBar_recordSelectedBg"] stretchableImageWithLeftCapWidth:10 topCapHeight:10] forState:UIControlStateHighlighted];

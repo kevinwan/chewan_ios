@@ -27,3 +27,13 @@ void ZYAsyncOperation(ZYVoidBlock block)
 {
     [[[NSOperationQueue alloc] init] addOperationWithBlock:block];
 }
+
+void ZYAnimaiton(NSTimeInterval time, ZYVoidBlock block)
+{
+    [UIView animateWithDuration:time animations:block];
+}
+
+void ZYAfter(NSTimeInterval time,ZYVoidBlock block)
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(time * NSEC_PER_SEC)), dispatch_get_main_queue(), block);
+}

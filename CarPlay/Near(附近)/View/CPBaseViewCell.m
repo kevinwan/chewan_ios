@@ -910,6 +910,7 @@
         }];
         
         [[uploadBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            CPGoLogin(@"上传");
             if (cameraBtn.alpha == 0){
                 [cameraBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
                     

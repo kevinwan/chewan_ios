@@ -29,6 +29,14 @@
     return @"";
 }
 
+- (NSString *)extraDesc
+{
+    if (_extraDesc.trimLength) {
+        return _extraDesc;
+    }
+    return @"";
+}
+
 - (void)setCovers:(NSArray *)covers
 {
     if ([covers isKindOfClass:[NSArray class]]) {
