@@ -120,6 +120,19 @@
     [NSTimer scheduledTimerWithTimeInterval:.1 target:self selector:@selector(startAnimations) userInfo:nil repeats:YES];
 
 }
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (_isIncoming) {
+        [self _beginRing];
+    }
+}
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    //一般用不到
+    [self _stopRing];
+}
 - (void)startAnimations
 {
 

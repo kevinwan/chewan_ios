@@ -826,11 +826,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    //1111
-//    [[EMCDDeviceManager sharedInstance] playNewMessageSound];
-//    return;
-    
+        
     EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
        ChatViewController *chatController;
     NSString *title = conversation.chatter;
@@ -993,6 +989,7 @@
 -(void)didUnreadMessagesCountChanged
 {
     [self refreshDataSource];
+
 }
 
 - (void)didUpdateGroupList:(NSArray *)allGroups error:(EMError *)error

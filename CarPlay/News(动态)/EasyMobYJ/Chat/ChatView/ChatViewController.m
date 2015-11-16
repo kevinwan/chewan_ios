@@ -544,7 +544,6 @@
             }
             
             timeCell.timeLabel.text = (NSString *)obj;
-            
             return timeCell;
         }
         else{
@@ -571,7 +570,6 @@
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
             }
             cell.messageModel = model;
-            
             return cell;
         }
     }
@@ -585,7 +583,7 @@
 {
     NSObject *obj = [self.dataSource objectAtIndex:indexPath.row];
     if ([obj isKindOfClass:[NSString class]]) {
-        return 42;
+        return 35;
     }
     else{
         return [EMChatViewCell tableView:tableView heightForRowAtIndexPath:indexPath withObject:(MessageModel *)obj];

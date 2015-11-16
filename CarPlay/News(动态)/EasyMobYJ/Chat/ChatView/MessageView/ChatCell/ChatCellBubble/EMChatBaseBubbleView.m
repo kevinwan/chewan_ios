@@ -15,7 +15,7 @@
 NSString *const kRouterEventChatCellBubbleTapEventName = @"kRouterEventChatCellBubbleTapEventName";
 
 @interface EMChatBaseBubbleView ()
-
+@property (nonatomic ,copy)NSString *sexStr;
 @end
 
 @implementation EMChatBaseBubbleView
@@ -33,6 +33,8 @@ NSString *const kRouterEventChatCellBubbleTapEventName = @"kRouterEventChatCellB
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(bubbleViewPressed:)];
         [self addGestureRecognizer:tap];
         self.backgroundColor = [UIColor clearColor];
+        //新加入的性别属性，女的话用红色的bubble
+        self.sexStr = [ZYUserDefaults objectForKey:KUserSex];
     }
     
     return self;
@@ -50,7 +52,13 @@ NSString *const kRouterEventChatCellBubbleTapEventName = @"kRouterEventChatCellB
     _model = model;
     
     BOOL isReceiver = !_model.isSender;
-    NSString *imageName = isReceiver ? BUBBLE_LEFT_IMAGE_NAME : BUBBLE_RIGHT_IMAGE_NAME;
+    NSString *imageName;
+    if ([_sexStr isEqualToString:@"男"]) {
+        imageName = isReceiver ? BUBBLE_LEFT_IMAGE_NAME : BUBBLE_RIGHT_IMAGE_NAME_MAN;
+    }else{
+        imageName = isReceiver ? BUBBLE_LEFT_IMAGE_NAME : BUBBLE_RIGHT_IMAGE_NAME_WOMAN;
+
+    }
     NSInteger leftCapWidth = isReceiver?BUBBLE_LEFT_LEFT_CAP_WIDTH:BUBBLE_RIGHT_LEFT_CAP_WIDTH;
     NSInteger topCapHeight =  isReceiver?BUBBLE_LEFT_TOP_CAP_HEIGHT:BUBBLE_RIGHT_TOP_CAP_HEIGHT;
     self.backImageView.image = [[UIImage imageNamed:imageName] stretchableImageWithLeftCapWidth:leftCapWidth topCapHeight:topCapHeight];

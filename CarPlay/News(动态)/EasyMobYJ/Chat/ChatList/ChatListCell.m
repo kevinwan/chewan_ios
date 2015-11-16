@@ -56,7 +56,7 @@
         
         self.textLabel.backgroundColor = [UIColor clearColor];
         //显示性别年龄
-        self.cpSexView = [[CPSexView alloc]initWithFrame:CGRectMake(68, 7, 45, 17)];
+        self.cpSexView = [[CPSexView alloc]initWithFrame:CGRectMake(68, 10, 45, 17)];
         [self.contentView addSubview:_cpSexView];
         
         

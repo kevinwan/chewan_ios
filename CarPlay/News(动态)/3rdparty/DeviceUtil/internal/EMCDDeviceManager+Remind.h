@@ -18,4 +18,6 @@
 
 // 震动
 - (void)playVibration;
+
+- (void)playCPNewMessageRemind;
 @end
