@@ -47,7 +47,9 @@
             return [str copy];
         }
     }
-    
+    if ([_applyUserId isEqualToString:CPUserId] && _status == 2) {
+        return [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@同意了你的%@邀请",_applicant.nickname, _type]];
+    }
     return [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@想邀请你%@",_applicant.nickname, _type]];
 }
 - (void)setDistance:(double)distance
