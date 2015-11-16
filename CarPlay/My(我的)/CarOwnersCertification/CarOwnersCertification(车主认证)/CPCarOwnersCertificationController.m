@@ -40,7 +40,7 @@
     if (user.car.logo) {
         [self.logo zySetImageWithUrl:user.car.logo placeholderImage:[UIImage imageNamed:@"logo"]];
     }
-    
+    [self reloadCarOwnersInfo];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,6 +49,7 @@
 
 #pragma mark - Table view data source
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row==0) {
         CPBrandModelViewController *CPBrandModelVC=[[CPBrandModelViewController alloc]init];
         CPBrandModelVC.title=@"车型选择";
@@ -69,7 +70,7 @@
     if (buttonIndex ==1) {
         UIImagePickerController *picker=[[UIImagePickerController alloc]init];
         picker.delegate=self;
-        picker.allowsEditing=YES;
+        picker.allowsEditing=NO;
         picker.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
         [self presentViewController:picker animated:YES completion:^{
         }];
@@ -80,7 +81,7 @@
         }
         UIImagePickerController *picker=[[UIImagePickerController alloc]init];
         picker.delegate=self;
-        picker.allowsEditing=YES;
+        picker.allowsEditing=NO;
         picker.sourceType=UIImagePickerControllerSourceTypeCamera;
         [self presentViewController:picker animated:YES completion:^{
         }];
@@ -114,10 +115,13 @@
         if (CPSuccess) {
             if (selectRow==2) {
                 user.driverLicenseId=responseObject[@"data"][@"photoId"];
+                user.driverLicense=responseObject[@"data"][@"photoUrl"];
             }else{
                 user.drivingLicenseId=responseObject[@"data"][@"photoId"];
+                user.drivingLicense=responseObject[@"data"][@"photoUrl"];
             }
             [NSKeyedArchiver archiveRootObject:user toFile:path.documentPath];
+            [self reloadCarOwnersInfo];
         }else{
             [[[UIAlertView alloc]initWithTitle:@"提示" message:@"上传失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
         }
@@ -159,5 +163,20 @@
     }else{
         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请选择车型" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
     }
+}
+
+-(void)reloadCarOwnersInfo{
+    if (user.drivingLicense) {
+        [self.uploadDrivingLicense zySetImageWithUrl:user.drivingLicense placeholderImage:nil forState:UIControlStateNormal];
+    }
+    if (user.driverLicense) {
+//        [self.driverLicenseImageView zySetImageWithUrl:user.driverLicense placeholderImage:nil];
+        [self.uploadDriverLicense zySetImageWithUrl:user.driverLicense placeholderImage:nil forState:UIControlStateNormal];
+    }
+}
+- (IBAction)upload:(UIButton *)sender {
+    selectRow=sender.tag;
+    UIActionSheet *sheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从相册选择",nil];
+    [sheet showInView:self.view];
 }
 @end

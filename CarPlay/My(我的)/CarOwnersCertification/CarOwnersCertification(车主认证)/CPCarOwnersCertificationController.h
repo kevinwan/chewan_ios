@@ -15,4 +15,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *logo;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bandNameWidth;
+@property (weak, nonatomic) IBOutlet UIButton *uploadDriverLicense;
+@property (weak, nonatomic) IBOutlet UIButton *uploadDrivingLicense;
+- (IBAction)upload:(UIButton *)sender;
+
 @end

@@ -91,15 +91,15 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == 1) {
-        if ([user.licenseAuthStatus isEqualToString:@"未认证"] || [user.licenseAuthStatus isEqualToString:@"认证未通过"]) {
+//        if ([user.licenseAuthStatus isEqualToString:@"未认证"] || [user.licenseAuthStatus isEqualToString:@"认证未通过"]) {
             CPCarOwnersCertificationController *CPCarOwnersCertification = [UIStoryboard storyboardWithName:@"CPCarOwnersCertification" bundle:nil].instantiateInitialViewController;
             [self.navigationController pushViewController:CPCarOwnersCertification animated:YES];
-        }
+//        }
     }else {
-        if ([user.photoAuthStatus isEqualToString:@"未认证"] || [user.photoAuthStatus isEqualToString:@"认证未通过"]) {
+//        if ([user.photoAuthStatus isEqualToString:@"未认证"] || [user.photoAuthStatus isEqualToString:@"认证未通过"]) {
             CPAvatarAuthenticationController *CPAvatarAuthenticationController = [UIStoryboard storyboardWithName:@"CPAvatarAuthenticationController" bundle:nil].instantiateInitialViewController;
             [self.navigationController pushViewController:CPAvatarAuthenticationController animated:YES];
-        }
+//        }
     }
 }
 #pragma privateMethod
@@ -115,10 +115,6 @@
     [ZYNetWorkTool getWithUrl:path params:nil success:^(id responseObject) {
         if (CPSuccess) {
             user = [CPUser objectWithKeyValues:responseObject[@"data"]];
-            DLog(@"%zd--- ",user.idle);
-//            if ([responseObject[@"data"][@"car"] isEqualToString:@""]) {
-//                user.car=[CPCar new];
-//            }
             NSString *path=[[NSString alloc]initWithFormat:@"%@.info",[Tools getUserId]];
             [NSKeyedArchiver archiveRootObject:user toFile:path.documentPath];
             [self reloadData];
@@ -141,8 +137,14 @@
     [self.headImageBg zySetImageWithUrl:user.avatar placeholderImage:nil completion:^(UIImage *image) {
                 self.headImageBg.image=[image blurredImageWithRadius:20];
     }];
-    [self.headImage zySetImageWithUrl:user.avatar placeholderImage:nil];
-    [self.nickname setTitle:user.nickname forState:UIControlStateNormal];
+    if([ZYUserDefaults boolForKey:CPHasNewAvatar]){
+        [self.headImage zySetReloadImageWithUrl:user.avatar placeholderImage:nil completion:^(UIImage *image) {
+            [ZYUserDefaults setBool:NO forKey:CPHasNewAvatar];
+        }];
+    }else{
+        [self.headImage zySetImageWithUrl:user.avatar placeholderImage:nil];
+    }
+        [self.nickname setTitle:user.nickname forState:UIControlStateNormal];
     self.nickname.width=[user.nickname sizeWithFont:ZYFont15].width;
     if ([user.gender isEqualToString:@"女"]) {
         [self.sex setImage:[UIImage imageNamed:@"女"] forState:UIControlStateNormal];
@@ -158,15 +160,15 @@
     if (user.licenseAuthStatus && ![user.licenseAuthStatus isEqualToString:@""]) {
         self.licenseAuthStatus.text=user.licenseAuthStatus;
     }
-    if ([user.photoAuthStatus isEqualToString:@"认证通过"] || [user.photoAuthStatus isEqualToString:@"认证中"]) {
-        [self.arrowView setHidden:YES];
-        self.rightJuli.constant=-8.0;
-    }
-    
-    if ([user.licenseAuthStatus isEqualToString:@"认证通过"] || [user.licenseAuthStatus isEqualToString:@"认证中"]) {
-        [self.arrowView1 setHidden:YES];
-        self.rightJuli1.constant=-8.0;
-    }
+//    if ([user.photoAuthStatus isEqualToString:@"认证通过"] || [user.photoAuthStatus isEqualToString:@"认证中"]) {
+//        [self.arrowView setHidden:YES];
+//        self.rightJuli.constant=-8.0;
+//    }
+//    
+//    if ([user.licenseAuthStatus isEqualToString:@"认证通过"] || [user.licenseAuthStatus isEqualToString:@"认证中"]) {
+//        [self.arrowView1 setHidden:YES];
+//        self.rightJuli1.constant=-8.0;
+//    }
     
     if (user.completion<100) {
        self.completionLabel.text=[NSString stringWithFormat:@"资料完成度%lu%%,越高越吸引人",(unsigned long)user.completion];

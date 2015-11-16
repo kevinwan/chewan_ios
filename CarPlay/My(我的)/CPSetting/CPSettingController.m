@@ -27,7 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    titleArray=[[NSArray alloc]initWithObjects:@"清理缓存",@"喜欢我们打分鼓励",@"关于我们",@"版本介绍",@"修改密码", nil];
+    titleArray=[[NSArray alloc]initWithObjects:@"清理缓存",@"喜欢我们打分鼓励",@"关于我们",@"版本介绍",@"修改密码",@"消息通知", nil];
     [self.loginOutBtn.layer setMasksToBounds:YES];
     [self.loginOutBtn.layer setCornerRadius:20.0];
 }
@@ -43,7 +43,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -104,6 +104,8 @@
     }else if (indexPath.row == 4){
         CPModifyPassword *modifyPassword=[UIStoryboard storyboardWithName:@"CPModifyPassword" bundle:nil].instantiateInitialViewController;
         [self.navigationController pushViewController:modifyPassword animated:YES];
+    }else if (indexPath.row == 5){
+        
     }
 }
 

@@ -55,6 +55,8 @@
 		6B364CBB1BCF7EDB005A4AF9 /* CPAvatarAuthenticationController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B364CBA1BCF7EDB005A4AF9 /* CPAvatarAuthenticationController.storyboard */; };
 		6B364CBE1BCFC399005A4AF9 /* TaInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B364CBD1BCFC399005A4AF9 /* TaInfo.storyboard */; };
 		6B364CC11BCFC44B005A4AF9 /* CPTaInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B364CC01BCFC44B005A4AF9 /* CPTaInfo.m */; };
+		6B3B77881BF9DF1D008AB485 /* CPMessageNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3B77871BF9DF1D008AB485 /* CPMessageNotification.m */; };
+		6B3B778A1BF9DF27008AB485 /* CPMessageNotification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B3B77891BF9DF27008AB485 /* CPMessageNotification.storyboard */; };
 		6B440CDB1BBA857B00CF8410 /* CPMyInfoHead.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B440CDA1BBA857B00CF8410 /* CPMyInfoHead.xib */; };
 		6B440CE31BBA86C500CF8410 /* CPMyInfoFirCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B440CE21BBA86C500CF8410 /* CPMyInfoFirCell.xib */; };
 		6B440CE51BBA86D100CF8410 /* CPMyInfoSecCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B440CE41BBA86D100CF8410 /* CPMyInfoSecCell.xib */; };
@@ -720,6 +722,9 @@
 		6B364CBD1BCFC399005A4AF9 /* TaInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TaInfo.storyboard; sourceTree = "<group>"; };
 		6B364CBF1BCFC44B005A4AF9 /* CPTaInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTaInfo.h; sourceTree = "<group>"; };
 		6B364CC01BCFC44B005A4AF9 /* CPTaInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTaInfo.m; sourceTree = "<group>"; };
+		6B3B77861BF9DF1D008AB485 /* CPMessageNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMessageNotification.h; sourceTree = "<group>"; };
+		6B3B77871BF9DF1D008AB485 /* CPMessageNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMessageNotification.m; sourceTree = "<group>"; };
+		6B3B77891BF9DF27008AB485 /* CPMessageNotification.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMessageNotification.storyboard; sourceTree = "<group>"; };
 		6B440CDA1BBA857B00CF8410 /* CPMyInfoHead.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPMyInfoHead.xib; sourceTree = "<group>"; };
 		6B440CE21BBA86C500CF8410 /* CPMyInfoFirCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPMyInfoFirCell.xib; sourceTree = "<group>"; };
 		6B440CE41BBA86D100CF8410 /* CPMyInfoSecCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CPMyInfoSecCell.xib; sourceTree = "<group>"; };
@@ -1830,6 +1835,7 @@
 		6B364C8A1BCF43B8005A4AF9 /* CPSetting */ = {
 			isa = PBXGroup;
 			children = (
+				6B3B77851BF9DF07008AB485 /* CPMessageNotification(消息通知) */,
 				6BD61A451BECA97700A4589B /* CPModifyPassword(修改密码) */,
 				6B364C8B1BCF43B8005A4AF9 /* CPAbout（关于我们） */,
 				6B364C921BCF43B8005A4AF9 /* CPVersionIntroduction(版本介绍) */,
@@ -1907,6 +1913,16 @@
 				6B364CC01BCFC44B005A4AF9 /* CPTaInfo.m */,
 			);
 			path = "TaInfo(她的详情)";
+			sourceTree = "<group>";
+		};
+		6B3B77851BF9DF07008AB485 /* CPMessageNotification(消息通知) */ = {
+			isa = PBXGroup;
+			children = (
+				6B3B77861BF9DF1D008AB485 /* CPMessageNotification.h */,
+				6B3B77891BF9DF27008AB485 /* CPMessageNotification.storyboard */,
+				6B3B77871BF9DF1D008AB485 /* CPMessageNotification.m */,
+			);
+			path = "CPMessageNotification(消息通知)";
 			sourceTree = "<group>";
 		};
 		6B5176781BB9502100D7A62E /* CustomSwitch */ = {
@@ -4571,6 +4587,7 @@
 				6D7F6FC51BD519D000945F1B /* chatBar_keyboardSelected@3x.png in Resources */,
 				6D2AC1681BCE5A5100201A8E /* chat_sender_bg@2x.png in Resources */,
 				6D2AC1181BCE5A5100201A8E /* chat_location_annotation_someone.png in Resources */,
+				6B3B778A1BF9DF27008AB485 /* CPMessageNotification.storyboard in Resources */,
 				6D2AC17C1BCE5A5100201A8E /* newFriends@2x.png in Resources */,
 				6D2AC15C1BCE5A5100201A8E /* chat_receiver_bg@2x.png in Resources */,
 				6B364C621BCE401C005A4AF9 /* UzysAssetPickerController.bundle in Resources */,
@@ -4835,6 +4852,7 @@
 				6D2ABFEC1BCE582100201A8E /* ContactsViewController.m in Sources */,
 				6D2AC0071BCE582100201A8E /* UIResponder+Router.m in Sources */,
 				6B364C7D1BCE4077005A4AF9 /* MJPhotoView.m in Sources */,
+				6B3B77881BF9DF1D008AB485 /* CPMessageNotification.m in Sources */,
 				E3A4717B1BB3A85300973197 /* NSDictionary+ZY.m in Sources */,
 				6D2ABFAE1BCE582100201A8E /* PSTCollectionViewData.m in Sources */,
 				6D2ABFFC1BCE582100201A8E /* XHMessageTextView.m in Sources */,
