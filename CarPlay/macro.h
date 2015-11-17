@@ -60,6 +60,7 @@
 #define CPFailure       ([responseObject[@"result"] intValue] == 1)
 #define CPPlaceHolderImage [UIImage imageNamed:@"未认证-审核中"]
 #define CPHasAlbum @"CPHasAlbum"
+#define CPHasNewAvatar @"CPHasNewAvatar"
 
 //登录状态改变
 #define NOTIFICATION_LOGINCHANGE @"loginStatusChange"

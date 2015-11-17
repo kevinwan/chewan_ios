@@ -530,12 +530,17 @@
 - (IBAction)rightBtnClick:(id)sender {
     
     if ([self.userId isEqualToString:CPUserId]) {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"删除", nil];
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"设置为头像",@"删除", nil];
         [actionSheet.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
-            if (index.intValue == 0) {
+            if (index.intValue == 1) {
 #warning 删除有bug 因为缓存问题 待修改
                 [self deletePhoto];
-                
+            }else if(index.intValue == 0){
+                if (self.currentItemView) {
+                    UIImage *image=self.currentItemView.photoImageView.image;
+                    NSData *data=UIImageJPEGRepresentation(image, 1.0);
+                    [self upLoadImageWithBase64Encodeing:data];
+                }
             }
         }];
         [actionSheet showInView:self.view];
@@ -708,8 +713,6 @@
 
 -(void)dismiss{
     
-    
-    
     switch (_type) {
         case PhotoBroswerVCTypePush://push
 
@@ -772,8 +775,6 @@
     
     if(isInScreen){
         
-        NSLog(@"currentItemView:%@",self.currentItemView);
-        
         [self.currentItemView zoomDismiss:^{
             
             [self zoomOutHandle];
@@ -828,4 +829,29 @@
     [alert show];
 }
 
+
+//上传头像
+-(void)upLoadImageWithBase64Encodeing:(NSData *)encodedImageData{
+    ZYHttpFile *file=[[ZYHttpFile alloc]init];
+    file.name=@"attach";
+    file.data=encodedImageData;
+    file.filename=@"avatar.jpg";
+    file.mimeType=@"image/jpeg";
+    NSArray *files=[[NSArray alloc]initWithObjects:file, nil];
+    NSString *urlPath=[NSString stringWithFormat:@"user/%@/avatar?token=%@",[Tools getUserId],[Tools getToken]];
+    [self showLoading];
+    [ZYNetWorkTool postFileWithUrl:urlPath params:nil files:files success:^(id responseObject){
+        if (CPSuccess) {
+            [self showInfo:@"设置成功"];
+            [ZYUserDefaults setBool:YES forKey:CPHasNewAvatar];
+        }else{
+            [[[UIAlertView alloc]initWithTitle:@"提示" message:responseObject[@"errmsg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+            [self disMiss];
+        }
+        
+    }failure:^(NSError *erro){
+        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        [self disMiss];
+    }];
+}
 @end
