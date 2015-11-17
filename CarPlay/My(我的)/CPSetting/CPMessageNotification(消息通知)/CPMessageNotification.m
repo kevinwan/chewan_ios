@@ -21,10 +21,12 @@
     [_soundSwitch setOnImage:[UIImage imageNamed:@"nodistrube.png"]];
     [_soundSwitch setOffImage:[UIImage imageNamed:@"nodistrube_gray.png"]];
     [_soundSwitch addTarget:self action:@selector(soundSwitch:) forControlEvents:UIControlEventTouchUpInside];
+    
 //    _soundSwitch.on = self.isBlocked;
     [_vibrationSwitch setOnImage:[UIImage imageNamed:@"nodistrube.png"]];
     [_vibrationSwitch setOffImage:[UIImage imageNamed:@"nodistrube_gray.png"]];
     [_vibrationSwitch addTarget:self action:@selector(vibrationSwitch:) forControlEvents:UIControlEventTouchUpInside];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -45,6 +47,7 @@
 }
 
 -(void)soundSwitch:(CPMySwitch *) soundSwitch{
+    soundSwitch.on = !soundSwitch.on;
     if ([soundSwitch on]) {
         [ZYUserDefaults setBool:YES forKey:kRemindMessageSound];
     }else
@@ -52,9 +55,16 @@
 }
 
 -(void)vibrationSwitch:(CPMySwitch *) vibrationSwitch{
+    vibrationSwitch.on = !vibrationSwitch.on;
     if ([vibrationSwitch on]) {
         [ZYUserDefaults setBool:YES forKey:kRemindVibration];
     }else
         [ZYUserDefaults setBool:NO forKey:kRemindVibration];
+}
+
+#pragma UITableViewDeletage
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 @end
