@@ -125,8 +125,11 @@
     [super viewDidAppear:animated];
     if (_isIncoming) {
         [self _beginRing];
+    }else{
+        [self _beginRingDuDu];
     }
 }
+
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
@@ -459,7 +462,7 @@
 {
     [_ringPlayer stop];
 
-    NSString *musicPath = [[NSBundle mainBundle] pathForResource:@"callRing" ofType:@"mp3"];
+    NSString *musicPath = [[NSBundle mainBundle] pathForResource:@"CPCallRing" ofType:@"wav"];
     NSURL *url = [[NSURL alloc] initFileURLWithPath:musicPath];
 
     _ringPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
@@ -470,7 +473,29 @@
         [_ringPlayer play]; //播放
     }
 }
+//外呼时候，听筒的声音。暂
+- (void)_beginRingDuDu
+{
+    [_ringPlayer stop];
+    
+    NSString *musicPath = [[NSBundle mainBundle] pathForResource:@"callRingDuDu" ofType:@"mp3"];
+    NSURL *url = [[NSURL alloc] initFileURLWithPath:musicPath];
+    
+    _ringPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+    [_ringPlayer setVolume:1];
+    _ringPlayer.numberOfLoops = -1; //设置音乐播放次数  -1为一直循环
+    if([_ringPlayer prepareToPlay])
+    {
+        [_ringPlayer play]; //播放
+    }
+    
+//    //设置听筒模式
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+    [audioSession setActive:YES error:nil];
 
+    
+}
 - (void)_stopRing
 {
     [_ringPlayer stop];
@@ -668,7 +693,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     }
     
     [self hideHud];
-    [self _stopRing];
+//    [self _stopRing];
     if(error){
         _statusLabel.text = NSLocalizedString(@"call.connectFailed", @"Connect failed");
         [self _insertMessageWithStr:NSLocalizedString(@"call.failed", @"Call failed")];
@@ -700,6 +725,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     }
     else if (callSession.status == eCallSessionStatusAccepted)
     {
+          [self _stopRing];
         if (callSession.connectType == eCallConnectTypeRelay) {
             _statusLabel.text = NSLocalizedString(@"call.speak.relay", @"Can speak...Relay");
         }

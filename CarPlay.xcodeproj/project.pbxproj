@@ -185,7 +185,6 @@
 		6D2ABFC11BCE582100201A8E /* EMVoiceConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6D2ABED71BCE582100201A8E /* EMVoiceConverter.mm */; };
 		6D2ABFC21BCE582100201A8E /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D2ABEDB1BCE582100201A8E /* libopencore-amrnb.a */; };
 		6D2ABFC31BCE582100201A8E /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D2ABEDF1BCE582100201A8E /* libopencore-amrwb.a */; };
-		6D2ABFC41BCE582100201A8E /* callRing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6D2ABEE21BCE582100201A8E /* callRing.mp3 */; };
 		6D2ABFC51BCE582100201A8E /* CallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2ABEE41BCE582100201A8E /* CallViewController.m */; };
 		6D2ABFC61BCE582100201A8E /* ChatListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2ABEE81BCE582100201A8E /* ChatListCell.m */; };
 		6D2ABFC71BCE582100201A8E /* ChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2ABEEA1BCE582100201A8E /* ChatListViewController.m */; };
@@ -612,6 +611,8 @@
 		EECA0F111BECFAC00029F2D2 /* CPBRPGViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EECA0F0E1BECFAC00029F2D2 /* CPBRPGViewController.storyboard */; };
 		EECA0F141BF5DF9A0029F2D2 /* chat_sender_woman_bg_high@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EECA0F121BF5DF990029F2D2 /* chat_sender_woman_bg_high@2x.png */; };
 		EECA0F151BF5DF9A0029F2D2 /* chat_sender_woman_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EECA0F131BF5DF9A0029F2D2 /* chat_sender_woman_bg@2x.png */; };
+		EECA0F171BF9E7D00029F2D2 /* CPCallRing.wav in Resources */ = {isa = PBXBuildFile; fileRef = EECA0F161BF9E7D00029F2D2 /* CPCallRing.wav */; };
+		EECA0F191BFAC1F20029F2D2 /* callRingDuDu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EECA0F181BFAC1F20029F2D2 /* callRingDuDu.mp3 */; };
 		EED47E921BE7679000BC2DBC /* nodistrube_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EED47E8E1BE7679000BC2DBC /* nodistrube_gray@2x.png */; };
 		EED47E931BE7679000BC2DBC /* nodistrube_gray@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EED47E8F1BE7679000BC2DBC /* nodistrube_gray@3x.png */; };
 		EED47E941BE7679000BC2DBC /* nodistrube@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EED47E901BE7679000BC2DBC /* nodistrube@2x.png */; };
@@ -973,7 +974,6 @@
 		6D2ABEDD1BCE582100201A8E /* dec_if.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dec_if.h; sourceTree = "<group>"; };
 		6D2ABEDE1BCE582100201A8E /* if_rom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = if_rom.h; sourceTree = "<group>"; };
 		6D2ABEDF1BCE582100201A8E /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrwb.a"; sourceTree = "<group>"; };
-		6D2ABEE21BCE582100201A8E /* callRing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = callRing.mp3; sourceTree = "<group>"; };
 		6D2ABEE31BCE582100201A8E /* CallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallViewController.h; sourceTree = "<group>"; };
 		6D2ABEE41BCE582100201A8E /* CallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallViewController.m; sourceTree = "<group>"; };
 		6D2ABEE71BCE582100201A8E /* ChatListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListCell.h; sourceTree = "<group>"; };
@@ -1646,6 +1646,8 @@
 		EECA0F0E1BECFAC00029F2D2 /* CPBRPGViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPBRPGViewController.storyboard; sourceTree = "<group>"; };
 		EECA0F121BF5DF990029F2D2 /* chat_sender_woman_bg_high@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_sender_woman_bg_high@2x.png"; sourceTree = "<group>"; };
 		EECA0F131BF5DF9A0029F2D2 /* chat_sender_woman_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_sender_woman_bg@2x.png"; sourceTree = "<group>"; };
+		EECA0F161BF9E7D00029F2D2 /* CPCallRing.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = CPCallRing.wav; sourceTree = "<group>"; };
+		EECA0F181BFAC1F20029F2D2 /* callRingDuDu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = callRingDuDu.mp3; sourceTree = "<group>"; };
 		EED47E8E1BE7679000BC2DBC /* nodistrube_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nodistrube_gray@2x.png"; sourceTree = "<group>"; };
 		EED47E8F1BE7679000BC2DBC /* nodistrube_gray@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nodistrube_gray@3x.png"; sourceTree = "<group>"; };
 		EED47E901BE7679000BC2DBC /* nodistrube@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nodistrube@2x.png"; sourceTree = "<group>"; };
@@ -2533,7 +2535,8 @@
 		6D2ABEE11BCE582100201A8E /* Call */ = {
 			isa = PBXGroup;
 			children = (
-				6D2ABEE21BCE582100201A8E /* callRing.mp3 */,
+				EECA0F161BF9E7D00029F2D2 /* CPCallRing.wav */,
+				EECA0F181BFAC1F20029F2D2 /* callRingDuDu.mp3 */,
 				6D2ABEE31BCE582100201A8E /* CallViewController.h */,
 				6D2ABEE41BCE582100201A8E /* CallViewController.m */,
 			);
@@ -4388,11 +4391,11 @@
 				6D2AC1711BCE5A5100201A8E /* titleBar.png in Resources */,
 				6D2AC1171BCE5A5100201A8E /* chatBar_textBg@2x.png in Resources */,
 				6BD61A4A1BECA99400A4589B /* CPModifyPassword.storyboard in Resources */,
+				EECA0F171BF9E7D00029F2D2 /* CPCallRing.wav in Resources */,
 				6B153EFD1BB5692500560935 /* CPMyViewController.storyboard in Resources */,
 				E31B12EA1BB9311700B51696 /* PhotoItemView.xib in Resources */,
 				6D2AC15A1BCE5A5100201A8E /* chat_receiver_audio_playing_full@2x.png in Resources */,
 				6D2AC17D1BCE5A5100201A8E /* tabbar_chats.png in Resources */,
-				6D2ABFC41BCE582100201A8E /* callRing.mp3 in Resources */,
 				6D2AC1661BCE5A5100201A8E /* chat_sender_audio_playing_full@2x.png in Resources */,
 				6D2AC1441BCE5A5100201A8E /* chatBar_more_camera.png in Resources */,
 				6BD61A201BEB594300A4589B /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
@@ -4464,6 +4467,7 @@
 				6D7F6FE61BD5EF6E00945F1B /* chat_receiver_audio_playing002@3x.png in Resources */,
 				6D2AD8D21BCF72A30099CFD7 /* SubscribeAdmin@3x.png in Resources */,
 				6BE2E61A1BC67CB000D1D928 /* CPMatching.storyboard in Resources */,
+				EECA0F191BFAC1F20029F2D2 /* callRingDuDu.mp3 in Resources */,
 				6BD61A181BEB594300A4589B /* UMShareEditViewControlleriPad.xib in Resources */,
 				6BD61A121BEB594300A4589B /* UMSocialLocalizable.strings in Resources */,
 				6D2AC13E1BCE5A5100201A8E /* chatBar_colorMore_photo@2x.png in Resources */,
