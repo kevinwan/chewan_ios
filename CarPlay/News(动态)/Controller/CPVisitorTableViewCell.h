@@ -18,12 +18,13 @@
 @interface CPVisitorTableViewCell : UITableViewCell
 
 @property (nonatomic, strong)CPSexView   *sexView;
+
 //添加车的认证图标
 @property (nonatomic, strong)UIImageView *carAuthIV;
-
-@property (nonatomic, strong)UIImageView *headIV;
 //添加头像认证图标
 @property (nonatomic, strong)UIImageView *phohtAuthIV;
+
+@property (nonatomic, strong)UIImageView *headIV;
 @property (nonatomic, strong) UILabel    *nameLabel;
 @property (nonatomic, strong) UILabel    *distanceLabel;
 @property (nonatomic, strong) UILabel    *timeLabel;

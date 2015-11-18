@@ -279,6 +279,19 @@
         cell.sexView.gender = [dic objectForKey:@"gender"];
         cell.distanceLabel.text =[self getDidstanceStrWithDistance:[[dic objectForKey:@"distance"] integerValue]];
         [cell.inviteBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        if ([[dic objectForKey:@"photoAuthStatus"] isEqualToString:@"认证通过"]) {
+            cell.phohtAuthIV.hidden = NO;
+        }else{
+            cell.phohtAuthIV.hidden = YES;
+        }
+        
+        if ([[dic objectForKey:@"licenseAuthStatus"] isEqualToString:@"认证通过"]) {
+            cell.carAuthIV.hidden = NO;
+            [cell.carAuthIV zySetImageWithUrl:[[dic objectForKey:@"car"] objectForKey:@"logo"] placeholderImage:nil];
+        }else{
+            cell.carAuthIV.hidden = YES;
+        }
+
         /*
          inviteStatus        当前登录用户 邀请 该用户的 状态；
          0 没有邀请过           1 邀请中

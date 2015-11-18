@@ -25,6 +25,11 @@
 @property (nonatomic, strong) UIButton    *inviteBtn;
 @property (nonatomic, strong) UIButton   *SendMessageBtn;
 @property (nonatomic, strong) UIButton   *TelBtn;
+//添加车的认证图标
+@property (nonatomic, strong)UIImageView *carAuthIV;
+//添加头像认证图标
+@property (nonatomic, strong)UIImageView *phohtAuthIV;
+
 @property (nonatomic, assign) id<GroupDetailDelegeta>delegate;
 
 @end

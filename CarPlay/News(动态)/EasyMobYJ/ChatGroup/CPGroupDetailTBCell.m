@@ -22,7 +22,15 @@
         _headIV.layer.cornerRadius = 25;
         [_headIV.layer setMasksToBounds:YES];
         [self.contentView addSubview:_headIV];
-
+        
+        _phohtAuthIV = [[UIImageView alloc] initWithFrame:CGRectMake(10+50-15, 10+50-18 , 18, 18)];
+        _phohtAuthIV.backgroundColor = [UIColor clearColor];
+        _phohtAuthIV.layer.cornerRadius = 9;
+        _phohtAuthIV.image = [UIImage imageNamed:@"photo_auto_yes"];
+        [_phohtAuthIV.layer setMasksToBounds:YES];
+        [self.contentView addSubview:_phohtAuthIV];
+        
+        
         _nameLabel = [[UILabel alloc] init];
         _nameLabel.frame = CGRectMake(CGRectGetMaxX(_headIV.frame)+10, 17, 120, 16);
         _nameLabel.backgroundColor = [UIColor clearColor];
@@ -30,6 +38,11 @@
         _nameLabel.textAlignment = NSTextAlignmentLeft;
         _nameLabel.font = [UIFont systemFontOfSize:17];
         [self.contentView addSubview:_nameLabel];
+        
+        //车主认证
+        _carAuthIV = [[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_nameLabel.frame), 17, 18, 18)];
+        _carAuthIV.backgroundColor = [UIColor clearColor];
+        [self.contentView addSubview:_carAuthIV];
         
         _sexView = [[CPSexView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_headIV.frame)+10, CGRectGetMaxY(_nameLabel.frame)+10, 45, 17)];
         [self.contentView addSubview:_sexView];
@@ -94,6 +107,13 @@
 - (void)layoutSubviews{
     [super layoutSubviews];
     [self setClipsToBounds:YES];
+    UIFont *font = [UIFont systemFontOfSize:17];
+    CGSize size = CGSizeMake(320,2000);
+    CGSize labelsize = [self.nameLabel.text sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeCharacterWrap];
+    //    self.timeLabel.frame = CGRectMake(0.0, 12.0, labelsize.width+20, 18 );
+    _nameLabel.width = labelsize.width;
+    _carAuthIV.x = CGRectGetMaxX(_nameLabel.frame)+10;
+
 
 }
 - (void)awakeFromNib {
