@@ -25,8 +25,8 @@
 #import "CPAlbum.h"
 #import "SDPhotoBrowser.h"
 #import "PhotoBroswerVC.h"
-
-@interface CPMyViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate, UzysAssetsPickerControllerDelegate, UIAlertViewDelegate,UINavigationControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,SDPhotoBrowserDelegate>
+#import "UMSocial.h"
+@interface CPMyViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate, UzysAssetsPickerControllerDelegate, UIAlertViewDelegate,UINavigationControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,SDPhotoBrowserDelegate,UMSocialUIDelegate>
 {
     CPUser *user;
     SDPhotoBrowser *browser;
@@ -206,6 +206,27 @@
 
 //我的关注
 - (IBAction)myAttentionBtnClick:(id)sender {
+    
+    /***
+    //test1117 暂时借用一下这个地方做测试
+    //导入头文件和代理
+    //UMShareToWechatTimeline
+    //设置点击时候的跳转链接
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = @"http://baidu.com";
+    //    [UMSocialData defaultData].extConfig.wechatTimelineData.url = @"http://baidu.com";
+    //设置title
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = @"title，这是我测试的";
+    //    [UMSocialData defaultData].extConfig.wechatTimelineData.title = @"微信朋友圈title";
+    
+    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:@"分享测试的文字内容" image:nil location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
+        if (response.responseCode == UMSResponseCodeSuccess) {
+            NSLog(@"分享成功！");
+        }
+    }];
+
+    return;
+    ***/
+    
     CPMyCareController *myCareVC = [UIStoryboard storyboardWithName:@"CPMyCareController" bundle:nil].instantiateInitialViewController;
     [self.navigationController pushViewController:myCareVC animated:YES];
 }
