@@ -21,6 +21,7 @@
         if ([subview isKindOfClass:[UIButton class]] && subview.frame.origin.x < self.frame.size.width * 0.5) {
             subview.x = 10;
         }
+        // 调整右侧按钮
 //        else if ([subview isKindOfClass:[UIButton class]] && subview.frame.origin.x > self.frame.size.width * 0.5){
 //            subview.x = self.width - subview.width - 10;
 //        }

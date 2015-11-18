@@ -108,8 +108,8 @@
         self.lineViewCons2.constant = 0;
         self.extraTitleHCons.constant = 0;
     }
-//    self.openDescButton.hidden = !model.desc.trimLength;
-//    self.openExtraButton.hidden = !model.extraDesc.trimLength;
+    
+    // 设置文本属性 行间距
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle setLineSpacing:7];
     self.activityPathLabel.attributedText = [[NSAttributedString alloc] initWithString:model.desc attributes:@{NSParagraphStyleAttributeName : paragraphStyle}];
@@ -127,6 +127,7 @@
 - (IBAction)activityPathClick:(UIButton *)sender {
     sender.selected = !sender.isSelected;
     
+    // 根据按钮状态计算文本高度,调整约束
     if (sender.isSelected) {
         CGSize contentSize = [self.activityPathLabel.attributedText boundingRectWithSize:CGSizeMake(ZYScreenWidth - 20, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
         self.activityPathLCons.constant = contentSize.height + 2;
@@ -176,7 +177,7 @@
 - (IBAction)loadMoreButtonClick:(CPLoadingButton *)sender {
     [sender startLoading];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    ZYAfter(1.0, ^{
         [sender stopLoading];
         [self superViewWillRecive:CPActivityDetailLoadMoreKey info:nil];
     });

@@ -49,6 +49,7 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
 
     CPMatchingResultController *nearVc5 = [[CPMatchingResultController alloc] init];
     [self addChildVc:nearVc5 title:@"匹配结果" image:@"MineUnSelect" selectedImage:@"MineSelect"];
+    
     // 2.更换系统自带的tabbar
     CPTabBar *tabBar = [[CPTabBar alloc] init];
     tabBar.frame = self.tabBar.bounds;

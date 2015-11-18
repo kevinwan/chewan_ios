@@ -46,6 +46,11 @@ static NSString *ID = @"memberIconCell";
             [self superViewWillRecive:CPClickUserIcon info:_model.userId];
         }
     }];
+    
+    if (ZYScreenWidth == 320.0){
+        self.nicknameLabel.font = ZYFont12;
+    }
+    
     [self.iconView addGestureRecognizer:tap];
     [self.contentView addSubview:self.msgButton];
     [self.contentView addSubview:self.phoneBtn];
@@ -128,8 +133,10 @@ static NSString *ID = @"memberIconCell";
     }
     
     if ([model.licenseAuthStatus isEqualToString:@"认证未通过"]) {
-        [self.carView setImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
+        self.carView.hidden = YES;
+//        [self.carView setImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
     }else{
+        self.carView.hidden = NO;
         [self.carView zySetImageWithUrl:model.car.logo placeholderImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
     }
     
@@ -218,6 +225,7 @@ static NSString *ID = @"memberIconCell";
         self.msgButton.hidden = YES;
     }
     
+    // 刷新collectionView
     [self.partnersView reloadData];
 }
 
@@ -272,7 +280,7 @@ static NSString *ID = @"memberIconCell";
     return _phoneBtn;
 }
 
-- (UIScrollView *)partnersView
+- (UICollectionView *)partnersView
 {
     if (_partnersView == nil) {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];

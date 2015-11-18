@@ -17,4 +17,9 @@
 
 @property (nonatomic, strong)UIView *selectdView;
 
+//添加头像认证图标
+@property (nonatomic, strong)UIImageView *phohtAuthIV;
+//添加车的认证图标
+@property (nonatomic, strong)UIImageView *carAuthIV;
+
 @end

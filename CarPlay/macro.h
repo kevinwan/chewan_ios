@@ -9,7 +9,7 @@
 #ifndef malco_h
 #define malco_h
 
-//// 正式服务器接口地址
+// 正式服务器接口地址
 //#define BASE_URL @"http://chewanapi.gongpingjia.com/v2/"
 ////环信的key和推送证书，同样是正式服务器中的
 //#define Easy_Mob_Key @"gongpingjia#chewanapi"

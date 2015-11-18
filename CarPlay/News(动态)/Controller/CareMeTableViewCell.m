@@ -24,6 +24,12 @@
         _headIV.layer.cornerRadius = 25;
         [_headIV.layer setMasksToBounds:YES];
         [self.contentView addSubview:_headIV];
+        _phohtAuthIV = [[UIImageView alloc] initWithFrame:CGRectMake(10+50-15, 10+50-18 , 18, 18)];
+        _phohtAuthIV.backgroundColor = [UIColor clearColor];
+        _phohtAuthIV.layer.cornerRadius = 9;
+        _phohtAuthIV.image = [UIImage imageNamed:@"photo_auto_yes"];
+        [_phohtAuthIV.layer setMasksToBounds:YES];
+        [self.contentView addSubview:_phohtAuthIV];
         
         _nameLabel = [[UILabel alloc] init];
         _nameLabel.frame = CGRectMake(CGRectGetMaxX(_headIV.frame)+10, 27, 60, 16);
@@ -35,6 +41,10 @@
         
         _sexView = [[CPSexView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_nameLabel.frame)+5, 27, 45, 17)];
         [self.contentView addSubview:_sexView];
+        _carAuthIV = [[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_sexView.frame), 27, 18, 18)];
+        _carAuthIV.backgroundColor = [UIColor clearColor];
+        [self.contentView addSubview:_carAuthIV];
+        
         
         _timeLabel = [[UILabel alloc] init];
         _timeLabel.frame = CGRectMake(kDeviceWidth-10-80, 20, 80, 9);
@@ -79,6 +89,8 @@
     //    self.timeLabel.frame = CGRectMake(0.0, 12.0, labelsize.width+20, 18 );
     _nameLabel.width = labelsize.width;
     _sexView.x = CGRectGetMaxX(_nameLabel.frame)+10;
+    _carAuthIV.x = CGRectGetMaxX(_sexView.frame)+10;
+
     _selectdView.frame = self.contentView.frame;
 
 }

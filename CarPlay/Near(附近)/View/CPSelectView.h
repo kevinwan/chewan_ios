@@ -4,7 +4,7 @@
 //
 //  Created by chewan on 10/12/15.
 //  Copyright © 2015 chewan. All rights reserved.
-//
+//  筛选视图
 
 #import <UIKit/UIKit.h>
 #import "CPSelectModel.h"

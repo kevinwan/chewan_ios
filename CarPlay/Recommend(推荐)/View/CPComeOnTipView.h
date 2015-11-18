@@ -4,7 +4,7 @@
 //
 //  Created by chewan on 10/20/15.
 //  Copyright © 2015 chewan. All rights reserved.
-//
+//  展示邀她同去的View
 
 #import <UIKit/UIKit.h>
 #import "CPRecommendModel.h"
