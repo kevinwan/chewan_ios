@@ -107,6 +107,8 @@
     // 3.设置frame
     startButton.size = CGSizeMake(self.view.width * 0.5, 50);
     startButton.centerX = self.view.middleX;
+    
+    // 微调按钮位置
     if (iPhone4){
         startButton.y = self.view.height - 80;
     }else{

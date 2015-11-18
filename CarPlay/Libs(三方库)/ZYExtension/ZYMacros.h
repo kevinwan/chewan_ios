@@ -35,5 +35,5 @@
 
 #define ZYWeakSelf     @weakify(self);   // 防止block循环引用
 #define ZYStrongSelf   @strongify(self); // 恢复self
-#define ZYKeyWindow    (UIWindow *)([UIApplication sharedApplication].windows.lastObject)
+#define ZYKeyWindow    (UIWindow *)([UIApplication sharedApplication].windows.lastObject) // 程序的主窗口
 #endif

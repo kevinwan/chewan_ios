@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    // 利用kvc对readonly的属性进行赋值 自定义navigationBar
+    // 利用kvc对readonly的属性进行赋值 自定义navigationBar
     [self setValue:[[CPNavigationBar alloc] init] forKey:@"navigationBar"];
     
     self.navigationBar.barTintColor = [UIColor whiteColor];
@@ -46,6 +46,12 @@
     [bar setTitleTextAttributes:textAttr];
 }
 
+/**
+ *  自动添加右侧返回按钮
+ *
+ *  @param viewController push出的controller
+ *  @param animated       是否动画
+ */
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     if (self.viewControllers.count > 0) {

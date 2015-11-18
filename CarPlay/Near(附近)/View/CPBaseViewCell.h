@@ -10,7 +10,7 @@
 #import "CPActivityModel.h"
 #import "CPMyDateModel.h"
 #import "CPIntersterModel.h"
-
+// 用于事件交互的key
 #define CameraBtnClickKey   @"CameraBtnClickKey"
 #define PhotoBtnClickKey    @"PhotoBtnClickKey"
 #define DateBtnClickKey     @"DateBtnClickKey"
@@ -22,6 +22,7 @@
 #define TitleLabelClickKey    @"TitleLabelClickKey"
 @interface CPBaseViewCell : UIView
 @property (nonatomic, strong) NSIndexPath *indexPath;
+// 设置不同类型的model
 @property (nonatomic, strong) CPActivityModel *model;
 @property (nonatomic, strong) CPMyDateModel *myDateModel;
 @property (nonatomic, strong) CPIntersterModel *intersterModel;

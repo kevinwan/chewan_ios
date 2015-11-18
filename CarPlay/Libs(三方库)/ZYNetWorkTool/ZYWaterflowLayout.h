@@ -4,7 +4,7 @@
 //
 //  Created by apple on 14/12/4.
 //  Copyright (c) 2014年 suzhaoyun. All rights reserved.
-//
+//  瀑布流布局
 
 #import <UIKit/UIKit.h>
 @class ZYWaterflowLayout;

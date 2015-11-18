@@ -82,9 +82,11 @@
         self.maleLabel.hidden = YES;
         self.female.hidden = YES;
         self.femaleLabel.hidden = YES;
+        
+        // 富文本拼接图片
         NSTextAttachment *attachMent = [[NSTextAttachment alloc] init];
         attachMent.image = [UIImage imageNamed:@"icon_person_gray"];
-        attachMent.bounds = CGRectMake(0, -4, 16,16 );
+        attachMent.bounds = CGRectMake(0, -4, 16, 16);
         NSAttributedString *attr = [NSAttributedString attributedStringWithAttachment:attachMent];
         NSMutableAttributedString *partNum = [[NSMutableAttributedString alloc] init];
         [partNum appendAttributedString:attr];
@@ -139,6 +141,11 @@
     }
 }
 
+/**
+ *  展开详细文本
+ *
+ *  @param sender 展开按钮
+ */
 - (IBAction)openDetailLabel:(UIButton *)sender {
     NSMutableParagraphStyle *paragraphStyle1 = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle1 setLineSpacing:7];
@@ -151,7 +158,11 @@
     }
     
     self.height = 692 + self.descHCons.constant - 109 + ZYScreenWidth / 64.0 * 30.0 - 150;
+    
+    // 强制布局
     [self layoutIfNeeded];
+    
+    // 通知控制器
     [self superViewWillRecive:CPActivityDetailHeaderDetailOpenKey info:nil];
 }
 

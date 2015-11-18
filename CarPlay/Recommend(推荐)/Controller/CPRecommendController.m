@@ -96,7 +96,7 @@ static NSString *ID = @"RecommentCell";
 //        params[@"province"] = @"北京";
 //        params[@"city"] = @"北京";
     //    params[@"district"] = [ZYUserDefaults stringForKey:District];
-    
+    // 过滤省市
     NSString *province = [[ZYUserDefaults stringForKey:Province] stringByReplacingOccurrencesOfString:@"省" withString:@""];
     province = [province stringByReplacingOccurrencesOfString:@"市" withString:@""];
     NSString *city = [[ZYUserDefaults stringForKey:City] stringByReplacingOccurrencesOfString:@"市" withString:@""];

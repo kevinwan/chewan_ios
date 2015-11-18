@@ -7,7 +7,6 @@
 //
 
 #import "CPActivityModel.h"
-#import "NSObject+Copying.h"
 
 @implementation CPActivityModel
 

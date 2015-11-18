@@ -93,15 +93,6 @@
     }
     
     [self.addressView setTitle:detail forState:UIControlStateNormal];
-
-//    CGFloat w = [detail sizeWithFont:ZYFont10].width;
-//    self.addressView.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, w - 20);
-//    if (iPhone4) {
-//        
-//    }else{
-//        
-//        self.addressView.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 6);
-//    }
 }
 
 #pragma mark - 加载视图
@@ -131,6 +122,9 @@
     
 }
 
+/**
+ *  设置自动布局
+ */
 - (void)beginLayout
 {
     [self.tipLabel mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -142,6 +142,8 @@ static NSString *ID = @"partCell";
     self.footerView.model = self.model;
     self.footerView.officialActivityId = self.officialActivityId;
     self.tableView.tableFooterView = self.footerView;
+    
+    // 根据状态切换按钮
     if (_model.isMember){
         if (_model.price) {
             self.comePartButton.hidden = YES;
@@ -230,6 +232,9 @@ static NSString *ID = @"partCell";
     }
 }
 
+/**
+ *  报名官方活动
+ */
 - (void)joinOfficeActivity
 {
     CPGoLogin(@"报名官方活动");

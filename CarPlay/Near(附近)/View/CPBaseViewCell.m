@@ -294,11 +294,11 @@
     }
     
     if ([model.organizer.licenseAuthStatus isEqualToString:@"认证通过"]) {
-        
+        self.carView.hidden = NO;
         [self.carView zySetImageWithUrl:model.organizer.car.logo placeholderImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
     }else{
-        
-        [self.carView setImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
+        self.carView.hidden = YES;
+//        [self.carView setImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
     }
     // 上传相册的View
     if (isHasAlubm && CPIsLogin) {
@@ -406,9 +406,11 @@
         [self.authView setImage:[UIImage imageNamed:@"未认证-审核中"] forState:UIControlStateNormal];
     }
     if ([myDateModel.applicant.licenseAuthStatus isEqualToString:@"认证通过"]) {
+        self.carView.hidden = NO;
         [self.carView zySetImageWithUrl:myDateModel.applicant.car.logo placeholderImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
     }else{
-        [self.carView setImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
+        self.carView.hidden = YES;
+//        [self.carView setImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
     }
     if (isHasAlubm && CPIsLogin) {
         self.tipView.hidden = YES;
@@ -512,9 +514,11 @@
     }
     
     if ([intersterModel.user.licenseAuthStatus isEqualToString:@"认证通过"]) {
+        self.carView.hidden = NO;
         [self.carView zySetImageWithUrl:intersterModel.user.car.logo placeholderImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
     }else{
-        [self.carView setImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
+        self.carView.hidden = YES;
+//        [self.carView setImage:[UIImage imageNamed:@"车主未认证"] forState:UIControlStateNormal];
     }
     if (isHasAlubm && CPIsLogin) {
         self.tipView.hidden = YES;

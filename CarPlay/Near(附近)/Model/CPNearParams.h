@@ -4,7 +4,7 @@
 //
 //  Created by chewan on 10/13/15.
 //  Copyright © 2015 chewan. All rights reserved.
-//
+//  附近页面请求参数
 
 #import <Foundation/Foundation.h>
 

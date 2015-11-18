@@ -44,6 +44,8 @@
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = _tabVc;
     [self.window makeKeyAndVisible];
+    
+    // 监听登录状态
     [ZYNotificationCenter addObserver:self selector:@selector(loginStateChang) name:NOTIFICATION_HASLOGIN object:nil];
     [ZYNotificationCenter addObserver:self selector:@selector(goLogin) name:NOTIFICATION_GOLOGIN object:nil];
     [ZYNotificationCenter addObserver:self selector:@selector(loginOut) name:NOTIFICATION_LOGINOUT object:nil];

@@ -4,7 +4,7 @@
 //
 //  Created by chewan on 10/30/15.
 //  Copyright © 2015 chewan. All rights reserved.
-//
+//  AF的图片加载框架
 
 #import <UIKit/UIKit.h>
 
