@@ -19,10 +19,11 @@
 #import "CallViewController.h"
 #import "ChatViewController.h"
 #import "CPMatchingResultController.h"
+#import "SDWebImageManager.h"
 
 static const CGFloat kDefaultPlaySoundInterval = 3.0;
 
-@interface CPTabBarController () <CPTabBarDelegate>
+@interface CPTabBarController () <CPTabBarDelegate,UIAlertViewDelegate>
 @property (strong, nonatomic) NSDate *lastPlaySoundDate;
 
 @end
@@ -532,7 +533,36 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
         [alertView show];
     } onQueue:nil];
 }
+#pragma mark UIAlertview delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 100) {
+        //异地登录提示
+        if (buttonIndex == alertView.cancelButtonIndex) {
+            //这里要完成所有的退出的操作
+            [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES completion:^(NSDictionary *info, EMError *error) {
+                if (error) {
+                    [self showInfo:@"退出失败，请稍后重试"];
+                }
+                else{
+                    //注销成功之后清理useid和token
+                    
+                    [ZYUserDefaults setObject:nil forKey:Token];
+                    [ZYUserDefaults setObject:nil forKey:UserId];
+                    
+                    // 清楚图片缓存和筛选条件
+                    [[NSFileManager defaultManager] removeItemAtPath:CPSelectModelFilePath error:NULL];
+                    [[SDImageCache sharedImageCache]  clearMemory];
+                    [[SDImageCache sharedImageCache] cleanDisk];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"DID_LOG_OUT_SUCCESS" object:nil];
+                }
+            } onQueue:nil];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_GOLOGIN object:nil userInfo:nil];
 
+        }
+    }
+}
 - (void)dealloc
 {
     [self unregisterNotifications];
