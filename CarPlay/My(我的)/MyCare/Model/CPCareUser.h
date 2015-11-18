@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CPUser.h"
 
 @interface CPCareUser : NSObject
 
@@ -28,6 +29,12 @@
 // 距离
 @property (nonatomic,assign) NSInteger distance;
 
+// 头像认证状态
+@property (nonatomic,copy) NSString *photoAuthStatus;
 
+// 车主认证状态
+@property (nonatomic,copy) NSString *licenseAuthStatus;
 
+//用户的车辆信息
+@property (nonatomic, strong) CPCar *car;
 @end

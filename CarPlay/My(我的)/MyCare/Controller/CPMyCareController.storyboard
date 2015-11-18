@@ -170,6 +170,7 @@
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="PQC-mt-ACA"/>
+                                                        <constraint firstAttribute="width" constant="32" id="QWJ-XP-cjd"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -227,7 +228,7 @@
                                                         <action selector="chat:" destination="725-rp-g56" eventType="touchUpInside" id="LwE-0V-5RC"/>
                                                     </connections>
                                                 </button>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bTd-b7-AkD">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo_auto_yes.png" translatesAutoresizingMaskIntoConstraints="NO" id="bTd-b7-AkD">
                                                     <rect key="frame" x="45" y="42" width="18" height="18"/>
                                                     <animations/>
                                                     <constraints>
@@ -235,7 +236,7 @@
                                                         <constraint firstAttribute="width" constant="18" id="k2a-Lv-Qbo"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Skr-Bx-zf6">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Skr-Bx-zf6">
                                                     <rect key="frame" x="112" y="15" width="18" height="18"/>
                                                     <animations/>
                                                     <constraints>
@@ -278,8 +279,11 @@
                                             <outlet property="chatBtn" destination="10b-pI-ZFM" id="TrL-zq-wFd"/>
                                             <outlet property="distance" destination="g5p-K1-x6g" id="mT9-lb-hl3"/>
                                             <outlet property="genderAndAge" destination="Ywe-x1-NEp" id="fGI-iH-AxS"/>
+                                            <outlet property="licenseAuthStatus" destination="Skr-Bx-zf6" id="gjN-ws-pj5"/>
+                                            <outlet property="nickNameWidth" destination="QWJ-XP-cjd" id="4Op-TT-KjI"/>
                                             <outlet property="nickname" destination="xjy-I4-9FU" id="fSd-nI-uhv"/>
                                             <outlet property="phoneBtn" destination="uXq-RT-ihb" id="d8w-kA-wSl"/>
+                                            <outlet property="photoAuthStatus" destination="bTd-b7-AkD" id="NJd-2c-ApE"/>
                                             <outlet property="subscribeBtn" destination="bpF-oV-3Cb" id="yb0-0k-K4z"/>
                                         </connections>
                                     </tableViewCell>
@@ -326,6 +330,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="photo_auto_yes.png" width="18" height="18"/>
         <image name="互相关注" width="20" height="16"/>
         <image name="女" width="40" height="15"/>
         <image name="电话" width="15" height="21"/>

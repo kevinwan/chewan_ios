@@ -41,8 +41,6 @@
     [self.headImg.layer setCornerRadius:50.0];
     [self.headStatus.layer setMasksToBounds:YES];
     [self.headStatus.layer setCornerRadius:11.0];
-//    self.noImgView.alpha=0.35;
-//    [self.noImgView setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.35]];
    
     [self.albumsCollectionView registerNib:[UINib nibWithNibName:@"CPCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
     [self.albumsCollectionView registerNib:[UINib nibWithNibName:@"CPCollectionViewCell1" bundle:nil] forCellWithReuseIdentifier:@"cell1"];
@@ -146,9 +144,8 @@
     [self.albumsCollectionView reloadData];
     
     if (user.subscribeFlag) {
-        [self.attentionBtn setTitle:@"已关注" forState:UIControlStateNormal];
+        [self.attentionBtn setTitle:@"取消关注" forState:UIControlStateNormal];
         [self.attentionBtn setBackgroundColor:[Tools getColor:@"dddddd"]];
-        [self.attentionBtn setEnabled:NO];
     }
     [allAlbumsUrl removeAllObjects];
     for (CPAlbum *album in user.album) {
