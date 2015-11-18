@@ -49,12 +49,17 @@ static NSString *ID = @"cell";
         return;
     }
     
+    // 初始化cell图片在不同屏幕下的差值
     self.offset = (ZYScreenWidth - 20) * 5.0 / 6.0 - 250;
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithNorImage:nil higImage:nil title:@"筛选" target:self action:@selector(filter)];
     [self.view addSubview:self.tableView];
+    
+    // 加载提示条view
     [self tipView];
+    
+    // 加载数据
     [self refreshData];
 }
 
@@ -126,7 +131,7 @@ static NSString *ID = @"cell";
             
             [self.tableView setContentOffset:CGPointMake(self.tableView.contentOffsetX, -44 - self.tableView.contentInsetTop) animated:YES];
         });
-        
+        // 清空忽略数据
         self.params.ignore = 0;
         [self loadDataWithHeader:v];
     }];
@@ -166,7 +171,7 @@ static NSString *ID = @"cell";
     }
     
     [ZYNetWorkTool getWithUrl:@"activity/list" params:params success:^(id responseObject) {
-        
+        // 停止刷新
         [refresh stopIndicatorAnimation];
         if (CPSuccess) {
             DLog(@"%@",responseObject);
@@ -178,6 +183,8 @@ static NSString *ID = @"cell";
             [self.datas addObjectsFromArray:arr];
             
             [self setUpRefresh];
+            
+            // 判断有无数据
             if (self.datas.count == 0) {
                 self.noDataView.netWorkFailtype = NO;
                 self.noDataView.hidden = NO;
@@ -195,6 +202,7 @@ static NSString *ID = @"cell";
     } failure:^(NSError *error) {
         
         [self setUpRefresh];
+        // 加载失败
         self.params.ignore -= CPPageNum;
         [refresh stopIndicatorAnimation];
         self.noDataView.netWorkFailtype = NO;
@@ -224,6 +232,7 @@ static NSString *ID = @"cell";
  */
 -(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {
+    // 取消iPhone4的分页效果
     if (iPhone4) {
         return;
     }
@@ -338,6 +347,7 @@ static NSString *ID = @"cell";
 //上传图片
 - (void)addPhoto:(NSArray *)arr
 {
+    // 多图上传
     NSString *path=[[NSString alloc]initWithFormat:@"user/%@/album/upload?token=%@",[Tools getUserId],[Tools getToken]];
     [self showLoading];
     __block NSUInteger count = 0;
@@ -404,6 +414,7 @@ static NSString *ID = @"cell";
     [CPNetWorkTool postJsonWithUrl:url params:params success:^(id responseObject) {
         if (CPSuccess) {
             [self showInfo:@"邀请已发出"];
+            // 更新邀请状态
             model.applyFlag = 1;
             [self.tableView reloadData];
         }else if ([CPErrorMsg contains:@"申请中"]){

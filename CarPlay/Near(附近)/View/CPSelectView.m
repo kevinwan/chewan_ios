@@ -153,6 +153,8 @@
     if ([self.lastSexbtn.currentTitle isDiffToString:@"不限"]){
         model.sex = self.lastSexbtn.currentTitle;
     }
+    
+    // 进行类型匹配
     if ([self.lastTypebtn.currentTitle isDiffToString:@"运动"] && [self.lastTypebtn.currentTitle isDiffToString:@"遛狗"] && [self.lastTypebtn.currentTitle isDiffToString:@"购物"]) {
         
         model.pay = self.lastPaybtn.currentTitle;
@@ -180,6 +182,8 @@
     self.lastTypebtn.selected = NO;
     sender.selected = YES;
     self.lastTypebtn = sender;
+    
+    // 修改View的高度
     if ([sender.currentTitle isEqualToString:@"运动"] || [sender.currentTitle isEqualToString:@"遛狗"] ||[sender.currentTitle isEqualToString:@"购物"] ||
         [sender.currentTitle isEqualToString:@"不限"]) {
         self.payViewHCons.constant = 0;

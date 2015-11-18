@@ -4,7 +4,7 @@
 //
 //  Created by 朱建伟 on 15/10/15.
 //  Copyright © 2015年 zjw. All rights reserved.
-//
+//  暖男哥们建伟给写的collection布局
 
 #import <UIKit/UIKit.h>
 

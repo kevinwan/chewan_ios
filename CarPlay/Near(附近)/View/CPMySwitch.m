@@ -31,10 +31,6 @@
  */
 - (void)setUp
 {
-//    CATransition *t = [CATransition new];
-//    t.type = ZYTransitionTypeCube;
-//    [self.imageView addAnimation:t forKey:nil];
-//    [self sizeToFit];
     self.clipsToBounds = YES;
 }
 

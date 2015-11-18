@@ -4,7 +4,7 @@
 //
 //  Created by chewan on 10/28/15.
 //  Copyright © 2015 chewan. All rights reserved.
-//
+//  自定义轻量级ZYWebImage 未完成
 
 #import <Foundation/Foundation.h>
 typedef void(^ZYFinishBlock) (UIImage *image);

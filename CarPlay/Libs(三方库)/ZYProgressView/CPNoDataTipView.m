@@ -4,7 +4,7 @@
 //
 //  Created by chewan on 10/15/15.
 //  Copyright © 2015 chewan. All rights reserved.
-//
+//  没有数据或者没有网络的提示View
 
 #import "CPNoDataTipView.h"
 

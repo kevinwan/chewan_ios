@@ -53,11 +53,7 @@ static NSString *ID = @"HisDateCell";
 //    self.automaticallyAdjustsScrollViewInsets = NO;
 //      self.tableView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
     [self.view addSubview:self.tableView];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
+    
     [ZYLoadingView showLoadingView];
     [self loadDataWithHeader:nil];
 }
@@ -116,7 +112,7 @@ static NSString *ID = @"HisDateCell";
 - (void)loadDataWithHeader:(AAPullToRefresh *)refresh
 {
     //    http://cwapi.gongpingjia.com/v2/activity/pushInfo?userId=846de312-306c-4916-91c1-a5e69b158014&token=846de312-306c-4916-91c1-a5e69b158014
-    // 防止是你退
+    // 防止闪退
     if (!self.targetUser.userId.trimLength) {
         [ZYLoadingView dismissLoadingView];
         return;
@@ -141,7 +137,7 @@ static NSString *ID = @"HisDateCell";
           
             NSString *cover = responseObject[@"data"][@"cover"];
             double distance = [responseObject[@"distance"] doubleValue];
-            
+            // 拼接model
             for (CPActivityModel *model in arr) {
                 model.organizer = self.targetUser;
                 model.organizer.cover = cover;
@@ -439,11 +435,12 @@ static NSString *ID = @"HisDateCell";
 }
 
 - (CPNoDataTipView *)noDataView
-{    if (_noDataView == nil) {
-    _noDataView = [CPNoDataTipView noDataTipViewWithTitle:@"已经没有活动了,请放宽条件再试试"];
-    [self.view addSubview:_noDataView];
-    _noDataView.frame = self.view.bounds;
-}
+{
+    if (_noDataView == nil) {
+        _noDataView = [CPNoDataTipView noDataTipViewWithTitle:@"已经没有活动了,请放宽条件再试试"];
+        [self.view addSubview:_noDataView];
+        _noDataView.frame = self.view.bounds;
+    }
     return _noDataView;
 }
 

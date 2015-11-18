@@ -4,7 +4,7 @@
 //
 //  Created by ShannonChou on 14-7-7.
 //  Copyright (c) 2014年 jiecao.fm. All rights reserved.
-//
+//  发光的圈圈框架
 
 #import <QuartzCore/QuartzCore.h>
 
