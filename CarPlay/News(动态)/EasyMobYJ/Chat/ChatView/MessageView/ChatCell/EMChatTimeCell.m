@@ -39,13 +39,13 @@
     
     // Configure the view for the selected state
 }
-
+//cell 高度42
 -(void)layoutSubviews
 {
     UIFont *font = [UIFont systemFontOfSize:10];
     CGSize size = CGSizeMake(320,2000);
     CGSize labelsize = [self.timeLabel.text sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeCharacterWrap];
-    self.timeLabel.frame = CGRectMake(0.0, 12.0, labelsize.width+20, 18 );
+    self.timeLabel.frame = CGRectMake(0.0, 2.0, labelsize.width+20, 18 );
     self.timeLabel.centerX = kDeviceWidth/2;
     self.timeLabel.layer.cornerRadius =9;
     [self.timeLabel.layer setMasksToBounds:YES];

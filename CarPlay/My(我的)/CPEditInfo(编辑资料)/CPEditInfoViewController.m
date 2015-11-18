@@ -157,9 +157,7 @@
             user.avatar=responseObject[@"data"][@"photoUrl"];
             user.avatarId=responseObject[@"data"][@"photoId"];
             [ZYUserDefaults setObject:responseObject[@"data"][@"nickname"] forKey:kUserNickName];
-//            [ZYUserDefaults setObject:responseObject[@"data"][@"avatar"] forKey:kUserHeadUrl];
             [NSKeyedArchiver archiveRootObject:user toFile:path.documentPath];
-//            [self.avatar setImage:editedImage];
             [self.avatar zySetReloadImageWithUrl:user.avatar placeholderImage:editedImage completion:nil];
             
         }else{

@@ -21,6 +21,16 @@ void EMSystemSoundFinishedPlayingCallback(SystemSoundID sound_id, void* user_dat
 }
 
 @implementation EMCDDeviceManager (Remind)
+//这个方法去获取系统声音配置，用户是否开启声音，开启震动
+- (void)playCPNewMessageRemind
+{
+    if ([ZYUserDefaults boolForKey:kRemindMessageSound]) {
+        [self playNewMessageSound];
+    }
+    if ([ZYUserDefaults boolForKey:kRemindVibration]) {
+        [self playVibration];
+    }
+}
 // 播放接收到新消息时的声音
 - (SystemSoundID)playNewMessageSound
 {
