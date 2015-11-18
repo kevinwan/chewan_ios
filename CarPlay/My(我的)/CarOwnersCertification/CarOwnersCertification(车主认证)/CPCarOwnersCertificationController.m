@@ -10,7 +10,7 @@
 #import "CPBrandModelViewController.h"
 #import "CPUser.h"
 
-@interface CPCarOwnersCertificationController ()<UIImagePickerControllerDelegate,UIActionSheetDelegate>
+@interface CPCarOwnersCertificationController ()<UIImagePickerControllerDelegate,UIActionSheetDelegate,UINavigationControllerDelegate>
 {
     CPUser *user;
     NSString *path;
@@ -91,7 +91,7 @@
 
 #pragma PickerController
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    UIImage *editedImage=[info objectForKey:UIImagePickerControllerEditedImage];
+    UIImage *editedImage=[info objectForKey:UIImagePickerControllerOriginalImage];
     [picker dismissViewControllerAnimated:YES completion:^{
         NSData *data=UIImageJPEGRepresentation(editedImage, 0.4);
         [self upLoadImageWithBase64Encodeing:data];
@@ -168,6 +168,7 @@
 -(void)reloadCarOwnersInfo{
     if (user.drivingLicense) {
         [self.uploadDrivingLicense zySetImageWithUrl:user.drivingLicense placeholderImage:nil forState:UIControlStateNormal];
+//        self.uploadDriverLicense
     }
     if (user.driverLicense) {
 //        [self.driverLicenseImageView zySetImageWithUrl:user.driverLicense placeholderImage:nil];
