@@ -596,6 +596,8 @@
 		EE0DBBAC1BE33ECF00D1F972 /* group_detail@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE0DBBAB1BE33ECF00D1F972 /* group_detail@3x.png */; };
 		EE0DBBB11BE3479E00D1F972 /* CPChatGroupDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE0DBBAE1BE3479E00D1F972 /* CPChatGroupDetailViewController.m */; };
 		EE0DBBB21BE3479E00D1F972 /* CPGroupDetailTBCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE0DBBB01BE3479E00D1F972 /* CPGroupDetailTBCell.m */; };
+		EE272F861BFC47080089E11C /* photo_auto_yes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE272F841BFC47080089E11C /* photo_auto_yes@2x.png */; };
+		EE272F871BFC47080089E11C /* photo_auto_yes@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE272F851BFC47080089E11C /* photo_auto_yes@3x.png */; };
 		EE3383111BD8BB7500BA4930 /* dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE3383101BD8BB7500BA4930 /* dot@2x.png */; };
 		EE3383141BD8E27500BA4930 /* CareMeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE3383131BD8E27500BA4930 /* CareMeTableViewCell.m */; };
 		EE3383171BD9141200BA4930 /* call_silence@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE3383151BD9141200BA4930 /* call_silence@3x.png */; };
@@ -1625,6 +1627,8 @@
 		EE0DBBAE1BE3479E00D1F972 /* CPChatGroupDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPChatGroupDetailViewController.m; sourceTree = "<group>"; };
 		EE0DBBAF1BE3479E00D1F972 /* CPGroupDetailTBCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPGroupDetailTBCell.h; sourceTree = "<group>"; };
 		EE0DBBB01BE3479E00D1F972 /* CPGroupDetailTBCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPGroupDetailTBCell.m; sourceTree = "<group>"; };
+		EE272F841BFC47080089E11C /* photo_auto_yes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo_auto_yes@2x.png"; sourceTree = "<group>"; };
+		EE272F851BFC47080089E11C /* photo_auto_yes@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo_auto_yes@3x.png"; sourceTree = "<group>"; };
 		EE3383101BD8BB7500BA4930 /* dot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dot@2x.png"; sourceTree = "<group>"; };
 		EE3383121BD8E27500BA4930 /* CareMeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CareMeTableViewCell.h; sourceTree = "<group>"; };
 		EE3383131BD8E27500BA4930 /* CareMeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CareMeTableViewCell.m; sourceTree = "<group>"; };
@@ -3142,6 +3146,8 @@
 				6D2AC0C01BCE5A5100201A8E /* groupPublicHeader@2x.png */,
 				6D2AC0C11BCE5A5100201A8E /* nav_createGroup@2x.png */,
 				6D2AC0C21BCE5A5100201A8E /* newFriends@2x.png */,
+				EE272F841BFC47080089E11C /* photo_auto_yes@2x.png */,
+				EE272F851BFC47080089E11C /* photo_auto_yes@3x.png */,
 			);
 			path = other;
 			sourceTree = "<group>";
@@ -4491,6 +4497,7 @@
 				EE7F817B1BD9E74D003E7B3B /* answerTel@2x.png in Resources */,
 				E3606F121BC78C7300797968 /* CPBaseViewCell.xib in Resources */,
 				6D2AC1881BCE5A5100201A8E /* tabbar_settingHL@2x.png in Resources */,
+				EE272F861BFC47080089E11C /* photo_auto_yes@2x.png in Resources */,
 				6D2AC14F1BCE5A5100201A8E /* chatBar_more_photoSelected@2x.png in Resources */,
 				6D7F6FCF1BD5216500945F1B /* chatBar_colorMore_cameraSelected@3x.png in Resources */,
 				EECA0F111BECFAC00029F2D2 /* CPBRPGViewController.storyboard in Resources */,
@@ -4500,6 +4507,7 @@
 				6D7F6FDD1BD5DB4400945F1B /* VoiceSearchFeedback005@3x.png in Resources */,
 				6D2AC10C1BCE5A5100201A8E /* callBg@2x.png in Resources */,
 				6D7F6FCE1BD5216500945F1B /* chatBar_colorMore_camera@3x.png in Resources */,
+				EE272F871BFC47080089E11C /* photo_auto_yes@3x.png in Resources */,
 				EEFD12771BDDEDFF009EA6CC /* wheel1@2x.png in Resources */,
 				6D2AC1401BCE5A5100201A8E /* chatBar_colorMore_video@2x.png in Resources */,
 				6D2AC1131BCE5A5100201A8E /* chatBar_more_face@2x.png in Resources */,

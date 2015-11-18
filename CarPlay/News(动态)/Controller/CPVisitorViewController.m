@@ -178,6 +178,19 @@
         cell.delegate = self;
         
         cell.timeLabel.text =[NSDate formattedTimeFromTimeInterval:[[dic objectForKey:@"viewTime"] longLongValue]];;
+        if ([[dic objectForKey:@"photoAuthStatus"] isEqualToString:@"认证通过"]) {
+            cell.phohtAuthIV.hidden = NO;
+        }else{
+            cell.phohtAuthIV.hidden = YES;
+        }
+        
+        if ([[dic objectForKey:@"licenseAuthStatus"] isEqualToString:@"认证通过"]) {
+            cell.carAuthIV.hidden = NO;
+            [cell.carAuthIV zySetImageWithUrl:[[dic objectForKey:@"car"] objectForKey:@"logo"] placeholderImage:nil];
+        }else{
+            cell.carAuthIV.hidden = YES;
+        }
+        
         
     }
     
