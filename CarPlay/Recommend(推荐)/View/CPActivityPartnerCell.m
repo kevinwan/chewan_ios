@@ -46,6 +46,11 @@ static NSString *ID = @"memberIconCell";
             [self superViewWillRecive:CPClickUserIcon info:_model.userId];
         }
     }];
+    
+    if (ZYScreenWidth == 320.0){
+        self.nicknameLabel.font = ZYFont12;
+    }
+    
     [self.iconView addGestureRecognizer:tap];
     [self.contentView addSubview:self.msgButton];
     [self.contentView addSubview:self.phoneBtn];
