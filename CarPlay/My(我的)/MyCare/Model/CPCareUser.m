@@ -10,4 +10,10 @@
 
 @implementation CPCareUser
 
+- (void)setCar:(CPCar *)car
+{
+    if ([car isKindOfClass:[CPCar class]]) {
+        _car = car;
+    }
+}
 @end

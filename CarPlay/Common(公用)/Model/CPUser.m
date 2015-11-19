@@ -11,7 +11,6 @@
 #import "NSObject+Copying.h"
 
 @implementation CPUser
-MJCopyingImplemention
 - (void)setGender:(NSString *)gender
 {
     _gender = gender;

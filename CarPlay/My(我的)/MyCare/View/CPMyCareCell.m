@@ -20,7 +20,14 @@
 
 // 距离
 @property (weak, nonatomic) IBOutlet UILabel *distance;
+//头像认证状态
+@property (weak, nonatomic) IBOutlet UIImageView *photoAuthStatus;
 
+//车主认证状态
+@property (weak, nonatomic) IBOutlet UIImageView *licenseAuthStatus;
+
+//昵称Label宽度
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *nickNameWidth;
 
 @end
 
@@ -54,6 +61,22 @@
     
     // 设置昵称
     self.nickname.text = careUser.nickname;
+    //设置昵称长度
+    if (ZYScreenWidth == 320) {
+        [self.nickname setFont:ZYFont14];
+        self.nickNameWidth.constant = [careUser.nickname sizeWithFont:ZYFont14].width;
+    }else
+        self.nickNameWidth.constant = [careUser.nickname sizeWithFont:ZYFont16].width;
+    
+    //判断头像认证和车主认证状态
+    if ([careUser.photoAuthStatus isEqualToString:@"认证通过"]) {
+        [self.photoAuthStatus setHidden:NO];
+    }
+    
+    if ([careUser.licenseAuthStatus isEqualToString:@"认证通过"]) {
+        [self.licenseAuthStatus setHidden:NO];
+        [self.licenseAuthStatus zySetImageWithUrl:careUser.car.logo placeholderImage:nil];
+    }
     
     // 设置性别和年龄
     if ([careUser.gender isEqualToString:@"男"]) {
