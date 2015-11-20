@@ -10,7 +10,7 @@
 #import "CareMeTableViewCell.h"
 #import "NSDate+Category.h"
 #import "CPTaInfo.h"
-@interface CPCareMeViewController ()
+@interface CPCareMeViewController ()<careBtnClickdelegete>
 {
     NSArray *idleImages;
     NSArray *pullingImages;
@@ -141,6 +141,7 @@
     
     if (!cell) {
         cell = [[CareMeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
+        cell.delegate = self;
     }
     if (indexPath.row<self.dataSource.count) {
         NSDictionary *dic = [self.dataSource objectAtIndex:indexPath.row];
@@ -149,11 +150,16 @@
         cell.nameLabel.text = [dic objectForKey:@"nickname"];
         cell.sexView.age = [[dic objectForKey:@"age"] integerValue];
         cell.sexView.gender = [dic objectForKey:@"gender"];
-        cell.distanceLabel.text =[self getDidstanceStrWithDistance:[[dic objectForKey:@"distance"] integerValue]];
+//        subscribeFlag  相互关注信息 true表示我关注了该用户，false表示没有关注
+        cell.careBtn.tag = indexPath.row;
+        if ([[dic objectForKey:@"subscribeFlag"] boolValue]) {
+            [cell.careBtn setImage:[UIImage imageNamed:@"互相关注"] forState:UIControlStateNormal];
+
+        }else{
+            [cell.careBtn setImage:[UIImage imageNamed:@"关注我的"] forState:UIControlStateNormal];
+        }
         
-        
-        cell.timeLabel.text =[NSDate formattedTimeFromTimeInterval:[[dic objectForKey:@"subscribeTime"] longLongValue]];;
-        
+        cell.timeAndDistanceLabel.text = [NSString stringWithFormat:@"%@ | %@",[NSDate formattedTimeFromTimeInterval:[[dic objectForKey:@"subscribeTime"] longLongValue]],[self getDidstanceStrWithDistance:[[dic objectForKey:@"distance"] integerValue]]];
         if ([[dic objectForKey:@"photoAuthStatus"] isEqualToString:@"认证通过"]) {
             cell.phohtAuthIV.hidden = NO;
         }else{
@@ -189,4 +195,45 @@
     taVc.userId =[dic objectForKey:@"userId"];
     [self.navigationController pushViewController:taVc animated:YES];
 }
+#pragma mark 关注按钮的点击
+- (void)careBtnClicked:(UIButton *)button
+{
+    NSDictionary *dic = [self.dataSource objectAtIndex:button.tag];
+    if ([[dic objectForKey:@"subscribeFlag"] boolValue]) {
+        //如果相互关注的，就取消关注
+        [self showLoading];
+        NSDictionary *paramsDic = [NSDictionary dictionaryWithObject:[dic objectForKey:@"userId"] forKey:@"targetUserId"];
+        [ZYNetWorkTool postJsonWithUrl:[NSString stringWithFormat:@"user/%@/unlisten?token=%@",CPUserId,CPToken] params:paramsDic success:^(id responseObject) {
+            [self disMiss];
+            if (CPSuccess) {
+                [button setImage:[UIImage imageNamed:@"关注我的"] forState:UIControlStateNormal];
+                [dic setValue:@"0" forKey:@"subscribeFlag"];
+            }
+        } failed:^(NSError *error) {
+            [self disMiss];
+            NSLog(@"error = %@",error);
+        }];
+
+    }else{
+        //我为观众对方的，发请求去关注对方
+        [self showLoading];
+        NSDictionary *paramsDic = [NSDictionary dictionaryWithObject:[dic objectForKey:@"userId"] forKey:@"targetUserId"];
+
+        [ZYNetWorkTool postJsonWithUrl:[NSString stringWithFormat:@"user/%@/listen?token=%@",CPUserId,CPToken] params:paramsDic success:^(id responseObject) {
+            [self disMiss];
+            if (CPSuccess) {
+                [button setImage:[UIImage imageNamed:@"互相关注"] forState:UIControlStateNormal];
+                [dic setValue:@"1" forKey:@"subscribeFlag"];
+
+            }
+        } failed:^(NSError *error) {
+            [self disMiss];
+            NSLog(@"error = %@",error);
+
+        }];
+    }
+    
+}
+
+
 @end

@@ -46,21 +46,27 @@
         [self.contentView addSubview:_carAuthIV];
         
         
-        _timeLabel = [[UILabel alloc] init];
-        _timeLabel.frame = CGRectMake(kDeviceWidth-10-80, 20, 80, 9);
-        _timeLabel.backgroundColor = [UIColor clearColor];
-        _timeLabel.textColor = UIColorFromRGB(0xaaaaaa);
-        _timeLabel.textAlignment = NSTextAlignmentRight;
-        _timeLabel.font = [UIFont systemFontOfSize:12];
-        [self.contentView addSubview:_timeLabel];
+        _timeAndDistanceLabel = [[UILabel alloc] init];
+        _timeAndDistanceLabel.frame = CGRectMake(kDeviceWidth-10-200, 10, 200, 9);
+        _timeAndDistanceLabel.backgroundColor = [UIColor clearColor];
+        _timeAndDistanceLabel.textColor = UIColorFromRGB(0xaaaaaa);
+        _timeAndDistanceLabel.textAlignment = NSTextAlignmentRight;
+        _timeAndDistanceLabel.font = [UIFont systemFontOfSize:12];
+        [self.contentView addSubview:_timeAndDistanceLabel];
         
-        _distanceLabel = [[UILabel alloc] init];
-        _distanceLabel.frame = CGRectMake(kDeviceWidth-10-60, CGRectGetMaxY(_timeLabel.frame)+15, 60, 9);
-        _distanceLabel.backgroundColor = [UIColor clearColor];
-        _distanceLabel.textColor = UIColorFromRGB(0xaaaaaa);
-        _distanceLabel.textAlignment = NSTextAlignmentRight;
-        _distanceLabel.font = [UIFont systemFontOfSize:12];
-        [self.contentView addSubview:_distanceLabel];
+        _careBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _careBtn.frame = CGRectMake(kDeviceWidth-10-20, CGRectGetMaxY(_timeAndDistanceLabel.frame)+10, 20, 16);
+        [_careBtn setBackgroundColor:[UIColor clearColor]];
+        [self.contentView addSubview:_careBtn];
+        [_careBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+//        _distanceLabel = [[UILabel alloc] init];
+//        _distanceLabel.frame = CGRectMake(kDeviceWidth-10-60, CGRectGetMaxY(_timeLabel.frame)+15, 60, 9);
+//        _distanceLabel.backgroundColor = [UIColor clearColor];
+//        _distanceLabel.textColor = UIColorFromRGB(0xaaaaaa);
+//        _distanceLabel.textAlignment = NSTextAlignmentRight;
+//        _distanceLabel.font = [UIFont systemFontOfSize:12];
+//        [self.contentView addSubview:_distanceLabel];
         
         //分割线
         UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 69, kDeviceWidth, 1)];
@@ -80,6 +86,12 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+- (void)buttonClicked:(UIButton *)sender
+{
+    if (self.delegate && [_delegate respondsToSelector:@selector(careBtnClicked:)]) {
+        [_delegate careBtnClicked:sender];
+    }
 }
 - (void)layoutSubviews
 {
