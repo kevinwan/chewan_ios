@@ -16,6 +16,7 @@
 #import "CPHisDateViewController.h"
 #import "PhotoBroswerVC.h"
 #import "CPCollectionViewCell1.h"
+#import "MessageReadManager.h"
 
 @interface CPTaInfo ()<UIAlertViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate, UzysAssetsPickerControllerDelegate>
 {
@@ -23,6 +24,7 @@
     CPUser *currentUser;
     NSMutableArray *allAlbumsUrl;
 }
+@property (strong, nonatomic) MessageReadManager *messageReadManager;
 @end
 
 @implementation CPTaInfo
@@ -60,6 +62,14 @@
     solidLine.path = solidPath;
     CGPathRelease(solidPath);
     [self.headImgBg.layer addSublayer:solidLine];
+    
+    UITapGestureRecognizer *tapGes = [UITapGestureRecognizer new];
+    [tapGes.rac_gestureSignal subscribeNext:^(id x) {
+        UIImage *image = [UIImage imageWithContentsOfFile:user.avatar];
+        [self.messageReadManager showBrowserWithImages:@[image]];
+    }];
+    
+    [self.headImg addGestureRecognizer:tapGes];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -376,5 +386,14 @@
         
         return modelsM;
     }];
+}
+
+- (MessageReadManager *)messageReadManager
+{
+    if (_messageReadManager == nil) {
+        _messageReadManager = [MessageReadManager defaultManager];
+    }
+    
+    return _messageReadManager;
 }
 @end

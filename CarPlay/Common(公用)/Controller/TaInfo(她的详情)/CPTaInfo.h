@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MWPhotoBrowser.h"
 
 @interface CPTaInfo : UITableViewController
 @property (weak, nonatomic) IBOutlet UIImageView *headImgBg;
@@ -29,5 +30,5 @@
 @property (nonatomic, strong) NSString *userId;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *carNameWidth;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *carLogoCenter;
-
+@property (strong, nonatomic) MWPhotoBrowser *photoBrowser;
 @end

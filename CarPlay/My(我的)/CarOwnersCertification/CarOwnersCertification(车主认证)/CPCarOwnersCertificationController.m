@@ -168,13 +168,15 @@
 -(void)reloadCarOwnersInfo{
     if (user.drivingLicense) {
         [self.uploadDrivingLicense zySetImageWithUrl:user.drivingLicense placeholderImage:nil forState:UIControlStateNormal];
-//        self.uploadDriverLicense
+        [self.uploadDrivingLicense.imageView setContentMode:UIViewContentModeScaleAspectFit];
+        
     }
     if (user.driverLicense) {
-//        [self.driverLicenseImageView zySetImageWithUrl:user.driverLicense placeholderImage:nil];
+       [self.uploadDriverLicense.imageView setContentMode:UIViewContentModeScaleAspectFit];
         [self.uploadDriverLicense zySetImageWithUrl:user.driverLicense placeholderImage:nil forState:UIControlStateNormal];
     }
 }
+
 - (IBAction)upload:(UIButton *)sender {
     selectRow=sender.tag;
     UIActionSheet *sheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从相册选择",nil];

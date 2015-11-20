@@ -75,6 +75,8 @@ static NSString *ID = @"partCell";
         ZYStrongSelf
         [self loadData];
     }];
+    
+    [self setRightNavigationBarItemWithTitle:nil Image:@"share" highImage:@"share" target:self action:@selector(share)];
 }
 
 - (void)loadData
@@ -388,5 +390,9 @@ static NSString *ID = @"partCell";
     return _toGroupChatButton;
 }
 
+#pragma 分享
+-(void)share{
+    
+}
 
 @end
