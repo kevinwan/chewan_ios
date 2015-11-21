@@ -598,6 +598,11 @@
 		EE0DBBB21BE3479E00D1F972 /* CPGroupDetailTBCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE0DBBB01BE3479E00D1F972 /* CPGroupDetailTBCell.m */; };
 		EE272F861BFC47080089E11C /* photo_auto_yes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE272F841BFC47080089E11C /* photo_auto_yes@2x.png */; };
 		EE272F871BFC47080089E11C /* photo_auto_yes@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE272F851BFC47080089E11C /* photo_auto_yes@3x.png */; };
+		EE272F8A1BFF108B0089E11C /* CusomeActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = EE272F891BFF108B0089E11C /* CusomeActionSheet.m */; };
+		EE272F901BFF1C6D0089E11C /* icon_wechat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE272F8C1BFF1C6D0089E11C /* icon_wechat@2x.png */; };
+		EE272F911BFF1C6D0089E11C /* icon_wechat@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE272F8D1BFF1C6D0089E11C /* icon_wechat@3x.png */; };
+		EE272F921BFF1C6D0089E11C /* wechatTimeline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE272F8E1BFF1C6D0089E11C /* wechatTimeline@2x.png */; };
+		EE272F931BFF1C6D0089E11C /* wechatTimeline@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE272F8F1BFF1C6D0089E11C /* wechatTimeline@3x.png */; };
 		EE3383111BD8BB7500BA4930 /* dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE3383101BD8BB7500BA4930 /* dot@2x.png */; };
 		EE3383141BD8E27500BA4930 /* CareMeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE3383131BD8E27500BA4930 /* CareMeTableViewCell.m */; };
 		EE3383171BD9141200BA4930 /* call_silence@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE3383151BD9141200BA4930 /* call_silence@3x.png */; };
@@ -1629,6 +1634,12 @@
 		EE0DBBB01BE3479E00D1F972 /* CPGroupDetailTBCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPGroupDetailTBCell.m; sourceTree = "<group>"; };
 		EE272F841BFC47080089E11C /* photo_auto_yes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo_auto_yes@2x.png"; sourceTree = "<group>"; };
 		EE272F851BFC47080089E11C /* photo_auto_yes@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo_auto_yes@3x.png"; sourceTree = "<group>"; };
+		EE272F881BFF108B0089E11C /* CusomeActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CusomeActionSheet.h; sourceTree = "<group>"; };
+		EE272F891BFF108B0089E11C /* CusomeActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CusomeActionSheet.m; sourceTree = "<group>"; };
+		EE272F8C1BFF1C6D0089E11C /* icon_wechat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_wechat@2x.png"; sourceTree = "<group>"; };
+		EE272F8D1BFF1C6D0089E11C /* icon_wechat@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_wechat@3x.png"; sourceTree = "<group>"; };
+		EE272F8E1BFF1C6D0089E11C /* wechatTimeline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wechatTimeline@2x.png"; sourceTree = "<group>"; };
+		EE272F8F1BFF1C6D0089E11C /* wechatTimeline@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wechatTimeline@3x.png"; sourceTree = "<group>"; };
 		EE3383101BD8BB7500BA4930 /* dot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dot@2x.png"; sourceTree = "<group>"; };
 		EE3383121BD8E27500BA4930 /* CareMeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CareMeTableViewCell.h; sourceTree = "<group>"; };
 		EE3383131BD8E27500BA4930 /* CareMeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CareMeTableViewCell.m; sourceTree = "<group>"; };
@@ -3148,6 +3159,10 @@
 				6D2AC0C21BCE5A5100201A8E /* newFriends@2x.png */,
 				EE272F841BFC47080089E11C /* photo_auto_yes@2x.png */,
 				EE272F851BFC47080089E11C /* photo_auto_yes@3x.png */,
+				EE272F8C1BFF1C6D0089E11C /* icon_wechat@2x.png */,
+				EE272F8D1BFF1C6D0089E11C /* icon_wechat@3x.png */,
+				EE272F8E1BFF1C6D0089E11C /* wechatTimeline@2x.png */,
+				EE272F8F1BFF1C6D0089E11C /* wechatTimeline@3x.png */,
 			);
 			path = other;
 			sourceTree = "<group>";
@@ -4106,6 +4121,8 @@
 				E35E12621BEB234700B1D621 /* CPGuideView.m */,
 				E371CA3A1BE9D9EC00B77723 /* CPLeadView.h */,
 				E371CA3B1BE9D9EC00B77723 /* CPLeadView.m */,
+				EE272F881BFF108B0089E11C /* CusomeActionSheet.h */,
+				EE272F891BFF108B0089E11C /* CusomeActionSheet.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4461,6 +4478,7 @@
 				E37C10B41BBB79E700E1A6A2 /* CPMyVisitorViewController.storyboard in Resources */,
 				6D2AC17F1BCE5A5100201A8E /* tabbar_chatsHL.png in Resources */,
 				6D2AC12D1BCE5A5100201A8E /* chatBar_more@2x.png in Resources */,
+				EE272F921BFF1C6D0089E11C /* wechatTimeline@2x.png in Resources */,
 				6D2AC10D1BCE5A5100201A8E /* chat_video_play.png in Resources */,
 				6D2AC14E1BCE5A5100201A8E /* chatBar_more_photoSelected.png in Resources */,
 				6D2AC11A1BCE5A5100201A8E /* chat_location_detail_disclosure.png in Resources */,
@@ -4474,6 +4492,7 @@
 				6D2AD8D21BCF72A30099CFD7 /* SubscribeAdmin@3x.png in Resources */,
 				6BE2E61A1BC67CB000D1D928 /* CPMatching.storyboard in Resources */,
 				EECA0F191BFAC1F20029F2D2 /* callRingDuDu.mp3 in Resources */,
+				EE272F911BFF1C6D0089E11C /* icon_wechat@3x.png in Resources */,
 				6BD61A181BEB594300A4589B /* UMShareEditViewControlleriPad.xib in Resources */,
 				6BD61A121BEB594300A4589B /* UMSocialLocalizable.strings in Resources */,
 				6D2AC13E1BCE5A5100201A8E /* chatBar_colorMore_photo@2x.png in Resources */,
@@ -4521,6 +4540,7 @@
 				6D2AC1461BCE5A5100201A8E /* chatBar_more_cameraSelected.png in Resources */,
 				6D2AC0D91BCE5A5100201A8E /* 80.png in Resources */,
 				6D2AC1411BCE5A5100201A8E /* chatBar_colorMore_videoCall@2x.png in Resources */,
+				EE272F901BFF1C6D0089E11C /* icon_wechat@2x.png in Resources */,
 				6D2AC1491BCE5A5100201A8E /* chatBar_more_location@2x.png in Resources */,
 				6D2AC11C1BCE5A5100201A8E /* chat_location_detail_disclosureHL.png in Resources */,
 				EECA0F141BF5DF9A0029F2D2 /* chat_sender_woman_bg_high@2x.png in Resources */,
@@ -4565,6 +4585,7 @@
 				6D2AC10F1BCE5A5100201A8E /* chatBar_more_card@2x.png in Resources */,
 				6BDA2CA11BD66E970032FFF1 /* MatchingSelectView.storyboard in Resources */,
 				6D2AD8D01BCF72A30099CFD7 /* OfficialAdmin@3x.png in Resources */,
+				EE272F931BFF1C6D0089E11C /* wechatTimeline@3x.png in Resources */,
 				6D2AC13D1BCE5A5100201A8E /* chatBar_colorMore_locationSelected@2x.png in Resources */,
 				6D2AC1121BCE5A5100201A8E /* chatBar_more_face.png in Resources */,
 				6BD619E51BEA269000A4589B /* CPCollectionViewCell1.xib in Resources */,
@@ -4906,6 +4927,7 @@
 				6BDA2CA41BD670660032FFF1 /* MatchingSelectView.m in Sources */,
 				6D2ABFE91BCE582100201A8E /* ChatroomListViewController.m in Sources */,
 				E31B134C1BB9312D00B51696 /* UITableViewCell+Extend.m in Sources */,
+				EE272F8A1BFF108B0089E11C /* CusomeActionSheet.m in Sources */,
 				E32B5DDF1BCE41B50057FD71 /* ZYProgressView.m in Sources */,
 				6D2ABF8B1BCE582100201A8E /* EMCDDeviceManagerBase.m in Sources */,
 				E356F0E91BD4DB5000D5BE07 /* CPActivityDetailHeaderView.m in Sources */,

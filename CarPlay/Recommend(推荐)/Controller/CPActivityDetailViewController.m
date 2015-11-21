@@ -16,10 +16,11 @@
 #import "ChatViewController.h"
 #import "CPByTicketViewController.h"
 #import "CPComeOnTipView.h"
-
+#import "CusomeActionSheet.h"
+#import "UMSocial.h"
 #define CPMemberPageNum 6
 #define CPWillGoLoginKey @"CPWillGoLoginKey"
-@interface CPActivityDetailViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface CPActivityDetailViewController ()<UMSocialUIDelegate,UITableViewDelegate, UITableViewDataSource,customActionsheetDelegete>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) CPActivityDetailFooterView *footerView;
 @property (strong, nonatomic) CPActivityDetailHeaderView *headerView;
@@ -31,6 +32,10 @@
 @property (nonatomic, strong) UIButton *comePartButton;
 @property (nonatomic, strong) UIButton *byTheTicketButton;
 @property (nonatomic, strong) UIButton *toGroupChatButton;
+//分享view
+@property (nonatomic,strong)UIView *shareView;
+@property (nonatomic,strong)CusomeActionSheet *shareActionview;
+
 @end
 
 static NSString *ID = @"partCell";
@@ -391,7 +396,90 @@ static NSString *ID = @"partCell";
 
 #pragma 分享
 -(void)share{
+    if (self.shareView == nil) {
+        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+        _shareView = [[UIView alloc]initWithFrame:window.frame];
+        _shareView.backgroundColor = [UIColor blackColor];
+        _shareView.alpha = 0.4;
+        
+        
+        _shareActionview= [[CusomeActionSheet alloc]initWithFrame:CGRectMake(0, KDeviceHeight, kDeviceWidth, 152)];
+        _shareActionview.delegate = self;
+        
+        [window addSubview:_shareView];
+        [window addSubview:_shareActionview];
+//        [window bringSubviewToFront:_shareView];
+        [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            _shareActionview.y = KDeviceHeight-152;
+        } completion:^(BOOL finished) {
+            nil;
+        }];
+        
+        
+    }
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (self.shareView) {
+        [self.shareView removeFromSuperview];
+        [self.shareActionview removeFromSuperview];
+        self.shareActionview = nil;
+        self.shareView = nil;
+    }
+}
+#pragma mark 分享的代理方法
+- (void)btnClicked:(UIButton *)button
+{
+    NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
+    long long int date = (long long int)time;
+    NSString *shareStr = [NSString stringWithFormat:@"http://www.chewanapp.com/appshare.html?id=%@&time=%lld",self.officialActivityId,date];
     
+    switch (button.tag) {
+        case 1:
+            //分享朋友圈
+        {
+//            UMSocialUrlResource *resouce = [[UMSocialUrlResource alloc]initWithSnsResourceType:UMSocialUrlResourceTypeImage url:self.model.cover];
+
+                [UMSocialData defaultData].extConfig.wechatTimelineData.url = shareStr;
+                [UMSocialData defaultData].extConfig.wechatTimelineData.title = self.model.title;
+            [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:self.model.title image:nil location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
+                if (response.responseCode == UMSResponseCodeSuccess) {
+
+                }
+            }];
+        }
+            break;
+        case 2:
+            //分享微信好友
+        {
+            
+            [UMSocialData defaultData].extConfig.wechatSessionData.url = shareStr;
+            [UMSocialData defaultData].extConfig.wechatSessionData.title = self.model.title;
+            NSString *shareContent  = [NSString stringWithFormat:@"%@\n价格：%f\n%@",self.model.title,self.model.price,[self.model.destination objectForKey:@"street"]];
+            
+            [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:shareContent image:nil location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
+                if (response.responseCode == UMSResponseCodeSuccess) {
+
+                }
+            }];
+
+
+        }
+            break;
+        case 3:
+            //取消
+        {
+            [self.shareView removeFromSuperview];
+            [self.shareActionview removeFromSuperview];
+            self.shareActionview = nil;
+            self.shareView = nil;
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 @end
