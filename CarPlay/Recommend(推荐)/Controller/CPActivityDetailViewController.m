@@ -385,7 +385,6 @@ static NSString *ID = @"partCell";
             chatController.title = _model.title;
             [self.navigationController pushViewController:chatController animated:YES];
         }];
-        
     }
     return _toGroupChatButton;
 }
