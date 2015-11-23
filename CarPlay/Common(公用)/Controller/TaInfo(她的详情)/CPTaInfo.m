@@ -23,6 +23,7 @@
     CPUser *user;
     CPUser *currentUser;
     NSMutableArray *allAlbumsUrl;
+    NSArray *reportTypes;
 }
 @property (strong, nonatomic) MessageReadManager *messageReadManager;
 @end
@@ -65,11 +66,18 @@
     
     UITapGestureRecognizer *tapGes = [UITapGestureRecognizer new];
     [tapGes.rac_gestureSignal subscribeNext:^(id x) {
-        UIImage *image = [UIImage imageWithContentsOfFile:user.avatar];
-        [self.messageReadManager showBrowserWithImages:@[image]];
+        UIImage *image = self.headImg.image;
+        if (image) {
+            NSArray *array=[[NSArray alloc]initWithObjects:image, nil];
+            [self.messageReadManager showBrowserWithImages:array];
+        }
     }];
     
     [self.headImg addGestureRecognizer:tapGes];
+    
+    if (_activityId && _reportUserId) {
+         [self setRightNavigationBarItemWithTitle:@"举报" Image:nil highImage:nil target:self action:@selector(report)];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -205,32 +213,61 @@
 }
 - (IBAction)uploadBtnClick:(id)sender {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择照片" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"相册", nil];
+    actionSheet.tag=1;
     [actionSheet showInView:self.view];
 }
 
+-(void)report{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"色情低俗", @"广告骚扰",@"政治敏感",@"诈骗",@"违法",nil];
+    actionSheet.tag=2;
+    [actionSheet showInView:self.view];
+}
+
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 2) {
-        return;
-    }
-    if (buttonIndex == 0) {
-        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-            
-            UIImagePickerController *pick = [[UIImagePickerController alloc] init];
-            pick.delegate = self;
-            pick.sourceType = UIImagePickerControllerSourceTypeCamera;
-            [self presentViewController:pick animated:YES completion:nil];
+    if (actionSheet.tag==1) {
+        if (buttonIndex == 2) {
+            return;
+        }
+        if (buttonIndex == 0) {
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                
+                UIImagePickerController *pick = [[UIImagePickerController alloc] init];
+                pick.delegate = self;
+                pick.sourceType = UIImagePickerControllerSourceTypeCamera;
+                [self presentViewController:pick animated:YES completion:nil];
+            }else{
+                [[[UIAlertView alloc]initWithTitle:@"提示" message:@"相机不可用" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+            }
         }else{
-            [[[UIAlertView alloc]initWithTitle:@"提示" message:@"相机不可用" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+                UzysAssetsPickerController *picker = [[UzysAssetsPickerController alloc] init];
+                picker.delegate = self;
+                picker.maximumNumberOfSelectionPhoto = 30-[currentUser.album count];
+                [self presentViewController:picker animated:YES completion:nil];
+            }
         }
-    }else{
-        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
-            UzysAssetsPickerController *picker = [[UzysAssetsPickerController alloc] init];
-            picker.delegate = self;
-            picker.maximumNumberOfSelectionPhoto = 30-[currentUser.album count];
-            [self presentViewController:picker animated:YES completion:nil];
+    }else if (actionSheet.tag==2)
+    {
+        NSString *reportType = reportTypes[buttonIndex];
+        if (buttonIndex == 5) {
+            return;
+        }else{
+            NSString *path=[NSString stringWithFormat:@"/user/%@/report?userId=%@&token=%@&activityId=%@",_reportUserId,CPUserId,CPToken,_activityId];
+            [ZYNetWorkTool postJsonWithUrl:path params:@[reportType,@"type"] success:^(id responseObject) {
+                if (CPSuccess) {
+                    [self showInfo:@"举报成功"];
+                }else{
+                    [self showInfo:responseObject[@"errmsg"]];
+                }
+            } failed:^(NSError *error) {
+                [self showInfo:@"请检查您的手机网络"];
+            }];
         }
-    }
+        
+     }
+   
 }
 /**
  *  照片选择完毕
@@ -395,5 +432,12 @@
     }
     
     return _messageReadManager;
+}
+
+-(NSArray *)reportTypes{
+    if (reportTypes == nil) {
+        reportTypes = [NSArray arrayWithObjects:@"色情低俗",@"广告骚扰",@"政治敏感",@"诈骗",@"违法", nil];
+    }
+    return reportTypes;
 }
 @end
