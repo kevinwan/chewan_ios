@@ -95,6 +95,7 @@ static NSString *ID = @"cell";
         CPGoLogin(@"查看TA的详情");
         CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
         taVc.userId = _activity.organizer.userId;
+        taVc.activityId = _activity.activityId;
         [self.navigationController pushViewController:taVc animated:YES];
     }
 }
