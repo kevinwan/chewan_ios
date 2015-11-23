@@ -127,7 +127,7 @@
                         }
                     } failed:^(NSError *error) {
                         [self disMiss];
-                        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                        [self showInfo:@"请检查您的手机网络!"];
                     }];
                 }else{
                     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请选择您的生日" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
@@ -203,7 +203,7 @@
             [[[UIAlertView alloc]initWithTitle:@"提示" message:@"上传失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
         }
     }failure:^(NSError *erro){
-        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        [self showInfo:@"请检查您的手机网络!"];
     }];
 }
 - (IBAction)manBtnClick:(id)sender {

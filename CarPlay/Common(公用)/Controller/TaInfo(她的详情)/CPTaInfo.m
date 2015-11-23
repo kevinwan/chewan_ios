@@ -116,7 +116,7 @@
                 [self disMiss];
             } failure:^(NSError *error) {
                 [self disMiss];
-                [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+               [self showInfo:@"请检查您的手机网络!"];
             }];
         }else{
             [[[UIAlertView alloc]initWithTitle:@"提示" message:@"您还没有登陆，是否登陆？" delegate:self cancelButtonTitle:@"再想想" otherButtonTitles:@"去登陆", nil] show];
@@ -208,7 +208,7 @@
         }
     } failed:^(NSError *error) {
         [self disMiss];
-        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil] show];
+        [self showInfo:@"请检查您的手机网络!"];
     }];
 }
 - (IBAction)uploadBtnClick:(id)sender {
@@ -267,7 +267,6 @@
         }
         
      }
-   
 }
 /**
  *  照片选择完毕

@@ -248,7 +248,7 @@
             [self.indexView refreshIndexItems];
         }
     } failure:^(NSError *error) {
-        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        [self showInfo:@"请检查您的手机网络!"];
     }];
 }
 
@@ -268,8 +268,7 @@
             [self.modelTableView reloadData];
         }
     } failure:^(NSError *error) {
-    
-        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        [self showInfo:@"请检查您的手机网络!"];
         
     }];
 }
