@@ -192,6 +192,7 @@ static NSString *ID = @"myIntersterCell";
         CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
         NSIndexPath *indexPath = userInfo;
         taVc.userId = self.datas[indexPath.row].user.userId;
+        taVc.activityId = self.datas[indexPath.row].activityId;
         [self.navigationController pushViewController:taVc animated:YES];
     }else if([notifyName isEqualToString:InvitedButtonClickKey]){
         NSIndexPath *indexPath = userInfo;

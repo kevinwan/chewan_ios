@@ -301,6 +301,7 @@ static NSString *ID2 = @"DateCell2";
         CPGoLogin(@"查看TA的详情");
         CPTaInfo *taVc = [UIStoryboard storyboardWithName:@"TaInfo" bundle:nil].instantiateInitialViewController;
         taVc.userId = model.applicant.userId;
+        taVc.activityId = model.activityId;
         [self.navigationController pushViewController:taVc animated:YES];
     }else if ([notifyName isEqualToString:TitleLabelClickKey]){
         CPActivityDetailViewController *activityVc = [UIStoryboard storyboardWithName:@"CPActivityDetailViewController" bundle:nil].instantiateInitialViewController;
