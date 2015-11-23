@@ -75,7 +75,7 @@
     
     [self.headImg addGestureRecognizer:tapGes];
     
-    if (_activityId && _reportUserId) {
+    if (_activityId) {
          [self setRightNavigationBarItemWithTitle:@"举报" Image:nil highImage:nil target:self action:@selector(report)];
     }
 }
@@ -86,7 +86,6 @@
     NSString *path=[NSString stringWithFormat:@"%@.info",CPUserId];
     currentUser=[NSKeyedUnarchiver unarchiveObjectWithFile:path.documentPath];
     [self getData];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -254,7 +253,7 @@
         if (buttonIndex == 5) {
             return;
         }else{
-            NSString *path=[NSString stringWithFormat:@"/user/%@/report?userId=%@&token=%@&activityId=%@",_reportUserId,CPUserId,CPToken,_activityId];
+            NSString *path=[NSString stringWithFormat:@"/user/%@/report?userId=%@&token=%@&activityId=%@",_reportUserId,CPUserId,CPToken,_userId];
             [ZYNetWorkTool postJsonWithUrl:path params:@[reportType,@"type"] success:^(id responseObject) {
                 if (CPSuccess) {
                     [self showInfo:@"举报成功"];
