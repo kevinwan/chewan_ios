@@ -116,7 +116,7 @@
                     }
                 } failed:^(NSError *error) {
                     [self disMiss];
-                    [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                    [self showInfo:@"请检查您的手机网络!"];
                     
                 }];
             }else{
@@ -284,7 +284,7 @@
         }
         
     } failed:^(NSError *error) {
-        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show];
+        [self showInfo:@"请检查您的手机网络!"];
     }];
 }
 

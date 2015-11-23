@@ -128,7 +128,7 @@
         [self disMiss];
     }failure:^(NSError *erro){
         [self disMiss];
-        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        [self showInfo:@"请检查您的手机网络!"];
     }];
 }
 - (IBAction)submit:(id)sender {
@@ -152,7 +152,7 @@
                     [self disMiss];
                 } failed:^(NSError *error) {
                     [self disMiss];
-                    [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请您的检查手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                    [self showInfo:@"请检查您的手机网络!"];
                 }];
             }else{
                 [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请上传您的驾驶证" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];

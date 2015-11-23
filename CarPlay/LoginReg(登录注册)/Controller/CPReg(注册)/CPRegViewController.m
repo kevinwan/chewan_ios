@@ -50,7 +50,7 @@
                     [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                 }
             } failure:^(NSError *error) {
-                [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                [self showInfo:@"请检查您的手机网络!"];
                 
             }];
         }else{
@@ -87,7 +87,7 @@
                                     [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
                                 }
                             } failed:^(NSError *error) {
-                                [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                               [self showInfo:@"请检查您的手机网络!"];
                                 
                             }];
                         }else{

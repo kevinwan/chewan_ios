@@ -46,7 +46,7 @@
             [self.navigationController popViewControllerAnimated:YES];
         } failed:^(NSError *error) {
             [self disMiss];
-            [[[UIAlertView alloc]initWithTitle:@"提示" message:@"保存资料失败，请检查您的手机网络!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+            [self showInfo:@"请检查您的手机网络!"];
         }];
     }else{
         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"昵称最多包含7个字符" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show];

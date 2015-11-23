@@ -69,7 +69,7 @@
                         [self disMiss];
                     } failure:^(NSError *error) {
                         [self disMiss];
-                        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                        [self showInfo:@"请检查您的手机网络!"];
                         
                     }];
                 } else {
@@ -78,7 +78,7 @@
                 [self disMiss];
             } failure:^(NSError *error) {
                 [self disMiss];
-                [[[UIAlertView alloc]initWithTitle:nil message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil] show];
+               [self showInfo:@"请检查您的手机网络!"];
             }];
         }else{
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请正确输入手机号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
@@ -139,7 +139,7 @@
                             }
                         } failed:^(NSError *error) {
                             [self disMiss];
-                             [[[UIAlertView alloc]initWithTitle:nil message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil] show];
+                             [self showInfo:@"请检查您的手机网络!"];
                         }];
                     }else{
                          [[[UIAlertView alloc]initWithTitle:@"提示" message:@"验证码为四位数字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
@@ -260,7 +260,7 @@
                 [self disMiss];
             } failure:^(NSError *error) {
                 [self disMiss];
-                [[[UIAlertView alloc]initWithTitle:nil message:@"请检查您的手机网络" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil] show];
+                [self showInfo:@"请检查您的手机网络!"];
             }];
         }else{
             [[[UIAlertView alloc]initWithTitle:nil message:@"请正确输入手机号" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil] show];
