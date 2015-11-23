@@ -463,8 +463,6 @@ static NSString *ID = @"partCell";
 
                 }
             }];
-
-
         }
             break;
         case 3:

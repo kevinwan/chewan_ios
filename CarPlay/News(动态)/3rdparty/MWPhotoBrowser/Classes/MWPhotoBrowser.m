@@ -97,6 +97,7 @@
     _pagingScrollView.delegate = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self releaseAllUnderlyingPhotos:NO];
+    
 //    [[SDImageCache sharedImageCache] clearMemory]; // clear memory
 }
 
@@ -348,7 +349,7 @@
     if (!_leaveStatusBarAlone && fullScreen && UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         [[UIApplication sharedApplication] setStatusBarStyle:_previousStatusBarStyle animated:animated];
     }
-    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
 	// Super
 	[super viewWillDisappear:animated];
     

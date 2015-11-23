@@ -31,4 +31,9 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *carNameWidth;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *carLogoCenter;
 @property (strong, nonatomic) MWPhotoBrowser *photoBrowser;
+
+#pragma 被举报的用户的Id
+@property (nonatomic, strong) NSString *reportUserId;
+#pragma 被举报的用户的活动Id
+@property (nonatomic, strong) NSString *activityId;
 @end
