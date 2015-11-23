@@ -17,8 +17,10 @@
 #import "UIImageView+AFNetworking.h"
 #import "DRNRealTimeBlurView.h"
 #import "UIImageView+webCache.h"
+#import "ZHPickView.h"
+#import "CPTabBarController.h"
 
-@interface CPBaseViewCell ()
+@interface CPBaseViewCell ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,ZHPickViewDelegate>
 /**
  *  背景的View
  */
@@ -134,6 +136,17 @@
 
 @property (nonatomic, strong) UILabel *titleExtraText;
 
+
+/**
+ *  更换照片按钮
+ */
+@property (nonatomic, strong) UIButton *changeImg;
+
+/**
+ *  继续匹配按钮
+ */
+@property (nonatomic, strong) UIButton *continueMatching;
+
 @end
 
 @implementation CPBaseViewCell
@@ -165,6 +178,8 @@
     [self.userIconView addSubview:self.dateButton];
     [self.userIconView addSubview:self.invitedButton];
     [self.userIconView addSubview:self.ignoreButton];
+    [self.userIconView addSubview:self.changeImg];
+    [self.userIconView addSubview:self.continueMatching];
     [self dateAnim];
     [self.bgView addSubview:self.titleView];
     [self.titleView addSubview:self.titleExtraText];
@@ -205,6 +220,19 @@
         make.centerY.equalTo(self.invitedButton);
         make.centerX.equalTo(self.userIconView).with.offset(@38);
     }];
+    
+    [self.changeImg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.equalTo(CGSizeMake(87, 34));
+        make.bottom.equalTo(@-10);
+        make.centerX.equalTo(@-52);
+    }];
+    
+    [self.continueMatching mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.equalTo(CGSizeMake(87, 34));
+        make.bottom.equalTo(@-10);
+        make.centerX.equalTo(@52);
+    }];
+    
     [self.tipView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.and.left.and.top.equalTo(@0);
         
@@ -312,43 +340,44 @@
     }else{
         status = model.applyFlag;
     }
-    if (status == 0){
-        if (model.isHisDate) {
-            
-            if (model.organizer.idle) {
+    if (model.activityId) {
+        if (status == 0){
+            if (model.isHisDate) {
+                
+                if (model.organizer.idle) {
+                    self.dateAnim.haloLayerColor = RedColor.CGColor;
+                    [self.dateButton setBackgroundColor:RedColor];
+                    [self.dateButton setTitle:@"邀Ta" forState:UIControlStateNormal];
+                    [self setOneType:YES];
+                }else{
+                    
+                    self.dateAnim.haloLayerColor= [Tools getColor:@"cccccc"].CGColor;
+                    [self.dateButton setBackgroundColor:[Tools getColor:@"cccccc"]];
+                    [self.dateButton setTitle:@"Ta没空" forState:UIControlStateNormal];
+                    [self setOneType:YES];
+                }
+            }else{
                 self.dateAnim.haloLayerColor = RedColor.CGColor;
                 [self.dateButton setBackgroundColor:RedColor];
                 [self.dateButton setTitle:@"邀Ta" forState:UIControlStateNormal];
                 [self setOneType:YES];
+            }
+        }else if (status == 1 || status == 3){
+            
+            if ([model.organizer.userId isEqualToString:CPUserId]) {
+                [self setOneType:NO];
+                [self setPhoneType:NO];
             }else{
                 
                 self.dateAnim.haloLayerColor= [Tools getColor:@"cccccc"].CGColor;
                 [self.dateButton setBackgroundColor:[Tools getColor:@"cccccc"]];
-                [self.dateButton setTitle:@"Ta没空" forState:UIControlStateNormal];
+                [self.dateButton setTitle:@"邀请中" forState:UIControlStateNormal];
                 [self setOneType:YES];
             }
-        }else{
-            self.dateAnim.haloLayerColor = RedColor.CGColor;
-            [self.dateButton setBackgroundColor:RedColor];
-            [self.dateButton setTitle:@"邀Ta" forState:UIControlStateNormal];
-            [self setOneType:YES];
+        }else if (status == 2){
+            [self setPhoneType:YES];
         }
-    }else if (status == 1 || status == 3){
-        
-        if ([model.organizer.userId isEqualToString:CPUserId]) {
-            [self setOneType:NO];
-            [self setPhoneType:NO];
-        }else{
-            
-            self.dateAnim.haloLayerColor= [Tools getColor:@"cccccc"].CGColor;
-            [self.dateButton setBackgroundColor:[Tools getColor:@"cccccc"]];
-            [self.dateButton setTitle:@"邀请中" forState:UIControlStateNormal];
-            [self setOneType:YES];
-        }
-    }else if (status == 2){
-        [self setPhoneType:YES];
     }
-    
 }
 
 - (void)setMyDateModel:(CPMyDateModel *)myDateModel
@@ -694,6 +723,70 @@
 }
 
 
+#pragma actionSheetDelegate
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex ==1) {
+        UIImagePickerController *picker=[[UIImagePickerController alloc]init];
+        picker.delegate=self;
+        picker.allowsEditing=YES;
+        picker.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
+        [self.window.rootViewController presentViewController:picker animated:YES completion:^{
+        }];
+    }else if (buttonIndex == 0){
+        if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            DLog(@"相机不可用");
+            return;
+        }
+        UIImagePickerController *picker=[[UIImagePickerController alloc]init];
+        picker.delegate=self;
+        picker.allowsEditing=YES;
+        picker.sourceType=UIImagePickerControllerSourceTypeCamera;
+        [self.window.rootViewController presentViewController:picker animated:YES completion:^{
+        }];
+    }else
+        return;
+    
+}
+
+#pragma PickerController
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    UIImage *editedImage=[info objectForKey:UIImagePickerControllerEditedImage];
+    [picker dismissViewControllerAnimated:YES completion:^{
+        NSData *data=UIImageJPEGRepresentation(editedImage, 0.4);
+        //        [[SDImageCache sharedImageCache] removeImageForKey:user.avatar];
+        [self upLoadImageWithBase64Encodeing:data];
+    }];
+}
+
+//上传头像
+-(void)upLoadImageWithBase64Encodeing:(NSData *)encodedImageData{
+//    ZYHttpFile *file=[[ZYHttpFile alloc]init];
+//    file.name=@"attach";
+//    file.data=encodedImageData;
+//    file.filename=@"avatar.jpg";
+//    file.mimeType=@"image/jpeg";
+//    NSArray *files=[[NSArray alloc]initWithObjects:file, nil];
+//    NSString *urlPath=[NSString stringWithFormat:@"user/%@/avatar?token=%@",[Tools getUserId],[Tools getToken]];
+//    [self showLoading];
+//    [ZYNetWorkTool postFileWithUrl:urlPath params:nil files:files success:^(id responseObject){
+//        if (CPSuccess) {
+//            user.avatar=responseObject[@"data"][@"photoUrl"];
+//            user.avatarId=responseObject[@"data"][@"photoId"];
+//            [ZYUserDefaults setObject:responseObject[@"data"][@"nickname"] forKey:kUserNickName];
+//            [NSKeyedArchiver archiveRootObject:user toFile:path.documentPath];
+//            [self.avatar zySetReloadImageWithUrl:user.avatar placeholderImage:editedImage completion:nil];
+//            
+//        }else{
+//            [[[UIAlertView alloc]initWithTitle:@"提示" message:@"上传失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+//        }
+//        [self disMiss];
+//    }failure:^(NSError *erro){
+//        [self showInfo:@"请检查您的手机网络!"];
+//        [self disMiss];
+//    }];
+}
+
 #pragma mark - lazy
 - (UIButton *)invitedButton
 {
@@ -751,6 +844,10 @@
             }
             [self superViewWillRecive:DateBtnClickKey info:_indexPath];
         }];
+        if (!_model.activityId) {
+            [_dateButton setHidden:YES];
+        }
+        
     }
     return _dateButton;
 }
@@ -980,6 +1077,54 @@
         [_titleExtraText sizeToFit];
     }
     return _titleExtraText;
+}
+
+-(UIButton *)changeImg{
+    if (_changeImg == nil) {
+        _changeImg = [UIButton buttonWithTitle:@"更换照片" icon:nil titleColor:[Tools getColor:@"ffffff"] fontSize:14];
+        _changeImg.layer.cornerRadius = 17;
+        _changeImg.clipsToBounds = YES;
+        if (!_model.activityId) {
+            _changeImg.hidden = YES;
+        }else{
+            _changeImg.hidden = NO;
+        }
+        [_changeImg setBackgroundColor:[UIColor colorWithRed:254/255.0 green:89/255.0 blue:105/255.0 alpha:.9]];
+        
+        ZYWeakSelf
+        [[_changeImg rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            ZYStrongSelf
+            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择相片" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"相册",@"已上传照片", nil];
+            [actionSheet showInView:self.superview];
+        }];
+    }
+    return _changeImg;
+}
+
+-(UIButton *)continueMatching{
+    if (_continueMatching == nil) {
+        _continueMatching = [UIButton buttonWithTitle:@"继续匹配" icon:nil titleColor:[Tools getColor:@"ffffff"] fontSize:14];
+        _continueMatching.layer.cornerRadius = 17;
+        _continueMatching.clipsToBounds = YES;
+        if (!_model.activityId) {
+            _continueMatching.hidden = YES;
+        }else{
+            _continueMatching.hidden = NO;
+        }
+        [_continueMatching setBackgroundColor:[UIColor colorWithRed:119/255.0 green:187/255.0 blue:242/255.0 alpha:.9]];
+        
+        ZYWeakSelf
+        [[_continueMatching rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            ZYStrongSelf
+            [self.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
+            CPTabBarController *tab = (CPTabBarController *)self.window.rootViewController;
+            [ZYNotificationCenter postNotificationName:NOTIFICATION_STARTMATCHING object:nil];
+            
+            [tab setSelectedIndex:4];
+            
+        }];
+    }
+    return _continueMatching;
 }
 
 @end

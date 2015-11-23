@@ -11,6 +11,9 @@
 #import "CPpinyin.h"
 #import "CPTabBarController.h"
 #import "CPUser.h"
+#import "CPActivityModel.h"
+#import "CPUser.h"
+#import "CPMatchingPreview.h"
 
 @interface ExerciseMatchingSelectView ()<UIGestureRecognizerDelegate>
 {
@@ -23,6 +26,7 @@
     NSString *path;
 }
 @property (nonatomic, strong) UIButton *lastTypebtn;
+@property (nonatomic , strong) CPActivityModel *activity;
 @end
 
 @implementation ExerciseMatchingSelectView
@@ -125,11 +129,21 @@
         NSString *path=[[NSString alloc]initWithFormat:@"activity/register?userId=%@&token=%@",[Tools getUserId],[Tools getToken]];
         [ZYNetWorkTool postJsonWithUrl:path params:params success:^(id responseObject) {
             if (CPSuccess) {
-                [self dismissViewControllerAnimated:YES completion:nil];
-                CPTabBarController *tab = (CPTabBarController *)self.view.window.rootViewController;
-                [ZYNotificationCenter postNotificationName:NOTIFICATION_STARTMATCHING object:nil];
+                _activity=[CPActivityModel new];
+                _activity.destination=establish;
+                _activity.type=majorType.type;
+                _activity.transfer=@([ZYUserDefaults boolForKey:Transfer]);
+                _activity.organizer = [NSKeyedUnarchiver unarchiveObjectWithFile:[NSString stringWithFormat:@"%@.info",CPUserId].documentPath];
+                CPMatchingPreview *matchingPreview=[UIStoryboard storyboardWithName:@"CPMatchingPreview" bundle:nil].instantiateInitialViewController;
+                matchingPreview.activity=_activity;
+                [self.navigationController pushViewController:matchingPreview animated:YES];
                 
-                [tab setSelectedIndex:4];
+                
+//                [self dismissViewControllerAnimated:YES completion:nil];
+//                CPTabBarController *tab = (CPTabBarController *)self.view.window.rootViewController;
+//                [ZYNotificationCenter postNotificationName:NOTIFICATION_STARTMATCHING object:nil];
+//                
+//                [tab setSelectedIndex:4];
             }else{
                 NSString *errmsg =[responseObject objectForKey:@"errmsg"];
                 [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];

@@ -138,6 +138,8 @@
 		6BE2E61D1BC67CB000D1D928 /* CPTakeALookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2E6191BC67CB000D1D928 /* CPTakeALookViewController.m */; };
 		6BE405171BDB953700CF164C /* CPTakeALookResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE405161BDB953700CF164C /* CPTakeALookResultController.m */; };
 		6BF14C431BD23331008D2E74 /* CPExerciseMatchingSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF14C421BD23331008D2E74 /* CPExerciseMatchingSelectButton.m */; };
+		6BF7044C1C0318FD005AA75A /* CPMatchingPreview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BF7044B1C0318FD005AA75A /* CPMatchingPreview.storyboard */; };
+		6BF7044F1C0319D4005AA75A /* CPMatchingPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF7044E1C0319D4005AA75A /* CPMatchingPreview.m */; };
 		6D2ABF851BCE582100201A8E /* EMAudioPlayerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2ABE4B1BCE582100201A8E /* EMAudioPlayerUtil.m */; };
 		6D2ABF861BCE582100201A8E /* EMAudioRecorderUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2ABE4D1BCE582100201A8E /* EMAudioRecorderUtil.m */; };
 		6D2ABF871BCE582100201A8E /* EMCDDeviceManager+Media.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2ABE4F1BCE582100201A8E /* EMCDDeviceManager+Media.m */; };
@@ -878,6 +880,9 @@
 		6BE405161BDB953700CF164C /* CPTakeALookResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTakeALookResultController.m; sourceTree = "<group>"; };
 		6BF14C411BD23331008D2E74 /* CPExerciseMatchingSelectButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPExerciseMatchingSelectButton.h; sourceTree = "<group>"; };
 		6BF14C421BD23331008D2E74 /* CPExerciseMatchingSelectButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPExerciseMatchingSelectButton.m; sourceTree = "<group>"; };
+		6BF7044B1C0318FD005AA75A /* CPMatchingPreview.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CPMatchingPreview.storyboard; sourceTree = "<group>"; };
+		6BF7044D1C0319D4005AA75A /* CPMatchingPreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMatchingPreview.h; sourceTree = "<group>"; };
+		6BF7044E1C0319D4005AA75A /* CPMatchingPreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMatchingPreview.m; sourceTree = "<group>"; };
 		6D2ABE461BCE582100201A8E /* EMCDDeviceManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCDDeviceManagerDelegate.h; sourceTree = "<group>"; };
 		6D2ABE471BCE582100201A8E /* EMCDDeviceManagerProximitySensorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCDDeviceManagerProximitySensorDelegate.h; sourceTree = "<group>"; };
 		6D2ABE491BCE582100201A8E /* DemoErrorCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoErrorCode.h; sourceTree = "<group>"; };
@@ -2267,6 +2272,16 @@
 				6BE2E6191BC67CB000D1D928 /* CPTakeALookViewController.m */,
 			);
 			path = "takeALook(随便看看)";
+			sourceTree = "<group>";
+		};
+		6BF704471C0318D6005AA75A /* CPMatchingPreview（匹配预览） */ = {
+			isa = PBXGroup;
+			children = (
+				6BF7044B1C0318FD005AA75A /* CPMatchingPreview.storyboard */,
+				6BF7044D1C0319D4005AA75A /* CPMatchingPreview.h */,
+				6BF7044E1C0319D4005AA75A /* CPMatchingPreview.m */,
+			);
+			path = "CPMatchingPreview（匹配预览）";
 			sourceTree = "<group>";
 		};
 		6D2ABE431BCE582100201A8E /* 3rdparty */ = {
@@ -3810,6 +3825,7 @@
 		E3A471021BB3A85300973197 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6BF704471C0318D6005AA75A /* CPMatchingPreview（匹配预览） */,
 				6B204BA91BDDF0700005C197 /* CPMatchingResult(匹配结果) */,
 				6BE2E6131BC67CB000D1D928 /* CPMatching.storyboard */,
 				6BE2E6141BC67CB000D1D928 /* CPMatchingViewController.h */,
@@ -4658,6 +4674,7 @@
 				EEFD12991BDDF6D0009EA6CC /* wheel11@2x.png in Resources */,
 				6D2AC1901BCE824400201A8E /* Localizable.strings in Resources */,
 				6D2AC1271BCE5A5100201A8E /* chatBar_faceSelected@2x.png in Resources */,
+				6BF7044C1C0318FD005AA75A /* CPMatchingPreview.storyboard in Resources */,
 				6D7F6FD01BD5216500945F1B /* chatBar_colorMore_location@3x.png in Resources */,
 				6D2AC1221BCE5A5100201A8E /* imageDownloadFail@2x.png in Resources */,
 				6BD61A1A1BEB594300A4589B /* UMSnsAccountViewController.xib in Resources */,
@@ -4859,6 +4876,7 @@
 				6B364C651BCE401C005A4AF9 /* UzysAssetsViewCell.m in Sources */,
 				E39063991BD8CF8800988F8E /* CPMyDateViewController.m in Sources */,
 				6D2ABF901BCE582100201A8E /* MBProgressHUD.m in Sources */,
+				6BF7044F1C0319D4005AA75A /* CPMatchingPreview.m in Sources */,
 				6BF14C431BD23331008D2E74 /* CPExerciseMatchingSelectButton.m in Sources */,
 				EE0DBBB11BE3479E00D1F972 /* CPChatGroupDetailViewController.m in Sources */,
 				E39627B81BB5352D005E0CF2 /* CPActivityModel.m in Sources */,

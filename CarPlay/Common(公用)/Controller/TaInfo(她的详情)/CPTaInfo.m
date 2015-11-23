@@ -253,8 +253,8 @@
         if (buttonIndex == 5) {
             return;
         }else{
-            NSString *path=[NSString stringWithFormat:@"/user/%@/report?userId=%@&token=%@&activityId=%@",_reportUserId,CPUserId,CPToken,_userId];
-            [ZYNetWorkTool postJsonWithUrl:path params:@[reportType,@"type"] success:^(id responseObject) {
+            NSString *path=[NSString stringWithFormat:@"user/%@/report?userId=%@&token=%@&activityId=%@",_userId,CPUserId,CPToken,_activityId];
+            [ZYNetWorkTool postJsonWithUrl:path params:[NSDictionary dictionaryWithObjectsAndKeys:reportType,@"type", nil] success:^(id responseObject) {
                 if (CPSuccess) {
                     [self showInfo:@"举报成功"];
                 }else{
@@ -264,7 +264,6 @@
                 [self showInfo:@"请检查您的手机网络"];
             }];
         }
-        
      }
 }
 /**
