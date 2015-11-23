@@ -96,6 +96,8 @@
     } failure:^(NSError *error) {
         [self disMiss];
         [footer endRefreshing];
+        [self showInfo:@"请检查您的手机网络"];
+
 
     }];
     
@@ -118,6 +120,8 @@
     } failure:^(NSError *error) {
         [self disMiss];
         [header endRefreshing];
+        [self showInfo:@"请检查您的手机网络"];
+
 
     }];
 
