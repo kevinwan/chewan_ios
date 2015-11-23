@@ -34,6 +34,8 @@
 @property (nonatomic, strong) CPNoDataTipView *noDataView;
 @property (nonatomic, weak)   AAPullToRefresh *headerView;
 @property (nonatomic, weak)   AAPullToRefresh *footerView;
+//底部没有的时候，添加一个提示
+@property (nonatomic, strong)UILabel *footerMessageLabel;
 @end
 
 static NSString *ID = @"cell";
@@ -61,6 +63,8 @@ static NSString *ID = @"cell";
     
     // 加载数据
     [self refreshData];
+    //加载底部到底的提示框
+    [self.tableView addSubview:self.footerMessageLabel];
 }
 
 /**
@@ -121,6 +125,7 @@ static NSString *ID = @"cell";
  */
 - (void)setUpRefresh
 {
+    self.footerMessageLabel.hidden = YES;
     if (self.isHasRefreshHeader) {
         return;
     }
@@ -139,7 +144,8 @@ static NSString *ID = @"cell";
     if (self.datas.count <= 1) {
         return;
     }
-    
+//test1123
+    __block CPNearViewController *weakself = self;
     // bottom
     self.footerView = [_tableView addPullToRefreshPosition:AAPullToRefreshPositionBottom actionHandler:^(AAPullToRefresh *v){
         ZYStrongSelf
@@ -153,6 +159,9 @@ static NSString *ID = @"cell";
         }else{
            ZYAfter(1.0, ^{
                [v stopIndicatorAnimation];
+               //test1123
+               weakself.footerMessageLabel.hidden = NO;
+               self.footerMessageLabel.y = self.footerView.y;
            });
         }
     }];
@@ -207,6 +216,7 @@ static NSString *ID = @"cell";
         [refresh stopIndicatorAnimation];
         self.noDataView.netWorkFailtype = NO;
         [ZYLoadingView dismissLoadingView];
+        [self showInfo:@"请检查您的手机网络"];
     }];
 }
 
@@ -241,6 +251,8 @@ static NSString *ID = @"cell";
     
     [layout EndAnchorMove];
     
+    //test1123
+    self.footerMessageLabel.hidden =YES;
 }
 
 #pragma mark - 事件交互
@@ -612,6 +624,20 @@ static NSString *ID = @"cell";
         _noDataView.frame = self.view.bounds;
     }
     return _noDataView;
+}
+
+- (UILabel *)footerMessageLabel
+{
+    if (_footerMessageLabel == nil) {
+        _footerMessageLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, self.footerView.y, kDeviceWidth, 20)];
+        _footerMessageLabel.backgroundColor = [UIColor clearColor];
+        _footerMessageLabel.text = @"已经到底啦~";
+        [_footerMessageLabel setTextAlignment:NSTextAlignmentCenter];
+        [_footerMessageLabel setFont:[UIFont systemFontOfSize:12]];
+        [_footerMessageLabel setTextColor:UIColorFromRGB(0x999999)];
+        
+    }
+    return _footerMessageLabel;
 }
 
 @end
