@@ -78,6 +78,7 @@
     if (_activityId) {
          [self setRightNavigationBarItemWithTitle:@"举报" Image:nil highImage:nil target:self action:@selector(report)];
     }
+    reportTypes = [NSArray arrayWithObjects:@"色情低俗",@"广告骚扰",@"政治敏感",@"诈骗",@"违法", nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -254,7 +255,8 @@
             return;
         }else{
             NSString *path=[NSString stringWithFormat:@"user/%@/report?userId=%@&token=%@&activityId=%@",_userId,CPUserId,CPToken,_activityId];
-            [ZYNetWorkTool postJsonWithUrl:path params:[NSDictionary dictionaryWithObjectsAndKeys:reportType,@"type", nil] success:^(id responseObject) {
+            NSDictionary *params=[NSDictionary dictionaryWithObjectsAndKeys:reportType,@"type",@"",@"content", nil];
+            [ZYNetWorkTool postJsonWithUrl:path params:params success:^(id responseObject) {
                 if (CPSuccess) {
                     [self showInfo:@"举报成功"];
                 }else{
@@ -431,10 +433,10 @@
     return _messageReadManager;
 }
 
--(NSArray *)reportTypes{
-    if (reportTypes == nil) {
-        reportTypes = [NSArray arrayWithObjects:@"色情低俗",@"广告骚扰",@"政治敏感",@"诈骗",@"违法", nil];
-    }
-    return reportTypes;
-}
+//-(NSArray *)reportTypes{
+//    if (reportTypes == nil) {
+//        reportTypes = [NSArray arrayWithObjects:@"色情低俗",@"广告骚扰",@"政治敏感",@"诈骗",@"违法", nil];
+//    }
+//    return reportTypes;
+//}
 @end
