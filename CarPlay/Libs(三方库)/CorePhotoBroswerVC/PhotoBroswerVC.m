@@ -16,15 +16,17 @@
 #import "CoreArchive.h"
 #import "PBScrollView.h"
 #import "CALayer+Transition.h"
-
+#import "PBSaveBtn.h"
 
 
 @interface PhotoBroswerVC ()<UIScrollViewDelegate>
 
+@property (nonatomic, assign)BOOL fromMatchinPreview;
 
 /** 外部操作控制器 */
 @property (nonatomic,weak) UIViewController *handleVC;
 
+@property (weak, nonatomic) IBOutlet PBSaveBtn *rightButton;
 
 /** 类型 */
 @property (nonatomic,assign) PhotoBroswerVCType type;
@@ -86,6 +88,7 @@
 /** 被访问者的userId*/
 @property (nonatomic, copy) NSString *userId;
 
+
 @end
 
 @implementation PhotoBroswerVC
@@ -111,6 +114,11 @@
  
     pbVC.userId = userId;
     
+    if (index == 100) {
+        index = 0;
+        pbVC.fromMatchinPreview = YES;
+    }
+    
     if(index >= photoModels.count){
         NSLog(@"错误：index越界！");
         return;
@@ -133,7 +141,7 @@
 
 /** 真正展示 */
 -(void)show{
-    
+   
     switch (_type) {
         case PhotoBroswerVCTypePush://push
             
@@ -161,6 +169,7 @@
         default:
             break;
     }
+   
 }
 
 
@@ -246,7 +255,6 @@
 
 
 -(void)viewWillDisappear:(BOOL)animated{
-    
     [super viewWillDisappear:animated];
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
@@ -255,7 +263,10 @@
 
 
 -(void)viewWillAppear:(BOOL)animated{
-    
+    if (_fromMatchinPreview) {
+        [self.rightButton setImage:nil forState:UIControlStateNormal];
+        [self.rightButton setTitle:@"选择" forState:UIControlStateNormal];
+    }
     [super viewWillAppear:animated];
     
     [self.navigationController setNavigationBarHidden:YES animated:YES];
@@ -528,40 +539,52 @@
 }
 
 - (IBAction)rightBtnClick:(id)sender {
-    
-    if ([self.userId isEqualToString:CPUserId]) {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"设置为头像",@"删除", nil];
-        [actionSheet.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
-            if (index.intValue == 1) {
-#warning 删除有bug 因为缓存问题 待修改
-                [self deletePhoto];
-            }else if(index.intValue == 0){
-                if (self.currentItemView) {
-                    UIImage *image=self.currentItemView.photoImageView.image;
-                    NSData *data=UIImageJPEGRepresentation(image, 1.0);
-                    [self upLoadImageWithBase64Encodeing:data];
-                }
-            }
-        }];
-        [actionSheet showInView:self.view];
+    if (_fromMatchinPreview) {
+        NSString *url=_currentItemView.photoModel.album.url;
+        [ZYUserDefaults setObject:url forKey:@"coverPhotoUrl"];
+        NSString *coverPhotoId=_currentItemView.photoModel.album.photoId;
+        [ZYUserDefaults setObject:coverPhotoId forKey:@"coverPhotoId"];
+         [self dismiss];
     }else{
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"保存", nil];
-        [actionSheet.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
-            if (index.intValue == 0) {
-                NSLog(@"%@",self.photoModels);
-                PhotoModel *photo=self.photoModels[self.page];
-                if (![photo read]) {
-                    [photo save];
-                    
-                    UIImage *image=self.currentItemView.photoImageView.image;
-                    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
-                }else{
-                    [[[UIAlertView alloc]initWithTitle:@"提示" message:@"图片已经保存" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil] show];
+        if ([self.userId isEqualToString:CPUserId]) {
+            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"设置为头像",@"删除", nil];
+            [actionSheet.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
+                if (index.intValue == 1) {
+#warning 删除有bug 因为缓存问题 待修改
+                    [self deletePhoto];
+                }else if(index.intValue == 0){
+                    if (self.currentItemView) {
+                        UIImage *image=self.currentItemView.photoImageView.image;
+                        NSData *data=UIImageJPEGRepresentation(image, 1.0);
+                        [self upLoadImageWithBase64Encodeing:data];
+                    }
                 }
-            }
-        }];
-        [actionSheet showInView:self.view];
+            }];
+            [actionSheet showInView:self.view];
+        }else{
+            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"保存", nil];
+            [actionSheet.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
+                if (index.intValue == 0) {
+                    NSLog(@"%@",self.photoModels);
+                    PhotoModel *photo=self.photoModels[self.page];
+                    if (![photo read]) {
+                        [photo save];
+                        
+                        UIImage *image=self.currentItemView.photoImageView.image;
+                        UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+                    }else{
+                        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"图片已经保存" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil] show];
+                    }
+                }
+            }];
+            [actionSheet showInView:self.view];
+        }
+
     }
+    
+    
+    
+    
     
 //    //取出itemView
 //    PhotoItemView *itemView = self.currentItemView;

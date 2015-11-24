@@ -31,6 +31,7 @@
     ExerciseMatchingSelectView *exerciseMatchingSelectView;
     CPBRPGViewController *BRPGViewController;
     NSInteger index;
+    CPNavigationController *nav;
 }
 
 @end
@@ -137,7 +138,7 @@
     exerciseMatchingSelectView=[UIStoryboard storyboardWithName:@"ExerciseMatchingSelectView" bundle:nil].instantiateInitialViewController;
     
     BRPGViewController=[UIStoryboard storyboardWithName:@"CPBRPGViewController" bundle:nil].instantiateInitialViewController;
-    
+    nav=[[CPNavigationController alloc] init];
 }
 
 -(void)animationContent{
@@ -318,8 +319,9 @@
                 otherMatchingSelectView.locationAddressView.alpha=0.0;
                 otherMatchingSelectView.addressSelection.alpha=0.0;
                 otherMatchingSelectView.indexView.alpha=0.0;
-                [self.view addSubview:otherMatchingSelectView.view];
-                [self addChildViewController:otherMatchingSelectView];
+                nav=[[CPNavigationController alloc]initWithRootViewController:otherMatchingSelectView];
+                [self.view addSubview:nav.view];
+                [self addChildViewController:nav];
                 break;
             case 2:
                 colorRGB=@"5f99c0";
@@ -330,8 +332,9 @@
 //                BRPGViewController.locationAddressView.alpha=0.0;
 //                BRPGViewController.addressSelection.alpha=0.0;
 //                BRPGViewController.indexView.alpha=0.0;
-                [self.view addSubview:BRPGViewController.view];
-                [self addChildViewController:BRPGViewController];
+                nav=[[CPNavigationController alloc]initWithRootViewController:BRPGViewController];
+                [self.view addSubview:nav.view];
+                [self addChildViewController:nav];
                 break;
             case 3:
                 colorRGB=@"fddb64";
@@ -342,8 +345,9 @@
                 otherMatchingSelectView.locationAddressView.alpha=0.0;
                 otherMatchingSelectView.addressSelection.alpha=0.0;
                 otherMatchingSelectView.indexView.alpha=0.0;
-                [self.view addSubview:otherMatchingSelectView.view];
-                [self addChildViewController:otherMatchingSelectView];
+                nav=[[CPNavigationController alloc]initWithRootViewController:otherMatchingSelectView];
+                [self.view addSubview:nav.view];
+                [self addChildViewController:nav];
                 break;
             case 4:
                 colorRGB=@"5adad0";
@@ -354,8 +358,9 @@
                 otherMatchingSelectView.locationAddressView.alpha=0.0;
                 otherMatchingSelectView.addressSelection.alpha=0.0;
                 otherMatchingSelectView.indexView.alpha=0.0;
-                [self.view addSubview:otherMatchingSelectView.view];
-                [self addChildViewController:otherMatchingSelectView];
+                nav=[[CPNavigationController alloc]initWithRootViewController:otherMatchingSelectView];
+                [self.view addSubview:nav.view];
+                [self addChildViewController:nav];
                 break;
             case 5:
                 colorRGB=@"cd97dd";
@@ -366,8 +371,9 @@
                 otherMatchingSelectView.locationAddressView.alpha=0.0;
                 otherMatchingSelectView.addressSelection.alpha=0.0;
                 otherMatchingSelectView.indexView.alpha=0.0;
-                [self.view addSubview:otherMatchingSelectView.view];
-                [self addChildViewController:otherMatchingSelectView];
+                nav=[[CPNavigationController alloc]initWithRootViewController:otherMatchingSelectView];
+                [self.view addSubview:nav.view];
+                [self addChildViewController:nav];
                 break;
             case 6:
                 colorRGB=@"ea6f6f";
@@ -378,8 +384,9 @@
                 otherMatchingSelectView.locationAddressView.alpha=0.0;
                 otherMatchingSelectView.addressSelection.alpha=0.0;
                 otherMatchingSelectView.indexView.alpha=0.0;
-                [self.view addSubview:otherMatchingSelectView.view];
-                [self addChildViewController:otherMatchingSelectView];
+                nav=[[CPNavigationController alloc]initWithRootViewController:otherMatchingSelectView];
+                [self.view addSubview:nav.view];
+                [self addChildViewController:nav];
                 break;
             case 7:
                 colorRGB=@"f48c60";
@@ -390,8 +397,9 @@
                 signMatchingSelectView.locationAddressView.alpha=0.0;
                 signMatchingSelectView.addressSelection.alpha=0.0;
                 signMatchingSelectView.indexView.alpha=0.0;
-                [self.view addSubview:signMatchingSelectView.view];
-                [self addChildViewController:signMatchingSelectView];
+                nav=[[CPNavigationController alloc]initWithRootViewController:signMatchingSelectView];
+                [self.view addSubview:nav.view];
+                [self addChildViewController:nav];
                 break;
             case 8:
                 colorRGB=@"1cc1a0";
@@ -402,8 +410,9 @@
                 otherMatchingSelectView.locationAddressView.alpha=0.0;
                 otherMatchingSelectView.addressSelection.alpha=0.0;
                 otherMatchingSelectView.indexView.alpha=0.0;
-                [self.view addSubview:otherMatchingSelectView.view];
-                [self addChildViewController:otherMatchingSelectView];
+                nav=[[CPNavigationController alloc]initWithRootViewController:otherMatchingSelectView];
+                [self.view addSubview:nav.view];
+                [self addChildViewController:nav];
                 break;
             case 9:
             {
@@ -415,7 +424,7 @@
                 exerciseMatchingSelectView.locationAddressView.alpha=0.0;
                 exerciseMatchingSelectView.addressSelection.alpha=0.0;
                 exerciseMatchingSelectView.indexView.alpha=0.0;
-                CPNavigationController *nav=[[CPNavigationController alloc]initWithRootViewController:exerciseMatchingSelectView];
+                nav=[[CPNavigationController alloc]initWithRootViewController:exerciseMatchingSelectView];
                 [self.view addSubview:nav.view];
                 [self addChildViewController:nav];
                 break;
@@ -429,8 +438,10 @@
                 signMatchingSelectView.locationAddressView.alpha=0.0;
                 signMatchingSelectView.addressSelection.alpha=0.0;
                 signMatchingSelectView.indexView.alpha=0.0;
-                [self.view addSubview:signMatchingSelectView.view];
-                [self addChildViewController:signMatchingSelectView];
+                
+                nav=[[CPNavigationController alloc]initWithRootViewController:signMatchingSelectView];
+                [self.view addSubview:nav.view];
+                [self addChildViewController:nav];
                 break;
                 
             default:

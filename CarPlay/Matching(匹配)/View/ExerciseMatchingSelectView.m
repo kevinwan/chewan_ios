@@ -142,6 +142,8 @@
                 if ([_activity.organizer.album count]>0) {
                     CPAlbum *album=_activity.organizer.album[0];
                      _activity.organizer.cover=album.url;
+                }else{
+                    _activity.organizer.avatar;
                 }
                 CPMatchingPreview *matchingPreview=[UIStoryboard storyboardWithName:@"CPMatchingPreview" bundle:nil].instantiateInitialViewController;
                 matchingPreview.activity=_activity;
@@ -413,6 +415,8 @@
         [UIView animateWithDuration:0.25 animations:^{
             self.view.alpha = 0.0;
         } completion:^(BOOL finished) {
+            [self.navigationController removeFromParentViewController];
+            [self.navigationController.view removeFromSuperview];
         }];
     }
 }

@@ -13,9 +13,14 @@
 #import "CPTabBarController.h"
 #import "CusomeActionSheet.h"
 #import "UMSocial.h"
+#import "PhotoBroswerVC.h"
+#import "CPUser.h"
+
 @interface CPMatchingPreview ()<UICollectionViewDelegate,UICollectionViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,ZHPickViewDelegate,customActionsheetDelegete>
 {
-    BOOL share;
+    BOOL unshare;
+    CPUser *user;
+    NSString *path;
 }
 @property (nonatomic, strong) UICollectionView *tableView;
 @property (nonatomic, assign) CGFloat offset;
@@ -36,12 +41,14 @@ static NSString *ID = @"cell";
     [self.view addSubview:self.tableView];
     [self.navigationItem setTitle:@"匹配活动预览"];
     [self setRightNavigationBarItemWithTitle:nil Image:@"share" highImage:@"share" target:self action:@selector(shareClick)];
+    path=[NSString stringWithFormat:@"%@.info",CPUserId].documentPath;
+    user=[NSKeyedUnarchiver unarchiveObjectWithFile:path];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    NSLog(@"%@",self.navigationController);
     [self.navigationController.navigationBar setHidden:NO];
+    [self chackDate];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -57,9 +64,9 @@ static NSString *ID = @"cell";
 {
     if (_tableView == nil) {
         UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
-        _tableView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 62, ZYScreenWidth - 20, 390+self.offset) collectionViewLayout:layout];
+        _tableView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 62, ZYScreenWidth - 20, ZYScreenHeight-62) collectionViewLayout:layout];
         _tableView.centerX = self.view.middleX;
-        _tableView.centerY = self.view.middleY;
+//        _tableView.centerY = self.view.middleY;
         _tableView.alwaysBounceVertical = NO;
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.showsHorizontalScrollIndicator = NO;
@@ -72,10 +79,18 @@ static NSString *ID = @"cell";
         layout.scrollDirection=UICollectionViewScrollDirectionVertical;
         self.view.backgroundColor =  [Tools getColor:@"f7f7f7"];
         [_tableView registerClass:[CPNearCollectionViewCell class] forCellWithReuseIdentifier:ID];
-        
+        UILabel *explainStr=[[UILabel alloc]initWithFrame:CGRectMake(0, -60, ZYScreenWidth, 60)];
+        explainStr.numberOfLines=0;
+        explainStr.text=@"你的“意向”将以下面的形式展示给他人 \n不上传真人头像被邀请率很低哟~";
+        [explainStr setFont:ZYFont14];
+        [explainStr setTextColor:[Tools getColor:@"666666"]];
+        [explainStr setTextAlignment:NSTextAlignmentCenter];
+        [_tableView addSubview:explainStr];
+        [_tableView setContentInset:UIEdgeInsetsMake(60, 0, 0, 0)];
     }
     return _tableView;
 }
+
 
 #pragma mark - UICollectionViewDelegate &dataSource
 
@@ -90,15 +105,14 @@ static NSString *ID = @"cell";
     cell.contentV.dateAnim.hidden = YES;
     cell.contentV.dateButton.hidden = YES;
     [[cell.contentV.changeImg rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        share = YES;
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择相片" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"相册",@"已上传照片", nil];
-        [actionSheet showInView:self.view];
+        [self changeImg];
     }];
     
     [[cell.contentV.continueMatching rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        share = NO;
+        unshare = YES;
         [self shareClick];
     }];
+//    [cell setContentInset:UIEdgeInsetsMake(60, 0, 0, 0)];
     return cell;
 }
 
@@ -109,6 +123,17 @@ static NSString *ID = @"cell";
 
 - (void)superViewWillRecive:(NSString *)notifyName info:(id)userInfo
 {
+    
+}
+
+-(void)changeImg{
+    if ( user.album.count >0) {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择相片" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"相册",@"已上传照片", nil];
+        [actionSheet showInView:self.view];
+    }else{
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择相片" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"相册", nil];
+        [actionSheet showInView:self.view];
+    }
 }
 
 //匹配并分享
@@ -118,7 +143,7 @@ static NSString *ID = @"cell";
     [ZYNetWorkTool postJsonWithUrl:path params:params success:^(id responseObject) {
         if (CPSuccess) {
             _activity.activityId=responseObject[@"data"];
-            if (share) {
+            if (!unshare) {
                 /**
                  *
                  
@@ -161,7 +186,23 @@ static NSString *ID = @"cell";
         [self presentViewController:picker animated:YES completion:^{
         }];
     }else if (buttonIndex == 2){
-        
+        [PhotoBroswerVC show:self userId:user.userId type:PhotoBroswerVCTypePush index:100 photoModelBlock:^NSArray *{
+            NSMutableArray *modelsM = [NSMutableArray arrayWithCapacity:user.album.count];
+            for (NSUInteger i = 0; i< user.album.count; i++) {
+                
+                PhotoModel *pbModel=[[PhotoModel alloc] init];
+                pbModel.mid = i + 1;
+                pbModel.album = user.album[i];
+                
+                UIImageView *imagevC=[[UIImageView alloc]init];
+                [imagevC setContentMode:UIViewContentModeScaleAspectFill];
+                [imagevC zySetImageWithUrl:[NSString stringWithFormat:@"%@?imageView2/1/w/800",[user.album[i] url]] placeholderImage:[UIImage imageNamed:@"logo"]];
+                pbModel.sourceImageView = imagevC;
+                [modelsM addObject:pbModel];
+            }
+            
+            return modelsM;
+        }];
     }else
         return;
 }
@@ -175,7 +216,7 @@ static NSString *ID = @"cell";
     }];
 }
 
-//上传头像
+//上传图片
 -(void)upLoadImageWithBase64Encodeing:(NSData *)encodedImageData{
         ZYHttpFile *file=[[ZYHttpFile alloc]init];
         file.name=@"attach";
@@ -198,6 +239,15 @@ static NSString *ID = @"cell";
             [self showInfo:@"请检查您的手机网络!"];
             [self disMiss];
         }];
+}
+
+
+-(void)chackDate{
+    if ([ZYUserDefaults stringForKey:@"coverPhotoUrl"] && [ZYUserDefaults stringForKey:@"coverPhotoId"]) {
+        _activity.organizer.cover = [ZYUserDefaults stringForKey:@"coverPhotoUrl"];
+        _coverId = [ZYUserDefaults stringForKey:@"coverPhotoId"];
+        [self.tableView reloadData];
+    }
 }
 #pragma mark 分享相关方法
 

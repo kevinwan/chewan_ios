@@ -13,6 +13,9 @@
 #import "CPUser.h"
 #import "CPLeadView.h"
 #import "CPGuideView.h"
+#import "CPActivityModel.h"
+#import "CPAlbum.h"
+#import "CPMatchingPreview.h"
 
 @interface OtherMatchingSelectView ()<UIGestureRecognizerDelegate>
 {
@@ -26,6 +29,7 @@
     CPUser *user;
 }
 @property (nonatomic, strong) UIButton *lastTypebtn;
+@property (nonatomic , strong) CPActivityModel *activity;
 @end
 
 @implementation OtherMatchingSelectView
@@ -70,6 +74,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     path=[NSString stringWithFormat:@"%@.info",CPUserId];
     user=[NSKeyedUnarchiver unarchiveObjectWithFile:path.documentPath];
+    [self.navigationController.navigationBar setHidden:YES];
     if (user.isMan || !CPIsLogin) {
         [self.shuttleBtn setImage:[UIImage imageNamed:@"点击效果"] forState:UIControlStateNormal];
         self.whetherShuttle=@"1";
@@ -120,22 +125,42 @@
         NSDictionary *estabPoint=[[NSDictionary alloc]initWithObjectsAndKeys:@([Tools getLongitude]),@"longitude",@([Tools getLatitude]),@"latitude", nil];
         
         NSDictionary *establish=[[NSDictionary alloc]initWithObjectsAndKeys:[ZYUserDefaults stringForKey:Province],@"province",[ZYUserDefaults stringForKey:City],@"city",[ZYUserDefaults stringForKey:District],@"district",[ZYUserDefaults stringForKey:Street],@"street", nil];
-        NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:[ZYUserDefaults stringForKey:LastType].type,@"majorType",[ZYUserDefaults stringForKey:LastType].type,@"type",@([ZYUserDefaults boolForKey:Transfer]),@"transfer",establish,@"establish",estabPoint,@"estabPoint",estabPoint,@"destPoint",establish,@"destination",pay,@"pay", nil];
-        NSString *path=[[NSString alloc]initWithFormat:@"activity/register?userId=%@&token=%@",[Tools getUserId],[Tools getToken]];
-        [ZYNetWorkTool postJsonWithUrl:path params:params success:^(id responseObject) {
-            if (CPSuccess) {
-                [self dismissViewControllerAnimated:YES completion:nil];
-                CPTabBarController *tab = (CPTabBarController *)self.view.window.rootViewController;
-                [ZYNotificationCenter postNotificationName:NOTIFICATION_STARTMATCHING object:nil];
-                
-                [tab setSelectedIndex:4];
-            }else{
-                NSString *errmsg =[responseObject objectForKey:@"errmsg"];
-                [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-            }
-        } failed:^(NSError *error) {
-            [self showInfo:@"请检查您的手机网络!"];
-        }];
+//        NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:[ZYUserDefaults stringForKey:LastType].type,@"majorType",[ZYUserDefaults stringForKey:LastType].type,@"type",@([ZYUserDefaults boolForKey:Transfer]),@"transfer",establish,@"establish",estabPoint,@"estabPoint",estabPoint,@"destPoint",establish,@"destination",pay,@"pay", nil];
+//        NSString *path=[[NSString alloc]initWithFormat:@"activity/register?userId=%@&token=%@",[Tools getUserId],[Tools getToken]];
+//        [ZYNetWorkTool postJsonWithUrl:path params:params success:^(id responseObject) {
+//            if (CPSuccess) {
+//                [self dismissViewControllerAnimated:YES completion:nil];
+//                CPTabBarController *tab = (CPTabBarController *)self.view.window.rootViewController;
+//                [ZYNotificationCenter postNotificationName:NOTIFICATION_STARTMATCHING object:nil];
+//                
+//                [tab setSelectedIndex:4];
+//            }else{
+//                NSString *errmsg =[responseObject objectForKey:@"errmsg"];
+//                [[[UIAlertView alloc]initWithTitle:@"提示" message:errmsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+//            }
+//        } failed:^(NSError *error) {
+//            [self showInfo:@"请检查您的手机网络!"];
+//        }];
+
+        _activity=[CPActivityModel new];
+        _activity.destination=establish;
+        _activity.destabPoint = estabPoint;
+        //                _activity.activityId=responseObject[@"data"];
+        _activity.type=[ZYUserDefaults stringForKey:LastType].type;
+        _activity.distance=0;
+        _activity.pay=pay;
+        _activity.transfer=@([ZYUserDefaults boolForKey:Transfer]);
+        _activity.organizer = [NSKeyedUnarchiver unarchiveObjectWithFile:[NSString stringWithFormat:@"%@.info",CPUserId].documentPath];
+        if ([_activity.organizer.album count]>0) {
+            CPAlbum *album=_activity.organizer.album[0];
+            _activity.organizer.cover=album.url;
+        }else{
+            _activity.organizer.cover = _activity.organizer.avatar;
+        }
+        CPMatchingPreview *matchingPreview=[UIStoryboard storyboardWithName:@"CPMatchingPreview" bundle:nil].instantiateInitialViewController;
+        matchingPreview.activity=_activity;
+        [self.navigationController pushViewController:matchingPreview animated:YES];
+    
     }else{
         [self dismissViewControllerAnimated:YES completion:nil];
         CPTabBarController *tab = (CPTabBarController *)self.view.window.rootViewController;
@@ -372,6 +397,9 @@
         [UIView animateWithDuration:0.25 animations:^{
             self.view.alpha = 0.0;
         } completion:^(BOOL finished) {
+            
+            [self.navigationController removeFromParentViewController];
+            [self.navigationController.view removeFromSuperview];
         }];
     }
 }
