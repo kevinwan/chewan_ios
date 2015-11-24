@@ -139,8 +139,8 @@
                 _activity.distance=0;
                 _activity.transfer=@([ZYUserDefaults boolForKey:Transfer]);
                 _activity.organizer = [NSKeyedUnarchiver unarchiveObjectWithFile:[NSString stringWithFormat:@"%@.info",CPUserId].documentPath];
-                CPAlbum *album=_activity.organizer.album[0];
-                if (album) {
+                if ([_activity.organizer.album count]>0) {
+                    CPAlbum *album=_activity.organizer.album[0];
                      _activity.organizer.cover=album.url;
                 }
                 CPMatchingPreview *matchingPreview=[UIStoryboard storyboardWithName:@"CPMatchingPreview" bundle:nil].instantiateInitialViewController;
