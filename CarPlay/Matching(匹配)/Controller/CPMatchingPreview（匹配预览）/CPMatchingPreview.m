@@ -56,7 +56,7 @@ static NSString *ID = @"cell";
         _tableView.centerX = self.view.middleX;
         _tableView.centerY = self.view.middleY;
         _tableView.alwaysBounceVertical = NO;
-        _tableView.backgroundColor = [UIColor redColor];
+        _tableView.backgroundColor = [UIColor clearColor];
         _tableView.showsHorizontalScrollIndicator = NO;
         _tableView.showsVerticalScrollIndicator = NO;
         self.automaticallyAdjustsScrollViewInsets = NO;
@@ -176,7 +176,7 @@ static NSString *ID = @"cell";
         file.filename=@"avatar.jpg";
         file.mimeType=@"image/jpeg";
         NSArray *files=[[NSArray alloc]initWithObjects:file, nil];
-        NSString *urlPath=[NSString stringWithFormat:@"user/%@/avatar?token=%@",[Tools getUserId],[Tools getToken]];
+        NSString *urlPath=[NSString stringWithFormat:@"user/%@/album/upload?token=%@",[Tools getUserId],[Tools getToken]];
         [self showLoading];
         [ZYNetWorkTool postFileWithUrl:urlPath params:[NSDictionary dictionaryWithObjectsAndKeys:@"1",@"type", nil] files:files success:^(id responseObject){
             if (CPSuccess) {
