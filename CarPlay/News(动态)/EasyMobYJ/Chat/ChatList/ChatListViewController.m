@@ -826,86 +826,89 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        
-    EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
-       ChatViewController *chatController;
-    NSString *title = conversation.chatter;
-    if (conversation.conversationType != eConversationTypeChat) {
-        if ([[conversation.ext objectForKey:@"groupSubject"] length])
-        {
-            title = [conversation.ext objectForKey:@"groupSubject"];
-        }
-        else
-        {
-            NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
-            for (EMGroup *group in groupArray) {
-                if ([group.groupId isEqualToString:conversation.chatter]) {
-                    title = group.groupSubject;
-                    break;
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if (!cell.selected) {
+        EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
+        ChatViewController *chatController;
+        NSString *title = conversation.chatter;
+        if (conversation.conversationType != eConversationTypeChat) {
+            if ([[conversation.ext objectForKey:@"groupSubject"] length])
+            {
+                title = [conversation.ext objectForKey:@"groupSubject"];
+            }
+            else
+            {
+                NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
+                for (EMGroup *group in groupArray) {
+                    if ([group.groupId isEqualToString:conversation.chatter]) {
+                        title = group.groupSubject;
+                        break;
+                    }
                 }
             }
         }
-    }
-
-    //****注意，官方活动的自定义的数据要手动取消未读消息数量****//
-    NSString *chatter = conversation.chatter;
-    if ([chatter isEqualToString:@"subscribeadmin"]) {
-        //关注我的
-        CPCareMeViewController *careMeVC = [[CPCareMeViewController alloc]init];
-        [self.navigationController pushViewController:careMeVC animated:YES];
-        [conversation markAllMessagesAsRead:YES];
-    }else if ([chatter isEqualToString:@"userviewadmin"])
-    {//最近访客
-        CPVisitorViewController *careMeVC = [[CPVisitorViewController alloc]init];
-        [self.navigationController pushViewController:careMeVC animated:YES];
-        [conversation markAllMessagesAsRead:YES];
-
-    }else if ([chatter isEqualToString:@"interestadmin"])
-    {//感兴趣的
-        [conversation markAllMessagesAsRead:YES];
-        [self.navigationController pushViewController:[CPMyInterestViewController new] animated:YES];
-    }else if ([chatter isEqualToString:@"activitystateadmin"])
-    {//活动动态
-        [conversation markAllMessagesAsRead:YES];
-        CPMyDateViewController *myDateVC = [[CPMyDateViewController alloc]init];
-        myDateVC.isDynamic = YES;
-        [self.navigationController pushViewController:myDateVC animated:YES];
         
-        
-    }else if ([chatter isEqualToString:@"officialadmin"])
-    {//车玩官方
-        [conversation markAllMessagesAsRead:YES];
-        chatController = [[ChatViewController alloc] initWithChatter:chatter
-                                                    conversationType:conversation.conversationType];
-        chatController.title = @"车玩官方";
-        chatController.HerHeadStr =@"OfficialAdmin";
-        chatController.HerName = @"车玩官方";
-        chatController.delelgate = self;
-        [self.navigationController pushViewController:chatController animated:YES];
-
-        
-    }else if ([chatter isEqualToString:@"nearbyadmin"])
-    {//附近
-        [conversation markAllMessagesAsRead:YES];
-        [self.navigationController pushViewController:[CPDynamicNearViewController new] animated:YES];
-    }
-    else {
-        //test 测试群聊
-        chatController = [[ChatViewController alloc] initWithChatter:chatter
-                                                    conversationType:conversation.conversationType];
-        //如果是群聊，进入以后显示的名字是textLabel.text
-        if (conversation.conversationType == eConversationTypeGroupChat) {
-            UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-            chatController.title =cell.textLabel.text;
-
-        }else{
-        chatController.title = [conversation.latestMessageFromOthers.ext valueForKey:kUserNickName];
-
+        //****注意，官方活动的自定义的数据要手动取消未读消息数量****//
+        NSString *chatter = conversation.chatter;
+        if ([chatter isEqualToString:@"subscribeadmin"]) {
+            //关注我的
+            CPCareMeViewController *careMeVC = [[CPCareMeViewController alloc]init];
+            [self.navigationController pushViewController:careMeVC animated:YES];
+            [conversation markAllMessagesAsRead:YES];
+        }else if ([chatter isEqualToString:@"userviewadmin"])
+        {//最近访客
+            CPVisitorViewController *careMeVC = [[CPVisitorViewController alloc]init];
+            [self.navigationController pushViewController:careMeVC animated:YES];
+            [conversation markAllMessagesAsRead:YES];
+            
+        }else if ([chatter isEqualToString:@"interestadmin"])
+        {//感兴趣的
+            [conversation markAllMessagesAsRead:YES];
+            [self.navigationController pushViewController:[CPMyInterestViewController new] animated:YES];
+        }else if ([chatter isEqualToString:@"activitystateadmin"])
+        {//活动动态
+            [conversation markAllMessagesAsRead:YES];
+            CPMyDateViewController *myDateVC = [[CPMyDateViewController alloc]init];
+            myDateVC.isDynamic = YES;
+            [self.navigationController pushViewController:myDateVC animated:YES];
+            
+            
+        }else if ([chatter isEqualToString:@"officialadmin"])
+        {//车玩官方
+            [conversation markAllMessagesAsRead:YES];
+            chatController = [[ChatViewController alloc] initWithChatter:chatter
+                                                        conversationType:conversation.conversationType];
+            chatController.title = @"车玩官方";
+            chatController.HerHeadStr =@"OfficialAdmin";
+            chatController.HerName = @"车玩官方";
+            chatController.delelgate = self;
+            [self.navigationController pushViewController:chatController animated:YES];
+            
+            
+        }else if ([chatter isEqualToString:@"nearbyadmin"])
+        {//附近
+            [conversation markAllMessagesAsRead:YES];
+            [self.navigationController pushViewController:[CPDynamicNearViewController new] animated:YES];
         }
-        chatController.delelgate = self;
-        [self.navigationController pushViewController:chatController animated:YES];
-
+        else {
+            //test 测试群聊
+            chatController = [[ChatViewController alloc] initWithChatter:chatter
+                                                        conversationType:conversation.conversationType];
+            //如果是群聊，进入以后显示的名字是textLabel.text
+            if (conversation.conversationType == eConversationTypeGroupChat) {
+                UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+                chatController.title =cell.textLabel.text;
+                
+            }else{
+                chatController.title = [conversation.latestMessageFromOthers.ext valueForKey:kUserNickName];
+                
+            }
+            chatController.delelgate = self;
+            [self.navigationController pushViewController:chatController animated:YES];
+            
+        }
     }
+  
     
 }
 
