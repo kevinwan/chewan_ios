@@ -418,15 +418,13 @@ static NSString *ID = @"partCell";
         
     }
 }
-- (void)viewWillAppear:(BOOL)animated
+//去掉分享界面
+- (void)shareViewDismiss
 {
-    [super viewWillAppear:animated];
-    if (self.shareView) {
-        [self.shareView removeFromSuperview];
-        [self.shareActionview removeFromSuperview];
-        self.shareActionview = nil;
-        self.shareView = nil;
-    }
+    [self.shareView removeFromSuperview];
+    [self.shareActionview removeFromSuperview];
+    self.shareActionview = nil;
+    self.shareView = nil;
 }
 #pragma mark 分享的代理方法
 - (void)btnClicked:(UIButton *)button
@@ -434,16 +432,17 @@ static NSString *ID = @"partCell";
     NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
     long long int date = (long long int)time;
     NSString *shareStr = [NSString stringWithFormat:@"http://www.chewanapp.com/appshare.html?id=%@&time=%lld",self.officialActivityId,date];
-    
+    NSString *titleStr = [NSString stringWithFormat:@"您的朋友正在参加 \"%@活动\",来跟我一起参加吧",self.model.title];
     switch (button.tag) {
         case 1:
             //分享朋友圈
         {
-//            UMSocialUrlResource *resouce = [[UMSocialUrlResource alloc]initWithSnsResourceType:UMSocialUrlResourceTypeImage url:self.model.cover];
+            UMSocialUrlResource *resouce = [[UMSocialUrlResource alloc]initWithSnsResourceType:UMSocialUrlResourceTypeImage url:[self.model.covers objectAtIndex:0]];
 
                 [UMSocialData defaultData].extConfig.wechatTimelineData.url = shareStr;
-                [UMSocialData defaultData].extConfig.wechatTimelineData.title = self.model.title;
-            [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:self.model.title image:nil location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
+                [UMSocialData defaultData].extConfig.wechatTimelineData.title = titleStr;
+            [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:titleStr image:nil location:nil urlResource:resouce presentedController:self completion:^(UMSocialResponseEntity *response){
+                [self shareViewDismiss];
                 if (response.responseCode == UMSResponseCodeSuccess) {
 
                 }
@@ -453,12 +452,13 @@ static NSString *ID = @"partCell";
         case 2:
             //分享微信好友
         {
-            
+            UMSocialUrlResource *resouce = [[UMSocialUrlResource alloc]initWithSnsResourceType:UMSocialUrlResourceTypeImage url:[self.model.covers objectAtIndex:0]];
             [UMSocialData defaultData].extConfig.wechatSessionData.url = shareStr;
-            [UMSocialData defaultData].extConfig.wechatSessionData.title = self.model.title;
-            NSString *shareContent  = [NSString stringWithFormat:@"%@\n价格：%f\n%@",self.model.title,self.model.price,[self.model.destination objectForKey:@"street"]];
+            [UMSocialData defaultData].extConfig.wechatSessionData.title = @"";
+//            NSString *shareContent  = [NSString stringWithFormat:@"%@\n开始时间:%@\n结束时间:%@\n价格:%f\n%@",titleStr,self.model.startStr,self.model.endStr,self.model.price,[self.model.destination objectForKey:@"street"]];
             
-            [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:shareContent image:nil location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
+            [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:titleStr image:nil location:nil urlResource:resouce presentedController:self completion:^(UMSocialResponseEntity *response){
+                [self shareViewDismiss];
                 if (response.responseCode == UMSResponseCodeSuccess) {
 
                 }
@@ -468,10 +468,7 @@ static NSString *ID = @"partCell";
         case 3:
             //取消
         {
-            [self.shareView removeFromSuperview];
-            [self.shareActionview removeFromSuperview];
-            self.shareActionview = nil;
-            self.shareView = nil;
+            [self shareViewDismiss];
         }
             break;
             
