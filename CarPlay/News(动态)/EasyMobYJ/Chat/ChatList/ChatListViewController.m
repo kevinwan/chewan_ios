@@ -81,7 +81,6 @@
 {
     [super viewDidLoad];
     manager = [SDWebImageManager sharedManager];
-
     [[EaseMob sharedInstance].chatManager loadAllConversationsFromDatabaseWithAppend2Chat:NO];
     [self removeEmptyConversationsFromDB];
 

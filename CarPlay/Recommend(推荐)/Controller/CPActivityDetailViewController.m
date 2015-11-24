@@ -430,7 +430,7 @@ static NSString *ID = @"partCell";
 - (void)btnClicked:(UIButton *)button
 {
     NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
-    long long int date = (long long int)time;
+    long long int date = (long long int)time*1000;
     NSString *shareStr = [NSString stringWithFormat:@"http://www.chewanapp.com/appshare.html?id=%@&time=%lld",self.officialActivityId,date];
     NSString *titleStr = [NSString stringWithFormat:@"您的朋友正在参加 \"%@活动\",来跟我一起参加吧",self.model.title];
     switch (button.tag) {

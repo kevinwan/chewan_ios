@@ -16,9 +16,12 @@
 //    applyUserId = 561f755b0cf24f3b99211d12,
 @property (nonatomic, copy) NSString *applyUserId;
 @property (nonatomic, copy) NSString *appointmentId;
+//是否是申请人员
 @property (nonatomic, assign) BOOL isApplicant;
 @property (nonatomic, assign) NSInteger status;
-
+/*
+ 活动类别，分别为：官方活动，普通活动，邀请同去。官方活动的内容同官方活动列表相同。
+ */
 @property (nonatomic, copy) NSString *activityCategory;
 @property (nonatomic, copy) NSString *activityId;
 //"type": "看电影",

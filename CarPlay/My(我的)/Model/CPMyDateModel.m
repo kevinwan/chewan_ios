@@ -32,8 +32,15 @@
         }else{
             typeS = _type;
         }
-        if (_isApplicant){
+        if (_isApplicant && _status != 2){
             NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"我想邀%@同去",_applicant.nickname]];
+            NSAttributedString *append = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@",_type] attributes:@{NSForegroundColorAttributeName : RedColor}];
+            [str appendAttributedString:append];
+            
+            [str addAttributes:@{NSFontAttributeName : ZYFont16} range:NSMakeRange(0, str.length)];
+            return [str copy];
+        }else if (_isApplicant && _status == 2){
+            NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@接受了您的",_applicant.nickname]];
             NSAttributedString *append = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@",_type] attributes:@{NSForegroundColorAttributeName : RedColor}];
             [str appendAttributedString:append];
             
