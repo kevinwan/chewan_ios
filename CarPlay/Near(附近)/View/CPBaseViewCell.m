@@ -17,10 +17,8 @@
 #import "UIImageView+AFNetworking.h"
 #import "DRNRealTimeBlurView.h"
 #import "UIImageView+webCache.h"
-#import "ZHPickView.h"
-#import "CPTabBarController.h"
 
-@interface CPBaseViewCell ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,ZHPickViewDelegate>
+@interface CPBaseViewCell ()
 /**
  *  背景的View
  */
@@ -84,12 +82,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *titleDistanceView;
 
-
-/**
- *  约她
- */
-@property (nonatomic, strong) UIButton *dateButton;
-
 /**
  *  应邀
  */
@@ -111,11 +103,6 @@
 @property (nonatomic, strong) UIButton *uploadButton;
 
 /**
- *  约她的动画
- */
-@property (nonatomic, strong) MultiplePulsingHaloLayer *dateAnim;
-
-/**
  *  应邀的动画
  */
 @property (nonatomic, strong) MultiplePulsingHaloLayer *inviAnim;
@@ -135,17 +122,6 @@
 @property (nonatomic, strong) UIView *titleView;
 
 @property (nonatomic, strong) UILabel *titleExtraText;
-
-
-/**
- *  更换照片按钮
- */
-@property (nonatomic, strong) UIButton *changeImg;
-
-/**
- *  继续匹配按钮
- */
-@property (nonatomic, strong) UIButton *continueMatching;
 
 @end
 
@@ -281,7 +257,11 @@
     self.sexView.isMan = model.organizer.isMan;
     self.sexView.age = model.organizer.age;
 
-    [self.userIconView zy_setBlurImageWithUrl:[model.organizer.cover stringByAppendingString:@"?imageView2/1/w/500"]];
+    if (model.organizer.cover) {
+        [self.userIconView zy_setBlurImageWithUrl:[model.organizer.cover stringByAppendingString:@"?imageView2/1/w/500"]];
+    }else{
+        [self.userIconView setImage:[UIImage imageNamed:@"logo"]];
+    }
     [self.distanceView setTitle:model.distanceStr.trimLength?model.distanceStr:@"未知" forState:UIControlStateNormal];
     self.loveBtn.selected = model.organizer.subscribeFlag;
 
@@ -722,71 +702,6 @@
     }
 }
 
-
-#pragma actionSheetDelegate
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
-    if (buttonIndex ==1) {
-        UIImagePickerController *picker=[[UIImagePickerController alloc]init];
-        picker.delegate=self;
-        picker.allowsEditing=YES;
-        picker.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
-        [self.window.rootViewController presentViewController:picker animated:YES completion:^{
-        }];
-    }else if (buttonIndex == 0){
-        if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-            DLog(@"相机不可用");
-            return;
-        }
-        UIImagePickerController *picker=[[UIImagePickerController alloc]init];
-        picker.delegate=self;
-        picker.allowsEditing=YES;
-        picker.sourceType=UIImagePickerControllerSourceTypeCamera;
-        [self.window.rootViewController presentViewController:picker animated:YES completion:^{
-        }];
-    }else
-        return;
-    
-}
-
-#pragma PickerController
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    UIImage *editedImage=[info objectForKey:UIImagePickerControllerEditedImage];
-    [picker dismissViewControllerAnimated:YES completion:^{
-        NSData *data=UIImageJPEGRepresentation(editedImage, 0.4);
-        //        [[SDImageCache sharedImageCache] removeImageForKey:user.avatar];
-        [self upLoadImageWithBase64Encodeing:data];
-    }];
-}
-
-//上传头像
--(void)upLoadImageWithBase64Encodeing:(NSData *)encodedImageData{
-//    ZYHttpFile *file=[[ZYHttpFile alloc]init];
-//    file.name=@"attach";
-//    file.data=encodedImageData;
-//    file.filename=@"avatar.jpg";
-//    file.mimeType=@"image/jpeg";
-//    NSArray *files=[[NSArray alloc]initWithObjects:file, nil];
-//    NSString *urlPath=[NSString stringWithFormat:@"user/%@/avatar?token=%@",[Tools getUserId],[Tools getToken]];
-//    [self showLoading];
-//    [ZYNetWorkTool postFileWithUrl:urlPath params:nil files:files success:^(id responseObject){
-//        if (CPSuccess) {
-//            user.avatar=responseObject[@"data"][@"photoUrl"];
-//            user.avatarId=responseObject[@"data"][@"photoId"];
-//            [ZYUserDefaults setObject:responseObject[@"data"][@"nickname"] forKey:kUserNickName];
-//            [NSKeyedArchiver archiveRootObject:user toFile:path.documentPath];
-//            [self.avatar zySetReloadImageWithUrl:user.avatar placeholderImage:editedImage completion:nil];
-//            
-//        }else{
-//            [[[UIAlertView alloc]initWithTitle:@"提示" message:@"上传失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-//        }
-//        [self disMiss];
-//    }failure:^(NSError *erro){
-//        [self showInfo:@"请检查您的手机网络!"];
-//        [self disMiss];
-//    }];
-}
-
 #pragma mark - lazy
 - (UIButton *)invitedButton
 {
@@ -1084,19 +999,8 @@
         _changeImg = [UIButton buttonWithTitle:@"更换照片" icon:nil titleColor:[Tools getColor:@"ffffff"] fontSize:14];
         _changeImg.layer.cornerRadius = 17;
         _changeImg.clipsToBounds = YES;
-        if (!_model.activityId) {
-            _changeImg.hidden = YES;
-        }else{
-            _changeImg.hidden = NO;
-        }
+        _changeImg.hidden = YES;
         [_changeImg setBackgroundColor:[UIColor colorWithRed:254/255.0 green:89/255.0 blue:105/255.0 alpha:.9]];
-        
-        ZYWeakSelf
-        [[_changeImg rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-            ZYStrongSelf
-            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择相片" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"相册",@"已上传照片", nil];
-            [actionSheet showInView:self.superview];
-        }];
     }
     return _changeImg;
 }
@@ -1106,23 +1010,8 @@
         _continueMatching = [UIButton buttonWithTitle:@"继续匹配" icon:nil titleColor:[Tools getColor:@"ffffff"] fontSize:14];
         _continueMatching.layer.cornerRadius = 17;
         _continueMatching.clipsToBounds = YES;
-        if (!_model.activityId) {
-            _continueMatching.hidden = YES;
-        }else{
-            _continueMatching.hidden = NO;
-        }
+        _continueMatching.hidden=YES;
         [_continueMatching setBackgroundColor:[UIColor colorWithRed:119/255.0 green:187/255.0 blue:242/255.0 alpha:.9]];
-        
-        ZYWeakSelf
-        [[_continueMatching rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-            ZYStrongSelf
-            [self.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
-            CPTabBarController *tab = (CPTabBarController *)self.window.rootViewController;
-            [ZYNotificationCenter postNotificationName:NOTIFICATION_STARTMATCHING object:nil];
-            
-            [tab setSelectedIndex:4];
-            
-        }];
     }
     return _continueMatching;
 }

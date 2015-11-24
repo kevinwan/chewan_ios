@@ -17,6 +17,13 @@
     }
 }
 
+-(void)setDestabPoint:(NSDictionary *)destabPoint
+{
+    if ([destabPoint isKindOfClass:[NSDictionary class]]) {
+        _destabPoint = destabPoint;
+    }
+}
+
 - (void)setOrganizer:(CPUser *)organizer
 {
     if ([organizer isKindOfClass:[CPUser class]]) {

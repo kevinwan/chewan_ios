@@ -21,6 +21,9 @@
 //    "street": "玄武湖街道"
 //},
 @property (nonatomic, strong) NSDictionary *destination;
+//坐标
+@property (nonatomic, strong) NSDictionary *destabPoint;
+
 @property (nonatomic, assign) long long start;
 //"start": {"birthday":{"date":22,"day":6,"hours":13,"minutes":18,"month":8,"seconds":3,"time":653980683959,"timezoneOffset":-480,"year":90}},
 //"pay": "AA制",

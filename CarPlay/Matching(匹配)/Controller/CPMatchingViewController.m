@@ -17,7 +17,7 @@
 #import "CPActivityModel.h"
 #import "CPTabBarController.h"
 #import "CPBRPGViewController.h"
-
+#import "CPNavigationController.h"
 
 @interface CPMatchingViewController ()<UIGestureRecognizerDelegate,UITableViewDataSource,UITableViewDelegate>
 {
@@ -135,6 +135,7 @@
     otherMatchingSelectView=[UIStoryboard storyboardWithName:@"OtherMatchingSelectView" bundle:nil].instantiateInitialViewController;
     signMatchingSelectView=[UIStoryboard storyboardWithName:@"MatchingSelectView" bundle:nil].instantiateInitialViewController;
     exerciseMatchingSelectView=[UIStoryboard storyboardWithName:@"ExerciseMatchingSelectView" bundle:nil].instantiateInitialViewController;
+    
     BRPGViewController=[UIStoryboard storyboardWithName:@"CPBRPGViewController" bundle:nil].instantiateInitialViewController;
     
 }
@@ -405,6 +406,7 @@
                 [self addChildViewController:otherMatchingSelectView];
                 break;
             case 9:
+            {
                 colorRGB=@"98d872";
                 type=@"运动";
                 exerciseMatchingSelectView.view.backgroundColor=[Tools getColor:colorRGB];
@@ -413,9 +415,11 @@
                 exerciseMatchingSelectView.locationAddressView.alpha=0.0;
                 exerciseMatchingSelectView.addressSelection.alpha=0.0;
                 exerciseMatchingSelectView.indexView.alpha=0.0;
-                [self.view addSubview:exerciseMatchingSelectView.view];
-                [self addChildViewController:exerciseMatchingSelectView];
+                CPNavigationController *nav=[[CPNavigationController alloc]initWithRootViewController:exerciseMatchingSelectView];
+                [self.view addSubview:nav.view];
+                [self addChildViewController:nav];
                 break;
+            }
             case 10:
                 colorRGB=@"fb7b9b";
                 type=@"购物";

@@ -10,6 +10,7 @@
 #import "CPActivityModel.h"
 #import "CPMyDateModel.h"
 #import "CPIntersterModel.h"
+#import "MultiplePulsingHaloLayer.h"
 // 用于事件交互的key
 #define CameraBtnClickKey   @"CameraBtnClickKey"
 #define PhotoBtnClickKey    @"PhotoBtnClickKey"
@@ -26,6 +27,22 @@
 @property (nonatomic, strong) CPActivityModel *model;
 @property (nonatomic, strong) CPMyDateModel *myDateModel;
 @property (nonatomic, strong) CPIntersterModel *intersterModel;
+/**
+ *  更换照片按钮
+ */
+@property (nonatomic, strong) UIButton *changeImg;
 
+/**
+ *  继续匹配按钮
+ */
+@property (nonatomic, strong) UIButton *continueMatching;
+/**
+ *  约她
+ */
+@property (nonatomic, strong) UIButton *dateButton;
+/**
+ *  约她的动画
+ */
+@property (nonatomic, strong) MultiplePulsingHaloLayer *dateAnim;
 + (instancetype)baseCell;
 @end
