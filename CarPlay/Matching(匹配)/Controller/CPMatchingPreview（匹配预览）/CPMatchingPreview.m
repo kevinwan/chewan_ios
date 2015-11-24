@@ -11,14 +11,19 @@
 #import "CPTaInfo.h"
 #import "ZHPickView.h"
 #import "CPTabBarController.h"
-
-@interface CPMatchingPreview ()<UICollectionViewDelegate,UICollectionViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,ZHPickViewDelegate>
+#import "CusomeActionSheet.h"
+#import "UMSocial.h"
+@interface CPMatchingPreview ()<UICollectionViewDelegate,UICollectionViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,ZHPickViewDelegate,customActionsheetDelegete>
 {
     BOOL share;
 }
 @property (nonatomic, strong) UICollectionView *tableView;
 @property (nonatomic, assign) CGFloat offset;
 @property (nonatomic, strong) NSString *coverId;
+//分享view
+@property (nonatomic,strong)UIView *shareView;
+@property (nonatomic,strong)CusomeActionSheet *shareActionview;
+
 @end
 
 static NSString *ID = @"cell";
@@ -116,8 +121,10 @@ static NSString *ID = @"cell";
             if (share) {
                 /**
                  *
+                 
                  *此处写分享
                  */
+                [self share];
             }else{
                 [self dismissViewControllerAnimated:YES completion:nil];
                 CPTabBarController *tab = (CPTabBarController *)self.view.window.rootViewController;
@@ -191,5 +198,97 @@ static NSString *ID = @"cell";
             [self showInfo:@"请检查您的手机网络!"];
             [self disMiss];
         }];
+}
+#pragma mark 分享相关方法
+
+#pragma 分享
+-(void)share{
+    if (self.shareView == nil) {
+        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+        _shareView = [[UIView alloc]initWithFrame:window.frame];
+        _shareView.backgroundColor = [UIColor blackColor];
+        _shareView.alpha = 0.4;
+        
+        
+        _shareActionview= [[CusomeActionSheet alloc]initWithFrame:CGRectMake(0, KDeviceHeight, kDeviceWidth, 152)];
+        _shareActionview.delegate = self;
+        
+        [window addSubview:_shareView];
+        [window addSubview:_shareActionview];
+        //        [window bringSubviewToFront:_shareView];
+        [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            _shareActionview.y = KDeviceHeight-152;
+        } completion:^(BOOL finished) {
+            nil;
+        }];
+        
+        
+    }
+}
+//去掉分享界面
+- (void)shareViewDismiss
+{
+    [self.shareView removeFromSuperview];
+    [self.shareActionview removeFromSuperview];
+    self.shareActionview = nil;
+    self.shareView = nil;
+}
+#pragma mark 分享的代理方法
+- (void)btnClicked:(UIButton *)button
+{
+    NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
+    long long int date = (long long int)time;
+    NSString *shareStr = [NSString stringWithFormat:@"http://www.chewanapp.com/appdetail.html?id=%@",_activity.activityId];
+    NSString *titleStr = [NSString stringWithFormat:@"我想找人一起%@",_activity.type];
+    
+    UMSocialUrlResource *resouce;
+    if (_activity.organizer.cover.length >0) {
+        resouce = [[UMSocialUrlResource alloc]initWithSnsResourceType:UMSocialUrlResourceTypeImage url:_activity.organizer.cover];
+    }else{
+        resouce = nil;
+    }
+    
+    
+    switch (button.tag) {
+        case 1:
+            //分享朋友圈
+        { //这里有可能没有图片，所以要判断下
+           
+            [UMSocialData defaultData].extConfig.wechatTimelineData.url = shareStr;
+            [UMSocialData defaultData].extConfig.wechatTimelineData.title = titleStr;
+            [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:titleStr image:nil location:nil urlResource:resouce presentedController:self completion:^(UMSocialResponseEntity *response){
+                [self shareViewDismiss];
+                if (response.responseCode == UMSResponseCodeSuccess) {
+                    
+                }
+            }];
+        }
+            break;
+        case 2:
+            //分享微信好友
+        {
+          
+            [UMSocialData defaultData].extConfig.wechatSessionData.url = shareStr;
+            [UMSocialData defaultData].extConfig.wechatSessionData.title = @"";
+            NSString *shareContent  = [NSString stringWithFormat:@"%@\n%@",titleStr,[_activity.destination objectForKey:@"street"]];
+            
+            [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:shareContent image:nil location:nil urlResource:resouce presentedController:self completion:^(UMSocialResponseEntity *response){
+                [self shareViewDismiss];
+                if (response.responseCode == UMSResponseCodeSuccess) {
+                    
+                }
+            }];
+        }
+            break;
+        case 3:
+            //取消
+        {
+            [self shareViewDismiss];
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 @end
