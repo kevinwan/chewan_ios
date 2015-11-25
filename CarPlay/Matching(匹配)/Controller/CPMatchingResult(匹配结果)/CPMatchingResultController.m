@@ -65,7 +65,7 @@ static NSString *ID = @"cell";
 }
 
 -(void)start{
-    
+    [self.view setHidden:NO];
     NSDictionary *param=[NSDictionary dictionaryWithObjectsAndKeys:[ZYUserDefaults stringForKey:LastType],@"majorType",@(CPLongitude),@"longitude",@(CPLatitude),@"latitude",@(300),@"limit",CPUserId,UserId,CPToken,Token,nil];
     
     [ZYNetWorkTool getWithUrl:@"activity/count" params:param success:^(id responseObject) {
@@ -87,6 +87,7 @@ static NSString *ID = @"cell";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+     [self.view setHidden:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

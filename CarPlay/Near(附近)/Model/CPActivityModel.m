@@ -31,6 +31,14 @@
     }
 }
 
+//-(void)setCover:(NSString *)cover
+//{
+//    if ([cover isKindOfClass:[NSString class]]) {
+//        _cover = cover;
+//        _organizer.cover = cover;
+//    }
+//}
+
 - (NSString *)title
 {
     return [NSString stringWithFormat:@"%@想找人%@",_organizer.nickname, _type];

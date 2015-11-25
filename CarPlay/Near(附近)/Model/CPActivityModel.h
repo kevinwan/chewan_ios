@@ -28,6 +28,8 @@
 //"start": {"birthday":{"date":22,"day":6,"hours":13,"minutes":18,"month":8,"seconds":3,"time":653980683959,"timezoneOffset":-480,"year":90}},
 //"pay": "AA制",
 @property (nonatomic, copy) NSString *pay;
+
+@property (nonatomic, copy) NSString *cover;
 // 活动的状态
 @property (nonatomic, assign) NSInteger applyFlag;
 @property (nonatomic, assign) NSInteger status;

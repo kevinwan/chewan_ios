@@ -135,12 +135,12 @@ static NSString *ID = @"HisDateCell";
             
             NSArray *arr = [CPActivityModel objectArrayWithKeyValuesArray:responseObject[@"data"][@"activities"]];
           
-            NSString *cover = responseObject[@"data"][@"cover"];
+//            NSString *cover = responseObject[@"data"][@"cover"];
             double distance = [responseObject[@"distance"] doubleValue];
             // 拼接model
             for (CPActivityModel *model in arr) {
                 model.organizer = self.targetUser;
-                model.organizer.cover = cover;
+                model.organizer.cover = model.cover;
                 model.distance = distance;
                 model.isHisDate = YES;
                 model.isDynamic = YES;
@@ -181,6 +181,7 @@ static NSString *ID = @"HisDateCell";
     CPNearCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
     cell.contentV.indexPath = indexPath;
     cell.contentV.model = self.datas[indexPath.item];
+    cell.contentV.
     return cell;
 }
 
