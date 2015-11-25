@@ -65,6 +65,7 @@
 
 #pragma 手机号注册
 - (IBAction)registerBtnClick:(id)sender {
+    [[CPBuriedPoint sharedBuriedPoint] userRegisterMethod];
     if (self.phoneField.text && ![self.phoneField.text isEqualToString:@""]) {
         if ([Tools isValidateMobile:self.phoneField.text]) {
             if (self.verificationCodeField.text && ![self.verificationCodeField.text isEqualToString:@""]) {
