@@ -41,4 +41,5 @@
 #import "UIButton+ZYWebCache.h"
 #import "NSString+activityType.h"
 #import "EMCDDeviceManager.h"
+#import "CPBuriedPoint.h"
 #endif
