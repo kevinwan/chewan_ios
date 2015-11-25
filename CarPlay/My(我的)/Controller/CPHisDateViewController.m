@@ -181,7 +181,7 @@ static NSString *ID = @"HisDateCell";
     CPNearCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
     cell.contentV.indexPath = indexPath;
     cell.contentV.model = self.datas[indexPath.item];
-    cell.contentV.
+//    cell.contentV.
     return cell;
 }
 
