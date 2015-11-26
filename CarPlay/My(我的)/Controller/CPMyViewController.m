@@ -118,7 +118,7 @@
             NSString *path=[[NSString alloc]initWithFormat:@"%@.info",[Tools getUserId]];
             [NSKeyedArchiver archiveRootObject:user toFile:path.documentPath];
             [self reloadData];
-            if (user.album.count > 0) {
+            if (user.album.count > 1) {
                 [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
             }else{
                 [ZYUserDefaults setBool:NO forKey:CPHasAlbum];
