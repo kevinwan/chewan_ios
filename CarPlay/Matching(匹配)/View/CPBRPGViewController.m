@@ -106,6 +106,7 @@
     _indexView.minimumGapBetweenItems = 0.f;
     _indexView.ergonomicHeight = NO;
     _indexView.selectedItemFontColor=[Tools getColor:@"48d1d5"];
+     _indexView.alpha=0.0;
     [self.view addSubview:_indexView];
 }
 
