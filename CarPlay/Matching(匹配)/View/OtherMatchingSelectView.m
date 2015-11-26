@@ -149,7 +149,7 @@
         _activity.type=[ZYUserDefaults stringForKey:LastType].type;
         _activity.distance=0;
         _activity.pay=pay;
-        _activity.transfer=@([ZYUserDefaults boolForKey:Transfer]);
+        _activity.transfer=[ZYUserDefaults boolForKey:Transfer];
         _activity.organizer = [NSKeyedUnarchiver unarchiveObjectWithFile:[NSString stringWithFormat:@"%@.info",CPUserId].documentPath];
         if ([_activity.organizer.album count]>0) {
             CPAlbum *album=_activity.organizer.album[0];

@@ -127,8 +127,8 @@
         NSDictionary *estabPoint=[[NSDictionary alloc]initWithObjectsAndKeys:@([Tools getLongitude]),@"longitude",@([Tools getLatitude]),@"latitude", nil];
         
         NSDictionary *establish=[[NSDictionary alloc]initWithObjectsAndKeys:[ZYUserDefaults stringForKey:Province],@"province",[ZYUserDefaults stringForKey:City],@"city",[ZYUserDefaults stringForKey:District],@"district",[ZYUserDefaults stringForKey:Street],@"street", nil];
-        NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:[ZYUserDefaults stringForKey:LastType].type,@"majorType",@([ZYUserDefaults boolForKey:Transfer]),@"transfer",establish,@"establish",estabPoint,@"estabPoint",estabPoint,@"destPoint",establish,@"destination",majorType.type,@"type", nil];
-        NSString *path=[[NSString alloc]initWithFormat:@"activity/register?userId=%@&token=%@",[Tools getUserId],[Tools getToken]];
+//        NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:[ZYUserDefaults stringForKey:LastType].type,@"majorType",@([ZYUserDefaults boolForKey:Transfer]),@"transfer",establish,@"establish",estabPoint,@"estabPoint",estabPoint,@"destPoint",establish,@"destination",majorType.type,@"type", nil];
+//        NSString *path=[[NSString alloc]initWithFormat:@"activity/register?userId=%@&token=%@",[Tools getUserId],[Tools getToken]];
 //        [ZYNetWorkTool postJsonWithUrl:path params:params success:^(id responseObject) {
 //            if (CPSuccess) {
                 _activity=[CPActivityModel new];
@@ -137,13 +137,13 @@
 //                _activity.activityId=responseObject[@"data"];
                 _activity.type=majorType.type;
                 _activity.distance=0;
-                _activity.transfer=@([ZYUserDefaults boolForKey:Transfer]);
+                _activity.transfer=[ZYUserDefaults boolForKey:Transfer];
                 _activity.organizer = [NSKeyedUnarchiver unarchiveObjectWithFile:[NSString stringWithFormat:@"%@.info",CPUserId].documentPath];
                 if ([_activity.organizer.album count]>0) {
                     CPAlbum *album=_activity.organizer.album[0];
                      _activity.organizer.cover=album.url;
                 }else{
-                    _activity.organizer.avatar;
+                    _activity.organizer.cover=_activity.organizer.avatar;
                 }
                 CPMatchingPreview *matchingPreview=[UIStoryboard storyboardWithName:@"CPMatchingPreview" bundle:nil].instantiateInitialViewController;
                 matchingPreview.activity=_activity;

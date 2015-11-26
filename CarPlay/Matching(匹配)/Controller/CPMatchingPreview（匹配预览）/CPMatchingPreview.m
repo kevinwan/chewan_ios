@@ -138,7 +138,7 @@ static NSString *ID = @"cell";
 
 //匹配并分享
 -(void)shareClick{
-    NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:[ZYUserDefaults stringForKey:LastType].type,@"majorType",@([ZYUserDefaults boolForKey:Transfer]),@"transfer",_activity.destination,@"establish",_activity.destabPoint,@"estabPoint",_activity.destabPoint,@"destPoint",_activity.destination,@"destination",_activity.type,@"type",_coverId,@"cover", nil];
+    NSDictionary *params=[[NSDictionary alloc]initWithObjectsAndKeys:[ZYUserDefaults stringForKey:LastType].type,@"majorType",@([ZYUserDefaults boolForKey:Transfer]),@"transfer",_activity.destination,@"establish",_activity.destabPoint,@"estabPoint",_activity.destabPoint,@"destPoint",_activity.destination,@"destination",_activity.type,@"type",_coverId,@"cover",_activity.pay,@"pay", nil];
     NSString *path=[[NSString alloc]initWithFormat:@"activity/register?userId=%@&token=%@",[Tools getUserId],[Tools getToken]];
     [ZYNetWorkTool postJsonWithUrl:path params:params success:^(id responseObject) {
         if (CPSuccess) {
@@ -258,7 +258,6 @@ static NSString *ID = @"cell";
         _shareView = [[UIView alloc]initWithFrame:window.frame];
         _shareView.backgroundColor = [UIColor blackColor];
         _shareView.alpha = 0.4;
-        
         
         _shareActionview= [[CusomeActionSheet alloc]initWithFrame:CGRectMake(0, KDeviceHeight, kDeviceWidth, 152)];
         _shareActionview.delegate = self;

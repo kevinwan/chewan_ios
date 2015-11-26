@@ -31,6 +31,11 @@
     }
 }
 
+-(void)setTransfer:(BOOL)transfer
+{
+    _transfer = transfer;
+}
+
 //-(void)setCover:(NSString *)cover
 //{
 //    if ([cover isKindOfClass:[NSString class]]) {
