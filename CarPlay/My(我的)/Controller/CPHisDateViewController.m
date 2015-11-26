@@ -140,18 +140,12 @@ static NSString *ID = @"HisDateCell";
             // 拼接model
             for (CPActivityModel *model in arr) {
                 model.organizer = self.targetUser;
-//                model.organizer.cover = model.cover;
                 model.distance = distance;
                 model.isHisDate = YES;
                 model.isDynamic = YES;
             }
             
             [self.datas addObjectsFromArray:arr];
-            
-            for (CPActivityModel *model in self.datas) {
-                model.organizer.cover = model.cover;
-            }
-            //
             [self setUpRefresh];
             if (self.datas.count == 0) {
                 self.noDataView.netWorkFailtype = NO;

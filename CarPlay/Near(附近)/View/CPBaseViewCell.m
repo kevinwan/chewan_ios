@@ -17,7 +17,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "DRNRealTimeBlurView.h"
 #import "UIImageView+webCache.h"
-
+#import "CPAlbum.h"
 @interface CPBaseViewCell ()
 /**
  *  背景的View
@@ -257,11 +257,23 @@
     self.sexView.isMan = model.organizer.isMan;
     self.sexView.age = model.organizer.age;
 
-    if (model.organizer.cover) {
-        [self.userIconView zy_setBlurImageWithUrl:[model.organizer.cover stringByAppendingString:@"?imageView2/1/w/500"]];
-    }else{
-        [self.userIconView setImage:[UIImage imageNamed:@"logo"]];
-    }
+    if (model.isDynamic && model.isHisDate) {
+        [self.userIconView zy_setBlurImageWithUrl:[model.cover stringByAppendingString:@"?imageView2/1/w/500"]];
+    }else if (model.isMatchingPreview) {
+        if ([model.organizer.album count]>0) {
+            CPAlbum *album=model.organizer.album[0];
+            [self.userIconView zySetImageWithUrl:[album.url stringByAppendingString:@"?imageView2/1/w/500"] placeholderImage:nil];
+        }else{
+            [self.userIconView zySetImageWithUrl:[model.organizer.avatar stringByAppendingString:@"?imageView2/1/w/500"] placeholderImage:nil];
+        }
+        
+    }else if (model.organizer.cover) {
+            [self.userIconView zy_setBlurImageWithUrl:[model.organizer.cover stringByAppendingString:@"?imageView2/1/w/500"]];
+        }else{
+            [self.userIconView setImage:[UIImage imageNamed:@"logo"]];
+        }
+    
+   
     [self.distanceView setTitle:model.distanceStr.trimLength?model.distanceStr:@"未知" forState:UIControlStateNormal];
     self.loveBtn.selected = model.organizer.subscribeFlag;
 
@@ -1000,7 +1012,7 @@
         _changeImg.layer.cornerRadius = 17;
         _changeImg.clipsToBounds = YES;
         _changeImg.hidden = YES;
-        [_changeImg setBackgroundColor:[UIColor colorWithRed:254/255.0 green:89/255.0 blue:105/255.0 alpha:.9]];
+        [_changeImg setBackgroundColor:[UIColor colorWithRed:119/255.0 green:187/255.0 blue:242/255.0 alpha:.9]];
     }
     return _changeImg;
 }
@@ -1011,7 +1023,7 @@
         _continueMatching.layer.cornerRadius = 17;
         _continueMatching.clipsToBounds = YES;
         _continueMatching.hidden=YES;
-        [_continueMatching setBackgroundColor:[UIColor colorWithRed:119/255.0 green:187/255.0 blue:242/255.0 alpha:.9]];
+        [_continueMatching setBackgroundColor:[UIColor colorWithRed:254/255.0 green:89/255.0 blue:105/255.0 alpha:.9]];
     }
     return _continueMatching;
 }

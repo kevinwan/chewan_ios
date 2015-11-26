@@ -44,4 +44,6 @@
 // 是不是动态里面的
 @property (nonatomic, assign) BOOL isDynamic;
 @property (nonatomic, assign) BOOL isHisDate;
+// 是不是活动预览里
+@property (nonatomic, assign) BOOL isMatchingPreview;
 @end
