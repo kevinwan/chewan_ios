@@ -51,16 +51,16 @@
                           [NSNumber numberWithInteger:unRegisterNearbyInvited],@"unRegisterNearbyInvited",
                           [NSNumber numberWithInteger:unRegisterMatchInvited],@"unRegisterMatchInvited",
                           [NSNumber numberWithInteger:userRegister],@"userRegister",
-                          [NSNumber numberWithInteger:activityDynamicCall],@"activityDynamicCall",
-                          [NSNumber numberWithInteger:activityDynamicChat],@"activityDynamicChat",
-                          [NSNumber numberWithInteger:activityTypeClick],@"activityTypeClick",
-                          [NSNumber numberWithInteger:activityMatchInvitedCount],@"activityMatchInvitedCount",
-                          [NSNumber numberWithInteger:officialActivityBuyTicket],@"officialActivityBuyTicket",
-                          [NSNumber numberWithInteger:officialActivityChatJoin],@"officialActivityChatJoin",
+//                          [NSNumber numberWithInteger:activityDynamicCall],@"activityDynamicCall",
+//                          [NSNumber numberWithInteger:activityDynamicChat],@"activityDynamicChat",
+//                          [NSNumber numberWithInteger:activityTypeClick],@"activityTypeClick",
+//                          [NSNumber numberWithInteger:activityMatchInvitedCount],@"activityMatchInvitedCount",
+//                          [NSNumber numberWithInteger:officialActivityBuyTicket],@"officialActivityBuyTicket",
+//                          [NSNumber numberWithInteger:officialActivityChatJoin],@"officialActivityChatJoin",
                           [NSNumber numberWithInteger:appOpenCount],@"appOpenCount",
-                          [NSNumber numberWithInteger:dynamicNearbyInvited],@"dynamicNearbyInvited",
-                          [NSNumber numberWithInteger:unRegisterDynamicAccept],@"unRegisterDynamicAccept",
-                          [NSNumber numberWithInteger:dynamicAcceptRegister],@"dynamicAcceptRegister",
+//                          [NSNumber numberWithInteger:dynamicNearbyInvited],@"dynamicNearbyInvited",
+//                          [NSNumber numberWithInteger:unRegisterDynamicAccept],@"unRegisterDynamicAccept",
+//                          [NSNumber numberWithInteger:dynamicAcceptRegister],@"dynamicAcceptRegister",
                           nil];
     
  [ZYNetWorkTool postJsonWithUrl:[NSString stringWithFormat:@"record/upload?userId=%@",CPUserId] params:paramsDic success:^(id responseObject) {
@@ -73,11 +73,15 @@
 }
 - (void)unRegisterNearbyInvitedMethod
 {
-    unRegisterNearbyInvited ++;
+    if (!CPIsLogin) {
+        unRegisterNearbyInvited ++;
+    }
 }
 - (void)unRegisterMatchInvitedMethod
 {
-    unRegisterMatchInvited ++;
+    if (!CPIsLogin) {
+        unRegisterMatchInvited ++;
+    }
 }
 - (void)userRegisterMethod
 {

@@ -202,6 +202,7 @@ static NSString *ID = @"cell";
     }else if([notifyName isEqualToString:PhotoBtnClickKey]){
         [self photoPresent];
     }else if([notifyName isEqualToString:DateBtnClickKey]){
+        [[CPBuriedPoint sharedBuriedPoint] unRegisterMatchInvitedMethod];
         [self dateClickWithInfo:userInfo];
     }else if([notifyName isEqualToString:LoveBtnClickKey]){
         [self loveBtnClickWithInfo:(CPActivityModel *)userInfo];
