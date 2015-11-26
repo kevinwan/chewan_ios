@@ -645,7 +645,7 @@
                 self.index -= 1;
             }
             self.pageCount -= 1;
-            if (self.pageCount==0) {
+            if (self.pageCount <= 1) {
                 [self dismiss];
                 [ZYUserDefaults setBool:NO forKey:CPHasAlbum];
                 [ZYNotificationCenter postNotificationName:NOTIFICATION_CLEANSDCACSHEIMAGE object:nil ];

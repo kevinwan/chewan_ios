@@ -358,7 +358,13 @@
                 albumModel.url=responseObject[@"data"][@"photoUrl"];
                 [albums insertObject:albumModel atIndex:0];
                 user.album=albums;
-                [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
+                if (albums.count>1) {
+                    [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
+                    [[SDImageCache sharedImageCache] clearMemory];
+                    [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
+
+                    }];
+                }
                 if (i==arr.count-1) {
                     [self getData];
                 }

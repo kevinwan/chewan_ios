@@ -357,12 +357,12 @@
                     [albums insertObject:albumModel atIndex:0];
                     user.album=albums;
                     if (compleCount == arr.count) {
-                        if ([ZYUserDefaults boolForKey:CPHasAlbum] == NO) {
+                        if ([ZYUserDefaults boolForKey:CPHasAlbum] == NO && albums.count >= 2) {
                             [[SDImageCache sharedImageCache] clearMemory];
                             [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
                                 [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
                             }];
-                        }else{
+                        }else if(albums.count >= 2){
                             
                             [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
                         }

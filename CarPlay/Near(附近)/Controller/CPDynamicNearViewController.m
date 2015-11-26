@@ -297,7 +297,7 @@ static NSString *ID = @"cell";
                     [albums insertObjects:user.album atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, user.album.count)]];
                     user.album = [albums copy];
                     [NSKeyedArchiver archiveRootObject:user toFile:filePath.documentPath];
-                    if ([ZYUserDefaults boolForKey:CPHasAlbum] == NO) {
+                    if ([ZYUserDefaults boolForKey:CPHasAlbum] == NO && user.album.count >= 2) {
                         [[SDImageCache sharedImageCache] clearMemory];
                         [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
                             [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
