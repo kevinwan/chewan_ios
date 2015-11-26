@@ -298,7 +298,10 @@ static NSString *ID = @"cell";
         ZYHttpFile *imageFile = [ZYHttpFile fileWithName:@"attach" data:UIImageJPEGRepresentation(arr[i], 0.4) mimeType:@"image/jpeg" filename:@"a1.jpg"];
         [ZYNetWorkTool postFileWithUrl:path params:nil files:@[imageFile] success:^(id responseObject) {
             if (CPSuccess) {
-                [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
+                if (arr.count>1) {
+                    [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
+
+                }
                 
                 count++;
                 

@@ -416,7 +416,7 @@ static NSString *ID2 = @"DateCell2";
                         user.album = [albums copy];
                         [NSKeyedArchiver archiveRootObject:user toFile:filePath.documentPath];
                     });
-                    if ([ZYUserDefaults boolForKey:CPHasAlbum] == NO) {
+                    if ([ZYUserDefaults boolForKey:CPHasAlbum] == NO && albums.count>=2) {
                         [[SDImageCache sharedImageCache] clearMemory];
                         [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
                             [ZYUserDefaults setBool:YES forKey:CPHasAlbum];

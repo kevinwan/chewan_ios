@@ -361,20 +361,13 @@
                 albumModel.url=responseObject[@"data"][@"photoUrl"];
                 [albums insertObject:albumModel atIndex:0];
                 user.album=albums;
-                if (compleCount == arr.count) {
-                    if ([ZYUserDefaults boolForKey:CPHasAlbum] == NO) {
-                        [[SDImageCache sharedImageCache] clearMemory];
-                        [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
-                            [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
-                        }];
-                    }else{
-                        
-                        [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
-                    }
+                if (albums.count>1) {
+                    [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
+                    [[SDImageCache sharedImageCache] clearMemory];
+                    [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
+
+                    }];
                 }
-                
-                user.album=albums;
-                [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
                 if (i==arr.count-1) {
                     [self getData];
                 }
