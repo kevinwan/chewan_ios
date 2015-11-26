@@ -81,7 +81,9 @@
     reportTypes = [NSArray arrayWithObjects:@"色情低俗",@"广告骚扰",@"政治敏感",@"诈骗",@"违法", nil];
     
 //    在load里面调用，防止每次appear的时候对方都收到查看了TA的详情的即时消息
-     [self getData];
+//    NSString *path=[NSString stringWithFormat:@"%@.info",CPUserId];
+//    currentUser=[NSKeyedUnarchiver unarchiveObjectWithFile:path.documentPath];
+//     [self getData];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -89,6 +91,7 @@
     [self.navigationController setNavigationBarHidden:NO];
     NSString *path=[NSString stringWithFormat:@"%@.info",CPUserId];
     currentUser=[NSKeyedUnarchiver unarchiveObjectWithFile:path.documentPath];
+    [self getData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -252,10 +255,10 @@
         }
     }else if (actionSheet.tag==2)
     {
-        NSString *reportType = reportTypes[buttonIndex];
         if (buttonIndex == 5) {
             return;
         }else{
+            NSString *reportType = reportTypes[buttonIndex];
             NSString *path=[NSString stringWithFormat:@"user/%@/report?userId=%@&token=%@&activityId=%@",_userId,CPUserId,CPToken,_activityId];
             NSDictionary *params=[NSDictionary dictionaryWithObjectsAndKeys:reportType,@"type",@"",@"content", nil];
             [ZYNetWorkTool postJsonWithUrl:path params:params success:^(id responseObject) {
