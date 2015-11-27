@@ -48,6 +48,7 @@ static NSString *ID = @"cell";
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:NO];
+    _activity.isMatchingPreview = YES;
     [self chackDate];
 }
 
@@ -112,7 +113,7 @@ static NSString *ID = @"cell";
         unshare = YES;
         [self shareClick];
     }];
-//    [cell setContentInset:UIEdgeInsetsMake(60, 0, 0, 0)];
+
     return cell;
 }
 
