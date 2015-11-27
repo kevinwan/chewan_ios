@@ -32,7 +32,7 @@
     if (self) {
         // Initialization code
         _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(kDeviceWidth-75-10, 7, 75, 16)];
-        _timeLabel.font = [UIFont systemFontOfSize:13];
+        _timeLabel.font = [UIFont systemFontOfSize:10];
         [_timeLabel setTextColor:UIColorFromRGB(0xaaaaaa)];
         [_timeLabel setTextAlignment:NSTextAlignmentRight];
         _timeLabel.backgroundColor = [UIColor clearColor];
