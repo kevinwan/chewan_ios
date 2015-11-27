@@ -339,7 +339,7 @@ static NSString *ID = @"HisDateCell";
                 [albums addObject:album];
                 if (count == arr.count) {
                     [self disMiss];
-                    
+                    [self postPhotoCount:arr.count];
                     NSString *filePath = [NSString stringWithFormat:@"%@.info",CPUserId];
                     CPUser *user = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath.documentPath];
                     
@@ -364,6 +364,19 @@ static NSString *ID = @"HisDateCell";
         }];
     }
     
+}
+
+//发送上传的照片的个数
+-(void)postPhotoCount:(NSInteger)count
+{
+    NSString *path=[NSString stringWithFormat:@"user/%@/photoCount?token=%@",CPUserId,CPToken];
+    [ZYNetWorkTool postJsonWithUrl:path params:[NSDictionary dictionaryWithObjectsAndKeys:@(count),@"count", nil] success:^(id responseObject) {
+        if (CPFailure) {
+            [self showInfo:responseObject[@"errmsg"]];
+        }
+    } failed:^(NSError *error) {
+        [self showInfo:@"请检查您的手机网络"];
+    }];
 }
 
 /**

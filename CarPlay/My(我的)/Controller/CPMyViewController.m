@@ -91,15 +91,17 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == 1) {
-//        if ([user.licenseAuthStatus isEqualToString:@"未认证"] || [user.licenseAuthStatus isEqualToString:@"认证未通过"]) {
+        if (![user.licenseAuthStatus isEqualToString:@"认证通过"]) {
             CPCarOwnersCertificationController *CPCarOwnersCertification = [UIStoryboard storyboardWithName:@"CPCarOwnersCertification" bundle:nil].instantiateInitialViewController;
+            CPCarOwnersCertification.user = user;
             [self.navigationController pushViewController:CPCarOwnersCertification animated:YES];
-//        }
+        }
     }else {
-//        if ([user.photoAuthStatus isEqualToString:@"未认证"] || [user.photoAuthStatus isEqualToString:@"认证未通过"]) {
+        if (![user.photoAuthStatus isEqualToString:@"认证通过"]) {
             CPAvatarAuthenticationController *CPAvatarAuthenticationController = [UIStoryboard storyboardWithName:@"CPAvatarAuthenticationController" bundle:nil].instantiateInitialViewController;
+            CPAvatarAuthenticationController.user = user;
             [self.navigationController pushViewController:CPAvatarAuthenticationController animated:YES];
-//        }
+        }
     }
 }
 #pragma privateMethod
@@ -160,15 +162,15 @@
     if (user.licenseAuthStatus && ![user.licenseAuthStatus isEqualToString:@""]) {
         self.licenseAuthStatus.text=user.licenseAuthStatus;
     }
-//    if ([user.photoAuthStatus isEqualToString:@"认证通过"] || [user.photoAuthStatus isEqualToString:@"认证中"]) {
-//        [self.arrowView setHidden:YES];
-//        self.rightJuli.constant=-8.0;
-//    }
-//    
-//    if ([user.licenseAuthStatus isEqualToString:@"认证通过"] || [user.licenseAuthStatus isEqualToString:@"认证中"]) {
-//        [self.arrowView1 setHidden:YES];
-//        self.rightJuli1.constant=-8.0;
-//    }
+    if ([user.photoAuthStatus isEqualToString:@"认证通过"]) {
+        [self.arrowView setHidden:YES];
+        self.rightJuli.constant=-8.0;
+    }
+    
+    if ([user.licenseAuthStatus isEqualToString:@"认证通过"]) {
+        [self.arrowView1 setHidden:YES];
+        self.rightJuli1.constant=-8.0;
+    }
     
     if (user.completion<100) {
        self.completionLabel.text=[NSString stringWithFormat:@"资料完成度%lu%%,越高越吸引人",(unsigned long)user.completion];
@@ -366,6 +368,7 @@
                             
                             [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
                         }
+                        [self postPhotoCount:arr.count];
                     }
                     
                     if (i == arr.count-1) {
@@ -381,6 +384,18 @@
             }];
         }
     [self disMiss];
+}
+
+-(void)postPhotoCount:(NSInteger)count
+{
+    NSString *path=[NSString stringWithFormat:@"user/%@/photoCount?token=%@",CPUserId,CPToken];
+    [ZYNetWorkTool postJsonWithUrl:path params:[NSDictionary dictionaryWithObjectsAndKeys:@(count),@"count", nil] success:^(id responseObject) {
+        if (CPFailure) {
+            [self showInfo:responseObject[@"errmsg"]];
+        }
+    } failed:^(NSError *error) {
+        [self showInfo:@"请检查您的手机网络"];
+    }];
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -428,12 +443,8 @@
                 
                 [modelsM addObject:pbModel];
             }
-            
             return modelsM;
         }];
-
-        
-        
 //        
 //        CPTestPhotoViewController *test=[CPTestPhotoViewController new];
 //        [self.navigationController pushViewController:test animated:YES];

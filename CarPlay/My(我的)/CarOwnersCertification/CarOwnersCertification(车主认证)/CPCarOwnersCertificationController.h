@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface CPCarOwnersCertificationController : UITableViewController
+@property (nonatomic, strong) CPUser *user;
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 - (IBAction)submit:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *bandName;

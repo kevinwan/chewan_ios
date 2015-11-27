@@ -266,6 +266,9 @@
         }else{
             [self.userIconView zySetImageWithUrl:[model.organizer.avatar stringByAppendingString:@"?imageView2/1/w/500"] placeholderImage:nil];
         }
+        [self.tipView setHidden:YES];
+        self.tipView.alpha = 0.0;
+        [self.userIconView.placeHloderImageView setHidden:YES];
         
     }else if (model.organizer.cover) {
             [self.userIconView zy_setBlurImageWithUrl:[model.organizer.cover stringByAppendingString:@"?imageView2/1/w/500"]];

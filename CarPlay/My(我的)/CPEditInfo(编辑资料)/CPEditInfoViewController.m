@@ -41,16 +41,16 @@
     [self.age setText:[NSString stringWithFormat:@"%zd",user.age]];
     [self.photoAuthStatus setText:user.photoAuthStatus];
     [self.licenseAuthStatus setText:user.licenseAuthStatus];
-//    if (![user.photoAuthStatus isEqualToString:@"未认证"] && ![user.photoAuthStatus isEqualToString:@"认证未通过"]) {
-//        self.right1.constant=-8.0;
-//        [self.rightArrow1 setHidden:YES];
-//    }
-//    
-//    if (![user.licenseAuthStatus isEqualToString:@"未认证"] && ![user.licenseAuthStatus isEqualToString:@"认证未通过"]) {
-//        self.right2.constant=-8.0;
-//        [self.rightArrow2 setHidden:YES];
-//    }
-//    
+    if ([user.photoAuthStatus isEqualToString:@"认证通过"]) {
+        self.right1.constant=-8.0;
+        [self.rightArrow1 setHidden:YES];
+    }
+    
+    if ([user.licenseAuthStatus isEqualToString:@"认证通过"]) {
+        self.right2.constant=-8.0;
+        [self.rightArrow2 setHidden:YES];
+    }
+    
     self.tableView.tableFooterView=[[UIView alloc]initWithFrame:CGRectZero];
     [self.tableView setFrame:CGRectMake(0, 10, ZYScreenWidth, ZYScreenHeight-10)];
 }
@@ -85,18 +85,20 @@
             break;
         case 5:
         {
-//            if ([user.photoAuthStatus isEqualToString:@"未认证"] || [user.photoAuthStatus isEqualToString:@"认证未通过"]) {
+            if (![user.photoAuthStatus isEqualToString:@"认证通过"]) {
                 CPAvatarAuthenticationController *CPAvatarAuthenticationController = [UIStoryboard storyboardWithName:@"CPAvatarAuthenticationController" bundle:nil].instantiateInitialViewController;
+                CPAvatarAuthenticationController.user = user;
                 [self.navigationController pushViewController:CPAvatarAuthenticationController animated:YES];
-//            }
+            }
             break;
         }
         case 6:
         {
-//            if ([user.licenseAuthStatus isEqualToString:@"未认证"] || [user.licenseAuthStatus isEqualToString:@"认证未通过"]) {
+            if (![user.licenseAuthStatus isEqualToString:@"认证通过"]) {
                 CPCarOwnersCertificationController *CPCarOwnersCertification = [UIStoryboard storyboardWithName:@"CPCarOwnersCertification" bundle:nil].instantiateInitialViewController;
+                CPCarOwnersCertification.user = user;
                 [self.navigationController pushViewController:CPCarOwnersCertification animated:YES];
-//            }
+            }
             break;
         }
             

@@ -31,6 +31,13 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBar.translucent = NO;
+    if ([_user.photoAuthStatus isEqualToString:@"认证中"]) {
+        [self.submitBtn setEnabled:NO];
+        [self.submitBtn setBackgroundColor:GrayColor];
+    }
+    if (_user.photo) {
+        [_headImg zySetImageWithUrl:_user.photo placeholderImage:nil];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

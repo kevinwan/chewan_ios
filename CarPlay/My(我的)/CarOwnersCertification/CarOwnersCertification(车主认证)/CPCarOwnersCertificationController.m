@@ -40,6 +40,11 @@
     if (user.car.logo) {
         [self.logo zySetImageWithUrl:user.car.logo placeholderImage:[UIImage imageNamed:@"logo"]];
     }
+    if ([_user.licenseAuthStatus isEqualToString:@"认证中"]) {
+        [_submitBtn setEnabled:NO];
+        [_submitBtn setBackgroundColor:GrayColor];
+    }
+    
     [self reloadCarOwnersInfo];
 }
 
