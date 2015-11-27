@@ -105,9 +105,12 @@ static NSString *ID = @"cell";
     cell.contentV.changeImg.hidden = NO;
     cell.contentV.dateAnim.hidden = YES;
     cell.contentV.dateButton.hidden = YES;
-    [[cell.contentV.changeImg rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        [self changeImg];
-    }];
+//    [[cell.contentV.changeImg rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+//        [self changeImg];
+//    }];
+    
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeImg)];
+    [cell.contentV.changeImg addGestureRecognizer:singleTap];//点击图片事件
     
     [[cell.contentV.continueMatching rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         unshare = YES;
@@ -174,6 +177,7 @@ static NSString *ID = @"cell";
         picker.allowsEditing=YES;
         picker.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
         [self presentViewController:picker animated:YES completion:^{
+            
         }];
     }else if (buttonIndex == 0){
         if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
@@ -231,6 +235,12 @@ static NSString *ID = @"cell";
             if (CPSuccess) {
                 _activity.organizer.cover=responseObject[@"data"][@"photoUrl"];
                 _coverId=responseObject[@"data"][@"photoId"];
+                NSMutableArray *albums=[[NSMutableArray alloc]initWithArray:_activity.organizer.album];
+                CPAlbum *album=[CPAlbum new];
+                album.url = responseObject[@"data"][@"photoUrl"];
+                album.photoId = responseObject[@"data"][@"photoId"];
+                [albums insertObject:album atIndex:0];
+                _activity.organizer.album = albums;
                 [_tableView reloadData];
             }else{
                 [[[UIAlertView alloc]initWithTitle:@"提示" message:@"上传失败，请稍后再试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];

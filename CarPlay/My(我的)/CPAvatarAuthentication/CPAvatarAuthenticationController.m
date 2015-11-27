@@ -34,6 +34,8 @@
     if ([_user.photoAuthStatus isEqualToString:@"认证中"]) {
         [self.submitBtn setEnabled:NO];
         [self.submitBtn setBackgroundColor:GrayColor];
+        [self.submitBtn setTitle:@"认证中" forState:UIControlStateNormal];
+        [self.headImg setUserInteractionEnabled:NO];
     }
     if (_user.photo) {
         [_headImg zySetImageWithUrl:_user.photo placeholderImage:nil];
