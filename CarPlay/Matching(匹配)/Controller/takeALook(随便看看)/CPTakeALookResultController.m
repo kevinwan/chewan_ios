@@ -9,6 +9,8 @@
 #import "CPTakeALookResultController.h"
 #import "CPNearCollectionViewCell.h"
 #import "CPTaInfo.h"
+#import "CPAlbum.h"
+#import "SDImageCache.h"
 
 @interface CPTakeALookResultController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *tableView;
@@ -87,7 +89,11 @@ static NSString *ID = @"cell";
 
 - (void)superViewWillRecive:(NSString *)notifyName info:(id)userInfo
 {
-    if([notifyName isEqualToString:DateBtnClickKey]){
+    if ([notifyName isEqualToString:CameraBtnClickKey]) {
+        [self cameraPresent];
+    }else if([notifyName isEqualToString:PhotoBtnClickKey]){
+        [self photoPresent];
+    }else if([notifyName isEqualToString:DateBtnClickKey]){
         [self dateClickWithInfo:userInfo];
     }else if([notifyName isEqualToString:LoveBtnClickKey]){
         [self loveBtnClickWithInfo:(CPActivityModel *)userInfo];
@@ -125,6 +131,111 @@ static NSString *ID = @"cell";
 //        
 //    });
 }
+
+/**
+ *  弹出相机
+ */
+- (void)cameraPresent
+{
+    CPGoLogin(@"上传照片");
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        [self showError:@"相机不可用"];
+        return;
+    }
+    UIImagePickerController *pic = [UIImagePickerController new];
+    pic.allowsEditing = YES;
+    pic.sourceType = UIImagePickerControllerSourceTypeCamera;
+    [pic.rac_imageSelectedSignal subscribeNext:^(NSDictionary *dict) {
+        [self addPhoto:@[dict[UIImagePickerControllerEditedImage]]];
+        [self dismissViewControllerAnimated:YES completion:NULL];
+    }completed:^{
+        
+//        [self dismissViewControllerAnimated:YES completion:NULL];
+    }];
+    [self presentViewController:pic animated:YES completion:NULL];
+}
+
+/**
+ *  相册弹出
+ */
+- (void)photoPresent
+{
+    CPGoLogin(@"上传照片");
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+        [self showError:@"相册不可用"];
+        return;
+    }
+    UIImagePickerController *pic = [UIImagePickerController new];
+    pic.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [pic.rac_imageSelectedSignal subscribeNext:^(NSDictionary *dict) {
+        [self addPhoto:@[dict[UIImagePickerControllerOriginalImage]]];
+        [self dismissViewControllerAnimated:YES completion:NULL];
+    } completed:^{
+//        [self dismissViewControllerAnimated:YES completion:NULL];
+    }];
+    [self presentViewController:pic animated:YES completion:NULL];
+    
+}
+
+//上传图片
+- (void)addPhoto:(NSArray *)arr
+{
+    // 多图上传
+    NSString *path=[[NSString alloc]initWithFormat:@"user/%@/album/upload?token=%@",[Tools getUserId],[Tools getToken]];
+    [self showLoading];
+    __block NSUInteger count = 0;
+    NSMutableArray *albums = [NSMutableArray array];
+    for (int i = 0; i < arr.count; i++) {
+        ZYHttpFile *imageFile = [ZYHttpFile fileWithName:@"attach" data:UIImageJPEGRepresentation(arr[i], 0.4) mimeType:@"image/jpeg" filename:@"a1.jpg"];
+        [ZYNetWorkTool postFileWithUrl:path params:nil files:@[imageFile] success:^(id responseObject) {
+            if (CPSuccess) {
+                
+                count++;
+                
+                CPAlbum *album = [CPAlbum objectWithKeyValues:responseObject[@"data"]];
+                [albums addObject:album];
+                if (count == arr.count) {
+                    [self disMiss];
+                    [self postPhotoCount:arr.count];
+                    NSString *filePath = [NSString stringWithFormat:@"%@.info",CPUserId];
+                    CPUser *user = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath.documentPath];
+                    
+                    [albums insertObjects:user.album atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, user.album.count)]];
+                    user.album = [albums copy];
+                    [NSKeyedArchiver archiveRootObject:user toFile:filePath.documentPath];
+                    if ([ZYUserDefaults boolForKey:CPHasAlbum] == NO && user.album.count >= 2) {
+                        [[SDImageCache sharedImageCache] clearMemory];
+                        [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
+                            [ZYUserDefaults setBool:YES forKey:CPHasAlbum];
+                            [self.tableView reloadData];
+                        }];
+                    }
+                }
+            }else{
+                [self showInfo:CPErrorMsg];
+            }
+            
+            
+        } failure:^(NSError *error) {
+            [self showError:@"照片上传失败"];
+        }];
+    }
+    
+}
+
+//发送上传的照片的个数
+-(void)postPhotoCount:(NSInteger)count
+{
+    NSString *path=[NSString stringWithFormat:@"user/%@/photoCount?token=%@",CPUserId,CPToken];
+    [ZYNetWorkTool postJsonWithUrl:path params:[NSDictionary dictionaryWithObjectsAndKeys:@(count),@"count", nil] success:^(id responseObject) {
+        if (CPFailure) {
+            [self showInfo:responseObject[@"errmsg"]];
+        }
+    } failed:^(NSError *error) {
+        [self showInfo:@"请检查您的手机网络"];
+    }];
+}
+
 
 /**
  *  处理约她的逻辑

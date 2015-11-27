@@ -43,6 +43,9 @@
     if ([_user.licenseAuthStatus isEqualToString:@"认证中"]) {
         [_submitBtn setEnabled:NO];
         [_submitBtn setBackgroundColor:GrayColor];
+        [_submitBtn setTitle:@"认证中" forState:UIControlStateNormal];
+        [self.uploadDriverLicense setEnabled:NO];
+        [self.uploadDrivingLicense setEnabled:NO];
     }
     
     [self reloadCarOwnersInfo];
@@ -55,11 +58,11 @@
 #pragma mark - Table view data source
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.row==0) {
+    if (indexPath.row==0 && ![_user.licenseAuthStatus isEqualToString:@"认证中"]) {
         CPBrandModelViewController *CPBrandModelVC=[[CPBrandModelViewController alloc]init];
         CPBrandModelVC.title=@"车型选择";
         [self.navigationController pushViewController:CPBrandModelVC animated:YES];
-    }else{
+    }else if(![_user.licenseAuthStatus isEqualToString:@"认证中"]){
         if (indexPath.row==2) {
             selectRow=2;
         }else{
