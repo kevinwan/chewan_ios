@@ -317,10 +317,10 @@ static NSString *ID = @"cell";
         case 2:
             //分享微信好友
         {
-          
+            NSString *locationStr=[_activity.destination objectForKey:@"street"];
             [UMSocialData defaultData].extConfig.wechatSessionData.url = shareStr;
             [UMSocialData defaultData].extConfig.wechatSessionData.title = @"";
-            NSString *shareContent  = [NSString stringWithFormat:@"%@\n%@",titleStr,[_activity.destination objectForKey:@"street"]];
+            NSString *shareContent  = [NSString stringWithFormat:@"%@\n%@",titleStr,locationStr.length>0?locationStr:@"地点待定"];
             
             [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:shareContent image:nil location:nil urlResource:resouce presentedController:self completion:^(UMSocialResponseEntity *response){
                 [self shareViewDismiss];
