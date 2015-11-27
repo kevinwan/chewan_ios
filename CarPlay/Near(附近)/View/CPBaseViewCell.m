@@ -899,7 +899,7 @@
         }];
         
         UILabel *textL = [UILabel new];
-        textL.text = @"你不传2张照片就想看我的,不公平哦";
+        textL.text = @"你要传两张照片才能看哟~";
         textL.textColor = [UIColor whiteColor];
         textL.font = ZYFont14;
         textL.textAlignment = NSTextAlignmentRight;
