@@ -15,7 +15,7 @@
 //#define Easy_Mob_Key @"gongpingjia#chewanapi"
 //#define APNS_CER @"chewanvpnrelease"
 
-// 测试服务器接口地址
+//// 测试服务器接口地址
 #define BASE_URL @"http://cwapi.gongpingjia.com:8080/v2/"
 #define Easy_Mob_Key @"gongpingjia#carplayapp"
 #define APNS_CER @"chewanvpntest"
