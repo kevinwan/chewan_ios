@@ -28,7 +28,7 @@
 //    "age": 25,
 @property (nonatomic, assign) NSUInteger age;
 
-@property (nonatomic, assign) long brithDay;
+@property (nonatomic, assign) long long brithDay;
 //    "role": "普通用户",
 @property (nonatomic, copy) NSString *role;
 //      用户头像url
