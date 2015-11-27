@@ -162,8 +162,13 @@
         if ([_activity.organizer.album count]>0) {
             CPAlbum *album=_activity.organizer.album[0];
             _activity.organizer.cover=album.url;
+            [ZYUserDefaults setObject:album.url forKey:@"coverPhotoUrl"];
+            [ZYUserDefaults setObject:album.photoId forKey:@"coverPhotoId"];
+            
         }else{
-            _activity.organizer.cover=_activity.organizer.avatar;
+            _activity.organizer.cover = _activity.organizer.avatar;
+            [ZYUserDefaults setObject: _activity.organizer.avatar forKey:@"coverPhotoUrl"];
+            [ZYUserDefaults setObject: _activity.organizer.avatarId forKey:@"coverPhotoId"];
         }
         CPMatchingPreview *matchingPreview=[UIStoryboard storyboardWithName:@"CPMatchingPreview" bundle:nil].instantiateInitialViewController;
         matchingPreview.activity=_activity;

@@ -139,12 +139,17 @@
                 _activity.distance=0;
                 _activity.transfer=[ZYUserDefaults boolForKey:Transfer];
                 _activity.organizer = [NSKeyedUnarchiver unarchiveObjectWithFile:[NSString stringWithFormat:@"%@.info",CPUserId].documentPath];
-                if ([_activity.organizer.album count]>0) {
-                    CPAlbum *album=_activity.organizer.album[0];
-                     _activity.organizer.cover=album.url;
-                }else{
-                    _activity.organizer.cover=_activity.organizer.avatar;
-                }
+        if ([_activity.organizer.album count]>0) {
+            CPAlbum *album=_activity.organizer.album[0];
+            _activity.organizer.cover=album.url;
+            [ZYUserDefaults setObject:album.url forKey:@"coverPhotoUrl"];
+            [ZYUserDefaults setObject:album.photoId forKey:@"coverPhotoId"];
+            
+        }else{
+            _activity.organizer.cover = _activity.organizer.avatar;
+            [ZYUserDefaults setObject: _activity.organizer.avatar forKey:@"coverPhotoUrl"];
+            [ZYUserDefaults setObject: _activity.organizer.avatarId forKey:@"coverPhotoId"];
+        }
                 CPMatchingPreview *matchingPreview=[UIStoryboard storyboardWithName:@"CPMatchingPreview" bundle:nil].instantiateInitialViewController;
                 matchingPreview.activity=_activity;
                 [self.navigationController pushViewController:matchingPreview animated:YES];

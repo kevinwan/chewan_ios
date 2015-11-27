@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface CPAvatarAuthenticationController : UIViewController
+
+@property (nonatomic, strong) CPUser *user;
 @property (weak, nonatomic) IBOutlet UIImageView *headImg;
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 - (IBAction)submit:(id)sender;

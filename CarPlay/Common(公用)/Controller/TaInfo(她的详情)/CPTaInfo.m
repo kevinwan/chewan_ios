@@ -370,6 +370,7 @@
                 }
                 if (i==arr.count-1) {
                     [self getData];
+                    [self postPhotoCount:arr.count];
                 }
             }else{
                 [self showError:responseObject[@"errmsg"]];
@@ -381,7 +382,18 @@
     [self disMiss];
 }
 
-
+//发送上传的照片的个数
+-(void)postPhotoCount:(NSInteger)count
+{
+    NSString *path=[NSString stringWithFormat:@"user/%@/photoCount?token=%@",CPUserId,CPToken];
+    [ZYNetWorkTool postJsonWithUrl:path params:[NSDictionary dictionaryWithObjectsAndKeys:@(count),@"count", nil] success:^(id responseObject) {
+        if (CPFailure) {
+            [self showInfo:responseObject[@"errmsg"]];
+        }
+    } failed:^(NSError *error) {
+        [self showInfo:@"请检查您的手机网络"];
+    }];
+}
 
 - (IBAction)taActivityClick:(id)sender {
     CPHisDateViewController *taInfoVC=[CPHisDateViewController new];

@@ -81,4 +81,7 @@
 
 @property (nonatomic, copy) NSString *snsPassword;
 
+//头像认证的照片URL
+@property (nonatomic, copy) NSString *photo;
+
 @end
