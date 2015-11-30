@@ -348,7 +348,6 @@
     
         for (int i = 0; i < arr.count; i++) {
             NSData *data = UIImageJPEGRepresentation(arr[i], 0.4);
-            NSData *data1 = UIImagePNGRepresentation(arr[i]);
             ZYHttpFile *imageFile = [ZYHttpFile fileWithName:@"attach" data:data mimeType:@"image/jpeg" filename:@"a1.jpg"];
             [self showLoading];
             [ZYNetWorkTool postFileWithUrl:path params:nil files:@[imageFile] success:^(id responseObject) {
