@@ -4396,7 +4396,7 @@
 				TargetAttributes = {
 					E31E4BD11BAD47A500902B34 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = 7B7Z8D7LY4;
+						DevelopmentTeam = 478G6NTTAZ;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 0;
@@ -5135,7 +5135,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: 77islanddeve@gongpingjia.com (8FRZ4CX6Y8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Pengsai Niu (N4A97539L6)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Nanjing 77 island Mdt InfoTech Co., Ltd. (7B7Z8D7LY4)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -5158,7 +5158,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "a6549d36-c41c-49e3-a8ef-93ff05b0a2da";
+				PROVISIONING_PROFILE = "bbed83d6-d7ed-428a-bfd9-6aaec5792643";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -5180,7 +5180,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: 77islanddeve@gongpingjia.com (8FRZ4CX6Y8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Pengsai Niu (N4A97539L6)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Nanjing 77 island Mdt InfoTech Co., Ltd. (7B7Z8D7LY4)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -5196,7 +5196,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "a6549d36-c41c-49e3-a8ef-93ff05b0a2da";
+				PROVISIONING_PROFILE = "bbed83d6-d7ed-428a-bfd9-6aaec5792643";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
